@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -149,28 +148,21 @@
        */
       tabs: function tabs(align, preselected, orientation) {
         var tabs = new qx.ui.website.Tabs(this);
-
         if (typeof preselected !== "undefined") {
           tabs.setConfig("preselected", preselected);
         }
-
         tabs.init();
-
         if (align) {
           tabs.setConfig("align", align);
         }
-
         if (orientation) {
           tabs.setConfig("orientation", orientation);
         }
-
         if (align || orientation) {
           tabs.render();
         }
-
         return tabs;
       },
-
       /**
        * *button*
        *
@@ -181,7 +173,6 @@
       _templates: {
         button: "<li><button>{{{content}}}</button></li>"
       },
-
       /**
        * *preselected*
        * The index of the page that should be opened after initial
@@ -224,62 +215,48 @@
        * Fired when the selected page has changed. The value is
        * the newly selected page's index
        */
-      "changeSelected": "Number"
+      changeSelected: "Number"
     },
     members: {
-      __P_477_0: null,
+      __P_492_0: null,
       init: function init() {
         if (!qx.ui.website.Tabs.superclass.prototype.init.call(this)) {
           return false;
         }
-
         var mediaQuery = this.getConfig("mediaQuery");
-
         if (mediaQuery) {
           this.setConfig("orientation", this._initMediaQueryListener(mediaQuery));
         }
-
         var orientation = this.getConfig("orientation");
         this.addClasses([this.getCssPrefix(), this.getCssPrefix() + "-" + orientation, "qx-flex-ready"]);
-
         if (this.getChildren("ul").length === 0) {
           var list = qxWeb.create("<ul/>");
           var content = this.getChildren();
-
           if (content.length > 0) {
             list.insertBefore(content.eq(0));
           } else {
             this.append(list);
           }
         }
-
         var container = this.find("> ." + this.getCssPrefix() + "-container");
         var buttons = this.getChildren("ul").getFirst().getChildren("li").not("." + this.getCssPrefix() + "-page");
-
         buttons._forEachElementWrapped(function (button) {
           button.addClass(this.getCssPrefix() + "-button");
           var pageSelector = button.getData(this.getCssPrefix() + "-page");
-
           if (!pageSelector) {
             return;
           }
-
           button.addClass(this.getCssPrefix() + "-button").on("tap", this._onTap, this);
-
           var page = this._getPage(button);
-
           if (page.length > 0) {
             page.addClass(this.getCssPrefix() + "-page");
-
             if (orientation == "vertical") {
-              this.__P_477_1(page);
-
+              this.__P_492_1(page);
               if (q.getNodeName(page[0]) == "div") {
                 var li = q.create("<li>").addClass(this.getCssPrefix() + "-page").setAttribute("id", page.getAttribute("id")).insertAfter(button[0]);
                 page.remove().getChildren().appendTo(li);
                 page = li;
               }
-
               this._storePageHeight(page);
             } else if (orientation == "horizontal") {
               if (q.getNodeName(page[0]) == "li") {
@@ -288,75 +265,55 @@
                 page = div;
               }
             }
-
             if (orientation == "horizontal") {
               if (container.length === 0) {
                 container = qxWeb.create("<div class='" + this.getCssPrefix() + "-container'>").insertAfter(this.find("> ul")[0]);
               }
-
               page.appendTo(container[0]);
             }
           }
-
           this._showPage(null, button);
-
-          this.__P_477_2(page);
+          this.__P_492_2(page);
         }.bind(this));
-
         if (orientation == "vertical" && container.length == 1 && container.getChildren().length === 0) {
           container.remove();
         }
-
         if (orientation == "horizontal" && this.getConfig("align") == "right" && q.env.get("engine.name") == "mshtml" && q.env.get("browser.documentmode") < 10) {
           buttons.remove();
-
           for (var i = buttons.length - 1; i >= 0; i--) {
             this.find("> ul").append(buttons[i]);
           }
         }
-
         var active = buttons.filter("." + this.getCssPrefix() + "-button-active");
         var preselected = this.getConfig("preselected");
-
         if (active.length === 0 && typeof preselected == "number") {
           active = buttons.eq(preselected).addClass(this.getCssPrefix() + "-button-active");
         }
-
         if (active.length > 0) {
           var activePage = this._getPage(active);
-
-          this.__P_477_1(activePage);
-
+          this.__P_492_1(activePage);
           this._showPage(active, null);
-
-          this.__P_477_2(activePage);
+          this.__P_492_2(activePage);
         }
-
         this.getChildren("ul").getFirst().on("keydown", this._onKeyDown, this);
-
         if (orientation === "horizontal") {
           this._applyAlignment(this);
         }
-
         qxWeb(window).on("resize", this._onResize, this);
         return true;
       },
       render: function render() {
         var mediaQuery = this.getConfig("mediaQuery");
-
         if (mediaQuery) {
           this.setConfig("orientation", this._initMediaQueryListener(mediaQuery));
         }
-
         var orientation = this.getConfig("orientation");
-
         if (orientation === "horizontal") {
           return this._renderHorizontal();
         } else if (orientation === "vertical") {
           return this._renderVertical();
         }
       },
-
       /**
        * Initiates a media query listener for dynamic orientation switching
        * @param mediaQuery {String} CSS media query string
@@ -364,23 +321,20 @@
        * media query matches, "vertical" if it doesn't
        */
       _initMediaQueryListener: function _initMediaQueryListener(mediaQuery) {
-        var mql = this.__P_477_0;
-
+        var mql = this.__P_492_0;
         if (!mql) {
           mql = q.matchMedia(mediaQuery);
-          this.__P_477_0 = mql;
+          this.__P_492_0 = mql;
           mql.on("change", function (query) {
             this.render();
           }.bind(this));
         }
-
         if (mql.matches) {
           return "horizontal";
         } else {
           return "vertical";
         }
       },
-
       /**
        * Render the widget in horizontal mode
        * @return {qx.ui.website.Tabs} The collection for chaining
@@ -388,62 +342,45 @@
       _renderHorizontal: function _renderHorizontal() {
         this.removeClass(this.getCssPrefix() + "-vertical").addClasses([this.getCssPrefix() + "", this.getCssPrefix() + "-horizontal"]).find("> ul").addClass("qx-hbox");
         var container = this.find("> ." + this.getCssPrefix() + "-container");
-
         if (container.length == 0) {
           container = qxWeb.create("<div class='" + this.getCssPrefix() + "-container'>").insertAfter(this.find("> ul")[0]);
         }
-
         var selectedPage;
-
         this.find("> ul > ." + this.getCssPrefix() + "-button")._forEachElementWrapped(function (li) {
           var page = this.find(li.getData(this.getCssPrefix() + "-page"));
-
           if (q.getNodeName(page[0]) == "li") {
             var div = q.create("<div>").addClass(this.getCssPrefix() + "-page").setAttribute("id", page.getAttribute("id"));
             page.remove().getChildren().appendTo(div);
             page = div;
           }
-
           page.appendTo(container[0]);
-
           this._switchPages(page, null);
-
           if (li.hasClass(this.getCssPrefix() + "-button-active")) {
             selectedPage = page;
           }
         }.bind(this));
-
         if (!selectedPage) {
           var firstButton = this.find("> ul > ." + this.getCssPrefix() + "-button").eq(0).addClass(this.getCssPrefix() + "-button-active");
           selectedPage = this._getPage(firstButton);
         }
-
         this._switchPages(null, selectedPage);
-
         this._applyAlignment(this);
-
         this.setEnabled(this.getEnabled());
         return this;
       },
-
       /**
        * Render the widget in vertical mode
        * @return {qx.ui.website.Tabs} The collection for chaining
        */
       _renderVertical: function _renderVertical() {
         this.find("> ul.qx-hbox").removeClass("qx-hbox");
-
         this.removeClasses([this.getCssPrefix() + "-horizontal"]).addClasses([this.getCssPrefix() + "", this.getCssPrefix() + "-vertical"]).getChildren("ul").getFirst().getChildren("li").not("." + this.getCssPrefix() + "-page")._forEachElementWrapped(function (button) {
           button.addClass(this.getCssPrefix() + "-button");
-
           var page = this._getPage(button);
-
           if (page.length === 0) {
             return;
           }
-
-          this.__P_477_1(page);
-
+          this.__P_492_1(page);
           if (q.getNodeName(page[0]) == "div") {
             var li = q.create("<li>").addClass(this.getCssPrefix() + "-page").setAttribute("id", page.getAttribute("id"));
             page.getChildren().appendTo(li);
@@ -451,22 +388,17 @@
             page.remove();
             page = li;
           }
-
           this._storePageHeight(page);
-
           if (button.hasClass(this.getCssPrefix() + "-button-active")) {
             this._switchPages(null, page);
           } else {
             this._switchPages(page, null);
           }
-
-          this.__P_477_2(page);
+          this.__P_492_2(page);
         }.bind(this));
-
         this.setEnabled(this.getEnabled());
         return this;
       },
-
       /**
        * Re-render on browser window resize (page heights must be re-
        * calculated)
@@ -480,7 +412,6 @@
           }
         }.bind(this), 100);
       },
-
       /**
        * Adds a new tab button
        *
@@ -494,36 +425,27 @@
         })).addClass(this.getCssPrefix() + "-button");
         var list = this.find("> ul");
         var links = list.getChildren("li");
-
         if (list.hasClass(this.getCssPrefix() + "-right") && links.length > 0) {
           link.insertBefore(links.getFirst());
         } else {
           link.appendTo(list);
         }
-
         link.on("tap", this._onTap, this).addClass(this.getCssPrefix() + "-button");
-
         if (this.find("> ul ." + this.getCssPrefix() + "-button").length === 1) {
           link.addClass(this.getCssPrefix() + "-button-active");
         }
-
         if (pageSelector) {
           link.setData(this.getCssPrefix() + "-page", pageSelector);
-
           var page = this._getPage(link);
-
           page.addClass(this.getCssPrefix() + "-page");
-
           if (link.hasClass(this.getCssPrefix() + "-button-active")) {
             this._switchPages(null, page);
           } else {
             this._switchPages(page, null);
           }
         }
-
         return this;
       },
-
       /**
        * Selects a tab button
        *
@@ -533,19 +455,14 @@
       select: function select(index) {
         var buttons = this.find("> ul > ." + this.getCssPrefix() + "-button");
         var oldButton = this.find("> ul > ." + this.getCssPrefix() + "-button-active").removeClass(this.getCssPrefix() + "-button-active");
-
         if (this.getConfig("align") == "right") {
           index = buttons.length - 1 - index;
         }
-
         var newButton = buttons.eq(index).addClass(this.getCssPrefix() + "-button-active");
-
         this._showPage(newButton, oldButton);
-
         this.emit("changeSelected", index);
         return this;
       },
-
       /**
        * Initiates the page switch when a button was clicked/tapped
        *
@@ -555,45 +472,33 @@
         if (!this.getEnabled()) {
           return;
         }
-
         var orientation = this.getConfig("orientation");
         var tappedButton = e.getCurrentTarget();
         var oldButton = this.find("> ul > ." + this.getCssPrefix() + "-button-active");
-
         if (oldButton[0] == tappedButton && orientation == "horizontal") {
           return;
         }
-
         oldButton.removeClass(this.getCssPrefix() + "-button-active");
-
         if (orientation == "vertical") {
           this._showPage(null, oldButton);
-
           if (oldButton[0] == tappedButton && orientation == "vertical") {
             return;
           }
         }
-
         var newButton;
-
         var buttons = this.find("> ul > ." + this.getCssPrefix() + "-button")._forEachElementWrapped(function (button) {
           if (tappedButton === button[0]) {
             newButton = button;
           }
         });
-
         this._showPage(newButton, oldButton);
-
         newButton.addClass(this.getCssPrefix() + "-button-active");
         var index = buttons.indexOf(newButton[0]);
-
         if (this.getConfig("align") == "right") {
           index = buttons.length - 1 - index;
         }
-
         this.emit("changeSelected", index);
       },
-
       /**
        * Allows tab selection using the left and right arrow keys
        *
@@ -601,21 +506,16 @@
        */
       _onKeyDown: function _onKeyDown(e) {
         var key = e.getKeyIdentifier();
-
         if (!(key == "Left" || key == "Right")) {
           return;
         }
-
         var rightAligned = this.getConfig("align") == "right";
         var buttons = this.find("> ul > ." + this.getCssPrefix() + "-button");
-
         if (rightAligned) {
           buttons.reverse();
         }
-
         var active = this.find("> ul > ." + this.getCssPrefix() + "-button-active");
         var next;
-
         if (key == "Right") {
           if (!rightAligned) {
             next = active.getNext("." + this.getCssPrefix() + "-button");
@@ -629,14 +529,12 @@
             next = active.getNext("." + this.getCssPrefix() + "-button");
           }
         }
-
         if (next.length > 0) {
           var idx = buttons.indexOf(next);
           this.select(idx);
           next.getChildren("button").focus();
         }
       },
-
       /**
        * Initiates the page switch if a tab button is selected
        *
@@ -645,16 +543,12 @@
        */
       _showPage: function _showPage(newButton, oldButton) {
         var oldPage = this._getPage(oldButton);
-
         var newPage = this._getPage(newButton);
-
         if (this.getConfig("orientation") === "horizontal" && oldPage[0] == newPage[0]) {
           return;
         }
-
         this._switchPages(oldPage, newPage);
       },
-
       /**
        * Executes a page switch
        *
@@ -663,12 +557,10 @@
        */
       _switchPages: function _switchPages(oldPage, newPage) {
         var orientation = this.getConfig("orientation");
-
         if (orientation === "horizontal") {
           if (oldPage) {
             oldPage.hide();
           }
-
           if (newPage) {
             newPage.show();
           }
@@ -677,21 +569,18 @@
             oldPage.setStyle("height", oldPage.getHeight() + "px");
             oldPage[0].offsetHeight;
             oldPage.setStyles({
-              "height": "0px",
-              "paddingTop": "0px",
-              "paddingBottom": "0px"
+              height: "0px",
+              paddingTop: "0px",
+              paddingBottom: "0px"
             });
             oldPage.addClass(this.getCssPrefix() + "-page-closed");
           }
-
           if (newPage && newPage.length > 0) {
             newPage.removeClass(this.getCssPrefix() + "-page-closed");
-
             if (!newPage.getStyle("transition") || newPage.getStyle("transition").indexOf("none") === 0) {
               newPage.setStyle("height", "");
             } else {
               var openedHeight = newPage.getProperty("openedHeight");
-
               if (qxWeb.type.get(openedHeight) == "String") {
                 newPage.setStyle("height", openedHeight);
               }
@@ -699,7 +588,6 @@
           }
         }
       },
-
       /**
        * Returns the tab page associated with the given button
        *
@@ -708,14 +596,11 @@
        */
       _getPage: function _getPage(button) {
         var pageSelector;
-
         if (button) {
           pageSelector = button.getData(this.getCssPrefix() + "-page");
         }
-
         return this.find(pageSelector);
       },
-
       /**
        * Apply the CSS classes for the alignment
        *
@@ -724,20 +609,17 @@
       _applyAlignment: function _applyAlignment(tabs) {
         var align = tabs.getConfig("align");
         var buttons = tabs.find("> ul > li");
-
         if (q.env.get("engine.name") == "mshtml" && q.env.get("browser.documentmode") < 10) {
           if (align == "left") {
             tabs.addClass(this.getCssPrefix() + "-left");
           } else {
             tabs.removeClass(this.getCssPrefix() + "-left");
           }
-
           if (align == "justify") {
             tabs.addClass(this.getCssPrefix() + "-justify");
           } else {
             tabs.removeClass(this.getCssPrefix() + "-justify");
           }
-
           if (align == "right") {
             tabs.addClass(this.getCssPrefix() + "-right");
           } else {
@@ -745,13 +627,11 @@
           }
         } else {
           tabs.find("> ul").addClass("qx-hbox");
-
           if (align == "justify") {
             buttons.addClass("qx-flex1");
           } else {
             buttons.removeClass("qx-flex1");
           }
-
           if (align == "right") {
             tabs.find("> ul").addClass("qx-flex-justify-end");
           } else {
@@ -759,7 +639,6 @@
           }
         }
       },
-
       /**
        * Stores the page's natural height for the page opening transition
        * @param page {qxWeb} page
@@ -767,56 +646,48 @@
       _storePageHeight: function _storePageHeight(page) {
         var closedClass = this.getCssPrefix() + "-page-closed";
         var isClosed = page.hasClass(closedClass);
-
         if (isClosed) {
           page.removeClass(this.getCssPrefix() + "-page-closed");
         }
-
         var prevDisplay = page[0].style.display;
         var prevHeight = page[0].style.height;
         page[0].style.height = "";
         page[0].style.display = "block";
         page.setProperty("openedHeight", page.getHeight() + "px");
-
         if (isClosed) {
           page.addClass(this.getCssPrefix() + "-page-closed");
         }
-
         page[0].style.height = prevHeight;
         page[0].style.display = prevDisplay;
       },
-
       /**
        * Stores an element's CSS transition styles in a property
        * and removes them from the style declaration
        *
        * @param elem {qxWeb} Element
        */
-      __P_477_1: function __P_477_1(elem) {
+      __P_492_1: function __P_492_1(elem) {
         var transition = elem.getStyles(["transitionDelay", "transitionDuration", "transitionProperty", "transitionTimingFunction"]);
-
         if (transition.transitionProperty.indexOf("none") == -1) {
           elem.setProperty("__qxtransition", transition);
           elem.setStyle("transition", "none");
         }
       },
-
       /**
        * Restores an element's transition styles
        *
        * @param elem {qxWeb} Element
        */
-      __P_477_2: function __P_477_2(elem) {
+      __P_492_2: function __P_492_2(elem) {
         var transition = elem.getProperty("__qxtransition");
         var style = elem.getStyle("transitionProperty");
-
         if (transition && style.indexOf("none") != -1) {
           elem.setStyles(transition);
           elem.setProperty("__qxtransition", "");
         }
       },
       dispose: function dispose() {
-        this.__P_477_0 = undefined;
+        this.__P_492_0 = undefined;
         var cssPrefix = this.getCssPrefix();
         qxWeb(window).off("resize", this._onResize, this);
         this.find("> ul > ." + this.getCssPrefix() + "-button").off("tap", this._onTap, this);
@@ -834,4 +705,4 @@
   qx.ui.website.Tabs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tabs.js.map?dt=1664789608875
+//# sourceMappingURL=Tabs.js.map?dt=1672653519385

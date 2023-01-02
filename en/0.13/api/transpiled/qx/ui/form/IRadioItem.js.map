@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IRadioItem.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -11,6 +8,7 @@
     "Interface",
     "define",
     "events",
+    "changeValue",
     "members",
     "setValue",
     "value",
@@ -23,8 +21,11 @@
     "getGroup",
     "IRadioItem"
   ],
-  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,uBAApB,EACA;AAEE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,MAAM,EACN;AACE;AACA,qBAAgB;AAFlB,KATF;;AAgBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,kBAASC,KAAT,EAAgB,CAAE,CAN/B;;AASE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,oBAAW,CAAE,CAd1B;;AAiBE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,kBAASF,KAAT,EAAgB;AACzB,aAAKG,cAAL,CAAoBH,KAApB,EAA2BT,EAAE,CAACa,EAAH,CAAMC,IAAN,CAAWC,UAAtC;AACD,OAzBH;;AA4BE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,oBAAW,CAAE;AAjC1B;AAvBF,GADA;AAvBAhB,EAAAA,EAAE,CAACa,EAAH,CAAMC,IAAN,CAAWG,UAAX,CAAsBd,aAAtB,GAAsCA,aAAtC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IRadioItem.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Each object, which should be managed by a {@link RadioGroup} have to\n * implement this interface.\n */\nqx.Interface.define(\"qx.ui.form.IRadioItem\",\n{\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events :\n  {\n    /** Fired when the item was checked or unchecked */\n    \"changeValue\" : \"qx.event.type.Data\"\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Set whether the item is checked\n     *\n     * @param value {Boolean} whether the item should be checked\n     */\n    setValue : function(value) {},\n\n\n    /**\n     * Get whether the item is checked\n     *\n     * @return {Boolean} whether the item it checked\n     */\n    getValue : function() {},\n\n\n    /**\n     * Set the radiogroup, which manages this item\n     *\n     * @param value {qx.ui.form.RadioGroup} The radiogroup, which should\n     *     manage the item.\n     */\n    setGroup : function(value) {\n      this.assertInstance(value, qx.ui.form.RadioGroup);\n    },\n\n\n    /**\n     * Get the radiogroup, which manages this item\n     *\n     * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.\n     */\n    getGroup : function() {}\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Each object, which should be managed by a {@link RadioGroup} have to\n * implement this interface.\n */\nqx.Interface.define(\"qx.ui.form.IRadioItem\", {\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events: {\n    /** Fired when the item was checked or unchecked */\n    changeValue: \"qx.event.type.Data\"\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /**\n     * Set whether the item is checked\n     *\n     * @param value {Boolean} whether the item should be checked\n     */\n    setValue(value) {},\n\n    /**\n     * Get whether the item is checked\n     *\n     * @return {Boolean} whether the item it checked\n     */\n    getValue() {},\n\n    /**\n     * Set the radiogroup, which manages this item\n     *\n     * @param value {qx.ui.form.RadioGroup} The radiogroup, which should\n     *     manage the item.\n     */\n    setGroup(value) {\n      this.assertInstance(value, qx.ui.form.RadioGroup);\n    },\n\n    /**\n     * Get the radiogroup, which manages this item\n     *\n     * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.\n     */\n    getGroup() {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,uBAAuB,EAAE;IAC3C;AACF;AACA;AACA;AACA;;IAEEC,MAAM,EAAE;MACN;MACAC,WAAW,EAAE;IACf,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MACIC,QAAQ,oBAACC,KAAK,EAAE,CAAC,CAAC;MAElB;AACJ;AACA;AACA;AACA;MACIC,QAAQ,sBAAG,CAAC,CAAC;MAEb;AACJ;AACA;AACA;AACA;AACA;MACIC,QAAQ,oBAACF,KAAK,EAAE;QACd,IAAI,CAACG,cAAc,CAACH,KAAK,EAAEV,EAAE,CAACc,EAAE,CAACC,IAAI,CAACC,UAAU,CAAC;MACnD,CAAC;MAED;AACJ;AACA;AACA;AACA;MACIC,QAAQ,sBAAG,CAAC;IACd;EACF,CAAC,CAAC;EAzEFjB,EAAE,CAACc,EAAE,CAACC,IAAI,CAACG,UAAU,CAACf,aAAa,GAAGA,aAAa;AAAC"
 }

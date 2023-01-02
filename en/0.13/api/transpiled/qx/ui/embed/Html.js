@@ -39,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -80,29 +79,26 @@
   qx.Class.define("qx.ui.embed.Html", {
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MNativeOverflow],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param html {String} Initial HTML content
      */
     construct: function construct(html) {
       qx.ui.core.Widget.constructor.call(this);
-
       if (html != null) {
         this.setHtml(html);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Any text string which can contain HTML, too */
       html: {
@@ -111,7 +107,6 @@
         event: "changeHtml",
         nullable: true
       },
-
       /**
        * The css classname for the html embed.
        * <b>IMPORTANT</b> Paddings and borders does not work
@@ -134,12 +129,12 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -149,7 +144,6 @@
       getFocusElement: function getFocusElement() {
         return this.getContentElement();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -157,13 +151,13 @@
       */
       // property apply
       _applyHtml: function _applyHtml(value, old) {
-        var elem = this.getContentElement(); // Workaround for http://bugzilla.qooxdoo.org/show_bug.cgi?id=7679
-
+        var elem = this.getContentElement();
+        // Workaround for http://bugzilla.qooxdoo.org/show_bug.cgi?id=7679
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") == 9) {
           elem.setStyle("position", "relative");
-        } // Insert HTML content
+        }
 
-
+        // Insert HTML content
         elem.setAttribute("html", value || "");
       },
       // property apply
@@ -174,16 +168,14 @@
       // overridden
       _applySelectable: function _applySelectable(value) {
         qx.ui.embed.Html.superclass.prototype._applySelectable.call(this, value);
+
         /*
          * We have to set the value to "text" in Webkit for the content element
          */
-
-
         if (qx.core.Environment.get("engine.name") == "webkit") {
           this.getContentElement().setStyle("userSelect", value ? "text" : "none");
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FONT SUPPORT
@@ -191,15 +183,14 @@
       */
       // overridden
       _applyFont: function _applyFont(value, old) {
-        var styles = value ? qx.theme.manager.Font.getInstance().resolve(value).getStyles() : qx.bom.Font.getDefaultStyles(); // check if text color already set - if so this local value has higher priority
+        var styles = value ? qx.theme.manager.Font.getInstance().resolve(value).getStyles() : qx.bom.Font.getDefaultStyles();
 
+        // check if text color already set - if so this local value has higher priority
         if (this.getTextColor() != null) {
           delete styles["color"];
         }
-
         this.getContentElement().setStyles(styles);
       },
-
       /*
       ---------------------------------------------------------------------------
         TEXT COLOR SUPPORT
@@ -218,4 +209,4 @@
   qx.ui.embed.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1664789595732
+//# sourceMappingURL=Html.js.map?dt=1672653506832

@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,44 +56,37 @@
     construct: function construct() {
       qx.bom.History.constructor.call(this);
       this._baseUrl = null;
-
-      this.__P_100_0();
+      this.__P_102_0();
     },
     members: {
-      __P_100_1: null,
-      __P_100_2: null,
-      __P_100_3: false,
+      __P_102_1: null,
+      __P_102_2: null,
+      __P_102_3: false,
       //overridden
       addToHistory: function addToHistory(state, newTitle) {
         if (!qx.lang.Type.isString(state)) {
           state = state + "";
         }
-
         if (qx.lang.Type.isString(newTitle)) {
           this.setTitle(newTitle);
           this._titles[state] = newTitle;
         }
-
         if (this.getState() !== state) {
           this._writeState(state);
         }
       },
-
       /**
        * Initializes the iframe
        *
        */
-      __P_100_0: function __P_100_0() {
-        this.__P_100_2 = this.__P_100_4();
-        document.body.appendChild(this.__P_100_2);
-
-        this.__P_100_5(function () {
-          this._baseUrl = this.__P_100_2.contentWindow.document.location.href;
-
-          this.__P_100_6();
+      __P_102_0: function __P_102_0() {
+        this.__P_102_2 = this.__P_102_4();
+        document.body.appendChild(this.__P_102_2);
+        this.__P_102_5(function () {
+          this._baseUrl = this.__P_102_2.contentWindow.document.location.href;
+          this.__P_102_6();
         }, this);
       },
-
       /**
        * IMPORTANT NOTE FOR IE:
        * Setting the source before adding the iframe to the document.
@@ -102,7 +94,7 @@
        *
        * @return {Element}
        */
-      __P_100_4: function __P_100_4() {
+      __P_102_4: function __P_102_4() {
         var iframe = qx.bom.Iframe.create({
           src: qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html") + "#"
         });
@@ -112,7 +104,6 @@
         iframe.style.top = "-1000px";
         return iframe;
       },
-
       /**
        * Waits for the IFrame being loaded. Once the IFrame is loaded
        * the callback is called with the provided context.
@@ -121,51 +112,43 @@
        * @param context {Object?window} The context for the callback.
        * @param retry {Integer} number of tries to initialize the iframe
        */
-      __P_100_5: function __P_100_5(callback, context, retry) {
+      __P_102_5: function __P_102_5(callback, context, retry) {
         if (typeof retry === "undefined") {
           retry = 0;
         }
-
-        if (!this.__P_100_2.contentWindow || !this.__P_100_2.contentWindow.document) {
+        if (!this.__P_102_2.contentWindow || !this.__P_102_2.contentWindow.document) {
           if (retry > 20) {
             throw new Error("can't initialize iframe");
           }
-
           qx.event.Timer.once(function () {
-            this.__P_100_5(callback, context, ++retry);
+            this.__P_102_5(callback, context, ++retry);
           }, this, 10);
           return;
         }
-
-        this.__P_100_3 = true;
+        this.__P_102_3 = true;
         callback.call(context || window);
       },
-
       /**
        * Attach hash change listeners
        */
-      __P_100_6: function __P_100_6() {
-        qx.event.Idle.getInstance().addListener("interval", this.__P_100_7, this);
+      __P_102_6: function __P_102_6() {
+        qx.event.Idle.getInstance().addListener("interval", this.__P_102_7, this);
       },
-
       /**
        * Remove hash change listeners
        */
-      __P_100_8: function __P_100_8() {
-        qx.event.Idle.getInstance().removeListener("interval", this.__P_100_7, this);
+      __P_102_8: function __P_102_8() {
+        qx.event.Idle.getInstance().removeListener("interval", this.__P_102_7, this);
       },
-
       /**
        * hash change event handler
        */
-      __P_100_7: function __P_100_7() {
+      __P_102_7: function __P_102_7() {
         var currentState = this._readState();
-
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
         }
       },
-
       /**
        * Browser dependent function to read the current state of the history
        *
@@ -175,7 +158,6 @@
         var hash = !this._getHash() ? "" : this._getHash().substr(1);
         return this._decode(hash);
       },
-
       /**
        * Returns the fragment identifier of the top window URL. For gecko browsers we
        * have to use a regular expression to avoid encoding problems.
@@ -184,13 +166,11 @@
        * iframe isn't ready yet
        */
       _getHash: function _getHash() {
-        if (!this.__P_100_3) {
+        if (!this.__P_102_3) {
           return null;
         }
-
-        return this.__P_100_2.contentWindow.document.location.hash;
+        return this.__P_102_2.contentWindow.document.location.hash;
       },
-
       /**
        * Save a state into the browser history.
        *
@@ -199,31 +179,27 @@
       _writeState: function _writeState(state) {
         this._setHash(this._encode(state));
       },
-
       /**
        * Sets the fragment identifier of the window URL
        *
        * @param value {String} the fragment identifier
        */
       _setHash: function _setHash(value) {
-        if (!this.__P_100_2 || !this._baseUrl) {
+        if (!this.__P_102_2 || !this._baseUrl) {
           return;
         }
-
-        var hash = !this.__P_100_2.contentWindow.document.location.hash ? "" : this.__P_100_2.contentWindow.document.location.hash.substr(1);
-
+        var hash = !this.__P_102_2.contentWindow.document.location.hash ? "" : this.__P_102_2.contentWindow.document.location.hash.substr(1);
         if (value != hash) {
-          this.__P_100_2.contentWindow.document.location.hash = value;
+          this.__P_102_2.contentWindow.document.location.hash = value;
         }
       }
     },
     destruct: function destruct() {
-      this.__P_100_8();
-
-      this.__P_100_2 = null;
+      this.__P_102_8();
+      this.__P_102_2 = null;
     }
   });
   qx.bom.HashHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HashHistory.js.map?dt=1664789575533
+//# sourceMappingURL=HashHistory.js.map?dt=1672653484112

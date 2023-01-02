@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 615
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 43,
+        "column": 3,
+        "index": 1132
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "toHtml": {
       "location": {
         "start": {
-          "line": 27,
-          "column": 4
+          "line": 26,
+          "column": 4,
+          "index": 678
         },
         "end": {
-          "line": 27,
-          "column": 16
+          "line": 26,
+          "column": 16,
+          "index": 690
         }
       },
       "type": "variable",
@@ -51,12 +55,14 @@
     "toText": {
       "location": {
         "start": {
-          "line": 28,
-          "column": 4
+          "line": 27,
+          "column": 4,
+          "index": 696
         },
         "end": {
-          "line": 28,
-          "column": 16
+          "line": 27,
+          "column": 16,
+          "index": 708
         }
       },
       "type": "variable",
@@ -65,12 +71,14 @@
     "toTextArray": {
       "location": {
         "start": {
-          "line": 29,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 714
         },
         "end": {
-          "line": 29,
-          "column": 21
+          "line": 28,
+          "column": 21,
+          "index": 731
         }
       },
       "type": "variable",
@@ -79,12 +87,14 @@
     "escapeHTML": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 737
         },
         "end": {
-          "line": 30,
-          "column": 52
+          "line": 29,
+          "column": 52,
+          "index": 785
         }
       },
       "type": "variable",
@@ -94,15 +104,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 33,
-        "column": 9
+        "line": 32,
+        "column": 2,
+        "index": 794
       },
       "end": {
-        "line": 40,
-        "column": 3
+        "line": 42,
+        "column": 3,
+        "index": 1128
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

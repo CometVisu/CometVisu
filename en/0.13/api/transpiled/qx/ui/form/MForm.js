@@ -1,6 +1,11 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Mixin": {
         "usage": "dynamic",
         "require": true
@@ -8,10 +13,17 @@
       "qx.locale.Manager": {
         "construct": true
       }
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.dynlocale": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +48,7 @@
   qx.Mixin.define("qx.ui.form.MForm", {
     construct: function construct() {
       {
-        qx.locale.Manager.getInstance().addListener("changeLocale", this.__P_333_0, this);
+        qx.locale.Manager.getInstance().addListener("changeLocale", this.__P_350_0, this);
       }
     },
     properties: {
@@ -50,7 +62,6 @@
         apply: "_applyValid",
         event: "changeValid"
       },
-
       /**
        * Flag signaling if a widget is required.
        */
@@ -59,24 +70,23 @@
         init: false,
         event: "changeRequired"
       },
-
       /**
-       * Message which is shown in an invalid tooltip.
+       * Message which will be shown in an tooltip if the widget is invalid.
        */
       invalidMessage: {
+        init: null,
+        nullable: true,
         check: "String",
-        init: "",
         event: "changeInvalidMessage"
       },
-
       /**
-       * Message which is shown in an invalid tooltip if the {@link #required} is
+       * Message which will be shown in an invalid tooltip if the {@link #required} is
        * set to true.
        */
       requiredInvalidMessage: {
         check: "String",
         nullable: true,
-        event: "changeInvalidMessage"
+        event: "changeRequiredInvalidMessage"
       }
     },
     members: {
@@ -84,36 +94,35 @@
       _applyValid: function _applyValid(value, old) {
         value ? this.removeState("invalid") : this.addState("invalid");
       },
-
       /**
        * Locale change event handler
        *
        * @signature function(e)
        * @param e {Event} the change event
        */
-      __P_333_0: function __P_333_0(e) {
-        // invalid message
-        var invalidMessage = this.getInvalidMessage();
-
-        if (invalidMessage && invalidMessage.translate) {
-          this.setInvalidMessage(invalidMessage.translate());
-        } // required invalid message
-
-
-        var requiredInvalidMessage = this.getRequiredInvalidMessage();
-
-        if (requiredInvalidMessage && requiredInvalidMessage.translate) {
-          this.setRequiredInvalidMessage(requiredInvalidMessage.translate());
-        }
-      }
+      __P_350_0: qx.core.Environment.select("qx.dynlocale", {
+        "true": function _true(e) {
+          // invalid message
+          var invalidMessage = this.getInvalidMessage();
+          if (invalidMessage && invalidMessage.translate) {
+            this.setInvalidMessage(invalidMessage.translate());
+          }
+          // required invalid message
+          var requiredInvalidMessage = this.getRequiredInvalidMessage();
+          if (requiredInvalidMessage && requiredInvalidMessage.translate) {
+            this.setRequiredInvalidMessage(requiredInvalidMessage.translate());
+          }
+        },
+        "false": null
+      })
     },
     destruct: function destruct() {
       {
-        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__P_333_0, this);
+        qx.locale.Manager.getInstance().removeListener("changeLocale", this.__P_350_0, this);
       }
     }
   });
   qx.ui.form.MForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MForm.js.map?dt=1664789596627
+//# sourceMappingURL=MForm.js.map?dt=1672653507741

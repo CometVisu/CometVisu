@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,7 +57,8 @@
        *   the source property.
        * @param targetObject {qx.core.Object} The object which the source should
        *   be bind to.
-       * @param targetProperty {String} The property name of the target object.
+       * @param targetProperty {String?"value"} The property name of the target object,
+       *   defaults to "value".
        * @param options {Map?null} A map containing the options. See
        *   {@link qx.data.SingleValueBinding#bind} for more
        *   information.
@@ -72,9 +72,8 @@
        *   target).
        */
       bind: function bind(sourcePropertyChain, targetObject, targetProperty, options) {
-        return qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty, options);
+        return qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty || "value", options);
       },
-
       /**
        * The bind method delegates the call to the
        * {@link qx.data.SingleValueBinding#bind} function. As source, the current
@@ -84,15 +83,16 @@
        *   the source property.
        * @param targetObject {qx.core.Object} The object which the source should
        *   be bind to.
-       * @param targetProperty {String} The property name of the target object.
+       * @param targetProperty {String?"value"} The property name of the target object,
+       *   defaults to "value".
        * @param options {Map} A map containing the options. See
        *   {@link qx.data.SingleValueBinding#bind} for more
        *   information.
        *
        * @return {qx.Promise} A promise which is resolved when the initial value
        * 	 has been set on the target.  Note that this does NOT resolve when subsequent
-       *   values are returned.  The promise value is the internal id for that binding. 
-       *   The id can be used for referencing the binding e.g. for removing. This is not 
+       *   values are returned.  The promise value is the internal id for that binding.
+       *   The id can be used for referencing the binding e.g. for removing. This is not
        *   an atomic id so you can't you use it as a hash-map index.
        *
        * @throws {qx.core.AssertionError} If the event is no data event or
@@ -101,8 +101,7 @@
        */
       bindAsync: qx.core.Environment.select("qx.promise", {
         "true": function _true(sourcePropertyChain, targetObject, targetProperty, options) {
-          var id = qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty, options);
-
+          var id = qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty || "value", options);
           if (id.initialPromise) {
             return id.initialPromise.then(function () {
               id.initialPromise = null;
@@ -116,7 +115,6 @@
           return this.bind(sourcePropertyChain, targetObject, targetProperty, options);
         }
       }),
-
       /**
        * Removes the binding with the given id from the current object. The
        * id has to be the id returned by any of the bind functions.
@@ -127,7 +125,6 @@
       removeBinding: function removeBinding(id) {
         qx.data.SingleValueBinding.removeBindingFromObject(this, id);
       },
-
       /**
        * Removes all bindings between the object and the related one.
        *
@@ -139,7 +136,6 @@
       removeRelatedBindings: function removeRelatedBindings(relatedObject) {
         qx.data.SingleValueBinding.removeRelatedBindings(this, relatedObject);
       },
-
       /**
        * Removes all bindings from the object.
        *
@@ -151,7 +147,6 @@
       removeAllBindings: function removeAllBindings() {
         qx.data.SingleValueBinding.removeAllBindingsForObject(this);
       },
-
       /**
        * Returns an array which lists all bindings for the object.
        *
@@ -173,4 +168,4 @@
   qx.data.MBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBinding.js.map?dt=1664789580854
+//# sourceMappingURL=MBinding.js.map?dt=1672653489117

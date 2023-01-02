@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 924
       },
       "end": {
-        "line": 46,
-        "column": 3
+        "line": 45,
+        "column": 3,
+        "index": 1342
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "handleAction": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1217
         },
         "end": {
-          "line": 39,
-          "column": 33
+          "line": 38,
+          "column": 23,
+          "index": 1236
         }
       },
       "jsdoc": {
@@ -71,12 +75,14 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1316
         },
         "end": {
-          "line": 44,
-          "column": 32
+          "line": 43,
+          "column": 22,
+          "index": 1334
         }
       },
       "jsdoc": {

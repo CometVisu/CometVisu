@@ -38,7 +38,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -72,47 +71,41 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.bom.History.constructor.call(this);
-
-      this.__P_107_0();
+      this.__P_109_0();
     },
     members: {
-      __P_107_1: null,
-
+      __P_109_1: null,
       /**
        * Attach hash change listeners
        */
-      __P_107_0: function __P_107_0() {
+      __P_109_0: function __P_109_0() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          var boundFunc = qx.lang.Function.bind(this.__P_107_2, this);
-          this.__P_107_1 = qx.event.GlobalError.observeMethod(boundFunc);
-          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_107_1);
+          var boundFunc = qx.lang.Function.bind(this.__P_109_2, this);
+          this.__P_109_1 = qx.event.GlobalError.observeMethod(boundFunc);
+          qx.bom.Event.addNativeListener(window, "hashchange", this.__P_109_1);
         } else {
-          qx.event.Idle.getInstance().addListener("interval", this.__P_107_2, this);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_109_2, this);
         }
       },
-
       /**
        * Remove hash change listeners
        */
-      __P_107_3: function __P_107_3() {
+      __P_109_3: function __P_109_3() {
         if (qx.bom.History.SUPPORTS_HASH_CHANGE_EVENT) {
-          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_107_1);
+          qx.bom.Event.removeNativeListener(window, "hashchange", this.__P_109_1);
         } else {
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_107_2, this);
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_109_2, this);
         }
       },
-
       /**
        * hash change event handler
        */
-      __P_107_2: function __P_107_2() {
+      __P_109_2: function __P_109_2() {
         var currentState = this._readState();
-
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
         }
       },
-
       /**
        * Browser dependent function to read the current state of the history
        *
@@ -121,14 +114,13 @@
       _readState: function _readState() {
         return this._decode(this._getHash());
       },
-
       /**
        * Save a state into the browser history.
        *
        * @param state {String} state to save
        */
       _writeState: qx.core.Environment.select("engine.name", {
-        "opera": function opera(state) {
+        opera: function opera(state) {
           qx.event.Timer.once(function () {
             this._setHash(this._encode(state));
           }, this, 0);
@@ -139,10 +131,10 @@
       })
     },
     destruct: function destruct() {
-      this.__P_107_3();
+      this.__P_109_3();
     }
   });
   qx.bom.NativeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeHistory.js.map?dt=1664789575950
+//# sourceMappingURL=NativeHistory.js.map?dt=1672653484486

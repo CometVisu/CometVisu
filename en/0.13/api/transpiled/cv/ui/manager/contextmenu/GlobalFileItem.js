@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* GlobalFileItem.js 
-   * 
+  /* GlobalFileItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,4 +40,4 @@
   cv.ui.manager.contextmenu.GlobalFileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalFileItem.js.map?dt=1664789565298
+//# sourceMappingURL=GlobalFileItem.js.map?dt=1672653474170

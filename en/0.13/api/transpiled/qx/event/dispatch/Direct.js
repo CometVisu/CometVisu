@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,13 +44,11 @@
   qx.Class.define("qx.event.dispatch.Direct", {
     extend: qx.core.Object,
     implement: qx.event.IEventDispatcher,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      *
@@ -60,22 +57,22 @@
     construct: function construct(manager) {
       this._manager = manager;
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this dispatcher */
       PRIORITY: qx.event.Registration.PRIORITY_LAST
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -91,26 +88,21 @@
         event.setEventPhase(qx.event.type.Event.AT_TARGET);
         var tracker = {};
         var self = this;
-
         var listeners = this._manager.getListeners(target, type, false);
-
         if (listeners) {
           listeners.forEach(function (listener) {
             if (self._manager.isBlacklisted(listener.unique)) {
               return;
             }
-
             var context = listener.context || target;
             qx.event.Utils.then(tracker, function () {
               return listener.handler.call(context, event);
             });
           });
         }
-
         return tracker.promise;
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -123,4 +115,4 @@
   qx.event.dispatch.Direct.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Direct.js.map?dt=1664789584082
+//# sourceMappingURL=Direct.js.map?dt=1672653494702

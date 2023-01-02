@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 664
       },
       "end": {
-        "line": 429,
-        "column": 5
+        "line": 424,
+        "column": 3,
+        "index": 13970
       }
     },
     "jsdoc": {
@@ -36,12 +38,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 40,
-        "column": 16
+        "line": 36,
+        "column": 2,
+        "index": 923
       },
       "end": {
-        "line": 42,
-        "column": 5
+        "line": 38,
+        "column": 3,
+        "index": 953
       }
     },
     "jsdoc": {}
@@ -50,12 +54,14 @@
     "getChild": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1505
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1787
         }
       },
       "jsdoc": {
@@ -96,12 +102,14 @@
     "getChildByAttribute": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2219
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2615
         }
       },
       "jsdoc": {
@@ -149,12 +157,14 @@
     "getIconUrl": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 101,
+          "column": 4,
+          "index": 2994
         },
         "end": {
-          "line": 206,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 5883
         }
       },
       "jsdoc": {
@@ -205,12 +215,14 @@
     "iconNameToIconPath": {
       "location": {
         "start": {
-          "line": 209,
-          "column": 4
+          "line": 201,
+          "column": 4,
+          "index": 5890
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 234,
+          "column": 5,
+          "index": 6948
         }
       },
       "type": "function",
@@ -219,12 +231,14 @@
     "ICON_BLANK": {
       "location": {
         "start": {
-          "line": 246,
-          "column": 4
+          "line": 237,
+          "column": 4,
+          "index": 7002
         },
         "end": {
-          "line": 246,
-          "column": 48
+          "line": 237,
+          "column": 47,
+          "index": 7045
         }
       },
       "jsdoc": {
@@ -241,12 +255,14 @@
     "OVERLAY_ABSTRACT": {
       "location": {
         "start": {
-          "line": 249,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 7107
         },
         "end": {
-          "line": 249,
-          "column": 67
+          "line": 240,
+          "column": 66,
+          "index": 7169
         }
       },
       "jsdoc": {
@@ -263,12 +279,14 @@
     "OVERLAY_ERROR": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 243,
+          "column": 4,
+          "index": 7228
         },
         "end": {
-          "line": 252,
-          "column": 61
+          "line": 243,
+          "column": 60,
+          "index": 7284
         }
       },
       "jsdoc": {
@@ -285,12 +303,14 @@
     "OVERLAY_INHERITED": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 246,
+          "column": 4,
+          "index": 7347
         },
         "end": {
-          "line": 255,
-          "column": 69
+          "line": 246,
+          "column": 68,
+          "index": 7411
         }
       },
       "jsdoc": {
@@ -307,12 +327,14 @@
     "OVERLAY_OVERRIDDEN": {
       "location": {
         "start": {
-          "line": 258,
-          "column": 4
+          "line": 249,
+          "column": 4,
+          "index": 7475
         },
         "end": {
-          "line": 258,
-          "column": 71
+          "line": 249,
+          "column": 70,
+          "index": 7541
         }
       },
       "jsdoc": {
@@ -329,12 +351,14 @@
     "OVERLAY_THEMEABLE": {
       "location": {
         "start": {
-          "line": 261,
-          "column": 4
+          "line": 252,
+          "column": 4,
+          "index": 7604
         },
         "end": {
-          "line": 261,
-          "column": 69
+          "line": 252,
+          "column": 68,
+          "index": 7668
         }
       },
       "jsdoc": {
@@ -351,12 +375,14 @@
     "OVERLAY_STATIC": {
       "location": {
         "start": {
-          "line": 264,
-          "column": 4
+          "line": 255,
+          "column": 4,
+          "index": 7728
         },
         "end": {
-          "line": 264,
-          "column": 63
+          "line": 255,
+          "column": 62,
+          "index": 7786
         }
       },
       "jsdoc": {
@@ -373,12 +399,14 @@
     "OVERLAY_WARN": {
       "location": {
         "start": {
-          "line": 267,
-          "column": 4
+          "line": 258,
+          "column": 4,
+          "index": 7847
         },
         "end": {
-          "line": 267,
-          "column": 62
+          "line": 258,
+          "column": 61,
+          "index": 7904
         }
       },
       "jsdoc": {
@@ -395,12 +423,14 @@
     "OVERLAY_MIXIN": {
       "location": {
         "start": {
-          "line": 270,
-          "column": 4
+          "line": 261,
+          "column": 4,
+          "index": 7963
         },
         "end": {
-          "line": 270,
-          "column": 61
+          "line": 261,
+          "column": 60,
+          "index": 8019
         }
       },
       "jsdoc": {
@@ -417,12 +447,14 @@
     "ICON_PACKAGE": {
       "location": {
         "start": {
-          "line": 273,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 8073
         },
         "end": {
-          "line": 273,
-          "column": 54
+          "line": 264,
+          "column": 53,
+          "index": 8122
         }
       },
       "jsdoc": {
@@ -439,12 +471,14 @@
     "ICON_PACKAGE_WARN": {
       "location": {
         "start": {
-          "line": 276,
-          "column": 4
+          "line": 267,
+          "column": 4,
+          "index": 8189
         },
         "end": {
-          "line": 276,
-          "column": 67
+          "line": 267,
+          "column": 66,
+          "index": 8251
         }
       },
       "jsdoc": {
@@ -461,12 +495,14 @@
     "ICON_CLASS": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 4
+          "line": 270,
+          "column": 4,
+          "index": 8303
         },
         "end": {
-          "line": 279,
-          "column": 50
+          "line": 270,
+          "column": 49,
+          "index": 8348
         }
       },
       "jsdoc": {
@@ -483,12 +519,14 @@
     "ICON_CLASS_WARN": {
       "location": {
         "start": {
-          "line": 282,
-          "column": 4
+          "line": 273,
+          "column": 4,
+          "index": 8413
         },
         "end": {
-          "line": 282,
-          "column": 63
+          "line": 273,
+          "column": 62,
+          "index": 8471
         }
       },
       "jsdoc": {
@@ -505,12 +543,14 @@
     "ICON_CLASS_ERROR": {
       "location": {
         "start": {
-          "line": 285,
-          "column": 4
+          "line": 276,
+          "column": 4,
+          "index": 8534
         },
         "end": {
-          "line": 285,
-          "column": 64
+          "line": 276,
+          "column": 63,
+          "index": 8593
         }
       },
       "jsdoc": {
@@ -527,12 +567,14 @@
     "ICON_CLASS_STATIC": {
       "location": {
         "start": {
-          "line": 288,
-          "column": 4
+          "line": 279,
+          "column": 4,
+          "index": 8652
         },
         "end": {
-          "line": 288,
-          "column": 64
+          "line": 279,
+          "column": 63,
+          "index": 8711
         }
       },
       "jsdoc": {
@@ -549,12 +591,14 @@
     "ICON_CLASS_STATIC_WARN": {
       "location": {
         "start": {
-          "line": 291,
-          "column": 4
+          "line": 282,
+          "column": 4,
+          "index": 8783
         },
         "end": {
-          "line": 291,
-          "column": 77
+          "line": 282,
+          "column": 76,
+          "index": 8855
         }
       },
       "jsdoc": {
@@ -571,12 +615,14 @@
     "ICON_CLASS_STATIC_ERROR": {
       "location": {
         "start": {
-          "line": 294,
-          "column": 4
+          "line": 285,
+          "column": 4,
+          "index": 8925
         },
         "end": {
-          "line": 294,
-          "column": 78
+          "line": 285,
+          "column": 77,
+          "index": 8998
         }
       },
       "jsdoc": {
@@ -593,12 +639,14 @@
     "ICON_CLASS_ABSTRACT": {
       "location": {
         "start": {
-          "line": 297,
-          "column": 4
+          "line": 288,
+          "column": 4,
+          "index": 9060
         },
         "end": {
-          "line": 297,
-          "column": 68
+          "line": 288,
+          "column": 67,
+          "index": 9123
         }
       },
       "jsdoc": {
@@ -615,12 +663,14 @@
     "ICON_CLASS_ABSTRACT_WARN": {
       "location": {
         "start": {
-          "line": 300,
-          "column": 4
+          "line": 291,
+          "column": 4,
+          "index": 9198
         },
         "end": {
-          "line": 300,
-          "column": 81
+          "line": 292,
+          "column": 56,
+          "index": 9280
         }
       },
       "jsdoc": {
@@ -637,12 +687,14 @@
     "ICON_CLASS_ABSTRACT_ERROR": {
       "location": {
         "start": {
-          "line": 303,
-          "column": 4
+          "line": 295,
+          "column": 4,
+          "index": 9353
         },
         "end": {
-          "line": 303,
-          "column": 82
+          "line": 296,
+          "column": 56,
+          "index": 9436
         }
       },
       "jsdoc": {
@@ -659,12 +711,14 @@
     "ICON_CLASS_SINGLETON": {
       "location": {
         "start": {
-          "line": 306,
-          "column": 4
+          "line": 299,
+          "column": 4,
+          "index": 9499
         },
         "end": {
-          "line": 306,
-          "column": 70
+          "line": 299,
+          "column": 69,
+          "index": 9564
         }
       },
       "jsdoc": {
@@ -681,12 +735,14 @@
     "ICON_CLASS_SINGLETON_WARN": {
       "location": {
         "start": {
-          "line": 309,
-          "column": 4
+          "line": 302,
+          "column": 4,
+          "index": 9640
         },
         "end": {
-          "line": 309,
-          "column": 83
+          "line": 303,
+          "column": 57,
+          "index": 9724
         }
       },
       "jsdoc": {
@@ -703,12 +759,14 @@
     "ICON_CLASS_SINGLETON_ERROR": {
       "location": {
         "start": {
-          "line": 312,
-          "column": 4
+          "line": 306,
+          "column": 4,
+          "index": 9798
         },
         "end": {
-          "line": 312,
-          "column": 84
+          "line": 307,
+          "column": 57,
+          "index": 9883
         }
       },
       "jsdoc": {
@@ -725,12 +783,14 @@
     "ICON_PROPERTY_PUB": {
       "location": {
         "start": {
-          "line": 315,
-          "column": 4
+          "line": 310,
+          "column": 4,
+          "index": 9938
         },
         "end": {
-          "line": 315,
-          "column": 60
+          "line": 310,
+          "column": 59,
+          "index": 9993
         }
       },
       "jsdoc": {
@@ -747,12 +807,14 @@
     "ICON_PROPERTY_PROT": {
       "location": {
         "start": {
-          "line": 318,
-          "column": 4
+          "line": 313,
+          "column": 4,
+          "index": 10058
         },
         "end": {
-          "line": 318,
-          "column": 71
+          "line": 313,
+          "column": 70,
+          "index": 10124
         }
       },
       "jsdoc": {
@@ -769,12 +831,14 @@
     "ICON_PROPERTY_PRIV": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 316,
+          "column": 4,
+          "index": 10187
         },
         "end": {
-          "line": 321,
-          "column": 69
+          "line": 316,
+          "column": 68,
+          "index": 10251
         }
       },
       "jsdoc": {
@@ -791,12 +855,14 @@
     "ICON_PROPERTY_INTERN": {
       "location": {
         "start": {
-          "line": 324,
-          "column": 4
+          "line": 319,
+          "column": 4,
+          "index": 10315
         },
         "end": {
-          "line": 324,
-          "column": 72
+          "line": 319,
+          "column": 71,
+          "index": 10382
         }
       },
       "jsdoc": {
@@ -813,12 +879,14 @@
     "ICON_PROPERTY_PUB_THEMEABLE": {
       "location": {
         "start": {
-          "line": 327,
-          "column": 4
+          "line": 322,
+          "column": 4,
+          "index": 10447
         },
         "end": {
-          "line": 327,
-          "column": 80
+          "line": 322,
+          "column": 79,
+          "index": 10522
         }
       },
       "jsdoc": {
@@ -835,12 +903,14 @@
     "ICON_EVENT": {
       "location": {
         "start": {
-          "line": 330,
-          "column": 4
+          "line": 325,
+          "column": 4,
+          "index": 10575
         },
         "end": {
-          "line": 330,
-          "column": 50
+          "line": 325,
+          "column": 49,
+          "index": 10620
         }
       },
       "jsdoc": {
@@ -857,12 +927,14 @@
     "ICON_ENTRY": {
       "location": {
         "start": {
-          "line": 333,
-          "column": 4
+          "line": 328,
+          "column": 4,
+          "index": 10699
         },
         "end": {
-          "line": 333,
-          "column": 53
+          "line": 328,
+          "column": 52,
+          "index": 10747
         }
       },
       "jsdoc": {
@@ -879,12 +951,14 @@
     "ICON_INTERFACE": {
       "location": {
         "start": {
-          "line": 336,
-          "column": 4
+          "line": 331,
+          "column": 4,
+          "index": 10804
         },
         "end": {
-          "line": 336,
-          "column": 58
+          "line": 331,
+          "column": 57,
+          "index": 10857
         }
       },
       "jsdoc": {
@@ -901,12 +975,14 @@
     "ICON_INTERFACE_WARN": {
       "location": {
         "start": {
-          "line": 339,
-          "column": 4
+          "line": 334,
+          "column": 4,
+          "index": 10914
         },
         "end": {
-          "line": 339,
-          "column": 71
+          "line": 334,
+          "column": 70,
+          "index": 10980
         }
       },
       "jsdoc": {
@@ -923,12 +999,14 @@
     "ICON_MIXIN": {
       "location": {
         "start": {
-          "line": 342,
-          "column": 4
+          "line": 337,
+          "column": 4,
+          "index": 11033
         },
         "end": {
-          "line": 342,
-          "column": 50
+          "line": 337,
+          "column": 49,
+          "index": 11078
         }
       },
       "jsdoc": {
@@ -945,12 +1023,14 @@
     "ICON_MIXIN_WARN": {
       "location": {
         "start": {
-          "line": 345,
-          "column": 4
+          "line": 340,
+          "column": 4,
+          "index": 11131
         },
         "end": {
-          "line": 345,
-          "column": 63
+          "line": 340,
+          "column": 62,
+          "index": 11189
         }
       },
       "jsdoc": {
@@ -967,12 +1047,14 @@
     "ICON_METHOD_PUB": {
       "location": {
         "start": {
-          "line": 348,
-          "column": 4
+          "line": 343,
+          "column": 4,
+          "index": 11249
         },
         "end": {
-          "line": 348,
-          "column": 63
+          "line": 343,
+          "column": 62,
+          "index": 11307
         }
       },
       "jsdoc": {
@@ -989,12 +1071,14 @@
     "ICON_METHOD_PUB_INHERITED": {
       "location": {
         "start": {
-          "line": 351,
-          "column": 4
+          "line": 346,
+          "column": 4,
+          "index": 11377
         },
         "end": {
-          "line": 351,
-          "column": 83
+          "line": 347,
+          "column": 57,
+          "index": 11461
         }
       },
       "jsdoc": {
@@ -1011,12 +1095,14 @@
     "ICON_CTOR": {
       "location": {
         "start": {
-          "line": 354,
-          "column": 4
+          "line": 350,
+          "column": 4,
+          "index": 11519
         },
         "end": {
-          "line": 354,
-          "column": 55
+          "line": 350,
+          "column": 54,
+          "index": 11569
         }
       },
       "jsdoc": {
@@ -1033,12 +1119,14 @@
     "ICON_METHOD_PROT": {
       "location": {
         "start": {
-          "line": 357,
-          "column": 4
+          "line": 353,
+          "column": 4,
+          "index": 11632
         },
         "end": {
-          "line": 357,
-          "column": 67
+          "line": 353,
+          "column": 66,
+          "index": 11694
         }
       },
       "jsdoc": {
@@ -1055,12 +1143,14 @@
     "ICON_METHOD_PRIV": {
       "location": {
         "start": {
-          "line": 360,
-          "column": 4
+          "line": 356,
+          "column": 4,
+          "index": 11755
         },
         "end": {
-          "line": 360,
-          "column": 65
+          "line": 356,
+          "column": 64,
+          "index": 11815
         }
       },
       "jsdoc": {
@@ -1077,12 +1167,14 @@
     "ICON_METHOD_INTERN": {
       "location": {
         "start": {
-          "line": 363,
-          "column": 4
+          "line": 359,
+          "column": 4,
+          "index": 11877
         },
         "end": {
-          "line": 363,
-          "column": 68
+          "line": 359,
+          "column": 67,
+          "index": 11940
         }
       },
       "jsdoc": {
@@ -1099,12 +1191,14 @@
     "ICON_CONSTANT": {
       "location": {
         "start": {
-          "line": 366,
-          "column": 4
+          "line": 362,
+          "column": 4,
+          "index": 11995
         },
         "end": {
-          "line": 366,
-          "column": 56
+          "line": 362,
+          "column": 55,
+          "index": 12046
         }
       },
       "jsdoc": {
@@ -1121,12 +1215,14 @@
     "ICON_APPEARANCE": {
       "location": {
         "start": {
-          "line": 369,
-          "column": 4
+          "line": 365,
+          "column": 4,
+          "index": 12104
         },
         "end": {
-          "line": 369,
-          "column": 58
+          "line": 365,
+          "column": 57,
+          "index": 12157
         }
       },
       "jsdoc": {
@@ -1143,12 +1239,14 @@
     "ICON_CHILDCONTROL": {
       "location": {
         "start": {
-          "line": 372,
-          "column": 4
+          "line": 368,
+          "column": 4,
+          "index": 12217
         },
         "end": {
-          "line": 372,
-          "column": 64
+          "line": 368,
+          "column": 63,
+          "index": 12276
         }
       },
       "jsdoc": {
@@ -1166,12 +1264,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 382,
-        "column": 12
+        "line": 377,
+        "column": 2,
+        "index": 12466
       },
       "end": {
-        "line": 428,
-        "column": 5
+        "line": 423,
+        "column": 3,
+        "index": 13965
       }
     },
     "jsdoc": {}
@@ -1265,6 +1365,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1289,6 +1390,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

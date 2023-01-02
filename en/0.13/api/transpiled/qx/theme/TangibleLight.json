@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 911
       },
       "end": {
         "line": 36,
-        "column": 3
+        "column": 3,
+        "index": 1202
       }
     },
     "jsdoc": {
@@ -31,11 +33,13 @@
     "location": {
       "start": {
         "line": 29,
-        "column": 2
+        "column": 2,
+        "index": 990
       },
       "end": {
         "line": 35,
-        "column": 3
+        "column": 3,
+        "index": 1198
       }
     },
     "themeMetaMap": {

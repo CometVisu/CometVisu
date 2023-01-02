@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/formElement/CheckBox.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -30,8 +27,11 @@
     "_formController",
     "addTarget"
   ],
-  "mappings": ";;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,UADF,EACc,KAAKC,aADnB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,cAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAH,CAAMC,IAAN,CAAWC,QAAf,CAAwBL,SAAS,CAACM,KAAlC,CAAlB;AACA,iBAAOJ,WAAP;AACD,SAJa;AAMdK,QAAAA,mBAAmB,EAAG,6BAASR,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoCC,WAApC,EAAiD;AACrE,eAAKM,eAAL,CAAqBC,SAArB,CAA+BP,WAA/B,EAA4C,OAA5C,EAAqDD,GAArD,EAA0D,IAA1D,EAAgE,IAAhE;AACD;AARa;AANlB;AAFF,GADA;AAnBAR,EAAAA,GAAG,CAACC,MAAJ,CAAWQ,WAAX,CAAuBG,QAAvB,CAAgCjB,aAAhC,GAAgDA,aAAhD",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/formElement/CheckBox.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.CheckBox\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"checkbox\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.CheckBox(fieldData.label);\n        return formElement;\n      },\n\n      addToFormController : function(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null);\n      }\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.CheckBox\", {\n  statics: {\n    register() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"checkbox\",\n        this._registration\n      );\n    },\n\n    _registration: {\n      initElement(fieldType, fieldData, key) {\n        let formElement = new qx.ui.form.CheckBox(fieldData.label);\n        return formElement;\n      },\n\n      addToFormController(fieldType, fieldData, key, formElement) {\n        this._formController.addTarget(formElement, \"value\", key, true, null);\n      },\n    },\n  },\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iCAAiC,EAAE;IACjDC,OAAO,EAAE;MACPC,QAAQ,sBAAG;QACTC,GAAG,CAACC,MAAM,CAACC,MAAM,CAACC,2BAA2B,CAC3C,UAAU,EACV,IAAI,CAACC,aAAa,CACnB;MACH,CAAC;MAEDA,aAAa,EAAE;QACbC,WAAW,uBAACC,SAAS,EAAEC,SAAS,EAAEC,GAAG,EAAE;UACrC,IAAIC,WAAW,GAAG,IAAIjB,EAAE,CAACkB,EAAE,CAACC,IAAI,CAACC,QAAQ,CAACL,SAAS,CAACM,KAAK,CAAC;UAC1D,OAAOJ,WAAW;QACpB,CAAC;QAEDK,mBAAmB,+BAACR,SAAS,EAAEC,SAAS,EAAEC,GAAG,EAAEC,WAAW,EAAE;UAC1D,IAAI,CAACM,eAAe,CAACC,SAAS,CAACP,WAAW,EAAE,OAAO,EAAED,GAAG,EAAE,IAAI,EAAE,IAAI,CAAC;QACvE;MACF;IACF;EACF,CAAC,CAAC;EAvCFR,GAAG,CAACC,MAAM,CAACQ,WAAW,CAACG,QAAQ,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

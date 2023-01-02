@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 887
       },
       "end": {
-        "line": 212,
-        "column": 3
+        "line": 201,
+        "column": 3,
+        "index": 6924
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getChildren": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1328
         },
         "end": {
-          "line": 46,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1383
         }
       },
       "jsdoc": {
@@ -61,12 +65,14 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1539
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1594
         }
       },
       "jsdoc": {
@@ -91,12 +97,14 @@
     "indexOf": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 2233
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 2290
         }
       },
       "jsdoc": {
@@ -130,12 +138,14 @@
     "add": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2711
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2771
         }
       },
       "jsdoc": {
@@ -170,12 +180,14 @@
     "addAt": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 3347
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 3425
         }
       },
       "jsdoc": {
@@ -217,12 +229,14 @@
     "addBefore": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 4029
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 4117
         }
       },
       "jsdoc": {
@@ -264,12 +278,14 @@
     "addAfter": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 4724
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 4808
         }
       },
       "jsdoc": {
@@ -311,12 +327,14 @@
     "remove": {
       "location": {
         "start": {
-          "line": 148,
-          "column": 4
+          "line": 139,
+          "column": 4,
+          "index": 4941
         },
         "end": {
-          "line": 150,
-          "column": 5
+          "line": 141,
+          "column": 5,
+          "index": 4989
         }
       },
       "jsdoc": {
@@ -342,12 +360,14 @@
     "removeAt": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 5486
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 156,
+          "column": 5,
+          "index": 5545
         }
       },
       "jsdoc": {
@@ -381,12 +401,14 @@
     "removeAll": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 163,
+          "column": 4,
+          "index": 5660
         },
         "end": {
-          "line": 176,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 5711
         }
       },
       "jsdoc": {
@@ -413,12 +435,14 @@
     "remap": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 183,
+          "column": 4,
+          "index": 6292
         },
         "end": {
-          "line": 210,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 6916
         }
       },
       "jsdoc": {
@@ -435,6 +459,12 @@
             "paramName": "members",
             "description": " The including classes members map",
             "type": "Map"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{7.0} this is not necessary in modern compilers and leads to unexpected behaviour"
           }
         ]
       },

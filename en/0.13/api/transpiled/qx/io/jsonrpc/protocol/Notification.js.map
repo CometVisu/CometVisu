@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "io",
+    "jsonrpc",
+    "protocol",
+    "Message",
+    "properties",
+    "method",
+    "check",
+    "nullable",
+    "params",
+    "init",
+    "construct",
+    "set",
+    "Notification"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Notification.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n      2020 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n * A JSON-RPC v2.0 notification object\n * @see https://www.jsonrpc.org/specification#request_object\n */\nqx.Class.define(\"qx.io.jsonrpc.protocol.Notification\", {\n  extend: qx.io.jsonrpc.protocol.Message,\n  properties: {\n    method: {\n      check: \"String\",\n      nullable: false\n    },\n\n    params: {\n      check: \"Object\",\n      nullable: true,\n      init: null\n    }\n  },\n\n  /**\n   * Notification constructor\n   * @param {String} method\n   * @param {Object?} params\n   */\n  construct(method, params = null) {\n    super();\n    this.set({ method, params });\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE;IACrDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ,CAACC,OAAO;IACtCC,UAAU,EAAE;MACVC,MAAM,EAAE;QACNC,KAAK,EAAE,QAAQ;QACfC,QAAQ,EAAE;MACZ,CAAC;MAEDC,MAAM,EAAE;QACNF,KAAK,EAAE,QAAQ;QACfC,QAAQ,EAAE,IAAI;QACdE,IAAI,EAAE;MACR;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,SAAS,qBAACL,MAAM,EAAiB;MAAA,IAAfG,MAAM,uEAAG,IAAI;MAC7B;MACA,IAAI,CAACG,GAAG,CAAC;QAAEN,MAAM,EAANA,MAAM;QAAEG,MAAM,EAANA;MAAO,CAAC,CAAC;IAC9B;EACF,CAAC,CAAC;EA9CFf,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ,CAACU,YAAY,CAAChB,aAAa,GAAGA,aAAa;AAAC"
+}

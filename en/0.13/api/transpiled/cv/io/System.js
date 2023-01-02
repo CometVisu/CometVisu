@@ -23,11 +23,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* System.js 
-   * 
+  /* System.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -55,7 +54,6 @@
   qx.Class.define('cv.io.System', {
     extend: qx.core.Object,
     implement: cv.io.IClient,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -66,7 +64,6 @@
       this.addresses = [];
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
     },
-
     /*
     ***********************************************
      PROPERTIES
@@ -78,7 +75,6 @@
         init: true,
         event: 'changeConnected'
       },
-
       /**
        * The server the client is currently speaking to
        */
@@ -88,7 +84,6 @@
         event: 'changedServer'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -97,6 +92,7 @@
     members: {
       backendName: 'system',
       addresses: null,
+      implementedAddresses: null,
       _onPageChange: function _onPageChange(ev) {
         var page = ev.getData();
         var data = {};
@@ -119,41 +115,34 @@
         if (address) {
           var parts = address.split(':');
           var target = parts.shift();
-
           if (target === 'backend') {
             var name = parts.shift();
             var backend = name === 'system' ? this : cv.io.BackendConnections.getClient(name);
-
             if (backend) {
               switch (value) {
                 case 'restart':
                   backend.restart(true);
                   break;
-
                 default:
                   this.warn('unhandled backend action:', value);
               }
             }
           } else if (target === 'browser') {
             var url;
-
             switch (value) {
               case 'reload':
                 window.location.reload();
                 break;
-
               case 'forced-reload':
                 url = new URL(window.location.href);
                 url.searchParams.set('forceReload', 'true');
                 window.location.replace(url.toString());
                 break;
-
               default:
                 this.warn('unhandled browser action:', value);
             }
           } else if (target === 'nav') {
             var action = parts.shift();
-
             switch (action) {
               case 'current-page':
                 cv.Application.structureController.scrollToPage(value);
@@ -168,12 +157,9 @@
             // send HTTP request, ignore the answer
             if (parts.length >= 2 && parts[0] === 'proxy') {
               var _url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-
               _url.searchParams.set('url', target + ':' + parts[1]);
-
               address = _url.toString();
             }
-
             var xhr = new qx.io.request.Xhr(address);
             xhr.send();
           } else if (target === 'state') {
@@ -188,7 +174,6 @@
         if (name === 'charts') {
           return null;
         }
-
         return name;
       },
       getLastError: function getLastError() {
@@ -216,6 +201,29 @@
       getProviderUrl: function getProviderUrl(name) {
         return null;
       },
+      getProviderData: function getProviderData(name, format) {
+        if (name === 'addresses') {
+          var data = null;
+          if (format === 'monaco') {
+            data = this.implementedAddresses.map(function (name) {
+              return {
+                label: name,
+                insertText: name,
+                kind: window.monaco.languages.CompletionItemKind.Value
+              };
+            });
+          } else {
+            data = this.implementedAddresses.map(function (name) {
+              return {
+                label: name,
+                value: name
+              };
+            });
+          }
+          return Promise.resolve(data);
+        }
+        return null;
+      },
       getProviderConvertFunction: function getProviderConvertFunction(name, format) {
         return null;
       }
@@ -224,4 +232,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1664789615704
+//# sourceMappingURL=System.js.map?dt=1672653525536

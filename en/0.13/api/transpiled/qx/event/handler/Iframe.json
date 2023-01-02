@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 571
       },
       "end": {
-        "line": 128,
-        "column": 3
+        "line": 114,
+        "column": 3,
+        "index": 3114
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "PRIORITY": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 933
         },
         "end": {
-          "line": 41,
-          "column": 52
+          "line": 35,
+          "column": 51,
+          "index": 980
         }
       },
       "jsdoc": {
@@ -61,12 +65,14 @@
     "SUPPORTED_TYPES": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1032
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1089
         }
       },
       "jsdoc": {
@@ -89,12 +95,14 @@
     "TARGET_CHECK": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1149
         },
         "end": {
-          "line": 50,
-          "column": 56
+          "line": 44,
+          "column": 55,
+          "index": 1200
         }
       },
       "jsdoc": {
@@ -117,12 +125,14 @@
     "IGNORE_CAN_HANDLE": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1285
         },
         "end": {
-          "line": 53,
-          "column": 29
+          "line": 47,
+          "column": 28,
+          "index": 1309
         }
       },
       "jsdoc": {
@@ -145,12 +155,14 @@
     "onevent": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1548
         },
         "end": {
-          "line": 74,
-          "column": 6
+          "line": 73,
+          "column": 6,
+          "index": 2069
         }
       },
       "jsdoc": {
@@ -190,12 +202,14 @@
     "canHandleEvent": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2514
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 92,
+          "column": 5,
+          "index": 2606
         }
       },
       "jsdoc": {},
@@ -209,12 +223,14 @@
     "registerEvent": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2645
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2728
         }
       },
       "jsdoc": {},
@@ -228,12 +244,14 @@
     "unregisterEvent": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2767
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 2852
         }
       },
       "jsdoc": {},
@@ -332,6 +350,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -356,6 +375,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -384,12 +404,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 125,
-        "column": 10
+        "line": 111,
+        "column": 2,
+        "index": 3043
       },
       "end": {
-        "line": 127,
-        "column": 3
+        "line": 113,
+        "column": 3,
+        "index": 3110
       }
     },
     "jsdoc": {}

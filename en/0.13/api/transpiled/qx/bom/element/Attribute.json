@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 70,
-        "column": 0
+        "line": 69,
+        "column": 0,
+        "index": 2419
       },
       "end": {
-        "line": 350,
-        "column": 3
+        "line": 372,
+        "column": 3,
+        "index": 10537
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "__hints": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2719
         },
         "end": {
-          "line": 195,
-          "column": 5
+          "line": 184,
+          "column": 5,
+          "index": 5265
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "compile": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 196,
+          "column": 4,
+          "index": 5681
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 207,
+          "column": 5,
+          "index": 5917
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "get": {
       "location": {
         "start": {
-          "line": 231,
-          "column": 4
+          "line": 216,
+          "column": 4,
+          "index": 6155
         },
         "end": {
-          "line": 269,
-          "column": 5
+          "line": 259,
+          "column": 5,
+          "index": 7344
         }
       },
       "jsdoc": {
@@ -138,12 +146,14 @@
     "set": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 4
+          "line": 268,
+          "column": 4,
+          "index": 7590
         },
         "end": {
-          "line": 333,
-          "column": 5
+          "line": 318,
+          "column": 5,
+          "index": 9118
         }
       },
       "jsdoc": {
@@ -180,15 +190,64 @@
       "type": "function",
       "access": "public"
     },
+    "serialize": {
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 9465
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 10164
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serializes an HTML attribute into a writer; the <code>writer</code> function accepts\n  an varargs, which can be joined with an empty string or streamed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "writer {Function} The writer to serialize to",
+            "paramName": "writer",
+            "description": " The writer to serialize to",
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} Name of the attribute",
+            "paramName": "name",
+            "description": " Name of the attribute",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} New value of the attribute",
+            "paramName": "value",
+            "description": " New value of the attribute",
+            "type": "var"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "reset": {
       "location": {
         "start": {
-          "line": 342,
-          "column": 4
+          "line": 364,
+          "column": 4,
+          "index": 10359
         },
         "end": {
-          "line": 348,
-          "column": 5
+          "line": 370,
+          "column": 5,
+          "index": 10529
         }
       },
       "jsdoc": {

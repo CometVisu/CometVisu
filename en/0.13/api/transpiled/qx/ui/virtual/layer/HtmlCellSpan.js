@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,6 @@
    */
   qx.Class.define("qx.ui.virtual.layer.HtmlCellSpan", {
     extend: qx.ui.virtual.layer.HtmlCell,
-
     /**
      * @param htmlCellProvider {qx.ui.virtual.core.IHtmlCellProvider} This class
      *    provides the HTML markup for each cell.
@@ -54,12 +52,12 @@
       qx.ui.virtual.layer.HtmlCell.constructor.call(this, htmlCellProvider);
       this._spanManager = new qx.ui.virtual.layer.CellSpanManager(rowConfig, columnConfig);
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Set the row and column span for a specific cell
@@ -71,16 +69,12 @@
        */
       setCellSpan: function setCellSpan(row, column, rowSpan, columnSpan) {
         var id = row + "x" + column;
-
         this._spanManager.removeCell(id);
-
         if (rowSpan > 1 || columnSpan > 1) {
           this._spanManager.addCell(id, row, column, rowSpan, columnSpan);
         }
-
         qx.ui.core.queue.Widget.add(this);
       },
-
       /**
        * Renders a cell
        *
@@ -92,69 +86,56 @@
        * @param width {Integer} The cell's width
        * @param height {Integer} The cell's height
        */
-      __P_467_0: function __P_467_0(htmlArr, row, column, left, top, width, height) {
+      __P_482_0: function __P_482_0(htmlArr, row, column, left, top, width, height) {
         var cellProperties = this._cellProvider.getCellProperties(row, column);
-
         var insets = cellProperties.insets || [0, 0];
         htmlArr.push("<div ", "style='", "left:", left, "px;", "top:", top, "px;", this._getCellSizeStyle(width, height, insets[0], insets[1]), cellProperties.style || "", "' ", "class='", cellProperties.classes || "", "' ", cellProperties.attributes || "", ">", cellProperties.content || "", "</div>");
       },
       // overridden
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
         var html = [];
-
         var cells = this._spanManager.findCellsInWindow(firstRow, firstColumn, rowSizes.length, columnSizes.length);
-
         if (cells.length > 0) {
           var bounds = this._spanManager.getCellBounds(cells, firstRow, firstColumn);
+          var spanMap = this._spanManager.computeCellSpanMap(cells, firstRow, firstColumn, rowSizes.length, columnSizes.length);
 
-          var spanMap = this._spanManager.computeCellSpanMap(cells, firstRow, firstColumn, rowSizes.length, columnSizes.length); // render spanning cells
-
-
+          // render spanning cells
           for (var i = 0, l = cells.length; i < l; i++) {
             var cell = cells[i];
             var cellBounds = bounds[i];
-
-            this.__P_467_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
+            this.__P_482_0(html, cell.firstRow, cell.firstColumn, cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
           }
         } else {
           // create empty dummy map
           spanMap = [];
-
           for (var i = 0; i < rowSizes.length; i++) {
             spanMap[firstRow + i] = [];
           }
-        } // render non spanning cells
+        }
 
-
+        // render non spanning cells
         var left = 0;
         var top = 0;
         var row = firstRow;
         var column = firstColumn;
-
         for (var x = 0; x < rowSizes.length; x++) {
           var left = 0;
           var column = firstColumn;
           var height = rowSizes[x];
-
           for (var y = 0; y < columnSizes.length; y++) {
             var width = columnSizes[y];
-
             if (!spanMap[row][column]) {
-              this.__P_467_0(html, row, column, left, top, width, height);
+              this.__P_482_0(html, row, column, left, top, width, height);
             }
-
             column++;
             left += width;
           }
-
           top += height;
           row++;
         }
-
         this.getContentElement().setAttribute("html", html.join(""));
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -167,4 +148,4 @@
   qx.ui.virtual.layer.HtmlCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCellSpan.js.map?dt=1664789607801
+//# sourceMappingURL=HtmlCellSpan.js.map?dt=1672653517871

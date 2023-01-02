@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,13 +37,11 @@
    */
   qx.Class.define("qx.html.Iframe", {
     extend: qx.html.Element,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Wrapper for the HTML Iframe element.
      * @param url {String} Location which should be loaded inside the Iframe.
@@ -55,77 +52,75 @@
      */
     construct: function construct(url, styles, attributes) {
       qx.html.Element.constructor.call(this, "iframe", styles, attributes);
+      this.registerProperty("source", null, this._setSourceProperty);
       this.setSource(url);
-      this.addListener("navigate", this.__P_232_0, this); // add yourself to the element queue to enforce the creation of DOM element
+      this.addListener("navigate", this.__P_237_0, this);
 
+      // add yourself to the element queue to enforce the creation of DOM element
       qx.html.Element._modified[this.toHashCode()] = this;
-
       qx.html.Element._scheduleFlush("element");
     },
-
     /*
      *****************************************************************************
         EVENTS
      *****************************************************************************
      */
+
     events: {
       /**
        * The "load" event is fired after the iframe content has successfully been loaded.
        */
-      "load": "qx.event.type.Event",
-
+      load: "qx.event.type.Event",
       /**
-      * The "navigate" event is fired whenever the location of the iframe
-      * changes.
-      *
-      * Useful to track user navigation and internally used to keep the source
-      * property in sync. Only works when the destination source is of same
-      * origin than the page embedding the iframe.
-      */
-      "navigate": "qx.event.type.Data"
+       * The "navigate" event is fired whenever the location of the iframe
+       * changes.
+       *
+       * Useful to track user navigation and internally used to keep the source
+       * property in sync. Only works when the destination source is of same
+       * origin than the page embedding the iframe.
+       */
+      navigate: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         ELEMENT API
       ---------------------------------------------------------------------------
       */
-      // overridden
-      _applyProperty: function _applyProperty(name, value) {
-        qx.html.Iframe.superclass.prototype._applyProperty.call(this, name, value);
+      /**
+       * Implementation of setter for the "source" property
+       *
+       * @param value {String?} value to set
+       */
+      _setSourceProperty: function _setSourceProperty(value) {
+        var element = this.getDomElement();
+        var currentUrl = qx.bom.Iframe.queryCurrentUrl(element);
 
-        if (name == "source") {
-          var element = this.getDomElement();
-          var currentUrl = qx.bom.Iframe.queryCurrentUrl(element); // Skip if frame is already on URL.
-          //
-          // When URL of Iframe and source property get out of sync, the source
-          // property needs to be updated [BUG #4481]. This is to make sure the
-          // same source is not set twice on the BOM level.
-
-          if (value === currentUrl) {
-            return;
-          }
-
-          qx.bom.Iframe.setSource(element, value);
+        // Skip if frame is already on URL.
+        //
+        // When URL of Iframe and source property get out of sync, the source
+        // property needs to be updated [BUG #4481]. This is to make sure the
+        // same source is not set twice on the BOM level.
+        if (value === currentUrl) {
+          return;
         }
+        qx.bom.Iframe.setSource(element, value);
       },
       // overridden
       _createDomElement: function _createDomElement() {
-        return qx.bom.Iframe.create(this._content);
+        return qx.bom.Iframe.create();
       },
-
       /*
       ---------------------------------------------------------------------------
         IFRAME API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the DOM window object of an iframe.
        *
@@ -133,14 +128,12 @@
        */
       getWindow: function getWindow() {
         var element = this.getDomElement();
-
         if (element) {
           return qx.bom.Iframe.getWindow(element);
         } else {
           return null;
         }
       },
-
       /**
        * Get the DOM document object of an iframe.
        *
@@ -148,14 +141,12 @@
        */
       getDocument: function getDocument() {
         var element = this.getDomElement();
-
         if (element) {
           return qx.bom.Iframe.getDocument(element);
         } else {
           return null;
         }
       },
-
       /**
        * Get the HTML body element of the iframe.
        *
@@ -163,14 +154,12 @@
        */
       getBody: function getBody() {
         var element = this.getDomElement();
-
         if (element) {
           return qx.bom.Iframe.getBody(element);
         } else {
           return null;
         }
       },
-
       /**
        * Sets iframe's source attribute to given value
        *
@@ -180,10 +169,8 @@
       setSource: function setSource(source) {
         // the source needs to be applied directly in case the iFrame is hidden
         this._setProperty("source", source, true);
-
         return this;
       },
-
       /**
        * Get the current source.
        *
@@ -192,7 +179,6 @@
       getSource: function getSource() {
         return this._getProperty("source");
       },
-
       /**
        * Sets iframe's name attribute to given value
        *
@@ -203,7 +189,6 @@
         this.setAttribute("name", name);
         return this;
       },
-
       /**
        * Get the current name.
        *
@@ -212,34 +197,29 @@
       getName: function getName() {
         return this.getAttribute("name");
       },
-
       /**
        * Reloads iframe
        */
       reload: function reload() {
         var element = this.getDomElement();
-
         if (element) {
           var url = this.getSource();
           this.setSource(null);
           this.setSource(url);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LISTENER
       ---------------------------------------------------------------------------
       */
-
       /**
-      * Handle user navigation. Sync actual URL of iframe with source property.
-      *
-      * @param e {qx.event.type.Data} navigate event
-      */
-      __P_232_0: function __P_232_0(e) {
+       * Handle user navigation. Sync actual URL of iframe with source property.
+       *
+       * @param e {qx.event.type.Data} navigate event
+       */
+      __P_237_0: function __P_237_0(e) {
         var actualUrl = e.getData();
-
         if (actualUrl) {
           this.setSource(actualUrl);
         }
@@ -249,4 +229,4 @@
   qx.html.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1664789586555
+//# sourceMappingURL=Iframe.js.map?dt=1672653496992

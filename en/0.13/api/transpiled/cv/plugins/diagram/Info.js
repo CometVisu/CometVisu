@@ -21,11 +21,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Info.js 
-   * 
+  /* Info.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -40,10 +39,10 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Class.define('cv.plugins.diagram.Info', {
     extend: cv.plugins.diagram.AbstractDiagram,
     include: [cv.ui.common.Update],
-
     /*
      ******************************************************
      CONSTRUCTOR
@@ -53,7 +52,6 @@
       this._init = false;
       cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
     },
-
     /*
     ******************************************************
       STATICS
@@ -76,7 +74,6 @@
         return data;
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -90,7 +87,6 @@
         if (address !== undefined && data !== undefined) {
           return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
         }
-
         return null;
       }
     },
@@ -103,4 +99,4 @@
   cv.plugins.diagram.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1664789563812
+//# sourceMappingURL=Info.js.map?dt=1672653472513

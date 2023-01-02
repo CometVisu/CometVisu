@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 763
       },
       "end": {
-        "line": 259,
-        "column": 3
+        "line": 278,
+        "column": 3,
+        "index": 7547
       }
     },
     "jsdoc": {
@@ -39,12 +41,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1145
       },
       "end": {
-        "line": 57,
-        "column": 3
+        "line": 69,
+        "column": 3,
+        "index": 2073
       }
     },
     "jsdoc": {
@@ -76,12 +80,14 @@
     "close": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2370
         },
         "end": {
-          "line": 71,
-          "column": 35
+          "line": 81,
+          "column": 32,
+          "index": 2398
         }
       },
       "jsdoc": {
@@ -100,12 +106,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2630
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2696
         }
       },
       "jsdoc": {},
@@ -122,12 +130,14 @@
     "label": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2759
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 2839
         }
       },
       "jsdoc": {
@@ -148,12 +158,14 @@
     "icon": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 2940
         },
         "end": {
-          "line": 107,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3040
         }
       },
       "jsdoc": {
@@ -176,12 +188,14 @@
     "showCloseButton": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 3120
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 117,
+          "column": 5,
+          "index": 3224
         }
       },
       "jsdoc": {
@@ -198,18 +212,54 @@
       "init": false,
       "check": "Boolean",
       "defaultValue": false
+    },
+    "tabVisibility": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3289
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3466
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allows the tab to be excluded from the display</p>"
+          }
+        ]
+      },
+      "name": "tabVisibility",
+      "propertyType": "new",
+      "event": "changeTabVisibility",
+      "apply": "_applyTabVisibility",
+      "nullable": false,
+      "init": "visible",
+      "allowNull": false,
+      "possibleValues": [
+        "visible",
+        "excluded"
+      ],
+      "defaultValue": "visible"
     }
   },
   "members": {
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 147,
+          "column": 4,
+          "index": 4004
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4137
         }
       },
       "jsdoc": {
@@ -232,12 +282,14 @@
     "_applyIcon": {
       "location": {
         "start": {
-          "line": 159,
-          "column": 4
+          "line": 163,
+          "column": 4,
+          "index": 4362
         },
         "end": {
-          "line": 167,
-          "column": 5
+          "line": 171,
+          "column": 5,
+          "index": 4591
         }
       },
       "jsdoc": {},
@@ -250,12 +302,14 @@
     "_applyLabel": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 4620
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 4705
         }
       },
       "jsdoc": {},
@@ -268,12 +322,14 @@
     "_applyEnabled": {
       "location": {
         "start": {
-          "line": 177,
-          "column": 4
+          "line": 179,
+          "column": 4,
+          "index": 4730
         },
         "end": {
-          "line": 185,
-          "column": 5
+          "line": 186,
+          "column": 5,
+          "index": 5018
         }
       },
       "jsdoc": {},
@@ -287,12 +343,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 197,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 5235
         },
         "end": {
-          "line": 214,
-          "column": 5
+          "line": 211,
+          "column": 5,
+          "index": 5724
         }
       },
       "jsdoc": {},
@@ -303,15 +361,47 @@
         "qx.ui.core.Widget"
       ]
     },
+    "_onBtnChangeValue": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5794
+        },
+        "end": {
+          "line": 221,
+          "column": 5,
+          "index": 6052
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tab Change Listener</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} e"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
     "_applyShowCloseButton": {
       "location": {
         "start": {
-          "line": 223,
-          "column": 4
+          "line": 230,
+          "column": 4,
+          "index": 6277
         },
         "end": {
-          "line": 225,
-          "column": 5
+          "line": 232,
+          "column": 5,
+          "index": 6382
         }
       },
       "jsdoc": {},
@@ -321,15 +411,37 @@
         "showCloseButton"
       ]
     },
+    "_applyTabVisibility": {
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 6411
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6506
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "tabVisibility"
+      ]
+    },
     "_onButtonClose": {
       "location": {
         "start": {
-          "line": 238,
-          "column": 4
+          "line": 249,
+          "column": 4,
+          "index": 6825
         },
         "end": {
-          "line": 240,
-          "column": 5
+          "line": 251,
+          "column": 5,
+          "index": 6880
         }
       },
       "jsdoc": {
@@ -343,15 +455,53 @@
       "type": "function",
       "access": "protected"
     },
+    "getChildrenContainer": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 7205
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7254
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>By default, widgets are added to <code>this</code></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} the widget to add to",
+            "type": "qx.ui.core.Widget",
+            "description": " the widget to add to"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
     "getButton": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 274,
+          "column": 4,
+          "index": 7475
         },
         "end": {
-          "line": 257,
-          "column": 5
+          "line": 276,
+          "column": 5,
+          "index": 7539
         }
       },
       "jsdoc": {
@@ -461,6 +611,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -485,6 +636,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4386,9 +4538,76 @@
           }
         ]
       }
+    },
+    "getTabVisibility": {
+      "type": "function",
+      "name": "getTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>tabVisibility</code>.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for tabVisibility"
+          }
+        ]
+      }
+    },
+    "setTabVisibility": {
+      "type": "function",
+      "name": "setTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>tabVisibility</code>.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for tabVisibility"
+          }
+        ]
+      }
+    },
+    "resetTabVisibility": {
+      "type": "function",
+      "name": "resetTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabVisibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ]
+      }
     }
   },
   "descendants": [
+    "qx.ui.tabview.ScrollingPage",
     "qxl.apiviewer.ui.tabview.AbstractPage"
   ]
 }

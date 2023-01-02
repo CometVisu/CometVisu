@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -92,19 +91,17 @@
         refine: true,
         init: "picker"
       },
-
       /**
-      * Controls how much visible items are shown inside the picker.
-      */
+       * Controls how much visible items are shown inside the picker.
+       */
       visibleItems: {
         init: 5,
         check: [3, 5, 7, 9],
         apply: "_applyVisibleItems"
       },
-
       /**
-      * Controls the picker height.
-      */
+       * Controls the picker height.
+       */
       height: {
         init: 200,
         check: "Number"
@@ -113,13 +110,11 @@
     members: {
       _slots: null,
       _pickerModel: null,
-
       /**
-      * Handler for <code>appear</code> event of this widget.
-      */
+       * Handler for <code>appear</code> event of this widget.
+       */
       _onAppear: function _onAppear() {
         var itemHeight = this._calcItemHeight();
-
         this._slots.forEach(function (slot, index) {
           qx.bom.AnimationFrame.request(function () {
             slot.container.scrollTo(0, slot.selectedIndex * itemHeight);
@@ -130,15 +125,13 @@
       _applyVisibleItems: function _applyVisibleItems(value) {
         this._setAttribute("data-items", value);
       },
-
       /**
-      * Returns the internal used picker model which contains one or more picker slot models.
-      * @return {qx.data.Array} the picker model.
-      */
+       * Returns the internal used picker model which contains one or more picker slot models.
+       * @return {qx.data.Array} the picker model.
+       */
       getModel: function getModel() {
         return this._pickerModel;
       },
-
       /**
        * Creates a picker slot.
        * @param slotModel {qx.data.Array} the picker slot model.
@@ -148,8 +141,8 @@
        */
       _createPickerSlot: function _createPickerSlot(slotModel, slotIndex, delegate) {
         var scrollContainer = new qx.ui.mobile.container.Scroll({
-          "snap": ".list-item",
-          "vScrollbar": false
+          snap: ".list-item",
+          vScrollbar: false
         });
         scrollContainer.setWaypointsY([".list-item"]);
         qx.bom.element.Style.set(scrollContainer.getContentElement(), "height", this.getHeight() + "px");
@@ -157,9 +150,7 @@
           container: scrollContainer,
           selectedIndex: 0
         };
-
         this._slots.push(slot);
-
         scrollContainer.addListener("waypoint", this._onWaypoint, {
           self: this,
           slot: slot,
@@ -173,32 +164,28 @@
           slotIndex: slotIndex
         });
         list.setModel(slotModel);
-        var slotWrapper = new qx.ui.mobile.container.Composite(); // Generate placeholder items at before and after picker data list,
+        var slotWrapper = new qx.ui.mobile.container.Composite();
+
+        // Generate placeholder items at before and after picker data list,
         // for making sure the first and last item can be scrolled
         // to the center of the picker.
-
         var placeholderItemCount = Math.floor(this.getVisibleItems() / 2);
-
         for (var i = 0; i < placeholderItemCount; i++) {
           slotWrapper.add(this._createPlaceholderItem());
         }
-
         slotWrapper.add(list);
-
         for (var j = 0; j < placeholderItemCount; j++) {
           slotWrapper.add(this._createPlaceholderItem());
         }
-
         scrollContainer.add(slotWrapper);
         this.add(scrollContainer);
         scrollContainer.refresh();
         return scrollContainer;
       },
-
       /**
-      * Creates a placeholder list item, for making sure the selected item is vertically centered.
-      * @return {qx.ui.mobile.container.Composite} the placeholder list item.
-      */
+       * Creates a placeholder list item, for making sure the selected item is vertically centered.
+       * @return {qx.ui.mobile.container.Composite} the placeholder list item.
+       */
       _createPlaceholderItem: function _createPlaceholderItem() {
         var placeholderItem = new qx.ui.mobile.container.Composite();
         qx.bom.element.Style.set(placeholderItem.getContentElement(), "minHeight", this._calcItemHeight() + "px");
@@ -206,27 +193,24 @@
         placeholderItem.addCssClass("placeholder-item");
         return placeholderItem;
       },
-
       /**
-      * Calculates the item height of a picker item.
-      * @return {Number} height of the picker item.
-      */
+       * Calculates the item height of a picker item.
+       * @return {Number} height of the picker item.
+       */
       _calcItemHeight: function _calcItemHeight() {
         return this.getHeight() / this.getVisibleItems();
       },
-
       /**
-      * Handler for <code>changeSelection</code> event on picker list.
-      * @param evt {qx.event.type.Data} the events data.
-      */
+       * Handler for <code>changeSelection</code> event on picker list.
+       * @param evt {qx.event.type.Data} the events data.
+       */
       _onChangeSelection: function _onChangeSelection(evt) {
         qx.Bootstrap.bind(this.self.setSelectedIndex, this.self, this.slotIndex, evt.getData()).call();
       },
-
       /**
-      * Handler for <code>waypoint</code> event on scroll container.
-      * @param evt {qx.event.type.Data} the waypoint data.
-      */
+       * Handler for <code>waypoint</code> event on scroll container.
+       * @param evt {qx.event.type.Data} the waypoint data.
+       */
       _onWaypoint: function _onWaypoint(evt) {
         var elementIndex = evt.getData().element;
         this.slot.selectedIndex = elementIndex;
@@ -236,16 +220,14 @@
           slot: this.slotIndex
         });
       },
-
       /**
-      * Getter for the selectedIndex of a picker slot, identified by its index.
-      * @param slotIndex {Integer} the index of the target picker slot.
-      * @return {Integer} the index of the target picker slot, or null if slotIndex is unknown.
-      */
+       * Getter for the selectedIndex of a picker slot, identified by its index.
+       * @param slotIndex {Integer} the index of the target picker slot.
+       * @return {Integer} the index of the target picker slot, or null if slotIndex is unknown.
+       */
       getSelectedIndex: function getSelectedIndex(slotIndex) {
         return this._slots.getItem(slotIndex).selectedIndex;
       },
-
       /**
        * Setter for the selectedIndex of a picker slot, identified by its index.
        * @param slotIndex {Integer} the index of the target picker slot.
@@ -253,14 +235,11 @@
        */
       setSelectedIndex: function setSelectedIndex(slotIndex, selectedIndex) {
         var slot = this._slots.getItem(slotIndex);
-
         slot.selectedIndex = selectedIndex;
-
         if (this.isVisible()) {
           slot.container.scrollTo(0, selectedIndex * this._calcItemHeight());
         }
       },
-
       /**
        * Returns the picker slot count, added to this picker.
        * @return {Integer} count of picker slots.
@@ -268,7 +247,6 @@
       getSlotCount: function getSlotCount() {
         return this._pickerModel.getLength();
       },
-
       /**
        * Adds an picker slot to the end of the array.
        * @param slotModel {qx.data.Array} the picker slot model to display.
@@ -277,16 +255,12 @@
       addSlot: function addSlot(slotModel, delegate) {
         if (slotModel !== null && slotModel instanceof qx.data.Array) {
           this._pickerModel.push(slotModel);
-
           var slotIndex = this._pickerModel.length - 1;
-
           var scrollContainer = this._createPickerSlot(slotModel, slotIndex, delegate);
-
           slotModel.addListener("changeBubble", this._onSlotDataChange, scrollContainer);
           slotModel.addListener("change", this._onSlotDataChange, scrollContainer);
         }
       },
-
       /**
        * Removes the picker slot at the given slotIndex.
        * @param slotIndex {Integer} the index of the target picker slot.
@@ -294,22 +268,17 @@
       removeSlot: function removeSlot(slotIndex) {
         if (this._pickerModel.length > slotIndex && slotIndex > -1) {
           var slotModel = this._pickerModel.getItem(slotIndex);
-
           var scrollContainer = this._slots.getItem(slotIndex).container;
-
           slotModel.removeListener("changeBubble", this._onSlotDataChange, scrollContainer);
           slotModel.removeListener("change", this._onSlotDataChange, scrollContainer);
           qx.util.DisposeUtil.destroyContainer(scrollContainer);
-
           this._pickerModel.removeAt(slotIndex);
-
           this._slots.removeAt(slotIndex);
         }
       },
-
       /**
-      * Handles the <code>changeBubble</code> and <codechange></code> event on a picker slot model.
-      */
+       * Handles the <code>changeBubble</code> and <codechange></code> event on a picker slot model.
+       */
       _onSlotDataChange: function _onSlotDataChange() {
         window.setTimeout(function () {
           this.refresh();
@@ -318,13 +287,11 @@
     },
     destruct: function destruct() {
       this._pickerModel.dispose();
-
       this._slots.dispose();
-
       qx.util.DisposeUtil.destroyContainer(this);
     }
   });
   qx.ui.mobile.control.Picker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Picker.js.map?dt=1664789600227
+//# sourceMappingURL=Picker.js.map?dt=1672653510854

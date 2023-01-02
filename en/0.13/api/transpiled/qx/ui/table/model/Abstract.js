@@ -1,6 +1,11 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -12,10 +17,17 @@
       "qx.ui.table.ITableModel": {
         "require": true
       }
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.version": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,30 +74,37 @@
        *   <li>removeCount: The number of rows that were removed.</li>
        * </ul>
        */
-      "dataChanged": "qx.event.type.Data",
-
+      dataChanged: "qx.event.type.Data",
       /**
        * Fired when the meta data changed (the stuff shown in the table header).
        */
-      "metaDataChanged": "qx.event.type.Event",
-
+      metaDataChanged: "qx.event.type.Event",
       /**
        * Fired after the table is sorted (but before the metaDataChanged event)
        */
-      "sorted": "qx.event.type.Data"
+      sorted: "qx.event.type.Data"
     },
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_431_0 = [];
-      this.__P_431_1 = [];
-      this.__P_431_2 = {};
+      this.__P_445_0 = [];
+      this.__P_445_1 = [];
+      this.__P_445_2 = {};
+    },
+    statics: {
+      /**
+       * Member to control if a table should throw an error when you try to change the
+       * data model data whilst there is an incomplete edit. It could possibly break
+       * current implementations so only introduce the change from QX v8.
+       * Ref: https://github.com/qooxdoo/qooxdoo/pull/10377#discussion_r818697343
+       */
+      THROW_ON_MODEL_CHANGE_DURING_EDIT: parseInt(qx.core.Environment.get("qx.version"), 10) >= 8
     },
     members: {
-      __P_431_0: null,
-      __P_431_1: null,
-      __P_431_2: null,
-      __P_431_3: null,
-
+      __P_445_0: null,
+      __P_445_1: null,
+      __P_445_2: null,
+      __P_445_3: null,
+      __P_445_4: null,
       /**
        * Initialize the table model <--> table interaction. The table model is
        * passed to the table constructor, but the table model doesn't otherwise
@@ -97,9 +116,18 @@
        * @param table {qx.ui.table.Table}
        *   The table to which this model is attached
        */
-      init: function init(table) {// default implementation has nothing to do
+      init: function init(table) {
+        // store a reference back to the table
+        this.__P_445_4 = table;
       },
-
+      /**
+       *
+       *
+       * @returns table {qx.ui.table.Table}
+       */
+      getTable: function getTable() {
+        return this.__P_445_4;
+      },
       /**
        * Abstract method
        * @throws {Error} An error if this method is called.
@@ -124,7 +152,6 @@
         return true;
       },
       prefetchRows: function prefetchRows(firstRowIndex, lastRowIndex) {},
-
       /**
        * Abstract method
        *
@@ -139,7 +166,6 @@
       getValueById: function getValueById(columnId, rowIndex) {
         return this.getValue(this.getColumnIndexById(columnId), rowIndex);
       },
-
       /**
        * Abstract method
        *
@@ -157,21 +183,20 @@
       },
       // overridden
       getColumnCount: function getColumnCount() {
-        return this.__P_431_0.length;
+        return this.__P_445_0.length;
       },
       // overridden
       getColumnIndexById: function getColumnIndexById(columnId) {
-        return this.__P_431_2[columnId];
+        return this.__P_445_2[columnId];
       },
       // overridden
       getColumnId: function getColumnId(columnIndex) {
-        return this.__P_431_0[columnIndex];
+        return this.__P_445_0[columnIndex];
       },
       // overridden
       getColumnName: function getColumnName(columnIndex) {
-        return this.__P_431_1[columnIndex];
+        return this.__P_445_1[columnIndex];
       },
-
       /**
        * Sets the column IDs. These IDs may be used internally to identify a
        * column.
@@ -183,21 +208,20 @@
        * @see #setColumns
        */
       setColumnIds: function setColumnIds(columnIdArr) {
-        this.__P_431_0 = columnIdArr; // Create the reverse map
+        this.__P_445_0 = columnIdArr;
 
-        this.__P_431_2 = {};
-
+        // Create the reverse map
+        this.__P_445_2 = {};
         for (var i = 0; i < columnIdArr.length; i++) {
-          this.__P_431_2[columnIdArr[i]] = i;
+          this.__P_445_2[columnIdArr[i]] = i;
         }
+        this.__P_445_1 = new Array(columnIdArr.length);
 
-        this.__P_431_1 = new Array(columnIdArr.length); // Inform the listeners
-
-        if (!this.__P_431_3) {
+        // Inform the listeners
+        if (!this.__P_445_3) {
           this.fireEvent("metaDataChanged");
         }
       },
-
       /**
        * Sets the column names. These names will be shown to the user.
        *
@@ -209,15 +233,14 @@
        * @see #setColumnIds
        */
       setColumnNamesByIndex: function setColumnNamesByIndex(columnNameArr) {
-        if (this.__P_431_0.length != columnNameArr.length) {
-          throw new Error("this.__columnIdArr and columnNameArr have different length: " + this.__P_431_0.length + " != " + columnNameArr.length);
+        if (this.__P_445_0.length != columnNameArr.length) {
+          throw new Error("this.__columnIdArr and columnNameArr have different length: " + this.__P_445_0.length + " != " + columnNameArr.length);
         }
+        this.__P_445_1 = columnNameArr;
 
-        this.__P_431_1 = columnNameArr; // Inform the listeners
-
+        // Inform the listeners
         this.fireEvent("metaDataChanged");
       },
-
       /**
        * Sets the column names. These names will be shown to the user.
        *
@@ -229,13 +252,11 @@
        * @see #setColumnIds
        */
       setColumnNamesById: function setColumnNamesById(columnNameMap) {
-        this.__P_431_1 = new Array(this.__P_431_0.length);
-
-        for (var i = 0; i < this.__P_431_0.length; ++i) {
-          this.__P_431_1[i] = columnNameMap[this.__P_431_0[i]];
+        this.__P_445_1 = new Array(this.__P_445_0.length);
+        for (var i = 0; i < this.__P_445_0.length; ++i) {
+          this.__P_445_1[i] = columnNameMap[this.__P_445_0[i]];
         }
       },
-
       /**
        * Sets the column names (and optionally IDs)
        *
@@ -258,34 +279,38 @@
        *
        */
       setColumns: function setColumns(columnNameArr, columnIdArr) {
-        var bSetIds = this.__P_431_0.length == 0 || columnIdArr;
-
+        var bSetIds = this.__P_445_0.length == 0 || columnIdArr;
         if (columnIdArr == null) {
-          if (this.__P_431_0.length == 0) {
+          if (this.__P_445_0.length == 0) {
             columnIdArr = columnNameArr;
           } else {
-            columnIdArr = this.__P_431_0;
+            columnIdArr = this.__P_445_0;
           }
         }
-
         if (columnIdArr.length != columnNameArr.length) {
           throw new Error("columnIdArr and columnNameArr have different length: " + columnIdArr.length + " != " + columnNameArr.length);
         }
-
         if (bSetIds) {
-          this.__P_431_3 = true;
+          this.__P_445_3 = true;
           this.setColumnIds(columnIdArr);
-          this.__P_431_3 = false;
+          this.__P_445_3 = false;
         }
-
         this.setColumnNamesByIndex(columnNameArr);
+      },
+      _checkEditing: function _checkEditing() {
+        if (!qx.ui.table.model.Abstract.THROW_ON_MODEL_CHANGE_DURING_EDIT) {
+          return;
+        }
+        if (this.getTable() && this.getTable().isEditing()) {
+          throw new Error("A cell is currently being edited. Commit or cancel the edit before setting the table data");
+        }
       }
     },
     destruct: function destruct() {
-      this.__P_431_0 = this.__P_431_1 = this.__P_431_2 = null;
+      this.__P_445_0 = this.__P_445_1 = this.__P_445_2 = null;
     }
   });
   qx.ui.table.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789604533
+//# sourceMappingURL=Abstract.js.map?dt=1672653514749

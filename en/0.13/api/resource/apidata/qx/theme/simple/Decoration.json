@@ -4,17 +4,21 @@
   "name": "Decoration",
   "superClass": null,
   "interfaces": [],
-  "mixins": [],
+  "mixins": [
+    "qx.test.MDecoration"
+  ],
   "functionName": null,
   "clazz": {
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 535
       },
       "end": {
-        "line": 1239,
-        "column": 3
+        "line": 1035,
+        "column": 3,
+        "index": 21538
       }
     },
     "jsdoc": {
@@ -30,12 +34,14 @@
   "aliases": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 2
+        "line": 25,
+        "column": 2,
+        "index": 620
       },
       "end": {
-        "line": 26,
-        "column": 3
+        "line": 27,
+        "column": 3,
+        "index": 673
       }
     },
     "aliasMap": {

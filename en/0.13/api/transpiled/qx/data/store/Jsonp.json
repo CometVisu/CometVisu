@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 31,
-        "column": 0
+        "column": 0,
+        "index": 909
       },
       "end": {
-        "line": 115,
-        "column": 3
+        "line": 109,
+        "column": 3,
+        "index": 3051
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 41,
+        "column": 2,
+        "index": 1326
       },
       "end": {
-        "line": 48,
-        "column": 3
+        "line": 47,
+        "column": 3,
+        "index": 1486
       }
     },
     "jsdoc": {
@@ -78,12 +82,14 @@
     "callbackParam": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1658
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1748
         }
       },
       "jsdoc": {
@@ -105,12 +111,14 @@
     "callbackName": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 1946
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 2011
         }
       },
       "jsdoc": {
@@ -132,12 +140,14 @@
     "_createRequest": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2053
         },
         "end": {
-          "line": 113,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3043
         }
       },
       "jsdoc": {},
@@ -236,6 +246,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -260,6 +271,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

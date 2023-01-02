@@ -13,12 +13,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 975
       },
       "end": {
-        "line": 61,
-        "column": 3
+        "line": 60,
+        "column": 3,
+        "index": 1882
       }
     },
     "jsdoc": {
@@ -47,12 +49,14 @@
     "sendValue": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1325
         },
         "end": {
-          "line": 37,
-          "column": 50
+          "line": 36,
+          "column": 50,
+          "index": 1371
         }
       },
       "name": "sendValue",
@@ -143,12 +147,14 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1549
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1655
         }
       },
       "jsdoc": {},
@@ -162,12 +168,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1680
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1792
         }
       },
       "jsdoc": {},
@@ -181,12 +189,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1799
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1874
         }
       },
       "type": "function",
@@ -1141,6 +1151,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1165,6 +1176,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

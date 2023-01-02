@@ -5,18 +5,17 @@
         "usage": "dynamic",
         "require": true
       },
-      "osparc.theme.common.Appearance": {
+      "qx.theme.tangible.Appearance": {
         "require": true
       },
-      "osparc.theme.common.Image": {}
+      "qx.theme.tangible.Image": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Appearance.js 
-   * 
+  /* Appearance.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -31,10 +30,36 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Theme.define('cv.theme.dark.Appearance', {
-    extend: osparc.theme.common.Appearance,
+    extend: qx.theme.tangible.Appearance,
     appearances: {
+      menubar: {
+        style: function style(states) {
+          return {
+            backgroundColor: 'primary',
+            padding: [4, 2]
+          };
+        }
+      },
+      button: {
+        /* qx.ui.form.Button */
+        alias: 'material-button',
+        include: 'material-button',
+        style: function style(states) {
+          return {
+            center: true,
+            padding: [6, 8]
+          };
+        }
+      },
+      'widget/scroll': 'scrollarea',
+      'cv-filesystem': 'widget',
+      'cv-filesystem/tree': 'virtual-tree',
+      'cv-filesystem/tree/scrollbar-x': 'scrollbar',
+      'cv-filesystem/tree/scrollbar-y': 'scrollbar',
       'cv-start': 'widget',
+      'cv-start/scroll-container': 'scrollarea',
       'cv-start/configs-header': {
         style: function style() {
           return {
@@ -80,10 +105,12 @@
         alias: 'listitem',
         style: function style(states) {
           return {
+            padding: 3,
             iconPosition: states.list ? 'left' : 'top',
             show: states.list ? 'label' : 'both',
             font: states.list ? 'default' : 'small',
-            width: states.list ? 500 : 160,
+            width: states.list ? 500 : 162,
+            textColor: 'text-on-surface',
             backgroundColor: states.hovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent'
           };
         }
@@ -146,28 +173,22 @@
         alias: 'atom',
         style: function style(states) {
           var padding = [2, 5, 2, 5];
-
           if (states.lead) {
             padding = [1, 4, 1, 4];
           }
-
           if (states.dragover) {
             padding[2] -= 1;
           }
-
-          var backgroundColor;
-
+          var backgroundColor = 'primary';
           if (states.selected) {
-            backgroundColor = 'background-selected';
-
+            backgroundColor += '-selected';
             if (states.disabled) {
-              backgroundColor += '-disabled';
+              backgroundColor += '_disabled';
             }
           }
-
           return {
             backgroundColor: backgroundColor,
-            textColor: states.selected ? 'text-selected' : undefined,
+            textColor: 'text-on-primary',
             decorator: states.lead ? 'lead-item' : states.dragover ? 'dragover' : undefined,
             opacity: states.drag ? 0.5 : undefined,
             height: 26,
@@ -211,7 +232,9 @@
           };
         }
       },
-      'list': {
+      list: {
+        include: 'scrollarea',
+        alias: 'scrollarea',
         style: function style() {
           return {
             decorator: null
@@ -225,6 +248,7 @@
           };
         }
       },
+      'cv-editor-config/list': 'list',
       'cv-editor-config-section': {
         style: function style() {
           return {
@@ -300,7 +324,7 @@
           return {
             marginTop: 10,
             padding: 10,
-            textColor: 'text',
+            textColor: 'text-on-primary',
             decorator: 'cv-snackbar-msg'
           };
         }
@@ -319,22 +343,8 @@
           };
         }
       },
-      'cv-toolbar': {
-        include: 'toolbar',
-        alias: 'toolbar',
-        style: function style() {
-          return {// decorator: 'cv-toolbar'
-          };
-        }
-      },
-      'cv-toolbar-button': {
-        include: 'toolbar-button',
-        alias: 'toolbar-button',
-        style: function style() {
-          return {// margin: 1
-          };
-        }
-      },
+      'cv-toolbar': 'toolbar',
+      'cv-toolbar-button': 'toolbar-button',
       'image-viewer': {},
       'image-viewer/scroll': 'scrollarea',
       'image-viewer/image': {
@@ -369,7 +379,7 @@
         alias: 'virtual-tree-folder/icon',
         style: function style(states) {
           return {
-            textColor: states.comment ? 'text-disabled' : states.error ? 'invalid-color' : null
+            textColor: states.comment ? 'text-on-surface' : states.error ? 'invalid-color' : null
           };
         }
       },
@@ -386,7 +396,7 @@
         include: 'fs-tree-item/label',
         style: function style(states) {
           return {
-            textColor: states.comment ? 'text-disabled' : null,
+            textColor: states.comment ? 'text-on-surface' : null,
             allowGrowX: true,
             maxWidth: 250
           };
@@ -407,6 +417,8 @@
       'cv-file-contextmenu/open-with-button': 'menu-button',
       'cv-file-contextmenu/compare-with-button': 'menu-button',
       'open-files-tabs': {
+        include: 'list',
+        alias: 'list',
         style: function style() {
           return {
             height: 34,
@@ -416,18 +428,18 @@
           };
         }
       },
-      'helptext': {
+      helptext: {
         style: function style() {
           return {
             font: 'small',
-            textColor: 'text-disabled'
+            textColor: 'text-on-secondary'
           };
         }
       },
       'checkbox/label': {
         style: function style(states) {
           return {
-            textColor: states.undetermined ? 'text-disabled' : 'text'
+            textColor: states.undetermined ? 'text-on-secondary' : 'text-on-primary'
           };
         }
       },
@@ -440,7 +452,7 @@
           };
         }
       },
-      'iframe': {
+      iframe: {
         style: function style() {
           return {
             backgroundColor: null,
@@ -451,7 +463,7 @@
       'state-option': {
         style: function style(states) {
           return {
-            textColor: states.error ? 'warning-color' : 'text-disabled',
+            textColor: states.error ? 'warning-color' : 'text-on-secondary',
             font: 'italic',
             height: 25
           };
@@ -469,23 +481,21 @@
       'selectbox/atom': {
         style: function style(states) {
           var font = 'default';
-          var textColor = 'text';
-
+          var textColor = 'text-on-primary';
           if (states.error || states.loading) {
             font = 'italic';
-            textColor = states.error ? 'warning-color' : 'text-disabled';
+            textColor = states.error ? 'warning-color' : 'text-on-secondary';
           }
-
           return {
             textColor: textColor,
             font: font
           };
         }
       },
-      'optiongroup': {
+      optiongroup: {
         style: function style() {
           return {
-            textColor: 'text-disabled',
+            textColor: 'text-on-secondary',
             height: 25
           };
         }
@@ -506,7 +516,7 @@
             decorator: states.hovered ? 'round-button-hovered' : 'round-button',
             width: 48,
             height: 48,
-            textColor: 'text',
+            textColor: 'text-on-primary',
             show: 'icon',
             center: true
           };
@@ -525,7 +535,6 @@
       'dragdrop-cursor': {
         style: function style(states) {
           var icon = 'nodrop';
-
           if (states.copy) {
             icon = 'copy';
           } else if (states.move) {
@@ -533,15 +542,12 @@
           } else if (states.alias) {
             icon = 'alias';
           }
-
           var leftOffset = 8;
-
           if (states.touch) {
             leftOffset = 44;
           }
-
           return {
-            source: osparc.theme.common.Image.URLS['cursor-' + icon],
+            source: qx.theme.tangible.Image.URLS['cursor-' + icon],
             position: 'left-middle',
             offset: [2, leftOffset, 2, 6]
           };
@@ -553,7 +559,7 @@
         style: function style() {
           return {
             padding: [2, 4],
-            icon: osparc.theme.common.Image.URLS['arrow-down'],
+            icon: qx.theme.tangible.Image.URLS['arrow-down'],
             show: 'icon'
           };
         }
@@ -575,13 +581,11 @@
         include: 'atom/icon',
         style: function style(states) {
           var color = 'valid-color';
-
           if (states.error) {
             color = 'invalid-color';
           } else if (states.warning) {
             color = 'warning-color';
           }
-
           return {
             textColor: color
           };
@@ -592,4 +596,4 @@
   cv.theme.dark.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1664789615070
+//# sourceMappingURL=Appearance.js.map?dt=1672653524860

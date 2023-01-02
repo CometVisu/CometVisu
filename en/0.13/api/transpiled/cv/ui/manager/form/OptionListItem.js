@@ -12,6 +12,7 @@
       "qx.ui.layout.HBox": {
         "construct": true
       },
+      "cv.ui.manager.model.config.Option": {},
       "qx.ui.form.TextField": {},
       "qx.ui.form.Button": {},
       "cv.theme.dark.Images": {},
@@ -19,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* OptionListItem.js 
-   * 
+  /* OptionListItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,7 +44,6 @@
    */
   qx.Class.define('cv.ui.manager.form.OptionListItem', {
     extend: qx.ui.core.Widget,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,22 +51,14 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.HBox(8));
-
       this._createChildControl('key');
-
       this._createChildControl('value');
-
       this._createChildControl('key-title');
-
       this._createChildControl('value-title');
-
       this._createChildControl('delete');
-
       this._createChildControl('add');
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -89,17 +80,15 @@
         event: 'changeReadOnly'
       }
     },
-
     /*
     ***********************************************
       EVENTS
     ***********************************************
     */
     events: {
-      'delete': 'qx.event.type.Data',
-      'add': 'qx.event.type.Event'
+      "delete": 'qx.event.type.Data',
+      add: 'qx.event.type.Event'
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -115,9 +104,7 @@
         var valueField = this.getChildControl('value');
         var keyTitleField = this.getChildControl('key-title');
         var valueTitleField = this.getChildControl('value-title');
-
-        this.__P_38_0(old);
-
+        this.__P_40_0(old);
         if (value) {
           // bi-directional bind
           value.bind('key', keyField, 'value');
@@ -139,11 +126,10 @@
           this.getChildControl('add').hide();
         }
       },
-      __P_38_0: function __P_38_0(model) {
+      __P_40_0: function __P_40_0(model) {
         if (model) {
           var keyField = this.getChildControl('key');
           var valueField = this.getChildControl('value');
-
           if (model) {
             model.removeRelatedBindings(keyField);
             model.removeRelatedBindings(valueField);
@@ -154,8 +140,8 @@
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
+        var _this = this;
         var control;
-
         switch (id) {
           case 'key':
             control = new qx.ui.form.TextField();
@@ -164,93 +150,74 @@
               required: true
             });
             this.bind('readOnly', control, 'readOnly');
-
             this._add(control, {
               width: '40%'
             });
-
             break;
-
           case 'value':
             control = new qx.ui.form.TextField();
             control.set({
               liveUpdate: true
             });
             this.bind('readOnly', control, 'readOnly');
-
             this._add(control, {
               width: '40%'
             });
-
             break;
-
           case 'delete':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
             control.setToolTipText(this.tr('Delete option'));
             control.addListener('execute', function () {
-              this.fireDataEvent('delete', this.getModel());
-            }, this);
+              _this.fireDataEvent('delete', _this.getModel());
+            });
             this.bind('readOnly', control, 'visibility', {
               converter: function converter(value) {
                 return value ? 'hidden' : 'visible';
               }
             });
-
             this._add(control);
-
             break;
-
           case 'add':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('add', 18));
             control.setToolTipText(this.tr('Add option'));
             control.addListener('execute', function () {
-              this.fireEvent('add');
-            }, this);
+              _this.fireEvent('add');
+            });
             this.bind('readOnly', control, 'visibility', {
               converter: function converter(value) {
                 return value ? 'hidden' : 'visible';
               }
             });
-
             this._add(control);
-
             break;
-
           case 'key-title':
             control = new qx.ui.basic.Label(this.tr('Key'));
             control.exclude();
-
             this._add(control, {
               width: '40%'
             });
-
             break;
-
           case 'value-title':
             control = new qx.ui.basic.Label(this.tr('Value'));
             control.exclude();
-
             this._add(control, {
               width: '40%'
             });
-
             break;
         }
-
         return control || cv.ui.manager.form.OptionListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_38_0(this.getModel());
+      this.__P_40_0(this.getModel());
     }
   });
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1664789567478
+//# sourceMappingURL=OptionListItem.js.map?dt=1672653476262

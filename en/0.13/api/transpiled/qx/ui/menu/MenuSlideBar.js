@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,25 +54,18 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "button-forward":
             control = new qx.ui.form.HoverButton();
             control.addListener("execute", this._onExecuteForward, this);
-
             this._addAt(control, 2);
-
             break;
-
           case "button-backward":
             control = new qx.ui.form.HoverButton();
             control.addListener("execute", this._onExecuteBackward, this);
-
             this._addAt(control, 0);
-
             break;
         }
-
         return control || qx.ui.menu.MenuSlideBar.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -81,4 +73,4 @@
   qx.ui.menu.MenuSlideBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuSlideBar.js.map?dt=1664789599507
+//# sourceMappingURL=MenuSlideBar.js.map?dt=1672653510203

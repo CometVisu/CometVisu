@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
    */
   qx.Class.define("qx.dev.unit.MeasurementResult", {
     extend: Object,
-
     /**
      *
      * @param message {String} Description
@@ -42,41 +40,39 @@
      * @param renderTime {Number} Elapsed DOM rendering time
      */
     construct: function construct(message, iterations, ownTime, renderTime) {
-      this.__P_187_0 = message;
-      this.__P_187_1 = iterations;
-      this.__P_187_2 = ownTime;
-      this.__P_187_3 = renderTime;
+      this.__P_190_0 = message;
+      this.__P_190_1 = iterations;
+      this.__P_190_2 = ownTime;
+      this.__P_190_3 = renderTime;
     },
     members: {
-      __P_187_0: null,
-      __P_187_1: null,
-      __P_187_2: null,
-      __P_187_3: null,
-
+      __P_190_0: null,
+      __P_190_1: null,
+      __P_190_2: null,
+      __P_190_3: null,
       /**
        * Returns the stored data as a map.
        * @return {Map} The stored data.
        */
       getData: function getData() {
         return {
-          message: this.__P_187_0,
-          iterations: this.__P_187_1,
-          ownTime: this.__P_187_2,
-          renderTime: this.__P_187_3
+          message: this.__P_190_0,
+          iterations: this.__P_190_1,
+          ownTime: this.__P_190_2,
+          renderTime: this.__P_190_3
         };
       },
-
       /**
        * Returns a readable summary of this result
        *
        * @return {String} Result summary
        */
       toString: function toString() {
-        return ["Measured: " + this.__P_187_0, "Iterations: " + this.__P_187_1, "Time: " + this.__P_187_2 + "ms", "Render time: " + this.__P_187_3 + "ms"].join("\n");
+        return ["Measured: " + this.__P_190_0, "Iterations: " + this.__P_190_1, "Time: " + this.__P_190_2 + "ms", "Render time: " + this.__P_190_3 + "ms"].join("\n");
       }
     }
   });
   qx.dev.unit.MeasurementResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MeasurementResult.js.map?dt=1664789582302
+//# sourceMappingURL=MeasurementResult.js.map?dt=1672653490478

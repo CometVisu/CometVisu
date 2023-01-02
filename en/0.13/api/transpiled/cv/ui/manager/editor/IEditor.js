@@ -4,15 +4,15 @@
       "qx.Interface": {
         "usage": "dynamic",
         "require": true
-      }
+      },
+      "cv.ui.manager.model.FileItem": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IEditor.js 
-   * 
+  /* IEditor.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -43,7 +43,6 @@
         nullable: true,
         apply: '_loadFile'
       },
-
       /**
        * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
        */
@@ -51,7 +50,6 @@
         check: 'Boolean',
         init: false
       },
-
       /**
        * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
        */
@@ -61,7 +59,6 @@
         event: 'changeReady'
       }
     },
-
     /*
     ***********************************************
       STATICS
@@ -70,7 +67,6 @@
     statics: {
       TITLE: ''
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -84,4 +80,4 @@
   cv.ui.manager.editor.IEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEditor.js.map?dt=1664789565879
+//# sourceMappingURL=IEditor.js.map?dt=1672653474716

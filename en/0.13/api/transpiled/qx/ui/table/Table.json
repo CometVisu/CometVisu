@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 825
       },
       "end": {
-        "line": 2366,
-        "column": 3
+        "line": 2204,
+        "column": 3,
+        "index": 64744
       }
     },
     "jsdoc": {
@@ -48,12 +50,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 126,
-        "column": 14
+        "line": 123,
+        "column": 2,
+        "index": 3756
       },
       "end": {
-        "line": 221,
-        "column": 3
+        "line": 227,
+        "column": 3,
+        "index": 6651
       }
     },
     "jsdoc": {
@@ -89,12 +93,14 @@
     "columnVisibilityMenuCreateStart": {
       "location": {
         "start": {
-          "line": 240,
-          "column": 4
+          "line": 242,
+          "column": 4,
+          "index": 7116
         },
         "end": {
-          "line": 240,
-          "column": 60
+          "line": 242,
+          "column": 57,
+          "index": 7169
         }
       },
       "jsdoc": {
@@ -111,12 +117,14 @@
     "columnVisibilityMenuCreateEnd": {
       "location": {
         "start": {
-          "line": 248,
-          "column": 4
+          "line": 250,
+          "column": 4,
+          "index": 7441
         },
         "end": {
-          "line": 248,
-          "column": 58
+          "line": 250,
+          "column": 55,
+          "index": 7492
         }
       },
       "jsdoc": {
@@ -133,12 +141,14 @@
     "tableWidthChanged": {
       "location": {
         "start": {
-          "line": 253,
-          "column": 4
+          "line": 255,
+          "column": 4,
+          "index": 7574
         },
         "end": {
-          "line": 253,
-          "column": 47
+          "line": 255,
+          "column": 44,
+          "index": 7614
         }
       },
       "jsdoc": {
@@ -155,12 +165,14 @@
     "verticalScrollBarChanged": {
       "location": {
         "start": {
-          "line": 260,
-          "column": 4
+          "line": 262,
+          "column": 4,
+          "index": 7865
         },
         "end": {
-          "line": 260,
-          "column": 53
+          "line": 262,
+          "column": 50,
+          "index": 7911
         }
       },
       "jsdoc": {
@@ -177,12 +189,14 @@
     "cellTap": {
       "location": {
         "start": {
-          "line": 265,
-          "column": 4
+          "line": 267,
+          "column": 4,
+          "index": 7986
         },
         "end": {
-          "line": 265,
-          "column": 44
+          "line": 267,
+          "column": 41,
+          "index": 8023
         }
       },
       "jsdoc": {
@@ -199,12 +213,14 @@
     "cellDbltap": {
       "location": {
         "start": {
-          "line": 270,
-          "column": 4
+          "line": 272,
+          "column": 4,
+          "index": 8098
         },
         "end": {
-          "line": 270,
-          "column": 47
+          "line": 272,
+          "column": 44,
+          "index": 8138
         }
       },
       "jsdoc": {
@@ -221,12 +237,14 @@
     "cellContextmenu": {
       "location": {
         "start": {
-          "line": 275,
-          "column": 4
+          "line": 277,
+          "column": 4,
+          "index": 8226
         },
         "end": {
-          "line": 275,
-          "column": 52
+          "line": 277,
+          "column": 49,
+          "index": 8271
         }
       },
       "jsdoc": {
@@ -243,12 +261,14 @@
     "dataEdited": {
       "location": {
         "start": {
-          "line": 288,
-          "column": 4
+          "line": 290,
+          "column": 4,
+          "index": 8524
         },
         "end": {
-          "line": 288,
-          "column": 39
+          "line": 290,
+          "column": 36,
+          "index": 8556
         }
       },
       "jsdoc": {
@@ -267,12 +287,14 @@
     "__redirectEvents": {
       "location": {
         "start": {
-          "line": 302,
-          "column": 4
+          "line": 301,
+          "column": 4,
+          "index": 8824
         },
         "end": {
-          "line": 302,
-          "column": 72
+          "line": 301,
+          "column": 71,
+          "index": 8891
         }
       },
       "jsdoc": {
@@ -291,12 +313,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 314,
-          "column": 4
+          "line": 311,
+          "column": 4,
+          "index": 9105
         },
         "end": {
-          "line": 318,
-          "column": 5
+          "line": 314,
+          "column": 5,
+          "index": 9164
         }
       },
       "name": "appearance",
@@ -312,12 +336,14 @@
     "focusable": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 316,
+          "column": 4,
+          "index": 9171
         },
         "end": {
-          "line": 325,
-          "column": 5
+          "line": 319,
+          "column": 5,
+          "index": 9226
         }
       },
       "name": "focusable",
@@ -333,12 +359,14 @@
     "minWidth": {
       "location": {
         "start": {
-          "line": 328,
-          "column": 4
+          "line": 321,
+          "column": 4,
+          "index": 9233
         },
         "end": {
-          "line": 332,
-          "column": 5
+          "line": 324,
+          "column": 5,
+          "index": 9285
         }
       },
       "name": "minWidth",
@@ -354,12 +382,14 @@
     "initiallyHiddenColumns": {
       "location": {
         "start": {
-          "line": 346,
-          "column": 4
+          "line": 338,
+          "column": 4,
+          "index": 10018
         },
         "end": {
-          "line": 349,
-          "column": 5
+          "line": 340,
+          "column": 5,
+          "index": 10066
         }
       },
       "jsdoc": {
@@ -376,12 +406,14 @@
     "selectable": {
       "location": {
         "start": {
-          "line": 360,
-          "column": 4
+          "line": 351,
+          "column": 4,
+          "index": 10425
         },
         "end": {
-          "line": 364,
-          "column": 5
+          "line": 354,
+          "column": 5,
+          "index": 10482
         }
       },
       "jsdoc": {
@@ -405,12 +437,14 @@
     "selectionModel": {
       "location": {
         "start": {
-          "line": 368,
-          "column": 4
+          "line": 357,
+          "column": 4,
+          "index": 10521
         },
         "end": {
-          "line": 373,
-          "column": 5
+          "line": 361,
+          "column": 5,
+          "index": 10661
         }
       },
       "jsdoc": {
@@ -430,12 +464,14 @@
     "tableModel": {
       "location": {
         "start": {
-          "line": 377,
-          "column": 4
+          "line": 364,
+          "column": 4,
+          "index": 10696
         },
         "end": {
-          "line": 382,
-          "column": 5
+          "line": 368,
+          "column": 5,
+          "index": 10820
         }
       },
       "jsdoc": {
@@ -455,12 +491,14 @@
     "rowHeight": {
       "location": {
         "start": {
-          "line": 386,
-          "column": 4
+          "line": 371,
+          "column": 4,
+          "index": 10868
         },
         "end": {
-          "line": 393,
-          "column": 5
+          "line": 377,
+          "column": 5,
+          "index": 11011
         }
       },
       "jsdoc": {
@@ -483,12 +521,14 @@
     "forceLineHeight": {
       "location": {
         "start": {
-          "line": 402,
-          "column": 4
+          "line": 385,
+          "column": 4,
+          "index": 11294
         },
         "end": {
-          "line": 406,
-          "column": 5
+          "line": 388,
+          "column": 5,
+          "index": 11359
         }
       },
       "jsdoc": {
@@ -508,12 +548,14 @@
     "headerCellsVisible": {
       "location": {
         "start": {
-          "line": 414,
-          "column": 4
+          "line": 395,
+          "column": 4,
+          "index": 11602
         },
         "end": {
-          "line": 420,
-          "column": 5
+          "line": 400,
+          "column": 5,
+          "index": 11734
         }
       },
       "jsdoc": {
@@ -535,12 +577,14 @@
     "headerCellHeight": {
       "location": {
         "start": {
-          "line": 424,
-          "column": 4
+          "line": 403,
+          "column": 4,
+          "index": 11784
         },
         "end": {
-          "line": 432,
-          "column": 5
+          "line": 410,
+          "column": 5,
+          "index": 11971
         }
       },
       "jsdoc": {
@@ -565,12 +609,14 @@
     "statusBarVisible": {
       "location": {
         "start": {
-          "line": 436,
-          "column": 4
+          "line": 413,
+          "column": 4,
+          "index": 12020
         },
         "end": {
-          "line": 441,
-          "column": 5
+          "line": 417,
+          "column": 5,
+          "index": 12125
         }
       },
       "jsdoc": {
@@ -591,12 +637,14 @@
     "additionalStatusBarText": {
       "location": {
         "start": {
-          "line": 445,
-          "column": 4
+          "line": 420,
+          "column": 4,
+          "index": 12204
         },
         "end": {
-          "line": 450,
-          "column": 5
+          "line": 424,
+          "column": 5,
+          "index": 12321
         }
       },
       "jsdoc": {
@@ -616,12 +664,14 @@
     "columnVisibilityButtonVisible": {
       "location": {
         "start": {
-          "line": 454,
-          "column": 4
+          "line": 427,
+          "column": 4,
+          "index": 12384
         },
         "end": {
-          "line": 460,
-          "column": 5
+          "line": 432,
+          "column": 5,
+          "index": 12538
         }
       },
       "jsdoc": {
@@ -643,12 +693,14 @@
     "metaColumnCounts": {
       "location": {
         "start": {
-          "line": 467,
-          "column": 4
+          "line": 438,
+          "column": 4,
+          "index": 12712
         },
         "end": {
-          "line": 471,
-          "column": 5
+          "line": 441,
+          "column": 5,
+          "index": 12798
         }
       },
       "jsdoc": {
@@ -673,12 +725,14 @@
     "focusCellOnPointerMove": {
       "location": {
         "start": {
-          "line": 478,
-          "column": 4
+          "line": 447,
+          "column": 4,
+          "index": 12955
         },
         "end": {
-          "line": 483,
-          "column": 5
+          "line": 451,
+          "column": 5,
+          "index": 13073
         }
       },
       "jsdoc": {
@@ -699,12 +753,14 @@
     "rowFocusChangeModifiesSelection": {
       "location": {
         "start": {
-          "line": 488,
-          "column": 4
+          "line": 456,
+          "column": 4,
+          "index": 13164
         },
         "end": {
-          "line": 492,
-          "column": 5
+          "line": 459,
+          "column": 5,
+          "index": 13245
         }
       },
       "jsdoc": {
@@ -724,12 +780,14 @@
     "showCellFocusIndicator": {
       "location": {
         "start": {
-          "line": 497,
-          "column": 4
+          "line": 464,
+          "column": 4,
+          "index": 13324
         },
         "end": {
-          "line": 502,
-          "column": 5
+          "line": 468,
+          "column": 5,
+          "index": 13441
         }
       },
       "jsdoc": {
@@ -750,12 +808,14 @@
     "contextMenuFromDataCellsOnly": {
       "location": {
         "start": {
-          "line": 513,
-          "column": 4
+          "line": 479,
+          "column": 4,
+          "index": 13950
         },
         "end": {
-          "line": 518,
-          "column": 5
+          "line": 483,
+          "column": 5,
+          "index": 14079
         }
       },
       "jsdoc": {
@@ -776,12 +836,14 @@
     "keepFirstVisibleRowComplete": {
       "location": {
         "start": {
-          "line": 524,
-          "column": 4
+          "line": 489,
+          "column": 4,
+          "index": 14274
         },
         "end": {
-          "line": 529,
-          "column": 5
+          "line": 493,
+          "column": 5,
+          "index": 14401
         }
       },
       "jsdoc": {
@@ -802,12 +864,14 @@
     "alwaysUpdateCells": {
       "location": {
         "start": {
-          "line": 537,
-          "column": 4
+          "line": 500,
+          "column": 4,
+          "index": 14648
         },
         "end": {
-          "line": 541,
-          "column": 5
+          "line": 503,
+          "column": 5,
+          "index": 14716
         }
       },
       "jsdoc": {
@@ -827,12 +891,14 @@
     "resetSelectionOnHeaderTap": {
       "location": {
         "start": {
-          "line": 551,
-          "column": 4
+          "line": 512,
+          "column": 4,
+          "index": 15104
         },
         "end": {
-          "line": 556,
-          "column": 5
+          "line": 516,
+          "column": 5,
+          "index": 15227
         }
       },
       "jsdoc": {
@@ -853,12 +919,14 @@
     "resetSelectionOnTapBelowRows": {
       "location": {
         "start": {
-          "line": 563,
-          "column": 4
+          "line": 522,
+          "column": 4,
+          "index": 15395
         },
         "end": {
-          "line": 568,
-          "column": 5
+          "line": 526,
+          "column": 5,
+          "index": 15525
         }
       },
       "jsdoc": {
@@ -879,12 +947,14 @@
     "minCellEditHeight": {
       "location": {
         "start": {
-          "line": 573,
-          "column": 4
+          "line": 531,
+          "column": 4,
+          "index": 15630
         },
         "end": {
-          "line": 578,
-          "column": 5
+          "line": 536,
+          "column": 5,
+          "index": 15759
         }
       },
       "jsdoc": {
@@ -905,12 +975,14 @@
     "dataRowRenderer": {
       "location": {
         "start": {
-          "line": 582,
-          "column": 4
+          "line": 539,
+          "column": 4,
+          "index": 15819
         },
         "end": {
-          "line": 588,
-          "column": 5
+          "line": 544,
+          "column": 5,
+          "index": 15961
         }
       },
       "jsdoc": {
@@ -931,12 +1003,14 @@
     "modalCellEditorPreOpenFunction": {
       "location": {
         "start": {
-          "line": 605,
-          "column": 4
+          "line": 560,
+          "column": 4,
+          "index": 16432
         },
         "end": {
-          "line": 610,
-          "column": 5
+          "line": 564,
+          "column": 5,
+          "index": 16535
         }
       },
       "jsdoc": {
@@ -978,12 +1052,14 @@
     "excludeScrollerScrollbarsIfNotNeeded": {
       "location": {
         "start": {
-          "line": 618,
-          "column": 4
+          "line": 571,
+          "column": 4,
+          "index": 16723
         },
         "end": {
-          "line": 623,
-          "column": 5
+          "line": 575,
+          "column": 5,
+          "index": 16833
         }
       },
       "jsdoc": {
@@ -1005,12 +1081,14 @@
     "newColumnMenu": {
       "location": {
         "start": {
-          "line": 629,
-          "column": 4
+          "line": 580,
+          "column": 4,
+          "index": 16915
         },
         "end": {
-          "line": 635,
-          "column": 5
+          "line": 585,
+          "column": 5,
+          "index": 17037
         }
       },
       "jsdoc": {
@@ -1023,17 +1101,21 @@
       },
       "name": "newColumnMenu",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newSelectionManager": {
       "location": {
         "start": {
-          "line": 643,
-          "column": 4
+          "line": 592,
+          "column": 4,
+          "index": 17275
         },
         "end": {
-          "line": 649,
-          "column": 5
+          "line": 597,
+          "column": 5,
+          "index": 17409
         }
       },
       "jsdoc": {
@@ -1046,17 +1128,21 @@
       },
       "name": "newSelectionManager",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newSelectionModel": {
       "location": {
         "start": {
-          "line": 657,
-          "column": 4
+          "line": 604,
+          "column": 4,
+          "index": 17645
         },
         "end": {
-          "line": 663,
-          "column": 5
+          "line": 609,
+          "column": 5,
+          "index": 17775
         }
       },
       "jsdoc": {
@@ -1069,17 +1155,21 @@
       },
       "name": "newSelectionModel",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newTableColumnModel": {
       "location": {
         "start": {
-          "line": 671,
-          "column": 4
+          "line": 616,
+          "column": 4,
+          "index": 18014
         },
         "end": {
-          "line": 677,
-          "column": 5
+          "line": 621,
+          "column": 5,
+          "index": 18152
         }
       },
       "jsdoc": {
@@ -1092,17 +1182,21 @@
       },
       "name": "newTableColumnModel",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newTablePane": {
       "location": {
         "start": {
-          "line": 685,
-          "column": 4
+          "line": 628,
+          "column": 4,
+          "index": 18383
         },
         "end": {
-          "line": 691,
-          "column": 5
+          "line": 633,
+          "column": 5,
+          "index": 18502
         }
       },
       "jsdoc": {
@@ -1115,17 +1209,21 @@
       },
       "name": "newTablePane",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newTablePaneHeader": {
       "location": {
         "start": {
-          "line": 699,
-          "column": 4
+          "line": 640,
+          "column": 4,
+          "index": 18733
         },
         "end": {
-          "line": 705,
-          "column": 5
+          "line": 645,
+          "column": 5,
+          "index": 18860
         }
       },
       "jsdoc": {
@@ -1138,17 +1236,21 @@
       },
       "name": "newTablePaneHeader",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newTablePaneScroller": {
       "location": {
         "start": {
-          "line": 713,
-          "column": 4
+          "line": 652,
+          "column": 4,
+          "index": 19100
         },
         "end": {
-          "line": 719,
-          "column": 5
+          "line": 657,
+          "column": 5,
+          "index": 19231
         }
       },
       "jsdoc": {
@@ -1161,17 +1263,21 @@
       },
       "name": "newTablePaneScroller",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "newTablePaneModel": {
       "location": {
         "start": {
-          "line": 727,
-          "column": 4
+          "line": 664,
+          "column": 4,
+          "index": 19468
         },
         "end": {
-          "line": 733,
-          "column": 5
+          "line": 669,
+          "column": 5,
+          "index": 19609
         }
       },
       "jsdoc": {
@@ -1184,7 +1290,9 @@
       },
       "name": "newTablePaneModel",
       "propertyType": "new",
-      "check": "Function"
+      "init": "[[ ObjectMethod Function ]]",
+      "check": "Function",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "dragScrollThresholdX": {
       "type": "property",
@@ -1239,12 +1347,14 @@
     "__focusedCol": {
       "location": {
         "start": {
-          "line": 747,
-          "column": 4
+          "line": 679,
+          "column": 4,
+          "index": 19817
         },
         "end": {
-          "line": 747,
-          "column": 23
+          "line": 679,
+          "column": 22,
+          "index": 19835
         }
       },
       "type": "variable",
@@ -1253,12 +1363,14 @@
     "__focusedRow": {
       "location": {
         "start": {
-          "line": 748,
-          "column": 4
+          "line": 680,
+          "column": 4,
+          "index": 19841
         },
         "end": {
-          "line": 748,
-          "column": 23
+          "line": 680,
+          "column": 22,
+          "index": 19859
         }
       },
       "type": "variable",
@@ -1267,12 +1379,14 @@
     "__scrollerParent": {
       "location": {
         "start": {
-          "line": 750,
-          "column": 4
+          "line": 682,
+          "column": 4,
+          "index": 19866
         },
         "end": {
-          "line": 750,
-          "column": 27
+          "line": 682,
+          "column": 26,
+          "index": 19888
         }
       },
       "type": "variable",
@@ -1281,12 +1395,14 @@
     "__selectionManager": {
       "location": {
         "start": {
-          "line": 752,
-          "column": 4
+          "line": 684,
+          "column": 4,
+          "index": 19895
         },
         "end": {
-          "line": 752,
-          "column": 29
+          "line": 684,
+          "column": 28,
+          "index": 19919
         }
       },
       "type": "variable",
@@ -1295,12 +1411,14 @@
     "__additionalStatusBarText": {
       "location": {
         "start": {
-          "line": 754,
-          "column": 4
+          "line": 686,
+          "column": 4,
+          "index": 19926
         },
         "end": {
-          "line": 754,
-          "column": 36
+          "line": 686,
+          "column": 35,
+          "index": 19957
         }
       },
       "type": "variable",
@@ -1309,12 +1427,30 @@
     "__lastRowCount": {
       "location": {
         "start": {
-          "line": 755,
-          "column": 4
+          "line": 687,
+          "column": 4,
+          "index": 19963
         },
         "end": {
-          "line": 755,
-          "column": 25
+          "line": 687,
+          "column": 24,
+          "index": 19983
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__lastColCount": {
+      "location": {
+        "start": {
+          "line": 688,
+          "column": 4,
+          "index": 19989
+        },
+        "end": {
+          "line": 688,
+          "column": 24,
+          "index": 20009
         }
       },
       "type": "variable",
@@ -1323,12 +1459,14 @@
     "__internalChange": {
       "location": {
         "start": {
-          "line": 756,
-          "column": 4
+          "line": 689,
+          "column": 4,
+          "index": 20015
         },
         "end": {
-          "line": 756,
-          "column": 27
+          "line": 689,
+          "column": 26,
+          "index": 20037
         }
       },
       "type": "variable",
@@ -1337,12 +1475,14 @@
     "__columnMenuButtons": {
       "location": {
         "start": {
-          "line": 758,
-          "column": 4
+          "line": 691,
+          "column": 4,
+          "index": 20044
         },
         "end": {
-          "line": 758,
-          "column": 30
+          "line": 691,
+          "column": 29,
+          "index": 20069
         }
       },
       "type": "variable",
@@ -1351,12 +1491,14 @@
     "__columnModel": {
       "location": {
         "start": {
-          "line": 759,
-          "column": 4
+          "line": 692,
+          "column": 4,
+          "index": 20075
         },
         "end": {
-          "line": 759,
-          "column": 24
+          "line": 692,
+          "column": 23,
+          "index": 20094
         }
       },
       "type": "variable",
@@ -1365,12 +1507,14 @@
     "__emptyTableModel": {
       "location": {
         "start": {
-          "line": 760,
-          "column": 4
+          "line": 693,
+          "column": 4,
+          "index": 20100
         },
         "end": {
-          "line": 760,
-          "column": 28
+          "line": 693,
+          "column": 27,
+          "index": 20123
         }
       },
       "type": "variable",
@@ -1379,12 +1523,14 @@
     "__hadVerticalScrollBar": {
       "location": {
         "start": {
-          "line": 762,
-          "column": 4
+          "line": 695,
+          "column": 4,
+          "index": 20130
         },
         "end": {
-          "line": 762,
-          "column": 33
+          "line": 695,
+          "column": 32,
+          "index": 20158
         }
       },
       "type": "variable",
@@ -1393,12 +1539,14 @@
     "__timer": {
       "location": {
         "start": {
-          "line": 764,
-          "column": 4
+          "line": 697,
+          "column": 4,
+          "index": 20165
         },
         "end": {
-          "line": 764,
-          "column": 18
+          "line": 697,
+          "column": 17,
+          "index": 20178
         }
       },
       "type": "variable",
@@ -1407,12 +1555,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 768,
-          "column": 4
+          "line": 700,
+          "column": 4,
+          "index": 20203
         },
         "end": {
-          "line": 803,
-          "column": 5
+          "line": 729,
+          "column": 5,
+          "index": 20955
         }
       },
       "jsdoc": {},
@@ -1426,12 +1576,14 @@
     "_applySelectionModel": {
       "location": {
         "start": {
-          "line": 808,
-          "column": 4
+          "line": 732,
+          "column": 4,
+          "index": 20987
         },
         "end": {
-          "line": 817,
-          "column": 5
+          "line": 740,
+          "column": 5,
+          "index": 21273
         }
       },
       "jsdoc": {},
@@ -1444,12 +1596,14 @@
     "_applyRowHeight": {
       "location": {
         "start": {
-          "line": 821,
-          "column": 4
+          "line": 743,
+          "column": 4,
+          "index": 21305
         },
         "end": {
-          "line": 828,
-          "column": 5
+          "line": 749,
+          "column": 5,
+          "index": 21506
         }
       },
       "jsdoc": {},
@@ -1462,12 +1616,14 @@
     "_applyHeaderCellsVisible": {
       "location": {
         "start": {
-          "line": 832,
-          "column": 4
+          "line": 752,
+          "column": 4,
+          "index": 21538
         },
         "end": {
-          "line": 847,
-          "column": 5
+          "line": 766,
+          "column": 5,
+          "index": 22021
         }
       },
       "jsdoc": {},
@@ -1480,12 +1636,14 @@
     "_applyHeaderCellHeight": {
       "location": {
         "start": {
-          "line": 851,
-          "column": 4
+          "line": 769,
+          "column": 4,
+          "index": 22053
         },
         "end": {
-          "line": 858,
-          "column": 5
+          "line": 775,
+          "column": 5,
+          "index": 22262
         }
       },
       "jsdoc": {},
@@ -1498,12 +1656,14 @@
     "_applyMinCellEditHeight": {
       "location": {
         "start": {
-          "line": 862,
-          "column": 4
+          "line": 778,
+          "column": 4,
+          "index": 22294
         },
         "end": {
-          "line": 868,
-          "column": 5
+          "line": 784,
+          "column": 5,
+          "index": 22498
         }
       },
       "jsdoc": {},
@@ -1516,12 +1676,14 @@
     "getEmptyTableModel": {
       "location": {
         "start": {
-          "line": 877,
-          "column": 4
+          "line": 792,
+          "column": 4,
+          "index": 22721
         },
         "end": {
-          "line": 886,
-          "column": 5
+          "line": 799,
+          "column": 5,
+          "index": 22987
         }
       },
       "jsdoc": {
@@ -1546,12 +1708,14 @@
     "_applyTableModel": {
       "location": {
         "start": {
-          "line": 890,
-          "column": 4
+          "line": 802,
+          "column": 4,
+          "index": 23019
         },
         "end": {
-          "line": 934,
-          "column": 5
+          "line": 837,
+          "column": 5,
+          "index": 24135
         }
       },
       "jsdoc": {},
@@ -1564,12 +1728,14 @@
     "getTableColumnModel": {
       "location": {
         "start": {
-          "line": 942,
-          "column": 4
+          "line": 844,
+          "column": 4,
+          "index": 24276
         },
         "end": {
-          "line": 967,
-          "column": 5
+          "line": 872,
+          "column": 5,
+          "index": 25260
         }
       },
       "jsdoc": {
@@ -1594,12 +1760,14 @@
     "_applyStatusBarVisible": {
       "location": {
         "start": {
-          "line": 971,
-          "column": 4
+          "line": 875,
+          "column": 4,
+          "index": 25292
         },
         "end": {
-          "line": 982,
-          "column": 5
+          "line": 885,
+          "column": 5,
+          "index": 25530
         }
       },
       "jsdoc": {},
@@ -1612,12 +1780,14 @@
     "_applyAdditionalStatusBarText": {
       "location": {
         "start": {
-          "line": 986,
-          "column": 4
+          "line": 888,
+          "column": 4,
+          "index": 25562
         },
         "end": {
-          "line": 990,
-          "column": 5
+          "line": 891,
+          "column": 5,
+          "index": 25688
         }
       },
       "jsdoc": {},
@@ -1630,12 +1800,14 @@
     "_applyColumnVisibilityButtonVisible": {
       "location": {
         "start": {
-          "line": 994,
-          "column": 4
+          "line": 894,
+          "column": 4,
+          "index": 25720
         },
         "end": {
-          "line": 1001,
-          "column": 5
+          "line": 900,
+          "column": 5,
+          "index": 25918
         }
       },
       "jsdoc": {},
@@ -1648,12 +1820,14 @@
     "_applyMetaColumnCounts": {
       "location": {
         "start": {
-          "line": 1005,
-          "column": 4
+          "line": 903,
+          "column": 4,
+          "index": 25950
         },
         "end": {
-          "line": 1158,
-          "column": 5
+          "line": 1047,
+          "column": 5,
+          "index": 31245
         }
       },
       "jsdoc": {},
@@ -1666,12 +1840,14 @@
     "_applyFocusCellOnPointerMove": {
       "location": {
         "start": {
-          "line": 1162,
-          "column": 4
+          "line": 1050,
+          "column": 4,
+          "index": 31277
         },
         "end": {
-          "line": 1169,
-          "column": 5
+          "line": 1056,
+          "column": 5,
+          "index": 31496
         }
       },
       "jsdoc": {},
@@ -1684,12 +1860,14 @@
     "_applyShowCellFocusIndicator": {
       "location": {
         "start": {
-          "line": 1173,
-          "column": 4
+          "line": 1059,
+          "column": 4,
+          "index": 31528
         },
         "end": {
-          "line": 1180,
-          "column": 5
+          "line": 1065,
+          "column": 5,
+          "index": 31747
         }
       },
       "jsdoc": {},
@@ -1702,12 +1880,14 @@
     "_applyContextMenuFromDataCellsOnly": {
       "location": {
         "start": {
-          "line": 1184,
-          "column": 4
+          "line": 1068,
+          "column": 4,
+          "index": 31779
         },
         "end": {
-          "line": 1191,
-          "column": 5
+          "line": 1074,
+          "column": 5,
+          "index": 32010
         }
       },
       "jsdoc": {},
@@ -1720,12 +1900,14 @@
     "_applyKeepFirstVisibleRowComplete": {
       "location": {
         "start": {
-          "line": 1195,
-          "column": 4
+          "line": 1077,
+          "column": 4,
+          "index": 32042
         },
         "end": {
-          "line": 1202,
-          "column": 5
+          "line": 1083,
+          "column": 5,
+          "index": 32272
         }
       },
       "jsdoc": {},
@@ -1738,12 +1920,14 @@
     "_applyResetSelectionOnHeaderTap": {
       "location": {
         "start": {
-          "line": 1206,
-          "column": 4
+          "line": 1086,
+          "column": 4,
+          "index": 32304
         },
         "end": {
-          "line": 1213,
-          "column": 5
+          "line": 1092,
+          "column": 5,
+          "index": 32529
         }
       },
       "jsdoc": {},
@@ -1756,12 +1940,14 @@
     "_applyResetSelectionOnTapBelowRows": {
       "location": {
         "start": {
-          "line": 1217,
-          "column": 4
+          "line": 1095,
+          "column": 4,
+          "index": 32561
         },
         "end": {
-          "line": 1224,
-          "column": 5
+          "line": 1101,
+          "column": 5,
+          "index": 32792
         }
       },
       "jsdoc": {},
@@ -1774,12 +1960,14 @@
     "getSelectionManager": {
       "location": {
         "start": {
-          "line": 1232,
-          "column": 4
+          "line": 1108,
+          "column": 4,
+          "index": 32930
         },
         "end": {
-          "line": 1234,
-          "column": 5
+          "line": 1110,
+          "column": 5,
+          "index": 32997
         }
       },
       "jsdoc": {
@@ -1804,12 +1992,14 @@
     "_getPaneScrollerArr": {
       "location": {
         "start": {
-          "line": 1242,
-          "column": 4
+          "line": 1117,
+          "column": 4,
+          "index": 33183
         },
         "end": {
-          "line": 1244,
-          "column": 5
+          "line": 1119,
+          "column": 5,
+          "index": 33262
         }
       },
       "jsdoc": {
@@ -1834,12 +2024,14 @@
     "getPaneScroller": {
       "location": {
         "start": {
-          "line": 1253,
-          "column": 4
+          "line": 1127,
+          "column": 4,
+          "index": 33501
         },
         "end": {
-          "line": 1255,
-          "column": 5
+          "line": 1129,
+          "column": 5,
+          "index": 33589
         }
       },
       "jsdoc": {
@@ -1873,12 +2065,14 @@
     "_cleanUpMetaColumns": {
       "location": {
         "start": {
-          "line": 1265,
-          "column": 4
+          "line": 1138,
+          "column": 4,
+          "index": 33893
         },
         "end": {
-          "line": 1276,
-          "column": 5
+          "line": 1146,
+          "column": 5,
+          "index": 34149
         }
       },
       "jsdoc": {
@@ -1904,12 +2098,14 @@
     "_onChangeLocale": {
       "location": {
         "start": {
-          "line": 1284,
-          "column": 4
+          "line": 1153,
+          "column": 4,
+          "index": 34274
         },
         "end": {
-          "line": 1288,
-          "column": 5
+          "line": 1156,
+          "column": 5,
+          "index": 34361
         }
       },
       "jsdoc": {
@@ -1935,12 +2131,14 @@
     "_onChangeTheme": {
       "location": {
         "start": {
-          "line": 1292,
-          "column": 4
+          "line": 1159,
+          "column": 4,
+          "index": 34386
         },
         "end": {
-          "line": 1298,
-          "column": 5
+          "line": 1165,
+          "column": 5,
+          "index": 34551
         }
       },
       "jsdoc": {},
@@ -1948,19 +2146,20 @@
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
-        "qx.ui.core.Widget",
-        "qx.ui.core.LayoutItem"
+        "qx.ui.core.Widget"
       ]
     },
     "_onSelectionChanged": {
       "location": {
         "start": {
-          "line": 1306,
-          "column": 4
+          "line": 1172,
+          "column": 4,
+          "index": 34677
         },
         "end": {
-          "line": 1315,
-          "column": 5
+          "line": 1180,
+          "column": 5,
+          "index": 34900
         }
       },
       "jsdoc": {
@@ -1986,12 +2185,14 @@
     "_onTableModelMetaDataChanged": {
       "location": {
         "start": {
-          "line": 1323,
-          "column": 4
+          "line": 1187,
+          "column": 4,
+          "index": 35038
         },
         "end": {
-          "line": 1332,
-          "column": 5
+          "line": 1195,
+          "column": 5,
+          "index": 35279
         }
       },
       "jsdoc": {
@@ -2017,12 +2218,14 @@
     "_onTableModelDataChanged": {
       "location": {
         "start": {
-          "line": 1340,
-          "column": 4
+          "line": 1202,
+          "column": 4,
+          "index": 35412
         },
         "end": {
-          "line": 1349,
-          "column": 5
+          "line": 1213,
+          "column": 5,
+          "index": 35667
         }
       },
       "jsdoc": {
@@ -2048,12 +2251,14 @@
     "_onContextMenuOpen": {
       "location": {
         "start": {
-          "line": 1353,
-          "column": 4
+          "line": 1216,
+          "column": 4,
+          "index": 35692
         },
         "end": {
-          "line": 1360,
-          "column": 5
+          "line": 1222,
+          "column": 5,
+          "index": 36087
         }
       },
       "jsdoc": {},
@@ -2067,12 +2272,14 @@
     "_updateTableData": {
       "location": {
         "start": {
-          "line": 1373,
-          "column": 4
+          "line": 1234,
+          "column": 4,
+          "index": 36729
         },
         "end": {
-          "line": 1403,
-          "column": 5
+          "line": 1290,
+          "column": 5,
+          "index": 38161
         }
       },
       "jsdoc": {
@@ -2137,12 +2344,14 @@
     "_onScrollY": {
       "location": {
         "start": {
-          "line": 1411,
-          "column": 4
+          "line": 1297,
+          "column": 4,
+          "index": 38310
         },
         "end": {
-          "line": 1426,
-          "column": 5
+          "line": 1310,
+          "column": 5,
+          "index": 38688
         }
       },
       "jsdoc": {
@@ -2168,12 +2377,14 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 1435,
-          "column": 4
+          "line": 1318,
+          "column": 4,
+          "index": 38884
         },
         "end": {
-          "line": 1440,
-          "column": 5
+          "line": 1332,
+          "column": 5,
+          "index": 39312
         }
       },
       "jsdoc": {
@@ -2205,12 +2416,14 @@
     "_onKeyDown": {
       "location": {
         "start": {
-          "line": 1446,
-          "column": 4
+          "line": 1338,
+          "column": 4,
+          "index": 39450
         },
         "end": {
-          "line": 1582,
-          "column": 5
+          "line": 1469,
+          "column": 5,
+          "index": 42967
         }
       },
       "jsdoc": {
@@ -2236,12 +2449,14 @@
     "_onFocusChanged": {
       "location": {
         "start": {
-          "line": 1590,
-          "column": 4
+          "line": 1476,
+          "column": 4,
+          "index": 43092
         },
         "end": {
-          "line": 1597,
-          "column": 5
+          "line": 1482,
+          "column": 5,
+          "index": 43275
         }
       },
       "jsdoc": {
@@ -2267,12 +2482,14 @@
     "_onColVisibilityChanged": {
       "location": {
         "start": {
-          "line": 1605,
-          "column": 4
+          "line": 1489,
+          "column": 4,
+          "index": 43414
         },
         "end": {
-          "line": 1621,
-          "column": 5
+          "line": 1507,
+          "column": 5,
+          "index": 43929
         }
       },
       "jsdoc": {
@@ -2298,12 +2515,14 @@
     "_onColWidthChanged": {
       "location": {
         "start": {
-          "line": 1629,
-          "column": 4
+          "line": 1514,
+          "column": 4,
+          "index": 44063
         },
         "end": {
-          "line": 1641,
-          "column": 5
+          "line": 1524,
+          "column": 5,
+          "index": 44384
         }
       },
       "jsdoc": {
@@ -2329,12 +2548,14 @@
     "_onColOrderChanged": {
       "location": {
         "start": {
-          "line": 1649,
-          "column": 4
+          "line": 1531,
+          "column": 4,
+          "index": 44513
         },
         "end": {
-          "line": 1660,
-          "column": 5
+          "line": 1541,
+          "column": 5,
+          "index": 44839
         }
       },
       "jsdoc": {
@@ -2360,12 +2581,14 @@
     "getTablePaneScrollerAtPageX": {
       "location": {
         "start": {
-          "line": 1670,
-          "column": 4
+          "line": 1550,
+          "column": 4,
+          "index": 45167
         },
         "end": {
-          "line": 1674,
-          "column": 5
+          "line": 1553,
+          "column": 5,
+          "index": 45331
         }
       },
       "jsdoc": {
@@ -2399,12 +2622,14 @@
     "setFocusedCell": {
       "location": {
         "start": {
-          "line": 1686,
-          "column": 4
+          "line": 1564,
+          "column": 4,
+          "index": 45724
         },
         "end": {
-          "line": 1707,
-          "column": 5
+          "line": 1591,
+          "column": 5,
+          "index": 46490
         }
       },
       "jsdoc": {
@@ -2450,12 +2675,14 @@
     "resetSelection": {
       "location": {
         "start": {
-          "line": 1713,
-          "column": 4
+          "line": 1596,
+          "column": 4,
+          "index": 46558
         },
         "end": {
-          "line": 1715,
-          "column": 5
+          "line": 1598,
+          "column": 5,
+          "index": 46631
         }
       },
       "jsdoc": {
@@ -2472,12 +2699,14 @@
     "resetCellFocus": {
       "location": {
         "start": {
-          "line": 1721,
-          "column": 4
+          "line": 1603,
+          "column": 4,
+          "index": 46686
         },
         "end": {
-          "line": 1723,
-          "column": 5
+          "line": 1605,
+          "column": 5,
+          "index": 46756
         }
       },
       "jsdoc": {
@@ -2494,12 +2723,14 @@
     "getFocusedColumn": {
       "location": {
         "start": {
-          "line": 1731,
-          "column": 4
+          "line": 1612,
+          "column": 4,
+          "index": 46914
         },
         "end": {
-          "line": 1733,
-          "column": 5
+          "line": 1614,
+          "column": 5,
+          "index": 46972
         }
       },
       "jsdoc": {
@@ -2524,12 +2755,14 @@
     "getFocusedRow": {
       "location": {
         "start": {
-          "line": 1741,
-          "column": 4
+          "line": 1621,
+          "column": 4,
+          "index": 47127
         },
         "end": {
-          "line": 1743,
-          "column": 5
+          "line": 1623,
+          "column": 5,
+          "index": 47182
         }
       },
       "jsdoc": {
@@ -2554,12 +2787,14 @@
     "highlightFocusedRow": {
       "location": {
         "start": {
-          "line": 1753,
-          "column": 4
+          "line": 1632,
+          "column": 4,
+          "index": 47379
         },
         "end": {
-          "line": 1756,
-          "column": 5
+          "line": 1634,
+          "column": 5,
+          "index": 47484
         }
       },
       "jsdoc": {
@@ -2585,12 +2820,14 @@
     "clearFocusedRowHighlight": {
       "location": {
         "start": {
-          "line": 1771,
-          "column": 4
+          "line": 1648,
+          "column": 4,
+          "index": 48005
         },
         "end": {
-          "line": 1794,
-          "column": 5
+          "line": 1668,
+          "column": 5,
+          "index": 48610
         }
       },
       "jsdoc": {
@@ -2616,12 +2853,14 @@
     "moveFocusedCell": {
       "location": {
         "start": {
-          "line": 1803,
-          "column": 4
+          "line": 1676,
+          "column": 4,
+          "index": 48846
         },
         "end": {
-          "line": 1829,
-          "column": 5
+          "line": 1709,
+          "column": 5,
+          "index": 49787
         }
       },
       "jsdoc": {
@@ -2654,12 +2893,14 @@
     "scrollCellVisible": {
       "location": {
         "start": {
-          "line": 1838,
-          "column": 4
+          "line": 1717,
+          "column": 4,
+          "index": 50003
         },
         "end": {
-          "line": 1858,
-          "column": 5
+          "line": 1736,
+          "column": 5,
+          "index": 50656
         }
       },
       "jsdoc": {
@@ -2692,12 +2933,14 @@
     "isEditing": {
       "location": {
         "start": {
-          "line": 1866,
-          "column": 4
+          "line": 1743,
+          "column": 4,
+          "index": 50796
         },
         "end": {
-          "line": 1875,
-          "column": 5
+          "line": 1750,
+          "column": 5,
+          "index": 51076
         }
       },
       "jsdoc": {
@@ -2722,12 +2965,14 @@
     "startEditing": {
       "location": {
         "start": {
-          "line": 1884,
-          "column": 4
+          "line": 1758,
+          "column": 4,
+          "index": 51282
         },
         "end": {
-          "line": 1895,
-          "column": 5
+          "line": 1767,
+          "column": 5,
+          "index": 51600
         }
       },
       "jsdoc": {
@@ -2752,12 +2997,14 @@
     "stopEditing": {
       "location": {
         "start": {
-          "line": 1901,
-          "column": 4
+          "line": 1772,
+          "column": 4,
+          "index": 51688
         },
         "end": {
-          "line": 1909,
-          "column": 5
+          "line": 1778,
+          "column": 5,
+          "index": 51945
         }
       },
       "jsdoc": {
@@ -2774,12 +3021,14 @@
     "cancelEditing": {
       "location": {
         "start": {
-          "line": 1915,
-          "column": 4
+          "line": 1783,
+          "column": 4,
+          "index": 52038
         },
         "end": {
-          "line": 1923,
-          "column": 5
+          "line": 1789,
+          "column": 5,
+          "index": 52299
         }
       },
       "jsdoc": {
@@ -2796,12 +3045,14 @@
     "updateContent": {
       "location": {
         "start": {
-          "line": 1929,
-          "column": 4
+          "line": 1794,
+          "column": 4,
+          "index": 52384
         },
         "end": {
-          "line": 1934,
-          "column": 5
+          "line": 1799,
+          "column": 5,
+          "index": 52579
         }
       },
       "jsdoc": {
@@ -2818,12 +3069,14 @@
     "blockHeaderElements": {
       "location": {
         "start": {
-          "line": 1940,
-          "column": 4
+          "line": 1805,
+          "column": 4,
+          "index": 52690
         },
         "end": {
-          "line": 1947,
-          "column": 5
+          "line": 1811,
+          "column": 5,
+          "index": 52973
         }
       },
       "jsdoc": {
@@ -2840,12 +3093,14 @@
     "unblockHeaderElements": {
       "location": {
         "start": {
-          "line": 1954,
-          "column": 4
+          "line": 1817,
+          "column": 4,
+          "index": 53086
         },
         "end": {
-          "line": 1961,
-          "column": 5
+          "line": 1823,
+          "column": 5,
+          "index": 53357
         }
       },
       "jsdoc": {
@@ -2862,12 +3117,14 @@
     "_getMetaColumnAtPageX": {
       "location": {
         "start": {
-          "line": 1970,
-          "column": 4
+          "line": 1832,
+          "column": 4,
+          "index": 53658
         },
         "end": {
-          "line": 1984,
-          "column": 5
+          "line": 1844,
+          "column": 5,
+          "index": 53967
         }
       },
       "jsdoc": {
@@ -2901,12 +3158,14 @@
     "_getMetaColumnAtColumnX": {
       "location": {
         "start": {
-          "line": 1994,
-          "column": 4
+          "line": 1853,
+          "column": 4,
+          "index": 54243
         },
         "end": {
-          "line": 2010,
-          "column": 5
+          "line": 1867,
+          "column": 5,
+          "index": 54603
         }
       },
       "jsdoc": {
@@ -2940,12 +3199,14 @@
     "_updateStatusBar": {
       "location": {
         "start": {
-          "line": 2016,
-          "column": 4
+          "line": 1872,
+          "column": 4,
+          "index": 54675
         },
         "end": {
-          "line": 2049,
-          "column": 5
+          "line": 1907,
+          "column": 5,
+          "index": 55610
         }
       },
       "jsdoc": {
@@ -2962,12 +3223,14 @@
     "_updateScrollerWidths": {
       "location": {
         "start": {
-          "line": 2055,
-          "column": 4
+          "line": 1912,
+          "column": 4,
+          "index": 55677
         },
         "end": {
-          "line": 2070,
-          "column": 5
+          "line": 1925,
+          "column": 5,
+          "index": 56193
         }
       },
       "jsdoc": {
@@ -2984,12 +3247,14 @@
     "_updateScrollBarVisibility": {
       "location": {
         "start": {
-          "line": 2076,
-          "column": 4
+          "line": 1930,
+          "column": 4,
+          "index": 56285
         },
         "end": {
-          "line": 2166,
-          "column": 5
+          "line": 2017,
+          "column": 5,
+          "index": 59428
         }
       },
       "jsdoc": {
@@ -3006,12 +3271,14 @@
     "_initColumnMenu": {
       "location": {
         "start": {
-          "line": 2172,
-          "column": 4
+          "line": 2022,
+          "column": 4,
+          "index": 59485
         },
         "end": {
-          "line": 2220,
-          "column": 5
+          "line": 2069,
+          "column": 5,
+          "index": 60960
         }
       },
       "jsdoc": {
@@ -3028,12 +3295,14 @@
     "_createColumnVisibilityCheckBoxHandler": {
       "location": {
         "start": {
-          "line": 2232,
-          "column": 4
+          "line": 2077,
+          "column": 4,
+          "index": 61196
         },
         "end": {
-          "line": 2239,
-          "column": 5
+          "line": 2082,
+          "column": 5,
+          "index": 61398
         }
       },
       "jsdoc": {
@@ -3067,12 +3336,14 @@
     "setColumnWidth": {
       "location": {
         "start": {
-          "line": 2248,
-          "column": 4
+          "line": 2090,
+          "column": 4,
+          "index": 61573
         },
         "end": {
-          "line": 2250,
-          "column": 5
+          "line": 2092,
+          "column": 5,
+          "index": 61668
         }
       },
       "jsdoc": {
@@ -3105,12 +3376,14 @@
     "_onResize": {
       "location": {
         "start": {
-          "line": 2256,
-          "column": 4
+          "line": 2097,
+          "column": 4,
+          "index": 61719
         },
         "end": {
-          "line": 2261,
-          "column": 5
+          "line": 2101,
+          "column": 5,
+          "index": 61858
         }
       },
       "jsdoc": {
@@ -3127,12 +3400,14 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 2265,
-          "column": 4
+          "line": 2104,
+          "column": 4,
+          "index": 61883
         },
         "end": {
-          "line": 2282,
-          "column": 5
+          "line": 2116,
+          "column": 5,
+          "index": 62394
         }
       },
       "jsdoc": {},
@@ -3147,12 +3422,14 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 2286,
-          "column": 4
+          "line": 2119,
+          "column": 4,
+          "index": 62419
         },
         "end": {
-          "line": 2299,
-          "column": 5
+          "line": 2127,
+          "column": 5,
+          "index": 62762
         }
       },
       "jsdoc": {},
@@ -3167,12 +3444,14 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 2303,
-          "column": 4
+          "line": 2130,
+          "column": 4,
+          "index": 62787
         },
         "end": {
-          "line": 2320,
-          "column": 5
+          "line": 2143,
+          "column": 5,
+          "index": 63278
         }
       },
       "jsdoc": {},
@@ -3187,12 +3466,14 @@
     "destroy": {
       "location": {
         "start": {
-          "line": 2323,
-          "column": 4
+          "line": 2145,
+          "column": 4,
+          "index": 63285
         },
         "end": {
-          "line": 2327,
-          "column": 5
+          "line": 2148,
+          "column": 5,
+          "index": 63390
         }
       },
       "type": "function",
@@ -3986,6 +4267,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -4010,6 +4292,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -10052,12 +10335,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 2339,
-        "column": 13
+        "line": 2157,
+        "column": 2,
+        "index": 63586
       },
       "end": {
-        "line": 2365,
-        "column": 3
+        "line": 2203,
+        "column": 3,
+        "index": 64740
       }
     },
     "jsdoc": {}

@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/source/class/cv/Version.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -22,8 +19,11 @@
     "cv",
     "Version"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,YAAhB,EAA8B;AAC5BC,IAAAA,IAAI,EAAE,QADsB;AAG5BC,IAAAA,OAAO,EAAE;AACPC,MAAAA,GAAG,EAAE,0CADE;AAEPC,MAAAA,MAAM,EAAE,SAFD;AAGPC,MAAAA,OAAO,EAAE,YAHF;AAIPC,MAAAA,oBAAoB,EAAE,CAJf;AAKPC,MAAAA,oBAAoB,EAAE,CALf;AAMPC,MAAAA,IAAI,EAAE,0BANC;AAOPC,MAAAA,IAAI,EAAE;AAPC;AAHmB,GAA9B;AADAC,EAAAA,EAAE,CAACC,OAAH,CAAWb,aAAX,GAA2BA,aAA3B",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/Version.js"
+  ],
   "sourcesContent": [
-    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: 'ce9f55d14d8dd93929017849520ff7359ec944df',\n    BRANCH: 'develop',\n    VERSION: '0.13.0-dev',\n    LIBRARY_VERSION_PURE: 9,\n    LIBRARY_VERSION_TILE: 1,\n    DATE: '2022-10-03T09:29:37.266Z',\n    TAGS: { \n    }\n  }\n});    \n"
-  ]
+    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: '97a2542075d6f55f4c879e3efbfde7a7bbec29c0',\n    BRANCH: 'develop',\n    VERSION: '0.13.0-dev',\n    LIBRARY_VERSION_PURE: 9,\n    LIBRARY_VERSION_TILE: 1,\n    DATE: '2023-01-02T09:54:18.731Z',\n    TAGS: { \n    }\n  }\n});    \n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAChDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,YAAY,EAAE;IAC5BC,IAAI,EAAE,QAAQ;IAEdC,OAAO,EAAE;MACPC,GAAG,EAAE,0CAA0C;MAC/CC,MAAM,EAAE,SAAS;MACjBC,OAAO,EAAE,YAAY;MACrBC,oBAAoB,EAAE,CAAC;MACvBC,oBAAoB,EAAE,CAAC;MACvBC,IAAI,EAAE,0BAA0B;MAChCC,IAAI,EAAE,CACN;IACF;EACF,CAAC,CAAC;EAdFC,EAAE,CAACC,OAAO,CAACb,aAAa,GAAGA,aAAa;AAAC"
 }

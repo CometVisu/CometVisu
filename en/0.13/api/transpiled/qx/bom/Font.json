@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 680
       },
       "end": {
-        "line": 391,
-        "column": 3
+        "line": 366,
+        "column": 3,
+        "index": 9150
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1059
       },
       "end": {
-        "line": 66,
-        "column": 3
+        "line": 61,
+        "column": 3,
+        "index": 1478
       }
     },
     "jsdoc": {
@@ -69,12 +73,14 @@
     "fromString": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 1934
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 2758
         }
       },
       "jsdoc": {
@@ -108,12 +114,14 @@
     "fromConfig": {
       "location": {
         "start": {
-          "line": 137,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 2950
         },
         "end": {
-          "line": 142,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3055
         }
       },
       "jsdoc": {
@@ -147,12 +155,14 @@
     "__defaultStyles": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3112
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 141,
+          "column": 5,
+          "index": 3333
         }
       },
       "jsdoc": {
@@ -175,12 +185,14 @@
     "getDefaultStyles": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 3539
         },
         "end": {
-          "line": 169,
-          "column": 5
+          "line": 153,
+          "column": 5,
+          "index": 3600
         }
       },
       "jsdoc": {
@@ -207,12 +219,14 @@
     "size": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 164,
+          "column": 4,
+          "index": 3853
         },
         "end": {
-          "line": 189,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 3938
         }
       },
       "jsdoc": {
@@ -233,12 +247,14 @@
     "lineHeight": {
       "location": {
         "start": {
-          "line": 195,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 4089
         },
         "end": {
-          "line": 200,
-          "column": 5
+          "line": 178,
+          "column": 5,
+          "index": 4185
         }
       },
       "jsdoc": {
@@ -259,12 +275,14 @@
     "comparisonString": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 186,
+          "column": 4,
+          "index": 4459
         },
         "end": {
-          "line": 213,
-          "column": 5
+          "line": 190,
+          "column": 5,
+          "index": 4546
         }
       },
       "jsdoc": {
@@ -284,12 +302,14 @@
     "version": {
       "location": {
         "start": {
-          "line": 226,
-          "column": 4
+          "line": 203,
+          "column": 4,
+          "index": 5105
         },
         "end": {
-          "line": 233,
-          "column": 5
+          "line": 212,
+          "column": 5,
+          "index": 5318
         }
       },
       "jsdoc": {
@@ -303,17 +323,20 @@
       "name": "version",
       "propertyType": "new",
       "nullable": true,
-      "allowNull": true
+      "allowNull": true,
+      "check": "[[ ObjectMethod Function ]]"
     },
     "family": {
       "location": {
         "start": {
-          "line": 236,
-          "column": 4
+          "line": 215,
+          "column": 4,
+          "index": 5367
         },
         "end": {
-          "line": 241,
-          "column": 5
+          "line": 219,
+          "column": 5,
+          "index": 5454
         }
       },
       "jsdoc": {
@@ -334,12 +357,14 @@
     "bold": {
       "location": {
         "start": {
-          "line": 244,
-          "column": 4
+          "line": 222,
+          "column": 4,
+          "index": 5497
         },
         "end": {
-          "line": 249,
-          "column": 5
+          "line": 226,
+          "column": 5,
+          "index": 5582
         }
       },
       "jsdoc": {
@@ -360,12 +385,14 @@
     "italic": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 229,
+          "column": 4,
+          "index": 5627
         },
         "end": {
-          "line": 257,
-          "column": 5
+          "line": 233,
+          "column": 5,
+          "index": 5716
         }
       },
       "jsdoc": {
@@ -386,12 +413,14 @@
     "decoration": {
       "location": {
         "start": {
-          "line": 260,
-          "column": 4
+          "line": 236,
+          "column": 4,
+          "index": 5768
         },
         "end": {
-          "line": 265,
-          "column": 5
+          "line": 240,
+          "column": 5,
+          "index": 5897
         }
       },
       "jsdoc": {
@@ -416,12 +445,14 @@
     "color": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 243,
+          "column": 4,
+          "index": 5944
         },
         "end": {
-          "line": 273,
-          "column": 5
+          "line": 247,
+          "column": 5,
+          "index": 6029
         }
       },
       "jsdoc": {
@@ -442,12 +473,14 @@
     "textShadow": {
       "location": {
         "start": {
-          "line": 276,
-          "column": 4
+          "line": 250,
+          "column": 4,
+          "index": 6077
         },
         "end": {
-          "line": 281,
-          "column": 5
+          "line": 254,
+          "column": 5,
+          "index": 6173
         }
       },
       "jsdoc": {
@@ -468,12 +501,14 @@
     "weight": {
       "location": {
         "start": {
-          "line": 283,
-          "column": 4
+          "line": 257,
+          "column": 4,
+          "index": 6300
         },
         "end": {
-          "line": 288,
-          "column": 5
+          "line": 261,
+          "column": 5,
+          "index": 6388
         }
       },
       "jsdoc": {
@@ -490,6 +525,34 @@
       "nullable": true,
       "allowNull": true,
       "check": "String"
+    },
+    "letterSpacing": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 6439
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 6542
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Letter Spacing (Unit: pixel)</p>"
+          }
+        ]
+      },
+      "name": "letterSpacing",
+      "propertyType": "new",
+      "apply": "_applyLetterSpacing",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Integer"
     },
     "qxOwner": {
       "type": "property",
@@ -528,12 +591,14 @@
     "__lookupMap": {
       "location": {
         "start": {
-          "line": 302,
-          "column": 4
+          "line": 278,
+          "column": 4,
+          "index": 6750
         },
         "end": {
-          "line": 302,
-          "column": 22
+          "line": 278,
+          "column": 21,
+          "index": 6767
         }
       },
       "type": "variable",
@@ -542,12 +607,14 @@
     "_applySize": {
       "location": {
         "start": {
-          "line": 306,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 6796
         },
         "end": {
-          "line": 308,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 6898
         }
       },
       "jsdoc": {},
@@ -560,12 +627,14 @@
     "_applyLineHeight": {
       "location": {
         "start": {
-          "line": 311,
-          "column": 4
+          "line": 285,
+          "column": 4,
+          "index": 6905
         },
         "end": {
-          "line": 313,
-          "column": 5
+          "line": 287,
+          "column": 5,
+          "index": 7008
         }
       },
       "type": "function",
@@ -577,12 +646,14 @@
     "_applyFamily": {
       "location": {
         "start": {
-          "line": 317,
-          "column": 4
+          "line": 290,
+          "column": 4,
+          "index": 7037
         },
         "end": {
-          "line": 340,
-          "column": 5
+          "line": 311,
+          "column": 5,
+          "index": 7720
         }
       },
       "jsdoc": {},
@@ -595,12 +666,14 @@
     "_applyBold": {
       "location": {
         "start": {
-          "line": 344,
-          "column": 4
+          "line": 314,
+          "column": 4,
+          "index": 7749
         },
         "end": {
-          "line": 346,
-          "column": 5
+          "line": 317,
+          "column": 5,
+          "index": 7873
         }
       },
       "jsdoc": {},
@@ -613,12 +686,14 @@
     "_applyItalic": {
       "location": {
         "start": {
-          "line": 350,
-          "column": 4
+          "line": 320,
+          "column": 4,
+          "index": 7902
         },
         "end": {
-          "line": 352,
-          "column": 5
+          "line": 323,
+          "column": 5,
+          "index": 8029
         }
       },
       "jsdoc": {},
@@ -631,12 +706,14 @@
     "_applyDecoration": {
       "location": {
         "start": {
-          "line": 356,
-          "column": 4
+          "line": 326,
+          "column": 4,
+          "index": 8058
         },
         "end": {
-          "line": 358,
-          "column": 5
+          "line": 328,
+          "column": 5,
+          "index": 8164
         }
       },
       "jsdoc": {},
@@ -649,12 +726,14 @@
     "_applyColor": {
       "location": {
         "start": {
-          "line": 361,
-          "column": 4
+          "line": 331,
+          "column": 4,
+          "index": 8193
         },
         "end": {
-          "line": 366,
-          "column": 5
+          "line": 337,
+          "column": 5,
+          "index": 8384
         }
       },
       "jsdoc": {},
@@ -667,12 +746,14 @@
     "_applyWeight": {
       "location": {
         "start": {
-          "line": 369,
-          "column": 4
+          "line": 340,
+          "column": 4,
+          "index": 8413
         },
         "end": {
-          "line": 371,
-          "column": 5
+          "line": 342,
+          "column": 5,
+          "index": 8488
         }
       },
       "jsdoc": {},
@@ -685,12 +766,14 @@
     "_applyTextShadow": {
       "location": {
         "start": {
-          "line": 374,
-          "column": 4
+          "line": 345,
+          "column": 4,
+          "index": 8517
         },
         "end": {
-          "line": 376,
-          "column": 5
+          "line": 347,
+          "column": 5,
+          "index": 8619
         }
       },
       "jsdoc": {},
@@ -700,15 +783,37 @@
         "textShadow"
       ]
     },
+    "_applyLetterSpacing": {
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4,
+          "index": 8648
+        },
+        "end": {
+          "line": 352,
+          "column": 5,
+          "index": 8764
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "letterSpacing"
+      ]
+    },
     "getStyles": {
       "location": {
         "start": {
-          "line": 387,
-          "column": 4
+          "line": 362,
+          "column": 4,
+          "index": 9092
         },
         "end": {
-          "line": 389,
-          "column": 5
+          "line": 364,
+          "column": 5,
+          "index": 9142
         }
       },
       "jsdoc": {
@@ -762,9 +867,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1368,6 +1475,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1712,11 +1870,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2233,6 +2391,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2256,6 +2415,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4155,6 +4315,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for version"
           }
         ]
@@ -4178,6 +4339,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for version"
           }
@@ -4707,6 +4869,72 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>weight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #weight}."
+          }
+        ]
+      }
+    },
+    "getLetterSpacing": {
+      "type": "function",
+      "name": "getLetterSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>letterSpacing</code>.\n\nFor further details take a look at the property definition: {@link #letterSpacing}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Integer",
+            "desc": "Returns the value for letterSpacing"
+          }
+        ]
+      }
+    },
+    "setLetterSpacing": {
+      "type": "function",
+      "name": "setLetterSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>letterSpacing</code>.\n\nFor further details take a look at the property definition: {@link #letterSpacing}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Integer",
+            "paramName": "value",
+            "desc": "Value for letterSpacing"
+          }
+        ]
+      }
+    },
+    "resetLetterSpacing": {
+      "type": "function",
+      "name": "resetLetterSpacing",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>letterSpacing</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #letterSpacing}."
           }
         ]
       }

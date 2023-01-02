@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 535
       },
       "end": {
-        "line": 61,
-        "column": 3
+        "line": 57,
+        "column": 3,
+        "index": 1705
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "createCellEditor": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1313
         },
         "end": {
-          "line": 46,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1366
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "getCellEditorValue": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1640
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 55,
+          "column": 5,
+          "index": 1697
         }
       },
       "jsdoc": {

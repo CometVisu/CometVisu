@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 27,
+        "column": 0,
+        "index": 636
       },
       "end": {
-        "line": 230,
-        "column": 3
+        "line": 217,
+        "column": 3,
+        "index": 5472
       }
     },
     "jsdoc": {
@@ -22,6 +24,12 @@
         {
           "name": "@description",
           "body": "<p>Abstract Icon cell renderer.</p>"
+        }
+      ],
+      "@asset": [
+        {
+          "name": "@asset",
+          "body": "qx/static/blank.gif"
         }
       ]
     }
@@ -34,11 +42,13 @@
     "location": {
       "start": {
         "line": 32,
-        "column": 14
+        "column": 2,
+        "index": 837
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 40,
+        "column": 3,
+        "index": 1113
       }
     },
     "jsdoc": {
@@ -51,15 +61,17 @@
     }
   },
   "members": {
-    "__imageBlank": {
+    "_imageBlank": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1216
         },
         "end": {
-          "line": 49,
-          "column": 23
+          "line": 46,
+          "column": 21,
+          "index": 1233
         }
       },
       "jsdoc": {
@@ -71,17 +83,19 @@
         ]
       },
       "type": "variable",
-      "access": "private"
+      "access": "protected"
     },
     "getBlankImage": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1366
         },
         "end": {
-          "line": 61,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1420
         }
       },
       "jsdoc": {
@@ -106,12 +120,14 @@
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 107,
+          "column": 4,
+          "index": 2622
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2709
         }
       },
       "jsdoc": {
@@ -145,12 +161,14 @@
     "_getCellStyle": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 2734
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 2904
         }
       },
       "jsdoc": {},
@@ -164,12 +182,14 @@
     "_getContentHtml": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 2929
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 177,
+          "column": 5,
+          "index": 4443
         }
       },
       "jsdoc": {},
@@ -180,15 +200,17 @@
         "qx.ui.progressive.renderer.table.cell.Abstract"
       ]
     },
-    "__getImageData": {
+    "_getImageData": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 197,
+          "column": 4,
+          "index": 4936
         },
         "end": {
-          "line": 228,
-          "column": 5
+          "line": 215,
+          "column": 5,
+          "index": 5464
         }
       },
       "jsdoc": {
@@ -217,7 +239,7 @@
         ]
       },
       "type": "function",
-      "access": "private"
+      "access": "protected"
     },
     "getQxOwner": {
       "type": "function",
@@ -307,6 +329,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -331,6 +354,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

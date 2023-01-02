@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,22 +38,22 @@
    */
   qx.Class.define("qx.event.type.Touch", {
     extend: qx.event.type.Dom,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Touch.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.pageX = nativeEvent.pageX;
         clone.pageY = nativeEvent.pageY;
         clone.offsetX = nativeEvent.offsetX;
-        clone.offsetY = nativeEvent.offsetY; // Workaround for BUG #6491
+        clone.offsetY = nativeEvent.offsetY;
 
+        // Workaround for BUG #6491
         clone.layerX = nativeEvent.offsetX || nativeEvent.layerX;
         clone.layerY = nativeEvent.offsetY || nativeEvent.layerY;
         clone.scale = nativeEvent.scale;
@@ -63,30 +62,23 @@
         clone.delta = nativeEvent.delta;
         clone.srcElement = nativeEvent.srcElement;
         clone.targetTouches = [];
-
         for (var i = 0; i < nativeEvent.targetTouches.length; i++) {
           clone.targetTouches[i] = nativeEvent.targetTouches[i];
         }
-
         clone.changedTouches = [];
-
         for (i = 0; i < nativeEvent.changedTouches.length; i++) {
           clone.changedTouches[i] = nativeEvent.changedTouches[i];
         }
-
         clone.touches = [];
-
         for (i = 0; i < nativeEvent.touches.length; i++) {
           clone.touches[i] = nativeEvent.touches[i];
         }
-
         return clone;
       },
       // overridden
       stop: function stop() {
         this.stopPropagation();
       },
-
       /**
        * Returns an array of native Touch objects representing all current
        * touches on the document.
@@ -98,7 +90,6 @@
       getAllTouches: function getAllTouches() {
         return this._native.touches;
       },
-
       /**
        * Returns an array of native Touch objects representing all touches
        * associated with the event target element.
@@ -110,7 +101,6 @@
       getTargetTouches: function getTargetTouches() {
         return this._native.targetTouches;
       },
-
       /**
        * Returns an array of native Touch objects representing all touches of
        * the target element that changed in this event.
@@ -128,7 +118,6 @@
       getChangedTargetTouches: function getChangedTargetTouches() {
         return this._native.changedTouches;
       },
-
       /**
        * Checks whether more than one touch is associated with the event target
        * element.
@@ -136,9 +125,8 @@
        * @return {Boolean} Is multi-touch
        */
       isMultiTouch: function isMultiTouch() {
-        return this.__P_227_0().length > 1;
+        return this.__P_232_0().length > 1;
       },
-
       /**
        * Returns the distance between two fingers since the start of the event.
        * The distance is a multiplier of the initial distance.
@@ -152,7 +140,6 @@
       getScale: function getScale() {
         return this._native.scale;
       },
-
       /**
        * Returns the delta of the rotation since the start of the event, in degrees.
        * Initial value is 0.0
@@ -168,7 +155,6 @@
           return this._native._rotation;
         }
       },
-
       /**
        * Returns an array with the calculated delta coordinates of all active touches,
        * relative to the position on <code>touchstart</code> event.
@@ -179,7 +165,6 @@
       getDelta: function getDelta() {
         return this._native.delta;
       },
-
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -189,9 +174,8 @@
        * @return {Integer} The horizontal position of the touch in the document.
        */
       getDocumentLeft: function getDocumentLeft(touchIndex) {
-        return this.__P_227_1(touchIndex).pageX;
+        return this.__P_232_1(touchIndex).pageX;
       },
-
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -201,9 +185,8 @@
        * @return {Integer} The vertical position of the touch in the document.
        */
       getDocumentTop: function getDocumentTop(touchIndex) {
-        return this.__P_227_1(touchIndex).pageY;
+        return this.__P_232_1(touchIndex).pageY;
       },
-
       /**
        * Get the horizontal coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -212,9 +195,8 @@
        * @return {Integer} The horizontal position of the touch
        */
       getScreenLeft: function getScreenLeft(touchIndex) {
-        return this.__P_227_1(touchIndex).screenX;
+        return this.__P_232_1(touchIndex).screenX;
       },
-
       /**
        * Get the vertical coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -223,9 +205,8 @@
        * @return {Integer} The vertical position of the touch
        */
       getScreenTop: function getScreenTop(touchIndex) {
-        return this.__P_227_1(touchIndex).screenY;
+        return this.__P_232_1(touchIndex).screenY;
       },
-
       /**
        * Get the the horizontal coordinate at which the event occurred relative
        * to the viewport.
@@ -234,9 +215,8 @@
        * @return {Integer} The horizontal position of the touch
        */
       getViewportLeft: function getViewportLeft(touchIndex) {
-        return this.__P_227_1(touchIndex).clientX;
+        return this.__P_232_1(touchIndex).clientX;
       },
-
       /**
        * Get the vertical coordinate at which the event occurred relative
        * to the viewport.
@@ -245,9 +225,8 @@
        * @return {Integer} The vertical position of the touch
        */
       getViewportTop: function getViewportTop(touchIndex) {
-        return this.__P_227_1(touchIndex).clientY;
+        return this.__P_232_1(touchIndex).clientY;
       },
-
       /**
        * Returns the unique identifier for a certain touch object.
        *
@@ -255,9 +234,8 @@
        * @return {Integer} Unique identifier of the touch object
        */
       getIdentifier: function getIdentifier(touchIndex) {
-        return this.__P_227_1(touchIndex).identifier;
+        return this.__P_232_1(touchIndex).identifier;
       },
-
       /**
        * Returns an event specific touch on the target element. This function is
        * used as the "touchend" event only offers Touch objects in the
@@ -267,11 +245,10 @@
        *     retrieve
        * @return {Object} A native Touch object
        */
-      __P_227_1: function __P_227_1(touchIndex) {
+      __P_232_1: function __P_232_1(touchIndex) {
         touchIndex = touchIndex == null ? 0 : touchIndex;
-        return this.__P_227_0()[touchIndex];
+        return this.__P_232_0()[touchIndex];
       },
-
       /**
        * Returns the event specific touches on the target element. This function
        * is used as the "touchend" event only offers Touch objects in the
@@ -279,11 +256,10 @@
        *
        * @return {Object[]} Array of native Touch objects
        */
-      __P_227_0: function __P_227_0() {
+      __P_232_0: function __P_232_0() {
         var touches = this._isTouchEnd() ? this.getChangedTargetTouches() : this.getTargetTouches();
         return touches;
       },
-
       /**
        * Indicates if the event occurs during the "touchend" phase. Needed to
        * determine the event specific touches. Override this method if you derive
@@ -300,4 +276,4 @@
   qx.event.type.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1664789586038
+//# sourceMappingURL=Touch.js.map?dt=1672653496504

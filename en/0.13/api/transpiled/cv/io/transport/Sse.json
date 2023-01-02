@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 842
       },
       "end": {
-        "line": 186,
-        "column": 3
+        "line": 192,
+        "column": 3,
+        "index": 5318
       }
     },
     "jsdoc": {
@@ -37,11 +39,13 @@
     "location": {
       "start": {
         "line": 35,
-        "column": 13
+        "column": 2,
+        "index": 1105
       },
       "end": {
         "line": 38,
-        "column": 3
+        "column": 3,
+        "index": 1188
       }
     },
     "jsdoc": {
@@ -63,12 +67,14 @@
     "running": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1346
         },
         "end": {
-          "line": 47,
-          "column": 18
+          "line": 46,
+          "column": 18,
+          "index": 1360
         }
       },
       "type": "variable",
@@ -77,12 +83,14 @@
     "sessionId": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1366
         },
         "end": {
-          "line": 48,
-          "column": 19
+          "line": 47,
+          "column": 19,
+          "index": 1381
         }
       },
       "type": "variable",
@@ -91,12 +99,14 @@
     "client": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1387
         },
         "end": {
-          "line": 49,
-          "column": 16
+          "line": 48,
+          "column": 16,
+          "index": 1399
         }
       },
       "type": "variable",
@@ -105,12 +115,14 @@
     "eventSource": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1405
         },
         "end": {
-          "line": 50,
-          "column": 21
+          "line": 49,
+          "column": 21,
+          "index": 1422
         }
       },
       "type": "variable",
@@ -119,12 +131,14 @@
     "__additionalTopics": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1428
         },
         "end": {
-          "line": 51,
-          "column": 28
+          "line": 50,
+          "column": 28,
+          "index": 1452
         }
       },
       "type": "variable",
@@ -133,12 +147,14 @@
     "handleSession": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1735
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 2126
         }
       },
       "jsdoc": {
@@ -171,12 +187,14 @@
     "connect": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2185
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 3113
         }
       },
       "jsdoc": {
@@ -193,12 +211,14 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 3213
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3414
         }
       },
       "jsdoc": {
@@ -223,12 +243,14 @@
     "dispatchTopicMessage": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3421
         },
         "end": {
-          "line": 117,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3681
         }
       },
       "type": "function",
@@ -237,12 +259,14 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3848
         },
         "end": {
-          "line": 133,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 4149
         }
       },
       "jsdoc": {
@@ -273,12 +297,14 @@
     "__addRecordedEventListener": {
       "location": {
         "start": {
-          "line": 135,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 4156
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 4419
         }
       },
       "type": "function",
@@ -287,12 +313,14 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 4479
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4667
         }
       },
       "jsdoc": {
@@ -317,12 +345,14 @@
     "isConnectionRunning": {
       "location": {
         "start": {
-          "line": 160,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4771
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 4883
         }
       },
       "jsdoc": {
@@ -347,12 +377,14 @@
     "restart": {
       "location": {
         "start": {
-          "line": 168,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 4965
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 179,
+          "column": 5,
+          "index": 5128
         }
       },
       "jsdoc": {
@@ -377,12 +409,14 @@
     "abort": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 186,
+          "column": 4,
+          "index": 5204
         },
         "end": {
-          "line": 184,
-          "column": 5
+          "line": 190,
+          "column": 5,
+          "index": 5310
         }
       },
       "jsdoc": {
@@ -484,6 +518,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -508,6 +543,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

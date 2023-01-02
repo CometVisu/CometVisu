@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 20,
-        "column": 0
+        "column": 0,
+        "index": 562
       },
       "end": {
         "line": 50,
-        "column": 5
+        "column": 3,
+        "index": 1480
       }
     },
     "jsdoc": {}
@@ -26,26 +28,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 15
+        "line": 24,
+        "column": 2,
+        "index": 664
       },
       "end": {
-        "line": 38,
-        "column": 5
+        "line": 39,
+        "column": 3,
+        "index": 1333
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__blocker": {
       "location": {
         "start": {
           "line": 42,
-          "column": 4
+          "column": 4,
+          "index": 1353
         },
         "end": {
           "line": 42,
-          "column": 20
+          "column": 19,
+          "index": 1368
         }
       },
       "type": "variable",
@@ -55,11 +60,13 @@
       "location": {
         "start": {
           "line": 43,
-          "column": 4
+          "column": 4,
+          "index": 1374
         },
         "end": {
           "line": 45,
-          "column": 5
+          "column": 5,
+          "index": 1418
         }
       },
       "type": "function",
@@ -69,11 +76,13 @@
       "location": {
         "start": {
           "line": 46,
-          "column": 4
+          "column": 4,
+          "index": 1424
         },
         "end": {
           "line": 48,
-          "column": 5
+          "column": 5,
+          "index": 1470
         }
       },
       "type": "function",
@@ -167,6 +176,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -191,6 +201,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

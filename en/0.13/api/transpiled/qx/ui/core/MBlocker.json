@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 29,
-        "column": 0
+        "column": 0,
+        "index": 888
       },
       "end": {
-        "line": 154,
-        "column": 3
+        "line": 138,
+        "column": 3,
+        "index": 3392
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "blockerColor": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 993
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1133
         }
       },
       "jsdoc": {
@@ -58,12 +62,14 @@
     "blockerOpacity": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1186
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1306
         }
       },
       "jsdoc": {
@@ -87,12 +93,14 @@
     "__blocker": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1330
         },
         "end": {
-          "line": 61,
-          "column": 20
+          "line": 54,
+          "column": 19,
+          "index": 1345
         }
       },
       "type": "variable",
@@ -101,12 +109,14 @@
     "_createBlocker": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1478
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1545
         }
       },
       "jsdoc": {
@@ -131,12 +141,14 @@
     "_applyBlockerColor": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1574
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 1653
         }
       },
       "jsdoc": {},
@@ -149,12 +161,14 @@
     "_applyBlockerOpacity": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 1682
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 1765
         }
       },
       "jsdoc": {},
@@ -167,12 +181,14 @@
     "block": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 1929
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 1977
         }
       },
       "jsdoc": {
@@ -189,12 +205,14 @@
     "isBlocked": {
       "location": {
         "start": {
-          "line": 98,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2109
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2187
         }
       },
       "jsdoc": {
@@ -219,12 +237,14 @@
     "unblock": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2440
         },
         "end": {
-          "line": 112,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2527
         }
       },
       "jsdoc": {
@@ -241,12 +261,14 @@
     "forceUnblock": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 2707
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 2804
         }
       },
       "jsdoc": {
@@ -263,12 +285,14 @@
     "blockContent": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3015
         },
         "end": {
-          "line": 134,
-          "column": 5
+          "line": 120,
+          "column": 5,
+          "index": 3089
         }
       },
       "jsdoc": {
@@ -294,12 +318,14 @@
     "getBlocker": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3190
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 3324
         }
       },
       "jsdoc": {
@@ -457,15 +483,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 151,
-        "column": 13
+        "line": 135,
+        "column": 2,
+        "index": 3333
       },
       "end": {
-        "line": 153,
-        "column": 3
+        "line": 137,
+        "column": 3,
+        "index": 3388
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -100,25 +99,23 @@
           "null": 1,
           "true": 1,
           "false": 1,
-          "NaN": 1,
-          "Infinity": 1,
+          NaN: 1,
+          Infinity: 1,
           "this": 1
         };
         var qxkeys = {
-          "statics": 1,
-          "members": 1,
-          "construct": 1,
-          "destruct": 1,
-          "events": 1,
-          "properties": 1,
-          "extend": 1,
-          "implement": 1
+          statics: 1,
+          members: 1,
+          construct: 1,
+          destruct: 1,
+          events: 1,
+          properties: 1,
+          extend: 1,
+          implement: 1
         };
-
         var reg = function reg(str) {
           return new RegExp("^" + str + "$");
         };
-
         var str_re_line_comment = "\\/\\/.*?[\\n\\r$]";
         var str_re_full_comment = "\\/\\*(?:.|[\\n\\r])*?\\*\\/";
         var str_re_ident = "[a-zA-Z_][a-zA-Z0-9_]*\\b";
@@ -145,10 +142,8 @@
         var re_token = new RegExp([str_re_line_comment, str_re_full_comment, str_re_ident, str_re_integer, str_re_float, str_re_doublequote, str_re_singlequote, str_re_singlequote, str_re_tab, str_re_nl, str_re_space, str_re_regexp_all, "."].join("|"), "g");
         var tokens = [];
         var a = javaScriptText.match(re_token);
-
         for (var i = 0; i < a.length; i++) {
           var token = a[i];
-
           if (token.match(re_line_comment)) {
             tokens.push({
               type: "linecomment",
@@ -241,10 +236,8 @@
             });
           }
         }
-
         return tokens;
       },
-
       /**
        * Create a colored HTML string for a string of JavaScript code.
        * The colored elements are placed in <code>span</code> elements
@@ -260,51 +253,41 @@
       javaScriptToHtml: function javaScriptToHtml(javaScriptText, forPreTag) {
         var tokens = qx.dev.Tokenizer.tokenizeJavaScript(javaScriptText);
         var js = new qx.util.StringBuilder();
-
         for (var i = 0; i < tokens.length; i++) {
           var token = tokens[i];
           var htmlValue = qx.bom.String.escape(token.value);
-
           switch (token.type) {
             case "regexp":
               js.add("<span class='regexp'>", htmlValue, "</span>");
               break;
-
             case "ident":
               js.add("<span class='ident'>", htmlValue, "</span>");
               break;
-
             case "linecomment":
             case "fullcomment":
               js.add("<span class='comment'>", htmlValue, "</span>");
               break;
-
             case "qstr":
             case "qqstr":
               js.add("<span class='string'>", htmlValue, "</span>");
               break;
-
             case "keyword":
             case "atom":
             case "qxkey":
               js.add("<span class='", token.type, "'>", htmlValue, "</span>");
               break;
-
             case "nl":
               var nl = qx.core.Environment.get("engine.name") == "mshtml" && !forPreTag ? "<br>" : "\n";
               js.add(nl);
               break;
-
             case "ws":
               var ws = qx.core.Environment.get("engine.name") == "mshtml" && !forPreTag ? "&nbsp;" : " ";
               js.add(ws);
               break;
-
             default:
               js.add(htmlValue);
           }
         }
-
         return js.get();
       }
     }
@@ -312,4 +295,4 @@
   qx.dev.Tokenizer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tokenizer.js.map?dt=1664789582037
+//# sourceMappingURL=Tokenizer.js.map?dt=1672653490237

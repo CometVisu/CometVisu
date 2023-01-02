@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class offers a constant API over the Page Visibility Spec:
    * http://www.w3.org/TR/page-visibility/
@@ -52,22 +50,18 @@
         if (!this.$$instance) {
           this.$$instance = new qx.bom.PageVisibility();
         }
-
         return this.$$instance;
       }
     },
-
     /**
      * @param document {document?} Optional document element.
      */
     construct: function construct(document) {
-      this.__P_109_0 = document || window.document;
-
-      this.__P_109_1();
-
-      var self = this; // forward the event
-
-      qx.bom.Event.addNativeListener(this.__P_109_0, this.__P_109_2, function (e) {
+      this.__P_111_0 = document || window.document;
+      this.__P_111_1();
+      var self = this;
+      // forward the event
+      qx.bom.Event.addNativeListener(this.__P_111_0, this.__P_111_2, function (e) {
         self.emit("change", e);
       });
     },
@@ -75,56 +69,50 @@
       /**
        * The change event for the page visibility.
        */
-      "change": "Event"
+      change: "Event"
     },
     members: {
-      __P_109_0: null,
-      __P_109_3: null,
-      __P_109_4: null,
-      __P_109_2: null,
-
+      __P_111_0: null,
+      __P_111_3: null,
+      __P_111_4: null,
+      __P_111_2: null,
       /**
        * Internal helper to feature check the attribute names and the event name.
        * As the event can not be detected using the on<name> attribute, we need
        * to guess the event name by checking for the hidden attribute.
        */
-      __P_109_1: function __P_109_1() {
-        var prefix = qx.bom.Style.VENDOR_PREFIXES; // check for the hidden attribute name
+      __P_111_1: function __P_111_1() {
+        var prefix = qx.bom.Style.VENDOR_PREFIXES;
 
+        // check for the hidden attribute name
         for (var i = 0; i < prefix.length; i++) {
           var attr = prefix[i].toLowerCase() + "Hidden";
-
-          if (this.__P_109_0[attr] != undefined) {
-            this.__P_109_3 = attr; // also use the same prefix for the event name
-
-            this.__P_109_2 = prefix[i].toLowerCase() + "visibilitychange";
+          if (this.__P_111_0[attr] != undefined) {
+            this.__P_111_3 = attr;
+            // also use the same prefix for the event name
+            this.__P_111_2 = prefix[i].toLowerCase() + "visibilitychange";
             break;
           }
         }
 
-        ; // check for the visibilityState attribute name
-
+        // check for the visibilityState attribute name
         for (var i = 0; i < prefix.length; i++) {
           var attr = prefix[i].toLowerCase() + "VisibilityState";
-
-          if (this.__P_109_0[attr] != undefined) {
-            this.__P_109_4 = attr;
+          if (this.__P_111_0[attr] != undefined) {
+            this.__P_111_4 = attr;
             break;
           }
         }
 
-        ; // use the non prefixed if not supported prefixed
-
-        if (this.__P_109_3 == null) {
-          this.__P_109_3 = "hidden";
-          this.__P_109_2 = "visibilitychange";
+        // use the non prefixed if not supported prefixed
+        if (this.__P_111_3 == null) {
+          this.__P_111_3 = "hidden";
+          this.__P_111_2 = "visibilitychange";
         }
-
-        if (this.__P_109_4 == null) {
-          this.__P_109_4 = "visibilityState";
+        if (this.__P_111_4 == null) {
+          this.__P_111_4 = "visibilityState";
         }
       },
-
       /**
        * Returns weather the page is hidden or not. If we can not detect it,
        * <code>false</code> will always be returned.
@@ -132,9 +120,8 @@
        * @return {Boolean} <code>true</code>, if the page is hidden
        */
       isHidden: function isHidden() {
-        return !!this.__P_109_0[this.__P_109_3];
+        return !!this.__P_111_0[this.__P_111_3];
       },
-
       /**
        * Returns the visibility state of the page. If we can not detect it,
        * <code>"visible"</code> will always be returned.
@@ -142,11 +129,11 @@
        * @return {String} The state of the page visibility.
        */
       getVisibilityState: function getVisibilityState() {
-        return this.__P_109_0[this.__P_109_4] || "visible";
+        return this.__P_111_0[this.__P_111_4] || "visible";
       }
     }
   });
   qx.bom.PageVisibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageVisibility.js.map?dt=1664789576027
+//# sourceMappingURL=PageVisibility.js.map?dt=1672653484548

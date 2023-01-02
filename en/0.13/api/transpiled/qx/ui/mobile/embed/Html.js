@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,29 +45,26 @@
    */
   qx.Class.define("qx.ui.mobile.embed.Html", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param html {String?null} Initial HTML content
      */
     construct: function construct(html) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       if (html) {
         this.setHtml(html);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Any text string which can contain HTML, too */
       html: {
@@ -79,12 +75,12 @@
         apply: "_applyHtml"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyHtml: function _applyHtml(value, old) {
@@ -95,4 +91,4 @@
   qx.ui.mobile.embed.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1664789600863
+//# sourceMappingURL=Html.js.map?dt=1672653511405

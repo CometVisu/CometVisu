@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,7 +33,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * Global class which handles the single stylesheet used for qx.desktop.
    */
@@ -43,13 +41,12 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_418_0 = qx.bom.Stylesheet.createElement();
-      this.__P_418_1 = [];
+      this.__P_432_0 = qx.bom.Stylesheet.createElement();
+      this.__P_432_1 = [];
     },
     members: {
-      __P_418_1: null,
-      __P_418_0: null,
-
+      __P_432_1: null,
+      __P_432_0: null,
       /**
        * Adds a rule to the global stylesheet.
        * @param selector {String} The CSS selector to add the rule for.
@@ -59,32 +56,28 @@
         if (this.hasRule(selector)) {
           return;
         }
-
-        qx.bom.Stylesheet.addRule(this.__P_418_0, selector, css);
-
-        this.__P_418_1.push(selector);
+        qx.bom.Stylesheet.addRule(this.__P_432_0, selector, css);
+        this.__P_432_1.push(selector);
       },
-
       /**
        * Check if a rule exists.
        * @param selector {String} The selector to check.
        * @return {Boolean} <code>true</code> if the rule exists
        */
       hasRule: function hasRule(selector) {
-        return this.__P_418_1.indexOf(selector) != -1;
+        return this.__P_432_1.indexOf(selector) != -1;
       },
-
       /**
        * Remove the rule for the given selector.
        * @param selector {String} The selector to identify the rule.
        */
       removeRule: function removeRule(selector) {
-        delete this.__P_418_1[this.__P_418_1.indexOf(selector)];
-        qx.bom.Stylesheet.removeRule(this.__P_418_0, selector);
+        delete this.__P_432_1[this.__P_432_1.indexOf(selector)];
+        qx.bom.Stylesheet.removeRule(this.__P_432_0, selector);
       }
     }
   });
   qx.ui.style.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1664789603311
+//# sourceMappingURL=Stylesheet.js.map?dt=1672653513536

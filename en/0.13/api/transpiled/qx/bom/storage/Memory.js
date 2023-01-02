@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,58 +42,51 @@
    */
   qx.Bootstrap.define("qx.bom.storage.Memory", {
     statics: {
-      __P_147_0: null,
-      __P_147_1: null,
-
+      __P_148_0: null,
+      __P_148_1: null,
       /**
        * Returns an instance of {@link qx.bom.storage.Memory} which is of course
        * not persisted on reload.
        * @return {qx.bom.storage.Memory} A memory storage.
        */
       getLocal: function getLocal() {
-        if (this.__P_147_0) {
-          return this.__P_147_0;
+        if (this.__P_148_0) {
+          return this.__P_148_0;
         }
-
-        return this.__P_147_0 = new qx.bom.storage.Memory();
+        return this.__P_148_0 = new qx.bom.storage.Memory();
       },
-
       /**
        * Returns an instance of {@link qx.bom.storage.Memory} which is of course
        * not persisted on reload.
        * @return {qx.bom.storage.Memory} A memory storage.
        */
       getSession: function getSession() {
-        if (this.__P_147_1) {
-          return this.__P_147_1;
+        if (this.__P_148_1) {
+          return this.__P_148_1;
         }
-
-        return this.__P_147_1 = new qx.bom.storage.Memory();
+        return this.__P_148_1 = new qx.bom.storage.Memory();
       }
     },
     construct: function construct() {
-      this.__P_147_2 = {};
+      this.__P_148_2 = {};
     },
     members: {
-      __P_147_2: null,
-
+      __P_148_2: null,
       /**
        * Returns the internal used map.
        * @return {Map} The storage.
        * @internal
        */
       getStorage: function getStorage() {
-        return this.__P_147_2;
+        return this.__P_148_2;
       },
-
       /**
        * Returns the amount of key-value pairs stored.
        * @return {Integer} The length of the storage.
        */
       getLength: function getLength() {
-        return Object.keys(this.__P_147_2).length;
+        return Object.keys(this.__P_148_2).length;
       },
-
       /**
        * Store an item in the storage.
        *
@@ -103,9 +95,8 @@
        */
       setItem: function setItem(key, value) {
         value = qx.lang.Json.stringify(value);
-        this.__P_147_2[key] = value;
+        this.__P_148_2[key] = value;
       },
-
       /**
        * Returns the stored item.
        *
@@ -113,40 +104,34 @@
        * @return {var} The stored data.
        */
       getItem: function getItem(key) {
-        var item = this.__P_147_2[key];
-
+        var item = this.__P_148_2[key];
         if (qx.lang.Type.isString(item)) {
           item = qx.lang.Json.parse(item);
         }
-
         return item;
       },
-
       /**
        * Removes an item form the storage.
        * @param key {String} The identifier.
        */
       removeItem: function removeItem(key) {
-        delete this.__P_147_2[key];
+        delete this.__P_148_2[key];
       },
-
       /**
        * Deletes every stored item in the storage.
        */
       clear: function clear() {
-        this.__P_147_2 = {};
+        this.__P_148_2 = {};
       },
-
       /**
        * Returns the named key at the given index.
        * @param index {Integer} The index in the storage.
        * @return {String} The key stored at the given index.
        */
       getKey: function getKey(index) {
-        var keys = Object.keys(this.__P_147_2);
+        var keys = Object.keys(this.__P_148_2);
         return keys[index];
       },
-
       /**
        * Helper to access every stored item.
        *
@@ -157,7 +142,6 @@
        */
       forEach: function forEach(callback, scope) {
         var length = this.getLength();
-
         for (var i = 0; i < length; i++) {
           var key = this.getKey(i);
           callback.call(scope, key, this.getItem(key));
@@ -168,4 +152,4 @@
   qx.bom.storage.Memory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Memory.js.map?dt=1664789579511
+//# sourceMappingURL=Memory.js.map?dt=1672653487629

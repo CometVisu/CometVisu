@@ -23,11 +23,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Svg.js 
-   * 
+  /* Svg.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -51,7 +50,6 @@
   qx.Class.define('cv.plugins.Svg', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
     ******************************************************
       STATICS
@@ -75,7 +73,6 @@
         return data;
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -86,8 +83,8 @@
         return '<div class="actor"></div>';
       },
       _onDomReady: function _onDomReady() {
+        var _this = this;
         cv.plugins.Svg.superclass.prototype._onDomReady.call(this);
-
         var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
         ajaxRequest.set({
           accept: 'text/plain',
@@ -95,9 +92,9 @@
         });
         ajaxRequest.addListenerOnce('success', function (e) {
           var req = e.getTarget();
-          var actor = this.getActor();
+          var actor = _this.getActor();
           actor.innerHTML = req.getResponseText();
-        }, this);
+        });
         ajaxRequest.send();
       },
       _update: function _update(address, value) {
@@ -110,13 +107,11 @@
         var line;
         var i;
         var l;
-
         for (i = 0, l = Math.floor(value / line_qty); i <= l; i++) {
           line = element.querySelector('#line' + (i + 1));
           line.setAttribute('y1', 9 + total * i + value % line_qty / line_qty * total);
           line.setAttribute('y2', 9 + total * i + value % line_qty / line_qty * total);
         }
-
         for (i = Math.floor(value / line_qty) + 1; i <= line_qty; i++) {
           line = element.querySelector('#line' + (i + 1));
           line.setAttribute('y1', 9);
@@ -133,4 +128,4 @@
   cv.plugins.Svg.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Svg.js.map?dt=1664789563457
+//# sourceMappingURL=Svg.js.map?dt=1672653472036

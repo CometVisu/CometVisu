@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 943
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 85,
+        "column": 3,
+        "index": 2355
       }
     },
     "jsdoc": {
@@ -42,12 +44,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 13
+        "line": 34,
+        "column": 2,
+        "index": 1156
       },
       "end": {
-        "line": 38,
-        "column": 3
+        "line": 37,
+        "column": 3,
+        "index": 1216
       }
     },
     "jsdoc": {}
@@ -56,12 +60,14 @@
     "value": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1378
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1458
         }
       },
       "name": "value",
@@ -108,12 +114,14 @@
     "__domElement": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1618
         },
         "end": {
-          "line": 59,
-          "column": 22
+          "line": 58,
+          "column": 22,
+          "index": 1636
         }
       },
       "type": "variable",
@@ -122,12 +130,14 @@
     "__progressElement": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1642
         },
         "end": {
-          "line": 60,
-          "column": 27
+          "line": 59,
+          "column": 27,
+          "index": 1665
         }
       },
       "type": "variable",
@@ -136,12 +146,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1672
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1911
         }
       },
       "type": "function",
@@ -153,12 +165,14 @@
     "getDomElement": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1918
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 1973
         }
       },
       "type": "function",
@@ -167,12 +181,14 @@
     "_createDomElement": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1980
         },
         "end": {
-          "line": 78,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2347
         }
       },
       "type": "function",
@@ -266,6 +282,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -290,6 +307,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

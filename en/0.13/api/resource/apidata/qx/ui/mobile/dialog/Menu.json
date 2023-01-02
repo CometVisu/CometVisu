@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 40,
-        "column": 0
+        "column": 0,
+        "index": 1115
       },
       "end": {
-        "line": 386,
-        "column": 3
+        "line": 375,
+        "column": 3,
+        "index": 10216
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 49,
-        "column": 14
+        "line": 47,
+        "column": 2,
+        "index": 1478
       },
       "end": {
-        "line": 73,
-        "column": 3
+        "line": 70,
+        "column": 3,
+        "index": 2155
       }
     },
     "jsdoc": {
@@ -69,12 +73,14 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2417
         },
         "end": {
-          "line": 87,
-          "column": 42
+          "line": 82,
+          "column": 41,
+          "index": 2454
         }
       },
       "jsdoc": {
@@ -93,12 +99,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2686
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 96,
+          "column": 5,
+          "index": 2749
         }
       },
       "jsdoc": {},
@@ -116,12 +124,14 @@
     "selectedItemClass": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 2873
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 104,
+          "column": 5,
+          "index": 2927
         }
       },
       "jsdoc": {
@@ -140,12 +150,14 @@
     "unselectedItemClass": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 3051
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 112,
+          "column": 5,
+          "index": 3109
         }
       },
       "jsdoc": {
@@ -164,12 +176,14 @@
     "nullable": {
       "location": {
         "start": {
-          "line": 131,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3239
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 122,
+          "column": 5,
+          "index": 3329
         }
       },
       "jsdoc": {
@@ -190,12 +204,14 @@
     "clearButtonLabel": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 3479
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 3585
         }
       },
       "jsdoc": {
@@ -216,12 +232,14 @@
     "selectedIndex": {
       "location": {
         "start": {
-          "line": 154,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 3648
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 141,
+          "column": 5,
+          "index": 3751
         }
       },
       "jsdoc": {
@@ -242,12 +260,14 @@
     "visibleListItems": {
       "location": {
         "start": {
-          "line": 165,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 3849
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 150,
+          "column": 5,
+          "index": 3951
         }
       },
       "jsdoc": {
@@ -270,12 +290,14 @@
     "__selectionList": {
       "location": {
         "start": {
-          "line": 182,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 4159
         },
         "end": {
-          "line": 182,
-          "column": 25
+          "line": 160,
+          "column": 25,
+          "index": 4180
         }
       },
       "type": "variable",
@@ -284,12 +306,14 @@
     "__clearButton": {
       "location": {
         "start": {
-          "line": 183,
-          "column": 4
+          "line": 161,
+          "column": 4,
+          "index": 4186
         },
         "end": {
-          "line": 183,
-          "column": 24
+          "line": 161,
+          "column": 23,
+          "index": 4205
         }
       },
       "type": "variable",
@@ -298,12 +322,14 @@
     "__listScroller": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 4211
         },
         "end": {
-          "line": 184,
-          "column": 25
+          "line": 162,
+          "column": 24,
+          "index": 4231
         }
       },
       "type": "variable",
@@ -312,12 +338,14 @@
     "__menuContainer": {
       "location": {
         "start": {
-          "line": 185,
-          "column": 4
+          "line": 163,
+          "column": 4,
+          "index": 4237
         },
         "end": {
-          "line": 185,
-          "column": 26
+          "line": 163,
+          "column": 25,
+          "index": 4258
         }
       },
       "type": "variable",
@@ -326,12 +354,14 @@
     "show": {
       "location": {
         "start": {
-          "line": 189,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4283
         },
         "end": {
-          "line": 193,
-          "column": 5
+          "line": 170,
+          "column": 5,
+          "index": 4368
         }
       },
       "jsdoc": {},
@@ -346,12 +376,14 @@
     "_createClearButton": {
       "location": {
         "start": {
-          "line": 201,
-          "column": 4
+          "line": 177,
+          "column": 4,
+          "index": 4541
         },
         "end": {
-          "line": 206,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 4792
         }
       },
       "jsdoc": {
@@ -376,12 +408,14 @@
     "_createListScroller": {
       "location": {
         "start": {
-          "line": 214,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 5113
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 203,
+          "column": 5,
+          "index": 5397
         }
       },
       "jsdoc": {
@@ -415,12 +449,14 @@
     "_getListScroller": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 209,
+          "column": 4,
+          "index": 5647
         },
         "end": {
-          "line": 230,
-          "column": 5
+          "line": 211,
+          "column": 5,
+          "index": 5707
         }
       },
       "jsdoc": {
@@ -445,12 +481,14 @@
     "_updatePosition": {
       "location": {
         "start": {
-          "line": 234,
-          "column": 4
+          "line": 214,
+          "column": 4,
+          "index": 5732
         },
         "end": {
-          "line": 247,
-          "column": 5
+          "line": 235,
+          "column": 5,
+          "index": 6420
         }
       },
       "jsdoc": {},
@@ -467,12 +505,14 @@
     "_createSelectionList": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 242,
+          "column": 4,
+          "index": 6596
         },
         "end": {
-          "line": 279,
-          "column": 5
+          "line": 270,
+          "column": 5,
+          "index": 7466
         }
       },
       "jsdoc": {
@@ -497,12 +537,14 @@
     "getSelectionList": {
       "location": {
         "start": {
-          "line": 286,
-          "column": 4
+          "line": 276,
+          "column": 4,
+          "index": 7610
         },
         "end": {
-          "line": 288,
-          "column": 5
+          "line": 278,
+          "column": 5,
+          "index": 7671
         }
       },
       "jsdoc": {
@@ -527,12 +569,14 @@
     "_onSelectionListTap": {
       "location": {
         "start": {
-          "line": 292,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 7730
         },
         "end": {
-          "line": 294,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 7790
         }
       },
       "jsdoc": {
@@ -549,12 +593,14 @@
     "setItems": {
       "location": {
         "start": {
-          "line": 301,
-          "column": 4
+          "line": 289,
+          "column": 4,
+          "index": 7942
         },
         "end": {
-          "line": 306,
-          "column": 5
+          "line": 294,
+          "column": 5,
+          "index": 8108
         }
       },
       "jsdoc": {
@@ -580,12 +626,14 @@
     "__onListChangeSelection": {
       "location": {
         "start": {
-          "line": 313,
-          "column": 4
+          "line": 300,
+          "column": 4,
+          "index": 8260
         },
         "end": {
-          "line": 315,
-          "column": 5
+          "line": 302,
+          "column": 5,
+          "index": 8340
         }
       },
       "jsdoc": {
@@ -611,12 +659,14 @@
     "__onClearButtonTap": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 307,
+          "column": 4,
+          "index": 8409
         },
         "end": {
-          "line": 324,
-          "column": 5
+          "line": 310,
+          "column": 5,
+          "index": 8530
         }
       },
       "jsdoc": {
@@ -633,12 +683,14 @@
     "_applySelectedIndex": {
       "location": {
         "start": {
-          "line": 328,
-          "column": 4
+          "line": 313,
+          "column": 4,
+          "index": 8559
         },
         "end": {
-          "line": 337,
-          "column": 5
+          "line": 325,
+          "column": 5,
+          "index": 8883
         }
       },
       "jsdoc": {},
@@ -651,12 +703,14 @@
     "_applyNullable": {
       "location": {
         "start": {
-          "line": 341,
-          "column": 4
+          "line": 328,
+          "column": 4,
+          "index": 8912
         },
         "end": {
-          "line": 347,
-          "column": 5
+          "line": 334,
+          "column": 5,
+          "index": 9095
         }
       },
       "jsdoc": {},
@@ -669,12 +723,14 @@
     "_applyClearButtonLabel": {
       "location": {
         "start": {
-          "line": 351,
-          "column": 4
+          "line": 337,
+          "column": 4,
+          "index": 9124
         },
         "end": {
-          "line": 353,
-          "column": 5
+          "line": 339,
+          "column": 5,
+          "index": 9208
         }
       },
       "jsdoc": {},
@@ -687,12 +743,14 @@
     "_render": {
       "location": {
         "start": {
-          "line": 359,
-          "column": 4
+          "line": 344,
+          "column": 4,
+          "index": 9277
         },
         "end": {
-          "line": 363,
-          "column": 5
+          "line": 348,
+          "column": 5,
+          "index": 9438
         }
       },
       "jsdoc": {
@@ -709,12 +767,14 @@
     "scrollToItem": {
       "location": {
         "start": {
-          "line": 370,
-          "column": 4
+          "line": 354,
+          "column": 4,
+          "index": 9647
         },
         "end": {
-          "line": 376,
-          "column": 5
+          "line": 363,
+          "column": 5,
+          "index": 9978
         }
       },
       "jsdoc": {
@@ -825,6 +885,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -849,6 +910,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -2650,15 +2712,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 380,
-        "column": 13
+        "line": 366,
+        "column": 2,
+        "index": 9987
       },
       "end": {
-        "line": 384,
-        "column": 3
+        "line": 374,
+        "column": 3,
+        "index": 10212
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

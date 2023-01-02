@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +32,7 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.dao.Event", {
     extend: qxl.apiviewer.dao.ClassItem,
     construct: function construct(meta, clazz) {
@@ -49,16 +49,13 @@
             type: this._type
           }];
         }
-
         return [];
       },
-
       /**
        * @Override
        */
       isRequiredByInterface: function isRequiredByInterface(iface) {
         var _this = this;
-
         return iface.getEvents().some(function (method) {
           return method.getName() == _this.getName();
         });
@@ -68,4 +65,4 @@
   qxl.apiviewer.dao.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1664789617359
+//# sourceMappingURL=Event.js.map?dt=1672653526675

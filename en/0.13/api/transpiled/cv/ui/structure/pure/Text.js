@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Text.js 
-   * 
+  /* Text.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -47,7 +46,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.Text', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
      ******************************************************
      MEMBERS
@@ -63,4 +61,4 @@
   cv.ui.structure.pure.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1664789570709
+//# sourceMappingURL=Text.js.map?dt=1672653479086

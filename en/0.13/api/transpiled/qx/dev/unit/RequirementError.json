@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 688
       },
       "end": {
-        "line": 91,
-        "column": 3
+        "line": 82,
+        "column": 3,
+        "index": 2187
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
-        "column": 14
+        "line": 37,
+        "column": 2,
+        "index": 1076
       },
       "end": {
-        "line": 52,
-        "column": 3
+        "line": 49,
+        "column": 3,
+        "index": 1470
       }
     },
     "jsdoc": {
@@ -69,12 +73,14 @@
     "__message": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1673
         },
         "end": {
-          "line": 62,
-          "column": 20
+          "line": 57,
+          "column": 19,
+          "index": 1688
         }
       },
       "type": "variable",
@@ -83,12 +89,14 @@
     "__requirement": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1694
         },
         "end": {
-          "line": 63,
-          "column": 24
+          "line": 58,
+          "column": 23,
+          "index": 1713
         }
       },
       "type": "variable",
@@ -97,12 +105,14 @@
     "getRequirement": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1851
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 1908
         }
       },
       "jsdoc": {

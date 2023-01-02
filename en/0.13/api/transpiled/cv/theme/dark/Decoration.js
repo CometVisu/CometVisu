@@ -5,17 +5,16 @@
         "usage": "dynamic",
         "require": true
       },
-      "osparc.theme.common.Decoration": {
+      "qx.theme.tangible.Decoration": {
         "require": true
       }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Decoration.js 
-   * 
+  /* Decoration.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -30,24 +29,25 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Theme.define('cv.theme.dark.Decoration', {
-    extend: osparc.theme.common.Decoration,
+    extend: qx.theme.tangible.Decoration,
     decorations: {
       'window-caption-active': {},
       'cv-editor-config-section': {
         style: {
           width: 1,
-          color: 'material-textfield'
+          color: 'primary-focused'
         }
       },
       'cv-snackbar-msg': {
         style: {
-          backgroundColor: 'button'
+          backgroundColor: 'primary'
         }
       },
       'cv-snackbar-msg-error': {
         style: {
-          backgroundColor: 'material-textfield-invalid'
+          backgroundColor: 'error-focused'
         }
       },
       'cv-toolbar': {
@@ -59,13 +59,13 @@
       'file-action-button': {
         style: {
           width: 1,
-          color: 'text'
+          color: 'text-on-primary'
         }
       },
       'cv-start-section-title': {
         style: {
           width: [1, 0, 0, 0],
-          color: 'text-placeholder'
+          color: 'text-on-secondary'
         }
       },
       'open-file-tabs': {
@@ -80,7 +80,7 @@
       'cv-file-item-add-file': {
         style: {
           width: 1,
-          color: 'text',
+          color: 'text-on-primary',
           style: 'dashed'
         }
       },
@@ -88,8 +88,8 @@
         style: {
           width: 2,
           radius: 32,
-          color: 'button-border',
-          backgroundColor: 'button',
+          color: 'text-hint-on-surface',
+          backgroundColor: 'primary',
           shadowSpreadRadius: 0,
           shadowBlurRadius: 4,
           shadowHorizontalLength: 1,
@@ -101,7 +101,7 @@
         include: 'round-button',
         style: {
           width: 4,
-          color: 'button-border-hovered'
+          color: 'primary-hovered'
         }
       }
     }
@@ -109,4 +109,4 @@
   cv.theme.dark.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789614978
+//# sourceMappingURL=Decoration.js.map?dt=1672653524783

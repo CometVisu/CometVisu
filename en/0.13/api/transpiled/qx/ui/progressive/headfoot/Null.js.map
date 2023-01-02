@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/headfoot/Null.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -19,8 +16,11 @@
     "exclude",
     "Null"
   ],
-  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EACA;AACEC,IAAAA,MAAM,EAAON,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,QAD1C;AAIEC,IAAAA,SAAS,EAAG,qBACZ;AACE,iEADF,CAGE;;AACA,WAAKC,OAAL;AACD;AAVH,GADA;AArBAZ,EAAAA,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BI,IAA3B,CAAgCV,aAAhC,GAAgDA,aAAhD",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/headfoot/Null.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A null header/footer.  This is not displayed.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Null\",\n{\n  extend     : qx.ui.progressive.headfoot.Abstract,\n\n\n  construct : function()\n  {\n    this.base(arguments);\n\n    // We're null, so don't display.\n    this.exclude();\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A null header/footer.  This is not displayed.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Null\", {\n  extend: qx.ui.progressive.headfoot.Abstract,\n\n  construct() {\n    super();\n\n    // We're null, so don't display.\n    this.exclude();\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iCAAiC,EAAE;IACjDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,QAAQ;IAE3CC,SAAS,uBAAG;MACV;;MAEA;MACA,IAAI,CAACC,OAAO,EAAE;IAChB;EACF,CAAC,CAAC;EA9BFZ,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACI,IAAI,CAACV,aAAa,GAAGA,aAAa;AAAC"
 }

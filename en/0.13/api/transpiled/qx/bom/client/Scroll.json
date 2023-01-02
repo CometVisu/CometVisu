@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 741
       },
       "end": {
-        "line": 94,
-        "column": 3
+        "line": 98,
+        "column": 3,
+        "index": 2721
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "scrollBarOverlayed": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1117
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1422
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "getNativeScroll": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1655
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 87,
+          "column": 5,
+          "index": 2507
         }
       },
       "jsdoc": {
@@ -111,14 +117,15 @@
     "location": {
       "start": {
         "line": 90,
-        "column": 10
+        "column": 2,
+        "index": 2516
       },
       "end": {
-        "line": 93,
-        "column": 3
+        "line": 97,
+        "column": 3,
+        "index": 2717
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

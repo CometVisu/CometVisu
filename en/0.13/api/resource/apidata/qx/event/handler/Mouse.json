@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 0
+        "line": 32,
+        "column": 0,
+        "index": 873
       },
       "end": {
-        "line": 566,
-        "column": 3
+        "line": 645,
+        "column": 3,
+        "index": 17597
       }
     },
     "jsdoc": {
@@ -37,6 +39,10 @@
         {
           "name": "@ignore",
           "body": "qx.event.handler.DragDrop"
+        },
+        {
+          "name": "@ignore",
+          "body": "performance.now"
         }
       ]
     }
@@ -45,12 +51,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 50,
-        "column": 14
+        "line": 47,
+        "column": 2,
+        "index": 1313
       },
       "end": {
-        "line": 63,
-        "column": 3
+        "line": 60,
+        "column": 3,
+        "index": 1690
       }
     },
     "jsdoc": {
@@ -75,12 +83,14 @@
     "PRIORITY": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 1946
         },
         "end": {
-          "line": 77,
-          "column": 52
+          "line": 70,
+          "column": 51,
+          "index": 1993
         }
       },
       "jsdoc": {
@@ -103,12 +113,14 @@
     "SUPPORTED_TYPES": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2045
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2304
         }
       },
       "jsdoc": {
@@ -128,15 +140,47 @@
       "type": "variable",
       "access": "public"
     },
+    "NON_BUBBLING_EVENTS": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2442
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2517
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} these event types cannot be attached to the root (the document), they must be attached to the element itself"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "public"
+    },
     "TARGET_CHECK": {
       "location": {
         "start": {
           "line": 95,
-          "column": 4
+          "column": 4,
+          "index": 2577
         },
         "end": {
-          "line": 95,
-          "column": 136
+          "line": 98,
+          "column": 42,
+          "index": 2726
         }
       },
       "jsdoc": {
@@ -159,12 +203,14 @@
     "IGNORE_CAN_HANDLE": {
       "location": {
         "start": {
-          "line": 98,
-          "column": 4
+          "line": 101,
+          "column": 4,
+          "index": 2811
         },
         "end": {
-          "line": 98,
-          "column": 28
+          "line": 101,
+          "column": 27,
+          "index": 2834
         }
       },
       "jsdoc": {
@@ -189,12 +235,14 @@
     "__onButtonEventWrapper": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3042
         },
         "end": {
-          "line": 113,
-          "column": 33
+          "line": 111,
+          "column": 32,
+          "index": 3070
         }
       },
       "type": "variable",
@@ -203,12 +251,14 @@
     "__onMoveEventWrapper": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3076
         },
         "end": {
-          "line": 114,
-          "column": 31
+          "line": 112,
+          "column": 30,
+          "index": 3102
         }
       },
       "type": "variable",
@@ -217,12 +267,14 @@
     "__onWheelEventWrapper": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 3108
         },
         "end": {
-          "line": 115,
-          "column": 32
+          "line": 113,
+          "column": 31,
+          "index": 3135
         }
       },
       "type": "variable",
@@ -231,12 +283,14 @@
     "__lastEventType": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3141
         },
         "end": {
-          "line": 116,
-          "column": 26
+          "line": 114,
+          "column": 25,
+          "index": 3162
         }
       },
       "type": "variable",
@@ -245,12 +299,14 @@
     "__lastMouseDownTarget": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 3168
         },
         "end": {
-          "line": 117,
-          "column": 32
+          "line": 115,
+          "column": 31,
+          "index": 3195
         }
       },
       "type": "variable",
@@ -259,12 +315,14 @@
     "__manager": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 3201
         },
         "end": {
-          "line": 118,
-          "column": 20
+          "line": 116,
+          "column": 19,
+          "index": 3216
         }
       },
       "type": "variable",
@@ -273,12 +331,14 @@
     "__window": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 117,
+          "column": 4,
+          "index": 3222
         },
         "end": {
-          "line": 119,
-          "column": 19
+          "line": 117,
+          "column": 18,
+          "index": 3236
         }
       },
       "type": "variable",
@@ -287,12 +347,14 @@
     "__root": {
       "location": {
         "start": {
-          "line": 120,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3242
         },
         "end": {
-          "line": 120,
-          "column": 17
+          "line": 118,
+          "column": 16,
+          "index": 3254
         }
       },
       "type": "variable",
@@ -301,13 +363,45 @@
     "__preventNextClick": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 119,
+          "column": 4,
+          "index": 3260
         },
         "end": {
-          "line": 121,
-          "column": 28
+          "line": 119,
+          "column": 28,
+          "index": 3284
         }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__onNativeListener": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3370
+        },
+        "end": {
+          "line": 122,
+          "column": 28,
+          "index": 3394
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} wrapper for <code>_onNative</code>, bound as a native listener"
+          }
+        ]
       },
       "type": "variable",
       "access": "private"
@@ -315,12 +409,14 @@
     "canHandleEvent": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3638
         },
         "end": {
-          "line": 132,
-          "column": 46
+          "line": 131,
+          "column": 35,
+          "index": 3669
         }
       },
       "jsdoc": {},
@@ -334,42 +430,121 @@
     "registerEvent": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 3709
         },
         "end": {
-          "line": 143,
-          "column": 37
+          "line": 148,
+          "column": 5,
+          "index": 4339
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
       "type": "function",
-      "access": "public"
+      "access": "public",
+      "overriddenFrom": "qx.event.IEventHandler",
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
     },
     "unregisterEvent": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 153,
+          "column": 4,
+          "index": 4379
         },
         "end": {
-          "line": 150,
-          "column": 37
+          "line": 163,
+          "column": 5,
+          "index": 4723
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
       "type": "function",
-      "access": "public"
+      "access": "public",
+      "overriddenFrom": "qx.event.IEventHandler",
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_onNative": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 4902
+        },
+        "end": {
+          "line": 180,
+          "column": 6,
+          "index": 5227
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default event handler for events that do not bubble</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent, eventId)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
     },
     "__fireEvent": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 5628
         },
         "end": {
-          "line": 190,
-          "column": 5
+          "line": 219,
+          "column": 5,
+          "index": 6381
         }
       },
       "jsdoc": {
@@ -409,12 +584,14 @@
     "preventNextClick": {
       "location": {
         "start": {
-          "line": 197,
-          "column": 4
+          "line": 225,
+          "column": 4,
+          "index": 6462
         },
         "end": {
-          "line": 199,
-          "column": 5
+          "line": 227,
+          "column": 5,
+          "index": 6526
         }
       },
       "jsdoc": {
@@ -437,12 +614,14 @@
     "_initButtonObserver": {
       "location": {
         "start": {
-          "line": 214,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 6840
         },
         "end": {
-          "line": 226,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 7724
         }
       },
       "jsdoc": {
@@ -465,12 +644,14 @@
     "_initMoveObserver": {
       "location": {
         "start": {
-          "line": 234,
-          "column": 4
+          "line": 290,
+          "column": 4,
+          "index": 7841
         },
         "end": {
-          "line": 243,
-          "column": 5
+          "line": 314,
+          "column": 5,
+          "index": 8360
         }
       },
       "jsdoc": {
@@ -493,12 +674,14 @@
     "_initWheelObserver": {
       "location": {
         "start": {
-          "line": 251,
-          "column": 4
+          "line": 321,
+          "column": 4,
+          "index": 8478
         },
         "end": {
-          "line": 258,
-          "column": 5
+          "line": 333,
+          "column": 5,
+          "index": 8808
         }
       },
       "jsdoc": {
@@ -521,12 +704,14 @@
     "_stopButtonObserver": {
       "location": {
         "start": {
-          "line": 276,
-          "column": 4
+          "line": 346,
+          "column": 4,
+          "index": 9122
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 378,
+          "column": 5,
+          "index": 9788
         }
       },
       "jsdoc": {
@@ -549,12 +734,14 @@
     "_stopMoveObserver": {
       "location": {
         "start": {
-          "line": 293,
-          "column": 4
+          "line": 385,
+          "column": 4,
+          "index": 9905
         },
         "end": {
-          "line": 300,
-          "column": 5
+          "line": 405,
+          "column": 5,
+          "index": 10323
         }
       },
       "jsdoc": {
@@ -577,12 +764,14 @@
     "_stopWheelObserver": {
       "location": {
         "start": {
-          "line": 308,
-          "column": 4
+          "line": 412,
+          "column": 4,
+          "index": 10441
         },
         "end": {
-          "line": 314,
-          "column": 5
+          "line": 419,
+          "column": 5,
+          "index": 10661
         }
       },
       "jsdoc": {
@@ -605,12 +794,14 @@
     "_onMoveEvent": {
       "location": {
         "start": {
-          "line": 334,
-          "column": 4
+          "line": 434,
+          "column": 4,
+          "index": 11082
         },
         "end": {
-          "line": 336,
-          "column": 6
+          "line": 436,
+          "column": 6,
+          "index": 11193
         }
       },
       "jsdoc": {
@@ -642,12 +833,14 @@
     "_onButtonEvent": {
       "location": {
         "start": {
-          "line": 346,
-          "column": 4
+          "line": 445,
+          "column": 4,
+          "index": 11434
         },
         "end": {
-          "line": 400,
-          "column": 6
+          "line": 499,
+          "column": 6,
+          "index": 13193
         }
       },
       "jsdoc": {
@@ -679,12 +872,14 @@
     "_onWheelEvent": {
       "location": {
         "start": {
-          "line": 409,
-          "column": 4
+          "line": 507,
+          "column": 4,
+          "index": 13350
         },
         "end": {
-          "line": 411,
-          "column": 6
+          "line": 509,
+          "column": 6,
+          "index": 13476
         }
       },
       "jsdoc": {
@@ -716,12 +911,14 @@
     "__rightClickFixPost": {
       "location": {
         "start": {
-          "line": 440,
-          "column": 4
+          "line": 531,
+          "column": 4,
+          "index": 14179
         },
         "end": {
-          "line": 450,
-          "column": 6
+          "line": 539,
+          "column": 6,
+          "index": 14446
         }
       },
       "jsdoc": {
@@ -767,12 +964,14 @@
     "__doubleClickFixPre": {
       "location": {
         "start": {
-          "line": 474,
-          "column": 4
+          "line": 562,
+          "column": 4,
+          "index": 15104
         },
         "end": {
-          "line": 492,
-          "column": 6
+          "line": 578,
+          "column": 6,
+          "index": 15670
         }
       },
       "jsdoc": {
@@ -818,12 +1017,14 @@
     "__differentTargetClickFixPost": {
       "location": {
         "start": {
-          "line": 508,
-          "column": 4
+          "line": 593,
+          "column": 4,
+          "index": 16274
         },
         "end": {
-          "line": 530,
-          "column": 6
+          "line": 615,
+          "column": 6,
+          "index": 16921
         }
       },
       "jsdoc": {
@@ -954,6 +1155,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -978,6 +1180,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1006,12 +1209,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 543,
-        "column": 13
+        "line": 624,
+        "column": 2,
+        "index": 17117
       },
       "end": {
-        "line": 551,
-        "column": 3
+        "line": 634,
+        "column": 3,
+        "index": 17339
       }
     },
     "jsdoc": {}
@@ -1019,12 +1224,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 563,
-        "column": 10
+        "line": 642,
+        "column": 2,
+        "index": 17526
       },
       "end": {
-        "line": 565,
-        "column": 3
+        "line": 644,
+        "column": 3,
+        "index": 17593
       }
     },
     "jsdoc": {}

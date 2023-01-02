@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,8 +56,7 @@
    */
   qx.Bootstrap.define("qx.bom.Storage", {
     statics: {
-      __P_112_0: null,
-
+      __P_114_0: null,
       /**
        * Get an instance of a local storage.
        * @return {qx.bom.storage.Web|qx.bom.storage.UserData|qx.bom.storage.Memory}
@@ -72,12 +70,10 @@
           // IE <8 fallback
           // as fallback,use the userdata storage for IE5.5 - 8
           return qx.bom.storage.UserData.getLocal();
-        } // as last fallback, use a in memory storage (this one is not persistent)
-
-
+        }
+        // as last fallback, use a in memory storage (this one is not persistent)
         return qx.bom.storage.Memory.getLocal();
       },
-
       /**
        * Get an instance of a session storage.
        * @return {qx.bom.storage.Web|qx.bom.storage.UserData|qx.bom.storage.Memory}
@@ -91,9 +87,8 @@
           // IE <8 fallback
           // as fallback,use the userdata storage for IE5.5 - 8
           return qx.bom.storage.UserData.getSession();
-        } // as last fallback, use a in memory storage (this one is not persistent)
-
-
+        }
+        // as last fallback, use a in memory storage (this one is not persistent)
         return qx.bom.storage.Memory.getSession();
       }
     }
@@ -101,4 +96,4 @@
   qx.bom.Storage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Storage.js.map?dt=1664789576570
+//# sourceMappingURL=Storage.js.map?dt=1672653484984

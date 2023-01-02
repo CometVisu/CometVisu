@@ -19,11 +19,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Web.js 
-   * 
+  /* Web.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -48,7 +47,6 @@
   qx.Class.define('cv.ui.structure.pure.Web', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Refresh],
-
     /*
     ******************************************************
       PROPERTIES
@@ -80,7 +78,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -90,40 +87,30 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var webStyle = this.getStyle();
-
         if (this.getWidth()) {
           webStyle += 'width:' + this.getWidth() + ';';
         } else {
           // default width is 100% of widget space (fix bug #3175343 part 1)
           webStyle += 'width: 100%;';
         }
-
         if (this.getHeight()) {
           webStyle += 'height:' + this.getHeight() + ';';
         }
-
         if (this.getFrameborder() === false) {
           webStyle += 'border: 0px ;';
         }
-
         if (this.getBackground()) {
           webStyle += 'background-color:' + this.getBackground() + ';';
         }
-
         if (webStyle !== '') {
           webStyle = 'style="' + webStyle + '"';
         }
-
         var scrolling = '';
-
         if (this.getScrolling()) {
           scrolling = 'scrolling="' + this.getScrolling() + '"';
         } // add scrolling parameter to iframe
-
-
         return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
       },
-
       /**
        * Handles the incoming data from the backend for this widget
        *
@@ -132,15 +119,13 @@
        */
       _update: function _update(address, data) {
         var addr = this.getAddress()[address];
-
         if (!addr) {
           return;
         }
-
         if (data === 1) {
           var iframe = this.getDomElement().querySelector('iframe');
-          this.refreshAction(iframe, iframe.getAttribute('src')); // reset the value
-
+          this.refreshAction(iframe, iframe.getAttribute('src'));
+          // reset the value
           cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
         }
       }
@@ -149,4 +134,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1664789570846
+//# sourceMappingURL=Web.js.map?dt=1672653479212

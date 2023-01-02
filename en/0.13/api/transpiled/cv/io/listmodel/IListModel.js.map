@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "model",
+    "check",
+    "deferredInit",
+    "members",
+    "refresh",
+    "cv",
+    "io",
+    "listmodel",
+    "IListModel"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/IListModel.js"
+  ],
+  "sourcesContent": [
+    "/**\n * Interface for Listmodel sources.\n */\nqx.Interface.define('cv.io.listmodel.IListModel', {\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    model: {\n      check: 'qx.data.Array',\n      deferredInit: true\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    async refresh() {}\n  }\n});\n"
+  ],
+  "mappings": ";+CACA;AAAA;AAAA;AAAA;EAAA;IAAA;MAAA;QAAA;QAAA;MAAA;MAAA;IAAA;EAAA;EADAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAChD;AACF;AACA;AACA;AACA;IACEC,UAAU,EAAE;MACVC,KAAK,EAAE;QACLC,KAAK,EAAE,eAAe;QACtBC,YAAY,EAAE;MAChB;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACDC,OAAO,qBAAG;QAAA;UAAA;YAAA;cAAA;gBAAA;gBAAA;kBAAA;cAAA;YAAA;UAAA;QAAA;MAAC;IACnB;EACF,CAAC,CAAC;EAxBFC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,UAAU,CAACZ,aAAa,GAAGA,aAAa;AAAC"
+}

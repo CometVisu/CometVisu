@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,7 +52,6 @@
       getSubscriptions: function getSubscriptions() {
         return this.getInstance().getSubscriptions();
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.subscribe}
        * @param topic {String|RegExp}
@@ -64,7 +62,6 @@
       subscribe: function subscribe(topic, subscriber, context) {
         return this.getInstance().subscribe.apply(this.getInstance(), arguments);
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.subscribeOnce}
        * @param topic {String|RegExp}
@@ -75,7 +72,6 @@
       subscribeOnce: function subscribeOnce(topic, subscriber, context) {
         return this.getInstance().subscribeOnce.apply(this.getInstance(), arguments);
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.checkSubscription}
        * @param topic {String|RegExp} The topic that has been used when subscribing
@@ -86,7 +82,6 @@
       checkSubscription: function checkSubscription(topic, subscriber, context) {
         return this.getInstance().checkSubscription.apply(this.getInstance(), arguments);
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.unsubscribe}
        * @param topic {String|RegExp} The topic that has been used when subscribing
@@ -97,7 +92,6 @@
       unsubscribe: function unsubscribe(topic, subscriber, context) {
         return this.getInstance().unsubscribe.apply(this.getInstance(), arguments);
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.dispatch}
        * @param message {qx.event.message.Message} Message which is being dispatched
@@ -106,7 +100,6 @@
       dispatch: function dispatch(message) {
         return this.getInstance().dispatch.apply(this.getInstance(), arguments);
       },
-
       /**
        * Shorthand method for {@link qx.event.message.Bus.dispatchByName}
        * @param name {String} name of the message
@@ -117,21 +110,19 @@
         return this.getInstance().dispatchByName.apply(this.getInstance(), arguments);
       }
     },
-
     /**
      * constructor
      */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_223_0 = {};
+      this.__P_228_0 = {};
     },
     members: {
       /**
        * Subscriptions cache
        * @var {Object}
        */
-      __P_223_0: null,
-
+      __P_228_0: null,
       /**
        * Returns the map of message subscriptions with registered subscriptions. The key is
        * the topic and the value is a map with <code>{subscriber:
@@ -140,9 +131,8 @@
        * @return {Object}
        */
       getSubscriptions: function getSubscriptions() {
-        return this.__P_223_0;
+        return this.__P_228_0;
       },
-
       /**
        * Subscribes to a topic
        *
@@ -160,20 +150,19 @@
       subscribe: function subscribe(topic, subscriber, context) {
         if (!topic || typeof subscriber != "function") {
           throw new Error("Invalid parameters! " + [topic, subscriber, context]); // since v6.0.0
-        } // handle regexes
+        }
 
-
+        // handle regexes
         var regex = topic instanceof RegExp ? topic : null;
         topic = topic.toString();
         var sub = this.getSubscriptions();
-
         if (this.checkSubscription(topic)) {
           if (this.checkSubscription(topic, subscriber, context)) {
             this.warn("Object method already subscribed to " + topic);
             return false;
-          } // add a subscription
+          }
 
-
+          // add a subscription
           sub[topic].push({
             regex: regex,
             subscriber: subscriber,
@@ -190,12 +179,11 @@
           return true;
         }
       },
-
       /**
        * Subscribes to a topic just for one dispatch and automatically unsubscribes
        * after executing the message handler. This subscription cannot be unsubscribed
        * from after it has been registered.
-        *
+       *
        * @param topic {String|RegExp} Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}
        * for details
        * @param subscriber {Function} Message handler function
@@ -204,15 +192,12 @@
        */
       subscribeOnce: function subscribeOnce(topic, subscriber, context) {
         var that = this;
-
         var modified_subscriber = function modified_subscriber(message) {
           subscriber.call(context, message);
           that.unsubscribe(topic, modified_subscriber, context);
         };
-
         return this.subscribe(topic, modified_subscriber, context);
       },
-
       /**
        * Checks if subscription is already present. If you supply
        * the message handler function, match only this exact subscription,
@@ -228,24 +213,19 @@
       checkSubscription: function checkSubscription(topic, subscriber, context) {
         var topic = topic.toString();
         var sub = this.getSubscriptions();
-
         if (!sub[topic] || sub[topic].length === 0) {
           return false;
         }
-
         if (subscriber) {
           for (var i = 0; i < sub[topic].length; i++) {
             if (sub[topic][i].subscriber === subscriber && sub[topic][i].context === (context || null)) {
               return true;
             }
           }
-
           return false;
         }
-
         return true;
       },
-
       /**
        * Unsubscribe from a topic.
        *
@@ -268,7 +248,6 @@
         var topic = topic.toString();
         var sub = this.getSubscriptions();
         var subscrList = sub[topic];
-
         if (subscrList) {
           if (!subscriber) {
             sub[topic] = null;
@@ -278,30 +257,23 @@
             if (!context) {
               context = null;
             }
-
             var i = subscrList.length;
             var subscription;
-
             do {
               subscription = subscrList[--i];
-
               if (subscription.subscriber === subscriber && subscription.context === context) {
                 subscrList.splice(i, 1);
-
                 if (subscrList.length === 0) {
                   sub[topic] = null;
                   delete sub[topic];
                 }
-
                 return true;
               }
             } while (i);
           }
         }
-
         return false;
       },
-
       /**
        * Dispatch message, which calls subscribers
        *
@@ -313,35 +285,28 @@
         var sub = this.getSubscriptions();
         var msgName = message.getName();
         var dispatched = false;
-
         for (var topic in sub) {
           var len = topic.length;
-
           if (topic[len - 1] === "*") {
             // use of wildcard, only allowed as "*" or at the end of the topic
             if (len === 1 || topic.substr(0, len - 2) === msgName.substr(0, len - 2)) {
-              this.__P_223_1(sub[topic], message);
-
+              this.__P_228_1(sub[topic], message);
               dispatched = true;
             }
           } else if (sub[topic][0].regex) {
             // regular expression
             if (message.getName().match(sub[topic][0].regex)) {
-              this.__P_223_1(sub[topic], message);
-
+              this.__P_228_1(sub[topic], message);
               dispatched = true;
             }
           } else if (topic === msgName) {
             // exact match
-            this.__P_223_1(sub[topic], message);
-
+            this.__P_228_1(sub[topic], message);
             dispatched = true;
           }
         }
-
         return dispatched;
       },
-
       /**
        * Dispatches a new message by supplying the name of the
        * message and its data.
@@ -351,27 +316,27 @@
        * @return {Boolean} If the message was dispatched
        */
       dispatchByName: function dispatchByName(name, data) {
-        var message = new qx.event.message.Message(name, data); // Dispatch the message
+        var message = new qx.event.message.Message(name, data);
 
-        var ret = this.dispatch(message); // We instantiated this message, so it's our responsibility to dispose it.
+        // Dispatch the message
+        var ret = this.dispatch(message);
 
+        // We instantiated this message, so it's our responsibility to dispose it.
         message.dispose();
-        message = null; // Let 'em know whether this message was dispatched to any subscribers.
+        message = null;
 
+        // Let 'em know whether this message was dispatched to any subscribers.
         return ret;
       },
-
       /**
        * Removes all subscriptions
        */
       removeAllSubscriptions: function removeAllSubscriptions() {
         var subscriptions = this.getSubscriptions();
-
         for (var key in subscriptions) {
           delete subscriptions[key];
         }
       },
-
       /**
        * Call subscribers with passed message.
        *
@@ -384,15 +349,15 @@
        * @param subscribers {Array} subscribers to call
        * @param message {qx.event.message.Message} message for subscribers
        */
-      __P_223_1: function __P_223_1(subscribers, message) {
+      __P_228_1: function __P_228_1(subscribers, message) {
         // (Shallow) clone the subscribers array in case one of them alters the
         // list, e.g., by unsubscribing
         subscribers = subscribers.slice();
-
         for (var i = 0; i < subscribers.length; i++) {
           var subscriber = subscribers[i].subscriber;
-          var context = subscribers[i].context; // call topic subscriber
+          var context = subscribers[i].context;
 
+          // call topic subscriber
           if (context && context.isDisposed) {
             if (context.isDisposed()) {
               subscribers.splice(i, 1);
@@ -410,4 +375,4 @@
   qx.event.message.Bus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bus.js.map?dt=1664789585484
+//# sourceMappingURL=Bus.js.map?dt=1672653496015

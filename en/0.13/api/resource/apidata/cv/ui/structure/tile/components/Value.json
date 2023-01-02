@@ -13,11 +13,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 921
       },
       "end": {
-        "line": 115,
-        "column": 3
+        "line": 123,
+        "column": 3,
+        "index": 3992
       }
     },
     "jsdoc": {
@@ -47,11 +49,13 @@
       "location": {
         "start": {
           "line": 34,
-          "column": 4
+          "column": 4,
+          "index": 1257
         },
         "end": {
           "line": 34,
-          "column": 34
+          "column": 34,
+          "index": 1287
         }
       },
       "type": "variable",
@@ -61,11 +65,13 @@
       "location": {
         "start": {
           "line": 35,
-          "column": 4
+          "column": 4,
+          "index": 1293
         },
         "end": {
           "line": 35,
-          "column": 34
+          "column": 34,
+          "index": 1323
         }
       },
       "type": "variable",
@@ -75,11 +81,13 @@
       "location": {
         "start": {
           "line": 37,
-          "column": 4
+          "column": 4,
+          "index": 1330
         },
         "end": {
-          "line": 46,
-          "column": 5
+          "line": 47,
+          "column": 5,
+          "index": 1780
         }
       },
       "type": "function",
@@ -93,12 +101,14 @@
     "_applyVisible": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1787
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 60,
+          "column": 5,
+          "index": 2137
         }
       },
       "type": "function",
@@ -107,12 +117,14 @@
     "_detectOverflow": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 2144
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2558
         }
       },
       "type": "function",
@@ -121,12 +133,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2565
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3767
         }
       },
       "type": "function",
@@ -405,6 +419,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -429,6 +444,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -852,12 +868,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 108,
-        "column": 2
+        "line": 113,
+        "column": 2,
+        "index": 3776
       },
       "end": {
-        "line": 114,
-        "column": 3
+        "line": 122,
+        "column": 3,
+        "index": 3988
       }
     }
   },

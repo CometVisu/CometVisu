@@ -36,7 +36,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,7 +69,6 @@
   qx.Class.define("qx.bom.WebWorker", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * Create a new instance.
      *
@@ -78,77 +76,70 @@
      */
     construct: function construct(src) {
       qx.core.Object.constructor.call(this);
-      this.__P_115_0 = qx.core.Environment.get("html.webworker");
-      this.__P_115_0 ? this.__P_115_1(src) : this.__P_115_2(src);
+      this.__P_117_0 = qx.core.Environment.get("html.webworker");
+      this.__P_117_0 ? this.__P_117_1(src) : this.__P_117_2(src);
     },
     events: {
       /** Fired when worker sends a message */
-      "message": "qx.event.type.Data",
-
+      message: "qx.event.type.Data",
       /** Fired when an error occurs */
-      "error": "qx.event.type.Data"
+      error: "qx.event.type.Data"
     },
     members: {
       _worker: null,
       _handleErrorBound: null,
       _handleMessageBound: null,
-      __P_115_0: true,
-      __P_115_3: null,
-
+      __P_117_0: true,
+      __P_117_3: null,
       /**
        * Initialize the native worker
        * @param src {String} The path to worker as an URL
        */
-      __P_115_1: function __P_115_1(src) {
+      __P_117_1: function __P_117_1(src) {
         this._worker = new window.Worker(src);
         this._handleMessageBound = qx.lang.Function.bind(this._handleMessage, this);
         this._handleErrorBound = qx.lang.Function.bind(this._handleError, this);
         qx.bom.Event.addNativeListener(this._worker, "message", this._handleMessageBound);
         qx.bom.Event.addNativeListener(this._worker, "error", this._handleErrorBound);
       },
-
       /**
        * Initialize the fake worker
        * @param src {String} The path to worker as an URL
        * @lint ignoreDeprecated(eval)
        */
-      __P_115_2: function __P_115_2(src) {
+      __P_117_2: function __P_117_2(src) {
         var that = this;
         var req = new qx.bom.request.Xhr();
-
         req.onload = function () {
-          that.__P_115_3 = function () {
+          that.__P_117_3 = function () {
             var postMessage = function postMessage(e) {
-              that.fireDataEvent('message', e);
-            }; //set up context vars before evaluating the code
+              that.fireDataEvent("message", e);
+            };
+            //set up context vars before evaluating the code
+            eval("var onmessage = null, postMessage = " + postMessage + ";" + req.responseText);
 
-
-            eval("var onmessage = null, postMessage = " + postMessage + ";" + req.responseText); //pick the right onmessage because of the uglyfier
-
+            //pick the right onmessage because of the uglyfier
             return {
               onmessage: eval("onmessage"),
               postMessage: postMessage
             };
           }();
         };
-
         req.open("GET", src, false);
         req.send();
       },
-
       /**
        * Send a message to the worker.
        * @param msg {String} the message
        */
       postMessage: function postMessage(msg) {
         var that = this;
-
-        if (this.__P_115_0) {
+        if (this.__P_117_0) {
           this._worker.postMessage(msg);
         } else {
           setTimeout(function () {
             try {
-              that.__P_115_3.onmessage && that.__P_115_3.onmessage({
+              that.__P_117_3.onmessage && that.__P_117_3.onmessage({
                 data: msg
               });
             } catch (ex) {
@@ -157,7 +148,6 @@
           }, 0);
         }
       },
-
       /**
        * Message handler
        * @param e {Event} message event
@@ -165,7 +155,6 @@
       _handleMessage: function _handleMessage(e) {
         this.fireDataEvent("message", e.data);
       },
-
       /**
        * Error handler
        * @param e {Event} error event
@@ -175,18 +164,16 @@
       }
     },
     destruct: function destruct() {
-      if (this.__P_115_0) {
+      if (this.__P_117_0) {
         qx.bom.Event.removeNativeListener(this._worker, "message", this._handleMessageBound);
         qx.bom.Event.removeNativeListener(this._worker, "error", this._handleErrorBound);
-
         if (this._worker) {
           this._worker.terminate();
-
           this._worker = null;
         }
       } else {
-        if (this.__P_115_3) {
-          this.__P_115_3 = null;
+        if (this.__P_117_3) {
+          this.__P_117_3 = null;
         }
       }
     }
@@ -194,4 +181,4 @@
   qx.bom.WebWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebWorker.js.map?dt=1664789576918
+//# sourceMappingURL=WebWorker.js.map?dt=1672653485299

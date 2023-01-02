@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 817
       },
       "end": {
-        "line": 90,
-        "column": 3
+        "line": 88,
+        "column": 3,
+        "index": 2654
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_onMouseWheel": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 994
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2646
         }
       },
       "jsdoc": {

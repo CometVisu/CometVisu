@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -27,17 +26,16 @@
        * Andreas Ecker (ecker)
   
   ************************************************************************ */
-
   /**
    * KDE Oxygen icons
    */
   qx.Theme.define("qx.theme.icon.Oxygen", {
     title: "Oxygen",
     aliases: {
-      "icon": "qx/icon/Oxygen"
+      icon: "qx/icon/Oxygen"
     }
   });
   qx.theme.icon.Oxygen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Oxygen.js.map?dt=1664789590865
+//# sourceMappingURL=Oxygen.js.map?dt=1672653502371

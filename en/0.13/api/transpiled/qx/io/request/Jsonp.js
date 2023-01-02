@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -91,8 +90,7 @@
       /**
        * Fired when request completes without error and data has been received.
        */
-      "success": "qx.event.type.Event",
-
+      success: "qx.event.type.Event",
       /**
        * Fired when request completes without error.
        *
@@ -101,8 +99,7 @@
        * is fired. If you are only interested in the JSON data received, consider
        * listening to the {@link #success} event instead.
        */
-      "load": "qx.event.type.Event",
-
+      load: "qx.event.type.Event",
       /**
        * Fired when request completes without error but no data was received.
        *
@@ -118,7 +115,7 @@
        * hard-coded callback, set a custom callback name with
        * {@link #setCallbackName}.
        */
-      "statusError": "qx.event.type.Event"
+      statusError: "qx.event.type.Event"
     },
     properties: {
       /**
@@ -140,7 +137,6 @@
         CONFIGURE TRANSPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Create JSONP transport.
        *
@@ -149,7 +145,6 @@
       _createTransport: function _createTransport() {
         return new qx.bom.request.Jsonp();
       },
-
       /**
        * Get configured URL.
        *
@@ -160,23 +155,19 @@
        */
       _getConfiguredUrl: function _getConfiguredUrl() {
         var url = this.getUrl(),
-            serializedData;
-
+          serializedData;
         if (this.getRequestData()) {
           serializedData = this._serializeData(this.getRequestData());
           url = qx.util.Uri.appendParamsToUrl(url, serializedData);
         }
-
         if (!this.getCache()) {
           // Make sure URL cannot be served from cache and new request is made
           url = qx.util.Uri.appendParamsToUrl(url, {
             nocache: new Date().valueOf()
           });
         }
-
         return url;
       },
-
       /**
        * Return the transport’s responseJson property.
        *
@@ -187,13 +178,11 @@
       _getParsedResponse: function _getParsedResponse() {
         return this._transport.responseJson;
       },
-
       /*
       ---------------------------------------------------------------------------
         CALLBACK MANAGEMENT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Set callback parameter.
        *
@@ -204,7 +193,6 @@
       setCallbackParam: function setCallbackParam(param) {
         this._transport.setCallbackParam(param);
       },
-
       /**
        * Set callback name.
        *
@@ -220,4 +208,4 @@
   qx.io.request.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1664789587721
+//# sourceMappingURL=Jsonp.js.map?dt=1672653498722

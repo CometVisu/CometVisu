@@ -124,31 +124,31 @@ Die CometVisu benutzt die von openHAB bereitgestellte REST-Schnittstelle zur Kom
 </section>
 <section id="webserver-installieren">
 <h2>2. Webserver installieren<a class="headerlink" href="#webserver-installieren" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Webserver mit PHP installieren
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Webserver<span class="w"> </span>mit<span class="w"> </span>PHP<span class="w"> </span>installieren
 <span class="go">sudo apt install apache2 php libapache2-mod-php php-soap</span>
 </pre></div>
 </div>
 <p>Den Inhalt der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-enabled/000-default.conf</span></code> durch folgenden ersetzen (<code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> bitte mit
 der IP-Adresse oder dem Hostnamen des openHAB Servers ersetzen, wenn alles auf einem Server läuft, kann <code class="docutils literal notranslate"><span class="pre">localhost</span></code>
 eingetragen werden).</p>
-<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost<span class="w"></span>
-<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span><span class="w"></span>
+<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span>
 
-<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
-<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined
 
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
 
-<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>
-<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
+<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest
+<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span>
 
-<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
-<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
-<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -160,10 +160,10 @@ Das entpackte Paket enthält den Ordner <em>cometvisu/release</em>, welcher auf 
 Darüber hinaus müssen noch entsprechenden Rechte für den Webserver Benutzer gesetzt werden und einige
 Konfigurationsverzeichnisse angelegt werden.
 Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Kopieren des release Verzeichnisses an die richtige Stelle
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Kopieren<span class="w"> </span>des<span class="w"> </span>release<span class="w"> </span>Verzeichnisses<span class="w"> </span>an<span class="w"> </span>die<span class="w"> </span>richtige<span class="w"> </span>Stelle
 <span class="go">cp -r cometvisu/release /var/www/html</span>
 
-<span class="gp"># </span>Benutzerrechte anpassen für den Webserver
+<span class="gp"># </span>Benutzerrechte<span class="w"> </span>anpassen<span class="w"> </span>für<span class="w"> </span>den<span class="w"> </span>Webserver
 <span class="go">chown -R www-data:www-data /var/www/html</span>
 </pre></div>
 </div>
@@ -192,7 +192,7 @@ wobei sich <code class="docutils literal notranslate"><span class="pre">&lt;name
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

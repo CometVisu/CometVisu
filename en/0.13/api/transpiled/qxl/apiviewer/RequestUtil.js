@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,11 +41,9 @@
           req.setAsynchronous(true);
           req.setTimeout(180000);
           req.setProhibitCaching(false);
-
           if (opts) {
             req.set(opts);
           }
-
           req.addListener("completed", function (evt) {
             resolve(evt.getContent());
           });
@@ -64,4 +61,4 @@
   qxl.apiviewer.RequestUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RequestUtil.js.map?dt=1664789617303
+//# sourceMappingURL=RequestUtil.js.map?dt=1672653526626

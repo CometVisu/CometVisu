@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -32,7 +31,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * Responsible class for everything concerning styles without the need of
    * an element.
@@ -46,19 +44,16 @@
     statics: {
       /** Vendor-specific style property prefixes */
       VENDOR_PREFIXES: ["Webkit", "Moz", "O", "ms", "Khtml"],
-
       /**
        * Internal lookup table to map property names to CSS names
        * @internal
        */
-      __P_113_0: {},
-
+      __P_115_0: {},
       /**
        * A reference to the native CSS.supports function (supportsCSS in Opera)
        * @internal
        */
-      __P_113_1: null,
-
+      __P_115_1: null,
       /**
        * Takes the name of a style property and returns the name the browser uses
        * for its implementation, which might include a vendor prefix.
@@ -69,22 +64,17 @@
        */
       getPropertyName: function getPropertyName(propertyName) {
         var style = document.documentElement.style;
-
         if (style[propertyName] !== undefined) {
           return propertyName;
         }
-
         for (var i = 0, l = this.VENDOR_PREFIXES.length; i < l; i++) {
           var prefixedProp = this.VENDOR_PREFIXES[i] + qx.lang.String.firstUp(propertyName);
-
           if (style[prefixedProp] !== undefined) {
             return prefixedProp;
           }
         }
-
         return null;
       },
-
       /**
        * Takes the name of a JavaScript style property and returns the
        * corresponding CSS name.
@@ -100,24 +90,21 @@
        * @return {String} CSS property
        */
       getCssName: function getCssName(propertyName) {
-        var cssName = this.__P_113_0[propertyName];
-
+        var cssName = this.__P_115_0[propertyName];
         if (!cssName) {
           // all vendor prefixes (except for "ms") start with an uppercase letter
           cssName = propertyName.replace(/[A-Z]/g, function (match) {
-            return '-' + match.charAt(0).toLowerCase();
-          }); // lowercase "ms" vendor prefix needs special handling
+            return "-" + match.charAt(0).toLowerCase();
+          });
 
+          // lowercase "ms" vendor prefix needs special handling
           if (/^ms/.test(cssName)) {
             cssName = "-" + cssName;
           }
-
-          this.__P_113_0[propertyName] = cssName;
+          this.__P_115_0[propertyName] = cssName;
         }
-
         return cssName;
       },
-
       /**
        * Detects CSS support by using the native CSS.supports function or by
        * applying a style to a DOM element of the given type and verifying
@@ -138,35 +125,31 @@
         var cssProperty = qx.bom.Style.getCssName(propertyName);
         var win = qx.dom.Node.getWindow(element);
         var vendorPrefixes = prefixed !== false ? [null].concat(this.VENDOR_PREFIXES) : [null];
-
         for (var i = 0, l = vendorPrefixes.length; i < l; i++) {
           var supported = false;
           var prefixedVal = vendorPrefixes[i] ? "-" + vendorPrefixes[i].toLowerCase() + "-" + value : value;
-
-          if (qx.bom.Style.__P_113_1) {
-            supported = qx.bom.Style.__P_113_1.call(win, cssProperty, prefixedVal);
+          if (qx.bom.Style.__P_115_1) {
+            supported = qx.bom.Style.__P_115_1.call(win, cssProperty, prefixedVal);
           } else {
             element.style.cssText += cssProperty + ":" + prefixedVal + ";";
             supported = typeof element.style[propertyName] == "string" && element.style[propertyName] !== "";
           }
-
           if (supported) {
             return prefixedVal;
           }
         }
-
         return null;
       }
     },
     defer: function defer(statics) {
       if (window.CSS && window.CSS.supports) {
-        qx.bom.Style.__P_113_1 = window.CSS.supports.bind(window.CSS);
+        qx.bom.Style.__P_115_1 = window.CSS.supports.bind(window.CSS);
       } else if (window.supportsCSS) {
-        qx.bom.Style.__P_113_1 = window.supportsCSS.bind(window);
+        qx.bom.Style.__P_115_1 = window.supportsCSS.bind(window);
       }
     }
   });
   qx.bom.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1664789576651
+//# sourceMappingURL=Style.js.map?dt=1672653485055

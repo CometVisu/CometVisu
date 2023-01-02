@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 821
       },
       "end": {
-        "line": 96,
-        "column": 3
+        "line": 109,
+        "column": 3,
+        "index": 3150
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1382
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2577
         }
       },
       "jsdoc": {
@@ -86,12 +90,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2730
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 3030
         }
       },
       "jsdoc": {
@@ -117,15 +123,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 92,
-        "column": 9
+        "line": 105,
+        "column": 2,
+        "index": 3039
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 108,
+        "column": 3,
+        "index": 3146
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "io",
+    "exception",
+    "Exception",
+    "construct",
+    "message",
+    "data",
+    "Transport",
+    "CANCELLED",
+    "Cancel"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/io/exception/Cancel.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n *  A class for representing a user-initiated cancellation of a request.\n */\nqx.Class.define(\"qx.io.exception.Cancel\", {\n  extend: qx.io.exception.Exception,\n\n  /**\n   * Constructor\n   * @param message {String}\n   * @param data {*|null}\n   */\n  construct(message, data) {\n    super(message, qx.io.exception.Transport.CANCELLED, data);\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjC;AACF;AACA;AACA;AACA;IACEC,SAAS,qBAACC,OAAO,EAAEC,IAAI,EAAE;MACvB,iDAAMD,OAAO,EAAEX,EAAE,CAACO,EAAE,CAACC,SAAS,CAACK,SAAS,CAACC,SAAS,EAAEF,IAAI;IAC1D;EACF,CAAC,CAAC;EAhCFZ,EAAE,CAACO,EAAE,CAACC,SAAS,CAACO,MAAM,CAACZ,aAAa,GAAGA,aAAa;AAAC"
+}

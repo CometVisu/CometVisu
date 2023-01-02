@@ -13,11 +13,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Operate.js 
-   * 
+  /* Operate.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -54,18 +53,15 @@
           this._skipNextEvent = null;
           return;
         }
-
         if (this._action) {
           this._action(event);
         } else if (this.getActionValue) {
           this.sendToBackend(this.getActionValue(event));
         }
-
         if (event && event.getBubbles()) {
           event.stopPropagation();
         }
       },
-
       /**
        * Handles pointerdown events
        * @param event {Event} pointerdown event
@@ -74,12 +70,10 @@
         if (this._downaction) {
           this._downaction(event);
         }
-
         if (event.getBubbles()) {
           event.stopPropagation();
         }
       },
-
       /**
        * Send the given value to all writeable addresses known to this widget
        *
@@ -87,30 +81,25 @@
        * @param filter {Function} optional filter function for addresses
        * @param currentBusValues {Object} optional: the (assumed) last encoded values
        *          that were sent on the bus. When the encoding of the new value
-       *          to send is equal to the currentBusValues a transmission will 
+       *          to send is equal to the currentBusValues a transmission will
        *          be suppressed. The object is a hash with the encoding as a key
        *          for the encoded value
        * @return the object/hash of encoded values that were sent last time
        */
       sendToBackend: function sendToBackend(value, filter, currentBusValues) {
         var encodedValues = {};
-
         if (this.getAddress) {
           var list = this.getAddress();
-
           for (var id in list) {
             if (Object.prototype.hasOwnProperty.call(list, id)) {
               var address = list[id];
-
               if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
                 try {
                   var encoding = address.transform;
                   var encodedValue = cv.Transform.encodeBusAndRaw(address, value);
-
                   if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
                     cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
                   }
-
                   encodedValues[encoding] = encodedValue.raw;
                 } catch (e) {
                   if (!address.ignoreError) {
@@ -129,7 +118,6 @@
             }
           }
         }
-
         return encodedValues;
       }
     }
@@ -137,4 +125,4 @@
   cv.ui.common.Operate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Operate.js.map?dt=1664789612837
+//# sourceMappingURL=Operate.js.map?dt=1672653522930

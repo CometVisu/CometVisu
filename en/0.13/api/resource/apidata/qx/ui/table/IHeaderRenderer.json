@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 510
       },
       "end": {
-        "line": 63,
-        "column": 3
+        "line": 59,
+        "column": 3,
+        "index": 1848
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "createHeaderCell": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1311
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1364
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "updateHeaderCell": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1775
         },
         "end": {
-          "line": 61,
-          "column": 5
+          "line": 57,
+          "column": 5,
+          "index": 1840
         }
       },
       "jsdoc": {

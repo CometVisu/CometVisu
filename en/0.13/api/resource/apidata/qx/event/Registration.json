@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 793
       },
       "end": {
-        "line": 571,
-        "column": 3
+        "line": 581,
+        "column": 3,
+        "index": 20049
       }
     },
     "jsdoc": {
@@ -45,12 +47,14 @@
     "__managers": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1177
         },
         "end": {
-          "line": 44,
-          "column": 19
+          "line": 42,
+          "column": 18,
+          "index": 1191
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "getManager": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1439
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 2164
         }
       },
       "jsdoc": {
@@ -106,12 +112,14 @@
     "removeManager": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2434
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2528
         }
       },
       "jsdoc": {
@@ -137,12 +145,14 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3664
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3859
         }
       },
       "jsdoc": {
@@ -206,12 +216,14 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 4622
         },
         "end": {
           "line": 145,
-          "column": 5
+          "column": 5,
+          "index": 4823
         }
       },
       "jsdoc": {
@@ -275,12 +287,14 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 157,
-          "column": 4
+          "line": 156,
+          "column": 4,
+          "index": 5199
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 158,
+          "column": 5,
+          "index": 5306
         }
       },
       "jsdoc": {
@@ -321,12 +335,14 @@
     "removeAllListeners": {
       "location": {
         "start": {
-          "line": 168,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 5589
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 5688
         }
       },
       "jsdoc": {
@@ -360,12 +376,14 @@
     "deleteAllListeners": {
       "location": {
         "start": {
-          "line": 181,
-          "column": 4
+          "line": 178,
+          "column": 4,
+          "index": 5927
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 183,
+          "column": 5,
+          "index": 6092
         }
       },
       "jsdoc": {
@@ -397,12 +415,14 @@
     "hasListener": {
       "location": {
         "start": {
-          "line": 199,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 6534
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 197,
+          "column": 5,
+          "index": 6649
         }
       },
       "jsdoc": {
@@ -452,12 +472,14 @@
     "serializeListeners": {
       "location": {
         "start": {
-          "line": 211,
-          "column": 4
+          "line": 206,
+          "column": 4,
+          "index": 6975
         },
         "end": {
-          "line": 213,
-          "column": 5
+          "line": 208,
+          "column": 5,
+          "index": 7074
         }
       },
       "jsdoc": {
@@ -491,12 +513,14 @@
     "createEvent": {
       "location": {
         "start": {
-          "line": 227,
-          "column": 4
+          "line": 221,
+          "column": 4,
+          "index": 7595
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 250,
+          "column": 5,
+          "index": 8424
         }
       },
       "jsdoc": {
@@ -548,12 +572,14 @@
     "dispatchEvent": {
       "location": {
         "start": {
-          "line": 271,
-          "column": 4
+          "line": 266,
+          "column": 4,
+          "index": 9145
         },
         "end": {
-          "line": 273,
-          "column": 5
+          "line": 268,
+          "column": 5,
+          "index": 9248
         }
       },
       "jsdoc": {
@@ -594,12 +620,14 @@
     "__fireEvent": {
       "location": {
         "start": {
-          "line": 287,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 9672
         },
         "end": {
-          "line": 304,
-          "column": 5
+          "line": 309,
+          "column": 5,
+          "index": 10565
         }
       },
       "jsdoc": {
@@ -664,12 +692,14 @@
     "fireEvent": {
       "location": {
         "start": {
-          "line": 328,
-          "column": 4
+          "line": 332,
+          "column": 4,
+          "index": 11803
         },
         "end": {
-          "line": 351,
-          "column": 5
+          "line": 366,
+          "column": 5,
+          "index": 12900
         }
       },
       "jsdoc": {
@@ -734,12 +764,14 @@
     "fireEventAsync": {
       "location": {
         "start": {
-          "line": 367,
-          "column": 4
+          "line": 381,
+          "column": 4,
+          "index": 13499
         },
         "end": {
-          "line": 374,
-          "column": 5
+          "line": 390,
+          "column": 5,
+          "index": 13833
         }
       },
       "jsdoc": {
@@ -804,12 +836,14 @@
     "__fireNonBubblingEvent": {
       "location": {
         "start": {
-          "line": 390,
-          "column": 4
+          "line": 405,
+          "column": 4,
+          "index": 14384
         },
         "end": {
-          "line": 407,
-          "column": 5
+          "line": 424,
+          "column": 5,
+          "index": 15027
         }
       },
       "jsdoc": {
@@ -874,12 +908,14 @@
     "fireNonBubblingEvent": {
       "location": {
         "start": {
-          "line": 424,
-          "column": 4
+          "line": 440,
+          "column": 4,
+          "index": 15677
         },
         "end": {
-          "line": 431,
-          "column": 5
+          "line": 446,
+          "column": 5,
+          "index": 15896
         }
       },
       "jsdoc": {
@@ -944,12 +980,14 @@
     "fireNonBubblingEventAsync": {
       "location": {
         "start": {
-          "line": 448,
-          "column": 4
+          "line": 462,
+          "column": 4,
+          "index": 16550
         },
         "end": {
-          "line": 459,
-          "column": 6
+          "line": 476,
+          "column": 6,
+          "index": 17024
         }
       },
       "jsdoc": {
@@ -1014,12 +1052,14 @@
     "PRIORITY_FIRST": {
       "location": {
         "start": {
-          "line": 471,
-          "column": 4
+          "line": 485,
+          "column": 4,
+          "index": 17325
         },
         "end": {
-          "line": 471,
-          "column": 27
+          "line": 485,
+          "column": 26,
+          "index": 17347
         }
       },
       "jsdoc": {
@@ -1042,12 +1082,14 @@
     "PRIORITY_NORMAL": {
       "location": {
         "start": {
-          "line": 474,
-          "column": 4
+          "line": 488,
+          "column": 4,
+          "index": 17433
         },
         "end": {
-          "line": 474,
-          "column": 23
+          "line": 488,
+          "column": 22,
+          "index": 17451
         }
       },
       "jsdoc": {
@@ -1070,12 +1112,14 @@
     "PRIORITY_LAST": {
       "location": {
         "start": {
-          "line": 477,
-          "column": 4
+          "line": 491,
+          "column": 4,
+          "index": 17536
         },
         "end": {
-          "line": 477,
-          "column": 25
+          "line": 491,
+          "column": 24,
+          "index": 17556
         }
       },
       "jsdoc": {
@@ -1098,12 +1142,14 @@
     "__handlers": {
       "location": {
         "start": {
-          "line": 489,
-          "column": 4
+          "line": 500,
+          "column": 4,
+          "index": 17830
         },
         "end": {
-          "line": 489,
-          "column": 19
+          "line": 500,
+          "column": 18,
+          "index": 17844
         }
       },
       "jsdoc": {
@@ -1126,12 +1172,14 @@
     "addHandler": {
       "location": {
         "start": {
-          "line": 498,
-          "column": 4
+          "line": 508,
+          "column": 4,
+          "index": 18057
         },
         "end": {
-          "line": 511,
-          "column": 5
+          "line": 524,
+          "column": 5,
+          "index": 18460
         }
       },
       "jsdoc": {
@@ -1165,12 +1213,14 @@
     "getHandlers": {
       "location": {
         "start": {
-          "line": 519,
-          "column": 4
+          "line": 531,
+          "column": 4,
+          "index": 18606
         },
         "end": {
-          "line": 521,
-          "column": 5
+          "line": 533,
+          "column": 5,
+          "index": 18657
         }
       },
       "jsdoc": {
@@ -1195,12 +1245,14 @@
     "__dispatchers": {
       "location": {
         "start": {
-          "line": 533,
-          "column": 4
+          "line": 542,
+          "column": 4,
+          "index": 18937
         },
         "end": {
-          "line": 533,
-          "column": 22
+          "line": 542,
+          "column": 21,
+          "index": 18954
         }
       },
       "jsdoc": {
@@ -1223,12 +1275,14 @@
     "addDispatcher": {
       "location": {
         "start": {
-          "line": 546,
-          "column": 4
+          "line": 554,
+          "column": 4,
+          "index": 19389
         },
         "end": {
-          "line": 559,
-          "column": 5
+          "line": 570,
+          "column": 5,
+          "index": 19826
         }
       },
       "jsdoc": {
@@ -1269,12 +1323,14 @@
     "getDispatchers": {
       "location": {
         "start": {
-          "line": 567,
-          "column": 4
+          "line": 577,
+          "column": 4,
+          "index": 19984
         },
         "end": {
-          "line": 569,
-          "column": 5
+          "line": 579,
+          "column": 5,
+          "index": 20041
         }
       },
       "jsdoc": {

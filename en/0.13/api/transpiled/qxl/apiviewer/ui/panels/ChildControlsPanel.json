@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 728
       },
       "end": {
-        "line": 76,
-        "column": 3
+        "line": 78,
+        "column": 3,
+        "index": 2022
       }
     },
     "jsdoc": {}
@@ -23,26 +25,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 13
+        "line": 28,
+        "column": 2,
+        "index": 840
       },
       "end": {
-        "line": 31,
-        "column": 3
+        "line": 30,
+        "column": 3,
+        "index": 928
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "canDisplayItem": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 981
         },
         "end": {
-          "line": 41,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1068
         }
       },
       "jsdoc": {
@@ -69,12 +74,14 @@
     "getPanelItemObjects": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1075
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 42,
+          "column": 5,
+          "index": 1169
         }
       },
       "type": "function",
@@ -87,12 +94,14 @@
     "getItemTypeHtml": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1176
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1340
         }
       },
       "type": "function",
@@ -132,11 +141,13 @@
       "location": {
         "start": {
           "line": 52,
-          "column": 4
+          "column": 4,
+          "index": 1347
         },
         "end": {
-          "line": 54,
-          "column": 5
+          "line": 57,
+          "column": 5,
+          "index": 1506
         }
       },
       "type": "function",
@@ -175,12 +186,14 @@
     "getItemTextHtml": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1513
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2012
         }
       },
       "type": "function",
@@ -311,6 +324,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -335,6 +349,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

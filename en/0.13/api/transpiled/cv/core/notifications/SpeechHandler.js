@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* SpeechHandler.js 
-   * 
+  /* SpeechHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -45,11 +44,11 @@
    *
    * @ignore(SpeechSynthesisUtterance)
    */
+
   qx.Class.define('cv.core.notifications.SpeechHandler', {
     extend: qx.core.Object,
     implement: cv.core.notifications.IHandler,
     type: 'singleton',
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -59,7 +58,6 @@
       qx.core.Object.constructor.call(this);
       this.__P_5_0 = {};
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -69,7 +67,6 @@
       __P_5_0: null,
       handleMessage: function handleMessage(message, config) {
         var text = message.message || message.title;
-
         if (config.skipInitial && !this.__P_5_0[message.topic]) {
           this.__P_5_0[message.topic] = {
             text: text,
@@ -77,14 +74,12 @@
           };
           return;
         }
-
         if (cv.core.notifications.Router.evaluateCondition(message)) {
           if (!text || text.length === 0) {
             // nothing to say
             this.debug('no text to speech given');
             return;
           }
-
           if (text.substring(0, 1) === '!') {
             // override repeatTimeout, force saying this
             text = text.substring(1);
@@ -92,13 +87,12 @@
             // do not repeat (within timeout when this.repeatTimeout > 0)
             if (this.__P_5_0[message.topic] && this.__P_5_0[message.topic].text === text && (config.repeatTimeout === 0 || config.repeatTimeout >= Math.round((Date.now() - this.__P_5_0[message.topic].time) / 1000))) {
               // update time
-              this.__P_5_0[message.topic].time = Date.now(); // do not repeat
-
+              this.__P_5_0[message.topic].time = Date.now();
+              // do not repeat
               this.debug('skipping TTS because of repetition ' + text);
               return;
             }
           }
-
           this.__P_5_0[message.topic] = {
             text: text,
             time: Date.now()
@@ -106,52 +100,41 @@
           this.say(text);
         }
       },
-      say:
-      /* istanbul ignore next [no need to text the browsers TTS capability] */
-      function say(text, language) {
+      say: function say(text, language) {
         if (!window.speechSynthesis) {
           this.warn(this, 'this browser does not support the Web Speech API');
           return;
         }
-
         var synth = window.speechSynthesis;
-
         if (!language) {
           language = qx.locale.Manager.getInstance().getLocale();
-        } // speak
+        }
 
-
+        // speak
         var utterThis = new SpeechSynthesisUtterance(text);
         var selectedVoice;
         var defaultVoice;
         var voices = synth.getVoices();
-
         if (voices.length === 0) {
           synth.onvoiceschanged = function () {
             this.say(text, language);
           }.bind(this);
-
           return;
         }
-
         synth.onvoiceschanged = null;
         var i = 0;
         var l = voices.length;
-
         for (; i < l; i++) {
           if (language && voices[i].lang.substr(0, 2).toLowerCase() === language) {
             selectedVoice = voices[i];
           }
-
           if (voices[i]['default']) {
             defaultVoice = voices[i];
           }
         }
-
         if (!selectedVoice) {
           selectedVoice = defaultVoice;
         }
-
         utterThis.voice = selectedVoice;
         this.debug('saying \'' + text + '\' in voice ' + selectedVoice.name);
         synth.speak(utterThis);
@@ -161,4 +144,4 @@
   cv.core.notifications.SpeechHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SpeechHandler.js.map?dt=1664789561343
+//# sourceMappingURL=SpeechHandler.js.map?dt=1672653469531

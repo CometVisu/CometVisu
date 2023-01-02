@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,13 +47,11 @@
    */
   qx.Class.define("qx.util.StringBuilder", {
     extend: qx.type.BaseArray,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Creates a new StringBuilder with the given length or as a concatenation of the given arguments substrings.
      *
@@ -74,12 +71,12 @@
     construct: function construct(length_or_items) {
       qx.type.BaseArray.apply(this, arguments);
     },
-
     /*
     *****************************************************************************
       MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Removes all content
@@ -88,7 +85,6 @@
       clear: function clear() {
         this.length = 0;
       },
-
       /**
        * Returns the concatted strings.
        *
@@ -97,7 +93,6 @@
       get: function get() {
         return this.join("");
       },
-
       /**
        * Adds new strings. Supports multiple arguments.
        *
@@ -105,7 +100,6 @@
        * @param varargs {String} The separate strings to add
        */
       add: null,
-
       /**
        * Whether the string builder is empty
        *
@@ -114,7 +108,6 @@
       isEmpty: function isEmpty() {
         return this.length === 0;
       },
-
       /**
        * Returns the size of the strings
        *
@@ -124,7 +117,6 @@
         return this.join("").length;
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -139,4 +131,4 @@
   qx.util.StringBuilder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringBuilder.js.map?dt=1664789609958
+//# sourceMappingURL=StringBuilder.js.map?dt=1672653520328

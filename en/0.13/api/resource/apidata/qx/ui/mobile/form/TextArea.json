@@ -20,11 +20,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 528
       },
       "end": {
-        "line": 133,
-        "column": 3
+        "line": 120,
+        "column": 3,
+        "index": 3283
       }
     },
     "jsdoc": {
@@ -40,12 +42,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 48,
-        "column": 14
+        "line": 43,
+        "column": 2,
+        "index": 1100
       },
       "end": {
-        "line": 57,
-        "column": 3
+        "line": 51,
+        "column": 3,
+        "index": 1426
       }
     },
     "jsdoc": {
@@ -72,12 +76,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1654
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1722
         }
       },
       "jsdoc": {},
@@ -201,7 +207,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -213,12 +219,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -245,12 +251,14 @@
     "_getTagName": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1764
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1810
         }
       },
       "jsdoc": {},
@@ -264,12 +272,14 @@
     "_fixChildElementsHeight": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 1996
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 87,
+          "column": 5,
+          "index": 2289
         }
       },
       "jsdoc": {
@@ -295,12 +305,14 @@
     "__getScrollContainer": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2467
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 2955
         }
       },
       "jsdoc": {
@@ -1349,38 +1361,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -1720,6 +1700,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1744,6 +1725,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -2762,15 +2744,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 125,
-        "column": 13
+        "line": 113,
+        "column": 2,
+        "index": 2964
       },
       "end": {
-        "line": 132,
-        "column": 3
+        "line": 119,
+        "column": 3,
+        "index": 3279
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "changeValue": {

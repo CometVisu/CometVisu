@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 32,
-        "column": 0
+        "column": 0,
+        "index": 1143
       },
       "end": {
-        "line": 112,
-        "column": 3
+        "line": 103,
+        "column": 3,
+        "index": 2987
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
-        "column": 14
+        "line": 38,
+        "column": 2,
+        "index": 1318
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 40,
+        "column": 3,
+        "index": 1390
       }
     },
     "jsdoc": {
@@ -62,12 +66,14 @@
     "setMaxMessages": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1696
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1770
         }
       },
       "jsdoc": {
@@ -93,12 +99,14 @@
     "getMaxMessages": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1906
         },
         "end": {
-          "line": 67,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1965
         }
       },
       "jsdoc": {
@@ -123,12 +131,14 @@
     "process": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 2078
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2128
         }
       },
       "jsdoc": {
@@ -154,12 +164,14 @@
     "getAllLogEvents": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2245
         },
         "end": {
-          "line": 87,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2305
         }
       },
       "jsdoc": {
@@ -184,12 +196,14 @@
     "retrieveLogEvents": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2779
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2884
         }
       },
       "jsdoc": {
@@ -232,12 +246,14 @@
     "clearHistory": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 2937
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 2979
         }
       },
       "jsdoc": {

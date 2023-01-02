@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,23 +55,23 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired when the model value was modified */
-      "changeValue": "qx.event.type.Data"
+      changeValue: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         VALUE PROPERTY
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets the field model value. Should also update the UI.
        *
@@ -83,12 +82,10 @@
       setValue: function setValue(value) {
         return arguments.length == 1;
       },
-
       /**
        * Resets the model value to its initial value. Should also update the UI.
        */
       resetValue: function resetValue() {},
-
       /**
        * Returns a consistent and up-to-date model value.
        *
@@ -102,4 +99,4 @@
   qx.ui.form.IField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IField.js.map?dt=1664789596379
+//# sourceMappingURL=IField.js.map?dt=1672653507528

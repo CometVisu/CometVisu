@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 840
       },
       "end": {
-        "line": 226,
-        "column": 3
+        "line": 244,
+        "column": 3,
+        "index": 7255
       }
     },
     "jsdoc": {
@@ -36,12 +38,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 13
+        "line": 29,
+        "column": 2,
+        "index": 1026
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 43,
+        "column": 3,
+        "index": 1386
       }
     },
     "jsdoc": {}
@@ -50,12 +54,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1550
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1603
         }
       },
       "name": "refresh",
@@ -67,12 +73,14 @@
     "cachecontrol": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1610
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1673
         }
       },
       "name": "cachecontrol",
@@ -84,12 +92,14 @@
     "restartOnVisible": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1680
         },
         "end": {
-          "line": 61,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1786
         }
       },
       "name": "restartOnVisible",
@@ -104,12 +114,14 @@
     "_timer": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1948
         },
         "end": {
-          "line": 70,
-          "column": 16
+          "line": 74,
+          "column": 16,
+          "index": 1960
         }
       },
       "type": "variable",
@@ -118,12 +130,14 @@
     "__timerId": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1966
         },
         "end": {
-          "line": 71,
-          "column": 19
+          "line": 75,
+          "column": 19,
+          "index": 1981
         }
       },
       "type": "variable",
@@ -132,12 +146,14 @@
     "__setup": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 1987
         },
         "end": {
-          "line": 72,
-          "column": 18
+          "line": 76,
+          "column": 18,
+          "index": 2001
         }
       },
       "type": "variable",
@@ -146,12 +162,14 @@
     "__lastRun": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 2007
         },
         "end": {
-          "line": 73,
-          "column": 19
+          "line": 77,
+          "column": 19,
+          "index": 2022
         }
       },
       "type": "variable",
@@ -160,12 +178,14 @@
     "__restartTimer": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2028
         },
         "end": {
-          "line": 74,
-          "column": 24
+          "line": 78,
+          "column": 24,
+          "index": 2048
         }
       },
       "type": "variable",
@@ -174,12 +194,14 @@
     "__restartOnVisible": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2054
         },
         "end": {
-          "line": 75,
-          "column": 29
+          "line": 79,
+          "column": 29,
+          "index": 2079
         }
       },
       "type": "variable",
@@ -188,12 +210,14 @@
     "_applyRestartOnVisible": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2086
         },
         "end": {
-          "line": 81,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2186
         }
       },
       "type": "function",
@@ -205,12 +229,14 @@
     "_maintainTimerState": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2241
         },
         "end": {
-          "line": 118,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3528
         }
       },
       "jsdoc": {
@@ -227,12 +253,14 @@
     "setupRefreshAction": {
       "location": {
         "start": {
-          "line": 120,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 3535
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 166,
+          "column": 5,
+          "index": 4890
         }
       },
       "type": "function",
@@ -241,12 +269,14 @@
     "refreshAction": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 168,
+          "column": 4,
+          "index": 4897
         },
         "end": {
-          "line": 198,
-          "column": 5
+          "line": 216,
+          "column": 5,
+          "index": 6521
         }
       },
       "type": "function",
@@ -478,12 +508,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 206,
-        "column": 12
+        "line": 224,
+        "column": 2,
+        "index": 6669
       },
       "end": {
-        "line": 211,
-        "column": 3
+        "line": 229,
+        "column": 3,
+        "index": 6778
       }
     },
     "jsdoc": {}
@@ -492,12 +524,14 @@
     "__forceImgReload": {
       "location": {
         "start": {
-          "line": 220,
-          "column": 4
+          "line": 238,
+          "column": 4,
+          "index": 7041
         },
         "end": {
-          "line": 224,
-          "column": 5
+          "line": 242,
+          "column": 5,
+          "index": 7247
         }
       },
       "jsdoc": {},

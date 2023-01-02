@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 596
       },
       "end": {
-        "line": 54,
-        "column": 3
+        "line": 48,
+        "column": 3,
+        "index": 1262
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getStyles": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 774
         },
         "end": {
-          "line": 34,
-          "column": 29
+          "line": 31,
+          "column": 18,
+          "index": 788
         }
       },
       "jsdoc": {
@@ -61,12 +65,14 @@
     "getPadding": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 944
         },
         "end": {
-          "line": 42,
-          "column": 30
+          "line": 37,
+          "column": 19,
+          "index": 959
         }
       },
       "jsdoc": {
@@ -91,12 +97,14 @@
     "getInsets": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1240
         },
         "end": {
-          "line": 52,
-          "column": 29
+          "line": 46,
+          "column": 18,
+          "index": 1254
         }
       },
       "jsdoc": {

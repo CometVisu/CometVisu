@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,4 +57,4 @@
   qx.event.type.Focus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Focus.js.map?dt=1664789585677
+//# sourceMappingURL=Focus.js.map?dt=1672653496181

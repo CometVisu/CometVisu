@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 565
       },
       "end": {
-        "line": 176,
-        "column": 3
+        "line": 162,
+        "column": 3,
+        "index": 4305
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 36,
-        "column": 14
+        "line": 35,
+        "column": 2,
+        "index": 960
       },
       "end": {
-        "line": 82,
-        "column": 3
+        "line": 79,
+        "column": 3,
+        "index": 2092
       }
     },
     "jsdoc": {
@@ -67,12 +71,14 @@
     "__total": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2112
         },
         "end": {
-          "line": 86,
-          "column": 18
+          "line": 82,
+          "column": 17,
+          "index": 2125
         }
       },
       "type": "variable",
@@ -81,12 +87,14 @@
     "__colors": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2131
         },
         "end": {
-          "line": 87,
-          "column": 19
+          "line": 83,
+          "column": 18,
+          "index": 2145
         }
       },
       "type": "variable",
@@ -95,12 +103,14 @@
     "__progressBar": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 2151
         },
         "end": {
-          "line": 88,
-          "column": 24
+          "line": 84,
+          "column": 23,
+          "index": 2170
         }
       },
       "type": "variable",
@@ -109,12 +119,14 @@
     "__percentDone": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 2176
         },
         "end": {
-          "line": 89,
-          "column": 24
+          "line": 85,
+          "column": 23,
+          "index": 2195
         }
       },
       "type": "variable",
@@ -123,12 +135,14 @@
     "_onChangeTheme": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2220
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2301
         }
       },
       "jsdoc": {},
@@ -136,19 +150,20 @@
       "access": "protected",
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
-        "qx.ui.core.Widget",
-        "qx.ui.core.LayoutItem"
+        "qx.ui.core.Widget"
       ]
     },
     "__linkColors": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2385
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 3060
         }
       },
       "jsdoc": {
@@ -165,12 +180,14 @@
     "join": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3085
         },
         "end": {
-          "line": 165,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4189
         }
       },
       "jsdoc": {},
@@ -269,6 +286,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -293,6 +311,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3977,15 +3996,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 168,
-        "column": 13
+        "line": 157,
+        "column": 2,
+        "index": 4198
       },
       "end": {
-        "line": 175,
-        "column": 3
+        "line": 161,
+        "column": 3,
+        "index": 4301
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

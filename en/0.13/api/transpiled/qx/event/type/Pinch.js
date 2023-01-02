@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,11 +39,9 @@
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Pinch.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.scale = nativeEvent.scale;
         return clone;
       },
-
       /**
        * Returns the calculated scale of this event.
        *
@@ -58,4 +55,4 @@
   qx.event.type.Pinch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pinch.js.map?dt=1664789585868
+//# sourceMappingURL=Pinch.js.map?dt=1672653496352

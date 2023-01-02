@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 547
       },
       "end": {
-        "line": 231,
-        "column": 3
+        "line": 199,
+        "column": 3,
+        "index": 4832
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_getItemCount": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1017
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1095
         }
       },
       "jsdoc": {
@@ -61,12 +65,14 @@
     "_getSelectableFromPointerEvent": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1328
         },
         "end": {
-          "line": 67,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1604
         }
       },
       "jsdoc": {},
@@ -80,12 +86,14 @@
     "getSelectables": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1629
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 1860
         }
       },
       "jsdoc": {},
@@ -99,12 +107,14 @@
     "_getSelectableRange": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 1885
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2189
         }
       },
       "jsdoc": {},
@@ -118,12 +128,14 @@
     "_getFirstSelectable": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2214
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2417
         }
       },
       "jsdoc": {},
@@ -137,12 +149,14 @@
     "_getLastSelectable": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2442
         },
         "end": {
-          "line": 129,
-          "column": 5
+          "line": 111,
+          "column": 5,
+          "index": 2649
         }
       },
       "jsdoc": {},
@@ -156,12 +170,14 @@
     "_getRelatedSelectable": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 2674
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 3208
         }
       },
       "jsdoc": {},
@@ -175,12 +191,14 @@
     "_getPage": {
       "location": {
         "start": {
-          "line": 163,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 3233
         },
         "end": {
-          "line": 190,
-          "column": 5
+          "line": 164,
+          "column": 5,
+          "index": 4126
         }
       },
       "jsdoc": {},
@@ -194,12 +212,14 @@
     "_selectableToHashCode": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 4151
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 169,
+          "column": 5,
+          "index": 4205
         }
       },
       "jsdoc": {},
@@ -213,12 +233,14 @@
     "_scrollItemIntoView": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 172,
+          "column": 4,
+          "index": 4230
         },
         "end": {
-          "line": 204,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 4353
         }
       },
       "jsdoc": {},
@@ -232,12 +254,14 @@
     "_getSelectableLocationX": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 179,
+          "column": 4,
+          "index": 4378
         },
         "end": {
-          "line": 214,
-          "column": 5
+          "line": 184,
+          "column": 5,
+          "index": 4519
         }
       },
       "jsdoc": {},
@@ -251,12 +275,14 @@
     "_getSelectableLocationY": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 187,
+          "column": 4,
+          "index": 4544
         },
         "end": {
-          "line": 229,
-          "column": 5
+          "line": 197,
+          "column": 5,
+          "index": 4824
         }
       },
       "jsdoc": {},
@@ -355,6 +381,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -379,6 +406,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

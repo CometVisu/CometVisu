@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,21 +57,17 @@
         // if no parameter value given: use the environment variable
         value = "CometVisu";
       }
-
       if (!version) {
         // if no parameter value given: use the environment variable
         version = "0.13.0-dev";
-
         if (!version) {
           // revision or version number as fallback
           version = qx.core.Environment.get("qx.revision");
-
           if (version == "") {
             version = qx.core.Environment.get("qx.version");
           }
         }
       }
-
       qx.ui.basic.Label.constructor.call(this, value + " " + version);
     },
     defer: function defer() {
@@ -81,15 +76,15 @@
        * Defaults to 'qooxdoo'.
        */
       qx.core.Environment.add("qxl.versionlabel.name", "qooxdoo");
+
       /**
        * The version string of the version label which is shown in the upper right corner.
        * Defaults to 'null' to be able to fallback to 'qx.revision' or 'qx.version' easily.
        */
-
       qx.core.Environment.add("qxl.versionlabel.version", null);
     }
   });
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1664789616618
+//# sourceMappingURL=VersionLabel.js.map?dt=1672653526021

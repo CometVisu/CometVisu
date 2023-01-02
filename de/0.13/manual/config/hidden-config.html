@@ -136,6 +136,8 @@ In der Datei selbst werden diese Informationen als PHP Array abgelegt:</p>
 <span class="s1">    &quot;pass&quot;: &quot;secret&quot;,</span>
 <span class="s1">    &quot;selfsigned&quot;: &quot;true&quot;</span>
 <span class="s1">  }</span>
+<span class="s1">  &quot;proxy.whitelist&quot;: {</span>
+<span class="s1">  }</span>
 <span class="s1">}&#39;</span><span class="p">;</span>
 <span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
 </pre></div>
@@ -155,9 +157,9 @@ anbietet diesem Schema zu folgen. So können manche Widgets bzw. Plugins ohne ei
 für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurations-Aufwand reduzieren lässt.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 48%" />
-<col style="width: 24%" />
+<col style="width: 18%" />
+<col style="width: 74%" />
+<col style="width: 8%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -173,6 +175,10 @@ für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurati
 <tr class="row-odd"><td><p>influx</p></td>
 <td><p><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a></p></td>
 <td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy.whitelist</p></td>
+<td><p><a class="reference internal" href="structure-tile/components/image.html#tile-component-image"><span class="std std-ref">Image-Komponente der Tile-Struktur</span></a></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -190,7 +196,7 @@ für dafür üblichen Namen nach Einträgen suchen, wodurch sich der Konfigurati
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

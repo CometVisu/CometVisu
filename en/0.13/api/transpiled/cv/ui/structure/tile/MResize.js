@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* MResize.js 
-   * 
+  /* MResize.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -40,22 +39,17 @@
     */
     construct: function construct() {
       var _this = this;
-
       this._observer = new ResizeObserver(function (entries, observer) {
         var element = _this.getResizeTarget();
-
         entries.some(function (entry) {
           if (entry.target === element) {
             _this.fireDataEvent('resized', entry);
-
             return true;
           }
-
           return false;
         });
       });
     },
-
     /*
     ***********************************************
       EVENTS
@@ -64,7 +58,6 @@
     events: {
       resized: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -77,7 +70,6 @@
         apply: '_applyResizeTarget'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -92,13 +84,11 @@
         if (oldElement) {
           this._observer.unobserve(oldElement);
         }
-
         if (element) {
           this._observer.observe(element);
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -106,11 +96,10 @@
     */
     destruct: function destruct() {
       this._observer.disconnect();
-
       this._observer = null;
     }
   });
   cv.ui.structure.tile.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1664789571507
+//# sourceMappingURL=MResize.js.map?dt=1672653479889

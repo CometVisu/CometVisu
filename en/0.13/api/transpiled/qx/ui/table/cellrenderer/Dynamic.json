@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 810
       },
       "end": {
-        "line": 118,
-        "column": 3
+        "line": 107,
+        "column": 3,
+        "index": 3488
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 40,
+        "column": 2,
+        "index": 1248
       },
       "end": {
-        "line": 49,
-        "column": 3
+        "line": 45,
+        "column": 3,
+        "index": 1422
       }
     },
     "jsdoc": {
@@ -62,12 +66,14 @@
     "cellRendererFactoryFunction": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2301
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2401
         }
       },
       "jsdoc": {
@@ -89,12 +95,14 @@
     "createDataCellHtml": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 3116
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 105,
+          "column": 5,
+          "index": 3480
         }
       },
       "jsdoc": {
@@ -225,6 +233,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -249,6 +258,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

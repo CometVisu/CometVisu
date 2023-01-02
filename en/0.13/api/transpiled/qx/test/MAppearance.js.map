@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "appearances",
+    "include",
+    "style",
+    "states",
+    "height",
+    "width",
+    "padding",
+    "margin",
+    "textColor",
+    "test",
+    "MAppearance"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/MAppearance.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Zenesis Limited https://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (github.com/johnspackman john.spackman@zenesis.com)\n\n************************************************************************ */\n\n/**\n * This mixin must be included into themes appearance if you want to use that\n * theme with the testrunner\n */\nqx.Theme.define(\"qx.test.MAppearance\", {\n  appearances: {\n    \"test-slider\": {},\n\n    \"test-slider/knob\": {\n      include: \"button-frame\",\n\n      style(states) {\n        return {\n          height: 14,\n          width: 14,\n          padding: 0,\n          margin: 0\n        };\n      }\n    },\n\n    \"test-font-label\": {\n      style(states) {\n        return {\n          textColor: \"blue\"\n        };\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,WAAW,EAAE;MACX,aAAa,EAAE,CAAC,CAAC;MAEjB,kBAAkB,EAAE;QAClBC,OAAO,EAAE,cAAc;QAEvBC,KAAK,iBAACC,MAAM,EAAE;UACZ,OAAO;YACLC,MAAM,EAAE,EAAE;YACVC,KAAK,EAAE,EAAE;YACTC,OAAO,EAAE,CAAC;YACVC,MAAM,EAAE;UACV,CAAC;QACH;MACF,CAAC;MAED,iBAAiB,EAAE;QACjBL,KAAK,iBAACC,MAAM,EAAE;UACZ,OAAO;YACLK,SAAS,EAAE;UACb,CAAC;QACH;MACF;IACF;EACF,CAAC,CAAC;EA/CFd,EAAE,CAACe,IAAI,CAACC,WAAW,CAACb,aAAa,GAAGA,aAAa;AAAC"
+}

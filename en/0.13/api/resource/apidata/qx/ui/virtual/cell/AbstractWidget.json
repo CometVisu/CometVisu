@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 4,
-        "column": 0
+        "column": 0,
+        "index": 63
       },
       "end": {
-        "line": 142,
-        "column": 3
+        "line": 118,
+        "column": 3,
+        "index": 2617
       }
     },
     "jsdoc": {
@@ -32,26 +34,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 10,
-        "column": 14
+        "line": 8,
+        "column": 2,
+        "index": 194
       },
       "end": {
-        "line": 15,
-        "column": 3
+        "line": 12,
+        "column": 3,
+        "index": 247
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "created": {
       "location": {
         "start": {
-          "line": 21,
-          "column": 4
+          "line": 16,
+          "column": 4,
+          "index": 330
         },
         "end": {
-          "line": 21,
-          "column": 36
+          "line": 16,
+          "column": 33,
+          "index": 359
         }
       },
       "jsdoc": {
@@ -70,12 +75,14 @@
     "__pool": {
       "location": {
         "start": {
-          "line": 27,
-          "column": 4
+          "line": 20,
+          "column": 4,
+          "index": 383
         },
         "end": {
-          "line": 27,
-          "column": 17
+          "line": 20,
+          "column": 16,
+          "index": 395
         }
       },
       "type": "variable",
@@ -84,12 +91,14 @@
     "_createWidget": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 550
         },
         "end": {
-          "line": 38,
-          "column": 5
+          "line": 30,
+          "column": 5,
+          "index": 620
         }
       },
       "jsdoc": {
@@ -120,12 +129,14 @@
     "updateData": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 659
         },
         "end": {
-          "line": 44,
-          "column": 5
+          "line": 35,
+          "column": 5,
+          "index": 738
         }
       },
       "jsdoc": {},
@@ -139,12 +150,14 @@
     "updateStates": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 777
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 63,
+          "column": 5,
+          "index": 1374
         }
       },
       "jsdoc": {},
@@ -158,12 +171,14 @@
     "getCellWidget": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 1413
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1594
         }
       },
       "jsdoc": {},
@@ -177,12 +192,14 @@
     "pool": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1633
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 1685
         }
       },
       "jsdoc": {},
@@ -196,12 +213,14 @@
     "_cleanupPool": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 1769
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 1923
         }
       },
       "jsdoc": {
@@ -218,12 +237,14 @@
     "__getWidgetFromPool": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2136
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 105,
+          "column": 5,
+          "index": 2350
         }
       },
       "jsdoc": {
@@ -333,6 +354,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -357,6 +379,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -385,12 +408,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 137,
-        "column": 13
+        "line": 114,
+        "column": 2,
+        "index": 2548
       },
       "end": {
-        "line": 141,
-        "column": 3
+        "line": 117,
+        "column": 3,
+        "index": 2613
       }
     },
     "jsdoc": {}

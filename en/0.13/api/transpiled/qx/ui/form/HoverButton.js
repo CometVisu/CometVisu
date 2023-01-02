@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -78,7 +77,6 @@
     extend: qx.ui.basic.Atom,
     include: [qx.ui.core.MExecutable],
     implement: [qx.ui.form.IExecutable],
-
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
@@ -87,9 +85,8 @@
       qx.ui.basic.Atom.constructor.call(this, label, icon);
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
-      this.__P_331_0 = new qx.event.AcceleratingTimer();
-
-      this.__P_331_0.addListener("interval", this._onInterval, this);
+      this.__P_348_0 = new qx.event.AcceleratingTimer();
+      this.__P_348_0.addListener("interval", this._onInterval, this);
     },
     properties: {
       // overridden
@@ -97,7 +94,6 @@
         refine: true,
         init: "hover-button"
       },
-
       /**
        * Interval used after the first run of the timer. Usually a smaller value
        * than the "firstInterval" property value to get a faster reaction.
@@ -106,7 +102,6 @@
         check: "Integer",
         init: 80
       },
-
       /**
        * Interval used for the first run of the timer. Usually a greater value
        * than the "interval" property value to a little delayed reaction at the first
@@ -116,13 +111,11 @@
         check: "Integer",
         init: 200
       },
-
       /** This configures the minimum value for the timer interval. */
       minTimer: {
         check: "Integer",
         init: 20
       },
-
       /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */
       timerDecrease: {
         check: "Integer",
@@ -130,8 +123,7 @@
       }
     },
     members: {
-      __P_331_0: null,
-
+      __P_348_0: null,
       /**
        * Start timer on pointer over
        *
@@ -141,32 +133,26 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-
-        this.__P_331_0.set({
+        this.__P_348_0.set({
           interval: this.getInterval(),
           firstInterval: this.getFirstInterval(),
           minimum: this.getMinTimer(),
           decrease: this.getTimerDecrease()
         }).start();
-
         this.addState("hovered");
       },
-
       /**
        * Stop timer on pointer out
        *
        * @param e {qx.event.type.Pointer} The pointer event
        */
       _onPointerOut: function _onPointerOut(e) {
-        this.__P_331_0.stop();
-
+        this.__P_348_0.stop();
         this.removeState("hovered");
-
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
       },
-
       /**
        * Fire execute event on timer interval event
        */
@@ -174,15 +160,15 @@
         if (this.isEnabled()) {
           this.execute();
         } else {
-          this.__P_331_0.stop();
+          this.__P_348_0.stop();
         }
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_331_0");
+      this._disposeObjects("__P_348_0");
     }
   });
   qx.ui.form.HoverButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HoverButton.js.map?dt=1664789596278
+//# sourceMappingURL=HoverButton.js.map?dt=1672653507448

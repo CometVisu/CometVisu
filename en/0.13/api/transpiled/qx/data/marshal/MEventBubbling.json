@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 692
       },
       "end": {
-        "line": 177,
-        "column": 3
+        "line": 179,
+        "column": 3,
+        "index": 6309
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "changeBubble": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1776
         },
         "end": {
-          "line": 48,
-          "column": 40
+          "line": 45,
+          "column": 38,
+          "index": 1810
         }
       },
       "jsdoc": {
@@ -55,12 +59,14 @@
     "_applyEventPropagation": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 2306
         },
         "end": {
-          "line": 71,
-          "column": 5
+          "line": 68,
+          "column": 5,
+          "index": 2540
         }
       },
       "jsdoc": {
@@ -100,12 +106,14 @@
     "_registerEventChaining": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2925
         },
         "end": {
-          "line": 112,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 4130
         }
       },
       "jsdoc": {
@@ -145,12 +153,14 @@
     "__changePropertyListener": {
       "location": {
         "start": {
-          "line": 123,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 4426
         },
         "end": {
-          "line": 175,
-          "column": 5
+          "line": 177,
+          "column": 5,
+          "index": 6301
         }
       },
       "jsdoc": {

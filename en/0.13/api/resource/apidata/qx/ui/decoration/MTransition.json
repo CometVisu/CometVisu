@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 46,
-        "column": 0
+        "column": 0,
+        "index": 1174
       },
       "end": {
-        "line": 134,
-        "column": 3
+        "line": 138,
+        "column": 3,
+        "index": 3645
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "transitionProperty": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1275
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1356
         }
       },
       "jsdoc": {
@@ -56,12 +60,14 @@
     "transitionDuration": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1394
         },
         "end": {
-          "line": 61,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1475
         }
       },
       "jsdoc": {
@@ -81,12 +87,14 @@
     "transitionTimingFunction": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1510
         },
         "end": {
-          "line": 67,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1597
         }
       },
       "jsdoc": {
@@ -106,12 +114,14 @@
     "transitionDelay": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1632
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 1710
         }
       },
       "jsdoc": {
@@ -133,12 +143,14 @@
     "_styleTransition": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 1975
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 125,
+          "column": 5,
+          "index": 3352
         }
       },
       "jsdoc": {
@@ -164,12 +176,14 @@
     "_applyTransition": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 3381
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 3637
         }
       },
       "jsdoc": {},

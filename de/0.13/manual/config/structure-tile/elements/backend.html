@@ -168,15 +168,15 @@ entspricht der Name dem Wert des <code class="docutils literal notranslate"><spa
 <p>Der Name <code class="docutils literal notranslate"><span class="pre">system</span></code> ist für das interne <a class="reference internal" href="#tile-backend-system"><span class="std std-ref">System-Backend</span></a> reserviert und darf nicht benutzt werden.</p>
 </div>
 <p>Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;default&quot;</span> <span class="na">uri=</span><span class="s">&quot;/cgi-bin/l&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/cgi-bin/l&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>In diesem Fall nutzen alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut (oder mit <code class="docutils literal notranslate"><span class="pre">name=&quot;main&quot;</span></code> das default-Backend
 und alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente <code class="docutils literal notranslate"><span class="pre">name=&quot;mqtt&quot;</span></code>.</p>
 <section id="verbindung-zum-knxd-eibd">
 <h2>Verbindung zum KNXD / EIBD<a class="headerlink" href="#verbindung-zum-knxd-eibd" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;default&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Der KNXD/EIBD benötigt bisher keine Zugangsdaten, daher werden die Attribute <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> hier nicht
@@ -185,7 +185,7 @@ nicht angeben, da dieser Wert dort anderweitig bestimmt wird.</p>
 </section>
 <section id="verbindung-zu-openhab">
 <h2>Verbindung zu openHAB<a class="headerlink" href="#verbindung-zu-openhab" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Für das openHAB Backend wird ein API-Token benötigt, dieses kann man sich in openHAB UI selbst erzeugen:
@@ -195,18 +195,18 @@ nicht angeben, da dieser Wert dort anderweitig bestimmt wird.
 Wenn man die CometVisu mit einem eigenen Webserver ausliefert muss dieser als Proxy für die Verbindung
 zum openHAB-Server dienen. Wird z.B. eine Apache-HTTP-Server benutzt so muss folgendes in dessen
 Konfigurationsdatei eingetragen werden:</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://openhab:8080/rest<span class="w"></span>
-<span class="nb">ProxyPassReverse</span><span class="w"> </span>http://openhab:8888/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://openhab:8080/rest
+<span class="nb">ProxyPassReverse</span><span class="w"> </span>http://openhab:8888/rest<span class="w"> </span><span class="sx">/rest</span>
 </pre></div>
 </div>
 <p>Für die Verbindung zu openHAB muss dann folgender Eintrag benutzt werden.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span> <span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span> <span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="verbindung-zu-einem-mqtt-broker">
 <h2>Verbindung zu einem MQTT-Broker<a class="headerlink" href="#verbindung-zu-einem-mqtt-broker" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Der MQTT-Broker muss Websocket Verbindungen unterstützen, damit die CometVisu damit kommunizieren kann.
@@ -220,21 +220,21 @@ Sofern der Broker Zugangsdaten benötigt können diese über die <code class="do
 <p>Mit diesem Backend kann man sich z.B. einen Schalter bauen der den Verbindungsstatus zu einem Backend anzeigt und
 beim Klick darauf die Verbindung neu startet.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;Connected&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-link-unlink-m<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-link-m<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
-    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Connected&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-link-unlink-m<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-link-m<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
-<span class="nt">&lt;cv-switch</span> <span class="na">mapping=</span><span class="s">&quot;Connected&quot;</span> <span class="na">styling=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">value=</span><span class="s">&quot;restart&quot;</span><span class="nt">&gt;</span>backend:main<span class="nt">&lt;/cv-address&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>backend:main:connected<span class="nt">&lt;/cv-address&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Verbindung<span class="nt">&lt;/span&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>openHAB<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;Connected&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;RedActive&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;write&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;restart&quot;</span><span class="nt">&gt;</span>backend:main<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>backend:main:connected<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Verbindung<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>openHAB<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>
@@ -243,9 +243,9 @@ beim Klick darauf die Verbindung neu startet.</p>
 <h3>Browser-Aktionen<a class="headerlink" href="#browser-aktionen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Als weitere Alternative kann ein Neu-laden des Browserfensters angestoßen werden.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">value=</span><span class="s">&quot;reload&quot;</span><span class="nt">&gt;</span>browser<span class="nt">&lt;/cv-address&gt;</span>
-    <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-refresh-line<span class="nt">&lt;/cv-icon&gt;</span>
-    <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Neu laden<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;write&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;reload&quot;</span><span class="nt">&gt;</span>browser<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-refresh-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Neu<span class="w"> </span>laden<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>
@@ -256,10 +256,10 @@ werden und der Browser-Cache umgangen wird.</p>
 <h3>Seitennavigation<a class="headerlink" href="#seitennavigation" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Ebenso bietet diese Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
 Navigation zu einer bestimmten Seite möglich ist.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch</span> <span class="na">styling=</span><span class="s">&quot;tile-button&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span> <span class="na">value=</span><span class="s">&quot;floorplan&quot;</span><span class="nt">&gt;</span>nav:current-page<span class="nt">&lt;/cv-address&gt;</span>
-  <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-external-link-line<span class="nt">&lt;/cv-icon&gt;</span>
-  <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Räume<span class="nt">&lt;/span&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;tile-button&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;floorplan&quot;</span><span class="nt">&gt;</span>nav:current-page<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-external-link-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">  </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Räume<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>
@@ -268,9 +268,9 @@ Navigation zu einer bestimmten Seite möglich ist.</p>
 <section id="http-requests-auslosen">
 <h3>HTTP-Requests auslösen<a class="headerlink" href="#http-requests-auslosen" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Es können einfache HTTP Requests ausgelöst werden, um z.B. Aktionen in externen Systemen zu starten.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span> <span class="na">size=</span><span class="s">&quot;small&quot;</span> <span class="na">style=</span><span class="s">&quot;position: absolute; top: 0; right: 0; color: red&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>https://somewhere/delete?this<span class="nt">&lt;/cv-address&gt;</span>
-  <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;ri-delete-bin-line&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;position: absolute; top: 0; right: 0; color: red&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;write&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>https://somewhere/delete?this<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;ri-delete-bin-line&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-button&gt;</span>
 </pre></div>
 </div>
@@ -283,16 +283,16 @@ Dazu müssen die aufzurufenden URLs mit „:proxy“ erweitert werden. Für das 
 <h3>Light- /Dark-Theme<a class="headerlink" href="#light-dark-theme" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Sofern das Design Light &amp; Dark-Themes unterstützt, kann über das System Backend auch das Theme gewechselt werden.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;dark&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;dark&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
-<span class="nt">&lt;cv-switch</span> <span class="na">on-value=</span><span class="s">&quot;light&quot;</span> <span class="na">off-value=</span><span class="s">&quot;dark&quot;</span> <span class="na">mapping=</span><span class="s">&quot;&quot;</span> <span class="na">styling=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>theme<span class="nt">&lt;/cv-address&gt;</span>
-  <span class="nt">&lt;cv-icon</span> <span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-sun-line<span class="nt">&lt;/cv-icon&gt;</span>
-  <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Light-Theme<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">on-value=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">off-value=</span><span class="s">&quot;dark&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;LightTheme&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>theme<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-sun-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">  </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;primaryLabel&quot;</span><span class="nt">&gt;</span>Light-Theme<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>
@@ -303,12 +303,12 @@ Dazu müssen die aufzurufenden URLs mit „:proxy“ erweitert werden. Für das 
 Visualisierung per Mausklick auszulösen. Damit kann man sich z.B. einen Button erzeugen der beim Klick einen Refresh
 eines <a class="reference internal" href="../components/image.html#tile-component-image"><span class="std std-ref">Bilds</span></a> oder eines <a class="reference internal" href="../components/list.html#tile-component-list"><span class="std std-ref">Listen-Modells</span></a> auslöst.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button&gt;</span>
-  <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;write&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
-  <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;ri-refresh-line&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;write&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;ri-refresh-line&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-button&gt;</span>
 
-<span class="nt">&lt;cv-image</span> <span class="na">src=</span><span class="s">&quot;http://webcam/snapshot.jpeg&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">target=</span><span class="s">&quot;refresh&quot;</span> <span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;http://webcam/snapshot.jpeg&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;refresh&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>state:refresh-image<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-image&gt;</span>
 </pre></div>
 </div>
@@ -327,7 +327,7 @@ eines <a class="reference internal" href="../components/image.html#tile-componen
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

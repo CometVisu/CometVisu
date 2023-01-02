@@ -56,7 +56,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -82,31 +81,28 @@
     extend: qx.ui.mobile.core.Widget,
     include: [qx.ui.mobile.form.MValue, qx.ui.mobile.form.MText, qx.ui.form.MForm, qx.ui.form.MModelProperty, qx.ui.mobile.form.MState],
     implement: [qx.ui.form.IField, qx.ui.form.IForm, qx.ui.form.IModel],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {var?null} The value of the widget.
      */
     construct: function construct(value) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
         this.addListener("appear", this._fixChildElementsHeight, this);
         this.addListener("input", this._fixChildElementsHeight, this);
         this.addListener("changeValue", this._fixChildElementsHeight, this);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
@@ -119,44 +115,36 @@
       _getTagName: function _getTagName() {
         return "textarea";
       },
-
       /**
        * Synchronizes the elements.scrollHeight and its height.
        * Needed for making textArea scrollable.
        * @param evt {qx.event.type.Data} a custom event.
        */
       _fixChildElementsHeight: function _fixChildElementsHeight(evt) {
-        this.getContentElement().style.height = 'auto';
-        this.getContentElement().style.height = this.getContentElement().scrollHeight + 'px';
-
-        var scroll = this.__P_386_0();
-
+        this.getContentElement().style.height = "auto";
+        this.getContentElement().style.height = this.getContentElement().scrollHeight + "px";
+        var scroll = this.__P_403_0();
         if (scroll) {
           scroll.refresh();
         }
       },
-
       /**
-      * Returns the parent scroll container of this widget.
-      * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>
-      */
-      __P_386_0: function __P_386_0() {
+       * Returns the parent scroll container of this widget.
+       * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>
+       */
+      __P_403_0: function __P_403_0() {
         var scroll = this;
-
         while (!(scroll instanceof qx.ui.mobile.container.Scroll)) {
           if (scroll.getLayoutParent) {
             var layoutParent = scroll.getLayoutParent();
-
             if (layoutParent == null || layoutParent instanceof qx.ui.mobile.core.Root) {
               return null;
             }
-
             scroll = layoutParent;
           } else {
             return null;
           }
         }
-
         return scroll;
       }
     },
@@ -171,4 +159,4 @@
   qx.ui.mobile.form.TextArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextArea.js.map?dt=1664789601326
+//# sourceMappingURL=TextArea.js.map?dt=1672653511803

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 695
       },
       "end": {
-        "line": 130,
-        "column": 3
+        "line": 137,
+        "column": 3,
+        "index": 3977
       }
     },
     "jsdoc": {}
@@ -23,26 +25,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 13
+        "line": 26,
+        "column": 2,
+        "index": 802
       },
       "end": {
-        "line": 29,
-        "column": 3
+        "line": 28,
+        "column": 3,
+        "index": 881
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "canDisplayItem": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 934
         },
         "end": {
-          "line": 38,
-          "column": 5
+          "line": 36,
+          "column": 5,
+          "index": 1017
         }
       },
       "jsdoc": {
@@ -69,12 +74,14 @@
     "getPanelItemObjects": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1024
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1114
         }
       },
       "type": "function",
@@ -87,12 +94,14 @@
     "itemHasDetails": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1390
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1653
         }
       },
       "jsdoc": {
@@ -137,12 +146,14 @@
     "getItemTypeHtml": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1660
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 60,
+          "column": 5,
+          "index": 1765
         }
       },
       "type": "function",
@@ -181,12 +192,14 @@
     "getItemTitleHtml": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1772
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 1910
         }
       },
       "type": "function",
@@ -225,12 +238,14 @@
     "getItemTextHtml": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 2289
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 2946
         }
       },
       "jsdoc": {
@@ -282,12 +297,14 @@
     "__hasConstantValueHtml": {
       "location": {
         "start": {
-          "line": 99,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 3141
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 108,
+          "column": 5,
+          "index": 3216
         }
       },
       "jsdoc": {
@@ -321,12 +338,14 @@
     "__createConstantValueHtml": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 3420
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 3967
         }
       },
       "jsdoc": {
@@ -445,6 +464,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -469,6 +489,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

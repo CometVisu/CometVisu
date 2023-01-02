@@ -9,11 +9,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* MRefresh.js 
-   * 
+  /* MRefresh.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -45,7 +44,6 @@
         apply: '_applyRefresh'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -61,9 +59,7 @@
           }
         } else if (!this._refreshTimer) {
           this._refreshTimer = new qx.event.Timer(value * 1000);
-
-          this._refreshTimer.addListener('interval', this.__P_71_0, this);
-
+          this._refreshTimer.addListener('interval', this.__P_73_0, this);
           if (typeof this.isVisible === 'function') {
             if (this.isVisible()) {
               this._refreshTimer.start();
@@ -79,20 +75,19 @@
         if (isVisible) {
           if (this._refreshTimer) {
             this._refreshTimer.start();
-
             if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
               // last execution time too old, refresh now
-              this.__P_71_0();
+              this.__P_73_0();
             }
           } else if (!this._lastRefresh) {
             // refresh once when the item becomes visible
-            this.__P_71_0();
+            this.__P_73_0();
           }
         } else if (this._refreshTimer) {
           this._refreshTimer.stop();
         }
       },
-      __P_71_0: function __P_71_0() {
+      __P_73_0: function __P_73_0() {
         if (typeof this.refresh === 'function') {
           this.refresh();
           this._lastRefresh = Date.now();
@@ -101,7 +96,6 @@
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -114,4 +108,4 @@
   cv.ui.structure.tile.MRefresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRefresh.js.map?dt=1664789571481
+//# sourceMappingURL=MRefresh.js.map?dt=1672653479867

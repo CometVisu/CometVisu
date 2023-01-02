@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,17 +41,15 @@
   qx.Class.define("qx.io.request.authentication.Basic", {
     extend: qx.core.Object,
     implement: qx.io.request.authentication.IAuthentication,
-
     /**
      * @param username {var} The username to use.
      * @param password {var} The password to use.
      */
     construct: function construct(username, password) {
-      this.__P_249_0 = qx.util.Base64.encode(username + ':' + password);
+      this.__P_259_0 = qx.util.Base64.encode(username + ":" + password);
     },
     members: {
-      __P_249_0: null,
-
+      __P_259_0: null,
       /**
        * Headers to include for basic authentication.
        * @return {Map} Map containing the authentication credentials
@@ -60,7 +57,7 @@
       getAuthHeaders: function getAuthHeaders() {
         return [{
           key: "Authorization",
-          value: "Basic " + this.__P_249_0
+          value: "Basic " + this.__P_259_0
         }];
       }
     }
@@ -68,4 +65,4 @@
   qx.io.request.authentication.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1664789587793
+//# sourceMappingURL=Basic.js.map?dt=1672653498775

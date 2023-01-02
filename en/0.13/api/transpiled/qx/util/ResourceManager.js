@@ -41,7 +41,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,7 +67,6 @@
   qx.Class.define("qx.util.ResourceManager", {
     extend: qx.core.Object,
     type: "singleton",
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -77,25 +75,24 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Map} the shared image registry */
-      __P_492_0: qx.$$resources || {},
-
+      __P_507_0: qx.$$resources || {},
       /** @type {Map} prefix per library used in HTTPS mode for IE */
-      __P_492_1: {}
+      __P_507_1: {}
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Detects whether there is a high-resolution image available.
@@ -109,43 +106,37 @@
        * @return {String|Boolean} If a high-resolution image source.
        */
       findHighResolutionSource: function findHighResolutionSource(lowResImgSrc, factor) {
-        var pixelRatioCandidates = ["3", "2", "1.5"]; // Calculate the optimal ratio, based on the rem scale factor of the application and the device pixel ratio.
+        var pixelRatioCandidates = ["3", "2", "1.5"];
 
+        // Calculate the optimal ratio, based on the rem scale factor of the application and the device pixel ratio.
         if (!factor) {
           factor = parseFloat(qx.bom.client.Device.getDevicePixelRatio().toFixed(2));
         }
-
         if (factor <= 1) {
           return false;
         }
-
         var i = pixelRatioCandidates.length;
-
         while (i > 0 && factor > pixelRatioCandidates[--i]) {}
-
         var hiResImgSrc;
-        var k; // Search for best img with a higher resolution.
+        var k;
 
+        // Search for best img with a higher resolution.
         for (k = i; k >= 0; k--) {
           hiResImgSrc = this.getHighResolutionSource(lowResImgSrc, pixelRatioCandidates[k]);
-
-          if (hiResImgSrc) {
-            return hiResImgSrc;
-          }
-        } // Search for best img with a lower resolution.
-
-
-        for (k = i + 1; k < pixelRatioCandidates.length; k++) {
-          hiResImgSrc = this.getHighResolutionSource(lowResImgSrc, pixelRatioCandidates[k]);
-
           if (hiResImgSrc) {
             return hiResImgSrc;
           }
         }
 
+        // Search for best img with a lower resolution.
+        for (k = i + 1; k < pixelRatioCandidates.length; k++) {
+          hiResImgSrc = this.getHighResolutionSource(lowResImgSrc, pixelRatioCandidates[k]);
+          if (hiResImgSrc) {
+            return hiResImgSrc;
+          }
+        }
         return null;
       },
-
       /**
        * Returns the source name for the high-resolution image based on the passed
        * parameters.
@@ -154,20 +145,16 @@
        * @return {String} the high-resolution source name or null if no source could be found.
        */
       getHighResolutionSource: function getHighResolutionSource(source, pixelRatio) {
-        var fileExtIndex = source.lastIndexOf('.');
-
+        var fileExtIndex = source.lastIndexOf(".");
         if (fileExtIndex > -1) {
           var pixelRatioIdentifier = "@" + pixelRatio + "x";
           var candidate = source.slice(0, fileExtIndex) + pixelRatioIdentifier + source.slice(fileExtIndex);
-
           if (this.has(candidate)) {
             return candidate;
           }
         }
-
         return null;
       },
-
       /**
        * Get all known resource IDs.
        *
@@ -175,17 +162,14 @@
        * @return {Array|null} an array containing the IDs or null if the registry is not initialized
        */
       getIds: function getIds(pathfragment) {
-        var registry = qx.util.ResourceManager.__P_492_0;
-
+        var registry = qx.util.ResourceManager.__P_507_0;
         if (!registry) {
           return null;
         }
-
         return Object.keys(registry).filter(function (key) {
           return !pathfragment || key.indexOf(pathfragment) != -1;
         });
       },
-
       /**
        * Whether the registry has information about the given resource.
        *
@@ -193,9 +177,8 @@
        * @return {Boolean} <code>true</code> when the resource is known.
        */
       has: function has(id) {
-        return !!qx.util.ResourceManager.__P_492_0[id];
+        return !!qx.util.ResourceManager.__P_507_0[id];
       },
-
       /**
        * Get information about an resource.
        *
@@ -203,9 +186,8 @@
        * @return {Array} Registered data or <code>null</code>
        */
       getData: function getData(id) {
-        return qx.util.ResourceManager.__P_492_0[id] || null;
+        return qx.util.ResourceManager.__P_507_0[id] || null;
       },
-
       /**
        * Returns the width of the given resource ID,
        * when it is not a known image <code>0</code> is
@@ -216,26 +198,20 @@
        */
       getImageWidth: function getImageWidth(id) {
         var size;
-
         if (id && id.startsWith("@")) {
           var part = id.split("/");
           size = parseInt(part[2], 10);
-
           if (size) {
             id = part[0] + "/" + part[1];
           }
         }
-
-        var entry = qx.util.ResourceManager.__P_492_0[id]; // [ width, height, codepoint ]
-
+        var entry = qx.util.ResourceManager.__P_507_0[id]; // [ width, height, codepoint ]
         if (size && entry) {
           var width = Math.ceil(size / entry[1] * entry[0]);
           return width;
         }
-
         return entry ? entry[0] : null;
       },
-
       /**
        * Returns the height of the given resource ID,
        * when it is not a known image <code>0</code> is
@@ -248,16 +224,13 @@
         if (id && id.startsWith("@")) {
           var part = id.split("/");
           var size = parseInt(part[2], 10);
-
           if (size) {
             return size;
           }
         }
-
-        var entry = qx.util.ResourceManager.__P_492_0[id];
+        var entry = qx.util.ResourceManager.__P_507_0[id];
         return entry ? entry[1] : null;
       },
-
       /**
        * Returns the format of the given resource ID,
        * when it is not a known image <code>null</code>
@@ -270,11 +243,9 @@
         if (id && id.startsWith("@")) {
           return "font";
         }
-
-        var entry = qx.util.ResourceManager.__P_492_0[id];
+        var entry = qx.util.ResourceManager.__P_507_0[id];
         return entry ? entry[2] : null;
       },
-
       /**
        * Returns the format of the combined image (png, gif, ...), if the given
        * resource identifier is an image contained in one, or the empty string
@@ -285,18 +256,15 @@
        */
       getCombinedFormat: function getCombinedFormat(id) {
         var clippedtype = "";
-        var entry = qx.util.ResourceManager.__P_492_0[id];
-        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__P_492_0[entry[4]];
-
+        var entry = qx.util.ResourceManager.__P_507_0[id];
+        var isclipped = entry && entry.length > 4 && typeof entry[4] == "string" && this.constructor.__P_507_0[entry[4]];
         if (isclipped) {
           var combId = entry[4];
-          var combImg = this.constructor.__P_492_0[combId];
+          var combImg = this.constructor.__P_507_0[combId];
           clippedtype = combImg[2];
         }
-
         return clippedtype;
       },
-
       /**
        * Converts the given resource ID to a full qualified URI
        *
@@ -307,33 +275,27 @@
         if (id == null) {
           return id;
         }
-
-        var entry = qx.util.ResourceManager.__P_492_0[id];
-
+        var entry = qx.util.ResourceManager.__P_507_0[id];
         if (!entry) {
           return id;
         }
-
         if (typeof entry === "string") {
           var lib = entry;
         } else {
-          var lib = entry[3]; // no lib reference
-          // may mean that the image has been registered dynamically
+          var lib = entry[3];
 
+          // no lib reference
+          // may mean that the image has been registered dynamically
           if (!lib) {
             return id;
           }
         }
-
         var urlPrefix = "";
-
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("io.ssl")) {
-          urlPrefix = qx.util.ResourceManager.__P_492_1[lib];
+          urlPrefix = qx.util.ResourceManager.__P_507_1[lib];
         }
-
         return urlPrefix + qx.util.LibraryManager.getInstance().get(lib, "resourceUri") + "/" + id;
       },
-
       /**
        * Construct a data: URI for an image resource.
        *
@@ -346,20 +308,17 @@
        * @return {String} "data:" or "http:" URI
        */
       toDataUri: function toDataUri(resid) {
-        var resentry = this.constructor.__P_492_0[resid];
-        var combined = resentry ? this.constructor.__P_492_0[resentry[4]] : null;
+        var resentry = this.constructor.__P_507_0[resid];
+        var combined = resentry ? this.constructor.__P_507_0[resentry[4]] : null;
         var uri;
-
         if (combined) {
           var resstruct = combined[4][resid];
           uri = "data:image/" + resstruct["type"] + ";" + resstruct["encoding"] + "," + resstruct["data"];
         } else {
           uri = this.toUri(resid);
         }
-
         return uri;
       },
-
       /**
        * Checks whether a given resource id for an image is a font handle.
        *
@@ -368,6 +327,39 @@
        */
       isFontUri: function isFontUri(resid) {
         return resid ? resid.startsWith("@") : false;
+      },
+      /**
+       * Returns the correct char code, ignoring scale postfix.
+       *
+       * The resource ID can be a ligature name (eg `@FontAwesome/heart` or `@MaterialIcons/home/16`),
+       * or a hex character code (eg `@FontAwesome/f004` or `@FontAwesome/f004/16`)
+       *
+       * @param source {String} resource id of the image
+       * @returns charCode of the glyph
+       */
+      fromFontUriToCharCode: function fromFontUriToCharCode(source) {
+        var sparts = source.split("/");
+        var fontSource = source;
+        if (sparts.length > 2) {
+          fontSource = sparts[0] + "/" + sparts[1];
+        }
+        var resource = this.getData(fontSource);
+        var charCode = null;
+        if (resource) {
+          charCode = resource[2];
+        } else {
+          var hexString = source.match(/@([^/]+)\/(.*)$/)[2];
+          if (hexString) {
+            charCode = parseInt(hexString, 16);
+            if (isNaN(charCode)) {
+              charCode = null;
+            }
+          }
+        }
+        if (!charCode) {
+          throw new Error("Cannot determine charCode from source: ".concat(source));
+        }
+        return charCode;
       }
     },
     defer: function defer(statics) {
@@ -381,59 +373,56 @@
         if (qx.core.Environment.get("io.ssl")) {
           for (var lib in qx.$$libraries) {
             var resourceUri;
-
             if (qx.util.LibraryManager.getInstance().get(lib, "resourceUri")) {
               resourceUri = qx.util.LibraryManager.getInstance().get(lib, "resourceUri");
             } else {
               // default for libraries without a resourceUri set
-              statics.__P_492_1[lib] = "";
+              statics.__P_507_1[lib] = "";
               continue;
             }
-
-            var href; //first check if there is base url set
-
+            var href;
+            //first check if there is base url set
             var baseElements = document.getElementsByTagName("base");
-
             if (baseElements.length > 0) {
               href = baseElements[0].href;
-            } // It is valid to to begin a URL with "//" so this case has to
+            }
+
+            // It is valid to to begin a URL with "//" so this case has to
             // be considered. If the to resolved URL begins with "//" the
             // manager prefixes it with "https:" to avoid any problems for IE
-
-
             if (resourceUri.match(/^\/\//) != null) {
-              statics.__P_492_1[lib] = window.location.protocol;
-            } // If the resourceUri begins with a single slash, include the current
+              statics.__P_507_1[lib] = window.location.protocol;
+            }
+            // If the resourceUri begins with a single slash, include the current
             // hostname
             else if (resourceUri.match(/^\//) != null) {
-                if (href) {
-                  statics.__P_492_1[lib] = href;
+              if (href) {
+                statics.__P_507_1[lib] = href;
+              } else {
+                statics.__P_507_1[lib] = window.location.protocol + "//" + window.location.host;
+              }
+            }
+            // If the resolved URL begins with "./" the final URL has to be
+            // put together using the document.URL property.
+            // IMPORTANT: this is only applicable for the source version
+            else if (resourceUri.match(/^\.\//) != null) {
+              var url = document.URL;
+              statics.__P_507_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
+            } else if (resourceUri.match(/^http/) != null) {
+              // Let absolute URLs pass through
+              statics.__P_507_1[lib] = "";
+            } else {
+              if (!href) {
+                // check for parameters with URLs as value
+                var index = window.location.href.indexOf("?");
+                if (index == -1) {
+                  href = window.location.href;
                 } else {
-                  statics.__P_492_1[lib] = window.location.protocol + "//" + window.location.host;
+                  href = window.location.href.substring(0, index);
                 }
-              } // If the resolved URL begins with "./" the final URL has to be
-              // put together using the document.URL property.
-              // IMPORTANT: this is only applicable for the source version
-              else if (resourceUri.match(/^\.\//) != null) {
-                  var url = document.URL;
-                  statics.__P_492_1[lib] = url.substring(0, url.lastIndexOf("/") + 1);
-                } else if (resourceUri.match(/^http/) != null) {
-                  // Let absolute URLs pass through
-                  statics.__P_492_1[lib] = "";
-                } else {
-                  if (!href) {
-                    // check for parameters with URLs as value
-                    var index = window.location.href.indexOf("?");
-
-                    if (index == -1) {
-                      href = window.location.href;
-                    } else {
-                      href = window.location.href.substring(0, index);
-                    }
-                  }
-
-                  statics.__P_492_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
-                }
+              }
+              statics.__P_507_1[lib] = href.substring(0, href.lastIndexOf("/") + 1);
+            }
           }
         }
       }
@@ -442,4 +431,4 @@
   qx.util.ResourceManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceManager.js.map?dt=1664789609820
+//# sourceMappingURL=ResourceManager.js.map?dt=1672653520219

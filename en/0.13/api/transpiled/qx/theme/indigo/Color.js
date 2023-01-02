@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,14 +50,15 @@
   qx.Theme.define("qx.theme.indigo.Color", {
     colors: {
       // main
-      "background": "white",
+      background: "white",
       "dark-blue": "#323335",
       "light-background": "#F4F4F4",
-      "font": "#262626",
-      "highlight": "#3D72C9",
+      font: "#262626",
+      highlight: "#3D72C9",
       // bright blue
       "highlight-shade": "#5583D0",
       // bright blue
+
       // backgrounds
       "background-selected": "#3D72C9",
       "background-selected-disabled": "#CDCDCD",
@@ -71,15 +71,15 @@
       "tabview-button-border": "#134983",
       "tabview-label-active-disabled": "#D9D9D9",
       // text colors
-      "link": "#24B",
+      link: "#24B",
       // scrollbar
       "scrollbar-bright": "#F1F1F1",
       "scrollbar-dark": "#EBEBEB",
       // form
-      "button": "#E8F0E3",
+      button: "#E8F0E3",
       "button-border": "#BBB",
       "button-border-hovered": "#939393",
-      "invalid": "#C00F00",
+      invalid: "#C00F00",
       "button-box-bright": "#F9F9F9",
       "button-box-dark": "#E3E3E3",
       "button-box-bright-pressed": "#BABABA",
@@ -91,7 +91,7 @@
       // group box
       "white-box-border": "#dddddd",
       // shadows
-      "shadow": qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "#666666",
+      shadow: qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "#666666",
       // borders
       "border-main": "#dddddd",
       "border-light": "#B7B7B7",
@@ -99,12 +99,12 @@
       // separator
       "border-separator": "#808080",
       // text
-      "text": "#262626",
+      text: "#262626",
       "text-disabled": "#A7A6AA",
       "text-selected": "white",
       "text-placeholder": "#CBC8CD",
       // tooltip
-      "tooltip": "#FE0",
+      tooltip: "#FE0",
       "tooltip-text": "black",
       // table
       "table-header": [242, 242, 242],
@@ -134,4 +134,4 @@
   qx.theme.indigo.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1664789590997
+//# sourceMappingURL=Color.js.map?dt=1672653502494

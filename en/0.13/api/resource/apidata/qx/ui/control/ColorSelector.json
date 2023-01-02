@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 53,
-        "column": 0
+        "column": 0,
+        "index": 3139
       },
       "end": {
-        "line": 1301,
-        "column": 3
+        "line": 1334,
+        "column": 3,
+        "index": 39581
       }
     },
     "jsdoc": {
@@ -209,12 +211,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 70,
-        "column": 14
+        "line": 66,
+        "column": 2,
+        "index": 3488
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 75,
+        "column": 3,
+        "index": 3694
       }
     },
     "jsdoc": {
@@ -230,12 +234,14 @@
     "dialogok": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 3945
         },
         "end": {
-          "line": 94,
-          "column": 42
+          "line": 85,
+          "column": 35,
+          "index": 3976
         }
       },
       "jsdoc": {
@@ -252,12 +258,14 @@
     "dialogcancel": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 4036
         },
         "end": {
-          "line": 97,
-          "column": 42
+          "line": 88,
+          "column": 39,
+          "index": 4071
         }
       },
       "jsdoc": {
@@ -274,12 +282,14 @@
     "changeValue": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 4118
         },
         "end": {
-          "line": 100,
-          "column": 40
+          "line": 91,
+          "column": 37,
+          "index": 4151
         }
       },
       "jsdoc": {
@@ -298,12 +308,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 4383
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 105,
+          "column": 5,
+          "index": 4450
         }
       },
       "jsdoc": {},
@@ -320,12 +332,14 @@
     "red": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 4513
         },
         "end": {
-          "line": 127,
-          "column": 5
+          "line": 112,
+          "column": 5,
+          "index": 4591
         }
       },
       "jsdoc": {
@@ -346,12 +360,14 @@
     "green": {
       "location": {
         "start": {
-          "line": 130,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 4656
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 4738
         }
       },
       "jsdoc": {
@@ -372,12 +388,14 @@
     "blue": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 4802
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 126,
+          "column": 5,
+          "index": 4882
         }
       },
       "jsdoc": {
@@ -398,12 +416,14 @@
     "hue": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 4923
         },
         "end": {
-          "line": 151,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 4998
         }
       },
       "jsdoc": {
@@ -424,12 +444,14 @@
     "saturation": {
       "location": {
         "start": {
-          "line": 154,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 5046
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 140,
+          "column": 5,
+          "index": 5135
         }
       },
       "jsdoc": {
@@ -450,12 +472,14 @@
     "brightness": {
       "location": {
         "start": {
-          "line": 162,
-          "column": 4
+          "line": 143,
+          "column": 4,
+          "index": 5183
         },
         "end": {
-          "line": 167,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 5274
         }
       },
       "jsdoc": {
@@ -510,12 +534,14 @@
     "__updateContext": {
       "location": {
         "start": {
-          "line": 190,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 5816
         },
         "end": {
-          "line": 190,
-          "column": 26
+          "line": 166,
+          "column": 25,
+          "index": 5837
         }
       },
       "jsdoc": {
@@ -538,12 +564,14 @@
     "__presetTable": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 172,
+          "column": 4,
+          "index": 5964
         },
         "end": {
-          "line": 198,
-          "column": 55
+          "line": 193,
+          "column": 5,
+          "index": 6279
         }
       },
       "jsdoc": {
@@ -572,12 +600,14 @@
     "__capture": {
       "location": {
         "start": {
-          "line": 203,
-          "column": 4
+          "line": 198,
+          "column": 4,
+          "index": 6365
         },
         "end": {
-          "line": 203,
-          "column": 18
+          "line": 198,
+          "column": 17,
+          "index": 6378
         }
       },
       "jsdoc": {
@@ -600,12 +630,14 @@
     "__brightnessSubtract": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 203,
+          "column": 4,
+          "index": 6448
         },
         "end": {
-          "line": 208,
-          "column": 28
+          "line": 203,
+          "column": 27,
+          "index": 6471
         }
       },
       "jsdoc": {
@@ -628,12 +660,14 @@
     "__hueSaturationSubtractTop": {
       "location": {
         "start": {
-          "line": 213,
-          "column": 4
+          "line": 208,
+          "column": 4,
+          "index": 6546
         },
         "end": {
-          "line": 213,
-          "column": 34
+          "line": 208,
+          "column": 33,
+          "index": 6575
         }
       },
       "jsdoc": {
@@ -656,12 +690,14 @@
     "__hueSaturationSubtractLeft": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 213,
+          "column": 4,
+          "index": 6650
         },
         "end": {
-          "line": 218,
-          "column": 35
+          "line": 213,
+          "column": 34,
+          "index": 6680
         }
       },
       "jsdoc": {
@@ -684,12 +720,14 @@
     "__nullValue": {
       "location": {
         "start": {
-          "line": 221,
-          "column": 4
+          "line": 216,
+          "column": 4,
+          "index": 6757
         },
         "end": {
-          "line": 221,
-          "column": 22
+          "line": 216,
+          "column": 21,
+          "index": 6774
         }
       },
       "jsdoc": {},
@@ -699,12 +737,14 @@
     "__preventChangeValueEvent": {
       "location": {
         "start": {
-          "line": 224,
-          "column": 4
+          "line": 219,
+          "column": 4,
+          "index": 6858
         },
         "end": {
-          "line": 224,
-          "column": 37
+          "line": 219,
+          "column": 36,
+          "index": 6890
         }
       },
       "jsdoc": {},
@@ -714,12 +754,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 222,
+          "column": 4,
+          "index": 6915
         },
         "end": {
-          "line": 473,
-          "column": 5
+          "line": 527,
+          "column": 5,
+          "index": 17045
         }
       },
       "jsdoc": {},
@@ -733,12 +775,14 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 484,
-          "column": 4
+          "line": 537,
+          "column": 4,
+          "index": 17357
         },
         "end": {
-          "line": 506,
-          "column": 5
+          "line": 555,
+          "column": 5,
+          "index": 17851
         }
       },
       "jsdoc": {
@@ -769,12 +813,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 515,
-          "column": 4
+          "line": 563,
+          "column": 4,
+          "index": 18023
         },
         "end": {
-          "line": 520,
-          "column": 5
+          "line": 571,
+          "column": 5,
+          "index": 18228
         }
       },
       "jsdoc": {
@@ -804,12 +850,14 @@
     "resetValue": {
       "location": {
         "start": {
-          "line": 525,
-          "column": 4
+          "line": 576,
+          "column": 4,
+          "index": 18284
         },
         "end": {
-          "line": 533,
-          "column": 5
+          "line": 583,
+          "column": 5,
+          "index": 18501
         }
       },
       "jsdoc": {
@@ -831,12 +879,14 @@
     "__fireChangeValueEvent": {
       "location": {
         "start": {
-          "line": 539,
-          "column": 4
+          "line": 588,
+          "column": 4,
+          "index": 18599
         },
         "end": {
-          "line": 546,
-          "column": 5
+          "line": 593,
+          "column": 5,
+          "index": 18778
         }
       },
       "jsdoc": {
@@ -853,12 +903,14 @@
     "_applyRed": {
       "location": {
         "start": {
-          "line": 557,
-          "column": 4
+          "line": 602,
+          "column": 4,
+          "index": 19001
         },
         "end": {
-          "line": 585,
-          "column": 5
+          "line": 628,
+          "column": 5,
+          "index": 19670
         }
       },
       "jsdoc": {},
@@ -871,12 +923,14 @@
     "_applyGreen": {
       "location": {
         "start": {
-          "line": 589,
-          "column": 4
+          "line": 631,
+          "column": 4,
+          "index": 19699
         },
         "end": {
-          "line": 617,
-          "column": 5
+          "line": 657,
+          "column": 5,
+          "index": 20378
         }
       },
       "jsdoc": {},
@@ -889,12 +943,14 @@
     "_applyBlue": {
       "location": {
         "start": {
-          "line": 621,
-          "column": 4
+          "line": 660,
+          "column": 4,
+          "index": 20407
         },
         "end": {
-          "line": 649,
-          "column": 5
+          "line": 686,
+          "column": 5,
+          "index": 21081
         }
       },
       "jsdoc": {},
@@ -907,12 +963,14 @@
     "_applyHue": {
       "location": {
         "start": {
-          "line": 661,
-          "column": 4
+          "line": 695,
+          "column": 4,
+          "index": 21304
         },
         "end": {
-          "line": 691,
-          "column": 5
+          "line": 728,
+          "column": 5,
+          "index": 22364
         }
       },
       "jsdoc": {},
@@ -925,12 +983,14 @@
     "_applySaturation": {
       "location": {
         "start": {
-          "line": 695,
-          "column": 4
+          "line": 731,
+          "column": 4,
+          "index": 22393
         },
         "end": {
-          "line": 726,
-          "column": 5
+          "line": 765,
+          "column": 5,
+          "index": 23507
         }
       },
       "jsdoc": {},
@@ -943,12 +1003,14 @@
     "_applyBrightness": {
       "location": {
         "start": {
-          "line": 730,
-          "column": 4
+          "line": 768,
+          "column": 4,
+          "index": 23536
         },
         "end": {
-          "line": 762,
-          "column": 5
+          "line": 801,
+          "column": 5,
+          "index": 24573
         }
       },
       "jsdoc": {},
@@ -961,12 +1023,14 @@
     "_onBrightnessHandlePointerDown": {
       "location": {
         "start": {
-          "line": 779,
-          "column": 4
+          "line": 815,
+          "column": 4,
+          "index": 24988
         },
         "end": {
-          "line": 795,
-          "column": 5
+          "line": 834,
+          "column": 5,
+          "index": 25762
         }
       },
       "jsdoc": {
@@ -992,12 +1056,14 @@
     "_onBrightnessHandlePointerUp": {
       "location": {
         "start": {
-          "line": 804,
-          "column": 4
+          "line": 842,
+          "column": 4,
+          "index": 25944
         },
         "end": {
-          "line": 809,
-          "column": 5
+          "line": 846,
+          "column": 5,
+          "index": 26107
         }
       },
       "jsdoc": {
@@ -1023,12 +1089,14 @@
     "_onBrightnessHandlePointerMove": {
       "location": {
         "start": {
-          "line": 818,
-          "column": 4
+          "line": 854,
+          "column": 4,
+          "index": 26321
         },
         "end": {
-          "line": 825,
-          "column": 5
+          "line": 860,
+          "column": 5,
+          "index": 26564
         }
       },
       "jsdoc": {
@@ -1054,12 +1122,14 @@
     "_onBrightnessFieldPointerDown": {
       "location": {
         "start": {
-          "line": 834,
-          "column": 4
+          "line": 868,
+          "column": 4,
+          "index": 26771
         },
         "end": {
-          "line": 847,
-          "column": 5
+          "line": 881,
+          "column": 5,
+          "index": 27312
         }
       },
       "jsdoc": {
@@ -1085,12 +1155,14 @@
     "_onBrightnessPaneRoll": {
       "location": {
         "start": {
-          "line": 856,
-          "column": 4
+          "line": 889,
+          "column": 4,
+          "index": 27508
         },
         "end": {
-          "line": 866,
-          "column": 5
+          "line": 900,
+          "column": 5,
+          "index": 27761
         }
       },
       "jsdoc": {
@@ -1116,12 +1188,14 @@
     "_setBrightnessOnFieldEvent": {
       "location": {
         "start": {
-          "line": 874,
-          "column": 4
+          "line": 907,
+          "column": 4,
+          "index": 27913
         },
         "end": {
-          "line": 889,
-          "column": 5
+          "line": 927,
+          "column": 5,
+          "index": 28486
         }
       },
       "jsdoc": {
@@ -1147,12 +1221,14 @@
     "_onHueSaturationHandlePointerUp": {
       "location": {
         "start": {
-          "line": 904,
-          "column": 4
+          "line": 941,
+          "column": 4,
+          "index": 28883
         },
         "end": {
-          "line": 913,
-          "column": 5
+          "line": 948,
+          "column": 5,
+          "index": 29122
         }
       },
       "jsdoc": {
@@ -1178,12 +1254,14 @@
     "_onHueSaturationHandlePointerMove": {
       "location": {
         "start": {
-          "line": 922,
-          "column": 4
+          "line": 956,
+          "column": 4,
+          "index": 29343
         },
         "end": {
-          "line": 931,
-          "column": 5
+          "line": 962,
+          "column": 5,
+          "index": 29596
         }
       },
       "jsdoc": {
@@ -1209,12 +1287,14 @@
     "_onHueSaturationFieldPointerDown": {
       "location": {
         "start": {
-          "line": 941,
-          "column": 4
+          "line": 971,
+          "column": 4,
+          "index": 29832
         },
         "end": {
-          "line": 957,
-          "column": 5
+          "line": 994,
+          "column": 5,
+          "index": 30676
         }
       },
       "jsdoc": {
@@ -1240,12 +1320,14 @@
     "_onHueSaturationPaneRoll": {
       "location": {
         "start": {
-          "line": 966,
-          "column": 4
+          "line": 1002,
+          "column": 4,
+          "index": 30872
         },
         "end": {
-          "line": 978,
-          "column": 5
+          "line": 1016,
+          "column": 5,
+          "index": 31233
         }
       },
       "jsdoc": {
@@ -1271,12 +1353,14 @@
     "_setHueSaturationOnFieldEvent": {
       "location": {
         "start": {
-          "line": 986,
-          "column": 4
+          "line": 1023,
+          "column": 4,
+          "index": 31385
         },
         "end": {
-          "line": 999,
-          "column": 5
+          "line": 1044,
+          "column": 5,
+          "index": 31971
         }
       },
       "jsdoc": {
@@ -1302,12 +1386,14 @@
     "_setRedFromSpinner": {
       "location": {
         "start": {
-          "line": 1013,
-          "column": 4
+          "line": 1055,
+          "column": 4,
+          "index": 32238
         },
         "end": {
-          "line": 1022,
-          "column": 5
+          "line": 1063,
+          "column": 5,
+          "index": 32483
         }
       },
       "jsdoc": {
@@ -1324,12 +1410,14 @@
     "_setGreenFromSpinner": {
       "location": {
         "start": {
-          "line": 1028,
-          "column": 4
+          "line": 1068,
+          "column": 4,
+          "index": 32559
         },
         "end": {
-          "line": 1037,
-          "column": 5
+          "line": 1076,
+          "column": 5,
+          "index": 32810
         }
       },
       "jsdoc": {
@@ -1346,12 +1434,14 @@
     "_setBlueFromSpinner": {
       "location": {
         "start": {
-          "line": 1043,
-          "column": 4
+          "line": 1081,
+          "column": 4,
+          "index": 32885
         },
         "end": {
-          "line": 1052,
-          "column": 5
+          "line": 1089,
+          "column": 5,
+          "index": 33133
         }
       },
       "jsdoc": {
@@ -1368,12 +1458,14 @@
     "_setHueFromSpinner": {
       "location": {
         "start": {
-          "line": 1066,
-          "column": 4
+          "line": 1100,
+          "column": 4,
+          "index": 33400
         },
         "end": {
-          "line": 1075,
-          "column": 5
+          "line": 1108,
+          "column": 5,
+          "index": 33645
         }
       },
       "jsdoc": {
@@ -1390,12 +1482,14 @@
     "_setSaturationFromSpinner": {
       "location": {
         "start": {
-          "line": 1081,
-          "column": 4
+          "line": 1113,
+          "column": 4,
+          "index": 33726
         },
         "end": {
-          "line": 1090,
-          "column": 5
+          "line": 1124,
+          "column": 5,
+          "index": 34009
         }
       },
       "jsdoc": {
@@ -1412,12 +1506,14 @@
     "_setBrightnessFromSpinner": {
       "location": {
         "start": {
-          "line": 1096,
-          "column": 4
+          "line": 1129,
+          "column": 4,
+          "index": 34090
         },
         "end": {
-          "line": 1105,
-          "column": 5
+          "line": 1140,
+          "column": 5,
+          "index": 34373
         }
       },
       "jsdoc": {
@@ -1434,12 +1530,14 @@
     "_onHexFieldChange": {
       "location": {
         "start": {
-          "line": 1120,
-          "column": 4
+          "line": 1152,
+          "column": 4,
+          "index": 34724
         },
         "end": {
-          "line": 1139,
-          "column": 5
+          "line": 1169,
+          "column": 5,
+          "index": 35175
         }
       },
       "jsdoc": {
@@ -1465,12 +1563,14 @@
     "_setHexFromRgb": {
       "location": {
         "start": {
-          "line": 1145,
-          "column": 4
+          "line": 1174,
+          "column": 4,
+          "index": 35274
         },
         "end": {
-          "line": 1155,
-          "column": 5
+          "line": 1185,
+          "column": 5,
+          "index": 35576
         }
       },
       "jsdoc": {
@@ -1487,12 +1587,14 @@
     "_onColorFieldTap": {
       "location": {
         "start": {
-          "line": 1172,
-          "column": 4
+          "line": 1199,
+          "column": 4,
+          "index": 35991
         },
         "end": {
-          "line": 1186,
-          "column": 5
+          "line": 1212,
+          "column": 5,
+          "index": 36341
         }
       },
       "jsdoc": {
@@ -1518,12 +1620,14 @@
     "_setHueFromRgb": {
       "location": {
         "start": {
-          "line": 1200,
-          "column": 4
+          "line": 1223,
+          "column": 4,
+          "index": 36629
         },
         "end": {
-          "line": 1216,
-          "column": 5
+          "line": 1241,
+          "column": 5,
+          "index": 37082
         }
       },
       "jsdoc": {
@@ -1540,12 +1644,14 @@
     "_setRgbFromHue": {
       "location": {
         "start": {
-          "line": 1222,
-          "column": 4
+          "line": 1246,
+          "column": 4,
+          "index": 37171
         },
         "end": {
-          "line": 1237,
-          "column": 5
+          "line": 1263,
+          "column": 5,
+          "index": 37586
         }
       },
       "jsdoc": {
@@ -1562,12 +1668,14 @@
     "_setPreviewFromRgb": {
       "location": {
         "start": {
-          "line": 1251,
-          "column": 4
+          "line": 1274,
+          "column": 4,
+          "index": 37898
         },
         "end": {
-          "line": 1255,
-          "column": 5
+          "line": 1282,
+          "column": 5,
+          "index": 38146
         }
       },
       "jsdoc": {
@@ -1584,12 +1692,14 @@
     "setPreviousColor": {
       "location": {
         "start": {
-          "line": 1265,
-          "column": 4
+          "line": 1291,
+          "column": 4,
+          "index": 38360
         },
         "end": {
-          "line": 1273,
-          "column": 5
+          "line": 1298,
+          "column": 5,
+          "index": 38630
         }
       },
       "jsdoc": {
@@ -1629,12 +1739,14 @@
     "_setBrightnessGradiant": {
       "location": {
         "start": {
-          "line": 1278,
-          "column": 4
+          "line": 1303,
+          "column": 4,
+          "index": 38732
         },
         "end": {
-          "line": 1284,
-          "column": 5
+          "line": 1315,
+          "column": 5,
+          "index": 39081
         }
       },
       "jsdoc": {
@@ -1651,12 +1763,14 @@
     "_onAppear": {
       "location": {
         "start": {
-          "line": 1292,
-          "column": 4
+          "line": 1323,
+          "column": 4,
+          "index": 39264
         },
         "end": {
-          "line": 1299,
-          "column": 5
+          "line": 1332,
+          "column": 5,
+          "index": 39573
         }
       },
       "jsdoc": {
@@ -2011,6 +2125,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2035,6 +2150,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

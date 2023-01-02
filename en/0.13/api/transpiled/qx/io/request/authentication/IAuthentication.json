@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 532
       },
       "end": {
-        "line": 36,
-        "column": 3
+        "line": 33,
+        "column": 3,
+        "index": 930
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getAuthHeaders": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 903
         },
         "end": {
-          "line": 34,
-          "column": 33
+          "line": 31,
+          "column": 23,
+          "index": 922
         }
       },
       "jsdoc": {

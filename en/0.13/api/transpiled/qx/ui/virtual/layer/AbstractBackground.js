@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,37 +37,32 @@
    */
   qx.Class.define("qx.ui.virtual.layer.AbstractBackground", {
     extend: qx.ui.virtual.layer.Abstract,
-
     /*
      *****************************************************************************
         CONSTRUCTOR
      *****************************************************************************
      */
-
     /**
      * @param colorEven {Color?null} color for even indexes
      * @param colorOdd {Color?null} color for odd indexes
      */
     construct: function construct(colorEven, colorOdd) {
       qx.ui.virtual.layer.Abstract.constructor.call(this);
-
       if (colorEven) {
         this.setColorEven(colorEven);
       }
-
       if (colorOdd) {
         this.setColorOdd(colorOdd);
       }
-
-      this.__P_464_0 = {};
-      this.__P_464_1 = {};
+      this.__P_479_0 = {};
+      this.__P_479_1 = {};
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** color for event indexes */
       colorEven: {
@@ -77,7 +71,6 @@
         apply: "_applyColorEven",
         themeable: true
       },
-
       /** color for odd indexes */
       colorOdd: {
         nullable: true,
@@ -86,24 +79,22 @@
         themeable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_464_2: null,
-      __P_464_3: null,
-      __P_464_0: null,
-      __P_464_1: null,
 
+    members: {
+      __P_479_2: null,
+      __P_479_3: null,
+      __P_479_0: null,
+      __P_479_1: null,
       /*
       ---------------------------------------------------------------------------
         COLOR HANDLING
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets the color for the given index
        *
@@ -113,20 +104,18 @@
        */
       setColor: function setColor(index, color) {
         if (color) {
-          this.__P_464_0[index] = qx.theme.manager.Color.getInstance().resolve(color);
+          this.__P_479_0[index] = qx.theme.manager.Color.getInstance().resolve(color);
         } else {
-          delete this.__P_464_0[index];
+          delete this.__P_479_0[index];
         }
       },
-
       /**
        * Clear all colors set using {@link #setColor}.
        */
       clearCustomColors: function clearCustomColors() {
-        this.__P_464_0 = {};
+        this.__P_479_0 = {};
         this.updateLayerData();
       },
-
       /**
        * Get the color at the given index
        *
@@ -134,35 +123,31 @@
        * @return {Color} The color at the given index
        */
       getColor: function getColor(index) {
-        var customColor = this.__P_464_0[index];
-
+        var customColor = this.__P_479_0[index];
         if (customColor) {
           return customColor;
         } else {
-          return index % 2 == 0 ? this.__P_464_2 : this.__P_464_3;
+          return index % 2 == 0 ? this.__P_479_2 : this.__P_479_3;
         }
       },
       // property apply
       _applyColorEven: function _applyColorEven(value, old) {
         if (value) {
-          this.__P_464_2 = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_479_2 = qx.theme.manager.Color.getInstance().resolve(value);
         } else {
-          this.__P_464_2 = null;
+          this.__P_479_2 = null;
         }
-
         this.updateLayerData();
       },
       // property apply
       _applyColorOdd: function _applyColorOdd(value, old) {
         if (value) {
-          this.__P_464_3 = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_479_3 = qx.theme.manager.Color.getInstance().resolve(value);
         } else {
-          this.__P_464_3 = null;
+          this.__P_479_3 = null;
         }
-
         this.updateLayerData();
       },
-
       /**
        * Sets the decorator for the given index
        *
@@ -172,14 +157,12 @@
        */
       setBackground: function setBackground(index, decorator) {
         if (decorator) {
-          this.__P_464_1[index] = qx.theme.manager.Decoration.getInstance().resolve(decorator);
+          this.__P_479_1[index] = qx.theme.manager.Decoration.getInstance().resolve(decorator);
         } else {
-          delete this.__P_464_1[index];
+          delete this.__P_479_1[index];
         }
-
         this.updateLayerData();
       },
-
       /**
        * Get the decorator at the given index
        *
@@ -187,20 +170,19 @@
        * @return {qx.ui.decoration.IDecorator} The decorator at the given index
        */
       getBackground: function getBackground(index) {
-        return this.__P_464_1[index];
+        return this.__P_479_1[index];
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCT
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__P_464_0 = this.__P_464_1 = null;
+      this.__P_479_0 = this.__P_479_1 = null;
     }
   });
   qx.ui.virtual.layer.AbstractBackground.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBackground.js.map?dt=1664789607630
+//# sourceMappingURL=AbstractBackground.js.map?dt=1672653517705

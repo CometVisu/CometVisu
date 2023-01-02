@@ -868,16 +868,16 @@ gesendet werden, die z.B. nicht zum <code class="docutils literal notranslate"><
 <h4>Beispiel:<a class="headerlink" href="#beispiel" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Um einen numerischen Wert am Topic <code class="docutils literal notranslate"><span class="pre">/topic/baz</span></code> zu adressieren, der in einem
 JSON wie</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>übertragen wird, müsste das <code class="docutils literal notranslate"><span class="pre">&lt;address&gt;</span></code>-Element aussehen wie:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span> <span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span><span class="w"> </span><span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/address&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -957,7 +957,7 @@ andere die Rückmeldung erfolgt.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 761
       },
       "end": {
-        "line": 943,
-        "column": 3
+        "line": 1001,
+        "column": 3,
+        "index": 28619
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "__logError": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 818
         },
         "end": {
-          "line": 34,
-          "column": 21
+          "line": 32,
+          "column": 20,
+          "index": 834
         }
       },
       "type": "variable",
@@ -57,12 +61,14 @@
     "__fail": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1604
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2654
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "__toString": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2854
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 108,
+          "column": 5,
+          "index": 3380
         }
       },
       "jsdoc": {
@@ -131,12 +139,14 @@
     "assert": {
       "location": {
         "start": {
-          "line": 126,
-          "column": 4
+          "line": 117,
+          "column": 4,
+          "index": 3647
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3758
         }
       },
       "jsdoc": {
@@ -170,12 +180,14 @@
     "fail": {
       "location": {
         "start": {
-          "line": 137,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3980
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 4104
         }
       },
       "jsdoc": {
@@ -210,12 +222,14 @@
     "assertTrue": {
       "location": {
         "start": {
-          "line": 150,
-          "column": 4
+          "line": 139,
+          "column": 4,
+          "index": 4378
         },
         "end": {
-          "line": 152,
-          "column": 5
+          "line": 142,
+          "column": 5,
+          "index": 4504
         }
       },
       "jsdoc": {
@@ -249,12 +263,14 @@
     "assertFalse": {
       "location": {
         "start": {
-          "line": 162,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4780
         },
         "end": {
-          "line": 164,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4909
         }
       },
       "jsdoc": {
@@ -288,12 +304,14 @@
     "assertEquals": {
       "location": {
         "start": {
-          "line": 175,
-          "column": 4
+          "line": 164,
+          "column": 4,
+          "index": 5189
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 174,
+          "column": 5,
+          "index": 5414
         }
       },
       "jsdoc": {
@@ -334,12 +352,14 @@
     "assertNotEquals": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 5702
         },
         "end": {
-          "line": 199,
-          "column": 5
+          "line": 194,
+          "column": 5,
+          "index": 5941
         }
       },
       "jsdoc": {
@@ -380,12 +400,14 @@
     "assertEqualsFloat": {
       "location": {
         "start": {
-          "line": 209,
-          "column": 4
+          "line": 204,
+          "column": 4,
+          "index": 6269
         },
         "end": {
-          "line": 218,
-          "column": 5
+          "line": 217,
+          "column": 5,
+          "index": 6595
         }
       },
       "jsdoc": {
@@ -426,12 +448,14 @@
     "assertNotEqualsFloat": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 227,
+          "column": 4,
+          "index": 6927
         },
         "end": {
-          "line": 237,
-          "column": 5
+          "line": 240,
+          "column": 5,
+          "index": 7261
         }
       },
       "jsdoc": {
@@ -472,12 +496,14 @@
     "assertIdentical": {
       "location": {
         "start": {
-          "line": 247,
-          "column": 4
+          "line": 250,
+          "column": 4,
+          "index": 7546
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 260,
+          "column": 5,
+          "index": 7787
         }
       },
       "jsdoc": {
@@ -518,12 +544,14 @@
     "assertNotIdentical": {
       "location": {
         "start": {
-          "line": 265,
-          "column": 4
+          "line": 270,
+          "column": 4,
+          "index": 8080
         },
         "end": {
-          "line": 272,
-          "column": 5
+          "line": 280,
+          "column": 5,
+          "index": 8327
         }
       },
       "jsdoc": {
@@ -564,12 +592,14 @@
     "assertNotUndefined": {
       "location": {
         "start": {
-          "line": 281,
-          "column": 4
+          "line": 288,
+          "column": 4,
+          "index": 8530
         },
         "end": {
-          "line": 287,
-          "column": 5
+          "line": 294,
+          "column": 5,
+          "index": 8718
         }
       },
       "jsdoc": {
@@ -603,12 +633,14 @@
     "assertUndefined": {
       "location": {
         "start": {
-          "line": 296,
-          "column": 4
+          "line": 302,
+          "column": 4,
+          "index": 8917
         },
         "end": {
-          "line": 302,
-          "column": 5
+          "line": 310,
+          "column": 5,
+          "index": 9120
         }
       },
       "jsdoc": {
@@ -642,12 +674,14 @@
     "assertNotNull": {
       "location": {
         "start": {
-          "line": 311,
-          "column": 4
+          "line": 318,
+          "column": 4,
+          "index": 9318
         },
         "end": {
-          "line": 317,
-          "column": 5
+          "line": 321,
+          "column": 5,
+          "index": 9456
         }
       },
       "jsdoc": {
@@ -681,12 +715,14 @@
     "assertNull": {
       "location": {
         "start": {
-          "line": 326,
-          "column": 4
+          "line": 329,
+          "column": 4,
+          "index": 9650
         },
         "end": {
-          "line": 332,
-          "column": 5
+          "line": 337,
+          "column": 5,
+          "index": 9838
         }
       },
       "jsdoc": {
@@ -720,12 +756,14 @@
     "assertJsonEquals": {
       "location": {
         "start": {
-          "line": 343,
-          "column": 4
+          "line": 347,
+          "column": 4,
+          "index": 10122
         },
         "end": {
-          "line": 349,
-          "column": 5
+          "line": 353,
+          "column": 5,
+          "index": 10295
         }
       },
       "jsdoc": {
@@ -766,12 +804,14 @@
     "assertMatch": {
       "location": {
         "start": {
-          "line": 359,
-          "column": 4
+          "line": 362,
+          "column": 4,
+          "index": 10602
         },
         "end": {
-          "line": 370,
-          "column": 5
+          "line": 378,
+          "column": 5,
+          "index": 11047
         }
       },
       "jsdoc": {
@@ -815,12 +855,14 @@
     "assertArgumentsCount": {
       "location": {
         "start": {
-          "line": 381,
-          "column": 4
+          "line": 388,
+          "column": 4,
+          "index": 11420
         },
         "end": {
-          "line": 389,
-          "column": 5
+          "line": 401,
+          "column": 5,
+          "index": 11821
         }
       },
       "jsdoc": {
@@ -868,12 +910,14 @@
     "assertEventFired": {
       "location": {
         "start": {
-          "line": 403,
-          "column": 4
+          "line": 414,
+          "column": 4,
+          "index": 12366
         },
         "end": {
-          "line": 427,
-          "column": 5
+          "line": 439,
+          "column": 5,
+          "index": 12976
         }
       },
       "jsdoc": {
@@ -931,12 +975,14 @@
     "assertEventNotFired": {
       "location": {
         "start": {
-          "line": 439,
-          "column": 4
+          "line": 450,
+          "column": 4,
+          "index": 13373
         },
         "end": {
-          "line": 451,
-          "column": 5
+          "line": 462,
+          "column": 5,
+          "index": 13730
         }
       },
       "jsdoc": {
@@ -984,12 +1030,14 @@
     "assertException": {
       "location": {
         "start": {
-          "line": 465,
-          "column": 4
+          "line": 475,
+          "column": 4,
+          "index": 14235
         },
         "end": {
-          "line": 490,
-          "column": 5
+          "line": 504,
+          "column": 5,
+          "index": 14915
         }
       },
       "jsdoc": {
@@ -1042,12 +1090,14 @@
     "assertInArray": {
       "location": {
         "start": {
-          "line": 500,
-          "column": 4
+          "line": 513,
+          "column": 4,
+          "index": 15167
         },
         "end": {
-          "line": 508,
-          "column": 5
+          "line": 523,
+          "column": 5,
+          "index": 15436
         }
       },
       "jsdoc": {
@@ -1088,12 +1138,14 @@
     "assertNotInArray": {
       "location": {
         "start": {
-          "line": 518,
-          "column": 4
+          "line": 532,
+          "column": 4,
+          "index": 15684
         },
         "end": {
-          "line": 526,
-          "column": 5
+          "line": 541,
+          "column": 5,
+          "index": 15977
         }
       },
       "jsdoc": {
@@ -1134,12 +1186,14 @@
     "assertArrayEquals": {
       "location": {
         "start": {
-          "line": 536,
-          "column": 4
+          "line": 550,
+          "column": 4,
+          "index": 16231
         },
         "end": {
-          "line": 554,
-          "column": 5
+          "line": 571,
+          "column": 5,
+          "index": 16735
         }
       },
       "jsdoc": {
@@ -1180,12 +1234,14 @@
     "assertKeyInMap": {
       "location": {
         "start": {
-          "line": 564,
-          "column": 4
+          "line": 580,
+          "column": 4,
+          "index": 17005
         },
         "end": {
-          "line": 571,
-          "column": 5
+          "line": 590,
+          "column": 5,
+          "index": 17249
         }
       },
       "jsdoc": {
@@ -1226,12 +1282,14 @@
     "assertFunction": {
       "location": {
         "start": {
-          "line": 580,
-          "column": 4
+          "line": 598,
+          "column": 4,
+          "index": 17436
         },
         "end": {
-          "line": 586,
-          "column": 5
+          "line": 606,
+          "column": 5,
+          "index": 17655
         }
       },
       "jsdoc": {
@@ -1265,12 +1323,14 @@
     "assertFunctionOrAsyncFunction": {
       "location": {
         "start": {
-          "line": 594,
-          "column": 4
+          "line": 614,
+          "column": 4,
+          "index": 17863
         },
         "end": {
-          "line": 600,
-          "column": 5
+          "line": 622,
+          "column": 5,
+          "index": 18137
         }
       },
       "jsdoc": {
@@ -1304,12 +1364,14 @@
     "assertString": {
       "location": {
         "start": {
-          "line": 608,
-          "column": 4
+          "line": 630,
+          "column": 4,
+          "index": 18322
         },
         "end": {
-          "line": 613,
-          "column": 5
+          "line": 638,
+          "column": 5,
+          "index": 18530
         }
       },
       "jsdoc": {
@@ -1343,12 +1405,14 @@
     "assertBoolean": {
       "location": {
         "start": {
-          "line": 622,
-          "column": 4
+          "line": 646,
+          "column": 4,
+          "index": 18716
         },
         "end": {
-          "line": 628,
-          "column": 5
+          "line": 654,
+          "column": 5,
+          "index": 18927
         }
       },
       "jsdoc": {
@@ -1382,12 +1446,14 @@
     "assertNumber": {
       "location": {
         "start": {
-          "line": 637,
-          "column": 4
+          "line": 662,
+          "column": 4,
+          "index": 19112
         },
         "end": {
-          "line": 643,
-          "column": 5
+          "line": 670,
+          "column": 5,
+          "index": 19341
         }
       },
       "jsdoc": {
@@ -1421,12 +1487,14 @@
     "assertPositiveNumber": {
       "location": {
         "start": {
-          "line": 652,
-          "column": 4
+          "line": 678,
+          "column": 4,
+          "index": 19531
         },
         "end": {
-          "line": 658,
-          "column": 5
+          "line": 686,
+          "column": 5,
+          "index": 19787
         }
       },
       "jsdoc": {
@@ -1460,12 +1528,14 @@
     "assertInteger": {
       "location": {
         "start": {
-          "line": 667,
-          "column": 4
+          "line": 694,
+          "column": 4,
+          "index": 19974
         },
         "end": {
-          "line": 673,
-          "column": 5
+          "line": 702,
+          "column": 5,
+          "index": 20225
         }
       },
       "jsdoc": {
@@ -1499,12 +1569,14 @@
     "assertPositiveInteger": {
       "location": {
         "start": {
-          "line": 682,
-          "column": 4
+          "line": 710,
+          "column": 4,
+          "index": 20417
         },
         "end": {
-          "line": 694,
-          "column": 5
+          "line": 724,
+          "column": 5,
+          "index": 20759
         }
       },
       "jsdoc": {
@@ -1538,12 +1610,14 @@
     "assertInRange": {
       "location": {
         "start": {
-          "line": 705,
-          "column": 4
+          "line": 734,
+          "column": 4,
+          "index": 21036
         },
         "end": {
-          "line": 711,
-          "column": 5
+          "line": 743,
+          "column": 5,
+          "index": 21313
         }
       },
       "jsdoc": {
@@ -1591,12 +1665,14 @@
     "assertObject": {
       "location": {
         "start": {
-          "line": 720,
-          "column": 4
+          "line": 751,
+          "column": 4,
+          "index": 21499
         },
         "end": {
-          "line": 728,
-          "column": 5
+          "line": 762,
+          "column": 5,
+          "index": 21810
         }
       },
       "jsdoc": {
@@ -1630,12 +1706,14 @@
     "assertArray": {
       "location": {
         "start": {
-          "line": 737,
-          "column": 4
+          "line": 770,
+          "column": 4,
+          "index": 21995
         },
         "end": {
-          "line": 743,
-          "column": 5
+          "line": 778,
+          "column": 5,
+          "index": 22201
         }
       },
       "jsdoc": {
@@ -1669,12 +1747,14 @@
     "assertMap": {
       "location": {
         "start": {
-          "line": 753,
-          "column": 4
+          "line": 787,
+          "column": 4,
+          "index": 22496
         },
         "end": {
-          "line": 759,
-          "column": 5
+          "line": 795,
+          "column": 5,
+          "index": 22698
         }
       },
       "jsdoc": {
@@ -1708,12 +1788,14 @@
     "assertRegExp": {
       "location": {
         "start": {
-          "line": 768,
-          "column": 3
+          "line": 803,
+          "column": 4,
+          "index": 22895
         },
         "end": {
-          "line": 774,
-          "column": 4
+          "line": 811,
+          "column": 5,
+          "index": 23115
         }
       },
       "jsdoc": {
@@ -1747,12 +1829,14 @@
     "assertType": {
       "location": {
         "start": {
-          "line": 787,
-          "column": 4
+          "line": 823,
+          "column": 4,
+          "index": 23572
         },
         "end": {
-          "line": 795,
-          "column": 5
+          "line": 835,
+          "column": 5,
+          "index": 23867
         }
       },
       "jsdoc": {
@@ -1793,12 +1877,14 @@
     "assertInstance": {
       "location": {
         "start": {
-          "line": 805,
-          "column": 4
+          "line": 844,
+          "column": 4,
+          "index": 24146
         },
         "end": {
-          "line": 813,
-          "column": 5
+          "line": 856,
+          "column": 5,
+          "index": 24451
         }
       },
       "jsdoc": {
@@ -1839,12 +1925,14 @@
     "assertInterface": {
       "location": {
         "start": {
-          "line": 823,
-          "column": 4
+          "line": 865,
+          "column": 4,
+          "index": 24723
         },
         "end": {
-          "line": 828,
-          "column": 5
+          "line": 875,
+          "column": 5,
+          "index": 25008
         }
       },
       "jsdoc": {
@@ -1885,12 +1973,14 @@
     "assertCssColor": {
       "location": {
         "start": {
-          "line": 840,
-          "column": 4
+          "line": 886,
+          "column": 4,
+          "index": 25438
         },
         "end": {
-          "line": 870,
-          "column": 5
+          "line": 927,
+          "column": 5,
+          "index": 26632
         }
       },
       "jsdoc": {
@@ -1931,12 +2021,14 @@
     "assertElement": {
       "location": {
         "start": {
-          "line": 879,
-          "column": 4
+          "line": 935,
+          "column": 4,
+          "index": 26822
         },
         "end": {
-          "line": 886,
-          "column": 5
+          "line": 944,
+          "column": 5,
+          "index": 27079
         }
       },
       "jsdoc": {
@@ -1970,12 +2062,14 @@
     "assertQxObject": {
       "location": {
         "start": {
-          "line": 895,
-          "column": 4
+          "line": 952,
+          "column": 4,
+          "index": 27293
         },
         "end": {
-          "line": 901,
-          "column": 5
+          "line": 960,
+          "column": 5,
+          "index": 27527
         }
       },
       "jsdoc": {
@@ -2009,12 +2103,14 @@
     "assertQxWidget": {
       "location": {
         "start": {
-          "line": 910,
-          "column": 4
+          "line": 968,
+          "column": 4,
+          "index": 27744
         },
         "end": {
-          "line": 916,
-          "column": 5
+          "line": 976,
+          "column": 5,
+          "index": 27981
         }
       },
       "jsdoc": {
@@ -2048,12 +2144,14 @@
     "__isQxInstance": {
       "location": {
         "start": {
-          "line": 928,
-          "column": 4
+          "line": 987,
+          "column": 4,
+          "index": 28319
         },
         "end": {
-          "line": 941,
-          "column": 5
+          "line": 999,
+          "column": 5,
+          "index": 28611
         }
       },
       "jsdoc": {

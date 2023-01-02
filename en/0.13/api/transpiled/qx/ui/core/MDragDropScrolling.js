@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,52 +44,47 @@
     */
     construct: function construct() {
       var widget = this;
-
       if (this instanceof qx.ui.core.DragDropScrolling) {
         widget = this._getWidget();
       }
-
-      widget.addListener("drag", this.__P_296_0, this);
-      widget.addListener("dragend", this.__P_296_1, this);
-      this.__P_296_2 = ["left", "right"];
-      this.__P_296_3 = ["top", "bottom"];
+      widget.addListener("drag", this.__P_311_0, this);
+      widget.addListener("dragend", this.__P_311_1, this);
+      this.__P_311_2 = ["left", "right"];
+      this.__P_311_3 = ["top", "bottom"];
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The threshold for the x-axis (in pixel) to activate scrolling at the edges. */
       dragScrollThresholdX: {
         check: "Integer",
         init: 30
       },
-
       /** The threshold for the y-axis (in pixel) to activate scrolling at the edges. */
       dragScrollThresholdY: {
         check: "Integer",
         init: 30
       },
-
       /** The factor for slowing down the scrolling. */
       dragScrollSlowDownFactor: {
         check: "Float",
         init: 0.1
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_296_4: null,
-      __P_296_2: null,
-      __P_296_3: null,
 
+    members: {
+      __P_311_4: null,
+      __P_311_2: null,
+      __P_311_3: null,
       /**
        * Finds the first scrollable parent (in the parent chain).
        *
@@ -99,22 +93,17 @@
        */
       _findScrollableParent: function _findScrollableParent(widget) {
         var cur = widget;
-
         if (cur === null) {
           return null;
         }
-
         while (cur.getLayoutParent()) {
           cur = cur.getLayoutParent();
-
           if (this._isScrollable(cur)) {
             return cur;
           }
         }
-
         return null;
       },
-
       /**
        * Whether the widget is scrollable.
        *
@@ -124,7 +113,6 @@
       _isScrollable: function _isScrollable(widget) {
         return qx.Class.hasMixin(widget.constructor, qx.ui.core.scroll.MScrollBarFactory);
       },
-
       /**
        * Gets the bounds of the given scrollable.
        *
@@ -132,15 +120,14 @@
        * @return {Map} A map with all four bounds (e.g. {"left":0, "top":20, "right":0, "bottom":80}).
        */
       _getBounds: function _getBounds(scrollable) {
-        var bounds = scrollable.getContentLocation(); // the scrollable may dictate a nested widget for more precise bounds
+        var bounds = scrollable.getContentLocation();
 
+        // the scrollable may dictate a nested widget for more precise bounds
         if (scrollable.getScrollAreaContainer) {
           bounds = scrollable.getScrollAreaContainer().getContentLocation();
         }
-
         return bounds;
       },
-
       /**
        * Gets the edge type or null if the pointer isn't within one of the thresholds.
        *
@@ -162,7 +149,6 @@
           return null;
         }
       },
-
       /**
        * Gets the axis ('x' or 'y') by the edge type.
        *
@@ -171,15 +157,14 @@
        * @return {String} Returns 'y' or 'x'.
        */
       _getAxis: function _getAxis(edgeType) {
-        if (this.__P_296_2.indexOf(edgeType) !== -1) {
+        if (this.__P_311_2.indexOf(edgeType) !== -1) {
           return "x";
-        } else if (this.__P_296_3.indexOf(edgeType) !== -1) {
+        } else if (this.__P_311_3.indexOf(edgeType) !== -1) {
           return "y";
         } else {
           throw new Error("Invalid edge type given (" + edgeType + "). Must be: 'left', 'right', 'top' or 'bottom'");
         }
       },
-
       /**
        * Gets the threshold amount by edge type.
        *
@@ -187,13 +172,12 @@
        * @return {Number} The threshold of the x or y axis.
        */
       _getThresholdByEdgeType: function _getThresholdByEdgeType(edgeType) {
-        if (this.__P_296_2.indexOf(edgeType) !== -1) {
+        if (this.__P_311_2.indexOf(edgeType) !== -1) {
           return this.getDragScrollThresholdX();
-        } else if (this.__P_296_3.indexOf(edgeType) !== -1) {
+        } else if (this.__P_311_3.indexOf(edgeType) !== -1) {
           return this.getDragScrollThresholdY();
         }
       },
-
       /**
        * Whether the scrollbar is visible.
        *
@@ -208,7 +192,6 @@
           return false;
         }
       },
-
       /**
        * Whether the scrollbar is exceeding it's maximum position.
        *
@@ -219,15 +202,12 @@
        */
       _isScrollbarExceedingMaxPos: function _isScrollbarExceedingMaxPos(scrollbar, axis, amount) {
         var newPos = 0;
-
         if (!scrollbar) {
           return true;
         }
-
         newPos = scrollbar.getPosition() + amount;
         return newPos > scrollbar.getMaximum() || newPos < 0;
       },
-
       /**
        * Calculates the threshold exceedance (which may be negative).
        *
@@ -239,7 +219,6 @@
         var amount = threshold - Math.abs(diff);
         return diff < 0 ? amount * -1 : amount;
       },
-
       /**
        * Calculates the scroll amount (which may be negative).
        * The amount is influenced by the scrollbar size (bigger = faster)
@@ -252,7 +231,6 @@
       _calculateScrollAmount: function _calculateScrollAmount(scrollbarSize, exceedanceAmount) {
         return Math.floor(scrollbarSize / 100 * exceedanceAmount * this.getDragScrollSlowDownFactor());
       },
-
       /**
        * Scrolls the given scrollable on the given axis for the given amount.
        *
@@ -262,97 +240,76 @@
        */
       _scrollBy: function _scrollBy(scrollable, axis, exceedanceAmount) {
         var scrollbar = scrollable.getChildControl("scrollbar-" + axis, true);
-
         if (!scrollbar) {
           return;
         }
-
         var bounds = scrollbar.getBounds(),
-            scrollbarSize = axis === "x" ? bounds.width : bounds.height,
-            amount = this._calculateScrollAmount(scrollbarSize, exceedanceAmount);
-
+          scrollbarSize = axis === "x" ? bounds.width : bounds.height,
+          amount = this._calculateScrollAmount(scrollbarSize, exceedanceAmount);
         if (this._isScrollbarExceedingMaxPos(scrollbar, axis, amount)) {
-          this.__P_296_4.stop();
+          this.__P_311_4.stop();
         }
-
         scrollbar.scrollBy(amount);
       },
-
       /*
       ---------------------------------------------------------------------------
       EVENT HANDLERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for the drag event.
        *
        * @param e {qx.event.type.Drag} The drag event instance.
        */
-      __P_296_0: function __P_296_0(e) {
-        if (this.__P_296_4) {
+      __P_311_0: function __P_311_0(e) {
+        if (this.__P_311_4) {
           // stop last scroll action
-          this.__P_296_4.stop();
+          this.__P_311_4.stop();
         }
-
         var target;
-
         if (e.getOriginalTarget() instanceof qx.ui.core.Widget) {
           target = e.getOriginalTarget();
         } else {
           target = qx.ui.core.Widget.getWidgetByElement(e.getOriginalTarget());
         }
-
         if (!target) {
           return;
         }
-
         var scrollable;
-
         if (this._isScrollable(target)) {
           scrollable = target;
         } else {
           scrollable = this._findScrollableParent(target);
         }
-
         while (scrollable) {
           var bounds = this._getBounds(scrollable),
-              xPos = e.getDocumentLeft(),
-              yPos = e.getDocumentTop(),
-              diff = {
-            "left": bounds.left - xPos,
-            "right": bounds.right - xPos,
-            "top": bounds.top - yPos,
-            "bottom": bounds.bottom - yPos
-          },
-              edgeType = null,
-              axis = "",
-              exceedanceAmount = 0;
-
+            xPos = e.getDocumentLeft(),
+            yPos = e.getDocumentTop(),
+            diff = {
+              left: bounds.left - xPos,
+              right: bounds.right - xPos,
+              top: bounds.top - yPos,
+              bottom: bounds.bottom - yPos
+            },
+            edgeType = null,
+            axis = "",
+            exceedanceAmount = 0;
           edgeType = this._getEdgeType(diff, this.getDragScrollThresholdX(), this.getDragScrollThresholdY());
-
           if (!edgeType) {
             scrollable = this._findScrollableParent(scrollable);
             continue;
           }
-
           axis = this._getAxis(edgeType);
-
           if (this._isScrollbarVisible(scrollable, axis)) {
             exceedanceAmount = this._calculateThresholdExceedance(diff[edgeType], this._getThresholdByEdgeType(edgeType));
-
-            if (this.__P_296_4) {
-              this.__P_296_4.dispose();
+            if (this.__P_311_4) {
+              this.__P_311_4.dispose();
             }
-
-            this.__P_296_4 = new qx.event.Timer(50);
-
-            this.__P_296_4.addListener("interval", function (scrollable, axis, amount) {
+            this.__P_311_4 = new qx.event.Timer(50);
+            this.__P_311_4.addListener("interval", function (scrollable, axis, amount) {
               this._scrollBy(scrollable, axis, amount);
             }.bind(this, scrollable, axis, exceedanceAmount));
-
-            this.__P_296_4.start();
-
+            this.__P_311_4.start();
             e.stopPropagation();
             return;
           } else {
@@ -360,25 +317,24 @@
           }
         }
       },
-
       /**
        * Event handler for the dragend event.
        *
        * @param e {qx.event.type.Drag} The drag event instance.
        */
-      __P_296_1: function __P_296_1(e) {
-        if (this.__P_296_4) {
-          this.__P_296_4.stop();
+      __P_311_1: function __P_311_1(e) {
+        if (this.__P_311_4) {
+          this.__P_311_4.stop();
         }
       }
     },
     destruct: function destruct() {
-      if (this.__P_296_4) {
-        this.__P_296_4.dispose();
+      if (this.__P_311_4) {
+        this.__P_311_4.dispose();
       }
     }
   });
   qx.ui.core.MDragDropScrolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDragDropScrolling.js.map?dt=1664789593666
+//# sourceMappingURL=MDragDropScrolling.js.map?dt=1672653505026

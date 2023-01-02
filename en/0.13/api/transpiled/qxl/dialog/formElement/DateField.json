@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 597
       },
       "end": {
         "line": 51,
-        "column": 3
+        "column": 3,
+        "index": 1396
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "register": {
       "location": {
         "start": {
-          "line": 27,
-          "column": 4
+          "line": 25,
+          "column": 4,
+          "index": 668
         },
         "end": {
           "line": 30,
-          "column": 5
+          "column": 5,
+          "index": 796
         }
       },
       "type": "function",
@@ -52,11 +56,13 @@
       "location": {
         "start": {
           "line": 32,
-          "column": 4
+          "column": 4,
+          "index": 803
         },
         "end": {
           "line": 49,
-          "column": 5
+          "column": 5,
+          "index": 1386
         }
       },
       "type": "variable",

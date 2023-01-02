@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
       assert: function assert(condition, msg) {
         qx.core.Assert.assert(condition, msg);
       },
-
       /**
        * Raise an {@link AssertionError}
        *
@@ -60,7 +58,6 @@
       fail: function fail(msg, compact) {
         qx.core.Assert.fail(msg, compact);
       },
-
       /**
        * Assert that the value is <code>true</code> (Identity check).
        *
@@ -71,7 +68,6 @@
       assertTrue: function assertTrue(value, msg) {
         qx.core.Assert.assertTrue(value, msg);
       },
-
       /**
        * Assert that the value is <code>false</code> (Identity check).
        *
@@ -82,7 +78,6 @@
       assertFalse: function assertFalse(value, msg) {
         qx.core.Assert.assertFalse(value, msg);
       },
-
       /**
        * Assert that both values are equal. (Uses the equality operator
        * <code>==</code>.)
@@ -94,7 +89,6 @@
       assertEquals: function assertEquals(expected, found, msg) {
         qx.core.Assert.assertEquals(expected, found, msg);
       },
-
       /**
        * Assert that both values are not equal. (Uses the not equality operator
        * <code>!=</code>.)
@@ -106,7 +100,6 @@
       assertNotEquals: function assertNotEquals(expected, found, msg) {
         qx.core.Assert.assertNotEquals(expected, found, msg);
       },
-
       /**
        * Assert that both float values are equal. This might be needed because
        * of the natural floating point inaccuracy of computers.
@@ -118,7 +111,6 @@
       assertEqualsFloat: function assertEqualsFloat(expected, found, msg) {
         qx.core.Assert.assertEqualsFloat(expected, found, msg);
       },
-
       /**
        * Assert that both float values are not equal. This might be needed
        * because of the natural floating point inaccuracy of computers.
@@ -130,7 +122,6 @@
       assertNotEqualsFloat: function assertNotEqualsFloat(expected, found, msg) {
         qx.core.Assert.assertNotEqualsFloat(expected, found, msg);
       },
-
       /**
        * Assert that both values are identical. (Uses the identity operator
        * <code>===</code>.)
@@ -142,7 +133,6 @@
       assertIdentical: function assertIdentical(expected, found, msg) {
         qx.core.Assert.assertIdentical(expected, found, msg);
       },
-
       /**
        * Assert that both values are not identical. (Uses the not identity operator
        * <code>!==</code>.)
@@ -154,7 +144,6 @@
       assertNotIdentical: function assertNotIdentical(expected, found, msg) {
         qx.core.Assert.assertNotIdentical(expected, found, msg);
       },
-
       /**
        * Assert that the value is not <code>undefined</code>.
        *
@@ -164,7 +153,6 @@
       assertNotUndefined: function assertNotUndefined(value, msg) {
         qx.core.Assert.assertNotUndefined(value, msg);
       },
-
       /**
        * Assert that the value is <code>undefined</code>.
        *
@@ -174,7 +162,6 @@
       assertUndefined: function assertUndefined(value, msg) {
         qx.core.Assert.assertUndefined(value, msg);
       },
-
       /**
        * Assert that the value is not <code>null</code>.
        *
@@ -184,7 +171,6 @@
       assertNotNull: function assertNotNull(value, msg) {
         qx.core.Assert.assertNotNull(value, msg);
       },
-
       /**
        * Assert that the value is <code>null</code>.
        *
@@ -194,7 +180,6 @@
       assertNull: function assertNull(value, msg) {
         qx.core.Assert.assertNull(value, msg);
       },
-
       /**
        * Assert that the first two arguments are equal, when serialized into
        * JSON.
@@ -206,7 +191,6 @@
       assertJsonEquals: function assertJsonEquals(expected, found, msg) {
         qx.core.Assert.assertJsonEquals(expected, found, msg);
       },
-
       /**
        * Assert that the given string matches the regular expression
        *
@@ -217,7 +201,6 @@
       assertMatch: function assertMatch(str, re, msg) {
         qx.core.Assert.assertMatch(str, re, msg);
       },
-
       /**
        * Assert that the number of arguments is within the given range
        *
@@ -229,7 +212,6 @@
       assertArgumentsCount: function assertArgumentsCount(args, minCount, maxCount, msg) {
         qx.core.Assert.assertArgumentsCount(args, minCount, maxCount, msg);
       },
-
       /**
        * Assert that an event is fired.
        *
@@ -244,7 +226,6 @@
       assertEventFired: function assertEventFired(obj, event, invokeFunc, listener, msg) {
         qx.core.Assert.assertEventFired(obj, event, invokeFunc, listener, msg);
       },
-
       /**
        * Assert that an event is not fired.
        *
@@ -257,7 +238,6 @@
       assertEventNotFired: function assertEventNotFired(obj, event, invokeFunc, msg) {
         qx.core.Assert.assertEventNotFired(obj, event, invokeFunc, msg);
       },
-
       /**
        * Asserts that the callback raises a matching exception.
        *
@@ -272,7 +252,6 @@
       assertException: function assertException(callback, exception, re, msg) {
         qx.core.Assert.assertException(callback, exception, re, msg);
       },
-
       /**
        * Assert that the value is an item in the given array.
        *
@@ -283,7 +262,6 @@
       assertInArray: function assertInArray(value, array, msg) {
         qx.core.Assert.assertInArray(value, array, msg);
       },
-
       /**
        * Assert that the value is NOT an item in the given array
        *
@@ -294,7 +272,6 @@
       assertNotInArray: function assertNotInArray(value, array, msg) {
         qx.core.Assert.assertNotInArray(value, array, msg);
       },
-
       /**
        * Assert that both array have identical array items.
        *
@@ -305,7 +282,6 @@
       assertArrayEquals: function assertArrayEquals(expected, found, msg) {
         qx.core.Assert.assertArrayEquals(expected, found, msg);
       },
-
       /**
        * Assert that the value is a key in the given map.
        *
@@ -316,7 +292,6 @@
       assertKeyInMap: function assertKeyInMap(value, map, msg) {
         qx.core.Assert.assertKeyInMap(value, map, msg);
       },
-
       /**
        * Assert that the value is a function.
        *
@@ -326,7 +301,6 @@
       assertFunction: function assertFunction(value, msg) {
         qx.core.Assert.assertFunction(value, msg);
       },
-
       /**
        * Assert that the value is a string.
        *
@@ -336,7 +310,6 @@
       assertString: function assertString(value, msg) {
         qx.core.Assert.assertString(value, msg);
       },
-
       /**
        * Assert that the value is a boolean.
        *
@@ -346,7 +319,6 @@
       assertBoolean: function assertBoolean(value, msg) {
         qx.core.Assert.assertBoolean(value, msg);
       },
-
       /**
        * Assert that the value is a number.
        *
@@ -356,7 +328,6 @@
       assertNumber: function assertNumber(value, msg) {
         qx.core.Assert.assertNumber(value, msg);
       },
-
       /**
        * Assert that the value is a number >= 0.
        *
@@ -366,7 +337,6 @@
       assertPositiveNumber: function assertPositiveNumber(value, msg) {
         qx.core.Assert.assertPositiveNumber(value, msg);
       },
-
       /**
        * Assert that the value is an integer.
        *
@@ -376,7 +346,6 @@
       assertInteger: function assertInteger(value, msg) {
         qx.core.Assert.assertInteger(value, msg);
       },
-
       /**
        * Assert that the value is an integer >= 0.
        *
@@ -386,7 +355,6 @@
       assertPositiveInteger: function assertPositiveInteger(value, msg) {
         qx.core.Assert.assertPositiveInteger(value, msg);
       },
-
       /**
        * Assert that the value is inside the given range.
        *
@@ -398,7 +366,6 @@
       assertInRange: function assertInRange(value, min, max, msg) {
         qx.core.Assert.assertInRange(value, min, max, msg);
       },
-
       /**
        * Assert that the value is an object.
        *
@@ -408,7 +375,6 @@
       assertObject: function assertObject(value, msg) {
         qx.core.Assert.assertObject(value, msg);
       },
-
       /**
        * Assert that the value is an array.
        *
@@ -418,7 +384,6 @@
       assertArray: function assertArray(value, msg) {
         qx.core.Assert.assertArray(value, msg);
       },
-
       /**
        * Assert that the value is a map either created using <code>new Object</code>
        * or by using the object literal notation <code>{ ... }</code>.
@@ -429,7 +394,6 @@
       assertMap: function assertMap(value, msg) {
         qx.core.Assert.assertMap(value, msg);
       },
-
       /**
        * Assert that the value is a regular expression.
        *
@@ -439,7 +403,6 @@
       assertRegExp: function assertRegExp(value, msg) {
         qx.core.Assert.assertRegExp(value, msg);
       },
-
       /**
        * Assert that the value has the given type using the <code>typeof</code>
        * operator. Because the type is not always what it is supposed to be it is
@@ -453,7 +416,6 @@
       assertType: function assertType(value, type, msg) {
         qx.core.Assert.assertType(value, type, msg);
       },
-
       /**
        * Assert that the value is an instance of the given class.
        *
@@ -464,7 +426,6 @@
       assertInstance: function assertInstance(value, clazz, msg) {
         qx.core.Assert.assertInstance(value, clazz, msg);
       },
-
       /**
        * Assert that the value implements the given interface.
        *
@@ -475,7 +436,6 @@
       assertInterface: function assertInterface(value, iface, msg) {
         qx.core.Assert.assertInterface(value, iface, msg);
       },
-
       /**
        * Assert that the value represents the given CSS color value. This method
        * parses the color strings and compares the RGB values. It is able to
@@ -488,7 +448,6 @@
       assertCssColor: function assertCssColor(expected, value, msg) {
         qx.core.Assert.assertCssColor(expected, value, msg);
       },
-
       /**
        * Assert that the value is a DOM element.
        *
@@ -498,7 +457,6 @@
       assertElement: function assertElement(value, msg) {
         qx.core.Assert.assertElement(value, msg);
       },
-
       /**
        * Assert that the value is an instance of {@link qx.core.Object}.
        *
@@ -508,7 +466,6 @@
       assertQxObject: function assertQxObject(value, msg) {
         qx.core.Assert.assertQxObject(value, msg);
       },
-
       /**
        * Assert that the value is an instance of {@link qx.ui.core.Widget}.
        *
@@ -523,4 +480,4 @@
   qx.core.MAssert.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAssert.js.map?dt=1664789580169
+//# sourceMappingURL=MAssert.js.map?dt=1672653488410

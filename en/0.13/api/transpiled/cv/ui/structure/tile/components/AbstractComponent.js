@@ -13,11 +13,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* AbstractComponent.js 
-   * 
+  /* AbstractComponent.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,7 +38,6 @@
   qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     extend: cv.ui.structure.tile.elements.AbstractCustomElement,
     type: 'abstract',
-
     /*
     ***********************************************
       PROPERTIES
@@ -67,7 +65,6 @@
         event: 'changeVisibility'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -78,35 +75,29 @@
       _visibleDisplayMode: null,
       _init: function _init() {
         var _this = this;
-
         var element = this._element;
         var hasReadAddress = false;
         var writeAddresses = [];
         Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), function (address) {
           var mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
-
           switch (mode) {
             case 'readwrite':
               hasReadAddress = true;
               writeAddresses.push(address);
               break;
-
             case 'read':
               hasReadAddress = true;
               break;
-
             case 'write':
               writeAddresses.push(address);
               break;
           }
         });
         this._writeAddresses = writeAddresses;
-
         if (hasReadAddress) {
           element.addEventListener('stateUpdate', function (ev) {
-            _this.onStateUpdate(ev); // cancel event here
-
-
+            _this.onStateUpdate(ev);
+            // cancel event here
             ev.stopPropagation();
           });
         }
@@ -115,19 +106,14 @@
       _applyValue: function _applyValue(value) {
         if (this.isConnected()) {
           this._element.setAttribute('value', value || '');
-
           var mappedValue = value;
-
           if (this._element.hasAttribute('mapping')) {
             mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
           }
-
           if (this._element.hasAttribute('format')) {
             mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
           }
-
           this._updateValue(mappedValue, value);
-
           if (this._element.hasAttribute('styling')) {
             var styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
             this.setStyleClass(styleClass);
@@ -139,7 +125,6 @@
       // property apply
       _applyStyleClass: function _applyStyleClass(value, oldValue) {
         var classes = this._element.classList;
-
         if (oldValue) {
           if (classes.contains(oldValue)) {
             classes.replace(oldValue, value);
@@ -153,13 +138,10 @@
       },
       _applyEnabled: function _applyEnabled(value) {
         var blocker = this._element.querySelector(':scope > .blocker');
-
         if (!blocker) {
           blocker = document.createElement('div');
           blocker.classList.add('blocker');
-
           this._element.appendChild(blocker);
-
           blocker.addEventListener('click', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
@@ -173,35 +155,28 @@
             ev.stopPropagation();
           });
         }
-
         this._element.setAttribute('disabled', value === false ? 'true' : 'false');
-
         blocker.style.display = value === true ? 'none' : 'block';
       },
       _applyVisibility: function _applyVisibility(value, oldValue) {
         if (oldValue === 'hidden') {
           this._element.style.opacity = '1.0';
         }
-
         switch (value) {
           case 'visible':
             if (this._visibleDisplayMode) {
               this._element.style.display = this._visibleDisplayMode || 'initial';
             }
-
             break;
-
           case 'hidden':
             this._element.style.opacity = '0';
             break;
-
           case 'excluded':
             this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
             this._element.style.display = 'none';
             break;
         }
       },
-
       /**
        * Handles the incoming data from the backend for this widget
        *
@@ -214,23 +189,19 @@
             this.setEnabled(ev.detail.state);
             ev.stopPropagation();
             return true;
-
           case 'show-exclude':
             this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
             ev.stopPropagation();
             return true;
-
           case 'show-hide':
             this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
             ev.stopPropagation();
             return true;
-
           case '':
             this.setValue(ev.detail.state);
             ev.stopPropagation();
             return true;
         }
-
         return false;
       }
     }
@@ -238,4 +209,4 @@
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1664789571568
+//# sourceMappingURL=AbstractComponent.js.map?dt=1672653479945

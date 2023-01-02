@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 1004
       },
       "end": {
-        "line": 81,
-        "column": 3
+        "line": 76,
+        "column": 3,
+        "index": 2521
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "configureItem": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1276
         },
         "end": {
-          "line": 40,
-          "column": 37
+          "line": 38,
+          "column": 26,
+          "index": 1298
         }
       },
       "jsdoc": {
@@ -62,12 +66,14 @@
     "filter": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1696
         },
         "end": {
-          "line": 53,
-          "column": 30
+          "line": 50,
+          "column": 19,
+          "index": 1711
         }
       },
       "jsdoc": {
@@ -101,12 +107,14 @@
     "createItem": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1975
         },
         "end": {
-          "line": 63,
-          "column": 30
+          "line": 59,
+          "column": 19,
+          "index": 1990
         }
       },
       "jsdoc": {
@@ -131,12 +139,14 @@
     "bindItem": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2480
         },
         "end": {
-          "line": 79,
-          "column": 48
+          "line": 74,
+          "column": 37,
+          "index": 2513
         }
       },
       "jsdoc": {

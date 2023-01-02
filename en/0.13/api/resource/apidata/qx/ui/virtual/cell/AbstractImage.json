@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 598
       },
       "end": {
-        "line": 188,
-        "column": 3
+        "line": 179,
+        "column": 3,
+        "index": 5017
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 14
+        "line": 34,
+        "column": 2,
+        "index": 898
       },
       "end": {
-        "line": 39,
-        "column": 3
+        "line": 37,
+        "column": 3,
+        "index": 989
       }
     },
     "jsdoc": {}
@@ -47,12 +51,14 @@
     "__defaultWidth": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1193
         },
         "end": {
-          "line": 50,
-          "column": 23
+          "line": 46,
+          "column": 22,
+          "index": 1211
         }
       },
       "type": "variable",
@@ -61,12 +67,14 @@
     "__defaultHeight": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1217
         },
         "end": {
-          "line": 51,
-          "column": 24
+          "line": 47,
+          "column": 23,
+          "index": 1236
         }
       },
       "type": "variable",
@@ -75,12 +83,14 @@
     "_aliasManager": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1242
         },
         "end": {
-          "line": 52,
-          "column": 24
+          "line": 48,
+          "column": 23,
+          "index": 1261
         }
       },
       "type": "variable",
@@ -89,12 +99,14 @@
     "__getImageSize": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1481
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 75,
+          "column": 5,
+          "index": 2145
         }
       },
       "jsdoc": {
@@ -128,12 +140,14 @@
     "__createImage": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2695
         },
         "end": {
-          "line": 129,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 3223
         }
       },
       "jsdoc": {
@@ -170,12 +184,14 @@
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3865
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 134,
+          "column": 5,
+          "index": 3947
         }
       },
       "jsdoc": {
@@ -215,12 +231,14 @@
     "getContent": {
       "location": {
         "start": {
-          "line": 152,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 3972
         },
         "end": {
-          "line": 185,
-          "column": 5
+          "line": 177,
+          "column": 5,
+          "index": 5009
         }
       },
       "jsdoc": {},
@@ -320,6 +338,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -344,6 +363,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

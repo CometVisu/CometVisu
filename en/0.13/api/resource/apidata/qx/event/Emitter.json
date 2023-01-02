@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 595
       },
       "end": {
-        "line": 244,
-        "column": 3
+        "line": 249,
+        "column": 3,
+        "index": 7589
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "__storage": {
       "location": {
         "start": {
-          "line": 28,
-          "column": 4
+          "line": 27,
+          "column": 4,
+          "index": 721
         },
         "end": {
-          "line": 28,
-          "column": 18
+          "line": 27,
+          "column": 17,
+          "index": 734
         }
       },
       "jsdoc": {
@@ -55,12 +59,14 @@
     "__listener": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 758
         },
         "end": {
-          "line": 33,
-          "column": 21
+          "line": 31,
+          "column": 20,
+          "index": 774
         }
       },
       "type": "variable",
@@ -69,12 +75,14 @@
     "__any": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 780
         },
         "end": {
-          "line": 34,
-          "column": 16
+          "line": 32,
+          "column": 15,
+          "index": 791
         }
       },
       "type": "variable",
@@ -83,12 +91,14 @@
     "on": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1302
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 60,
+          "column": 5,
+          "index": 1645
         }
       },
       "jsdoc": {
@@ -138,12 +148,14 @@
     "once": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2189
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2534
         }
       },
       "jsdoc": {
@@ -193,12 +205,14 @@
     "off": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2989
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 111,
+          "column": 5,
+          "index": 3365
         }
       },
       "jsdoc": {
@@ -248,12 +262,14 @@
     "offById": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3715
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 127,
+          "column": 5,
+          "index": 3887
         }
       },
       "jsdoc": {
@@ -287,12 +303,14 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 123,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 4221
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 138,
+          "column": 5,
+          "index": 4304
         }
       },
       "jsdoc": {
@@ -342,12 +360,14 @@
     "addListenerOnce": {
       "location": {
         "start": {
-          "line": 135,
-          "column": 4
+          "line": 147,
+          "column": 4,
+          "index": 4640
         },
         "end": {
-          "line": 137,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 4729
         }
       },
       "jsdoc": {
@@ -397,12 +417,14 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 157,
+          "column": 4,
+          "index": 4986
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 5066
         }
       },
       "jsdoc": {
@@ -444,12 +466,14 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 165,
+          "column": 4,
+          "index": 5181
         },
         "end": {
-          "line": 157,
-          "column": 5
+          "line": 167,
+          "column": 5,
+          "index": 5235
         }
       },
       "jsdoc": {
@@ -475,12 +499,14 @@
     "emit": {
       "location": {
         "start": {
-          "line": 168,
-          "column": 4
+          "line": 175,
+          "column": 4,
+          "index": 5492
         },
         "end": {
-          "line": 193,
-          "column": 5
+          "line": 202,
+          "column": 5,
+          "index": 6312
         }
       },
       "jsdoc": {
@@ -515,12 +541,14 @@
     "getListeners": {
       "location": {
         "start": {
-          "line": 203,
-          "column": 4
+          "line": 210,
+          "column": 4,
+          "index": 6534
         },
         "end": {
-          "line": 205,
-          "column": 5
+          "line": 212,
+          "column": 5,
+          "index": 6586
         }
       },
       "jsdoc": {
@@ -551,12 +579,14 @@
     "getEntryById": {
       "location": {
         "start": {
-          "line": 215,
-          "column": 4
+          "line": 221,
+          "column": 4,
+          "index": 6844
         },
         "end": {
-          "line": 225,
-          "column": 5
+          "line": 231,
+          "column": 5,
+          "index": 7105
         }
       },
       "jsdoc": {
@@ -596,12 +626,14 @@
     "__getStorage": {
       "location": {
         "start": {
-          "line": 234,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 7357
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 247,
+          "column": 5,
+          "index": 7581
         }
       },
       "jsdoc": {

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 504
       },
       "end": {
-        "line": 172,
-        "column": 3
+        "line": 157,
+        "column": 3,
+        "index": 4050
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 14
+        "line": 29,
+        "column": 2,
+        "index": 680
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 38,
+        "column": 3,
+        "index": 955
       }
     },
     "jsdoc": {
@@ -60,12 +64,14 @@
     "__columnData": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 975
         },
         "end": {
-          "line": 46,
-          "column": 23
+          "line": 41,
+          "column": 22,
+          "index": 993
         }
       },
       "type": "variable",
@@ -74,12 +80,14 @@
     "getData": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1120
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1169
         }
       },
       "jsdoc": {
@@ -104,12 +112,14 @@
     "set": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1654
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 87,
+          "column": 5,
+          "index": 2103
         }
       },
       "jsdoc": {
@@ -147,12 +157,14 @@
     "setWidth": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 2667
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 111,
+          "column": 5,
+          "index": 2882
         }
       },
       "jsdoc": {
@@ -196,12 +208,14 @@
     "setMinWidth": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3247
         },
         "end": {
-          "line": 146,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 3462
         }
       },
       "jsdoc": {
@@ -242,12 +256,14 @@
     "setMaxWidth": {
       "location": {
         "start": {
-          "line": 162,
-          "column": 4
+          "line": 149,
+          "column": 4,
+          "index": 3827
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 4042
         }
       },
       "jsdoc": {
@@ -373,6 +389,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -397,6 +414,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

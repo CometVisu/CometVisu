@@ -9,11 +9,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* String.js 
-   * 
+  /* String.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -28,31 +27,28 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Class.define('cv.util.String', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
     ******************************************************
     */
     statics: {
-      __P_525_0: null,
-
+      __P_540_0: null,
       /**
        * Decode HTML entities like &amp; to &
        * @param str {String} string to decode
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__P_525_0) {
-          this.__P_525_0 = document.createElement('span');
+        if (!this.__P_540_0) {
+          this.__P_540_0 = document.createElement('span');
         }
-
-        this.__P_525_0.innerHTML = str;
-        return this.__P_525_0.innerText;
+        this.__P_540_0.innerHTML = str;
+        return this.__P_540_0.innerText;
       },
-
       /**
        * Clean the string that contains HTML code and convert it to a DOM element
        * @param str {String} string to decode
@@ -65,7 +61,6 @@
         div.innerHTML = str;
         return div.children[0];
       },
-
       /**
        * Insert in string values as the well known sprint() function of other
        * programming languages does.
@@ -77,22 +72,18 @@
         function sprintf() {
           return _sprintf.apply(this, arguments);
         }
-
         sprintf.toString = function () {
           return _sprintf.toString();
         };
-
         return sprintf;
       }(function () {
         var args = Array.prototype.slice.call(arguments);
         var string = '-';
-
         try {
           string = sprintf.apply(this, args);
         } catch (err) {
           qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));
         }
-
         return string;
       })
     }
@@ -100,4 +91,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1664789612959
+//# sourceMappingURL=String.js.map?dt=1672653523037

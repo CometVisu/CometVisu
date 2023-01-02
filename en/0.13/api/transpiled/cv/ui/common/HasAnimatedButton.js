@@ -9,11 +9,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* HasAnimatedButton.js 
-   * 
+  /* HasAnimatedButton.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -28,6 +27,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
     /*
      ******************************************************
@@ -35,32 +35,28 @@
      ******************************************************
      */
     construct: function construct() {
-      this.addListenerOnce('domReady', this.__P_532_0, this);
+      this.addListenerOnce('domReady', this.__P_547_0, this);
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_532_1: null,
-      __P_532_2: null,
-      __P_532_3: null,
-      __P_532_0: function __P_532_0() {
-        var actors = this.__P_532_4();
-
+      __P_547_1: null,
+      __P_547_2: null,
+      __P_547_3: null,
+      __P_547_0: function __P_547_0() {
+        var actors = this.__P_547_4();
         if (this.isBindClickToWidget()) {
           actors = [this.getInteractionElement()];
         }
-
         actors.forEach(function (actor) {
           qx.event.Registration.addListener(actor, 'pointerdown', this.buttonPressed, this);
         }, this);
       },
-      __P_532_4: function __P_532_4() {
+      __P_547_4: function __P_547_4() {
         var actors = [this.getActor()];
-
         if (this.getActors) {
           this.getActors().forEach(function (a) {
             if (actors.indexOf(a) === -1) {
@@ -68,10 +64,8 @@
             }
           });
         }
-
         return actors;
       },
-
       /**
        * Create an action handling that shows a button press animation.
        * When the action is not set, it will be searched for - so that widgets
@@ -81,20 +75,18 @@
        */
       buttonPressed: function buttonPressed(event) {
         var actor = event.getCurrentTarget();
-        this.__P_532_3 = actor;
+        this.__P_547_3 = actor;
         qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
-        var buttons = this.isBindClickToWidget() ? this.__P_532_4() : [actor];
-
-        this.__P_532_5(buttons, true);
-
-        this.__P_532_1 = qx.event.Registration.addListener(actor, 'pointerout', function () {
-          this.__P_532_5(buttons, false);
+        var buttons = this.isBindClickToWidget() ? this.__P_547_4() : [actor];
+        this.__P_547_5(buttons, true);
+        this.__P_547_1 = qx.event.Registration.addListener(actor, 'pointerout', function () {
+          this.__P_547_5(buttons, false);
         }, this);
-        this.__P_532_2 = qx.event.Registration.addListener(actor, 'pointerover', function () {
-          this.__P_532_5(buttons, true);
+        this.__P_547_2 = qx.event.Registration.addListener(actor, 'pointerover', function () {
+          this.__P_547_5(buttons, true);
         }, this);
       },
-      __P_532_5: function __P_532_5(buttons, pressed) {
+      __P_547_5: function __P_547_5(buttons, pressed) {
         if (pressed) {
           buttons.forEach(function (button) {
             if (button) {
@@ -111,7 +103,6 @@
           });
         }
       },
-
       /**
        * Create an action handling that shows a button unpress animation.
        * When the action is not set, it will be searched for - so that widgets
@@ -121,25 +112,20 @@
        */
       buttonReleased: function buttonReleased(event) {
         qx.event.Registration.removeListener(document, 'pointerup', this.buttonReleased, this);
-        var actor = this.__P_532_3;
-        var buttons = this.isBindClickToWidget() ? this.__P_532_4() : [actor];
-
-        this.__P_532_5(buttons, false);
-
-        if (this.__P_532_1) {
-          qx.event.Registration.removeListenerById(actor, this.__P_532_1);
+        var actor = this.__P_547_3;
+        var buttons = this.isBindClickToWidget() ? this.__P_547_4() : [actor];
+        this.__P_547_5(buttons, false);
+        if (this.__P_547_1) {
+          qx.event.Registration.removeListenerById(actor, this.__P_547_1);
         }
-
-        if (this.__P_532_2) {
-          qx.event.Registration.removeListenerById(actor, this.__P_532_2);
+        if (this.__P_547_2) {
+          qx.event.Registration.removeListenerById(actor, this.__P_547_2);
         }
-
-        this.__P_532_1 = null;
-        this.__P_532_2 = null;
-        this.__P_532_3 = null;
+        this.__P_547_1 = null;
+        this.__P_547_2 = null;
+        this.__P_547_3 = null;
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -152,4 +138,4 @@
   cv.ui.common.HasAnimatedButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAnimatedButton.js.map?dt=1664789614924
+//# sourceMappingURL=HasAnimatedButton.js.map?dt=1672653524728

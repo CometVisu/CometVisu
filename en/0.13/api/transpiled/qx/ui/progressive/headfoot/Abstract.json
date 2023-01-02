@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 541
       },
       "end": {
-        "line": 55,
-        "column": 3
+        "line": 50,
+        "column": 3,
+        "index": 1182
       }
     },
     "jsdoc": {
@@ -33,26 +35,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 14
+        "line": 27,
+        "column": 2,
+        "index": 658
       },
       "end": {
-        "line": 31,
-        "column": 3
+        "line": 29,
+        "column": 3,
+        "index": 711
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__progressive": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 731
         },
         "end": {
-          "line": 36,
-          "column": 24
+          "line": 32,
+          "column": 23,
+          "index": 750
         }
       },
       "type": "variable",
@@ -61,12 +66,14 @@
     "join": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1057
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1122
         }
       },
       "jsdoc": {
@@ -177,6 +184,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -201,6 +209,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3885,15 +3894,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 52,
-        "column": 13
+        "line": 47,
+        "column": 2,
+        "index": 1131
       },
       "end": {
-        "line": 54,
-        "column": 3
+        "line": 49,
+        "column": 3,
+        "index": 1178
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": [

@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 989
       },
       "end": {
         "line": 60,
-        "column": 3
+        "column": 3,
+        "index": 1821
       }
     },
     "jsdoc": {
@@ -45,12 +47,14 @@
     "anonymous": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1294
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1349
         }
       },
       "name": "anonymous",
@@ -67,11 +71,13 @@
       "location": {
         "start": {
           "line": 41,
-          "column": 4
+          "column": 4,
+          "index": 1356
         },
         "end": {
           "line": 41,
-          "column": 44
+          "column": 46,
+          "index": 1398
         }
       },
       "name": "childObjects",
@@ -118,11 +124,13 @@
       "location": {
         "start": {
           "line": 51,
-          "column": 4
+          "column": 4,
+          "index": 1578
         },
         "end": {
           "line": 53,
-          "column": 5
+          "column": 5,
+          "index": 1642
         }
       },
       "jsdoc": {},
@@ -482,6 +490,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -506,6 +515,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -2012,14 +2022,15 @@
     "location": {
       "start": {
         "line": 56,
-        "column": 9
+        "column": 2,
+        "index": 1651
       },
       "end": {
         "line": 59,
-        "column": 3
+        "column": 3,
+        "index": 1817
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

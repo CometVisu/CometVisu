@@ -17,11 +17,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 818
       },
       "end": {
-        "line": 272,
-        "column": 3
+        "line": 233,
+        "column": 3,
+        "index": 6147
       }
     },
     "jsdoc": {
@@ -53,12 +55,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 51,
-        "column": 14
+        "line": 49,
+        "column": 2,
+        "index": 1384
       },
       "end": {
-        "line": 69,
-        "column": 3
+        "line": 66,
+        "column": 3,
+        "index": 1723
       }
     },
     "jsdoc": {
@@ -94,12 +98,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1950
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 78,
+          "column": 5,
+          "index": 2012
         }
       },
       "jsdoc": {},
@@ -116,12 +122,14 @@
     "legend": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 2171
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2288
         }
       },
       "jsdoc": {
@@ -143,12 +151,14 @@
     "legendPosition": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 2367
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 99,
+          "column": 5,
+          "index": 2503
         }
       },
       "jsdoc": {
@@ -296,7 +306,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -308,12 +318,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -323,12 +333,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 2848
         },
         "end": {
-          "line": 131,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 2891
         }
       },
       "jsdoc": {
@@ -351,12 +363,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 135,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 2916
         },
         "end": {
-          "line": 154,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 3437
         }
       },
       "jsdoc": {},
@@ -370,12 +384,14 @@
     "_getContentPaddingTarget": {
       "location": {
         "start": {
-          "line": 162,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 3606
         },
         "end": {
-          "line": 164,
-          "column": 5
+          "line": 144,
+          "column": 5,
+          "index": 3684
         }
       },
       "jsdoc": {
@@ -400,12 +416,14 @@
     "_applyLegend": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 153,
+          "column": 4,
+          "index": 3910
         },
         "end": {
-          "line": 187,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 4130
         }
       },
       "jsdoc": {},
@@ -418,12 +436,14 @@
     "_applyLegendPosition": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 168,
+          "column": 4,
+          "index": 4261
         },
         "end": {
-          "line": 199,
-          "column": 5
+          "line": 172,
+          "column": 5,
+          "index": 4389
         }
       },
       "jsdoc": {
@@ -443,12 +463,14 @@
     "_repositionFrame": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 178,
+          "column": 4,
+          "index": 4516
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 191,
+          "column": 5,
+          "index": 5016
         }
       },
       "jsdoc": {
@@ -465,12 +487,14 @@
     "getChildrenContainer": {
       "location": {
         "start": {
-          "line": 239,
-          "column": 4
+          "line": 205,
+          "column": 4,
+          "index": 5409
         },
         "end": {
-          "line": 241,
-          "column": 5
+          "line": 207,
+          "column": 5,
+          "index": 5483
         }
       },
       "jsdoc": {
@@ -499,12 +523,14 @@
     "setIcon": {
       "location": {
         "start": {
-          "line": 258,
-          "column": 4
+          "line": 220,
+          "column": 4,
+          "index": 5831
         },
         "end": {
-          "line": 260,
-          "column": 5
+          "line": 222,
+          "column": 5,
+          "index": 5904
         }
       },
       "jsdoc": {
@@ -530,12 +556,14 @@
     "getIcon": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 229,
+          "column": 4,
+          "index": 6067
         },
         "end": {
-          "line": 270,
-          "column": 5
+          "line": 231,
+          "column": 5,
+          "index": 6139
         }
       },
       "jsdoc": {
@@ -1617,38 +1645,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -1859,6 +1855,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1883,6 +1880,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

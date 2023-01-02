@@ -8,15 +8,15 @@
       "qx.core.Object": {
         "construct": true,
         "require": true
-      }
+      },
+      "cv.ui.manager.model.XmlElement": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ElementChange.js 
-   * 
+  /* ElementChange.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +37,6 @@
    */
   qx.Class.define('cv.ui.manager.model.ElementChange', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -50,7 +49,6 @@
       this.setChanges(changes);
       this.setChangeType(type || 'content');
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -71,7 +69,6 @@
         init: ['content']
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -86,7 +83,6 @@
         var element = this.getElement();
         var success = false;
         var change;
-
         if (!element.isDisposed()) {
           switch (this.getChangeType()) {
             case 'content':
@@ -100,36 +96,27 @@
               element.updateModified();
               success = true;
               break;
-
             case 'deleted':
               change = this.getChanges()[0];
-
               if (change.parent) {
                 success = change.parent.insertChild(change.child, change.index, true);
               }
-
               break;
-
             case 'created':
               change = this.getChanges()[0];
-
               if (change.child) {
                 change.child.remove(true);
                 success = true;
               }
-
               break;
-
             case 'moved':
               change = this.getChanges()[0];
               success = change.child.moveTo(change.oldParent, change.oldIndex, true);
               break;
           }
         }
-
         return success;
       },
-
       /**
        * Redo all change
        *  @return {Boolean} true if all changes are redone
@@ -138,7 +125,6 @@
         var element = this.getElement();
         var success = false;
         var change;
-
         if (!element.isDisposed()) {
           switch (this.getChangeType()) {
             case 'content':
@@ -152,31 +138,24 @@
               element.updateModified();
               success = true;
               break;
-
             case 'deleted':
               if (element) {
                 element.remove(true);
                 success = true;
               }
-
               break;
-
             case 'created':
               change = this.getChanges()[0];
-
               if (change.parent) {
                 success = change.parent.insertChild(change.child, change.index, true);
               }
-
               break;
-
             case 'moved':
               change = this.getChanges()[0];
               success = change.child.moveTo(change.parent, change.index, true);
               break;
           }
         }
-
         return success;
       }
     }
@@ -184,4 +163,4 @@
   cv.ui.manager.model.ElementChange.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementChange.js.map?dt=1664789567804
+//# sourceMappingURL=ElementChange.js.map?dt=1672653476463

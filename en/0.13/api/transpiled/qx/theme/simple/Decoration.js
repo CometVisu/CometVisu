@@ -4,11 +4,13 @@
       "qx.Theme": {
         "usage": "dynamic",
         "require": true
+      },
+      "qx.test.MDecoration": {
+        "require": true
       }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -31,6 +33,7 @@
    * The simple qooxdoo decoration theme.
    */
   qx.Theme.define("qx.theme.simple.Decoration", {
+    include: [qx.test.MDecoration],
     aliases: {
       decoration: "qx/decoration/Simple"
     },
@@ -40,13 +43,14 @@
         CORE
       ---------------------------------------------------------------------------
       */
+
       "border-blue": {
         style: {
           width: 4,
           color: "background-selected"
         }
       },
-      "main": {
+      main: {
         style: {
           width: 1,
           color: "border-main"
@@ -58,7 +62,7 @@
           color: "button-border"
         }
       },
-      "popup": {
+      popup: {
         style: {
           width: 1,
           color: "window-border",
@@ -67,12 +71,11 @@
           shadowColor: "shadow"
         }
       },
-      "dragover": {
+      dragover: {
         style: {
           bottom: [2, "solid", "dark-blue"]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON
@@ -108,7 +111,6 @@
           color: "button-border-hovered"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON INVALID
@@ -132,7 +134,6 @@
       "button-box-pressed-hovered-invalid": {
         include: "button-box-pressed-invalid"
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON FOCUSED
@@ -156,7 +157,6 @@
       "button-box-pressed-hovered-focused": {
         include: "button-box-pressed-focused"
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON RIGHT
@@ -210,7 +210,6 @@
           radius: [0, 3, 3, 0]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON BORDERLESS RIGHT
@@ -244,7 +243,6 @@
           width: [1, 1, 1, 0]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON TOP RIGHT
@@ -278,7 +276,6 @@
           width: [1, 1, 1, 0]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON BOTOM RIGHT
@@ -312,7 +309,6 @@
           width: [0, 1, 1, 0]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON BOTOM LEFT
@@ -346,7 +342,6 @@
           width: [0, 0, 1, 1]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON TOP LEFT
@@ -380,7 +375,6 @@
           width: [1, 0, 0, 1]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON MIDDLE
@@ -414,7 +408,6 @@
           width: [1, 0, 1, 1]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON LEFT
@@ -476,12 +469,12 @@
           width: [1, 0, 1, 1]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SEPARATOR
       ---------------------------------------------------------------------------
       */
+
       "separator-horizontal": {
         style: {
           widthLeft: 1,
@@ -494,7 +487,6 @@
           colorTop: "border-separator"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLL KNOB
@@ -526,7 +518,6 @@
           color: "button-border-hovered"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         HOVER BUTTON
@@ -538,13 +529,12 @@
           radius: 3
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-      "window": {
+      window: {
         style: {
           width: 1,
           color: "window-border",
@@ -569,7 +559,6 @@
           color: "window-border-inner"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         GROUP BOX
@@ -586,13 +575,12 @@
           shadowLength: 0
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TEXT FIELD
       ---------------------------------------------------------------------------
       */
-      "inset": {
+      inset: {
         style: {
           width: 1,
           color: ["border-light-shadow", "border-light", "border-light", "border-light"]
@@ -610,12 +598,12 @@
           color: "invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LIST ITEM
       ---------------------------------------------------------------------------
       */
+
       "lead-item": {
         style: {
           width: 1,
@@ -623,13 +611,13 @@
           color: "border-lead"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOL TIP
       ---------------------------------------------------------------------------
       */
-      "tooltip": {
+
+      tooltip: {
         style: {
           width: 1,
           color: "tooltip-text",
@@ -644,19 +632,18 @@
           backgroundColor: "invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
+
       "toolbar-separator": {
         style: {
           widthLeft: 1,
           colorLeft: "button-border"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
@@ -668,7 +655,6 @@
           colorTop: "background-selected"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU BAR
@@ -689,12 +675,12 @@
           width: [1, 1, 0, 1]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
       ---------------------------------------------------------------------------
       */
+
       "datechooser-date-pane": {
         style: {
           widthTop: 1,
@@ -725,12 +711,12 @@
           style: "solid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TAB VIEW
       ---------------------------------------------------------------------------
       */
+
       "tabview-page-button-top": {
         style: {
           width: [1, 1, 0, 1],
@@ -760,13 +746,13 @@
           width: [1, 1, 1, 0]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
-      "statusbar": {
+
+      statusbar: {
         style: {
           widthTop: 1,
           colorTop: "background-selected",
@@ -806,6 +792,20 @@
           widthLeft: 1
         }
       },
+      "virtual-background-header": {
+        style: {
+          gradientStart: ["button-box-bright", 40],
+          gradientEnd: ["button-box-dark", 70],
+          backgroundColor: "button-box-bright"
+        }
+      },
+      "virtual-background-span": {
+        include: "table-header-cell",
+        style: {
+          color: "table-row-line",
+          width: [0, 0, 1, 0]
+        }
+      },
       "progressive-table-header": {
         include: "button-box",
         style: {
@@ -819,26 +819,25 @@
           color: "button-border"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
       ---------------------------------------------------------------------------
       */
-      "progressbar": {
+
+      progressbar: {
         style: {
           backgroundColor: "#FFF",
           width: 1,
           color: "border-separator"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         RADIO BUTTON
       ---------------------------------------------------------------------------
       */
-      "radiobutton": {
+      radiobutton: {
         style: {
           radius: 10,
           width: 1,
@@ -859,13 +858,13 @@
           color: "invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHECK BOX
       ---------------------------------------------------------------------------
       */
-      "checkbox": {
+
+      checkbox: {
         style: {
           width: 1,
           color: "button-border"
@@ -888,4 +887,4 @@
   qx.theme.simple.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789591827
+//# sourceMappingURL=Decoration.js.map?dt=1672653503306

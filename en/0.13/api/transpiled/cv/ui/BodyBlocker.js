@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* BodyBlocker.js 
-   * 
+  /* BodyBlocker.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -31,11 +30,11 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   //noinspection JSUnusedGlobalSymbols
   qx.Class.define('cv.ui.BodyBlocker', {
     extend: qx.bom.Blocker,
     type: 'singleton',
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -43,48 +42,42 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__P_541_0 = {};
-      this.__P_541_1 = [];
+      this.__P_557_0 = {};
+      this.__P_557_1 = [];
       this.setBlockerOpacity(0.5);
       this.setBlockerColor('#000000');
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_541_2: null,
-      __P_541_0: null,
-      __P_541_1: null,
-
+      __P_557_2: null,
+      __P_557_0: null,
+      __P_557_1: null,
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_541_3());
-
-        if (!Object.prototype.hasOwnProperty.call(this.__P_541_0, topic)) {
-          this.__P_541_0[topic] = 1;
+        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_557_3());
+        if (!Object.prototype.hasOwnProperty.call(this.__P_557_0, topic)) {
+          this.__P_557_0[topic] = 1;
         } else if (!unique) {
-          this.__P_541_0[topic]++;
+          this.__P_557_0[topic]++;
         }
-
         document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
           elem.classList.add('blurred');
         });
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (Object.prototype.hasOwnProperty.call(this.__P_541_0, topic)) {
-            this.__P_541_0[topic]--;
-
-            if (this.__P_541_0[topic] === 0) {
-              delete this.__P_541_0[topic];
-
-              if (Object.keys(this.__P_541_0).length === 0) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_557_0, topic)) {
+            this.__P_557_0[topic]--;
+            if (this.__P_557_0[topic] === 0) {
+              delete this.__P_557_0[topic];
+              if (Object.keys(this.__P_557_0).length === 0) {
                 cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
                 document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
                   elem.classList.remove('blurred');
@@ -94,23 +87,22 @@
           }
         } else {
           // not topic given unblock all
-          this.__P_541_0 = {};
+          this.__P_557_0 = {};
           cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
           document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
             elem.classList.remove('blurred');
           });
         }
       },
-      __P_541_3: function __P_541_3() {
-        if (!this.__P_541_2) {
-          this.__P_541_2 = document.querySelector('body');
+      __P_557_3: function __P_557_3() {
+        if (!this.__P_557_2) {
+          this.__P_557_2 = document.querySelector('body');
         }
-
-        return this.__P_541_2;
+        return this.__P_557_2;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1664789615663
+//# sourceMappingURL=BodyBlocker.js.map?dt=1672653525501

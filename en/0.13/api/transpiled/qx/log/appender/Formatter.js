@@ -24,7 +24,7 @@
     members: {
       /**
        * Formats a numeric time offset to 6 characters.
-       * 
+       *
        * @param offset
        *          {Integer} Current offset value
        * @param length
@@ -35,17 +35,14 @@
         var str = offset.toString();
         var diff = (length || 6) - str.length;
         var pad = "";
-
         for (var i = 0; i < diff; i++) {
           pad += "0";
         }
-
         return pad + str;
       },
-
       /**
        * Formats the time part of an entry
-       * 
+       *
        * @param entry {Map} the entry to output
        * @return {String} formatted time, as an offset or date time depending on `formatTimeAs` property
        */
@@ -53,22 +50,19 @@
         if (this.getFormatTimeAs() == "offset") {
           return this.formatOffset(entry.offset, 6);
         }
-
-        if (!qx.log.appender.Formatter.__P_259_0) {
-          qx.log.appender.Formatter.__P_259_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
+        if (!qx.log.appender.Formatter.__P_274_0) {
+          qx.log.appender.Formatter.__P_274_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
         }
-
-        return qx.log.appender.Formatter.__P_259_0.format(entry.time);
+        return qx.log.appender.Formatter.__P_274_0.format(entry.time);
       },
-
       /**
        * Normalises the entry into an object with clazz, object, hash.
-       * 
+       *
        * @param entry {Map} the entry to output
        * @return {Map} result, containing:
        *  clazz {Class?} the class of the object
        *  object {Object?} the object
-       *  hash {String?} the hash code 
+       *  hash {String?} the hash code
        */
       normalizeEntryClass: function normalizeEntryClass(entry) {
         var result = {
@@ -76,15 +70,12 @@
           object: null,
           hash: null
         };
-
         if (entry.object) {
           result.hash = entry.object;
-
           if (entry.clazz) {
             result.clazz = entry.clazz;
           } else {
             var obj = entry.win.qx.core.ObjectRegistry.fromHashCode(entry.object, true);
-
             if (obj) {
               result.clazz = obj.constructor;
               result.object = obj;
@@ -93,57 +84,46 @@
         } else if (entry.clazz) {
           result.clazz = entry.clazz;
         }
-
         return result;
       },
-
       /**
        * Formats the object part of an entry
-       * 
+       *
        * @param entry {Map} the entry to output
        * @return {String} formatted object, with class and hash code if possible
        */
       formatEntryObjectAndClass: function formatEntryObjectAndClass(entry) {
         var breakdown = this.normalizeEntryClass(entry);
         var result = "";
-
         if (breakdown.clazz) {
           result += breakdown.clazz.classname;
         }
-
         if (breakdown.hash) {
           result += "[" + breakdown.hash + "]";
         }
-
         result += ":";
         return result;
       },
-
       /**
        * Formats the items part of an entry
-       * 
+       *
        * @param entry {Map} the entry to output
        * @return {String} formatted items
        */
       formatEntryItems: function formatEntryItems(entry) {
         var output = [];
         var items = entry.items;
-
         for (var i = 0, il = items.length; i < il; i++) {
           var item = items[i];
           var msg = item.text;
-
           if (item.trace && item.trace.length > 0) {
             msg += "\n" + item.trace;
           }
-
           if (msg instanceof Array) {
             var list = [];
-
             for (var j = 0, jl = msg.length; j < jl; j++) {
               list.push(msg[j].text);
             }
-
             if (item.type === "map") {
               output.push("{", list.join(", "), "}");
             } else {
@@ -153,35 +133,30 @@
             output.push(msg);
           }
         }
-
         return output.join(" ");
       },
-
       /**
        * Converts a single log entry to plain text
-       * 
+       *
        * @param entry {Map} The entry to process
        * @return {String} the formatted log entry
        */
       toText: function toText(entry) {
         var output = this.formatEntryTime(entry) + " " + this.formatEntryObjectAndClass(entry);
         var str = this.formatEntryItems(entry);
-
         if (str) {
           output += " " + str;
         }
-
         return output;
       },
-
       /**
-       * Converts a single log entry to an array of plain text.  
-       * 
-       * This use of arrays is an outdated performance improvement, and as there is no 
-       * specification of what is in each of the elements of the array, there is no value 
+       * Converts a single log entry to an array of plain text.
+       *
+       * This use of arrays is an outdated performance improvement, and as there is no
+       * specification of what is in each of the elements of the array, there is no value
        * in preserving this.  This method is deprecated because it will be removed in 7.0
        * and only toText will remain.  Note that toTextArray is not used anywhere in Qooxdoo.
-       * 
+       *
        * @param entry {Map} The entry to process
        * @return {Array} Argument list ready message array.
        * @deprecated {6.0} See toText instead
@@ -193,10 +168,9 @@
         output.push(this.formatEntryItems(entry));
         return output;
       },
-
       /**
        * Converts a single log entry to HTML
-       * 
+       *
        * @signature function(entry)
        * @param entry {Map} The entry to process
        */
@@ -206,11 +180,9 @@
         output.push("<span class='offset'>", this.formatEntryTime(entry), "</span> ");
         var breakdown = this.normalizeEntryClass(entry);
         var result = "";
-
         if (breakdown.clazz) {
           result += breakdown.clazz.classname;
         }
-
         if (breakdown.object) {
           output.push("<span class='object' title='Object instance with hash code: " + breakdown.object.toHashCode() + "'>", breakdown.classname, "[", breakdown.object, "]</span>: ");
         } else if (breakdown.hash) {
@@ -218,19 +190,14 @@
         } else if (breakdown.clazz) {
           output.push("<span class='object'>" + breakdown.clazz.classname, "</span>: ");
         }
-
         var items = entry.items;
-
         for (var i = 0, il = items.length; i < il; i++) {
           item = items[i];
           msg = item.text;
-
           if (msg instanceof Array) {
             var list = [];
-
             for (var j = 0, jl = msg.length; j < jl; j++) {
               sub = msg[j];
-
               if (typeof sub === "string") {
                 list.push("<span>" + qx.log.appender.Formatter.escapeHTML(sub) + "</span>");
               } else if (sub.key) {
@@ -239,21 +206,17 @@
                 list.push("<span class='type-" + sub.type + "'>" + qx.log.appender.Formatter.escapeHTML(sub.text) + "</span>");
               }
             }
-
             output.push("<span class='type-" + item.type + "'>");
-
             if (item.type === "map") {
               output.push("{", list.join(", "), "}");
             } else {
               output.push("[", list.join(", "), "]");
             }
-
             output.push("</span>");
           } else {
             output.push("<span class='type-" + item.type + "'>" + qx.log.appender.Formatter.escapeHTML(msg) + "</span> ");
           }
         }
-
         var wrapper = document.createElement("DIV");
         wrapper.innerHTML = output.join("");
         wrapper.className = "level-" + entry.level;
@@ -262,52 +225,46 @@
     },
     statics: {
       /** @type {qx.util.format.DateFormat} format for datetimes */
-      __P_259_0: null,
-
+      __P_274_0: null,
       /** @type {qx.log.appender.Formatter} the default instance */
-      __P_259_1: null,
-
+      __P_274_1: null,
       /**
        * Returns the default formatter
-       * 
+       *
        * @return {qx.log.appender.Formatter}
        */
       getFormatter: function getFormatter() {
-        if (!qx.log.appender.Formatter.__P_259_1) {
-          qx.log.appender.Formatter.__P_259_1 = new qx.log.appender.Formatter();
+        if (!qx.log.appender.Formatter.__P_274_1) {
+          qx.log.appender.Formatter.__P_274_1 = new qx.log.appender.Formatter();
         }
-
-        return qx.log.appender.Formatter.__P_259_1;
+        return qx.log.appender.Formatter.__P_274_1;
       },
-
       /**
        * Sets the default formatter
-       * 
+       *
        * @param instance {qx.log.appender.Formatter}
        */
       setFormatter: function setFormatter(instance) {
-        qx.log.appender.Formatter.__P_259_1 = instance;
+        qx.log.appender.Formatter.__P_274_1 = instance;
       },
-
       /**
        * Escapes the HTML in the given value
-       * 
+       *
        * @param value
        *          {String} value to escape
        * @return {String} escaped value
        */
       escapeHTML: function escapeHTML(value) {
-        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_259_2);
+        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_274_2);
       },
-
       /**
        * Internal replacement helper for HTML escape.
-       * 
+       *
        * @param ch
        *          {String} Single item to replace.
        * @return {String} Replaced item
        */
-      __P_259_2: function __P_259_2(ch) {
+      __P_274_2: function __P_274_2(ch) {
         var map = {
           "<": "&lt;",
           ">": "&gt;",
@@ -322,4 +279,4 @@
   qx.log.appender.Formatter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Formatter.js.map?dt=1664789589040
+//# sourceMappingURL=Formatter.js.map?dt=1672653500391

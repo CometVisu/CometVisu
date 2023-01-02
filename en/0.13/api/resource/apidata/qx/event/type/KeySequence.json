@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 728
       },
       "end": {
-        "line": 157,
-        "column": 3
+        "line": 146,
+        "column": 3,
+        "index": 5511
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "init": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1287
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1481
         }
       },
       "jsdoc": {
@@ -89,12 +93,14 @@
     "clone": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1506
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1670
         }
       },
       "jsdoc": {},
@@ -110,12 +116,14 @@
     "getKeyIdentifier": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 4503
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 117,
+          "column": 5,
+          "index": 4560
         }
       },
       "jsdoc": {
@@ -140,12 +148,14 @@
     "getKeyCode": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 133,
+          "column": 4,
+          "index": 5209
         },
         "end": {
-          "line": 145,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 5257
         }
       },
       "jsdoc": {
@@ -170,12 +180,14 @@
     "isPrintable": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 5402
         },
         "end": {
-          "line": 155,
-          "column": 5
+          "line": 144,
+          "column": 5,
+          "index": 5503
         }
       },
       "jsdoc": {
@@ -285,6 +297,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -309,6 +322,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

@@ -21,7 +21,6 @@
       "qx.theme.manager.Font": {},
       "qx.lang.Object": {},
       "qx.bom.Style": {},
-      "qx.core.Assert": {},
       "qx.io.ImageLoader": {},
       "qx.bom.element.Background": {},
       "qx.log.Logger": {}
@@ -40,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -73,35 +71,32 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Boolean} Whether clipping hints should be logged */
       DEBUG: false,
-
       /** @type {Map} Collect warnings for potential clipped images */
-      __P_136_0: {},
-
+      __P_137_0: {},
       /** @type {Map} List of repeat modes which supports the IE AlphaImageLoader */
-      __P_136_1: qx.core.Environment.select("engine.name", {
-        "mshtml": {
+      __P_137_1: qx.core.Environment.select("engine.name", {
+        mshtml: {
           "scale-x": true,
           "scale-y": true,
-          "scale": true,
+          scale: true,
           "no-repeat": true
         },
         "default": null
       }),
-
       /** @type {Map} Mapping between background repeat and the tag to create */
-      __P_136_2: {
+      __P_137_2: {
         "scale-x": "img",
         "scale-y": "img",
-        "scale": "img",
-        "repeat": "div",
+        scale: "img",
+        repeat: "div",
         "no-repeat": "div",
         "repeat-x": "div",
         "repeat-y": "div"
       },
-
       /**
        * Updates the element to display the given source
        * with the repeat option.
@@ -115,38 +110,41 @@
        */
       update: function update(element, source, repeat, style) {
         var tag = this.getTagName(repeat, source);
-
         if (tag != element.tagName.toLowerCase()) {
-          throw new Error("Image modification not possible because elements could not be replaced at runtime anymore!");
+          // The "no-repeat" means that `getTagName` will suggest a `div` as opposed to an `img` tag, preferring to use
+          //  `img` only for things that need scaling.  The Desktop `qx.ui.*` will always follow this rule, but it
+          //  is valid for virtual DOM (`qx.html.*`) to be used to create a no-repeat `img` tag.  Ignore the validation
+          //  for `no-repeat` `img`.
+          if (repeat != "no-repeat" || element.tagName.toLowerCase() != "img") {
+            throw new Error("Image modification not possible because elements could not be replaced at runtime anymore!");
+          }
         }
-
         var ret = this.getAttributes(source, repeat, style);
-
         if (tag === "img") {
           element.src = ret.src || qx.util.ResourceManager.getInstance().toUri("qx/static/blank.gif");
-        } // Fix for old background position
+        }
 
-
+        // Fix for old background position
         if (element.style.backgroundPosition != "" && ret.style.backgroundPosition === undefined) {
           ret.style.backgroundPosition = null;
-        } // Fix for old clip
+        }
 
-
+        // Fix for old clip
         if (element.style.clip != "" && ret.style.clip === undefined) {
           ret.style.clip = null;
-        } // Apply new styles
+        }
 
+        // Apply new styles
+        qx.bom.element.Style.setStyles(element, ret.style);
 
-        qx.bom.element.Style.setStyles(element, ret.style); // we need to apply the filter to prevent black rendering artifacts
+        // we need to apply the filter to prevent black rendering artifacts
         // http://blog.hackedbrain.com/archive/2007/05/21/6110.aspx
-
         if (qx.core.Environment.get("css.alphaimageloaderneeded")) {
           try {
             element.filters["DXImageTransform.Microsoft.AlphaImageLoader"].apply();
           } catch (e) {}
         }
       },
-
       /**
        * Creates the HTML for a decorator image element with the given options.
        *
@@ -162,35 +160,23 @@
         var ret = this.getAttributes(source, repeat, style);
         var css = qx.bom.element.Style.compile(ret.style);
         var ResourceManager = qx.util.ResourceManager.getInstance();
-
         if (ResourceManager.isFontUri(source)) {
           var font = qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)/)[1]);
           var styles = qx.lang.Object.clone(font.getStyles());
-          styles['width'] = style.width;
-          styles['height'] = style.height;
-          styles['fontSize'] = parseInt(style.width) > parseInt(style.height) ? style.height : style.width;
-          styles['display'] = style.display;
-          styles['verticalAlign'] = style.verticalAlign;
-          styles['position'] = style.position;
+          styles["width"] = style.width;
+          styles["height"] = style.height;
+          styles["fontSize"] = parseInt(style.width) > parseInt(style.height) ? style.height : style.width;
+          styles["display"] = style.display;
+          styles["verticalAlign"] = style.verticalAlign;
+          styles["position"] = style.position;
           var css = "";
-
           for (var _style in styles) {
             if (styles.hasOwnProperty(_style)) {
               css += qx.bom.Style.getCssName(_style) + ": " + styles[_style] + ";";
             }
           }
-
-          var resource = ResourceManager.getData(source);
-          var charCode;
-
-          if (resource) {
-            charCode = resource[2];
-          } else {
-            charCode = parseInt(qx.theme.manager.Font.getInstance().resolve(source.match(/@([^/]+)\/(.*)$/)[2]), 16);
-            qx.core.Assert.assertNumber(charCode, "Font source needs either a glyph name or the unicode number in hex");
-          }
-
-          return '<div style="' + css + '">' + String.fromCharCode(charCode) + '</div>';
+          var charCode = ResourceManager.fromFontUriToCharCode(source);
+          return '<div style="' + css + '">' + String.fromCharCode(charCode) + "</div>";
         } else {
           if (tag === "img") {
             return '<img src="' + ret.src + '" style="' + css + '"/>';
@@ -199,7 +185,6 @@
           }
         }
       },
-
       /**
        * Translates the given repeat option to a tag name. Useful
        * for systems which depends on early information of the tag
@@ -212,13 +197,11 @@
        * @return {String} The tag name: <code>div</code> or <code>img</code>
        */
       getTagName: function getTagName(repeat, source) {
-        if (source && qx.core.Environment.get("css.alphaimageloaderneeded") && this.__P_136_1[repeat] && source.endsWith(".png")) {
+        if (source && qx.core.Environment.get("css.alphaimageloaderneeded") && this.__P_137_1[repeat] && source.endsWith(".png")) {
           return "div";
         }
-
-        return this.__P_136_2[repeat];
+        return this.__P_137_2[repeat];
       },
-
       /**
        * This method is used to collect all needed attributes for
        * the tag name detected by {@link #getTagName}.
@@ -232,11 +215,6 @@
         if (!style) {
           style = {};
         }
-
-        if (!style.position) {
-          style.position = "absolute";
-        }
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           // Add a fix for small blocks where IE has a minHeight
           // of the fontSize in quirks mode
@@ -246,32 +224,27 @@
           // This stops images from being draggable in webkit
           style.WebkitUserDrag = "none";
         }
-
         var format = qx.util.ResourceManager.getInstance().getImageFormat(source) || qx.io.ImageLoader.getFormat(source);
-        var result; // Enable AlphaImageLoader in IE6/IE7/IE8
+        var result;
 
-        if (qx.core.Environment.get("css.alphaimageloaderneeded") && this.__P_136_1[repeat] && format === "png") {
-          var dimension = this.__P_136_3(source);
-
-          this.__P_136_4(style, dimension.width, dimension.height);
-
+        // Enable AlphaImageLoader in IE6/IE7/IE8
+        if (qx.core.Environment.get("css.alphaimageloaderneeded") && this.__P_137_1[repeat] && format === "png") {
+          var dimension = this.__P_137_3(source);
+          this.__P_137_4(style, dimension.width, dimension.height);
           result = this.processAlphaFix(style, repeat, source);
         } else {
           delete style.clip;
-
           if (repeat === "scale") {
-            result = this.__P_136_5(style, repeat, source);
+            result = this.__P_137_5(style, repeat, source);
           } else if (repeat === "scale-x" || repeat === "scale-y") {
-            result = this.__P_136_6(style, repeat, source);
+            result = this.__P_137_6(style, repeat, source);
           } else {
             // Native repeats or "no-repeat"
-            result = this.__P_136_7(style, repeat, source);
+            result = this.__P_137_7(style, repeat, source);
           }
         }
-
         return result;
       },
-
       /**
        * Normalize the given width and height values
        *
@@ -279,16 +252,14 @@
        * @param width {Integer?null} width as number or null
        * @param height {Integer?null} height as number or null
        */
-      __P_136_4: function __P_136_4(style, width, height) {
+      __P_137_4: function __P_137_4(style, width, height) {
         if (style.width == null && width != null) {
           style.width = width + "px";
         }
-
         if (style.height == null && height != null) {
           style.height = height + "px";
         }
       },
-
       /**
        * Returns the dimension of the image by calling
        * {@link qx.util.ResourceManager} or {@link qx.io.ImageLoader}
@@ -297,7 +268,7 @@
        * @param source {String} image source
        * @return {Map} dimension of image
        */
-      __P_136_3: function __P_136_3(source) {
+      __P_137_3: function __P_137_3(source) {
         var width = qx.util.ResourceManager.getInstance().getImageWidth(source) || qx.io.ImageLoader.getWidth(source);
         var height = qx.util.ResourceManager.getInstance().getImageHeight(source) || qx.io.ImageLoader.getHeight(source);
         return {
@@ -305,7 +276,6 @@
           height: height
         };
       },
-
       /**
        * Get all styles for IE browser which need to load the image
        * with the help of the AlphaImageLoader
@@ -320,7 +290,6 @@
         if (repeat == "repeat" || repeat == "repeat-x" || repeat == "repeat-y") {
           return style;
         }
-
         var sizingMethod = repeat == "no-repeat" ? "crop" : "scale";
         var filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + qx.util.ResourceManager.getInstance().toUri(source) + "', sizingMethod='" + sizingMethod + "')";
         style.filter = filter;
@@ -331,7 +300,6 @@
           style: style
         };
       },
-
       /**
        * Process scaled images.
        *
@@ -341,19 +309,15 @@
        *
        * @return {Map} image URI and style infos
        */
-      __P_136_5: function __P_136_5(style, repeat, source) {
+      __P_137_5: function __P_137_5(style, repeat, source) {
         var uri = qx.util.ResourceManager.getInstance().toUri(source);
-
-        var dimension = this.__P_136_3(source);
-
-        this.__P_136_4(style, dimension.width, dimension.height);
-
+        var dimension = this.__P_137_3(source);
+        this.__P_137_4(style, dimension.width, dimension.height);
         return {
           src: uri,
           style: style
         };
       },
-
       /**
        * Process images which are either scaled horizontally or
        * vertically.
@@ -364,50 +328,47 @@
        *
        * @return {Map} image URI and style infos
        */
-      __P_136_6: function __P_136_6(style, repeat, sourceid) {
+      __P_137_6: function __P_137_6(style, repeat, sourceid) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var clipped = ResourceManager.getCombinedFormat(sourceid);
-
-        var dimension = this.__P_136_3(sourceid);
-
+        var dimension = this.__P_137_3(sourceid);
         var uri;
-
         if (clipped) {
           var data = ResourceManager.getData(sourceid);
           var combinedid = data[4];
-
           if (clipped == "b64") {
             uri = ResourceManager.toDataUri(sourceid);
           } else {
             uri = ResourceManager.toUri(combinedid);
           }
-
           if (repeat === "scale-x") {
-            style = this.__P_136_8(style, data, dimension.height);
+            style = this.__P_137_8(style, data, dimension.height);
           } else {
-            style = this.__P_136_9(style, data, dimension.width);
+            style = this.__P_137_9(style, data, dimension.width);
           }
-
           return {
             src: uri,
             style: style
           };
-        } // No clipped image available
+        }
+
+        // No clipped image available
         else {
-            if (repeat == "scale-x") {
-              style.height = dimension.height == null ? null : dimension.height + "px"; // note: width is given by the user
-            } else if (repeat == "scale-y") {
-              style.width = dimension.width == null ? null : dimension.width + "px"; // note: height is given by the user
-            }
-
-            uri = ResourceManager.toUri(sourceid);
-            return {
-              src: uri,
-              style: style
-            };
+          if (repeat == "scale-x") {
+            style.height = dimension.height == null ? null : dimension.height + "px";
+            // note: width is given by the user
+          } else if (repeat == "scale-y") {
+            style.width = dimension.width == null ? null : dimension.width + "px";
+            // note: height is given by the user
           }
-      },
 
+          uri = ResourceManager.toUri(sourceid);
+          return {
+            src: uri,
+            style: style
+          };
+        }
+      },
       /**
        * Generates the style infos for horizontally scaled clipped images.
        *
@@ -417,26 +378,27 @@
        *
        * @return {Map} style infos and image URI
        */
-      __P_136_8: function __P_136_8(style, data, height) {
+      __P_137_8: function __P_137_8(style, data, height) {
         // Use clipped image (multi-images on x-axis)
-        var imageHeight = qx.util.ResourceManager.getInstance().getImageHeight(data[4]); // Add size and clipping
+        var imageHeight = qx.util.ResourceManager.getInstance().getImageHeight(data[4]);
 
+        // Add size and clipping
         style.clip = {
           top: -data[6],
           height: height
         };
-        style.height = imageHeight + "px"; // note: width is given by the user
-        // Fix user given y-coordinate to include the combined image offset
+        style.height = imageHeight + "px";
 
+        // note: width is given by the user
+
+        // Fix user given y-coordinate to include the combined image offset
         if (style.top != null) {
           style.top = parseInt(style.top, 10) + data[6] + "px";
         } else if (style.bottom != null) {
           style.bottom = parseInt(style.bottom, 10) + height - imageHeight - data[6] + "px";
         }
-
         return style;
       },
-
       /**
        * Generates the style infos for vertically scaled clipped images.
        *
@@ -446,26 +408,27 @@
        *
        * @return {Map} style infos and image URI
        */
-      __P_136_9: function __P_136_9(style, data, width) {
+      __P_137_9: function __P_137_9(style, data, width) {
         // Use clipped image (multi-images on x-axis)
-        var imageWidth = qx.util.ResourceManager.getInstance().getImageWidth(data[4]); // Add size and clipping
+        var imageWidth = qx.util.ResourceManager.getInstance().getImageWidth(data[4]);
 
+        // Add size and clipping
         style.clip = {
           left: -data[5],
           width: width
         };
-        style.width = imageWidth + "px"; // note: height is given by the user
-        // Fix user given x-coordinate to include the combined image offset
+        style.width = imageWidth + "px";
 
+        // note: height is given by the user
+
+        // Fix user given x-coordinate to include the combined image offset
         if (style.left != null) {
           style.left = parseInt(style.left, 10) + data[5] + "px";
         } else if (style.right != null) {
           style.right = parseInt(style.right, 10) + width - imageWidth - data[5] + "px";
         }
-
         return style;
       },
-
       /**
        * Process repeated images.
        *
@@ -475,18 +438,16 @@
        *
        * @return {Map} image URI and style infos
        */
-      __P_136_7: function __P_136_7(style, repeat, sourceid) {
+      __P_137_7: function __P_137_7(style, repeat, sourceid) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var clipped = ResourceManager.getCombinedFormat(sourceid);
+        var dimension = this.__P_137_3(sourceid);
 
-        var dimension = this.__P_136_3(sourceid); // Double axis repeats cannot be clipped
-
-
+        // Double axis repeats cannot be clipped
         if (clipped && repeat !== "repeat") {
           // data = [ 8, 5, "png", "qx", "qx/decoration/Modern/arrows-combined.png", -36, 0]
           var data = ResourceManager.getData(sourceid);
           var combinedid = data[4];
-
           if (clipped == "b64") {
             var uri = ResourceManager.toDataUri(sourceid);
             var offx = 0;
@@ -494,8 +455,9 @@
           } else {
             var uri = ResourceManager.toUri(combinedid);
             var offx = data[5];
-            var offy = data[6]; // honor padding for combined images
+            var offy = data[6];
 
+            // honor padding for combined images
             if (style.paddingTop || style.paddingLeft || style.paddingRight || style.paddingBottom) {
               var top = style.paddingTop || 0;
               var left = style.paddingLeft || 0;
@@ -509,21 +471,16 @@
               };
             }
           }
-
           var bg = qx.bom.element.Background.getStyles(uri, repeat, offx, offy);
-
           for (var key in bg) {
             style[key] = bg[key];
           }
-
           if (dimension.width != null && style.width == null && (repeat == "repeat-y" || repeat === "no-repeat")) {
             style.width = dimension.width + "px";
           }
-
           if (dimension.height != null && style.height == null && (repeat == "repeat-x" || repeat === "no-repeat")) {
             style.height = dimension.height + "px";
           }
-
           return {
             style: style
           };
@@ -532,17 +489,13 @@
           var top = style.paddingTop || 0;
           var left = style.paddingLeft || 0;
           style.backgroundPosition = left + "px " + top + "px";
-
-          this.__P_136_4(style, dimension.width, dimension.height);
-
-          this.__P_136_10(style, sourceid, repeat);
-
+          this.__P_137_4(style, dimension.width, dimension.height);
+          this.__P_137_10(style, sourceid, repeat);
           return {
             style: style
           };
         }
       },
-
       /**
        * Generate all style infos for single repeated images
        *
@@ -550,52 +503,45 @@
        * @param repeat {String} repeat mode
        * @param source {String} image source
        */
-      __P_136_10: function __P_136_10(style, source, repeat) {
+      __P_137_10: function __P_137_10(style, source, repeat) {
         // retrieve the "backgroundPosition" style if available to prevent
         // overwriting with default values
         var top = null;
         var left = null;
-
         if (style.backgroundPosition) {
           var backgroundPosition = style.backgroundPosition.split(" ");
           left = parseInt(backgroundPosition[0], 10);
-
           if (isNaN(left)) {
             left = backgroundPosition[0];
           }
-
           top = parseInt(backgroundPosition[1], 10);
-
           if (isNaN(top)) {
             top = backgroundPosition[1];
           }
         }
-
         var bg = qx.bom.element.Background.getStyles(source, repeat, left, top);
-
         for (var key in bg) {
           style[key] = bg[key];
-        } // Reset the AlphaImageLoader filter if applied
+        }
+
+        // Reset the AlphaImageLoader filter if applied
         // This prevents IE from setting BOTH CSS filter AND backgroundImage
         // This is only a fallback if the image is not recognized as PNG
         // If it's a Alpha-PNG file it *may* result in display problems
-
-
         if (style.filter) {
           style.filter = "";
         }
       },
-
       /**
        * Output a warning if the image can be clipped.
        *
        * @param source {String} image source
        */
-      __P_136_11: function __P_136_11(source) {
+      __P_137_11: function __P_137_11(source) {
         if (this.DEBUG && qx.util.ResourceManager.getInstance().has(source) && source.indexOf("qx/icon") == -1) {
-          if (!this.__P_136_0[source]) {
+          if (!this.__P_137_0[source]) {
             qx.log.Logger.debug("Potential clipped image candidate: " + source);
-            this.__P_136_0[source] = true;
+            this.__P_137_0[source] = true;
           }
         }
       }
@@ -604,4 +550,4 @@
   qx.bom.element.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789578619
+//# sourceMappingURL=Decoration.js.map?dt=1672653486822

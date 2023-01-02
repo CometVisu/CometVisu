@@ -76,7 +76,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -94,7 +93,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * Module for querying information about the environment / runtime.
    * It adds a static key <code>env</code> to qxWeb and offers the given methods.
@@ -129,7 +127,6 @@
       get: function get(key) {
         return qx.core.Environment.get(key);
       },
-
       /**
        * Adds a new environment setting which can be queried via {@link #get}.
        * @param key {String} The key to store the value for.
@@ -161,4 +158,4 @@
   qx.module.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1664789589488
+//# sourceMappingURL=Environment.js.map?dt=1672653500773

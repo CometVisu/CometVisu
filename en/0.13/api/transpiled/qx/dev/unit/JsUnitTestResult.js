@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +35,6 @@
    */
   qx.Class.define("qx.dev.unit.JsUnitTestResult", {
     extend: qx.dev.unit.TestResult,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -44,17 +42,16 @@
     */
     construct: function construct() {
       qx.dev.unit.TestResult.constructor.call(this);
-      this.__P_184_0 = [];
+      this.__P_187_0 = [];
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_184_0: null,
 
+    members: {
+      __P_187_0: null,
       /**
        * Run the test
        * @param test {qx.dev.unit.TestFunction} The test.
@@ -62,23 +59,21 @@
        */
       run: function run(test, testFunction) {
         var testFunctionName = "$test_" + test.getFullName().replace(/\W/g, "_");
-
-        this.__P_184_0.push(testFunctionName);
-
+        this.__P_187_0.push(testFunctionName);
         window[testFunctionName] = testFunction;
       },
-
       /**
        * Export the test functions to JSUnit
        */
       exportToJsUnit: function exportToJsUnit() {
-        var self = this; // global
+        var self = this;
 
+        // global
         window.exposeTestFunctionNames = function () {
-          return self.__P_184_0;
-        }; // global
+          return self.__P_187_0;
+        };
 
-
+        // global
         window.isTestPageLoaded = true;
       }
     }
@@ -86,4 +81,4 @@
   qx.dev.unit.JsUnitTestResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=JsUnitTestResult.js.map?dt=1664789582104
+//# sourceMappingURL=JsUnitTestResult.js.map?dt=1672653490293

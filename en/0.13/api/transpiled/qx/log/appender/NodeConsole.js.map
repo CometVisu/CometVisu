@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/log/appender/NodeConsole.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -13,16 +10,26 @@
     "statics",
     "__OUT",
     "__ERR",
-    "log",
-    "logMessage",
-    "level",
-    "write",
+    "__useColors",
+    "__colorCodes",
     "debug",
     "info",
     "warn",
     "error",
+    "reset",
+    "setUseColors",
+    "value",
+    "core",
+    "Assert",
+    "assertBoolean",
+    "log",
+    "logMessage",
+    "level",
+    "write",
     "process",
     "entry",
+    "Object",
+    "keys",
     "prop",
     "items",
     "p",
@@ -32,11 +39,16 @@
     "defer",
     "stdout",
     "stderr",
+    "Logger",
+    "register",
     "appender",
     "NodeConsole"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EAA+C;AAE7CC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACIC,MAAAA,SAAK,EAAG,IAJV;;AAKE;AACJ;AACA;AACIC,MAAAA,SAAK,EAAG,IARV;;AAUE;AACJ;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,GAAG,EAAG,aAASC,UAAT,EAAqBC,KAArB,EACN;AACE,YAAIA,KAAK,IAAI,OAAb,EAAsB;AACpB,eAAKH,SAAL,CAAWI,KAAX,CAAiBF,UAAU,GAAC,IAA5B;AACD,SAFD,MAEO;AACL,eAAKH,SAAL,CAAWK,KAAX,CAAiBF,UAAU,GAAC,IAA5B;AACD;AACF,OAxBH;;AA0BE;AACJ;AACA;AACA;AACA;AACIG,MAAAA,KAAK,EAAG,eAASH,UAAT,EACR;AACE,aAAKD,GAAL,CAASC,UAAT,EAAqB,OAArB;AACD,OAlCH;;AAoCE;AACJ;AACA;AACA;AACA;AACII,MAAAA,IAAI,EAAG,cAASJ,UAAT,EACP;AACE,aAAKD,GAAL,CAASC,UAAT,EAAqB,MAArB;AACD,OA5CH;;AA8CE;AACJ;AACA;AACA;AACA;AACIK,MAAAA,IAAI,EAAG,cAASL,UAAT,EACP;AACE,aAAKD,GAAL,CAASC,UAAT,EAAqB,MAArB;AACD,OAtDH;;AAwDE;AACJ;AACA;AACA;AACA;AACIM,MAAAA,KAAK,EAAG,eAASN,UAAT,EACR;AACE,aAAKD,GAAL,CAASC,UAAT,EAAqB,OAArB;AACD,OAhEH;;AAkEE;AACJ;AACA;AACA;AACA;AACIO,MAAAA,OAAO,EAAG,iBAASC,KAAT,EACV;AACE,YAAIP,KAAK,GAAGO,KAAK,CAACP,KAAN,IAAe,MAA3B;;AACA,aAAK,IAAIQ,IAAT,IAAiBD,KAAjB,EAAwB;AACtB,cAAIC,IAAI,IAAI,OAAZ,EAAqB;AACnB,gBAAIC,KAAK,GAAGF,KAAK,CAACC,IAAD,CAAjB;;AACA,iBAAK,IAAIE,CAAC,GAAC,CAAX,EAAcA,CAAC,GAACD,KAAK,CAACE,MAAtB,EAA8BD,CAAC,EAA/B,EAAmC;AACjC,kBAAIE,IAAI,GAAGH,KAAK,CAACC,CAAD,CAAhB;AACA,mBAAKV,KAAL,EAAYY,IAAI,CAACC,IAAjB;AACD;AACF;AACF;AACF;AAnFH,KAH6C;;AA0F7C;AACF;AACA;AACEC,IAAAA,KAAK,EAAG,eAASnB,OAAT,EACR;AACE,UAAI,OAAOW,OAAP,KAAoB,WAAxB,EAAqC;AACnCX,QAAAA,OAAO,CAACC,SAAR,GAAgBU,OAAO,CAACS,MAAxB;AACApB,QAAAA,OAAO,CAACE,SAAR,GAAgBS,OAAO,CAACU,MAAxB;AACD;AACF;AAnG4C,GAA/C;AA1BA3B,EAAAA,EAAE,CAACS,GAAH,CAAOmB,QAAP,CAAgBC,WAAhB,CAA4B1B,aAA5B,GAA4CA,aAA5C",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/log/appender/NodeConsole.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006-2011 1&1 Internet AG, Germany, http://www.1and1.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (d_wagner)\n     * Thomas Herchenroeder (thron7)\n\n************************************************************************ */\n\n/**\n * Log appender for qooxdoo applications running in Node.js. Writes log\n * messages to STDOUT/STDERR.\n *\n * @ignore(process.*)\n */\n\nqx.Class.define(\"qx.log.appender.NodeConsole\", {\n\n  statics:\n  {\n    /**\n     * process.stdout\n     */\n    __OUT : null,\n    /**\n     * process.stderr\n     */\n    __ERR : null,\n\n    /**\n     * Writes a message to the shell. Errors will be sent to STDERR, everything\n     * else goes to STDOUT\n     *\n     * @param logMessage {String} Message to be logged\n     * @param level {String} Log level. One of \"debug\", \"info\", \"warn\", \"error\"\n     */\n    log : function(logMessage, level)\n    {\n      if (level == \"error\") {\n        this.__ERR.write(logMessage+'\\n');\n      } else {\n        this.__OUT.write(logMessage+'\\n');\n      }\n    },\n\n    /**\n     * Logs a debug message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    debug : function(logMessage)\n    {\n      this.log(logMessage, \"debug\");\n    },\n\n    /**\n     * Logs an info message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    info : function(logMessage)\n    {\n      this.log(logMessage, \"info\");\n    },\n\n    /**\n     * Logs a warning message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    warn : function(logMessage)\n    {\n      this.log(logMessage, \"warn\");\n    },\n\n    /**\n     * Logs an error message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    error : function(logMessage)\n    {\n      this.log(logMessage, \"error\");\n    },\n\n    /**\n     * Process a log entry object from qooxdoo's logging system.\n     *\n     * @param entry {Map} Log entry object\n     */\n    process : function(entry)\n    {\n      var level = entry.level || \"info\";\n      for (var prop in entry) {\n        if (prop == \"items\") {\n          var items = entry[prop];\n          for (var p=0; p<items.length; p++) {\n            var item = items[p];\n            this[level](item.text);\n          }\n        }\n      }\n    }\n\n  },\n\n  /**\n   * @ignore(process.*)\n   */\n  defer : function(statics)\n  {\n    if (typeof(process) !== \"undefined\") {\n      statics.__OUT = process.stdout;\n      statics.__ERR = process.stderr;\n    }\n  }\n\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006-2011 1&1 Internet AG, Germany, http://www.1and1.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (d_wagner)\n     * Thomas Herchenroeder (thron7)\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n * Log appender for qooxdoo applications running in Node.js. Writes log\n * messages to STDOUT/STDERR.\n *\n * @ignore(process.*)\n */\nqx.Class.define(\"qx.log.appender.NodeConsole\", {\n  statics: {\n    /**\n     * process.stdout\n     */\n    __OUT: null,\n    /**\n     * process.stderr\n     */\n    __ERR: null,\n\n    /**\n     * Whether to use color codes\n     */\n    __useColors: false,\n\n    /**\n     * Which ANSI color codes to use for which log level\n     */\n    __colorCodes: {\n      debug: \"\\u001b[38;5;3m\", // yellow\n      info: \"\\u001b[38;5;12m\", // light blue\n      warn: \"\\u001b[38;5;9m\", // light right\n      error: \"\\u001b[38;5;1m\", // red\n      reset: \"\\u001b[0m\"\n    },\n\n    /**\n     * Turn the use of colors on or off\n     * @param {Boolean} value\n     */\n    setUseColors(value) {\n      qx.core.Assert.assertBoolean(value);\n      this.__useColors = value;\n    },\n\n    /**\n     * Writes a message to the shell. Errors will be sent to STDERR, everything\n     * else goes to STDOUT\n     *\n     * @param logMessage {String} Message to be logged\n     * @param level {String} Log level. One of \"debug\", \"info\", \"warn\", \"error\"\n     */\n    log(logMessage, level) {\n      if (this.__useColors && this.__colorCodes[level]) {\n        logMessage =\n          this.__colorCodes[level] + logMessage + this.__colorCodes.reset;\n      }\n      if (level === \"error\") {\n        this.__ERR.write(logMessage + \"\\n\");\n      } else {\n        this.__OUT.write(logMessage + \"\\n\");\n      }\n    },\n\n    /**\n     * Logs a debug message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    debug(logMessage) {\n      this.log(logMessage, \"debug\");\n    },\n\n    /**\n     * Logs an info message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    info(logMessage) {\n      this.log(logMessage, \"info\");\n    },\n\n    /**\n     * Logs a warning message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    warn(logMessage) {\n      this.log(logMessage, \"warn\");\n    },\n\n    /**\n     * Logs an error message\n     *\n     * @param logMessage {String} Message to be logged\n     */\n    error(logMessage) {\n      this.log(logMessage, \"error\");\n    },\n\n    /**\n     * Process a log entry object from qooxdoo's logging system.\n     *\n     * @param entry {Map} Log entry object\n     */\n    process(entry) {\n      let level = entry.level || \"info\";\n      for (let prop of Object.keys(entry)) {\n        if (prop === \"items\") {\n          let items = entry[prop];\n          for (var p = 0; p < items.length; p++) {\n            let item = items[p];\n            this[level](item.text);\n          }\n        }\n      }\n    }\n  },\n\n  /**\n   * @ignore(process.*)\n   */\n  defer(statics) {\n    if (typeof process !== \"undefined\") {\n      statics.__OUT = process.stdout;\n      statics.__ERR = process.stderr;\n      qx.log.Logger.register(statics);\n    }\n  }\n});\n"
+  ],
+  "mappings": "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"
 }

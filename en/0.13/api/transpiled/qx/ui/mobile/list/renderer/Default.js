@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,51 +69,45 @@
       qx.ui.mobile.list.renderer.Abstract.constructor.call(this, layout || new qx.ui.mobile.layout.HBox().set({
         alignY: "middle"
       }));
-
       this._init();
     },
     members: {
-      __P_393_0: null,
-      __P_393_1: null,
-      __P_393_2: null,
-      __P_393_3: null,
-
+      __P_410_0: null,
+      __P_410_1: null,
+      __P_410_2: null,
+      __P_410_3: null,
       /**
        * Returns the image widget which is used for this renderer.
        *
        * @return {qx.ui.mobile.basic.Image} The image widget
        */
       getImageWidget: function getImageWidget() {
-        return this.__P_393_0;
+        return this.__P_410_0;
       },
-
       /**
        * Returns the title widget which is used for this renderer.
        *
        * @return {qx.ui.mobile.basic.Label} The title widget
        */
       getTitleWidget: function getTitleWidget() {
-        return this.__P_393_1;
+        return this.__P_410_1;
       },
-
       /**
        * Returns the subtitle widget which is used for this renderer.
        *
        * @return {qx.ui.mobile.basic.Label} The subtitle widget
        */
       getSubtitleWidget: function getSubtitleWidget() {
-        return this.__P_393_2;
+        return this.__P_410_2;
       },
-
       /**
        * Sets the source of the image widget.
        *
        * @param source {String} The source to set
        */
       setImage: function setImage(source) {
-        this.__P_393_0.setSource(source);
+        this.__P_410_0.setSource(source);
       },
-
       /**
        * Sets the value of the title widget.
        *
@@ -122,12 +115,11 @@
        */
       setTitle: function setTitle(title) {
         if (title && title.translate) {
-          this.__P_393_1.setValue(title.translate());
+          this.__P_410_1.setValue(title.translate());
         } else {
-          this.__P_393_1.setValue(title);
+          this.__P_410_1.setValue(title);
         }
       },
-
       /**
        * Sets the value of the subtitle widget.
        *
@@ -135,32 +127,27 @@
        */
       setSubtitle: function setSubtitle(subtitle) {
         if (subtitle && subtitle.translate) {
-          this.__P_393_2.setValue(subtitle.translate());
+          this.__P_410_2.setValue(subtitle.translate());
         } else {
-          this.__P_393_2.setValue(subtitle);
+          this.__P_410_2.setValue(subtitle);
         }
       },
-
       /**
        * Inits the widgets for the renderer.
        *
        */
       _init: function _init() {
-        this.__P_393_0 = this._createImage();
-        this.add(this.__P_393_0);
-        this.__P_393_3 = this._createRightContainer();
-        this.add(this.__P_393_3, {
+        this.__P_410_0 = this._createImage();
+        this.add(this.__P_410_0);
+        this.__P_410_3 = this._createRightContainer();
+        this.add(this.__P_410_3, {
           flex: 1
         });
-        this.__P_393_1 = this._createTitle();
-
-        this.__P_393_3.add(this.__P_393_1);
-
-        this.__P_393_2 = this._createSubtitle();
-
-        this.__P_393_3.add(this.__P_393_2);
+        this.__P_410_1 = this._createTitle();
+        this.__P_410_3.add(this.__P_410_1);
+        this.__P_410_2 = this._createSubtitle();
+        this.__P_410_3.add(this.__P_410_2);
       },
-
       /**
        * Creates and returns the right container composite. Override this to adapt the widget code.
        *
@@ -169,7 +156,6 @@
       _createRightContainer: function _createRightContainer() {
         return new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
       },
-
       /**
        * Creates and returns the image widget. Override this to adapt the widget code.
        *
@@ -181,7 +167,6 @@
         image.addCssClass("list-item-image");
         return image;
       },
-
       /**
        * Creates and returns the title widget. Override this to adapt the widget code.
        *
@@ -193,7 +178,6 @@
         title.addCssClass("list-item-title");
         return title;
       },
-
       /**
        * Creates and returns the subtitle widget. Override this to adapt the widget code.
        *
@@ -207,18 +191,16 @@
       },
       // overridden
       reset: function reset() {
-        this.__P_393_0.setSource(null);
-
-        this.__P_393_1.setValue("");
-
-        this.__P_393_2.setValue("");
+        this.__P_410_0.setSource(null);
+        this.__P_410_1.setValue("");
+        this.__P_410_2.setValue("");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_393_0", "__P_393_1", "__P_393_2", "__P_393_3");
+      this._disposeObjects("__P_410_0", "__P_410_1", "__P_410_2", "__P_410_3");
     }
   });
   qx.ui.mobile.list.renderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1664789601879
+//# sourceMappingURL=Default.js.map?dt=1672653512298

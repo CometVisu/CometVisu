@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 599
       },
       "end": {
-        "line": 152,
-        "column": 3
+        "line": 176,
+        "column": 3,
+        "index": 4991
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "set": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1371
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2543
         }
       },
       "jsdoc": {
@@ -49,11 +53,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -89,12 +93,14 @@
     "get": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2870
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 113,
+          "column": 5,
+          "index": 3348
         }
       },
       "jsdoc": {
@@ -136,12 +142,14 @@
     "reset": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3637
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 4133
         }
       },
       "jsdoc": {
@@ -175,12 +183,14 @@
     "isPropertyInitialized": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 153,
+          "column": 4,
+          "index": 4452
         },
         "end": {
-          "line": 150,
-          "column": 5
+          "line": 174,
+          "column": 5,
+          "index": 4983
         }
       },
       "jsdoc": {

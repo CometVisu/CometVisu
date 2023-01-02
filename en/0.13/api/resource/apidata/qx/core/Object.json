@@ -18,11 +18,13 @@
     "location": {
       "start": {
         "line": 34,
-        "column": 0
+        "column": 0,
+        "index": 944
       },
       "end": {
-        "line": 518,
-        "column": 3
+        "line": 510,
+        "column": 3,
+        "index": 14560
       }
     },
     "jsdoc": {
@@ -44,12 +46,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 56,
-        "column": 14
+        "line": 54,
+        "column": 2,
+        "index": 1510
       },
       "end": {
-        "line": 57,
-        "column": 3
+        "line": 54,
+        "column": 16,
+        "index": 1524
       }
     },
     "jsdoc": {
@@ -65,12 +69,14 @@
     "$$type": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1753
         },
         "end": {
-          "line": 71,
-          "column": 21
+          "line": 64,
+          "column": 20,
+          "index": 1769
         }
       },
       "jsdoc": {
@@ -89,12 +95,14 @@
     "__Property": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1977
         },
         "end": {
-          "line": 87,
-          "column": 85
+          "line": 76,
+          "column": 12,
+          "index": 2069
         }
       },
       "type": "variable",
@@ -103,12 +111,14 @@
     "toHashCode": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2383
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 2776
         }
       },
       "jsdoc": {
@@ -133,12 +143,14 @@
     "toUuid": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 2875
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 3003
         }
       },
       "jsdoc": {
@@ -163,12 +175,14 @@
     "setExplicitUuid": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3567
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 3737
         }
       },
       "jsdoc": {
@@ -194,19 +208,21 @@
     "base": {
       "location": {
         "start": {
-          "line": 163,
-          "column": 4
+          "line": 155,
+          "column": 4,
+          "index": 4524
         },
         "end": {
-          "line": 180,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 5096
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Call the same method of the super class.</p>"
+            "body": "<p>Call the same method of the super class.\n Either the compiler translate all calls to this.base\n into mypkg.MyBaseClass.prototype.myMethod.call(this, 123);\n this method is still needed for use in compile.js or playground\n which are not precompiled</p>"
           }
         ],
         "@param": [
@@ -241,12 +257,14 @@
     "self": {
       "location": {
         "start": {
-          "line": 189,
-          "column": 4
+          "line": 183,
+          "column": 4,
+          "index": 5346
         },
         "end": {
-          "line": 191,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 5395
         }
       },
       "jsdoc": {
@@ -280,12 +298,14 @@
     "clone": {
       "location": {
         "start": {
-          "line": 211,
-          "column": 4
+          "line": 201,
+          "column": 4,
+          "index": 5839
         },
         "end": {
-          "line": 235,
-          "column": 5
+          "line": 223,
+          "column": 5,
+          "index": 6488
         }
       },
       "jsdoc": {
@@ -310,12 +330,14 @@
     "__userData": {
       "location": {
         "start": {
-          "line": 245,
-          "column": 4
+          "line": 232,
+          "column": 4,
+          "index": 6726
         },
         "end": {
-          "line": 245,
-          "column": 21
+          "line": 232,
+          "column": 20,
+          "index": 6742
         }
       },
       "jsdoc": {
@@ -338,12 +360,14 @@
     "setUserData": {
       "location": {
         "start": {
-          "line": 254,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 6913
         },
         "end": {
-          "line": 261,
-          "column": 5
+          "line": 246,
+          "column": 5,
+          "index": 7049
         }
       },
       "jsdoc": {
@@ -376,12 +400,14 @@
     "getUserData": {
       "location": {
         "start": {
-          "line": 270,
-          "column": 4
+          "line": 254,
+          "column": 4,
+          "index": 7198
         },
         "end": {
-          "line": 277,
-          "column": 5
+          "line": 260,
+          "column": 5,
+          "index": 7367
         }
       },
       "jsdoc": {
@@ -415,12 +441,14 @@
     "resetUserData": {
       "location": {
         "start": {
-          "line": 282,
-          "column": 4
+          "line": 265,
+          "column": 4,
+          "index": 7443
         },
         "end": {
-          "line": 284,
-          "column": 5
+          "line": 267,
+          "column": 5,
+          "index": 7496
         }
       },
       "jsdoc": {
@@ -437,12 +465,14 @@
     "isDisposed": {
       "location": {
         "start": {
-          "line": 297,
-          "column": 4
+          "line": 280,
+          "column": 4,
+          "index": 7825
         },
         "end": {
-          "line": 299,
-          "column": 5
+          "line": 282,
+          "column": 5,
+          "index": 7884
         }
       },
       "jsdoc": {
@@ -467,12 +497,14 @@
     "isDisposing": {
       "location": {
         "start": {
-          "line": 308,
-          "column": 4
+          "line": 290,
+          "column": 4,
+          "index": 8083
         },
         "end": {
-          "line": 310,
-          "column": 5
+          "line": 292,
+          "column": 5,
+          "index": 8144
         }
       },
       "jsdoc": {
@@ -497,12 +529,14 @@
     "dispose": {
       "location": {
         "start": {
-          "line": 317,
-          "column": 4
+          "line": 298,
+          "column": 4,
+          "index": 8201
         },
         "end": {
-          "line": 396,
-          "column": 5
+          "line": 393,
+          "column": 5,
+          "index": 11027
         }
       },
       "jsdoc": {
@@ -519,12 +553,14 @@
     "_disposeObjects": {
       "location": {
         "start": {
-          "line": 412,
-          "column": 4
+          "line": 407,
+          "column": 4,
+          "index": 11467
         },
         "end": {
-          "line": 414,
-          "column": 5
+          "line": 409,
+          "column": 5,
+          "index": 11558
         }
       },
       "jsdoc": {
@@ -550,12 +586,14 @@
     "_disposeSingletonObjects": {
       "location": {
         "start": {
-          "line": 423,
-          "column": 4
+          "line": 417,
+          "column": 4,
+          "index": 11808
         },
         "end": {
-          "line": 425,
-          "column": 5
+          "line": 419,
+          "column": 5,
+          "index": 11914
         }
       },
       "jsdoc": {
@@ -581,12 +619,14 @@
     "_disposeArray": {
       "location": {
         "start": {
-          "line": 434,
-          "column": 4
+          "line": 427,
+          "column": 4,
+          "index": 12131
         },
         "end": {
-          "line": 436,
-          "column": 5
+          "line": 429,
+          "column": 5,
+          "index": 12212
         }
       },
       "jsdoc": {
@@ -612,12 +652,14 @@
     "_disposeMap": {
       "location": {
         "start": {
-          "line": 445,
-          "column": 4
+          "line": 437,
+          "column": 4,
+          "index": 12423
         },
         "end": {
-          "line": 447,
-          "column": 5
+          "line": 439,
+          "column": 5,
+          "index": 12500
         }
       },
       "jsdoc": {
@@ -672,9 +714,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1278,6 +1322,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1622,11 +1717,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2147,6 +2242,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2171,6 +2267,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3859,12 +3956,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 471,
-        "column": 13
+        "line": 462,
+        "column": 2,
+        "index": 13166
       },
       "end": {
-        "line": 517,
-        "column": 3
+        "line": 509,
+        "column": 3,
+        "index": 14556
       }
     },
     "jsdoc": {}
@@ -3873,6 +3972,8 @@
     "cv.core.notifications.Router",
     "cv.core.notifications.SpeechHandler",
     "cv.core.notifications.actions.AbstractActionHandler",
+    "cv.io.listmodel.FritzCallList",
+    "cv.io.listmodel.RssLog",
     "cv.parser.pure.MetaParser",
     "cv.plugins.Speech",
     "cv.plugins.openhab.Openhab",
@@ -3962,12 +4063,20 @@
     "qx.event.handler.Orientation",
     "qx.event.handler.Transition",
     "qx.event.handler.UserAction",
+    "qx.event.handler.Video",
     "qx.event.handler.Window",
     "qx.event.message.Bus",
     "qx.event.message.Message",
     "qx.event.type.Event",
-    "qx.html.Element",
+    "qx.html.Factory",
+    "qx.html.Jsx",
+    "qx.html.JsxRef",
+    "qx.html.Node",
     "qx.io.PartLoader",
+    "qx.io.graphql.protocol.Message",
+    "qx.io.jsonrpc.protocol.Batch",
+    "qx.io.jsonrpc.protocol.Message",
+    "qx.io.jsonrpc.protocol.Parser",
     "qx.io.remote.Exchange",
     "qx.io.remote.Request",
     "qx.io.remote.RequestQueue",
@@ -3975,7 +4084,10 @@
     "qx.io.remote.transport.Abstract",
     "qx.io.request.AbstractRequest",
     "qx.io.request.authentication.Basic",
+    "qx.io.request.authentication.Bearer",
     "qx.io.rest.Resource",
+    "qx.io.transport.AbstractClient",
+    "qx.io.transport.AbstractTransport",
     "qx.locale.Manager",
     "qx.log.appender.Element",
     "qx.log.appender.Formatter",
@@ -4080,9 +4192,9 @@
     "qxl.apiviewer.Controller",
     "cv.io.transport.LongPolling",
     "cv.io.transport.Sse",
+    "cv.io.request.Jquery",
     "cv.ui.Popup",
     "cv.io.System",
-    "osparc.theme.common.Image",
     "qxl.apiviewer.ClassLoader",
     "qxl.apiviewer.TabViewController",
     "qxl.apiviewer.dao.Package",

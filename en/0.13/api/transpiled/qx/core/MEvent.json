@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 712
       },
       "end": {
-        "line": 330,
-        "column": 3
+        "line": 410,
+        "column": 3,
+        "index": 14577
       }
     },
     "jsdoc": {
@@ -41,12 +43,14 @@
     "__Registration": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 838
         },
         "end": {
-          "line": 31,
-          "column": 42
+          "line": 29,
+          "column": 41,
+          "index": 875
         }
       },
       "jsdoc": {
@@ -69,12 +73,14 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1789
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 2042
         }
       },
       "jsdoc": {
@@ -133,12 +139,14 @@
     "addListenerOnce": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2781
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 3537
         }
       },
       "jsdoc": {
@@ -197,12 +205,14 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 4013
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 125,
+          "column": 5,
+          "index": 4631
         }
       },
       "jsdoc": {
@@ -259,12 +269,14 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 4912
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 140,
+          "column": 5,
+          "index": 5066
         }
       },
       "jsdoc": {
@@ -298,12 +310,14 @@
     "hasListener": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 150,
+          "column": 4,
+          "index": 5421
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 5522
         }
       },
       "jsdoc": {
@@ -346,12 +360,14 @@
     "dispatchEvent": {
       "location": {
         "start": {
-          "line": 159,
-          "column": 4
+          "line": 161,
+          "column": 4,
+          "index": 5782
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 167,
+          "column": 5,
+          "index": 5927
         }
       },
       "jsdoc": {
@@ -382,15 +398,142 @@
       "type": "function",
       "access": "public"
     },
+    "__pendingEvents": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 6023
+        },
+        "end": {
+          "line": 170,
+          "column": 25,
+          "index": 6044
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object<String,qx.Promise>} list of pending events, indexed by hash code"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__promiseWaitForPendingEvents": {
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 6156
+        },
+        "end": {
+          "line": 173,
+          "column": 39,
+          "index": 6191
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.Promise} promise that callers are waiting on, ready for when all events are finished"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__trackPendingEvent": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6412
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 7773
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "waitForPendingEvents": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 7847
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 8214
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "fireEvent": {
       "location": {
         "start": {
-          "line": 179,
-          "column": 4
+          "line": 247,
+          "column": 4,
+          "index": 8658
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 255,
+          "column": 5,
+          "index": 8869
         }
       },
       "jsdoc": {
@@ -442,12 +585,14 @@
     "fireEventAsync": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 268,
+          "column": 4,
+          "index": 9378
         },
         "end": {
-          "line": 211,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 9813
         }
       },
       "jsdoc": {
@@ -499,12 +644,14 @@
     "fireNonBubblingEvent": {
       "location": {
         "start": {
-          "line": 226,
-          "column": 4
+          "line": 297,
+          "column": 4,
+          "index": 10380
         },
         "end": {
-          "line": 233,
-          "column": 5
+          "line": 305,
+          "column": 5,
+          "index": 10613
         }
       },
       "jsdoc": {
@@ -556,12 +703,14 @@
     "fireNonBubblingEventAsync": {
       "location": {
         "start": {
-          "line": 250,
-          "column": 4
+          "line": 321,
+          "column": 4,
+          "index": 11275
         },
         "end": {
-          "line": 261,
-          "column": 5
+          "line": 336,
+          "column": 5,
+          "index": 11743
         }
       },
       "jsdoc": {
@@ -613,12 +762,14 @@
     "fireDataEvent": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 4
+          "line": 353,
+          "column": 4,
+          "index": 12621
         },
         "end": {
-          "line": 292,
-          "column": 5
+          "line": 368,
+          "column": 5,
+          "index": 13009
         }
       },
       "jsdoc": {
@@ -677,12 +828,14 @@
     "fireDataEventAsync": {
       "location": {
         "start": {
-          "line": 311,
-          "column": 4
+          "line": 386,
+          "column": 4,
+          "index": 13953
         },
         "end": {
-          "line": 328,
-          "column": 5
+          "line": 408,
+          "column": 5,
+          "index": 14569
         }
       },
       "jsdoc": {

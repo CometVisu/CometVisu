@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -53,7 +52,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -80,15 +78,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *
    * This class should not be used directly by client programmers.
    */
+
   qx.Class.define("qx.io.remote.transport.XmlHttp", {
     extend: qx.io.remote.transport.Abstract,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Capabilities of this transport type.
@@ -103,12 +102,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         programmaticFormFields: false,
         responseTypes: ["text/plain", "text/javascript", "application/json", "application/xml", "text/html"]
       },
-
       /**
        * Return a new XMLHttpRequest object suitable for the client browser.
        *
        * @return {Object} native XMLHttpRequest object
        * @signature function()
+       *
+       * @ignore(XMLHttpRequest)
        */
       createRequestObject: qx.core.Environment.select("engine.name", {
         "default": function _default() {
@@ -124,17 +124,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Generally it seems that the ActiveXObject is more stable. jQuery
         // seems to use it always. We prefer the ActiveXObject for the moment, but allow
         // fallback to XMLHTTP if ActiveX is disabled.
-        "mshtml": function mshtml() {
+        mshtml: function mshtml() {
           if (window.ActiveXObject && qx.xml.Document.XMLHTTP) {
-            return new ActiveXObject(qx.xml.Document.XMLHTTP);
+            return new window.ActiveXObject(qx.xml.Document.XMLHTTP);
           }
-
           if (window.XMLHttpRequest) {
-            return new XMLHttpRequest();
+            return new window.XMLHttpRequest();
           }
         }
       }),
-
       /**
        * Whether the transport type is supported by the client.
        *
@@ -143,34 +141,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       isSupported: function isSupported() {
         return !!this.createRequestObject();
       },
-
       /** The timeout for Xhr requests */
-      __P_247_0: 0,
-
+      __P_257_0: 0,
       /**
        * Sets the timeout for requests
        * @deprecated {6.0} This method is deprecated from the start because synchronous I/O itself is deprecated
        *  in the W3C spec {@link https://xhr.spec.whatwg.org/} and timeouts are indicative of synchronous I/O and/or
        *  other server issues.  However, this API is still supported by many browsers and this API is useful
-       *  for code which has not made the transition to asynchronous I/O   
+       *  for code which has not made the transition to asynchronous I/O
        */
       setTimeout: function setTimeout(timeout) {
-        this.__P_247_0 = timeout;
+        this.__P_257_0 = timeout;
       },
-
       /**
        * Returns the timeout for requests
        */
       getTimeout: function getTimeout() {
-        return this.__P_247_0;
+        return this.__P_257_0;
       }
     },
-
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
+
     properties: {
       /**
        * If true and the responseType property is set to "application/json", getResponseContent() will
@@ -184,66 +179,63 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         CORE METHODS
       ---------------------------------------------------------------------------
       */
-      __P_247_1: false,
-      __P_247_2: 0,
-      __P_247_3: null,
 
+      __P_257_1: false,
+      __P_257_2: 0,
+      __P_257_3: null,
       /**
        * Returns the native request object
        *
        * @return {Object} native XmlHTTPRequest object
        */
       getRequest: function getRequest() {
-        if (this.__P_247_3 === null) {
-          this.__P_247_3 = qx.io.remote.transport.XmlHttp.createRequestObject();
-          this.__P_247_3.onreadystatechange = qx.lang.Function.bind(this._onreadystatechange, this);
+        if (this.__P_257_3 === null) {
+          this.__P_257_3 = qx.io.remote.transport.XmlHttp.createRequestObject();
+          this.__P_257_3.onreadystatechange = qx.lang.Function.bind(this._onreadystatechange, this);
         }
-
-        return this.__P_247_3;
+        return this.__P_257_3;
       },
-
       /*
       ---------------------------------------------------------------------------
         USER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Implementation for sending the request
        *
        */
       send: function send() {
-        this.__P_247_2 = 0;
+        this.__P_257_2 = 0;
         var vRequest = this.getRequest();
         var vMethod = this.getMethod();
         var vAsynchronous = this.getAsynchronous();
-        var vUrl = this.getUrl(); // --------------------------------------
+        var vUrl = this.getUrl();
+
+        // --------------------------------------
         //   Local handling
         // --------------------------------------
-
         var vLocalRequest = window.location.protocol === "file:" && !/^http(s){0,1}\:/.test(vUrl);
-        this.__P_247_1 = vLocalRequest; // --------------------------------------
+        this.__P_257_1 = vLocalRequest;
+
+        // --------------------------------------
         //   Adding URL parameters
         // --------------------------------------
-
         var vParameters = this.getParameters(false);
         var vParametersList = [];
-
         for (var vId in vParameters) {
           var value = vParameters[vId];
-
           if (value instanceof Array) {
             for (var i = 0; i < value.length; i++) {
               vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value[i]));
@@ -252,21 +244,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value));
           }
         }
-
         if (vParametersList.length > 0) {
           vUrl += (vUrl.indexOf("?") >= 0 ? "&" : "?") + vParametersList.join("&");
-        } // --------------------------------------------------------
+        }
+
+        // --------------------------------------------------------
         //   Adding data parameters (if no data is already present)
         // --------------------------------------------------------
-
-
         if (this.getData() === null) {
           var vParameters = this.getParameters(true);
           var vParametersList = [];
-
           for (var vId in vParameters) {
             var value = vParameters[vId];
-
             if (value instanceof Array) {
               for (var i = 0; i < value.length; i++) {
                 vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value[i]));
@@ -275,19 +264,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value));
             }
           }
-
           if (vParametersList.length > 0) {
             this.setData(vParametersList.join("&"));
           }
         }
-
         var encode64 = function encode64(input) {
           var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
           var output = "";
           var chr1, chr2, chr3;
           var enc1, enc2, enc3, enc4;
           var i = 0;
-
           do {
             chr1 = input.charCodeAt(i++);
             chr2 = input.charCodeAt(i++);
@@ -296,27 +282,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             enc2 = (chr1 & 3) << 4 | chr2 >> 4;
             enc3 = (chr2 & 15) << 2 | chr3 >> 6;
             enc4 = chr3 & 63;
-
             if (isNaN(chr2)) {
               enc3 = enc4 = 64;
             } else if (isNaN(chr3)) {
               enc4 = 64;
             }
-
             output += keyStr.charAt(enc1) + keyStr.charAt(enc2) + keyStr.charAt(enc3) + keyStr.charAt(enc4);
           } while (i < input.length);
-
           return output;
-        }; // --------------------------------------
+        };
+
+        // --------------------------------------
         //   Opening connection
         // --------------------------------------
-
-
         try {
           if (this.getUsername()) {
             if (this.getUseBasicHttpAuth()) {
               vRequest.open(vMethod, vUrl, vAsynchronous);
-              vRequest.setRequestHeader('Authorization', 'Basic ' + encode64(this.getUsername() + ':' + this.getPassword()));
+              vRequest.setRequestHeader("Authorization", "Basic " + encode64(this.getUsername() + ":" + this.getPassword()));
             } else {
               vRequest.open(vMethod, vUrl, vAsynchronous, this.getUsername(), this.getPassword());
             }
@@ -327,30 +310,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.error("Failed with exception: " + ex);
           this.failed();
           return;
-        } // Apply timeout
+        }
 
-
+        // Apply timeout
         var timeout = qx.io.remote.transport.XmlHttp.getTimeout();
-
         if (timeout && vAsynchronous) {
           vRequest.timeout = timeout;
-        } // --------------------------------------
+        }
+
+        // --------------------------------------
         //   Applying request header
         // --------------------------------------
         // Removed adding a referer header as this is not allowed anymore on most
         // browsers
         // See issue https://github.com/qooxdoo/qooxdoo/issues/9298
 
-
         var vRequestHeaders = this.getRequestHeaders();
-
         for (var vId in vRequestHeaders) {
           vRequest.setRequestHeader(vId, vRequestHeaders[vId]);
-        } // --------------------------------------
+        }
+
+        // --------------------------------------
         //   Sending data
         // --------------------------------------
-
-
         try {
           // IE9 executes the call synchronous when the call is to file protocol
           // See [BUG #4762] for details
@@ -368,18 +350,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             this.error("Failed to send data to URL '" + vUrl + "': " + ex, "send");
             this.failed();
           }
-
           return;
-        } // --------------------------------------
+        }
+
+        // --------------------------------------
         //   Readystate for sync requests
         // --------------------------------------
-
-
         if (!vAsynchronous) {
           this._onreadystatechange();
         }
       },
-
       /**
        * Force the transport into the failed state ("failed").
        *
@@ -390,13 +370,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       failedLocally: function failedLocally() {
         if (this.getState() === "failed") {
           return;
-        } // should only occur on "file://" access
+        }
 
-
+        // should only occur on "file://" access
         this.warn("Could not load from file: " + this.getUrl());
         this.failed();
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
@@ -418,16 +397,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case "failed":
           case "timeout":
             return;
-        } // Checking status code
+        }
 
-
+        // Checking status code
         var vReadyState = this.getReadyState();
-
         if (vReadyState == 4) {
           // The status code is only meaningful when we reach ready state 4.
           // (Important for Opera since it goes through other states before
           // reaching 4, and the status code is not valid before 4 is reached.)
-          if (!qx.io.remote.Exchange.wasSuccessful(this.getStatusCode(), vReadyState, this.__P_247_1)) {
+          if (!qx.io.remote.Exchange.wasSuccessful(this.getStatusCode(), vReadyState, this.__P_257_1)) {
             // Fix for bug #2272
             // The IE doesn't set the state to 'sending' even though the send method
             // is called. This only occurs if the server (which is called) goes
@@ -435,29 +413,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             if (this.getState() === "configured") {
               this.setState("sending");
             }
-
             this.failed();
             return;
           }
-        } // Sometimes the xhr call skips the send state
+        }
 
+        // Sometimes the xhr call skips the send state
+        if (vReadyState == 3 && this.__P_257_2 == 1) {
+          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_257_2]);
+        }
 
-        if (vReadyState == 3 && this.__P_247_2 == 1) {
-          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_247_2]);
-        } // Updating internal state
-
-
-        while (this.__P_247_2 < vReadyState) {
-          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_247_2]);
+        // Updating internal state
+        while (this.__P_257_2 < vReadyState) {
+          this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_257_2]);
         }
       }),
-
       /*
       ---------------------------------------------------------------------------
         READY STATE
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the ready state of this transports request.
        *
@@ -467,20 +442,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getReadyState: function getReadyState() {
         var vReadyState = null;
-
         try {
           vReadyState = this.getRequest().readyState;
         } catch (ex) {}
-
         return vReadyState;
       },
-
       /*
       ---------------------------------------------------------------------------
         REQUEST HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Set a request header to this transports request.
        *
@@ -490,13 +461,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       setRequestHeader: function setRequestHeader(vLabel, vValue) {
         this.getRequestHeaders()[vLabel] = vValue;
       },
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns a specific header provided by the server upon sending a request,
        * with header name determined by the argument headerName.
@@ -516,14 +485,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getResponseHeader: function getResponseHeader(vLabel) {
         var vResponseHeader = null;
-
         try {
           vResponseHeader = this.getRequest().getResponseHeader(vLabel) || null;
         } catch (ex) {}
-
         return vResponseHeader;
       },
-
       /**
        * Returns all response headers of the request.
        *
@@ -531,18 +497,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getStringResponseHeaders: function getStringResponseHeaders() {
         var vSourceHeader = null;
-
         try {
           var vLoadHeader = this.getRequest().getAllResponseHeaders();
-
           if (vLoadHeader) {
             vSourceHeader = vLoadHeader;
           }
         } catch (ex) {}
-
         return vSourceHeader;
       },
-
       /**
        * Provides a hash of all response headers.
        *
@@ -551,28 +513,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getResponseHeaders: function getResponseHeaders() {
         var vSourceHeader = this.getStringResponseHeaders();
         var vHeader = {};
-
         if (vSourceHeader) {
           var vValues = vSourceHeader.split(/[\r\n]+/g);
-
           for (var i = 0, l = vValues.length; i < l; i++) {
             var vPair = vValues[i].match(/^([^:]+)\s*:\s*(.+)$/i);
-
             if (vPair) {
               vHeader[vPair[1]] = vPair[2];
             }
           }
         }
-
         return vHeader;
       },
-
       /*
       ---------------------------------------------------------------------------
         STATUS SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the current status code of the request if available or -1 if not.
        *
@@ -580,19 +536,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getStatusCode: function getStatusCode() {
         var vStatusCode = -1;
-
         try {
-          vStatusCode = this.getRequest().status; // [BUG #4476]
-          // IE sometimes tells 1223 when it should be 204
+          vStatusCode = this.getRequest().status;
 
+          // [BUG #4476]
+          // IE sometimes tells 1223 when it should be 204
           if (vStatusCode === 1223) {
             vStatusCode = 204;
           }
         } catch (ex) {}
-
         return vStatusCode;
       },
-
       /**
        * Provides the status text for the current request if available and null
        * otherwise.
@@ -601,20 +555,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getStatusText: function getStatusText() {
         var vStatusText = "";
-
         try {
           vStatusText = this.getRequest().statusText;
         } catch (ex) {}
-
         return vStatusText;
       },
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE DATA SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Provides the response text from the request when available and null
        * otherwise.  By passing true as the "partial" parameter of this method,
@@ -624,16 +574,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getResponseText: function getResponseText() {
         var vResponseText = null;
-
         try {
           vResponseText = this.getRequest().responseText;
         } catch (ex) {
           vResponseText = null;
         }
-
         return vResponseText;
       },
-
       /**
        * Provides the XML provided by the response if any and null otherwise.  By
        * passing true as the "partial" parameter of this method, incomplete data will
@@ -646,40 +593,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var vResponseXML = null;
         var vStatus = this.getStatusCode();
         var vReadyState = this.getReadyState();
-
-        if (qx.io.remote.Exchange.wasSuccessful(vStatus, vReadyState, this.__P_247_1)) {
+        if (qx.io.remote.Exchange.wasSuccessful(vStatus, vReadyState, this.__P_257_1)) {
           try {
             vResponseXML = this.getRequest().responseXML;
           } catch (ex) {}
-        } // Typical behaviour on file:// on mshtml
+        }
+
+        // Typical behaviour on file:// on mshtml
         // Could we check this with something like: /^file\:/.test(path); ?
         // No browser check here, because it doesn't seem to break other browsers
         //    * test for this.req.responseXML's objecthood added by *
         //    * FRM, 20050816                                       *
-
-
         if (_typeof(vResponseXML) == "object" && vResponseXML != null) {
           if (!vResponseXML.documentElement) {
             // Clear xml file declaration, this breaks non unicode files (like ones with Umlauts)
             var s = String(this.getRequest().responseText).replace(/<\?xml[^\?]*\?>/, "");
             vResponseXML.loadXML(s);
-          } // Re-check if fixed...
+          }
 
-
+          // Re-check if fixed...
           if (!vResponseXML.documentElement) {
             throw new Error("Missing Document Element!");
           }
-
           if (vResponseXML.documentElement.tagName == "parseerror") {
             throw new Error("XML-File is not well-formed!");
           }
         } else {
           throw new Error("Response was not a valid xml document [" + this.getRequest().responseText + "]");
         }
-
         return vResponseXML;
       },
-
       /**
        * Returns the length of the content as fetched thus far
        *
@@ -689,7 +632,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var vText = this.getResponseText();
         return typeof vText == "string" ? vText.length : 0;
       },
-
       /**
        * Returns the content of the response
        *
@@ -697,34 +639,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       getResponseContent: function getResponseContent() {
         var state = this.getState();
-
         if (state !== "completed" && state != "failed") {
           return null;
         }
-
         var vText = this.getResponseText();
-
         if (state == "failed") {
           return vText;
         }
-
         switch (this.getResponseType()) {
           case "text/plain":
           case "text/html":
             return vText;
-
           case "application/json":
             try {
               if (vText && vText.length > 0) {
                 var ret;
-
                 if (this.getParseJson()) {
                   ret = qx.lang.Json.parse(vText);
                   ret = ret === 0 ? 0 : ret || null;
                 } else {
                   ret = vText;
                 }
-
                 return ret;
               } else {
                 return null;
@@ -733,7 +668,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               this.error("Could not execute json: [" + vText + "]", ex);
               return "<pre>Could not execute json: \n" + vText + "\n</pre>";
             }
-
           case "text/javascript":
             try {
               if (vText && vText.length > 0) {
@@ -746,23 +680,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               this.error("Could not execute javascript: [" + vText + "]", ex);
               return null;
             }
-
           case "application/xml":
             vText = this.getResponseXml();
             return vText === 0 ? 0 : vText || null;
-
           default:
             this.warn("No valid responseType specified (" + this.getResponseType() + ")!");
             return null;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Apply method for the "state" property.
        * Fires an event for each state value to inform the listeners.
@@ -775,32 +705,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           case "created":
             this.fireEvent("created");
             break;
-
           case "configured":
             this.fireEvent("configured");
             break;
-
           case "sending":
             this.fireEvent("sending");
             break;
-
           case "receiving":
             this.fireEvent("receiving");
             break;
-
           case "completed":
             this.fireEvent("completed");
             break;
-
           case "failed":
             this.fireEvent("failed");
             break;
-
           case "aborted":
             this.getRequest().abort();
             this.fireEvent("aborted");
             break;
-
           case "timeout":
             this.getRequest().abort();
             this.fireEvent("timeout");
@@ -808,7 +731,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         }
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -819,7 +741,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // the real availability check (activeX stuff and so on) follows at the first real request
       qx.io.remote.Exchange.registerType(qx.io.remote.transport.XmlHttp, "qx.io.remote.transport.XmlHttp");
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -827,15 +748,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     */
     destruct: function destruct() {
       var vRequest = this.getRequest();
-
       if (vRequest) {
         // Clean up state change handler
         // Note that for IE the proper way to do this is to set it to a
         // dummy function, not null (Google on "onreadystatechange dummy IE unhook")
         // http://groups.google.com/group/Google-Web-Toolkit-Contributors/browse_thread/thread/7e7ee67c191a6324
-        vRequest.onreadystatechange = function () {}; // Aborting
-
-
+        vRequest.onreadystatechange = function () {};
+        // Aborting
         switch (vRequest.readyState) {
           case 1:
           case 2:
@@ -843,11 +762,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             vRequest.abort();
         }
       }
-
-      this.__P_247_3 = null;
+      this.__P_257_3 = null;
     }
   });
   qx.io.remote.transport.XmlHttp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlHttp.js.map?dt=1664789587462
+//# sourceMappingURL=XmlHttp.js.map?dt=1672653498605

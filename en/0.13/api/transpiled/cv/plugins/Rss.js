@@ -24,11 +24,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Rss.js 
-   * 
+  /* Rss.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -61,7 +60,6 @@
   qx.Class.define('cv.plugins.Rss', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh],
-
     /*
     ******************************************************
       STATICS
@@ -85,47 +83,46 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'src': {},
-          'width': {
-            'default': ''
+          src: {},
+          width: {
+            "default": ''
           },
-          'height': {
-            'default': ''
+          height: {
+            "default": ''
           },
-          'limit': {
-            'default': 10
+          limit: {
+            "default": 10
           },
-          'header': {
-            'default': true
+          header: {
+            "default": true
           },
-          'date': {
-            'default': true
+          date: {
+            "default": true
           },
-          'content': {
-            'default': true
+          content: {
+            "default": true
           },
-          'snippet': {
-            'default': true
+          snippet: {
+            "default": true
           },
-          'showerror': {
-            'default': true
+          showerror: {
+            "default": true
           },
-          'ssl': {
-            'default': false
+          ssl: {
+            "default": false
           },
-          'linktarget': {
-            'default': '_new'
+          linktarget: {
+            "default": '_new'
           },
-          'link': {
-            'default': true
+          link: {
+            "default": true
           },
-          'title': {
-            'default': true
+          title: {
+            "default": true
           }
         };
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -136,44 +133,43 @@
         check: 'String',
         init: ''
       },
-      'width': {
+      width: {
         init: ''
       },
-      'height': {
+      height: {
         init: ''
       },
-      'limit': {
+      limit: {
         init: 10
       },
-      'header': {
+      header: {
         init: true
       },
-      'date': {
+      date: {
         init: true
       },
-      'content': {
+      content: {
         init: true
       },
-      'snippet': {
+      snippet: {
         init: true
       },
-      'showerror': {
+      showerror: {
         init: true
       },
-      'ssl': {
+      ssl: {
         init: false
       },
-      'linktarget': {
+      linktarget: {
         init: '_new'
       },
-      'link': {
+      link: {
         init: true
       },
-      'title': {
+      title: {
         init: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -187,119 +183,92 @@
       },
       _onDomReady: function _onDomReady() {
         cv.plugins.Rss.superclass.prototype._onDomReady.call(this);
-
         this._parser = new RSSParser();
         this.refreshRSS();
       },
       _setupRefreshAction: function _setupRefreshAction() {
+        var _this = this;
         this._timer = new qx.event.Timer(this.getRefresh());
-
         this._timer.addListener('interval', function () {
-          this.refreshRSS();
-        }, this);
-
+          _this.refreshRSS();
+        });
         this._timer.start();
       },
       refreshRSS: function refreshRSS() {
-        var _this = this;
-
+        var _this2 = this;
         this._parser.parseURL(this.getSrc(), function (err, feed) {
-          var actor = _this.getActor();
-
+          var actor = _this2.getActor();
           var target = actor.querySelector('.rss_inline');
-
           if (err) {
-            _this.error(err);
-
-            if (_this.getShowerror()) {
+            _this2.error(err);
+            if (_this2.getShowerror()) {
               target.textContent = 'ERROR: ' + err;
             }
-
             return;
           }
-
-          if (_this.getHeader()) {
+          if (_this2.getHeader()) {
             var headline = actor.querySelector(':scope > h3');
-
             if (!headline) {
               headline = document.createElement('h3');
               actor.insertBefore(headline, actor.firstElementChild);
             }
-
             headline.textContent = feed.title;
           }
-
           var elements = target.querySelectorAll(':scope > li');
-
           for (var i = elements.length; i >= feed.items.length; i--) {
             elements[i].remove();
           }
-
-          var useLink = _this.getLink();
-
-          var showContent = _this.getContent();
-
-          var showDate = _this.getDate();
-
+          var useLink = _this2.getLink();
+          var showContent = _this2.getContent();
+          var showDate = _this2.getDate();
           feed.items.some(function (entry, i) {
             var elem = target.querySelector(':scope > li[data-row="' + i + '"]');
             var a;
             var content;
             var date;
-
             if (!elem) {
               elem = document.createElement('li');
-
               if (useLink) {
                 a = document.createElement('a');
-                a.setAttribute('target', _this.getLinktarget());
+                a.setAttribute('target', _this2.getLinktarget());
                 elem.appendChild(a);
               }
-
               if (showContent) {
                 content = document.createElement('p');
                 content.classList.add('content');
                 elem.appendChild(content);
               }
-
               if (showDate) {
                 date = document.createElement('p');
                 date.classList.add('date');
                 elem.appendChild(date);
               }
-
               elem.setAttribute('data-row', '' + i);
               target.appendChild(elem);
             } else {
               if (useLink) {
                 a = elem.querySelector(':scope > a');
               }
-
               if (showContent) {
                 content = elem.querySelector(':scope > p.content');
               }
-
               if (showDate) {
                 date = elem.querySelector(':scope > p.date');
               }
             }
-
             if (useLink) {
               a.textContent = entry.title;
               a.setAttribute('href', entry.link);
             } else {
               elem.textContent = entry.title;
             }
-
             if (showContent) {
-              content.innerHTML = _this.getSnippet() ? entry.contentSnippet : entry.content;
+              content.innerHTML = _this2.getSnippet() ? entry.contentSnippet : entry.content;
             }
-
             if (showDate) {
               date.innerText = new Date(entry.isoDate).toLocaleString();
             }
-
-            return i >= _this.getLimit();
+            return i >= _this2.getLimit();
           });
         });
       }
@@ -317,4 +286,4 @@
   cv.plugins.Rss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rss.js.map?dt=1664789563225
+//# sourceMappingURL=Rss.js.map?dt=1672653471815

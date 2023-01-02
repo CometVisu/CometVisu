@@ -1,16 +1,29 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Mixin": {
         "usage": "dynamic",
         "require": true
       },
+      "qx.ui.command.Command": {},
       "qx.Class": {},
       "qx.util.PropertyUtil": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.command.bindEnabled": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,16 +54,17 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired if the {@link #execute} method is invoked.*/
-      "execute": "qx.event.type.Event"
+      execute: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * A command called if the {@link #execute} method is called, e.g. on a
@@ -63,57 +77,54 @@
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_297_0: null,
-      __P_297_1: false,
-      __P_297_2: null,
 
+    members: {
+      __P_312_0: null,
+      __P_312_1: false,
+      __P_312_2: null,
       /**
        * @type {Map} Set of properties, which will by synced from the command to the
        *    including widget
        *
        * @lint ignoreReferenceField(_bindableProperties)
        */
-      _bindableProperties: ["enabled", "label", "icon", "toolTipText", "value", "menu"],
-
+      _bindableProperties: qx.core.Environment.select("qx.command.bindEnabled", {
+        "true": ["enabled", "label", "icon", "toolTipText", "value", "menu"],
+        "false": ["label", "icon", "toolTipText", "value", "menu"]
+      }),
       /**
        * Initiate the execute action.
        */
       execute: function execute() {
         var cmd = this.getCommand();
-
         if (cmd) {
-          if (this.__P_297_1) {
-            this.__P_297_1 = false;
+          if (this.__P_312_1) {
+            this.__P_312_1 = false;
           } else {
-            this.__P_297_1 = true;
+            this.__P_312_1 = true;
             cmd.execute(this);
           }
         }
-
         this.fireEvent("execute");
       },
-
       /**
        * Handler for the execute event of the command.
        *
        * @param e {qx.event.type.Event} The execute event of the command.
        */
-      __P_297_3: function __P_297_3(e) {
+      __P_312_3: function __P_312_3(e) {
         if (this.isEnabled()) {
-          if (this.__P_297_1) {
-            this.__P_297_1 = false;
+          if (this.__P_312_1) {
+            this.__P_312_1 = false;
             return;
           }
-
           if (this.isEnabled()) {
-            this.__P_297_1 = true;
+            this.__P_312_1 = true;
             this.execute();
           }
         }
@@ -122,38 +133,34 @@
       _applyCommand: function _applyCommand(value, old) {
         // execute forwarding
         if (old != null) {
-          old.removeListenerById(this.__P_297_2);
+          old.removeListenerById(this.__P_312_2);
         }
-
         if (value != null) {
-          this.__P_297_2 = value.addListener("execute", this.__P_297_3, this);
-        } // binding stuff
-
-
-        var ids = this.__P_297_0;
-
-        if (ids == null) {
-          this.__P_297_0 = ids = {};
+          this.__P_312_2 = value.addListener("execute", this.__P_312_3, this);
         }
 
+        // binding stuff
+        var ids = this.__P_312_0;
+        if (ids == null) {
+          this.__P_312_0 = ids = {};
+        }
         var selfPropertyValue;
-
         for (var i = 0; i < this._bindableProperties.length; i++) {
-          var property = this._bindableProperties[i]; // remove the old binding
+          var property = this._bindableProperties[i];
 
+          // remove the old binding
           if (old != null && !old.isDisposed() && ids[property] != null) {
             old.removeBinding(ids[property]);
             ids[property] = null;
-          } // add the new binding
+          }
 
-
+          // add the new binding
           if (value != null && qx.Class.hasProperty(this.constructor, property)) {
             // handle the init value (don't sync the initial null)
             var cmdPropertyValue = value.get(property);
-
             if (cmdPropertyValue == null) {
-              selfPropertyValue = this.get(property); // check also for themed values [BUG #5906]
-
+              selfPropertyValue = this.get(property);
+              // check also for themed values [BUG #5906]
               if (selfPropertyValue == null) {
                 // update the appearance to make sure every themed property is up to date
                 this.$$resyncNeeded = true;
@@ -163,11 +170,10 @@
             } else {
               // Reset the self property value [BUG #4534]
               selfPropertyValue = null;
-            } // set up the binding
-
-
-            ids[property] = value.bind(property, this, property); // reapply the former value
-
+            }
+            // set up the binding
+            ids[property] = value.bind(property, this, property);
+            // reapply the former value
             if (selfPropertyValue) {
               this.set(property, selfPropertyValue);
             }
@@ -177,11 +183,10 @@
     },
     destruct: function destruct() {
       this._applyCommand(null, this.getCommand());
-
-      this.__P_297_0 = null;
+      this.__P_312_0 = null;
     }
   });
   qx.ui.core.MExecutable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MExecutable.js.map?dt=1664789593698
+//# sourceMappingURL=MExecutable.js.map?dt=1672653505050

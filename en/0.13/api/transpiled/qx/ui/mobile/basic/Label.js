@@ -1,6 +1,11 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -12,10 +17,17 @@
       "qx.locale.Manager": {
         "construct": true
       }
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.dynlocale": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,41 +63,36 @@
    */
   qx.Class.define("qx.ui.mobile.basic.Label", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {String?null} Text or HTML content to display
      */
     construct: function construct(value) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       if (value) {
         this.setValue(value);
       }
-
       this.initWrap();
       {
         qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "label"
       },
-
       /**
        * Text or HTML content to display
        */
@@ -101,7 +108,6 @@
         refine: true,
         init: true
       },
-
       /**
        * Controls whether text wrap is activated or not.
        */
@@ -111,12 +117,12 @@
         apply: "_applyWrap"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyValue: function _applyValue(value, old) {
@@ -130,22 +136,22 @@
           this.addCssClass("no-wrap");
         }
       },
-
       /**
        * Locale change event handler
        *
        * @signature function(e)
        * @param e {Event} the change event
        */
-      _onChangeLocale: function _onChangeLocale(e) {
-        var content = this.getValue();
-
-        if (content && content.translate) {
-          this.setValue(content.translate());
-        }
-      }
+      _onChangeLocale: qx.core.Environment.select("qx.dynlocale", {
+        "true": function _true(e) {
+          var content = this.getValue();
+          if (content && content.translate) {
+            this.setValue(content.translate());
+          }
+        },
+        "false": null
+      })
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -160,4 +166,4 @@
   qx.ui.mobile.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1664789599692
+//# sourceMappingURL=Label.js.map?dt=1672653510365

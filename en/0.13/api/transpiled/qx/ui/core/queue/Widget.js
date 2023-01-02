@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,14 +41,12 @@
   qx.Class.define("qx.ui.core.queue.Widget", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __P_311_0: [],
-
+      __P_326_0: [],
       /**
        * @type {Object} This contains a map of widgets hash ($$hash) and their
        * corresponding map of jobs.
        */
-      __P_311_1: {},
-
+      __P_326_1: {},
       /**
        * Clears given job of a widget from the internal queue. If no jobs left, the
        * widget will be removed completely from queue. If job param is <code>null</code>
@@ -61,29 +58,25 @@
        * "$$default".
        */
       remove: function remove(widget, job) {
-        var queue = this.__P_311_0;
-
+        var queue = this.__P_326_0;
         if (!queue.includes(widget)) {
           return;
         }
+        var hash = widget.toHashCode();
 
-        var hash = widget.toHashCode(); // remove widget and all corresponding jobs, if job param is not given.
-
+        // remove widget and all corresponding jobs, if job param is not given.
         if (job == null) {
           qx.lang.Array.remove(queue, widget);
-          delete this.__P_311_1[hash];
+          delete this.__P_326_1[hash];
           return;
         }
-
-        if (this.__P_311_1[hash]) {
-          delete this.__P_311_1[hash][job];
-
-          if (qx.lang.Object.getLength(this.__P_311_1[hash]) == 0) {
+        if (this.__P_326_1[hash]) {
+          delete this.__P_326_1[hash][job];
+          if (qx.lang.Object.getLength(this.__P_326_1[hash]) == 0) {
             qx.lang.Array.remove(queue, widget);
           }
         }
       },
-
       /**
        * Adds a widget to the queue. The second param can be used to identify
        * several jobs. You can add one job at once, which will be returned as
@@ -94,27 +87,23 @@
        * "$$default".
        */
       add: function add(widget, job) {
-        var queue = this.__P_311_0; //add widget if not containing
-
+        var queue = this.__P_326_0;
+        //add widget if not containing
         if (!queue.includes(widget)) {
           queue.unshift(widget);
-        } //add job
+        }
 
-
+        //add job
         if (job == null) {
           job = "$$default";
         }
-
         var hash = widget.toHashCode();
-
-        if (!this.__P_311_1[hash]) {
-          this.__P_311_1[hash] = {};
+        if (!this.__P_326_1[hash]) {
+          this.__P_326_1[hash] = {};
         }
-
-        this.__P_311_1[hash][job] = true;
+        this.__P_326_1[hash][job] = true;
         qx.ui.core.queue.Manager.scheduleFlush("widget");
       },
-
       /**
        * Flushes the widget queue.
        *
@@ -122,29 +111,28 @@
        */
       flush: function flush() {
         // Process all registered widgets
-        var queue = this.__P_311_0;
+        var queue = this.__P_326_0;
         var obj, jobs;
-
         for (var i = queue.length - 1; i >= 0; i--) {
           // Order is important to allow the same widget to be requeued directly
           obj = queue[i];
-          jobs = this.__P_311_1[obj.toHashCode()];
+          jobs = this.__P_326_1[obj.toHashCode()];
           queue.splice(i, 1);
           obj.syncWidget(jobs);
-        } // Empty check
+        }
 
-
+        // Empty check
         if (queue.length != 0) {
           return;
-        } // Recreate the array is cheaper compared to keep a sparse array over time
+        }
 
-
-        this.__P_311_0 = [];
-        this.__P_311_1 = {};
+        // Recreate the array is cheaper compared to keep a sparse array over time
+        this.__P_326_0 = [];
+        this.__P_326_1 = {};
       }
     }
   });
   qx.ui.core.queue.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1664789594615
+//# sourceMappingURL=Widget.js.map?dt=1672653505904

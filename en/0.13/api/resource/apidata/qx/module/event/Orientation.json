@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 598
       },
       "end": {
-        "line": 114,
-        "column": 3
+        "line": 107,
+        "column": 3,
+        "index": 2925
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "TYPES": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 728
         },
         "end": {
-          "line": 32,
-          "column": 33
+          "line": 31,
+          "column": 32,
+          "index": 756
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "BIND_METHODS": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 893
         },
         "end": {
-          "line": 40,
-          "column": 66
+          "line": 38,
+          "column": 65,
+          "index": 954
         }
       },
       "jsdoc": {
@@ -93,12 +99,14 @@
     "getOrientation": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1416
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1472
         }
       },
       "jsdoc": {
@@ -123,12 +131,14 @@
     "isLandscape": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1690
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1751
         }
       },
       "jsdoc": {
@@ -153,12 +163,14 @@
     "isPortrait": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 1967
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2026
         }
       },
       "jsdoc": {
@@ -183,12 +195,14 @@
     "normalize": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2377
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 2819
         }
       },
       "jsdoc": {
@@ -243,15 +257,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 111,
-        "column": 10
+        "line": 104,
+        "column": 2,
+        "index": 2828
       },
       "end": {
-        "line": 113,
-        "column": 3
+        "line": 106,
+        "column": 3,
+        "index": 2921
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

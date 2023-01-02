@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,7 +34,6 @@
   ************************************************************************ */
   qx.Class.define("qx.ui.virtual.cell.Boolean", {
     extend: qx.ui.virtual.cell.AbstractImage,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -43,63 +41,61 @@
     */
     construct: function construct() {
       qx.ui.virtual.cell.AbstractImage.constructor.call(this);
-      this.__P_457_0 = qx.util.AliasManager.getInstance();
+      this.__P_472_0 = qx.util.AliasManager.getInstance();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       appearance: {
         refine: true,
         init: "cell-boolean"
       },
-
       /**
-      * The icon used to indicate the true state
-      */
+       * The icon used to indicate the true state
+       */
       iconTrue: {
         check: "String",
         themeable: true,
         apply: "_applyIconTrue"
       },
-
       /**
-      * The icon used to indicate the false state
-      */
+       * The icon used to indicate the false state
+       */
       iconFalse: {
         check: "String",
         themeable: true,
         apply: "_applyIconFalse"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_457_1: null,
-      __P_457_2: null,
-      __P_457_0: null,
+      __P_472_1: null,
+      __P_472_2: null,
+      __P_472_0: null,
       // property apply
       _applyIconTrue: function _applyIconTrue(value) {
-        this.__P_457_1 = this.__P_457_0.resolve(value);
+        this.__P_472_1 = this.__P_472_0.resolve(value);
       },
       // property apply
       _applyIconFalse: function _applyIconFalse(value) {
-        this.__P_457_2 = this.__P_457_0.resolve(value);
+        this.__P_472_2 = this.__P_472_0.resolve(value);
       },
       // overridden
       _identifyImage: function _identifyImage(value) {
-        return value == true ? this.__P_457_1 : this.__P_457_2;
+        return value == true ? this.__P_472_1 : this.__P_472_2;
       }
     }
   });
   qx.ui.virtual.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1664789607081
+//# sourceMappingURL=Boolean.js.map?dt=1672653517204

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 33,
-        "column": 0
+        "line": 32,
+        "column": 0,
+        "index": 1080
       },
       "end": {
-        "line": 1018,
-        "column": 3
+        "line": 1202,
+        "column": 3,
+        "index": 39671
       }
     },
     "jsdoc": {
@@ -62,12 +64,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 13
+        "line": 40,
+        "column": 2,
+        "index": 1278
       },
       "end": {
-        "line": 66,
-        "column": 3
+        "line": 83,
+        "column": 3,
+        "index": 2930
       }
     },
     "jsdoc": {}
@@ -76,12 +80,14 @@
     "consoleCommands": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 3088
         },
         "end": {
-          "line": 74,
-          "column": 23
+          "line": 91,
+          "column": 23,
+          "index": 3107
         }
       },
       "type": "variable",
@@ -90,12 +96,14 @@
     "__commandManager": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 3113
         },
         "end": {
-          "line": 75,
-          "column": 26
+          "line": 92,
+          "column": 26,
+          "index": 3135
         }
       },
       "type": "variable",
@@ -104,12 +112,14 @@
     "structureController": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 3233
         },
         "end": {
-          "line": 79,
-          "column": 29
+          "line": 96,
+          "column": 29,
+          "index": 3258
         }
       },
       "jsdoc": {
@@ -126,12 +136,14 @@
     "_relResourcePath": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 3264
         },
         "end": {
-          "line": 80,
-          "column": 26
+          "line": 97,
+          "column": 26,
+          "index": 3286
         }
       },
       "type": "variable",
@@ -140,12 +152,14 @@
     "_fullResourcePath": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 3292
         },
         "end": {
-          "line": 81,
-          "column": 27
+          "line": 98,
+          "column": 27,
+          "index": 3315
         }
       },
       "type": "variable",
@@ -154,12 +168,14 @@
     "getRelativeResourcePath": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 3322
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 4006
         }
       },
       "type": "function",
@@ -168,12 +184,14 @@
     "createClient": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 4148
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 4988
         }
       },
       "jsdoc": {
@@ -204,12 +222,14 @@
     "registerConsoleCommand": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 155,
+          "column": 4,
+          "index": 5318
         },
         "end": {
-          "line": 133,
-          "column": 5
+          "line": 161,
+          "column": 5,
+          "index": 5555
         }
       },
       "jsdoc": {
@@ -251,12 +271,14 @@
     "root": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 170,
+          "column": 4,
+          "index": 5721
         },
         "end": {
-          "line": 144,
-          "column": 5
+          "line": 172,
+          "column": 5,
+          "index": 5755
         }
       },
       "name": "root",
@@ -267,12 +289,14 @@
     "structureLoaded": {
       "location": {
         "start": {
-          "line": 149,
-          "column": 4
+          "line": 177,
+          "column": 4,
+          "index": 5826
         },
         "end": {
-          "line": 154,
-          "column": 5
+          "line": 182,
+          "column": 5,
+          "index": 5968
         }
       },
       "jsdoc": {
@@ -294,12 +318,14 @@
     "commandManager": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 5975
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 187,
+          "column": 5,
+          "index": 6066
         }
       },
       "name": "commandManager",
@@ -309,12 +335,14 @@
     "active": {
       "location": {
         "start": {
-          "line": 161,
-          "column": 4
+          "line": 189,
+          "column": 4,
+          "index": 6073
         },
         "end": {
-          "line": 165,
-          "column": 5
+          "line": 193,
+          "column": 5,
+          "index": 6158
         }
       },
       "name": "active",
@@ -327,12 +355,14 @@
     "inManager": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 6165
         },
         "end": {
-          "line": 171,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 6257
         }
       },
       "name": "inManager",
@@ -345,12 +375,14 @@
     "managerDisabled": {
       "location": {
         "start": {
-          "line": 173,
-          "column": 4
+          "line": 201,
+          "column": 4,
+          "index": 6264
         },
         "end": {
-          "line": 177,
-          "column": 5
+          "line": 205,
+          "column": 5,
+          "index": 6368
         }
       },
       "name": "managerDisabled",
@@ -363,12 +395,14 @@
     "managerDisabledReason": {
       "location": {
         "start": {
-          "line": 179,
-          "column": 4
+          "line": 207,
+          "column": 4,
+          "index": 6375
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 210,
+          "column": 5,
+          "index": 6449
         }
       },
       "name": "managerDisabledReason",
@@ -380,12 +414,14 @@
     "managerChecked": {
       "location": {
         "start": {
-          "line": 183,
-          "column": 4
+          "line": 212,
+          "column": 4,
+          "index": 6456
         },
         "end": {
-          "line": 187,
-          "column": 5
+          "line": 216,
+          "column": 5,
+          "index": 6558
         }
       },
       "name": "managerChecked",
@@ -398,12 +434,14 @@
     "mobile": {
       "location": {
         "start": {
-          "line": 191,
-          "column": 4
+          "line": 221,
+          "column": 4,
+          "index": 6627
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 226,
+          "column": 5,
+          "index": 6742
         }
       },
       "jsdoc": {
@@ -421,6 +459,103 @@
       "init": false,
       "check": "Boolean",
       "defaultValue": false
+    },
+    "serverChecked": {
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6749
+        },
+        "end": {
+          "line": 232,
+          "column": 5,
+          "index": 6850
+        }
+      },
+      "name": "serverChecked",
+      "propertyType": "new",
+      "event": "serverCheckedChanged",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "servedByOpenhab": {
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6857
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6923
+        }
+      },
+      "name": "servedByOpenhab",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "serverHasPhpSupport": {
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6930
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 7043
+        }
+      },
+      "name": "serverHasPhpSupport",
+      "propertyType": "new",
+      "event": "serverHasPhpSupportChanged",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "serverPhpVersion": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 7050
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7119
+        }
+      },
+      "name": "serverPhpVersion",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "server": {
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 7126
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7185
+        }
+      },
+      "name": "server",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "qxOwner": {
       "type": "property",
@@ -459,12 +594,14 @@
     "_blocker": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 263,
+          "column": 4,
+          "index": 7393
         },
         "end": {
-          "line": 208,
-          "column": 18
+          "line": 263,
+          "column": 18,
+          "index": 7407
         }
       },
       "type": "variable",
@@ -473,12 +610,14 @@
     "__appReady": {
       "location": {
         "start": {
-          "line": 209,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 7413
         },
         "end": {
-          "line": 209,
-          "column": 20
+          "line": 264,
+          "column": 20,
+          "index": 7429
         }
       },
       "type": "variable",
@@ -487,12 +626,14 @@
     "_isCached": {
       "location": {
         "start": {
-          "line": 210,
-          "column": 4
+          "line": 265,
+          "column": 4,
+          "index": 7435
         },
         "end": {
-          "line": 210,
-          "column": 19
+          "line": 265,
+          "column": 19,
+          "index": 7450
         }
       },
       "type": "variable",
@@ -501,12 +642,14 @@
     "block": {
       "location": {
         "start": {
-          "line": 216,
-          "column": 4
+          "line": 271,
+          "column": 4,
+          "index": 7553
         },
         "end": {
-          "line": 227,
-          "column": 5
+          "line": 282,
+          "column": 5,
+          "index": 7884
         }
       },
       "jsdoc": {
@@ -529,12 +672,14 @@
     "_applyMobile": {
       "location": {
         "start": {
-          "line": 229,
-          "column": 4
+          "line": 284,
+          "column": 4,
+          "index": 7891
         },
         "end": {
-          "line": 236,
-          "column": 5
+          "line": 291,
+          "column": 5,
+          "index": 8208
         }
       },
       "type": "function",
@@ -546,12 +691,14 @@
     "_applyManagerChecked": {
       "location": {
         "start": {
-          "line": 238,
-          "column": 4
+          "line": 293,
+          "column": 4,
+          "index": 8215
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 297,
+          "column": 5,
+          "index": 8392
         }
       },
       "type": "function",
@@ -563,12 +710,14 @@
     "main": {
       "location": {
         "start": {
-          "line": 248,
-          "column": 4
+          "line": 303,
+          "column": 4,
+          "index": 8529
         },
         "end": {
-          "line": 325,
-          "column": 5
+          "line": 391,
+          "column": 5,
+          "index": 11828
         }
       },
       "jsdoc": {
@@ -590,12 +739,14 @@
     "hideManager": {
       "location": {
         "start": {
-          "line": 327,
-          "column": 4
+          "line": 393,
+          "column": 4,
+          "index": 11835
         },
         "end": {
-          "line": 335,
-          "column": 5
+          "line": 401,
+          "column": 5,
+          "index": 12168
         }
       },
       "type": "function",
@@ -604,12 +755,14 @@
     "showManager": {
       "location": {
         "start": {
-          "line": 341,
-          "column": 4
+          "line": 407,
+          "column": 4,
+          "index": 12391
         },
         "end": {
-          "line": 373,
-          "column": 5
+          "line": 448,
+          "column": 5,
+          "index": 13797
         }
       },
       "jsdoc": {
@@ -645,12 +798,14 @@
     "_applyInManager": {
       "location": {
         "start": {
-          "line": 375,
-          "column": 4
+          "line": 450,
+          "column": 4,
+          "index": 13804
         },
         "end": {
-          "line": 385,
-          "column": 5
+          "line": 461,
+          "column": 5,
+          "index": 14206
         }
       },
       "type": "function",
@@ -662,12 +817,14 @@
     "showConfigErrors": {
       "location": {
         "start": {
-          "line": 387,
-          "column": 4
+          "line": 463,
+          "column": 4,
+          "index": 14213
         },
         "end": {
-          "line": 407,
-          "column": 5
+          "line": 488,
+          "column": 5,
+          "index": 15054
         }
       },
       "type": "function",
@@ -676,12 +833,14 @@
     "validateConfig": {
       "location": {
         "start": {
-          "line": 409,
-          "column": 4
+          "line": 490,
+          "column": 4,
+          "index": 15061
         },
         "end": {
-          "line": 472,
-          "column": 5
+          "line": 575,
+          "column": 5,
+          "index": 17782
         }
       },
       "type": "function",
@@ -690,12 +849,14 @@
     "__globalErrorHandler": {
       "location": {
         "start": {
-          "line": 474,
-          "column": 4
+          "line": 577,
+          "column": 4,
+          "index": 17789
         },
         "end": {
-          "line": 618,
-          "column": 5
+          "line": 723,
+          "column": 5,
+          "index": 23219
         }
       },
       "type": "function",
@@ -704,26 +865,30 @@
     "throwError": {
       "location": {
         "start": {
-          "line": 620,
-          "column": 4
+          "line": 725,
+          "column": 4,
+          "index": 23226
         },
         "end": {
-          "line": 625,
-          "column": 6
+          "line": 730,
+          "column": 6,
+          "index": 23390
         }
       },
-      "type": "function",
+      "type": "variable",
       "access": "public"
     },
     "_onResize": {
       "location": {
         "start": {
-          "line": 627,
-          "column": 4
+          "line": 732,
+          "column": 4,
+          "index": 23397
         },
         "end": {
-          "line": 631,
-          "column": 5
+          "line": 736,
+          "column": 5,
+          "index": 23550
         }
       },
       "type": "function",
@@ -732,12 +897,14 @@
     "_applyStructureLoaded": {
       "location": {
         "start": {
-          "line": 633,
-          "column": 4
+          "line": 738,
+          "column": 4,
+          "index": 23557
         },
         "end": {
-          "line": 639,
-          "column": 5
+          "line": 744,
+          "column": 5,
+          "index": 23798
         }
       },
       "type": "function",
@@ -749,12 +916,14 @@
     "__init": {
       "location": {
         "start": {
-          "line": 644,
-          "column": 4
+          "line": 749,
+          "column": 4,
+          "index": 23859
         },
         "end": {
-          "line": 681,
-          "column": 5
+          "line": 792,
+          "column": 5,
+          "index": 25253
         }
       },
       "jsdoc": {
@@ -771,12 +940,14 @@
     "bootstrap": {
       "location": {
         "start": {
-          "line": 687,
-          "column": 4
+          "line": 798,
+          "column": 4,
+          "index": 25376
         },
         "end": {
-          "line": 762,
-          "column": 5
+          "line": 882,
+          "column": 5,
+          "index": 28683
         }
       },
       "jsdoc": {
@@ -802,12 +973,14 @@
     "loadStyles": {
       "location": {
         "start": {
-          "line": 768,
-          "column": 4
+          "line": 888,
+          "column": 4,
+          "index": 28759
         },
         "end": {
-          "line": 781,
-          "column": 5
+          "line": 901,
+          "column": 5,
+          "index": 29233
         }
       },
       "jsdoc": {
@@ -830,12 +1003,14 @@
     "loadScripts": {
       "location": {
         "start": {
-          "line": 787,
-          "column": 4
+          "line": 907,
+          "column": 4,
+          "index": 29323
         },
         "end": {
-          "line": 794,
-          "column": 5
+          "line": 914,
+          "column": 5,
+          "index": 29543
         }
       },
       "jsdoc": {
@@ -858,12 +1033,14 @@
     "loadPlugins": {
       "location": {
         "start": {
-          "line": 799,
-          "column": 4
+          "line": 919,
+          "column": 4,
+          "index": 29586
         },
         "end": {
-          "line": 869,
-          "column": 5
+          "line": 1000,
+          "column": 5,
+          "index": 32496
         }
       },
       "jsdoc": {
@@ -880,12 +1057,14 @@
     "__constraintFails": {
       "location": {
         "start": {
-          "line": 871,
-          "column": 4
+          "line": 1002,
+          "column": 4,
+          "index": 32503
         },
         "end": {
-          "line": 917,
-          "column": 5
+          "line": 1055,
+          "column": 5,
+          "index": 34475
         }
       },
       "type": "function",
@@ -894,12 +1073,14 @@
     "_checkBackend": {
       "location": {
         "start": {
-          "line": 919,
-          "column": 4
+          "line": 1057,
+          "column": 4,
+          "index": 34482
         },
         "end": {
-          "line": 970,
-          "column": 5
+          "line": 1145,
+          "column": 5,
+          "index": 37983
         }
       },
       "type": "function",
@@ -908,12 +1089,14 @@
     "close": {
       "location": {
         "start": {
-          "line": 972,
-          "column": 4
+          "line": 1147,
+          "column": 4,
+          "index": 37990
         },
         "end": {
-          "line": 978,
-          "column": 5
+          "line": 1153,
+          "column": 5,
+          "index": 38149
         }
       },
       "type": "function",
@@ -927,12 +1110,14 @@
     "registerServiceWorker": {
       "location": {
         "start": {
-          "line": 983,
-          "column": 4
+          "line": 1158,
+          "column": 4,
+          "index": 38218
         },
         "end": {
-          "line": 1016,
-          "column": 5
+          "line": 1200,
+          "column": 5,
+          "index": 39663
         }
       },
       "jsdoc": {
@@ -978,9 +1163,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1584,6 +1771,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1928,11 +2166,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2449,6 +2687,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2472,6 +2711,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4889,6 +5129,408 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>mobile</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mobile}."
+          }
+        ]
+      }
+    },
+    "getServerChecked": {
+      "type": "function",
+      "name": "getServerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>serverChecked</code>.\n\nFor further details take a look at the property definition: {@link #serverChecked}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for serverChecked"
+          }
+        ]
+      }
+    },
+    "isServerChecked": {
+      "type": "function",
+      "name": "isServerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>serverChecked</code>.\n\nFor further details take a look at the property definition: {@link #serverChecked}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for serverChecked"
+          }
+        ]
+      }
+    },
+    "setServerChecked": {
+      "type": "function",
+      "name": "setServerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>serverChecked</code>.\n\nFor further details take a look at the property definition: {@link #serverChecked}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for serverChecked"
+          }
+        ]
+      }
+    },
+    "resetServerChecked": {
+      "type": "function",
+      "name": "resetServerChecked",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>serverChecked</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #serverChecked}."
+          }
+        ]
+      }
+    },
+    "getServedByOpenhab": {
+      "type": "function",
+      "name": "getServedByOpenhab",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>servedByOpenhab</code>.\n\nFor further details take a look at the property definition: {@link #servedByOpenhab}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for servedByOpenhab"
+          }
+        ]
+      }
+    },
+    "isServedByOpenhab": {
+      "type": "function",
+      "name": "isServedByOpenhab",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>servedByOpenhab</code>.\n\nFor further details take a look at the property definition: {@link #servedByOpenhab}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for servedByOpenhab"
+          }
+        ]
+      }
+    },
+    "setServedByOpenhab": {
+      "type": "function",
+      "name": "setServedByOpenhab",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>servedByOpenhab</code>.\n\nFor further details take a look at the property definition: {@link #servedByOpenhab}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for servedByOpenhab"
+          }
+        ]
+      }
+    },
+    "resetServedByOpenhab": {
+      "type": "function",
+      "name": "resetServedByOpenhab",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>servedByOpenhab</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #servedByOpenhab}."
+          }
+        ]
+      }
+    },
+    "getServerHasPhpSupport": {
+      "type": "function",
+      "name": "getServerHasPhpSupport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>serverHasPhpSupport</code>.\n\nFor further details take a look at the property definition: {@link #serverHasPhpSupport}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for serverHasPhpSupport"
+          }
+        ]
+      }
+    },
+    "isServerHasPhpSupport": {
+      "type": "function",
+      "name": "isServerHasPhpSupport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>serverHasPhpSupport</code>.\n\nFor further details take a look at the property definition: {@link #serverHasPhpSupport}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for serverHasPhpSupport"
+          }
+        ]
+      }
+    },
+    "setServerHasPhpSupport": {
+      "type": "function",
+      "name": "setServerHasPhpSupport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>serverHasPhpSupport</code>.\n\nFor further details take a look at the property definition: {@link #serverHasPhpSupport}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for serverHasPhpSupport"
+          }
+        ]
+      }
+    },
+    "resetServerHasPhpSupport": {
+      "type": "function",
+      "name": "resetServerHasPhpSupport",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>serverHasPhpSupport</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #serverHasPhpSupport}."
+          }
+        ]
+      }
+    },
+    "getServerPhpVersion": {
+      "type": "function",
+      "name": "getServerPhpVersion",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>serverPhpVersion</code>.\n\nFor further details take a look at the property definition: {@link #serverPhpVersion}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for serverPhpVersion"
+          }
+        ]
+      }
+    },
+    "setServerPhpVersion": {
+      "type": "function",
+      "name": "setServerPhpVersion",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>serverPhpVersion</code>.\n\nFor further details take a look at the property definition: {@link #serverPhpVersion}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for serverPhpVersion"
+          }
+        ]
+      }
+    },
+    "resetServerPhpVersion": {
+      "type": "function",
+      "name": "resetServerPhpVersion",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>serverPhpVersion</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #serverPhpVersion}."
+          }
+        ]
+      }
+    },
+    "getServer": {
+      "type": "function",
+      "name": "getServer",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>server</code>.\n\nFor further details take a look at the property definition: {@link #server}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for server"
+          }
+        ]
+      }
+    },
+    "setServer": {
+      "type": "function",
+      "name": "setServer",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>server</code>.\n\nFor further details take a look at the property definition: {@link #server}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for server"
+          }
+        ]
+      }
+    },
+    "resetServer": {
+      "type": "function",
+      "name": "resetServer",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>server</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #server}."
           }
         ]
       }

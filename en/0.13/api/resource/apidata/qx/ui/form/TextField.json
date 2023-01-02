@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 634
       },
       "end": {
-        "line": 112,
-        "column": 3
+        "line": 103,
+        "column": 3,
+        "index": 2664
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 938
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1001
         }
       },
       "jsdoc": {},
@@ -53,12 +57,14 @@
     "allowGrowY": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1026
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 45,
+          "column": 5,
+          "index": 1083
         }
       },
       "jsdoc": {},
@@ -75,12 +81,14 @@
     "allowShrinkY": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1108
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1167
         }
       },
       "jsdoc": {},
@@ -99,12 +107,14 @@
     "_renderContentElement": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1209
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 66,
+          "column": 5,
+          "index": 1570
         }
       },
       "jsdoc": {},
@@ -118,12 +128,14 @@
     "_createContentElement": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1595
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 1883
         }
       },
       "jsdoc": {},
@@ -138,12 +150,14 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2035
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2554
         }
       },
       "jsdoc": {
@@ -633,6 +647,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -657,6 +672,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4823,15 +4839,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 109,
-        "column": 13
+        "line": 100,
+        "column": 2,
+        "index": 2563
       },
       "end": {
-        "line": 111,
-        "column": 3
+        "line": 102,
+        "column": 3,
+        "index": 2660
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": [

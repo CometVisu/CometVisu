@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,7 +33,6 @@
        * Sebastian Fastner (fastner)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for checking the operating systems name.
    *
@@ -42,6 +40,7 @@
    * directly. Please check its class comment for details how to use it.
    *
    * @internal
+   * @ignore(process.*)
    */
   qx.Bootstrap.define("qx.bom.client.OperatingSystem", {
     statics: {
@@ -49,15 +48,28 @@
        * Checks for the name of the operating system.
        * @return {String} The name of the operating system.
        * @internal
+       * @ignore(process.*)
+       *
        */
       getName: function getName() {
+        if (typeof process != "undefined" && process.platform) {
+          var MAP = {
+            win32: "win",
+            darwin: "osx",
+            linux: "linux",
+            aix: "unix",
+            freebsd: "unix",
+            openbsd: "unix",
+            sunos: "unix",
+            android: "android"
+          };
+          return MAP[process.platform] || "";
+        }
         if (!navigator) {
           return "";
         }
-
         var input = navigator.platform || "";
         var agent = navigator.userAgent || "";
-
         if (input.indexOf("Windows") != -1 || input.indexOf("Win32") != -1 || input.indexOf("Win64") != -1 || agent.indexOf("Windows Phone") != -1) {
           return "win";
         } else if (input.indexOf("Macintosh") != -1 || input.indexOf("MacPPC") != -1 || input.indexOf("MacIntel") != -1 || input.indexOf("Mac OS X") != -1) {
@@ -78,14 +90,13 @@
           return "symbian";
         } else if (input.indexOf("BlackBerry") != -1) {
           return "blackberry";
-        } // don't know
+        }
 
-
+        // don't know
         return "";
       },
-
       /** Maps user agent names to system IDs */
-      __P_123_0: {
+      __P_124_0: {
         // Windows
         "Windows NT 10.0": "10",
         "Windows NT 6.3": "8.1",
@@ -100,10 +111,12 @@
         "Win 9x 4.90": "me",
         "Windows CE": "ce",
         "Windows 98": "98",
-        "Win98": "98",
+        Win98: "98",
         "Windows 95": "95",
-        "Win95": "95",
+        Win95: "95",
         // OS X
+        "Mac OS X 10_15": "10.15",
+        "Mac OS X 10_14": "10.14",
         "Mac OS X 10_13": "10.13",
         "Mac OS X 10.13": "10.13",
         "Mac OS X 10_12": "10.12",
@@ -133,7 +146,6 @@
         "Mac OS X 10_0": "10.0",
         "Mac OS X 10.0": "10.0"
       },
-
       /**
        * Checks for the version of the operating system using the internal map.
        *
@@ -142,69 +154,57 @@
        *   could not be detected.
        */
       getVersion: function getVersion() {
-        var version = qx.bom.client.OperatingSystem.__P_123_1(navigator.userAgent);
-
+        var version = qx.bom.client.OperatingSystem.__P_124_1(navigator.userAgent);
         if (version == null) {
-          version = qx.bom.client.OperatingSystem.__P_123_2(navigator.userAgent);
+          version = qx.bom.client.OperatingSystem.__P_124_2(navigator.userAgent);
         }
-
         if (version != null) {
           return version;
         } else {
           return "";
         }
       },
-
       /**
        * Detect OS version for desktop devices
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __P_123_1: function __P_123_1(userAgent) {
+      __P_124_1: function __P_124_1(userAgent) {
         var str = [];
-
-        for (var key in qx.bom.client.OperatingSystem.__P_123_0) {
+        for (var key in qx.bom.client.OperatingSystem.__P_124_0) {
           str.push(key);
         }
-
-        var reg = new RegExp("(" + str.join("|").replace(/\./g, "\.") + ")", "g");
+        var reg = new RegExp("(" + str.join("|").replace(/\./g, ".") + ")", "g");
         var match = reg.exec(userAgent);
-
         if (match && match[1]) {
-          return qx.bom.client.OperatingSystem.__P_123_0[match[1]];
+          return qx.bom.client.OperatingSystem.__P_124_0[match[1]];
         }
-
         return null;
       },
-
       /**
        * Detect OS version for mobile devices
        * @param userAgent {String} userAgent parameter, needed for detection.
        * @return {String} version number as string or null.
        */
-      __P_123_2: function __P_123_2(userAgent) {
+      __P_124_2: function __P_124_2(userAgent) {
         var windows = userAgent.indexOf("Windows Phone") != -1;
         var android = userAgent.indexOf("Android") != -1;
         var iOs = userAgent.match(/(iPad|iPhone|iPod)/i) ? true : false;
-
         if (windows) {
           var windowsVersionRegExp = new RegExp(/Windows Phone (\d+(?:\.\d+)+)/i);
           var windowsMatch = windowsVersionRegExp.exec(userAgent);
-
           if (windowsMatch && windowsMatch[1]) {
             return windowsMatch[1];
           }
         } else if (android) {
           var androidVersionRegExp = new RegExp(/ Android (\d+(?:\.\d+)+)/i);
           var androidMatch = androidVersionRegExp.exec(userAgent);
-
           if (androidMatch && androidMatch[1]) {
             return androidMatch[1];
           }
         } else if (iOs) {
           var iOsVersionRegExp = new RegExp(/(CPU|iPhone|iPod) OS (\d+)_(\d+)(?:_(\d+))*\s+/);
           var iOsMatch = iOsVersionRegExp.exec(userAgent);
-
           if (iOsMatch && iOsMatch[2] && iOsMatch[3]) {
             if (iOsMatch[4]) {
               return iOsMatch[2] + "." + iOsMatch[3] + "." + iOsMatch[4];
@@ -213,7 +213,6 @@
             }
           }
         }
-
         return null;
       }
     },
@@ -225,4 +224,4 @@
   qx.bom.client.OperatingSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OperatingSystem.js.map?dt=1664789577640
+//# sourceMappingURL=OperatingSystem.js.map?dt=1672653485874

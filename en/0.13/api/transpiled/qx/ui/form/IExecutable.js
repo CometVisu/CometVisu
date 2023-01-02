@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,26 +36,26 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when the widget is executed. Sets the "data" property of the
        * event to the object that issued the command.
        */
-      "execute": "qx.event.type.Data"
+      execute: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         COMMAND PROPERTY
       ---------------------------------------------------------------------------
       */
-
       /**
        * Set the command of this executable.
        *
@@ -65,14 +64,12 @@
       setCommand: function setCommand(command) {
         return arguments.length == 1;
       },
-
       /**
        * Return the current set command of this executable.
        *
        * @return {qx.ui.command.Command} The current set command.
        */
       getCommand: function getCommand() {},
-
       /**
        * Fire the "execute" event on the command.
        */
@@ -82,4 +79,4 @@
   qx.ui.form.IExecutable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IExecutable.js.map?dt=1664789596361
+//# sourceMappingURL=IExecutable.js.map?dt=1672653507514

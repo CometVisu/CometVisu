@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -32,6 +31,7 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.dao.Constant", {
     extend: qxl.apiviewer.dao.ClassItem,
     construct: function construct(meta, clazz, name) {
@@ -48,4 +48,4 @@
   qxl.apiviewer.dao.Constant.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Constant.js.map?dt=1664789617342
+//# sourceMappingURL=Constant.js.map?dt=1672653526660

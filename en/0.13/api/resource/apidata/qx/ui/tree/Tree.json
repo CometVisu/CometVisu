@@ -20,11 +20,13 @@
     "location": {
       "start": {
         "line": 39,
-        "column": 0
+        "column": 0,
+        "index": 1433
       },
       "end": {
-        "line": 598,
-        "column": 3
+        "line": 545,
+        "column": 3,
+        "index": 15088
       }
     },
     "jsdoc": {
@@ -40,12 +42,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 63,
-        "column": 14
+        "line": 61,
+        "column": 2,
+        "index": 1981
       },
       "end": {
-        "line": 79,
-        "column": 3
+        "line": 78,
+        "column": 3,
+        "index": 2412
       }
     },
     "jsdoc": {}
@@ -54,12 +58,14 @@
     "addItem": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2795
         },
         "end": {
-          "line": 96,
-          "column": 34
+          "line": 92,
+          "column": 33,
+          "index": 2824
         }
       },
       "jsdoc": {
@@ -76,12 +82,14 @@
     "removeItem": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 3023
         },
         "end": {
-          "line": 103,
-          "column": 37
+          "line": 99,
+          "column": 36,
+          "index": 3055
         }
       },
       "jsdoc": {
@@ -212,12 +220,14 @@
     "openMode": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 3373
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3536
         }
       },
       "jsdoc": {
@@ -244,12 +254,14 @@
     "root": {
       "location": {
         "start": {
-          "line": 131,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3608
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 3763
         }
       },
       "jsdoc": {
@@ -271,12 +283,14 @@
     "hideRoot": {
       "location": {
         "start": {
-          "line": 144,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 3945
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 140,
+          "column": 5,
+          "index": 4035
         }
       },
       "jsdoc": {
@@ -297,12 +311,14 @@
     "rootOpenClose": {
       "location": {
         "start": {
-          "line": 158,
-          "column": 4
+          "line": 149,
+          "column": 4,
+          "index": 4405
         },
         "end": {
-          "line": 163,
-          "column": 5
+          "line": 153,
+          "column": 5,
+          "index": 4505
         }
       },
       "jsdoc": {
@@ -323,12 +339,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 166,
-          "column": 4
+          "line": 156,
+          "column": 4,
+          "index": 4530
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4588
         }
       },
       "jsdoc": {},
@@ -346,12 +364,14 @@
     "focusable": {
       "location": {
         "start": {
-          "line": 173,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 4613
         },
         "end": {
-          "line": 177,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 4668
         }
       },
       "jsdoc": {},
@@ -539,7 +559,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -551,12 +571,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -566,12 +586,14 @@
     "__content": {
       "location": {
         "start": {
-          "line": 189,
-          "column": 4
+          "line": 175,
+          "column": 4,
+          "index": 4876
         },
         "end": {
-          "line": 189,
-          "column": 20
+          "line": 175,
+          "column": 19,
+          "index": 4891
         }
       },
       "type": "variable",
@@ -580,12 +602,14 @@
     "SELECTION_MANAGER": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 178,
+          "column": 4,
+          "index": 4963
         },
         "end": {
-          "line": 192,
-          "column": 61
+          "line": 178,
+          "column": 60,
+          "index": 5019
         }
       },
       "jsdoc": {
@@ -608,12 +632,14 @@
     "getChildrenContainer": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 5409
         },
         "end": {
-          "line": 210,
-          "column": 5
+          "line": 194,
+          "column": 5,
+          "index": 5468
         }
       },
       "jsdoc": {
@@ -642,12 +668,14 @@
     "_applyRoot": {
       "location": {
         "start": {
-          "line": 214,
-          "column": 4
+          "line": 197,
+          "column": 4,
+          "index": 5497
         },
         "end": {
-          "line": 236,
-          "column": 5
+          "line": 216,
+          "column": 5,
+          "index": 6031
         }
       },
       "jsdoc": {},
@@ -660,12 +688,14 @@
     "_applyHideRoot": {
       "location": {
         "start": {
-          "line": 240,
-          "column": 4
+          "line": 219,
+          "column": 4,
+          "index": 6060
         },
         "end": {
-          "line": 249,
-          "column": 5
+          "line": 227,
+          "column": 5,
+          "index": 6269
         }
       },
       "jsdoc": {},
@@ -678,12 +708,14 @@
     "_applyRootOpenClose": {
       "location": {
         "start": {
-          "line": 253,
-          "column": 4
+          "line": 230,
+          "column": 4,
+          "index": 6298
         },
         "end": {
-          "line": 260,
-          "column": 5
+          "line": 236,
+          "column": 5,
+          "index": 6453
         }
       },
       "jsdoc": {},
@@ -696,12 +728,14 @@
     "_getContentPaddingTarget": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 243,
+          "column": 4,
+          "index": 6622
         },
         "end": {
-          "line": 270,
-          "column": 5
+          "line": 245,
+          "column": 5,
+          "index": 6685
         }
       },
       "jsdoc": {
@@ -726,12 +760,14 @@
     "getNextNodeOf": {
       "location": {
         "start": {
-          "line": 290,
-          "column": 4
+          "line": 263,
+          "column": 4,
+          "index": 7358
         },
         "end": {
-          "line": 313,
-          "column": 5
+          "line": 286,
+          "column": 5,
+          "index": 7959
         }
       },
       "jsdoc": {
@@ -774,12 +810,14 @@
     "getPreviousNodeOf": {
       "location": {
         "start": {
-          "line": 326,
-          "column": 4
+          "line": 298,
+          "column": 4,
+          "index": 8439
         },
         "end": {
-          "line": 365,
-          "column": 5
+          "line": 331,
+          "column": 5,
+          "index": 9309
         }
       },
       "jsdoc": {
@@ -822,12 +860,14 @@
     "getNextSiblingOf": {
       "location": {
         "start": {
-          "line": 378,
-          "column": 4
+          "line": 343,
+          "column": 4,
+          "index": 9689
         },
         "end": {
-          "line": 393,
-          "column": 5
+          "line": 357,
+          "column": 5,
+          "index": 10029
         }
       },
       "jsdoc": {
@@ -861,12 +901,14 @@
     "getPreviousSiblingOf": {
       "location": {
         "start": {
-          "line": 406,
-          "column": 4
+          "line": 369,
+          "column": 4,
+          "index": 10413
         },
         "end": {
-          "line": 421,
-          "column": 5
+          "line": 383,
+          "column": 5,
+          "index": 10739
         }
       },
       "jsdoc": {
@@ -900,12 +942,14 @@
     "getItems": {
       "location": {
         "start": {
-          "line": 433,
-          "column": 4
+          "line": 394,
+          "column": 4,
+          "index": 11079
         },
         "end": {
-          "line": 440,
-          "column": 5
+          "line": 404,
+          "column": 5,
+          "index": 11317
         }
       },
       "jsdoc": {
@@ -950,12 +994,14 @@
     "getChildren": {
       "location": {
         "start": {
-          "line": 448,
-          "column": 4
+          "line": 411,
+          "column": 4,
+          "index": 11501
         },
         "end": {
-          "line": 455,
-          "column": 5
+          "line": 417,
+          "column": 5,
+          "index": 11633
         }
       },
       "jsdoc": {
@@ -980,12 +1026,14 @@
     "getTreeItem": {
       "location": {
         "start": {
-          "line": 473,
-          "column": 4
+          "line": 433,
+          "column": 4,
+          "index": 12206
         },
         "end": {
-          "line": 489,
-          "column": 5
+          "line": 447,
+          "column": 5,
+          "index": 12493
         }
       },
       "jsdoc": {
@@ -1019,12 +1067,14 @@
     "_applyOpenMode": {
       "location": {
         "start": {
-          "line": 493,
-          "column": 4
+          "line": 450,
+          "column": 4,
+          "index": 12522
         },
         "end": {
-          "line": 506,
-          "column": 5
+          "line": 462,
+          "column": 5,
+          "index": 12925
         }
       },
       "jsdoc": {},
@@ -1037,12 +1087,14 @@
     "_onOpen": {
       "location": {
         "start": {
-          "line": 515,
-          "column": 4
+          "line": 470,
+          "column": 4,
+          "index": 13105
         },
         "end": {
-          "line": 524,
-          "column": 5
+          "line": 478,
+          "column": 5,
+          "index": 13322
         }
       },
       "jsdoc": {
@@ -1068,12 +1120,14 @@
     "_onChangeSelection": {
       "location": {
         "start": {
-          "line": 533,
-          "column": 4
+          "line": 486,
+          "column": 4,
+          "index": 13527
         },
         "end": {
-          "line": 544,
-          "column": 5
+          "line": 497,
+          "column": 5,
+          "index": 13889
         }
       },
       "jsdoc": {
@@ -1099,12 +1153,14 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 554,
-          "column": 4
+          "line": 506,
+          "column": 4,
+          "index": 14147
         },
         "end": {
-          "line": 584,
-          "column": 5
+          "line": 533,
+          "column": 5,
+          "index": 14833
         }
       },
       "jsdoc": {
@@ -2621,38 +2677,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -3070,6 +3094,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -3094,6 +3119,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -7221,12 +7247,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 595,
-        "column": 13
+        "line": 542,
+        "column": 2,
+        "index": 15029
       },
       "end": {
-        "line": 597,
-        "column": 3
+        "line": 544,
+        "column": 3,
+        "index": 15084
       }
     },
     "jsdoc": {}

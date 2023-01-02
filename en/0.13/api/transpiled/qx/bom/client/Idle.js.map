@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/bom/client/Idle.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -22,8 +19,11 @@
     "client",
     "Idle"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACC,SAAH,CAAaG,MAAb,CAAoB,oBAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,UAAU,EAAG,sBAAW;AACtB,eAAOC,MAAM,CAACC,mBAAP,KAA+BC,SAAtC;AACD;AATH,KAFF;AAcEC,IAAAA,KAAK,EAAG,eAASL,OAAT,EAAkB;AACxBL,MAAAA,EAAE,CAACW,IAAH,CAAQC,WAAR,CAAoBC,GAApB,CAAwB,aAAxB,EAAuCR,OAAO,CAACC,UAA/C;AACD;AAhBH,GADA;AA1BAN,EAAAA,EAAE,CAACc,GAAH,CAAOC,MAAP,CAAcC,IAAd,CAAmBb,aAAnB,GAAmCA,aAAnC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/bom/client/Idle.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2016 GONICUS GmbH, Germany, http://www.gonicus.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Cajus Pollmeier (cajus)\n\n************************************************************************ */\n\n/**\n * Responsible for checking whether the browser supports cooperative\n * scheduling.\n *\n * Spec: https://www.w3.org/TR/requestidlecallback/\n *\n * @internal\n */\nqx.Bootstrap.define(\"qx.bom.client.Idle\",\n{\n  statics :\n  {\n    /**\n     * Whether the client supports cooperative scheduling of background tasks.\n     *\n     * @internal\n     * @return {Boolean} <code>true</code> if API is supported\n     */\n    getSupport : function() {\n      return window.requestIdleCallback !== undefined;\n    }\n  },\n\n  defer : function(statics) {\n    qx.core.Environment.add(\"client.idle\", statics.getSupport);\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2016 GONICUS GmbH, Germany, http://www.gonicus.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Cajus Pollmeier (cajus)\n\n************************************************************************ */\n\n/**\n * Responsible for checking whether the browser supports cooperative\n * scheduling.\n *\n * Spec: https://www.w3.org/TR/requestidlecallback/\n *\n * @internal\n */\nqx.Bootstrap.define(\"qx.bom.client.Idle\", {\n  statics: {\n    /**\n     * Whether the client supports cooperative scheduling of background tasks.\n     *\n     * @internal\n     * @return {Boolean} <code>true</code> if API is supported\n     */\n    getSupport() {\n      return window.requestIdleCallback !== undefined;\n    }\n  },\n\n  defer(statics) {\n    qx.core.Environment.add(\"client.idle\", statics.getSupport);\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACC,SAAS,CAACG,MAAM,CAAC,oBAAoB,EAAE;IACxCC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;MACIC,UAAU,wBAAG;QACX,OAAOC,MAAM,CAACC,mBAAmB,KAAKC,SAAS;MACjD;IACF,CAAC;IAEDC,KAAK,iBAACL,OAAO,EAAE;MACbL,EAAE,CAACW,IAAI,CAACC,WAAW,CAACC,GAAG,CAAC,aAAa,EAAER,OAAO,CAACC,UAAU,CAAC;IAC5D;EACF,CAAC,CAAC;EA1CFN,EAAE,CAACc,GAAG,CAACC,MAAM,CAACC,IAAI,CAACb,aAAa,GAAGA,aAAa;AAAC"
 }

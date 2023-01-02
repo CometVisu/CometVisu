@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 0
+        "line": 29,
+        "column": 0,
+        "index": 773
       },
       "end": {
-        "line": 239,
-        "column": 5
+        "line": 230,
+        "column": 3,
+        "index": 7065
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 16
+        "line": 32,
+        "column": 2,
+        "index": 853
       },
       "end": {
-        "line": 48,
-        "column": 5
+        "line": 45,
+        "column": 3,
+        "index": 1287
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__root": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1496
         },
         "end": {
-          "line": 60,
-          "column": 17
+          "line": 54,
+          "column": 16,
+          "index": 1508
         }
       },
       "type": "variable",
@@ -58,12 +63,14 @@
     "setTreeData": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1723
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2015
         }
       },
       "jsdoc": {
@@ -97,12 +104,14 @@
     "selectTreeNodeByClassName": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2236
         },
         "end": {
-          "line": 139,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 3548
         }
       },
       "jsdoc": {
@@ -142,12 +151,14 @@
     "__getPackageNodeOpener": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 143,
+          "column": 4,
+          "index": 3974
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 4318
         }
       },
       "jsdoc": {
@@ -195,12 +206,14 @@
     "__fillPackageNode": {
       "location": {
         "start": {
-          "line": 176,
-          "column": 4
+          "line": 165,
+          "column": 4,
+          "index": 4697
         },
         "end": {
-          "line": 224,
-          "column": 5
+          "line": 217,
+          "column": 5,
+          "index": 6754
         }
       },
       "jsdoc": {
@@ -1496,6 +1509,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1520,6 +1534,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -5685,12 +5700,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 235,
-        "column": 15
+        "line": 226,
+        "column": 2,
+        "index": 6956
       },
       "end": {
-        "line": 238,
-        "column": 5
+        "line": 229,
+        "column": 3,
+        "index": 7060
       }
     },
     "jsdoc": {

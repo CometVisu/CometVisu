@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 609
       },
       "end": {
-        "line": 276,
-        "column": 3
+        "line": 265,
+        "column": 3,
+        "index": 7438
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 38,
-        "column": 14
+        "line": 34,
+        "column": 2,
+        "index": 918
       },
       "end": {
-        "line": 50,
-        "column": 3
+        "line": 47,
+        "column": 3,
+        "index": 1192
       }
     },
     "jsdoc": {}
@@ -46,12 +50,14 @@
     "highlightFocusRow": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1460
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 60,
+          "column": 5,
+          "index": 1527
         }
       },
       "jsdoc": {
@@ -105,12 +111,14 @@
     "_colors": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 1735
         },
         "end": {
-          "line": 81,
-          "column": 18
+          "line": 70,
+          "column": 17,
+          "index": 1748
         }
       },
       "type": "variable",
@@ -119,12 +127,14 @@
     "_fontStyle": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1754
         },
         "end": {
-          "line": 82,
-          "column": 21
+          "line": 71,
+          "column": 20,
+          "index": 1770
         }
       },
       "type": "variable",
@@ -133,12 +143,14 @@
     "_fontStyleString": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 1776
         },
         "end": {
-          "line": 83,
-          "column": 27
+          "line": 72,
+          "column": 26,
+          "index": 1798
         }
       },
       "type": "variable",
@@ -147,12 +159,14 @@
     "initThemeValues": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 1890
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 106,
+          "column": 5,
+          "index": 2877
         }
       },
       "jsdoc": {
@@ -175,12 +189,14 @@
     "_insetY": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3003
         },
         "end": {
-          "line": 115,
-          "column": 15
+          "line": 112,
+          "column": 14,
+          "index": 3013
         }
       },
       "jsdoc": {
@@ -197,12 +213,14 @@
     "_renderFont": {
       "location": {
         "start": {
-          "line": 123,
-          "column": 4
+          "line": 120,
+          "column": 4,
+          "index": 3222
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 3579
         }
       },
       "jsdoc": {
@@ -228,12 +246,14 @@
     "updateDataRowElement": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3618
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 158,
+          "column": 5,
+          "index": 4478
         }
       },
       "jsdoc": {},
@@ -247,12 +267,14 @@
     "getRowHeightStyle": {
       "location": {
         "start": {
-          "line": 175,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4702
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 172,
+          "column": 5,
+          "index": 4883
         }
       },
       "jsdoc": {
@@ -290,12 +312,14 @@
     "createRowStyle": {
       "location": {
         "start": {
-          "line": 186,
-          "column": 4
+          "line": 175,
+          "column": 4,
+          "index": 4922
         },
         "end": {
-          "line": 215,
-          "column": 5
+          "line": 207,
+          "column": 5,
+          "index": 5833
         }
       },
       "jsdoc": {},
@@ -309,12 +333,14 @@
     "getRowClass": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 209,
+          "column": 4,
+          "index": 5840
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 211,
+          "column": 5,
+          "index": 5885
         }
       },
       "type": "function",
@@ -338,12 +364,14 @@
     "getRowAttributes": {
       "location": {
         "start": {
-          "line": 251,
-          "column": 4
+          "line": 242,
+          "column": 4,
+          "index": 6849
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 244,
+          "column": 5,
+          "index": 6928
         }
       },
       "jsdoc": {
@@ -462,6 +490,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -486,6 +515,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -604,12 +634,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 266,
-        "column": 13
+        "line": 253,
+        "column": 2,
+        "index": 7124
       },
       "end": {
-        "line": 275,
-        "column": 3
+        "line": 264,
+        "column": 3,
+        "index": 7434
       }
     },
     "jsdoc": {}

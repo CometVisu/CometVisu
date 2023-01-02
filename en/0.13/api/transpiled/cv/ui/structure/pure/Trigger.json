@@ -14,12 +14,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 0
+        "line": 29,
+        "column": 0,
+        "index": 1169
       },
       "end": {
-        "line": 86,
-        "column": 3
+        "line": 85,
+        "column": 3,
+        "index": 2830
       }
     },
     "jsdoc": {
@@ -48,12 +50,14 @@
     "sendValue": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1569
         },
         "end": {
-          "line": 45,
-          "column": 45
+          "line": 44,
+          "column": 45,
+          "index": 1610
         }
       },
       "name": "sendValue",
@@ -65,12 +69,14 @@
     "shortValue": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1616
         },
         "end": {
-          "line": 46,
-          "column": 46
+          "line": 45,
+          "column": 46,
+          "index": 1658
         }
       },
       "name": "shortValue",
@@ -193,12 +199,14 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1836
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1964
         }
       },
       "jsdoc": {},
@@ -212,12 +220,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1989
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 63,
+          "column": 5,
+          "index": 2101
         }
       },
       "jsdoc": {},
@@ -231,12 +241,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 2318
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2562
         }
       },
       "jsdoc": {
@@ -253,12 +265,14 @@
     "_onLongTap": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2681
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2822
         }
       },
       "jsdoc": {
@@ -1467,6 +1481,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1491,6 +1506,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

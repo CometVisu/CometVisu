@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,7 +63,6 @@
   qx.Class.define("qx.ui.table.rowrenderer.Default", {
     extend: qx.core.Object,
     implement: qx.ui.table.IRowRenderer,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -72,18 +70,19 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.initThemeValues(); // dynamic theme switch
+      this.initThemeValues();
 
+      // dynamic theme switch
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this.initThemeValues, this);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Whether the focused row should be highlighted. */
       highlightFocusRow: {
@@ -91,17 +90,16 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       _colors: null,
       _fontStyle: null,
       _fontStyleString: null,
-
       /**
        * Initializes the colors from the color theme.
        * @internal
@@ -109,11 +107,12 @@
       initThemeValues: function initThemeValues() {
         this._fontStyleString = "";
         this._fontStyle = {};
-        this._colors = {}; // link to font theme
+        this._colors = {};
 
-        this._renderFont(qx.theme.manager.Font.getInstance().resolve("default")); // link to color theme
+        // link to font theme
+        this._renderFont(qx.theme.manager.Font.getInstance().resolve("default"));
 
-
+        // link to color theme
         var colorMgr = qx.theme.manager.Color.getInstance();
         this._colors.bgcolFocusedSelected = colorMgr.resolve("table-row-background-focused-selected");
         this._colors.bgcolFocused = colorMgr.resolve("table-row-background-focused");
@@ -124,14 +123,12 @@
         this._colors.colNormal = colorMgr.resolve("table-row");
         this._colors.horLine = colorMgr.resolve("table-row-line");
       },
-
       /**
        * the sum of the vertical insets. This is needed to compute the box model
        * independent size
        */
       _insetY: 1,
       // borderBottom
-
       /**
        * Render the new font and update the table pane content
        * to reflect the font change.
@@ -151,10 +148,10 @@
       // interface implementation
       updateDataRowElement: function updateDataRowElement(rowInfo, rowElem) {
         var fontStyle = this._fontStyle;
-        var style = rowElem.style; // set font styles
+        var style = rowElem.style;
 
+        // set font styles
         qx.bom.element.Style.setStyles(rowElem, fontStyle);
-
         if (rowInfo.focusedRow && this.getHighlightFocusRow()) {
           style.backgroundColor = rowInfo.selected ? this._colors.bgcolFocusedSelected : this._colors.bgcolFocused;
         } else {
@@ -164,11 +161,9 @@
             style.backgroundColor = rowInfo.row % 2 == 0 ? this._colors.bgcolEven : this._colors.bgcolOdd;
           }
         }
-
         style.color = rowInfo.selected ? this._colors.colSelected : this._colors.colNormal;
         style.borderBottom = "1px solid " + this._colors.horLine;
       },
-
       /**
        * Get the row's height CSS style taking the box model into account
        *
@@ -179,7 +174,6 @@
         if (qx.core.Environment.get("css.boxmodel") == "content") {
           height -= this._insetY;
         }
-
         return "height:" + height + "px;";
       },
       // interface implementation
@@ -188,7 +182,6 @@
         rowStyle.push(";");
         rowStyle.push(this._fontStyleString);
         rowStyle.push("background-color:");
-
         if (rowInfo.focusedRow && this.getHighlightFocusRow()) {
           rowStyle.push(rowInfo.selected ? this._colors.bgcolFocusedSelected : this._colors.bgcolFocused);
         } else {
@@ -198,16 +191,14 @@
             rowStyle.push(rowInfo.row % 2 == 0 ? this._colors.bgcolEven : this._colors.bgcolOdd);
           }
         }
-
-        rowStyle.push(';color:');
+        rowStyle.push(";color:");
         rowStyle.push(rowInfo.selected ? this._colors.colSelected : this._colors.colNormal);
-        rowStyle.push(';border-bottom: 1px solid ', this._colors.horLine);
+        rowStyle.push(";border-bottom: 1px solid ", this._colors.horLine);
         return rowStyle.join("");
       },
       getRowClass: function getRowClass(rowInfo) {
         return "";
       },
-
       /**
        * Add extra attributes to each row.
        *
@@ -238,18 +229,18 @@
        *   div tag for the row.
        */
       getRowAttributes: function getRowAttributes(rowInfo) {
-        return "";
+        return "role=row "; // Space important!
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._colors = this._fontStyle = this._fontStyleString = null; // remove dynamic theme listener
+      this._colors = this._fontStyle = this._fontStyleString = null;
 
+      // remove dynamic theme listener
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this.initThemeValues, this);
       }
@@ -258,4 +249,4 @@
   qx.ui.table.rowrenderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1664789605280
+//# sourceMappingURL=Default.js.map?dt=1672653515502

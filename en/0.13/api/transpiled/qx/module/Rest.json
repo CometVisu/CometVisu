@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 669
       },
       "end": {
-        "line": 46,
-        "column": 3
+        "line": 45,
+        "column": 3,
+        "index": 1306
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "resource": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1156
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1237
         }
       },
       "jsdoc": {
@@ -84,15 +88,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 10
+        "line": 42,
+        "column": 2,
+        "index": 1246
       },
       "end": {
-        "line": 45,
-        "column": 3
+        "line": 44,
+        "column": 3,
+        "index": 1302
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

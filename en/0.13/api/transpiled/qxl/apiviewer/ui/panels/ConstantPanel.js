@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,7 +53,6 @@
       getPanelItemObjects: function getPanelItemObjects(daoClass, showInherited) {
         return daoClass.getConstants();
       },
-
       /**
        * Checks whether a constant has details.
        *
@@ -63,7 +61,7 @@
        * @return {Boolean} whether the constant has details.
        */
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
-        return node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node) || this.__P_561_0(node);
+        return node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node) || this.__P_577_0(node);
       },
       getItemTypeHtml: function getItemTypeHtml(node) {
         return qxl.apiviewer.ui.panels.InfoPanel.createTypeHtml(node, "var");
@@ -71,7 +69,6 @@
       getItemTitleHtml: function getItemTitleHtml(node) {
         return qxl.apiviewer.ui.panels.InfoPanel.setTitleClass(node, node.getName());
       },
-
       /**
        * Creates the HTML showing the information about a constant.
        *
@@ -82,46 +79,39 @@
        */
       getItemTextHtml: function getItemTextHtml(node, currentClassDocNode, showDetails) {
         var textHtml = qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node.getClass(), showDetails);
-
         if (showDetails) {
-          textHtml += this.__P_561_1(node);
+          textHtml += this.__P_577_1(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createErrorHtml(node, currentClassDocNode);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createDeprecationHtml(node, "constant");
         }
-
         return textHtml;
       },
-
       /**
        * Checks whether a constant value is provided
        *
        * @param node {Map} the doc node of the item.
        * @return {Boolean} whether the constant provides a value
        */
-      __P_561_0: function __P_561_0(node) {
+      __P_577_0: function __P_577_0(node) {
         return Boolean(node.getValue());
       },
-
       /**
        * Creates the HTML showing the value of a constant
        *
        * @param node {Map} the doc node of the item.
        * @return {String} the HTML showing the value of the constant
        */
-      __P_561_1: function __P_561_1(node) {
-        if (this.__P_561_0(node)) {
+      __P_577_1: function __P_577_1(node) {
+        if (this.__P_577_0(node)) {
           var value = node.getValue();
-
           if (typeof value !== "string") {
             value = qx.lang.Json.stringify(value);
           }
-
           value = qx.bom.String.escape(value);
-          var html = new qx.util.StringBuilder("<div class=\"item-detail-headline\">", "Value: ", "</div>", "<div class=\"item-detail-text\">", value, "</div>");
+          var html = new qx.util.StringBuilder('<div class="item-detail-headline">', "Value: ", "</div>", '<div class="item-detail-text">', value, "</div>");
           return html.get();
         }
-
         return "";
       }
     }
@@ -129,4 +119,4 @@
   qxl.apiviewer.ui.panels.ConstantPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConstantPanel.js.map?dt=1664789618002
+//# sourceMappingURL=ConstantPanel.js.map?dt=1672653527311

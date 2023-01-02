@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -72,19 +71,16 @@
     extend: Object,
     construct: function construct() {
       var clazz = qx.dev.FakeServer;
-
       if (!clazz.$$allowconstruct) {
         var msg = clazz + " is a singleton! It is not possible to instantiate it directly." + "Use the static getInstance() method instead.";
         throw new Error(msg);
       }
-
       this.getFakeServer();
-      this.__P_181_0 = [];
+      this.__P_184_0 = [];
     },
     statics: {
       $$instance: null,
       $$allowconstruct: false,
-
       /**
        * Helper method to handle singletons
        *
@@ -97,16 +93,14 @@
           this.$$instance = new this();
           delete this.$$allowconstruct;
         }
-
         return this.$$instance;
       }
     },
     members: {
-      __P_181_1: null,
-      __P_181_2: null,
-      __P_181_0: null,
-      __P_181_3: null,
-
+      __P_184_1: null,
+      __P_184_2: null,
+      __P_184_0: null,
+      __P_184_3: null,
       /**
        * Configures a set of fake HTTP responses. Each response is defined as a map
        * that must provide the following keys:
@@ -137,24 +131,18 @@
           var urlRegExp = item.url instanceof RegExp ? item.url : this._getRegExp(item.url);
           var response = [item.method, urlRegExp];
           var hasResponse = false;
-
-          for (var i = 0, l = this.__P_181_0.length; i < l; i++) {
-            var old = this.__P_181_0[i];
+          for (var i = 0, l = this.__P_184_0.length; i < l; i++) {
+            var old = this.__P_184_0[i];
             hasResponse = old[0] == response[0] && old[1] == response[1];
           }
-
           if (!hasResponse) {
-            this.__P_181_0.push(response);
+            this.__P_184_0.push(response);
           }
-
           this.respondWith(item.method, urlRegExp, item.response);
         }.bind(this));
-
-        var filter = this.__P_181_3 = this.__P_181_4();
-
+        var filter = this.__P_184_3 = this.__P_184_4();
         this.addFilter(filter);
       },
-
       /**
        * Adds a URL filtering function to decide whether a request should be handled
        * by the FakeServer or passed to the regular XMLHttp implementation.
@@ -167,36 +155,33 @@
        * if the request should not be faked.
        */
       addFilter: function addFilter(filter) {
-        this.__P_181_1.FakeXMLHttpRequest.addFilter(filter);
+        this.__P_184_1.FakeXMLHttpRequest.addFilter(filter);
       },
-
       /**
        * Remove a filter that was added with {@link #addFilter}
        * @param filter {Function} filter function to remove
        */
       removeFilter: function removeFilter(filter) {
-        qx.lang.Array.remove(this.__P_181_1.FakeXMLHttpRequest.filters, filter);
+        qx.lang.Array.remove(this.__P_184_1.FakeXMLHttpRequest.filters, filter);
       },
-
       /**
        * Removes a response that was configured with {@link #configure}
        * @param method {String} HTTP method of the response
        * @param url {String|RegExp} URL of the response
        */
       removeResponse: function removeResponse(method, url) {
-        qx.lang.Array.remove(this.__P_181_1.FakeXMLHttpRequest.filters, this.__P_181_3);
+        qx.lang.Array.remove(this.__P_184_1.FakeXMLHttpRequest.filters, this.__P_184_3);
         var urlRegExp = url instanceof RegExp ? url : this._getRegExp(url);
-        this.__P_181_0 = this.__P_181_0.filter(function (response) {
+        this.__P_184_0 = this.__P_184_0.filter(function (response) {
           return response[0] != method || response[1].toString() != urlRegExp.toString();
         });
-        this.__P_181_2.responses = this.__P_181_2.responses.filter(function (response) {
+        this.__P_184_2.responses = this.__P_184_2.responses.filter(function (response) {
           return response.method != method || response.url.toString() != urlRegExp.toString();
         });
-        this.removeFilter(this.__P_181_3);
-        this.__P_181_3 = this.__P_181_4();
-        this.addFilter(this.__P_181_3);
+        this.removeFilter(this.__P_184_3);
+        this.__P_184_3 = this.__P_184_4();
+        this.addFilter(this.__P_184_3);
       },
-
       /**
        * Defines a fake XHR response to a matching request.
        *
@@ -208,35 +193,29 @@
       respondWith: function respondWith(method, urlRegExp, response) {
         this.getFakeServer().respondWith(method, urlRegExp, response);
       },
-
       /**
        * Creates and configures a FakeServer if necessary and returns it.
-        * @return {Object} FakeServer object
+       * @return {Object} FakeServer object
        */
       getFakeServer: function getFakeServer() {
-        if (!this.__P_181_2) {
-          var sinon = this.__P_181_1 = qx.dev.unit.Sinon.getSinon();
+        if (!this.__P_184_2) {
+          var sinon = this.__P_184_1 = qx.dev.unit.Sinon.getSinon();
           sinon.FakeXMLHttpRequest.useFilters = true;
-          this.__P_181_2 = sinon.sandbox.useFakeServer();
-          this.__P_181_2.autoRespond = true;
+          this.__P_184_2 = sinon.sandbox.useFakeServer();
+          this.__P_184_2.autoRespond = true;
         }
-
-        return this.__P_181_2;
+        return this.__P_184_2;
       },
-
       /**
        * Stops the FakeServer and removes all configured responses and/or filters.
        */
       restore: function restore() {
-        this.__P_181_0 = [];
-        this.removeFilter(this.__P_181_3);
-        this.__P_181_3 = null;
-
-        this.__P_181_2.restore();
-
-        this.__P_181_2 = null;
+        this.__P_184_0 = [];
+        this.removeFilter(this.__P_184_3);
+        this.__P_184_3 = null;
+        this.__P_184_2.restore();
+        this.__P_184_2 = null;
       },
-
       /**
        * Returns a RegExp using the given pattern. Curly brackets and anything
        * between are replaced with wildcards (.*?)
@@ -248,34 +227,31 @@
         pattern = pattern.replace(/\{[^\/]*?\}/g, ".*?");
         return new RegExp(pattern);
       },
-
       /**
        * Returns a filter function that ensures only requests matching configured
        * fake responses will be intercepted.
        * @return {Function} filter function
        */
-      __P_181_4: function __P_181_4() {
-        var responses = this.__P_181_0;
+      __P_184_4: function __P_184_4() {
+        var responses = this.__P_184_0;
         return function (method, url, async, username, password) {
           for (var i = 0, l = responses.length; i < l; i++) {
             var filterMethod = responses[i][0];
             var regExp = responses[i][1];
-
             if (method == filterMethod && regExp.test(url)) {
               return false;
             }
           }
-
           return true;
         };
       }
     },
     destruct: function destruct() {
       this.restore();
-      this.__P_181_2 = this.__P_181_1 = null;
+      this.__P_184_2 = this.__P_184_1 = null;
     }
   });
   qx.dev.FakeServer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FakeServer.js.map?dt=1664789581862
+//# sourceMappingURL=FakeServer.js.map?dt=1672653490072

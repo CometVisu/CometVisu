@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -94,12 +93,12 @@
   qx.Class.define("qx.bom.Notification", {
     extend: qx.core.Object,
     type: "singleton",
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Whether the client supports the desktop notification API.
@@ -111,55 +110,50 @@
         return window.Notification !== undefined;
       }
     },
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * This is a singleton. Use <code>getInstance()</code> to get an instance.
      */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_108_0 = {};
+      this.__P_110_0 = {};
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Event fired when a notification with data <code>tag</code> appeared.
        */
-      "appear": "Data",
-
+      appear: "Data",
       /**
        * Event fired when a notification with data <code>tag</code> has been
        * clicked by the user.
        */
-      "click": "Data",
-
+      click: "Data",
       /**
        * Event fired when a notification with data <code>tag</code> has been
        * closed. This may happen either interactively or due to a timeout
        * defined by the instance displaying the notification.
        */
-      "close": "Data"
+      close: "Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_108_0: null,
-      __P_108_1: 0,
 
+    members: {
+      __P_110_0: null,
+      __P_110_1: 0,
       /**
        * Display a desktop notification using a _title_, _message_ and _icon_.
        *
@@ -180,30 +174,28 @@
           // Generate unique tag to be able to identify the
           // notification later on.
           if (tag !== undefined) {
-            tag = "id" + this.__P_108_1++;
-          } // If we've the permission already, just send it
+            tag = "id" + this.__P_110_1++;
+          }
 
-
+          // If we've the permission already, just send it
           if (Notification.permission == "granted") {
-            this._show(tag, title, message, icon, expire); // We've not asked for permission yet. Lets do it.
+            this._show(tag, title, message, icon, expire);
 
+            // We've not asked for permission yet. Lets do it.
           } else if (Notification.permission != "denied") {
             var that = this;
             Notification.requestPermission(function (permission) {
               if (Notification.permission === undefined) {
                 Notification.permission = permission;
               }
-
               if (permission == "granted") {
                 that._show(tag, title, message, icon, expire);
               }
             });
           }
         }
-
         return tag === undefined ? null : tag;
       },
-
       /**
        * Display a desktop notification using a _title_, _message_ and _icon_.
        *
@@ -219,24 +211,23 @@
        *                     time.
        */
       _show: function _show(tag, title, message, icon, expire) {
-        var lang = qx.locale.Manager.getInstance().getLocale().replace(/_.*$/, ""); // Resolve icon path if needed and possible
+        var lang = qx.locale.Manager.getInstance().getLocale().replace(/_.*$/, "");
 
+        // Resolve icon path if needed and possible
         if (icon) {
           var rm = qx.util.ResourceManager.getInstance();
           var source = qx.util.AliasManager.getInstance().resolve(icon);
-
           if (rm.has(source)) {
             icon = rm.toUri(source);
-          } // old versions of firefox did not display the notification if
+          }
+
+          // old versions of firefox did not display the notification if
           // an icon was specified, so we disable the icon for firefox
           // < version 46
-
-
           if (qx.core.Environment.get("engine.name") == "gecko" && qx.core.Environment.get("browser.version") < 46) {
             icon = undefined;
           }
         }
-
         var notification = new Notification(title, {
           body: message,
           tag: tag,
@@ -244,58 +235,49 @@
           lang: lang
         });
         var that = this;
-
         notification.onshow = function () {
-          that.__P_108_0[tag] = notification;
+          that.__P_110_0[tag] = notification;
           that.fireDataEvent("appear", tag);
         };
-
         notification.onclose = function () {
           that.fireDataEvent("close", tag);
-
-          if (that.__P_108_0[tag]) {
-            that.__P_108_0[tag] = null;
-            delete that.__P_108_0[tag];
+          if (that.__P_110_0[tag]) {
+            that.__P_110_0[tag] = null;
+            delete that.__P_110_0[tag];
           }
         };
-
         notification.onclick = function () {
           that.fireDataEvent("click", tag);
-
-          if (that.__P_108_0[tag]) {
-            that.__P_108_0[tag] = null;
-            delete that.__P_108_0[tag];
+          if (that.__P_110_0[tag]) {
+            that.__P_110_0[tag] = null;
+            delete that.__P_110_0[tag];
+          }
+        };
+        notification.onerror = function () {
+          that.fireDataEvent("error", tag);
+          if (that.__P_110_0[tag]) {
+            that.__P_110_0[tag] = null;
+            delete that.__P_110_0[tag];
           }
         };
 
-        notification.onerror = function () {
-          that.fireDataEvent("error", tag);
-
-          if (that.__P_108_0[tag]) {
-            that.__P_108_0[tag] = null;
-            delete that.__P_108_0[tag];
-          }
-        }; // Install expire timer if exists
-
-
+        // Install expire timer if exists
         if (expire) {
           qx.event.Timer.once(function () {
             notification.close();
           }, this, expire);
         }
       },
-
       /**
        * Actively close an active notification.
        *
        * @param tag {String} Notification tag
        */
       close: function close(tag) {
-        if (this.__P_108_0[tag]) {
-          this.__P_108_0[tag].close();
+        if (this.__P_110_0[tag]) {
+          this.__P_110_0[tag].close();
         }
       },
-
       /**
        * Tell the browser to request permission to display notifications.
        *
@@ -312,7 +294,6 @@
           });
         }
       },
-
       /**
        * Check if we've the permission to send notifications.
        *
@@ -331,4 +312,4 @@
   qx.bom.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1664789575990
+//# sourceMappingURL=Notification.js.map?dt=1672653484519

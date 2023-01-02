@@ -1,0 +1,488 @@
+{
+  "className": "qx.io.jsonrpc.protocol.Batch",
+  "packageName": "qx.io.jsonrpc.protocol",
+  "name": "Batch",
+  "superClass": "qx.core.Object",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 0,
+        "index": 837
+      },
+      "end": {
+        "line": 103,
+        "column": 3,
+        "index": 2550
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>An object representing a JSON-RPC v2.0 batch message object. You can add\n one or more of the following message objects to the batch:</p>\n<ul>\n<li>{@link qx.io.jsonrpc.protocol.Request}</li>\n<li>{@link qx.io.jsonrpc.protocol.Notification}</li>\n<li>{@link qx.io.jsonrpc.protocol.Result}</li>\n<li>{@link qx.io.jsonrpc.protocol.Error}</li>\n</ul>"
+        }
+      ],
+      "@see": [
+        {
+          "name": "@see",
+          "body": "https://www.jsonrpc.org/specification#batch"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "properties": {
+    "batch": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 933
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 976
+        }
+      },
+      "name": "batch",
+      "propertyType": "new",
+      "check": "qx.data.Array"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "construct": {
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 985
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1055
+      }
+    }
+  },
+  "members": {
+    "add": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1242
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1438
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a request or notification to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.jsonrpc.protocol.Message} message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.jsonrpc.protocol.Batch}",
+            "type": "qx.io.jsonrpc.protocol.Batch",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addRequest": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1538
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1659
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a request to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method",
+            "paramName": "method",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "params",
+            "paramName": "params",
+            "type": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "addNotification": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1764
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a notification to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method",
+            "paramName": "method",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "params",
+            "paramName": "params",
+            "type": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getPromises": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2017
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of the promises of the requests in the batch</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise[]}",
+            "type": "qx.Promise[]",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "toObject": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2193
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2304
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the message as a native object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getQxOwner": {
+      "type": "function",
+      "name": "getQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.core.Object",
+            "desc": "Returns the value for qxOwner"
+          }
+        ]
+      }
+    },
+    "setQxOwner": {
+      "type": "function",
+      "name": "setQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.core.Object",
+            "paramName": "value",
+            "desc": "Value for qxOwner"
+          }
+        ]
+      }
+    },
+    "resetQxOwner": {
+      "type": "function",
+      "name": "resetQxOwner",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+          }
+        ]
+      }
+    },
+    "getQxObjectId": {
+      "type": "function",
+      "name": "getQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
+            "desc": "Returns the value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "setQxObjectId": {
+      "type": "function",
+      "name": "setQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
+            "paramName": "value",
+            "desc": "Value for qxObjectId"
+          }
+        ]
+      }
+    },
+    "resetQxObjectId": {
+      "type": "function",
+      "name": "resetQxObjectId",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.Object",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getBatch": {
+      "type": "function",
+      "name": "getBatch",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>batch</code>.\n\nFor further details take a look at the property definition: {@link #batch}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "qx.data.Array",
+            "desc": "Returns the value for batch"
+          }
+        ]
+      }
+    },
+    "setBatch": {
+      "type": "function",
+      "name": "setBatch",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>batch</code>.\n\nFor further details take a look at the property definition: {@link #batch}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "qx.data.Array",
+            "paramName": "value",
+            "desc": "Value for batch"
+          }
+        ]
+      }
+    },
+    "resetBatch": {
+      "type": "function",
+      "name": "resetBatch",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>batch</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #batch}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

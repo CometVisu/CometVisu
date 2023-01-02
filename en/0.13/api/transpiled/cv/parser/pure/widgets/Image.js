@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Image.js 
-   * 
+  /* Image.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Image', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -60,23 +58,23 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'width': {
-            'default': '100%'
+          width: {
+            "default": '100%'
           },
-          'height': {},
+          height: {},
           'crop-top': {
             target: 'cropTop',
-            'default': ''
+            "default": ''
           },
           'crop-bottom': {
             target: 'cropBottom',
-            'default': ''
+            "default": ''
           },
-          'src': {},
-          'placeholder': {
-            'default': 'none'
+          src: {},
+          placeholder: {
+            "default": 'none'
           },
-          'widthfit': {
+          widthfit: {
             target: 'widthFit',
             transform: function transform(value) {
               return value === 'true';
@@ -93,4 +91,4 @@
   cv.parser.pure.widgets.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1664789562018
+//# sourceMappingURL=Image.js.map?dt=1672653470684

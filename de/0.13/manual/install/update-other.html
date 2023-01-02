@@ -102,44 +102,44 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <section id="update-der-direkt-installierten-cometvisu">
 <h1>Update der direkt installierten CometVisu<a class="headerlink" href="#update-der-direkt-installierten-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p><strong>Download der Installationsdatei</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-wget -O CometVisu0.12.0.zip  https://github.com/CometVisu/CometVisu/releases/download/v0.12.0/CometVisu-0.12.0.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
+wget<span class="w"> </span>-O<span class="w"> </span>CometVisu0.12.0.zip<span class="w">  </span>https://github.com/CometVisu/CometVisu/releases/download/v0.12.0/CometVisu-0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Entpacken der Dateien</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip CometVisu0.12.0.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>CometVisu0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Anpassend des Order-Namens</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv cometvisu/ release_0.12.0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>cometvisu/<span class="w"> </span>release_0.12.0
 </pre></div>
 </div>
 <p><strong>OPTIONAL: Entfernen des Downloads</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.12.0.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>./CometVisu0.12.0.zip
 </pre></div>
 </div>
 <p><strong>Kopieren der Konfigurationsdatei in die neue Installation</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp visu/config/visu_config*.xml release_0.12.0/release/config/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>visu/config/visu_config*.xml<span class="w"> </span>release_0.12.0/release/config/
 </pre></div>
 </div>
 <p><strong>Sicherstellen der richtigen Berechtigungen</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod -f a+w release_0.12.0/release/config release_0.12.0/release/config/*.xml release_0.12.0/release/config/backup release_0.12.0/release/config/backup/*.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>-f<span class="w"> </span>a+w<span class="w"> </span>release_0.12.0/release/config<span class="w"> </span>release_0.12.0/release/config/*.xml<span class="w"> </span>release_0.12.0/release/config/backup<span class="w"> </span>release_0.12.0/release/config/backup/*.xml
 </pre></div>
 </div>
 <p><strong>ENTWEDER entfernen eines alten Backups und Erzeugen eines neuen Backup
 aus der jetzt veralteten aktuellen Installation</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -Rf ./visu.bak
-mv ./visu cometvisu.bak
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-Rf<span class="w"> </span>./visu.bak
+mv<span class="w"> </span>./visu<span class="w"> </span>cometvisu.bak
 </pre></div>
 </div>
 <p><strong>ODER alternatives Vorgehen OHNE Löschen alter Versionen (irgendeiname
 durch z.B. CV-0.12.x oder so was ersetzen)</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv ./visu irgendeinname
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>./visu<span class="w"> </span>irgendeinname
 </pre></div>
 </div>
 <p>‚‘‘Erzeugen eines Links um die Visu mit dem bekannten URL aufrufen zu
 können - hier wieder ‚‘‘</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.12.2/release/ visu
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>release_0.12.2/release/<span class="w"> </span>visu
 </pre></div>
 </div>
 <p>Aufruf der Visu dann wie bekannt unter
@@ -158,7 +158,7 @@ erforderlich angeboten die Konfiguration automatisch zu konvertieren.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

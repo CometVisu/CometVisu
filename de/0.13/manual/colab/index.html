@@ -257,21 +257,21 @@ geklont wurde (<code class="docutils literal notranslate"><span class="pre">git<
 <section id="zusammenfassung">
 <h4>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link zu dieser Überschrift">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># aktuelle Einstellungen abfragen</span>
-git remote -v
-&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
-&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+git<span class="w"> </span>remote<span class="w"> </span>-v
+&gt;&gt;&gt;<span class="w"> </span>origin<span class="w">  </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+&gt;&gt;&gt;<span class="w"> </span>origin<span class="w">  </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
 
 <span class="c1"># Aktualisierungen vom original Repository holen</span>
-git remote set-url origin git@github.com:CometVisu/CometVisu.git
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>git@github.com:CometVisu/CometVisu.git
 
 <span class="c1"># aktuelle Einstellungen prüfen</span>
-git remote -v
-&gt;&gt;&gt; origin  git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
-&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+git<span class="w"> </span>remote<span class="w"> </span>-v
+&gt;&gt;&gt;<span class="w"> </span>origin<span class="w">  </span>git@github.com:CometVisu/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+&gt;&gt;&gt;<span class="w"> </span>origin<span class="w">  </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
 
 <span class="c1"># develop branch mit original Repository synchronisieren</span>
-git checkout develop
-git pull
+git<span class="w"> </span>checkout<span class="w"> </span>develop
+git<span class="w"> </span>pull
 </pre></div>
 </div>
 </section>
@@ -279,16 +279,16 @@ git pull
 <h4>Ausführliche Vorgehensweise<a class="headerlink" href="#ausfuhrliche-vorgehensweise" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Die aktuellen Einstellungen kann man mit dem Befehl <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> abfragen.
 Üblicherweise liefert das folgende Werte:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
-origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin<span class="w">      </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">      </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>Das bedeutet, dass git beim Aktualisieren (<em>fetch</em>, <em>pull</em>) und auch beim <em>pushen</em> den Fork des Users auf github benutzt.
 Man möchte nun aber möglichst einfach Änderungen auf dem Haupt-Repository in den lokalen Klon laden. Dazu ändert man die
 <em>fetch</em> URL des remotes mit folgendem Befehl: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:CometVisu/CometVisu.git</span></code>.
 Danach sollte <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> folgende Ausgabe liefern:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin      git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
-origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>origin<span class="w">      </span>git@github.com:CometVisu/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">      </span>git@github.com:gh-user/CometVisu.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>Damit sind die Voraussetzungen erfüllt und man kann seinen lokalen <em>develop</em> Branch (dieser enthält die neuesten Weiterentwicklungen)
@@ -511,7 +511,7 @@ CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil der Aufzeichnu
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

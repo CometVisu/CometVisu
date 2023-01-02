@@ -123,18 +123,18 @@ zusammen.</p>
 Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.</p>
 <p>Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
-    <span class="nt">&lt;cv-meta&gt;</span>
-        <span class="cm">&lt;!-- Nicht sichtbare Konfigurations-Elemente --&gt;</span>
-    <span class="nt">&lt;/cv-meta&gt;</span>
-    <span class="nt">&lt;header&gt;</span>
-        <span class="cm">&lt;!-- Optionaler Inhalt oben --&gt;</span>
-    <span class="nt">&lt;/header&gt;</span>
-    <span class="nt">&lt;main&gt;</span>
-        <span class="cm">&lt;!-- Hauptinhalt inkl. optionaler Seitenleisten --&gt;</span>
-    <span class="nt">&lt;/main&gt;</span>
-    <span class="nt">&lt;footer&gt;</span>
-        <span class="cm">&lt;!-- Optionaler Inhalt unten --&gt;</span>
-    <span class="nt">&lt;/footer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Nicht sichtbare Konfigurations-Elemente --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;header&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Optionaler Inhalt oben --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;main&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Hauptinhalt inkl. optionaler Seitenleisten --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/main&gt;</span>
+<span class="w">    </span><span class="nt">&lt;footer&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- Optionaler Inhalt unten --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/footer&gt;</span>
 <span class="nt">&lt;/config&gt;</span>
 </pre></div>
 </div>
@@ -144,30 +144,30 @@ Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittler
 Dazu gehören z.B. die Verbindungen zu den <a class="reference internal" href="elements/backend.html#tile-element-backend"><span class="std std-ref">Backends</span></a>, die
 <a class="reference internal" href="elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mappings</span></a>, <a class="reference internal" href="elements/styling.html#tile-element-styling"><span class="std std-ref">Stylings</span></a> und <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;si&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;speaker&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-speaker-line<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-speaker-fill<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
-    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;WindowOpen&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-styling&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;PlayProgress&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;formula&gt;</span>y = Math.round(100/store.get(&#39;duration&#39;)*x)<span class="nt">&lt;/formula&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
-    <span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-styling&gt;</span>
-    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/example.css&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/example.js&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;templates&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;si&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;speaker&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-speaker-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-speaker-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;WindowOpen&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;PlayProgress&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>Math.round(100/store.get(&#39;duration&#39;)*x)<span class="nt">&lt;/formula&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/example.css&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;js&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/example.js&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 </pre></div>
 </div>
@@ -189,21 +189,21 @@ offenen Fenster oder der eingeschalteten Lichter, nutzen.</p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Header-Bereich<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;h1&gt;</span>Header-Bereich<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;/header&gt;</span>
 <span class="nt">&lt;main&gt;</span>
-    <span class="nt">&lt;aside&gt;</span>
-        <span class="nt">&lt;h1&gt;</span>Linke Seitenleiste<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;/aside&gt;</span>
-    <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;h1&gt;</span>Seiteninhalte<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;/cv-page&gt;</span>
-    <span class="nt">&lt;aside&gt;</span>
-        <span class="nt">&lt;h1&gt;</span>Rechte Seitenleiste<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;/aside&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aside&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Linke<span class="w"> </span>Seitenleiste<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aside&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Seiteninhalte<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aside&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Rechte<span class="w"> </span>Seitenleiste<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aside&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
 <span class="nt">&lt;footer&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Footer-Bereich<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;h1&gt;</span>Footer-Bereich<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;/footer&gt;</span>
 </pre></div>
 </div>
@@ -213,27 +213,27 @@ Eine Page kann wiederum <a class="reference internal" href="#widgets">Widgets</a
 kann man eine Navigationsstruktur festlegen. So kann man z.B. für jede Etage eine Page angeben, die wiederum
 für jeden Raum in dieser Etage eine Page enthält.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;main&gt;</span>
-    <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;eg&quot;</span> <span class="na">name=</span><span class="s">&quot;Erdgeschoss&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;ez&quot;</span> <span class="na">name=</span><span class="s">&quot;Esszimmer&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;wz&quot;</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;ku&quot;</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;bad&quot;</span> <span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/cv-page&gt;</span>
-     <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;og&quot;</span> <span class="na">name=</span><span class="s">&quot;Obergeschoss&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;sz&quot;</span> <span class="na">name=</span><span class="s">&quot;Schlafzimmer&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;kz1&quot;</span> <span class="na">name=</span><span class="s">&quot;Kinderzimmer 1&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;kz2&quot;</span> <span class="na">name=</span><span class="s">&quot;Kinderzimmer 2&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cv-page</span> <span class="na">id=</span><span class="s">&quot;badOg&quot;</span> <span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;eg&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Erdgeschoss&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ez&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Esszimmer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;wz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ku&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bad&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">     </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;og&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Obergeschoss&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;sz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Schlafzimmer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;kz1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kinderzimmer 1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;kz2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kinderzimmer 2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;badOg&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Badezimmer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
 <span class="nt">&lt;/main&gt;</span>
 </pre></div>
 </div>
 <p>Aus dieser Struktur wird automatisch ein <a class="reference internal" href="components/menu.html#tile-component-menu"><span class="std std-ref">Navigationsmenü</span></a> erzeugt. Diese kann man an beliebiger Stelle einbinden (es bieten sich
 jedoch der Header oder Footer Bereich an).</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
-    <span class="nt">&lt;nav&gt;</span>
-        <span class="nt">&lt;cv-menu</span> <span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/nav&gt;</span>
+<span class="w">    </span><span class="nt">&lt;nav&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/nav&gt;</span>
 <span class="nt">&lt;/header&gt;</span>
 </pre></div>
 </div>
@@ -279,15 +279,15 @@ in seiner normalen Konfigurationsdatei. So kann man Aussehen und Funktionalität
 Das folgende Beispiel zeigt eine Kachel in der ein runder <a class="reference internal" href="components/value.html#tile-component-value"><span class="std std-ref">Fortschrittsbalken</span></a>
 und ein Text angezeigt wird.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
-    <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cv-value</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">backend=</span><span class="s">&quot;si&quot;</span><span class="nt">&gt;</span>Test_Value<span class="nt">&lt;/cv-address&gt;</span>
-            <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/cv-value&gt;</span>
-    <span class="nt">&lt;/cv-row&gt;</span>
-    <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>Circle Progress<span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;si&quot;</span><span class="nt">&gt;</span>Test_Value<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-round-progress</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>Circle<span class="w"> </span>Progress<span class="nt">&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-row&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
@@ -296,25 +296,25 @@ anlegen. Das geht am besten über den <a class="reference internal" href="../man
 erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>
 hinzu.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-loader</span> <span class="na">type=</span><span class="s">&quot;templates&quot;</span> <span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 </pre></div>
 </div>
 <p>Diese Datei sollte dann folgenden Inhalt enthalten:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;templates</span> <span class="na">structure=</span><span class="s">&quot;tile&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">&quot;meter&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cv-tile&gt;</span>
-            <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;cv-value</span> <span class="na">slot-format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">&quot;address&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;cv-round-progress</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;/cv-value&gt;</span>
-            <span class="nt">&lt;/cv-row&gt;</span>
-            <span class="nt">&lt;cv-row</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span> <span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;&lt;slot</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
-            <span class="nt">&lt;/cv-row&gt;</span>
-        <span class="nt">&lt;/cv-tile&gt;</span>
-    <span class="nt">&lt;/template&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;templates</span><span class="w"> </span><span class="na">structure=</span><span class="s">&quot;tile&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;meter&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-value</span><span class="w"> </span><span class="na">slot-format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;slot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;address&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-round-progress</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/cv-value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;&lt;slot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;label&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/template&gt;</span>
 <span class="nt">&lt;/templates&gt;</span>
 </pre></div>
 </div>
@@ -328,10 +328,10 @@ In dem Beispiel gibt es zwei Slot-Elemente: einen für die Adresse des Value-Ele
 und einen für das Label: <code class="docutils literal notranslate"><span class="pre">&lt;slot</span> <span class="pre">name=&quot;label&quot;/&gt;</span></code>.</p>
 <p>Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget nun nutzen kann.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;custom&gt;</span>
-    <span class="nt">&lt;cv-meter&gt;</span>
-        <span class="nt">&lt;cv-address</span> <span class="na">slot=</span><span class="s">&quot;address&quot;</span> <span class="na">transform=</span><span class="s">&quot;OH:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
-        <span class="nt">&lt;span</span> <span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Circle Progress<span class="nt">&lt;/span&gt;</span>
-    <span class="nt">&lt;/cv-meter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-meter&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Circle<span class="w"> </span>Progress<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-meter&gt;</span>
 <span class="nt">&lt;/custom&gt;</span>
 </pre></div>
 </div>
@@ -352,6 +352,8 @@ mehrere Komponenten in einer Kachel.</p>
 <li class="toctree-l1"><a class="reference internal" href="components/spinner.html">Spinner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="components/slider.html">Slider</a></li>
 <li class="toctree-l1"><a class="reference internal" href="components/list.html">List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/chart.html">Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/color.html">Color</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -370,7 +372,7 @@ mehrere Komponenten in einer Kachel.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

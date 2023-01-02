@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/IWidgetCellDelegate.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -17,8 +14,11 @@
     "cell",
     "IWidgetCellDelegate"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,wCAApB,EACA;AACEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,YAAY,EAAG,wBAAW,CAAE;AAN9B;AAFF,GADA;AA5BAP,EAAAA,EAAE,CAACQ,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,mBAAnB,CAAuCR,aAAvC,GAAuDA,aAAvD",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/IWidgetCellDelegate.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * Objects, which are used as delegates for {@link qx.ui.virtual.cell.WidgetCell} may\n * implement any of the methods described in this interface. The delegate does\n * not need implement all of the methods of this interface. If a method is not\n * implemented the {@link qx.ui.virtual.cell.WidgetCell} provides a default implementation.\n *\n * Note: This interface is meant to document the delegate but should not be\n * listed in the <code>implement</code> key of a class unless all methods are\n * really implemented.\n */\nqx.Interface.define(\"qx.ui.virtual.cell.IWidgetCellDelegate\",\n{\n  members :\n  {\n    /**\n     * Creates a <code>Widget</code> which will be used for rendering.\n     *\n     * @return {qx.ui.core.LayoutItem} A new created <code>Widget</code>.\n     */\n    createWidget : function() {}\n  }\n});"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * Objects, which are used as delegates for {@link qx.ui.virtual.cell.WidgetCell} may\n * implement any of the methods described in this interface. The delegate does\n * not need implement all of the methods of this interface. If a method is not\n * implemented the {@link qx.ui.virtual.cell.WidgetCell} provides a default implementation.\n *\n * Note: This interface is meant to document the delegate but should not be\n * listed in the <code>implement</code> key of a class unless all methods are\n * really implemented.\n */\nqx.Interface.define(\"qx.ui.virtual.cell.IWidgetCellDelegate\", {\n  members: {\n    /**\n     * Creates a <code>Widget</code> which will be used for rendering.\n     *\n     * @return {qx.ui.core.LayoutItem} A new created <code>Widget</code>.\n     */\n    createWidget() {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,wCAAwC,EAAE;IAC5DC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MACIC,YAAY,0BAAG,CAAC;IAClB;EACF,CAAC,CAAC;EArCFP,EAAE,CAACQ,EAAE,CAACC,OAAO,CAACC,IAAI,CAACC,mBAAmB,CAACR,aAAa,GAAGA,aAAa;AAAC"
 }

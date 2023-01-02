@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 540
       },
       "end": {
-        "line": 1312,
-        "column": 5
+        "line": 1143,
+        "column": 3,
+        "index": 26021
       }
     },
     "jsdoc": {
@@ -30,17 +32,21 @@
   "aliases": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 4
+        "line": 23,
+        "column": 2,
+        "index": 592
       },
       "end": {
-        "line": 24,
-        "column": 49
+        "line": 23,
+        "column": 49,
+        "index": 639
       }
     },
     "aliasMap": {
       "decoration": "qx/decoration/Simple"
     }
   },
-  "descendants": []
+  "descendants": [
+    "cv.theme.dark.Decoration"
+  ]
 }

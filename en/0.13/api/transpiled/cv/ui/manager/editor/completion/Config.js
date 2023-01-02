@@ -1,3 +1,10 @@
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,11 +25,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Config.js 
-   * 
+  /* Config.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -46,23 +52,20 @@
    */
   qx.Class.define('cv.ui.manager.editor.completion.Config', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
     ***********************************************
     */
-
     /**
      *
      */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_34_0 = {};
-      this.__P_34_1 = {};
+      this.__P_36_0 = {};
+      this.__P_36_1 = {};
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -75,7 +78,6 @@
         apply: '_applyCurrentPath'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -83,55 +85,48 @@
     */
     members: {
       _schemas: null,
-      __P_34_2: null,
-      __P_34_0: null,
-      __P_34_3: null,
+      __P_36_2: null,
+      __P_36_0: null,
+      __P_36_3: null,
       _dataProvider: null,
-      __P_34_4: null,
-      __P_34_5: null,
+      __P_36_4: null,
+      __P_36_5: null,
       _getSuggestions: null,
       _applyCurrentPath: function _applyCurrentPath() {
-        this.__P_34_2 = null;
-        this.__P_34_4 = '';
+        this.__P_36_2 = null;
+        this.__P_36_4 = '';
       },
       setStructure: function setStructure(name) {
-        var loaded = Object.prototype.hasOwnProperty.call(this.__P_34_1, name);
-
+        var loaded = Object.prototype.hasOwnProperty.call(this.__P_36_1, name);
         switch (name) {
           case 'pure':
             if (!loaded) {
-              this.__P_34_1.pure = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
+              this.__P_36_1.pure = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
             }
-
-            this.__P_34_2 = this.__P_34_1.pure;
-            this.__P_34_4 = 'pages';
-            this.__P_34_5 = 'meta';
+            this.__P_36_2 = this.__P_36_1.pure;
+            this.__P_36_4 = 'pages';
+            this.__P_36_5 = 'meta';
             this._getSuggestions = this.providePureCompletionItems;
             break;
-
           case 'tile':
             if (!loaded) {
-              this.__P_34_1.tile = cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
+              this.__P_36_1.tile = cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
             }
-
-            this.__P_34_2 = this.__P_34_1.tile;
-            this.__P_34_4 = 'config';
-            this.__P_34_5 = 'cv-meta';
+            this.__P_36_2 = this.__P_36_1.tile;
+            this.__P_36_4 = 'config';
+            this.__P_36_5 = 'cv-meta';
             this._getSuggestions = this.provideTileCompletionItems;
             break;
         }
       },
       getLastOpenedTag: function getLastOpenedTag(text) {
-        // get all tags inside of the content
+        // get all tags inside the content
         var tags = text.match(/<\/*(?=\S*)([a-zA-Z-]+)/g);
-
         if (!tags) {
           return null;
-        } // we need to know which tags are closed
-
-
+        }
+        // we need to know which tags are closed
         var closingTags = [];
-
         for (var i = tags.length - 1; i >= 0; i--) {
           if (tags[i].indexOf('</') === 0) {
             closingTags.push(tags[i].substring('</'.length));
@@ -139,8 +134,8 @@
             // get the last position of the tag
             var tagPosition = text.lastIndexOf(tags[i]);
             var tag = tags[i].substring('<'.length);
-            var closingBracketIdx = text.indexOf('/>', tagPosition); // if the tag wasn't closed
-
+            var closingBracketIdx = text.indexOf('/>', tagPosition);
+            // if the tag wasn't closed
             if (closingBracketIdx === -1) {
               // if there are no closing tags or the current tag wasn't closed
               if (!closingTags.length || closingTags[closingTags.length - 1] !== tag) {
@@ -150,157 +145,151 @@
                 var openedTag = text.indexOf('<') > text.indexOf('>');
                 var contentSearch = false;
                 var currentAttribute = null;
-
                 if (openedTag) {
                   var attrMatch = /([\w\-_\.\d]+)="[^"]*$/.exec(text);
                   contentSearch = !!attrMatch;
                   currentAttribute = attrMatch ? attrMatch[1] : null;
                 }
-
                 var filteredElementSearch = /<[\w-_\d]+$/.test(text);
+                var attributesMatch = _toConsumableArray(text.matchAll(/\s([^=]+)="([^"]+)"/g));
+                var attributes = {};
+                var _iterator = _createForOfIteratorHelper(attributesMatch),
+                  _step;
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var match = _step.value;
+                    attributes[match[1]] = match[2];
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
                 return {
                   tagName: tag,
                   currentAttribute: currentAttribute,
+                  attributes: attributes,
                   filteredElementSearch: filteredElementSearch,
                   isAttributeSearch: !filteredElementSearch && openedTag && !contentSearch,
                   isContentSearch: contentSearch,
                   text: text
                 };
-              } // remove the last closed tag
-
-
+              }
+              // remove the last closed tag
               closingTags.splice(closingTags.length - 1, 1);
-            } // remove the last checked tag and continue processing the rest of the content
-
-
+            }
+            // remove the last checked tag and continue processing the rest of the content
             text = text.substring(0, tagPosition);
           }
         }
-
         return null;
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_34_3 : this.__P_34_0;
-
+        var cache = inMeta === true ? this.__P_36_3 : this.__P_36_0;
         if (elementName in cache) {
           return cache[elementName];
         }
-
         if (maxDepth < currentDepth) {
           return null;
         }
-
         if (!parent) {
-          parent = this.__P_34_2.getElementNode(this.__P_34_4);
+          parent = this.__P_36_2.getElementNode(this.__P_36_4);
         }
-
         if (currentDepth === undefined) {
           currentDepth = 1;
         }
-
-        var allowedElements = parent.getAllowedElements(); // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
-
+        var allowedElements = parent.getAllowedElements();
+        // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
         if (elementName in allowedElements) {
           // console.log("found "+elementName+" in tree level "+currentDepth);
-          this.__P_34_0[elementName] = allowedElements[elementName];
+          this.__P_36_0[elementName] = allowedElements[elementName];
           return allowedElements[elementName];
         }
-
         for (var element in allowedElements) {
-          if (inMeta !== true && element === this.__P_34_5) {
+          if (inMeta !== true && element === this.__P_36_5) {
             continue;
           }
-
           if (maxDepth > currentDepth) {
             var result = this.findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
-
             if (result) {
-              cache[elementName] = result; // console.log("found " + elementName + " in tree level " + currentDepth);
-
+              cache[elementName] = result;
+              // console.log("found " + elementName + " in tree level " + currentDepth);
               return result;
             }
           }
         }
-
         return null;
       },
       isItemAvailable: function isItemAvailable(itemName, maxOccurs, items) {
         // the default for 'maxOccurs' is 1
-        maxOccurs = maxOccurs || '1'; // the element can appere infinite times, so it is available
-
+        maxOccurs = maxOccurs || '1';
+        // the element can appere infinite times, so it is available
         if (maxOccurs && maxOccurs === 'unbounded') {
           return true;
-        } // count how many times the element appeared
-
-
+        }
+        // count how many times the element appeared
         var count = 0;
-
         for (var i = 0; i < items.length; i++) {
           if (items[i] === itemName) {
             count++;
           }
-        } // if it didn't appear yet, or it can appear again, then it
+        }
+        // if it didn't appear yet, or it can appear again, then it
         // is available, otherwise it't not
-
-
         return count === 0 || parseInt(maxOccurs) > count;
       },
       getElementString: function getElementString(element, indent, prefix) {
-        var insertText = indent + prefix + element.getName() + ' '; // add all required attributes with default values
-
+        var insertText = indent + prefix + element.getName() + ' ';
+        // add all required attributes with default values
         var allowedAttributes = element.getAllowedAttributes();
         Object.getOwnPropertyNames(allowedAttributes).forEach(function (attr) {
           var attribute = allowedAttributes[attr];
-
           if (!attribute.isOptional) {
             insertText += attr + '="' + (attribute.getDefaultValue() ? attribute.getDefaultValue() : '') + '" ';
           }
-        }); // add mandatory children
-
+        });
+        // add mandatory children
         var requiredElements = element.getRequiredElements();
         var allowedContent = element.getAllowedContent();
         var isContentAllowed = allowedContent._text || requiredElements.length > 0 || !!allowedContent._grouping;
-
         if (!isContentAllowed) {
           // close tag
           insertText = insertText.trim() + '/';
         } else {
           // close open tag
-          insertText = insertText.trim() + '>'; // insert required elements
+          insertText = insertText.trim() + '>';
 
+          // insert required elements
           var children = 0;
           requiredElements.forEach(function (elemName) {
             var elem = this.findElements(element, elemName, 1, 0);
-
             if (elem) {
               insertText += '\n    ' + this.getElementString(elem, indent + '    ', '<') + '>';
               children++;
             }
-          }, this); // add closing tag
-
+          }, this);
+          // add closing tag
           if (children > 0) {
             insertText += '\n' + indent;
           }
-
           insertText += '</' + element.getName();
         }
-
         return insertText;
       },
       getAvailableElements: function getAvailableElements(element, usedItems) {
         var availableItems = [];
-        var children = element.getAllowedElements(); // if there are no such elements, then there are no suggestions
+        var children = element.getAllowedElements();
 
+        // if there are no such elements, then there are no suggestions
         if (!children) {
           return [];
         }
-
         Object.getOwnPropertyNames(children).filter(function (name) {
           return !name.startsWith('#');
         }).forEach(function (name) {
           // get all element attributes
-          var childElem = children[name]; // the element is a suggestion if it's available
-
+          var childElem = children[name];
+          // the element is a suggestion if it's available
           if (this.isItemAvailable(childElem.getName(), childElem.getBounds().max, usedItems)) {
             // mark it as a 'field', and get the documentation
             availableItems.push({
@@ -311,18 +300,17 @@
               documentation: childElem.getDocumentation().join('\n')
             });
           }
-        }, this); // return the suggestions we found
-
+        }, this);
+        // return the suggestions we found
         return availableItems;
       },
       getAvailableAttributes: function getAvailableAttributes(element, usedChildTags) {
-        var availableItems = []; // get all attributes for the element
-
+        var availableItems = [];
+        // get all attributes for the element
         var attrs = element.getAllowedAttributes();
         Object.getOwnPropertyNames(attrs).forEach(function (name) {
-          // jshint ignore:line
-          var attr = attrs[name]; // accept it in a suggestion list only the attribute is not used yet
-
+          var attr = attrs[name];
+          // accept it in a suggestion list only the attribute is not used yet
           if (usedChildTags.indexOf(attr.name) === -1) {
             // mark it as a 'property', and get it's documentation
             availableItems.push({
@@ -333,13 +321,13 @@
               documentation: attr.getDocumentation().join('\n')
             });
           }
-        }, this); // return the elements we found
+        }, this);
 
+        // return the elements we found
         return availableItems;
       },
       detectSchema: function detectSchema(completeText) {
         var match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
-
         if (match && match[1].endsWith('visu_config_tile.xsd')) {
           this.setStructure('tile');
         } else {
@@ -352,15 +340,12 @@
           provideCompletionItems: function (model, position) {
             this.setCurrentPath(model.uri.toString());
             var completeText = model.getValue();
-
-            if (!this.__P_34_2) {
+            if (!this.__P_36_2) {
               this.detectSchema(completeText);
             }
-
             if (this._getSuggestions) {
               return this._getSuggestions(model, position);
             }
-
             return {
               suggestions: []
             };
@@ -374,8 +359,9 @@
           startColumn: 1,
           endLineNumber: position.lineNumber,
           endColumn: position.column
-        }); // parse mappings
+        });
 
+        // parse mappings
         var completeText = model.getValue();
         var metaEndPos = completeText.indexOf('</meta>');
         var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
@@ -385,77 +371,65 @@
         var map;
         var vmap;
         var regex = /<mapping name="([^"]+)"/gm;
-
         while ((map = regex.exec(textMeta)) !== null) {
           mappingNames.push(map[1]);
         }
-
         regex = /<styling name="([^"]+)"/gm;
-
         while ((map = regex.exec(textMeta)) !== null) {
           stylingNames.push(map[1]);
         }
-
         var templatesStart = textMeta.indexOf('<templates>');
-
         if (templatesStart >= 0) {
           var templatesString = textMeta.substring(templatesStart + 11, textMeta.indexOf('</templates>') - 12).replace(/(?:\r\n|\r|\n)/g, '');
           templatesString.split('</template>').forEach(function (rawTemplate) {
-            var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate); // search for variables
-
+            var nameMatch = /<template name="([^"]+)"/.exec(rawTemplate);
+            // search for variables
             var variables = [];
             var vregex = /{{{?\s*([\w\d]+)\s*}?}}/gm;
-
             while ((vmap = vregex.exec(rawTemplate)) !== null) {
               variables.push(vmap[1]);
             }
-
             templates[nameMatch[1]] = variables;
           }, this);
-        } // if we want suggestions, inside of which tag are we?
+        }
 
-
-        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
+        // if we want suggestions, inside of which tag are we?
+        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
+        // console.log(lastOpenedTag);
         // get opened tags to see what tag we should look for in the XSD schema
-
-        var openedTags = []; // attrobutes of the ancestors
-
-        var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
-
+        var openedTags = [];
+        // attrobutes of the ancestors
+        var openedAttributes = [];
+        // get the elements/attributes that are already mentioned in the element we're in
         var usedItems = [];
         var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
         var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch; // no need to calculate the position in the XSD schema if we are in the root element
-
+        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
+        // no need to calculate the position in the XSD schema if we are in the root element
         var parts;
-
         if (lastOpenedTag) {
           // try to create a valid XML document
           parts = lastOpenedTag.text.split(' ');
           parts.shift();
           var cleanedText = textUntilPosition;
-
           if (parts.length) {
             cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
-          } // parse the content (not cleared text) into an xml document
-
-
+          }
+          // parse the content (not cleared text) into an xml document
           var xmlDoc = qx.xml.Document.fromString(cleanedText);
           var lastChild = xmlDoc.lastElementChild;
           var i;
           var lastFound = false;
-
           while (lastChild && lastChild.tagName.toLowerCase() !== 'parsererror') {
             openedTags.push(lastChild.tagName);
-            openedAttributes.push(lastChild.attributes); // if we found our last opened tag
-
+            openedAttributes.push(lastChild.attributes);
+            // if we found our last opened tag
             if (lastChild.tagName === lastOpenedTag.tagName) {
-              lastFound = true; // if we are looking for attributes, then used items should
+              lastFound = true;
+              // if we are looking for attributes, then used items should
               // be the attributes we already used
-
               if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
                 var attrs = lastChild.attributes;
-
                 for (i = 0; i < attrs.length; i++) {
                   usedItems.push(attrs[i].nodeName);
                 }
@@ -463,27 +437,23 @@
                 // if we are looking for child elements, then used items
                 // should be the elements that were already used
                 var children = lastChild.children;
-
                 for (i = 0; i < children.length; i++) {
                   if (children[i].tagName.toLowerCase() !== 'parsererror') {
                     usedItems.push(children[i].tagName);
                   }
                 }
               }
-
               break;
-            } // we haven't found the last opened tag yet, so we move to
+            }
+            // we haven't found the last opened tag yet, so we move to
             // the next element
-
-
             lastChild = lastChild.lastElementChild;
           }
-
           if (!lastFound) {
             // fallback -> parse string
             if (isAttributeSearch || isContentSearch) {
-              parts = lastOpenedTag.text.split(' '); // skip tag name
-
+              parts = lastOpenedTag.text.split(' ');
+              // skip tag name
               parts.shift();
               parts.forEach(function (entry) {
                 usedItems.push(entry.split('=').shift());
@@ -491,16 +461,14 @@
             }
           }
         }
-
         var res = [];
-        var match; // find the last opened tag in the schema to see what elements/attributes it can have
-
+        var match;
+        // find the last opened tag in the schema to see what elements/attributes it can have
         var searchedElement = openedTags[openedTags.length - 1];
-
         if (isContentSearch) {
           // handle data providers if the is one relevant
           if (lastOpenedTag.tagName === 'pages' && lastOpenedTag.currentAttribute === 'design') {
-            return this._dataProvider.getDesigns().then(function (sugg) {
+            return this._dataProvider.getDesigns(null, null, 'pure').then(function (sugg) {
               return {
                 suggestions: sugg
               };
@@ -528,7 +496,6 @@
               });
             } else if (lastOpenedTag.currentAttribute === 'field') {
               match = /measurement="([^"]+)"/.exec(lastOpenedTag.text);
-
               if (match) {
                 return this._dataProvider.getInfluxDBFields(match[1]).then(function (suggestions) {
                   return {
@@ -540,7 +507,6 @@
           } else if (lastOpenedTag.tagName === 'tag' && (lastOpenedTag.currentAttribute === 'key' || lastOpenedTag.currentAttribute === 'value') && openedTags.includes('influx')) {
             var influxAttributes = openedAttributes[openedTags.indexOf('influx')];
             var attr = influxAttributes.getNamedItem('measurement');
-
             if (attr) {
               if (lastOpenedTag.currentAttribute === 'key') {
                 return this._dataProvider.getInfluxDBTags(attr.value).then(function (suggestions) {
@@ -550,7 +516,6 @@
                 });
               } else if (lastOpenedTag.currentAttribute === 'value') {
                 match = /key="([^"]+)"/.exec(lastOpenedTag.text);
-
                 if (match) {
                   return this._dataProvider.getInfluxDBValues(attr.value, match[1]).then(function (suggestions) {
                     return {
@@ -609,23 +574,24 @@
             return {
               suggestions: res
             };
-          } // TODO: completions that have to be retrieved from the backend
+          }
+
+          // TODO: completions that have to be retrieved from the backend
           // * rrds
           // * Influx: dbs, tags fields
           // * media files
-
 
           searchedElement = lastOpenedTag.tagName;
         } else if (!isAttributeSearch && filteredElementSearch) {
           searchedElement = openedTags[openedTags.length - 2];
         } else if (lastOpenedTag.tagName === 'address' && lastOpenedTag.currentAttribute === null) {
-          return this._dataProvider.getAddresses('monaco').then(function (res) {
+          var backendName = lastOpenedTag.attributes['backend'] || 'main';
+          return this._dataProvider.getAddresses('monaco', null, backendName).then(function (res) {
             return {
               suggestions: res
             };
           });
         }
-
         if (searchedElement === 'rrd') {
           return this._dataProvider.getRrds('monaco').then(function (res) {
             return {
@@ -641,13 +607,12 @@
             };
           });
         }
+        var currentItem = this.findElements(this.__P_36_2.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta'));
 
-        var currentItem = this.findElements(this.__P_34_2.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+        // return available elements/attributes if the tag exists in the schema, or an empty
         // array if it doesn't
-
         if (isContentSearch) {
           var currentAttribute = usedItems[usedItems.length - 1];
-
           if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
             var attribute = currentItem.getAllowedAttributes()[currentAttribute];
             var type = attribute.getTypeString();
@@ -677,7 +642,6 @@
             res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
           }
         }
-
         return {
           suggestions: res
         };
@@ -689,8 +653,9 @@
           startColumn: 1,
           endLineNumber: position.lineNumber,
           endColumn: position.column
-        }); // parse mappings
+        });
 
+        // parse mappings
         var completeText = model.getValue();
         var metaEndPos = completeText.indexOf('</cv-meta>');
         var textMeta = metaEndPos > 0 ? completeText.substring(0, metaEndPos) : completeText;
@@ -698,59 +663,51 @@
         var stylingNames = [];
         var map;
         var regex = /<cv-mapping name="([^"]+)"/gm;
-
         while ((map = regex.exec(textMeta)) !== null) {
           mappingNames.push(map[1]);
         }
-
         regex = /<cv-styling name="([^"]+)"/gm;
-
         while ((map = regex.exec(textMeta)) !== null) {
           stylingNames.push(map[1]);
-        } // if we want suggestions, inside of which tag are we?
+        }
 
-
-        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition); // console.log(lastOpenedTag);
+        // if we want suggestions, inside which tag are we?
+        var lastOpenedTag = this.getLastOpenedTag(textUntilPosition);
+        // console.log(lastOpenedTag);
         // get opened tags to see what tag we should look for in the XSD schema
-
-        var openedTags = []; // attrobutes of the ancestors
-
-        var openedAttributes = []; // get the elements/attributes that are already mentioned in the element we're in
-
+        var openedTags = [];
+        // attributes of the ancestors
+        var openedAttributes = [];
+        // get the elements/attributes that are already mentioned in the element we're in
         var usedItems = [];
         var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
         var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
-        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch; // no need to calculate the position in the XSD schema if we are in the root element
-
+        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
+        // no need to calculate the position in the XSD schema if we are in the root element
         var parts;
-
         if (lastOpenedTag) {
           // try to create a valid XML document
           parts = lastOpenedTag.text.split(' ');
           parts.shift();
           var cleanedText = textUntilPosition;
-
           if (parts.length) {
             cleanedText = cleanedText.substring(0, cleanedText.length - parts.join(' ').length) + '>';
-          } // parse the content (not cleared text) into an xml document
-
-
+          }
+          // parse the content (not cleared text) into a xml document
           var xmlDoc = qx.xml.Document.fromString(cleanedText);
           var lastChild = xmlDoc.lastElementChild;
           var i;
           var lastFound = false;
-
           while (lastChild) {
             openedTags.push(lastChild.tagName);
-            openedAttributes.push(lastChild.attributes); // if we found our last opened tag
-
+            openedAttributes.push(lastChild.attributes);
+            // if we found our last opened tag
             if (lastChild.tagName === lastOpenedTag.tagName) {
-              lastFound = true; // if we are looking for attributes, then used items should
+              lastFound = true;
+              // if we are looking for attributes, then used items should
               // be the attributes we already used
-
               if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
                 var attrs = lastChild.attributes;
-
                 for (i = 0; i < attrs.length; i++) {
                   usedItems.push(attrs[i].nodeName);
                 }
@@ -758,27 +715,23 @@
                 // if we are looking for child elements, then used items
                 // should be the elements that were already used
                 var children = lastChild.children;
-
                 for (i = 0; i < children.length; i++) {
                   if (children[i].tagName.toLowerCase() !== 'parsererror') {
                     usedItems.push(children[i].tagName);
                   }
                 }
               }
-
               break;
-            } // we haven't found the last opened tag yet, so we move to
+            }
+            // we haven't found the last opened tag yet, so we move to
             // the next element
-
-
             lastChild = lastChild.lastElementChild;
           }
-
           if (!lastFound) {
             // fallback -> parse string
             if (isAttributeSearch || isContentSearch) {
-              parts = lastOpenedTag.text.split(' '); // skip tag name
-
+              parts = lastOpenedTag.text.split(' ');
+              // skip tag name
               parts.shift();
               parts.forEach(function (entry) {
                 usedItems.push(entry.split('=').shift());
@@ -786,17 +739,14 @@
             }
           }
         }
-
         var res = [];
-        var match; // find the last opened tag in the schema to see what elements/attributes it can have
-
+        var match;
+        // find the last opened tag in the schema to see what elements/attributes it can have
         var searchedElement = openedTags[openedTags.length - 1];
-
         if (isContentSearch) {
           // handle data providers if the is one relevant
           if (lastOpenedTag.tagName === 'config' && lastOpenedTag.currentAttribute === 'design') {
             var suggestions = this._dataProvider.getDesigns(null, null, 'tile');
-
             return {
               suggestions: suggestions
             };
@@ -831,12 +781,12 @@
               suggestions: res
             };
           }
-
           searchedElement = lastOpenedTag.tagName;
         } else if (!isAttributeSearch && filteredElementSearch) {
           searchedElement = openedTags[openedTags.length - 2];
         } else if (lastOpenedTag.tagName === 'cv-address' && lastOpenedTag.currentAttribute === null) {
-          return this._dataProvider.getAddresses('monaco').then(function (res) {
+          var backendName = lastOpenedTag.attributes['backend'] || 'main';
+          return this._dataProvider.getAddresses('monaco', null, backendName).then(function (res) {
             return {
               suggestions: res
             };
@@ -856,13 +806,12 @@
             };
           });
         }
+        var currentItem = this.findElements(this.__P_36_2.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta'));
 
-        var currentItem = this.findElements(this.__P_34_2.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta')); // return available elements/attributes if the tag exists in the schema, or an empty
+        // return available elements/attributes if the tag exists in the schema, or an empty
         // array if it doesn't
-
         if (isContentSearch) {
           var currentAttribute = lastOpenedTag.currentAttribute;
-
           if (currentItem && currentAttribute in currentItem.getAllowedAttributes()) {
             var attribute = currentItem.getAllowedAttributes()[currentAttribute];
             var type = attribute.getTypeString();
@@ -892,20 +841,18 @@
             res = currentItem ? this.getAvailableElements(currentItem, usedItems) : [];
           }
         }
-
         return {
           suggestions: res
         };
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_34_0 = null;
+      this.__P_36_0 = null;
       this._schema = null;
       this._dataProvider = null;
     }
@@ -913,4 +860,4 @@
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1664789566755
+//# sourceMappingURL=Config.js.map?dt=1672653475578

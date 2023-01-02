@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 32,
-        "column": 0
+        "line": 31,
+        "column": 0,
+        "index": 1098
       },
       "end": {
-        "line": 292,
-        "column": 3
+        "line": 314,
+        "column": 3,
+        "index": 9934
       }
     },
     "jsdoc": {
@@ -66,12 +68,14 @@
     "pagejumpTarget": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1399
         },
         "end": {
-          "line": 42,
-          "column": 65
+          "line": 41,
+          "column": 55,
+          "index": 1450
         }
       },
       "name": "pagejumpTarget",
@@ -83,12 +87,14 @@
     "gaugeType": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1456
         },
         "end": {
-          "line": 43,
-          "column": 65
+          "line": 42,
+          "column": 50,
+          "index": 1502
         }
       },
       "name": "gaugeType",
@@ -100,12 +106,14 @@
     "subtype": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1508
         },
         "end": {
-          "line": 44,
-          "column": 65
+          "line": 43,
+          "column": 48,
+          "index": 1552
         }
       },
       "name": "subtype",
@@ -117,12 +125,14 @@
     "gType": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1558
         },
         "end": {
-          "line": 45,
-          "column": 65
+          "line": 44,
+          "column": 46,
+          "index": 1600
         }
       },
       "name": "gType",
@@ -134,12 +144,14 @@
     "titleString": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1606
         },
         "end": {
-          "line": 46,
-          "column": 65
+          "line": 45,
+          "column": 52,
+          "index": 1654
         }
       },
       "name": "titleString",
@@ -151,12 +163,14 @@
     "unitString": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1660
         },
         "end": {
-          "line": 47,
-          "column": 65
+          "line": 46,
+          "column": 51,
+          "index": 1707
         }
       },
       "name": "unitString",
@@ -168,12 +182,14 @@
     "unitStringVisible": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1713
         },
         "end": {
-          "line": 48,
-          "column": 63
+          "line": 47,
+          "column": 56,
+          "index": 1765
         }
       },
       "name": "unitStringVisible",
@@ -185,12 +201,14 @@
     "size": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1771
         },
         "end": {
-          "line": 49,
-          "column": 60
+          "line": 48,
+          "column": 40,
+          "index": 1807
         }
       },
       "name": "size",
@@ -202,12 +220,14 @@
     "width": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1813
         },
         "end": {
-          "line": 50,
-          "column": 60
+          "line": 49,
+          "column": 41,
+          "index": 1850
         }
       },
       "name": "width",
@@ -219,12 +239,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1856
         },
         "end": {
-          "line": 51,
-          "column": 60
+          "line": 50,
+          "column": 42,
+          "index": 1894
         }
       },
       "name": "height",
@@ -236,12 +258,14 @@
     "minValue": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1900
         },
         "end": {
-          "line": 52,
-          "column": 58
+          "line": 51,
+          "column": 42,
+          "index": 1938
         }
       },
       "name": "minValue",
@@ -253,12 +277,14 @@
     "maxValue": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1944
         },
         "end": {
-          "line": 53,
-          "column": 60
+          "line": 52,
+          "column": 44,
+          "index": 1984
         }
       },
       "name": "maxValue",
@@ -270,12 +296,14 @@
     "frameDesign": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1990
         },
         "end": {
-          "line": 54,
-          "column": 65
+          "line": 53,
+          "column": 52,
+          "index": 2038
         }
       },
       "name": "frameDesign",
@@ -287,12 +315,14 @@
     "backgroundColor": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 2044
         },
         "end": {
-          "line": 55,
-          "column": 65
+          "line": 54,
+          "column": 56,
+          "index": 2096
         }
       },
       "name": "backgroundColor",
@@ -304,12 +334,14 @@
     "foregroundType": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 2102
         },
         "end": {
-          "line": 56,
-          "column": 65
+          "line": 55,
+          "column": 55,
+          "index": 2153
         }
       },
       "name": "foregroundType",
@@ -321,12 +353,14 @@
     "pointerType": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 2159
         },
         "end": {
-          "line": 57,
-          "column": 65
+          "line": 56,
+          "column": 52,
+          "index": 2207
         }
       },
       "name": "pointerType",
@@ -338,12 +372,14 @@
     "pointerColor": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 2213
         },
         "end": {
-          "line": 58,
-          "column": 65
+          "line": 57,
+          "column": 53,
+          "index": 2262
         }
       },
       "name": "pointerColor",
@@ -355,12 +391,14 @@
     "lcdColor": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 2268
         },
         "end": {
-          "line": 59,
-          "column": 65
+          "line": 58,
+          "column": 49,
+          "index": 2313
         }
       },
       "name": "lcdColor",
@@ -372,12 +410,14 @@
     "lcdVisible": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 2319
         },
         "end": {
-          "line": 60,
-          "column": 63
+          "line": 59,
+          "column": 49,
+          "index": 2364
         }
       },
       "name": "lcdVisible",
@@ -389,12 +429,14 @@
     "lcdDecimals": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 2370
         },
         "end": {
-          "line": 61,
-          "column": 64
+          "line": 60,
+          "column": 52,
+          "index": 2418
         }
       },
       "name": "lcdDecimals",
@@ -406,12 +448,14 @@
     "ledVisible": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 2424
         },
         "end": {
-          "line": 62,
-          "column": 63
+          "line": 61,
+          "column": 49,
+          "index": 2469
         }
       },
       "name": "ledVisible",
@@ -423,12 +467,14 @@
     "ledColor": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 2475
         },
         "end": {
-          "line": 63,
-          "column": 65
+          "line": 62,
+          "column": 49,
+          "index": 2520
         }
       },
       "name": "ledColor",
@@ -440,12 +486,14 @@
     "valueColor": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 2526
         },
         "end": {
-          "line": 64,
-          "column": 65
+          "line": 63,
+          "column": 51,
+          "index": 2573
         }
       },
       "name": "valueColor",
@@ -457,12 +505,14 @@
     "trendVisible": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 2579
         },
         "end": {
-          "line": 65,
-          "column": 63
+          "line": 64,
+          "column": 51,
+          "index": 2626
         }
       },
       "name": "trendVisible",
@@ -474,12 +524,14 @@
     "thresholdRising": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 2632
         },
         "end": {
-          "line": 66,
-          "column": 63
+          "line": 65,
+          "column": 54,
+          "index": 2682
         }
       },
       "name": "thresholdRising",
@@ -491,12 +543,14 @@
     "threshold": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2688
         },
         "end": {
-          "line": 71,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 2775
         }
       },
       "name": "threshold",
@@ -510,11 +564,13 @@
       "location": {
         "start": {
           "line": 72,
-          "column": 4
+          "column": 4,
+          "index": 2782
         },
         "end": {
           "line": 72,
-          "column": 63
+          "column": 55,
+          "index": 2833
         }
       },
       "name": "thresholdVisible",
@@ -527,11 +583,13 @@
       "location": {
         "start": {
           "line": 73,
-          "column": 4
+          "column": 4,
+          "index": 2839
         },
         "end": {
           "line": 73,
-          "column": 63
+          "column": 49,
+          "index": 2884
         }
       },
       "name": "autoScroll",
@@ -544,11 +602,13 @@
       "location": {
         "start": {
           "line": 74,
-          "column": 4
+          "column": 4,
+          "index": 2890
         },
         "end": {
           "line": 74,
-          "column": 63
+          "column": 52,
+          "index": 2938
         }
       },
       "name": "valuesNumeric",
@@ -680,11 +740,13 @@
       "location": {
         "start": {
           "line": 93,
-          "column": 4
+          "column": 4,
+          "index": 3512
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3909
         }
       },
       "jsdoc": {
@@ -739,12 +801,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 3916
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 5472
         }
       },
       "type": "function",
@@ -753,12 +817,14 @@
     "makeAddressListFn": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 170,
+          "column": 4,
+          "index": 5479
         },
         "end": {
-          "line": 157,
-          "column": 5
+          "line": 172,
+          "column": 5,
+          "index": 5565
         }
       },
       "type": "function",
@@ -769,12 +835,14 @@
     "__gaugeElement": {
       "location": {
         "start": {
-          "line": 166,
-          "column": 4
+          "line": 181,
+          "column": 4,
+          "index": 5725
         },
         "end": {
-          "line": 166,
-          "column": 24
+          "line": 181,
+          "column": 24,
+          "index": 5745
         }
       },
       "type": "variable",
@@ -783,12 +851,14 @@
     "__updateQueue": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 182,
+          "column": 4,
+          "index": 5751
         },
         "end": {
-          "line": 167,
-          "column": 23
+          "line": 182,
+          "column": 23,
+          "index": 5770
         }
       },
       "type": "variable",
@@ -797,12 +867,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 5777
         },
         "end": {
-          "line": 171,
-          "column": 5
+          "line": 192,
+          "column": 5,
+          "index": 6001
         }
       },
       "type": "function",
@@ -825,12 +897,14 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 6026
         },
         "end": {
-          "line": 189,
-          "column": 5
+          "line": 213,
+          "column": 5,
+          "index": 7008
         }
       },
       "jsdoc": {},
@@ -844,12 +918,14 @@
     "getValueElement": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 216,
+          "column": 4,
+          "index": 7033
         },
         "end": {
-          "line": 194,
-          "column": 5
+          "line": 218,
+          "column": 5,
+          "index": 7135
         }
       },
       "jsdoc": {},
@@ -863,12 +939,14 @@
     "_applyThreshold": {
       "location": {
         "start": {
-          "line": 197,
-          "column": 4
+          "line": 221,
+          "column": 4,
+          "index": 7164
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 225,
+          "column": 5,
+          "index": 7265
         }
       },
       "jsdoc": {},
@@ -881,12 +959,14 @@
     "_processIncomingValue": {
       "location": {
         "start": {
-          "line": 204,
-          "column": 4
+          "line": 228,
+          "column": 4,
+          "index": 7290
         },
         "end": {
-          "line": 209,
-          "column": 5
+          "line": 233,
+          "column": 5,
+          "index": 7484
         }
       },
       "jsdoc": {},
@@ -896,12 +976,14 @@
     "handleUpdate": {
       "location": {
         "start": {
-          "line": 216,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 7649
         },
         "end": {
-          "line": 272,
-          "column": 5
+          "line": 296,
+          "column": 5,
+          "index": 9396
         }
       },
       "jsdoc": {
@@ -934,12 +1016,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 275,
-          "column": 4
+          "line": 299,
+          "column": 4,
+          "index": 9421
         },
         "end": {
-          "line": 279,
-          "column": 5
+          "line": 303,
+          "column": 5,
+          "index": 9567
         }
       },
       "jsdoc": {},
@@ -1853,9 +1937,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -2459,6 +2545,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -2803,11 +2940,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -3324,6 +3461,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -3347,6 +3485,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -8490,15 +8629,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 282,
-        "column": 9
+        "line": 306,
+        "column": 2,
+        "index": 9576
       },
       "end": {
-        "line": 291,
-        "column": 3
+        "line": 313,
+        "column": 3,
+        "index": 9930
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

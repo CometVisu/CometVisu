@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -27,7 +26,6 @@
     Origin:
      This theme is based in large parts on the osparc.theme
   ************************************************************************ */
-
   /**
    * The simple qooxdoo decoration theme.
    */
@@ -52,7 +50,7 @@
         include: "material-textfield",
         style: {
           widthBottom: 2,
-          colorBottom: "primary-focussed"
+          colorBottom: "primary-focused"
         }
       },
       "material-textfield-invalid": {
@@ -66,7 +64,7 @@
         include: "material-textfield",
         style: {
           widthBottom: 2,
-          colorBottom: "error-focussed"
+          colorBottom: "error-focused"
         }
       },
       "material-textfield-disabled": {
@@ -79,12 +77,12 @@
       "material-textfield-readonly": {
         style: {}
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON
         ---------------------------------------------------------------------------
         */
+
       "material-button": {
         style: {
           radius: 2,
@@ -106,6 +104,12 @@
           shadowBlurRadius: [4, 5, 10],
           shadowSpreadRadius: [-1, 0, 0],
           transitionDuration: "0.1s"
+        }
+      },
+      "material-button-hovered-invalid": {
+        include: "material-button-hovered",
+        style: {
+          color: "error"
         }
       },
       "material-button-pressed": {
@@ -214,7 +218,6 @@
           backgroundColor: "primary-selected_disabled"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           CORE
@@ -226,7 +229,7 @@
           color: "surface"
         }
       },
-      "main": {
+      main: {
         style: {
           width: 1,
           color: "text-hint-on-surface"
@@ -257,7 +260,7 @@
           width: [0, 0, 0, 1]
         }
       },
-      "popup": {
+      popup: {
         style: {
           width: 1,
           color: "text-hint-on-surface",
@@ -266,17 +269,17 @@
           shadowColor: "shadow"
         }
       },
-      "dragover": {
+      dragover: {
         style: {
           bottom: [2, "solid", "dark-blue"]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON
         ---------------------------------------------------------------------------
         */
+
       "button-box": {
         style: {
           radius: 0,
@@ -288,7 +291,7 @@
       "button-box-pressed": {
         include: "button-box",
         style: {
-          backgroundColor: "primary-focussed"
+          backgroundColor: "primary-focused"
         }
       },
       "button-box-pressed-hovered": {
@@ -303,7 +306,6 @@
           backgroundColor: "button-hovered"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON INVALID
@@ -327,7 +329,6 @@
       "button-box-pressed-hovered-invalid": {
         include: "button-box-pressed-invalid"
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON FOCUSED
@@ -351,7 +352,6 @@
       "button-box-pressed-hovered-focused": {
         include: "button-box-pressed-focused"
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON RIGHT
@@ -405,7 +405,6 @@
           radius: [0, 1, 1, 0]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON BORDERLESS RIGHT
@@ -477,7 +476,6 @@
           radius: [0, 1, 0, 0]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON BOTOM RIGHT
@@ -511,7 +509,6 @@
           width: [0, 1, 1, 0]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON BOTOM LEFT
@@ -545,7 +542,6 @@
           width: [0, 0, 1, 1]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON TOP LEFT
@@ -579,7 +575,6 @@
           width: [1, 0, 0, 1]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON MIDDLE
@@ -613,7 +608,6 @@
           width: [1, 0, 1, 1]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           BUTTON LEFT
@@ -675,12 +669,12 @@
           width: [1, 0, 1, 1]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           SEPARATOR
         ---------------------------------------------------------------------------
         */
+
       "separator-horizontal": {
         style: {
           widthLeft: 1,
@@ -693,7 +687,6 @@
           colorTop: "text-hint-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           SCROLL KNOB
@@ -718,7 +711,6 @@
       "scroll-knob-pressed-hovered": {
         include: "scroll-knob-pressed"
       },
-
       /*
         ---------------------------------------------------------------------------
           HOVER BUTTON
@@ -730,13 +722,12 @@
           radius: 1
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           WINDOW
         ---------------------------------------------------------------------------
         */
-      "window": {
+      window: {
         style: {
           width: 1,
           color: "text-hint-on-surface",
@@ -759,13 +750,13 @@
           color: "text-hint-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           GROUP BOX
         ---------------------------------------------------------------------------
         */
-      "box": {
+
+      box: {
         style: {
           width: 1,
           radius: 2,
@@ -773,13 +764,12 @@
           backgroundColor: "surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           FRAME BOX
         ---------------------------------------------------------------------------
         */
-      "border": {
+      border: {
         style: {
           width: 1,
           color: "text-hint-on-surface"
@@ -803,12 +793,12 @@
           color: "error"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           LIST ITEM
         ---------------------------------------------------------------------------
         */
+
       "lead-item": {
         style: {
           width: 1,
@@ -816,13 +806,26 @@
           color: "text-disabled-on-surface"
         }
       },
-
+      /*
+        ---------------------------------------------------------------------------
+          TAG
+        ---------------------------------------------------------------------------
+        */
+      tag: {
+        include: "button-box",
+        style: {
+          width: 1,
+          style: "solid",
+          radius: 10
+        }
+      },
       /*
         ---------------------------------------------------------------------------
           TOOL TIP
         ---------------------------------------------------------------------------
         */
-      "tooltip": {
+
+      tooltip: {
         style: {
           width: 1,
           color: "text-on-secondary",
@@ -837,12 +840,12 @@
           backgroundColor: "error"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           TOOLBAR
         ---------------------------------------------------------------------------
         */
+
       "toolbar-separator": {
         style: {
           widthLeft: 1,
@@ -885,7 +888,6 @@
       "toolbar-button-hovered-right": {
         include: "material-button-hovered-right"
       },
-
       /*
         ---------------------------------------------------------------------------
           MENU
@@ -897,7 +899,6 @@
           colorTop: "text-hint-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           MENU BAR
@@ -914,12 +915,12 @@
           backgroundColor: "primary-selected"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           DATE CHOOSER
         ---------------------------------------------------------------------------
         */
+
       "datechooser-date-pane": {
         style: {
           widthTop: 1,
@@ -950,12 +951,12 @@
           style: "solid"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           TAB VIEW
         ---------------------------------------------------------------------------
         */
+
       "tabview-page-button-top": {
         style: {
           width: [0, 0, 2, 0],
@@ -981,13 +982,13 @@
           width: [0, 0, 0, 2]
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           TABLE
         ---------------------------------------------------------------------------
         */
-      "statusbar": {
+
+      statusbar: {
         style: {
           widthTop: 1,
           colorTop: "text-hint-on-surface",
@@ -1001,7 +1002,7 @@
       "table-scroller-focus-indicator": {
         style: {
           width: 1,
-          style: 'dotted',
+          style: "dotted",
           color: "text-hint-on-surface"
         }
       },
@@ -1035,36 +1036,35 @@
           color: "text-hint-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           PROGRESSBAR
         ---------------------------------------------------------------------------
         */
-      "progressbar": {
+
+      progressbar: {
         style: {
           width: 1,
           color: "text-hint-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           RADIO BUTTON
         ---------------------------------------------------------------------------
         */
-      "radiobutton": {
+      radiobutton: {
         style: {
           color: "text-primary-on-surface"
         }
       },
-
       /*
         ---------------------------------------------------------------------------
           CHECK BOX
         ---------------------------------------------------------------------------
         */
-      "checkbox": {
+
+      checkbox: {
         style: {
           color: "text-primary-on-surface"
         }
@@ -1074,4 +1074,4 @@
   qx.theme.tangible.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789592184
+//# sourceMappingURL=Decoration.js.map?dt=1672653503661

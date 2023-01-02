@@ -30,7 +30,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,20 +50,18 @@
 
   /**
    * This class provides a handler for the online event.
-   * 
+   *
    * NOTE: Instances of this class must be disposed of after use
    *
    */
   qx.Class.define("qx.event.handler.Offline", {
     extend: qx.core.Object,
     implement: [qx.event.IEventHandler, qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      *
@@ -72,44 +69,39 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_213_0 = manager;
-      this.__P_213_1 = manager.getWindow();
-
+      this.__P_217_0 = manager;
+      this.__P_217_1 = manager.getWindow();
       this._initObserver();
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         online: true,
         offline: true
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_WINDOW,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_213_0: null,
-      __P_213_1: null,
-      __P_213_2: null,
 
+    members: {
+      __P_217_0: null,
+      __P_217_1: null,
+      __P_217_2: null,
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -118,67 +110,61 @@
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
       // interface implementation
-      registerEvent: function registerEvent(target, type, capture) {// Nothing needs to be done here
+      registerEvent: function registerEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
       // interface implementation
-      unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
+      unregisterEvent: function unregisterEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
-
       /**
        * Connects the native online and offline event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__P_213_2 = qx.lang.Function.listener(this._onNative, this);
-        qx.bom.Event.addNativeListener(this.__P_213_1, "offline", this.__P_213_2);
-        qx.bom.Event.addNativeListener(this.__P_213_1, "online", this.__P_213_2);
+        this.__P_217_2 = qx.lang.Function.listener(this._onNative, this);
+        qx.bom.Event.addNativeListener(this.__P_217_1, "offline", this.__P_217_2);
+        qx.bom.Event.addNativeListener(this.__P_217_1, "online", this.__P_217_2);
       },
-
       /**
        * Disconnects the native online and offline event listeners.
        */
       _stopObserver: function _stopObserver() {
-        qx.bom.Event.removeNativeListener(this.__P_213_1, "offline", this.__P_213_2);
-        qx.bom.Event.removeNativeListener(this.__P_213_1, "online", this.__P_213_2);
+        qx.bom.Event.removeNativeListener(this.__P_217_1, "offline", this.__P_217_2);
+        qx.bom.Event.removeNativeListener(this.__P_217_1, "online", this.__P_217_2);
       },
-
       /**
        * Native handler function which fires a qooxdoo event.
        * @signature function(domEvent)
        * @param domEvent {Event} Native DOM event
        */
       _onNative: qx.event.GlobalError.observeMethod(function (domEvent) {
-        qx.event.Registration.fireEvent(this.__P_213_1, domEvent.type, qx.event.type.Event, []);
+        qx.event.Registration.fireEvent(this.__P_217_1, domEvent.type, qx.event.type.Event, []);
       }),
-
       /*
       ---------------------------------------------------------------------------
         USER ACCESS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns whether the current window thinks its online or not.
        * @return {Boolean} <code>true</code> if its online
        */
       isOnline: function isOnline() {
-        return !!this.__P_213_1.navigator.onLine;
+        return !!this.__P_217_1.navigator.onLine;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_213_0 = null;
+      this.__P_217_0 = null;
+      this._stopObserver();
 
-      this._stopObserver(); // Deregister
-
-
-      delete qx.event.handler.Appear.__P_213_3[this.toHashCode()];
+      // Deregister
+      delete qx.event.handler.Appear.__P_217_3[this.toHashCode()];
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -191,4 +177,4 @@
   qx.event.handler.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1664789585058
+//# sourceMappingURL=Offline.js.map?dt=1672653495593

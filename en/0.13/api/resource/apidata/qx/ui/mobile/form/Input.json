@@ -18,11 +18,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 558
       },
       "end": {
-        "line": 100,
-        "column": 3
+        "line": 95,
+        "column": 3,
+        "index": 2350
       }
     },
     "jsdoc": {
@@ -41,26 +43,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
-        "column": 14
+        "line": 36,
+        "column": 2,
+        "index": 860
       },
       "end": {
-        "line": 46,
-        "column": 3
+        "line": 42,
+        "column": 3,
+        "index": 1024
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "_getTagName": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1062
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 48,
+          "column": 5,
+          "index": 1105
         }
       },
       "jsdoc": {},
@@ -74,12 +79,14 @@
     "_getType": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1232
         },
         "end": {
-          "line": 67,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1356
         }
       },
       "jsdoc": {
@@ -96,12 +103,14 @@
     "_onSelected": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1555
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2263
         }
       },
       "jsdoc": {
@@ -470,38 +479,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -866,6 +843,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -890,6 +868,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1908,15 +1887,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 97,
-        "column": 13
+        "line": 92,
+        "column": 2,
+        "index": 2272
       },
       "end": {
-        "line": 99,
-        "column": 3
+        "line": 94,
+        "column": 3,
+        "index": 2346
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "changeEnabled": {

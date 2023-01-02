@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 824
       },
       "end": {
-        "line": 254,
-        "column": 3
+        "line": 288,
+        "column": 3,
+        "index": 8734
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "BASE_URL": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 1021
         },
         "end": {
-          "line": 33,
-          "column": 18
+          "line": 32,
+          "column": 18,
+          "index": 1035
         }
       },
       "type": "variable",
@@ -48,12 +52,14 @@
     "__configFile": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 1041
         },
         "end": {
-          "line": 34,
-          "column": 22
+          "line": 33,
+          "column": 22,
+          "index": 1059
         }
       },
       "type": "variable",
@@ -62,12 +68,14 @@
     "__dirClient": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1065
         },
         "end": {
-          "line": 35,
-          "column": 21
+          "line": 34,
+          "column": 21,
+          "index": 1082
         }
       },
       "type": "variable",
@@ -76,12 +84,14 @@
     "__dpClient": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1088
         },
         "end": {
-          "line": 36,
-          "column": 20
+          "line": 35,
+          "column": 20,
+          "index": 1104
         }
       },
       "type": "variable",
@@ -90,12 +100,14 @@
     "__callbacks": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1110
         },
         "end": {
-          "line": 37,
-          "column": 19
+          "line": 36,
+          "column": 19,
+          "index": 1125
         }
       },
       "type": "variable",
@@ -104,12 +116,14 @@
     "getBaseUrl": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1132
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1512
         }
       },
       "type": "function",
@@ -118,12 +132,14 @@
     "getConfigClient": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1519
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2730
         }
       },
       "type": "function",
@@ -132,12 +148,14 @@
     "getFsClient": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 2737
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 169,
+          "column": 5,
+          "index": 4980
         }
       },
       "type": "function",
@@ -146,12 +164,14 @@
     "getDataProviderClient": {
       "location": {
         "start": {
-          "line": 149,
-          "column": 4
+          "line": 171,
+          "column": 4,
+          "index": 4987
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 216,
+          "column": 5,
+          "index": 6189
         }
       },
       "type": "function",
@@ -160,12 +180,14 @@
     "_enableSync": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 218,
+          "column": 4,
+          "index": 6196
         },
         "end": {
-          "line": 234,
-          "column": 5
+          "line": 268,
+          "column": 5,
+          "index": 8013
         }
       },
       "type": "function",
@@ -174,12 +196,14 @@
     "_onSaveSuccess": {
       "location": {
         "start": {
-          "line": 236,
-          "column": 4
+          "line": 270,
+          "column": 4,
+          "index": 8020
         },
         "end": {
-          "line": 243,
-          "column": 5
+          "line": 277,
+          "column": 5,
+          "index": 8371
         }
       },
       "type": "function",
@@ -188,12 +212,14 @@
     "_onSaveError": {
       "location": {
         "start": {
-          "line": 245,
-          "column": 4
+          "line": 279,
+          "column": 4,
+          "index": 8378
         },
         "end": {
-          "line": 252,
-          "column": 5
+          "line": 286,
+          "column": 5,
+          "index": 8726
         }
       },
       "type": "function",

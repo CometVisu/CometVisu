@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
       createCellEditor: function createCellEditor(cellInfo) {
         return true;
       },
-
       /**
        * Returns the current value of a cell editor.
        *
@@ -69,4 +67,4 @@
   qx.ui.table.ICellEditorFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ICellEditorFactory.js.map?dt=1664789603336
+//# sourceMappingURL=ICellEditorFactory.js.map?dt=1672653513550

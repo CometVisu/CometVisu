@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,6 +42,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Sets a data attribute on the given DOM element.
@@ -54,7 +54,6 @@
       set: function set(element, name, value) {
         if (element.dataset) {
           name = qx.lang.String.camelCase(name);
-
           if (value === null || value == undefined) {
             delete element.dataset[name];
           } else {
@@ -68,7 +67,6 @@
           }
         }
       },
-
       /**
        * Returns the value of the given HTML "data-*" attribute
        *
@@ -86,7 +84,6 @@
           return element.hasAttribute(attrName) ? qx.bom.element.Attribute.get(element, attrName) : undefined;
         }
       },
-
       /**
        * Returns a map containing all the HTML "data-*" attributes of the specified element
        *
@@ -98,28 +95,24 @@
           return element.dataset;
         } else {
           var res = {},
-              attr = element.attributes;
-
+            attr = element.attributes;
           for (var i = 0; i < attr.length; i++) {
             if (attr[i].name.match(RegExp("^data-(.*)"))) {
               var key = RegExp.$1;
               res[qx.lang.String.camelCase(key)] = element.getAttribute(attr[i].name);
             }
           }
-
           return res;
         }
       },
-
       /**
-      * Checks if any element in the collection has a "data-*" attribute
-      * @param element {Element} The DOM Element to check the presence of data-* attributes on.
-      * @return {Boolean} True if any element in the collection has a "data-*" attribute
-      */
+       * Checks if any element in the collection has a "data-*" attribute
+       * @param element {Element} The DOM Element to check the presence of data-* attributes on.
+       * @return {Boolean} True if any element in the collection has a "data-*" attribute
+       */
       hasData: function hasData(element) {
         return Object.keys(qxWeb(element).getAllData()).length > 0;
       },
-
       /**
        * Remove an HTML "data-*" attribute from the given DOM element
        *
@@ -134,4 +127,4 @@
   qx.bom.element.Dataset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dataset.js.map?dt=1664789578536
+//# sourceMappingURL=Dataset.js.map?dt=1672653486739

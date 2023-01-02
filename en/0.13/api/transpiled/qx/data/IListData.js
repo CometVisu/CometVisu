@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,13 +43,12 @@
        * <li>added: The items which has been added (as a JavaScript array)</li>
        * <li>removed: The items which has been removed (as a JavaScript array)</li>
        */
-      "change": "qx.event.type.Data",
-
+      change: "qx.event.type.Data",
       /**
        * The changeLength event will be fired every time the length of the
        * data structure changes.
        */
-      "changeLength": "qx.event.type.Event"
+      changeLength: "qx.event.type.Event"
     },
     members: {
       /**
@@ -61,7 +59,6 @@
        * @return {var} The element at the given index.
        */
       getItem: function getItem(index) {},
-
       /**
        * Sets the given item at the given position in the data structure. A
        * change event has to be fired.
@@ -70,7 +67,6 @@
        * @param item {var} The new item to set.
        */
       setItem: function setItem(index, item) {},
-
       /**
        * Method to remove and add new element to the data. For every remove or
        * add a change event should be fired.
@@ -83,7 +79,6 @@
        * @return {qx.data.Array} An array containing the removed elements.
        */
       splice: function splice(startIndex, amount, varargs) {},
-
       /**
        * Check if the given item is in the current data structure.
        *
@@ -91,14 +86,12 @@
        * @return {Boolean} true, if the array contains the given item.
        */
       contains: function contains(item) {},
-
       /**
        * Returns the current length of the data structure.
        *
        * @return {Number} The current length of the data structure.
        */
       getLength: function getLength() {},
-
       /**
        * Returns the list data as native array.
        *
@@ -110,4 +103,4 @@
   qx.data.IListData.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListData.js.map?dt=1664789580830
+//# sourceMappingURL=IListData.js.map?dt=1672653489094

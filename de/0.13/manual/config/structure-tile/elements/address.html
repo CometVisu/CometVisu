@@ -205,20 +205,20 @@ Es ist sogar möglich gleichzeitig mit mehreren Backends des selben Typs verbund
 Jedes konfigurierte <a class="reference internal" href="backend.html#tile-element-backend"><span class="std std-ref">Backend</span></a> hat einen eindeutigen Namen, welcher als <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut festgelegt
 wird. Wird dieses nicht angegeben entspricht der Name dem Wert des <code class="docutils literal notranslate"><span class="pre">type</span></code>-Attributs.
 Hat man nun also folgende 3 Backends definiert:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span> <span class="na">type=</span><span class="s">&quot;openhab&quot;</span> <span class="na">username=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;si&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;cv-backend</span> <span class="na">name=</span><span class="s">&quot;mqtt-broker&quot;</span> <span class="na">type=</span><span class="s">&quot;mqtt&quot;</span> <span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;si&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mqtt-broker&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>kann man diese in den <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code>-Elementen auf folgende Weise benutzen:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Default backend --&gt;</span>
-<span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1001&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1001&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 
 <span class="cm">&lt;!-- openHAB backend --&gt;</span>
-<span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span> <span class="na">backend=</span><span class="s">&quot;openhab&quot;</span><span class="nt">&gt;</span>Switch_Item<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;openhab&quot;</span><span class="nt">&gt;</span>Switch_Item<span class="nt">&lt;/cv-address&gt;</span>
 
 <span class="cm">&lt;!-- MQTT backend --&gt;</span>
-<span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">backend=</span><span class="s">&quot;mqtt-broker&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;mqtt-broker&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -237,7 +237,7 @@ Widgets/Komponenten funktionieren.</p>
 <p>In diesem Beispiel würde die komplette Kachel aus dem Layout gelöscht werden, wenn das Backend den Wert 0 auf
 der Adresse sendet. Wenn eine 1 gesendet wird, wird die Kachel wieder hinzugefügt und sichtbar.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">target=</span><span class="s">&quot;show-exclude&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;show-exclude&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
@@ -247,7 +247,7 @@ der Adresse sendet. Wenn eine 1 gesendet wird, wird die Kachel wieder hinzugefü
 <p>In diesem Beispiel würde die komplette Kachel inkl. aller Bedienelemente darin deaktiviert und reagiert dann
 nicht mehr auf Interaktionen des Benutzers wie z.B. Mausklicks.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
-    <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span> <span class="na">target=</span><span class="s">&quot;enabled&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;enabled&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
@@ -983,16 +983,16 @@ gesendet werden, die z.B. nicht zum <code class="docutils literal notranslate"><
 <h4>Beispiel:<a class="headerlink" href="#beispiel" title="Link zu dieser Überschrift">¶</a></h4>
 <p>Um einen numerischen Wert am Topic <code class="docutils literal notranslate"><span class="pre">/topic/baz</span></code> zu adressieren, der in einem
 JSON wie</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>übertragen wird, müsste das <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code>-Element aussehen wie:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span> <span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span> <span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span><span class="w"> </span><span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -1060,7 +1060,7 @@ relevant sein:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

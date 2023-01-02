@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
        *   show open/close buttons, <code>false</code> otherwise.
        */
       isShowTopLevelOpenCloseIcons: function isShowTopLevelOpenCloseIcons() {},
-
       /**
        * Returns the internal data structure. The Array index is the row and the
        * value is the model item.
@@ -52,7 +50,6 @@
        * @return {qx.data.Array} The internal data structure.
        */
       getLookupTable: function getLookupTable() {},
-
       /**
        * Returns if the passed item is a note or a leaf.
        *
@@ -65,7 +62,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(item, qx.core.Object);
       },
-
       /**
        * Return whether the node is opened or closed.
        *
@@ -77,7 +73,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Returns the row's nesting level.
        *
@@ -88,7 +83,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInteger(row);
       },
-
       /**
        * Return whether the node has visible children or not.
        *
@@ -101,7 +95,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Opens the passed node.
        *
@@ -111,7 +104,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Opens the passed node without scrolling selected item into view.
        *
@@ -121,7 +113,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Closes the passed node.
        *
@@ -131,7 +122,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Closes the passed node without scrolling selected item into view.
        *
@@ -141,7 +131,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInterface(node, qx.core.Object);
       },
-
       /**
        * Returns the current selection.
        *
@@ -153,4 +142,4 @@
   qx.ui.tree.core.IVirtualTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IVirtualTree.js.map?dt=1664789606269
+//# sourceMappingURL=IVirtualTree.js.map?dt=1672653516460

@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* DocumentationMapping.js 
-   * 
+  /* DocumentationMapping.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -33,7 +32,6 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.DocumentationMapping', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -113,6 +111,8 @@
         'text': '/develop/manual/config/widgets/text/index.html#text',
         'tile-backend-system': '/develop/manual/config/structure-tile/elements/backend.html#tile-backend-system',
         'tile-component-button': '/develop/manual/config/structure-tile/components/button.html#tile-component-button',
+        'tile-component-chart': '/develop/manual/config/structure-tile/components/chart.html#tile-component-chart',
+        'tile-component-color': '/develop/manual/config/structure-tile/components/color.html#tile-component-color',
         'tile-component-group': '/develop/manual/config/structure-tile/components/group.html#tile-component-group',
         'tile-component-icon': '/develop/manual/config/structure-tile/components/icon.html#tile-component-icon',
         'tile-component-image': '/develop/manual/config/structure-tile/components/image.html#tile-component-image',
@@ -170,4 +170,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1664789568549
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1672653477112

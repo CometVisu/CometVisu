@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,26 +33,26 @@
    */
   qx.Class.define("qx.bom.webfonts.WebFont", {
     extend: qx.bom.Font,
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when the status of a web font has been determined. The event data
        * is a map with the keys "family" (the font-family name) and "valid"
        * (Boolean).
        */
-      "changeStatus": "qx.event.type.Data"
+      changeStatus: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The source of the webfont.
@@ -61,34 +60,37 @@
       sources: {
         nullable: true,
         apply: "_applySources"
+      },
+      /**
+       * Indicates that the font has loaded successfully
+       */
+      valid: {
+        init: false,
+        check: "Boolean",
+        event: "changeValid"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_152_0: null,
+      __P_153_0: null,
       // property apply
       _applySources: function _applySources(value, old) {
         var families = [];
-
         for (var i = 0, l = value.length; i < l; i++) {
           var familyName = this._quoteFontFamily(value[i].family);
-
           families.push(familyName);
           var sourcesList = value[i];
           sourcesList.comparisonString = this.getComparisonString();
           sourcesList.version = this.getVersion();
-
           qx.bom.webfonts.Manager.getInstance().require(familyName, sourcesList, this._onWebFontChangeStatus, this);
         }
-
         this.setFamily(families.concat(this.getFamily()));
       },
-
       /**
        * Propagates web font status changes
        *
@@ -96,9 +98,9 @@
        */
       _onWebFontChangeStatus: function _onWebFontChangeStatus(ev) {
         var result = ev.getData();
+        this.setValid(!!result.valid);
         this.fireDataEvent("changeStatus", result);
       },
-
       /**
        * Makes sure font-family names containing spaces are properly quoted
        *
@@ -113,4 +115,4 @@
   qx.bom.webfonts.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1664789579755
+//# sourceMappingURL=WebFont.js.map?dt=1672653487850

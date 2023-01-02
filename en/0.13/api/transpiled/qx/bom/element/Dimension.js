@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,6 +58,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Returns the rendered width of the given element.
@@ -75,7 +75,6 @@
         var rect = element.getBoundingClientRect();
         return Math.round(rect.right - rect.left);
       },
-
       /**
        * Returns the rendered height of the given element.
        *
@@ -91,7 +90,6 @@
         var rect = element.getBoundingClientRect();
         return Math.round(rect.bottom - rect.top);
       },
-
       /**
        * Returns the rendered size of the given element.
        *
@@ -104,13 +102,54 @@
           height: this.getHeight(element)
         };
       },
-
+      /**
+       * Returns the outer height of the given element, including height, vertical padding, and vertical borders
+       *
+       * @param element {Element} element to query
+       * @param includeMargins {Boolean?} whether to include margins in teh
+       * @return {Integer} the height of the element
+       */
+      getOuterHeight: function getOuterHeight(element, includeMargins) {
+        if (includeMargins) {
+          var marginTop = parseInt(document.defaultView.getComputedStyle(element, "").getPropertyValue("margin-top"), 10);
+          var marginBottom = parseInt(document.defaultView.getComputedStyle(element, "").getPropertyValue("margin-bottom"), 10);
+          return element.offsetHeight + marginTop + marginBottom;
+        }
+        return element.offsetHeight;
+      },
+      /**
+       * Returns the outer width of the given element, including height, vertical padding, and vertical borders
+       *
+       * @param element {Element} element to query
+       * @param includeMargins {Boolean?} whether to include margins in teh
+       * @return {Integer} the width of the element
+       */
+      getOuterWidth: function getOuterWidth(element, includeMargins) {
+        if (includeMargins) {
+          var marginLeft = parseInt(document.defaultView.getComputedStyle(element, "").getPropertyValue("margin-left"), 10);
+          var marginRight = parseInt(document.defaultView.getComputedStyle(element, "").getPropertyValue("margin-right"), 10);
+          return element.offsetWidth + marginLeft + marginRight;
+        }
+        return element.offsetWidth;
+      },
+      /**
+       * Returns the outer size of the given element, including height, vertical padding, and vertical borders
+       *
+       * @param element {Element} element to query
+       * @param includeMargins {Boolean?} whether to include margins in teh
+       * @return {Map} map containing the width and height of the element
+       */
+      getOuterSize: function getOuterSize(element, includeMargins) {
+        return {
+          width: this.getOuterWidth(element, includeMargins),
+          height: this.getOuterHeight(element, includeMargins)
+        };
+      },
       /** @type {Map} Contains all overflow values where scrollbars are invisible */
-      __P_137_0: {
+      __P_138_0: {
         visible: true,
         hidden: true
       },
-
       /**
        * Returns the content width.
        *
@@ -130,22 +169,19 @@
         var overflowX = qx.bom.element.Style.get(element, "overflowX");
         var paddingLeft = parseInt(Style.get(element, "paddingLeft") || "0px", 10);
         var paddingRight = parseInt(Style.get(element, "paddingRight") || "0px", 10);
-
-        if (this.__P_137_0[overflowX]) {
+        if (this.__P_138_0[overflowX]) {
           var contentWidth = element.clientWidth;
-
           if (qx.core.Environment.get("engine.name") == "opera" || qx.dom.Node.isBlockNode(element)) {
             contentWidth = contentWidth - paddingLeft - paddingRight;
-          } // IE seems to return 0 on clientWidth if the element is 0px
+          }
+
+          // IE seems to return 0 on clientWidth if the element is 0px
           // in height so we use the offsetWidth instead
-
-
           if (qx.core.Environment.get("engine.name") == "mshtml") {
             if (contentWidth === 0 && element.offsetHeight === 0) {
               return element.offsetWidth;
             }
           }
-
           return contentWidth;
         } else {
           if (element.clientWidth >= element.scrollWidth) {
@@ -154,17 +190,16 @@
           } else {
             // Scrollbars visible and needed. We just remove the left padding,
             // as the right padding is not respected in rendering.
-            var width = element.scrollWidth - paddingLeft; // IE renders the paddingRight as well with scrollbars on
+            var width = element.scrollWidth - paddingLeft;
 
+            // IE renders the paddingRight as well with scrollbars on
             if (qx.core.Environment.get("engine.name") == "mshtml") {
               width -= paddingRight;
             }
-
             return width;
           }
         }
       },
-
       /**
        * Returns the content height.
        *
@@ -184,8 +219,7 @@
         var overflowY = qx.bom.element.Style.get(element, "overflowY");
         var paddingTop = parseInt(Style.get(element, "paddingTop") || "0px", 10);
         var paddingBottom = parseInt(Style.get(element, "paddingBottom") || "0px", 10);
-
-        if (this.__P_137_0[overflowY]) {
+        if (this.__P_138_0[overflowY]) {
           return element.clientHeight - paddingTop - paddingBottom;
         } else {
           if (element.clientHeight >= element.scrollHeight) {
@@ -198,7 +232,6 @@
           }
         }
       },
-
       /**
        * Returns the rendered content size of the given element.
        *
@@ -216,4 +249,4 @@
   qx.bom.element.Dimension.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dimension.js.map?dt=1664789578650
+//# sourceMappingURL=Dimension.js.map?dt=1672653486866

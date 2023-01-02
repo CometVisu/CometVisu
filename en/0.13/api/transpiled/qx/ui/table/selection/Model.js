@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,7 +36,6 @@
    */
   qx.Class.define("qx.ui.table.selection.Model", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -45,47 +43,43 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_440_0 = [];
-      this.__P_440_1 = -1;
-      this.__P_440_2 = -1;
+      this.__P_454_0 = [];
+      this.__P_454_1 = -1;
+      this.__P_454_2 = -1;
       this.hasBatchModeRefCount = 0;
-      this.__P_440_3 = false;
+      this.__P_454_3 = false;
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired when the selection has changed. */
-      "changeSelection": "qx.event.type.Event"
+      changeSelection: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {int} The selection mode "none". Nothing can ever be selected. */
       NO_SELECTION: 1,
-
       /** @type {int} The selection mode "single". This mode only allows one selected item. */
       SINGLE_SELECTION: 2,
-
       /**
        * @type {int} The selection mode "single interval". This mode only allows one
        * continuous interval of selected items.
        */
       SINGLE_INTERVAL_SELECTION: 3,
-
       /**
        * @type {int} The selection mode "multiple interval". This mode only allows any
        * selection.
        */
       MULTIPLE_INTERVAL_SELECTION: 4,
-
       /**
        * @type {int} The selection mode "multiple interval". This mode only allows any
        * selection. The difference with the previous one, is that multiple
@@ -95,12 +89,12 @@
        */
       MULTIPLE_INTERVAL_SELECTION_TOGGLE: 5
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Set the selection mode. Valid values are {@link #NO_SELECTION},
@@ -116,22 +110,21 @@
         apply: "_applySelectionMode"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_440_3: null,
-      __P_440_1: null,
-      __P_440_2: null,
-      __P_440_0: null,
+      __P_454_3: null,
+      __P_454_1: null,
+      __P_454_2: null,
+      __P_454_0: null,
       // selectionMode property modifier
       _applySelectionMode: function _applySelectionMode(selectionMode) {
         this.resetSelection();
       },
-
       /**
        *
        * Activates / Deactivates batch mode. In batch mode, no change events will be thrown but
@@ -153,19 +146,14 @@
           if (this.hasBatchModeRefCount == 0) {
             throw new Error("Try to turn off batch mode althoug it was not turned on.");
           }
-
           this.hasBatchModeRefCount -= 1;
-
-          if (this.__P_440_3) {
-            this.__P_440_3 = false;
-
+          if (this.__P_454_3) {
+            this.__P_454_3 = false;
             this._fireChangeSelection();
           }
         }
-
         return this.hasBatchMode();
       },
-
       /**
        *
        * Returns whether batch mode is active. See setter for a description of batch mode.
@@ -175,7 +163,6 @@
       hasBatchMode: function hasBatchMode() {
         return this.hasBatchModeRefCount > 0;
       },
-
       /**
        * Returns the first argument of the last call to {@link #setSelectionInterval()},
        * {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.
@@ -183,9 +170,8 @@
        * @return {Integer} the anchor selection index.
        */
       getAnchorSelectionIndex: function getAnchorSelectionIndex() {
-        return this.__P_440_1;
+        return this.__P_454_1;
       },
-
       /**
        * Sets the anchor selection index. Only use this function, if you want manipulate
        * the selection manually.
@@ -193,9 +179,8 @@
        * @param index {Integer} the index to set.
        */
       _setAnchorSelectionIndex: function _setAnchorSelectionIndex(index) {
-        this.__P_440_1 = index;
+        this.__P_454_1 = index;
       },
-
       /**
        * Returns the second argument of the last call to {@link #setSelectionInterval()},
        * {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.
@@ -203,9 +188,8 @@
        * @return {Integer} the lead selection index.
        */
       getLeadSelectionIndex: function getLeadSelectionIndex() {
-        return this.__P_440_2;
+        return this.__P_454_2;
       },
-
       /**
        * Sets the lead selection index. Only use this function, if you want manipulate
        * the selection manually.
@@ -213,9 +197,8 @@
        * @param index {Integer} the index to set.
        */
       _setLeadSelectionIndex: function _setLeadSelectionIndex(index) {
-        this.__P_440_2 = index;
+        this.__P_454_2 = index;
       },
-
       /**
        * Returns an array that holds all the selected ranges of the table. Each
        * entry is a map holding information about the "minIndex" and "maxIndex" of the
@@ -224,29 +207,25 @@
        * @return {Map[]} array with all the selected ranges.
        */
       _getSelectedRangeArr: function _getSelectedRangeArr() {
-        return this.__P_440_0;
+        return this.__P_454_0;
       },
-
       /**
        * Resets (clears) the selection.
        */
       resetSelection: function resetSelection() {
         if (!this.isSelectionEmpty()) {
           this._resetSelection();
-
           this._fireChangeSelection();
         }
       },
-
       /**
        * Returns whether the selection is empty.
        *
        * @return {Boolean} whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_440_0.length == 0;
+        return this.__P_454_0.length == 0;
       },
-
       /**
        * Returns the number of selected items.
        *
@@ -254,15 +233,12 @@
        */
       getSelectedCount: function getSelectedCount() {
         var selectedCount = 0;
-
-        for (var i = 0; i < this.__P_440_0.length; i++) {
-          var range = this.__P_440_0[i];
+        for (var i = 0; i < this.__P_454_0.length; i++) {
+          var range = this.__P_454_0[i];
           selectedCount += range.maxIndex - range.minIndex + 1;
         }
-
         return selectedCount;
       },
-
       /**
        * Returns whether an index is selected.
        *
@@ -270,17 +246,14 @@
        * @return {Boolean} whether the index is selected.
        */
       isSelectedIndex: function isSelectedIndex(index) {
-        for (var i = 0; i < this.__P_440_0.length; i++) {
-          var range = this.__P_440_0[i];
-
+        for (var i = 0; i < this.__P_454_0.length; i++) {
+          var range = this.__P_454_0[i];
           if (index >= range.minIndex && index <= range.maxIndex) {
             return true;
           }
         }
-
         return false;
       },
-
       /**
        * Returns the selected ranges as an array. Each array element has a
        * <code>minIndex</code> and a <code>maxIndex</code> property.
@@ -291,17 +264,14 @@
         // clone the selection array and the individual elements - this prevents the
         // caller from messing with the internal model
         var retVal = [];
-
-        for (var i = 0; i < this.__P_440_0.length; i++) {
+        for (var i = 0; i < this.__P_454_0.length; i++) {
           retVal.push({
-            minIndex: this.__P_440_0[i].minIndex,
-            maxIndex: this.__P_440_0[i].maxIndex
+            minIndex: this.__P_454_0[i].minIndex,
+            maxIndex: this.__P_454_0[i].maxIndex
           });
         }
-
         return retVal;
       },
-
       /**
        * Calls an iterator function for each selected index.
        *
@@ -319,13 +289,12 @@
        *          (this object will be available via "this" in the iterator)
        */
       iterateSelection: function iterateSelection(iterator, object) {
-        for (var i = 0; i < this.__P_440_0.length; i++) {
-          for (var j = this.__P_440_0[i].minIndex; j <= this.__P_440_0[i].maxIndex; j++) {
+        for (var i = 0; i < this.__P_454_0.length; i++) {
+          for (var j = this.__P_454_0[i].minIndex; j <= this.__P_454_0[i].maxIndex; j++) {
             iterator.call(object, j);
           }
         }
       },
-
       /**
        * Sets the selected interval. This will clear the former selection.
        *
@@ -334,23 +303,18 @@
        */
       setSelectionInterval: function setSelectionInterval(fromIndex, toIndex) {
         var me = qx.ui.table.selection.Model;
-
         switch (this.getSelectionMode()) {
           case me.NO_SELECTION:
             return;
-
           case me.SINGLE_SELECTION:
             // Ensure there is actually a change of selection
             if (this.isSelectedIndex(toIndex)) {
               return;
             }
-
             fromIndex = toIndex;
             break;
-
           case me.MULTIPLE_INTERVAL_SELECTION_TOGGLE:
             this.setBatchMode(true);
-
             try {
               for (var i = fromIndex; i <= toIndex; i++) {
                 if (!this.isSelectedIndex(i)) {
@@ -364,19 +328,13 @@
             } finally {
               this.setBatchMode(false);
             }
-
             this._fireChangeSelection();
-
             return;
         }
-
         this._resetSelection();
-
         this._addSelectionInterval(fromIndex, toIndex);
-
         this._fireChangeSelection();
       },
-
       /**
        * Adds a selection interval to the current selection.
        *
@@ -385,25 +343,19 @@
        */
       addSelectionInterval: function addSelectionInterval(fromIndex, toIndex) {
         var SelectionModel = qx.ui.table.selection.Model;
-
         switch (this.getSelectionMode()) {
           case SelectionModel.NO_SELECTION:
             return;
-
           case SelectionModel.MULTIPLE_INTERVAL_SELECTION:
           case SelectionModel.MULTIPLE_INTERVAL_SELECTION_TOGGLE:
             this._addSelectionInterval(fromIndex, toIndex);
-
             this._fireChangeSelection();
-
             break;
-
           default:
             this.setSelectionInterval(fromIndex, toIndex);
             break;
         }
       },
-
       /**
        * Removes an interval from the current selection.
        *
@@ -413,18 +365,17 @@
        *   If rows were removed, move the selections over so the same rows are selected as before.
        */
       removeSelectionInterval: function removeSelectionInterval(fromIndex, toIndex, rowsRemoved) {
-        this.__P_440_1 = fromIndex;
-        this.__P_440_2 = toIndex;
+        this.__P_454_1 = fromIndex;
+        this.__P_454_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
         var maxIndex = Math.max(fromIndex, toIndex);
-        var removeCount = maxIndex + 1 - minIndex; // Crop the affected ranges
+        var removeCount = maxIndex + 1 - minIndex;
 
+        // Crop the affected ranges
         var newRanges = [];
         var extraRange = null;
-
-        for (var i = 0; i < this.__P_440_0.length; i++) {
-          var range = this.__P_440_0[i];
-
+        for (var i = 0; i < this.__P_454_0.length; i++) {
+          var range = this.__P_454_0[i];
           if (range.minIndex > maxIndex) {
             if (rowsRemoved) {
               // Move whole selection up.
@@ -435,7 +386,6 @@
             // This range is affected
             var minIsIn = range.minIndex >= minIndex;
             var maxIsIn = range.maxIndex >= minIndex && range.maxIndex <= maxIndex;
-
             if (minIsIn && maxIsIn) {
               // This range is removed completely
               range = null;
@@ -463,32 +413,26 @@
               }
             }
           }
-
           if (range) {
             newRanges.push(range);
             range = null;
           }
-
           if (extraRange) {
             newRanges.push(extraRange);
             extraRange = null;
           }
         }
-
-        this.__P_440_0 = newRanges;
-
+        this.__P_454_0 = newRanges;
         this._fireChangeSelection();
       },
-
       /**
        * Resets (clears) the selection, but doesn't inform the listeners.
        */
       _resetSelection: function _resetSelection() {
-        this.__P_440_0 = [];
-        this.__P_440_1 = -1;
-        this.__P_440_2 = -1;
+        this.__P_454_0 = [];
+        this.__P_454_1 = -1;
+        this.__P_454_2 = -1;
       },
-
       /**
        * Adds a selection interval to the current selection, but doesn't inform
        * the listeners.
@@ -497,40 +441,38 @@
        * @param toIndex {Integer} the last index of the selection (including).
        */
       _addSelectionInterval: function _addSelectionInterval(fromIndex, toIndex) {
-        this.__P_440_1 = fromIndex;
-        this.__P_440_2 = toIndex;
+        this.__P_454_1 = fromIndex;
+        this.__P_454_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
-        var maxIndex = Math.max(fromIndex, toIndex); // Find the index where the new range should be inserted
+        var maxIndex = Math.max(fromIndex, toIndex);
 
+        // Find the index where the new range should be inserted
         var newRangeIndex = 0;
-
-        for (; newRangeIndex < this.__P_440_0.length; newRangeIndex++) {
-          var range = this.__P_440_0[newRangeIndex];
-
+        for (; newRangeIndex < this.__P_454_0.length; newRangeIndex++) {
+          var range = this.__P_454_0[newRangeIndex];
           if (range.minIndex > minIndex) {
             break;
           }
-        } // Add the new range
+        }
 
-
-        this.__P_440_0.splice(newRangeIndex, 0, {
+        // Add the new range
+        this.__P_454_0.splice(newRangeIndex, 0, {
           minIndex: minIndex,
           maxIndex: maxIndex
-        }); // Merge overlapping ranges
+        });
 
-
-        var lastRange = this.__P_440_0[0];
-
-        for (var i = 1; i < this.__P_440_0.length; i++) {
-          var range = this.__P_440_0[i];
-
+        // Merge overlapping ranges
+        var lastRange = this.__P_454_0[0];
+        for (var i = 1; i < this.__P_454_0.length; i++) {
+          var range = this.__P_454_0[i];
           if (lastRange.maxIndex + 1 >= range.minIndex) {
             // The ranges are overlapping -> merge them
-            lastRange.maxIndex = Math.max(lastRange.maxIndex, range.maxIndex); // Remove the current range
+            lastRange.maxIndex = Math.max(lastRange.maxIndex, range.maxIndex);
 
-            this.__P_440_0.splice(i, 1); // Check this index another time
+            // Remove the current range
+            this.__P_454_0.splice(i, 1);
 
-
+            // Check this index another time
             i--;
           } else {
             lastRange = range;
@@ -538,22 +480,18 @@
         }
       },
       // this._dumpRanges();
-
       /**
        * Logs the current ranges for debug purposes.
        *
        */
       _dumpRanges: function _dumpRanges() {
         var text = "Ranges:";
-
-        for (var i = 0; i < this.__P_440_0.length; i++) {
-          var range = this.__P_440_0[i];
+        for (var i = 0; i < this.__P_454_0.length; i++) {
+          var range = this.__P_454_0[i];
           text += " [" + range.minIndex + ".." + range.maxIndex + "]";
         }
-
         this.debug(text);
       },
-
       /**
        * Fires the "changeSelection" event to all registered listeners. If the selection model
        * currently is in batch mode, only one event will be thrown when batch mode is ended.
@@ -562,24 +500,23 @@
       _fireChangeSelection: function _fireChangeSelection() {
         if (this.hasBatchMode()) {
           // In batch mode, remember event but do not throw (yet)
-          this.__P_440_3 = true;
+          this.__P_454_3 = true;
         } else {
           // If not in batch mode, throw event
           this.fireEvent("changeSelection");
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_440_0 = null;
+      this.__P_454_0 = null;
     }
   });
   qx.ui.table.selection.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1664789605369
+//# sourceMappingURL=Model.js.map?dt=1672653515589

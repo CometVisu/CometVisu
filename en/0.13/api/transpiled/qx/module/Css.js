@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,7 +38,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * CSS/Style property manipulation module
    * @group (Core)
@@ -56,22 +54,19 @@
        */
       _getHeight: function _getHeight(force) {
         var elem = this[0];
-
         if (elem) {
           if (qx.dom.Node.isElement(elem)) {
             var elementHeight;
-
             if (force) {
               var stylesToSwap = {
                 display: "block",
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementHeight = qx.module.Css.__P_263_0(elem, stylesToSwap, "_getHeight", this);
+              elementHeight = qx.module.Css.__P_278_0(elem, stylesToSwap, "_getHeight", this);
             } else {
               elementHeight = qx.bom.element.Dimension.getHeight(elem);
             }
-
             return elementHeight;
           } else if (qx.dom.Node.isDocument(elem)) {
             return qx.bom.Document.getHeight(qx.dom.Node.getWindow(elem));
@@ -79,10 +74,8 @@
             return qx.bom.Viewport.getHeight(elem);
           }
         }
-
         return null;
       },
-
       /**
        * INTERNAL
        *
@@ -93,22 +86,19 @@
        */
       _getWidth: function _getWidth(force) {
         var elem = this[0];
-
         if (elem) {
           if (qx.dom.Node.isElement(elem)) {
             var elementWidth;
-
             if (force) {
               var stylesToSwap = {
                 display: "block",
                 position: "absolute",
                 visibility: "hidden"
               };
-              elementWidth = qx.module.Css.__P_263_0(elem, stylesToSwap, "_getWidth", this);
+              elementWidth = qx.module.Css.__P_278_0(elem, stylesToSwap, "_getWidth", this);
             } else {
               elementWidth = qx.bom.element.Dimension.getWidth(elem);
             }
-
             return elementWidth;
           } else if (qx.dom.Node.isDocument(elem)) {
             return qx.bom.Document.getWidth(qx.dom.Node.getWindow(elem));
@@ -116,10 +106,8 @@
             return qx.bom.Viewport.getWidth(elem);
           }
         }
-
         return null;
       },
-
       /**
        * INTERNAL
        *
@@ -132,27 +120,22 @@
        */
       _getContentHeight: function _getContentHeight(force) {
         var obj = this[0];
-
         if (qx.dom.Node.isElement(obj)) {
           var contentHeight;
-
           if (force) {
             var stylesToSwap = {
               position: "absolute",
               visibility: "hidden",
               display: "block"
             };
-            contentHeight = qx.module.Css.__P_263_0(obj, stylesToSwap, "_getContentHeight", this);
+            contentHeight = qx.module.Css.__P_278_0(obj, stylesToSwap, "_getContentHeight", this);
           } else {
             contentHeight = qx.bom.element.Dimension.getContentHeight(obj);
           }
-
           return contentHeight;
         }
-
         return null;
       },
-
       /**
        * INTERNAL
        *
@@ -165,32 +148,26 @@
        */
       _getContentWidth: function _getContentWidth(force) {
         var obj = this[0];
-
         if (qx.dom.Node.isElement(obj)) {
           var contentWidth;
-
           if (force) {
             var stylesToSwap = {
               position: "absolute",
               visibility: "hidden",
               display: "block"
             };
-            contentWidth = qx.module.Css.__P_263_0(obj, stylesToSwap, "_getContentWidth", this);
+            contentWidth = qx.module.Css.__P_278_0(obj, stylesToSwap, "_getContentWidth", this);
           } else {
             contentWidth = qx.bom.element.Dimension.getContentWidth(obj);
           }
-
           return contentWidth;
         }
-
         return null;
       },
-
       /**
        * Maps HTML elements to their default "display" style values.
        */
-      __P_263_1: {},
-
+      __P_278_1: {},
       /**
        * Attempts tp determine the default "display" style value for
        * elements with the given tag name.
@@ -200,19 +177,16 @@
        * @return {String} The default "display" value, e.g. <code>inline</code>
        * or <code>block</code>
        */
-      __P_263_2: function __P_263_2(tagName, doc) {
-        var defaults = qx.module.Css.__P_263_1;
-
+      __P_278_2: function __P_278_2(tagName, doc) {
+        var defaults = qx.module.Css.__P_278_1;
         if (!defaults[tagName]) {
           var docu = doc || document;
           var tempEl = qxWeb(docu.createElement(tagName)).appendTo(doc.body);
           defaults[tagName] = tempEl.getStyle("display");
           tempEl.remove();
         }
-
         return defaults[tagName] || "";
       },
-
       /**
        * Swaps the given styles of the element and execute the callback
        * before the original values are restored.
@@ -225,24 +199,19 @@
        * @param context {Object} the context in which the callback should be called
        * @return {Object} the return value of the callback
        */
-      __P_263_0: function __P_263_0(element, styles, methodName, context) {
+      __P_278_0: function __P_278_0(element, styles, methodName, context) {
         // get the current values
         var currentValues = {};
-
         for (var styleProperty in styles) {
           currentValues[styleProperty] = element.style[styleProperty];
           element.style[styleProperty] = styles[styleProperty];
         }
-
         var value = context[methodName]();
-
         for (var styleProperty in currentValues) {
           element.style[styleProperty] = currentValues[styleProperty];
         }
-
         return value;
       },
-
       /**
        * Includes a Stylesheet file
        *
@@ -264,7 +233,6 @@
       getHeight: function getHeight(force) {
         return this._getHeight(force);
       },
-
       /**
        * Returns the rendered width of the first element in the collection
        * @attach {qxWeb}
@@ -274,7 +242,6 @@
       getWidth: function getWidth(force) {
         return this._getWidth(force);
       },
-
       /**
        * Returns the content height of the first element in the collection.
        * This is the maximum height the element can use, excluding borders,
@@ -286,7 +253,6 @@
       getContentHeight: function getContentHeight(force) {
         return this._getContentHeight(force);
       },
-
       /**
        * Returns the content width of the first element in the collection.
        * This is the maximum width the element can use, excluding borders,
@@ -298,7 +264,6 @@
       getContentWidth: function getContentWidth(force) {
         return this._getContentWidth(force);
       },
-
       /**
        * Shows any elements with "display: none" in the collection. If an element
        * was hidden by using the {@link #hide} method, its previous
@@ -313,23 +278,19 @@
           var currentVal = item.getStyle("display");
           var prevVal = item[0].$$qPrevDisp;
           var newVal;
-
           if (currentVal == "none") {
             if (prevVal && prevVal != "none") {
               newVal = prevVal;
             } else {
               var doc = qxWeb.getDocument(item[0]);
-              newVal = qx.module.Css.__P_263_2(item[0].tagName, doc);
+              newVal = qx.module.Css.__P_278_2(item[0].tagName, doc);
             }
-
             item.setStyle("display", newVal);
             item[0].$$qPrevDisp = "none";
           }
         });
-
         return this;
       },
-
       /**
        * Hides all elements in the collection by setting their "display"
        * style to "none". The previous value is stored so it can be re-applied
@@ -341,16 +302,13 @@
       hide: function hide() {
         this._forEachElementWrapped(function (item) {
           var prevStyle = item.getStyle("display");
-
           if (prevStyle !== "none") {
             item[0].$$qPrevDisp = prevStyle;
             item.setStyle("display", "none");
           }
         });
-
         return this;
       },
-
       /**
        * Returns the distance between the first element in the collection and its
        * offset parent
@@ -361,14 +319,11 @@
        */
       getPosition: function getPosition() {
         var obj = this[0];
-
         if (qx.dom.Node.isElement(obj)) {
           return qx.bom.element.Location.getPosition(obj);
         }
-
         return null;
       },
-
       /**
        * Returns the computed location of the given element in the context of the
        * document dimensions.
@@ -389,14 +344,11 @@
        */
       getOffset: function getOffset(mode) {
         var elem = this[0];
-
         if (elem && qx.dom.Node.isElement(elem)) {
           return qx.bom.element.Location.get(elem, mode);
         }
-
         return null;
       },
-
       /**
        * Modifies the given style property on all elements in the collection.
        *
@@ -409,14 +361,11 @@
         if (/\w-\w/.test(name)) {
           name = qx.lang.String.camelCase(name);
         }
-
         this._forEachElement(function (item) {
           qx.bom.element.Style.set(item, name, value);
         });
-
         return this;
       },
-
       /**
        * Returns the value of the given style property for the first item in the
        * collection.
@@ -430,13 +379,10 @@
           if (/\w-\w/.test(name)) {
             name = qx.lang.String.camelCase(name);
           }
-
           return qx.bom.element.Style.get(this[0], name);
         }
-
         return null;
       },
-
       /**
        * Sets multiple style properties for each item in the collection.
        *
@@ -448,10 +394,8 @@
         for (var name in styles) {
           this.setStyle(name, styles[name]);
         }
-
         return this;
       },
-
       /**
        * Returns the values of multiple style properties for each item in the
        * collection
@@ -462,14 +406,11 @@
        */
       getStyles: function getStyles(names) {
         var styles = {};
-
         for (var i = 0; i < names.length; i++) {
           styles[names[i]] = this.getStyle(names[i]);
         }
-
         return styles;
       },
-
       /**
        * Adds a class name to each element in the collection
        *
@@ -481,10 +422,8 @@
         this._forEachElement(function (item) {
           qx.bom.element.Class.add(item, name);
         });
-
         return this;
       },
-
       /**
        * Adds multiple class names to each element in the collection
        *
@@ -496,10 +435,8 @@
         this._forEachElement(function (item) {
           qx.bom.element.Class.addClasses(item, names);
         });
-
         return this;
       },
-
       /**
        * Removes a class name from each element in the collection
        *
@@ -511,10 +448,8 @@
         this._forEachElement(function (item) {
           qx.bom.element.Class.remove(item, name);
         });
-
         return this;
       },
-
       /**
        * Removes multiple class names from each element in the collection.
        * Use {@link qx.module.Attribute#removeAttribute} to remove all classes.
@@ -527,10 +462,8 @@
         this._forEachElement(function (item) {
           qx.bom.element.Class.removeClasses(item, names);
         });
-
         return this;
       },
-
       /**
        * Checks if the first element in the collection has the given class name
        *
@@ -542,10 +475,8 @@
         if (!this[0] || !qx.dom.Node.isElement(this[0])) {
           return false;
         }
-
         return qx.bom.element.Class.has(this[0], name);
       },
-
       /**
        * Returns the class name of the first element in the collection
        *
@@ -556,10 +487,8 @@
         if (!this[0] || !qx.dom.Node.isElement(this[0])) {
           return "";
         }
-
         return qx.bom.element.Class.get(this[0]);
       },
-
       /**
        * Toggles the given class name on each item in the collection
        *
@@ -569,14 +498,11 @@
        */
       toggleClass: function toggleClass(name) {
         var bCls = qx.bom.element.Class;
-
         this._forEachElement(function (item) {
           bCls.has(item, name) ? bCls.remove(item, name) : bCls.add(item, name);
         });
-
         return this;
       },
-
       /**
        * Toggles the given list of class names on each item in the collection
        *
@@ -588,10 +514,8 @@
         for (var i = 0, l = names.length; i < l; i++) {
           this.toggleClass(names[i]);
         }
-
         return this;
       },
-
       /**
        * Replaces a class name on each element in the collection
        *
@@ -604,22 +528,21 @@
         this._forEachElement(function (item) {
           qx.bom.element.Class.replace(item, oldName, newName);
         });
-
         return this;
       }
     },
     defer: function defer(statics) {
-      qxWeb.$attachAll(this); // manually attach private method which is ignored by attachAll
-
+      qxWeb.$attachAll(this);
+      // manually attach private method which is ignored by attachAll
       qxWeb.$attach({
-        "_getWidth": statics._getWidth,
-        "_getHeight": statics._getHeight,
-        "_getContentHeight": statics._getContentHeight,
-        "_getContentWidth": statics._getContentWidth
+        _getWidth: statics._getWidth,
+        _getHeight: statics._getHeight,
+        _getContentHeight: statics._getContentHeight,
+        _getContentWidth: statics._getContentWidth
       });
     }
   });
   qx.module.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1664789589439
+//# sourceMappingURL=Css.js.map?dt=1672653500732

@@ -1,15 +1,9 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -28,11 +22,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IconAtom.js 
-   * 
+  /* IconAtom.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -53,7 +46,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    */
   qx.Class.define('cv.ui.manager.core.IconAtom', {
     extend: qx.ui.basic.Atom,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -64,7 +56,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
       this.addListener('tap', this._onTap, this);
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -80,7 +71,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         apply: '_applyModel'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -96,15 +86,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // property apply
       _applyLabel: function _applyLabel(value, old) {
         cv.ui.manager.core.IconAtom.superclass.prototype._applyLabel.call(this, value, old);
-
         this.setToolTipText(value);
       },
       _applyModel: function _applyModel(value) {
         if (value) {
           var _value = _slicedToArray(value, 2),
-              name = _value[0],
-              icon = _value[1];
-
+            name = _value[0],
+            icon = _value[1];
           this.setLabel(name);
           this.setIcon(icon);
         } else {
@@ -117,29 +105,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           if (this._fontIconRegex.test(value)) {
             this._iconChildControlName = 'htmlIcon';
             var icon = this.getChildControl(this._iconChildControlName, true);
-
             if (icon) {
               icon.setValue(value);
             }
-
             this._excludeChildControl('icon');
           } else {
             this._iconChildControlName = 'icon';
-
             var _icon = this.getChildControl(this._iconChildControlName, true);
-
             if (_icon) {
               _icon.setSource(value);
             }
-
             this._excludeChildControl('htmlIcon');
           }
         } else {
           this._iconChildControlName = 'icon';
-
           this._excludeChildControl('htmlIcon');
         }
-
         this._handleIcon();
       },
       _handleIcon: function _handleIcon() {
@@ -152,7 +133,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
-
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image(this.getIcon());
@@ -161,15 +141,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               scale: true,
               maxHeight: 64
             });
-
             this._addAt(control, 0);
-
             if (this.getIcon() === null || this.getShow() === 'label') {
               control.exclude();
             }
-
             break;
-
           case 'htmlIcon':
             control = new qx.ui.basic.Label(this.getIcon());
             control.set({
@@ -178,15 +154,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               height: 64,
               width: 64
             });
-
             this._addAt(control, 0);
-
             if (this.getIcon() === null || this.getShow() === 'label') {
               control.exclude();
             }
-
         }
-
         return control || cv.ui.manager.core.IconAtom.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -194,4 +166,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.core.IconAtom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconAtom.js.map?dt=1664789565581
+//# sourceMappingURL=IconAtom.js.map?dt=1672653474429

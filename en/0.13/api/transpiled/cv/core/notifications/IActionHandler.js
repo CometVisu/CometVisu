@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IActionHandler.js 
-   * 
+  /* IActionHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -47,16 +46,13 @@
        * @param ev {Event}
        */
       handleAction: function handleAction(ev) {},
-      // jshint ignore:line
-
       /**
        * Get a DOM element which usually starts the action
        */
-      getDomElement: function getDomElement() {} // jshint ignore:line
-
+      getDomElement: function getDomElement() {}
     }
   });
   cv.core.notifications.IActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IActionHandler.js.map?dt=1664789561003
+//# sourceMappingURL=IActionHandler.js.map?dt=1672653469216

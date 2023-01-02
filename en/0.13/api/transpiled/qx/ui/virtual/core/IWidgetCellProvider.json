@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 653
       },
       "end": {
-        "line": 45,
-        "column": 3
+        "line": 43,
+        "column": 3,
+        "index": 1338
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getCellWidget": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1103
         },
         "end": {
-          "line": 36,
-          "column": 44
+          "line": 34,
+          "column": 33,
+          "index": 1132
         }
       },
       "jsdoc": {
@@ -77,12 +81,14 @@
     "poolCellWidget": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1305
         },
         "end": {
-          "line": 43,
-          "column": 40
+          "line": 41,
+          "column": 29,
+          "index": 1330
         }
       },
       "jsdoc": {

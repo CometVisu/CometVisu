@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,7 +43,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * Mixin for the box shadow CSS property.
    * This mixin is usually used by {@link qx.ui.decoration.Decorator}.
@@ -57,7 +55,7 @@
    * * Opera 10.5+
    * * Chrome 4.0+
    *
-   * It is possible to define multiple box shadows by setting an 
+   * It is possible to define multiple box shadows by setting an
    * array containing the needed values as the property value.
    * In case multiple values are specified, the values of the properties
    * are repeated until all match in length.
@@ -91,37 +89,31 @@
         nullable: true,
         apply: "_applyBoxShadow"
       },
-
       /** Vertical length of the shadow. */
       shadowVerticalLength: {
         nullable: true,
         apply: "_applyBoxShadow"
       },
-
       /** The blur radius of the shadow. */
       shadowBlurRadius: {
         nullable: true,
         apply: "_applyBoxShadow"
       },
-
       /** The spread radius of the shadow. */
       shadowSpreadRadius: {
         nullable: true,
         apply: "_applyBoxShadow"
       },
-
       /** The color of the shadow. */
       shadowColor: {
         nullable: true,
         apply: "_applyBoxShadow"
       },
-
       /** Inset shadows are drawn inside the border. */
       inset: {
         init: false,
         apply: "_applyBoxShadow"
       },
-
       /** Property group to set the shadow length. */
       shadowLength: {
         group: ["shadowHorizontalLength", "shadowVerticalLength"],
@@ -138,18 +130,14 @@
        */
       _styleBoxShadow: function _styleBoxShadow(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
-
         if (!propName || this.getShadowVerticalLength() == null && this.getShadowHorizontalLength() == null) {
           return;
         }
-
         propName = qx.bom.Style.getCssName(propName);
         var Color = null;
-
         if (qx.core.Environment.get("qx.theme")) {
           Color = qx.theme.manager.Color.getInstance();
         }
-
         var boxShadowProperties = ["shadowVerticalLength", "shadowHorizontalLength", "shadowBlurRadius", "shadowSpreadRadius", "shadowColor", "inset"];
         (function (vLengths, hLengths, blurs, spreads, colors, insets) {
           for (var i = 0; i < vLengths.length; i++) {
@@ -159,14 +147,12 @@
             var spread = spreads[i] || 0;
             var color = colors[i] || "black";
             var inset = insets[i];
-
             if (Color) {
               color = Color.resolve(color);
             }
-
             if (color != null) {
-              var value = (inset ? 'inset ' : '') + hLength + "px " + vLength + "px " + blur + "px " + spread + "px " + color; // apply or append the box shadow styles
-
+              var value = (inset ? "inset " : "") + hLength + "px " + vLength + "px " + blur + "px " + spread + "px " + color;
+              // apply or append the box shadow styles
               if (!styles[propName]) {
                 styles[propName] = value;
               } else {
@@ -183,4 +169,4 @@
   qx.ui.decoration.MBoxShadow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBoxShadow.js.map?dt=1664789595422
+//# sourceMappingURL=MBoxShadow.js.map?dt=1672653506606

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 850
       },
       "end": {
-        "line": 97,
-        "column": 3
+        "line": 96,
+        "column": 3,
+        "index": 2954
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 32,
-        "column": 13
+        "line": 31,
+        "column": 2,
+        "index": 1066
       },
       "end": {
-        "line": 35,
-        "column": 3
+        "line": 34,
+        "column": 3,
+        "index": 1136
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "SUPPORTED_FILES": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1278
         },
         "end": {
-          "line": 43,
-          "column": 41
+          "line": 42,
+          "column": 41,
+          "index": 1315
         }
       },
       "type": "variable",
@@ -58,12 +64,14 @@
     "TITLE": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1321
         },
         "end": {
-          "line": 44,
-          "column": 45
+          "line": 43,
+          "column": 45,
+          "index": 1362
         }
       },
       "type": "variable",
@@ -72,12 +80,14 @@
     "ICON": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1368
         },
         "end": {
-          "line": 45,
-          "column": 51
+          "line": 44,
+          "column": 51,
+          "index": 1415
         }
       },
       "type": "variable",
@@ -88,12 +98,14 @@
     "_getDelegate": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1561
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 63,
+          "column": 5,
+          "index": 1815
         }
       },
       "type": "function",
@@ -106,12 +118,14 @@
     "_onFilter": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1822
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2077
         }
       },
       "type": "function",
@@ -124,12 +138,14 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2084
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2946
         }
       },
       "type": "function",
@@ -485,6 +501,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -509,6 +526,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

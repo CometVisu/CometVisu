@@ -19,11 +19,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Option.js 
-   * 
+  /* Option.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -48,7 +47,6 @@
   qx.Class.define('cv.core.notifications.actions.Option', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -58,7 +56,6 @@
       cv.core.notifications.actions.AbstractActionHandler.constructor.call(this);
       this.set(props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -74,7 +71,6 @@
         init: ''
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -92,10 +88,10 @@
           style: this.getStyle()
         });
         var checkbox = qx.dom.Element.create('input', {
-          'class': 'action',
-          'type': 'checkbox',
-          'value': 'true',
-          'id': this.getName()
+          "class": 'action',
+          type: 'checkbox',
+          value: 'true',
+          id: this.getName()
         });
         container.appendChild(checkbox);
         container.appendChild(qx.dom.Element.create('span', {
@@ -111,4 +107,4 @@
   cv.core.notifications.actions.Option.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Option.js.map?dt=1664789561457
+//# sourceMappingURL=Option.js.map?dt=1672653469630

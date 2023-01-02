@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 67,
-        "column": 0
+        "column": 0,
+        "index": 2361
       },
       "end": {
-        "line": 417,
-        "column": 3
+        "line": 497,
+        "column": 3,
+        "index": 18186
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "startColor": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2577
         },
         "end": {
-          "line": 79,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2664
         }
       },
       "jsdoc": {
@@ -56,12 +60,14 @@
     "endColor": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2801
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2886
         }
       },
       "jsdoc": {
@@ -81,12 +87,14 @@
     "orientation": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2937
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 3027
         }
       },
       "jsdoc": {
@@ -106,12 +114,14 @@
     "startColorPosition": {
       "location": {
         "start": {
-          "line": 99,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 3091
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 3179
         }
       },
       "jsdoc": {
@@ -131,12 +141,14 @@
     "endColorPosition": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 3243
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 103,
+          "column": 5,
+          "index": 3331
         }
       },
       "jsdoc": {
@@ -156,12 +168,14 @@
     "colorPositionUnit": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 3395
         },
         "end": {
-          "line": 117,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 3484
         }
       },
       "jsdoc": {
@@ -181,12 +195,14 @@
     "gradientStart": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3570
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 3667
         }
       },
       "jsdoc": {
@@ -207,12 +223,14 @@
     "gradientEnd": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3749
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 121,
+          "column": 5,
+          "index": 3840
         }
       },
       "jsdoc": {
@@ -235,12 +253,14 @@
     "_styleLinearBackgroundGradient": {
       "location": {
         "start": {
-          "line": 145,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 4112
         },
         "end": {
-          "line": 189,
-          "column": 5
+          "line": 208,
+          "column": 5,
+          "index": 6516
         }
       },
       "jsdoc": {
@@ -266,12 +286,14 @@
     "__styleLinearBackgroundGradientForLegacyWebkit": {
       "location": {
         "start": {
-          "line": 207,
-          "column": 4
+          "line": 226,
+          "column": 4,
+          "index": 7804
         },
         "end": {
-          "line": 225,
-          "column": 5
+          "line": 254,
+          "column": 5,
+          "index": 8634
         }
       },
       "jsdoc": {
@@ -354,12 +376,14 @@
     "__styleLinearBackgroundGradientWithCanvas": {
       "location": {
         "start": {
-          "line": 243,
-          "column": 4
+          "line": 272,
+          "column": 4,
+          "index": 9882
         },
         "end": {
-          "line": 303,
-          "column": 5
+          "line": 355,
+          "column": 5,
+          "index": 12340
         }
       },
       "jsdoc": {
@@ -442,12 +466,14 @@
     "__styleLinearBackgroundGradientWithMSFilter": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 373,
+          "column": 4,
+          "index": 13693
         },
         "end": {
-          "line": 359,
-          "column": 5
+          "line": 427,
+          "column": 5,
+          "index": 15385
         }
       },
       "jsdoc": {
@@ -530,12 +556,14 @@
     "__styleLinearBackgroundGradientAccordingToSpec": {
       "location": {
         "start": {
-          "line": 377,
-          "column": 4
+          "line": 445,
+          "column": 4,
+          "index": 16665
         },
         "end": {
-          "line": 393,
-          "column": 5
+          "line": 473,
+          "column": 5,
+          "index": 17569
         }
       },
       "jsdoc": {
@@ -618,12 +646,14 @@
     "__getColor": {
       "location": {
         "start": {
-          "line": 400,
-          "column": 4
+          "line": 480,
+          "column": 4,
+          "index": 17726
         },
         "end": {
-          "line": 403,
-          "column": 5
+          "line": 484,
+          "column": 5,
+          "index": 17879
         }
       },
       "jsdoc": {
@@ -657,12 +687,14 @@
     "_applyLinearBackgroundGradient": {
       "location": {
         "start": {
-          "line": 407,
-          "column": 4
+          "line": 487,
+          "column": 4,
+          "index": 17908
         },
         "end": {
-          "line": 415,
-          "column": 5
+          "line": 495,
+          "column": 5,
+          "index": 18178
         }
       },
       "jsdoc": {},

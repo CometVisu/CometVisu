@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 867
       },
       "end": {
-        "line": 228,
-        "column": 3
+        "line": 242,
+        "column": 3,
+        "index": 7236
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1437
         },
         "end": {
-          "line": 204,
-          "column": 5
+          "line": 57,
+          "column": 5,
+          "index": 1872
         }
       },
       "jsdoc": {
@@ -83,15 +87,33 @@
       "type": "function",
       "access": "public"
     },
+    "parseAttributes": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1879
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6667
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "makeAddressListFn": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 220,
+          "column": 4,
+          "index": 6674
         },
         "end": {
-          "line": 208,
-          "column": 5
+          "line": 222,
+          "column": 5,
+          "index": 6819
         }
       },
       "type": "function",
@@ -100,12 +122,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 210,
-          "column": 4
+          "line": 224,
+          "column": 4,
+          "index": 6826
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 235,
+          "column": 5,
+          "index": 7107
         }
       },
       "type": "function",
@@ -115,15 +139,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 224,
-        "column": 9
+        "line": 238,
+        "column": 2,
+        "index": 7116
       },
       "end": {
-        "line": 227,
-        "column": 3
+        "line": 241,
+        "column": 3,
+        "index": 7232
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

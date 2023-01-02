@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -131,8 +130,9 @@
         CORE
       ---------------------------------------------------------------------------
       */
-      "widget": {},
-      "root": {
+
+      widget: {},
+      root: {
         style: function style(states) {
           return {
             backgroundColor: "background-application",
@@ -141,7 +141,7 @@
           };
         }
       },
-      "label": {
+      label: {
         style: function style(states) {
           return {
             textColor: states.disabled ? "text-disabled" : undefined
@@ -159,7 +159,6 @@
       "dragdrop-cursor": {
         style: function style(states) {
           var icon = "nodrop";
-
           if (states.copy) {
             icon = "copy";
           } else if (states.move) {
@@ -167,7 +166,6 @@
           } else if (states.alias) {
             icon = "alias";
           }
-
           return {
             source: "decoration/cursors/" + icon + ".gif",
             position: "right-top",
@@ -175,17 +173,17 @@
           };
         }
       },
-      "image": {
+      image: {
         style: function style(states) {
           return {
             opacity: !states.replacement && states.disabled ? 0.3 : 1
           };
         }
       },
-      "atom": {},
+      atom: {},
       "atom/label": "label",
       "atom/icon": "image",
-      "popup": {
+      popup: {
         style: function style(states) {
           return {
             decorator: "popup",
@@ -193,12 +191,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON
       ---------------------------------------------------------------------------
       */
+
       "button-frame": {
         alias: "atom",
         style: function style(states) {
@@ -229,11 +227,9 @@
             decorator = "button";
             textColor = undefined;
           }
-
           if (states.invalid && !states.disabled) {
             decorator += "-invalid";
           }
-
           return {
             decorator: decorator,
             textColor: textColor,
@@ -249,7 +245,7 @@
           };
         }
       },
-      "button": {
+      button: {
         alias: "button-frame",
         include: "button-frame",
         style: function style(states) {
@@ -270,7 +266,7 @@
           };
         }
       },
-      "menubutton": {
+      menubutton: {
         include: "button",
         alias: "button",
         style: function style(states) {
@@ -280,7 +276,7 @@
           };
         }
       },
-      "splitbutton": {},
+      splitbutton: {},
       "splitbutton/button": "button",
       "splitbutton/arrow": {
         alias: "button",
@@ -293,12 +289,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FORM FIELDS
       ---------------------------------------------------------------------------
       */
+
       "form-renderer-label": {
         include: "label",
         style: function style() {
@@ -307,11 +303,10 @@
           };
         }
       },
-      "checkbox": {
+      checkbox: {
         alias: "atom",
         style: function style(states) {
           var icon;
-
           if (states.checked) {
             icon = "decoration/form/checked.png";
           } else if (states.undetermined) {
@@ -319,7 +314,6 @@
           } else {
             icon = "qx/static/blank.gif";
           }
-
           return {
             icon: icon,
             minWidth: 14,
@@ -331,7 +325,6 @@
       "checkbox/icon": {
         style: function style(states) {
           var decorator;
-
           if (states.disabled) {
             decorator = "checkbox-disabled";
           } else if (states.focused) {
@@ -341,7 +334,6 @@
           } else {
             decorator = "checkbox";
           }
-
           decorator += states.invalid && !states.disabled ? "-invalid" : "";
           var padding = states.undetermined ? [3, 1] : 1;
           return {
@@ -352,7 +344,7 @@
           };
         }
       },
-      "radiobutton": {
+      radiobutton: {
         alias: "atom",
         style: function style(states) {
           return {
@@ -365,7 +357,6 @@
       "radiobutton/icon": {
         style: function style(states) {
           var decorator;
-
           if (states.disabled && !states.checked) {
             decorator = "radiobutton-disabled";
           } else if (states.checked && states.focused) {
@@ -383,7 +374,6 @@
           } else {
             decorator = "radiobutton";
           }
-
           decorator += states.invalid && !states.disabled ? "-invalid" : "";
           return {
             decorator: decorator,
@@ -392,13 +382,12 @@
           };
         }
       },
-      "textfield": {
+      textfield: {
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -410,9 +399,7 @@
           } else {
             decorator = "input";
           }
-
           var textColor;
-
           if (states.disabled) {
             textColor = "text-disabled";
           } else if (states.showingPlaceholder) {
@@ -420,7 +407,6 @@
           } else {
             textColor = "text-input";
           }
-
           return {
             decorator: decorator,
             padding: [2, 4, 1],
@@ -428,7 +414,7 @@
           };
         }
       },
-      "textarea": {
+      textarea: {
         include: "textfield",
         style: function style(states) {
           return {
@@ -436,19 +422,18 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPINNER
       ---------------------------------------------------------------------------
       */
-      "spinner": {
+
+      spinner: {
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -460,7 +445,6 @@
           } else {
             decorator = "input";
           }
-
           return {
             decorator: decorator
           };
@@ -497,13 +481,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATEFIELD
       ---------------------------------------------------------------------------
       */
-      "datefield": "combobox",
+
+      datefield: "combobox",
       "datefield/button": {
         alias: "combobox/button",
         include: "combobox/button",
@@ -525,13 +509,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         GROUP BOX
       ---------------------------------------------------------------------------
       */
-      "groupbox": {
+
+      groupbox: {
         style: function style(states) {
           return {
             legendPosition: "top"
@@ -581,13 +565,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLLAREA
       ---------------------------------------------------------------------------
       */
-      "scrollarea": "widget",
+
+      scrollarea: "widget",
       "scrollarea/corner": {
         style: function style(states) {
           return {
@@ -598,18 +582,17 @@
       "scrollarea/pane": "widget",
       "scrollarea/scrollbar-x": "scrollbar",
       "scrollarea/scrollbar-y": "scrollbar",
-
       /*
       ---------------------------------------------------------------------------
         SCROLLBAR
       ---------------------------------------------------------------------------
       */
-      "scrollbar": {
+
+      scrollbar: {
         style: function style(states) {
           if (states["native"]) {
             return {};
           }
-
           return {
             width: states.horizontal ? undefined : 16,
             height: states.horizontal ? 16 : undefined,
@@ -630,11 +613,9 @@
         include: "button-frame",
         style: function style(states) {
           var decorator = states.horizontal ? "scrollbar-slider-horizontal" : "scrollbar-slider-vertical";
-
           if (states.disabled) {
             decorator += "-disabled";
           }
-
           return {
             decorator: decorator,
             minHeight: states.horizontal ? undefined : 9,
@@ -649,7 +630,6 @@
         include: "button-frame",
         style: function style(states) {
           var icon = "decoration/scrollbar/scrollbar-";
-
           if (states.left) {
             icon += "left.png";
           } else if (states.right) {
@@ -659,7 +639,6 @@
           } else {
             icon += "down.png";
           }
-
           if (states.left || states.right) {
             var paddingLeft = states.left ? 3 : 4;
             return {
@@ -682,19 +661,18 @@
       },
       "scrollbar/button-begin": "scrollbar/button",
       "scrollbar/button-end": "scrollbar/button",
-
       /*
       ---------------------------------------------------------------------------
         SLIDER
       ---------------------------------------------------------------------------
       */
-      "slider": {
+
+      slider: {
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -706,7 +684,6 @@
           } else {
             decorator = "input";
           }
-
           return {
             decorator: decorator
           };
@@ -724,20 +701,19 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LIST
       ---------------------------------------------------------------------------
       */
-      "list": {
+
+      list: {
         alias: "scrollarea",
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -749,7 +725,6 @@
           } else {
             decorator = "input";
           }
-
           return {
             backgroundColor: "background-light",
             decorator: decorator
@@ -757,7 +732,7 @@
         }
       },
       "list/pane": "widget",
-      "listitem": {
+      listitem: {
         alias: "atom",
         style: function style(states) {
           return {
@@ -768,13 +743,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SLIDEBAR
       ---------------------------------------------------------------------------
       */
-      "slidebar": {},
+
+      slidebar: {},
       "slidebar/scrollpane": {},
       "slidebar/content": {},
       "slidebar/button-forward": {
@@ -799,13 +774,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABVIEW
       ---------------------------------------------------------------------------
       */
-      "tabview": {
+
+      tabview: {
         style: function style(states) {
           return {
             contentPadding: 16
@@ -825,7 +800,6 @@
             paddingBottom: 0,
             paddingLeft: 0
           };
-
           if (states.barTop || states.barBottom) {
             result.paddingLeft = 5;
             result.paddingRight = 7;
@@ -833,7 +807,6 @@
             result.paddingTop = 5;
             result.paddingBottom = 7;
           }
-
           return result;
         }
       },
@@ -897,12 +870,11 @@
         alias: "atom",
         style: function style(states) {
           var decorator,
-              padding = 0;
+            padding = 0;
           var marginTop = 0,
-              marginBottom = 0,
-              marginLeft = 0,
-              marginRight = 0;
-
+            marginBottom = 0,
+            marginLeft = 0,
+            marginRight = 0;
           if (states.checked) {
             if (states.barTop) {
               decorator = "tabview-page-button-top-active";
@@ -957,7 +929,6 @@
               marginRight = 1;
             }
           }
-
           return {
             zIndex: states.checked ? 10 : 5,
             decorator: decorator,
@@ -988,13 +959,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
-      "toolbar": {
+
+      toolbar: {
         style: function style(states) {
           return {
             decorator: "toolbar",
@@ -1031,13 +1002,11 @@
         alias: "atom",
         style: function style(states) {
           var decorator;
-
           if (states.pressed || states.checked && !states.hovered || states.checked && states.disabled) {
             decorator = "toolbar-button-checked";
           } else if (states.hovered && !states.disabled) {
             decorator = "toolbar-button-hovered";
           }
-
           return {
             marginTop: 2,
             marginBottom: 2,
@@ -1092,7 +1061,6 @@
           } else {
             var padding = 3;
           }
-
           return {
             padding: padding,
             icon: "decoration/arrows/down.png",
@@ -1109,13 +1077,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREE
       ---------------------------------------------------------------------------
       */
-      "tree": "list",
+
+      tree: "list",
       "tree-item": {
         style: function style(states) {
           var decorator = states.selected ? "selected" : undefined;
@@ -1140,7 +1108,6 @@
         include: "image",
         style: function style(states) {
           var icon;
-
           if (states.selected && states.opened) {
             icon = "decoration/tree/open-selected.png";
           } else if (states.selected && !states.opened) {
@@ -1150,7 +1117,6 @@
           } else {
             icon = "decoration/tree/closed.png";
           }
-
           return {
             padding: [0, 5, 0, 2],
             source: icon
@@ -1162,7 +1128,6 @@
         alias: "tree-item",
         style: function style(states) {
           var icon, iconOpened;
-
           if (states.small) {
             icon = states.opened ? "icon/16/places/folder-open.png" : "icon/16/places/folder.png";
             iconOpened = "icon/16/places/folder-open.png";
@@ -1173,7 +1138,6 @@
             icon = states.opened ? "icon/22/places/folder-open.png" : "icon/22/places/folder.png";
             iconOpened = "icon/22/places/folder-open.png";
           }
-
           return {
             icon: icon,
             iconOpened: iconOpened
@@ -1189,13 +1153,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREEVIRTUAL
       ---------------------------------------------------------------------------
       */
-      "treevirtual": "table",
+
+      treevirtual: "table",
       "treevirtual-folder": {
         style: function style(states) {
           return {
@@ -1259,13 +1223,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOL TIP
       ---------------------------------------------------------------------------
       */
-      "tooltip": {
+
+      tooltip: {
         include: "popup",
         style: function style(states) {
           return {
@@ -1314,13 +1278,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-      "window": {
+
+      window: {
         style: function style(states) {
           return {
             decorator: states.showStatusbar ? "window-incl-statusbar" : "window",
@@ -1422,39 +1386,39 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         IFRAME
       ---------------------------------------------------------------------------
       */
-      "iframe": {
+
+      iframe: {
         style: function style(states) {
           return {
             decorator: "main"
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         RESIZER
       ---------------------------------------------------------------------------
       */
-      "resizer": {
+
+      resizer: {
         style: function style(states) {
           return {
             decorator: "pane"
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPLITPANE
       ---------------------------------------------------------------------------
       */
-      "splitpane": {
+
+      splitpane: {
         style: function style(states) {
           return {
             decorator: "splitpane"
@@ -1486,13 +1450,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTBOX
       ---------------------------------------------------------------------------
       */
-      "selectbox": "button-frame",
+
+      selectbox: "button-frame",
       "selectbox/atom": "atom",
       "selectbox/popup": "popup",
       "selectbox/list": {
@@ -1507,19 +1471,18 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
       ---------------------------------------------------------------------------
       */
-      "datechooser": {
+
+      datechooser: {
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -1531,7 +1494,6 @@
           } else {
             decorator = "input";
           }
-
           return {
             padding: 2,
             decorator: decorator,
@@ -1547,7 +1509,6 @@
           var result = {
             padding: [2, 4]
           };
-
           if (states.lastYear) {
             result.icon = "decoration/arrows/rewind.png";
             result.marginRight = 1;
@@ -1559,7 +1520,6 @@
           } else if (states.nextMonth) {
             result.icon = "decoration/arrows/right.png";
           }
-
           return result;
         }
       },
@@ -1619,19 +1579,18 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COMBOBOX
       ---------------------------------------------------------------------------
       */
-      "combobox": {
+
+      combobox: {
         style: function style(states) {
           var decorator;
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (focused && invalid && !disabled) {
             decorator = "input-focused-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -1643,7 +1602,6 @@
           } else {
             decorator = "input";
           }
-
           return {
             decorator: decorator
           };
@@ -1662,11 +1620,9 @@
             padding: [superStyles.padding[0], superStyles.padding[1] - 6],
             margin: undefined
           };
-
           if (states.selected) {
             ret.decorator = "button-focused";
           }
-
           return ret;
         }
       },
@@ -1678,13 +1634,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
-      "menu": {
+
+      menu: {
         style: function style(states) {
           var result = {
             decorator: "menu",
@@ -1694,12 +1650,10 @@
             arrowColumnWidth: 4,
             placementModeY: states.submenu || states.contextmenu ? "best-fit" : "keep-align"
           };
-
           if (states.submenu) {
             result.position = "right-top";
             result.offset = [-2, -3];
           }
-
           return result;
         }
       },
@@ -1805,13 +1759,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU BAR
       ---------------------------------------------------------------------------
       */
-      "menubar": {
+
+      menubar: {
         style: function style(states) {
           return {
             decorator: "menubar"
@@ -1829,13 +1783,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COLOR SELECTOR
       ---------------------------------------------------------------------------
       */
-      "colorselector": "widget",
+
+      colorselector: "widget",
       "colorselector/control-bar": "widget",
       "colorselector/control-pane": "widget",
       "colorselector/visual-pane": "groupbox",
@@ -1917,13 +1871,13 @@
       "colorselector/hue-saturation-handle": "widget",
       "colorselector/brightness-pane": "widget",
       "colorselector/brightness-handle": "widget",
-
       /*
       ---------------------------------------------------------------------------
         COLOR POPUP
       ---------------------------------------------------------------------------
       */
-      "colorpopup": {
+
+      colorpopup: {
         alias: "popup",
         include: "popup",
         style: function style(states) {
@@ -1987,13 +1941,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
-      "table": {
+
+      table: {
         alias: "widget",
         style: function style(states) {
           return {
@@ -2131,12 +2085,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSIVE
       ---------------------------------------------------------------------------
       */
+
       "progressive-table-header": {
         alias: "widget",
         style: function style(states) {
@@ -2156,12 +2110,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLICATION
       ---------------------------------------------------------------------------
       */
+
       "app-header": {
         style: function style(states) {
           return {
@@ -2181,12 +2135,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         VIRTUAL WIDGETS
       ---------------------------------------------------------------------------
       */
+
       "virtual-list": "list",
       "virtual-list/row-layer": "row-layer",
       "row-layer": "widget",
@@ -2224,7 +2178,7 @@
       "virtual-tree-folder": "tree-folder",
       "virtual-tree-file": "tree-file",
       "column-layer": "widget",
-      "cell": {
+      cell: {
         style: function style(states) {
           return {
             textColor: states.selected ? "text-selected" : "text-label",
@@ -2255,13 +2209,12 @@
       "cell-atom": "cell",
       "cell-date": "cell",
       "cell-html": "cell",
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
       ---------------------------------------------------------------------------
       */
-      "progressbar": {
+      progressbar: {
         style: function style(states) {
           return {
             decorator: "progressbar",
@@ -2279,18 +2232,18 @@
           };
         }
       },
-
       /*
         --------------------
         VIRTUAL SELECTBOX 
         --------------------
       */
+
       "list-search-highlight": {
         style: function style(states) {
           return {
-            backgroundColor: 'rgba(255, 251, 0, 0.53)',
-            textDecorationStyle: 'dotted',
-            textDecorationLine: 'underline'
+            backgroundColor: "rgba(255, 251, 0, 0.53)",
+            textDecorationStyle: "dotted",
+            textDecorationLine: "underline"
           };
         }
       }
@@ -2299,4 +2252,4 @@
   qx.theme.modern.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1664789591442
+//# sourceMappingURL=Appearance.js.map?dt=1672653502933

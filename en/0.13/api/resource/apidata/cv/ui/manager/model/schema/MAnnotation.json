@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 919
       },
       "end": {
-        "line": 180,
-        "column": 3
+        "line": 188,
+        "column": 3,
+        "index": 6212
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 13
+        "line": 29,
+        "column": 2,
+        "index": 1107
       },
       "end": {
-        "line": 34,
-        "column": 3
+        "line": 32,
+        "column": 3,
+        "index": 1280
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "__appInfoCache": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1484
         },
         "end": {
-          "line": 46,
-          "column": 24
+          "line": 44,
+          "column": 24,
+          "index": 1504
         }
       },
       "jsdoc": {
@@ -72,12 +78,14 @@
     "__linkRegex": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1510
         },
         "end": {
-          "line": 47,
-          "column": 21
+          "line": 45,
+          "column": 21,
+          "index": 1527
         }
       },
       "type": "variable",
@@ -86,12 +94,14 @@
     "__language": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1533
         },
         "end": {
-          "line": 48,
-          "column": 20
+          "line": 46,
+          "column": 20,
+          "index": 1549
         }
       },
       "type": "variable",
@@ -100,12 +110,14 @@
     "__documentationCache": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1624
         },
         "end": {
-          "line": 54,
-          "column": 30
+          "line": 52,
+          "column": 30,
+          "index": 1650
         }
       },
       "jsdoc": {
@@ -128,12 +140,14 @@
     "__getTextNodesByXPath": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1657
         },
         "end": {
           "line": 72,
-          "column": 5
+          "column": 5,
+          "index": 2294
         }
       },
       "type": "function",
@@ -143,11 +157,13 @@
       "location": {
         "start": {
           "line": 79,
-          "column": 4
+          "column": 4,
+          "index": 2445
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3518
         }
       },
       "jsdoc": {
@@ -170,12 +186,14 @@
     "getDocumentation": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3675
         },
         "end": {
-          "line": 146,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 5019
         }
       },
       "jsdoc": {
@@ -199,11 +217,13 @@
       "location": {
         "start": {
           "line": 155,
-          "column": 4
+          "column": 4,
+          "index": 5222
         },
         "end": {
-          "line": 167,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 5959
         }
       },
       "jsdoc": {
@@ -235,12 +255,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 175,
-        "column": 12
+        "line": 183,
+        "column": 2,
+        "index": 6093
       },
       "end": {
-        "line": 179,
-        "column": 3
+        "line": 187,
+        "column": 3,
+        "index": 6208
       }
     },
     "jsdoc": {}

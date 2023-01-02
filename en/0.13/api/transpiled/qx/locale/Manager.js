@@ -43,7 +43,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,10 +76,10 @@
    *
    * @cldr()
    */
+
   qx.Class.define("qx.locale.Manager", {
     type: "singleton",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -88,17 +87,17 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_255_0 = qx.$$translations || {};
-      this.__P_255_1 = qx.$$locales || {};
+      this.__P_270_0 = qx.$$translations || {};
+      this.__P_270_1 = qx.$$locales || {};
       this.initLocale();
-      this.__P_255_2 = this.getLocale();
+      this.__P_270_2 = this.getLocale();
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Translate a message
@@ -112,7 +111,6 @@
         var args = qx.lang.Array.fromArguments(arguments, 1);
         return qx.locale.Manager.getInstance().translate(messageId, args);
       },
-
       /**
        * Translate a plural message
        *
@@ -127,17 +125,17 @@
        */
       trn: function trn(singularMessageId, pluralMessageId, count, varargs) {
         var args = qx.lang.Array.fromArguments(arguments);
-        args.splice(0, 3); // assumes "Two forms, singular used for one only" (seems to be the most common form)
+        args.splice(0, 3);
+
+        // assumes "Two forms, singular used for one only" (seems to be the most common form)
         // (http://www.gnu.org/software/gettext/manual/html_node/gettext_150.html#Plural-forms)
         // closely related with bug #745
-
         if (count != 1) {
           return qx.locale.Manager.getInstance().translate(pluralMessageId, args);
         } else {
           return qx.locale.Manager.getInstance().translate(singularMessageId, args);
         }
       },
-
       /**
        * Translate a message with translation hint (from developer addressed to translator).
        *
@@ -152,7 +150,6 @@
         args.splice(0, 2);
         return qx.locale.Manager.getInstance().translate(messageId, args);
       },
-
       /**
        * Translate a plural message with translation hint (from developer addressed to translator).
        *
@@ -168,15 +165,15 @@
        */
       trnc: function trnc(hint, singularMessageId, pluralMessageId, count, varargs) {
         var args = qx.lang.Array.fromArguments(arguments);
-        args.splice(0, 4); // see trn()
+        args.splice(0, 4);
 
+        // see trn()
         if (count != 1) {
           return qx.locale.Manager.getInstance().translate(pluralMessageId, args);
         } else {
           return qx.locale.Manager.getInstance().translate(singularMessageId, args);
         }
       },
-
       /**
        * Mark the message for translation but return the original message.
        *
@@ -187,12 +184,12 @@
         return messageId;
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** current locale. locale is an language code like de, de_AT, en, en_GB, fr, ... */
       locale: {
@@ -201,35 +198,30 @@
         event: "changeLocale",
         init: function () {
           var locale = qx.core.Environment.get("locale");
-
           if (!locale || locale === "") {
             return qx.core.Environment.get("locale.default");
           }
-
           var variant = qx.core.Environment.get("locale.variant");
-
           if (variant !== "") {
             locale += "_" + variant;
           }
-
           return locale;
         }()
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_255_3: qx.core.Environment.get("locale.default"),
-      __P_255_4: null,
-      __P_255_5: null,
-      __P_255_0: null,
-      __P_255_1: null,
-      __P_255_2: null,
 
+    members: {
+      __P_270_3: qx.core.Environment.get("locale.default"),
+      __P_270_4: null,
+      __P_270_5: null,
+      __P_270_0: null,
+      __P_270_1: null,
+      __P_270_2: null,
       /**
        * Get the language code of the current locale
        *
@@ -238,9 +230,8 @@
        * @return {String} language code
        */
       getLanguage: function getLanguage() {
-        return this.__P_255_5;
+        return this.__P_270_5;
       },
-
       /**
        * Get the territory code of the current locale
        *
@@ -251,7 +242,6 @@
       getTerritory: function getTerritory() {
         return this.getLocale().split("_")[1] || "";
       },
-
       /**
        * Return the available application locales
        *
@@ -266,49 +256,41 @@
        */
       getAvailableLocales: function getAvailableLocales(includeNonloaded) {
         var locales = [];
-
-        for (var locale in this.__P_255_1) {
-          if (locale != this.__P_255_3) {
-            if (this.__P_255_1[locale] === null && !includeNonloaded) {
+        for (var locale in this.__P_270_1) {
+          if (locale != this.__P_270_3) {
+            if (this.__P_270_1[locale] === null && !includeNonloaded) {
               continue; // skip not yet loaded locales
             }
 
             locales.push(locale);
           }
         }
-
         return locales;
       },
-
       /**
        * Extract the language part from a locale.
        *
        * @param locale {String} locale to be used
        * @return {String} language
        */
-      __P_255_6: function __P_255_6(locale) {
+      __P_270_6: function __P_270_6(locale) {
         var language;
-
         if (locale == null) {
           return null;
         }
-
         var pos = locale.indexOf("_");
-
         if (pos == -1) {
           language = locale;
         } else {
           language = locale.substring(0, pos);
         }
-
         return language;
       },
       // property apply
       _applyLocale: function _applyLocale(value, old) {
-        this.__P_255_4 = value;
-        this.__P_255_5 = this.__P_255_6(value);
+        this.__P_270_4 = value;
+        this.__P_270_5 = this.__P_270_6(value);
       },
-
       /**
        * Add a translation to the translation manager.
        *
@@ -322,8 +304,7 @@
        *                             are separate keys.
        */
       addTranslation: function addTranslation(languageCode, translationMap) {
-        var catalog = this.__P_255_0;
-
+        var catalog = this.__P_270_0;
         if (catalog[languageCode]) {
           for (var key in translationMap) {
             catalog[languageCode][key] = translationMap[key];
@@ -332,7 +313,6 @@
           catalog[languageCode] = translationMap;
         }
       },
-
       /**
        * Add a localization to the localization manager.
        *
@@ -344,8 +324,7 @@
        *                        <i>{"cldr_date_format_short" : "M/d/yy"}</i>.
        */
       addLocale: function addLocale(localeCode, localeMap) {
-        var catalog = this.__P_255_1;
-
+        var catalog = this.__P_270_1;
         if (catalog[localeCode]) {
           for (var key in localeMap) {
             catalog[localeCode][key] = localeMap[key];
@@ -354,7 +333,6 @@
           catalog[localeCode] = localeMap;
         }
       },
-
       /**
        * Translate a message using the current locale and apply format string to the arguments.
        *
@@ -369,10 +347,9 @@
        * @return {String | LocalizedString} translated message or localized string
        */
       translate: function translate(messageId, args, locale) {
-        var catalog = this.__P_255_0;
-        return this.__P_255_7(catalog, messageId, args, locale);
+        var catalog = this.__P_270_0;
+        return this.__P_270_7(catalog, messageId, args, locale);
       },
-
       /**
        * Provide localization (CLDR) data.
        *
@@ -387,10 +364,9 @@
        * @return {String | LocalizedString} translated message or localized string
        */
       localize: function localize(messageId, args, locale) {
-        var catalog = this.__P_255_1;
-        return this.__P_255_7(catalog, messageId, args, locale);
+        var catalog = this.__P_270_1;
+        return this.__P_270_7(catalog, messageId, args, locale);
       },
-
       /**
        * Look up an I18N key in a catalog and expand format strings.
        *
@@ -405,57 +381,49 @@
        * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}
        * @return {String | LocalizedString} translated message or localized string
        */
-      __P_255_7: function __P_255_7(catalog, messageId, args, locale) {
+      __P_270_7: function __P_270_7(catalog, messageId, args, locale) {
         var txt;
-
         if (!catalog) {
           return messageId;
         }
-
         if (locale) {
-          var language = this.__P_255_6(locale);
+          var language = this.__P_270_6(locale);
         } else {
-          locale = this.__P_255_4;
-          language = this.__P_255_5;
-        } // e.g. DE_at
-
-
-        if (!txt && catalog[locale]) {
-          txt = catalog[locale][messageId];
-        } // e.g. DE
-
-
-        if (!txt && catalog[language]) {
-          txt = catalog[language][messageId];
-        } // C
-
-
-        if (!txt && catalog[this.__P_255_3]) {
-          txt = catalog[this.__P_255_3][messageId];
+          locale = this.__P_270_4;
+          language = this.__P_270_5;
         }
 
+        // e.g. DE_at
+        if (!txt && catalog[locale]) {
+          txt = catalog[locale][messageId];
+        }
+
+        // e.g. DE
+        if (!txt && catalog[language]) {
+          txt = catalog[language][messageId];
+        }
+
+        // C
+        if (!txt && catalog[this.__P_270_3]) {
+          txt = catalog[this.__P_270_3][messageId];
+        }
         if (!txt) {
           txt = messageId;
         }
-
         if (args.length > 0) {
           var translatedArgs = [];
-
           for (var i = 0; i < args.length; i++) {
             var arg = args[i];
-
             if (arg && arg.translate) {
               translatedArgs[i] = arg.translate();
             } else {
               translatedArgs[i] = arg;
             }
           }
-
           txt = qx.lang.String.format(txt, translatedArgs);
         }
-
         {
-          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__P_255_1);
+          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__P_270_1);
         }
         return txt;
       }
@@ -464,4 +432,4 @@
   qx.locale.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1664789588764
+//# sourceMappingURL=Manager.js.map?dt=1672653500164

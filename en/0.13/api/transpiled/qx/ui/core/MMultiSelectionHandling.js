@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,8 +42,9 @@
     construct: function construct() {
       // Create selection manager
       var clazz = this.SELECTION_MANAGER;
-      var manager = this.__P_299_0 = new clazz(this); // Add widget event listeners
+      var manager = this.__P_314_0 = new clazz(this);
 
+      // Add widget event listeners
       this.addListener("pointerdown", manager.handlePointerDown, manager);
       this.addListener("tap", manager.handleTap, manager);
       this.addListener("pointerover", manager.handlePointerOver, manager);
@@ -52,29 +52,29 @@
       this.addListener("losecapture", manager.handleLoseCapture, manager);
       this.addListener("keypress", manager.handleKeyPress, manager);
       this.addListener("addItem", manager.handleAddItem, manager);
-      this.addListener("removeItem", manager.handleRemoveItem, manager); // Add manager listeners
+      this.addListener("removeItem", manager.handleRemoveItem, manager);
 
+      // Add manager listeners
       manager.addListener("changeSelection", this._onSelectionChange, this);
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the value was modified */
-      "changeValue": "qx.event.type.Data",
-
+      changeValue: "qx.event.type.Data",
       /** Fires after the selection was modified */
-      "changeSelection": "qx.event.type.Data"
+      changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The selection mode to use.
@@ -87,7 +87,6 @@
         init: "single",
         apply: "_applySelectionMode"
       },
-
       /**
        * Enable drag selection (multi selection of items through
        * dragging the pointer in pressed states).
@@ -99,7 +98,6 @@
         init: false,
         apply: "_applyDragSelection"
       },
-
       /**
        * Enable quick selection mode, where no tap is needed to change the selection.
        *
@@ -111,25 +109,22 @@
         apply: "_applyQuickSelection"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.core.selection.Abstract} The selection manager */
-      __P_299_0: null,
-
+      __P_314_0: null,
       /** @type {Boolean} used to control recursion in onSelectionChange */
-      __P_299_1: false,
-
+      __P_314_1: false,
       /*
       ---------------------------------------------------------------------------
         USER API
       ---------------------------------------------------------------------------
       */
-
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -138,11 +133,9 @@
        */
       setValue: function setValue(items) {
         if (null === items) {
-          this.__P_299_0.clearSelection();
-
+          this.__P_314_0.clearSelection();
           return null;
         }
-
         try {
           this.setSelection(items);
           return null;
@@ -150,30 +143,26 @@
           return e;
         }
       },
-
       /**
        * getValue implements part of the {@link qx.ui.form.IField} interface.
        *
        * @returns {qx.ui.core.Widget[]} The selected widgets or null if there are none.
        */
       getValue: function getValue() {
-        return this.__P_299_0.getSelection();
+        return this.__P_314_0.getSelection();
       },
-
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
-        this.__P_299_0.clearSelection();
+        this.__P_314_0.clearSelection();
       },
-
       /**
        * Selects all items of the managed object.
        */
       selectAll: function selectAll() {
-        this.__P_299_0.selectAll();
+        this.__P_314_0.selectAll();
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -185,10 +174,8 @@
         if (!qx.ui.core.Widget.contains(this, item)) {
           throw new Error("Could not test if " + item + " is selected, because it is not a child element!");
         }
-
-        return this.__P_299_0.isItemSelected(item);
+        return this.__P_314_0.isItemSelected(item);
       },
-
       /**
        * Adds the given item to the existing selection.
        *
@@ -202,10 +189,8 @@
         if (!qx.ui.core.Widget.contains(this, item)) {
           throw new Error("Could not add + " + item + " to selection, because it is not a child element!");
         }
-
-        this.__P_299_0.addItem(item);
+        this.__P_314_0.addItem(item);
       },
-
       /**
        * Removes the given item from the selection.
        *
@@ -219,10 +204,8 @@
         if (!qx.ui.core.Widget.contains(this, item)) {
           throw new Error("Could not remove " + item + " from selection, because it is not a child element!");
         }
-
-        this.__P_299_0.removeItem(item);
+        this.__P_314_0.removeItem(item);
       },
-
       /**
        * Selects an item range between two given items.
        *
@@ -230,18 +213,16 @@
        * @param end {qx.ui.core.Widget} Item to end at
        */
       selectRange: function selectRange(begin, end) {
-        this.__P_299_0.selectItemRange(begin, end);
+        this.__P_314_0.selectItemRange(begin, end);
       },
-
       /**
        * Clears the whole selection at once. Also
        * resets the lead and anchor items and their
        * styles.
        */
       resetSelection: function resetSelection() {
-        this.__P_299_0.clearSelection();
+        this.__P_314_0.clearSelection();
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -255,27 +236,23 @@
         //  cannot change selection again; this is important because modelSelection does not
         //  necessarily match selection, for example when the item's model properties are
         //  null.
-        if (this.__P_299_1) {
+        if (this.__P_314_1) {
           return;
         }
-
         for (var i = 0; i < items.length; i++) {
           if (!qx.ui.core.Widget.contains(this, items[i])) {
             throw new Error("Could not select " + items[i] + ", because it is not a child element!");
           }
         }
-
         if (items.length === 0) {
           this.resetSelection();
         } else {
           var currentSelection = this.getSelection();
-
           if (!qx.lang.Array.equals(currentSelection, items)) {
-            this.__P_299_0.replaceSelection(items);
+            this.__P_314_0.replaceSelection(items);
           }
         }
       },
-
       /**
        * Returns an array of currently selected items.
        *
@@ -285,9 +262,8 @@
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        return this.__P_299_0.getSelection();
+        return this.__P_314_0.getSelection();
       },
-
       /**
        * Returns an array of currently selected items sorted
        * by their index in the container.
@@ -295,18 +271,16 @@
        * @return {qx.ui.core.Widget[]} Sorted list of items
        */
       getSortedSelection: function getSortedSelection() {
-        return this.__P_299_0.getSortedSelection();
+        return this.__P_314_0.getSortedSelection();
       },
-
       /**
        * Whether the selection is empty
        *
        * @return {Boolean} Whether the selection is empty
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_299_0.isSelectionEmpty();
+        return this.__P_314_0.isSelectionEmpty();
       },
-
       /**
        * Returns the last selection context.
        *
@@ -314,9 +288,8 @@
        *    <code>drag</code> or <code>key</code> or <code>null</code>.
        */
       getSelectionContext: function getSelectionContext() {
-        return this.__P_299_0.getSelectionContext();
+        return this.__P_314_0.getSelectionContext();
       },
-
       /**
        * Returns the internal selection manager. Use this with
        * caution!
@@ -324,9 +297,8 @@
        * @return {qx.ui.core.selection.Abstract} The selection manager
        */
       _getManager: function _getManager() {
-        return this.__P_299_0;
+        return this.__P_314_0;
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -335,16 +307,14 @@
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__P_299_0.getSelectables(all);
+        return this.__P_314_0.getSelectables(all);
       },
-
       /**
        * Invert the selection. Select the non selected and deselect the selected.
        */
       invertSelection: function invertSelection() {
-        this.__P_299_0.invertSelection();
+        this.__P_314_0.invertSelection();
       },
-
       /**
        * Returns the current lead item. Generally the item which was last modified
        * by the user (tapped on etc.)
@@ -352,15 +322,13 @@
        * @return {qx.ui.core.Widget} The lead item or <code>null</code>
        */
       _getLeadItem: function _getLeadItem() {
-        var mode = this.__P_299_0.getMode();
-
+        var mode = this.__P_314_0.getMode();
         if (mode === "single" || mode === "one") {
-          return this.__P_299_0.getSelectedItem();
+          return this.__P_314_0.getSelectedItem();
         } else {
-          return this.__P_299_0.getLeadItem();
+          return this.__P_314_0.getLeadItem();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -368,54 +336,49 @@
       */
       // property apply
       _applySelectionMode: function _applySelectionMode(value, old) {
-        this.__P_299_0.setMode(value);
+        this.__P_314_0.setMode(value);
       },
       // property apply
       _applyDragSelection: function _applyDragSelection(value, old) {
-        this.__P_299_0.setDrag(value);
+        this.__P_314_0.setDrag(value);
       },
       // property apply
       _applyQuickSelection: function _applyQuickSelection(value, old) {
-        this.__P_299_0.setQuick(value);
+        this.__P_314_0.setQuick(value);
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for <code>changeSelection</code> event on selection manager.
        *
        * @param e {qx.event.type.Data} Data event
        */
       _onSelectionChange: function _onSelectionChange(e) {
-        if (this.__P_299_1) {
+        if (this.__P_314_1) {
           return;
         }
-
-        this.__P_299_1 = true;
-
+        this.__P_314_1 = true;
         try {
           this.fireDataEvent("changeSelection", e.getData(), e.getOldData());
           this.fireDataEvent("changeValue", e.getData(), e.getOldData());
         } finally {
-          this.__P_299_1 = false;
+          this.__P_314_1 = false;
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_299_0");
+      this._disposeObjects("__P_314_0");
     }
   });
   qx.ui.core.MMultiSelectionHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMultiSelectionHandling.js.map?dt=1664789593810
+//# sourceMappingURL=MMultiSelectionHandling.js.map?dt=1672653505152

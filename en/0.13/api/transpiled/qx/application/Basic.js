@@ -1,6 +1,7 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.BaseInit": {},
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -14,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,26 +35,32 @@
 
   /**
    * For a basic, out-of-browser application (running e.g. on Node.js, Rhino).
+   *
+   * @use(qx.core.BaseInit)
    */
   qx.Class.define("qx.application.Basic", {
     extend: qx.core.Object,
     implement: [qx.application.IApplication],
     members: {
       // interface method
-      main: function main() {// empty
+      main: function main() {
+        // empty
       },
       // interface method
-      finalize: function finalize() {// empty
+      finalize: function finalize() {
+        // empty
       },
       // interface method
-      close: function close() {// empty
+      close: function close() {
+        // empty
       },
       // interface method
-      terminate: function terminate() {// empty
+      terminate: function terminate() {
+        // empty
       }
     }
   });
   qx.application.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1664789574879
+//# sourceMappingURL=Basic.js.map?dt=1672653483575

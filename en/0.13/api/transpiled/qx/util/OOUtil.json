@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 678
       },
       "end": {
-        "line": 183,
-        "column": 3
+        "line": 164,
+        "column": 3,
+        "index": 4624
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "classIsDefined": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 890
         },
         "end": {
-          "line": 35,
-          "column": 5
+          "line": 33,
+          "column": 5,
+          "index": 975
         }
       },
       "jsdoc": {
@@ -70,12 +74,14 @@
     "getPropertyDefinition": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1300
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1542
         }
       },
       "jsdoc": {
@@ -116,12 +122,14 @@
     "hasProperty": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1795
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1893
         }
       },
       "jsdoc": {
@@ -162,12 +170,14 @@
     "getEventType": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2171
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2455
         }
       },
       "jsdoc": {
@@ -208,12 +218,14 @@
     "supportsEvent": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2709
         },
         "end": {
-          "line": 107,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2800
         }
       },
       "jsdoc": {
@@ -254,12 +266,14 @@
     "getByInterface": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 3209
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 126,
+          "column": 5,
+          "index": 3583
         }
       },
       "jsdoc": {
@@ -300,12 +314,14 @@
     "hasInterface": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
+          "line": 140,
+          "column": 4,
+          "index": 4083
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 142,
+          "column": 5,
+          "index": 4177
         }
       },
       "jsdoc": {
@@ -346,12 +362,14 @@
     "getMixins": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 150,
+          "column": 4,
+          "index": 4388
         },
         "end": {
-          "line": 181,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 4616
         }
       },
       "jsdoc": {

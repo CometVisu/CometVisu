@@ -1,11 +1,7 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -26,6 +22,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         "usage": "dynamic",
         "require": true
       },
+      "qx.core.Object": {},
       "qxl.dialog.formElement.CheckBox": {
         "require": true
       },
@@ -82,7 +79,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -123,7 +119,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Boolean",
         init: true
       },
-
       /**
        * Data to create a form with multiple fields.
        * So far implemented:
@@ -182,7 +177,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeFormData",
         apply: "_applyFormData"
       },
-
       /**
        * The model of the result data
        */
@@ -191,7 +185,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         event: "changeModel"
       },
-
       /**
        * The default width of the column with the field labels
        */
@@ -201,7 +194,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: 100,
         apply: "_applyLabelColumnWidth"
       },
-
       /**
        * Function to call to create and configure a form renderer. If null, a
        * single-column form renderer is automatically instantiated and
@@ -212,7 +204,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
-
       /**
        * Function to call just before creating the form's input fields.
        * This allows additional, non-form widgets to be added. The
@@ -225,7 +216,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
-
       /*
        * Function to call with the internal form, allowing the user to do things
        * such as set up a form validator (vs. field validators) on the form. The
@@ -241,7 +231,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: null,
         event: "formReadyFunctionChanged"
       },
-
       /**
        * Function to call just after creating the form's input fields. This
        * allows additional, non-form widgets to be added. The function is called
@@ -253,7 +242,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
-
       /**
        * Function to call just after creating the form's buttons. This allows
        * additional, additional widgets to be added. The function is called with
@@ -265,7 +253,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
-
       /*
        * Function to call just after the form is filled with data. The
        * function is called with one argument: the form object itself
@@ -279,7 +266,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     statics: {
       /* eslint-disable jsdoc/check-param-names */
-
       /**
        * Register a form element to be used within a qxl.dialog form.
        *
@@ -353,15 +339,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        *     @param key {String}
        *       The user-provided name for this form field
        */
-
       /* eslint-enable jsdoc/check-param-names */
       registerFormElementHandlers: function registerFormElementHandlers(fieldType, handlers) {
         // Downcase the field type as it is case-insensitive
-        fieldType = fieldType.toLowerCase(); // Add the handlers for this field type
+        fieldType = fieldType.toLowerCase();
 
+        // Add the handlers for this field type
         qxl.dialog.MForm._registeredFormElements[fieldType] = handlers;
       },
-
       /** Map of registered form element handlers, keyed by fieldType */
       _registeredFormElements: {},
       _internalFormElements: {
@@ -393,8 +378,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         // element. In particular, the afterFormFunction, which receives the form
         // as its second parameter, may reference this member to gain access to
         // the form elements created for the form.
-        this._formElements = {}; // Register the internal form elements (once)
+        this._formElements = {};
 
+        // Register the internal form elements (once)
         if (qxl.dialog.MForm._internalFormElements) {
           for (var fieldType in qxl.dialog.MForm._internalFormElements) {
             // Register this internal type, but don't overwrite a
@@ -402,13 +388,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             if (!(fieldType in qxl.dialog.MForm._registeredFormElements)) {
               qxl.dialog.MForm._internalFormElements[fieldType].register();
             }
-          } // Prevent reinitializing this for the lifetime of this app
+          }
 
-
+          // Prevent reinitializing this for the lifetime of this app
           qxl.dialog.MForm._internalFormElements = null;
         }
       },
-
       /**
        * Return the form
        * @return {qx.ui.form.Form}
@@ -416,21 +401,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getForm: function getForm() {
         return this._form;
       },
-
       /**
        * Create the main content of the widget
        * @param properties
        */
       _createWidgetContent: function _createWidgetContent() {
         var properties = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
         /*
          * Handle properties that must be set before _applyFormData
          */
         if (properties.setupFormRendererFunction) {
           this.setSetupFormRendererFunction(properties.setupFormRendererFunction);
         }
-
         var container = new qx.ui.container.Composite();
         container.setLayout(new qx.ui.layout.VBox(10));
         var hbox = new qx.ui.container.Composite();
@@ -438,67 +420,54 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         container.add(hbox);
         container.setUserData("messageHBox", hbox);
         this._message = new qx.ui.basic.Label();
-
         this._message.setRich(true);
-
         this._message.setMinWidth(200);
-
         this._message.setAllowStretchX(true);
-
         hbox.add(this._message, {
           flex: 1
         });
+
         /*
          * If requested, call the before-form function to add some fields
          */
-
         if (typeof properties.beforeFormFunction == "function") {
           properties.beforeFormFunction.bind(properties.context)(container, this);
-        } // wrap fields in form tag to avoid Chrome warnings, see https://github.com/qooxdoo/qxl.dialog/issues/19
+        }
 
-
+        // wrap fields in form tag to avoid Chrome warnings, see https://github.com/qooxdoo/qxl.dialog/issues/19
         var formTag = new qxl.dialog.FormTag();
         this._formContainer = new qx.ui.container.Composite();
-
         this._formContainer.setLayout(new qx.ui.layout.Grow());
-
         formTag.add(this._formContainer, {
           flex: 1
         });
         container.add(formTag, {
           flex: 1
         });
+
         /*
          * If requested, call the after-form function to add some fields
          */
-
         if (typeof properties.afterFormFunction == "function") {
           properties.afterFormFunction.bind(properties.context)(container, this);
-        } // buttons
+        }
 
-
+        // buttons
         var buttonPane = this._createButtonPane();
-
         container.add(buttonPane);
-
         var okButton = this._createOkButton();
-
         buttonPane.add(okButton);
-
         var cancelButton = this._createCancelButton();
-
         buttonPane.add(cancelButton);
+
         /*
          * If requested, call the after-buttons function
          */
-
         if (typeof properties.afterButtonsFunction == "function") {
           properties.afterButtonsFunction.bind(properties.context)(buttonPane, this);
         }
-
         this.add(container);
       },
-
       /**
        * Constructs the form on-the-fly
        * @param formData {Map} The form data map
@@ -507,45 +476,34 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _applyFormData: function _applyFormData(formData, old) {
         var _this = this;
-
         if (!this._formElements) {
           // KLUDGE for issue #10068: The constructor of this mixin
           // isn't being called earlier enough.
           this._init();
         }
-
         if (this._formController) {
           try {
             this.getModel().removeAllBindings();
-
             this._formController.dispose();
           } catch (e) {}
         }
-
         if (this._form) {
           try {
             this._form.getValidationManager().removeAllBindings();
-
             this._form.dispose();
           } catch (e) {}
         }
-
         this._formContainer.removeAll();
-
         if (!formData) {
           return;
         }
-
         if (this.getModel()) {
           this.getModel().removeAllBindings();
           this.getModel().dispose();
         }
-
         var modelData = {};
-
         var _iterator = _createForOfIteratorHelper(Object.getOwnPropertyNames(formData)),
-            _step;
-
+          _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var key = _step.value;
@@ -556,93 +514,79 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } finally {
           _iterator.f();
         }
-
         var model = qx.data.marshal.Json.createModel(modelData);
-        this.setModel(model); // form
-
+        this.setModel(model);
+        // form
         this._form = new qx.ui.form.Form();
-
         if (qx.core.Environment.get("module.objectid") === true) {
           if (this.getQxObject("form")) {
             this.removeOwnedQxObject("form");
           }
-
           this.addOwnedQxObject(this._form, "form");
         }
-
         this._formController = new qx.data.controller.Object(this.getModel());
-
         this._onFormReady(this._form);
+
         /*
          * hooks for subclasses or users to do something with the new form
          */
-
-
         this._onFormReady(this._form);
-
         var f = this.getFormReadyFunction();
-
         if (f) {
           f.call(this.getContext(), this._form, this);
         } else {
           this.addListenerOnce("formReadyFunctionChanged", function () {
             f = this.getFormReadyFunction();
-
             if (f) {
               f.call(this.getContext(), this._form, this);
             }
           }, this.getContext());
         }
-
         var _iterator2 = _createForOfIteratorHelper(Object.getOwnPropertyNames(formData)),
-            _step2;
-
+          _step2;
         try {
           var _loop = function _loop() {
             var key = _step2.value;
             var fieldData = formData[key];
-
             if (typeof fieldData.type != "string") {
               throw new Error("Missing type member {String}");
             }
-
             var fieldType = fieldData.type.toLowerCase();
-            var formElement = null; // Ensure the field type is registered
+            var formElement = null;
 
+            // Ensure the field type is registered
             if (!(fieldType in qxl.dialog.MForm._registeredFormElements)) {
               throw new Error("Field type ".concat(fieldType, " is unknown"));
-            } // Instantiate and initialize the form element
+            }
 
+            // Instantiate and initialize the form element
+            formElement = qxl.dialog.MForm._registeredFormElements[fieldType].initElement.call(_this, fieldType, fieldData, key);
 
-            formElement = qxl.dialog.MForm._registeredFormElements[fieldType].initElement.call(_this, fieldType, fieldData, key); // Headers don't return a form element
-
+            // Headers don't return a form element
             if (!formElement) {
               return "continue";
-            } // Save the key
+            }
 
+            // Save the key
+            formElement.setUserData("key", key);
 
-            formElement.setUserData("key", key); // Add the form element to the form controller, if needed for the type
-
+            // Add the form element to the form controller, if needed for the type
             if (qxl.dialog.MForm._registeredFormElements[fieldType].addToFormController) {
               qxl.dialog.MForm._registeredFormElements[fieldType].addToFormController.call(_this, fieldType, fieldData, key, formElement);
             }
+
             /**
              * Validation
              */
-
-
             var validator = null;
-
             if (formElement && fieldData.validation) {
               // required field
               if (fieldData.validation.required) {
                 formElement.setRequired(true);
-              } // sync validation
-
-
+              }
+              // sync validation
               if (fieldData.validation.validator) {
                 validator = fieldData.validation.validator;
-
                 if (typeof validator == "string") {
                   if (qx.util.Validate[validator]) {
                     validator = qx.util.Validate[validator]();
@@ -654,9 +598,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 } else if (!(validator instanceof qx.ui.form.validation.AsyncValidator) && typeof validator !== "function") {
                   _this.error("Invalid validator.");
                 }
-              } // async validation
-
-
+              }
+              // async validation
               if (qx.lang.Type.isString(fieldData.validation.proxy) && qx.lang.Type.isString(fieldData.validation.method)) {
                 /**
                  * fieldData.validation.proxy
@@ -670,142 +613,123 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                  */
                 // clean
                 var proxy = fieldData.validation.proxy.replace(/;\n/g, "");
-
                 try {
                   eval("proxy = " + proxy + ";");
                 } catch (e) {
                   _this.warn("Invalid proxy name");
                 }
-
                 if (typeof proxy == "function") {
                   var method = fieldData.validation.method;
                   var message = fieldData.validation.invalidMessage;
-
                   var validationFunc = function validationFunc(validatorObj, value) {
-                    if (!validatorObj.__P_542_0) {
-                      validatorObj.__P_542_0 = true;
+                    if (!validatorObj.__P_558_0) {
+                      validatorObj.__P_558_0 = true;
                       proxy(method, [value], function (valid) {
                         validatorObj.setValid(valid, message || this.tr("Value is invalid"));
-                        validatorObj.__P_542_0 = false;
+                        validatorObj.__P_558_0 = false;
                       });
                     }
                   };
-
                   validator = new qx.ui.form.validation.AsyncValidator(validationFunc);
                 }
               }
             }
+
             /**
              * other widget properties @todo: allow to set all properties
              */
+
             // width
-
-
             if (fieldData.width !== undefined) {
               formElement.setWidth(fieldData.width);
-            } // placeholder
+            }
 
-
+            // placeholder
             if (fieldData.placeholder !== undefined) {
               formElement.setPlaceholder(fieldData.placeholder);
-            } // tooltip
+            }
 
-
+            // tooltip
             if (fieldData.toolTipText !== undefined) {
               formElement.setToolTipText(fieldData.toolTipText);
-            } // enabled
+            }
 
-
+            // enabled
             if (fieldData.enabled !== undefined) {
               formElement.setEnabled(fieldData.enabled);
-            } // generic property setter
+            }
 
-
+            // generic property setter
             if (_typeof(fieldData.properties) == "object") {
               formElement.set(fieldData.properties);
-            } // Do any required post-processing
+            }
 
-
+            // Do any required post-processing
             if ("postProcess" in qxl.dialog.MForm._registeredFormElements[fieldType]) {
               qxl.dialog.MForm._registeredFormElements[fieldType].postProcess.call(_this, fieldType, fieldData, key, formElement);
-            } // generic userdata settings
+            }
 
-
+            // generic userdata settings
             if (_typeof(fieldData.userdata) == "object") {
               Object.keys(fieldData.userdata).forEach(function (key) {
                 formElement.setUserData(key, fieldData.userdata[key]);
               });
             }
+
             /**
              * Events
              */
-
-
             if (qx.lang.Type.isObject(fieldData.events)) {
               for (var type in fieldData.events) {
                 var func = void 0;
-
                 try {
                   switch (_typeof(fieldData.events[type])) {
-                    case "string":
-                      /** @deprecated */
+                    case "string" /** @deprecated */:
                       // A string allows transferring this handler via JSON.
                       func = eval("(" + fieldData.events[type] + ")"); // eval is evil, I know.
-
                       break;
-
                     case "function":
                       func = fieldData.events[type];
                       break;
-
                     default:
                       throw new Error("Event handler must be a string eval()'ed to a function (deprecated), or a function");
                   }
-
                   formElement.addListener(type, func, formElement);
                 } catch (e) {
                   _this.warn("Invalid '" + type + "' event handler for form element '" + key + "'.");
                 }
               }
-            } // Putting it all together
+            }
 
-
+            // Putting it all together
             var label = fieldData.label;
-
-            _this._form.add(formElement, label || "", validator); // Add the form elements as objects owned by the form widget
-
-
+            _this._form.add(formElement, label || "", validator);
+            // Add the form elements as objects owned by the form widget
             if (qx.core.Environment.get("module.objectid") === true) {
               formElement.setQxObjectId(key);
-
               _this._form.addOwnedQxObject(formElement);
             }
+
             /*
              * add the form element to the map so the user has access to it later
              */
-
-
             _this._formElements[key] = formElement;
           };
-
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
             var _ret = _loop();
-
             if (_ret === "continue") continue;
           }
+
           /*
            * render the form
            */
-
         } catch (err) {
           _iterator2.e(err);
         } finally {
           _iterator2.f();
         }
-
         var setupFormRenderer;
         setupFormRenderer = this.getSetupFormRendererFunction();
-
         if (!setupFormRenderer) {
           setupFormRenderer = function setupFormRenderer(form) {
             var view;
@@ -818,34 +742,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             return view;
           };
         }
-
         this._formContainer.add(setupFormRenderer.bind(this)(this._form));
-
         this._form.getValidationManager().validate();
-
         var finalizeFunction;
         finalizeFunction = this.getFinalizeFunction();
-
         if (finalizeFunction) {
           finalizeFunction.call(this.getContext(), this._form, this);
         }
       },
-
       /**
        * Constructs the form on-the-fly
        * @param width
        * @param old {Map|null} The old value
        */
       _applyLabelColumnWidth: function _applyLabelColumnWidth(width, old) {
-        var view; // If the form renderer is the default one and has already been applied...
+        var view;
 
+        // If the form renderer is the default one and has already been applied...
         if (!this.getSetupFormRendererFunction() && this._formContainer && this._formContainer.getChildren().length > 0) {
           view = this._formContainer.getChildren()[0];
           view.getLayout().setColumnWidth(0, width);
           view.getLayout().setColumnMaxWidth(0, width);
         }
       },
-
       /**
        * Hook for subclasses to do something with the form, for example
        * in order to attach bindings to the validation manager.
@@ -860,7 +779,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         });
       },
-
       /**
        * Handle click on ok button. Calls callback with the result map
        * @override
@@ -868,11 +786,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _handleOk: function _handleOk() {
         this.hide();
         this.fireEvent("ok");
-
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), qx.util.Serializer.toNativeObject(this.getModel()));
         }
-
         this.resetCallback();
       }
     }
@@ -880,4 +796,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   qxl.dialog.MForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MForm.js.map?dt=1664789615940
+//# sourceMappingURL=MForm.js.map?dt=1672653525743

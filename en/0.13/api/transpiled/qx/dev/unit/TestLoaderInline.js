@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,25 +40,24 @@
   qx.Class.define("qx.dev.unit.TestLoaderInline", {
     extend: qx.application.Inline,
     include: [qx.dev.unit.MTestLoader],
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       main: function main() {
-        qx.dev.unit.TestLoaderInline.superclass.prototype.main.call(this); // Dependencies to loggers
+        qx.dev.unit.TestLoaderInline.superclass.prototype.main.call(this);
 
+        // Dependencies to loggers
         qx.log.appender.Console;
         this.setTestNamespace(this._getClassNameFromUrl());
-
         if (window.top.jsUnitTestSuite) {
           this.runJsUnit();
           return;
         }
-
         if (window == window.top) {
           this.runStandAlone();
           return;
@@ -70,4 +68,4 @@
   qx.dev.unit.TestLoaderInline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestLoaderInline.js.map?dt=1664789583289
+//# sourceMappingURL=TestLoaderInline.js.map?dt=1672653493925

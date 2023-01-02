@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 655
       },
       "end": {
-        "line": 45,
-        "column": 3
+        "line": 42,
+        "column": 3,
+        "index": 1276
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_createScrollBar": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1020
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1268
         }
       },
       "jsdoc": {

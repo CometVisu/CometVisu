@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 777
       },
       "end": {
-        "line": 81,
-        "column": 3
+        "line": 80,
+        "column": 3,
+        "index": 2196
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "TYPES": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 901
         },
         "end": {
-          "line": 34,
-          "column": 21
+          "line": 33,
+          "column": 20,
+          "index": 917
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "BIND_METHODS": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 924
         },
         "end": {
-          "line": 37,
-          "column": 33
+          "line": 35,
+          "column": 30,
+          "index": 950
         }
       },
       "type": "variable",
@@ -79,12 +85,14 @@
     "getDelta": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1254
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 46,
+          "column": 5,
+          "index": 1307
         }
       },
       "jsdoc": {
@@ -109,12 +117,14 @@
     "normalize": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1619
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2058
         }
       },
       "jsdoc": {
@@ -162,15 +172,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 78,
-        "column": 10
+        "line": 74,
+        "column": 2,
+        "index": 2067
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 79,
+        "column": 3,
+        "index": 2192
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

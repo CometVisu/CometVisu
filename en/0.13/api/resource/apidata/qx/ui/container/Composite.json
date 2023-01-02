@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 54,
-        "column": 0
+        "line": 53,
+        "column": 0,
+        "index": 1583
       },
       "end": {
-        "line": 141,
-        "column": 3
+        "line": 116,
+        "column": 3,
+        "index": 3310
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 71,
-        "column": 14
+        "line": 67,
+        "column": 2,
+        "index": 2040
       },
       "end": {
-        "line": 78,
-        "column": 3
+        "line": 73,
+        "column": 3,
+        "index": 2140
       }
     },
     "jsdoc": {
@@ -63,12 +67,14 @@
     "addChildWidget": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2530
         },
         "end": {
-          "line": 95,
-          "column": 41
+          "line": 87,
+          "column": 40,
+          "index": 2566
         }
       },
       "jsdoc": {
@@ -85,12 +91,14 @@
     "removeChildWidget": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 2772
         },
         "end": {
-          "line": 103,
-          "column": 44
+          "line": 94,
+          "column": 43,
+          "index": 2811
         }
       },
       "jsdoc": {
@@ -109,12 +117,14 @@
     "_afterAddChild": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 3037
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3146
         }
       },
       "jsdoc": {},
@@ -124,12 +134,14 @@
     "_afterRemoveChild": {
       "location": {
         "start": {
-          "line": 123,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 3171
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 3302
         }
       },
       "jsdoc": {},
@@ -849,6 +861,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -873,6 +886,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4395,19 +4409,6 @@
         ]
       }
     }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 136,
-        "column": 10
-      },
-      "end": {
-        "line": 140,
-        "column": 3
-      }
-    },
-    "jsdoc": {}
   },
   "descendants": [
     "qx.ui.container.Resizer",

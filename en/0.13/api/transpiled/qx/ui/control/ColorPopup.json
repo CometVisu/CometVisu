@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 35,
-        "column": 0
+        "column": 0,
+        "index": 1337
       },
       "end": {
-        "line": 509,
-        "column": 3
+        "line": 488,
+        "column": 3,
+        "index": 13475
       }
     },
     "jsdoc": {
@@ -90,12 +92,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 46,
-        "column": 14
+        "line": 45,
+        "column": 2,
+        "index": 1641
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 56,
+        "column": 3,
+        "index": 1959
       }
     },
     "jsdoc": {}
@@ -104,12 +108,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2187
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 2251
         }
       },
       "jsdoc": {},
@@ -127,12 +133,14 @@
     "value": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2306
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2397
         }
       },
       "jsdoc": {
@@ -153,12 +161,14 @@
     "red": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2460
         },
         "end": {
-          "line": 91,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2560
         }
       },
       "jsdoc": {
@@ -179,12 +189,14 @@
     "green": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2625
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 92,
+          "column": 5,
+          "index": 2729
         }
       },
       "jsdoc": {
@@ -205,12 +217,14 @@
     "blue": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2793
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2895
         }
       },
       "jsdoc": {
@@ -425,12 +439,14 @@
     "__minZIndex": {
       "location": {
         "start": {
-          "line": 123,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 3156
         },
         "end": {
-          "line": 123,
-          "column": 21
+          "line": 110,
+          "column": 20,
+          "index": 3172
         }
       },
       "type": "variable",
@@ -439,12 +455,14 @@
     "__boxes": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3178
         },
         "end": {
-          "line": 124,
-          "column": 18
+          "line": 111,
+          "column": 17,
+          "index": 3191
         }
       },
       "type": "variable",
@@ -453,12 +471,14 @@
     "__colorSelectorWindow": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3197
         },
         "end": {
-          "line": 125,
-          "column": 32
+          "line": 112,
+          "column": 31,
+          "index": 3224
         }
       },
       "type": "variable",
@@ -467,12 +487,14 @@
     "__colorSelector": {
       "location": {
         "start": {
-          "line": 126,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 3230
         },
         "end": {
-          "line": 126,
-          "column": 26
+          "line": 113,
+          "column": 25,
+          "index": 3251
         }
       },
       "type": "variable",
@@ -481,12 +503,14 @@
     "__buttonBar": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3257
         },
         "end": {
-          "line": 127,
-          "column": 22
+          "line": 114,
+          "column": 21,
+          "index": 3274
         }
       },
       "type": "variable",
@@ -495,12 +519,14 @@
     "__recentTableId": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 3280
         },
         "end": {
-          "line": 128,
-          "column": 30
+          "line": 115,
+          "column": 29,
+          "index": 3305
         }
       },
       "type": "variable",
@@ -509,12 +535,14 @@
     "__fieldNumber": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 3311
         },
         "end": {
-          "line": 129,
-          "column": 22
+          "line": 116,
+          "column": 21,
+          "index": 3328
         }
       },
       "type": "variable",
@@ -523,12 +551,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 119,
+          "column": 4,
+          "index": 3353
         },
         "end": {
-          "line": 191,
-          "column": 5
+          "line": 180,
+          "column": 5,
+          "index": 5385
         }
       },
       "jsdoc": {},
@@ -542,12 +572,14 @@
     "_createBoxes": {
       "location": {
         "start": {
-          "line": 205,
-          "column": 4
+          "line": 191,
+          "column": 4,
+          "index": 5663
         },
         "end": {
-          "line": 230,
-          "column": 5
+          "line": 213,
+          "column": 5,
+          "index": 6243
         }
       },
       "jsdoc": {
@@ -564,12 +596,14 @@
     "_createColorSelector": {
       "location": {
         "start": {
-          "line": 236,
-          "column": 4
+          "line": 218,
+          "column": 4,
+          "index": 6317
         },
         "end": {
-          "line": 259,
-          "column": 5
+          "line": 243,
+          "column": 5,
+          "index": 7087
         }
       },
       "jsdoc": {
@@ -586,12 +620,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 272,
-          "column": 4
+          "line": 252,
+          "column": 4,
+          "index": 7312
         },
         "end": {
-          "line": 290,
-          "column": 5
+          "line": 266,
+          "column": 5,
+          "index": 7735
         }
       },
       "jsdoc": {},
@@ -604,12 +640,14 @@
     "_rotatePreviousColors": {
       "location": {
         "start": {
-          "line": 298,
-          "column": 4
+          "line": 273,
+          "column": 4,
+          "index": 7928
         },
         "end": {
-          "line": 334,
-          "column": 5
+          "line": 308,
+          "column": 5,
+          "index": 8781
         }
       },
       "jsdoc": {
@@ -626,12 +664,14 @@
     "_onFieldPointerDown": {
       "location": {
         "start": {
-          "line": 350,
-          "column": 4
+          "line": 322,
+          "column": 4,
+          "index": 9208
         },
         "end": {
-          "line": 358,
-          "column": 5
+          "line": 329,
+          "column": 5,
+          "index": 9398
         }
       },
       "jsdoc": {
@@ -657,12 +697,14 @@
     "_onFieldPointerOver": {
       "location": {
         "start": {
-          "line": 367,
-          "column": 4
+          "line": 337,
+          "column": 4,
+          "index": 9617
         },
         "end": {
-          "line": 369,
-          "column": 5
+          "line": 341,
+          "column": 5,
+          "index": 9765
         }
       },
       "jsdoc": {
@@ -688,12 +730,14 @@
     "_onFieldPointerOut": {
       "location": {
         "start": {
-          "line": 377,
-          "column": 4
+          "line": 349,
+          "column": 4,
+          "index": 9984
         },
         "end": {
-          "line": 388,
-          "column": 5
+          "line": 360,
+          "column": 5,
+          "index": 10350
         }
       },
       "jsdoc": {
@@ -719,12 +763,14 @@
     "_onAutomaticBtnExecute": {
       "location": {
         "start": {
-          "line": 394,
-          "column": 4
+          "line": 366,
+          "column": 4,
+          "index": 10487
         },
         "end": {
-          "line": 398,
-          "column": 5
+          "line": 369,
+          "column": 5,
+          "index": 10565
         }
       },
       "jsdoc": {
@@ -741,12 +787,14 @@
     "_onSelectorButtonExecute": {
       "location": {
         "start": {
-          "line": 405,
-          "column": 4
+          "line": 375,
+          "column": 4,
+          "index": 10719
         },
         "end": {
-          "line": 427,
-          "column": 5
+          "line": 395,
+          "column": 5,
+          "index": 11210
         }
       },
       "jsdoc": {
@@ -763,12 +811,14 @@
     "_onColorSelectorOk": {
       "location": {
         "start": {
-          "line": 434,
-          "column": 4
+          "line": 401,
+          "column": 4,
+          "index": 11363
         },
         "end": {
-          "line": 439,
-          "column": 5
+          "line": 412,
+          "column": 5,
+          "index": 11630
         }
       },
       "jsdoc": {
@@ -785,12 +835,14 @@
     "_onColorSelectorCancel": {
       "location": {
         "start": {
-          "line": 446,
-          "column": 4
+          "line": 418,
+          "column": 4,
+          "index": 11739
         },
         "end": {
-          "line": 448,
-          "column": 5
+          "line": 420,
+          "column": 5,
+          "index": 11813
         }
       },
       "jsdoc": {
@@ -807,12 +859,14 @@
     "_onChangeVisibility": {
       "location": {
         "start": {
-          "line": 457,
-          "column": 4
+          "line": 429,
+          "column": 4,
+          "index": 12042
         },
         "end": {
-          "line": 472,
-          "column": 5
+          "line": 443,
+          "column": 5,
+          "index": 12556
         }
       },
       "jsdoc": {
@@ -838,12 +892,14 @@
     "_tables": {
       "location": {
         "start": {
-          "line": 477,
-          "column": 4
+          "line": 448,
+          "column": 4,
+          "index": 12622
         },
         "end": {
-          "line": 490,
-          "column": 5
+          "line": 471,
+          "column": 5,
+          "index": 13059
         }
       },
       "jsdoc": {
@@ -1964,6 +2020,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1988,6 +2045,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -5960,12 +6018,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 500,
-        "column": 13
+        "line": 480,
+        "column": 2,
+        "index": 13255
       },
       "end": {
-        "line": 508,
-        "column": 3
+        "line": 487,
+        "column": 3,
+        "index": 13471
       }
     },
     "jsdoc": {}

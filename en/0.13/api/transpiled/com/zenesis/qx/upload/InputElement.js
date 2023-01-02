@@ -61,36 +61,32 @@
         zIndex: widget.getZIndex() + 11,
         opacity: 0,
         // align to the top right hand corner
-        top: '0px',
-        right: '0px',
+        top: "0px",
+        right: "0px",
         // ff ignores the width setting pick a realy large font size to get
         // a huge button that covers the area of the upload button
-        fontFamily: 'Arial',
+        fontFamily: "Arial",
         // from valums.com/ajax-upload: 4 persons reported this, the max values
         // that worked for them were 243, 236, 236, 118
-        fontSize: '118px'
+        fontSize: "118px"
       };
-
-      if (qx.core.Environment && qx.core.Environment.get('browser.name') == 'ie' && qx.core.Environment.get('browser.version') < 9 || !qx.core.Environment && qx.bom.client.Engine.MSHTML && qx.bom.client.Engine.VERSION < 9.0) {
-        css.filter = 'alpha(opacity=0)';
-        css.width = '200%';
-        css.height = '100%';
+      if (qx.core.Environment && qx.core.Environment.get("browser.name") == "ie" && qx.core.Environment.get("browser.version") < 9 || !qx.core.Environment && qx.bom.client.Engine.MSHTML && qx.bom.client.Engine.VERSION < 9.0) {
+        css.filter = "alpha(opacity=0)";
+        css.width = "200%";
+        css.height = "100%";
       }
-
       var attrs = {
-        type: 'file',
+        type: "file",
         name: name,
-        title: ' '
+        title: " "
       };
-      qx.html.Element.constructor.call(this, 'input', css, attrs);
-
+      qx.html.Element.constructor.call(this, "input", css, attrs);
       if (qx.Class.hasMixin(widget.constructor, com.zenesis.qx.upload.MUploadButton)) {
         widget.bind("acceptUpload", this, "acceptUpload");
         widget.bind("multiple", this, "multiple");
         widget.bind("directory", this, "directory");
       }
-
-      this.__P_544_0 = widget;
+      this.__P_560_0 = widget;
     },
     properties: {
       acceptUpload: {
@@ -113,9 +109,9 @@
       }
     },
     members: {
-      __P_544_0: null,
+      __P_560_0: null,
       getWidget: function getWidget() {
-        return this.__P_544_0;
+        return this.__P_560_0;
       },
       _applyAcceptUpload: function _applyAcceptUpload(value) {
         if (value) this.setAttribute("accept", value, true);else this.removeAttribute("accept", true);
@@ -131,4 +127,4 @@
   com.zenesis.qx.upload.InputElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InputElement.js.map?dt=1664789615987
+//# sourceMappingURL=InputElement.js.map?dt=1672653525785

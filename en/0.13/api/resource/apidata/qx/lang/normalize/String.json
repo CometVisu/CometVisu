@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 761
       },
       "end": {
-        "line": 192,
-        "column": 3
+        "line": 191,
+        "column": 3,
+        "index": 6911
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "trim": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1161
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1220
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "startsWith": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1691
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1839
         }
       },
       "jsdoc": {
@@ -115,12 +121,14 @@
     "endsWith": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2392
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 79,
+          "column": 5,
+          "index": 2866
         }
       },
       "jsdoc": {
@@ -163,12 +171,14 @@
     "codePointAt": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 3373
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 124,
+          "column": 5,
+          "index": 4414
         }
       },
       "jsdoc": {
@@ -202,12 +212,14 @@
     "fromCodePoint": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 135,
+          "column": 4,
+          "index": 4876
         },
         "end": {
           "line": 166,
-          "column": 5
+          "column": 5,
+          "index": 6164
         }
       },
       "jsdoc": {
@@ -243,14 +255,15 @@
     "location": {
       "start": {
         "line": 169,
-        "column": 10
+        "column": 2,
+        "index": 6173
       },
       "end": {
-        "line": 191,
-        "column": 3
+        "line": 190,
+        "column": 3,
+        "index": 6907
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 599
       },
       "end": {
-        "line": 115,
-        "column": 3
+        "line": 101,
+        "column": 3,
+        "index": 2496
       }
     },
     "jsdoc": {
@@ -33,26 +35,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 14
+        "line": 27,
+        "column": 2,
+        "index": 699
       },
       "end": {
-        "line": 33,
-        "column": 3
+        "line": 30,
+        "column": 3,
+        "index": 751
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "_tests": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 771
         },
         "end": {
-          "line": 38,
-          "column": 17
+          "line": 33,
+          "column": 16,
+          "index": 783
         }
       },
       "type": "variable",
@@ -61,12 +66,14 @@
     "addTestFunction": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 946
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1051
         }
       },
       "jsdoc": {
@@ -99,12 +106,14 @@
     "addTestMethod": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1282
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1405
         }
       },
       "jsdoc": {
@@ -137,12 +146,14 @@
     "addFail": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1594
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1725
         }
       },
       "jsdoc": {
@@ -175,12 +186,14 @@
     "run": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 1895
         },
         "end": {
-          "line": 87,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2019
         }
       },
       "jsdoc": {
@@ -206,12 +219,14 @@
     "getTestMethods": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2168
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2433
         }
       },
       "jsdoc": {
@@ -321,6 +336,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -345,6 +361,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -373,15 +390,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 112,
-        "column": 13
+        "line": 98,
+        "column": 2,
+        "index": 2442
       },
       "end": {
-        "line": 114,
-        "column": 3
+        "line": 100,
+        "column": 3,
+        "index": 2492
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": [
     "qx.dev.unit.TestClass",

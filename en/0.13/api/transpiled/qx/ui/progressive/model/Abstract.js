@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,7 +43,7 @@
        * The event data is an integer: the number of elements now available on
        * the element queue.
        */
-      "dataAvailable": "qx.event.type.Data"
+      dataAvailable: "qx.event.type.Data"
     },
     members: {
       /**
@@ -56,7 +55,6 @@
       getElementCount: function getElementCount() {
         throw new Error("getElementCount() is abstract");
       },
-
       /**
        * Get the next available element from the data model.
        *
@@ -90,4 +88,4 @@
   qx.ui.progressive.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789602529
+//# sourceMappingURL=Abstract.js.map?dt=1672653512825

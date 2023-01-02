@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 38,
-        "column": 0
+        "column": 0,
+        "index": 1181
       },
       "end": {
-        "line": 2670,
-        "column": 3
+        "line": 2500,
+        "column": 3,
+        "index": 58374
       }
     },
     "jsdoc": {
@@ -61,5 +63,7 @@
     }
   },
   "type": "theme",
-  "descendants": []
+  "descendants": [
+    "cv.theme.dark.Appearance"
+  ]
 }

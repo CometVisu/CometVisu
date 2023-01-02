@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 116,
-        "column": 0
+        "column": 0,
+        "index": 4646
       },
       "end": {
-        "line": 3064,
-        "column": 3
+        "line": 2673,
+        "column": 3,
+        "index": 63195
       }
     },
     "jsdoc": {

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 70,
-        "column": 0
+        "column": 0,
+        "index": 2651
       },
       "end": {
-        "line": 190,
-        "column": 3
+        "line": 183,
+        "column": 3,
+        "index": 7023
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "isQuirksMode": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2987
         },
         "end": {
-          "line": 107,
-          "column": 6
+          "line": 101,
+          "column": 6,
+          "index": 3777
         }
       },
       "jsdoc": {
@@ -78,12 +82,14 @@
     "isStandardMode": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 4030
         },
         "end": {
-          "line": 118,
-          "column": 5
+          "line": 111,
+          "column": 5,
+          "index": 4095
         }
       },
       "jsdoc": {
@@ -119,12 +125,14 @@
     "getWidth": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 139,
+          "column": 4,
+          "index": 5284
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 5550
         }
       },
       "jsdoc": {
@@ -160,12 +168,14 @@
     "getHeight": {
       "location": {
         "start": {
-          "line": 182,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 6745
         },
         "end": {
-          "line": 188,
-          "column": 5
+          "line": 181,
+          "column": 5,
+          "index": 7015
         }
       },
       "jsdoc": {

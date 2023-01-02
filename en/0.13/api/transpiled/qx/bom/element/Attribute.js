@@ -39,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -114,9 +113,10 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** Internal map of attribute conversions */
-      __P_131_0: {
+      __P_132_0: {
         // Name translation table (camelcase is important for some attributes)
         names: {
           "class": "className",
@@ -139,8 +139,8 @@
         },
         // Attributes which are only applyable on a DOM element (not using compile())
         runtime: {
-          "html": 1,
-          "text": 1
+          html: 1,
+          text: 1
         },
         // Attributes which are (forced) boolean
         bools: {
@@ -164,8 +164,8 @@
           $$element: 1,
           $$elementObject: 1,
           // Used by qx.ui.core.Widget
-          $$widget: 1,
-          $$widgetObject: 1,
+          $$qxObjectHash: 1,
+          $$qxObject: 1,
           // Native properties
           checked: 1,
           readOnly: 1,
@@ -181,8 +181,8 @@
           tabIndex: 1
         },
         qxProperties: {
-          $$widget: 1,
-          $$widgetObject: 1,
+          $$qxObjectHash: 1,
+          $$qxObject: 1,
           $$element: 1,
           $$elementObject: 1
         },
@@ -201,8 +201,8 @@
           htmlFor: "",
           tabIndex: 0,
           maxLength: qx.core.Environment.select("engine.name", {
-            "mshtml": 2147483647,
-            "webkit": 524288,
+            mshtml: 2147483647,
+            webkit: 524288,
             "default": -1
           })
         },
@@ -213,7 +213,6 @@
           maxLength: 1
         }
       },
-
       /**
        * Compiles an incoming attribute map to a string which
        * could be used when building HTML blocks using innerHTML.
@@ -226,17 +225,14 @@
        */
       compile: function compile(map) {
         var html = [];
-        var runtime = this.__P_131_0.runtime;
-
+        var runtime = this.__P_132_0.runtime;
         for (var key in map) {
           if (!runtime[key]) {
             html.push(key, "='", map[key], "'");
           }
         }
-
         return html.join("");
       },
-
       /**
        * Returns the value of the given HTML attribute
        *
@@ -245,14 +241,15 @@
        * @return {var} The value of the attribute
        */
       get: function get(element, name) {
-        var hints = this.__P_131_0;
-        var value; // normalize name
+        var hints = this.__P_132_0;
+        var value;
 
-        name = hints.names[name] || name; // respect properties
+        // normalize name
+        name = hints.names[name] || name;
 
+        // respect properties
         if (hints.property[name]) {
           value = element[name];
-
           if (typeof hints.propertyDefault[name] !== "undefined" && value == hints.propertyDefault[name]) {
             // only return null for all non-boolean properties
             if (typeof hints.bools[name] === "undefined") {
@@ -263,8 +260,9 @@
           }
         } else {
           // fallback to attribute
-          value = element.getAttribute(name); // All modern browsers interpret "" as true but not IE8, which set the property to "" reset
+          value = element.getAttribute(name);
 
+          // All modern browsers interpret "" as true but not IE8, which set the property to "" reset
           if (hints.bools[name] && !(qx.core.Environment.get("engine.name") == "mshtml" && parseInt(qx.core.Environment.get("browser.documentmode"), 10) <= 8)) {
             return qx.Bootstrap.isString(value); // also respect empty strings as true
           }
@@ -273,10 +271,8 @@
         if (hints.bools[name]) {
           return !!value;
         }
-
         return value;
       },
-
       /**
        * Sets an HTML attribute on the given DOM element
        *
@@ -288,18 +284,19 @@
         if (typeof value === "undefined") {
           return;
         }
+        var hints = this.__P_132_0;
 
-        var hints = this.__P_131_0; // normalize name
+        // normalize name
+        name = hints.names[name] || name;
 
-        name = hints.names[name] || name; // respect booleans
-
+        // respect booleans
         if (hints.bools[name] && !qx.lang.Type.isBoolean(value)) {
           value = qx.lang.Type.isString(value);
-        } // apply attribute
+        }
+
+        // apply attribute
         // only properties which can be applied by the browser or qxProperties
         // otherwise use the attribute methods
-
-
         if (hints.property[name] && (!(element[name] === undefined) || hints.qxProperties[name])) {
           // resetting the attribute/property
           if (value == null) {
@@ -311,7 +308,6 @@
               value = hints.propertyDefault[name];
             }
           }
-
           element[name] = value;
         } else {
           if ((hints.bools[name] || value === null) && name.indexOf("data-") !== 0) {
@@ -327,7 +323,39 @@
           }
         }
       },
+      /**
+       * Serializes an HTML attribute into a writer; the `writer` function accepts
+       *  an varargs, which can be joined with an empty string or streamed.
+       *
+       * @param writer {Function} The writer to serialize to
+       * @param name {String} Name of the attribute
+       * @param value {var} New value of the attribute
+       */
+      serialize: function serialize(writer, name, value) {
+        if (typeof value === "undefined") {
+          return;
+        }
+        var hints = this.__P_132_0;
 
+        // Skip serialization of hidden Qooxdoo state properties
+        if (hints.qxProperties[name]) {
+          return;
+        }
+
+        // respect booleans
+        if (hints.bools[name] && !qx.lang.Type.isBoolean(value)) {
+          value = qx.lang.Type.isString(value);
+        }
+
+        // apply attribute
+        if ((hints.bools[name] || value === null) && name.indexOf("data-") !== 0) {
+          if (value === true) {
+            writer(name, "=", name);
+          }
+        } else if (value !== null) {
+          writer(name, '="', value, '"');
+        }
+      },
       /**
        * Resets an HTML attribute on the given DOM element
        *
@@ -346,4 +374,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1664789578335
+//# sourceMappingURL=Attribute.js.map?dt=1672653486549

@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,19 +49,16 @@
        * List of event types to be normalized
        */
       TYPES: ["*"],
-
       /**
        * List of qx.bom.Event methods to be attached to native event objects
        * @internal
        */
       FORWARD_METHODS: ["getTarget", "getRelatedTarget"],
-
       /**
        * List of qx.module.event.Native methods to be attached to native event objects
        * @internal
        */
       BIND_METHODS: ["preventDefault", "stopPropagation", "getType"],
-
       /**
        * Prevent the native default behavior of the event.
        */
@@ -72,17 +68,14 @@
           // See bug #1049
           this.keyCode = 0;
         } catch (ex) {}
-
         this.returnValue = false;
       },
-
       /**
        * Stops the event's propagation to the element's parent
        */
       stopPropagation: function stopPropagation() {
         this.cancelBubble = true;
       },
-
       /**
        * Returns the event's type
        *
@@ -91,7 +84,6 @@
       getType: function getType() {
         return this._type || this.type;
       },
-
       /**
        * Returns the target of the event.
        *
@@ -99,7 +91,6 @@
        * @return {Object} Any valid native event target
        */
       getTarget: function getTarget() {},
-
       /**
        * Computes the related target from the native DOM event
        *
@@ -107,7 +98,6 @@
        * @return {Element} The related target
        */
       getRelatedTarget: function getRelatedTarget() {},
-
       /**
        * Computes the current target from the native DOM event. Emulates the current target
        * for all browsers without native support (like older IEs).
@@ -116,7 +106,6 @@
        * @return {Element} The current target
        */
       getCurrentTarget: function getCurrentTarget() {},
-
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -130,25 +119,19 @@
         if (!event) {
           return event;
         }
-
         var fwdMethods = qx.module.event.Native.FORWARD_METHODS;
-
         for (var i = 0, l = fwdMethods.length; i < l; i++) {
           event[fwdMethods[i]] = qx.bom.Event[fwdMethods[i]].bind(null, event);
         }
-
         var bindMethods = qx.module.event.Native.BIND_METHODS;
-
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Native[bindMethods[i]].bind(event);
           }
         }
-
         event.getCurrentTarget = function () {
           return event.currentTarget || element;
         };
-
         return event;
       }
     },
@@ -159,4 +142,4 @@
   qx.module.event.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1664789590178
+//# sourceMappingURL=Native.js.map?dt=1672653501477

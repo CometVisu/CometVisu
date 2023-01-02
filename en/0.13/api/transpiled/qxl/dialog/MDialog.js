@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -81,7 +80,6 @@
         check: "Function",
         nullable: true
       },
-
       /**
        * The context for the callback function
        */
@@ -89,7 +87,6 @@
         check: "Object",
         nullable: true
       },
-
       /**
        * A banner image/logo that is displayed on the widget,
        * if applicable
@@ -99,7 +96,6 @@
         nullable: true,
         apply: "_applyImage"
       },
-
       /**
        * The message that is displayed
        */
@@ -108,7 +104,6 @@
         nullable: true,
         apply: "_applyMessage"
       },
-
       /**
        * Whether to allow cancelling the dialog
        */
@@ -117,7 +112,6 @@
         init: true,
         event: "changeAllowCancel"
       },
-
       /**
        * Whether to triger the cancel button on pressing the "escape" key
        * (default: true). Depends on the 'allowCancel' property.
@@ -133,7 +127,6 @@
        * @type {String}
        */
       ok: "qx.event.type.Event",
-
       /**
        * Dispatched when user clicks on the "Cancel" Button
        * @type {String}
@@ -146,37 +139,31 @@
        * @var {qx.ui.container.Composite}
        */
       _container: null,
-
       /**
        * The button pane
        * @var {qx.ui.basic.Label}
        */
       _buttons: null,
-
       /**
        * The dialog image
        * @var {qx.ui.basic.Image}
        */
       _image: null,
-
       /**
        * The dialog message
        * @var {qx.ui.basic.Label}
        */
       _message: null,
-
       /**
        * The OK Button
        * @var {qx.ui.form.Button}
        */
       _okButton: null,
-
       /**
        * The cancel button
        * @var {qx.ui.form.Button}
        */
       _cancelButton: null,
-
       /**
        * Create the content of the qxl.dialog.
        * Extending classes must implement this method.
@@ -185,7 +172,6 @@
       _createWidgetContent: function _createWidgetContent(properties) {
         this.error("_createWidgetContent not implemented!");
       },
-
       /**
        * Creates the default container (VBox)
        * @return {qx.ui.container.Composite}
@@ -194,7 +180,6 @@
         this._container = new qx.ui.container.Composite(new qx.ui.layout.VBox(10));
         return this._container;
       },
-
       /**
        * Creates the button pane (HBox)
        * @return {qx.ui.container.Composite}
@@ -202,15 +187,12 @@
       _createButtonPane: function _createButtonPane() {
         var buttons = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
         buttons.getLayout().setAlignX("center");
-
         if (qx.core.Environment.get("module.objectid") === true) {
           buttons.setQxObjectId("buttons");
           this.addOwnedQxObject(buttons);
         }
-
         return buttons;
       },
-
       /**
        * Create an OK button
        * @param noFocus
@@ -227,21 +209,17 @@
         });
         okButton.setAllowStretchX(false);
         okButton.addListener("execute", this._handleOk, this);
-
         if (!noFocus) {
           this.addListener("appear", function () {
             return okButton.focus();
           });
         }
-
         if (qx.core.Environment.get("module.objectid") === true) {
           okButton.setQxObjectId("ok");
           this.getQxObject("buttons").addOwnedQxObject(okButton);
         }
-
         return okButton;
       },
-
       /**
        * Create a cancel button, which is hidden by default and will be shown
        * if allowCancel property is set to true.
@@ -262,15 +240,12 @@
             return value ? "visible" : "excluded";
           }
         });
-
         if (qx.core.Environment.get("module.objectid") === true) {
           cancelButton.setQxObjectId("cancel");
           this.getQxObject("buttons").addOwnedQxObject(cancelButton);
         }
-
         return cancelButton;
       },
-
       /**
        * Called when the 'image' property is set
        * @param value {String} The current value
@@ -279,10 +254,8 @@
        */
       _applyImage: function _applyImage(value, old) {
         this._image.setSource(value);
-
         this._image.setVisibility(value ? "visible" : "excluded");
       },
-
       /**
        * Called when the 'message' property is set
        * @param value {String} The current value
@@ -291,10 +264,8 @@
        */
       _applyMessage: function _applyMessage(value, old) {
         this._message.setValue(value);
-
         this._message.setVisibility(value ? "visible" : "excluded");
       },
-
       /**
        * Returns the widgets that is the container of the dialog
        * @return {qx.ui.core.LayoutItem}
@@ -303,10 +274,8 @@
         if (!this._container) {
           return this._createDialogContainer();
         }
-
         return this._container;
       },
-
       /**
        * Promise interface method, avoids callbacks
        * @return {Promise} A promise that resolves with the result of the dialog
@@ -320,21 +289,17 @@
           }.bind(this));
         }.bind(this));
       },
-
       /**
        * Handle click on ok button. Calls callback with a "true" argument
        */
       _handleOk: function _handleOk() {
         this.hide();
         this.fireEvent("ok");
-
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), true);
         }
-
         this.resetCallback();
       },
-
       /**
        * Handle click on cancel button. Calls callback with
        * an "undefined" argument
@@ -342,14 +307,11 @@
       _handleCancel: function _handleCancel() {
         this.hide();
         this.fireEvent("cancel");
-
         if (this.isAllowCancel() && this.getCallback()) {
           this.getCallback().call(this.getContext());
         }
-
         this.resetCallback();
       },
-
       /**
        * Handles the press on the 'Escape' key
        * @param  e {qx.event.type.KeyInput}
@@ -364,4 +326,4 @@
   qxl.dialog.MDialog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDialog.js.map?dt=1664789615784
+//# sourceMappingURL=MDialog.js.map?dt=1672653525603

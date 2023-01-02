@@ -39,14 +39,13 @@
       "qx.ui.layout.VBox": {
         "construct": true
       },
+      "qx.ui.tree.core.AbstractTreeItem": {},
       "qx.ui.tree.selection.SelectionManager": {
         "require": true
-      },
-      "qx.ui.tree.core.AbstractTreeItem": {}
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -89,7 +88,6 @@
     extend: qx.ui.core.scroll.AbstractScrollArea,
     implement: [qx.ui.core.IMultiSelection, qx.ui.form.IModelSelection, qx.ui.form.IField, qx.ui.form.IForm],
     include: [qx.ui.core.MMultiSelectionHandling, qx.ui.core.MContentPadding, qx.ui.form.MModelSelection, qx.ui.form.MForm],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -97,22 +95,22 @@
     */
     construct: function construct() {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
-      this.__P_445_0 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
+      this.__P_460_0 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
         allowShrinkY: false,
         allowGrowX: true
       });
-      this.getChildControl("pane").add(this.__P_445_0);
+      this.getChildControl("pane").add(this.__P_460_0);
       this.initOpenMode();
       this.initRootOpenClose();
       this.addListener("changeSelection", this._onChangeSelection, this);
       this.addListener("keypress", this._onKeyPress, this);
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * This event is fired after a tree item was added to the tree. The
@@ -120,7 +118,6 @@
        * added item.
        */
       addItem: "qx.event.type.Data",
-
       /**
        * This event is fired after a tree item has been removed from the tree.
        * The {@link qx.event.type.Data#getData} method of the event returns the
@@ -128,12 +125,12 @@
        */
       removeItem: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Control whether tap or double tap should open or close the tapped
@@ -146,7 +143,6 @@
         event: "changeOpenMode",
         themeable: true
       },
-
       /**
        * The root tree item of the tree to display
        */
@@ -157,7 +153,6 @@
         event: "changeRoot",
         apply: "_applyRoot"
       },
-
       /**
        * Hide the root (Tree) node.  This differs from the visibility property in
        * that this property hides *only* the root node, not the node's children.
@@ -167,7 +162,6 @@
         init: false,
         apply: "_applyHideRoot"
       },
-
       /**
        * Whether the Root should have an open/close button.  This may also be
        * used in conjunction with the hideNode property to provide for virtual root
@@ -191,24 +185,21 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_445_0: null,
 
+    members: {
+      __P_460_0: null,
       /** @type {Class} Pointer to the selection manager to use */
       SELECTION_MANAGER: qx.ui.tree.selection.SelectionManager,
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the widget, which contains the root tree item. This widget must
        * have a vertical box layout.
@@ -216,27 +207,22 @@
        * @return {qx.ui.core.Widget} the children container
        */
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_445_0;
+        return this.__P_460_0;
       },
       // property apply
       _applyRoot: function _applyRoot(value, old) {
         var container = this.getChildrenContainer();
-
         if (old && !old.isDisposed()) {
           container.remove(old);
-
           if (old.hasChildren()) {
             container.remove(old.getChildrenContainer());
           }
         }
-
         if (value) {
           container.add(value);
-
           if (value.hasChildren()) {
             container.add(value.getChildrenContainer());
           }
-
           value.setVisibility(this.getHideRoot() ? "excluded" : "visible");
           value.recursiveAddToWidgetQueue();
         }
@@ -244,40 +230,33 @@
       // property apply
       _applyHideRoot: function _applyHideRoot(value, old) {
         var root = this.getRoot();
-
         if (!root) {
           return;
         }
-
         root.setVisibility(value ? "excluded" : "visible");
         root.recursiveAddToWidgetQueue();
       },
       // property apply
       _applyRootOpenClose: function _applyRootOpenClose(value, old) {
         var root = this.getRoot();
-
         if (!root) {
           return;
         }
-
         root.recursiveAddToWidgetQueue();
       },
-
       /**
        * Returns the element, to which the content padding should be applied.
        *
        * @return {qx.ui.core.Widget} The content padding target.
        */
       _getContentPaddingTarget: function _getContentPaddingTarget() {
-        return this.__P_445_0;
+        return this.__P_460_0;
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION MANAGER API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the tree item following the given item in the tree hierarchy.
        *
@@ -292,27 +271,20 @@
         if ((invisible !== false || treeItem.isOpen()) && treeItem.hasChildren()) {
           return treeItem.getChildren()[0];
         }
-
         while (treeItem) {
           var parent = treeItem.getParent();
-
           if (!parent) {
             return null;
           }
-
           var parentChildren = parent.getChildren();
           var index = parentChildren.indexOf(treeItem);
-
           if (index > -1 && index < parentChildren.length - 1) {
             return parentChildren[index + 1];
           }
-
           treeItem = parent;
         }
-
         return null;
       },
-
       /**
        * Get the tree item preceding the given item in the tree hierarchy.
        *
@@ -325,11 +297,9 @@
        */
       getPreviousNodeOf: function getPreviousNodeOf(treeItem, invisible) {
         var parent = treeItem.getParent();
-
         if (!parent) {
           return null;
         }
-
         if (this.getHideRoot()) {
           if (parent == this.getRoot()) {
             if (parent.getChildren()[0] == treeItem) {
@@ -341,24 +311,19 @@
             return null;
           }
         }
-
         var parentChildren = parent.getChildren();
         var index = parentChildren.indexOf(treeItem);
-
         if (index > 0) {
           var folder = parentChildren[index - 1];
-
           while ((invisible !== false || folder.isOpen()) && folder.hasChildren()) {
             var children = folder.getChildren();
             folder = children[children.length - 1];
           }
-
           return folder;
         } else {
           return parent;
         }
       },
-
       /**
        * Get the tree item's next sibling.
        *
@@ -373,18 +338,14 @@
         if (treeItem == this.getRoot()) {
           return null;
         }
-
         var parent = treeItem.getParent();
         var siblings = parent.getChildren();
         var index = siblings.indexOf(treeItem);
-
         if (index < siblings.length - 1) {
           return siblings[index + 1];
         }
-
         return null;
       },
-
       /**
        * Get the tree item's previous sibling.
        *
@@ -399,18 +360,14 @@
         if (treeItem == this.getRoot()) {
           return null;
         }
-
         var parent = treeItem.getParent();
         var siblings = parent.getChildren();
         var index = siblings.indexOf(treeItem);
-
         if (index > 0) {
           return siblings[index - 1];
         }
-
         return null;
       },
-
       /**
        * Returns all children of the tree.
        *
@@ -427,7 +384,6 @@
           return [];
         }
       },
-
       /**
        * Returns the tree's only "external" child, namely the root node.
        *
@@ -440,13 +396,11 @@
           return [];
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         POINTER EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the tree item, which contains the given widget.
        *
@@ -460,14 +414,11 @@
           if (widget == this) {
             return null;
           }
-
           if (widget instanceof qx.ui.tree.core.AbstractTreeItem) {
             return widget;
           }
-
           widget = widget.getLayoutParent();
         }
-
         return null;
       },
       // property apply
@@ -477,14 +428,12 @@
         } else if (old == "dbltap") {
           this.removeListener("dbltap", this._onOpen, this);
         }
-
         if (value == "tap") {
           this.addListener("tap", this._onOpen, this);
         } else if (value == "dbltap") {
           this.addListener("dbltap", this._onOpen, this);
         }
       },
-
       /**
        * Event handler for tap events, which could change a tree item's open
        * state.
@@ -493,15 +442,12 @@
        */
       _onOpen: function _onOpen(e) {
         var treeItem = this.getTreeItem(e.getTarget());
-
         if (!treeItem || !treeItem.isOpenable()) {
           return;
         }
-
         treeItem.setOpen(!treeItem.isOpen());
         e.stopPropagation();
       },
-
       /**
        * Event handler for changeSelection events, which opens all parent folders
        * of the selected folders.
@@ -509,18 +455,17 @@
        * @param e {qx.event.type.Data} The selection data event.
        */
       _onChangeSelection: function _onChangeSelection(e) {
-        var selection = e.getData(); // for every selected folder
-
+        var selection = e.getData();
+        // for every selected folder
         for (var i = 0; i < selection.length; i++) {
-          var folder = selection[i]; // go up all parents and open them
-
+          var folder = selection[i];
+          // go up all parents and open them
           while (folder.getParent() != null) {
             folder = folder.getParent();
             folder.setOpen(true);
           }
         }
       },
-
       /**
        * Event handler for key press events. Open and close the current selected
        * item on key left and right press. Jump to parent on key left if already
@@ -530,7 +475,6 @@
        */
       _onKeyPress: function _onKeyPress(e) {
         var item = this._getLeadItem();
-
         if (item !== null) {
           switch (e.getKeyIdentifier()) {
             case "Left":
@@ -539,38 +483,32 @@
               } else if (item.getParent()) {
                 this.setSelection([item.getParent()]);
               }
-
               break;
-
             case "Right":
               if (item.isOpenable() && !item.isOpen()) {
                 item.setOpen(true);
               }
-
               break;
-
             case "Enter":
             case "Space":
               if (item.isOpenable()) {
                 item.toggleOpen();
               }
-
               break;
           }
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_445_0");
+      this._disposeObjects("__P_460_0");
     }
   });
   qx.ui.tree.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1664789605925
+//# sourceMappingURL=Tree.js.map?dt=1672653516130

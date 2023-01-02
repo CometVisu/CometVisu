@@ -18,11 +18,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Rgb.js 
-   * 
+  /* Rgb.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -47,7 +46,6 @@
   qx.Class.define('cv.ui.structure.pure.Rgb', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
      ******************************************************
      MEMBERS
@@ -58,7 +56,6 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor"><div class="value"></div></div>';
       },
-
       /**
        * Updates the RGB widget by setting the background color
        *
@@ -69,29 +66,24 @@
         if (data === undefined || address === undefined) {
           return;
         }
-
         var valElem = this.getValueElement();
         var value = cv.Transform.decode(this.getAddress()[address], data);
-        var bg = window.getComputedStyle(valElem)['background-color'].replace(/[a-zA-Z()\s]/g, '').split(/,/);
-
+        var styleBg = window.getComputedStyle(valElem)['background-color'];
+        var bg = styleBg.replace(/[a-zA-Z()\s]/g, '').split(/,/);
         if (bg.length !== 3) {
           bg = [0, 0, 0];
         }
-
         switch (this.getAddress()[address].variantInfo) {
           case 'r':
             bg[0] = value;
             break;
-
           case 'g':
             bg[1] = value;
             break;
-
           case 'b':
             bg[2] = value;
             break;
         }
-
         valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
       }
     },
@@ -102,4 +94,4 @@
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1664789570454
+//# sourceMappingURL=Rgb.js.map?dt=1672653478855

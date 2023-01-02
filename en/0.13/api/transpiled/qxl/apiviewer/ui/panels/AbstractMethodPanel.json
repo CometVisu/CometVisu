@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 696
       },
       "end": {
-        "line": 265,
-        "column": 5
+        "line": 352,
+        "column": 3,
+        "index": 10384
       }
     },
     "jsdoc": {}
@@ -23,26 +25,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 15
+        "line": 27,
+        "column": 2,
+        "index": 809
       },
       "end": {
-        "line": 31,
-        "column": 5
+        "line": 29,
+        "column": 3,
+        "index": 865
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "_canShowInherited": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 6
+          "line": 32,
+          "column": 4,
+          "index": 885
         },
         "end": {
-          "line": 37,
-          "column": 7
+          "line": 34,
+          "column": 5,
+          "index": 931
         }
       },
       "type": "function",
@@ -55,12 +60,14 @@
     "getPanelItemObjects": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 6
+          "line": 36,
+          "column": 4,
+          "index": 938
         },
         "end": {
-          "line": 45,
-          "column": 7
+          "line": 42,
+          "column": 5,
+          "index": 1136
         }
       },
       "type": "function",
@@ -73,12 +80,14 @@
     "getItemTitleHtml": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 6
+          "line": 50,
+          "column": 4,
+          "index": 1330
         },
         "end": {
-          "line": 86,
-          "column": 7
+          "line": 90,
+          "column": 5,
+          "index": 2409
         }
       },
       "jsdoc": {
@@ -116,12 +125,14 @@
     "getItemTypeHtml": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 6
+          "line": 98,
+          "column": 4,
+          "index": 2601
         },
         "end": {
-          "line": 106,
-          "column": 7
+          "line": 114,
+          "column": 5,
+          "index": 3024
         }
       },
       "jsdoc": {
@@ -159,12 +170,14 @@
     "getItemTextHtml": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 6
+          "line": 124,
+          "column": 4,
+          "index": 3440
         },
         "end": {
-          "line": 234,
-          "column": 7
+          "line": 324,
+          "column": 5,
+          "index": 9379
         }
       },
       "jsdoc": {
@@ -216,12 +229,14 @@
     "itemHasDetails": {
       "location": {
         "start": {
-          "line": 244,
-          "column": 6
+          "line": 333,
+          "column": 4,
+          "index": 9649
         },
         "end": {
-          "line": 261,
-          "column": 7
+          "line": 350,
+          "column": 5,
+          "index": 10374
         }
       },
       "jsdoc": {
@@ -351,6 +366,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -375,6 +391,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

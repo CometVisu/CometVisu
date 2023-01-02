@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Font.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -14,12 +11,18 @@
     "size",
     "family",
     "bold",
+    "headline",
+    "small",
+    "monospace",
     "theme",
     "simple",
     "Font"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,KAAK,EACL;AACE,iBACA;AACEC,QAAAA,IAAI,EAAG,EADT;AAEEC,QAAAA,MAAM,EAAG,CAAC,OAAD,EAAU,YAAV;AAFX,OAFF;AAOE,cACA;AACED,QAAAA,IAAI,EAAG,EADT;AAEEC,QAAAA,MAAM,EAAG,CAAC,OAAD,EAAU,YAAV,CAFX;AAGEC,QAAAA,IAAI,EAAG;AAHT,OARF;AAcE,kBACA;AACEF,QAAAA,IAAI,EAAG,EADT;AAEEC,QAAAA,MAAM,EAAG,CAAC,YAAD,EAAe,OAAf;AAFX,OAfF;AAoBE,eACA;AACED,QAAAA,IAAI,EAAG,EADT;AAEEC,QAAAA,MAAM,EAAG,CAAC,OAAD,EAAU,YAAV;AAFX,OArBF;AA0BE,mBACA;AACED,QAAAA,IAAI,EAAG,EADT;AAEEC,QAAAA,MAAM,EAAG,CAAE,kBAAF,EAAsB,aAAtB,EAAqC,WAArC;AAFX;AA3BF;AAFF,GADA;AArBAR,EAAAA,EAAE,CAACU,KAAH,CAASC,MAAT,CAAgBC,IAAhB,CAAqBT,aAArB,GAAqCA,aAArC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Font.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Martin Wittemann (martinwittemann)\n\n************************************************************************* */\n\n/**\n * The simple qooxdoo font theme.\n */\nqx.Theme.define(\"qx.theme.simple.Font\",\n{\n  fonts :\n  {\n    \"default\" :\n    {\n      size : 13,\n      family : [\"arial\", \"sans-serif\"]\n    },\n\n    \"bold\" :\n    {\n      size : 13,\n      family : [\"arial\", \"sans-serif\"],\n      bold : true\n    },\n\n    \"headline\" :\n    {\n      size : 24,\n      family : [\"sans-serif\", \"arial\"]\n    },\n\n    \"small\" :\n    {\n      size : 11,\n      family : [\"arial\", \"sans-serif\"]\n    },\n\n    \"monospace\" :\n    {\n      size : 11,\n      family : [ \"DejaVu Sans Mono\", \"Courier New\", \"monospace\" ]\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Martin Wittemann (martinwittemann)\n\n************************************************************************* */\n\n/**\n * The simple qooxdoo font theme.\n */\nqx.Theme.define(\"qx.theme.simple.Font\", {\n  fonts: {\n    default: {\n      size: 13,\n      family: [\"arial\", \"sans-serif\"]\n    },\n\n    bold: {\n      size: 13,\n      family: [\"arial\", \"sans-serif\"],\n      bold: true\n    },\n\n    headline: {\n      size: 24,\n      family: [\"sans-serif\", \"arial\"]\n    },\n\n    small: {\n      size: 11,\n      family: [\"arial\", \"sans-serif\"]\n    },\n\n    monospace: {\n      size: 11,\n      family: [\"DejaVu Sans Mono\", \"Courier New\", \"monospace\"]\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,KAAK,EAAE;MACL,WAAS;QACPC,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,OAAO,EAAE,YAAY;MAChC,CAAC;MAEDC,IAAI,EAAE;QACJF,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,OAAO,EAAE,YAAY,CAAC;QAC/BC,IAAI,EAAE;MACR,CAAC;MAEDC,QAAQ,EAAE;QACRH,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,YAAY,EAAE,OAAO;MAChC,CAAC;MAEDG,KAAK,EAAE;QACLJ,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,OAAO,EAAE,YAAY;MAChC,CAAC;MAEDI,SAAS,EAAE;QACTL,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,kBAAkB,EAAE,aAAa,EAAE,WAAW;MACzD;IACF;EACF,CAAC,CAAC;EAjDFR,EAAE,CAACa,KAAK,CAACC,MAAM,CAACC,IAAI,CAACZ,aAAa,GAAGA,aAAa;AAAC"
 }

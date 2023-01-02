@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,22 +69,19 @@
        */
       getSupport: function getSupport() {
         var name = qx.bom.client.CssAnimation.getName();
-
         if (name != null) {
           return {
-            "name": name,
+            name: name,
             "play-state": qx.bom.client.CssAnimation.getPlayState(),
             "start-event": qx.bom.client.CssAnimation.getAnimationStart(),
             "iteration-event": qx.bom.client.CssAnimation.getAnimationIteration(),
             "end-event": qx.bom.client.CssAnimation.getAnimationEnd(),
             "fill-mode": qx.bom.client.CssAnimation.getFillMode(),
-            "keyframes": qx.bom.client.CssAnimation.getKeyFrames()
+            keyframes: qx.bom.client.CssAnimation.getKeyFrames()
           };
         }
-
         return null;
       },
-
       /**
        * Checks for the 'animation-fill-mode' CSS style.
        * @internal
@@ -95,7 +91,6 @@
       getFillMode: function getFillMode() {
         return qx.bom.Style.getPropertyName("AnimationFillMode");
       },
-
       /**
        * Checks for the 'animation-play-state' CSS style.
        * @internal
@@ -105,7 +100,6 @@
       getPlayState: function getPlayState() {
         return qx.bom.Style.getPropertyName("AnimationPlayState");
       },
-
       /**
        * Checks for the style name used for animations.
        * @internal
@@ -115,7 +109,6 @@
       getName: function getName() {
         return qx.bom.Style.getPropertyName("animation");
       },
-
       /**
        * Checks for the event name of animation start.
        * @internal
@@ -126,17 +119,15 @@
         if (qx.bom.Event.supportsEvent(window, "webkitanimationstart")) {
           return "webkitAnimationStart";
         }
-
         var mapping = {
-          "msAnimation": "MSAnimationStart",
-          "WebkitAnimation": "webkitAnimationStart",
-          "MozAnimation": "animationstart",
-          "OAnimation": "oAnimationStart",
-          "animation": "animationstart"
+          msAnimation: "MSAnimationStart",
+          WebkitAnimation: "webkitAnimationStart",
+          MozAnimation: "animationstart",
+          OAnimation: "oAnimationStart",
+          animation: "animationstart"
         };
         return mapping[this.getName()];
       },
-
       /**
        * Checks for the event name of animation end.
        * @internal
@@ -147,17 +138,15 @@
         if (qx.bom.Event.supportsEvent(window, "webkitanimationiteration")) {
           return "webkitAnimationIteration";
         }
-
         var mapping = {
-          "msAnimation": "MSAnimationIteration",
-          "WebkitAnimation": "webkitAnimationIteration",
-          "MozAnimation": "animationiteration",
-          "OAnimation": "oAnimationIteration",
-          "animation": "animationiteration"
+          msAnimation: "MSAnimationIteration",
+          WebkitAnimation: "webkitAnimationIteration",
+          MozAnimation: "animationiteration",
+          OAnimation: "oAnimationIteration",
+          animation: "animationiteration"
         };
         return mapping[this.getName()];
       },
-
       /**
        * Checks for the event name of animation end.
        * @internal
@@ -168,17 +157,15 @@
         if (qx.bom.Event.supportsEvent(window, "webkitanimationend")) {
           return "webkitAnimationEnd";
         }
-
         var mapping = {
-          "msAnimation": "MSAnimationEnd",
-          "WebkitAnimation": "webkitAnimationEnd",
-          "MozAnimation": "animationend",
-          "OAnimation": "oAnimationEnd",
-          "animation": "animationend"
+          msAnimation: "MSAnimationEnd",
+          WebkitAnimation: "webkitAnimationEnd",
+          MozAnimation: "animationend",
+          OAnimation: "oAnimationEnd",
+          animation: "animationend"
         };
         return mapping[this.getName()];
       },
-
       /**
        * Checks what selector should be used to add keyframes to stylesheets.
        * @internal
@@ -188,27 +175,20 @@
       getKeyFrames: function getKeyFrames() {
         var prefixes = qx.bom.Style.VENDOR_PREFIXES;
         var keyFrames = [];
-
         for (var i = 0; i < prefixes.length; i++) {
           var key = "@" + qx.bom.Style.getCssName(prefixes[i]) + "-keyframes";
           keyFrames.push(key);
         }
-
-        ;
         keyFrames.unshift("@keyframes");
         var sheet = qx.bom.Stylesheet.createElement();
-
         for (var i = 0; i < keyFrames.length; i++) {
           try {
             qx.bom.Stylesheet.addRule(sheet, keyFrames[i] + " name", "");
             return keyFrames[i];
           } catch (e) {}
         }
-
-        ;
         return null;
       },
-
       /**
        * Checks for the requestAnimationFrame method and return the prefixed name.
        * @internal
@@ -224,8 +204,6 @@
             return choices[i];
           }
         }
-
-        ;
         return null;
       }
     },
@@ -237,4 +215,4 @@
   qx.bom.client.CssAnimation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CssAnimation.js.map?dt=1664789577126
+//# sourceMappingURL=CssAnimation.js.map?dt=1672653485503

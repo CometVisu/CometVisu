@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 39,
-        "column": 0
+        "column": 0,
+        "index": 1251
       },
       "end": {
-        "line": 238,
-        "column": 3
+        "line": 263,
+        "column": 3,
+        "index": 8108
       }
     },
     "jsdoc": {
@@ -49,12 +51,14 @@
     "addBlob": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1404
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1758
         }
       },
       "jsdoc": {
@@ -81,12 +85,14 @@
     "_createFile": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1797
         },
         "end": {
           "line": 80,
-          "column": 5
+          "column": 5,
+          "index": 2490
         }
       },
       "jsdoc": {
@@ -114,11 +120,13 @@
       "location": {
         "start": {
           "line": 85,
-          "column": 4
+          "column": 4,
+          "index": 2529
         },
         "end": {
-          "line": 191,
-          "column": 5
+          "line": 213,
+          "column": 5,
+          "index": 7002
         }
       },
       "jsdoc": {
@@ -145,12 +153,14 @@
     "_doCancel": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 218,
+          "column": 4,
+          "index": 7041
         },
         "end": {
-          "line": 202,
-          "column": 5
+          "line": 224,
+          "column": 5,
+          "index": 7248
         }
       },
       "jsdoc": {
@@ -262,6 +272,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -286,6 +297,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -381,12 +393,14 @@
     "__withCredentials": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 228,
+          "column": 4,
+          "index": 7273
         },
         "end": {
-          "line": 206,
-          "column": 28
+          "line": 228,
+          "column": 28,
+          "index": 7297
         }
       },
       "type": "variable",
@@ -395,12 +409,14 @@
     "isSupported": {
       "location": {
         "start": {
-          "line": 213,
-          "column": 4
+          "line": 235,
+          "column": 4,
+          "index": 7423
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 245,
+          "column": 5,
+          "index": 7726
         }
       },
       "jsdoc": {
@@ -425,12 +441,14 @@
     "setWithCredentials": {
       "location": {
         "start": {
-          "line": 226,
-          "column": 4
+          "line": 251,
+          "column": 4,
+          "index": 7845
         },
         "end": {
-          "line": 228,
-          "column": 5
+          "line": 253,
+          "column": 5,
+          "index": 7915
         }
       },
       "jsdoc": {
@@ -447,12 +465,14 @@
     "isWithCredentials": {
       "location": {
         "start": {
-          "line": 234,
-          "column": 4
+          "line": 259,
+          "column": 4,
+          "index": 8034
         },
         "end": {
-          "line": 236,
-          "column": 5
+          "line": 261,
+          "column": 5,
+          "index": 8098
         }
       },
       "jsdoc": {

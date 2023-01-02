@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 47,
-        "column": 0
+        "column": 0,
+        "index": 1252
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 92,
+        "column": 3,
+        "index": 2350
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "delegate": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1528
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1615
         }
       },
       "jsdoc": {
@@ -90,12 +94,14 @@
     "_applyDelegate": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1659
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 66,
+          "column": 5,
+          "index": 1720
         }
       },
       "jsdoc": {},
@@ -108,12 +114,14 @@
     "_createWidget": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1745
         },
         "end": {
-          "line": 81,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 1976
         }
       },
       "jsdoc": {},
@@ -127,12 +135,14 @@
     "updateData": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2001
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2342
         }
       },
       "jsdoc": {},
@@ -232,6 +242,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -256,6 +267,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

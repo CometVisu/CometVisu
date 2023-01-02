@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,7 +55,6 @@
     extend: qx.core.Object,
     implement: [qx.ui.virtual.core.IWidgetCellProvider, qx.ui.tree.provider.IVirtualTreeProvider],
     include: [qx.ui.tree.core.MWidgetController],
-
     /**
      * @param tree {qx.ui.tree.VirtualTree} tree to provide.
      */
@@ -64,16 +62,13 @@
       qx.core.Object.constructor.call(this);
       this._tree = tree;
       this.addListener("changeDelegate", this._onChangeDelegate, this);
-
       this._onChangeDelegate();
     },
     members: {
       /** @type {qx.ui.tree.VirtualTree} tree to provide. */
       _tree: null,
-
       /** @type {qx.ui.virtual.cell.WidgetCell} the used item renderer. */
       _renderer: null,
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
@@ -82,57 +77,42 @@
       // interface implementation
       getCellWidget: function getCellWidget(row, column) {
         var item = this._tree.getLookupTable().getItem(row);
-
         var hasChildren = false;
-
         if (this._tree.isNode(item)) {
           hasChildren = this._tree.hasChildren(item);
         }
-
         var widget = this._renderer.getCellWidget();
-
         widget.setOpen(hasChildren && this._tree.isNodeOpen(item));
-        widget.addListener("changeOpen", this.__P_450_0, this);
+        widget.addListener("changeOpen", this.__P_465_0, this);
         widget.setUserData("cell.childProperty", this.getChildProperty());
         widget.setUserData("cell.showLeafs", this._tree.isShowLeafs());
-
         if (this._tree.getSelection().contains(item)) {
           this._styleSelectabled(widget);
         } else {
           this._styleUnselectabled(widget);
         }
-
         var level = this._tree.getLevel(row);
-
         if (!this._tree.isShowTopLevelOpenCloseIcons()) {
           level -= 1;
         }
-
         widget.setUserData("cell.level", level);
-
         if (!this._tree.isShowTopLevelOpenCloseIcons() && level == -1) {
           widget.setOpenSymbolMode("never");
         } else {
           widget.setOpenSymbolMode("auto");
         }
-
         if (this._tree.getOpenProperty()) {
           widget.setModel(item);
         }
-
         this._bindItem(widget, row);
-
         qx.ui.core.queue.Widget.add(widget);
         return widget;
       },
       // interface implementation
       poolCellWidget: function poolCellWidget(widget) {
-        widget.removeListener("changeOpen", this.__P_450_0, this);
-
+        widget.removeListener("changeOpen", this.__P_465_0, this);
         this._removeBindingsFrom(widget);
-
         this._renderer.pool(widget);
-
         this._onPool(widget);
       },
       // Interface implementation
@@ -142,13 +122,11 @@
       // Interface implementation
       createRenderer: function createRenderer() {
         var createItem = qx.util.Delegate.getMethod(this.getDelegate(), "createItem");
-
         if (createItem == null) {
           createItem = function createItem() {
             return new qx.ui.tree.VirtualTreeItem();
           };
         }
-
         var renderer = new qx.ui.virtual.cell.WidgetCell();
         renderer.setDelegate({
           createWidget: createItem
@@ -158,32 +136,27 @@
       // interface implementation
       styleSelectabled: function styleSelectabled(row) {
         var widget = this._tree._layer.getRenderedCellWidget(row, 0);
-
         this._styleSelectabled(widget);
       },
       // interface implementation
       styleUnselectabled: function styleUnselectabled(row) {
         var widget = this._tree._layer.getRenderedCellWidget(row, 0);
-
         this._styleUnselectabled(widget);
       },
       // interface implementation
       isSelectable: function isSelectable(row) {
         var widget = this._tree._layer.getRenderedCellWidget(row, 0);
-
         if (widget != null) {
           return widget.isEnabled();
         } else {
           return true;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Styles a selected item.
        *
@@ -193,12 +166,10 @@
         if (widget == null) {
           return;
         }
-
         this._renderer.updateStates(widget, {
           selected: 1
         });
       },
-
       /**
        * Styles a not selected item.
        *
@@ -208,10 +179,8 @@
         if (widget == null) {
           return;
         }
-
         this._renderer.updateStates(widget, {});
       },
-
       /**
        * Calls the delegate <code>onPool</code> method when it is used in the
        * {@link #delegate} property.
@@ -220,18 +189,15 @@
        */
       _onPool: function _onPool(item) {
         var onPool = qx.util.Delegate.getMethod(this.getDelegate(), "onPool");
-
         if (onPool != null) {
           onPool(item);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for the created item's.
        *
@@ -239,13 +205,11 @@
        */
       _onItemCreated: function _onItemCreated(event) {
         var configureItem = qx.util.Delegate.getMethod(this.getDelegate(), "configureItem");
-
         if (configureItem != null) {
           var leaf = event.getData();
           configureItem(leaf);
         }
       },
-
       /**
        * Event handler for the change delegate event.
        *
@@ -254,26 +218,20 @@
       _onChangeDelegate: function _onChangeDelegate(event) {
         if (this._renderer != null) {
           this._renderer.dispose();
-
           this.removeBindings();
         }
-
         this._renderer = this.createRenderer();
-
         this._renderer.addListener("created", this._onItemCreated, this);
       },
-
       /**
        * Handler when a node changes opened or closed state.
        *
        * @param event {qx.event.type.Data} The data event.
        */
-      __P_450_0: function __P_450_0(event) {
+      __P_465_0: function __P_465_0(event) {
         var widget = event.getTarget();
         var row = widget.getUserData("cell.row");
-
         var item = this._tree.getLookupTable().getItem(row);
-
         if (event.getData()) {
           this._tree.openNodeWithoutScrolling(item);
         } else {
@@ -283,13 +241,11 @@
     },
     destruct: function destruct() {
       this.removeBindings();
-
       this._renderer.dispose();
-
       this._tree = this._renderer = null;
     }
   });
   qx.ui.tree.provider.WidgetProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetProvider.js.map?dt=1664789606437
+//# sourceMappingURL=WidgetProvider.js.map?dt=1672653516617

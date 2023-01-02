@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,25 +36,21 @@
        * @internal
        */
       MAXSCROLL: null,
-
       /**
        * The minimal measured scroll wheel delta.
        * @internal
        */
       MINSCROLL: null,
-
       /**
        * The normalization factor for the speed calculation.
        * @internal
        */
       FACTOR: 1,
-
       /**
        * Is the Wheel actually a touchpad ?
        * @internal
        */
       IS_TOUCHPAD: false,
-
       /**
        * Get the amount the wheel has been scrolled
        *
@@ -70,7 +65,6 @@
         if (axis === undefined) {
           // default case
           var delta = 0;
-
           if (domEvent.wheelDelta !== undefined) {
             delta = -domEvent.wheelDelta;
           } else if (domEvent.detail !== 0) {
@@ -79,61 +73,54 @@
             // use deltaY as default for firefox
             delta = domEvent.deltaY;
           }
+          return this.__P_513_0(delta);
+        }
 
-          return this.__P_498_0(delta);
-        } // get the x scroll delta
-
-
+        // get the x scroll delta
         if (axis === "x") {
           var x = 0;
-
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaX !== undefined) {
-              x = domEvent.wheelDeltaX ? this.__P_498_0(-domEvent.wheelDeltaX) : 0;
+              x = domEvent.wheelDeltaX ? this.__P_513_0(-domEvent.wheelDeltaX) : 0;
             }
           } else {
             if (domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS && domEvent.detail !== undefined && domEvent.detail > 0) {
-              x = this.__P_498_0(domEvent.detail);
+              x = this.__P_513_0(domEvent.detail);
             } else if (domEvent.deltaX !== undefined) {
-              x = this.__P_498_0(domEvent.deltaX);
+              x = this.__P_513_0(domEvent.deltaX);
             }
           }
-
           return x;
-        } // get the y scroll delta
+        }
 
-
+        // get the y scroll delta
         if (axis === "y") {
           var y = 0;
-
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaY !== undefined) {
-              y = domEvent.wheelDeltaY ? this.__P_498_0(-domEvent.wheelDeltaY) : 0;
+              y = domEvent.wheelDeltaY ? this.__P_513_0(-domEvent.wheelDeltaY) : 0;
             } else {
-              y = this.__P_498_0(-domEvent.wheelDelta);
+              y = this.__P_513_0(-domEvent.wheelDelta);
             }
           } else {
             if (!(domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS) && domEvent.detail !== undefined && domEvent.detail > 0) {
-              y = this.__P_498_0(domEvent.detail);
+              y = this.__P_513_0(domEvent.detail);
             } else if (domEvent.deltaY !== undefined) {
-              y = this.__P_498_0(domEvent.deltaY);
+              y = this.__P_513_0(domEvent.deltaY);
             }
           }
-
           return y;
-        } // default case, return 0
-
-
+        }
+        // default case, return 0
         return 0;
       },
-
       /**
        * Normalizer for the mouse wheel data.
        *
        * @param delta {Number} The mouse delta.
        * @return {Number} The normalized delta value
        */
-      __P_498_0: function __P_498_0(delta) {
+      __P_513_0: function __P_513_0(delta) {
         if (qx.util.Wheel.IS_TOUCHPAD) {
           // Reset normalization values that may be re-computed once a real mouse is plugged.
           qx.util.Wheel.MINSCROLL = null;
@@ -141,56 +128,47 @@
           qx.util.Wheel.FACTOR = 1;
           return delta;
         }
-
         var absDelta = Math.abs(delta);
-
         if (absDelta === 0) {
           return 0;
-        } // store the min value
+        }
 
-
+        // store the min value
         if (qx.util.Wheel.MINSCROLL == null || qx.util.Wheel.MINSCROLL > absDelta) {
           qx.util.Wheel.MINSCROLL = absDelta;
+          this.__P_513_1();
+        }
 
-          this.__P_498_1();
-        } // store the max value
-
-
+        // store the max value
         if (qx.util.Wheel.MAXSCROLL == null || qx.util.Wheel.MAXSCROLL < absDelta) {
           qx.util.Wheel.MAXSCROLL = absDelta;
+          this.__P_513_1();
+        }
 
-          this.__P_498_1();
-        } // special case for systems not speeding up
-
-
+        // special case for systems not speeding up
         if (qx.util.Wheel.MAXSCROLL === absDelta && qx.util.Wheel.MINSCROLL === absDelta) {
           return 2 * (delta / absDelta);
         }
-
         var range = qx.util.Wheel.MAXSCROLL - qx.util.Wheel.MINSCROLL;
-        var ret = delta / range * Math.log(range) * qx.util.Wheel.FACTOR; // return at least 1 or -1
+        var ret = delta / range * Math.log(range) * qx.util.Wheel.FACTOR;
 
+        // return at least 1 or -1
         return ret < 0 ? Math.min(ret, -1) : Math.max(ret, 1);
       },
-
       /**
        * Recalculates the factor with which the calculated delta is normalized.
        */
-      __P_498_1: function __P_498_1() {
+      __P_513_1: function __P_513_1() {
         var max = qx.util.Wheel.MAXSCROLL || 0;
         var min = qx.util.Wheel.MINSCROLL || max;
-
         if (max <= min) {
           return;
         }
-
         var range = max - min;
         var maxRet = max / range * Math.log(range);
-
         if (maxRet == 0) {
           maxRet = 1;
         }
-
         qx.util.Wheel.FACTOR = 6 / maxRet;
       }
     }
@@ -198,4 +176,4 @@
   qx.util.Wheel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Wheel.js.map?dt=1664789610203
+//# sourceMappingURL=Wheel.js.map?dt=1672653520534

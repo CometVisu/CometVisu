@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -29,6 +28,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.CheckBox", {
     statics: {
       register: function register() {
@@ -48,4 +48,4 @@
   qxl.dialog.formElement.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1664789616902
+//# sourceMappingURL=CheckBox.js.map?dt=1672653526273

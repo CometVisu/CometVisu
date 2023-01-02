@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,20 +41,18 @@
    */
   qx.Class.define("qx.bom.Font", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param size {String?} The font size (Unit: pixel)
      * @param family {String[]?} A sorted list of font families
      */
     construct: function construct(size, family) {
       qx.core.Object.constructor.call(this);
-      this.__P_98_0 = {
+      this.__P_100_0 = {
         fontFamily: "",
         fontSize: null,
         fontWeight: null,
@@ -63,23 +60,22 @@
         textDecoration: null,
         lineHeight: null,
         color: null,
-        textShadow: null
+        textShadow: null,
+        letterSpacing: null
       };
-
       if (size !== undefined) {
         this.setSize(size);
       }
-
       if (family !== undefined) {
         this.setFamily(family);
       }
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Converts a typical CSS font definition string to an font object
@@ -94,41 +90,32 @@
         var parts = str.split(/\s+/);
         var name = [];
         var part;
-
         for (var i = 0; i < parts.length; i++) {
           switch (part = parts[i]) {
             case "bold":
               font.setBold(true);
               break;
-
             case "italic":
               font.setItalic(true);
               break;
-
             case "underline":
               font.setDecoration("underline");
               break;
-
             default:
               var temp = parseInt(part, 10);
-
               if (temp == part || qx.lang.String.contains(part, "px")) {
                 font.setSize(temp);
               } else {
                 name.push(part);
               }
-
               break;
           }
         }
-
         if (name.length > 0) {
           font.setFamily(name);
         }
-
         return font;
       },
-
       /**
        * Converts a map property definition into a font object.
        *
@@ -140,9 +127,8 @@
         font.set(config);
         return font;
       },
-
       /** @type {Map} Default (empty) CSS styles */
-      __P_98_1: {
+      __P_100_1: {
         fontFamily: "",
         fontSize: "",
         fontWeight: "",
@@ -150,9 +136,9 @@
         textDecoration: "",
         lineHeight: 1.2,
         color: "",
-        textShadow: ""
+        textShadow: "",
+        letterSpacing: ""
       },
-
       /**
        * Returns a map of all properties in empty state.
        *
@@ -162,15 +148,15 @@
        * @return {Map} Default styles
        */
       getDefaultStyles: function getDefaultStyles() {
-        return this.__P_98_1;
+        return this.__P_100_1;
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The font size (Unit: pixel) */
       size: {
@@ -178,7 +164,6 @@
         nullable: true,
         apply: "_applySize"
       },
-
       /**
        * The line height as scaling factor of the default line height. A value
        * of 1 corresponds to the default line height
@@ -188,7 +173,6 @@
         nullable: true,
         apply: "_applyLineHeight"
       },
-
       /**
        * Characters that are used to test if the font has loaded properly. These
        * default to "WEei" in `qx.bom.webfont.Validator` and can be overridden
@@ -200,7 +184,6 @@
         init: null,
         nullable: true
       },
-
       /**
        * Version identifier that is appended to the URL to be loaded. Fonts
        * that are defined thru themes may be managed by the resource manager.
@@ -219,75 +202,73 @@
         init: null,
         nullable: true
       },
-
       /** A sorted list of font families */
       family: {
         check: "Array",
         nullable: true,
         apply: "_applyFamily"
       },
-
       /** Whether the font is bold */
       bold: {
         check: "Boolean",
         nullable: true,
         apply: "_applyBold"
       },
-
       /** Whether the font is italic */
       italic: {
         check: "Boolean",
         nullable: true,
         apply: "_applyItalic"
       },
-
       /** The text decoration for this font */
       decoration: {
         check: ["underline", "line-through", "overline"],
         nullable: true,
         apply: "_applyDecoration"
       },
-
       /** The text color for this font */
       color: {
         check: "Color",
         nullable: true,
         apply: "_applyColor"
       },
-
       /** The text shadow for this font */
       textShadow: {
         nullable: true,
         check: "String",
         apply: "_applyTextShadow"
       },
-
       /** The weight property of the font as opposed to just setting it to 'bold' by setting the bold property to true */
       weight: {
         nullable: true,
         check: "String",
         apply: "_applyWeight"
+      },
+      /** The Letter Spacing (Unit: pixel) */
+      letterSpacing: {
+        check: "Integer",
+        nullable: true,
+        apply: "_applyLetterSpacing"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_98_0: null,
+      __P_100_0: null,
       // property apply
       _applySize: function _applySize(value, old) {
-        this.__P_98_0.fontSize = value === null ? null : value + "px";
+        this.__P_100_0.fontSize = value === null ? null : value + "px";
       },
       _applyLineHeight: function _applyLineHeight(value, old) {
-        this.__P_98_0.lineHeight = value === null ? null : value;
+        this.__P_100_0.lineHeight = value === null ? null : value;
       },
       // property apply
       _applyFamily: function _applyFamily(value, old) {
         var family = "";
-
         for (var i = 0, l = value.length; i < l; i++) {
           // in FireFox 2 and WebKit fonts like 'serif' or 'sans-serif' must
           // not be quoted!
@@ -296,46 +277,47 @@
           } else {
             family += value[i];
           }
-
           if (i !== l - 1) {
             family += ",";
           }
-        } // font family is a special case. In order to render the labels correctly
+        }
+
+        // font family is a special case. In order to render the labels correctly
         // we have to return a font family - even if it's an empty string to prevent
         // the browser from applying the element style
-
-
-        this.__P_98_0.fontFamily = family;
+        this.__P_100_0.fontFamily = family;
       },
       // property apply
       _applyBold: function _applyBold(value, old) {
-        this.__P_98_0.fontWeight = value == null ? null : value ? "bold" : "normal";
+        this.__P_100_0.fontWeight = value == null ? null : value ? "bold" : "normal";
       },
       // property apply
       _applyItalic: function _applyItalic(value, old) {
-        this.__P_98_0.fontStyle = value == null ? null : value ? "italic" : "normal";
+        this.__P_100_0.fontStyle = value == null ? null : value ? "italic" : "normal";
       },
       // property apply
       _applyDecoration: function _applyDecoration(value, old) {
-        this.__P_98_0.textDecoration = value == null ? null : value;
+        this.__P_100_0.textDecoration = value == null ? null : value;
       },
       // property apply
       _applyColor: function _applyColor(value, old) {
-        this.__P_98_0.color = null;
-
+        this.__P_100_0.color = null;
         if (value) {
-          this.__P_98_0.color = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_100_0.color = qx.theme.manager.Color.getInstance().resolve(value);
         }
       },
       // property apply
       _applyWeight: function _applyWeight(value, old) {
-        this.__P_98_0.fontWeight = value;
+        this.__P_100_0.fontWeight = value;
       },
       // property apply
       _applyTextShadow: function _applyTextShadow(value, old) {
-        this.__P_98_0.textShadow = value == null ? null : value;
+        this.__P_100_0.textShadow = value == null ? null : value;
       },
-
+      // property apply
+      _applyLetterSpacing: function _applyLetterSpacing(value, old) {
+        this.__P_100_0.letterSpacing = value === null ? null : value + "px";
+      },
       /**
        * Get a map of all CSS styles, which will be applied to the widget. Only
        * the styles which are set are returned.
@@ -345,11 +327,11 @@
        * widget.
        */
       getStyles: function getStyles() {
-        return this.__P_98_0;
+        return this.__P_100_0;
       }
     }
   });
   qx.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1664789575432
+//# sourceMappingURL=Font.js.map?dt=1672653484019

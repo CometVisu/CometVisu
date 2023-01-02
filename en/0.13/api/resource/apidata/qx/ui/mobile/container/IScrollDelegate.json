@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 913
       },
       "end": {
-        "line": 39,
-        "column": 3
+        "line": 37,
+        "column": 3,
+        "index": 1228
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getScrollOffset": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1200
         },
         "end": {
-          "line": 37,
-          "column": 34
+          "line": 35,
+          "column": 24,
+          "index": 1220
         }
       },
       "jsdoc": {

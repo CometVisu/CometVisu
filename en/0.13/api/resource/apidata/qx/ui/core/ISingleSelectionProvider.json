@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 570
       },
       "end": {
-        "line": 48,
-        "column": 3
+        "line": 46,
+        "column": 3,
+        "index": 1237
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "getItems": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 984
         },
         "end": {
-          "line": 38,
-          "column": 27
+          "line": 36,
+          "column": 17,
+          "index": 997
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "isItemSelectable": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1204
         },
         "end": {
-          "line": 46,
-          "column": 40
+          "line": 44,
+          "column": 29,
+          "index": 1229
         }
       },
       "jsdoc": {

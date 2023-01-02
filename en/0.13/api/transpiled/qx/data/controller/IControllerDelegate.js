@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
        * @param item {var} Item to modify.
        */
       configureItem: function configureItem(item) {},
-
       /**
        * Filter checks the current data and returns a boolean if the data should
        * appear in the filtered data set or not.
@@ -59,7 +57,6 @@
        * @return {Boolean} True, if the data passes the filter, false otherwise.
        */
       filter: function filter(data) {},
-
       /**
        * Creates an item which will be added to the target as child. Be sure to
        * implement the {@link #bindItem} function as well to get the needed
@@ -68,7 +65,6 @@
        * @return {qx.ui.core.Widget} A new created widget.
        */
       createItem: function createItem() {},
-
       /**
        * Sets up the binding for the given item and index.
        *
@@ -88,4 +84,4 @@
   qx.data.controller.IControllerDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IControllerDelegate.js.map?dt=1664789581101
+//# sourceMappingURL=IControllerDelegate.js.map?dt=1672653489404

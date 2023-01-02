@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -109,14 +108,14 @@
        * @return {Boolean} true when containing document is in quirks mode
        */
       isQuirksMode: qx.core.Environment.select("engine.name", {
-        "mshtml": function mshtml(win) {
+        mshtml: function mshtml(win) {
           if (qx.core.Environment.get("engine.version") >= 8) {
             return (win || window).document.documentMode === 5;
           } else {
             return (win || window).document.compatMode !== "CSS1Compat";
           }
         },
-        "webkit": function webkit(win) {
+        webkit: function webkit(win) {
           if (document.compatMode === undefined) {
             var el = (win || window).document.createElement("div");
             el.style.cssText = "position:absolute;width:0;height:0;width:1";
@@ -129,7 +128,6 @@
           return (win || window).document.compatMode !== "CSS1Compat";
         }
       }),
-
       /**
        * Whether the document is in standard mode (e.g. XHTML, HTML4 Strict or doctype defined)
        *
@@ -139,7 +137,6 @@
       isStandardMode: function isStandardMode(win) {
         return !this.isQuirksMode(win);
       },
-
       /**
        * Returns the width of the document.
        *
@@ -172,7 +169,6 @@
         var scroll = this.isStandardMode(win) ? doc.documentElement.scrollWidth : doc.body.scrollWidth;
         return Math.max(scroll, view);
       },
-
       /**
        * Returns the height of the document.
        *
@@ -210,4 +206,4 @@
   qx.bom.Document.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Document.js.map?dt=1664789575198
+//# sourceMappingURL=Document.js.map?dt=1672653483867

@@ -14,11 +14,13 @@
     "location": {
       "start": {
         "line": 43,
-        "column": 0
+        "column": 0,
+        "index": 1088
       },
       "end": {
-        "line": 186,
-        "column": 3
+        "line": 165,
+        "column": 3,
+        "index": 4128
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 58,
-        "column": 14
+        "line": 57,
+        "column": 2,
+        "index": 1510
       },
       "end": {
-        "line": 62,
-        "column": 3
+        "line": 60,
+        "column": 3,
+        "index": 1593
       }
     },
     "jsdoc": {
@@ -66,12 +70,14 @@
     "changeValue": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1860
         },
         "end": {
-          "line": 75,
-          "column": 38
+          "line": 71,
+          "column": 37,
+          "index": 1893
         }
       },
       "jsdoc": {
@@ -106,12 +112,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2124
         },
         "end": {
-          "line": 91,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2188
         }
       },
       "jsdoc": {},
@@ -128,12 +136,14 @@
     "group": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2296
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2404
         }
       },
       "jsdoc": {
@@ -213,7 +223,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -225,12 +235,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -257,12 +267,14 @@
     "_state": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2428
         },
         "end": {
-          "line": 106,
-          "column": 17
+          "line": 95,
+          "column": 16,
+          "index": 2440
         }
       },
       "type": "variable",
@@ -271,12 +283,14 @@
     "_getTagName": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2465
         },
         "end": {
-          "line": 112,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2507
         }
       },
       "jsdoc": {},
@@ -291,12 +305,14 @@
     "_getType": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2532
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 105,
+          "column": 5,
+          "index": 2569
         }
       },
       "jsdoc": {},
@@ -310,12 +326,14 @@
     "_onTap": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 2630
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 2742
         }
       },
       "jsdoc": {
@@ -332,12 +350,14 @@
     "_applyGroup": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3054
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 3189
         }
       },
       "jsdoc": {
@@ -373,12 +393,14 @@
     "_setValue": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 3406
         },
         "end": {
-          "line": 163,
-          "column": 5
+          "line": 145,
+          "column": 5,
+          "index": 3585
         }
       },
       "jsdoc": {
@@ -404,12 +426,14 @@
     "_getValue": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 3793
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 3838
         }
       },
       "jsdoc": {
@@ -1372,6 +1396,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1396,6 +1421,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -2480,12 +2506,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 182,
-        "column": 13
+        "line": 162,
+        "column": 2,
+        "index": 4034
       },
       "end": {
-        "line": 185,
-        "column": 3
+        "line": 164,
+        "column": 3,
+        "index": 4124
       }
     },
     "jsdoc": {}

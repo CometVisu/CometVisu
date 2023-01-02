@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 911
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 40,
+        "column": 3,
+        "index": 1353
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1312
         },
         "end": {
-          "line": 39,
-          "column": 47
+          "line": 38,
+          "column": 37,
+          "index": 1345
         }
       },
       "jsdoc": {

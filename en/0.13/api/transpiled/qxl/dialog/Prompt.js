@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -60,7 +59,6 @@
         nullable: true,
         event: "changeValue"
       },
-
       /**
        * A placeholder text
        */
@@ -69,7 +67,6 @@
         nullable: true,
         apply: "_applyPlaceholder"
       },
-
       /**
        * A regular expression used to determine valid input
        */
@@ -78,7 +75,6 @@
         nullable: true,
         apply: "_applyFilter"
       },
-
       /**
        * The maximum length of the input
        */
@@ -90,7 +86,6 @@
     },
     members: {
       _textField: null,
-
       /**
        * Create the main content of the widget
        */
@@ -102,25 +97,18 @@
         hbox.setLayout(new qx.ui.layout.HBox(10));
         container.add(hbox);
         this._message = new qx.ui.basic.Label();
-
         this._message.setRich(true);
-
         this._message.setWidth(200);
-
         this._message.setAllowStretchX(true);
-
         hbox.add(this._message, {
           flex: 1
         });
         this._textField = new qx.ui.form.TextField();
         this.bind("value", this._textField, "value");
-
         this._textField.bind("value", this, "value");
-
         this._textField.addListener("appear", function (e) {
           qx.lang.Function.delay(this.focus, 1, this);
         }, this._textField);
-
         this._textField.addListener("keyup", function (e) {
           if (e.getKeyCode() === 13) {
             this._handleOk();
@@ -128,33 +116,26 @@
             this._handleCancel();
           }
         }, this);
-
         container.add(this._textField);
-
         this._textField.addListener("keypress", function (e) {
           if (e.getKeyIdentifier().toLowerCase() === "enter") {
             this.hide();
             this.fireEvent("ok");
-
             if (this.getCallback()) {
               this.getCallback().call(this.getContext(), this._textField.getValue());
             }
           }
         }, this);
-
         var buttonPane = this._createButtonPane();
-
         buttonPane.add(this._createOkButton());
         buttonPane.add(this._createCancelButton());
-        container.add(buttonPane); // object id
-
+        container.add(buttonPane);
+        // object id
         if (qx.core.Environment.get("module.objectid") === true) {
           this._textField.setQxObjectId("text");
-
           this.addOwnedQxObject(this._textField);
         }
       },
-
       /**
        * Applies the 'placeholder' property
        * @param value
@@ -163,7 +144,6 @@
       _applyPlaceholder: function _applyPlaceholder(value, old) {
         this._textField.setPlaceholder(value);
       },
-
       /**
        * Applies the 'filter' property
        * @param value
@@ -172,7 +152,6 @@
       _applyFilter: function _applyFilter(value, old) {
         this._textField.setFilter(value);
       },
-
       /**
        * Applies the 'maxLength' propery
        * @param value
@@ -181,13 +160,11 @@
       _applyMaxLength: function _applyMaxLength(value, old) {
         this._textField.setMaxLength(value);
       },
-
       /**
        * Handle click on the OK button
        */
       _handleOk: function _handleOk() {
         this.hide();
-
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), this.getValue());
         }
@@ -197,4 +174,4 @@
   qxl.dialog.Prompt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prompt.js.map?dt=1664789613471
+//# sourceMappingURL=Prompt.js.map?dt=1672653523435

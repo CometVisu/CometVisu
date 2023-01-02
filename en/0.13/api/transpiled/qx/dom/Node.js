@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +35,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /*
       ---------------------------------------------------------------------------
@@ -71,13 +71,11 @@
       DOCUMENT_TYPE: 10,
       DOCUMENT_FRAGMENT: 11,
       NOTATION: 12,
-
       /*
       ---------------------------------------------------------------------------
         DOCUMENT ACCESS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the owner document of the given node
        *
@@ -85,11 +83,11 @@
        * @return {Document|null} The document of the given DOM node
        */
       getDocument: function getDocument(node) {
-        return node.nodeType === this.DOCUMENT ? node : // is document already
-        node.ownerDocument || // is DOM node
+        return node.nodeType === this.DOCUMENT ? node // is document already
+        : node.ownerDocument ||
+        // is DOM node
         node.document; // is window
       },
-
       /**
        * Returns the DOM2 <code>defaultView</code> (window).
        *
@@ -100,17 +98,16 @@
         // is a window already
         if (node.nodeType == null) {
           return node;
-        } // jump to document
+        }
 
-
+        // jump to document
         if (node.nodeType !== this.DOCUMENT) {
           node = node.ownerDocument;
-        } // jump to window
+        }
 
-
+        // jump to window
         return node.defaultView || node.parentWindow;
       },
-
       /**
        * Returns the document element. (Logical root node)
        *
@@ -124,7 +121,6 @@
       getDocumentElement: function getDocumentElement(node) {
         return this.getDocument(node).documentElement;
       },
-
       /**
        * Returns the body element. (Visual root node)
        *
@@ -137,13 +133,11 @@
       getBodyElement: function getBodyElement(node) {
         return this.getDocument(node).body;
       },
-
       /*
       ---------------------------------------------------------------------------
         TYPE TESTS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Whether the given object is a DOM node
        *
@@ -153,7 +147,6 @@
       isNode: function isNode(node) {
         return !!(node && node.nodeType != null);
       },
-
       /**
        * Whether the given object is a DOM element node
        *
@@ -163,7 +156,6 @@
       isElement: function isElement(node) {
         return !!(node && node.nodeType === this.ELEMENT);
       },
-
       /**
        * Whether the given object is a DOM document node
        *
@@ -173,7 +165,6 @@
       isDocument: function isDocument(node) {
         return !!(node && node.nodeType === this.DOCUMENT);
       },
-
       /**
        * Whether the given object is a DOM document fragment node
        *
@@ -183,7 +174,6 @@
       isDocumentFragment: function isDocumentFragment(node) {
         return !!(node && node.nodeType === this.DOCUMENT_FRAGMENT);
       },
-
       /**
        * Whether the given object is a DOM text node
        *
@@ -193,7 +183,6 @@
       isText: function isText(node) {
         return !!(node && node.nodeType === this.TEXT);
       },
-
       /**
        * Check whether the given object is a browser window object.
        *
@@ -203,7 +192,6 @@
       isWindow: function isWindow(obj) {
         return !!(obj && obj.history && obj.location && obj.document);
       },
-
       /**
        * Whether the node has the given node name
        *
@@ -215,16 +203,13 @@
         if (!nodeName || !node || !node.nodeName) {
           return false;
         }
-
         return nodeName.toLowerCase() == qx.dom.Node.getName(node);
       },
-
       /*
       ---------------------------------------------------------------------------
         UTILITIES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the node name as lower case string
        *
@@ -235,10 +220,8 @@
         if (!node || !node.nodeName) {
           return null;
         }
-
         return node.nodeName.toLowerCase();
       },
-
       /**
        * Returns the text content of an node where the node may be of node type
        * NODE_ELEMENT, NODE_ATTRIBUTE, NODE_TEXT or NODE_CDATA
@@ -252,33 +235,25 @@
         if (!node || !node.nodeType) {
           return null;
         }
-
         switch (node.nodeType) {
           case 1:
             // NODE_ELEMENT
             var i,
-                a = [],
-                nodes = node.childNodes,
-                length = nodes.length;
-
+              a = [],
+              nodes = node.childNodes,
+              length = nodes.length;
             for (i = 0; i < length; i++) {
               a[i] = this.getText(nodes[i]);
             }
-
             return a.join("");
-
           case 2: // NODE_ATTRIBUTE
-
           case 3: // NODE_TEXT
-
           case 4:
             // CDATA
             return node.nodeValue;
         }
-
         return null;
       },
-
       /**
        * Checks if the given node is a block node
        *
@@ -289,7 +264,6 @@
         if (!qx.dom.Node.isElement(node)) {
           return false;
         }
-
         node = qx.dom.Node.getName(node);
         return /^(body|form|textarea|fieldset|ul|ol|dl|dt|dd|li|div|hr|p|h[1-6]|quote|pre|table|thead|tbody|tfoot|tr|td|th|iframe|address|blockquote)$/.test(node);
       }
@@ -298,4 +272,4 @@
   qx.dom.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1664789583539
+//# sourceMappingURL=Node.js.map?dt=1672653494166

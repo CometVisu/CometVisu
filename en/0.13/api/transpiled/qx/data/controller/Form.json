@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 45,
-        "column": 0
+        "column": 0,
+        "index": 1403
       },
       "end": {
-        "line": 391,
-        "column": 3
+        "line": 403,
+        "column": 3,
+        "index": 12737
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 60,
-        "column": 14
+        "line": 59,
+        "column": 2,
+        "index": 2056
       },
       "end": {
-        "line": 74,
-        "column": 3
+        "line": 72,
+        "column": 3,
+        "index": 2304
       }
     },
     "jsdoc": {
@@ -84,12 +88,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2407
         },
         "end": {
-          "line": 87,
-          "column": 5
+          "line": 82,
+          "column": 5,
+          "index": 2554
         }
       },
       "jsdoc": {
@@ -111,12 +117,14 @@
     "target": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 2618
         },
         "end": {
-          "line": 99,
-          "column": 5
+          "line": 92,
+          "column": 5,
+          "index": 2787
         }
       },
       "jsdoc": {
@@ -172,12 +180,14 @@
     "__objectController": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2811
         },
         "end": {
-          "line": 105,
-          "column": 29
+          "line": 96,
+          "column": 28,
+          "index": 2835
         }
       },
       "type": "variable",
@@ -186,12 +196,14 @@
     "__bindingOptions": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2841
         },
         "end": {
-          "line": 106,
-          "column": 27
+          "line": 97,
+          "column": 26,
+          "index": 2863
         }
       },
       "type": "variable",
@@ -200,12 +212,14 @@
     "addBindingOptions": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3675
         },
         "end": {
-          "line": 144,
-          "column": 5
+          "line": 139,
+          "column": 5,
+          "index": 4464
         }
       },
       "jsdoc": {
@@ -245,12 +259,14 @@
     "createModel": {
       "location": {
         "start": {
-          "line": 157,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4955
         },
         "end": {
-          "line": 202,
-          "column": 5
+          "line": 196,
+          "column": 5,
+          "index": 6641
         }
       },
       "jsdoc": {
@@ -284,19 +300,21 @@
     "updateModel": {
       "location": {
         "start": {
-          "line": 212,
-          "column": 4
+          "line": 205,
+          "column": 4,
+          "index": 7006
         },
         "end": {
-          "line": 231,
-          "column": 5
+          "line": 229,
+          "column": 5,
+          "index": 7711
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Responsible for syncing the data from entered in the form to the model.\n Please keep in mind that this method only works if you create the form\n with <code>selfUpdate</code> set to true. Otherwise, this method will\n do nothing because updates will be synced automatically on every\n change.</p>"
+            "body": "<p>Responsible for syncing the data from entered in the form to the model.\n Please keep in mind that this method only works if you create the form\n controller with <code>selfUpdate</code> parameter set to true. Otherwise,\n this method will do nothing because updates will be synced automatically\n on every change.</p>"
           }
         ]
       },
@@ -306,12 +324,14 @@
     "_applyTarget": {
       "location": {
         "start": {
-          "line": 235,
-          "column": 4
+          "line": 232,
+          "column": 4,
+          "index": 7738
         },
         "end": {
-          "line": 250,
-          "column": 5
+          "line": 247,
+          "column": 5,
+          "index": 8104
         }
       },
       "jsdoc": {},
@@ -324,12 +344,14 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 254,
-          "column": 4
+          "line": 250,
+          "column": 4,
+          "index": 8131
         },
         "end": {
-          "line": 291,
-          "column": 5
+          "line": 286,
+          "column": 5,
+          "index": 9386
         }
       },
       "jsdoc": {},
@@ -342,12 +364,14 @@
     "__setUpBinding": {
       "location": {
         "start": {
-          "line": 299,
-          "column": 4
+          "line": 293,
+          "column": 4,
+          "index": 9564
         },
         "end": {
-          "line": 333,
-          "column": 5
+          "line": 347,
+          "column": 5,
+          "index": 11109
         }
       },
       "jsdoc": {
@@ -364,12 +388,14 @@
     "__tearDownBinding": {
       "location": {
         "start": {
-          "line": 342,
-          "column": 4
+          "line": 355,
+          "column": 4,
+          "index": 11331
         },
         "end": {
-          "line": 358,
-          "column": 5
+          "line": 372,
+          "column": 5,
+          "index": 11856
         }
       },
       "jsdoc": {
@@ -395,12 +421,14 @@
     "__isModelSelectable": {
       "location": {
         "start": {
-          "line": 370,
-          "column": 4
+          "line": 383,
+          "column": 4,
+          "index": 12145
         },
         "end": {
-          "line": 373,
-          "column": 5
+          "line": 388,
+          "column": 5,
+          "index": 12358
         }
       },
       "jsdoc": {
@@ -519,6 +547,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -543,6 +572,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -703,12 +733,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 385,
-        "column": 14
+        "line": 397,
+        "column": 2,
+        "index": 12558
       },
       "end": {
-        "line": 390,
-        "column": 4
+        "line": 402,
+        "column": 3,
+        "index": 12733
       }
     },
     "jsdoc": {}

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,15 +29,14 @@
   /**
    * A dummy class to trigger the compiler to copy the MaterialIcons font files
    */
-
   /**
-   * @asset(qx/iconfont/MaterialIcons/materialicons-v70.ttf)
-   * @asset(qx/iconfont/MaterialIcons/materialicons-v70.woff2)
-   * @asset(qx/iconfont/MaterialIcons/materialicons-v70.woff)
-   * @asset(qx/iconfont/MaterialIcons/materialicons-v70.eot)
+   * @asset(qx/iconfont/MaterialIcons/materialicons-v126.ttf)
+   * @asset(qx/iconfont/MaterialIcons/materialicons-v126.woff2)
+   * @asset(qx/iconfont/MaterialIcons/materialicons-v126.woff)
+   * @asset(qx/iconfont/MaterialIcons/materialicons-v126.eot)
    */
   qx.Class.define("qx.theme.iconfont.LoadMaterialIcons", {});
   qx.theme.iconfont.LoadMaterialIcons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIcons.js.map?dt=1664789590893
+//# sourceMappingURL=LoadMaterialIcons.js.map?dt=1672653502396

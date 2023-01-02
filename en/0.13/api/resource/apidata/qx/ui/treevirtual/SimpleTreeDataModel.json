@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 88,
-        "column": 0
+        "column": 0,
+        "index": 3384
       },
       "end": {
-        "line": 1231,
-        "column": 3
+        "line": 1128,
+        "column": 3,
+        "index": 35815
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 101,
-        "column": 14
+        "line": 99,
+        "column": 2,
+        "index": 3718
       },
       "end": {
-        "line": 122,
-        "column": 3
+        "line": 119,
+        "column": 3,
+        "index": 4406
       }
     },
     "jsdoc": {}
@@ -46,12 +50,14 @@
     "filter": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 4773
         },
         "end": {
-          "line": 139,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 4863
         }
       },
       "jsdoc": {
@@ -106,12 +112,14 @@
     "__tree": {
       "location": {
         "start": {
-          "line": 152,
-          "column": 4
+          "line": 143,
+          "column": 4,
+          "index": 5071
         },
         "end": {
-          "line": 152,
-          "column": 27
+          "line": 143,
+          "column": 16,
+          "index": 5083
         }
       },
       "type": "variable",
@@ -120,12 +128,14 @@
     "__editableColArr": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 144,
+          "column": 4,
+          "index": 5089
         },
         "end": {
-          "line": 153,
-          "column": 27
+          "line": 144,
+          "column": 26,
+          "index": 5111
         }
       },
       "type": "variable",
@@ -134,12 +144,14 @@
     "__tempTreeData": {
       "location": {
         "start": {
-          "line": 154,
-          "column": 4
+          "line": 145,
+          "column": 4,
+          "index": 5117
         },
         "end": {
-          "line": 154,
-          "column": 25
+          "line": 145,
+          "column": 24,
+          "index": 5137
         }
       },
       "type": "variable",
@@ -148,12 +160,14 @@
     "__recalculateLastChildFlags": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 5143
         },
         "end": {
-          "line": 155,
-          "column": 38
+          "line": 146,
+          "column": 37,
+          "index": 5176
         }
       },
       "type": "variable",
@@ -162,12 +176,14 @@
     "_rowArr": {
       "location": {
         "start": {
-          "line": 158,
-          "column": 4
+          "line": 149,
+          "column": 4,
+          "index": 5238
         },
         "end": {
-          "line": 158,
-          "column": 18
+          "line": 149,
+          "column": 17,
+          "index": 5251
         }
       },
       "jsdoc": {
@@ -184,12 +200,14 @@
     "_nodeArr": {
       "location": {
         "start": {
-          "line": 161,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 5306
         },
         "end": {
-          "line": 161,
-          "column": 19
+          "line": 152,
+          "column": 18,
+          "index": 5320
         }
       },
       "jsdoc": {
@@ -206,12 +224,14 @@
     "_nodeRowMap": {
       "location": {
         "start": {
-          "line": 168,
-          "column": 4
+          "line": 159,
+          "column": 4,
+          "index": 5509
         },
         "end": {
-          "line": 168,
-          "column": 22
+          "line": 159,
+          "column": 21,
+          "index": 5526
         }
       },
       "jsdoc": {
@@ -228,12 +248,14 @@
     "_treeColumn": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 5566
         },
         "end": {
-          "line": 171,
-          "column": 22
+          "line": 162,
+          "column": 21,
+          "index": 5583
         }
       },
       "jsdoc": {
@@ -250,12 +272,14 @@
     "_selections": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 165,
+          "column": 4,
+          "index": 5635
         },
         "end": {
-          "line": 174,
-          "column": 22
+          "line": 165,
+          "column": 21,
+          "index": 5652
         }
       },
       "jsdoc": {
@@ -272,12 +296,14 @@
     "setTree": {
       "location": {
         "start": {
-          "line": 183,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5860
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 5907
         }
       },
       "jsdoc": {
@@ -303,12 +329,14 @@
     "getTree": {
       "location": {
         "start": {
-          "line": 193,
-          "column": 4
+          "line": 183,
+          "column": 4,
+          "index": 6046
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 6089
         }
       },
       "jsdoc": {
@@ -333,12 +361,14 @@
     "setEditable": {
       "location": {
         "start": {
-          "line": 205,
-          "column": 4
+          "line": 194,
+          "column": 4,
+          "index": 6252
         },
         "end": {
-          "line": 215,
-          "column": 5
+          "line": 202,
+          "column": 5,
+          "index": 6475
         }
       },
       "jsdoc": {
@@ -364,12 +394,14 @@
     "setColumnEditable": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 214,
+          "column": 4,
+          "index": 6734
         },
         "end": {
-          "line": 241,
-          "column": 5
+          "line": 224,
+          "column": 5,
+          "index": 7043
         }
       },
       "jsdoc": {
@@ -402,12 +434,14 @@
     "isColumnEditable": {
       "location": {
         "start": {
-          "line": 244,
-          "column": 4
+          "line": 227,
+          "column": 4,
+          "index": 7068
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 235,
+          "column": 5,
+          "index": 7311
         }
       },
       "jsdoc": {},
@@ -422,12 +456,14 @@
     "isColumnSortable": {
       "location": {
         "start": {
-          "line": 258,
-          "column": 4
+          "line": 238,
+          "column": 4,
+          "index": 7336
         },
         "end": {
-          "line": 261,
-          "column": 5
+          "line": 240,
+          "column": 5,
+          "index": 7393
         }
       },
       "jsdoc": {},
@@ -442,12 +478,14 @@
     "sortByColumn": {
       "location": {
         "start": {
-          "line": 271,
-          "column": 4
+          "line": 249,
+          "column": 4,
+          "index": 7642
         },
         "end": {
-          "line": 274,
-          "column": 5
+          "line": 251,
+          "column": 5,
+          "index": 7746
         }
       },
       "jsdoc": {
@@ -493,12 +531,14 @@
     "getSortColumnIndex": {
       "location": {
         "start": {
-          "line": 284,
-          "column": 4
+          "line": 260,
+          "column": 4,
+          "index": 7966
         },
         "end": {
-          "line": 287,
-          "column": 5
+          "line": 262,
+          "column": 5,
+          "index": 8011
         }
       },
       "jsdoc": {
@@ -528,12 +568,14 @@
     "setTreeColumn": {
       "location": {
         "start": {
-          "line": 311,
-          "column": 4
+          "line": 285,
+          "column": 4,
+          "index": 9087
         },
         "end": {
-          "line": 314,
-          "column": 5
+          "line": 287,
+          "column": 5,
+          "index": 9159
         }
       },
       "jsdoc": {
@@ -559,12 +601,14 @@
     "getTreeColumn": {
       "location": {
         "start": {
-          "line": 323,
-          "column": 4
+          "line": 295,
+          "column": 4,
+          "index": 9331
         },
         "end": {
-          "line": 326,
-          "column": 5
+          "line": 297,
+          "column": 5,
+          "index": 9385
         }
       },
       "jsdoc": {
@@ -589,12 +633,14 @@
     "getRowCount": {
       "location": {
         "start": {
-          "line": 329,
-          "column": 4
+          "line": 300,
+          "column": 4,
+          "index": 9410
         },
         "end": {
-          "line": 332,
-          "column": 5
+          "line": 302,
+          "column": 5,
+          "index": 9465
         }
       },
       "jsdoc": {},
@@ -609,12 +655,14 @@
     "getRowData": {
       "location": {
         "start": {
-          "line": 335,
-          "column": 4
+          "line": 305,
+          "column": 4,
+          "index": 9490
         },
         "end": {
-          "line": 338,
-          "column": 5
+          "line": 307,
+          "column": 5,
+          "index": 9555
         }
       },
       "jsdoc": {},
@@ -629,12 +677,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 350,
-          "column": 4
+          "line": 318,
+          "column": 4,
+          "index": 9874
         },
         "end": {
-          "line": 369,
-          "column": 5
+          "line": 346,
+          "column": 5,
+          "index": 10641
         }
       },
       "jsdoc": {
@@ -694,12 +744,14 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 373,
-          "column": 4
+          "line": 349,
+          "column": 4,
+          "index": 10666
         },
         "end": {
-          "line": 405,
-          "column": 5
+          "line": 379,
+          "column": 5,
+          "index": 11709
         }
       },
       "jsdoc": {},
@@ -714,12 +766,14 @@
     "getNode": {
       "location": {
         "start": {
-          "line": 422,
-          "column": 4
+          "line": 395,
+          "column": 4,
+          "index": 12170
         },
         "end": {
-          "line": 433,
-          "column": 5
+          "line": 410,
+          "column": 5,
+          "index": 12568
         }
       },
       "jsdoc": {
@@ -761,12 +815,14 @@
     "addBranch": {
       "location": {
         "start": {
-          "line": 464,
-          "column": 4
+          "line": 440,
+          "column": 4,
+          "index": 13596
         },
         "end": {
-          "line": 480,
-          "column": 5
+          "line": 458,
+          "column": 5,
+          "index": 13988
         }
       },
       "jsdoc": {
@@ -835,12 +891,14 @@
     "addLeaf": {
       "location": {
         "start": {
-          "line": 502,
-          "column": 4
+          "line": 479,
+          "column": 4,
+          "index": 14666
         },
         "end": {
-          "line": 516,
-          "column": 5
+          "line": 490,
+          "column": 5,
+          "index": 14964
         }
       },
       "jsdoc": {
@@ -895,12 +953,14 @@
     "prune": {
       "location": {
         "start": {
-          "line": 535,
-          "column": 4
+          "line": 508,
+          "column": 4,
+          "index": 15594
         },
         "end": {
-          "line": 579,
-          "column": 5
+          "line": 542,
+          "column": 5,
+          "index": 16850
         }
       },
       "jsdoc": {
@@ -944,12 +1004,14 @@
     "move": {
       "location": {
         "start": {
-          "line": 599,
-          "column": 4
+          "line": 561,
+          "column": 4,
+          "index": 17619
         },
         "end": {
-          "line": 655,
-          "column": 5
+          "line": 604,
+          "column": 5,
+          "index": 19176
         }
       },
       "jsdoc": {
@@ -1008,12 +1070,14 @@
     "__inorder": {
       "location": {
         "start": {
-          "line": 666,
-          "column": 4
+          "line": 614,
+          "column": 4,
+          "index": 19468
         },
         "end": {
-          "line": 768,
-          "column": 5
+          "line": 703,
+          "column": 5,
+          "index": 22476
         }
       },
       "jsdoc": {
@@ -1046,12 +1110,14 @@
     "__calculateLastChildFlags": {
       "location": {
         "start": {
-          "line": 779,
-          "column": 4
+          "line": 713,
+          "column": 4,
+          "index": 22749
         },
         "end": {
-          "line": 795,
-          "column": 5
+          "line": 728,
+          "column": 5,
+          "index": 23269
         }
       },
       "jsdoc": {
@@ -1077,12 +1143,14 @@
     "__setLastChildFlag": {
       "location": {
         "start": {
-          "line": 804,
-          "column": 4
+          "line": 736,
+          "column": 4,
+          "index": 23479
         },
         "end": {
-          "line": 819,
-          "column": 5
+          "line": 749,
+          "column": 5,
+          "index": 23959
         }
       },
       "jsdoc": {
@@ -1115,12 +1183,14 @@
     "__render": {
       "location": {
         "start": {
-          "line": 825,
-          "column": 4
+          "line": 754,
+          "column": 4,
+          "index": 24012
         },
         "end": {
-          "line": 866,
-          "column": 5
+          "line": 792,
+          "column": 5,
+          "index": 25037
         }
       },
       "jsdoc": {
@@ -1137,12 +1207,14 @@
     "setData": {
       "location": {
         "start": {
-          "line": 890,
-          "column": 4
+          "line": 815,
+          "column": 4,
+          "index": 25896
         },
         "end": {
-          "line": 914,
-          "column": 5
+          "line": 838,
+          "column": 5,
+          "index": 26660
         }
       },
       "jsdoc": {
@@ -1155,13 +1227,12 @@
         "@param": [
           {
             "name": "@param",
-            "body": "nodeArr {Array | null}\n   Pass either an Array of node objects, or null.\n   If non-null, nodeArr is an array of node objects containing the\n   entire tree to be displayed.  If loading the whole data en bulk in\n   this way, it is assumed that the data is correct!  No error checking\n   or validation is done.  You'd better know what you're doing!  Caveat\n   emptor.\n   If nodeArr is null, then this call is a notification that the user\n   has completed building or modifying a tree by issuing a series of\n   calls to {@link #addBranch} and/or {@link #addLeaf}.",
+            "body": "nodeArr {Array?null}\n   Pass either an Array of node objects, or null.\n   If non-null, nodeArr is an array of node objects containing the\n   entire tree to be displayed.  If loading the whole data en bulk in\n   this way, it is assumed that the data is correct!  No error checking\n   or validation is done.  You'd better know what you're doing!  Caveat\n   emptor.\n   If nodeArr is null, then this call is a notification that the user\n   has completed building or modifying a tree by issuing a series of\n   calls to {@link #addBranch} and/or {@link #addLeaf}.",
             "paramName": "nodeArr",
             "description": "\n   Pass either an Array of node objects, or null.\n   If non-null, nodeArr is an array of node objects containing the\n   entire tree to be displayed.  If loading the whole data en bulk in\n   this way, it is assumed that the data is correct!  No error checking\n   or validation is done.  You'd better know what you're doing!  Caveat\n   emptor.\n   If nodeArr is null, then this call is a notification that the user\n   has completed building or modifying a tree by issuing a series of\n   calls to {@link #addBranch} and/or {@link #addLeaf}.",
-            "type": [
-              "Array",
-              "null"
-            ]
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
           }
         ],
         "@throws": [
@@ -1179,12 +1250,14 @@
     "getData": {
       "location": {
         "start": {
-          "line": 925,
-          "column": 4
+          "line": 848,
+          "column": 4,
+          "index": 26887
         },
         "end": {
-          "line": 928,
-          "column": 5
+          "line": 850,
+          "column": 5,
+          "index": 26932
         }
       },
       "jsdoc": {
@@ -1209,12 +1282,14 @@
     "clearData": {
       "location": {
         "start": {
-          "line": 935,
-          "column": 4
+          "line": 856,
+          "column": 4,
+          "index": 26998
         },
         "end": {
-          "line": 939,
-          "column": 5
+          "line": 860,
+          "column": 5,
+          "index": 27148
         }
       },
       "jsdoc": {
@@ -1231,12 +1306,14 @@
     "setColumnData": {
       "location": {
         "start": {
-          "line": 957,
-          "column": 4
+          "line": 877,
+          "column": 4,
+          "index": 27602
         },
         "end": {
-          "line": 960,
-          "column": 5
+          "line": 879,
+          "column": 5,
+          "index": 27710
         }
       },
       "jsdoc": {
@@ -1276,12 +1353,14 @@
     "getColumnData": {
       "location": {
         "start": {
-          "line": 976,
-          "column": 4
+          "line": 894,
+          "column": 4,
+          "index": 28155
         },
         "end": {
-          "line": 979,
-          "column": 5
+          "line": 896,
+          "column": 5,
+          "index": 28257
         }
       },
       "jsdoc": {
@@ -1322,12 +1401,14 @@
     "setState": {
       "location": {
         "start": {
-          "line": 998,
-          "column": 4
+          "line": 918,
+          "column": 4,
+          "index": 29164
         },
         "end": {
-          "line": 1120,
-          "column": 5
+          "line": 1025,
+          "column": 5,
+          "index": 32933
         }
       },
       "jsdoc": {
@@ -1354,6 +1435,13 @@
             "paramName": "attributes",
             "description": "\n   Each property name in the map may correspond to the property names of\n   a node which are specified as <i>USER-PROVIDED ATTRIBUTES</i> in\n   {@link SimpleTreeDataModel}.  Each property value will be assigned\n   to the corresponding property of the node specified by nodeId.",
             "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "suppressRedraw {Boolean}\n    If true then prevents redraw; it becomes the caller's responsibility to\n    call setData() subsequently, to cause a redraw.",
+            "paramName": "suppressRedraw",
+            "description": "\n    If true then prevents redraw; it becomes the caller's responsibility to\n    call setData() subsequently, to cause a redraw.",
+            "type": "Boolean"
           }
         ],
         "@throws": [
@@ -1371,12 +1459,14 @@
     "getNodeRowMap": {
       "location": {
         "start": {
-          "line": 1131,
-          "column": 4
+          "line": 1035,
+          "column": 4,
+          "index": 33240
         },
         "end": {
-          "line": 1134,
-          "column": 5
+          "line": 1037,
+          "column": 5,
+          "index": 33294
         }
       },
       "jsdoc": {
@@ -1401,12 +1491,14 @@
     "getRowFromNodeId": {
       "location": {
         "start": {
-          "line": 1144,
-          "column": 4
+          "line": 1047,
+          "column": 4,
+          "index": 33639
         },
         "end": {
-          "line": 1147,
-          "column": 5
+          "line": 1049,
+          "column": 5,
+          "index": 33710
         }
       },
       "jsdoc": {
@@ -1440,12 +1532,14 @@
     "getNodeFromRow": {
       "location": {
         "start": {
-          "line": 1156,
-          "column": 4
+          "line": 1058,
+          "column": 4,
+          "index": 34031
         },
         "end": {
-          "line": 1159,
-          "column": 5
+          "line": 1060,
+          "column": 5,
+          "index": 34140
         }
       },
       "jsdoc": {
@@ -1479,12 +1573,14 @@
     "_clearSelections": {
       "location": {
         "start": {
-          "line": 1168,
-          "column": 4
+          "line": 1068,
+          "column": 4,
+          "index": 34357
         },
         "end": {
-          "line": 1178,
-          "column": 5
+          "line": 1076,
+          "column": 5,
+          "index": 34615
         }
       },
       "jsdoc": {
@@ -1501,12 +1597,14 @@
     "getSelectedNodes": {
       "location": {
         "start": {
-          "line": 1187,
-          "column": 4
+          "line": 1084,
+          "column": 4,
+          "index": 34789
         },
         "end": {
-          "line": 1197,
-          "column": 5
+          "line": 1092,
+          "column": 5,
+          "index": 34955
         }
       },
       "jsdoc": {
@@ -1531,12 +1629,14 @@
     "_applyFilter": {
       "location": {
         "start": {
-          "line": 1201,
-          "column": 4
+          "line": 1095,
+          "column": 4,
+          "index": 34984
         },
         "end": {
-          "line": 1204,
-          "column": 5
+          "line": 1097,
+          "column": 5,
+          "index": 35038
         }
       },
       "jsdoc": {},
@@ -1549,12 +1649,14 @@
     "isNodeEditable": {
       "location": {
         "start": {
-          "line": 1213,
-          "column": 4
+          "line": 1106,
+          "column": 4,
+          "index": 35291
         },
         "end": {
-          "line": 1216,
-          "column": 5
+          "line": 1110,
+          "column": 5,
+          "index": 35428
         }
       },
       "jsdoc": {
@@ -1673,6 +1775,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1697,6 +1800,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1791,28 +1895,30 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 1219,
-        "column": 13
+        "line": 1113,
+        "column": 2,
+        "index": 35437
       },
       "end": {
-        "line": 1223,
-        "column": 3
+        "line": 1121,
+        "column": 3,
+        "index": 35606
       }
-    },
-    "jsdoc": {}
+    }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 1225,
-        "column": 10
+        "line": 1123,
+        "column": 2,
+        "index": 35611
       },
       "end": {
-        "line": 1230,
-        "column": 3
+        "line": 1127,
+        "column": 3,
+        "index": 35811
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

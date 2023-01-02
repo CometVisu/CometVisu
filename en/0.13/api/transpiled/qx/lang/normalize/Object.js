@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,7 +54,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native Object.
    * It checks if these methods are available and, if not, appends them to
@@ -77,7 +75,6 @@
        * @return {Array} array of the keys of the map
        */
       keys: qx.Bootstrap.keys,
-
       /**
        * Get the values of a map as array
        *
@@ -87,14 +84,11 @@
       values: function values(map) {
         var arr = [];
         var keys = Object.keys(map);
-
         for (var i = 0, l = keys.length; i < l; i++) {
           arr.push(map[keys[i]]);
         }
-
         return arr;
       },
-
       /**
        * Determines whether two values are the same value.
        *
@@ -113,33 +107,30 @@
           return x !== 0 || 1 / x === 1 / y;
         } else {
           // Step 6.a: NaN == NaN
+          /* eslint-disable-next-line no-self-compare */
           return x !== x && y !== y;
         }
       },
-
       /**
        * Copies all enumerable own properties from one or more source objects to a target object..
        *
        * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">MDN web docs: Object.assign()</a>
        *
        * @signature function(target,varArgs)
-       * @param target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified. 
+       * @param target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified.
        * @param sources {Object} The source object(s) - objects containing the properties you want to apply.
        * @return {Object} The target object.
        */
       assign: function assign(target, sources) {
         // .length of function is 2
-        'use strict';
+        "use strict";
 
         if (target === null || target === undefined) {
-          throw new TypeError('Cannot convert undefined or null to object');
+          throw new TypeError("Cannot convert undefined or null to object");
         }
-
         var to = Object(target);
-
         for (var index = 1; index < arguments.length; index++) {
           var nextSource = arguments[index];
-
           if (nextSource !== null && nextSource !== undefined) {
             for (var nextKey in nextSource) {
               // Avoid bugs when hasOwnProperty is shadowed
@@ -149,7 +140,6 @@
             }
           }
         }
-
         return to;
       }
     },
@@ -157,19 +147,19 @@
       // keys
       if (!qx.core.Environment.get("ecmascript.object.keys")) {
         Object.keys = statics.keys;
-      } // values
+      }
 
-
+      // values
       if (!qx.core.Environment.get("ecmascript.object.values")) {
         Object.values = statics.values;
-      } // is
+      }
 
-
+      // is
       if (!qx.core.Environment.get("ecmascript.object.is")) {
         Object.is = statics.is;
-      } // assign
+      }
 
-
+      // assign
       if (!qx.core.Environment.get("ecmascript.object.assign")) {
         Object.assign = statics.assign;
       }
@@ -178,4 +168,4 @@
   qx.lang.normalize.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1664789588517
+//# sourceMappingURL=Object.js.map?dt=1672653499957

@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Rgb.js 
-   * 
+  /* Rgb.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Rgb', {
     type: 'static',
-
     /*
      ******************************************************
      STATICS
@@ -70,4 +68,4 @@
   cv.parser.pure.widgets.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1664789562401
+//# sourceMappingURL=Rgb.js.map?dt=1672653471050

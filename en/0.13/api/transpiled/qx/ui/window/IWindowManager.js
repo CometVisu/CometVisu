@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
           this.assertInterface(desktop, qx.ui.window.IDesktop);
         }
       },
-
       /**
        * Inform the window manager about a new active window
        *
@@ -55,12 +53,10 @@
        * @param oldActive {qx.ui.window.Window} old active window
        */
       changeActiveWindow: function changeActiveWindow(active, oldActive) {},
-
       /**
        * Update the window order and modality blocker
        */
       updateStack: function updateStack() {},
-
       /**
        * Ask the manager to bring a window to the front.
        *
@@ -69,7 +65,6 @@
       bringToFront: function bringToFront(win) {
         this.assertInstance(win, qx.ui.window.Window);
       },
-
       /**
        * Ask the manager to send a window to the back.
        *
@@ -83,4 +78,4 @@
   qx.ui.window.IWindowManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IWindowManager.js.map?dt=1664789608975
+//# sourceMappingURL=IWindowManager.js.map?dt=1672653519481

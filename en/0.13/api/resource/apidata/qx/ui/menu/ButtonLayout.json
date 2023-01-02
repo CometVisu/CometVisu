@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 670
       },
       "end": {
-        "line": 135,
-        "column": 3
+        "line": 147,
+        "column": 3,
+        "index": 3733
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "verifyLayoutProperty": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 968
         },
         "end": {
           "line": 48,
-          "column": 6
+          "column": 6,
+          "index": 1264
         }
       },
       "jsdoc": {},
@@ -52,12 +56,14 @@
     "renderLayout": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1289
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 2959
         }
       },
       "jsdoc": {},
@@ -71,12 +77,14 @@
     "__getMenu": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3132
         },
         "end": {
-          "line": 112,
-          "column": 5
+          "line": 127,
+          "column": 5,
+          "index": 3282
         }
       },
       "jsdoc": {
@@ -110,12 +118,14 @@
     "_computeSizeHint": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 3307
         },
         "end": {
-          "line": 133,
-          "column": 5
+          "line": 145,
+          "column": 5,
+          "index": 3725
         }
       },
       "jsdoc": {},
@@ -214,6 +224,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -238,6 +249,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Audio.js 
-   * 
+  /* Audio.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -59,7 +58,6 @@
   qx.Class.define('cv.ui.structure.pure.Audio', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
-
     /*
     ******************************************************
       PROPERTIES
@@ -95,7 +93,6 @@
         init: 1
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -107,19 +104,15 @@
         // create the main structure
         // create the actor
         var style = '';
-
         if (this.getWidth()) {
           style += 'width:' + this.getWidth() + ';';
         }
-
         if (this.getHeight()) {
           style += 'height:' + this.getHeight() + ';';
         }
-
         if (style !== '') {
           style = 'style="' + style + '"';
         }
-
         var autoplay = this.isAutoplay() ? ' autoplay ' : '';
         var loop = this.isLoop() ? ' loop ' : '';
         return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc() + '" > </audio> </div>';
@@ -128,7 +121,6 @@
       getActor: function getActor() {
         return this.getDomElement().querySelector('.actor audio');
       },
-
       /**
        * Handles updates of incoming data for this widget
        *
@@ -137,10 +129,8 @@
        */
       _update: function _update(address, value) {
         var on = this.applyMapping(this.getThresholdValue());
-
         if (value >= on) {
           var audioWidget = this.getActor();
-
           if (audioWidget.paused === true) {
             audioWidget.play();
           }
@@ -154,4 +144,4 @@
   cv.ui.structure.pure.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1664789569551
+//# sourceMappingURL=Audio.js.map?dt=1672653477992

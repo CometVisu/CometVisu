@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 582
       },
       "end": {
-        "line": 137,
-        "column": 3
+        "line": 121,
+        "column": 3,
+        "index": 3073
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "state": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1090
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1150
         }
       },
       "jsdoc": {
@@ -56,12 +60,14 @@
     "statusCode": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1197
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1262
         }
       },
       "jsdoc": {
@@ -81,12 +87,14 @@
     "content": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1305
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1343
         }
       },
       "jsdoc": {
@@ -105,12 +113,14 @@
     "responseHeaders": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1390
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1497
         }
       },
       "jsdoc": {
@@ -165,12 +175,14 @@
     "__lowerHeaders": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1706
         },
         "end": {
-          "line": 84,
-          "column": 24
+          "line": 71,
+          "column": 24,
+          "index": 1726
         }
       },
       "type": "variable",
@@ -179,12 +191,14 @@
     "clone": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 1945
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2252
         }
       },
       "jsdoc": {},
@@ -199,12 +213,14 @@
     "getResponseHeader": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2426
         },
         "end": {
-          "line": 117,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 2588
         }
       },
       "jsdoc": {
@@ -238,12 +254,14 @@
     "_applyResponseHeaders": {
       "location": {
         "start": {
-          "line": 126,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 2792
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3063
         }
       },
       "jsdoc": {
@@ -364,6 +382,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -388,6 +407,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 506
       },
       "end": {
-        "line": 74,
-        "column": 3
+        "line": 68,
+        "column": 3,
+        "index": 2200
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "updateDataRowElement": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1362
         },
         "end": {
-          "line": 45,
-          "column": 59
+          "line": 43,
+          "column": 48,
+          "index": 1406
         }
       },
       "jsdoc": {
@@ -75,12 +79,14 @@
     "getRowHeightStyle": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1578
         },
         "end": {
-          "line": 53,
-          "column": 43
+          "line": 50,
+          "column": 32,
+          "index": 1606
         }
       },
       "jsdoc": {
@@ -106,12 +112,14 @@
     "createRowStyle": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1872
         },
         "end": {
-          "line": 62,
-          "column": 41
+          "line": 58,
+          "column": 30,
+          "index": 1898
         }
       },
       "jsdoc": {
@@ -137,12 +145,14 @@
     "getRowClass": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2169
         },
         "end": {
-          "line": 71,
-          "column": 38
+          "line": 66,
+          "column": 27,
+          "index": 2192
         }
       },
       "jsdoc": {

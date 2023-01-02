@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,15 +36,15 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.ui.panels.ClassPanel", {
     extend: qxl.apiviewer.ui.panels.InfoPanel,
-
     /**
-    * Creates class panel. An class panel shows information about classes, mixins
-    * and interfaces
-    *
-    * @param labelText {String} the label text describing the node type.
-    */
+     * Creates class panel. An class panel shows information about classes, mixins
+     * and interfaces
+     *
+     * @param labelText {String} the label text describing the node type.
+     */
     construct: function construct(labelText) {
       qxl.apiviewer.ui.panels.InfoPanel.constructor.call(this, labelText);
     },
@@ -63,7 +62,6 @@
         if (!(dao instanceof qxl.apiviewer.dao.Class)) {
           return false;
         }
-
         return dao.getType() == this.getType();
       },
       getItemTypeHtml: function getItemTypeHtml(node) {
@@ -76,12 +74,10 @@
         if (showDetails) {
           return qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(node.getDescription(), node);
         }
-
         return qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node, showDetails);
       },
       getItemTooltip: function getItemTooltip(classNode, currentClassDocNode) {
         var tooltip;
-
         if (classNode.isAbstract()) {
           tooltip = "Abstract ";
         } else if (classNode.isStatic()) {
@@ -91,27 +87,22 @@
         } else {
           tooltip = "";
         }
-
         switch (classNode.getType()) {
           case "mixin":
             tooltip += "Mixin";
             break;
-
           case "interface":
             tooltip += "Interface";
             break;
-
           default:
             tooltip += "Class";
             break;
         }
-
         return tooltip;
       },
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
         return qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node);
       },
-
       /**
        * Updates an info panel.
        *
@@ -121,33 +112,28 @@
        */
       update: function update(classViewer, currentClassDocNode) {
         var _this = this;
-
         if (!this.getElement()) {
           return qx.Promise.resolve(true);
         }
-
         return this.setDocNodeAsync(currentClassDocNode).then(function () {
           return currentClassDocNode.loadDependedClasses();
         }).then(function (classes) {
           var nodeArr = [];
           var clType;
-
           for (var i = 0; i < classes.length; i++) {
-            clType = classes[i].getType(); // Normalize pseudo-classes (for the user this detail is often not relevant)
+            clType = classes[i].getType();
 
+            // Normalize pseudo-classes (for the user this detail is often not relevant)
             if (clType === "bootstrap" || clType === "list") {
               clType = "class";
             }
-
             if (clType === _this.getType()) {
               nodeArr.push(classes[i]);
             }
           }
-
           if (nodeArr && nodeArr.length > 0) {
             classViewer.sortItems(nodeArr);
           }
-
           _this._displayNodes(nodeArr, currentClassDocNode);
         });
       }
@@ -156,4 +142,4 @@
   qxl.apiviewer.ui.panels.ClassPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassPanel.js.map?dt=1664789617721
+//# sourceMappingURL=ClassPanel.js.map?dt=1672653527053

@@ -5,7 +5,8 @@
   "superClass": "qx.ui.form.ToggleButton",
   "interfaces": [
     "qx.ui.form.IForm",
-    "qx.ui.form.IModel"
+    "qx.ui.form.IModel",
+    "qx.ui.form.IListItem"
   ],
   "mixins": [
     "qx.ui.form.MForm",
@@ -16,11 +17,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 594
       },
       "end": {
-        "line": 111,
-        "column": 3
+        "line": 114,
+        "column": 3,
+        "index": 2927
       }
     },
     "jsdoc": {
@@ -36,12 +39,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 45,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1075
       },
       "end": {
-        "line": 56,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1553
       }
     },
     "jsdoc": {
@@ -68,12 +73,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1781
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 68,
+          "column": 5,
+          "index": 1843
         }
       },
       "jsdoc": {},
@@ -92,12 +99,14 @@
     "allowGrowX": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1868
         },
         "end": {
-          "line": 81,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 1925
         }
       },
       "jsdoc": {},
@@ -157,7 +166,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -169,12 +178,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -218,12 +227,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2069
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2201
         }
       },
       "jsdoc": {
@@ -246,12 +257,14 @@
     "_bindableProperties": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 2352
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 94,
+          "column": 77,
+          "index": 2425
         }
       },
       "jsdoc": {
@@ -270,6 +283,27 @@
       },
       "type": "variable",
       "access": "protected"
+    },
+    "_applyValue": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2450
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2919
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "appearsIn": [
+        "qx.ui.form.ToggleButton"
+      ]
     },
     "setEnabled": {
       "type": "function",
@@ -595,38 +629,6 @@
       "access": "protected",
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
-    },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
     },
     "isValid": {
       "type": "function",
@@ -1081,6 +1083,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1105,6 +1108,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

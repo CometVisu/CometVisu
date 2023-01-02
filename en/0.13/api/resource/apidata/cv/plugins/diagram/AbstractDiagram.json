@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 67,
-        "column": 0
+        "line": 66,
+        "column": 0,
+        "index": 3026
       },
       "end": {
-        "line": 841,
-        "column": 3
+        "line": 951,
+        "column": 3,
+        "index": 29250
       }
     },
     "jsdoc": {
@@ -86,12 +88,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 77,
-        "column": 13
+        "line": 76,
+        "column": 2,
+        "index": 3335
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 79,
+        "column": 3,
+        "index": 3477
       }
     },
     "jsdoc": {}
@@ -100,12 +104,14 @@
     "cache": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 3633
         },
         "end": {
-          "line": 88,
-          "column": 13
+          "line": 87,
+          "column": 13,
+          "index": 3642
         }
       },
       "type": "variable",
@@ -114,12 +120,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 98,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 4005
         },
         "end": {
           "line": 113,
-          "column": 5
+          "column": 5,
+          "index": 4701
         }
       },
       "jsdoc": {
@@ -173,11 +181,13 @@
       "location": {
         "start": {
           "line": 115,
-          "column": 4
+          "column": 4,
+          "index": 4708
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 5677
         }
       },
       "type": "function",
@@ -186,12 +196,14 @@
     "getDiagramElements": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 5684
         },
         "end": {
-          "line": 204,
-          "column": 5
+          "line": 218,
+          "column": 5,
+          "index": 8305
         }
       },
       "type": "function",
@@ -200,12 +212,14 @@
     "getInfluxFilter": {
       "location": {
         "start": {
-          "line": 211,
-          "column": 4
+          "line": 225,
+          "column": 4,
+          "index": 8429
         },
         "end": {
-          "line": 247,
-          "column": 5
+          "line": 267,
+          "column": 5,
+          "index": 9366
         }
       },
       "jsdoc": {
@@ -236,12 +250,14 @@
     "lookupTsCache": {
       "location": {
         "start": {
-          "line": 261,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 9796
         },
         "end": {
-          "line": 321,
-          "column": 5
+          "line": 351,
+          "column": 5,
+          "index": 12603
         }
       },
       "jsdoc": {
@@ -317,12 +333,14 @@
     "_onSuccess": {
       "location": {
         "start": {
-          "line": 323,
-          "column": 4
+          "line": 353,
+          "column": 4,
+          "index": 12610
         },
         "end": {
-          "line": 361,
-          "column": 5
+          "line": 391,
+          "column": 5,
+          "index": 14040
         }
       },
       "type": "function",
@@ -331,12 +349,14 @@
     "_onStatusError": {
       "location": {
         "start": {
-          "line": 363,
-          "column": 4
+          "line": 393,
+          "column": 4,
+          "index": 14047
         },
         "end": {
-          "line": 379,
-          "column": 5
+          "line": 414,
+          "column": 5,
+          "index": 14826
         }
       },
       "type": "function",
@@ -347,12 +367,14 @@
     "content": {
       "location": {
         "start": {
-          "line": 388,
-          "column": 4
+          "line": 423,
+          "column": 4,
+          "index": 14992
         },
         "end": {
-          "line": 391,
-          "column": 5
+          "line": 426,
+          "column": 5,
+          "index": 15046
         }
       },
       "name": "content",
@@ -364,12 +386,14 @@
     "title": {
       "location": {
         "start": {
-          "line": 392,
-          "column": 4
+          "line": 428,
+          "column": 4,
+          "index": 15053
         },
         "end": {
-          "line": 396,
-          "column": 5
+          "line": 432,
+          "column": 5,
+          "index": 15139
         }
       },
       "name": "title",
@@ -382,12 +406,14 @@
     "series": {
       "location": {
         "start": {
-          "line": 397,
-          "column": 4
+          "line": 434,
+          "column": 4,
+          "index": 15146
         },
         "end": {
-          "line": 400,
-          "column": 5
+          "line": 437,
+          "column": 5,
+          "index": 15255
         }
       },
       "name": "series",
@@ -407,12 +433,14 @@
     "seriesStart": {
       "location": {
         "start": {
-          "line": 401,
-          "column": 4
+          "line": 439,
+          "column": 4,
+          "index": 15262
         },
         "end": {
-          "line": 404,
-          "column": 5
+          "line": 442,
+          "column": 5,
+          "index": 15329
         }
       },
       "name": "seriesStart",
@@ -424,12 +452,14 @@
     "seriesEnd": {
       "location": {
         "start": {
-          "line": 405,
-          "column": 4
+          "line": 444,
+          "column": 4,
+          "index": 15336
         },
         "end": {
-          "line": 408,
-          "column": 5
+          "line": 447,
+          "column": 5,
+          "index": 15395
         }
       },
       "name": "seriesEnd",
@@ -441,12 +471,14 @@
     "seriesResolution": {
       "location": {
         "start": {
-          "line": 409,
-          "column": 4
+          "line": 449,
+          "column": 4,
+          "index": 15402
         },
         "end": {
-          "line": 412,
-          "column": 5
+          "line": 452,
+          "column": 5,
+          "index": 15466
         }
       },
       "name": "seriesResolution",
@@ -458,12 +490,14 @@
     "forceNowDatapoint": {
       "location": {
         "start": {
-          "line": 413,
-          "column": 4
+          "line": 454,
+          "column": 4,
+          "index": 15473
         },
         "end": {
-          "line": 416,
-          "column": 5
+          "line": 457,
+          "column": 5,
+          "index": 15540
         }
       },
       "name": "forceNowDatapoint",
@@ -475,12 +509,14 @@
     "period": {
       "location": {
         "start": {
-          "line": 417,
-          "column": 4
+          "line": 459,
+          "column": 4,
+          "index": 15547
         },
         "end": {
-          "line": 420,
-          "column": 5
+          "line": 462,
+          "column": 5,
+          "index": 15599
         }
       },
       "name": "period",
@@ -492,12 +528,14 @@
     "legendInline": {
       "location": {
         "start": {
-          "line": 421,
-          "column": 4
+          "line": 464,
+          "column": 4,
+          "index": 15606
         },
         "end": {
-          "line": 424,
-          "column": 5
+          "line": 467,
+          "column": 5,
+          "index": 15668
         }
       },
       "name": "legendInline",
@@ -509,12 +547,14 @@
     "legendPopup": {
       "location": {
         "start": {
-          "line": 425,
-          "column": 4
+          "line": 469,
+          "column": 4,
+          "index": 15675
         },
         "end": {
-          "line": 428,
-          "column": 5
+          "line": 472,
+          "column": 5,
+          "index": 15736
         }
       },
       "name": "legendPopup",
@@ -526,12 +566,14 @@
     "legendposition": {
       "location": {
         "start": {
-          "line": 429,
-          "column": 4
+          "line": 474,
+          "column": 4,
+          "index": 15743
         },
         "end": {
-          "line": 432,
-          "column": 5
+          "line": 477,
+          "column": 5,
+          "index": 15822
         }
       },
       "name": "legendposition",
@@ -548,12 +590,14 @@
     "timeformat": {
       "location": {
         "start": {
-          "line": 433,
-          "column": 4
+          "line": 479,
+          "column": 4,
+          "index": 15829
         },
         "end": {
-          "line": 436,
-          "column": 5
+          "line": 482,
+          "column": 5,
+          "index": 15892
         }
       },
       "name": "timeformat",
@@ -565,12 +609,14 @@
     "timeformatTooltip": {
       "location": {
         "start": {
-          "line": 437,
-          "column": 4
+          "line": 484,
+          "column": 4,
+          "index": 15899
         },
         "end": {
-          "line": 440,
-          "column": 5
+          "line": 487,
+          "column": 5,
+          "index": 15977
         }
       },
       "name": "timeformatTooltip",
@@ -582,12 +628,14 @@
     "zoomYAxis": {
       "location": {
         "start": {
-          "line": 441,
-          "column": 4
+          "line": 489,
+          "column": 4,
+          "index": 15984
         },
         "end": {
-          "line": 444,
-          "column": 5
+          "line": 492,
+          "column": 5,
+          "index": 16044
         }
       },
       "name": "zoomYAxis",
@@ -599,12 +647,14 @@
     "gridcolor": {
       "location": {
         "start": {
-          "line": 445,
-          "column": 4
+          "line": 494,
+          "column": 4,
+          "index": 16051
         },
         "end": {
-          "line": 448,
-          "column": 5
+          "line": 497,
+          "column": 5,
+          "index": 16114
         }
       },
       "name": "gridcolor",
@@ -616,12 +666,14 @@
     "previewlabels": {
       "location": {
         "start": {
-          "line": 449,
-          "column": 4
+          "line": 499,
+          "column": 4,
+          "index": 16121
         },
         "end": {
-          "line": 452,
-          "column": 5
+          "line": 502,
+          "column": 5,
+          "index": 16185
         }
       },
       "name": "previewlabels",
@@ -633,12 +685,14 @@
     "popup": {
       "location": {
         "start": {
-          "line": 453,
-          "column": 4
+          "line": 504,
+          "column": 4,
+          "index": 16192
         },
         "end": {
-          "line": 456,
-          "column": 5
+          "line": 507,
+          "column": 5,
+          "index": 16248
         }
       },
       "name": "popup",
@@ -650,12 +704,14 @@
     "tooltip": {
       "location": {
         "start": {
-          "line": 457,
-          "column": 4
+          "line": 509,
+          "column": 4,
+          "index": 16255
         },
         "end": {
-          "line": 460,
-          "column": 5
+          "line": 512,
+          "column": 5,
+          "index": 16313
         }
       },
       "name": "tooltip",
@@ -733,12 +789,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 470,
-          "column": 4
+          "line": 521,
+          "column": 4,
+          "index": 16473
         },
         "end": {
-          "line": 470,
-          "column": 15
+          "line": 521,
+          "column": 15,
+          "index": 16484
         }
       },
       "type": "variable",
@@ -747,12 +805,14 @@
     "popupplot": {
       "location": {
         "start": {
-          "line": 471,
-          "column": 4
+          "line": 522,
+          "column": 4,
+          "index": 16490
         },
         "end": {
-          "line": 471,
-          "column": 19
+          "line": 522,
+          "column": 19,
+          "index": 16505
         }
       },
       "type": "variable",
@@ -761,12 +821,14 @@
     "plot": {
       "location": {
         "start": {
-          "line": 472,
-          "column": 4
+          "line": 523,
+          "column": 4,
+          "index": 16511
         },
         "end": {
-          "line": 472,
-          "column": 14
+          "line": 523,
+          "column": 14,
+          "index": 16521
         }
       },
       "type": "variable",
@@ -775,12 +837,14 @@
     "plotted": {
       "location": {
         "start": {
-          "line": 473,
-          "column": 4
+          "line": 524,
+          "column": 4,
+          "index": 16527
         },
         "end": {
-          "line": 473,
-          "column": 17
+          "line": 524,
+          "column": 17,
+          "index": 16540
         }
       },
       "type": "variable",
@@ -789,12 +853,14 @@
     "_timerPopup": {
       "location": {
         "start": {
-          "line": 474,
-          "column": 4
+          "line": 525,
+          "column": 4,
+          "index": 16546
         },
         "end": {
-          "line": 474,
-          "column": 21
+          "line": 525,
+          "column": 21,
+          "index": 16563
         }
       },
       "type": "variable",
@@ -803,12 +869,14 @@
     "__isPopup": {
       "location": {
         "start": {
-          "line": 475,
-          "column": 4
+          "line": 526,
+          "column": 4,
+          "index": 16569
         },
         "end": {
-          "line": 475,
-          "column": 20
+          "line": 526,
+          "column": 20,
+          "index": 16585
         }
       },
       "type": "variable",
@@ -817,12 +885,14 @@
     "_applyTitle": {
       "location": {
         "start": {
-          "line": 478,
-          "column": 4
+          "line": 529,
+          "column": 4,
+          "index": 16614
         },
         "end": {
-          "line": 483,
-          "column": 5
+          "line": 534,
+          "column": 5,
+          "index": 16758
         }
       },
       "jsdoc": {},
@@ -835,12 +905,14 @@
     "_setupRefreshAction": {
       "location": {
         "start": {
-          "line": 485,
-          "column": 4
+          "line": 536,
+          "column": 4,
+          "index": 16765
         },
         "end": {
-          "line": 501,
-          "column": 5
+          "line": 552,
+          "column": 5,
+          "index": 17308
         }
       },
       "type": "function",
@@ -849,12 +921,14 @@
     "_stopRefresh": {
       "location": {
         "start": {
-          "line": 509,
-          "column": 4
+          "line": 560,
+          "column": 4,
+          "index": 17439
         },
         "end": {
-          "line": 513,
-          "column": 5
+          "line": 564,
+          "column": 5,
+          "index": 17536
         }
       },
       "jsdoc": {
@@ -886,12 +960,14 @@
     "_startRefresh": {
       "location": {
         "start": {
-          "line": 522,
-          "column": 4
+          "line": 573,
+          "column": 4,
+          "index": 17785
         },
         "end": {
-          "line": 531,
-          "column": 5
+          "line": 582,
+          "column": 5,
+          "index": 18013
         }
       },
       "jsdoc": {
@@ -930,12 +1006,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 533,
-          "column": 4
+          "line": 584,
+          "column": 4,
+          "index": 18020
         },
         "end": {
-          "line": 571,
-          "column": 5
+          "line": 630,
+          "column": 5,
+          "index": 19458
         }
       },
       "type": "function",
@@ -944,12 +1022,14 @@
     "initDiagram": {
       "location": {
         "start": {
-          "line": 573,
-          "column": 4
+          "line": 632,
+          "column": 4,
+          "index": 19465
         },
         "end": {
-          "line": 707,
-          "column": 5
+          "line": 790,
+          "column": 5,
+          "index": 24251
         }
       },
       "type": "function",
@@ -958,12 +1038,14 @@
     "getSeriesSettings": {
       "location": {
         "start": {
-          "line": 709,
-          "column": 4
+          "line": 792,
+          "column": 4,
+          "index": 24258
         },
         "end": {
-          "line": 745,
-          "column": 5
+          "line": 829,
+          "column": 5,
+          "index": 25560
         }
       },
       "type": "function",
@@ -972,12 +1054,14 @@
     "loadDiagramData": {
       "location": {
         "start": {
-          "line": 747,
-          "column": 4
+          "line": 831,
+          "column": 4,
+          "index": 25567
         },
         "end": {
-          "line": 814,
-          "column": 5
+          "line": 920,
+          "column": 5,
+          "index": 28386
         }
       },
       "type": "function",
@@ -1463,9 +1547,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -2069,6 +2155,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -2413,11 +2550,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2934,6 +3071,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2957,6 +3095,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -7350,12 +7489,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 822,
-        "column": 12
+        "line": 928,
+        "column": 2,
+        "index": 28534
       },
       "end": {
-        "line": 826,
-        "column": 3
+        "line": 932,
+        "column": 3,
+        "index": 28627
       }
     },
     "jsdoc": {}
@@ -7363,15 +7504,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 828,
-        "column": 9
+        "line": 934,
+        "column": 2,
+        "index": 28632
       },
       "end": {
-        "line": 840,
-        "column": 3
+        "line": 950,
+        "column": 3,
+        "index": 29246
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": [

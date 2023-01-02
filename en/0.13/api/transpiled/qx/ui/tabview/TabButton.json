@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 848
       },
       "end": {
-        "line": 254,
-        "column": 3
+        "line": 227,
+        "column": 3,
+        "index": 6313
       }
     },
     "jsdoc": {
@@ -55,12 +57,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 39,
-        "column": 14
+        "line": 37,
+        "column": 2,
+        "index": 1154
       },
       "end": {
-        "line": 51,
-        "column": 3
+        "line": 48,
+        "column": 3,
+        "index": 1421
       }
     },
     "jsdoc": {}
@@ -69,12 +73,14 @@
     "close": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1755
         },
         "end": {
-          "line": 67,
-          "column": 34
+          "line": 62,
+          "column": 31,
+          "index": 1782
         }
       },
       "jsdoc": {
@@ -93,12 +99,14 @@
     "showCloseButton": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2069
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 2173
         }
       },
       "jsdoc": {
@@ -121,12 +129,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2465
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2529
         }
       },
       "jsdoc": {
@@ -149,12 +159,14 @@
     "_applyIconPosition": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 2728
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 151,
+          "column": 5,
+          "index": 4319
         }
       },
       "jsdoc": {},
@@ -168,12 +180,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 4344
         },
         "end": {
-          "line": 207,
-          "column": 5
+          "line": 186,
+          "column": 5,
+          "index": 5305
         }
       },
       "jsdoc": {},
@@ -188,12 +202,14 @@
     "_onCloseButtonTap": {
       "location": {
         "start": {
-          "line": 219,
-          "column": 4
+          "line": 197,
+          "column": 4,
+          "index": 5587
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 5655
         }
       },
       "jsdoc": {
@@ -210,12 +226,14 @@
     "_applyShowCloseButton": {
       "location": {
         "start": {
-          "line": 231,
-          "column": 4
+          "line": 208,
+          "column": 4,
+          "index": 5880
         },
         "end": {
-          "line": 238,
-          "column": 5
+          "line": 214,
+          "column": 5,
+          "index": 6062
         }
       },
       "jsdoc": {},
@@ -228,12 +246,14 @@
     "_applyCenter": {
       "location": {
         "start": {
-          "line": 241,
-          "column": 4
+          "line": 217,
+          "column": 4,
+          "index": 6091
         },
         "end": {
-          "line": 251,
-          "column": 5
+          "line": 225,
+          "column": 5,
+          "index": 6305
         }
       },
       "jsdoc": {},
@@ -985,6 +1005,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1009,6 +1030,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

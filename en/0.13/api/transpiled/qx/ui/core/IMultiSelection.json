@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 638
       },
       "end": {
-        "line": 68,
-        "column": 3
+        "line": 64,
+        "column": 3,
+        "index": 1692
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "selectAll": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 995
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1033
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "addToSelection": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1230
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1294
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "removeFromSelection": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1615
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1684
         }
       },
       "jsdoc": {

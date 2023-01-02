@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IColorForm.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -15,6 +12,7 @@
     "form",
     "IField",
     "events",
+    "changeValue",
     "members",
     "setValue",
     "value",
@@ -24,8 +22,11 @@
     "getValue",
     "IColorForm"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,uBAApB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;;AAIE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,MAAM,EACN;AACE;AACA,qBAAgB;AAFlB,KAXF;;AAkBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;;AAEI;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,kBAASC,KAAT,EAAgB;AACzB,eAAOC,SAAS,CAACC,MAAV,IAAoB,CAA3B;AACD,OAdH;;AAiBE;AACJ;AACA;AACIC,MAAAA,UAAU,EAAG,sBAAW,CAAE,CApB5B;;AAuBE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,oBAAW,CAAE;AA5B1B;AAzBF,GADA;AAtBAjB,EAAAA,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWU,UAAX,CAAsBf,aAAtB,GAAsCA,aAAtC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IColorForm.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Form interface for all form widgets which have boolean as their primary\n * data type like a colorchooser.\n */\nqx.Interface.define(\"qx.ui.form.IColorForm\",\n{\n  extend : qx.ui.form.IField,\n\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events :\n  {\n    /** Fired when the value was modified */\n    \"changeValue\" : \"qx.event.type.Data\"\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /*\n    ---------------------------------------------------------------------------\n      VALUE PROPERTY\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Sets the element's value.\n     *\n     * @param value {Color|null} The new value of the element.\n     */\n    setValue : function(value) {\n      return arguments.length == 1;\n    },\n\n\n    /**\n     * Resets the element's value to its initial value.\n     */\n    resetValue : function() {},\n\n\n    /**\n     * The element's user set value.\n     *\n     * @return {Color|null} The value.\n     */\n    getValue : function() {}\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Form interface for all form widgets which have boolean as their primary\n * data type like a colorchooser.\n */\nqx.Interface.define(\"qx.ui.form.IColorForm\", {\n  extend: qx.ui.form.IField,\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events: {\n    /** Fired when the value was modified */\n    changeValue: \"qx.event.type.Data\"\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /*\n    ---------------------------------------------------------------------------\n      VALUE PROPERTY\n    ---------------------------------------------------------------------------\n    */\n\n    /**\n     * Sets the element's value.\n     *\n     * @param value {Color|null} The new value of the element.\n     */\n    setValue(value) {\n      return arguments.length == 1;\n    },\n\n    /**\n     * Resets the element's value to its initial value.\n     */\n    resetValue() {},\n\n    /**\n     * The element's user set value.\n     *\n     * @return {Color|null} The value.\n     */\n    getValue() {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,uBAAuB,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,IAAI,CAACC,MAAM;IAEzB;AACF;AACA;AACA;AACA;;IAEEC,MAAM,EAAE;MACN;MACAC,WAAW,EAAE;IACf,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MAEI;AACJ;AACA;AACA;AACA;MACIC,QAAQ,oBAACC,KAAK,EAAE;QACd,OAAOC,SAAS,CAACC,MAAM,IAAI,CAAC;MAC9B,CAAC;MAED;AACJ;AACA;MACIC,UAAU,wBAAG,CAAC,CAAC;MAEf;AACJ;AACA;AACA;AACA;MACIC,QAAQ,sBAAG,CAAC;IACd;EACF,CAAC,CAAC;EAtEFlB,EAAE,CAACO,EAAE,CAACC,IAAI,CAACW,UAAU,CAAChB,aAAa,GAAGA,aAAa;AAAC"
 }

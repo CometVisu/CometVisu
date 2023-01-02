@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,38 +35,36 @@
    **/
   qx.Class.define("qx.ui.table.pane.CellEvent", {
     extend: qx.event.type.Pointer,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The table row of the event target */
       row: {
         check: "Integer",
         nullable: true
       },
-
       /** The table column of the event target */
       column: {
         check: "Integer",
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
        *****************************************************************************
           CONSTRUCTOR
        *****************************************************************************
        */
-
       /**
        * Initialize the event
        *
@@ -79,13 +76,11 @@
       init: function init(scroller, me, row, column) {
         me.clone(this);
         this.setBubbles(false);
-
         if (row != null) {
           this.setRow(row);
         } else {
           this.setRow(scroller._getRowForPagePos(this.getDocumentLeft(), this.getDocumentTop()));
         }
-
         if (column != null) {
           this.setColumn(column);
         } else {
@@ -106,4 +101,4 @@
   qx.ui.table.pane.CellEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellEvent.js.map?dt=1664789604770
+//# sourceMappingURL=CellEvent.js.map?dt=1672653515003

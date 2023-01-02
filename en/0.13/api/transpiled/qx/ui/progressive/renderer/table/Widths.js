@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,24 +38,22 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.Widths", {
     extend: qx.core.Object,
-
     /**
      * @param numColumns {Integer}
      *   The number of columns being used.
      */
     construct: function construct(numColumns) {
-      qx.core.Object.constructor.call(this); // Create an array of the specified number of columns, and use the default
+      qx.core.Object.constructor.call(this);
+
+      // Create an array of the specified number of columns, and use the default
       // column data.
-
-      this.__P_406_0 = [];
-
+      this.__P_423_0 = [];
       for (var i = 0; i < numColumns; i++) {
-        this.__P_406_0[i] = new qx.ui.core.ColumnData();
+        this.__P_423_0[i] = new qx.ui.core.ColumnData();
       }
     },
     members: {
-      __P_406_0: null,
-
+      __P_423_0: null,
       /**
        * Get the array of column data.
        *
@@ -65,9 +62,8 @@
        *
        */
       getData: function getData() {
-        return this.__P_406_0;
+        return this.__P_423_0;
       },
-
       /**
        * Set the width, minimum width and/or maximum width of a column at one
        * time.
@@ -88,21 +84,17 @@
             case "width":
               this.setWidth(column, map[key]);
               break;
-
             case "minWidth":
               this.setMinWidth(column, map[key]);
               break;
-
             case "maxWidth":
               this.setMaxWidth(column, map[key]);
               break;
-
             default:
               throw new Error("Unrecognized key: " + key);
           }
         }
       },
-
       /**
        * Set the width of a column.
        *
@@ -120,13 +112,11 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setWidth: function setWidth(column, width) {
-        if (column > this.__P_406_0.length - 1 || column < 0) {
+        if (column > this.__P_423_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
-
-        this.__P_406_0[column].setColumnWidth(width);
+        this.__P_423_0[column].setColumnWidth(width);
       },
-
       /**
        * Set the minimum width of a column.
        *
@@ -142,13 +132,11 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setMinWidth: function setMinWidth(column, width) {
-        if (column > this.__P_406_0.length - 1 || column < 0) {
+        if (column > this.__P_423_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
-
-        this.__P_406_0[column].setMinWidth(width);
+        this.__P_423_0[column].setMinWidth(width);
       },
-
       /**
        * Set the maximum width of a column.
        *
@@ -164,15 +152,14 @@
        *   Error is thrown if the provided column number is out of the range.
        */
       setMaxWidth: function setMaxWidth(column, width) {
-        if (column > this.__P_406_0.length - 1 || column < 0) {
+        if (column > this.__P_423_0.length - 1 || column < 0) {
           throw new Error("Column number out of range");
         }
-
-        this.__P_406_0[column].setMaxWidth(width);
+        this.__P_423_0[column].setMaxWidth(width);
       }
     }
   });
   qx.ui.progressive.renderer.table.Widths.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widths.js.map?dt=1664789602679
+//# sourceMappingURL=Widths.js.map?dt=1672653512957

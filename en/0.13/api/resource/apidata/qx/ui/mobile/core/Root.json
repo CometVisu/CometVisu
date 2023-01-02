@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
-        "column": 0
+        "line": 22,
+        "column": 0,
+        "index": 521
       },
       "end": {
-        "line": 300,
-        "column": 3
+        "line": 311,
+        "column": 3,
+        "index": 8817
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 38,
-        "column": 14
+        "line": 35,
+        "column": 2,
+        "index": 1035
       },
       "end": {
-        "line": 70,
-        "column": 3
+        "line": 78,
+        "column": 3,
+        "index": 2382
       }
     },
     "jsdoc": {
@@ -71,12 +75,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2610
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2673
         }
       },
       "jsdoc": {},
@@ -93,12 +99,14 @@
     "showScrollbarY": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2756
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2857
         }
       },
       "jsdoc": {
@@ -153,12 +161,14 @@
     "changeAppScale": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3182
         },
         "end": {
-          "line": 113,
-          "column": 44
+          "line": 114,
+          "column": 41,
+          "index": 3219
         }
       },
       "jsdoc": {
@@ -177,12 +187,14 @@
     "__root": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3427
         },
         "end": {
-          "line": 125,
-          "column": 17
+          "line": 124,
+          "column": 16,
+          "index": 3439
         }
       },
       "type": "variable",
@@ -191,12 +203,14 @@
     "_createContainerElement": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3464
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 3523
         }
       },
       "jsdoc": {},
@@ -210,12 +224,14 @@
     "_applyShowScrollbarY": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3552
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 134,
+          "column": 5,
+          "index": 3655
         }
       },
       "jsdoc": {},
@@ -228,12 +244,14 @@
     "getAppScale": {
       "location": {
         "start": {
-          "line": 149,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 4175
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 158,
+          "column": 5,
+          "index": 4499
         }
       },
       "jsdoc": {
@@ -258,12 +276,14 @@
     "getFontScale": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 169,
+          "column": 4,
+          "index": 4908
         },
         "end": {
-          "line": 209,
-          "column": 5
+          "line": 205,
+          "column": 5,
+          "index": 6011
         }
       },
       "jsdoc": {
@@ -288,12 +308,14 @@
     "setFontScale": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 213,
+          "column": 4,
+          "index": 6192
         },
         "end": {
-          "line": 234,
-          "column": 5
+          "line": 233,
+          "column": 5,
+          "index": 6848
         }
       },
       "jsdoc": {
@@ -319,12 +341,14 @@
     "getWidth": {
       "location": {
         "start": {
-          "line": 241,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 6967
         },
         "end": {
-          "line": 243,
-          "column": 5
+          "line": 241,
+          "column": 5,
+          "index": 7046
         }
       },
       "jsdoc": {
@@ -349,12 +373,14 @@
     "getHeight": {
       "location": {
         "start": {
-          "line": 250,
-          "column": 4
+          "line": 247,
+          "column": 4,
+          "index": 7167
         },
         "end": {
-          "line": 252,
-          "column": 5
+          "line": 249,
+          "column": 5,
+          "index": 7248
         }
       },
       "jsdoc": {
@@ -379,12 +405,14 @@
     "_onOrientationChange": {
       "location": {
         "start": {
-          "line": 260,
-          "column": 4
+          "line": 256,
+          "column": 4,
+          "index": 7437
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 292,
+          "column": 5,
+          "index": 8370
         }
       },
       "jsdoc": {
@@ -495,6 +523,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -519,6 +548,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1678,12 +1708,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 295,
-        "column": 13
+        "line": 301,
+        "column": 2,
+        "index": 8566
       },
       "end": {
-        "line": 299,
-        "column": 3
+        "line": 310,
+        "column": 3,
+        "index": 8813
       }
     },
     "jsdoc": {}

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 846
       },
       "end": {
-        "line": 351,
-        "column": 3
+        "line": 393,
+        "column": 3,
+        "index": 11302
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 33,
-        "column": 13
+        "line": 32,
+        "column": 2,
+        "index": 1072
       },
       "end": {
-        "line": 39,
-        "column": 3
+        "line": 38,
+        "column": 3,
+        "index": 1234
       }
     },
     "jsdoc": {}
@@ -47,12 +51,14 @@
     "_commandGroup": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1376
         },
         "end": {
-          "line": 47,
-          "column": 23
+          "line": 46,
+          "column": 23,
+          "index": 1395
         }
       },
       "type": "variable",
@@ -61,12 +67,14 @@
     "__buttons": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1401
         },
         "end": {
-          "line": 48,
-          "column": 19
+          "line": 47,
+          "column": 19,
+          "index": 1416
         }
       },
       "type": "variable",
@@ -75,12 +83,14 @@
     "__defaultButtonConfiguration": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1422
         },
         "end": {
-          "line": 49,
-          "column": 38
+          "line": 48,
+          "column": 38,
+          "index": 1456
         }
       },
       "type": "variable",
@@ -89,12 +99,14 @@
     "__buttonConfiguration": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1462
         },
         "end": {
-          "line": 50,
-          "column": 31
+          "line": 49,
+          "column": 31,
+          "index": 1489
         }
       },
       "type": "variable",
@@ -103,12 +115,14 @@
     "_draw": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1496
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 237,
+          "column": 5,
+          "index": 6583
         }
       },
       "type": "function",
@@ -117,12 +131,14 @@
     "__bindToPreference": {
       "location": {
         "start": {
-          "line": 203,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 6590
         },
         "end": {
-          "line": 208,
-          "column": 5
+          "line": 244,
+          "column": 5,
+          "index": 6862
         }
       },
       "type": "function",
@@ -131,12 +147,14 @@
     "maintainButtons": {
       "location": {
         "start": {
-          "line": 210,
-          "column": 4
+          "line": 246,
+          "column": 4,
+          "index": 6869
         },
         "end": {
-          "line": 268,
-          "column": 5
+          "line": 304,
+          "column": 5,
+          "index": 9105
         }
       },
       "type": "function",
@@ -145,12 +163,14 @@
     "getButton": {
       "location": {
         "start": {
-          "line": 270,
-          "column": 4
+          "line": 306,
+          "column": 4,
+          "index": 9112
         },
         "end": {
-          "line": 272,
-          "column": 5
+          "line": 308,
+          "column": 5,
+          "index": 9166
         }
       },
       "type": "function",
@@ -159,12 +179,14 @@
     "getButtonConfiguration": {
       "location": {
         "start": {
-          "line": 274,
-          "column": 4
+          "line": 310,
+          "column": 4,
+          "index": 9173
         },
         "end": {
-          "line": 276,
-          "column": 5
+          "line": 312,
+          "column": 5,
+          "index": 9283
         }
       },
       "type": "function",
@@ -173,12 +195,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 4
+          "line": 315,
+          "column": 4,
+          "index": 9308
         },
         "end": {
-          "line": 340,
-          "column": 5
+          "line": 382,
+          "column": 5,
+          "index": 11117
         }
       },
       "jsdoc": {},
@@ -795,9 +819,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1401,6 +1427,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1745,11 +1822,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2266,6 +2343,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2289,6 +2367,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -7828,12 +7907,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 348,
-        "column": 12
+        "line": 390,
+        "column": 2,
+        "index": 11251
       },
       "end": {
-        "line": 350,
-        "column": 3
+        "line": 392,
+        "column": 3,
+        "index": 11298
       }
     },
     "jsdoc": {}

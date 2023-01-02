@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 551
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 53,
+        "column": 3,
+        "index": 1446
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getCellEditorValue": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 689
         },
         "end": {
-          "line": 48,
-          "column": 5
+          "line": 45,
+          "column": 5,
+          "index": 1274
         }
       },
       "jsdoc": {},
@@ -51,12 +55,14 @@
     "_createEditor": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1281
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1438
         }
       },
       "type": "function",
@@ -164,6 +170,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -188,6 +195,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

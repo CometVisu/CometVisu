@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "decorations",
+    "style",
+    "backgroundImage",
+    "backgroundRepeat",
+    "test",
+    "MDecoration"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/MDecoration.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Zenesis Limited https://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (github.com/johnspackman john.spackman@zenesis.com)\n\n************************************************************************ */\n\n/**\n * This mixin must be included into themes decoration if you want to use that\n * theme with the testrunner\n */\nqx.Theme.define(\"qx.test.MDecoration\", {\n  decorations: {\n    \"test-ui-basic-image-toolbar-part\": {\n      style: {\n        backgroundImage: \"decoration/toolbar/toolbar-part.gif\",\n        backgroundRepeat: \"repeat-y\"\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,WAAW,EAAE;MACX,kCAAkC,EAAE;QAClCC,KAAK,EAAE;UACLC,eAAe,EAAE,qCAAqC;UACtDC,gBAAgB,EAAE;QACpB;MACF;IACF;EACF,CAAC,CAAC;EA/BFT,EAAE,CAACU,IAAI,CAACC,WAAW,CAACR,aAAa,GAAGA,aAAa;AAAC"
+}

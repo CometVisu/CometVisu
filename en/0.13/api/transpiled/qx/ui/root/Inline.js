@@ -57,7 +57,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -100,13 +99,11 @@
   qx.Class.define("qx.ui.root.Inline", {
     extend: qx.ui.root.Abstract,
     include: [qx.ui.core.MLayoutHandling],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param el {Element} DOM element to use as isle for qooxdoo content. Please
      *    note that existing content gets removed on the first layout flush.
@@ -119,100 +116,101 @@
      */
     construct: function construct(el, dynamicX, dynamicY) {
       // check the parameter
+
       // Temporary storage of element to use
-      this.__P_415_0 = el; // Avoid any problems with dynamic resizing
+      this.__P_429_0 = el;
 
-      el.style.overflow = "hidden"; // Avoid any problems with broken layout
+      // Avoid any problems with dynamic resizing
+      el.style.overflow = "hidden";
 
+      // Avoid any problems with broken layout
       el.style.textAlign = "left";
-      this.__P_415_1 = dynamicX || false;
-      this.__P_415_2 = dynamicY || false;
+      this.__P_429_1 = dynamicX || false;
+      this.__P_429_2 = dynamicY || false;
+      this.__P_429_3();
+      qx.ui.root.Abstract.constructor.call(this);
 
-      this.__P_415_3();
+      // Use static layout
+      this._setLayout(new qx.ui.layout.Basic());
 
-      qx.ui.root.Abstract.constructor.call(this); // Use static layout
+      // Directly schedule layout for root element
+      qx.ui.core.queue.Layout.add(this);
 
-      this._setLayout(new qx.ui.layout.Basic()); // Directly schedule layout for root element
+      // Register as root
+      qx.ui.core.FocusHandler.getInstance().connectTo(this);
 
-
-      qx.ui.core.queue.Layout.add(this); // Register as root
-
-      qx.ui.core.FocusHandler.getInstance().connectTo(this); // Avoid the automatically scroll in to view.
+      // Avoid the automatically scroll in to view.
       // See http://bugzilla.qooxdoo.org/show_bug.cgi?id=3236 for details.
-
       if (qx.core.Environment.get("engine.name") == "mshtml") {
         this.setKeepFocus(true);
-      } // Resize handling for the window
+      }
 
-
+      // Resize handling for the window
       var window = qx.dom.Node.getWindow(el);
-      qx.event.Registration.addListener(window, "resize", this._onWindowResize, this); // quick fix for [BUG #7680]
+      qx.event.Registration.addListener(window, "resize", this._onWindowResize, this);
 
+      // quick fix for [BUG #7680]
       this.getContentElement().setStyle("-webkit-backface-visibility", "hidden");
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_415_1: false,
-      __P_415_2: false,
-      __P_415_0: null,
 
+    members: {
+      __P_429_1: false,
+      __P_429_2: false,
+      __P_429_0: null,
       /**
        * Performs several checks for dynamic mode and adds the "resize" listener
        */
-      __P_415_3: function __P_415_3() {
-        if (this.__P_415_1 || this.__P_415_2) {
+      __P_429_3: function __P_429_3() {
+        if (this.__P_429_1 || this.__P_429_2) {
           // Check the DOM element for an usable width and height
-          var elementDimensions = qx.bom.element.Dimension.getSize(this.__P_415_0);
-
-          if (this.__P_415_1 && elementDimensions.width < 1) {
-            throw new Error("The root element " + this.__P_415_0 + " of " + this + " needs a width when its width size should be used!");
+          var elementDimensions = qx.bom.element.Dimension.getSize(this.__P_429_0);
+          if (this.__P_429_1 && elementDimensions.width < 1) {
+            throw new Error("The root element " + this.__P_429_0 + " of " + this + " needs a width when its width size should be used!");
           }
-
-          if (this.__P_415_2) {
+          if (this.__P_429_2) {
             if (elementDimensions.height < 1) {
-              throw new Error("The root element " + this.__P_415_0 + " of " + this + " needs a height when its height size should be used!");
-            } // check for implicit height. Set the height explicit to prevent that
+              throw new Error("The root element " + this.__P_429_0 + " of " + this + " needs a height when its height size should be used!");
+            }
+
+            // check for implicit height. Set the height explicit to prevent that
             // the element grows indefinitely
-
-
-            if (elementDimensions.height >= 1 && qx.bom.element.Style.get(this.__P_415_0, "height", 3) == "") {
-              qx.bom.element.Style.set(this.__P_415_0, "height", elementDimensions.height + "px");
+            if (elementDimensions.height >= 1 && qx.bom.element.Style.get(this.__P_429_0, "height", 3) == "") {
+              qx.bom.element.Style.set(this.__P_429_0, "height", elementDimensions.height + "px");
             }
           }
-
-          qx.event.Registration.addListener(this.__P_415_0, "resize", this._onResize, this);
+          qx.event.Registration.addListener(this.__P_429_0, "resize", this._onResize, this);
         }
       },
       // overridden
       _createContentElement: function _createContentElement() {
-        var el = this.__P_415_0;
-
-        if (this.__P_415_1 || this.__P_415_2) {
+        var el = this.__P_429_0;
+        if (this.__P_429_1 || this.__P_429_2) {
           var rootEl = document.createElement("div");
           el.appendChild(rootEl);
         } else {
           rootEl = el;
         }
+        var root = new qx.html.Root(rootEl);
 
-        var root = new qx.html.Root(rootEl); // Make relative
+        // Make relative
+        rootEl.style.position = "relative";
 
-        rootEl.style.position = "relative"; // Store reference to the widget in the DOM element.
+        // Store reference to the widget in the DOM element.
+        root.connectObject(this);
 
-        root.connectWidget(this); // fire event asynchronously, otherwise the browser will fire the event
+        // fire event asynchronously, otherwise the browser will fire the event
         // too early and no listener will be informed since they're not added
         // at this time
-
         qx.event.Timer.once(function (e) {
           this.fireEvent("appear");
         }, this, 0);
         return root;
       },
-
       /**
        * Listener for the element's resize event
        *
@@ -220,12 +218,10 @@
        */
       _onResize: function _onResize(e) {
         var data = e.getData();
-
-        if (data.oldWidth !== data.width && this.__P_415_1 || data.oldHeight !== data.height && this.__P_415_2) {
+        if (data.oldWidth !== data.width && this.__P_429_1 || data.oldHeight !== data.height && this.__P_429_2) {
           qx.ui.core.queue.Layout.add(this);
         }
       },
-
       /**
        * Listener for the window's resize event.
        */
@@ -233,44 +229,38 @@
         // close all popups
         if (qx.ui.popup && qx.ui.popup.Manager) {
           qx.ui.popup.Manager.getInstance().hideAll();
-        } // close all menus
+        }
 
-
+        // close all menus
         if (qx.ui.menu && qx.ui.menu.Manager) {
           qx.ui.menu.Manager.getInstance().hideAll();
         }
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        var dynX = this.__P_415_1;
-        var dynY = this.__P_415_2;
-
+        var dynX = this.__P_429_1;
+        var dynY = this.__P_429_2;
         if (!dynX || !dynY) {
           var hint = qx.ui.root.Inline.superclass.prototype._computeSizeHint.call(this);
         } else {
           hint = {};
         }
-
         var Dimension = qx.bom.element.Dimension;
-
         if (dynX) {
-          var width = Dimension.getContentWidth(this.__P_415_0);
+          var width = Dimension.getContentWidth(this.__P_429_0);
           hint.width = width;
           hint.minWidth = width;
           hint.maxWidth = width;
         }
-
         if (dynY) {
-          var height = Dimension.getContentHeight(this.__P_415_0);
+          var height = Dimension.getContentHeight(this.__P_429_0);
           hint.height = height;
           hint.minHeight = height;
           hint.maxHeight = height;
         }
-
         return hint;
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -279,18 +269,17 @@
     defer: function defer(statics, members) {
       qx.ui.core.MLayoutHandling.remap(members);
     },
-
     /*
     *****************************************************************************
        DESTRUCT
     *****************************************************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(this.__P_415_0, "resize", this._onResize, this);
-      this.__P_415_0 = null;
+      qx.event.Registration.removeListener(this.__P_429_0, "resize", this._onResize, this);
+      this.__P_429_0 = null;
     }
   });
   qx.ui.root.Inline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Inline.js.map?dt=1664789603062
+//# sourceMappingURL=Inline.js.map?dt=1672653513288

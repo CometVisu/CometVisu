@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
         this.assertInstance(event, qx.event.type.Event);
         this.assertString(type);
       },
-
       /**
        * This function dispatches the event to the event listeners.
        *
@@ -65,4 +63,4 @@
   qx.event.IEventDispatcher.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEventDispatcher.js.map?dt=1664789583650
+//# sourceMappingURL=IEventDispatcher.js.map?dt=1672653494273

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 21,
-        "column": 0
+        "line": 20,
+        "column": 0,
+        "index": 817
       },
       "end": {
-        "line": 90,
-        "column": 3
+        "line": 93,
+        "column": 3,
+        "index": 2754
       }
     },
     "jsdoc": {}
@@ -24,12 +26,14 @@
     "styling": {
       "location": {
         "start": {
-          "line": 29,
-          "column": 4
+          "line": 27,
+          "column": 4,
+          "index": 1021
         },
         "end": {
-          "line": 33,
-          "column": 5
+          "line": 31,
+          "column": 5,
+          "index": 1099
         }
       },
       "name": "styling",
@@ -43,12 +47,14 @@
     "applyStyling": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1259
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 58,
+          "column": 5,
+          "index": 1914
         }
       },
       "type": "function",
@@ -57,12 +63,14 @@
     "_findValue": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1921
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2746
         }
       },
       "type": "function",

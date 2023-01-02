@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -28,7 +27,6 @@
       This theme is based in large parts on the osparc.theme
   
   ************************************************************************ */
-
   /**
    * @asset(qx/font/Roboto/*.woff)
    * @asset(qx/font/Roboto/*.woff2)
@@ -36,7 +34,6 @@
    * @asset(qx/font/Roboto/*.ttf)
    * @asset(qx/iconfont/MaterialIcons/*)
    */
-
   /**
    * The simple qooxdoo font theme.
    */
@@ -51,7 +48,7 @@
           source: ["qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
-      "bold": {
+      bold: {
         size: 14,
         family: ["sans-serif"],
         bold: true,
@@ -61,7 +58,7 @@
           source: ["qx/font/Roboto/roboto-v18-latin_latin-ext-700.eot", "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff2", "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff", "qx/font/Roboto/roboto-v18-latin_latin-ext-700.ttf"]
         }]
       },
-      "headline": {
+      headline: {
         size: 24,
         family: ["sans-serif"],
         color: "text-primary-on-surface",
@@ -70,7 +67,7 @@
           source: ["qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
-      "small": {
+      small: {
         size: 12,
         family: ["sans-serif"],
         color: "text-primary-on-surface",
@@ -79,7 +76,7 @@
           source: ["qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff", "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf"]
         }]
       },
-      "monospace": {
+      monospace: {
         size: 14,
         family: ["monospace"],
         color: "text-primary-on-surface",
@@ -93,4 +90,4 @@
   qx.theme.tangible.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1664789592202
+//# sourceMappingURL=Font.js.map?dt=1672653503676

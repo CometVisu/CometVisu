@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,10 +59,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.transform(el, transforms);
         });
-
         return this;
       },
-
       /**
        * Translates by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -77,7 +74,6 @@
           translate: value
         });
       },
-
       /**
        * Scales by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -91,7 +87,6 @@
           scale: value
         });
       },
-
       /**
        * Rotates by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -105,7 +100,6 @@
           rotate: value
         });
       },
-
       /**
        * Skews by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -119,7 +113,6 @@
           skew: value
         });
       },
-
       /**
        * Sets the transform-origin property.
        *
@@ -134,10 +127,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.setOrigin(el, value);
         });
-
         return this;
       },
-
       /**
        * Returns the transform-origin property of the first element.
        *
@@ -151,10 +142,8 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Transform.getOrigin(this[0]);
         }
-
         return "";
       },
-
       /**
        * Sets the transform-style property.
        *
@@ -168,10 +157,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.setStyle(el, value);
         });
-
         return this;
       },
-
       /**
        * Returns the transform-style property of the first element.
        *
@@ -185,10 +172,8 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Transform.getStyle(this[0]);
         }
-
         return "";
       },
-
       /**
        * Sets the perspective property.
        *
@@ -203,10 +188,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.setPerspective(el, value);
         });
-
         return this;
       },
-
       /**
        * Returns the perspective property of the first element.
        *
@@ -219,10 +202,8 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Transform.getPerspective(this[0]);
         }
-
         return "";
       },
-
       /**
        * Sets the perspective-origin property.
        *
@@ -237,10 +218,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.setPerspectiveOrigin(el, value);
         });
-
         return this;
       },
-
       /**
        * Returns the perspective-origin property of the first element.
        *
@@ -253,10 +232,8 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Transform.getPerspectiveOrigin(this[0]);
         }
-
         return "";
       },
-
       /**
        * Sets the backface-visibility property.
        *
@@ -270,10 +247,8 @@
         this._forEachElement(function (el) {
           qx.bom.element.Transform.setBackfaceVisibility(el, value);
         });
-
         return this;
       },
-
       /**
        * Returns the backface-visibility property of the first element.
        *
@@ -286,7 +261,6 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Transform.getBackfaceVisibility(this[0]);
         }
-
         return "";
       }
     },
@@ -297,4 +271,4 @@
   qx.module.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1664789589928
+//# sourceMappingURL=Transform.js.map?dt=1672653501210

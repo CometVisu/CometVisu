@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,14 +50,13 @@
 
   /**
    * Listens for native orientation change events
-   * 
+   *
    * NOTE: Instances of this class must be disposed of after use
    *
    */
   qx.Bootstrap.define("qx.event.handler.OrientationCore", {
     extend: Object,
     implement: [qx.core.IDisposable],
-
     /**
      *
      * @param targetWindow {Window} DOM window object
@@ -66,54 +64,48 @@
      */
     construct: function construct(targetWindow, emitter) {
       this._window = targetWindow || window;
-      this.__P_215_0 = emitter;
-
+      this.__P_219_0 = emitter;
       this._initObserver();
     },
     members: {
-      __P_215_0: null,
+      __P_219_0: null,
       _window: null,
       _currentOrientation: null,
-      __P_215_1: null,
-      __P_215_2: null,
-
+      __P_219_1: null,
+      __P_219_2: null,
       /*
       ---------------------------------------------------------------------------
         OBSERVER INIT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Initializes the native orientation change event listeners.
        */
       _initObserver: function _initObserver() {
-        this.__P_215_1 = qx.lang.Function.listener(this._onNative, this); // Handle orientation change event for Android devices by the resize event.
+        this.__P_219_1 = qx.lang.Function.listener(this._onNative, this);
+
+        // Handle orientation change event for Android devices by the resize event.
         // See http://stackoverflow.com/questions/1649086/detect-rotation-of-android-phone-in-the-browser-with-javascript
         // for more information.
-
-        this.__P_215_2 = qx.bom.Event.supportsEvent(this._window, "orientationchange") ? "orientationchange" : "resize";
-        qx.bom.Event.addNativeListener(this._window, this.__P_215_2, this.__P_215_1);
+        this.__P_219_2 = qx.bom.Event.supportsEvent(this._window, "orientationchange") ? "orientationchange" : "resize";
+        qx.bom.Event.addNativeListener(this._window, this.__P_219_2, this.__P_219_1);
       },
-
       /*
       ---------------------------------------------------------------------------
         OBSERVER STOP
       ---------------------------------------------------------------------------
       */
-
       /**
        * Disconnects the native orientation change event listeners.
        */
       _stopObserver: function _stopObserver() {
-        qx.bom.Event.removeNativeListener(this._window, this.__P_215_2, this.__P_215_1);
+        qx.bom.Event.removeNativeListener(this._window, this.__P_219_2, this.__P_219_1);
       },
-
       /*
       ---------------------------------------------------------------------------
         NATIVE EVENT OBSERVERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Handler for the native orientation change event.
        *
@@ -122,20 +114,17 @@
        */
       _onNative: function _onNative(domEvent) {
         var orientation = qx.bom.Viewport.getOrientation();
-
         if (this._currentOrientation != orientation) {
           this._currentOrientation = orientation;
           var mode = qx.bom.Viewport.isLandscape() ? "landscape" : "portrait";
           domEvent._orientation = orientation;
           domEvent._mode = mode;
-
-          if (this.__P_215_0) {
-            this.__P_215_0.emit("orientationchange", domEvent);
+          if (this.__P_219_0) {
+            this.__P_219_0.emit("orientationchange", domEvent);
           }
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -143,11 +132,10 @@
     */
     destruct: function destruct() {
       this._stopObserver();
-
-      this.__P_215_3 = this.__P_215_0 = null;
+      this.__P_219_3 = this.__P_219_0 = null;
     }
   });
   qx.event.handler.OrientationCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OrientationCore.js.map?dt=1664789585112
+//# sourceMappingURL=OrientationCore.js.map?dt=1672653495641

@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/Form.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -20,8 +17,11 @@
     "_createOkButton",
     "Form"
   ],
-  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iBAAhB,EAAmC;AACjCC,IAAAA,MAAM,EAAEC,GAAG,CAACC,MAAJ,CAAWC,MADc;AAEjCC,IAAAA,OAAO,EAAE,CAAEH,GAAG,CAACC,MAAJ,CAAWG,KAAb,CAFwB;AAIjCC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACA;AACIC,MAAAA,eAAe,EAAE,2BAAY;AAC3B,+EAA4B,IAA5B;AACD;AATH;AALiC,GAAnC;AAtBAN,EAAAA,GAAG,CAACC,MAAJ,CAAWM,IAAX,CAAgBX,aAAhB,GAAgCA,aAAhC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Form.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2007-2020 Christian Boulanger and others\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A dialog with a form that is constructed on-the-fly\n */\nqx.Class.define(\"qxl.dialog.Form\", {\n  extend: qxl.dialog.Dialog,\n  include: [ qxl.dialog.MForm ],\n\n  members :\n  {\n    /**\n     * Create OK Button\n     * unlike our superclass, we do not add an appear listener to focus OK\n     * @override\n     * @return {qx.ui.form.Button}\n     */\n    _createOkButton: function () {\n      return this.base(arguments, true);\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2007-2020 Christian Boulanger and others\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A dialog with a form that is constructed on-the-fly\n */\nqx.Class.define(\"qxl.dialog.Form\", {\n  extend: qxl.dialog.Dialog,\n  include: [qxl.dialog.MForm],\n\n  members: {\n    /**\n     * Create OK Button\n     * unlike our superclass, we do not add an appear listener to focus OK\n     * @override\n     * @return {qx.ui.form.Button}\n     */\n    _createOkButton() {\n      return super._createOkButton(true);\n    },\n  },\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iBAAiB,EAAE;IACjCC,MAAM,EAAEC,GAAG,CAACC,MAAM,CAACC,MAAM;IACzBC,OAAO,EAAE,CAACH,GAAG,CAACC,MAAM,CAACG,KAAK,CAAC;IAE3BC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;MACIC,eAAe,6BAAG;QAChB,uEAA6B,IAAI;MACnC;IACF;EACF,CAAC,CAAC;EArCFN,GAAG,CAACC,MAAM,CAACM,IAAI,CAACX,aAAa,GAAGA,aAAa;AAAC"
 }

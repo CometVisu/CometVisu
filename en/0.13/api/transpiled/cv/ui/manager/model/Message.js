@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Message.js 
-   * 
+  /* Message.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.ui.manager.model.Message', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       PROPERTIES
@@ -68,4 +66,4 @@
   cv.ui.manager.model.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1664789567922
+//# sourceMappingURL=Message.js.map?dt=1672653476554

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 525
       },
       "end": {
-        "line": 437,
-        "column": 3
+        "line": 413,
+        "column": 3,
+        "index": 13625
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 130,
-        "column": 14
+        "line": 128,
+        "column": 2,
+        "index": 5269
       },
       "end": {
-        "line": 191,
-        "column": 3
+        "line": 199,
+        "column": 3,
+        "index": 7113
       }
     },
     "jsdoc": {
@@ -67,12 +71,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 199,
-          "column": 4
+          "line": 205,
+          "column": 4,
+          "index": 7187
         },
         "end": {
-          "line": 203,
-          "column": 5
+          "line": 208,
+          "column": 5,
+          "index": 7244
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "predicate": {
       "location": {
         "start": {
-          "line": 212,
-          "column": 4
+          "line": 216,
+          "column": 4,
+          "index": 7535
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 222,
+          "column": 5,
+          "index": 7649
         }
       },
       "jsdoc": {
@@ -110,17 +118,21 @@
       },
       "name": "predicate",
       "propertyType": "new",
-      "transform": "__P_502_1"
+      "init": "[[ ObjectMethod Function ]]",
+      "transform": "__P_517_1",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "nextState": {
       "location": {
         "start": {
-          "line": 230,
-          "column": 4
+          "line": 231,
+          "column": 4,
+          "index": 7995
         },
         "end": {
           "line": 234,
-          "column": 5
+          "column": 5,
+          "index": 8123
         }
       },
       "jsdoc": {
@@ -134,18 +146,20 @@
       "name": "nextState",
       "propertyType": "new",
       "init": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE",
-      "transform": "__P_502_2",
+      "transform": "__P_517_2",
       "defaultValue": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE"
     },
     "autoActionsBeforeOntransition": {
       "location": {
         "start": {
-          "line": 244,
-          "column": 4
+          "line": 243,
+          "column": 4,
+          "index": 8460
         },
         "end": {
-          "line": 248,
-          "column": 5
+          "line": 246,
+          "column": 5,
+          "index": 8585
         }
       },
       "jsdoc": {
@@ -158,17 +172,21 @@
       },
       "name": "autoActionsBeforeOntransition",
       "propertyType": "new",
-      "transform": "__P_502_3"
+      "init": "[[ ObjectMethod Function ]]",
+      "transform": "__P_517_3",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "autoActionsAfterOntransition": {
       "location": {
         "start": {
-          "line": 258,
-          "column": 4
+          "line": 255,
+          "column": 4,
+          "index": 8931
         },
         "end": {
-          "line": 262,
-          "column": 5
+          "line": 258,
+          "column": 5,
+          "index": 9054
         }
       },
       "jsdoc": {
@@ -181,17 +199,21 @@
       },
       "name": "autoActionsAfterOntransition",
       "propertyType": "new",
-      "transform": "__P_502_4"
+      "init": "[[ ObjectMethod Function ]]",
+      "transform": "__P_517_4",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "ontransition": {
       "location": {
         "start": {
-          "line": 271,
-          "column": 4
+          "line": 266,
+          "column": 4,
+          "index": 9351
         },
         "end": {
-          "line": 275,
-          "column": 5
+          "line": 269,
+          "column": 5,
+          "index": 9442
         }
       },
       "jsdoc": {
@@ -204,7 +226,9 @@
       },
       "name": "ontransition",
       "propertyType": "new",
-      "transform": "__P_502_5"
+      "init": "[[ ObjectMethod Function ]]",
+      "transform": "__P_517_5",
+      "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "qxOwner": {
       "type": "property",
@@ -243,12 +267,14 @@
     "__transformPredicate": {
       "location": {
         "start": {
-          "line": 287,
-          "column": 4
+          "line": 279,
+          "column": 4,
+          "index": 9649
         },
         "end": {
-          "line": 314,
-          "column": 5
+          "line": 301,
+          "column": 5,
+          "index": 10372
         }
       },
       "jsdoc": {
@@ -282,12 +308,14 @@
     "__transformNextState": {
       "location": {
         "start": {
-          "line": 323,
-          "column": 4
+          "line": 309,
+          "column": 4,
+          "index": 10517
         },
         "end": {
-          "line": 353,
-          "column": 5
+          "line": 336,
+          "column": 5,
+          "index": 11489
         }
       },
       "jsdoc": {
@@ -321,12 +349,14 @@
     "__transformAutoActionsBeforeOntransition": {
       "location": {
         "start": {
-          "line": 362,
-          "column": 4
+          "line": 344,
+          "column": 4,
+          "index": 11634
         },
         "end": {
-          "line": 369,
-          "column": 5
+          "line": 350,
+          "column": 5,
+          "index": 11850
         }
       },
       "jsdoc": {
@@ -360,12 +390,14 @@
     "__transformAutoActionsAfterOntransition": {
       "location": {
         "start": {
-          "line": 377,
-          "column": 4
+          "line": 358,
+          "column": 4,
+          "index": 11995
         },
         "end": {
-          "line": 384,
-          "column": 5
+          "line": 364,
+          "column": 5,
+          "index": 12209
         }
       },
       "jsdoc": {
@@ -399,12 +431,14 @@
     "__transformOntransition": {
       "location": {
         "start": {
-          "line": 392,
-          "column": 4
+          "line": 372,
+          "column": 4,
+          "index": 12354
         },
         "end": {
-          "line": 409,
-          "column": 5
+          "line": 387,
+          "column": 5,
+          "index": 12902
         }
       },
       "jsdoc": {
@@ -438,12 +472,14 @@
     "__bindIfFunction": {
       "location": {
         "start": {
-          "line": 425,
-          "column": 4
+          "line": 403,
+          "column": 4,
+          "index": 13379
         },
         "end": {
-          "line": 435,
-          "column": 5
+          "line": 411,
+          "column": 5,
+          "index": 13617
         }
       },
       "jsdoc": {
@@ -572,6 +608,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -596,6 +633,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

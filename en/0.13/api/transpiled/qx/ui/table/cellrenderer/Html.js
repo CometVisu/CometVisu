@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +35,12 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Html", {
     extend: qx.ui.table.cellrenderer.Conditional,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
@@ -56,4 +55,4 @@
   qx.ui.table.cellrenderer.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1664789604086
+//# sourceMappingURL=Html.js.map?dt=1672653514328

@@ -9,11 +9,12 @@
         "construct": true,
         "require": true
       },
+      "qx.ui.menu.Menu": {},
+      "qx.ui.core.FocusHandler": {},
       "qx.ui.menu.Manager": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,31 +39,33 @@
    */
   qx.Class.define("qx.ui.form.MenuButton", {
     extend: qx.ui.form.Button,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Initial label
      * @param icon {String?null} Initial icon
      * @param menu {qx.ui.menu.Menu} Connect to menu instance
      */
     construct: function construct(label, icon, menu) {
-      qx.ui.form.Button.constructor.call(this, label, icon); // Initialize properties
+      qx.ui.form.Button.constructor.call(this, label, icon);
 
+      // Initialize properties
       if (menu != null) {
         this.setMenu(menu);
       }
-    },
 
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "button");
+    },
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The menu instance to show when tapping on the button */
       menu: {
@@ -77,12 +80,12 @@
         init: "menubutton"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -91,11 +94,10 @@
       */
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.form.MenuButton.superclass.prototype._applyVisibility.call(this, value, old); // hide the menu too
+        qx.ui.form.MenuButton.superclass.prototype._applyVisibility.call(this, value, old);
 
-
+        // hide the menu too
         var menu = this.getMenu();
-
         if (value != "visible" && menu) {
           menu.hide();
         }
@@ -106,21 +108,33 @@
           old.removeListener("changeVisibility", this._onMenuChange, this);
           old.resetOpener();
         }
-
         if (value) {
           value.addListener("changeVisibility", this._onMenuChange, this);
           value.setOpener(this);
           value.removeState("submenu");
           value.removeState("contextmenu");
         }
-      },
 
+        // ARIA attrs
+        var contentEl = this.getContentElement();
+        if (!contentEl) {
+          return;
+        }
+        if (value) {
+          contentEl.setAttribute("aria-haspopup", "menu");
+          contentEl.setAttribute("aria-expanded", value.isVisible());
+          contentEl.setAttribute("aria-controls", value.getContentElement().getAttribute("id"));
+        } else {
+          contentEl.removeAttribute("aria-haspopup");
+          contentEl.removeAttribute("aria-expanded");
+          contentEl.removeAttribute("aria-controls");
+        }
+      },
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Positions and shows the attached menu widget.
        *
@@ -128,30 +142,32 @@
        */
       open: function open(selectFirst) {
         var menu = this.getMenu();
-
         if (menu) {
+          // Focus this button when the menu opens
+          if (this.isFocusable() && !qx.ui.core.FocusHandler.getInstance().isFocused(this)) {
+            this.focus();
+          }
           // Hide all menus first
-          qx.ui.menu.Manager.getInstance().hideAll(); // Open the attached menu
+          qx.ui.menu.Manager.getInstance().hideAll();
 
+          // Open the attached menu
           menu.setOpener(this);
-          menu.open(); // Select first item
+          menu.open();
 
+          // Select first item
           if (selectFirst) {
             var first = menu.getSelectables()[0];
-
             if (first) {
               menu.setSelectedButton(first);
             }
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Listener for visibility property changes of the attached menu
        *
@@ -159,44 +175,45 @@
        */
       _onMenuChange: function _onMenuChange(e) {
         var menu = this.getMenu();
-
-        if (menu.isVisible()) {
+        var menuVisible = menu.isVisible();
+        if (menuVisible) {
           this.addState("pressed");
         } else {
           this.removeState("pressed");
         }
+
+        // ARIA attrs
+        this.getContentElement().setAttribute("aria-expanded", menuVisible);
       },
       // overridden
       _onPointerDown: function _onPointerDown(e) {
         // call the base function to get into the capture phase [BUG #4340]
-        qx.ui.form.MenuButton.superclass.prototype._onPointerDown.call(this, e); // only open on left clicks [BUG #5125]
+        qx.ui.form.MenuButton.superclass.prototype._onPointerDown.call(this, e);
 
-
+        // only open on left clicks [BUG #5125]
         if (e.getButton() != "left") {
           return;
         }
-
         var menu = this.getMenu();
-
         if (menu) {
           // Toggle sub menu visibility
           if (!menu.isVisible()) {
             this.open();
           } else {
             menu.exclude();
-          } // Event is processed, stop it for others
+          }
 
-
+          // Event is processed, stop it for others
           e.stopPropagation();
         }
       },
       // overridden
       _onPointerUp: function _onPointerUp(e) {
         // call base for firing the execute event
-        qx.ui.form.MenuButton.superclass.prototype._onPointerUp.call(this, e); // Just stop propagation to stop menu manager
+        qx.ui.form.MenuButton.superclass.prototype._onPointerUp.call(this, e);
+
+        // Just stop propagation to stop menu manager
         // from getting the event
-
-
         e.stopPropagation();
       },
       // overridden
@@ -212,11 +229,11 @@
       // overridden
       _onKeyDown: function _onKeyDown(e) {
         switch (e.getKeyIdentifier()) {
+          case "Space":
           case "Enter":
             this.removeState("abandoned");
             this.addState("pressed");
             var menu = this.getMenu();
-
             if (menu) {
               // Toggle sub menu visibility
               if (!menu.isVisible()) {
@@ -225,16 +242,16 @@
                 menu.exclude();
               }
             }
-
             e.stopPropagation();
         }
       },
       // overridden
-      _onKeyUp: function _onKeyUp(e) {// no action required here
+      _onKeyUp: function _onKeyUp(e) {
+        // no action required here
       }
     }
   });
   qx.ui.form.MenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuButton.js.map?dt=1664789596704
+//# sourceMappingURL=MenuButton.js.map?dt=1672653507809

@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 34,
-        "column": 0
+        "line": 33,
+        "column": 0,
+        "index": 1059
       },
       "end": {
-        "line": 106,
-        "column": 3
+        "line": 110,
+        "column": 3,
+        "index": 3364
       }
     },
     "jsdoc": {
@@ -51,12 +53,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 13
+        "line": 42,
+        "column": 2,
+        "index": 1373
       },
       "end": {
         "line": 49,
-        "column": 3
+        "column": 3,
+        "index": 1600
       }
     },
     "jsdoc": {}
@@ -66,11 +70,13 @@
       "location": {
         "start": {
           "line": 57,
-          "column": 4
+          "column": 4,
+          "index": 1764
         },
         "end": {
           "line": 57,
-          "column": 50
+          "column": 50,
+          "index": 1810
         }
       },
       "name": "availableDesigns",
@@ -85,11 +91,13 @@
       "location": {
         "start": {
           "line": 67,
-          "column": 4
+          "column": 4,
+          "index": 1990
         },
         "end": {
           "line": 69,
-          "column": 5
+          "column": 5,
+          "index": 2130
         }
       },
       "jsdoc": {},
@@ -104,11 +112,13 @@
       "location": {
         "start": {
           "line": 78,
-          "column": 4
+          "column": 4,
+          "index": 2388
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 104,
+          "column": 5,
+          "index": 3257
         }
       },
       "jsdoc": {
@@ -479,6 +489,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -503,6 +514,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -2008,15 +2020,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 103,
-        "column": 9
+        "line": 107,
+        "column": 2,
+        "index": 3266
       },
       "end": {
-        "line": 105,
-        "column": 3
+        "line": 109,
+        "column": 3,
+        "index": 3360
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

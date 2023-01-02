@@ -6,13 +6,13 @@
         "require": true
       },
       "qx.html.Element": {
+        "construct": true,
         "require": true
       },
       "qx.bom.Label": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,48 +42,54 @@
    */
   qx.Class.define("qx.html.Label", {
     extend: qx.html.Element,
-
+    /**
+     * Creates a new Image
+     *
+     * @see constructor for {Element}
+     */
+    construct: function construct(tagName, styles, attributes) {
+      qx.html.Element.constructor.call(this, tagName, styles, attributes);
+      this.registerProperty("value", null, this._setValueProperty);
+    },
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_235_0: null,
 
+    members: {
+      __P_241_0: null,
       /*
       ---------------------------------------------------------------------------
         ELEMENT API
       ---------------------------------------------------------------------------
       */
-      // overridden
-      _applyProperty: function _applyProperty(name, value) {
-        qx.html.Label.superclass.prototype._applyProperty.call(this, name, value);
-
-        if (name == "value") {
-          var element = this.getDomElement();
-          qx.bom.Label.setValue(element, value);
-        }
+      /**
+       * Implementation of setter for the "value" property
+       *
+       * @param value {String?} value to set
+       */
+      _setValueProperty: function _setValueProperty(value) {
+        var element = this.getDomElement();
+        qx.bom.Label.setValue(element, value);
       },
       // overridden
       _createDomElement: function _createDomElement() {
-        var rich = this.__P_235_0;
+        var rich = this.__P_241_0;
         var el = qx.bom.Label.create(this._content, rich);
-        el.style.overflow = 'hidden';
+        el.style.overflow = "hidden";
         return el;
       },
       // overridden
       // be sure that style attributes are merged and not overwritten
-      _copyData: function _copyData(fromMarkup) {
-        return qx.html.Label.superclass.prototype._copyData.call(this, true);
+      _copyData: function _copyData(fromMarkup, propertiesFromDom) {
+        return qx.html.Label.superclass.prototype._copyData.call(this, true, propertiesFromDom);
       },
-
       /*
       ---------------------------------------------------------------------------
         LABEL API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Toggles between rich HTML mode and pure text mode.
        *
@@ -92,21 +98,16 @@
        */
       setRich: function setRich(value) {
         var element = this.getDomElement();
-
         if (element) {
           throw new Error("The label mode cannot be modified after initial creation");
         }
-
         value = !!value;
-
-        if (this.__P_235_0 == value) {
+        if (this.__P_241_0 == value) {
           return this;
         }
-
-        this.__P_235_0 = value;
+        this.__P_241_0 = value;
         return this;
       },
-
       /**
        * Sets the HTML/text content depending on the content mode.
        *
@@ -115,10 +116,8 @@
        */
       setValue: function setValue(value) {
         this._setProperty("value", value);
-
         return this;
       },
-
       /**
        * Get the current content.
        *
@@ -127,7 +126,6 @@
       getValue: function getValue() {
         return this._getProperty("value");
       },
-
       /**
        * Reset the current content
        *
@@ -141,4 +139,4 @@
   qx.html.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1664789586656
+//# sourceMappingURL=Label.js.map?dt=1672653497141

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 602
       },
       "end": {
-        "line": 201,
-        "column": 3
+        "line": 188,
+        "column": 3,
+        "index": 5111
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 14
+        "line": 28,
+        "column": 2,
+        "index": 726
       },
       "end": {
-        "line": 42,
-        "column": 3
+        "line": 41,
+        "column": 3,
+        "index": 998
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "allowToggle": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1215
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1277
         }
       },
       "jsdoc": {
@@ -100,127 +105,49 @@
     }
   },
   "members": {
-    "__iconUrlTrue": {
+    "_iconUrlTrue": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1301
         },
         "end": {
-          "line": 63,
-          "column": 24
+          "line": 56,
+          "column": 22,
+          "index": 1319
         }
       },
       "type": "variable",
-      "access": "private"
+      "access": "protected"
     },
-    "__iconUrlFalse": {
+    "_iconUrlFalse": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1325
         },
         "end": {
-          "line": 64,
-          "column": 25
+          "line": 57,
+          "column": 23,
+          "index": 1344
         }
       },
       "type": "variable",
-      "access": "private"
+      "access": "protected"
     },
-    "__numericAllowed": {
+    "_resolveImages": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1439
         },
         "end": {
-          "line": 65,
-          "column": 27
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__conditions": {
-      "location": {
-        "start": {
-          "line": 66,
-          "column": 4
-        },
-        "end": {
-          "line": 66,
-          "column": 23
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__defaultTextAlign": {
-      "location": {
-        "start": {
-          "line": 67,
-          "column": 4
-        },
-        "end": {
-          "line": 67,
-          "column": 29
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__defaultColor": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4
-        },
-        "end": {
-          "line": 68,
-          "column": 25
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__defaultFontStyle": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4
-        },
-        "end": {
-          "line": 69,
-          "column": 29
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__defaultFontWeight": {
-      "location": {
-        "start": {
-          "line": 70,
-          "column": 4
-        },
-        "end": {
-          "line": 70,
-          "column": 30
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__resolveImages": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4
-        },
-        "end": {
-          "line": 86,
-          "column": 5
+          "line": 75,
+          "column": 5,
+          "index": 1919
         }
       },
       "jsdoc": {
@@ -232,17 +159,35 @@
         ]
       },
       "type": "function",
-      "access": "private"
+      "access": "protected"
+    },
+    "_getDefaultImageData": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1926
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2036
+        }
+      },
+      "type": "function",
+      "access": "protected"
     },
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 2061
         },
         "end": {
-          "line": 181,
-          "column": 5
+          "line": 167,
+          "column": 5,
+          "index": 4684
         }
       },
       "jsdoc": {},
@@ -256,12 +201,14 @@
     "_getCellStyle": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 170,
+          "column": 4,
+          "index": 4709
         },
         "end": {
-          "line": 188,
-          "column": 5
+          "line": 173,
+          "column": 5,
+          "index": 4805
         }
       },
       "jsdoc": {},
@@ -361,6 +308,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -385,6 +333,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -503,15 +452,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 191,
-        "column": 13
+        "line": 176,
+        "column": 2,
+        "index": 4814
       },
       "end": {
-        "line": 200,
-        "column": 3
+        "line": 187,
+        "column": 3,
+        "index": 5107
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

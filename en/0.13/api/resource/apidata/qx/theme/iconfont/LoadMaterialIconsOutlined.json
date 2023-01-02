@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 823
       },
       "end": {
         "line": 28,
-        "column": 67
+        "column": 67,
+        "index": 890
       }
     },
     "jsdoc": {
@@ -31,19 +33,19 @@
       "@asset": [
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.otf"
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.otf"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.woff2"
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff2"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.woff"
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v38.eot"
+          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.eot"
         }
       ]
     }

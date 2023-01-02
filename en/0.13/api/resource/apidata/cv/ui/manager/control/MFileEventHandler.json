@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 1005
       },
       "end": {
-        "line": 57,
-        "column": 3
+        "line": 56,
+        "column": 3,
+        "index": 1884
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 13
+        "line": 30,
+        "column": 2,
+        "index": 1194
       },
       "end": {
-        "line": 38,
-        "column": 3
+        "line": 37,
+        "column": 3,
+        "index": 1477
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "_disableFileEvents": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1619
         },
         "end": {
-          "line": 46,
-          "column": 29
+          "line": 45,
+          "column": 29,
+          "index": 1644
         }
       },
       "type": "variable",
@@ -59,12 +65,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 54,
-        "column": 12
+        "line": 53,
+        "column": 2,
+        "index": 1778
       },
       "end": {
-        "line": 56,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1880
       }
     },
     "jsdoc": {}

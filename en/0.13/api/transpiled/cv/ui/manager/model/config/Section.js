@@ -16,11 +16,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Section.js 
-   * 
+  /* Section.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,7 +40,6 @@
    */
   qx.Class.define('cv.ui.manager.model.config.Section', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,7 +50,6 @@
       this.setName(name);
       this.initOptions(new qx.data.Array());
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -70,7 +67,6 @@
         event: 'changeOptions'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -84,10 +80,8 @@
             option.setValue(value);
             return true;
           }
-
           return false;
         }, this);
-
         if (!found) {
           options.push(new cv.ui.manager.model.config.Option(key, value));
         }
@@ -97,4 +91,4 @@
   cv.ui.manager.model.config.Section.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Section.js.map?dt=1664789568365
+//# sourceMappingURL=Section.js.map?dt=1672653476945

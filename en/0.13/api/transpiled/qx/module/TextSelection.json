@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 563
       },
       "end": {
-        "line": 187,
-        "column": 3
+        "line": 179,
+        "column": 3,
+        "index": 4341
       }
     },
     "jsdoc": {
@@ -32,11 +34,13 @@
       "location": {
         "start": {
           "line": 32,
-          "column": 4
+          "column": 4,
+          "index": 876
         },
         "end": {
           "line": 35,
-          "column": 5
+          "column": 5,
+          "index": 1011
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "__getTextNode": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1209
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1415
         }
       },
       "jsdoc": {
@@ -123,12 +129,14 @@
     "getTextSelection": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1543
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1812
         }
       },
       "jsdoc": {
@@ -153,12 +161,14 @@
     "getTextSelectionLength": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 1975
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2256
         }
       },
       "jsdoc": {
@@ -189,12 +199,14 @@
     "getTextSelectionStart": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2411
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 2690
         }
       },
       "jsdoc": {
@@ -225,12 +237,14 @@
     "getTextSelectionEnd": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 119,
+          "column": 4,
+          "index": 2843
         },
         "end": {
-          "line": 134,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 3118
         }
       },
       "jsdoc": {
@@ -261,12 +275,14 @@
     "setTextSelection": {
       "location": {
         "start": {
-          "line": 148,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 3528
         },
         "end": {
-          "line": 160,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 3830
         }
       },
       "jsdoc": {
@@ -313,12 +329,14 @@
     "clearTextSelection": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 163,
+          "column": 4,
+          "index": 3992
         },
         "end": {
-          "line": 180,
-          "column": 5
+          "line": 173,
+          "column": 5,
+          "index": 4280
         }
       },
       "jsdoc": {
@@ -350,15 +368,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 184,
-        "column": 10
+        "line": 176,
+        "column": 2,
+        "index": 4289
       },
       "end": {
-        "line": 186,
-        "column": 3
+        "line": 178,
+        "column": 3,
+        "index": 4337
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

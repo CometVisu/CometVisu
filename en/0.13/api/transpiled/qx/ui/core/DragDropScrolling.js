@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
     },
     members: {
       _widget: null,
-
       /**
        * Returns the root widget whose children will have scroll on drag session
        * behavior. Widget was set on constructor or will be application root by
@@ -64,4 +62,4 @@
   qx.ui.core.DragDropScrolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDropScrolling.js.map?dt=1664789593291
+//# sourceMappingURL=DragDropScrolling.js.map?dt=1672653504678

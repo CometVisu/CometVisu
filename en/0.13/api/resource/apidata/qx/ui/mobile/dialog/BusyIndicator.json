@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 33,
-        "column": 0
+        "column": 0,
+        "index": 818
       },
       "end": {
-        "line": 144,
-        "column": 3
+        "line": 129,
+        "column": 3,
+        "index": 2902
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 41,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 963
       },
       "end": {
-        "line": 48,
-        "column": 3
+        "line": 45,
+        "column": 3,
+        "index": 1236
       }
     },
     "jsdoc": {
@@ -60,12 +64,14 @@
     "spinnerClass": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1312
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1436
         }
       },
       "jsdoc": {
@@ -90,12 +96,14 @@
     "SPINNER_ANIMATION": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1460
         },
         "end": {
-          "line": 68,
-          "column": 28
+          "line": 60,
+          "column": 27,
+          "index": 1483
         }
       },
       "type": "variable",
@@ -106,12 +114,14 @@
     "__animationHandle": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1507
         },
         "end": {
-          "line": 74,
-          "column": 28
+          "line": 64,
+          "column": 27,
+          "index": 1530
         }
       },
       "type": "variable",
@@ -120,12 +130,14 @@
     "_onAppear": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1587
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 1792
         }
       },
       "jsdoc": {
@@ -142,12 +154,14 @@
     "_onDisappear": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 1851
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 1910
         }
       },
       "jsdoc": {
@@ -164,12 +178,14 @@
     "_createIconWidget": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 1935
         },
         "end": {
-          "line": 99,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2105
         }
       },
       "jsdoc": {},
@@ -183,12 +199,14 @@
     "_applySpinnerClass": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2134
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 2323
         }
       },
       "jsdoc": {},
@@ -286,6 +304,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -310,6 +329,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1721,28 +1741,30 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 115,
-        "column": 13
+        "line": 101,
+        "column": 2,
+        "index": 2332
       },
       "end": {
-        "line": 125,
-        "column": 3
+        "line": 110,
+        "column": 3,
+        "index": 2582
       }
-    },
-    "jsdoc": {}
+    }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 128,
-        "column": 10
+        "line": 112,
+        "column": 2,
+        "index": 2587
       },
       "end": {
-        "line": 143,
-        "column": 3
+        "line": 128,
+        "column": 3,
+        "index": 2898
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

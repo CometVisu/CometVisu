@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 59,
-        "column": 0
+        "line": 58,
+        "column": 0,
+        "index": 1895
       },
       "end": {
         "line": 115,
-        "column": 3
+        "column": 3,
+        "index": 3524
       }
     },
     "jsdoc": {
@@ -52,12 +54,14 @@
     "onValue": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 2209
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2264
         }
       },
       "name": "onValue",
@@ -70,11 +74,13 @@
       "location": {
         "start": {
           "line": 73,
-          "column": 4
+          "column": 4,
+          "index": 2271
         },
         "end": {
           "line": 76,
-          "column": 5
+          "column": 5,
+          "index": 2327
         }
       },
       "name": "offValue",
@@ -165,12 +171,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2507
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2619
         }
       },
       "jsdoc": {},
@@ -184,12 +192,14 @@
     "handleUpdate": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2786
         },
         "end": {
           "line": 104,
-          "column": 5
+          "column": 5,
+          "index": 3196
         }
       },
       "jsdoc": {
@@ -216,11 +226,13 @@
       "location": {
         "start": {
           "line": 110,
-          "column": 4
+          "column": 4,
+          "index": 3328
         },
         "end": {
           "line": 113,
-          "column": 5
+          "column": 5,
+          "index": 3516
         }
       },
       "jsdoc": {
@@ -1190,6 +1202,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1214,6 +1227,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

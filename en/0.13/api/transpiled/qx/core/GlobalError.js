@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,7 +36,6 @@
    */
   qx.Bootstrap.define("qx.core.GlobalError", {
     extend: Error,
-
     /**
      * @param exc {Error} source exception
      * @param args {Array} arguments
@@ -48,55 +46,52 @@
       if (qx.Bootstrap.DEBUG) {
         qx.core.Assert.assertNotUndefined(exc);
       }
-
-      this.__P_158_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
-      var inst = Error.call(this, this.__P_158_0); // map stack trace properties since they're not added by Error's constructor
-
-      if (inst.stack) {
+      this.__P_159_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
+      var inst = Error.call(this, this.__P_159_0);
+      // map stack trace properties since they're not added by Error's constructor
+      if (exc && exc.stack) {
+        this.stack = exc.stack;
+      }
+      if (!this.stack && inst.stack) {
         this.stack = inst.stack;
       }
-
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
-
-      this.__P_158_1 = args;
-      this.__P_158_2 = exc;
+      this.__P_159_1 = args;
+      this.__P_159_2 = exc;
     },
     members: {
-      __P_158_2: null,
-      __P_158_1: null,
-      __P_158_0: null,
-
+      __P_159_2: null,
+      __P_159_1: null,
+      __P_159_0: null,
       /**
        * Returns the error message.
        *
        * @return {String} error message
        */
       toString: function toString() {
-        return this.__P_158_0;
+        return this.__P_159_0;
       },
-
       /**
        * Returns the arguments which are
        *
        * @return {Object} arguments
        */
       getArguments: function getArguments() {
-        return this.__P_158_1;
+        return this.__P_159_1;
       },
-
       /**
        * Get the source exception
        *
        * @return {Error} source exception
        */
       getSourceException: function getSourceException() {
-        return this.__P_158_2;
+        return this.__P_159_2;
       }
     }
   });
   qx.core.GlobalError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalError.js.map?dt=1664789580029
+//# sourceMappingURL=GlobalError.js.map?dt=1672653488083

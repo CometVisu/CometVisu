@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 669
       },
       "end": {
-        "line": 137,
-        "column": 3
+        "line": 118,
+        "column": 3,
+        "index": 2856
       }
     },
     "jsdoc": {
@@ -45,12 +47,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1023
       },
       "end": {
-        "line": 62,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1478
       }
     },
     "jsdoc": {
@@ -75,12 +79,14 @@
     "allowShrinkX": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1706
         },
         "end": {
-          "line": 79,
-          "column": 5
+          "line": 68,
+          "column": 5,
+          "index": 1765
         }
       },
       "jsdoc": {},
@@ -97,12 +103,14 @@
     "allowShrinkY": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1790
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 1849
         }
       },
       "jsdoc": {},
@@ -119,12 +127,14 @@
     "knobVisible": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2046
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2164
         }
       },
       "jsdoc": {
@@ -148,12 +158,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2390
         },
         "end": {
-          "line": 129,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2684
         }
       },
       "jsdoc": {},
@@ -167,12 +179,14 @@
     "_applyKnobVisible": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 2713
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 2848
         }
       },
       "jsdoc": {},
@@ -270,6 +284,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -294,6 +309,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

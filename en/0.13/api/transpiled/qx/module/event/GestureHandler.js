@@ -35,7 +35,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,7 +65,6 @@
   qx.Bootstrap.define("qx.module.event.GestureHandler", {
     statics: {
       TYPES: ["tap", "longtap", "swipe", "dbltap", "track", "trackstart", "trackend", "roll", "rotate", "pinch"],
-
       /**
        * Creates a gesture handler for the given element when a gesture event listener
        * is attached to it
@@ -81,11 +79,9 @@
               element.$$emitter = new qx.event.Emitter();
             }
           }
-
           element.$$gestureHandler = new qx.event.handler.GestureCore(element, element.$$emitter);
         }
       },
-
       /**
        * Removes the gesture event handler from the element if there are no more
        * gesture event listeners attached to it
@@ -95,16 +91,15 @@
         // check if there are any registered listeners left
         if (element.$$gestureHandler) {
           var listeners = element.$$emitter.getListeners();
-
           for (var type in listeners) {
             if (qx.module.event.GestureHandler.TYPES.indexOf(type) !== -1) {
               if (listeners[type].length > 0) {
                 return;
               }
             }
-          } // no more listeners, get rid of the handler
+          }
 
-
+          // no more listeners, get rid of the handler
           element.$$gestureHandler.dispose();
           element.$$gestureHandler = undefined;
         }
@@ -117,4 +112,4 @@
   qx.module.event.GestureHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GestureHandler.js.map?dt=1664789590091
+//# sourceMappingURL=GestureHandler.js.map?dt=1672653501382

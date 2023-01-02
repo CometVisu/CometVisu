@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -29,27 +28,24 @@
     Origin:
       This theme is inspired by ideas from Material design.
   ************************************************************************ */
-
   /**
    * Simple color theme
    */
+
   var helper = {
     tone: function tone(color) {
       if (color == "dark" || color == "light") {
         return color;
       }
-
       var minimumContrast = 3.1;
       var lightContrast = qx.util.ColorUtil.contrast(color, "#fff");
       var darkContrast = qx.util.ColorUtil.contrast(color, "rgba(0,0,0,0.87)");
-
       if (lightContrast < minimumContrast && darkContrast > lightContrast) {
         return "light";
       } else {
         return "dark";
       }
     },
-
     /**
      * contrastTone
      *
@@ -62,7 +58,6 @@
     contrastTone: function contrastTone(color) {
       return helper.tone(color) === "dark" ? "light" : "dark";
     },
-
     /**
      * inkColorForFill
      *
@@ -92,62 +87,54 @@
     },
     // helpers
     onX: function onX(key) {
-      var baseColor = key.split('-')[2];
+      var baseColor = key.split("-")[2];
       return helper.contrastTone(baseColor) === "dark" ? "#000000" : "#ffffff";
     },
     // helpers
     xState: function xState(key) {
-      var d = key.split('-');
+      var d = key.split("-");
       var color = d[0];
       var state = d[1];
-
       switch (state) {
-        case 'focussed':
+        case "focused":
           return qx.util.ColorUtil.scale(color, {
             lightness: 10,
             saturation: 10
           });
-
-        case 'hovered':
+        case "hovered":
           return qx.util.ColorUtil.scale(color, {
             lightness: 10
           });
-
-        case 'disabled':
+        case "disabled":
           return qx.util.ColorUtil.scale(color, {
             lightness: -10,
             saturation: -70
           });
-
-        case 'selected':
+        case "selected":
           return qx.util.ColorUtil.scale(color, {
             lightness: 30
           });
-
-        case 'selected_disabled':
+        case "selected_disabled":
           return qx.util.ColorUtil.scale(color, {
             lightness: 30,
             saturation: -70
           });
-
         default:
           return color;
       }
     },
     textXonY: function textXonY(key) {
-      var splitKey = key.split('-');
+      var splitKey = key.split("-");
       var textStyle = splitKey[1];
       var fillColor = splitKey[3];
       return helper.inkColorForFill(textStyle, fillColor);
     },
     setAlpha: function setAlpha(key) {
-      var splitKey = key.split('-');
-
+      var splitKey = key.split("-");
       if (splitKey.length == 4) {
         splitKey[1] = splitKey[0] + "-" + splitKey[1];
         splitKey.shift();
       }
-
       var baseColor = splitKey[0];
       var alphaPercent = splitKey[2];
       var actualColor = qx.theme.manager.Color.getInstance().resolve(baseColor);
@@ -160,21 +147,23 @@
     colors: {
       // actual implementations must supply these 4 colors
       // at least
+
       //"primary": "#6200ee",
       //"secondary": "#018786",
       //"surface": "#ffffff",
       //"error": "#b00020",
       // automatic colors
+
       "text-on-primary": helper.onX,
       "text-on-secondary": helper.onX,
       "text-on-surface": helper.onX,
       "text-on-error": helper.onX,
       "primary-hovered": helper.xState,
       "primary-disabled": helper.xState,
-      "primary-focussed": helper.xState,
+      "primary-focused": helper.xState,
       "primary-selected": helper.xState,
       "primary-selected_disabled": helper.xState,
-      "error-focussed": helper.xState,
+      "error-focused": helper.xState,
       // alpha colors
       "primary-alpha-5": helper.setAlpha,
       "primary-alpha-10": helper.setAlpha,
@@ -217,4 +206,4 @@
   qx.theme.tangible.ColorEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorEngine.js.map?dt=1664789592108
+//# sourceMappingURL=ColorEngine.js.map?dt=1672653503595

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 43,
-        "column": 0
+        "column": 0,
+        "index": 1574
       },
       "end": {
-        "line": 149,
-        "column": 3
+        "line": 143,
+        "column": 3,
+        "index": 4798
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 51,
-        "column": 14
+        "line": 50,
+        "column": 2,
+        "index": 1767
       },
       "end": {
-        "line": 56,
-        "column": 3
+        "line": 54,
+        "column": 3,
+        "index": 1883
       }
     },
     "jsdoc": {
@@ -60,12 +64,14 @@
     "__validatorFunction": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1903
         },
         "end": {
-          "line": 60,
-          "column": 30
+          "line": 57,
+          "column": 29,
+          "index": 1928
         }
       },
       "type": "variable",
@@ -74,12 +80,14 @@
     "__item": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1934
         },
         "end": {
-          "line": 61,
-          "column": 17
+          "line": 58,
+          "column": 16,
+          "index": 1946
         }
       },
       "type": "variable",
@@ -88,12 +96,14 @@
     "__manager": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1952
         },
         "end": {
-          "line": 62,
-          "column": 20
+          "line": 59,
+          "column": 19,
+          "index": 1967
         }
       },
       "type": "variable",
@@ -102,12 +112,14 @@
     "__usedForForm": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1973
         },
         "end": {
-          "line": 63,
-          "column": 24
+          "line": 60,
+          "column": 23,
+          "index": 1992
         }
       },
       "type": "variable",
@@ -116,12 +128,14 @@
     "validate": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2667
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2993
         }
       },
       "jsdoc": {
@@ -176,12 +190,14 @@
     "validateForm": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 3604
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3773
         }
       },
       "jsdoc": {
@@ -229,12 +245,14 @@
     "setValid": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 4068
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 131,
+          "column": 5,
+          "index": 4539
         }
       },
       "jsdoc": {
@@ -353,6 +371,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -377,6 +396,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -405,12 +425,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 146,
-        "column": 13
+        "line": 140,
+        "column": 2,
+        "index": 4737
       },
       "end": {
-        "line": 148,
-        "column": 3
+        "line": 142,
+        "column": 3,
+        "index": 4794
       }
     },
     "jsdoc": {}

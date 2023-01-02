@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 572
       },
       "end": {
-        "line": 91,
-        "column": 3
+        "line": 102,
+        "column": 3,
+        "index": 2523
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "isCrossDomain": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 837
         },
         "end": {
           "line": 56,
-          "column": 5
+          "column": 5,
+          "index": 1406
         }
       },
       "jsdoc": {
@@ -71,11 +75,13 @@
       "location": {
         "start": {
           "line": 64,
-          "column": 4
+          "column": 4,
+          "index": 1609
         },
         "end": {
           "line": 66,
-          "column": 5
+          "column": 5,
+          "index": 1701
         }
       },
       "jsdoc": {
@@ -110,11 +116,13 @@
       "location": {
         "start": {
           "line": 74,
-          "column": 4
+          "column": 4,
+          "index": 1886
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2163
         }
       },
       "jsdoc": {
@@ -148,12 +156,14 @@
     "methodAllowsRequestBody": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2433
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2515
         }
       },
       "jsdoc": {

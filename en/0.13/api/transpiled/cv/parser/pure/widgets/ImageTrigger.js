@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ImageTrigger.js 
-   * 
+  /* ImageTrigger.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.ImageTrigger', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -61,20 +59,20 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'height': {
-            'default': '0'
+          height: {
+            "default": '0'
           },
-          'width': {
-            'default': '0'
+          width: {
+            "default": '0'
           },
-          'type': {
+          type: {
             target: 'updateType',
-            'default': ''
+            "default": ''
           },
-          'src': {},
-          'suffix': {},
-          'sendValue': {
-            'default': ''
+          src: {},
+          suffix: {},
+          sendValue: {
+            "default": ''
           }
         };
       },
@@ -91,4 +89,4 @@
   cv.parser.pure.widgets.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1664789562044
+//# sourceMappingURL=ImageTrigger.js.map?dt=1672653470706

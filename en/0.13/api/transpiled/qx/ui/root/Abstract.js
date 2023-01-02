@@ -55,7 +55,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -82,27 +81,28 @@
     type: "abstract",
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MChildrenHandling, qx.ui.core.MBlocker, qx.ui.window.MDesktop],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.core.Widget.constructor.call(this); // Register as root for the focus handler
+      qx.ui.core.Widget.constructor.call(this);
 
-      qx.ui.core.FocusHandler.getInstance().addRoot(this); // Directly add to visibility queue
+      // Register as root for the focus handler
+      qx.ui.core.FocusHandler.getInstance().addRoot(this);
 
+      // Directly add to visibility queue
       qx.ui.core.queue.Visibility.add(this);
       this.initNativeHelp();
-      this.addListener("keypress", this.__P_413_0, this);
+      this.addListener("keypress", this.__P_427_0, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -119,7 +119,6 @@
         refine: true,
         init: true
       },
-
       /**
        *  Sets the global cursor style
        *
@@ -154,7 +153,6 @@
         apply: "_applyGlobalCursor",
         event: "changeGlobalCursor"
       },
-
       /**
        * Whether the native context menu should be globally enabled. Setting this
        * property to <code>true</code> will allow native context menus in all
@@ -164,7 +162,6 @@
         refine: true,
         init: false
       },
-
       /**
        * If the user presses F1 in IE by default the onhelp event is fired and
        * IE’s help window is opened. Setting this property to <code>false</code>
@@ -176,19 +173,18 @@
         apply: "_applyNativeHelp"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_413_1: null,
+      __P_427_1: null,
       // overridden
       isRootWidget: function isRootWidget() {
         return true;
       },
-
       /**
        * Get the widget's layout manager.
        *
@@ -199,20 +195,18 @@
       },
       // property apply
       _applyGlobalCursor: qx.core.Environment.select("engine.name", {
-        "mshtml": function mshtml(value, old) {// empty implementation
+        mshtml: function mshtml(value, old) {
+          // empty implementation
         },
         // This would be the optimal solution.
         // For performance reasons this is impractical in IE
         "default": function _default(value, old) {
           var Stylesheet = qx.bom.Stylesheet;
-          var sheet = this.__P_413_1;
-
+          var sheet = this.__P_427_1;
           if (!sheet) {
-            this.__P_413_1 = sheet = Stylesheet.createElement();
+            this.__P_427_1 = sheet = Stylesheet.createElement();
           }
-
           Stylesheet.removeAllRules(sheet);
-
           if (value) {
             Stylesheet.addRule(sheet, "*", qx.bom.element.Cursor.compile(value).replace(";", "") + " !important");
           }
@@ -226,7 +220,6 @@
           this.addListener("contextmenu", this._onNativeContextMenu, this, true);
         }
       },
-
       /**
        * Stops the <code>contextmenu</code> event from showing the native context menu
        *
@@ -236,46 +229,41 @@
         if (e.getTarget().getNativeContextMenu()) {
           return;
         }
-
         e.preventDefault();
       },
-
       /**
-      * Fix unexpected scrolling when pressing "Space" while a widget is focused.
-      *
-      * @param e {qx.event.type.KeySequence} The KeySequence event
-      */
-      __P_413_0: function __P_413_0(e) {
+       * Fix unexpected scrolling when pressing "Space" while a widget is focused.
+       *
+       * @param e {qx.event.type.KeySequence} The KeySequence event
+       */
+      __P_427_0: function __P_427_0(e) {
         // Require space pressed
         if (e.getKeyIdentifier() !== "Space") {
           return;
         }
+        var target = e.getTarget();
 
-        var target = e.getTarget(); // Require focused. Allow scroll when container or root widget.
-
+        // Require focused. Allow scroll when container or root widget.
         var focusHandler = qx.ui.core.FocusHandler.getInstance();
-
         if (!focusHandler.isFocused(target)) {
           return;
-        } // Require that widget does not accept text input
+        }
 
-
+        // Require that widget does not accept text input
         var el = target.getContentElement();
         var nodeName = el.getNodeName();
         var domEl = el.getDomElement();
-
         if (nodeName === "input" || nodeName === "textarea" || domEl && domEl.contentEditable === "true") {
           return;
-        } // do not prevent "space" key for natively focusable elements
+        }
 
-
+        // do not prevent "space" key for natively focusable elements
         nodeName = qx.dom.Node.getName(e.getOriginalTarget());
-
         if (nodeName && ["input", "textarea", "select", "a"].indexOf(nodeName) > -1) {
           return;
-        } // Ultimately, prevent default
+        }
 
-
+        // Ultimately, prevent default
         e.preventDefault();
       },
       // property apply
@@ -286,7 +274,6 @@
               return false;
             });
           }
-
           if (value === false) {
             qx.bom.Event.addNativeListener(document, "help", function () {
               return false;
@@ -295,16 +282,14 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_413_1 = null;
+      this.__P_427_1 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -317,4 +302,4 @@
   qx.ui.root.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789602975
+//# sourceMappingURL=Abstract.js.map?dt=1672653513209

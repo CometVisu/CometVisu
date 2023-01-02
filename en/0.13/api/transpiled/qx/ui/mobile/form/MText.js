@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,7 +57,6 @@
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {var?null} The value of the widget.
      */
@@ -67,23 +65,22 @@
       this.initPlaceholder();
       this.initReadOnly();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
-        * Maximal number of characters that can be entered in the input field.
-        */
+       * Maximal number of characters that can be entered in the input field.
+       */
       maxLength: {
         check: "PositiveInteger",
         nullable: true,
         init: null,
         apply: "_applyMaxLength"
       },
-
       /**
        * String value which will be shown as a hint if the field is all of:
        * unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder
@@ -95,7 +92,6 @@
         init: null,
         apply: "_applyPlaceholder"
       },
-
       /** Whether the field is read only */
       readOnly: {
         check: "Boolean",
@@ -104,12 +100,12 @@
         apply: "_applyAttribute"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyMaxLength: function _applyMaxLength(value, old) {
@@ -122,10 +118,8 @@
         if (qx.core.Environment.get("os.name") == "android" && value !== null) {
           value = " " + value;
         }
-
         this._setAttribute("placeholder", value);
       },
-
       /**
        * Points the focus of the form to this widget.
        */
@@ -133,20 +127,16 @@
         if (this.isReadOnly() || this.getEnabled() == false) {
           return;
         }
-
         var targetElement = this.getContainerElement();
-
         if (targetElement) {
           qx.bom.Element.focus(targetElement);
         }
       },
-
       /**
        * Removes the focus from this widget.
        */
       blur: function blur() {
         var targetElement = this.getContainerElement();
-
         if (targetElement) {
           qx.bom.Element.blur(targetElement);
         }
@@ -156,4 +146,4 @@
   qx.ui.mobile.form.MText.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MText.js.map?dt=1664789601059
+//# sourceMappingURL=MText.js.map?dt=1672653511569

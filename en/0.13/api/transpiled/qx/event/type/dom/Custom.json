@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 558
       },
       "end": {
-        "line": 126,
-        "column": 3
+        "line": 130,
+        "column": 3,
+        "index": 3480
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "PROPERTIES": {
       "location": {
         "start": {
-          "line": 28,
-          "column": 4
+          "line": 27,
+          "column": 4,
+          "index": 644
         },
         "end": {
-          "line": 31,
-          "column": 5
+          "line": 30,
+          "column": 5,
+          "index": 708
         }
       },
       "type": "variable",
@@ -46,12 +50,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 40,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 984
       },
       "end": {
-        "line": 73,
-        "column": 3
+        "line": 72,
+        "column": 3,
+        "index": 1970
       }
     },
     "jsdoc": {
@@ -98,12 +104,14 @@
     "_type": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1990
         },
         "end": {
-          "line": 76,
-          "column": 16
+          "line": 75,
+          "column": 15,
+          "index": 2001
         }
       },
       "type": "variable",
@@ -112,12 +120,14 @@
     "_event": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2007
         },
         "end": {
-          "line": 77,
-          "column": 17
+          "line": 76,
+          "column": 16,
+          "index": 2019
         }
       },
       "type": "variable",
@@ -126,12 +136,14 @@
     "_createEvent": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2115
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2562
         }
       },
       "jsdoc": {
@@ -156,12 +168,14 @@
     "_initEvent": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2815
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3472
         }
       },
       "jsdoc": {

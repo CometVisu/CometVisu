@@ -35,12 +35,11 @@
       },
       "qx.core.IDisposable": {},
       "qx.util.Uuid": {},
-      "qx.util.DisposeUtil": {},
-      "qx.event.Registration": {}
+      "qx.event.Registration": {},
+      "qx.util.DisposeUtil": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,42 +83,38 @@
       "module.objectid": qx.core.MObjectId,
       "qx.debug": qx.core.MAssert
     }),
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      */
     construct: function construct() {},
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** Internal type */
       $$type: "Object"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_164_0: true ? qx.core.Property : null,
 
+    members: {
+      __P_165_0: true ? qx.core.Property : null,
       /*
       ---------------------------------------------------------------------------
         BASICS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Return unique hash code of object
        *
@@ -133,42 +128,36 @@
             qx.core.ObjectRegistry.toHashCode(this);
           }
         }
-
         return this.$$hash;
       },
-
       /**
        * Returns a UUID for this object
-       * 
+       *
        * @return {String} a UUID
        */
       toUuid: function toUuid() {
         if (!this.$$uuid) {
           this.$$uuid = qx.util.Uuid.createUuidV4();
         }
-
         return this.$$uuid;
       },
-
       /**
        * Sets a UUID; normally set automatically, you would only set this manually
        * if you have a very special reason to do so - for example, you are using UUIDs which are
        * synchronized from a special source, eg remote server.
-       * 
+       *
        * This can only be called once, and only if it has not been automatically allocated.  If
        * you really do need to call this, call it as soon after construction as possible to avoid
-       * an exception.  
-       * 
+       * an exception.
+       *
        * @param uuid {String} an ID which is unique across the whole application
        */
       setExplicitUuid: function setExplicitUuid(uuid) {
         if (Boolean(this.$$uuid)) {
           throw new Error("Cannot change the UUID of an object once set");
         }
-
         this.$$uuid = uuid;
       },
-
       /**
        * Returns a string representation of the qooxdoo object.
        *
@@ -177,22 +166,29 @@
       toString: function toString() {
         return this.classname + "[" + this.toHashCode() + "]";
       },
-
       /**
        * Call the same method of the super class.
+       *
+       * Either the compiler translate all calls to this.base
+       * into mypkg.MyBaseClass.prototype.myMethod.call(this, 123);
+       * this method is still needed for use in compile.js or playground
+       * which are not precompiled
        *
        * @param args {IArguments} the arguments variable of the calling method
        * @param varargs {var?} variable number of arguments passed to the overwritten function
        * @return {var} the return value of the method of the base class.
        */
       base: function base(args, varargs) {
+        var func = args.callee.base;
+        if (!func) {
+          func = this[args.callee.name].base;
+        }
         if (arguments.length === 1) {
-          return args.callee.base.call(this);
+          return func.call(this);
         } else {
-          return args.callee.base.apply(this, Array.prototype.slice.call(arguments, 1));
+          return func.apply(this, Array.prototype.slice.call(arguments, 1));
         }
       },
-
       /**
        * Returns the static class (to access static members of this class)
        *
@@ -202,13 +198,11 @@
       self: function self(args) {
         return args.callee.self;
       },
-
       /*
       ---------------------------------------------------------------------------
         CLONE SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        *
        * Returns a clone of this object. Copies over all user configured
@@ -221,22 +215,21 @@
         var clazz = this.constructor;
         var clone = new clazz();
         var props = qx.Class.getProperties(clazz);
-        var user = this.__P_164_0.$$store.user;
-        var setter = this.__P_164_0.$$method.set;
-        var name; // Iterate through properties
+        var user = this.__P_165_0.$$store.user;
+        var setter = this.__P_165_0.$$method.set;
+        var name;
 
+        // Iterate through properties
         for (var i = 0, l = props.length; i < l; i++) {
           name = props[i];
-
           if (this.hasOwnProperty(user[name])) {
             clone[setter[name]](this[user[name]]);
           }
-        } // Return clone
+        }
 
-
+        // Return clone
         return clone;
       },
-
       /*
       ---------------------------------------------------------------------------
         USER DATA
@@ -244,8 +237,7 @@
       */
 
       /** @type {Map} stored user data */
-      __P_164_1: null,
-
+      __P_165_1: null,
       /**
        * Store user defined data inside the object.
        *
@@ -253,13 +245,11 @@
        * @param value {Object} the value of the user data
        */
       setUserData: function setUserData(key, value) {
-        if (!this.__P_164_1) {
-          this.__P_164_1 = {};
+        if (!this.__P_165_1) {
+          this.__P_165_1 = {};
         }
-
-        this.__P_164_1[key] = value;
+        this.__P_165_1[key] = value;
       },
-
       /**
        * Load user defined data from the object
        *
@@ -267,27 +257,23 @@
        * @return {Object} the user data
        */
       getUserData: function getUserData(key) {
-        if (!this.__P_164_1) {
+        if (!this.__P_165_1) {
           return null;
         }
-
-        var data = this.__P_164_1[key];
+        var data = this.__P_165_1[key];
         return data === undefined ? null : data;
       },
-
       /**
        * Clears all user defined data from the object.
        */
       resetUserData: function resetUserData() {
-        this.__P_164_1 = null;
+        this.__P_165_1 = null;
       },
-
       /*
       ---------------------------------------------------------------------------
         DISPOSER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns true if the object is disposed.
        *
@@ -296,9 +282,8 @@
       isDisposed: function isDisposed() {
         return this.$$disposed || false;
       },
-
       /**
-       * Returns true if the object is being disposed, ie this.dispose() has started but 
+       * Returns true if the object is being disposed, ie this.dispose() has started but
        * not finished
        *
        * @return {Boolean} Whether the object is being disposed
@@ -306,7 +291,6 @@
       isDisposing: function isDisposing() {
         return this.$$disposing || false;
       },
-
       /**
        * Dispose this object
        *
@@ -315,48 +299,54 @@
         // Check first
         if (this.$$disposed) {
           return;
-        } // Mark as disposed (directly, not at end, to omit recursions)
+        }
 
-
+        // Mark as disposed (directly, not at end, to omit recursions)
         this.$$disposed = true;
         this.$$disposing = true;
         this.$$instance = null;
-        this.$$allowconstruct = null; // Debug output
+        this.$$allowconstruct = null;
+
+        // Debug output
+
+        // Remove all listeners.
+        //
+        // This must be done early, since it calls
+        // qx.core.ObjectRegistry.toHashCode(target) which would add a
+        // hash code back in after code here has cleaned it up.
+        qx.event.Registration.removeAllListeners(this);
 
         // Deconstructor support for classes
         var clazz = this.constructor;
         var mixins;
-
         while (clazz.superclass) {
           // Processing this class...
           if (clazz.$$destructor) {
             clazz.$$destructor.call(this);
-          } // Destructor support for mixins
+          }
 
-
+          // Destructor support for mixins
           if (clazz.$$includes) {
             mixins = clazz.$$flatIncludes;
-
             for (var i = 0, l = mixins.length; i < l; i++) {
               if (mixins[i].$$destructor) {
                 mixins[i].$$destructor.call(this);
               }
             }
-          } // Jump up to next super class
+          }
 
-
+          // Jump up to next super class
           clazz = clazz.superclass;
         }
+        this.$$disposing = false;
 
-        this.$$disposing = false; // Additional checks
+        // Additional checks
       },
-
       /*
       ---------------------------------------------------------------------------
         DISPOSER UTILITIES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Disconnects and disposes given objects from instance.
        * Only works with qx.core.Object based objects e.g. Widgets.
@@ -366,7 +356,6 @@
       _disposeObjects: function _disposeObjects(varargs) {
         qx.util.DisposeUtil.disposeObjects(this, arguments);
       },
-
       /**
        * Disconnects and disposes given singleton objects from instance.
        * Only works with qx.core.Object based objects e.g. Widgets.
@@ -376,7 +365,6 @@
       _disposeSingletonObjects: function _disposeSingletonObjects(varargs) {
         qx.util.DisposeUtil.disposeObjects(this, arguments, true);
       },
-
       /**
        * Disposes all members of the given array and deletes
        * the field which refers to the array afterwards.
@@ -386,7 +374,6 @@
       _disposeArray: function _disposeArray(field) {
         qx.util.DisposeUtil.disposeArray(this, field);
       },
-
       /**
        * Disposes all members of the given map and deletes
        * the field which refers to the map afterwards.
@@ -397,16 +384,18 @@
         qx.util.DisposeUtil.disposeMap(this, field);
       }
     },
-
     /*
     *****************************************************************************
        ENVIRONMENT SETTINGS
     *****************************************************************************
     */
-    environment: {
-      "qx.debug.dispose.level": 0
-    },
 
+    environment: {
+      "qx.debug.dispose.level": 0,
+      // Ideally this would be in the mixin, but mixins do not support environment blocks
+      // Also, this would be better as false, not true but that would not be BC
+      "qx.core.Object.allowUndefinedObjectId": true
+    },
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -421,26 +410,27 @@
           // on shutdown, just clear the internal listener map
           qx.event.Registration.deleteAllListeners(this);
         }
-      } // Cleanup object registry
+      }
 
-      qx.core.ObjectRegistry.unregister(this); // Cleanup user data
+      // Cleanup object registry
+      qx.core.ObjectRegistry.unregister(this);
 
-      this.__P_164_1 = null; // only of properties are available
+      // Cleanup user data
+      this.__P_165_1 = null;
 
+      // only of properties are available
       {
         // Cleanup properties
         var clazz = this.constructor;
         var properties;
-        var store = this.__P_164_0.$$store;
+        var store = this.__P_165_0.$$store;
         var storeUser = store.user;
         var storeTheme = store.theme;
         var storeInherit = store.inherit;
         var storeUseinit = store.useinit;
         var storeInit = store.init;
-
         while (clazz) {
           properties = clazz.$$properties;
-
           if (properties) {
             for (var name in properties) {
               if (properties[name].dereference) {
@@ -448,7 +438,6 @@
               }
             }
           }
-
           clazz = clazz.superclass;
         }
       }
@@ -457,4 +446,4 @@
   qx.core.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1664789580386
+//# sourceMappingURL=Object.js.map?dt=1672653488680

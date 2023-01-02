@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
        * List of events that require a touch handler
        */
       TYPES: ["touchstart", "touchend", "touchmove", "touchcancel"],
-
       /**
        * Creates a touch handler for the given element when a touch event listener
        * is attached to it
@@ -58,24 +56,22 @@
        * @param element {Element} DOM element
        */
       register: function register(element) {
-        if (!element.__P_273_0) {
+        if (!element.__P_288_0) {
           if (!element.$$emitter) {
             element.$$emitter = new qx.event.Emitter();
           }
-
-          element.__P_273_0 = new qx.event.handler.TouchCore(element, element.$$emitter);
+          element.__P_288_0 = new qx.event.handler.TouchCore(element, element.$$emitter);
         }
       },
-
       /**
        * Removes the touch event handler from the element if there are no more
        * touch event listeners attached to it
        * @param element {Element} DOM element
        */
       unregister: function unregister(element) {
-        if (element.__P_273_0) {
+        if (element.__P_288_0) {
           if (!element.$$emitter) {
-            element.__P_273_0 = null;
+            element.__P_288_0 = null;
           } else {
             var hasTouchListener = false;
             var listeners = element.$$emitter.getListeners();
@@ -84,9 +80,8 @@
                 hasTouchListener = true;
               }
             });
-
             if (!hasTouchListener) {
-              element.__P_273_0 = null;
+              element.__P_288_0 = null;
             }
           }
         }
@@ -99,4 +94,4 @@
   qx.module.event.TouchHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TouchHandler.js.map?dt=1664789590400
+//# sourceMappingURL=TouchHandler.js.map?dt=1672653501696

@@ -65,7 +65,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -103,20 +102,18 @@
    *
    * This class provides support for HTML5 transition and animation events.
    * Currently only WebKit and Firefox are supported.
-   * 
+   *
    * NOTE: Instances of this class must be disposed of after use
    *
    */
   qx.Class.define("qx.event.handler.Transition", {
     extend: qx.core.Object,
     implement: [qx.event.IEventHandler, qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      *
@@ -124,19 +121,18 @@
      */
     construct: function construct(manager) {
       qx.core.Object.constructor.call(this);
-      this.__P_220_0 = {};
-      this.__P_220_1 = qx.lang.Function.listener(this._onNative, this);
+      this.__P_224_0 = {};
+      this.__P_224_1 = qx.lang.Function.listener(this._onNative, this);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         transitionEnd: 1,
@@ -144,39 +140,34 @@
         animationStart: 1,
         animationIteration: 1
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true,
-
       /** Mapping of supported event types to native event types */
       TYPE_TO_NATIVE: null,
-
       /** Mapping of native event types to supported event types */
       NATIVE_TO_TYPE: null
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_220_1: null,
-      __P_220_0: null,
 
+    members: {
+      __P_224_1: null,
+      __P_224_0: null,
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
       ---------------------------------------------------------------------------
       */
       // interface implementation
-      canHandleEvent: function canHandleEvent(target, type) {// Nothing needs to be done here
+      canHandleEvent: function canHandleEvent(target, type) {
+        // Nothing needs to be done here
       },
       // interface implementation
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is added using {@link qx.event.Manager#addListener}.
@@ -189,37 +180,36 @@
        * @signature function(target, type, capture)
        */
       registerEvent: qx.core.Environment.select("engine.name", {
-        "webkit": function webkit(target, type, capture) {
+        webkit: function webkit(target, type, capture) {
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
           var nativeType = qx.event.handler.Transition.TYPE_TO_NATIVE[type];
-          this.__P_220_0[hash] = {
+          this.__P_224_0[hash] = {
             target: target,
             type: nativeType
           };
-          qx.bom.Event.addNativeListener(target, nativeType, this.__P_220_1);
+          qx.bom.Event.addNativeListener(target, nativeType, this.__P_224_1);
         },
-        "gecko": function gecko(target, type, capture) {
+        gecko: function gecko(target, type, capture) {
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
           var nativeType = qx.event.handler.Transition.TYPE_TO_NATIVE[type];
-          this.__P_220_0[hash] = {
+          this.__P_224_0[hash] = {
             target: target,
             type: nativeType
           };
-          qx.bom.Event.addNativeListener(target, nativeType, this.__P_220_1);
+          qx.bom.Event.addNativeListener(target, nativeType, this.__P_224_1);
         },
-        "mshtml": function mshtml(target, type, capture) {
+        mshtml: function mshtml(target, type, capture) {
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
           var nativeType = qx.event.handler.Transition.TYPE_TO_NATIVE[type];
-          this.__P_220_0[hash] = {
+          this.__P_224_0[hash] = {
             target: target,
             type: nativeType
           };
-          qx.bom.Event.addNativeListener(target, nativeType, this.__P_220_1);
+          qx.bom.Event.addNativeListener(target, nativeType, this.__P_224_1);
         },
         "default": function _default() {}
       }),
       // interface implementation
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is removed by using {@link qx.event.Manager#removeListener}
@@ -233,54 +223,41 @@
        * @signature function(target, type, capture)
        */
       unregisterEvent: qx.core.Environment.select("engine.name", {
-        "webkit": function webkit(target, type, capture) {
-          var events = this.__P_220_0;
-
+        webkit: function webkit(target, type, capture) {
+          var events = this.__P_224_0;
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
-          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_220_1);
+          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_224_1);
         },
-        "gecko": function gecko(target, type, capture) {
-          var events = this.__P_220_0;
-
+        gecko: function gecko(target, type, capture) {
+          var events = this.__P_224_0;
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
-          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_220_1);
+          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_224_1);
         },
-        "mshtml": function mshtml(target, type, capture) {
-          var events = this.__P_220_0;
-
+        mshtml: function mshtml(target, type, capture) {
+          var events = this.__P_224_0;
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
-          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_220_1);
+          qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_224_1);
         },
         "default": function _default() {}
       }),
-
       /*
       ---------------------------------------------------------------------------
         EVENT-HANDLER
@@ -297,7 +274,6 @@
         qx.event.Registration.fireEvent(nativeEvent.target, qx.event.handler.Transition.NATIVE_TO_TYPE[nativeEvent.type], qx.event.type.Event);
       })
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -305,19 +281,15 @@
     */
     destruct: function destruct() {
       var event;
-      var events = this.__P_220_0;
-
+      var events = this.__P_224_0;
       for (var id in events) {
         event = events[id];
-
         if (event.target) {
-          qx.bom.Event.removeNativeListener(event.target, event.type, this.__P_220_1);
+          qx.bom.Event.removeNativeListener(event.target, event.type, this.__P_224_1);
         }
       }
-
-      this.__P_220_0 = this.__P_220_1 = null;
+      this.__P_224_0 = this.__P_224_1 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -333,16 +305,14 @@
         animationEnd: aniEnv["end-event"] || null,
         animationIteration: aniEnv["iteration-event"] || null
       };
-
       for (var type in t2n) {
         var nate = t2n[type];
         n2t[nate] = type;
       }
-
       qx.event.Registration.addHandler(statics);
     }
   });
   qx.event.handler.Transition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transition.js.map?dt=1664789585380
+//# sourceMappingURL=Transition.js.map?dt=1672653495892

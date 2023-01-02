@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* MFileEventHandler.js 
-   * 
+  /* MFileEventHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -46,7 +45,6 @@
         qx.event.message.Bus.subscribe('cv.manager.file', this._handleFileEvent, this);
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -55,7 +53,6 @@
     members: {
       _disableFileEvents: false
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -68,4 +65,4 @@
   cv.ui.manager.control.MFileEventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFileEventHandler.js.map?dt=1664789565516
+//# sourceMappingURL=MFileEventHandler.js.map?dt=1672653474366

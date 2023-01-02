@@ -41,7 +41,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,12 +67,12 @@
    */
   qx.Class.define("qx.ui.form.TextField", {
     extend: qx.ui.form.AbstractField,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -96,27 +95,23 @@
       _renderContentElement: function _renderContentElement(innerHeight, element) {
         if (qx.core.Environment.get("engine.name") == "mshtml" && (parseInt(qx.core.Environment.get("engine.version"), 10) < 9 || qx.core.Environment.get("browser.documentmode") < 9)) {
           element.setStyles({
-            "line-height": innerHeight + 'px'
+            "line-height": innerHeight + "px"
           });
         }
       },
       // overridden
       _createContentElement: function _createContentElement() {
         var el = qx.ui.form.TextField.superclass.prototype._createContentElement.call(this);
-
         var deviceType = qx.core.Environment.get("device.type");
-
         if (deviceType == "tablet" || deviceType == "mobile") {
           el.addListener("keypress", this._onKeyPress, this);
         }
-
         return el;
       },
-
       /**
-      * Close the virtual keyboard if the Enter key is pressed.
-      * @param evt {qx.event.type.KeySequence} the keypress event.
-      */
+       * Close the virtual keyboard if the Enter key is pressed.
+       * @param evt {qx.event.type.KeySequence} the keypress event.
+       */
       _onKeyPress: function _onKeyPress(evt) {
         // On return
         if (evt.getKeyIdentifier() == "Enter") {
@@ -140,4 +135,4 @@
   qx.ui.form.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1664789597383
+//# sourceMappingURL=TextField.js.map?dt=1672653508367

@@ -2,19 +2,21 @@
   "className": "cv.theme.dark.Appearance",
   "packageName": "cv.theme.dark",
   "name": "Appearance",
-  "superClass": "osparc.theme.common.Appearance",
+  "superClass": "qx.theme.tangible.Appearance",
   "interfaces": [],
   "mixins": [],
   "functionName": null,
   "clazz": {
     "location": {
       "start": {
-        "line": 21,
-        "column": 0
+        "line": 20,
+        "column": 0,
+        "index": 817
       },
       "end": {
-        "line": 606,
-        "column": 3
+        "line": 653,
+        "column": 3,
+        "index": 13760
       }
     },
     "jsdoc": {}

@@ -43,7 +43,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,53 +66,55 @@
 
   /**
    * A list of items. Displays an automatically scrolling list for all
-   * added {@link qx.ui.form.ListItem} instances. Supports various
-   * selection options: single, multi, ...
+   * added {@link qx.ui.form.IListItem} instances (typically this would be instances of
+   * {@link qx.ui.form.ListItem} but can also be other Atoms, such as {@link qx.ui.form.CheckBox}).
+   * Supports various selection options: single, multi, ...
    */
   qx.Class.define("qx.ui.form.List", {
     extend: qx.ui.core.scroll.AbstractScrollArea,
     implement: [qx.ui.core.IMultiSelection, qx.ui.form.IForm, qx.ui.form.IField, qx.ui.form.IModelSelection],
     include: [qx.ui.core.MRemoteChildrenHandling, qx.ui.core.MMultiSelectionHandling, qx.ui.form.MForm, qx.ui.form.MModelSelection],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param horizontal {Boolean?false} Whether the list should be horizontal.
      */
     construct: function construct(horizontal) {
-      qx.ui.core.scroll.AbstractScrollArea.constructor.call(this); // Create content
+      qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
 
-      this.__P_332_0 = this._createListItemContainer(); // Used to fire item add/remove events
+      // Create content
+      this.__P_349_0 = this._createListItemContainer();
 
-      this.__P_332_0.addListener("addChildWidget", this._onAddChild, this);
+      // Used to fire item add/remove events
+      this.__P_349_0.addListener("addChildWidget", this._onAddChild, this);
+      this.__P_349_0.addListener("removeChildWidget", this._onRemoveChild, this);
 
-      this.__P_332_0.addListener("removeChildWidget", this._onRemoveChild, this); // Add to scrollpane
+      // Add to scrollpane
+      this.getChildControl("pane").add(this.__P_349_0);
 
-
-      this.getChildControl("pane").add(this.__P_332_0); // Apply orientation
-
+      // Apply orientation
       if (horizontal) {
         this.setOrientation("horizontal");
       } else {
         this.initOrientation();
-      } // Add keypress listener
+      }
 
-
+      // Add keypress listener
       this.addListener("keypress", this._onKeyPress);
-      this.addListener("keyinput", this._onKeyInput); // initialize the search string
+      this.addListener("keyinput", this._onKeyInput);
 
-      this.__P_332_1 = "";
+      // initialize the search string
+      this.__P_349_1 = "";
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * This event is fired after a list item was added to the list. The
@@ -121,7 +122,6 @@
        * added item.
        */
       addItem: "qx.event.type.Data",
-
       /**
        * This event is fired after a list item has been removed from the list.
        * The {@link qx.event.type.Data#getData} method of the event returns the
@@ -129,12 +129,12 @@
        */
       removeItem: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -156,7 +156,6 @@
         refine: true,
         init: 200
       },
-
       /**
        * Whether the list should be rendered horizontal or vertical.
        */
@@ -165,7 +164,6 @@
         init: "vertical",
         apply: "_applyOrientation"
       },
-
       /** Spacing between the items */
       spacing: {
         check: "Integer",
@@ -173,13 +171,11 @@
         apply: "_applySpacing",
         themeable: true
       },
-
       /** Controls whether the inline-find feature is activated or not */
       enableInlineFind: {
         check: "Boolean",
         init: true
       },
-
       /** Whether the list is read only when enabled */
       readOnly: {
         check: "Boolean",
@@ -188,22 +184,19 @@
         apply: "_applyReadOnly"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_332_1: null,
-      __P_332_2: null,
-
+      __P_349_1: null,
+      __P_349_2: null,
       /** @type {qx.ui.core.Widget} The children container */
-      __P_332_0: null,
-
+      __P_349_0: null,
       /** @type {Class} Pointer to the selection manager to use */
       SELECTION_MANAGER: qx.ui.core.selection.ScrollArea,
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -211,9 +204,8 @@
       */
       // overridden
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_332_0;
+        return this.__P_349_0;
       },
-
       /**
        * Handle child widget adds on the content pane
        *
@@ -222,7 +214,6 @@
       _onAddChild: function _onAddChild(e) {
         this.fireDataEvent("addItem", e.getData());
       },
-
       /**
        * Handle child widget removes on the content pane
        *
@@ -231,13 +222,11 @@
       _onRemoveChild: function _onRemoveChild(e) {
         this.fireDataEvent("removeItem", e.getData());
       },
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Used to route external <code>keypress</code> events to the list
        * handling (in fact the manager of the list)
@@ -249,13 +238,11 @@
           this._getManager().handleKeyPress(e);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROTECTED API
       ---------------------------------------------------------------------------
       */
-
       /**
        * This container holds the list item widgets.
        *
@@ -264,7 +251,6 @@
       _createListItemContainer: function _createListItemContainer() {
         return new qx.ui.container.Composite();
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -272,55 +258,61 @@
       */
       // property apply
       _applyOrientation: function _applyOrientation(value, old) {
-        var content = this.__P_332_0; // save old layout for disposal
+        // ARIA attrs
+        this.getContentElement().setAttribute("aria-orientation", value);
+        var content = this.__P_349_0;
 
-        var oldLayout = content.getLayout(); // Create new layout
+        // save old layout for disposal
+        var oldLayout = content.getLayout();
 
+        // Create new layout
         var horizontal = value === "horizontal";
-        var layout = horizontal ? new qx.ui.layout.HBox() : new qx.ui.layout.VBox(); // Configure content
+        var layout = horizontal ? new qx.ui.layout.HBox() : new qx.ui.layout.VBox();
 
+        // Configure content
         content.setLayout(layout);
         content.setAllowGrowX(!horizontal);
-        content.setAllowGrowY(horizontal); // Configure spacing
+        content.setAllowGrowY(horizontal);
 
-        this._applySpacing(this.getSpacing()); // dispose old layout
+        // Configure spacing
+        this._applySpacing(this.getSpacing());
 
-
+        // dispose old layout
         if (oldLayout) {
           oldLayout.dispose();
         }
       },
       // property apply
       _applySpacing: function _applySpacing(value, old) {
-        this.__P_332_0.getLayout().setSpacing(value);
+        this.__P_349_0.getLayout().setSpacing(value);
       },
       // property readOnly
       _applyReadOnly: function _applyReadOnly(value) {
         this._getManager().setReadOnly(value);
-
         if (value) {
           this.addState("readonly");
-          this.addState("disabled"); // Remove draggable
+          this.addState("disabled");
 
+          // Remove draggable
           if (this.isDraggable()) {
             this._applyDraggable(false, true);
-          } // Remove droppable
+          }
 
-
+          // Remove droppable
           if (this.isDroppable()) {
             this._applyDroppable(false, true);
           }
         } else {
           this.removeState("readonly");
-
           if (this.isEnabled()) {
-            this.removeState("disabled"); // Re-add draggable
+            this.removeState("disabled");
 
+            // Re-add draggable
             if (this.isDraggable()) {
               this._applyDraggable(true, false);
-            } // Re-add droppable
+            }
 
-
+            // Re-add droppable
             if (this.isDroppable()) {
               this._applyDroppable(true, false);
             }
@@ -329,29 +321,28 @@
       },
       // override
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.form.List.superclass.prototype._applyEnabled.call(this, value, old); // If editable has just been turned on, we need to correct for readOnly status 
+        qx.ui.form.List.superclass.prototype._applyEnabled.call(this, value, old);
 
-
+        // If editable has just been turned on, we need to correct for readOnly status
         if (value && this.isReadOnly()) {
-          this.addState("disabled"); // Remove draggable
+          this.addState("disabled");
 
+          // Remove draggable
           if (this.isDraggable()) {
             this._applyDraggable(false, true);
-          } // Remove droppable
+          }
 
-
+          // Remove droppable
           if (this.isDroppable()) {
             this._applyDroppable(false, true);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for <code>keypress</code> events.
        *
@@ -362,23 +353,18 @@
         // Execute action on press <ENTER>
         if (e.getKeyIdentifier() == "Enter" && !e.isAltPressed()) {
           var items = this.getSelection();
-
           for (var i = 0; i < items.length; i++) {
             items[i].fireEvent("action");
           }
-
           return true;
         }
-
         return false;
       },
-
       /*
       ---------------------------------------------------------------------------
         FIND SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Handles the inline find - if enabled
        *
@@ -388,33 +374,33 @@
         // do nothing if the find is disabled
         if (!this.getEnableInlineFind()) {
           return;
-        } // Only useful in single or one selection mode
+        }
 
-
+        // Only useful in single or one selection mode
         var mode = this.getSelectionMode();
-
         if (!(mode === "single" || mode === "one")) {
           return;
-        } // Reset string after a second of non pressed key
+        }
 
+        // Reset string after a second of non pressed key
+        if (new Date().valueOf() - this.__P_349_2 > 1000) {
+          this.__P_349_1 = "";
+        }
 
-        if (new Date().valueOf() - this.__P_332_2 > 1000) {
-          this.__P_332_1 = "";
-        } // Combine keys the user pressed to a string
+        // Combine keys the user pressed to a string
+        this.__P_349_1 += e.getChar();
 
+        // Find matching item
+        var matchedItem = this.findItemByLabelFuzzy(this.__P_349_1);
 
-        this.__P_332_1 += e.getChar(); // Find matching item
-
-        var matchedItem = this.findItemByLabelFuzzy(this.__P_332_1); // if an item was found, select it
-
+        // if an item was found, select it
         if (matchedItem) {
           this.setSelection([matchedItem]);
-        } // Store timestamp
+        }
 
-
-        this.__P_332_2 = new Date().valueOf();
+        // Store timestamp
+        this.__P_349_2 = new Date().valueOf();
       },
-
       /**
        * Takes the given string and tries to find a ListItem
        * which starts with this string. The search is not case sensitive and the
@@ -426,24 +412,26 @@
        */
       findItemByLabelFuzzy: function findItemByLabelFuzzy(search) {
         // lower case search text
-        search = search.toLowerCase(); // get all items of the list
+        search = search.toLowerCase();
 
-        var items = this.getChildren(); // go threw all items
+        // get all items of the list
+        var items = this.getChildren();
 
+        // go threw all items
         for (var i = 0, l = items.length; i < l; i++) {
           // get the label of the current item
-          var currentLabel = items[i].getLabel(); // if the label fits with the search text (ignore case, begins with)
+          var currentLabel = items[i].getLabel();
 
+          // if the label fits with the search text (ignore case, begins with)
           if (currentLabel && currentLabel.toLowerCase().indexOf(search) == 0) {
             // just return the first found element
             return items[i];
           }
-        } // if no element was found, return null
+        }
 
-
+        // if no element was found, return null
         return null;
       },
-
       /**
        * Find an item by its {@link qx.ui.basic.Atom#getLabel}.
        *
@@ -457,22 +445,20 @@
           search = search.toLowerCase();
         }
 
-        ; // get all items of the list
-
+        // get all items of the list
         var items = this.getChildren();
-        var item; // go through all items
+        var item;
 
+        // go through all items
         for (var i = 0, l = items.length; i < l; i++) {
-          item = items[i]; // get the content of the label; text content when rich
+          item = items[i];
 
+          // get the content of the label; text content when rich
           var label;
-
           if (item.isRich()) {
             var control = item.getChildControl("label", true);
-
             if (control) {
               var labelNode = control.getContentElement().getDomElement();
-
               if (labelNode) {
                 label = qx.bom.element.Attribute.get(labelNode, "text");
               }
@@ -480,36 +466,31 @@
           } else {
             label = item.getLabel();
           }
-
           if (label != null) {
             if (label.translate) {
               label = label.translate();
             }
-
             if (ignoreCase !== false) {
               label = label.toLowerCase();
             }
-
             if (label.toString() == search.toString()) {
               return item;
             }
           }
         }
-
         return null;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_332_0");
+      this._disposeObjects("__P_349_0");
     }
   });
   qx.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1664789596584
+//# sourceMappingURL=List.js.map?dt=1672653507707

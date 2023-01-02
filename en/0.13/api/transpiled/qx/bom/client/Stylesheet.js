@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,7 +17,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +34,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * Daniel Wagner (d_wagner)
   
   ************************************************************************ */
-
   /**
    * Internal class which contains the checks used by {@link qx.core.Environment}.
    * All checks in here are marked as internal which means you should never use
@@ -53,14 +50,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @return {StyleSheet} Stylesheet element
        */
-      __P_126_0: function __P_126_0() {
-        if (!qx.bom.client.Stylesheet.__P_126_1) {
-          qx.bom.client.Stylesheet.__P_126_1 = qx.bom.Stylesheet.createElement();
+      __P_127_0: function __P_127_0() {
+        if (!qx.bom.client.Stylesheet.__P_127_1) {
+          qx.bom.client.Stylesheet.__P_127_1 = qx.bom.Stylesheet.createElement();
         }
-
-        return qx.bom.client.Stylesheet.__P_126_1;
+        return qx.bom.client.Stylesheet.__P_127_1;
       },
-
       /**
        * Check for IE's non-standard document.createStyleSheet function.
        * In IE9 (standards mode), the typeof check returns "function" so false is
@@ -74,7 +69,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getCreateStyleSheet: function getCreateStyleSheet() {
         return _typeof(document.createStyleSheet) === "object";
       },
-
       /**
        * Check for stylesheet.insertRule. Legacy IEs do not support this.
        *
@@ -82,9 +76,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if insertRule is supported
        */
       getInsertRule: function getInsertRule() {
-        return typeof qx.bom.client.Stylesheet.__P_126_0().insertRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_127_0().insertRule === "function";
       },
-
       /**
        * Check for stylesheet.deleteRule. Legacy IEs do not support this.
        *
@@ -92,9 +85,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if deleteRule is supported
        */
       getDeleteRule: function getDeleteRule() {
-        return typeof qx.bom.client.Stylesheet.__P_126_0().deleteRule === "function";
+        return typeof qx.bom.client.Stylesheet.__P_127_0().deleteRule === "function";
       },
-
       /**
        * Decides whether to use the legacy IE-only stylesheet.addImport or the
        * DOM-standard stylesheet.insertRule('@import [...]')
@@ -103,9 +95,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.addImport is supported
        */
       getAddImport: function getAddImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_126_0().addImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_127_0().addImport) === "object";
       },
-
       /**
        * Decides whether to use the legacy IE-only stylesheet.removeImport or the
        * DOM-standard stylesheet.deleteRule('@import [...]')
@@ -114,7 +105,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported
        */
       getRemoveImport: function getRemoveImport() {
-        return _typeof(qx.bom.client.Stylesheet.__P_126_0().removeImport) === "object";
+        return _typeof(qx.bom.client.Stylesheet.__P_127_0().removeImport) === "object";
       }
     },
     defer: function defer(statics) {
@@ -128,4 +119,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1664789578026
+//# sourceMappingURL=Stylesheet.js.map?dt=1672653486256

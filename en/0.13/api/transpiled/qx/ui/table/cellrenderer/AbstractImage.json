@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 653
       },
       "end": {
-        "line": 278,
-        "column": 3
+        "line": 263,
+        "column": 3,
+        "index": 8097
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 37,
-        "column": 14
+        "line": 34,
+        "column": 2,
+        "index": 969
       },
       "end": {
-        "line": 50,
-        "column": 3
+        "line": 43,
+        "column": 3,
+        "index": 1208
       }
     },
     "jsdoc": {}
@@ -47,12 +51,14 @@
     "repeat": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1762
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 79,
+          "column": 5,
+          "index": 2050
         }
       },
       "jsdoc": {
@@ -75,6 +81,7 @@
       "name": "repeat",
       "propertyType": "new",
       "init": "no-repeat",
+      "check": "[[ ObjectMethod Function ]]",
       "defaultValue": "no-repeat"
     }
   },
@@ -82,12 +89,14 @@
     "__defaultWidth": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2258
         },
         "end": {
-          "line": 102,
-          "column": 23
+          "line": 89,
+          "column": 22,
+          "index": 2276
         }
       },
       "type": "variable",
@@ -96,12 +105,14 @@
     "__defaultHeight": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2282
         },
         "end": {
-          "line": 103,
-          "column": 24
+          "line": 90,
+          "column": 23,
+          "index": 2301
         }
       },
       "type": "variable",
@@ -110,12 +121,14 @@
     "__imageData": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2307
         },
         "end": {
-          "line": 104,
-          "column": 22
+          "line": 91,
+          "column": 21,
+          "index": 2324
         }
       },
       "type": "variable",
@@ -124,12 +137,14 @@
     "_identifyImage": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3432
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 3517
         }
       },
       "jsdoc": {
@@ -177,12 +192,14 @@
     "_getImageInfos": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 3988
         },
         "end": {
-          "line": 177,
-          "column": 5
+          "line": 158,
+          "column": 5,
+          "index": 5107
         }
       },
       "jsdoc": {
@@ -214,12 +231,14 @@
     "__getImageSize": {
       "location": {
         "start": {
-          "line": 187,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 5327
         },
         "end": {
-          "line": 211,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 5991
         }
       },
       "jsdoc": {
@@ -253,12 +272,14 @@
     "createDataCellHtml": {
       "location": {
         "start": {
-          "line": 215,
-          "column": 4
+          "line": 188,
+          "column": 4,
+          "index": 6016
         },
         "end": {
-          "line": 219,
-          "column": 5
+          "line": 191,
+          "column": 5,
+          "index": 6175
         }
       },
       "jsdoc": {},
@@ -273,12 +294,14 @@
     "_getCellClass": {
       "location": {
         "start": {
-          "line": 223,
-          "column": 4
+          "line": 194,
+          "column": 4,
+          "index": 6200
         },
         "end": {
-          "line": 225,
-          "column": 5
+          "line": 196,
+          "column": 5,
+          "index": 6296
         }
       },
       "jsdoc": {},
@@ -292,12 +315,14 @@
     "_getContentHtml": {
       "location": {
         "start": {
-          "line": 229,
-          "column": 4
+          "line": 199,
+          "column": 4,
+          "index": 6321
         },
         "end": {
-          "line": 252,
-          "column": 5
+          "line": 236,
+          "column": 5,
+          "index": 7505
         }
       },
       "jsdoc": {},
@@ -311,12 +336,14 @@
     "_getCellAttributes": {
       "location": {
         "start": {
-          "line": 256,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 7530
         },
         "end": {
-          "line": 265,
-          "column": 5
+          "line": 251,
+          "column": 5,
+          "index": 7852
         }
       },
       "jsdoc": {},
@@ -415,6 +442,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -439,6 +467,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -550,6 +579,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for repeat"
           }
         ]
@@ -573,6 +603,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for repeat"
           }
@@ -600,12 +631,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 274,
-        "column": 13
+        "line": 260,
+        "column": 2,
+        "index": 8048
       },
       "end": {
-        "line": 277,
-        "column": 3
+        "line": 262,
+        "column": 3,
+        "index": 8093
       }
     },
     "jsdoc": {}

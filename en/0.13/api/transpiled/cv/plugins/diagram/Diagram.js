@@ -20,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Diagram.js 
-   * 
+  /* Diagram.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,9 +38,9 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Class.define('cv.plugins.diagram.Diagram', {
     extend: cv.plugins.diagram.AbstractDiagram,
-
     /*
      ******************************************************
      CONSTRUCTOR
@@ -51,7 +50,6 @@
       this._init = true;
       cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
     },
-
     /*
      ******************************************************
      PROPERTIES
@@ -67,7 +65,6 @@
         nullable: true
       }
     },
-
     /*
      ******************************************************
      STATICS
@@ -101,19 +98,20 @@
         };
       }
     },
-
     /*
      ******************************************************
      MEMBERS
      ******************************************************
      */
     members: {
-      __P_19_0: null,
+      __P_21_0: null,
       _onDomReady: function _onDomReady() {
+        var _this = this;
         if (!this.$$domReady) {
           var pageId = this.getParentPage().getPath();
-          var broker = qx.event.message.Bus; // let the refresh only be active when this widget is visible
+          var broker = qx.event.message.Bus;
 
+          // let the refresh only be active when this widget is visible
           this.setRestartOnVisible(true);
           broker.subscribe('path.' + pageId + '.beforePageChange', function () {
             if (!this._init) {
@@ -125,9 +123,10 @@
             if (this._init) {
               this.initDiagram(false);
             }
-          }, this); // initialize the diagram but don't make the initialization process wait for it
-          // by using a deferred call
+          }, this);
 
+          // initialize the diagram but don't make the initialization process wait for it
+          // by using a deferred call
           if (this.isVisible()) {
             new qx.util.DeferredCall(function () {
               if (!this._init) {
@@ -137,20 +136,18 @@
               }
             }, this).schedule();
           } else {
-            this.__P_19_0 = this.addListener('changeVisible', function (ev) {
+            this.__P_21_0 = this.addListener('changeVisible', function (ev) {
               if (ev.getData()) {
-                if (!this._init) {
-                  this.loadDiagramData(this.plot, false, false);
+                if (!_this._init) {
+                  _this.loadDiagramData(_this.plot, false, false);
                 } else {
-                  this.initDiagram(false);
+                  _this.initDiagram(false);
                 }
-
-                this.removeListenerById(this.__P_19_0);
-                this.__P_19_0 = null;
+                _this.removeListenerById(_this.__P_21_0);
+                _this.__P_21_0 = null;
               }
-            }, this);
+            });
           }
-
           this.$$domReady = true;
           this.initListeners();
         }
@@ -170,4 +167,4 @@
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1664789563788
+//# sourceMappingURL=Diagram.js.map?dt=1672653472444

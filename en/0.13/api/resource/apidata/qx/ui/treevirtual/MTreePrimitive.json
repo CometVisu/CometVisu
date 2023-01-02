@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 691
       },
       "end": {
-        "line": 201,
-        "column": 3
+        "line": 190,
+        "column": 3,
+        "index": 6253
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "Type": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 803
         },
         "end": {
-          "line": 35,
-          "column": 5
+          "line": 32,
+          "column": 5,
+          "index": 847
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "_addNode": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 4177
         },
         "end": {
-          "line": 183,
-          "column": 5
+          "line": 173,
+          "column": 5,
+          "index": 5940
         }
       },
       "jsdoc": {
@@ -166,12 +172,14 @@
     "_getEmptyTree": {
       "location": {
         "start": {
-          "line": 191,
-          "column": 4
+          "line": 181,
+          "column": 4,
+          "index": 6102
         },
         "end": {
-          "line": 199,
-          "column": 5
+          "line": 188,
+          "column": 5,
+          "index": 6245
         }
       },
       "jsdoc": {

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 0
+        "line": 28,
+        "column": 0,
+        "index": 1009
       },
       "end": {
-        "line": 365,
-        "column": 3
+        "line": 364,
+        "column": 3,
+        "index": 10580
       }
     },
     "jsdoc": {
@@ -42,12 +44,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 13
+        "line": 34,
+        "column": 2,
+        "index": 1193
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 39,
+        "column": 3,
+        "index": 1372
       }
     },
     "jsdoc": {}
@@ -56,12 +60,14 @@
     "maxEntries": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1582
         },
         "end": {
-          "line": 56,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1672
         }
       },
       "jsdoc": {
@@ -82,12 +88,14 @@
     "counter": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1729
         },
         "end": {
-          "line": 65,
-          "column": 5
+          "line": 63,
+          "column": 5,
+          "index": 1813
         }
       },
       "jsdoc": {
@@ -108,12 +116,14 @@
     "globalSeverity": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1876
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 2008
         }
       },
       "jsdoc": {
@@ -139,12 +149,14 @@
     "rootElementId": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 2113
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2179
         }
       },
       "jsdoc": {
@@ -164,12 +176,14 @@
     "messageElementId": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2338
         },
         "end": {
-          "line": 91,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2407
         }
       },
       "jsdoc": {
@@ -189,12 +203,14 @@
     "delegate": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2414
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2475
         }
       },
       "name": "delegate",
@@ -208,12 +224,14 @@
     "_messages": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2635
         },
         "end": {
-          "line": 105,
-          "column": 19
+          "line": 103,
+          "column": 19,
+          "index": 2650
         }
       },
       "type": "variable",
@@ -222,12 +240,14 @@
     "_severities": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 2656
         },
         "end": {
-          "line": 106,
-          "column": 21
+          "line": 104,
+          "column": 21,
+          "index": 2673
         }
       },
       "type": "variable",
@@ -236,12 +256,14 @@
     "_idCounter": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 2679
         },
         "end": {
-          "line": 107,
-          "column": 17
+          "line": 105,
+          "column": 17,
+          "index": 2692
         }
       },
       "type": "variable",
@@ -250,12 +272,14 @@
     "getIdCounter": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 107,
+          "column": 4,
+          "index": 2699
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2751
         }
       },
       "type": "function",
@@ -264,12 +288,14 @@
     "getSeverities": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 2758
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 113,
+          "column": 5,
+          "index": 2812
         }
       },
       "type": "function",
@@ -278,12 +304,14 @@
     "_updateHighestSeverity": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 2819
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3306
         }
       },
       "type": "function",
@@ -292,12 +320,14 @@
     "getSeverityColor": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 3313
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 139,
+          "column": 5,
+          "index": 3526
         }
       },
       "type": "function",
@@ -306,12 +336,14 @@
     "_applyMaxEntries": {
       "location": {
         "start": {
-          "line": 144,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 3555
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 3752
         }
       },
       "jsdoc": {},
@@ -321,12 +353,14 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 3951
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 218,
+          "column": 5,
+          "index": 6435
         }
       },
       "jsdoc": {
@@ -357,12 +391,14 @@
     "getMessageIdFromEvent": {
       "location": {
         "start": {
-          "line": 229,
-          "column": 4
+          "line": 227,
+          "column": 4,
+          "index": 6689
         },
         "end": {
-          "line": 253,
-          "column": 5
+          "line": 251,
+          "column": 5,
+          "index": 7544
         }
       },
       "jsdoc": {
@@ -393,12 +429,14 @@
     "_onListTap": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 7551
         },
         "end": {
-          "line": 264,
-          "column": 5
+          "line": 262,
+          "column": 5,
+          "index": 7817
         }
       },
       "type": "function",
@@ -407,12 +445,14 @@
     "_getTooltip": {
       "location": {
         "start": {
-          "line": 266,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 7824
         },
         "end": {
-          "line": 276,
-          "column": 5
+          "line": 274,
+          "column": 5,
+          "index": 8147
         }
       },
       "type": "function",
@@ -421,12 +461,14 @@
     "clear": {
       "location": {
         "start": {
-          "line": 283,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 8308
         },
         "end": {
-          "line": 295,
-          "column": 5
+          "line": 293,
+          "column": 5,
+          "index": 8689
         }
       },
       "jsdoc": {
@@ -452,12 +494,14 @@
     "getMessage": {
       "location": {
         "start": {
-          "line": 297,
-          "column": 4
+          "line": 295,
+          "column": 4,
+          "index": 8696
         },
         "end": {
-          "line": 299,
-          "column": 5
+          "line": 297,
+          "column": 5,
+          "index": 8765
         }
       },
       "type": "function",
@@ -466,12 +510,14 @@
     "getMessages": {
       "location": {
         "start": {
-          "line": 301,
-          "column": 4
+          "line": 299,
+          "column": 4,
+          "index": 8772
         },
         "end": {
-          "line": 303,
-          "column": 5
+          "line": 301,
+          "column": 5,
+          "index": 8822
         }
       },
       "type": "function",
@@ -480,12 +526,14 @@
     "deleteMessage": {
       "location": {
         "start": {
-          "line": 310,
-          "column": 4
+          "line": 308,
+          "column": 4,
+          "index": 8932
         },
         "end": {
-          "line": 326,
-          "column": 5
+          "line": 324,
+          "column": 5,
+          "index": 9411
         }
       },
       "jsdoc": {
@@ -512,12 +560,14 @@
     "performAction": {
       "location": {
         "start": {
-          "line": 328,
-          "column": 4
+          "line": 326,
+          "column": 4,
+          "index": 9418
         },
         "end": {
-          "line": 354,
-          "column": 5
+          "line": 353,
+          "column": 5,
+          "index": 10373
         }
       },
       "type": "function",
@@ -923,12 +973,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 362,
-        "column": 12
+        "line": 361,
+        "column": 2,
+        "index": 10521
       },
       "end": {
-        "line": 364,
-        "column": 3
+        "line": 363,
+        "column": 3,
+        "index": 10576
       }
     },
     "jsdoc": {}

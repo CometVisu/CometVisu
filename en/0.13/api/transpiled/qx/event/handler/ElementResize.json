@@ -13,11 +13,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 645
       },
       "end": {
-        "line": 215,
-        "column": 3
+        "line": 180,
+        "column": 3,
+        "index": 4755
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1061
       },
       "end": {
-        "line": 51,
-        "column": 3
+        "line": 47,
+        "column": 3,
+        "index": 1266
       }
     },
     "jsdoc": {
@@ -63,12 +67,14 @@
     "PRIORITY": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1522
         },
         "end": {
-          "line": 65,
-          "column": 52
+          "line": 57,
+          "column": 51,
+          "index": 1569
         }
       },
       "jsdoc": {
@@ -91,12 +97,14 @@
     "SUPPORTED_TYPES": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1621
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1664
         }
       },
       "jsdoc": {
@@ -119,12 +127,14 @@
     "TARGET_CHECK": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1724
         },
         "end": {
-          "line": 76,
-          "column": 56
+          "line": 65,
+          "column": 55,
+          "index": 1775
         }
       },
       "jsdoc": {
@@ -147,12 +157,14 @@
     "IGNORE_CAN_HANDLE": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1860
         },
         "end": {
-          "line": 80,
-          "column": 29
+          "line": 68,
+          "column": 28,
+          "index": 1884
         }
       },
       "jsdoc": {
@@ -177,12 +189,14 @@
     "__elements": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2092
         },
         "end": {
-          "line": 95,
-          "column": 21
+          "line": 78,
+          "column": 20,
+          "index": 2108
         }
       },
       "type": "variable",
@@ -191,12 +205,14 @@
     "__manager": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2114
         },
         "end": {
-          "line": 96,
-          "column": 20
+          "line": 79,
+          "column": 19,
+          "index": 2129
         }
       },
       "type": "variable",
@@ -205,12 +221,14 @@
     "__timer": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2135
         },
         "end": {
-          "line": 97,
-          "column": 18
+          "line": 80,
+          "column": 17,
+          "index": 2148
         }
       },
       "type": "variable",
@@ -219,12 +237,14 @@
     "canHandleEvent": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2392
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2482
         }
       },
       "jsdoc": {},
@@ -238,12 +258,14 @@
     "registerEvent": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 2521
         },
         "end": {
-          "line": 127,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 2918
         }
       },
       "jsdoc": {},
@@ -257,12 +279,14 @@
     "unregisterEvent": {
       "location": {
         "start": {
-          "line": 131,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 2957
         },
         "end": {
-          "line": 144,
-          "column": 5
+          "line": 121,
+          "column": 5,
+          "index": 3259
         }
       },
       "jsdoc": {},
@@ -276,12 +300,14 @@
     "_onInterval": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 3443
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 157,
+          "column": 5,
+          "index": 4203
         }
       },
       "jsdoc": {
@@ -392,6 +418,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -416,6 +443,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -444,12 +472,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 195,
-        "column": 13
+        "line": 166,
+        "column": 2,
+        "index": 4399
       },
       "end": {
-        "line": 199,
-        "column": 3
+        "line": 169,
+        "column": 3,
+        "index": 4497
       }
     },
     "jsdoc": {}
@@ -457,12 +487,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 212,
-        "column": 10
+        "line": 177,
+        "column": 2,
+        "index": 4684
       },
       "end": {
-        "line": 214,
-        "column": 3
+        "line": 179,
+        "column": 3,
+        "index": 4751
       }
     },
     "jsdoc": {}

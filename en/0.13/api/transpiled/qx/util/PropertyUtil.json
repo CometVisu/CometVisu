@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 678
       },
       "end": {
-        "line": 217,
-        "column": 3
+        "line": 205,
+        "column": 3,
+        "index": 6141
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getProperties": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1027
         },
         "end": {
-          "line": 39,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 1088
         }
       },
       "jsdoc": {
@@ -70,12 +74,14 @@
     "getAllProperties": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1445
         },
         "end": {
-          "line": 65,
-          "column": 5
+          "line": 60,
+          "column": 5,
+          "index": 1879
         }
       },
       "jsdoc": {
@@ -109,12 +115,14 @@
     "getUserValue": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2298
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 2387
         }
       },
       "jsdoc": {
@@ -155,12 +163,14 @@
     "setUserValue": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2621
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2718
         }
       },
       "jsdoc": {
@@ -200,12 +210,14 @@
     "deleteUserValue": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2912
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 3004
         }
       },
       "jsdoc": {
@@ -238,12 +250,14 @@
     "getInitValue": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 113,
+          "column": 4,
+          "index": 3423
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 3512
         }
       },
       "jsdoc": {
@@ -284,12 +298,14 @@
     "setInitValue": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3746
         },
         "end": {
-          "line": 134,
-          "column": 5
+          "line": 126,
+          "column": 5,
+          "index": 3843
         }
       },
       "jsdoc": {
@@ -329,12 +345,14 @@
     "deleteInitValue": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 4037
         },
         "end": {
-          "line": 144,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 4129
         }
       },
       "jsdoc": {
@@ -367,12 +385,14 @@
     "getThemeValue": {
       "location": {
         "start": {
-          "line": 160,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4551
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 153,
+          "column": 5,
+          "index": 4642
         }
       },
       "jsdoc": {
@@ -413,12 +433,14 @@
     "setThemeValue": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 4877
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 164,
+          "column": 5,
+          "index": 4976
         }
       },
       "jsdoc": {
@@ -458,12 +480,14 @@
     "deleteThemeValue": {
       "location": {
         "start": {
-          "line": 181,
-          "column": 4
+          "line": 172,
+          "column": 4,
+          "index": 5171
         },
         "end": {
-          "line": 183,
-          "column": 5
+          "line": 174,
+          "column": 5,
+          "index": 5265
         }
       },
       "jsdoc": {
@@ -496,12 +520,14 @@
     "setThemed": {
       "location": {
         "start": {
-          "line": 199,
-          "column": 4
+          "line": 189,
+          "column": 4,
+          "index": 5673
         },
         "end": {
-          "line": 203,
-          "column": 5
+          "line": 192,
+          "column": 5,
+          "index": 5818
         }
       },
       "jsdoc": {
@@ -541,12 +567,14 @@
     "resetThemed": {
       "location": {
         "start": {
-          "line": 211,
-          "column": 4
+          "line": 200,
+          "column": 4,
+          "index": 5992
         },
         "end": {
-          "line": 215,
-          "column": 5
+          "line": 203,
+          "column": 5,
+          "index": 6133
         }
       },
       "jsdoc": {

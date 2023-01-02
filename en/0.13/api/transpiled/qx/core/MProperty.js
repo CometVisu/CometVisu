@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,7 @@
        * As a fallback, if no generated property setter could be found, a
        * handwritten setter will be searched and invoked if available.
        *
-       * @param data {Map | String} a map of property values. The key is the name of the property.
+       * @param data {Object | String} a map of property values. The key is the name of the property.
        * @param value {var?} the value, only used when <code>data</code> is a string.
        * @return {Object} Returns this instance if <code>data</code> is a map
        *   or a non-generated setter is called; otherwise returns <code>value</code>.
@@ -49,17 +48,14 @@
        */
       set: function set(data, value) {
         var setter = qx.core.Property.$$method.set;
-
         if (qx.Bootstrap.isString(data)) {
           if (!this[setter[data]]) {
             if (this["set" + qx.Bootstrap.firstUp(data)] != undefined) {
               this["set" + qx.Bootstrap.firstUp(data)](value);
               return this;
             }
-
-            throw new Error("No such property: " + data);
+            throw new Error("No such property: " + data + " in " + this.classname + " (" + this + ")");
           }
-
           return this[setter[data]](value);
         } else {
           for (var prop in data) {
@@ -68,17 +64,13 @@
                 this["set" + qx.Bootstrap.firstUp(prop)](data[prop]);
                 continue;
               }
-
-              throw new Error("No such property: " + prop);
+              throw new Error("No such property: " + prop + " in " + this.classname + " (" + this + ")");
             }
-
             this[setter[prop]](data[prop]);
           }
-
           return this;
         }
       },
-
       /**
        * Returns the value of the given property. If no generated getter could be
        * found, a fallback tries to access a handwritten getter.
@@ -89,18 +81,14 @@
        */
       get: function get(prop) {
         var getter = qx.core.Property.$$method.get;
-
         if (!this[getter[prop]]) {
           if (this["get" + qx.Bootstrap.firstUp(prop)] != undefined) {
             return this["get" + qx.Bootstrap.firstUp(prop)]();
           }
-
-          throw new Error("No such property: " + prop);
+          throw new Error("No such property: " + prop + " in " + this.classname + " (" + this + ")");
         }
-
         return this[getter[prop]]();
       },
-
       /**
        * Resets the value of the given property. If no generated resetter could be
        * found, a handwritten resetter will be invoked, if available.
@@ -110,19 +98,15 @@
        */
       reset: function reset(prop) {
         var resetter = qx.core.Property.$$method.reset;
-
         if (!this[resetter[prop]]) {
           if (this["reset" + qx.Bootstrap.firstUp(prop)] != undefined) {
             this["reset" + qx.Bootstrap.firstUp(prop)]();
             return;
           }
-
-          throw new Error("No such property: " + prop);
+          throw new Error("No such property: " + prop + " in " + this.classname + " (" + this + ")");
         }
-
         this[resetter[prop]]();
       },
-
       /**
        * Checks if the property is initialized, i.e. has a defined init value or
        * has got a value by a setter method.
@@ -139,4 +123,4 @@
   qx.core.MProperty.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MProperty.js.map?dt=1664789580321
+//# sourceMappingURL=MProperty.js.map?dt=1672653488626

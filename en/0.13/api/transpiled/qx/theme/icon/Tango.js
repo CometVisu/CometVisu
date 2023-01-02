@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -27,17 +26,16 @@
        * Andreas Ecker (ecker)
   
   ************************************************************************ */
-
   /**
    * Tango icons
    */
   qx.Theme.define("qx.theme.icon.Tango", {
     title: "Tango",
     aliases: {
-      "icon": "qx/icon/Tango"
+      icon: "qx/icon/Tango"
     }
   });
   qx.theme.icon.Tango.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tango.js.map?dt=1664789590878
+//# sourceMappingURL=Tango.js.map?dt=1672653502385

@@ -15,11 +15,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Reload.js 
-   * 
+  /* Reload.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,7 +43,6 @@
   qx.Class.define('cv.ui.structure.pure.Reload', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
     ******************************************************
       MEMBERS
@@ -61,7 +59,6 @@
       },
       _update: function _update(address, data) {
         var value = this.defaultValueHandling(address, data);
-
         if (value > 0) {
           cv.util.Location.reload(true);
         }
@@ -71,4 +68,4 @@
   cv.ui.structure.pure.Reload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Reload.js.map?dt=1664789570433
+//# sourceMappingURL=Reload.js.map?dt=1672653478837

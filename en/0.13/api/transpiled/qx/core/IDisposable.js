@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -31,9 +30,9 @@
    * Classes which implement this interface are required to be disposed when they are
    * no longer needed, by calling .dispose(); they are also registered with qx.core.ObjectRegistry
    * so that qx.core.ObjectRegistry.fromHashCode() will work.
-   * 
+   *
    * Note that classes do not have to implement this interface in order to provide a dispose
-   * method and/or a destructor. 
+   * method and/or a destructor.
    */
   qx.Interface.define("qx.core.IDisposable", {
     members: {
@@ -47,4 +46,4 @@
   qx.core.IDisposable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IDisposable.js.map?dt=1664789580049
+//# sourceMappingURL=IDisposable.js.map?dt=1672653488113

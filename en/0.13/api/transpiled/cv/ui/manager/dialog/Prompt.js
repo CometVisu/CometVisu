@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Prompt.js 
-   * 
+  /* Prompt.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.ui.manager.dialog.Prompt', {
     extend: qxl.dialog.Prompt,
-
     /*
     ***********************************************
       MEMBERS
@@ -45,7 +43,6 @@
     members: {
       _createWidgetContent: function _createWidgetContent() {
         cv.ui.manager.dialog.Prompt.superclass.prototype._createWidgetContent.call(this);
-
         this._textField.setLiveUpdate(true);
       }
     }
@@ -53,4 +50,4 @@
   cv.ui.manager.dialog.Prompt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prompt.js.map?dt=1664789565631
+//# sourceMappingURL=Prompt.js.map?dt=1672653474471

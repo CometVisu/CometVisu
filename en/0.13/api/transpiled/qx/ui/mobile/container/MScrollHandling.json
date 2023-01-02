@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 629
       },
       "end": {
-        "line": 48,
-        "column": 3
+        "line": 49,
+        "column": 3,
+        "index": 1379
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_getParentScrollContainer": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 4
+          "line": 30,
+          "column": 4,
+          "index": 877
         },
         "end": {
-          "line": 46,
-          "column": 5
+          "line": 47,
+          "column": 5,
+          "index": 1371
         }
       },
       "jsdoc": {

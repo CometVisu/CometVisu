@@ -10,7 +10,7 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-The powerspectrum plugin and widget creates a graph to show the power 
+The powerspectrum plugin and widget creates a graph to show the power
 spectral data that the Enertex Smartmeter can send on the KNX bus.
 
 

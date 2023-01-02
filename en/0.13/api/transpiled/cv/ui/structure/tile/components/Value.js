@@ -1,21 +1,16 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -40,11 +35,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Value.js 
-   * 
+  /* Value.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -68,7 +62,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   qx.Class.define('cv.ui.structure.tile.components.Value', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
     include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],
-
     /*
     ***********************************************
       MEMBERS
@@ -79,11 +72,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _debouncedDetectOverflow: null,
       _init: function _init() {
         cv.ui.structure.tile.components.Value.superclass.prototype._init.call(this);
-
         this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
-
         var target = this._element.querySelector('.value');
-
         if (target && target.tagName.toLowerCase() === 'label') {
           // check for overflowing text, when labels parent gets resized
           this.setResizeTarget(this._element);
@@ -97,7 +87,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           }
         } else {
           var target = this._element.querySelector('.value');
-
           if (target && target.classList.contains('scroll')) {
             target.classList.remove('scroll');
           }
@@ -105,10 +94,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       _detectOverflow: function _detectOverflow() {
         var target = this._element.querySelector('.value');
-
         if (this.isVisible()) {
           this._queuedOverflowDetection = false;
-
           if (target.clientWidth > target.parentElement.clientWidth) {
             target.classList.add('scroll');
           } else {
@@ -120,45 +107,31 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       _updateValue: function _updateValue(mappedValue, value) {
         var target = this._element.querySelector('.value');
-
         var styleClass = '';
-
         if (target) {
           var tagName = target.tagName.toLowerCase();
-
           switch (tagName) {
             case 'cv-icon':
               target._instance.setId(mappedValue);
-
               if (this._element.hasAttribute('styling')) {
-                styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_80_0);
+                styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_83_0);
               }
-
               target._instance.setStyleClass(styleClass);
-
               break;
-
             case 'meter':
               target.setAttribute('value', mappedValue);
               target.innerHTML = '' + mappedValue;
               break;
-
             case 'cv-round-progress':
               if (typeof value === 'string') {
                 value = parseInt(value);
               }
-
               target._instance.setProgress(value);
-
               target._instance.setText('' + mappedValue);
-
               break;
-
             case 'label':
               target.innerHTML = mappedValue;
-
               this._debouncedDetectOverflow();
-
               break;
           }
         }
@@ -169,20 +142,16 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         "use strict";
 
         _inherits(_class, _QxConnector);
-
         var _super = _createSuper(_class);
-
         function _class() {
           _classCallCheck(this, _class);
-
           return _super.call(this, QxClass);
         }
-
-        return _class;
+        return _createClass(_class);
       }(QxConnector));
     }
   });
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1664789572646
+//# sourceMappingURL=Value.js.map?dt=1672653481375

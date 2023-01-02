@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* VirtualSelectBox.js 
-   * 
+  /* VirtualSelectBox.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
     extend: qx.ui.form.VirtualSelectBox,
-
     /*
     ***********************************************
       MEMBERS
@@ -47,20 +45,16 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case 'atom':
             control = new cv.ui.manager.form.ListItem('');
             control.setCenter(false);
             control.setAnonymous(true);
-
             this._add(control, {
               flex: 1
             });
-
             break;
         }
-
         return control || cv.ui.manager.form.VirtualSelectBox.superclass.prototype._createChildControlImpl.call(this, id, hash);
       }
     }
@@ -68,4 +62,4 @@
   cv.ui.manager.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1664789567628
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1672653476385

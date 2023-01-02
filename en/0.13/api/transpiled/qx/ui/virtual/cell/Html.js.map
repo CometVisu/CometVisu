@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/Html.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -25,8 +22,11 @@
     "states",
     "Html"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBC,IAD9B;;AAGE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AAEEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF,KAVF;;AAqBE;AACF;AACA;AACA;AACA;AAGEC,IAAAA,OAAO,EACP;AAEE;AACJ;AACA;AACA;AACA;AAEIC,MAAAA,UAAU,EAAG,oBAASC,KAAT,EAAgBC,MAAhB,EAAwB;AACnC,eAAOD,KAAP;AACD;AAVH;AA7BF,GADA;AAlBAjB,EAAAA,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,IAAd,CAAmBU,IAAnB,CAAwBhB,aAAxB,GAAwCA,aAAxC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/Html.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\nqx.Class.define(\"qx.ui.virtual.cell.Html\",\n{\n  extend : qx.ui.virtual.cell.Cell,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n\n    appearance:\n    {\n      refine : true,\n      init : \"cell-html\"\n    }\n\n  },\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n\n  members :\n  {\n\n    /*\n    ---------------------------------------------------------------------------\n      IMPLEMENT CELL API\n    ---------------------------------------------------------------------------\n    */\n\n    getContent : function(value, states) {\n      return value;\n    }\n\n  }\n\n});"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2006 STZ-IDA, Germany, http://www.stz-ida.de\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\nqx.Class.define(\"qx.ui.virtual.cell.Html\", {\n  extend: qx.ui.virtual.cell.Cell,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties: {\n    appearance: {\n      refine: true,\n      init: \"cell-html\"\n    }\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /*\n    ---------------------------------------------------------------------------\n      IMPLEMENT CELL API\n    ---------------------------------------------------------------------------\n    */\n\n    getContent(value, states) {\n      return value;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,IAAI,CAACC,IAAI;IAE/B;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACVC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MAEIC,UAAU,sBAACC,KAAK,EAAEC,MAAM,EAAE;QACxB,OAAOD,KAAK;MACd;IACF;EACF,CAAC,CAAC;EAnDFjB,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,IAAI,CAACU,IAAI,CAAChB,aAAa,GAAGA,aAAa;AAAC"
 }

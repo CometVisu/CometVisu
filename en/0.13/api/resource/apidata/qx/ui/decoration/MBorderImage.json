@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 585
       },
       "end": {
-        "line": 302,
-        "column": 3
+        "line": 280,
+        "column": 3,
+        "index": 8231
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "borderImage": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 695
         },
         "end": {
-          "line": 35,
-          "column": 5
+          "line": 32,
+          "column": 5,
+          "index": 793
         }
       },
       "jsdoc": {
@@ -57,12 +61,14 @@
     "sliceTop": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 985
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1099
         }
       },
       "jsdoc": {
@@ -83,12 +89,14 @@
     "sliceRight": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1293
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1409
         }
       },
       "jsdoc": {
@@ -109,12 +117,14 @@
     "sliceBottom": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 1604
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 68,
+          "column": 5,
+          "index": 1721
         }
       },
       "jsdoc": {
@@ -135,12 +145,14 @@
     "sliceLeft": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1914
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2029
         }
       },
       "jsdoc": {
@@ -161,12 +173,14 @@
     "slice": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2176
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2283
         }
       },
       "jsdoc": {
@@ -189,12 +203,14 @@
     "repeatX": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 2907
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 108,
+          "column": 5,
+          "index": 3024
         }
       },
       "jsdoc": {
@@ -219,12 +235,14 @@
     "repeatY": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 3646
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 127,
+          "column": 5,
+          "index": 3763
         }
       },
       "jsdoc": {
@@ -249,12 +267,14 @@
     "repeat": {
       "location": {
         "start": {
-          "line": 150,
-          "column": 4
+          "line": 133,
+          "column": 4,
+          "index": 3915
         },
         "end": {
-          "line": 154,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 3991
         }
       },
       "jsdoc": {
@@ -275,12 +295,14 @@
     "fill": {
       "location": {
         "start": {
-          "line": 161,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 4126
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 4214
         }
       },
       "jsdoc": {
@@ -301,12 +323,14 @@
     "borderImageMode": {
       "location": {
         "start": {
-          "line": 177,
-          "column": 4
+          "line": 156,
+          "column": 4,
+          "index": 4489
         },
         "end": {
-          "line": 181,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4581
         }
       },
       "jsdoc": {
@@ -332,12 +356,14 @@
     "_styleBorderImage": {
       "location": {
         "start": {
-          "line": 190,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 4715
         },
         "end": {
-          "line": 226,
-          "column": 5
+          "line": 206,
+          "column": 5,
+          "index": 6026
         }
       },
       "jsdoc": {
@@ -363,12 +389,14 @@
     "_getDefaultInsetsForBorderImage": {
       "location": {
         "start": {
-          "line": 235,
-          "column": 4
+          "line": 214,
+          "column": 4,
+          "index": 6275
         },
         "end": {
-          "line": 255,
-          "column": 5
+          "line": 236,
+          "column": 5,
+          "index": 6888
         }
       },
       "jsdoc": {
@@ -393,12 +421,14 @@
     "_applyBorderImage": {
       "location": {
         "start": {
-          "line": 258,
-          "column": 4
+          "line": 238,
+          "column": 4,
+          "index": 6895
         },
         "end": {
-          "line": 266,
-          "column": 5
+          "line": 246,
+          "column": 5,
+          "index": 7152
         }
       },
       "type": "function",
@@ -417,12 +447,14 @@
     "__getSlices": {
       "location": {
         "start": {
-          "line": 275,
-          "column": 4
+          "line": 254,
+          "column": 4,
+          "index": 7396
         },
         "end": {
-          "line": 300,
-          "column": 5
+          "line": 278,
+          "column": 5,
+          "index": 8223
         }
       },
       "jsdoc": {

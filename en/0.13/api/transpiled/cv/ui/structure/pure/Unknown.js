@@ -8,6 +8,7 @@
       "qx.core.Object": {
         "require": true
       },
+      "cv.ui.structure.pure.AbstractBasicWidget": {},
       "qx.locale.Manager": {},
       "cv.ui.structure.WidgetFactory": {
         "defer": "runtime"
@@ -15,11 +16,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Unknown.js 
-   * 
+  /* Unknown.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,7 +44,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.Unknown', {
     extend: qx.core.Object,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -53,7 +52,6 @@
     construct: function construct(props) {
       this.set(props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -81,7 +79,6 @@
         init: null
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -95,7 +92,6 @@
       getDomElement: function getDomElement() {
         return document.querySelector('#' + this.getPath());
       },
-
       /**
        * Return the HTML string for this widget
        * @return {String} HTML code
@@ -111,4 +107,4 @@
   cv.ui.structure.pure.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1664789570772
+//# sourceMappingURL=Unknown.js.map?dt=1672653479144

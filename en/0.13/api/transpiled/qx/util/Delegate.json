@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 585
       },
       "end": {
-        "line": 63,
-        "column": 3
+        "line": 57,
+        "column": 3,
+        "index": 1663
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getMethod": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 943
         },
         "end": {
-          "line": 41,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1159
         }
       },
       "jsdoc": {
@@ -77,12 +81,14 @@
     "containsMethod": {
       "location": {
         "start": {
-          "line": 52,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1451
         },
         "end": {
-          "line": 61,
-          "column": 5
+          "line": 55,
+          "column": 5,
+          "index": 1655
         }
       },
       "jsdoc": {

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,12 +36,12 @@
    */
   qx.Interface.define("qx.ui.core.IMultiSelection", {
     extend: qx.ui.core.ISingleSelection,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Selects all items of the managed object.
@@ -50,7 +49,6 @@
       selectAll: function selectAll() {
         return true;
       },
-
       /**
        * Adds the given item to the existing selection.
        *
@@ -60,7 +58,6 @@
       addToSelection: function addToSelection(item) {
         return arguments.length == 1;
       },
-
       /**
        * Removes the given item from the selection.
        *
@@ -78,4 +75,4 @@
   qx.ui.core.IMultiSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IMultiSelection.js.map?dt=1664789593430
+//# sourceMappingURL=IMultiSelection.js.map?dt=1672653504792

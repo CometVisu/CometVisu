@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 535
       },
       "end": {
-        "line": 186,
-        "column": 3
+        "line": 175,
+        "column": 3,
+        "index": 5662
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 14
+        "line": 23,
+        "column": 2,
+        "index": 588
       },
       "end": {
-        "line": 102,
-        "column": 3
+        "line": 95,
+        "column": 3,
+        "index": 2905
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__contextMenuHandler": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2925
         },
         "end": {
-          "line": 106,
-          "column": 31
+          "line": 98,
+          "column": 30,
+          "index": 2951
         }
       },
       "type": "variable",
@@ -58,12 +63,14 @@
     "__contextMenuHandlerContext": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 2957
         },
         "end": {
-          "line": 107,
-          "column": 38
+          "line": 99,
+          "column": 37,
+          "index": 2990
         }
       },
       "type": "variable",
@@ -72,12 +79,14 @@
     "setContextMenuHandler": {
       "location": {
         "start": {
-          "line": 152,
-          "column": 4
+          "line": 144,
+          "column": 4,
+          "index": 4713
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 4876
         }
       },
       "jsdoc": {
@@ -119,12 +128,14 @@
     "getContextMenuHandler": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 5284
         },
         "end": {
-          "line": 172,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 5363
         }
       },
       "jsdoc": {
@@ -159,12 +170,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 181,
-        "column": 13
+        "line": 171,
+        "column": 2,
+        "index": 5559
       },
       "end": {
-        "line": 185,
-        "column": 3
+        "line": 174,
+        "column": 3,
+        "index": 5658
       }
     },
     "jsdoc": {}

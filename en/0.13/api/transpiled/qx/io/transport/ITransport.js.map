@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Interface",
+    "define",
+    "properties",
+    "endpoint",
+    "event",
+    "events",
+    "message",
+    "members",
+    "send",
+    "getTransportImpl",
+    "io",
+    "transport",
+    "ITransport"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/io/transport/ITransport.js"
+  ],
+  "sourcesContent": [
+    "/**\n * The interface for all transports located in this namespace\n */\nqx.Interface.define(\"qx.io.transport.ITransport\", {\n  properties: {\n    /**\n     * The URI of the endpoint\n     * @var {String}\n     */\n    endpoint: {\n      event: \"changeEndpoint\"\n    }\n  },\n\n  events: {\n    /**\n     * Event fired when a message is received from the endpoint. Event data\n     * is an UTF-8 encoded string\n     */\n    message: \"qx.event.type.Data\"\n  },\n\n  members: {\n    /**\n     * Transport the given message to the endpoint\n     *\n     * @param {String} message\n     * @return {qx.Promise} Promise that resolves (with no data)\n     * when the message has been successfully sent out, and rejects\n     * when there is an error or a cancellation up to that point.\n     */\n    async send(message) {},\n\n    /**\n     * Returns the object which implements the transport on the underlying\n     * level, so that transport-specific configuration can be done on it.\n     * The object might be a new one for each request.\n     * @return {Object}\n     */\n    getTransportImpl() {}\n  }\n});\n"
+  ],
+  "mappings": ";+CACA;AAAA;AAAA;AAAA;EAAA;IAAA;MAAA;QAAA;QAAA;MAAA;IAAA;EAAA;EADAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAChDC,UAAU,EAAE;MACV;AACJ;AACA;AACA;MACIC,QAAQ,EAAE;QACRC,KAAK,EAAE;MACT;IACF,CAAC;IAEDC,MAAM,EAAE;MACN;AACJ;AACA;AACA;MACIC,OAAO,EAAE;IACX,CAAC;IAEDC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACUC,IAAI,gBAACF,OAAO,EAAE;QAAA;UAAA;YAAA;cAAA;gBAAA;gBAAA;kBAAA;cAAA;YAAA;UAAA;QAAA;MAAC,CAAC;MAEtB;AACJ;AACA;AACA;AACA;AACA;MACIG,gBAAgB,8BAAG,CAAC;IACtB;EACF,CAAC,CAAC;EAzCFb,EAAE,CAACc,EAAE,CAACC,SAAS,CAACC,UAAU,CAACb,aAAa,GAAGA,aAAa;AAAC"
+}

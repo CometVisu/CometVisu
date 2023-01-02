@@ -1,0 +1,214 @@
+{
+  "className": "qx.io.exception.Transport",
+  "packageName": "qx.io.exception",
+  "name": "Transport",
+  "superClass": "qx.io.exception.Exception",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0,
+        "index": 619
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 978
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A class for representing errors that occurred during the request transport.\n  In the context of HTTP requests, the error code is the HTTP error code.</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "statics": {
+    "TIMEOUT": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 720
+        },
+        "end": {
+          "line": 26,
+          "column": 14,
+          "index": 730
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "ABORTED": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 736
+        },
+        "end": {
+          "line": 27,
+          "column": 14,
+          "index": 746
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "NO_DATA": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 752
+        },
+        "end": {
+          "line": 28,
+          "column": 14,
+          "index": 762
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "INVALID_MSG_DATA": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 768
+        },
+        "end": {
+          "line": 29,
+          "column": 23,
+          "index": 787
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "CANCELLED": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 793
+        },
+        "end": {
+          "line": 30,
+          "column": 16,
+          "index": 805
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "INVALID_URI": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 811
+        },
+        "end": {
+          "line": 31,
+          "column": 18,
+          "index": 825
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "FAILED": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 831
+        },
+        "end": {
+          "line": 32,
+          "column": 13,
+          "index": 840
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "INVALID_ID": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 846
+        },
+        "end": {
+          "line": 33,
+          "column": 17,
+          "index": 859
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "INVALID_JSON": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 877
+        },
+        "end": {
+          "line": 34,
+          "column": 19,
+          "index": 892
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "DUPLICATE_ID": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 910
+        },
+        "end": {
+          "line": 35,
+          "column": 20,
+          "index": 926
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    },
+    "UNKNOWN_ID": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 944
+        },
+        "end": {
+          "line": 36,
+          "column": 18,
+          "index": 958
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "public"
+    }
+  },
+  "descendants": []
+}

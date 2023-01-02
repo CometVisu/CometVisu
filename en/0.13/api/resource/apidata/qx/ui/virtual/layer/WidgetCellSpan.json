@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 637
       },
       "end": {
-        "line": 325,
-        "column": 3
+        "line": 324,
+        "column": 3,
+        "index": 9090
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 42,
-        "column": 14
+        "line": 37,
+        "column": 2,
+        "index": 1185
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 57,
+        "column": 3,
+        "index": 1695
       }
     },
     "jsdoc": {
@@ -76,12 +80,14 @@
     "anonymous": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1923
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 1979
         }
       },
       "jsdoc": {},
@@ -101,12 +107,14 @@
     "getRenderedCellWidget": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 5
+          "line": 89,
+          "column": 4,
+          "index": 2557
         },
         "end": {
-          "line": 126,
-          "column": 6
+          "line": 119,
+          "column": 5,
+          "index": 3484
         }
       },
       "jsdoc": {
@@ -147,12 +155,14 @@
     "__spacerPool": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3491
         },
         "end": {
-          "line": 129,
-          "column": 23
+          "line": 121,
+          "column": 22,
+          "index": 3509
         }
       },
       "type": "variable",
@@ -161,12 +171,14 @@
     "setCellSpan": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3858
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 138,
+          "column": 5,
+          "index": 4151
         }
       },
       "jsdoc": {
@@ -213,12 +225,14 @@
     "_getSpacer": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 145,
+          "column": 4,
+          "index": 4280
         },
         "end": {
-          "line": 165,
-          "column": 5
+          "line": 153,
+          "column": 5,
+          "index": 4529
         }
       },
       "jsdoc": {
@@ -243,12 +257,14 @@
     "__getCellProviderForNonSpanningCells": {
       "location": {
         "start": {
-          "line": 173,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 4689
         },
         "end": {
-          "line": 205,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 5405
         }
       },
       "jsdoc": {
@@ -273,12 +289,14 @@
     "__updateCellSpanData": {
       "location": {
         "start": {
-          "line": 217,
-          "column": 4
+          "line": 196,
+          "column": 4,
+          "index": 5831
         },
         "end": {
-          "line": 245,
-          "column": 5
+          "line": 226,
+          "column": 5,
+          "index": 6610
         }
       },
       "jsdoc": {
@@ -325,12 +343,14 @@
     "__updateCellSpanWidgets": {
       "location": {
         "start": {
-          "line": 254,
-          "column": 4
+          "line": 234,
+          "column": 4,
+          "index": 6790
         },
         "end": {
-          "line": 286,
-          "column": 5
+          "line": 276,
+          "column": 5,
+          "index": 8015
         }
       },
       "jsdoc": {
@@ -347,12 +367,14 @@
     "_fullUpdate": {
       "location": {
         "start": {
-          "line": 290,
-          "column": 4
+          "line": 279,
+          "column": 4,
+          "index": 8040
         },
         "end": {
-          "line": 298,
-          "column": 5
+          "line": 289,
+          "column": 5,
+          "index": 8357
         }
       },
       "jsdoc": {},
@@ -366,12 +388,14 @@
     "_updateLayerWindow": {
       "location": {
         "start": {
-          "line": 302,
-          "column": 4
+          "line": 292,
+          "column": 4,
+          "index": 8382
         },
         "end": {
-          "line": 310,
-          "column": 5
+          "line": 307,
+          "column": 5,
+          "index": 8753
         }
       },
       "jsdoc": {},
@@ -800,6 +824,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -824,6 +849,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4508,15 +4534,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 314,
-        "column": 13
+        "line": 310,
+        "column": 2,
+        "index": 8762
       },
       "end": {
-        "line": 324,
-        "column": 3
+        "line": 323,
+        "column": 3,
+        "index": 9086
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

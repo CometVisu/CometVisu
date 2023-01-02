@@ -104,43 +104,43 @@ by an online translation service.</p>
 <section id="update-cometvisu-on-other-devices">
 <h1>Update CometVisu on other Devices<a class="headerlink" href="#update-cometvisu-on-other-devices" title="Permalink to this headline">¶</a></h1>
 <p><strong>Download the Instructions</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-wget -O CometVisu0.9.2.zip  https://github.com/CometVisu/CometVisu/releases/download/v0.9.2/CometVisu-0.9.2.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
+wget<span class="w"> </span>-O<span class="w"> </span>CometVisu0.9.2.zip<span class="w">  </span>https://github.com/CometVisu/CometVisu/releases/download/v0.9.2/CometVisu-0.9.2.zip
 </pre></div>
 </div>
 <p><strong>Unpack the Files</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip CometVisu0.9.2.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>CometVisu0.9.2.zip
 </pre></div>
 </div>
 <p><strong>Rename the Folders</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv cometvisu/ release_0.9.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>cometvisu/<span class="w"> </span>release_0.9.2
 </pre></div>
 </div>
 <p><strong>OPTIONAL: Delete the downloaded Files</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm ./CometVisu0.9.2.zip
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>./CometVisu0.9.2.zip
 </pre></div>
 </div>
 <p><strong>Copy the Configuration into the new Visu Folder</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp visu/config/visu_config*.xml release_0.9.2/release/config/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>visu/config/visu_config*.xml<span class="w"> </span>release_0.9.2/release/config/
 </pre></div>
 </div>
 <p><strong>doublecheck the privileges</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod -f a+w release_0.9.2/release/config release_0.9.2/release/config/*.xml release_0.9.2/release/config/backup release_0.9.2/release/config/backup/*.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>-f<span class="w"> </span>a+w<span class="w"> </span>release_0.9.2/release/config<span class="w"> </span>release_0.9.2/release/config/*.xml<span class="w"> </span>release_0.9.2/release/config/backup<span class="w"> </span>release_0.9.2/release/config/backup/*.xml
 </pre></div>
 </div>
 <p><strong>EITHER remove an old backup and create a new backup from
 the current deprecated installation</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -Rf ./visu.bak
-mv ./visu cometvisu.bak
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-Rf<span class="w"> </span>./visu.bak
+mv<span class="w"> </span>./visu<span class="w"> </span>cometvisu.bak
 </pre></div>
 </div>
 <p><strong>OR alternative procedure WITHOUT deleting old versions (rename to any_name)</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv ./visu any_name
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>./visu<span class="w"> </span>any_name
 </pre></div>
 </div>
 <p><strong>Generating a link to call the Visu with the known url
 can be done here again</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s release_0.9.2/release/ visu
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>release_0.9.2/release/<span class="w"> </span>visu
 </pre></div>
 </div>
 <p>Call the Visu then known as
@@ -159,7 +159,7 @@ the configuration will be automatically converted.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

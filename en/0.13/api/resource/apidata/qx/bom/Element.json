@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 0
+        "line": 36,
+        "column": 0,
+        "index": 1037
       },
       "end": {
-        "line": 267,
-        "column": 3
+        "line": 282,
+        "column": 3,
+        "index": 9371
       }
     },
     "jsdoc": {
@@ -68,6 +70,10 @@
         {
           "name": "@require",
           "body": "qx.event.handler.Gesture"
+        },
+        {
+          "name": "@require",
+          "body": "qx.event.handler.Video"
         }
       ]
     }
@@ -77,12 +83,14 @@
     "addListener": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 2590
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 2785
         }
       },
       "jsdoc": {
@@ -146,12 +154,14 @@
     "removeListener": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 3501
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 3702
         }
       },
       "jsdoc": {
@@ -215,12 +225,14 @@
     "removeListenerById": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 4019
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 4124
         }
       },
       "jsdoc": {
@@ -261,12 +273,14 @@
     "hasListener": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 4557
         },
         "end": {
-          "line": 120,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 4672
         }
       },
       "jsdoc": {
@@ -316,12 +330,14 @@
     "focus": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 135,
+          "column": 4,
+          "index": 4855
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 139,
+          "column": 5,
+          "index": 4994
         }
       },
       "jsdoc": {
@@ -347,12 +363,14 @@
     "blur": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 5107
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 150,
+          "column": 5,
+          "index": 5244
         }
       },
       "jsdoc": {
@@ -378,12 +396,14 @@
     "activate": {
       "location": {
         "start": {
-          "line": 148,
-          "column": 4
+          "line": 157,
+          "column": 4,
+          "index": 5413
         },
         "end": {
-          "line": 150,
-          "column": 5
+          "line": 161,
+          "column": 5,
+          "index": 5558
         }
       },
       "jsdoc": {
@@ -409,12 +429,14 @@
     "deactivate": {
       "location": {
         "start": {
-          "line": 158,
-          "column": 4
+          "line": 168,
+          "column": 4,
+          "index": 5729
         },
         "end": {
-          "line": 160,
-          "column": 5
+          "line": 172,
+          "column": 5,
+          "index": 5878
         }
       },
       "jsdoc": {
@@ -440,12 +462,14 @@
     "capture": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 182,
+          "column": 4,
+          "index": 6186
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 186,
+          "column": 5,
+          "index": 6384
         }
       },
       "jsdoc": {
@@ -480,12 +504,14 @@
     "releaseCapture": {
       "location": {
         "start": {
-          "line": 181,
-          "column": 4
+          "line": 193,
+          "column": 4,
+          "index": 6543
         },
         "end": {
-          "line": 183,
-          "column": 5
+          "line": 197,
+          "column": 5,
+          "index": 6711
         }
       },
       "jsdoc": {
@@ -511,12 +537,14 @@
     "clone": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 213,
+          "column": 4,
+          "index": 7201
         },
         "end": {
-          "line": 265,
-          "column": 5
+          "line": 280,
+          "column": 5,
+          "index": 9363
         }
       },
       "jsdoc": {

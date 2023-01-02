@@ -120,31 +120,31 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <span class="c1">#</span>
 <span class="c1"># $Id: update_cputemp 275 2013-05-16 05:20:56Z lenik $</span>
 
-<span class="nb">cd</span> /var/www/rrd
+<span class="nb">cd</span><span class="w"> </span>/var/www/rrd
 
 <span class="c1"># create database if not exists</span>
-<span class="o">[</span> -f cputemp.rrd <span class="o">]</span> <span class="o">||</span> <span class="o">{</span>
-/usr/bin/rrdtool create cputemp.rrd --step <span class="m">300</span> <span class="se">\</span>
-DS:cputemp:GAUGE:1200:U:U <span class="se">\</span>
-RRA:AVERAGE:0.5:1:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:6:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:36:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:144:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:1008:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:4320:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:52560:3200 <span class="se">\</span>
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>cputemp.rrd<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span>
+/usr/bin/rrdtool<span class="w"> </span>create<span class="w"> </span>cputemp.rrd<span class="w"> </span>--step<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+DS:cputemp:GAUGE:1200:U:U<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:6:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:36:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:144:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1008:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:4320:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:52560:3200<span class="w"> </span><span class="se">\</span>
 RRA:AVERAGE:0.5:525600:3200
 <span class="o">}</span>
 
 <span class="c1"># read the temperature and convert 59234 into 59.234 (degrees celsius)</span>
-<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span>cat /sys/class/thermal/thermal_zone0/temp<span class="sb">`</span>
-<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="si">${</span><span class="nv">TEMPERATURE</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="p">;</span> <span class="nb">echo</span> -n .<span class="p">;</span> <span class="nb">echo</span> -n <span class="si">${</span><span class="nv">TEMPERATURE</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="sb">`</span>
+<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span>cat<span class="w"> </span>/sys/class/thermal/thermal_zone0/temp<span class="sb">`</span>
+<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">TEMPERATURE</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>.<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="si">${</span><span class="nv">TEMPERATURE</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="sb">`</span>
 
-/usr/bin/rrdtool update cputemp.rrd <span class="sb">`</span>date +%s<span class="sb">`</span>:<span class="nv">$TEMPERATURE</span>
+/usr/bin/rrdtool<span class="w"> </span>update<span class="w"> </span>cputemp.rrd<span class="w"> </span><span class="sb">`</span>date<span class="w"> </span>+%s<span class="sb">`</span>:<span class="nv">$TEMPERATURE</span>
 </pre></div>
 </div>
 <p>Im /etc/crontab muss folgende Zeile hinzugefügt werden, um das Script alle 5 Minuten aufzurufen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/cputemp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cputemp
 </pre></div>
 </div>
 </section>
@@ -160,7 +160,7 @@ RRA:AVERAGE:0.5:525600:3200
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,21 +50,18 @@
       /**
        * The maximal time a frame should take.
        */
-      __P_130_0: 30,
-
+      __P_131_0: 30,
       /**
        * The supported CSS units.
        */
-      __P_130_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
-
+      __P_131_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
       /** The used keys for transforms. */
-      __P_130_2: {
-        "scale": true,
-        "rotate": true,
-        "skew": true,
-        "translate": true
+      __P_131_2: {
+        scale: true,
+        rotate: true,
+        skew: true,
+        translate: true
       },
-
       /**
        * This is the main function to start the animation. For further details,
        * take a look at the documentation of the wrapper
@@ -79,7 +75,6 @@
       animate: function animate(el, desc, duration) {
         return this._animate(el, desc, duration, false);
       },
-
       /**
        * This is the main function to start the animation in reversed mode.
        * For further details, take a look at the documentation of the wrapper
@@ -93,7 +88,6 @@
       animateReverse: function animateReverse(el, desc, duration) {
         return this._animate(el, desc, duration, true);
       },
-
       /**
        * Helper to start the animation, either in reversed order or not.
        *
@@ -110,33 +104,22 @@
         if (el.$$animation) {
           return el.$$animation;
         }
-
         desc = qx.lang.Object.clone(desc, true);
-
         if (duration == undefined) {
           duration = desc.duration;
         }
-
         var keyFrames = desc.keyFrames;
-
-        var keys = this.__P_130_3(keyFrames);
-
-        var stepTime = this.__P_130_4(duration, keys);
-
+        var keys = this.__P_131_3(keyFrames);
+        var stepTime = this.__P_131_4(duration, keys);
         var steps = parseInt(duration / stepTime, 10);
-
-        this.__P_130_5(keyFrames, el);
-
-        var delta = this.__P_130_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
-
+        this.__P_131_5(keyFrames, el);
+        var delta = this.__P_131_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
         var handle = new qx.bom.element.AnimationHandle();
         handle.jsAnimation = true;
-
         if (reverse) {
           delta.reverse();
           handle.reverse = true;
         }
-
         handle.desc = desc;
         handle.el = el;
         handle.delta = delta;
@@ -145,7 +128,7 @@
         el.$$animation = handle;
         handle.i = 0;
         handle.initValues = {};
-        handle.repeatSteps = this.__P_130_7(steps, desc.repeat);
+        handle.repeatSteps = this.__P_131_7(steps, desc.repeat);
         var delay = desc.delay || 0;
         var self = this;
         handle.delayId = window.setTimeout(function () {
@@ -154,48 +137,39 @@
         }, delay);
         return handle;
       },
-
       /**
        * Try to normalize the keyFrames by adding the default / set values of the
        * element.
        * @param keyFrames {Map} The map of key frames.
        * @param el {Element} The element to animate.
        */
-      __P_130_5: function __P_130_5(keyFrames, el) {
+      __P_131_5: function __P_131_5(keyFrames, el) {
         // collect all possible keys and its units
         var units = {};
-
         for (var percent in keyFrames) {
           for (var name in keyFrames[percent]) {
             // prefixed key calculation
             var prefixed = qx.bom.Style.getPropertyName(name);
-
             if (prefixed && prefixed != name) {
               var prefixedName = qx.bom.Style.getCssName(prefixed);
               keyFrames[percent][prefixedName] = keyFrames[percent][name];
               delete keyFrames[percent][name];
               name = prefixedName;
-            } // check for the available units
-
-
+            }
+            // check for the available units
             if (units[name] == undefined) {
               var item = keyFrames[percent][name];
-
               if (typeof item == "string") {
-                units[name] = this.__P_130_8(item);
+                units[name] = this.__P_131_8(item);
               } else {
                 units[name] = "";
               }
             }
           }
-
-          ;
-        } // add all missing keys
-
-
+        }
+        // add all missing keys
         for (var percent in keyFrames) {
           var frame = keyFrames[percent];
-
           for (var name in units) {
             if (frame[name] == undefined) {
               if (name in el.style) {
@@ -207,55 +181,41 @@
                 }
               } else {
                 frame[name] = el[name];
-              } // if its a unit we know, set 0 as fallback
-
-
-              if (frame[name] === "" && this.__P_130_1.indexOf(units[name]) != -1) {
+              }
+              // if its a unit we know, set 0 as fallback
+              if (frame[name] === "" && this.__P_131_1.indexOf(units[name]) != -1) {
                 frame[name] = "0" + units[name];
               }
             }
           }
-
-          ;
         }
-
-        ;
       },
-
       /**
        * Checks for transform keys and returns a cloned frame
        * with the right transform style set.
        * @param frame {Map} A single key frame of the description.
        * @return {Map} A modified clone of the given frame.
        */
-      __P_130_9: function __P_130_9(frame) {
+      __P_131_9: function __P_131_9(frame) {
         frame = qx.lang.Object.clone(frame);
         var transforms;
-
         for (var name in frame) {
-          if (name in this.__P_130_2) {
+          if (name in this.__P_131_2) {
             if (!transforms) {
               transforms = {};
             }
-
             transforms[name] = frame[name];
             delete frame[name];
           }
         }
-
-        ;
-
         if (transforms) {
           var transformStyle = qx.bom.element.Transform.getCss(transforms).split(":");
-
           if (transformStyle.length > 1) {
             frame[transformStyle[0]] = transformStyle[1].replace(";", "");
           }
         }
-
         return frame;
       },
-
       /**
        * Precalculation of the delta which will be applied during the animation.
        * The whole deltas will be calculated prior to the animation and stored
@@ -270,16 +230,15 @@
        * @param timing {String} The given timing function.
        * @return {Array} An array containing the animation deltas.
        */
-      __P_130_6: function __P_130_6(steps, stepTime, keys, keyFrames, duration, timing) {
+      __P_131_6: function __P_131_6(steps, stepTime, keys, keyFrames, duration, timing) {
         var delta = new Array(steps);
         var keyIndex = 1;
-        delta[0] = this.__P_130_9(keyFrames[0]);
+        delta[0] = this.__P_131_9(keyFrames[0]);
         var last = keyFrames[0];
         var next = keyFrames[keys[keyIndex]];
         var stepsToNext = Math.floor(keys[keyIndex] / (stepTime / duration * 100));
         var calculationIndex = 1; // is used as counter for the timing calculation
         // for every step
-
         for (var i = 1; i < delta.length; i++) {
           // switch key frames if we crossed a percent border
           if (i * stepTime / duration * 100 > keys[keyIndex]) {
@@ -289,84 +248,75 @@
             stepsToNext = Math.floor(keys[keyIndex] / (stepTime / duration * 100)) - stepsToNext;
             calculationIndex = 1;
           }
-
           delta[i] = {};
-          var transforms; // for every property
-
+          var transforms;
+          // for every property
           for (var name in next) {
-            var nItem = next[name] + ""; // transform values
+            var nItem = next[name] + "";
 
-            if (name in this.__P_130_2) {
+            // transform values
+            if (name in this.__P_131_2) {
               if (!transforms) {
                 transforms = {};
               }
-
               if (qx.Bootstrap.isArray(last[name])) {
                 if (!qx.Bootstrap.isArray(next[name])) {
                   next[name] = [next[name]];
                 }
-
                 transforms[name] = [];
-
                 for (var j = 0; j < next[name].length; j++) {
                   var item = next[name][j] + "";
                   var x = calculationIndex / stepsToNext;
-                  transforms[name][j] = this.__P_130_10(item, last[name], timing, x);
+                  transforms[name][j] = this.__P_131_10(item, last[name], timing, x);
                 }
               } else {
                 var x = calculationIndex / stepsToNext;
-                transforms[name] = this.__P_130_10(nItem, last[name], timing, x);
-              } // color values
+                transforms[name] = this.__P_131_10(nItem, last[name], timing, x);
+              }
 
+              // color values
             } else if (nItem.charAt(0) == "#") {
               // get the two values from the frames as RGB arrays
               var value0 = qx.util.ColorUtil.cssStringToRgb(last[name]);
               var value1 = qx.util.ColorUtil.cssStringToRgb(nItem);
-              var stepValue = []; // calculate every color channel
-
+              var stepValue = [];
+              // calculate every color channel
               for (var j = 0; j < value0.length; j++) {
                 var range = value0[j] - value1[j];
                 var x = calculationIndex / stepsToNext;
                 var timingX = qx.bom.AnimationFrame.calculateTiming(timing, x);
                 stepValue[j] = parseInt(value0[j] - range * timingX, 10);
               }
-
               delta[i][name] = qx.util.ColorUtil.rgbToHexString(stepValue);
             } else if (!isNaN(parseFloat(nItem))) {
               var x = calculationIndex / stepsToNext;
-              delta[i][name] = this.__P_130_10(nItem, last[name], timing, x);
+              delta[i][name] = this.__P_131_10(nItem, last[name], timing, x);
             } else {
               delta[i][name] = last[name] + "";
             }
-          } // save all transformations in the delta values
-
-
+          }
+          // save all transformations in the delta values
           if (transforms) {
             var transformStyle = qx.bom.element.Transform.getCss(transforms).split(":");
-
             if (transformStyle.length > 1) {
               delta[i][transformStyle[0]] = transformStyle[1].replace(";", "");
             }
           }
-
           calculationIndex++;
-        } // make sure the last key frame is right
-
-
-        delta[delta.length - 1] = this.__P_130_9(keyFrames[100]);
+        }
+        // make sure the last key frame is right
+        delta[delta.length - 1] = this.__P_131_9(keyFrames[100]);
         return delta;
       },
-
       /**
        * Ties to parse out the unit of the given value.
        *
        * @param item {String} A CSS value including its unit.
        * @return {String} The unit of the given value.
        */
-      __P_130_8: function __P_130_8(item) {
+      __P_131_8: function __P_131_8(item) {
         return item.substring((parseFloat(item) + "").length, item.length);
       },
-
       /**
        * Returns the next value based on the given arguments.
        *
@@ -376,11 +326,10 @@
        * @param x {Number} The x position of the animation on the time axis
        * @return {String} The calculated value including its unit.
        */
-      __P_130_10: function __P_130_10(nextItem, lastItem, timing, x) {
+      __P_131_10: function __P_131_10(nextItem, lastItem, timing, x) {
         var range = parseFloat(nextItem) - parseFloat(lastItem);
-        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__P_130_8(nextItem);
+        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__P_131_8(nextItem);
       },
-
       /**
        * Internal helper for the {@link qx.bom.element.AnimationHandle} to play
        * the animation.
@@ -393,37 +342,34 @@
         handle.emit("start", handle.el);
         var id = window.setInterval(function () {
           handle.repeatSteps--;
-          var values = handle.delta[handle.i % handle.steps]; // save the init values
-
+          var values = handle.delta[handle.i % handle.steps];
+          // save the init values
           if (handle.i === 0) {
             for (var name in values) {
               if (handle.initValues[name] === undefined) {
                 // animate element property
                 if (handle.el[name] !== undefined) {
                   handle.initValues[name] = handle.el[name];
-                } // animate CSS property
+                }
+                // animate CSS property
                 else if (qx.bom.element.Style) {
-                    handle.initValues[name] = qx.bom.element.Style.get(handle.el, qx.lang.String.camelCase(name));
-                  } else {
-                    handle.initValues[name] = handle.el.style[qx.lang.String.camelCase(name)];
-                  }
+                  handle.initValues[name] = qx.bom.element.Style.get(handle.el, qx.lang.String.camelCase(name));
+                } else {
+                  handle.initValues[name] = handle.el.style[qx.lang.String.camelCase(name)];
+                }
               }
             }
           }
-
-          qx.bom.element.AnimationJs.__P_130_11(handle.el, values);
-
-          handle.i++; // iteration condition
-
+          qx.bom.element.AnimationJs.__P_131_11(handle.el, values);
+          handle.i++;
+          // iteration condition
           if (handle.i % handle.steps == 0) {
             handle.emit("iteration", handle.el);
-
             if (handle.desc.alternate) {
               handle.delta.reverse();
             }
-          } // end condition
-
-
+          }
+          // end condition
           if (handle.repeatSteps < 0) {
             qx.bom.element.AnimationJs.stop(handle);
           }
@@ -431,7 +377,6 @@
         handle.animationId = id;
         return handle;
       },
-
       /**
        * Internal helper for the {@link qx.bom.element.AnimationHandle} to pause
        * the animation.
@@ -446,7 +391,6 @@
         handle.animationId = null;
         return handle;
       },
-
       /**
        * Internal helper for the {@link qx.bom.element.AnimationHandle} to stop
        * the animation.
@@ -459,34 +403,30 @@
         var desc = handle.desc;
         var el = handle.el;
         var initValues = handle.initValues;
-
         if (handle.animationId) {
           window.clearInterval(handle.animationId);
-        } // clear the delay if the animation has not been started
+        }
 
-
+        // clear the delay if the animation has not been started
         if (handle.delayId) {
           window.clearTimeout(handle.delayId);
-        } // check if animation is already stopped
+        }
 
-
+        // check if animation is already stopped
         if (el == undefined) {
           return handle;
-        } // if we should keep a frame
+        }
 
-
+        // if we should keep a frame
         var keep = desc.keep;
-
         if (keep != undefined && !handle.stopped) {
           if (handle.reverse || desc.alternate && desc.repeat && desc.repeat % 2 == 0) {
             keep = 100 - keep;
           }
-
-          this.__P_130_11(el, this.__P_130_9(desc.keyFrames[keep]));
+          this.__P_131_11(el, this.__P_131_9(desc.keyFrames[keep]));
         } else {
-          this.__P_130_11(el, initValues);
+          this.__P_131_11(el, initValues);
         }
-
         el.$$animation = null;
         handle.el = null;
         handle.ended = true;
@@ -494,7 +434,6 @@
         handle.emit("end", el);
         return handle;
       },
-
       /**
        * Takes care of the repeat key of the description.
        * @param steps {Integer} The number of steps one iteration would take.
@@ -502,39 +441,34 @@
        * animation should be repeated or the string 'infinite'.
        * @return {Integer} The number of steps to animate.
        */
-      __P_130_7: function __P_130_7(steps, repeat) {
+      __P_131_7: function __P_131_7(steps, repeat) {
         if (repeat == undefined) {
           return steps;
         }
-
         if (repeat == "infinite") {
           return Number.MAX_VALUE;
         }
-
         return steps * repeat;
       },
-
       /**
        * Central method to apply css styles and element properties.
        * @param el {Element} The DOM element to apply the styles.
        * @param styles {Map} A map containing styles and values.
        */
-      __P_130_11: function __P_130_11(el, styles) {
+      __P_131_11: function __P_131_11(el, styles) {
         for (var key in styles) {
           // ignore undefined values (might be a bad detection)
           if (styles[key] === undefined) {
             continue;
-          } // apply element property value - only if a CSS property
+          }
+
+          // apply element property value - only if a CSS property
           // is *not* available
-
-
           if (typeof el.style[key] === "undefined" && key in el) {
             el[key] = styles[key];
             continue;
           }
-
           var name = qx.bom.Style.getPropertyName(key) || key;
-
           if (qx.bom.element.Style) {
             qx.bom.element.Style.set(el, name, styles[key]);
           } else {
@@ -542,44 +476,34 @@
           }
         }
       },
-
       /**
        * Dynamic calculation of the steps time considering a max step time.
        * @param duration {Number} The duration of the animation.
        * @param keys {Array} An array containing the ordered set of key frame keys.
        * @return {Integer} The best suited step time.
        */
-      __P_130_4: function __P_130_4(duration, keys) {
+      __P_131_4: function __P_131_4(duration, keys) {
         // get min difference
         var minDiff = 100;
-
         for (var i = 0; i < keys.length - 1; i++) {
           minDiff = Math.min(minDiff, keys[i + 1] - keys[i]);
         }
-
-        ;
         var stepTime = duration * minDiff / 100;
-
-        while (stepTime > this.__P_130_0) {
+        while (stepTime > this.__P_131_0) {
           stepTime = stepTime / 2;
         }
-
         return Math.round(stepTime);
       },
-
       /**
        * Helper which returns the ordered keys of the key frame map.
        * @param keyFrames {Map} The map of key frames.
        * @return {Array} An ordered list of keys.
        */
-      __P_130_3: function __P_130_3(keyFrames) {
+      __P_131_3: function __P_131_3(keyFrames) {
         var keys = Object.keys(keyFrames);
-
         for (var i = 0; i < keys.length; i++) {
           keys[i] = parseInt(keys[i], 10);
         }
-
-        ;
         keys.sort(function (a, b) {
           return a - b;
         });
@@ -590,4 +514,4 @@
   qx.bom.element.AnimationJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationJs.js.map?dt=1664789578291
+//# sourceMappingURL=AnimationJs.js.map?dt=1672653486507

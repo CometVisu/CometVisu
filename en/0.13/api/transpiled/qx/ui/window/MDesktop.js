@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,6 +40,7 @@
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The currently active window
@@ -58,22 +58,20 @@
        * Fired when a window was added.
        */
       windowAdded: "qx.event.type.Data",
-
       /**
        * Fired when a window was removed.
        */
       windowRemoved: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_479_0: null,
-      __P_479_1: null,
 
+    members: {
+      __P_494_0: null,
+      __P_494_1: null,
       /**
        * Get the desktop's window manager. Each desktop must have a window manager.
        * If none is configured the default window manager {@link qx.ui.window.Window#DEFAULT_MANAGER_CLASS}
@@ -82,13 +80,11 @@
        * @return {qx.ui.window.IWindowManager} The desktop's window manager
        */
       getWindowManager: function getWindowManager() {
-        if (!this.__P_479_1) {
+        if (!this.__P_494_1) {
           this.setWindowManager(new qx.ui.window.Window.DEFAULT_MANAGER_CLASS());
         }
-
-        return this.__P_479_1;
+        return this.__P_494_1;
       },
-
       /**
        * Whether the configured layout supports a maximized window
        * e.g. is a Canvas.
@@ -98,21 +94,18 @@
       supportsMaximize: function supportsMaximize() {
         return true;
       },
-
       /**
        * Sets the desktop's window manager
        *
        * @param manager {qx.ui.window.IWindowManager} The window manager
        */
       setWindowManager: function setWindowManager(manager) {
-        if (this.__P_479_1) {
-          this.__P_479_1.setDesktop(null);
+        if (this.__P_494_1) {
+          this.__P_494_1.setDesktop(null);
         }
-
         manager.setDesktop(this);
-        this.__P_479_1 = manager;
+        this.__P_494_1 = manager;
       },
-
       /**
        * Event handler. Called if one of the managed windows changes its active
        * state.
@@ -131,7 +124,6 @@
         this.getWindowManager().changeActiveWindow(value, old);
         this.getWindowManager().updateStack();
       },
-
       /**
        * Event handler. Called if one of the managed windows changes its modality
        *
@@ -140,7 +132,6 @@
       _onChangeModal: function _onChangeModal(e) {
         this.getWindowManager().updateStack();
       },
-
       /**
        * Event handler. Called if one of the managed windows changes its visibility
        * state.
@@ -148,7 +139,6 @@
       _onChangeVisibility: function _onChangeVisibility() {
         this.getWindowManager().updateStack();
       },
-
       /**
        * Overrides the method {@link qx.ui.core.Widget#_afterAddChild}
        *
@@ -159,7 +149,6 @@
           this._addWindow(win);
         }
       },
-
       /**
        * Handles the case, when a window is added to the desktop.
        *
@@ -173,14 +162,11 @@
           win.addListener("changeModal", this._onChangeModal, this);
           win.addListener("changeVisibility", this._onChangeVisibility, this);
         }
-
         if (win.getActive()) {
           this.setActiveWindow(win);
         }
-
         this.getWindowManager().updateStack();
       },
-
       /**
        * Overrides the method {@link qx.ui.core.Widget#_afterRemoveChild}
        *
@@ -191,7 +177,6 @@
           this._removeWindow(win);
         }
       },
-
       /**
        * Handles the case, when a window is removed from the desktop.
        *
@@ -207,33 +192,29 @@
           this.getWindowManager().updateStack();
         }
       },
-
       /**
        * Get a list of all windows added to the desktop (including hidden windows)
        *
        * @return {qx.ui.window.Window[]} Array of managed windows
        */
       getWindows: function getWindows() {
-        if (!this.__P_479_0) {
-          this.__P_479_0 = [];
+        if (!this.__P_494_0) {
+          this.__P_494_0 = [];
         }
-
-        return this.__P_479_0;
+        return this.__P_494_0;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__P_479_0");
-
-      this._disposeObjects("__P_479_1");
+      this._disposeArray("__P_494_0");
+      this._disposeObjects("__P_494_1");
     }
   });
   qx.ui.window.MDesktop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDesktop.js.map?dt=1664789609005
+//# sourceMappingURL=MDesktop.js.map?dt=1672653519515

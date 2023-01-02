@@ -42,7 +42,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,10 +69,10 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** Internal helper structure to map cursor values to supported ones */
-      __P_135_0: {},
-
+      __P_136_0: {},
       /**
        * Compiles the given cursor into a CSS compatible string.
        *
@@ -81,9 +80,8 @@
        * @return {String} CSS string
        */
       compile: function compile(cursor) {
-        return "cursor:" + (this.__P_135_0[cursor] || cursor) + ";";
+        return "cursor:" + (this.__P_136_0[cursor] || cursor) + ";";
       },
-
       /**
        * Returns the computed cursor style for the given element.
        *
@@ -96,7 +94,6 @@
       get: function get(element, mode) {
         return qx.bom.element.Style.get(element, "cursor", mode, false);
       },
-
       /**
        * Applies a new cursor style to the given element
        *
@@ -104,9 +101,8 @@
        * @param value {String} New cursor value to set
        */
       set: function set(element, value) {
-        element.style.cursor = this.__P_135_0[value] || value;
+        element.style.cursor = this.__P_136_0[value] || value;
       },
-
       /**
        * Removes the local cursor style applied to the element
        *
@@ -119,12 +115,12 @@
     defer: function defer(statics) {
       // < IE 9
       if (qx.core.Environment.get("engine.name") == "mshtml" && (parseFloat(qx.core.Environment.get("engine.version")) < 9 || qx.core.Environment.get("browser.documentmode") < 9) && !qx.core.Environment.get("browser.quirksmode")) {
-        statics.__P_135_0["nesw-resize"] = "ne-resize";
-        statics.__P_135_0["nwse-resize"] = "nw-resize";
+        statics.__P_136_0["nesw-resize"] = "ne-resize";
+        statics.__P_136_0["nwse-resize"] = "nw-resize";
       }
     }
   });
   qx.bom.element.Cursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cursor.js.map?dt=1664789578504
+//# sourceMappingURL=Cursor.js.map?dt=1672653486715

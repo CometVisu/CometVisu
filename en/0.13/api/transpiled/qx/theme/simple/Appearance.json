@@ -4,17 +4,21 @@
   "name": "Appearance",
   "superClass": null,
   "interfaces": [],
-  "mixins": [],
+  "mixins": [
+    "qx.test.MAppearance"
+  ],
   "functionName": null,
   "clazz": {
     "location": {
       "start": {
         "line": 36,
-        "column": 0
+        "column": 0,
+        "index": 1187
       },
       "end": {
-        "line": 2804,
-        "column": 3
+        "line": 2589,
+        "column": 3,
+        "index": 59880
       }
     },
     "jsdoc": {

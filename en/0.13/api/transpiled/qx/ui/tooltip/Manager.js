@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,37 +49,35 @@
   qx.Class.define("qx.ui.tooltip.Manager", {
     type: "singleton",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // Register events
+      qx.core.Object.constructor.call(this);
 
-      qx.event.Registration.addListener(document.body, "pointerover", this.__P_444_0, this, true); // Instantiate timers
+      // Register events
+      qx.event.Registration.addListener(document.body, "pointerover", this.__P_459_0, this, true);
 
-      this.__P_444_1 = new qx.event.Timer();
+      // Instantiate timers
+      this.__P_459_1 = new qx.event.Timer();
+      this.__P_459_1.addListener("interval", this.__P_459_2, this);
+      this.__P_459_3 = new qx.event.Timer();
+      this.__P_459_3.addListener("interval", this.__P_459_4, this);
 
-      this.__P_444_1.addListener("interval", this.__P_444_2, this);
-
-      this.__P_444_3 = new qx.event.Timer();
-
-      this.__P_444_3.addListener("interval", this.__P_444_4, this); // Init pointer position
-
-
-      this.__P_444_5 = {
+      // Init pointer position
+      this.__P_459_5 = {
         left: 0,
         top: 0
       };
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Holds the current ToolTip instance */
       current: {
@@ -88,32 +85,29 @@
         nullable: true,
         apply: "_applyCurrent"
       },
-
       /** Show all invalid form fields tooltips . */
       showInvalidToolTips: {
         check: "Boolean",
         init: true
       },
-
       /** Show all tooltips. */
       showToolTips: {
         check: "Boolean",
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_444_5: null,
-      __P_444_3: null,
-      __P_444_1: null,
-      __P_444_6: null,
-      __P_444_7: null,
 
+    members: {
+      __P_459_5: null,
+      __P_459_3: null,
+      __P_459_1: null,
+      __P_459_6: null,
+      __P_459_7: null,
       /**
        * Get the shared tooltip, which is used to display the
        * {@link qx.ui.core.Widget#toolTipText} and
@@ -124,15 +118,13 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedTooltip: function getSharedTooltip() {
-        if (!this.__P_444_6) {
-          this.__P_444_6 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__P_459_6) {
+          this.__P_459_6 = new qx.ui.tooltip.ToolTip().set({
             rich: true
           });
         }
-
-        return this.__P_444_6;
+        return this.__P_459_6;
       },
-
       /**
        * Get the shared tooltip, which is used to display the
        * {@link qx.ui.core.Widget#toolTipText} and
@@ -144,21 +136,16 @@
        * @return {qx.ui.tooltip.ToolTip} The shared tooltip
        */
       getSharedErrorTooltip: function getSharedErrorTooltip() {
-        if (!this.__P_444_7) {
-          this.__P_444_7 = new qx.ui.tooltip.ToolTip().set({
+        if (!this.__P_459_7) {
+          this.__P_459_7 = new qx.ui.tooltip.ToolTip().set({
             appearance: "tooltip-error",
             rich: true
           });
-
-          this.__P_444_7.setLabel(""); // trigger label widget creation
-
-
-          this.__P_444_7.syncAppearance();
+          this.__P_459_7.setLabel(""); // trigger label widget creation
+          this.__P_459_7.syncAppearance();
         }
-
-        return this.__P_444_7;
+        return this.__P_459_7;
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -169,104 +156,87 @@
         // Return if the new tooltip is a child of the old one
         if (old && qx.ui.core.Widget.contains(old, value)) {
           return;
-        } // If old tooltip existing, hide it and clear widget binding
+        }
 
-
+        // If old tooltip existing, hide it and clear widget binding
         if (old) {
           if (!old.isDisposed()) {
             old.exclude();
           }
-
-          this.__P_444_1.stop();
-
-          this.__P_444_3.stop();
+          this.__P_459_1.stop();
+          this.__P_459_3.stop();
         }
-
         var Registration = qx.event.Registration;
-        var el = document.body; // If new tooltip is not null, set it up and start the timer
-
+        var el = document.body;
+        // If new tooltip is not null, set it up and start the timer
         if (value) {
-          this.__P_444_1.startWith(value.getShowTimeout()); // Register hide handler
+          this.__P_459_1.startWith(value.getShowTimeout());
 
-
-          Registration.addListener(el, "pointerout", this.__P_444_8, this, true);
-          Registration.addListener(el, "focusout", this.__P_444_9, this, true);
-          Registration.addListener(el, "pointermove", this.__P_444_10, this, true);
+          // Register hide handler
+          Registration.addListener(el, "pointerout", this.__P_459_8, this, true);
+          Registration.addListener(el, "focusout", this.__P_459_9, this, true);
+          Registration.addListener(el, "pointermove", this.__P_459_10, this, true);
         } else {
           // Deregister hide handler
-          Registration.removeListener(el, "pointerout", this.__P_444_8, this, true);
-          Registration.removeListener(el, "focusout", this.__P_444_9, this, true);
-          Registration.removeListener(el, "pointermove", this.__P_444_10, this, true);
+          Registration.removeListener(el, "pointerout", this.__P_459_8, this, true);
+          Registration.removeListener(el, "focusout", this.__P_459_9, this, true);
+          Registration.removeListener(el, "pointermove", this.__P_459_10, this, true);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TIMER EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for the interval event of the show timer.
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __P_444_2: function __P_444_2(e) {
+      __P_459_2: function __P_459_2(e) {
         var current = this.getCurrent();
-
         if (current && !current.isDisposed()) {
-          this.__P_444_3.startWith(current.getHideTimeout());
-
+          this.__P_459_3.startWith(current.getHideTimeout());
           if (current.getPlaceMethod() == "widget") {
             current.placeToWidget(current.getOpener());
           } else {
-            current.placeToPoint(this.__P_444_5);
+            current.placeToPoint(this.__P_459_5);
           }
-
           current.show();
         }
-
-        this.__P_444_1.stop();
+        this.__P_459_1.stop();
       },
-
       /**
        * Event listener for the interval event of the hide timer.
        *
        * @param e {qx.event.type.Event} Event object
        */
-      __P_444_4: function __P_444_4(e) {
+      __P_459_4: function __P_459_4(e) {
         var current = this.getCurrent();
-
         if (current && !current.getAutoHide()) {
           return;
         }
-
         if (current && !current.isDisposed()) {
           current.exclude();
         }
-
-        this.__P_444_3.stop();
-
+        this.__P_459_3.stop();
         this.resetCurrent();
       },
-
       /*
       ---------------------------------------------------------------------------
         POINTER EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Global pointer move event handler
        *
        * @param e {qx.event.type.Pointer} The move pointer event
        */
-      __P_444_10: function __P_444_10(e) {
-        var pos = this.__P_444_5;
+      __P_459_10: function __P_459_10(e) {
+        var pos = this.__P_459_5;
         pos.left = Math.round(e.getDocumentLeft());
         pos.top = Math.round(e.getDocumentTop());
       },
-
       /**
        * Searches for the tooltip of the target widget. If any tooltip instance
        * is found this instance is bound to the target widget and the tooltip is
@@ -274,14 +244,12 @@
        *
        * @param e {qx.event.type.Pointer} pointerover event
        */
-      __P_444_0: function __P_444_0(e) {
-        var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget()); // take first coordinates as backup if no move event will be fired (e.g. touch devices)
-
-        this.__P_444_10(e);
-
+      __P_459_0: function __P_459_0(e) {
+        var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
+        // take first coordinates as backup if no move event will be fired (e.g. touch devices)
+        this.__P_459_10(e);
         this.showToolTip(target);
       },
-
       /**
        * Explicitly show tooltip for particular form item.
        *
@@ -291,130 +259,117 @@
         if (!target) {
           return;
         }
+        var tooltip, tooltipText, tooltipIcon, invalidMessage;
 
-        var tooltip, tooltipText, tooltipIcon, invalidMessage; // Search first parent which has a tooltip
-
+        // Search first parent which has a tooltip
         while (target != null) {
           tooltip = target.getToolTip();
           tooltipText = target.getToolTipText() || null;
           tooltipIcon = target.getToolTipIcon() || null;
-
           if (qx.Class.hasInterface(target.constructor, qx.ui.form.IForm) && !target.isValid()) {
             invalidMessage = target.getInvalidMessage();
           }
-
           if (tooltip || tooltipText || tooltipIcon || invalidMessage) {
             break;
           }
-
           target = target.getLayoutParent();
-        } //do nothing if
-
-
-        if (!target //don't have a target
-        // tooltip is disabled and the value of showToolTipWhenDisabled is false
-        || !target.getEnabled() && !target.isShowToolTipWhenDisabled() //tooltip is blocked
-        || target.isBlockToolTip() //an invalid message isn't set and tooltips are disabled
-        || !invalidMessage && !this.getShowToolTips() //an invalid message is set and invalid tooltips are disabled
-        || invalidMessage && !this.getShowInvalidToolTips()) {
-          return;
         }
 
+        //do nothing if
+        if (!target ||
+        //don't have a target
+        // tooltip is disabled and the value of showToolTipWhenDisabled is false
+        !target.getEnabled() && !target.isShowToolTipWhenDisabled() ||
+        //tooltip is blocked
+        target.isBlockToolTip() ||
+        //an invalid message isn't set and tooltips are disabled
+        !invalidMessage && !this.getShowToolTips() ||
+        //an invalid message is set and invalid tooltips are disabled
+        invalidMessage && !this.getShowInvalidToolTips()) {
+          return;
+        }
         if (invalidMessage) {
           tooltip = this.getSharedErrorTooltip().set({
             label: invalidMessage
           });
         }
-
         if (!tooltip) {
           tooltip = this.getSharedTooltip().set({
             label: tooltipText,
             icon: tooltipIcon
           });
         }
-
         this.setCurrent(tooltip);
         tooltip.setOpener(target);
       },
-
       /**
        * Resets the property {@link #current} if there was a
        * tooltip and no new one is created.
        *
        * @param e {qx.event.type.Pointer} pointerout event
        */
-      __P_444_8: function __P_444_8(e) {
+      __P_459_8: function __P_459_8(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
-
         if (!target) {
           return;
         }
-
         var related = qx.ui.core.Widget.getWidgetByElement(e.getRelatedTarget());
-
         if (!related && e.getPointerType() == "mouse") {
           return;
         }
+        var tooltip = this.getCurrent();
 
-        var tooltip = this.getCurrent(); // If there was a tooltip and
+        // If there was a tooltip and
         // - the destination target is the current tooltip
         //   or
         // - the current tooltip contains the destination target
-
         if (tooltip && (related == tooltip || qx.ui.core.Widget.contains(tooltip, related))) {
-          return;
-        } // If the destination target exists and the target contains it
-
-
-        if (related && target && qx.ui.core.Widget.contains(target, related)) {
           return;
         }
 
+        // If the destination target exists and the target contains it
+        if (related && target && qx.ui.core.Widget.contains(target, related)) {
+          return;
+        }
         if (tooltip && !tooltip.getAutoHide()) {
           return;
-        } // If there was a tooltip and there is no new one
+        }
 
-
+        // If there was a tooltip and there is no new one
         if (tooltip && !related) {
           this.setCurrent(null);
         } else {
           this.resetCurrent();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FOCUS EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Reset the property {@link #current} if the
        * current tooltip is the tooltip of the target widget.
        *
        * @param e {qx.event.type.Focus} blur event
        */
-      __P_444_9: function __P_444_9(e) {
+      __P_459_9: function __P_459_9(e) {
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
-
         if (!target) {
           return;
         }
-
         var tooltip = this.getCurrent();
-
         if (tooltip && !tooltip.getAutoHide()) {
           return;
-        } // Only set to null if blurred widget is the
+        }
+
+        // Only set to null if blurred widget is the
         // one which has created the current tooltip
-
-
         if (tooltip && tooltip == target.getToolTip()) {
           this.setCurrent(null);
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -422,14 +377,14 @@
     */
     destruct: function destruct() {
       // Deregister events
-      qx.event.Registration.removeListener(document.body, "pointerover", this.__P_444_0, this, true); // Dispose timers
+      qx.event.Registration.removeListener(document.body, "pointerover", this.__P_459_0, this, true);
 
-      this._disposeObjects("__P_444_1", "__P_444_3", "__P_444_6");
-
-      this.__P_444_5 = null;
+      // Dispose timers
+      this._disposeObjects("__P_459_1", "__P_459_3", "__P_459_6");
+      this.__P_459_5 = null;
     }
   });
   qx.ui.tooltip.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1664789605827
+//# sourceMappingURL=Manager.js.map?dt=1672653516048

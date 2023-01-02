@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -69,7 +68,7 @@
           };
         }
       },
-      "toolbar": {
+      toolbar: {
         style: function style(states) {
           return {
             backgroundColor: "light-background",
@@ -85,7 +84,7 @@
           };
         }
       },
-      "window": {
+      window: {
         style: function style(states) {
           return {
             contentPadding: [10, 10, 10, 10],
@@ -149,18 +148,18 @@
           };
         }
       },
-
       /*
       --------------------
       VIRTUAL SELECTBOX 
       --------------------
       */
+
       "list-search-highlight": {
         style: function style(states) {
           return {
-            backgroundColor: 'rgba(255, 251, 0, 0.53)',
-            textDecorationStyle: 'dotted',
-            textDecorationLine: 'underline'
+            backgroundColor: "rgba(255, 251, 0, 0.53)",
+            textDecorationStyle: "dotted",
+            textDecorationLine: "underline"
           };
         }
       }
@@ -169,4 +168,4 @@
   qx.theme.indigo.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1664789590974
+//# sourceMappingURL=Appearance.js.map?dt=1672653502471

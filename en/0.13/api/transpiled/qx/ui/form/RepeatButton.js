@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,34 +65,31 @@
    */
   qx.Class.define("qx.ui.form.RepeatButton", {
     extend: qx.ui.form.Button,
-
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
      */
     construct: function construct(label, icon) {
-      qx.ui.form.Button.constructor.call(this, label, icon); // create the timer and add the listener
+      qx.ui.form.Button.constructor.call(this, label, icon);
 
-      this.__P_337_0 = new qx.event.AcceleratingTimer();
-
-      this.__P_337_0.addListener("interval", this._onInterval, this);
+      // create the timer and add the listener
+      this.__P_354_0 = new qx.event.AcceleratingTimer();
+      this.__P_354_0.addListener("interval", this._onInterval, this);
     },
     events: {
       /**
        * This event gets dispatched with every interval. The timer gets executed
        * as long as the user holds down a button.
        */
-      "execute": "qx.event.type.Event",
-
+      execute: "qx.event.type.Event",
       /**
        * This event gets dispatched when the button is pressed.
        */
-      "press": "qx.event.type.Event",
-
+      press: "qx.event.type.Event",
       /**
        * This event gets dispatched when the button is released.
        */
-      "release": "qx.event.type.Event"
+      release: "qx.event.type.Event"
     },
     properties: {
       /**
@@ -104,7 +100,6 @@
         check: "Integer",
         init: 100
       },
-
       /**
        * Interval used for the first run of the timer. Usually a greater value
        * than the "interval" property value to a little delayed reaction at the first
@@ -114,13 +109,11 @@
         check: "Integer",
         init: 500
       },
-
       /** This configures the minimum value for the timer interval. */
       minTimer: {
         check: "Integer",
         init: 20
       },
-
       /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */
       timerDecrease: {
         check: "Integer",
@@ -128,9 +121,8 @@
       }
     },
     members: {
-      __P_337_1: null,
-      __P_337_0: null,
-
+      __P_354_1: null,
+      __P_354_0: null,
       /**
        * Calling this function is like a tap from the user on the
        * button with all consequences.
@@ -143,15 +135,14 @@
           // if the state pressed must be applied (first call)
           if (!this.hasState("pressed")) {
             // start the timer
-            this.__P_337_2();
-          } // set the states
+            this.__P_354_2();
+          }
 
-
+          // set the states
           this.removeState("abandoned");
           this.addState("pressed");
         }
       },
-
       /**
        * Calling this function is like a release from the user on the
        * button with all consequences.
@@ -164,23 +155,23 @@
         // only if the button is enabled
         if (!this.isEnabled()) {
           return;
-        } // only if the button is pressed
+        }
 
-
+        // only if the button is pressed
         if (this.hasState("pressed")) {
           // if the button has not been executed
-          if (!this.__P_337_1) {
+          if (!this.__P_354_1) {
             this.execute();
           }
-        } // remove button states
+        }
 
-
+        // remove button states
         this.removeState("pressed");
-        this.removeState("abandoned"); // stop the repeat timer and therefore the execution
+        this.removeState("abandoned");
 
-        this.__P_337_3();
+        // stop the repeat timer and therefore the execution
+        this.__P_354_3();
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -189,27 +180,25 @@
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
         qx.ui.form.RepeatButton.superclass.prototype._applyEnabled.call(this, value, old);
-
         if (!value) {
           if (this.isCapturing()) {
             // also release capture because out event is missing on iOS
             this.releaseCapture();
-          } // remove button states
+          }
 
-
+          // remove button states
           this.removeState("pressed");
-          this.removeState("abandoned"); // stop the repeat timer and therefore the execution
+          this.removeState("abandoned");
 
-          this.__P_337_3();
+          // stop the repeat timer and therefore the execution
+          this.__P_354_3();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Listener method for "pointerover" event
        * <ul>
@@ -223,17 +212,13 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-
         if (this.hasState("abandoned")) {
           this.removeState("abandoned");
           this.addState("pressed");
-
-          this.__P_337_0.start();
+          this.__P_354_0.start();
         }
-
         this.addState("hovered");
       },
-
       /**
        * Listener method for "pointerout" event
        * <ul>
@@ -247,17 +232,13 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-
         this.removeState("hovered");
-
         if (this.hasState("pressed")) {
           this.removeState("pressed");
           this.addState("abandoned");
-
-          this.__P_337_0.stop();
+          this.__P_354_0.stop();
         }
       },
-
       /**
        * Callback method for the "pointerdown" method.
        *
@@ -270,17 +251,14 @@
       _onPointerDown: function _onPointerDown(e) {
         if (!e.isLeftPressed()) {
           return;
-        } // Activate capturing if the button get a pointerout while
+        }
+
+        // Activate capturing if the button get a pointerout while
         // the button is pressed.
-
-
         this.capture();
-
-        this.__P_337_2();
-
+        this.__P_354_2();
         e.stopPropagation();
       },
-
       /**
        * Callback method for the "pointerup" event.
        *
@@ -292,22 +270,17 @@
        */
       _onPointerUp: function _onPointerUp(e) {
         this.releaseCapture();
-
         if (!this.hasState("abandoned")) {
           this.addState("hovered");
-
-          if (this.hasState("pressed") && !this.__P_337_1) {
+          if (this.hasState("pressed") && !this.__P_354_1) {
             this.execute();
           }
         }
-
-        this.__P_337_3();
-
+        this.__P_354_3();
         e.stopPropagation();
       },
       // Nothing to do, 'execute' is already fired by _onPointerUp.
       _onTap: function _onTap(e) {},
-
       /**
        * Listener method for "keyup" event.
        *
@@ -322,20 +295,16 @@
           case "Enter":
           case "Space":
             if (this.hasState("pressed")) {
-              if (!this.__P_337_1) {
+              if (!this.__P_354_1) {
                 this.execute();
               }
-
               this.removeState("pressed");
               this.removeState("abandoned");
               e.stopPropagation();
-
-              this.__P_337_3();
+              this.__P_354_3();
             }
-
         }
       },
-
       /**
        * Listener method for "keydown" event.
        *
@@ -352,12 +321,9 @@
             this.removeState("abandoned");
             this.addState("pressed");
             e.stopPropagation();
-
-            this.__P_337_2();
-
+            this.__P_354_2();
         }
       },
-
       /**
        * Callback for the interval event.
        *
@@ -368,60 +334,52 @@
        * @param e {qx.event.type.Event} interval event
        */
       _onInterval: function _onInterval(e) {
-        this.__P_337_1 = true;
+        this.__P_354_1 = true;
         this.fireEvent("execute");
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL TIMER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Starts the internal timer which causes firing of execution
        * events in an interval. It also presses the button.
        *
        */
-      __P_337_2: function __P_337_2() {
+      __P_354_2: function __P_354_2() {
         this.fireEvent("press");
-        this.__P_337_1 = false;
-
-        this.__P_337_0.set({
+        this.__P_354_1 = false;
+        this.__P_354_0.set({
           interval: this.getInterval(),
           firstInterval: this.getFirstInterval(),
           minimum: this.getMinTimer(),
           decrease: this.getTimerDecrease()
         }).start();
-
         this.removeState("abandoned");
         this.addState("pressed");
       },
-
       /**
        * Stops the internal timer and releases the button.
        *
        */
-      __P_337_3: function __P_337_3() {
+      __P_354_3: function __P_354_3() {
         this.fireEvent("release");
-
-        this.__P_337_0.stop();
-
+        this.__P_354_0.stop();
         this.removeState("abandoned");
         this.removeState("pressed");
       }
     },
-
     /*
       *****************************************************************************
          DESTRUCTOR
       *****************************************************************************
       */
     destruct: function destruct() {
-      this._disposeObjects("__P_337_0");
+      this._disposeObjects("__P_354_0");
     }
   });
   qx.ui.form.RepeatButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RepeatButton.js.map?dt=1664789596906
+//# sourceMappingURL=RepeatButton.js.map?dt=1672653507979

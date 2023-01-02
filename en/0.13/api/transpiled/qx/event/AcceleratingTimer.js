@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,7 @@
    *
    * This class is e.g. used in the {@link qx.ui.form.RepeatButton} and
    * {@link qx.ui.form.HoverButton} widgets.
-   * 
+   *
    * NOTE: Instances of this class must be disposed of after use
    *
    */
@@ -56,13 +55,12 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_192_0 = new qx.event.Timer(this.getInterval());
-
-      this.__P_192_0.addListener("interval", this._onInterval, this);
+      this.__P_196_0 = new qx.event.Timer(this.getInterval());
+      this.__P_196_0.addListener("interval", this._onInterval, this);
     },
     events: {
       /** This event if fired each time the interval time has elapsed */
-      "interval": "qx.event.type.Event"
+      interval: "qx.event.type.Event"
     },
     properties: {
       /**
@@ -73,7 +71,6 @@
         check: "Integer",
         init: 100
       },
-
       /**
        * Interval used for the first run of the timer. Usually a greater value
        * than the "interval" property value to a little delayed reaction at the first
@@ -83,13 +80,11 @@
         check: "Integer",
         init: 500
       },
-
       /** This configures the minimum value for the timer interval. */
       minimum: {
         check: "Integer",
         init: 20
       },
-
       /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */
       decrease: {
         check: "Integer",
@@ -97,51 +92,41 @@
       }
     },
     members: {
-      __P_192_0: null,
-      __P_192_1: null,
-
+      __P_196_0: null,
+      __P_196_1: null,
       /**
        * Reset and start the timer.
        */
       start: function start() {
-        this.__P_192_0.setInterval(this.getFirstInterval());
-
-        this.__P_192_0.start();
+        this.__P_196_0.setInterval(this.getFirstInterval());
+        this.__P_196_0.start();
       },
-
       /**
        * Stop the timer
        */
       stop: function stop() {
-        this.__P_192_0.stop();
-
-        this.__P_192_1 = null;
+        this.__P_196_0.stop();
+        this.__P_196_1 = null;
       },
-
       /**
        * Interval event handler
        */
       _onInterval: function _onInterval() {
-        this.__P_192_0.stop();
-
-        if (this.__P_192_1 == null) {
-          this.__P_192_1 = this.getInterval();
+        this.__P_196_0.stop();
+        if (this.__P_196_1 == null) {
+          this.__P_196_1 = this.getInterval();
         }
-
-        this.__P_192_1 = Math.max(this.getMinimum(), this.__P_192_1 - this.getDecrease());
-
-        this.__P_192_0.setInterval(this.__P_192_1);
-
-        this.__P_192_0.start();
-
+        this.__P_196_1 = Math.max(this.getMinimum(), this.__P_196_1 - this.getDecrease());
+        this.__P_196_0.setInterval(this.__P_196_1);
+        this.__P_196_0.start();
         this.fireEvent("interval");
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_192_0");
+      this._disposeObjects("__P_196_0");
     }
   });
   qx.event.AcceleratingTimer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AcceleratingTimer.js.map?dt=1664789583565
+//# sourceMappingURL=AcceleratingTimer.js.map?dt=1672653494187

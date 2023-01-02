@@ -6,6 +6,7 @@
       },
       "qx.core.Environment": {
         "defer": "load",
+        "usage": "dynamic",
         "require": true
       },
       "qx.Class": {
@@ -32,6 +33,9 @@
     "environment": {
       "provided": [],
       "required": {
+        "qx.dyntheme": {
+          "load": true
+        },
         "css.boxsizing": {
           "className": "qx.bom.client.Css"
         },
@@ -42,7 +46,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -75,13 +78,11 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       var cr = qx.ui.table.cellrenderer.Abstract;
+      if (!cr.__P_436_0) {
+        cr.__P_436_0 = qx.ui.table.cellrenderer.Abstract;
+        this._createStyleSheet();
 
-      if (!cr.__P_422_0) {
-        cr.__P_422_0 = qx.ui.table.cellrenderer.Abstract;
-
-        this._createStyleSheet(); // add dynamic theme listener
-
-
+        // add dynamic theme listener
         {
           qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
         }
@@ -103,12 +104,13 @@
        * Handler for the theme change.
        * @signature function()
        */
-      _onChangeTheme: function _onChangeTheme() {
-        qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_422_0.stylesheet);
-
-        this._createStyleSheet();
-      },
-
+      _onChangeTheme: qx.core.Environment.select("qx.dyntheme", {
+        "true": function _true() {
+          qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_436_0.stylesheet);
+          this._createStyleSheet();
+        },
+        "false": null
+      }),
       /**
        * the sum of the horizontal insets. This is needed to compute the box model
        * independent size
@@ -121,7 +123,6 @@
        * independent size
        */
       _insetY: 0,
-
       /**
        * Creates the style sheet used for the table cells.
        */
@@ -138,14 +139,11 @@
           textOverflow: "ellipsis",
           userSelect: "none"
         }) + "} " + ".qooxdoo-table-cell-right { text-align:right } " + ".qooxdoo-table-cell-italic { font-style:italic} " + ".qooxdoo-table-cell-bold { font-weight:bold } ";
-
         if (qx.core.Environment.get("css.boxsizing")) {
           stylesheet += ".qooxdoo-table-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
         }
-
-        qx.ui.table.cellrenderer.Abstract.__P_422_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
+        qx.ui.table.cellrenderer.Abstract.__P_436_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
       },
-
       /**
        * Get a string of the cell element's HTML classes.
        *
@@ -157,7 +155,6 @@
       _getCellClass: function _getCellClass(cellInfo) {
         return "qooxdoo-table-cell";
       },
-
       /**
        * Returns the CSS styles that should be applied to the main div of this
        * cell.
@@ -171,21 +168,21 @@
       _getCellStyle: function _getCellStyle(cellInfo) {
         return cellInfo.style || "";
       },
-
       /**
-        * Retrieve any extra attributes the cell renderer wants applied to this
-        * cell.
-        *
-        * @param cellInfo {Map} The information about the cell.
-        *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.
-        *
-        * @return {String}
-        *   The extra attributes to be applied to this cell.
-        */
+       * Retrieve any extra attributes the cell renderer wants applied to this
+       * cell.
+       *
+       * @param cellInfo {Map} The information about the cell.
+       *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.
+       *
+       * @return {String}
+       *   The extra attributes to be applied to this cell.
+       */
       _getCellAttributes: function _getCellAttributes(cellInfo) {
-        return "";
+        var cellId = "qooxdoo-table-cell-" + cellInfo.table.toHashCode() + "-" + cellInfo.row + "-" + cellInfo.col;
+        var readOnly = cellInfo.editable !== null && cellInfo.editable !== undefined ? !cellInfo.editable : true;
+        return "id=" + cellId + " role=gridcell aria-readonly=" + readOnly;
       },
-
       /**
        * Returns the HTML that should be used inside the main div of this cell.
        *
@@ -198,7 +195,6 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         return cellInfo.value || "";
       },
-
       /**
        * Get the cell size taking the box model into account
        *
@@ -212,19 +208,17 @@
        */
       _getCellSizeStyle: function _getCellSizeStyle(width, height, insetX, insetY) {
         var style = "";
-
         if (qx.core.Environment.get("css.boxmodel") == "content") {
           width -= insetX;
           height -= insetY;
         }
-
         style += "width:" + Math.max(width, 0) + "px;";
         style += "height:" + Math.max(height, 0) + "px;";
         return style;
       },
       // interface implementation
       createDataCellHtml: function createDataCellHtml(cellInfo, htmlArr) {
-        htmlArr.push('<div class="', this._getCellClass(cellInfo), '" style="', 'left:', cellInfo.styleLeft, 'px;', this._getCellSizeStyle(cellInfo.styleWidth, cellInfo.styleHeight, this._insetX, this._insetY), this._getCellStyle(cellInfo), '" ', 'data-qx-table-cell-row="', cellInfo.row, '" ', 'data-qx-table-cell-col="', cellInfo.col, '" ', this._getCellAttributes(cellInfo), '>' + this._getContentHtml(cellInfo), '</div>');
+        htmlArr.push('<div class="', this._getCellClass(cellInfo), '" style="', "left:", cellInfo.styleLeft, "px;", this._getCellSizeStyle(cellInfo.styleWidth, cellInfo.styleHeight, this._insetX, this._insetY), this._getCellStyle(cellInfo), '" ', 'data-qx-table-cell-row="', cellInfo.row, '" ', 'data-qx-table-cell-col="', cellInfo.col, '" ', this._getCellAttributes(cellInfo), ">" + this._getContentHtml(cellInfo), "</div>");
       }
     },
     destruct: function destruct() {
@@ -237,4 +231,4 @@
   qx.ui.table.cellrenderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789603881
+//# sourceMappingURL=Abstract.js.map?dt=1672653514131

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 4,
-        "column": 0
+        "column": 0,
+        "index": 43
       },
       "end": {
-        "line": 70,
-        "column": 3
+        "line": 63,
+        "column": 3,
+        "index": 1646
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "permute": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 4
+          "line": 30,
+          "column": 4,
+          "index": 881
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1638
         }
       },
       "jsdoc": {

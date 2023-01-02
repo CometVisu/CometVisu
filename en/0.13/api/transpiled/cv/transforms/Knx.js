@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Knx.js 
-   * 
+  /* Knx.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,11 +43,11 @@
          *   encode: transform JavaScript to bus value
          *   decode: transform bus to JavaScript value
          */
-        '1': {
+        1: {
           name: '1 bit',
           lname: {
-            'de': '1 Bit',
-            'en': '1 bit'
+            de: '1 Bit',
+            en: '1 bit'
           },
           range: {
             min: 0,
@@ -57,7 +56,6 @@
           unit: '-',
           encode: function encode(phy) {
             phy = +phy; // cast to number
-
             return {
               bus: phy ? '81' : '80',
               raw: phy ? '01' : '00'
@@ -67,52 +65,52 @@
             return parseInt(hex, 16);
           }
         },
-        '1.001': {
+        1.001: {
           link: '1',
           name: 'DPT_Switch',
           lname: {
-            'de': 'Aus-An-Schalter',
-            'en': 'off on switch'
+            de: 'Aus-An-Schalter',
+            en: 'off on switch'
           }
         },
-        '1.002': {
+        1.002: {
           link: '1',
           name: 'DPT_Bool',
           lname: {
-            'de': 'Boolscher-Wert',
-            'en': 'boolean value'
+            de: 'Boolscher-Wert',
+            en: 'boolean value'
           }
         },
-        '1.003': {
+        1.003: {
           link: '1',
           name: 'DPT_Enable',
           lname: {
-            'de': 'Disable / Enable',
-            'en': 'disable / enable'
+            de: 'Disable / Enable',
+            en: 'disable / enable'
           }
         },
-        '1.008': {
+        1.008: {
           link: '1',
           name: 'DPT_UpDown',
           lname: {
-            'de': 'Hoch-Runter-Schalter',
-            'en': 'up down switch'
+            de: 'Hoch-Runter-Schalter',
+            en: 'up down switch'
           }
         },
-        '1.009': {
+        1.009: {
           link: '1',
           name: 'DPT_OpenClose',
           lname: {
-            'de': 'Auf-Zu-Schalter',
-            'en': 'open close switch'
+            de: 'Auf-Zu-Schalter',
+            en: 'open close switch'
           }
         },
-        '2': {
+        2: {
           link: '1',
           name: '2 bit',
           lname: {
-            'de': '2 Bit',
-            'en': '2 bit'
+            de: '2 Bit',
+            en: '2 bit'
           },
           range: {
             min: 0,
@@ -130,11 +128,11 @@
             return parseInt(hex, 16);
           }
         },
-        '3': {
+        3: {
           name: '4 bit',
           lname: {
-            'de': '4 Bit',
-            'en': '4 bit'
+            de: '4 Bit',
+            en: '4 bit'
           },
           range: {
             min: -100,
@@ -143,7 +141,6 @@
           unit: '-',
           encode: function encode(phy) {
             phy = +phy; // enforce number
-
             if (phy < -100 || phy > -1 && phy <= 0) {
               return {
                 bus: '80',
@@ -172,27 +169,27 @@
             return (up * 2 - 1) * 100 / Math.pow(2, (val & 7) - 1);
           }
         },
-        '3.007': {
+        3.007: {
           link: '3',
           name: 'DPT_Control_Dimming',
           lname: {
-            'de': 'Dimmen',
-            'en': 'dimming'
+            de: 'Dimmen',
+            en: 'dimming'
           }
         },
-        '3.008': {
+        3.008: {
           link: '3',
           name: 'DPT_Control_Blinds',
           lname: {
-            'de': 'Beschattungssteuerung',
-            'en': 'blind control'
+            de: 'Beschattungssteuerung',
+            en: 'blind control'
           }
         },
-        '4': {
+        4: {
           name: 'char',
           lname: {
-            'de': 'Zeichen',
-            'en': 'char'
+            de: 'Zeichen',
+            en: 'char'
           },
           unit: '-',
           encode: function encode(phy) {
@@ -206,15 +203,15 @@
             return String.fromCharCode(parseInt(hex, 16));
           }
         },
-        '4.001': {
+        4.001: {
           name: 'DPT_Char_ASCII',
           link: '4'
         },
-        '5': {
+        5: {
           name: '8 bit unsigned',
           lname: {
-            'de': '8 Bit vorzeichenloser Integer',
-            'en': '8 bit unsigned integer'
+            de: '8 Bit vorzeichenloser Integer',
+            en: '8 bit unsigned integer'
           },
           range: {
             min: 0,
@@ -232,11 +229,11 @@
             return parseInt(hex, 16);
           }
         },
-        '5.001': {
+        5.001: {
           name: 'DPT_Scaling',
           lname: {
-            'de': 'Prozentwert',
-            'en': 'percentage'
+            de: 'Prozentwert',
+            en: 'percentage'
           },
           range: {
             min: 0.0,
@@ -254,11 +251,11 @@
             return parseInt(hex, 16) * 100 / 255.0;
           }
         },
-        '5.003': {
+        5.003: {
           name: 'DPT_Angle',
           lname: {
-            'de': 'Winkel',
-            'en': 'angle'
+            de: 'Winkel',
+            en: 'angle'
           },
           range: {
             min: 0.0,
@@ -276,12 +273,12 @@
             return parseInt(hex, 16) * 360 / 255.0;
           }
         },
-        '5.004': {
+        5.004: {
           link: '5',
           name: 'DPT_Percent_U8',
           lname: {
-            'de': 'Prozentwert',
-            'en': 'percentage'
+            de: 'Prozentwert',
+            en: 'percentage'
           },
           unit: '%'
         },
@@ -289,16 +286,16 @@
           link: '5',
           name: 'DPT_Value_1_Ucount',
           lname: {
-            'de': 'Zähler',
-            'en': 'counter'
+            de: 'Zähler',
+            en: 'counter'
           },
           unit: '-'
         },
-        '6': {
+        6: {
           name: '8 bit signed',
           lname: {
-            'de': '8 Bit vorzeichenbehafteter Integer',
-            'en': '8 bit signed integer'
+            de: '8 Bit vorzeichenbehafteter Integer',
+            en: '8 bit signed integer'
           },
           range: {
             min: -128,
@@ -319,12 +316,12 @@
             return val > 127 ? val - 256 : val;
           }
         },
-        '6.001': {
+        6.001: {
           link: '6',
           name: 'DPT_Percent_V8',
           lname: {
-            'de': 'Prozentwert mit Vorzeichen',
-            'en': 'percentage with sign'
+            de: 'Prozentwert mit Vorzeichen',
+            en: 'percentage with sign'
           },
           unit: '%'
         },
@@ -332,15 +329,15 @@
           link: '6',
           name: 'DPT_Value_1_Count',
           lname: {
-            'de': 'Zähler mit Vorzeichen',
-            'en': 'counter with sign'
+            de: 'Zähler mit Vorzeichen',
+            en: 'counter with sign'
           }
         },
-        '7': {
+        7: {
           name: '2 byte unsigned',
           lname: {
-            'de': '2 Byte vorzeichenloser Integer',
-            'en': '2 byte unsigned integer'
+            de: '2 Byte vorzeichenloser Integer',
+            en: '2 byte unsigned integer'
           },
           range: {
             min: 0,
@@ -358,7 +355,7 @@
             return parseInt(hex, 16);
           }
         },
-        '7.001': {
+        7.001: {
           link: '7',
           name: 'DPT_Value_2_Ucount'
         },
@@ -367,11 +364,11 @@
           name: 'DPT_Absolute_Colour_Temperature',
           unit: 'K'
         },
-        '8': {
+        8: {
           name: '2 byte signed',
           lname: {
-            'de': '2 Byte vorzeichenbehafteter Integer',
-            'en': '2 byte signed integer'
+            de: '2 Byte vorzeichenbehafteter Integer',
+            en: '2 byte signed integer'
           },
           range: {
             min: -0x8000,
@@ -392,15 +389,15 @@
             return val > 32767 ? val - 65536 : val;
           }
         },
-        '8.001': {
+        8.001: {
           link: '8',
           name: 'DPT_Value_2_Count'
         },
-        '9': {
+        9: {
           name: '2 byte float',
           lname: {
-            'de': '2 Byte Gleitkommazahl',
-            'en': '2 byte float value'
+            de: '2 Byte Gleitkommazahl',
+            en: '2 byte float value'
           },
           range: {
             min: -671088.64,
@@ -411,16 +408,13 @@
             if (undefined === phy || isNaN(phy)) {
               return '7fff';
             }
-
             var sign = +phy < 0 ? 0x8000 : 0;
             var mant = Math.round(+phy * 100.0);
             var exp = 0;
-
             while (Math.abs(mant) > 2047) {
               mant >>= 1;
               exp++;
             }
-
             var val = (sign | exp << 11 | mant & 0x07ff).toString(16).padStart(4, '0');
             return {
               bus: '80' + val,
@@ -431,53 +425,50 @@
             if (parseInt(hex, 16) === 0x7fff) {
               return NaN;
             }
-
             var bin1 = parseInt(hex.substr(0, 2), 16);
             var bin2 = parseInt(hex.substr(2, 2), 16);
             var sign = parseInt(bin1 & 0x80);
             var exp = parseInt(bin1 & 0x78) >> 3;
             var mant = parseInt((bin1 & 0x7) << 8 | bin2);
-
             if (sign !== 0) {
               mant = -(~(mant - 1) & 0x7ff);
             }
-
             return (1 << exp) * 0.01 * mant;
           }
         },
-        '9.001': {
+        9.001: {
           link: '9',
           name: 'DPT_Value_Temp',
           lname: {
-            'de': 'Temperatur',
-            'en': 'temperature'
+            de: 'Temperatur',
+            en: 'temperature'
           },
           unit: '°C'
         },
-        '9.004': {
+        9.004: {
           link: '9',
           name: 'DPT_Value_Lux',
           lname: {
-            'de': 'Beleuchtungsstärke',
-            'en': 'illuminance'
+            de: 'Beleuchtungsstärke',
+            en: 'illuminance'
           },
           unit: 'Lux'
         },
-        '9.007': {
+        9.007: {
           link: '9',
           name: 'DPT_Value_Humidity',
           lname: {
-            'de': 'Luftfeuchtigkeit',
-            'en': 'humidity'
+            de: 'Luftfeuchtigkeit',
+            en: 'humidity'
           },
           unit: '%'
         },
-        '9.008': {
+        9.008: {
           link: '9',
           name: 'DPT_Value_AirQuality',
           lname: {
-            'de': 'Luftqualität',
-            'en': 'air quality'
+            de: 'Luftqualität',
+            en: 'air quality'
           },
           unit: 'ppm'
         },
@@ -485,25 +476,25 @@
           link: '9',
           name: 'DPT_Value_Volt',
           lname: {
-            'de': 'Spannung',
-            'en': 'voltage'
+            de: 'Spannung',
+            en: 'voltage'
           },
           unit: 'mV'
         },
-        '9.021': {
+        9.021: {
           link: '9',
           name: 'DPT_Value_Curr',
           lname: {
-            'de': 'Strom',
-            'en': 'current'
+            de: 'Strom',
+            en: 'current'
           },
           unit: 'mA'
         },
-        '10.001': {
+        10.001: {
           name: 'DPT_TimeOfDay',
           lname: {
-            'de': 'Zeit',
-            'en': 'time'
+            de: 'Zeit',
+            en: 'time'
           },
           unit: '-',
           encode: function encode(phy) {
@@ -517,42 +508,41 @@
           },
           decode: function decode(hex) {
             var date = new Date(); // assume today
-
-            date.setHours(parseInt(hex.substr(0, 2), 16) & 0x1F);
+            date.setHours(parseInt(hex.substr(0, 2), 16) & 0x1f);
             date.setMinutes(parseInt(hex.substr(2, 2), 16));
-            date.setSeconds(parseInt(hex.substr(4, 2), 16)); // as KNX thinks the day of the week belongs to the time, but JavaScript
+            date.setSeconds(parseInt(hex.substr(4, 2), 16));
+            // as KNX thinks the day of the week belongs to the time, but JavaScript
             // doesn't, tweak the date till it fits...
-
-            var day = (parseInt(hex.substr(0, 2), 16) & 0xE0) >> 5;
-
+            var day = (parseInt(hex.substr(0, 2), 16) & 0xe0) >> 5;
             if (day > 0) {
               var dayShift = (day - date.getDay()) % 7;
               date.setDate(date.getDate() + dayShift);
             }
-
             return date;
           }
         },
-        '11.001': {
+        11.001: {
           name: 'DPT_Date',
           lname: {
-            'de': 'Datum',
-            'en': 'date'
+            de: 'Datum',
+            en: 'date'
           },
           unit: '-',
-          encode: function encode() {// FIXME
+          encode: function encode() {
+            // FIXME
           },
           decode: function decode(hex) {
-            var year = parseInt(hex.substr(4, 2), 16) & 0x7F;
-            return new Date(year < 90 ? year + 2000 : year + 1900, //1990 - 2089
-            (parseInt(hex.substr(2, 2), 16) & 0x0F) - 1, parseInt(hex.substr(0, 2), 16) & 0x1F);
+            var year = parseInt(hex.substr(4, 2), 16) & 0x7f;
+            return new Date(year < 90 ? year + 2000 : year + 1900,
+            //1990 - 2089
+            (parseInt(hex.substr(2, 2), 16) & 0x0f) - 1, parseInt(hex.substr(0, 2), 16) & 0x1f);
           }
         },
-        '12': {
+        12: {
           name: '4 byte unsigned',
           lname: {
-            'de': '4 Byte vorzeichenloser Integer',
-            'en': '4 byte unsigned integer'
+            de: '4 Byte vorzeichenloser Integer',
+            en: '4 byte unsigned integer'
           },
           range: {
             min: 0,
@@ -570,15 +560,15 @@
             return parseInt(hex, 16);
           }
         },
-        '12.001': {
+        12.001: {
           link: '12',
           name: 'DPT_Value_4_Ucount'
         },
-        '13': {
+        13: {
           name: '4 byte signed',
           lname: {
-            'de': '4 Byte vorzeichenbehafteter Integer',
-            'en': '4 byte signed integer'
+            de: '4 Byte vorzeichenbehafteter Integer',
+            en: '4 byte signed integer'
           },
           range: {
             min: -0x80000000,
@@ -599,47 +589,46 @@
             return val > 2147483647 ? val - 4294967296 : val;
           }
         },
-        '13.001': {
+        13.001: {
           link: '13',
           name: 'DPT_Value_4_Count'
         },
-        '14': {
+        14: {
           name: '4 byte float',
           lname: {
-            'de': '4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)',
-            'en': '4 byte float IEEE 754 (only decode)'
+            de: '4 Byte Gleitkommazahl IEEE 754 (nur Dekodieren)',
+            en: '4 byte float IEEE 754 (only decode)'
           },
           unit: '-',
-          encode: function encode() {//FIXME: unimplemented (jspack?)
+          encode: function encode() {
+            //FIXME: unimplemented (jspack?)
           },
           decode: function decode(hex) {
             var val = parseInt(hex, 16);
             var sign = val & 0x80000000 ? -1 : 1;
-            var exp = ((val & 0x7F800000) >> 23) - 127;
-            var mant = val & 0x007FFFFF | 0x00800000;
+            var exp = ((val & 0x7f800000) >> 23) - 127;
+            var mant = val & 0x007fffff | 0x00800000;
             return sign * Math.pow(2, exp) * (mant / (1 << 23));
           }
         },
-        '14.001': {
+        14.001: {
           link: '14',
           name: 'DPT_Value_Acceleration_Angular'
         },
-        '16': {
+        16: {
           name: 'DPT_String_ASCII',
           lname: {
-            'de': '14 Byte Text ASCII',
-            'en': '14 byte text ASCII'
+            de: '14 Byte Text ASCII',
+            en: '14 byte text ASCII'
           },
           unit: '-',
           encode: function encode(phy) {
             var val = '';
             phy += ''; // force datatype String
-
             for (var i = 0; i < 14; i++) {
               var c = phy.charCodeAt(i);
               val += c ? (c < 16 ? '0' : '') + c.toString(16) : '00';
             }
-
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -648,35 +637,32 @@
           decode: function decode(hex) {
             var val = '';
             var chars;
-
             for (var i = 0; i < 28; i += 2) {
               chars = parseInt(hex.substr(i, 2), 16);
-
               if (chars > 0) {
                 val += String.fromCharCode(chars);
               }
             }
-
             return val;
           }
         },
         '16.000': {
           link: '16'
         },
-        '16.001': {
+        16.001: {
           link: '16',
           name: 'DPT_String_8859_1',
           lname: {
-            'de': '14 Byte Text ISO-8859-1',
-            'en': '14 byte text ISO-8859-1'
+            de: '14 Byte Text ISO-8859-1',
+            en: '14 byte text ISO-8859-1'
           }
         },
-        '17': {
+        17: {
           link: '18',
           name: 'DPT_SceneNumber',
           lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
+            en: 'Scene Number',
+            de: 'Szenen Nummer'
           },
           range: {
             min: 1,
@@ -684,14 +670,14 @@
           },
           unit: '-'
         },
-        '17.001': {
+        17.001: {
           link: '18'
         },
-        '18': {
+        18: {
           name: 'DPT_SceneControl',
           lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
+            en: 'Scene Number',
+            de: 'Szenen Nummer'
           },
           range: {
             min: 1,
@@ -709,48 +695,42 @@
             return parseInt(hex, 16) + 1;
           }
         },
-        '18.001': {
+        18.001: {
           link: '18'
         },
-        '20.102': {
+        20.102: {
           name: 'DPT_HVACMode',
           lname: {
-            'de': 'KONNEX Betriebsart',
-            'en': 'HVAC mode'
+            de: 'KONNEX Betriebsart',
+            en: 'HVAC mode'
           },
           range: {
-            'enum': ['auto', 'comfort', 'standby', 'economy', 'building_protection']
+            "enum": ['auto', 'comfort', 'standby', 'economy', 'building_protection']
           },
           unit: '-',
           encode: function encode(phy) {
             var val;
-
             switch (phy) {
               case 1:
               case 'comfort':
                 val = 1;
                 break;
-
               case 2:
               case 'standby':
                 val = 2;
                 break;
-
               case 3:
               case 'economy':
                 val = 3;
                 break;
-
               case 4:
               case 'building_protection':
                 val = 4;
                 break;
-
               default:
                 // actually "case 0:" / "auto"
                 val = 0;
             }
-
             val = val.toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
@@ -761,23 +741,18 @@
             switch (parseInt(hex, 16)) {
               case 1:
                 return 'comfort';
-
               case 2:
                 return 'standby';
-
               case 3:
                 return 'economy';
-
               case 4:
                 return 'building_protection';
-
               default:
                 // actually "case 0:"
                 return 'auto';
             }
           }
         },
-
         /* DPT24.001 is probably not fully correct as it can also hold
          multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07
          but there is no other reference, even not in ETS4
@@ -785,23 +760,20 @@
          check in encode.
          In wiregate DPT24.001 has the same basic support with PL38
          */
-        '24.001': {
+        24.001: {
           name: 'DPT_VarString_8859_1',
           lname: {
-            'de': 'Variabler String ISO-8859-1',
-            'en': 'variable String ISO-8859-1'
+            de: 'Variabler String ISO-8859-1',
+            en: 'variable String ISO-8859-1'
           },
           unit: '-',
           encode: function encode(phy) {
             var val = '';
-
             for (var i = 0; i < phy.length; i++) {
               var c = phy.charCodeAt(i);
               val += c ? (c < 16 ? '0' : '') + c.toString(16) : '00';
             }
             /* terminating \x00 */
-
-
             val += '00';
             return {
               bus: '80' + val,
@@ -811,23 +783,20 @@
           decode: function decode(hex) {
             var val = '';
             var chars;
-
             for (var i = 0; i < hex.length; i += 2) {
               chars = parseInt(hex.substr(i, 2), 16);
-
               if (chars > 0) {
                 val += String.fromCharCode(chars);
               }
             }
-
             return val;
           }
         },
-        '26': {
+        26: {
           name: 'DPT_SceneInfo',
           lname: {
-            'en': 'Scene Number',
-            'de': 'Szenen Nummer'
+            en: 'Scene Number',
+            de: 'Szenen Nummer'
           },
           range: {
             min: 1.0,
@@ -845,14 +814,14 @@
             return parseInt(hex, 16) + 1;
           }
         },
-        '26.001': {
+        26.001: {
           link: '26'
         },
-        '225': {
+        225: {
           name: '3 byte unsigned',
           lname: {
-            'de': '3 Byte vorzeichenloser Integer',
-            'en': '3 byte unsigned integer'
+            de: '3 Byte vorzeichenloser Integer',
+            en: '3 byte unsigned integer'
           },
           range: {
             min: 0x0,
@@ -870,11 +839,11 @@
             return parseInt(hex, 16);
           }
         },
-        '225.001': {
+        225.001: {
           name: 'DPT_ScalingSpeed',
           lname: {
-            'de': 'Skalierungsgeschwindigkeit',
-            'en': 'scaling speed'
+            de: 'Skalierungsgeschwindigkeit',
+            en: 'scaling speed'
           },
           unit: '-',
           encode: function encode(phy) {
@@ -890,11 +859,11 @@
             return new Map([['period', parseInt(hex.substr(0, 4), 16)], ['percent', parseInt(hex.substr(4, 2), 16) * 100 / 255.0]]);
           }
         },
-        '232': {
+        232: {
           name: '3xDPT_Scaling',
           lname: {
-            'de': 'Drei Prozentwerte',
-            'en': 'three percentages'
+            de: 'Drei Prozentwerte',
+            en: 'three percentages'
           },
           range: {
             min: 0.0,
@@ -915,8 +884,8 @@
         '232.600': {
           name: 'DPT_Colour_RGB',
           lname: {
-            'de': 'RGB-Farbe',
-            'en': 'rgb color'
+            de: 'RGB-Farbe',
+            en: 'rgb color'
           },
           range: {
             min: 0.0,
@@ -930,7 +899,6 @@
                 raw: '000000'
               };
             }
-
             var r = phy.get('r') || 0;
             var g = phy.get('g') || 0;
             var b = phy.get('b') || 0;
@@ -947,8 +915,8 @@
         '232.600HSV': {
           name: 'DPT_Colour_HSV_inofficial',
           lname: {
-            'de': 'HSV-Farbe (inoffiziell)',
-            'en': 'hsv color (inofficial)'
+            de: 'HSV-Farbe (inoffiziell)',
+            en: 'hsv color (inofficial)'
           },
           unit: '-',
           encode: function encode(phy) {
@@ -958,7 +926,6 @@
                 raw: '000000'
               };
             }
-
             var h = phy.get('h') || 0;
             var s = phy.get('s') || 0;
             var v = phy.get('v') || 0;
@@ -975,8 +942,8 @@
         '242.600': {
           name: 'DPT_Colour_xyY',
           lname: {
-            'de': 'xyY-Farbe',
-            'en': 'xyY color'
+            de: 'xyY-Farbe',
+            en: 'xyY color'
           },
           unit: '-',
           encode: function encode(phy) {
@@ -987,10 +954,8 @@
                   raw: '000000000000'
                 };
               }
-
               phy = new Map([['Y', +phy]]);
             }
-
             var cValid = phy.has('x') && phy.has('y') && (phy.has('cValid') ? phy.get('cValid') : Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y')));
             var YValid = phy.has('Y') && (phy.has('YValid') ? phy.get('YValid') : Number.isFinite(phy.get('Y')));
             var x = phy.get('x') || 0;
@@ -1010,8 +975,8 @@
         '251.600': {
           name: 'DPT_Colour_RGBW',
           lname: {
-            'de': 'RGBW-Farbe',
-            'en': 'rgbw color'
+            de: 'RGBW-Farbe',
+            en: 'rgbw color'
           },
           range: {
             min: 0.0,
@@ -1025,7 +990,6 @@
                 raw: '000000000000'
               };
             }
-
             var rValid = phy.has('r') && Number.isFinite(phy.get('r')) && (phy.has('rValid') ? phy.get('rValid') : true);
             var gValid = phy.has('g') && Number.isFinite(phy.get('g')) && (phy.has('gValid') ? phy.get('gValid') : true);
             var bValid = phy.has('b') && Number.isFinite(phy.get('b')) && (phy.has('bValid') ? phy.get('bValid') : true);
@@ -1051,4 +1015,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1664789564262
+//# sourceMappingURL=Knx.js.map?dt=1672653473034

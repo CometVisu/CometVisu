@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "type",
+    "statics",
+    "_REG",
+    "register",
+    "modelClass",
+    "hasInterface",
+    "cv",
+    "io",
+    "listmodel",
+    "IListModel",
+    "className",
+    "basename",
+    "toLowerCase",
+    "get",
+    "name",
+    "Object",
+    "prototype",
+    "hasOwnProperty",
+    "call",
+    "clazz",
+    "REQUIRES",
+    "check",
+    "core",
+    "Init",
+    "getApplication",
+    "getServerHasPhpSupport",
+    "Registry"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/Registry.js"
+  ],
+  "sourcesContent": [
+    "/**\n * Registry for all classes that implement cv.io.listmodel.IListModel.\n */\nqx.Class.define('cv.io.listmodel.Registry', {\n  type: 'static',\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    _REG: {},\n\n    /**\n     *\n     * @param modelClass {Class}\n     */\n    register(modelClass) {\n      if (qx.Class.hasInterface(modelClass, cv.io.listmodel.IListModel)) {\n        const className = modelClass.basename.toLowerCase();\n        this._REG[className] = modelClass;\n      }\n    },\n\n    /**\n     *\n     * @param name {String}\n     */\n    get(name) {\n      name = name.toLowerCase();\n      if (Object.prototype.hasOwnProperty.call(this._REG, name)) {\n        const clazz = this._REG[name];\n        if (clazz.REQUIRES) {\n          for (const check of clazz.REQUIRES) {\n            switch (check) {\n              case 'php':\n                if (!qx.core.Init.getApplication().getServerHasPhpSupport()) {\n                  return null;\n                }\n                break;\n            }\n          }\n        }\n        return clazz;\n      }\n      return null;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,IAAI,EAAE,QAAQ;IAEd;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,IAAI,EAAE,CAAC,CAAC;MAER;AACJ;AACA;AACA;MACIC,QAAQ,oBAACC,UAAU,EAAE;QACnB,IAAIV,EAAE,CAACI,KAAK,CAACO,YAAY,CAACD,UAAU,EAAEE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,UAAU,CAAC,EAAE;UACjE,IAAMC,SAAS,GAAGN,UAAU,CAACO,QAAQ,CAACC,WAAW,EAAE;UACnD,IAAI,CAACV,IAAI,CAACQ,SAAS,CAAC,GAAGN,UAAU;QACnC;MACF,CAAC;MAED;AACJ;AACA;AACA;MACIS,GAAG,eAACC,IAAI,EAAE;QACRA,IAAI,GAAGA,IAAI,CAACF,WAAW,EAAE;QACzB,IAAIG,MAAM,CAACC,SAAS,CAACC,cAAc,CAACC,IAAI,CAAC,IAAI,CAAChB,IAAI,EAAEY,IAAI,CAAC,EAAE;UACzD,IAAMK,KAAK,GAAG,IAAI,CAACjB,IAAI,CAACY,IAAI,CAAC;UAC7B,IAAIK,KAAK,CAACC,QAAQ,EAAE;YAAA,2CACED,KAAK,CAACC,QAAQ;cAAA;YAAA;cAAlC,oDAAoC;gBAAA,IAAzBC,KAAK;gBACd,QAAQA,KAAK;kBACX,KAAK,KAAK;oBACR,IAAI,CAAC3B,EAAE,CAAC4B,IAAI,CAACC,IAAI,CAACC,cAAc,EAAE,CAACC,sBAAsB,EAAE,EAAE;sBAC3D,OAAO,IAAI;oBACb;oBACA;gBAAM;cAEZ;YAAC;cAAA;YAAA;cAAA;YAAA;UACH;UACA,OAAON,KAAK;QACd;QACA,OAAO,IAAI;MACb;IACF;EACF,CAAC,CAAC;EAjDFb,EAAE,CAACC,EAAE,CAACC,SAAS,CAACkB,QAAQ,CAAC7B,aAAa,GAAGA,aAAa;AAAC"
+}

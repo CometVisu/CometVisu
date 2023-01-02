@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 612
       },
       "end": {
-        "line": 113,
-        "column": 3
+        "line": 97,
+        "column": 3,
+        "index": 2411
       }
     },
     "jsdoc": {
@@ -40,12 +42,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 934
         },
         "end": {
-          "line": 44,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1006
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "showArrow": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1095
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 46,
+          "column": 5,
+          "index": 1210
         }
       },
       "jsdoc": {
@@ -102,12 +108,14 @@
     "_applyVisibility": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1436
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1872
         }
       },
       "jsdoc": {},
@@ -122,12 +130,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1897
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2204
         }
       },
       "jsdoc": {},
@@ -142,12 +152,14 @@
     "_applyShowArrow": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2241
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2403
         }
       },
       "jsdoc": {},
@@ -316,6 +328,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -340,6 +353,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

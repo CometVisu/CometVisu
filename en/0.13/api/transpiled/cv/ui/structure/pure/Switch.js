@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Switch.js 
-   * 
+  /* Switch.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -78,7 +77,6 @@
   qx.Class.define('cv.ui.structure.pure.Switch', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
-
     /*
      ******************************************************
      PROPERTIES
@@ -94,7 +92,6 @@
         init: '0'
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -105,34 +102,31 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
-
       /**
        * Handles the incoming data from the backend for this widget
        *
        * @param value {any} incoming data (already transformed + mapped)
        */
       handleUpdate: function handleUpdate(value) {
-        var actor = this.getActor(); // compare against the unmapped value
-
+        var actor = this.getActor();
+        // compare against the unmapped value
         value = this.getBasicValue();
-        var off = this.getOffValue(); // using == comparisons to make sure that e.g. 1 equals "1"
-
-        actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
-
-        actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
+        var off = this.getOffValue();
+        // using == comparisons to make sure that e.g. 1 equals "1"
+        actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed');
+        actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed');
       },
-
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @return {var}
        */
       getActionValue: function getActionValue() {
         // using == comparisons to make sure that e.g. 1 equals "1"
-        return this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue(); // jshint ignore:line
+        return this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue();
       }
     }
   });
   cv.ui.structure.pure.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1664789570688
+//# sourceMappingURL=Switch.js.map?dt=1672653479072

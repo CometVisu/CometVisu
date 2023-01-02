@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 596
       },
       "end": {
-        "line": 129,
-        "column": 3
+        "line": 116,
+        "column": 3,
+        "index": 3054
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "createLayer": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 805
         },
         "end": {
-          "line": 33,
-          "column": 31
+          "line": 31,
+          "column": 20,
+          "index": 821
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "createItemRenderer": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 937
         },
         "end": {
-          "line": 41,
-          "column": 38
+          "line": 38,
+          "column": 27,
+          "index": 960
         }
       },
       "jsdoc": {
@@ -97,12 +103,14 @@
     "createGroupRenderer": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1078
         },
         "end": {
-          "line": 49,
-          "column": 39
+          "line": 45,
+          "column": 28,
+          "index": 1102
         }
       },
       "jsdoc": {
@@ -127,12 +135,14 @@
     "styleSelectabled": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1205
         },
         "end": {
-          "line": 57,
-          "column": 39
+          "line": 52,
+          "column": 28,
+          "index": 1229
         }
       },
       "jsdoc": {
@@ -158,12 +168,14 @@
     "styleUnselectabled": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1336
         },
         "end": {
-          "line": 65,
-          "column": 41
+          "line": 59,
+          "column": 30,
+          "index": 1362
         }
       },
       "jsdoc": {
@@ -189,12 +201,14 @@
     "isSelectable": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1605
         },
         "end": {
-          "line": 75,
-          "column": 35
+          "line": 68,
+          "column": 24,
+          "index": 1625
         }
       },
       "jsdoc": {
@@ -228,12 +242,14 @@
     "setLabelPath": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 1861
         },
         "end": {
-          "line": 84,
-          "column": 36
+          "line": 76,
+          "column": 25,
+          "index": 1882
         }
       },
       "jsdoc": {
@@ -259,12 +275,14 @@
     "setIconPath": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 2157
         },
         "end": {
-          "line": 94,
-          "column": 35
+          "line": 85,
+          "column": 24,
+          "index": 2177
         }
       },
       "jsdoc": {
@@ -290,12 +308,14 @@
     "setLabelOptions": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2420
         },
         "end": {
-          "line": 103,
-          "column": 42
+          "line": 93,
+          "column": 31,
+          "index": 2447
         }
       },
       "jsdoc": {
@@ -321,12 +341,14 @@
     "setIconOptions": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 101,
+          "column": 4,
+          "index": 2688
         },
         "end": {
-          "line": 112,
-          "column": 41
+          "line": 101,
+          "column": 30,
+          "index": 2714
         }
       },
       "jsdoc": {
@@ -352,12 +374,14 @@
     "setDelegate": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 2929
         },
         "end": {
-          "line": 121,
-          "column": 39
+          "line": 109,
+          "column": 28,
+          "index": 2953
         }
       },
       "jsdoc": {
@@ -383,12 +407,14 @@
     "removeBindings": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3027
         },
         "end": {
-          "line": 127,
-          "column": 34
+          "line": 114,
+          "column": 23,
+          "index": 3046
         }
       },
       "jsdoc": {

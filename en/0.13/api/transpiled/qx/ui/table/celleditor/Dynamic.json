@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 802
       },
       "end": {
-        "line": 152,
-        "column": 3
+        "line": 145,
+        "column": 3,
+        "index": 4392
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 14
+        "line": 41,
+        "column": 2,
+        "index": 1247
       },
       "end": {
-        "line": 52,
-        "column": 3
+        "line": 48,
+        "column": 3,
+        "index": 1437
       }
     },
     "jsdoc": {
@@ -64,12 +68,14 @@
     "cellEditorFactoryFunction": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2239
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2337
         }
       },
       "jsdoc": {
@@ -123,12 +129,14 @@
     "__cellEditorFactory": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 86,
+          "column": 4,
+          "index": 2545
         },
         "end": {
-          "line": 95,
-          "column": 30
+          "line": 86,
+          "column": 29,
+          "index": 2570
         }
       },
       "type": "variable",
@@ -137,12 +145,14 @@
     "__infos": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2576
         },
         "end": {
-          "line": 96,
-          "column": 18
+          "line": 87,
+          "column": 17,
+          "index": 2589
         }
       },
       "type": "variable",
@@ -151,12 +161,14 @@
     "createCellEditor": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2955
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 3546
         }
       },
       "jsdoc": {
@@ -194,12 +206,14 @@
     "getCellEditorValue": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3585
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 4139
         }
       },
       "jsdoc": {},
@@ -298,6 +312,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -322,6 +337,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -416,12 +432,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 149,
-        "column": 13
+        "line": 142,
+        "column": 2,
+        "index": 4335
       },
       "end": {
-        "line": 151,
-        "column": 3
+        "line": 144,
+        "column": 3,
+        "index": 4388
       }
     },
     "jsdoc": {}

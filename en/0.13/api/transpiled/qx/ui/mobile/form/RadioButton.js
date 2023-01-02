@@ -15,11 +15,11 @@
       "qx.ui.form.IField": {
         "require": true
       },
+      "qx.ui.mobile.form.RadioGroup": {},
       "qx.event.Registration": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,13 +66,11 @@
     extend: qx.ui.mobile.form.Input,
     include: [qx.ui.mobile.form.MValue],
     implement: [qx.ui.form.IField],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {Boolean?null} The value of the checkbox.
      */
@@ -80,7 +78,6 @@
       qx.ui.mobile.form.Input.constructor.call(this);
       this.addListener("tap", this._onTap, this);
     },
-
     /*
     *****************************************************************************
        EVENTS
@@ -92,7 +89,6 @@
        */
       changeValue: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
@@ -104,7 +100,6 @@
         refine: true,
         init: "radio"
       },
-
       /** The assigned qx.ui.form.RadioGroup which handles the switching between registered buttons */
       group: {
         check: "qx.ui.mobile.form.RadioGroup",
@@ -122,16 +117,15 @@
       _getType: function _getType() {
         return null;
       },
-
       /**
        * Reacts on tap on radio button.
        */
       _onTap: function _onTap() {
-        this.fireDataEvent("changeValue", {}); // Toggle State.
+        this.fireDataEvent("changeValue", {});
 
+        // Toggle State.
         this.setValue(true);
       },
-
       /**
        * The assigned {@link qx.ui.form.RadioGroup} which handles the switching between registered buttons
        * @param value {qx.ui.form.RadioGroup} the new radio group to which this radio button belongs.
@@ -141,12 +135,10 @@
         if (old) {
           old.remove(this);
         }
-
         if (value) {
           value.add(this);
         }
       },
-
       /**
        * Sets the value [true/false] of this radio button.
        * It is called by setValue method of qx.ui.mobile.form.MValue mixin
@@ -158,10 +150,8 @@
         } else {
           this.removeCssClass("checked");
         }
-
         this._state = value;
       },
-
       /**
        * Gets the value [true/false] of this radio button.
        * It is called by getValue method of qx.ui.mobile.form.MValue mixin
@@ -171,7 +161,6 @@
         return this._state;
       }
     },
-
     /*
     *****************************************************************************
         DESTRUCTOR
@@ -184,4 +173,4 @@
   qx.ui.mobile.form.RadioButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButton.js.map?dt=1664789601157
+//# sourceMappingURL=RadioButton.js.map?dt=1672653511654

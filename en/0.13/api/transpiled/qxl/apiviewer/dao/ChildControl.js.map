@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v1_0_18/source/class/qxl/apiviewer/dao/ChildControl.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -23,8 +20,11 @@
     "getDefaultValue",
     "ChildControl"
   ],
-  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;AAChDC,IAAAA,MAAM,EAAGC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBC,SADqB;AAGhDC,IAAAA,SAAS,EAAG,mBAASC,IAAT,EAAeC,WAAf,EAA4B;AACtC,yDAAqBD,IAArB,EAA2BC,WAA3B,EAAwCD,IAAI,CAACE,WAA7C;AACD,KAL+C;AAMhDC,IAAAA,OAAO,EAAG;AACRC,MAAAA,eAAe,EAAG,2BAAW;AAC3B,eAAO,EAAP;AACD;AAHO;AANsC,GAAlD;AApBAT,EAAAA,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBQ,YAAlB,CAA+Bd,aAA/B,GAA+CA,aAA/C",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v2_0_0/source/class/qxl/apiviewer/dao/ChildControl.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.ChildControl\", {\n  extend : qxl.apiviewer.dao.ClassItem,\n\n  construct : function(meta, parentClass) {\n    this.base(arguments, meta, parentClass, meta.controlName);\n  },\n  members : {\n    getDefaultValue : function() {\n      return \"\";\n    }\n  }\n\n\n\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.ChildControl\", {\n  extend: qxl.apiviewer.dao.ClassItem,\n\n  construct(meta, parentClass) {\n    this.base(arguments, meta, parentClass, meta.controlName);\n  },\n  members: {\n    getDefaultValue() {\n      return \"\";\n    },\n  },\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,gCAAgC,EAAE;IAChDC,MAAM,EAAEC,GAAG,CAACC,SAAS,CAACC,GAAG,CAACC,SAAS;IAEnCC,SAAS,qBAACC,IAAI,EAAEC,WAAW,EAAE;MAC3B,mDAAqBD,IAAI,EAAEC,WAAW,EAAED,IAAI,CAACE,WAAW;IAC1D,CAAC;IACDC,OAAO,EAAE;MACPC,eAAe,6BAAG;QAChB,OAAO,EAAE;MACX;IACF;EACF,CAAC,CAAC;EA/BFT,GAAG,CAACC,SAAS,CAACC,GAAG,CAACQ,YAAY,CAACd,aAAa,GAAGA,aAAa;AAAC"
 }

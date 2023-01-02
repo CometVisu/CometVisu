@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -93,7 +92,6 @@
     extend: qx.ui.core.Widget,
     implement: [qx.ui.form.IField, qx.ui.core.ISingleSelection],
     include: [qx.ui.core.MSingleSelectionHandling, qx.ui.core.MChildrenHandling],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -101,17 +99,15 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.Grow());
-
-      this.addListener("changeSelection", this.__P_285_0, this);
+      this.addListener("changeSelection", this.__P_300_0, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Whether the size of the widget depends on the selected child. When
@@ -123,23 +119,20 @@
         apply: "_applyDynamic"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyDynamic: function _applyDynamic(value) {
         var children = this._getChildren();
-
         var selected = this.getSelection()[0];
         var child;
-
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
-
           if (child != selected) {
             if (value) {
               children[i].exclude();
@@ -149,13 +142,11 @@
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS FOR SELECTION API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the widget for the selection.
        * @return {qx.ui.core.Widget[]} Widgets to select.
@@ -163,7 +154,6 @@
       _getItems: function _getItems() {
         return this.getChildren();
       },
-
       /**
        * Returns if the selection could be empty or not.
        *
@@ -173,7 +163,6 @@
       _isAllowEmptySelection: function _isAllowEmptySelection() {
         return true;
       },
-
       /**
        * Returns whether the given item is selectable.
        *
@@ -183,7 +172,6 @@
       _isItemSelectable: function _isItemSelectable(item) {
         return true;
       },
-
       /**
        * Event handler for <code>changeSelection</code>.
        *
@@ -191,10 +179,9 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_285_0: function __P_285_0(e) {
+      __P_300_0: function __P_300_0(e) {
         var old = e.getOldData()[0];
         var value = e.getData()[0];
-
         if (old) {
           if (this.isDynamic()) {
             old.exclude();
@@ -202,7 +189,6 @@
             old.hide();
           }
         }
-
         if (value) {
           value.show();
         }
@@ -210,7 +196,6 @@
       //overridden
       _afterAddChild: function _afterAddChild(child) {
         var selected = this.getSelection()[0];
-
         if (!selected) {
           this.setSelection([child]);
         } else if (selected !== child) {
@@ -225,7 +210,6 @@
       _afterRemoveChild: function _afterRemoveChild(child) {
         if (this.getSelection()[0] === child) {
           var first = this._getChildren()[0];
-
           if (first) {
             this.setSelection([first]);
           } else {
@@ -233,39 +217,31 @@
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Go to the previous child in the children list.
        */
       previous: function previous() {
         var selected = this.getSelection()[0];
         var go = this._indexOf(selected) - 1;
-
         var children = this._getChildren();
-
         if (go < 0) {
           go = children.length - 1;
         }
-
         var prev = children[go];
         this.setSelection([prev]);
       },
-
       /**
        * Go to the next child in the children list.
        */
       next: function next() {
         var selected = this.getSelection()[0];
         var go = this._indexOf(selected) + 1;
-
         var children = this._getChildren();
-
         var next = children[go] || children[0];
         this.setSelection([next]);
       }
@@ -274,4 +250,4 @@
   qx.ui.container.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1664789592851
+//# sourceMappingURL=Stack.js.map?dt=1672653504257

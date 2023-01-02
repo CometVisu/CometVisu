@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 61,
-        "column": 0
+        "column": 0,
+        "index": 1781
       },
       "end": {
-        "line": 295,
-        "column": 3
+        "line": 277,
+        "column": 3,
+        "index": 7584
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "_config": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2182
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2233
         }
       },
       "jsdoc": {
@@ -59,12 +63,14 @@
     "rating": {
       "location": {
         "start": {
-          "line": 98,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2780
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 120,
+          "column": 5,
+          "index": 3342
         }
       },
       "jsdoc": {
@@ -125,26 +131,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 126,
-        "column": 14
+        "line": 123,
+        "column": 2,
+        "index": 3351
       },
       "end": {
-        "line": 128,
-        "column": 3
+        "line": 125,
+        "column": 3,
+        "index": 3415
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "changeValue": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 3472
         },
         "end": {
-          "line": 133,
-          "column": 28
+          "line": 129,
+          "column": 25,
+          "index": 3493
         }
       },
       "jsdoc": {
@@ -163,12 +172,14 @@
     "init": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 3535
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 4022
         }
       },
       "jsdoc": {},
@@ -182,12 +193,14 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 168,
-          "column": 4
+          "line": 161,
+          "column": 4,
+          "index": 4335
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 4767
         }
       },
       "jsdoc": {
@@ -221,12 +234,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 191,
-          "column": 4
+          "line": 183,
+          "column": 4,
+          "index": 4952
         },
         "end": {
-          "line": 194,
-          "column": 5
+          "line": 186,
+          "column": 5,
+          "index": 5094
         }
       },
       "jsdoc": {
@@ -251,12 +266,14 @@
     "render": {
       "location": {
         "start": {
-          "line": 198,
-          "column": 4
+          "line": 189,
+          "column": 4,
+          "index": 5119
         },
         "end": {
-          "line": 200,
-          "column": 5
+          "line": 191,
+          "column": 5,
+          "index": 5169
         }
       },
       "jsdoc": {},
@@ -270,12 +287,14 @@
     "_updateSymbolLength": {
       "location": {
         "start": {
-          "line": 208,
-          "column": 4
+          "line": 198,
+          "column": 4,
+          "index": 5363
         },
         "end": {
-          "line": 231,
-          "column": 5
+          "line": 220,
+          "column": 5,
+          "index": 6099
         }
       },
       "jsdoc": {
@@ -300,12 +319,14 @@
     "_onTap": {
       "location": {
         "start": {
-          "line": 239,
-          "column": 4
+          "line": 227,
+          "column": 4,
+          "index": 6241
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 230,
+          "column": 5,
+          "index": 6384
         }
       },
       "jsdoc": {
@@ -331,12 +352,14 @@
     "_onFocus": {
       "location": {
         "start": {
-          "line": 249,
-          "column": 4
+          "line": 236,
+          "column": 4,
+          "index": 6493
         },
         "end": {
-          "line": 251,
-          "column": 5
+          "line": 238,
+          "column": 5,
+          "index": 6588
         }
       },
       "jsdoc": {
@@ -362,12 +385,14 @@
     "_onBlur": {
       "location": {
         "start": {
-          "line": 259,
-          "column": 4
+          "line": 245,
+          "column": 4,
+          "index": 6728
         },
         "end": {
-          "line": 261,
-          "column": 5
+          "line": 247,
+          "column": 5,
+          "index": 6823
         }
       },
       "jsdoc": {
@@ -393,12 +418,14 @@
     "_onKeyDown": {
       "location": {
         "start": {
-          "line": 269,
-          "column": 4
+          "line": 254,
+          "column": 4,
+          "index": 6971
         },
         "end": {
-          "line": 276,
-          "column": 5
+          "line": 261,
+          "column": 5,
+          "index": 7190
         }
       },
       "jsdoc": {
@@ -424,12 +451,14 @@
     "dispose": {
       "location": {
         "start": {
-          "line": 280,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 7215
         },
         "end": {
-          "line": 288,
-          "column": 5
+          "line": 271,
+          "column": 5,
+          "index": 7504
         }
       },
       "jsdoc": {},
@@ -445,15 +474,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 292,
-        "column": 10
+        "line": 274,
+        "column": 2,
+        "index": 7513
       },
       "end": {
-        "line": 294,
-        "column": 3
+        "line": 276,
+        "column": 3,
+        "index": 7580
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

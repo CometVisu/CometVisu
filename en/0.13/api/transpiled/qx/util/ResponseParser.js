@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,8 +61,7 @@
       }
     },
     members: {
-      __P_493_0: null,
-
+      __P_508_0: null,
       /**
        * Returns given response parsed with parser
        * determined by {@link #_getParser}.
@@ -74,16 +72,13 @@
        */
       parse: function parse(response, contentType) {
         var parser = this._getParser(contentType);
-
         if (typeof parser === "function") {
           if (response !== "") {
             return parser.call(this, response);
           }
         }
-
         return response;
       },
-
       /**
        * Set parser used to parse response once request has
        * completed successfully.
@@ -114,13 +109,13 @@
       setParser: function setParser(parser) {
         // Symbolically given known parser
         if (typeof qx.util.ResponseParser.PARSER[parser] === "function") {
-          return this.__P_493_0 = qx.util.ResponseParser.PARSER[parser];
-        } // If parser is not a symbol, it must be a function
+          return this.__P_508_0 = qx.util.ResponseParser.PARSER[parser];
+        }
 
+        // If parser is not a symbol, it must be a function
 
-        return this.__P_493_0 = parser;
+        return this.__P_508_0 = parser;
       },
-
       /**
        * Gets the parser.
        *
@@ -136,32 +131,32 @@
        *
        */
       _getParser: function _getParser(contentType) {
-        var parser = this.__P_493_0,
-            contentTypeOrig = "",
-            contentTypeNormalized = ""; // Use user-provided parser, if any
+        var parser = this.__P_508_0,
+          contentTypeOrig = "",
+          contentTypeNormalized = "";
 
+        // Use user-provided parser, if any
         if (parser) {
           return parser;
-        } // See http://restpatterns.org/Glossary/MIME_Type
+        }
 
+        // See http://restpatterns.org/Glossary/MIME_Type
 
-        contentTypeOrig = contentType || ""; // Ignore parameters (e.g. the character set)
+        contentTypeOrig = contentType || "";
 
+        // Ignore parameters (e.g. the character set)
         contentTypeNormalized = contentTypeOrig.replace(/;.*$/, "");
-
         if (/^application\/(\w|\.)*\+?json$/.test(contentTypeNormalized)) {
           parser = qx.util.ResponseParser.PARSER.json;
         }
-
         if (/^application\/xml$/.test(contentTypeNormalized)) {
-          parser = qx.util.ResponseParser.PARSER.xml;
-        } // Deprecated
-
-
-        if (/[^\/]+\/[^\+]+\+xml$/.test(contentTypeOrig)) {
           parser = qx.util.ResponseParser.PARSER.xml;
         }
 
+        // Deprecated
+        if (/[^\/]+\/[^\+]+\+xml$/.test(contentTypeOrig)) {
+          parser = qx.util.ResponseParser.PARSER.xml;
+        }
         return parser;
       }
     }
@@ -169,4 +164,4 @@
   qx.util.ResponseParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResponseParser.js.map?dt=1664789609850
+//# sourceMappingURL=ResponseParser.js.map?dt=1672653520240

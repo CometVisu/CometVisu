@@ -1,6 +1,11 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -29,14 +34,21 @@
       "cv.io.rest.Client": {},
       "qx.util.LibraryManager": {},
       "qx.lang.Type": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.dynlocale": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* FileItem.js 
-   * 
+  /* FileItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -59,7 +71,6 @@
     extend: qx.core.Object,
     include: [qx.data.marshal.MEventBubbling, cv.ui.manager.control.MFileEventHandler],
     implement: [cv.ui.manager.control.IFileEventHandler],
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -68,32 +79,25 @@
     construct: function construct(name, path, parent, fakeChildren) {
       qx.core.Object.constructor.call(this);
       this.initChildren(new qx.data.Array());
-
       if (fakeChildren) {
         this.setFakeChildren(fakeChildren);
       }
-
       if (path) {
         if (!path.endsWith('/')) {
           path += '/';
         }
-
-        this.__P_41_0 = path;
+        this.__P_43_0 = path;
       }
-
       if (name) {
         this.setName(name);
       }
-
       if (parent) {
         this.setParent(parent);
       }
-
       {
         qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
       }
     },
-
     /*
     ***********************************************
       STATICS
@@ -105,18 +109,16 @@
       _hiddenConfigFakeFile: null,
       _acceptedFiles: {
         '.': '*.xml',
-        'media': '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
+        media: '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
       },
       isConfigFile: function isConfigFile(path) {
         return /visu_config.*\.xml/.test(path);
       },
       getConfigName: function getConfigName(filename) {
         var match = /visu_config_?([^.]+)\.xml/.exec(filename);
-
         if (match) {
           return match[1];
         }
-
         return null;
       },
       getIconFile: function getIconFile() {
@@ -133,7 +135,6 @@
             icon: cv.theme.dark.Images.getIcon('icons', 18)
           });
         }
-
         return this._fakeIconFile;
       },
       getHiddenConfigFile: function getHiddenConfigFile() {
@@ -150,14 +151,12 @@
             displayName: qx.locale.Manager.tr('Hidden configuration')
           });
         }
-
         return this._hiddenConfigFakeFile;
       },
       getAcceptedFiles: function getAcceptedFiles(folder) {
         return this._acceptedFiles[folder.getFullPath()];
       }
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -199,7 +198,6 @@
         init: '',
         event: 'changeDisplayName'
       },
-
       /**
        * Fake items only exist in the client not in the backend
        */
@@ -226,7 +224,6 @@
         init: false,
         event: 'changeEditing'
       },
-
       /**
        * A special configuration option for mulitple purposes, e.g. creating a fake FileItem with a special
        * behaviour like an "Add new File" used in writeable Folders.
@@ -236,7 +233,6 @@
         nullable: true,
         event: 'changeSpecial'
       },
-
       /**
        * Temporary file are not save in the backend yet
        */
@@ -245,7 +241,6 @@
         init: false,
         event: 'changeTemporary'
       },
-
       /**
        * Validation result for this files content (e.g. config file validation)
        */
@@ -254,7 +249,6 @@
         init: true,
         event: 'changeValid'
       },
-
       /**
        * The validation of this files content found some warnings
        */
@@ -263,7 +257,6 @@
         init: false,
         event: 'changeHasWarnings'
       },
-
       /**
        * Temporary content to show, e.g. for new files, when there is no 'real' file with content yet to request from the backend
        * this content should be shown
@@ -278,6 +271,7 @@
         event: 'changeModified'
       },
       // Backend properties
+
       hasChildren: {
         check: 'Boolean',
         event: 'changeHasChildren',
@@ -326,16 +320,15 @@
         event: 'changeInTrash'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
     ***********************************************
     */
     members: {
-      __P_41_0: null,
-      __P_41_1: null,
-      __P_41_2: null,
+      __P_43_0: null,
+      __P_43_1: null,
+      __P_43_2: null,
       _toLowerCase: function _toLowerCase(name) {
         return name.toLowerCase();
       },
@@ -346,21 +339,16 @@
         if (this.isFake()) {
           return;
         }
-
         var data = ev.getData();
-
         switch (data.action) {
           case 'moved':
             this.reload();
             break;
-
           case 'added':
             if (this.getType() === 'dir' && data.path.startsWith(this.getFullPath())) {
               this.reload();
             }
-
             break;
-
           case 'deleted':
             if (data.path === this.getFullPath()) {
               // this item has been deleted
@@ -374,42 +362,35 @@
                   this.removeRelatedBindings(child);
                   return true;
                 }
-
                 return false;
               }, this);
             }
-
             break;
         }
       },
       _applyName: function _applyName(value, old) {
-        this.__P_41_1 = null;
-
+        this.__P_43_1 = null;
         if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
           // use name as default display name
           this.setDisplayName(value);
         }
       },
       getPath: function getPath() {
-        if (!this.__P_41_0) {
+        if (!this.__P_43_0) {
           var parentFolder = this.getParentFolder();
-
           if (!parentFolder) {
             parentFolder = '';
           } else if (!parentFolder.endsWith('/')) {
             parentFolder += '/';
           }
-
-          this.__P_41_0 = parentFolder;
+          this.__P_43_0 = parentFolder;
         }
-
-        return this.__P_41_0;
+        return this.__P_43_0;
       },
       _onOpen: function _onOpen(value) {
         if (!this.isLoaded() && value) {
           this.load();
         }
-
         this._maintainIcon();
       },
       _maintainIcon: function _maintainIcon() {
@@ -449,19 +430,15 @@
       },
       addChild: function addChild(child) {
         var oldParent = child.getParent();
-
         if (oldParent !== this) {
           oldParent.getChildren().remove(child);
           oldParent.removeRelatedBindings(child);
         }
-
         child.setParent(this);
-
         if (child.getType() !== 'dir' || !child.isMounted()) {
           // inherit the mounted state from the parent folder
           this.bind('mounted', child, 'mounted');
         }
-
         this.getChildren().push(child);
       },
       _onGet: function _onGet(data) {
@@ -469,37 +446,29 @@
         children.removeAll().forEach(function (child) {
           this.removeRelatedBindings(child);
         }, this);
-
         if (data) {
           data.forEach(function (node) {
             var child = new cv.ui.manager.model.FileItem(null, null, this);
-
             if (Object.prototype.hasOwnProperty.call(node, 'children')) {
               var nodeChildren = node.children;
               delete node.children;
-
               if (nodeChildren.length > 0) {
                 child.getChildren().replace(nodeChildren);
                 child.setLoaded(true);
               }
             }
-
             child.set(node);
             children.push(child);
           }, this);
         }
-
         if (this.getFakeChildren()) {
           children.append(this.getFakeChildren());
         }
-
         this.sortElements();
         this.setLoaded(true);
-
-        if (this.__P_41_2) {
-          this.__P_41_2();
+        if (this.__P_43_2) {
+          this.__P_43_2();
         }
-
         this.setLoading(false);
       },
       _onError: function _onError(err) {
@@ -509,11 +478,9 @@
           this.removeRelatedBindings(child);
         }, this);
         this.setLoaded(true);
-
-        if (this.__P_41_2) {
-          this.__P_41_2();
+        if (this.__P_43_2) {
+          this.__P_43_2();
         }
-
         this.setLoading(false);
       },
       load: function load(callback, context) {
@@ -524,14 +491,11 @@
           return;
         } else if (this.isFake()) {
           this.setLoaded(true);
-
           if (this.getFakeChildren()) {
             this.getChildren().append(this.getFakeChildren());
           }
-
           return;
         }
-
         if (this.isLoading()) {
           if (callback) {
             this.addListenerOnce('changeLoading', callback, context);
@@ -543,11 +507,9 @@
           }
         } else {
           this.setLoading(true);
-
           if (callback) {
-            this.__P_41_2 = callback.bind(context || this);
+            this.__P_43_2 = callback.bind(context || this);
           }
-
           cv.io.rest.Client.getFsClient().readSync({
             path: this.getFullPath()
           }, function (err, res) {
@@ -559,22 +521,19 @@
           }, this);
         }
       },
-
       /**
        * Returns the complete path needed for the REST API  to identify this file
        * @returns {null}
        */
       getFullPath: function getFullPath() {
-        if (!this.__P_41_1) {
-          this.__P_41_1 = this.getPath() + this.getName();
+        if (!this.__P_43_1) {
+          this.__P_43_1 = this.getPath() + this.getName();
         }
-
-        return this.__P_41_1;
+        return this.__P_43_1;
       },
       getBusTopic: function getBusTopic() {
         return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
       },
-
       /**
        * Returns a fake URI that can be used to identify the file.
        * Used by monaco editor as model URI.
@@ -583,7 +542,6 @@
       getUri: function getUri() {
         return 'cv://' + this.getFullPath();
       },
-
       /**
        * Returns the path to this file for requests over HTTP (not the REST API)
        *
@@ -597,10 +555,8 @@
         if (!this.isMounted()) {
           return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
         }
-
         return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/' + this.getFullPath();
       },
-
       /**
        *  Sort entries: folders first, files then
        */
@@ -613,18 +569,14 @@
               } else if (b.isTrash()) {
                 return -1;
               }
-
               return a.getName().localeCompare(b.getName());
             }
-
             return -1;
           } else if (b.getType() === 'dir') {
             return 1;
           }
-
           return a.getName().localeCompare(b.getName());
         };
-
         this.getChildren().sort(sortF);
       },
       openPath: function openPath(path) {
@@ -634,36 +586,35 @@
           if (child.getName() === relPath) {
             child.load(function () {
               child.setOpen(true);
-
               if (parts.length > 0) {
                 child.openPath(parts);
               }
             }, this);
             return true;
           }
-
           return false;
         }, this);
       },
-      _onChangeLocale: function _onChangeLocale() {
-        var content = this.getDisplayName();
-
-        if (content && content.translate) {
-          this.setDisplayName(content.translate());
-        }
-      }
+      _onChangeLocale: qx.core.Environment.select('qx.dynlocale', {
+        "true": function _true() {
+          var content = this.getDisplayName();
+          if (content && content.translate) {
+            this.setDisplayName(content.translate());
+          }
+        },
+        "false": null
+      })
     },
-
     /*
     ***********************************************
       DESTRUCTOR  
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_41_1 = null;
+      this.__P_43_1 = null;
     }
   });
   cv.ui.manager.model.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1664789567903
+//# sourceMappingURL=FileItem.js.map?dt=1672653476541

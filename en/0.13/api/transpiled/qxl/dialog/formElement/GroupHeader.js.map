@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v3_2_0/source/class/qxl/dialog/formElement/GroupHeader.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -28,8 +25,11 @@
     "formElement",
     "GroupHeader"
   ],
-  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAEAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oCAAhB,EACA;AACEC,IAAAA,OAAO,EACP;AACEC,MAAAA,QAAQ,EAAG,oBAAW;AACpBC,QAAAA,GAAG,CAACC,MAAJ,CAAWC,MAAX,CAAkBC,2BAAlB,CACE,aADF,EACiB,KAAKC,aADtB;AAED,OAJH;AAMEA,MAAAA,aAAa,EAAG;AACdC,QAAAA,WAAW,EAAG,qBAASC,SAAT,EAAoBC,SAApB,EAA+BC,GAA/B,EAAoC;AAChD,eAAKC,KAAL,CAAWC,cAAX,CAA0BH,SAAS,CAACI,KAApC,EADgD,CAGhD;;;AACA,iBAAOC,SAAP;AACD;AANa;AANlB;AAFF,GADA;AAnBAZ,EAAAA,GAAG,CAACC,MAAJ,CAAWY,WAAX,CAAuBC,WAAvB,CAAmCnB,aAAnC,GAAmDA,aAAnD",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/formElement/GroupHeader.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.GroupHeader\",\n{\n  statics :\n  {\n    register : function() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"groupheader\", this._registration);\n    },\n\n    _registration : {\n      initElement : function(fieldType, fieldData, key) {\n        this._form.addGroupHeader(fieldData.label);\n\n        // Headers don't return a form object\n        return undefined;\n      }\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo dialog library\n   https://github.com/qooxdoo/qxl.dialog\n\n   Copyright:\n     2020 Christian Boulanger, Derrell Lipman\n\n   License:\n     LGPL: http://www.gnu.org/licenses/lgpl.html\n     EPL: http://www.eclipse.org/org/documents/epl-v10.php\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     *  Christian Boulanger (cboulanger)\n     *  Derrell Lipman (derrell)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.formElement.GroupHeader\", {\n  statics: {\n    register() {\n      qxl.dialog.Dialog.registerFormElementHandlers(\n        \"groupheader\",\n        this._registration\n      );\n    },\n\n    _registration: {\n      initElement(fieldType, fieldData, key) {\n        this._form.addGroupHeader(fieldData.label);\n\n        // Headers don't return a form object\n        return undefined;\n      },\n    },\n  },\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oCAAoC,EAAE;IACpDC,OAAO,EAAE;MACPC,QAAQ,sBAAG;QACTC,GAAG,CAACC,MAAM,CAACC,MAAM,CAACC,2BAA2B,CAC3C,aAAa,EACb,IAAI,CAACC,aAAa,CACnB;MACH,CAAC;MAEDA,aAAa,EAAE;QACbC,WAAW,uBAACC,SAAS,EAAEC,SAAS,EAAEC,GAAG,EAAE;UACrC,IAAI,CAACC,KAAK,CAACC,cAAc,CAACH,SAAS,CAACI,KAAK,CAAC;;UAE1C;UACA,OAAOC,SAAS;QAClB;MACF;IACF;EACF,CAAC,CAAC;EArCFZ,GAAG,CAACC,MAAM,CAACY,WAAW,CAACC,WAAW,CAACnB,aAAa,GAAGA,aAAa;AAAC"
 }

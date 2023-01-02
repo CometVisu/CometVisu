@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
       isInRange: function isInRange(nr, vmin, vmax) {
         return nr >= vmin && nr <= vmax;
       },
-
       /**
        * Check whether the number is between a given range
        *
@@ -59,7 +57,6 @@
       isBetweenRange: function isBetweenRange(nr, vmin, vmax) {
         return nr > vmin && nr < vmax;
       },
-
       /**
        * Limit the number to a given range
        *
@@ -81,7 +78,6 @@
           return nr;
         }
       },
-
       /**
        * Checks the equality of two numbers regarding the imprecision of floats.
        *
@@ -98,4 +94,4 @@
   qx.lang.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1664789588188
+//# sourceMappingURL=Number.js.map?dt=1672653499607

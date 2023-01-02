@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -47,12 +46,12 @@
        * File types which are acceptable for upload; note that this is not guaranteed
        * because not all (older) browsers support it, but where available it will
        * restrict the file open dialog to only allow these file types.
-       * 
+       *
        * This value is passed directly through to the input tag's accept attribute, so
        * the format can be seen here: {@link http://www.w3schools.com/tags/att_input_accept.asp};
        * in summary, it is a comma separated list of file extensions (with the dot) and/or
        * MIME types; EG:
-       * 
+       *
        * 	.jpg,.png,.gif			-- Images
        * 	image/*,.mp4				-- Images and *.mp4
        */
@@ -62,7 +61,6 @@
         check: "String",
         event: "changeAcceptUpload"
       },
-
       /**
        * Whether to support multiple files (default=true); this is not supported
        * on older browsers
@@ -73,7 +71,6 @@
         nullable: false,
         event: "changeMultiple"
       },
-
       /**
        * Whether to support directories only (default=false); this is not supported
        * on older browsers
@@ -87,14 +84,16 @@
     },
     members: {
       // overridden
-      capture: function capture() {// Nothing
+      capture: function capture() {
+        // Nothing
       },
       // overridden
-      releaseCapture: function releaseCapture() {// Nothing
+      releaseCapture: function releaseCapture() {
+        // Nothing
       }
     }
   });
   com.zenesis.qx.upload.MUploadButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MUploadButton.js.map?dt=1664789615741
+//# sourceMappingURL=MUploadButton.js.map?dt=1672653525567

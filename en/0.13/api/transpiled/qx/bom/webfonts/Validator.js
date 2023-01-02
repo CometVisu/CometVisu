@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,19 +34,17 @@
   /**
    * Checks whether a given font is available on the document and fires events
    * accordingly.
-   * 
+   *
    * This class does not need to be disposed, unless you want to abort the validation
    * early
    */
   qx.Class.define("qx.bom.webfonts.Validator", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param fontFamily {String} The name of the font to be verified
      * @param comparisonString {String?} String to be used to detect whether a font was loaded or not
@@ -57,30 +54,26 @@
      */
     construct: function construct(fontFamily, comparisonString, fontWeight, fontStyle) {
       qx.core.Object.constructor.call(this);
-
       if (comparisonString) {
         this.setComparisonString(comparisonString);
       }
-
       if (fontWeight) {
         this.setFontWeight(fontWeight);
       }
-
       if (fontStyle) {
         this.setFontStyle(fontStyle);
       }
-
       if (fontFamily) {
         this.setFontFamily(fontFamily);
-        this.__P_151_0 = this._getRequestedHelpers();
+        this.__P_152_0 = this._getRequestedHelpers();
       }
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Sets of serif and sans-serif fonts to be used for size comparisons.
@@ -90,7 +83,6 @@
         sans: ["Arial", "Helvetica", "sans-serif"],
         serif: ["Times New Roman", "Georgia", "serif"]
       },
-
       /**
        * Map of common CSS attributes to be used for all  size comparison elements
        */
@@ -107,7 +99,6 @@
         fontVariant: "normal",
         visibility: "hidden"
       },
-
       /**
        * The string to be used in the size comparison elements. This is the default string
        * which is used for the {@link #COMPARISON_FONTS} and the font to be validated. It
@@ -115,31 +106,28 @@
        * property.
        */
       COMPARISON_STRING: "WEei",
-      __P_151_1: null,
-      __P_151_2: null,
-
+      __P_152_1: null,
+      __P_152_2: null,
       /**
        * Removes the two common helper elements used for all size comparisons from
        * the DOM
        */
       removeDefaultHelperElements: function removeDefaultHelperElements() {
-        var defaultHelpers = qx.bom.webfonts.Validator.__P_151_2;
-
+        var defaultHelpers = qx.bom.webfonts.Validator.__P_152_2;
         if (defaultHelpers) {
           for (var prop in defaultHelpers) {
             document.body.removeChild(defaultHelpers[prop]);
           }
         }
-
-        delete qx.bom.webfonts.Validator.__P_151_2;
+        delete qx.bom.webfonts.Validator.__P_152_2;
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The font-family this validator should check
@@ -149,21 +137,18 @@
         init: null,
         apply: "_applyFontFamily"
       },
-
       /** The font weight to check */
       fontWeight: {
         nullable: true,
         check: "String",
         apply: "_applyFontWeight"
       },
-
       /** The font style to check */
       fontStyle: {
         nullable: true,
         check: "String",
         apply: "_applyFontStyle"
       },
-
       /**
        * Comparison string used to check whether the font has loaded or not.
        */
@@ -171,7 +156,6 @@
         nullable: true,
         init: null
       },
-
       /**
        * Time in milliseconds from the beginning of the check until it is assumed
        * that a font is not available
@@ -181,77 +165,68 @@
         init: 5000
       }
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when the status of a web font has been determined. The event data
        * is a map with the keys "family" (the font-family name) and "valid"
        * (Boolean).
        */
-      "changeStatus": "qx.event.type.Data"
+      changeStatus: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_151_0: null,
-      __P_151_3: null,
-      __P_151_4: null,
 
+    members: {
+      __P_152_0: null,
+      __P_152_3: null,
+      __P_152_4: null,
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Validates the font
        */
       validate: function validate() {
-        this.__P_151_4 = new Date().getTime();
-
-        if (this.__P_151_3) {
-          this.__P_151_3.restart();
+        this.__P_152_4 = new Date().getTime();
+        if (this.__P_152_3) {
+          this.__P_152_3.restart();
         } else {
-          this.__P_151_3 = new qx.event.Timer(100);
-
-          this.__P_151_3.addListener("interval", this.__P_151_5, this); // Give the browser a chance to render the new elements
-
-
+          this.__P_152_3 = new qx.event.Timer(100);
+          this.__P_152_3.addListener("interval", this.__P_152_5, this);
+          // Give the browser a chance to render the new elements
           qx.event.Timer.once(function () {
-            this.__P_151_3.start();
+            this.__P_152_3.start();
           }, this, 0);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROTECTED API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Removes the helper elements from the DOM
        */
       _reset: function _reset() {
-        if (this.__P_151_0) {
-          for (var prop in this.__P_151_0) {
-            var elem = this.__P_151_0[prop];
+        if (this.__P_152_0) {
+          for (var prop in this.__P_152_0) {
+            var elem = this.__P_152_0[prop];
             document.body.removeChild(elem);
           }
-
-          this.__P_151_0 = null;
+          this.__P_152_0 = null;
         }
       },
-
       /**
        * Checks if the font is available by comparing the widths of the elements
        * using the generic fonts to the widths of the elements using the font to
@@ -261,30 +236,26 @@
        * in size
        */
       _isFontValid: function _isFontValid() {
-        if (!qx.bom.webfonts.Validator.__P_151_1) {
-          this.__P_151_6();
+        if (!qx.bom.webfonts.Validator.__P_152_1) {
+          this.__P_152_6();
+        }
+        if (!this.__P_152_0) {
+          this.__P_152_0 = this._getRequestedHelpers();
         }
 
-        if (!this.__P_151_0) {
-          this.__P_151_0 = this._getRequestedHelpers();
-        } // force rerendering for chrome
-
-
-        this.__P_151_0.sans.style.visibility = "visible";
-        this.__P_151_0.sans.style.visibility = "hidden";
-        this.__P_151_0.serif.style.visibility = "visible";
-        this.__P_151_0.serif.style.visibility = "hidden";
-        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_151_0.sans);
-        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_151_0.serif);
+        // force rerendering for chrome
+        this.__P_152_0.sans.style.visibility = "visible";
+        this.__P_152_0.sans.style.visibility = "hidden";
+        this.__P_152_0.serif.style.visibility = "visible";
+        this.__P_152_0.serif.style.visibility = "hidden";
+        var requestedSans = qx.bom.element.Dimension.getWidth(this.__P_152_0.sans);
+        var requestedSerif = qx.bom.element.Dimension.getWidth(this.__P_152_0.serif);
         var cls = qx.bom.webfonts.Validator;
-
-        if (requestedSans !== cls.__P_151_1.sans || requestedSerif !== cls.__P_151_1.serif) {
+        if (requestedSans !== cls.__P_152_1.sans || requestedSerif !== cls.__P_152_1.serif) {
           return true;
         }
-
         return false;
       },
-
       /**
        * Creates the two helper elements styled with the font to be checked
        *
@@ -299,7 +270,6 @@
           serif: this._getHelperElement(fontsSerif, this.getComparisonString())
         };
       },
-
       /**
        * Creates a span element with the comparison text (either {@link #COMPARISON_STRING} or
        * {@link #comparisonString}) and styled with the default CSS ({@link #HELPER_CSS}) plus
@@ -311,7 +281,6 @@
        */
       _getHelperElement: function _getHelperElement(fontFamily, comparisonString) {
         var styleMap = qx.lang.Object.clone(qx.bom.webfonts.Validator.HELPER_CSS);
-
         if (fontFamily) {
           if (styleMap.fontFamily) {
             styleMap.fontFamily += "," + fontFamily.join(",");
@@ -319,15 +288,12 @@
             styleMap.fontFamily = fontFamily.join(",");
           }
         }
-
         if (this.getFontWeight()) {
           styleMap.fontWeight = this.getFontWeight();
         }
-
         if (this.getFontStyle()) {
           styleMap.fontStyle = this.getFontStyle();
         }
-
         var elem = document.createElement("span");
         elem.innerHTML = comparisonString || qx.bom.webfonts.Validator.COMPARISON_STRING;
         qx.bom.element.Style.setStyles(elem, styleMap);
@@ -352,54 +318,44 @@
           this._reset();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PRIVATE API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Creates the default helper elements and gets their widths
        */
-      __P_151_6: function __P_151_6() {
+      __P_152_6: function __P_152_6() {
         var cls = qx.bom.webfonts.Validator;
-
-        if (!cls.__P_151_2) {
-          cls.__P_151_2 = {
+        if (!cls.__P_152_2) {
+          cls.__P_152_2 = {
             sans: this._getHelperElement(cls.COMPARISON_FONTS.sans),
             serif: this._getHelperElement(cls.COMPARISON_FONTS.serif)
           };
         }
-
-        cls.__P_151_1 = {
-          sans: qx.bom.element.Dimension.getWidth(cls.__P_151_2.sans),
-          serif: qx.bom.element.Dimension.getWidth(cls.__P_151_2.serif)
+        cls.__P_152_1 = {
+          sans: qx.bom.element.Dimension.getWidth(cls.__P_152_2.sans),
+          serif: qx.bom.element.Dimension.getWidth(cls.__P_152_2.serif)
         };
       },
-
       /**
        * Triggers helper element size comparison and fires a ({@link #changeStatus})
        * event with the result.
        */
-      __P_151_5: function __P_151_5() {
+      __P_152_5: function __P_152_5() {
         if (this._isFontValid()) {
-          this.__P_151_3.stop();
-
+          this.__P_152_3.stop();
           this._reset();
-
           this.fireDataEvent("changeStatus", {
             family: this.getFontFamily(),
             valid: true
           });
         } else {
           var now = new Date().getTime();
-
-          if (now - this.__P_151_4 >= this.getTimeout()) {
-            this.__P_151_3.stop();
-
+          if (now - this.__P_152_4 >= this.getTimeout()) {
+            this.__P_152_3.stop();
             this._reset();
-
             this.fireDataEvent("changeStatus", {
               family: this.getFontFamily(),
               valid: false
@@ -408,7 +364,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -416,15 +371,12 @@
     */
     destruct: function destruct() {
       this._reset();
-
-      this.__P_151_3.stop();
-
-      this.__P_151_3.removeListener("interval", this.__P_151_5, this);
-
-      this._disposeObjects("__P_151_3");
+      this.__P_152_3.stop();
+      this.__P_152_3.removeListener("interval", this.__P_152_5, this);
+      this._disposeObjects("__P_152_3");
     }
   });
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1664789579733
+//# sourceMappingURL=Validator.js.map?dt=1672653487824

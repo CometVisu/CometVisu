@@ -28,11 +28,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Gauge.js 
-   * 
+  /* Gauge.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -58,11 +57,10 @@
    * @asset(plugins/gauge/gauge.css)
    * @asset(plugins/gauge/dep/steelseries.js)
    * @asset(plugins/gauge/dep/tween.js)
-  */
+   */
   qx.Class.define('cv.plugins.Gauge', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Operate],
-
     /*
     ******************************************************
       PROPERTIES
@@ -187,7 +185,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -212,82 +209,82 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'target': {
+          target: {
             target: 'pagejumpTarget'
           },
-          'type': {
+          type: {
             target: 'gType',
-            'default': 'Radial'
+            "default": 'Radial'
           },
-          'subtype': {},
-          'titleString': {},
-          'unitString': {},
-          'unitStringVisible': {
+          subtype: {},
+          titleString: {},
+          unitString: {},
+          unitStringVisible: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'size': {
-            'default': 150,
+          size: {
+            "default": 150,
             transform: parseFloat
           },
-          'width': {
-            'default': 320,
+          width: {
+            "default": 320,
             transform: parseFloat
           },
-          'height': {
-            'default': 140,
+          height: {
+            "default": 140,
             transform: parseFloat
           },
-          'minValue': {
-            'default': 0,
+          minValue: {
+            "default": 0,
             transform: parseFloat
           },
-          'maxValue': {
-            'default': 100,
+          maxValue: {
+            "default": 100,
             transform: parseFloat
           },
-          'framedesign': {
+          framedesign: {
             target: 'frameDesign'
           },
-          'background': {
+          background: {
             target: 'backgroundColor'
           },
-          'lcdVisible': {
+          lcdVisible: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'lcdDecimals': {
-            'default': 0,
+          lcdDecimals: {
+            "default": 0,
             transform: parseInt
           },
-          'ledVisible': {
+          ledVisible: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'valueColor': {},
-          'trendVisible': {
+          valueColor: {},
+          trendVisible: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'thresholdRising': {
+          thresholdRising: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'threshold': {
-            'default': 0,
+          threshold: {
+            "default": 0,
             transform: parseFloat
           },
-          'autoScroll': {
+          autoScroll: {
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'valuesNumeric': {
+          valuesNumeric: {
             transform: function transform(value) {
               return value === 'true';
             }
@@ -298,15 +295,14 @@
         return [true, variant];
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_9_0: null,
-      __P_9_1: null,
+      __P_11_0: null,
+      __P_11_1: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor' + (this.getPagejumpTarget() ? 'clickable' : '') + '"><canvas id="gauge_' + this.getPath() + '"></canvas></div>';
       },
@@ -324,8 +320,7 @@
           ledColor: steelseries.LedColor.RED_LED
         };
         var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
-        this.__P_9_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
-
+        this.__P_11_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
         cv.plugins.Gauge.superclass.prototype._onDomReady.call(this);
       },
       // overridden
@@ -343,10 +338,8 @@
         if (address && data) {
           return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
         }
-
         return null;
       },
-
       /**
        * Handle the incoming data
        * @param value {var} Processed incoming value
@@ -356,30 +349,23 @@
         if (!address || value === undefined) {
           return;
         }
-
         var variant = this.getAddress()[address].variantInfo;
-        var gaugeElement = this.__P_9_0;
-
+        var gaugeElement = this.__P_11_0;
         if (gaugeElement) {
           switch (variant) {
             case 'average':
               if (gaugeElement.setValueAnimatedAverage) {
                 gaugeElement.setValueAnimatedAverage(value);
               }
-
               break;
-
             case 'setValue':
               if (gaugeElement.setValue) {
                 gaugeElement.setValue(value);
               }
-
               break;
-
             case 'trend':
               if (gaugeElement.setTrend) {
                 var trend;
-
                 if (value > 0) {
                   trend = steelseries.TrendState.UP;
                 } else if (value < 0) {
@@ -387,42 +373,31 @@
                 } else {
                   trend = steelseries.TrendState.STEADY;
                 }
-
                 gaugeElement.setTrend(trend);
               }
-
               break;
-
             case 'threshold':
               if (gaugeElement.setThreshold) {
                 gaugeElement.setThreshold(value);
               }
-
               break;
-
             case 'min':
               if (gaugeElement.setMinValue) {
                 gaugeElement.setMinValue(value);
               }
-
               break;
-
             case 'max':
               if (gaugeElement.setMaxValue) {
                 gaugeElement.setMaxValue(value);
               }
-
               break;
-
             default:
               if (gaugeElement.setValueAnimatedLatest) {
                 gaugeElement.setValueAnimatedLatest(value);
               }
-
               if (gaugeElement.setValueAnimated) {
                 gaugeElement.setValueAnimated(value);
               }
-
           }
         }
       },
@@ -444,4 +419,4 @@
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1664789562958
+//# sourceMappingURL=Gauge.js.map?dt=1672653471571

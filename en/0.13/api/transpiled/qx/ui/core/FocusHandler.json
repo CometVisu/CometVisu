@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 599
       },
       "end": {
-        "line": 630,
-        "column": 3
+        "line": 581,
+        "column": 3,
+        "index": 15480
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 37,
-        "column": 14
+        "line": 33,
+        "column": 2,
+        "index": 882
       },
       "end": {
-        "line": 43,
-        "column": 3
+        "line": 38,
+        "column": 3,
+        "index": 965
       }
     },
     "jsdoc": {}
@@ -47,12 +51,14 @@
     "useTabNavigation": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1193
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1259
         }
       },
       "jsdoc": {
@@ -106,12 +112,14 @@
     "__roots": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1467
         },
         "end": {
-          "line": 70,
-          "column": 18
+          "line": 62,
+          "column": 17,
+          "index": 1480
         }
       },
       "type": "variable",
@@ -120,12 +128,14 @@
     "__activeChild": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 1486
         },
         "end": {
-          "line": 71,
-          "column": 24
+          "line": 63,
+          "column": 23,
+          "index": 1505
         }
       },
       "type": "variable",
@@ -134,12 +144,14 @@
     "__focusedChild": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1511
         },
         "end": {
-          "line": 72,
-          "column": 25
+          "line": 64,
+          "column": 24,
+          "index": 1531
         }
       },
       "type": "variable",
@@ -148,12 +160,14 @@
     "__currentRoot": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1537
         },
         "end": {
-          "line": 73,
-          "column": 24
+          "line": 65,
+          "column": 23,
+          "index": 1556
         }
       },
       "type": "variable",
@@ -162,12 +176,14 @@
     "connectTo": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1872
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 82,
+          "column": 5,
+          "index": 2266
         }
       },
       "jsdoc": {
@@ -193,12 +209,14 @@
     "addRoot": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2469
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2591
         }
       },
       "jsdoc": {
@@ -224,12 +242,14 @@
     "removeRoot": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2731
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 103,
+          "column": 5,
+          "index": 2857
         }
       },
       "jsdoc": {
@@ -255,12 +275,14 @@
     "getActiveWidget": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3028
         },
         "end": {
-          "line": 127,
-          "column": 5
+          "line": 113,
+          "column": 5,
+          "index": 3086
         }
       },
       "jsdoc": {
@@ -285,12 +307,14 @@
     "isActive": {
       "location": {
         "start": {
-          "line": 136,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3300
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 3367
         }
       },
       "jsdoc": {
@@ -324,12 +348,14 @@
     "getFocusedWidget": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3544
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 3604
         }
       },
       "jsdoc": {
@@ -354,12 +380,14 @@
     "isFocused": {
       "location": {
         "start": {
-          "line": 158,
-          "column": 4
+          "line": 141,
+          "column": 4,
+          "index": 3821
         },
         "end": {
-          "line": 160,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 3890
         }
       },
       "jsdoc": {
@@ -393,12 +421,14 @@
     "isFocusRoot": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4115
         },
         "end": {
-          "line": 171,
-          "column": 5
+          "line": 153,
+          "column": 5,
+          "index": 4192
         }
       },
       "jsdoc": {
@@ -432,12 +462,14 @@
     "_onActivate": {
       "location": {
         "start": {
-          "line": 188,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4517
         },
         "end": {
-          "line": 198,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 4780
         }
       },
       "jsdoc": {
@@ -463,12 +495,14 @@
     "_onDeactivate": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 182,
+          "column": 4,
+          "index": 4912
         },
         "end": {
-          "line": 212,
-          "column": 5
+          "line": 187,
+          "column": 5,
+          "index": 5055
         }
       },
       "jsdoc": {
@@ -494,12 +528,14 @@
     "_onFocusIn": {
       "location": {
         "start": {
-          "line": 220,
-          "column": 4
+          "line": 194,
+          "column": 4,
+          "index": 5184
         },
         "end": {
-          "line": 228,
-          "column": 5
+          "line": 200,
+          "column": 5,
+          "index": 5361
         }
       },
       "jsdoc": {
@@ -525,12 +561,14 @@
     "_onFocusOut": {
       "location": {
         "start": {
-          "line": 236,
-          "column": 4
+          "line": 207,
+          "column": 4,
+          "index": 5491
         },
         "end": {
-          "line": 244,
-          "column": 5
+          "line": 213,
+          "column": 5,
+          "index": 5666
         }
       },
       "jsdoc": {
@@ -556,12 +594,14 @@
     "__onKeyPress": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 220,
+          "column": 4,
+          "index": 5793
         },
         "end": {
-          "line": 278,
-          "column": 5
+          "line": 249,
+          "column": 5,
+          "index": 6545
         }
       },
       "jsdoc": {
@@ -587,12 +627,14 @@
     "__findFocusRoot": {
       "location": {
         "start": {
-          "line": 296,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 7042
         },
         "end": {
-          "line": 309,
-          "column": 5
+          "line": 275,
+          "column": 5,
+          "index": 7277
         }
       },
       "jsdoc": {
@@ -626,12 +668,14 @@
     "__compareTabOrder": {
       "location": {
         "start": {
-          "line": 329,
-          "column": 4
+          "line": 291,
+          "column": 4,
+          "index": 7774
         },
         "end": {
-          "line": 371,
-          "column": 5
+          "line": 332,
+          "column": 5,
+          "index": 8748
         }
       },
       "jsdoc": {
@@ -672,12 +716,14 @@
     "__getFirstWidget": {
       "location": {
         "start": {
-          "line": 380,
-          "column": 4
+          "line": 340,
+          "column": 4,
+          "index": 8917
         },
         "end": {
-          "line": 382,
-          "column": 5
+          "line": 342,
+          "column": 5,
+          "index": 8999
         }
       },
       "jsdoc": {
@@ -702,12 +748,14 @@
     "__getLastWidget": {
       "location": {
         "start": {
-          "line": 391,
-          "column": 4
+          "line": 350,
+          "column": 4,
+          "index": 9166
         },
         "end": {
-          "line": 393,
-          "column": 5
+          "line": 352,
+          "column": 5,
+          "index": 9246
         }
       },
       "jsdoc": {
@@ -732,12 +780,14 @@
     "__getWidgetAfter": {
       "location": {
         "start": {
-          "line": 402,
-          "column": 4
+          "line": 360,
+          "column": 4,
+          "index": 9438
         },
         "end": {
-          "line": 423,
-          "column": 5
+          "line": 380,
+          "column": 5,
+          "index": 9950
         }
       },
       "jsdoc": {
@@ -771,12 +821,14 @@
     "__getWidgetBefore": {
       "location": {
         "start": {
-          "line": 432,
-          "column": 4
+          "line": 388,
+          "column": 4,
+          "index": 10143
         },
         "end": {
-          "line": 453,
-          "column": 5
+          "line": 408,
+          "column": 5,
+          "index": 10661
         }
       },
       "jsdoc": {
@@ -810,12 +862,14 @@
     "__collectAllAfter": {
       "location": {
         "start": {
-          "line": 475,
-          "column": 4
+          "line": 425,
+          "column": 4,
+          "index": 11226
         },
         "end": {
-          "line": 498,
-          "column": 5
+          "line": 449,
+          "column": 5,
+          "index": 11866
         }
       },
       "jsdoc": {
@@ -855,12 +909,14 @@
     "__collectAllBefore": {
       "location": {
         "start": {
-          "line": 510,
-          "column": 4
+          "line": 460,
+          "column": 4,
+          "index": 12216
         },
         "end": {
-          "line": 533,
-          "column": 5
+          "line": 484,
+          "column": 5,
+          "index": 12858
         }
       },
       "jsdoc": {
@@ -900,12 +956,14 @@
     "__getFirst": {
       "location": {
         "start": {
-          "line": 543,
-          "column": 4
+          "line": 493,
+          "column": 4,
+          "index": 13157
         },
         "end": {
-          "line": 573,
-          "column": 5
+          "line": 526,
+          "column": 5,
+          "index": 14014
         }
       },
       "jsdoc": {
@@ -948,12 +1006,14 @@
     "__getLast": {
       "location": {
         "start": {
-          "line": 583,
-          "column": 4
+          "line": 535,
+          "column": 4,
+          "index": 14309
         },
         "end": {
-          "line": 613,
-          "column": 5
+          "line": 568,
+          "column": 5,
+          "index": 15157
         }
       },
       "jsdoc": {
@@ -1081,6 +1141,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1105,6 +1166,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1223,12 +1285,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 625,
-        "column": 13
+        "line": 577,
+        "column": 2,
+        "index": 15353
       },
       "end": {
-        "line": 629,
-        "column": 3
+        "line": 580,
+        "column": 3,
+        "index": 15476
       }
     },
     "jsdoc": {}

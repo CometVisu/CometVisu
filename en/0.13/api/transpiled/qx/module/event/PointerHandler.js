@@ -32,7 +32,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,7 +63,6 @@
        * List of events that require a pointer handler
        */
       TYPES: ["pointermove", "pointerover", "pointerout", "pointerdown", "pointerup", "pointercancel", "gesturebegin", "gesturemove", "gesturefinish", "gesturecancel"],
-
       /**
        * Creates a pointer handler for the given element when a pointer event listener
        * is attached to it
@@ -79,11 +77,9 @@
               element.$$emitter = new qx.event.Emitter();
             }
           }
-
           element.$$pointerHandler = new qx.event.handler.PointerCore(element, element.$$emitter);
         }
       },
-
       /**
        * Removes the pointer event handler from the element if there are no more
        * pointer event listeners attached to it
@@ -98,18 +94,16 @@
           if (element.$$pointerHandler.classname === "qx.event.handler.Pointer") {
             return;
           }
-
           var listeners = element.$$emitter.getListeners();
-
           for (var type in listeners) {
             if (qx.module.event.PointerHandler.TYPES.indexOf(type) !== -1) {
               if (listeners[type].length > 0) {
                 return;
               }
             }
-          } // no more listeners, get rid of the handler
+          }
 
-
+          // no more listeners, get rid of the handler
           element.$$pointerHandler.dispose();
           element.$$pointerHandler = undefined;
         }
@@ -122,4 +116,4 @@
   qx.module.event.PointerHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PointerHandler.js.map?dt=1664789590287
+//# sourceMappingURL=PointerHandler.js.map?dt=1672653501590

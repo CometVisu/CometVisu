@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 768
       },
       "end": {
-        "line": 59,
-        "column": 3
+        "line": 56,
+        "column": 3,
+        "index": 1528
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "TYPES": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 892
         },
         "end": {
-          "line": 33,
-          "column": 49
+          "line": 32,
+          "column": 48,
+          "index": 936
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "normalize": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1287
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1422
         }
       },
       "jsdoc": {
@@ -125,15 +131,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 56,
-        "column": 10
+        "line": 53,
+        "column": 2,
+        "index": 1431
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1524
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

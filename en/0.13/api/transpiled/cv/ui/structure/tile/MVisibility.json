@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 894
       },
       "end": {
-        "line": 77,
-        "column": 3
+        "line": 76,
+        "column": 3,
+        "index": 2095
       }
     },
     "jsdoc": {
@@ -36,12 +38,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 13
+        "line": 30,
+        "column": 2,
+        "index": 1076
       },
       "end": {
-        "line": 33,
-        "column": 3
+        "line": 32,
+        "column": 3,
+        "index": 1124
       }
     },
     "jsdoc": {}
@@ -50,12 +54,14 @@
     "observer": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1266
         },
         "end": {
-          "line": 47,
-          "column": 6
+          "line": 46,
+          "column": 6,
+          "index": 1497
         }
       },
       "type": "variable",
@@ -66,12 +72,14 @@
     "visible": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1649
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1737
         }
       },
       "name": "visible",
@@ -86,12 +94,14 @@
     "_observeVisibility": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1883
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2087
         }
       },
       "type": "function",

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +41,7 @@
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Top padding of the content pane */
       contentPaddingTop: {
@@ -50,7 +50,6 @@
         apply: "_applyContentPadding",
         themeable: true
       },
-
       /** Right padding of the content pane */
       contentPaddingRight: {
         check: "Integer",
@@ -58,7 +57,6 @@
         apply: "_applyContentPadding",
         themeable: true
       },
-
       /** Bottom padding of the content pane */
       contentPaddingBottom: {
         check: "Integer",
@@ -66,7 +64,6 @@
         apply: "_applyContentPadding",
         themeable: true
       },
-
       /** Left padding of the content pane */
       contentPaddingLeft: {
         check: "Integer",
@@ -74,7 +71,6 @@
         apply: "_applyContentPadding",
         themeable: true
       },
-
       /**
        * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',
        * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'
@@ -90,43 +86,41 @@
         themeable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /**
        * @type {Map} Maps property names of content padding to the setter of the padding
        *
        * @lint ignoreReferenceField(__contentPaddingSetter)
        */
-      __P_295_0: {
+      __P_310_0: {
         contentPaddingTop: "setPaddingTop",
         contentPaddingRight: "setPaddingRight",
         contentPaddingBottom: "setPaddingBottom",
         contentPaddingLeft: "setPaddingLeft"
       },
-
       /**
        * @type {Map} Maps property names of content padding to the themed setter of the padding
        *
        * @lint ignoreReferenceField(__contentPaddingThemedSetter)
        */
-      __P_295_1: {
+      __P_310_1: {
         contentPaddingTop: "setThemedPaddingTop",
         contentPaddingRight: "setThemedPaddingRight",
         contentPaddingBottom: "setThemedPaddingBottom",
         contentPaddingLeft: "setThemedPaddingLeft"
       },
-
       /**
        * @type {Map} Maps property names of content padding to the resetter of the padding
        *
        * @lint ignoreReferenceField(__contentPaddingResetter)
        */
-      __P_295_2: {
+      __P_310_2: {
         contentPaddingTop: "resetPaddingTop",
         contentPaddingRight: "resetPaddingRight",
         contentPaddingBottom: "resetPaddingBottom",
@@ -135,17 +129,16 @@
       // property apply
       _applyContentPadding: function _applyContentPadding(value, old, name, variant) {
         var target = this._getContentPaddingTarget();
-
         if (value == null) {
-          var resetter = this.__P_295_2[name];
+          var resetter = this.__P_310_2[name];
           target[resetter]();
         } else {
           // forward the themed sates if case the apply was invoked by a theme
           if (variant == "setThemed" || variant == "resetThemed") {
-            var setter = this.__P_295_1[name];
+            var setter = this.__P_310_1[name];
             target[setter](value);
           } else {
-            var setter = this.__P_295_0[name];
+            var setter = this.__P_310_0[name];
             target[setter](value);
           }
         }
@@ -155,4 +148,4 @@
   qx.ui.core.MContentPadding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MContentPadding.js.map?dt=1664789593622
+//# sourceMappingURL=MContentPadding.js.map?dt=1672653504977

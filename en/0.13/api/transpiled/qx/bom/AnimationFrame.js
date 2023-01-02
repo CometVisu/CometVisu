@@ -30,7 +30,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -90,17 +89,15 @@
     extend: qx.event.Emitter,
     events: {
       /** Fired as soon as the animation has ended. */
-      "end": undefined,
-
+      end: undefined,
       /**
        * Fired on every frame having the passed time as value
        * (might be a float for higher precision).
        */
-      "frame": "Number"
+      frame: "Number"
     },
     members: {
-      __P_95_0: false,
-
+      __P_98_0: false,
       /**
        * Method used to start a series of animation frames. The series will end as
        * soon as the given duration is over.
@@ -110,16 +107,15 @@
        * @ignore(performance.*)
        */
       startSequence: function startSequence(duration) {
-        this.__P_95_0 = false;
-        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__P_95_1 : Date.now();
-
+        this.__P_98_0 = false;
+        var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__P_98_1 : Date.now();
         var cb = function cb(time) {
-          if (this.__P_95_0) {
+          if (this.__P_98_0) {
             this.id = null;
             return;
-          } // final call
+          }
 
-
+          // final call
           if (time >= start + duration) {
             this.emit("end");
             this.id = null;
@@ -129,16 +125,14 @@
             this.id = qx.bom.AnimationFrame.request(cb, this);
           }
         };
-
         this.id = qx.bom.AnimationFrame.request(cb, this);
       },
-
       /**
        * Cancels a started sequence of frames. It will do nothing if no
        * sequence is running.
        */
       cancelSequence: function cancelSequence() {
-        this.__P_95_0 = true;
+        this.__P_98_0 = true;
       }
     },
     statics: {
@@ -146,7 +140,6 @@
        * The default time in ms the timeout fallback implementation uses.
        */
       TIMEOUT: 30,
-
       /**
        * Calculation of the predefined timing functions. Approximation of the real
        * bezier curves has been used for easier calculation. This is good and close
@@ -171,22 +164,18 @@
         } else {
           // default is 'ease'
           var a = [-0.0021, 0.2472, 9.8054, -21.6869, 17.7611, -5.1226];
-        } // A 6th grade polynomial has been used as approximation of the original
+        }
+
+        // A 6th grade polynomial has been used as approximation of the original
         // bezier curves  described in the transition spec
         // http://www.w3.org/TR/css3-transitions/#transition-timing-function_tag
         // (the same is used for animations as well)
-
-
         var y = 0;
-
         for (var i = 0; i < a.length; i++) {
           y += a[i] * Math.pow(x, i);
         }
-
-        ;
         return y;
       },
-
       /**
        * Request for an animation frame. If the native <code>requestAnimationFrame</code>
        * method is supported, it will be used. Otherwise, we use timeouts with a
@@ -200,17 +189,14 @@
        */
       request: function request(callback, context) {
         var req = qx.core.Environment.get("css.animation.requestframe");
-
         var cb = function cb(time) {
           // check for high resolution time
           if (time < 1e10) {
-            time = qx.bom.AnimationFrame.__P_95_1 + time;
+            time = qx.bom.AnimationFrame.__P_98_1 + time;
           }
-
           time = time || Date.now();
           callback.call(context, time);
         };
-
         if (req) {
           return window[req](cb);
         } else {
@@ -222,20 +208,19 @@
         }
       }
     },
-
     /**
      * @ignore(performance.timing.*)
      */
     defer: function defer(statics) {
       // check and use the high resolution start time if available
-      statics.__P_95_1 = window.performance && performance.timing && performance.timing.navigationStart; // if not, simply use the current time
-
-      if (!statics.__P_95_1) {
-        statics.__P_95_1 = Date.now();
+      statics.__P_98_1 = window.performance && performance.timing && performance.timing.navigationStart;
+      // if not, simply use the current time
+      if (!statics.__P_98_1) {
+        statics.__P_98_1 = Date.now();
       }
     }
   });
   qx.bom.AnimationFrame.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationFrame.js.map?dt=1664789575066
+//# sourceMappingURL=AnimationFrame.js.map?dt=1672653483769

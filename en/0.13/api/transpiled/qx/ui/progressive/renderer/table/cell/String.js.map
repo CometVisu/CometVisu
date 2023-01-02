@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/String.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -26,8 +23,11 @@
     "escape",
     "cellData"
   ],
-  "mappings": ";;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8CAAhB,EACA;AACEC,IAAAA,MAAM,EAAON,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCC,QADrD;;AAIE;AACF;AACEC,IAAAA,SAAS,EAAG,qBACZ;AACE;AACD,KATH;AAYEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,eAAe,EAAG,yBAASC,QAAT,EAClB;AACE,eAAOhB,EAAE,CAACiB,GAAH,CAAOC,MAAP,CAAcC,MAAd,CAAqBH,QAAQ,CAACI,QAA9B,CAAP;AACD;AALH;AAbF,GADA;AArBApB,EAAAA,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCO,MAAtC,CAA6Cf,aAA7C,GAA6DA,aAA7D",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/String.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Renderer for Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.String\",\n{\n  extend     : qx.ui.progressive.renderer.table.cell.Abstract,\n\n\n  /**\n   */\n  construct : function()\n  {\n    this.base(arguments);\n  },\n\n\n  members :\n  {\n    // overridden\n    _getContentHtml : function(cellInfo)\n    {\n      return qx.bom.String.escape(cellInfo.cellData);\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Renderer for Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.String\", {\n  extend: qx.ui.progressive.renderer.table.cell.Abstract,\n\n  /**\n   */\n  construct() {\n    super();\n  },\n\n  members: {\n    // overridden\n    _getContentHtml(cellInfo) {\n      return qx.bom.String.escape(cellInfo.cellData);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8CAA8C,EAAE;IAC9DC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACC,QAAQ;IAEtD;AACF;IACEC,SAAS,uBAAG;MACV;IACF,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,eAAe,2BAACC,QAAQ,EAAE;QACxB,OAAOhB,EAAE,CAACiB,GAAG,CAACC,MAAM,CAACC,MAAM,CAACH,QAAQ,CAACI,QAAQ,CAAC;MAChD;IACF;EACF,CAAC,CAAC;EApCFpB,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACO,MAAM,CAACf,aAAa,GAAGA,aAAa;AAAC"
 }

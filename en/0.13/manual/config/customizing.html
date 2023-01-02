@@ -192,16 +192,16 @@ in addition to the CSS files of the CometVisu design.</p>
 if it is not possible to access the servers filesystem directly.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Extracting a configuration file that loads 2 additional CSS files:</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;files&gt;</span>
-            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
-            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-other-custom-style.css<span class="nt">&lt;/file&gt;</span>
-            ...
-        <span class="nt">&lt;/files&gt;</span>
-        ...
-    <span class="nt">&lt;/meta&gt;</span>
-    ...
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;files&gt;</span>
+<span class="w">            </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
+<span class="w">            </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-other-custom-style.css<span class="nt">&lt;/file&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/files&gt;</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
@@ -225,17 +225,17 @@ specification is in the example relative to the CV installation.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Add an additional icon</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        ...
-        <span class="nt">&lt;icons&gt;</span>
-            <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./resource/config/media/icon1.png&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/icons&gt;</span>
-        ...
-    <span class="nt">&lt;/meta&gt;</span>
-    ...
-    <span class="nt">&lt;text&gt;</span>
-      <span class="nt">&lt;label&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span><span class="nt">&gt;&lt;/icon&gt;&lt;/label&gt;</span>
-    <span class="nt">&lt;/text&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span>...
+<span class="w">        </span><span class="nt">&lt;icons&gt;</span>
+<span class="w">            </span><span class="nt">&lt;icon-definition</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Icon1&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;./resource/config/media/icon1.png&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/icons&gt;</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;text&gt;</span>
+<span class="w">      </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Icon1&quot;</span><span class="nt">&gt;&lt;/icon&gt;&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/text&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
@@ -254,25 +254,25 @@ the HTML code <code class="docutils literal notranslate"><span class="pre">&lt;d
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">An individualized switch widget</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;files&gt;</span>
-            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
-        <span class="nt">&lt;/files&gt;</span>
-        ...
-    <span class="nt">&lt;/meta&gt;</span>
-    <span class="nt">&lt;page&gt;</span>
-        <span class="nt">&lt;switch</span> <span class="na">class=</span><span class="s">&quot;fancy&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/switch&gt;</span>
-    <span class="nt">&lt;/page&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;files&gt;</span>
+<span class="w">            </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/my-custom-style.css<span class="nt">&lt;/file&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/files&gt;</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;page&gt;</span>
+<span class="w">        </span><span class="nt">&lt;switch</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;fancy&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/switch&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">CSS rules for the switch widget in the file <cite>resource/config/media/my-custom-style.css</cite></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">pink</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">switch</span><span class="p">.</span><span class="nc">custom_fancy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">pink</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -385,40 +385,40 @@ not to reprogram all parsers in such a case, this separation has been made.</p>
 <h3>example plugin<a class="headerlink" href="#example-plugin" title="Permalink to this headline">¶</a></h3>
 <p>A simple example, for a new widget that can be plugged in,
 can be found in the <code class="docutils literal notranslate"><span class="pre">resource/config/structure_custom.js</span></code>.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">qx</span><span class="p">.</span><span class="nx">Class</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;cv.ui.structure.pure.Headline&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">extend</span><span class="o">:</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">AbstractWidget</span><span class="p">,</span>
 
-<span class="w">  </span><span class="nx">statics</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// parse element from visu_config*.xml</span><span class="w"></span>
-<span class="w">    </span><span class="nx">parse</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">parseElement</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">statics</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// parse element from visu_config*.xml</span>
+<span class="w">    </span><span class="nx">parse</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">parseElement</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="nx">xml</span><span class="p">,</span><span class="w"> </span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">flavour</span><span class="p">,</span><span class="w"> </span><span class="nx">pageType</span><span class="p">);</span>
+<span class="w">      </span><span class="nx">data</span><span class="p">.</span><span class="nx">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nx">properties</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nx">check</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;String&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">init</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">properties</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">check</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;String&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">init</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// generate the DOM string to be added to the GUI</span><span class="w"></span>
-<span class="w">    </span><span class="nx">getDomString</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;&lt;h1 &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;class=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getContent</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&lt;/h1&gt;&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nx">members</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// generate the DOM string to be added to the GUI</span>
+<span class="w">    </span><span class="nx">getDomString</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;&lt;h1 &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s1">&#39;class=&quot;&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">getClasses</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getContent</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&lt;/h1&gt;&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 
-<span class="w">  </span><span class="c1">// this function is executed when this file is loaded</span><span class="w"></span>
-<span class="w">  </span><span class="nx">defer</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">statics</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// register the parser</span><span class="w"></span>
-<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">pure</span><span class="p">.</span><span class="nx">Headline</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// register the widget</span><span class="w"></span>
-<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">WidgetFactory</span><span class="p">.</span><span class="nx">registerClass</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">statics</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// this function is executed when this file is loaded</span>
+<span class="w">  </span><span class="nx">defer</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">statics</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// register the parser</span>
+<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">parser</span><span class="p">.</span><span class="nx">WidgetParser</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">pure</span><span class="p">.</span><span class="nx">Headline</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// register the widget</span>
+<span class="w">    </span><span class="nx">cv</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">WidgetFactory</span><span class="p">.</span><span class="nx">registerClass</span><span class="p">(</span><span class="s2">&quot;headline&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">statics</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>This file provides a widget which adds to the GUI a heading element
@@ -430,17 +430,17 @@ step is necessary so that the schema validator does not mark the
 configuration file as invalid.</p>
 <p>To use this plugin, the file must be loaded.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages...&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;files&gt;</span>
-            <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/structure_custom.js<span class="nt">&lt;/file&gt;</span>
-            ...
-        <span class="nt">&lt;/files&gt;</span>
-        ...
-    <span class="nt">&lt;/meta&gt;</span>
-    ...
-    <span class="nt">&lt;custom&gt;</span>
-        <span class="nt">&lt;headline&gt;</span>My new widget!<span class="nt">&lt;/headline&gt;</span>
-    <span class="nt">&lt;/custom&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;files&gt;</span>
+<span class="w">            </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;js&quot;</span><span class="w"> </span><span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/structure_custom.js<span class="nt">&lt;/file&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/files&gt;</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;custom&gt;</span>
+<span class="w">        </span><span class="nt">&lt;headline&gt;</span>My<span class="w"> </span>new<span class="w"> </span>widget!<span class="nt">&lt;/headline&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/custom&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
@@ -482,7 +482,7 @@ exchange the structures easily.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -24,7 +24,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,28 +49,24 @@
   qx.Class.define("qx.event.handler.Iframe", {
     extend: qx.core.Object,
     implement: qx.event.IEventHandler,
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         load: 1,
         navigate: 1
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false,
-
       /**
        * Internal function called by iframes created using {@link qx.bom.Iframe}.
        *
@@ -82,22 +77,21 @@
       onevent: qx.event.GlobalError.observeMethod(function (target) {
         // Fire navigate event when actual URL diverges from stored URL
         var currentUrl = qx.bom.Iframe.queryCurrentUrl(target);
-
         if (currentUrl !== target.$$url) {
           qx.event.Registration.fireEvent(target, "navigate", qx.event.type.Data, [currentUrl]);
           target.$$url = currentUrl;
-        } // Always fire load event
+        }
 
-
+        // Always fire load event
         qx.event.Registration.fireEvent(target, "load");
       })
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -109,13 +103,14 @@
         return target.tagName.toLowerCase() === "iframe";
       },
       // interface implementation
-      registerEvent: function registerEvent(target, type, capture) {// Nothing needs to be done here
+      registerEvent: function registerEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
       // interface implementation
-      unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
+      unregisterEvent: function unregisterEvent(target, type, capture) {
+        // Nothing needs to be done here
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -128,4 +123,4 @@
   qx.event.handler.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1664789584774
+//# sourceMappingURL=Iframe.js.map?dt=1672653495337

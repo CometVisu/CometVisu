@@ -13,12 +13,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 0
+        "line": 28,
+        "column": 0,
+        "index": 1065
       },
       "end": {
-        "line": 146,
-        "column": 3
+        "line": 153,
+        "column": 3,
+        "index": 4947
       }
     },
     "jsdoc": {
@@ -47,12 +49,14 @@
     "showstatus": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1415
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1476
         }
       },
       "name": "showstatus",
@@ -65,11 +69,13 @@
       "location": {
         "start": {
           "line": 43,
-          "column": 4
+          "column": 4,
+          "index": 1483
         },
         "end": {
           "line": 46,
-          "column": 5
+          "column": 5,
+          "index": 1544
         }
       },
       "name": "elementsPerLine",
@@ -81,12 +87,14 @@
     "buttonConfiguration": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1551
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1624
         }
       },
       "name": "buttonConfiguration",
@@ -177,12 +185,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1802
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2875
         }
       },
       "jsdoc": {},
@@ -196,12 +206,14 @@
     "getActors": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2882
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2980
         }
       },
       "type": "function",
@@ -210,12 +222,14 @@
     "_processIncomingValue": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 3055
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 3148
         }
       },
       "jsdoc": {},
@@ -225,12 +239,14 @@
     "handleUpdate": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 3237
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 122,
+          "column": 5,
+          "index": 4100
         }
       },
       "jsdoc": {
@@ -247,12 +263,14 @@
     "getActionValue": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 4231
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 4501
         }
       },
       "jsdoc": {
@@ -277,12 +295,14 @@
     "initListeners": {
       "location": {
         "start": {
-          "line": 131,
-          "column": 4
+          "line": 138,
+          "column": 4,
+          "index": 4526
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 4840
         }
       },
       "jsdoc": {},
@@ -1320,6 +1340,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1344,6 +1365,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3005,15 +3027,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 143,
-        "column": 9
+        "line": 150,
+        "column": 2,
+        "index": 4849
       },
       "end": {
-        "line": 145,
-        "column": 3
+        "line": 152,
+        "column": 3,
+        "index": 4943
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

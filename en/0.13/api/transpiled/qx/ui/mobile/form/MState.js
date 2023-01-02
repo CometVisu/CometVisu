@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /**
    * The mixin contains all functionality to provide methods
    * for form elements to manipulate their state. [usually "valid" and "invalid"]
@@ -20,26 +19,24 @@
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * The states of the element
        */
-      __P_382_0: null,
-
+      __P_399_0: null,
       /**
        * Adds a state to the element
        * @param state {String} the state to be added
        *
        */
       addState: function addState(state) {
-        if (this.__P_382_0 === null) {
-          this.__P_382_0 = {};
+        if (this.__P_399_0 === null) {
+          this.__P_399_0 = {};
         }
-
-        this.__P_382_0[state] = true;
+        this.__P_399_0[state] = true;
         this.addCssClass(state);
       },
-
       /**
        * Checks whether the element has the state passed as argument
        * @param state {String} the state to be checked
@@ -47,9 +44,8 @@
        *
        */
       hasState: function hasState(state) {
-        return this.__P_382_0 !== null && this.__P_382_0[state];
+        return this.__P_399_0 !== null && this.__P_399_0[state];
       },
-
       /**
        * Removes a state from the element
        * @param state {String} the state to be removed
@@ -57,11 +53,10 @@
        */
       removeState: function removeState(state) {
         if (this.hasState(state)) {
-          delete this.__P_382_0[state];
+          delete this.__P_399_0[state];
           this.removeCssClass(state);
         }
       },
-
       /**
        * Replaces a state of the element with a new state.
        * If the element doesn't have the state to be removed, then th new state will
@@ -72,8 +67,8 @@
        */
       replaceState: function replaceState(oldState, newState) {
         if (this.hasState(oldState)) {
-          delete this.__P_382_0[oldState];
-          this.__P_382_0[newState] = true;
+          delete this.__P_399_0[oldState];
+          this.__P_399_0[newState] = true;
           this.removeCssClass(oldState);
           this.addCssClass(newState);
         } else {
@@ -85,4 +80,4 @@
   qx.ui.mobile.form.MState.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MState.js.map?dt=1664789601037
+//# sourceMappingURL=MState.js.map?dt=1672653511546

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 655
       },
       "end": {
-        "line": 75,
-        "column": 3
+        "line": 86,
+        "column": 3,
+        "index": 2055
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "getQuotationStart": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 867
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 42,
+          "column": 5,
+          "index": 1022
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "getQuotationEnd": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1182
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1333
         }
       },
       "jsdoc": {
@@ -115,12 +121,14 @@
     "getAlternateQuotationStart": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1521
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 1694
         }
       },
       "jsdoc": {
@@ -154,12 +162,14 @@
     "getAlternateQuotationEnd": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 1878
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2047
         }
       },
       "jsdoc": {

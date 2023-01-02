@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +41,7 @@
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Set a layout manager for the widget. A a layout manager can only be connected
@@ -54,7 +54,6 @@
       setLayout: function setLayout(layout) {
         this._setLayout(layout);
       },
-
       /**
        * Get the widget's layout manager.
        *
@@ -64,12 +63,12 @@
         return this._getLayout();
       }
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Mapping of protected methods to public.
@@ -77,6 +76,7 @@
        * this methods in the defer block of the including class.
        *
        * @param members {Map} The including classes members map
+       * @deprecated {7.0} this is not necessary in modern compilers and leads to unexpected behaviour
        */
       remap: function remap(members) {
         members.getLayout = members._getLayout;
@@ -87,4 +87,4 @@
   qx.ui.core.MLayoutHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLayoutHandling.js.map?dt=1664789593716
+//# sourceMappingURL=MLayoutHandling.js.map?dt=1672653505066

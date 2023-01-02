@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 635
       },
       "end": {
-        "line": 246,
-        "column": 3
+        "line": 253,
+        "column": 3,
+        "index": 7025
       }
     },
     "jsdoc": {
@@ -41,26 +43,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 32,
-        "column": 14
+        "line": 31,
+        "column": 2,
+        "index": 779
       },
       "end": {
-        "line": 49,
-        "column": 3
+        "line": 48,
+        "column": 3,
+        "index": 1196
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "defaultCellStyle": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1357
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1444
         }
       },
       "jsdoc": {
@@ -114,12 +119,14 @@
     "_onChangeTheme": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1550
         },
         "end": {
-          "line": 82,
-          "column": 6
+          "line": 76,
+          "column": 6,
+          "index": 1809
         }
       },
       "jsdoc": {
@@ -136,18 +143,20 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "protected"
     },
     "_insetX": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 1937
         },
         "end": {
-          "line": 89,
-          "column": 19
+          "line": 82,
+          "column": 22,
+          "index": 1955
         }
       },
       "jsdoc": {
@@ -164,12 +173,14 @@
     "_insetY": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2125
         },
         "end": {
-          "line": 95,
-          "column": 15
+          "line": 88,
+          "column": 14,
+          "index": 2135
         }
       },
       "jsdoc": {
@@ -186,12 +197,14 @@
     "_createStyleSheet": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2215
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 122,
+          "column": 5,
+          "index": 3232
         }
       },
       "jsdoc": {
@@ -208,12 +221,14 @@
     "_getCellClass": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3491
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 134,
+          "column": 5,
+          "index": 3557
         }
       },
       "jsdoc": {
@@ -247,12 +262,14 @@
     "_getCellStyle": {
       "location": {
         "start": {
-          "line": 154,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 3933
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 148,
+          "column": 5,
+          "index": 3999
         }
       },
       "jsdoc": {
@@ -286,12 +303,14 @@
     "_getCellAttributes": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 4351
         },
         "end": {
-          "line": 172,
-          "column": 5
+          "line": 173,
+          "column": 5,
+          "index": 4767
         }
       },
       "jsdoc": {
@@ -326,11 +345,13 @@
       "location": {
         "start": {
           "line": 184,
-          "column": 4
+          "column": 4,
+          "index": 5130
         },
         "end": {
           "line": 186,
-          "column": 5
+          "column": 5,
+          "index": 5198
         }
       },
       "jsdoc": {
@@ -364,12 +385,14 @@
     "_getCellSizeStyle": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 199,
+          "column": 4,
+          "index": 5724
         },
         "end": {
-          "line": 213,
-          "column": 5
+          "line": 210,
+          "column": 5,
+          "index": 6059
         }
       },
       "jsdoc": {
@@ -424,12 +447,14 @@
     "createDataCellHtml": {
       "location": {
         "start": {
-          "line": 217,
-          "column": 4
+          "line": 213,
+          "column": 4,
+          "index": 6098
         },
         "end": {
-          "line": 233,
-          "column": 5
+          "line": 240,
+          "column": 5,
+          "index": 6771
         }
       },
       "jsdoc": {},
@@ -528,6 +553,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -552,6 +578,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -646,15 +673,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 238,
-        "column": 13
+        "line": 243,
+        "column": 2,
+        "index": 6780
       },
       "end": {
-        "line": 245,
-        "column": 3
+        "line": 252,
+        "column": 3,
+        "index": 7021
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": [
     "qx.ui.table.cellrenderer.AbstractImage",

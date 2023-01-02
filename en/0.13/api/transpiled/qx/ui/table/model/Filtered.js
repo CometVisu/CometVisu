@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -93,32 +92,30 @@
     extend: qx.ui.table.model.Simple,
     construct: function construct() {
       qx.ui.table.model.Simple.constructor.call(this);
-      this.__P_432_0 = {
+      this.__P_446_0 = {
         "==": "numeric",
         "!=": "numeric",
         ">": "numeric",
         "<": "numeric",
         "<=": "numeric",
         ">=": "numeric",
-        "between": "between",
+        between: "between",
         "!between": "between"
       };
-      this.__P_432_1 = false;
+      this.__P_446_1 = false;
       this.Filters = [];
     },
     members: {
-      __P_432_2: null,
-      __P_432_1: null,
-      __P_432_0: null,
-
+      __P_446_2: null,
+      __P_446_1: null,
+      __P_446_0: null,
       /**
        * Function to get the full array of the filtered model
        * @return {Array} the full array of model (with no changes)
        */
       getFullArray: function getFullArray() {
-        return this.__P_432_2;
+        return this.__P_446_2;
       },
-
       /**
        * Whether the given string (needle) is in the array (haystack)
        *
@@ -129,16 +126,13 @@
        */
       _js_in_array: function _js_in_array(the_needle, the_haystack) {
         var the_hay = the_haystack.toString();
-
-        if (the_hay == '') {
+        if (the_hay == "") {
           return false;
         }
-
-        var the_pattern = new RegExp(the_needle, 'g');
+        var the_pattern = new RegExp(the_needle, "g");
         var matched = the_pattern.test(the_haystack);
         return matched;
       },
-
       /**
        * The addBetweenFilter method is used to add a between filter to the
        * table model.
@@ -160,19 +154,17 @@
        * is null.
        */
       addBetweenFilter: function addBetweenFilter(filter, value1, value2, target) {
-        if (this.__P_432_0[filter] === "between" && target != null) {
+        if (this.__P_446_0[filter] === "between" && target != null) {
           if (value1 != null && value2 != null) {
-            var temp = new Array(filter, value1, value2, target);
+            var temp = [filter, value1, value2, target];
           }
         }
-
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("Filter not recognized or value1/value2 is null!");
         }
       },
-
       /**
        * The addNumericFilter method is used to add a basic numeric filter to
        * the table model.
@@ -192,20 +184,17 @@
        */
       addNumericFilter: function addNumericFilter(filter, value1, target) {
         var temp = null;
-
-        if (this.__P_432_0[filter] === "numeric" && target != null) {
+        if (this.__P_446_0[filter] === "numeric" && target != null) {
           if (value1 != null) {
             temp = [filter, value1, target];
           }
         }
-
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("Filter not recognized: value or target is null!");
         }
       },
-
       /**
        * The addRegex method is used to add a regular expression filter to the
        * table model.
@@ -224,24 +213,20 @@
        */
       addRegex: function addRegex(regex, target, ignorecase) {
         var regexarg;
-
         if (ignorecase) {
-          regexarg = 'gi';
+          regexarg = "gi";
         } else {
-          regexarg = 'g';
+          regexarg = "g";
         }
-
         if (regex != null && target != null) {
-          var temp = new Array("regex", regex, target, regexarg);
+          var temp = ["regex", regex, target, regexarg];
         }
-
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("regex cannot be null!");
         }
       },
-
       /**
        * The addNotRegex method is used to add a regular expression filter to the
        * table model and filter cells that do not match.
@@ -260,27 +245,23 @@
        */
       addNotRegex: function addNotRegex(regex, target, ignorecase) {
         var regexarg;
-
         if (ignorecase) {
-          regexarg = 'gi';
+          regexarg = "gi";
         } else {
-          regexarg = 'g';
+          regexarg = "g";
         }
-
         if (regex != null && target != null) {
-          var temp = new Array("notregex", regex, target, regexarg);
+          var temp = ["notregex", regex, target, regexarg];
         }
-
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("notregex cannot be null!");
         }
       },
-
       /**
-      * The applyFilters method is called to apply filters to the table model.
-      */
+       * The applyFilters method is called to apply filters to the table model.
+       */
       applyFilters: function applyFilters() {
         var i;
         var filter_test;
@@ -288,73 +269,55 @@
         var rowArr = this.getData();
         var rowLength = rowArr.length;
         var rowsToHide = [];
-
         for (var row = 0; row < rowLength; row++) {
           filter_test = false;
-
           for (i in this.Filters) {
-            if (this.__P_432_0[this.Filters[i][0]] === "numeric") {
+            if (this.__P_446_0[this.Filters[i][0]] === "numeric") {
               compareValue = this.getValueById(this.Filters[i][2], row);
-
               switch (this.Filters[i][0]) {
                 case "==":
                   if (compareValue == this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case "!=":
                   if (compareValue != this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case ">":
                   if (compareValue > this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case "<":
                   if (compareValue < this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case ">=":
                   if (compareValue >= this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case "<=":
                   if (compareValue <= this.Filters[i][1]) {
                     filter_test = true;
                   }
-
                   break;
               }
-            } else if (this.__P_432_0[this.Filters[i][0]] === "between") {
+            } else if (this.__P_446_0[this.Filters[i][0]] === "between") {
               compareValue = this.getValueById(this.Filters[i][3], row);
-
               switch (this.Filters[i][0]) {
                 case "between":
                   if (compareValue >= this.Filters[i][1] && compareValue <= this.Filters[i][2]) {
                     filter_test = true;
                   }
-
                   break;
-
                 case "!between":
                   if (compareValue < this.Filters[i][1] || compareValue > this.Filters[i][2]) {
                     filter_test = true;
                   }
-
                   break;
               }
             } else if (this.Filters[i][0] === "regex") {
@@ -366,23 +329,20 @@
               var the_pattern = new RegExp(this.Filters[i][1], this.Filters[i][3]);
               filter_test = !the_pattern.test(compareValue);
             }
-
             if (filter_test === true) {
               break;
             }
-          } // instead of hiding a single row, push it into the hiding-store for later hiding.
+          }
 
-
+          // instead of hiding a single row, push it into the hiding-store for later hiding.
           if (filter_test === true) {
             rowsToHide.push(row);
           }
         }
-
-        if (!this.__P_432_1) {
-          this.__P_432_2 = rowArr.slice(0);
-          this.__P_432_1 = true;
+        if (!this.__P_446_1) {
+          this.__P_446_2 = rowArr.slice(0);
+          this.__P_446_1 = true;
         }
-
         rowArr = rowArr.filter(function (row, index) {
           return !rowsToHide.includes(index);
         });
@@ -392,11 +352,11 @@
           lastRow: this._rowArr.length - 1,
           firstColumn: 0,
           lastColumn: this.getColumnCount() - 1
-        }; // Inform the listeners
+        };
 
+        // Inform the listeners
         this.fireDataEvent("dataChanged", data);
       },
-
       /**
        * Hides a specified number of rows.
        *
@@ -413,22 +373,19 @@
       hideRows: function hideRows(rowNum, numOfRows, dispatchEvent) {
         var rowArr = this.getData();
         dispatchEvent = dispatchEvent != null ? dispatchEvent : true;
-
-        if (!this.__P_432_1) {
-          this.__P_432_2 = rowArr.slice(0);
-          this.__P_432_1 = true;
+        if (!this.__P_446_1) {
+          this.__P_446_2 = rowArr.slice(0);
+          this.__P_446_1 = true;
         }
-
         if (numOfRows == null || numOfRows < 1) {
           numOfRows = 1;
         }
-
         for (var kludge = rowNum; kludge < rowArr.length - numOfRows; kludge++) {
           rowArr[kludge] = rowArr[kludge + numOfRows];
         }
+        this.removeRows(kludge, numOfRows);
 
-        this.removeRows(kludge, numOfRows); // Inform the listeners
-
+        // Inform the listeners
         if (dispatchEvent) {
           var data = {
             firstRow: 0,
@@ -439,33 +396,31 @@
           this.fireDataEvent("dataChanged", data);
         }
       },
-
       /**
        * Return the table to the original state with all rows shown and clears
        * all filters.
        *
        */
       resetHiddenRows: function resetHiddenRows() {
-        if (!this.__P_432_2) {
+        if (!this.__P_446_2) {
           // nothing to reset
           return;
         }
-
         this.Filters = [];
-        this.setData(qx.lang.Array.clone(this.__P_432_2));
+        this.setData(qx.lang.Array.clone(this.__P_446_2));
       },
       // overridden
       setData: function setData(rowArr, clearSorting) {
-        this.__P_432_2 = qx.lang.Array.clone(rowArr);
+        this.__P_446_2 = qx.lang.Array.clone(rowArr);
         this.Filters = [];
         qx.ui.table.model.Filtered.superclass.prototype.setData.call(this, rowArr, clearSorting);
       }
     },
     destruct: function destruct() {
-      this.__P_432_2 = this.__P_432_0 = this.Filters = null;
+      this.__P_446_2 = this.__P_446_0 = this.Filters = null;
     }
   });
   qx.ui.table.model.Filtered.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Filtered.js.map?dt=1664789604586
+//# sourceMappingURL=Filtered.js.map?dt=1672653514809

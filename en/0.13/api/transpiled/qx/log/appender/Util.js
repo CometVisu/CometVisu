@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +35,7 @@
 
   /**
    * Contains some common methods available to all log appenders.
-   * 
+   *
    * @deprecated {6.0} See qx.util.appender.Formatter instead
    */
   qx.Bootstrap.define("qx.log.appender.Util", {
@@ -58,4 +57,4 @@
   qx.log.appender.Util.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Util.js.map?dt=1664789589235
+//# sourceMappingURL=Util.js.map?dt=1672653500550

@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/type/Rotate.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -23,8 +20,11 @@
     "_native",
     "Rotate"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACIC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,OAD3B;AAIIC,IAAAA,OAAO,EAAG;AAER;AACAC,MAAAA,iBAAiB,EAAG,2BAASC,WAAT,EAAsBC,KAAtB,EACpB;AACE,YAAIA,KAAK,0EAAwBD,WAAxB,EAAqCC,KAArC,CAAT;;AAEAA,QAAAA,KAAK,CAACC,KAAN,GAAcF,WAAW,CAACE,KAA1B;AAEA,eAAOD,KAAP;AACD,OAVO;;AAaR;AACN;AACA;AACA;AACA;AACME,MAAAA,QAAQ,EAAG,oBAAW;AACpB,eAAO,KAAKC,OAAL,CAAaF,KAApB;AACD;AApBO;AAJd,GADA;AAvBAd,EAAAA,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcS,MAAd,CAAqBd,aAArB,GAAqCA,aAArC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/event/type/Rotate.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n\n/**\n * Rotate is a multi pointer gesture fired when two finger moved around\n * a single point. It contains the angle of the rotation.\n */\nqx.Class.define(\"qx.event.type.Rotate\",\n{\n    extend : qx.event.type.Pointer,\n\n\n    members : {\n\n      // overridden\n      _cloneNativeEvent : function(nativeEvent, clone)\n      {\n        var clone = this.base(arguments, nativeEvent, clone);\n\n        clone.angle = nativeEvent.angle;\n\n        return clone;\n      },\n\n\n      /**\n       * Returns a number with the current calculated angle between the primary and secondary active pointers.\n       *\n       * @return {Number} the angle of the two active pointers.\n       */\n      getAngle : function() {\n        return this._native.angle;\n      }\n    }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * Rotate is a multi pointer gesture fired when two finger moved around\n * a single point. It contains the angle of the rotation.\n */\nqx.Class.define(\"qx.event.type.Rotate\", {\n  extend: qx.event.type.Pointer,\n\n  members: {\n    // overridden\n    _cloneNativeEvent(nativeEvent, clone) {\n      var clone = super._cloneNativeEvent(nativeEvent, clone);\n\n      clone.angle = nativeEvent.angle;\n\n      return clone;\n    },\n\n    /**\n     * Returns a number with the current calculated angle between the primary and secondary active pointers.\n     *\n     * @return {Number} the angle of the two active pointers.\n     */\n    getAngle() {\n      return this._native.angle;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,OAAO;IAE7BC,OAAO,EAAE;MACP;MACAC,iBAAiB,6BAACC,WAAW,EAAEC,KAAK,EAAE;QACpC,IAAIA,KAAK,0EAA2BD,WAAW,EAAEC,KAAK,CAAC;QAEvDA,KAAK,CAACC,KAAK,GAAGF,WAAW,CAACE,KAAK;QAE/B,OAAOD,KAAK;MACd,CAAC;MAED;AACJ;AACA;AACA;AACA;MACIE,QAAQ,sBAAG;QACT,OAAO,IAAI,CAACC,OAAO,CAACF,KAAK;MAC3B;IACF;EACF,CAAC,CAAC;EA5CFd,EAAE,CAACO,KAAK,CAACC,IAAI,CAACS,MAAM,CAACd,aAAa,GAAGA,aAAa;AAAC"
 }

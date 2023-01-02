@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 490
       },
       "end": {
-        "line": 134,
-        "column": 3
+        "line": 114,
+        "column": 3,
+        "index": 2927
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 14
+        "line": 42,
+        "column": 2,
+        "index": 1269
       },
       "end": {
-        "line": 70,
-        "column": 3
+        "line": 62,
+        "column": 3,
+        "index": 1841
       }
     },
     "jsdoc": {
@@ -83,12 +87,14 @@
     "__header": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1861
         },
         "end": {
-          "line": 76,
-          "column": 23
+          "line": 65,
+          "column": 18,
+          "index": 1875
         }
       },
       "type": "variable",
@@ -97,12 +103,14 @@
     "__footer": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 1881
         },
         "end": {
-          "line": 77,
-          "column": 23
+          "line": 66,
+          "column": 18,
+          "index": 1895
         }
       },
       "type": "variable",
@@ -111,12 +119,14 @@
     "__nullHeader": {
       "location": {
         "start": {
-          "line": 78,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1901
         },
         "end": {
-          "line": 78,
-          "column": 23
+          "line": 67,
+          "column": 22,
+          "index": 1919
         }
       },
       "type": "variable",
@@ -125,12 +135,14 @@
     "__nullFooter": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1925
         },
         "end": {
-          "line": 79,
-          "column": 23
+          "line": 68,
+          "column": 22,
+          "index": 1943
         }
       },
       "type": "variable",
@@ -139,12 +151,14 @@
     "applyStructure": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 1968
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2340
         }
       },
       "jsdoc": {},
@@ -158,12 +172,14 @@
     "getHeader": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2448
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2495
         }
       },
       "jsdoc": {
@@ -188,12 +204,14 @@
     "getFooter": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2603
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 2650
         }
       },
       "jsdoc": {
@@ -303,6 +321,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -327,6 +346,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -355,15 +375,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 117,
-        "column": 13
+        "line": 101,
+        "column": 2,
+        "index": 2659
       },
       "end": {
-        "line": 132,
-        "column": 3
+        "line": 113,
+        "column": 3,
+        "index": 2923
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

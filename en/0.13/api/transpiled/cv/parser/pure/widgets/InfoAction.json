@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 828
       },
       "end": {
         "line": 53,
-        "column": 3
+        "column": 3,
+        "index": 1762
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1396
         },
         "end": {
           "line": 46,
-          "column": 5
+          "column": 5,
+          "index": 1635
         }
       },
       "jsdoc": {
@@ -88,14 +92,15 @@
     "location": {
       "start": {
         "line": 49,
-        "column": 9
+        "column": 2,
+        "index": 1644
       },
       "end": {
         "line": 52,
-        "column": 3
+        "column": 3,
+        "index": 1758
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

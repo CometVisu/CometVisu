@@ -42,7 +42,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,7 +59,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for checking the scrolling behavior of the client.
    *
@@ -86,7 +84,6 @@
         var nativeScrollBars = false;
         return scrollBarWidth === 0 && osx && nativeScrollBars;
       },
-
       /**
        * Checks if native scroll can be used for the current mobile device.
        *
@@ -99,28 +96,26 @@
         // iOS 8+
         if (qx.core.Environment.get("os.name") == "ios" && parseInt(qx.core.Environment.get("browser.version"), 10) > 7) {
           return true;
-        } // Firefox
+        }
 
-
+        // Firefox
         if (qx.core.Environment.get("browser.name") == "firefox") {
-          return true;
-        } // Android 4.4+
-
-
-        if (qx.core.Environment.get("os.name") == "android") {
-          var osVersion = qx.core.Environment.get("os.version");
-          var splitVersion = osVersion.split(".");
-
-          if (splitVersion[0] > 4 || splitVersion.length > 1 && splitVersion[0] > 3 && splitVersion[1] > 3) {
-            return true;
-          }
-        } // IE 10+
-
-
-        if (qx.core.Environment.get("event.mspointer")) {
           return true;
         }
 
+        // Android 4.4+
+        if (qx.core.Environment.get("os.name") == "android") {
+          var osVersion = qx.core.Environment.get("os.version");
+          var splitVersion = osVersion.split(".");
+          if (splitVersion[0] > 4 || splitVersion.length > 1 && splitVersion[0] > 3 && splitVersion[1] > 3) {
+            return true;
+          }
+        }
+
+        // IE 10+
+        if (qx.core.Environment.get("event.mspointer")) {
+          return true;
+        }
         return false;
       }
     },
@@ -132,4 +127,4 @@
   qx.bom.client.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1664789578000
+//# sourceMappingURL=Scroll.js.map?dt=1672653486228

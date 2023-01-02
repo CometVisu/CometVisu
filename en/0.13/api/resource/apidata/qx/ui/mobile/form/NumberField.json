@@ -15,11 +15,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 725
       },
       "end": {
-        "line": 137,
-        "column": 3
+        "line": 120,
+        "column": 3,
+        "index": 2949
       }
     },
     "jsdoc": {
@@ -35,12 +37,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 40,
-        "column": 14
+        "line": 38,
+        "column": 2,
+        "index": 1171
       },
       "end": {
-        "line": 43,
-        "column": 3
+        "line": 40,
+        "column": 3,
+        "index": 1206
       }
     },
     "jsdoc": {
@@ -67,12 +71,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1433
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1504
         }
       },
       "jsdoc": {},
@@ -89,12 +95,14 @@
     "minimum": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1639
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1726
         }
       },
       "jsdoc": {
@@ -115,12 +123,14 @@
     "maximum": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1860
         },
         "end": {
-          "line": 81,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 1947
         }
       },
       "jsdoc": {
@@ -141,12 +151,14 @@
     "step": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 2016
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2097
         }
       },
       "jsdoc": {
@@ -274,7 +286,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -286,12 +298,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -318,12 +330,14 @@
     "_getType": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2323
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2364
         }
       },
       "jsdoc": {},
@@ -337,12 +351,14 @@
     "_onChangeStep": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2479
         },
         "end": {
-          "line": 117,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 2553
         }
       },
       "jsdoc": {
@@ -362,12 +378,14 @@
     "_onChangeMaximum": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 2671
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 2747
         }
       },
       "jsdoc": {
@@ -387,12 +405,14 @@
     "_onChangeMinimum": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 2865
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 2941
         }
       },
       "jsdoc": {
@@ -1628,6 +1648,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1652,6 +1673,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

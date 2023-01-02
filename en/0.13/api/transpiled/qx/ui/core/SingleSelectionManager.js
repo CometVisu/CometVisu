@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,13 +40,11 @@
    */
   qx.Class.define("qx.ui.core.SingleSelectionManager", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Construct the single selection manager.
      *
@@ -56,24 +53,24 @@
      */
     construct: function construct(selectionProvider) {
       qx.core.Object.constructor.call(this);
-      this.__P_304_0 = selectionProvider;
+      this.__P_319_0 = selectionProvider;
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the selection was modified */
-      "changeSelected": "qx.event.type.Data"
+      changeSelected: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * If the value is <code>true</code> the manager allows an empty selection,
@@ -83,28 +80,25 @@
       allowEmptySelection: {
         check: "Boolean",
         init: true,
-        apply: "__P_304_1"
+        apply: "__P_319_1"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.core.Widget} The selected widget. */
-      __P_304_2: null,
-
+      __P_319_2: null,
       /** @type {qx.ui.core.ISingleSelectionProvider} The provider for selection management */
-      __P_304_0: null,
-
+      __P_319_0: null,
       /*
       ---------------------------------------------------------------------------
          PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the current selected element.
        *
@@ -112,9 +106,8 @@
        *    <code>null</code> if the selection is empty.
        */
       getSelected: function getSelected() {
-        return this.__P_304_2;
+        return this.__P_319_2;
       },
-
       /**
        * Selects the passed element.
        *
@@ -122,21 +115,18 @@
        * @throws {Error} if the element is not a child element.
        */
       setSelected: function setSelected(item) {
-        if (!this.__P_304_3(item)) {
+        if (!this.__P_319_3(item)) {
           throw new Error("Could not select " + item + ", because it is not a child element!");
         }
-
-        this.__P_304_4(item);
+        this.__P_319_4(item);
       },
-
       /**
        * Reset the current selection. If {@link #allowEmptySelection} is set to
        * <code>true</code> the first element will be selected.
        */
       resetSelected: function resetSelected() {
-        this.__P_304_4(null);
+        this.__P_319_4(null);
       },
-
       /**
        * Return <code>true</code> if the passed element is selected.
        *
@@ -146,13 +136,11 @@
        * @throws {Error} if the element is not a child element.
        */
       isSelected: function isSelected(item) {
-        if (!this.__P_304_3(item)) {
+        if (!this.__P_319_3(item)) {
           throw new Error("Could not check if " + item + " is selected," + " because it is not a child element!");
         }
-
-        return this.__P_304_2 === item;
+        return this.__P_319_2 === item;
       },
-
       /**
        * Returns <code>true</code> if selection is empty.
        *
@@ -160,9 +148,8 @@
        *    <code>false</code> otherwise.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_304_2 == null;
+        return this.__P_319_2 == null;
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -171,48 +158,40 @@
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        var items = this.__P_304_0.getItems();
-
+        var items = this.__P_319_0.getItems();
         var result = [];
-
         for (var i = 0; i < items.length; i++) {
-          if (this.__P_304_0.isItemSelectable(items[i])) {
+          if (this.__P_319_0.isItemSelectable(items[i])) {
             result.push(items[i]);
           }
-        } // in case of an user selectable list, remove the enabled items
+        }
 
-
+        // in case of an user selectable list, remove the enabled items
         if (!all) {
           for (var i = result.length - 1; i >= 0; i--) {
             if (!result[i].getEnabled()) {
               result.splice(i, 1);
             }
           }
-
-          ;
         }
-
         return result;
       },
-
       /*
       ---------------------------------------------------------------------------
          APPLY METHODS
       ---------------------------------------------------------------------------
       */
       // apply method
-      __P_304_1: function __P_304_1(value, old) {
+      __P_319_1: function __P_319_1(value, old) {
         if (!value) {
-          this.__P_304_4(this.__P_304_2);
+          this.__P_319_4(this.__P_319_2);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
          HELPERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Set selected element.
        *
@@ -221,26 +200,21 @@
        * @param item {qx.ui.core.Widget | null} element to select, or
        *    <code>null</code> to reset selection.
        */
-      __P_304_4: function __P_304_4(item) {
-        var oldSelected = this.__P_304_2;
+      __P_319_4: function __P_319_4(item) {
+        var oldSelected = this.__P_319_2;
         var newSelected = item;
-
         if (newSelected != null && oldSelected === newSelected) {
           return;
         }
-
         if (!this.isAllowEmptySelection() && newSelected == null) {
           var firstElement = this.getSelectables(true)[0];
-
           if (firstElement) {
             newSelected = firstElement;
           }
         }
-
-        this.__P_304_2 = newSelected;
+        this.__P_319_2 = newSelected;
         this.fireDataEvent("changeSelected", newSelected, oldSelected);
       },
-
       /**
        * Checks if passed element is a child element.
        *
@@ -248,35 +222,31 @@
        * @return {Boolean} <code>true</code> if element is child element,
        *    <code>false</code> otherwise.
        */
-      __P_304_3: function __P_304_3(item) {
-        var items = this.__P_304_0.getItems();
-
+      __P_319_3: function __P_319_3(item) {
+        var items = this.__P_319_0.getItems();
         for (var i = 0; i < items.length; i++) {
           if (items[i] === item) {
             return true;
           }
         }
-
         return false;
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
      *****************************************************************************
      */
     destruct: function destruct() {
-      if (this.__P_304_0.toHashCode) {
-        this._disposeObjects("__P_304_0");
+      if (this.__P_319_0.toHashCode) {
+        this._disposeObjects("__P_319_0");
       } else {
-        this.__P_304_0 = null;
+        this.__P_319_0 = null;
       }
-
-      this._disposeObjects("__P_304_2");
+      this._disposeObjects("__P_319_2");
     }
   });
   qx.ui.core.SingleSelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleSelectionManager.js.map?dt=1664789594082
+//# sourceMappingURL=SingleSelectionManager.js.map?dt=1672653505400

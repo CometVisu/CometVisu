@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 884
       },
       "end": {
-        "line": 174,
-        "column": 3
+        "line": 191,
+        "column": 3,
+        "index": 6582
       }
     },
     "jsdoc": {
@@ -32,11 +34,13 @@
       "location": {
         "start": {
           "line": 32,
-          "column": 4
+          "column": 4,
+          "index": 1146
         },
         "end": {
           "line": 32,
-          "column": 15
+          "column": 15,
+          "index": 1157
         }
       },
       "type": "variable",
@@ -46,11 +50,13 @@
       "location": {
         "start": {
           "line": 33,
-          "column": 4
+          "column": 4,
+          "index": 1163
         },
         "end": {
           "line": 33,
-          "column": 23
+          "column": 23,
+          "index": 1182
         }
       },
       "type": "variable",
@@ -60,11 +66,13 @@
       "location": {
         "start": {
           "line": 35,
-          "column": 4
+          "column": 4,
+          "index": 1189
         },
         "end": {
-          "line": 151,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 5930
         }
       },
       "type": "function",
@@ -77,12 +85,14 @@
     "_disconnected": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 5937
         },
         "end": {
-          "line": 164,
-          "column": 5
+          "line": 178,
+          "column": 5,
+          "index": 6359
         }
       },
       "type": "function",
@@ -180,6 +190,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -204,6 +215,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -326,12 +338,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 167,
-        "column": 2
+        "line": 181,
+        "column": 2,
+        "index": 6368
       },
       "end": {
-        "line": 173,
-        "column": 3
+        "line": 190,
+        "column": 3,
+        "index": 6578
       }
     }
   },

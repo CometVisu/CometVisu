@@ -20,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* PushButton.js 
-   * 
+  /* PushButton.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -50,23 +49,21 @@
   qx.Class.define('cv.ui.structure.pure.PushButton', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
-
     /*
     ******************************************************
       PROPERTIES
     ******************************************************
     */
     properties: {
-      'downValue': {
+      downValue: {
         check: 'String',
         init: '1'
       },
-      'upValue': {
+      upValue: {
         check: 'String',
         init: '0'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -82,7 +79,6 @@
         this.addElementListener('pointerdown', this._onPointerDown, this);
         this.addElementListener('pointerup', this._onPointerUp, this);
       },
-
       /**
        * Handles the incoming data from the backend for this widget
        *
@@ -90,14 +86,13 @@
        * @param value {any} incoming data (already transformed + mapped)
        */
       handleUpdate: function handleUpdate(value) {
-        var actor = this.getActor(); // compare against the unmapped value
-
+        var actor = this.getActor();
+        // compare against the unmapped value
         value = '' + this.getBasicValue();
         var off = this.getUpValue();
         actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
         actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
       },
-
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @param event
@@ -106,7 +101,6 @@
         if (event.type === 'pointerup') {
           return this.getUpValue();
         }
-
         return this.getDownValue();
       },
       _onPointerUp: function _onPointerUp() {
@@ -129,4 +123,4 @@
   cv.ui.structure.pure.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1664789570392
+//# sourceMappingURL=PushButton.js.map?dt=1672653478799

@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -188,7 +187,6 @@
         yellow: [255, 255, 0],
         yellowgreen: [154, 205, 50]
       },
-
       /**
        * Whether the incoming value is an extended named color.
        *
@@ -198,7 +196,6 @@
       isExtendedColor: function isExtendedColor(value) {
         return this.EXTENDED[value] !== undefined;
       },
-
       /**
        * Converts an extended color to the RGB value
        *
@@ -207,14 +204,11 @@
        */
       toRgb: function toRgb(value) {
         var ret = this.EXTENDED[value];
-
         if (ret) {
           return ret;
         }
-
         throw new Error("Could not convert other than extended colors to RGB: " + value);
       },
-
       /**
        * Converts an extended color to a CSS RGB string
        *
@@ -229,4 +223,4 @@
   qx.util.ExtendedColor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ExtendedColor.js.map?dt=1664789609595
+//# sourceMappingURL=ExtendedColor.js.map?dt=1672653520025

@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 882
       },
       "end": {
-        "line": 115,
-        "column": 3
+        "line": 114,
+        "column": 3,
+        "index": 3546
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 33,
-        "column": 13
+        "line": 32,
+        "column": 2,
+        "index": 1105
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 40,
+        "column": 3,
+        "index": 1374
       }
     },
     "jsdoc": {}
@@ -46,12 +50,14 @@
     "_initOnCreate": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1530
         },
         "end": {
-          "line": 49,
-          "column": 24
+          "line": 48,
+          "column": 24,
+          "index": 1550
         }
       },
       "type": "variable",
@@ -60,12 +66,14 @@
     "__initUpdater": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1557
         },
         "end": {
-          "line": 65,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 2070
         }
       },
       "type": "function",
@@ -74,12 +82,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2282
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2549
         }
       },
       "jsdoc": {
@@ -112,12 +122,14 @@
     "processIncomingValue": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2556
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2977
         }
       },
       "type": "function",
@@ -126,12 +138,14 @@
     "update3d": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 101,
+          "column": 4,
+          "index": 3074
         },
         "end": {
-          "line": 113,
-          "column": 5
+          "line": 112,
+          "column": 5,
+          "index": 3538
         }
       },
       "jsdoc": {

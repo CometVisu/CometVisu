@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 731
       },
       "end": {
-        "line": 181,
-        "column": 3
+        "line": 171,
+        "column": 3,
+        "index": 4976
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 14
+        "line": 27,
+        "column": 2,
+        "index": 801
       },
       "end": {
-        "line": 34,
-        "column": 3
+        "line": 31,
+        "column": 3,
+        "index": 855
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__items": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 875
         },
         "end": {
-          "line": 38,
-          "column": 18
+          "line": 34,
+          "column": 17,
+          "index": 888
         }
       },
       "type": "variable",
@@ -58,12 +63,14 @@
     "add": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1154
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 46,
+          "column": 5,
+          "index": 1269
         }
       },
       "jsdoc": {
@@ -97,12 +104,14 @@
     "remove": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1554
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1841
         }
       },
       "jsdoc": {
@@ -144,12 +153,14 @@
     "reset": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2085
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2497
         }
       },
       "jsdoc": {
@@ -179,12 +190,14 @@
     "resetItem": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2881
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3201
         }
       },
       "jsdoc": {
@@ -226,12 +239,14 @@
     "redefine": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 3335
         },
         "end": {
-          "line": 129,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 3585
         }
       },
       "jsdoc": {
@@ -248,12 +263,14 @@
     "redefineItem": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3849
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 4249
         }
       },
       "jsdoc": {
@@ -287,12 +304,14 @@
     "__typeCheck": {
       "location": {
         "start": {
-          "line": 163,
-          "column": 4
+          "line": 155,
+          "column": 4,
+          "index": 4489
         },
         "end": {
-          "line": 167,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4678
         }
       },
       "jsdoc": {
@@ -420,6 +439,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -444,6 +464,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -472,12 +493,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 176,
-        "column": 13
+        "line": 167,
+        "column": 2,
+        "index": 4873
       },
       "end": {
-        "line": 180,
-        "column": 3
+        "line": 170,
+        "column": 3,
+        "index": 4972
       }
     },
     "jsdoc": {}

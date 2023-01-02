@@ -27,11 +27,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* InfoTrigger.js 
-   * 
+  /* InfoTrigger.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -57,55 +56,53 @@
   qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton, cv.ui.common.HandleLongpress],
-
     /*
     ******************************************************
       PROPERTIES
     ******************************************************
     */
     properties: {
-      'downValue': {
+      downValue: {
         check: 'Number',
         init: 0
       },
-      'shortDownValue': {
+      shortDownValue: {
         check: 'Number',
         nullable: true
       },
-      'downLabel': {
+      downLabel: {
         check: 'String',
         nullable: true
       },
-      'upValue': {
+      upValue: {
         check: 'Number',
         init: 0
       },
-      'shortUpValue': {
+      shortUpValue: {
         check: 'Number',
         nullable: true
       },
-      'upLabel': {
+      upLabel: {
         check: 'String',
         nullable: true
       },
-      'isAbsolute': {
+      isAbsolute: {
         check: 'Boolean',
         init: false
       },
-      'min': {
+      min: {
         check: 'Number',
         init: 0
       },
-      'max': {
+      max: {
         check: 'Number',
         init: 255
       },
-      'infoPosition': {
+      infoPosition: {
         check: ['left', 'middle', 'right'],
         init: 'middle'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -117,51 +114,41 @@
         // create buttons + info
         var ret_val = '<div style="float:left;">';
         var actordown = '<div class="actor switchUnpressed downlabel" ';
-
         if (this.getAlign()) {
           actordown += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actordown += '>';
         actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
         actordown += '</div>';
         var actorup = '<div class="actor switchUnpressed uplabel" ';
-
         if (this.getAlign()) {
           actorup += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actorup += '>';
         actorup += '<div class="label">' + (this.getUpLabel() || '+') + '</div>';
         actorup += '</div>';
         var actorinfo = '<div class="actor switchInvisible" ';
-
         if (this.getAlign()) {
           actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actorinfo += '><div class="value">-</div></div>';
-
         switch (this.getInfoPosition()) {
           case 'middle':
             ret_val += actordown;
             ret_val += actorinfo;
             ret_val += actorup;
             break;
-
           case 'right':
             ret_val += actordown;
             ret_val += actorup;
             ret_val += actorinfo;
             break;
-
           default:
             ret_val += actorinfo;
             ret_val += actordown;
             ret_val += actorup;
             break;
         }
-
         return ret_val + '</div>';
       },
       getActors: function getActors() {
@@ -173,38 +160,32 @@
           qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
         }, this);
       },
-      __P_60_0: function __P_60_0(element) {
+      __P_62_0: function __P_62_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
-
           if (element.classList.contains('widget')) {
             // thats too far
             return null;
           }
         }
-
         return element;
       },
       _onLongTap: function _onLongTap(event) {
-        this.__P_60_1(false, this.__P_60_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_62_1(false, this.__P_62_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
       _action: function _action(event) {
-        this.__P_60_1(true, this.__P_60_0(event.getCurrentTarget()).classList.contains('downlabel'));
+        this.__P_62_1(true, this.__P_62_0(event.getCurrentTarget()).classList.contains('downlabel'));
       },
-      __P_60_1: function __P_60_1(isShort, isDown) {
+      __P_62_1: function __P_62_1(isShort, isDown) {
         var value;
-
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
           value = isDown ? this.getShortDownValue() : this.getShortUpValue();
         } else {
           value = isDown ? this.getDownValue() : this.getUpValue();
         }
-
         var bitMask = isShort ? 1 : 2;
-
         if (this.getIsAbsolute()) {
           var bvalue = parseFloat(this.getBasicValue());
-
           if (!Number.isFinite(bvalue)) {
             bvalue = 0; // anything is better than NaN...
           }
@@ -213,7 +194,6 @@
           value = Math.max(value, this.getMin());
           value = Math.min(value, this.getMax());
         }
-
         this.sendToBackend(value, function (address) {
           return !!(address.variantInfo & bitMask);
         });
@@ -235,4 +215,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1664789570131
+//# sourceMappingURL=InfoTrigger.js.map?dt=1672653478566

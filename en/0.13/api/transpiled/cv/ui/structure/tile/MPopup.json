@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 952
       },
       "end": {
-        "line": 119,
-        "column": 3
+        "line": 123,
+        "column": 3,
+        "index": 3849
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "openedPopups": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 30,
+          "column": 4,
+          "index": 1140
         },
         "end": {
-          "line": 31,
-          "column": 20
+          "line": 30,
+          "column": 20,
+          "index": 1156
         }
       },
       "type": "variable",
@@ -47,12 +51,14 @@
     "closed": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1179
         },
         "end": {
-          "line": 35,
-          "column": 33
+          "line": 34,
+          "column": 33,
+          "index": 1208
         }
       },
       "name": "closed",
@@ -63,12 +69,14 @@
     "_childPopup": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1354
         },
         "end": {
-          "line": 44,
-          "column": 21
+          "line": 43,
+          "column": 21,
+          "index": 1371
         }
       },
       "type": "variable",
@@ -77,12 +85,14 @@
     "_initPopupChild": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1378
         },
         "end": {
           "line": 63,
-          "column": 5
+          "column": 5,
+          "index": 2075
         }
       },
       "type": "function",
@@ -92,11 +102,13 @@
       "location": {
         "start": {
           "line": 65,
-          "column": 4
+          "column": 4,
+          "index": 2082
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2253
         }
       },
       "type": "function",
@@ -105,12 +117,14 @@
     "_closePopupChild": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 2260
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 78,
+          "column": 5,
+          "index": 2426
         }
       },
       "type": "function",
@@ -119,12 +133,14 @@
     "registerModalPopup": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2433
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2903
         }
       },
       "type": "function",
@@ -133,12 +149,14 @@
     "unregisterModalPopup": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2910
         },
         "end": {
-          "line": 99,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 3377
         }
       },
       "type": "function",
@@ -147,12 +165,14 @@
     "_onPointerDown": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 3384
         },
         "end": {
-          "line": 107,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3573
         }
       },
       "type": "function",
@@ -162,12 +182,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 115,
-        "column": 12
+        "line": 118,
+        "column": 2,
+        "index": 3707
       },
       "end": {
-        "line": 118,
-        "column": 3
+        "line": 122,
+        "column": 3,
+        "index": 3845
       }
     },
     "jsdoc": {}

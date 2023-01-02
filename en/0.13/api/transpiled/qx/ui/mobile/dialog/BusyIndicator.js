@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,7 +50,6 @@
    */
   qx.Class.define("qx.ui.mobile.dialog.BusyIndicator", {
     extend: qx.ui.mobile.basic.Atom,
-
     /**
      * @param label {String} Label to use
      */
@@ -76,25 +74,22 @@
       SPINNER_ANIMATION: null
     },
     members: {
-      __P_376_0: null,
-
+      __P_393_0: null,
       /**
        * Listener for appear event.
        */
       _onAppear: function _onAppear() {
-        this.__P_376_0 = qx.bom.element.Animation.animate(this.getIconWidget().getContainerElement(), qx.ui.mobile.dialog.BusyIndicator.SPINNER_ANIMATION);
+        this.__P_393_0 = qx.bom.element.Animation.animate(this.getIconWidget().getContainerElement(), qx.ui.mobile.dialog.BusyIndicator.SPINNER_ANIMATION);
       },
-
       /**
        * Handler for disappear event.
        */
       _onDisappear: function _onDisappear() {
-        this.__P_376_0.stop();
+        this.__P_393_0.stop();
       },
       // overridden
       _createIconWidget: function _createIconWidget(iconUrl) {
         var iconWidget = qx.ui.mobile.dialog.BusyIndicator.superclass.prototype._createIconWidget.call(this, iconUrl);
-
         iconWidget.addCssClass(this.getSpinnerClass());
         return iconWidget;
       },
@@ -103,7 +98,6 @@
         if (old) {
           this.getIconWidget().removeCssClass(old);
         }
-
         if (value) {
           this.getIconWidget().addCssClass(value);
         }
@@ -112,12 +106,10 @@
     destruct: function destruct() {
       this.removeListener("appear", this._onAppear, this);
       this.removeListener("disappear", this._onDisappear, this);
-
-      if (this.__P_376_0) {
-        this.__P_376_0.stop();
+      if (this.__P_393_0) {
+        this.__P_393_0.stop();
       }
-
-      this.__P_376_0 = null;
+      this.__P_393_0 = null;
     },
     defer: function defer() {
       qx.ui.mobile.dialog.BusyIndicator.SPINNER_ANIMATION = {
@@ -139,4 +131,4 @@
   qx.ui.mobile.dialog.BusyIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BusyIndicator.js.map?dt=1664789600639
+//# sourceMappingURL=BusyIndicator.js.map?dt=1672653511211

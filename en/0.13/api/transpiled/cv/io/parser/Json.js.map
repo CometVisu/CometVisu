@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/parser/Json.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -13,6 +10,10 @@
     "type",
     "statics",
     "parse",
+    "core",
+    "Environment",
+    "select",
+    "jquery",
     "data",
     "result",
     "JSON",
@@ -22,19 +23,24 @@
     "subData",
     "i",
     "jsonString",
-    "Object",
-    "assign",
+    "$",
+    "extend",
     "se",
     "log",
     "Logger",
     "error",
+    "Object",
+    "assign",
     "cv",
     "io",
     "parser",
     "Json"
   ],
-  "mappings": ";;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mBAAhB,EAAqC;AACnCC,IAAAA,IAAI,EAAE,QAD6B;;AAGnC;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAkBG,eAASC,IAAT,EAAe;AACnB,YAAIC,MAAM,GAAG,EAAb;;AACA,YAAI;AACFA,UAAAA,MAAM,GAAGC,IAAI,CAACH,KAAL,CAAWC,IAAX,CAAT;AACD,SAFD,CAEE,OAAOG,CAAP,EAAU;AACVH,UAAAA,IAAI,CAACI,KAAL,CAAW,IAAX,EAAiBC,OAAjB,CAAyB,UAASC,OAAT,EAAkBC,CAAlB,EAAqB;AAC5C,gBAAI;AACF,kBAAIC,UAAU,GAAGD,CAAC,KAAK,CAAN,GAAUD,OAAO,GAAG,GAApB,GAA0B,MAAMA,OAAjD;AACAL,cAAAA,MAAM,GAAGQ,MAAM,CAACC,MAAP,CAAcT,MAAd,EAAsBC,IAAI,CAACH,KAAL,CAAWS,UAAX,CAAtB,CAAT;AACD,aAHD,CAGE,OAAOG,EAAP,EAAW;AACXpB,cAAAA,EAAE,CAACqB,GAAH,CAAOC,MAAP,CAAcC,KAAd,CAAoBH,EAApB,EAAwBX,IAAxB;AACAC,cAAAA,MAAM,GAAGD,IAAT,CAFW,CAEI;AAChB;AACF,WARD,EAQG,IARH;AASD;;AACD,eAAOC,MAAP;AACD;AAnCI;AAR0B,GAArC;AALAc,EAAAA,EAAE,CAACC,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBxB,aAAlB,GAAkCA,aAAlC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/parser/Json.js"
+  ],
   "sourcesContent": [
-    "/**\n * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n * This parser can handle those strings\n * @ignore($)\n */\nqx.Class.define('cv.io.parser.Json', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    parse: qx.core.Environment.select('cv.xhr', {\n      'jquery': function(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split('}{').forEach(function(subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + '}' : '{' + subData;\n              result = $.extend(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se, data);\n              result = data; // return the bad input\n            }\n          }, this);\n        }\n        return result;\n      },\n      'qx': function(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split('}{').forEach(function(subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + '}' : '{' + subData;\n              result = Object.assign(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se, data);\n              result = data; // return the bad input\n            }\n          }, this);\n        }\n        return result;\n      }\n    })\n  }\n});\n"
-  ]
+    "/**\n * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n * This parser can handle those strings\n * @ignore($)\n */\nqx.Class.define('cv.io.parser.Json', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    parse: qx.core.Environment.select('cv.xhr', {\n      jquery(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split('}{').forEach(function (subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + '}' : '{' + subData;\n              result = $.extend(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se, data);\n              result = data; // return the bad input\n            }\n          }, this);\n        }\n        return result;\n      },\n      qx(data) {\n        var result = {};\n        try {\n          result = JSON.parse(data);\n        } catch (e) {\n          data.split('}{').forEach(function (subData, i) {\n            try {\n              var jsonString = i === 0 ? subData + '}' : '{' + subData;\n              result = Object.assign(result, JSON.parse(jsonString));\n            } catch (se) {\n              qx.log.Logger.error(se, data);\n              result = data; // return the bad input\n            }\n          }, this);\n        }\n        return result;\n      }\n    })\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mBAAmB,EAAE;IACnCC,IAAI,EAAE,QAAQ;IAEd;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,KAAK,EAAER,EAAE,CAACS,IAAI,CAACC,WAAW,CAACC,MAAM,CAAC,QAAQ,EAAE;QAC1CC,MAAM,kBAACC,IAAI,EAAE;UACX,IAAIC,MAAM,GAAG,CAAC,CAAC;UACf,IAAI;YACFA,MAAM,GAAGC,IAAI,CAACP,KAAK,CAACK,IAAI,CAAC;UAC3B,CAAC,CAAC,OAAOG,CAAC,EAAE;YACVH,IAAI,CAACI,KAAK,CAAC,IAAI,CAAC,CAACC,OAAO,CAAC,UAAUC,OAAO,EAAEC,CAAC,EAAE;cAC7C,IAAI;gBACF,IAAIC,UAAU,GAAGD,CAAC,KAAK,CAAC,GAAGD,OAAO,GAAG,GAAG,GAAG,GAAG,GAAGA,OAAO;gBACxDL,MAAM,GAAGQ,CAAC,CAACC,MAAM,CAACT,MAAM,EAAEC,IAAI,CAACP,KAAK,CAACa,UAAU,CAAC,CAAC;cACnD,CAAC,CAAC,OAAOG,EAAE,EAAE;gBACXxB,EAAE,CAACyB,GAAG,CAACC,MAAM,CAACC,KAAK,CAACH,EAAE,EAAEX,IAAI,CAAC;gBAC7BC,MAAM,GAAGD,IAAI,CAAC,CAAC;cACjB;YACF,CAAC,EAAE,IAAI,CAAC;UACV;UACA,OAAOC,MAAM;QACf,CAAC;QACDd,EAAE;UAAA;YAAA;UAAA;UAAA;YAAA;UAAA;UAAA;QAAA,YAACa,IAAI,EAAE;UACP,IAAIC,MAAM,GAAG,CAAC,CAAC;UACf,IAAI;YACFA,MAAM,GAAGC,IAAI,CAACP,KAAK,CAACK,IAAI,CAAC;UAC3B,CAAC,CAAC,OAAOG,CAAC,EAAE;YACVH,IAAI,CAACI,KAAK,CAAC,IAAI,CAAC,CAACC,OAAO,CAAC,UAAUC,OAAO,EAAEC,CAAC,EAAE;cAC7C,IAAI;gBACF,IAAIC,UAAU,GAAGD,CAAC,KAAK,CAAC,GAAGD,OAAO,GAAG,GAAG,GAAG,GAAG,GAAGA,OAAO;gBACxDL,MAAM,GAAGc,MAAM,CAACC,MAAM,CAACf,MAAM,EAAEC,IAAI,CAACP,KAAK,CAACa,UAAU,CAAC,CAAC;cACxD,CAAC,CAAC,OAAOG,EAAE,EAAE;gBACXxB,EAAE,CAACyB,GAAG,CAACC,MAAM,CAACC,KAAK,CAACH,EAAE,EAAEX,IAAI,CAAC;gBAC7BC,MAAM,GAAGD,IAAI,CAAC,CAAC;cACjB;YACF,CAAC,EAAE,IAAI,CAAC;UACV;UACA,OAAOC,MAAM;QACf,CAAC;MACH,CAAC;IACH;EACF,CAAC,CAAC;EAnDFgB,EAAE,CAACC,EAAE,CAACC,MAAM,CAACC,IAAI,CAAC9B,aAAa,GAAGA,aAAa;AAAC"
 }

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
-        "column": 0
+        "line": 22,
+        "column": 0,
+        "index": 559
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 88,
+        "column": 3,
+        "index": 2598
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "__map": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 31,
+          "column": 4,
+          "index": 883
         },
         "end": {
-          "line": 34,
-          "column": 14
+          "line": 31,
+          "column": 13,
+          "index": 892
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "compile": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1072
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1158
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "get": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1610
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1707
         }
       },
       "jsdoc": {
@@ -138,12 +146,14 @@
     "set": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1899
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1983
         }
       },
       "jsdoc": {
@@ -176,12 +186,14 @@
     "reset": {
       "location": {
         "start": {
-          "line": 78,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 2128
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2183
         }
       },
       "jsdoc": {
@@ -208,15 +220,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 84,
-        "column": 10
+        "line": 76,
+        "column": 2,
+        "index": 2192
       },
       "end": {
-        "line": 94,
-        "column": 3
+        "line": 87,
+        "column": 3,
+        "index": 2594
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

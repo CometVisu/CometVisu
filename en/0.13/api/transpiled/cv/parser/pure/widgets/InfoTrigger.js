@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* InfoTrigger.js 
-   * 
+  /* InfoTrigger.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.InfoTrigger', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -60,38 +58,38 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'downvalue': {
+          downvalue: {
             target: 'downValue',
             transform: parseFloat,
-            'default': 0
+            "default": 0
           },
-          'shortdownvalue': {
+          shortdownvalue: {
             target: 'shortDownValue',
             transform: function transform(value) {
               return value ? parseFloat(value) : null;
             }
           },
-          'downlabel': {
+          downlabel: {
             target: 'downLabel'
           },
-          'upvalue': {
+          upvalue: {
             target: 'upValue',
             transform: parseFloat,
-            'default': 0
+            "default": 0
           },
-          'shortupvalue': {
+          shortupvalue: {
             target: 'shortUpValue',
             transform: function transform(value) {
               return value ? parseFloat(value) : null;
             }
           },
-          'uplabel': {
+          uplabel: {
             target: 'upLabel'
           },
-          'shorttime': {
+          shorttime: {
             target: 'shortThreshold',
             transform: parseFloat,
-            'default': -1
+            "default": -1
           },
           'send-long-on-release': {
             target: 'sendLongOnRelease',
@@ -99,23 +97,23 @@
               return value ? value === 'true' : true;
             }
           },
-          'change': {
+          change: {
             target: 'isAbsolute',
             transform: function transform(value) {
               return (value || 'relative') === 'absolute';
             }
           },
-          'min': {
+          min: {
             transform: parseFloat,
-            'default': 0
+            "default": 0
           },
-          'max': {
+          max: {
             transform: parseFloat,
-            'default': 255
+            "default": 255
           },
-          'infoposition': {
+          infoposition: {
             target: 'infoPosition',
-            'default': 'left',
+            "default": 'left',
             transform: function transform(value) {
               return ['middle', 'right'].includes(value) ? value : 'left';
             }
@@ -135,4 +133,4 @@
   cv.parser.pure.widgets.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1664789562119
+//# sourceMappingURL=InfoTrigger.js.map?dt=1672653470787

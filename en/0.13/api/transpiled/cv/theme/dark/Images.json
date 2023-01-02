@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 847
       },
       "end": {
         "line": 91,
-        "column": 3
+        "column": 3,
+        "index": 3448
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "ICONS": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 1047
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 3249
         }
       },
       "type": "variable",
@@ -48,12 +52,14 @@
     "getIcon": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 3256
         },
         "end": {
           "line": 89,
-          "column": 5
+          "column": 5,
+          "index": 3440
         }
       },
       "type": "function",

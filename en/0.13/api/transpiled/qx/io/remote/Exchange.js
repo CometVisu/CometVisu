@@ -20,13 +20,14 @@
       },
       "qx.lang.Object": {},
       "qx.log.Logger": {},
+      "qx.io.remote.Request": {},
+      "qx.io.remote.transport.Abstract": {},
       "qx.io.remote.transport.XmlHttp": {},
       "qx.event.Registration": {},
       "qx.io.remote.Response": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,13 +64,11 @@
   qx.Class.define("qx.io.remote.Exchange", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Constructor method.
      *
@@ -80,37 +79,32 @@
       this.setRequest(vRequest);
       vRequest.setTransport(this);
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired whenever a request is send */
-      "sending": "qx.event.type.Event",
-
+      sending: "qx.event.type.Event",
       /** Fired whenever a request is received */
-      "receiving": "qx.event.type.Event",
-
+      receiving: "qx.event.type.Event",
       /** Fired whenever a request is completed */
-      "completed": "qx.io.remote.Response",
-
+      completed: "qx.io.remote.Response",
       /** Fired whenever a request is aborted */
-      "aborted": "qx.event.type.Event",
-
+      aborted: "qx.event.type.Event",
       /** Fired whenever a request has failed */
-      "failed": "qx.io.remote.Response",
-
+      failed: "qx.io.remote.Response",
       /** Fired whenever a request has timed out */
-      "timeout": "qx.io.remote.Response"
+      timeout: "qx.io.remote.Response"
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /* ************************************************************************
          Class data, properties and methods
@@ -128,28 +122,24 @@
        * @internal
        */
       typesOrder: ["qx.io.remote.transport.XmlHttp", "qx.io.remote.transport.Iframe", "qx.io.remote.transport.Script"],
-
       /**
        * Marker for initialized types.
        *
        * @internal
        */
       typesReady: false,
-
       /**
        * Map of all available types.
        *
        * @internal
        */
       typesAvailable: {},
-
       /**
        * Map of all supported types.
        *
        * @internal
        */
       typesSupported: {},
-
       /**
        * Registers a transport type.
        * At the moment one out of XmlHttp, Iframe or Script.
@@ -160,7 +150,6 @@
       registerType: function registerType(vClass, vId) {
         qx.io.remote.Exchange.typesAvailable[vId] = vClass;
       },
-
       /**
        * Initializes the available type of transport classes and
        * checks for the supported ones.
@@ -171,22 +160,17 @@
         if (qx.io.remote.Exchange.typesReady) {
           return;
         }
-
         for (var vId in qx.io.remote.Exchange.typesAvailable) {
           var vTransporterImpl = qx.io.remote.Exchange.typesAvailable[vId];
-
           if (vTransporterImpl.isSupported()) {
             qx.io.remote.Exchange.typesSupported[vId] = vTransporterImpl;
           }
         }
-
         qx.io.remote.Exchange.typesReady = true;
-
         if (qx.lang.Object.isEmpty(qx.io.remote.Exchange.typesSupported)) {
           throw new Error("No supported transport types were found!");
         }
       },
-
       /**
        * Checks which supported transport class can handle the request with the
        * given content type.
@@ -201,16 +185,13 @@
         if (!vImpl.handles.responseTypes.includes(vResponseType)) {
           return false;
         }
-
         for (var vKey in vNeeds) {
           if (!vImpl.handles[vKey]) {
             return false;
           }
         }
-
         return true;
       },
-
       /*
       ---------------------------------------------------------------------------
         MAPPING
@@ -244,13 +225,11 @@
         3: "receiving",
         4: "completed"
       },
-
       /*
       ---------------------------------------------------------------------------
         UTILS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Called from the transport class when a request was completed.
        *
@@ -265,11 +244,9 @@
             case null:
             case 0:
               return true;
-
             case -1:
               // Not Available (OK for readystates: MSXML<4=1-3, MSXML>3=1-2, Gecko=1)
               return vReadyState < 4;
-
             default:
               // at least older versions of Safari don't set the status code for local file access
               return typeof vStatusCode === "undefined";
@@ -278,115 +255,81 @@
           switch (vStatusCode) {
             case -1:
               // Not Available (OK for readystates: MSXML<4=1-3, MSXML>3=1-2, Gecko=1)
+
               return vReadyState < 4;
-
             case 200: // OK
-
             case 304:
               // Not Modified
               return true;
-
             case 201: // Created
-
             case 202: // Accepted
-
             case 203: // Non-Authoritative Information
-
             case 204: // No Content
-
             case 205:
               // Reset Content
               return true;
-
             case 206:
               // Partial Content
+
               return vReadyState !== 4;
-
             case 300: // Multiple Choices
-
             case 301: // Moved Permanently
-
             case 302: // Moved Temporarily
-
             case 303: // See Other
-
             case 305: // Use Proxy
-
             case 400: // Bad Request
-
             case 401: // Unauthorized
-
             case 402: // Payment Required
-
             case 403: // Forbidden
-
             case 404: // Not Found
-
             case 405: // Method Not Allowed
-
             case 406: // Not Acceptable
-
             case 407: // Proxy Authentication Required
-
             case 408: // Request Time-Out
-
             case 409: // Conflict
-
             case 410: // Gone
-
             case 411: // Length Required
-
             case 412: // Precondition Failed
-
             case 413: // Request Entity Too Large
-
             case 414: // Request-URL Too Large
-
             case 415: // Unsupported Media Type
-
             case 500: // Server Error
-
             case 501: // Not Implemented
-
             case 502: // Bad Gateway
-
             case 503: // Out of Resources
-
             case 504: // Gateway Time-Out
-
             case 505:
               // HTTP Version not supported
+
               return false;
+
             // The following case labels are wininet.dll error codes that may
             // be encountered.
+
             // Server timeout
-
-            case 12002: // Internet Name Not Resolved
-
-            case 12007: // 12029 to 12031 correspond to dropped connections.
-
+            case 12002:
+            // Internet Name Not Resolved
+            case 12007:
+            // 12029 to 12031 correspond to dropped connections.
             case 12029:
             case 12030:
-            case 12031: // Connection closed by server.
-
-            case 12152: // See above comments for variable status.
-
+            case 12031:
+            // Connection closed by server.
+            case 12152:
+            // See above comments for variable status.
             case 13030:
               return false;
-
             default:
               // Handle all 20x status codes as OK as defined in the corresponding RFC
               // http://www.w3.org/Protocols/rfc2616/rfc2616.html
               if (vStatusCode > 206 && vStatusCode < 300) {
                 return true;
               }
-
               qx.log.Logger.debug(this, "Unknown status code: " + vStatusCode + " (" + vReadyState + ")");
               return false;
           }
         }
       },
-
       /**
        * Status code to string conversion
        *
@@ -397,150 +340,109 @@
         switch (vStatusCode) {
           case -1:
             return "Not available";
-
           case 0:
             // Attempt to generate a potentially meaningful error.
             // Get the current URL
-            var url = window.location.href; // Are we on a local page obtained via file: protocol?
+            var url = window.location.href;
 
+            // Are we on a local page obtained via file: protocol?
             if (url.toLowerCase().startsWith("file:")) {
               // Yup. Can't issue remote requests from here.
               return "Unknown status code. Possibly due to application URL using 'file:' protocol?";
             } else {
               return "Unknown status code. Possibly due to a cross-domain request?";
             }
-
-            break;
-
           case 200:
             return "Ok";
-
           case 304:
             return "Not modified";
-
           case 206:
             return "Partial content";
-
           case 204:
             return "No content";
-
           case 300:
             return "Multiple choices";
-
           case 301:
             return "Moved permanently";
-
           case 302:
             return "Moved temporarily";
-
           case 303:
             return "See other";
-
           case 305:
             return "Use proxy";
-
           case 400:
             return "Bad request";
-
           case 401:
             return "Unauthorized";
-
           case 402:
             return "Payment required";
-
           case 403:
             return "Forbidden";
-
           case 404:
             return "Not found";
-
           case 405:
             return "Method not allowed";
-
           case 406:
             return "Not acceptable";
-
           case 407:
             return "Proxy authentication required";
-
           case 408:
             return "Request time-out";
-
           case 409:
             return "Conflict";
-
           case 410:
             return "Gone";
-
           case 411:
             return "Length required";
-
           case 412:
             return "Precondition failed";
-
           case 413:
             return "Request entity too large";
-
           case 414:
             return "Request-URL too large";
-
           case 415:
             return "Unsupported media type";
-
           case 500:
             return "Server error";
-
           case 501:
             return "Not implemented";
-
           case 502:
             return "Bad gateway";
-
           case 503:
             return "Out of resources";
-
           case 504:
             return "Gateway time-out";
-
           case 505:
             return "HTTP version not supported";
-
           case 12002:
             return "Server timeout";
-
           case 12029:
             return "Connection dropped";
-
           case 12030:
             return "Connection dropped";
-
           case 12031:
             return "Connection dropped";
-
           case 12152:
             return "Connection closed by server";
-
           case 13030:
             return "MSHTML-specific HTTP status code";
-
           default:
             return "Unknown status code";
         }
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Set the request to send with this transport. */
       request: {
         check: "qx.io.remote.Request",
         nullable: true
       },
-
       /**
        * Set the implementation to use to send the request with.
        *
@@ -552,7 +454,6 @@
         nullable: true,
         apply: "_applyImplementation"
       },
-
       /** Current state of the transport layer. */
       state: {
         check: ["configured", "sending", "receiving", "completed", "aborted", "timeout", "failed"],
@@ -561,19 +462,18 @@
         apply: "_applyState"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         CORE METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sends the request.
        *
@@ -582,52 +482,45 @@
        */
       send: function send() {
         var vRequest = this.getRequest();
-
         if (!vRequest) {
           return this.error("Please attach a request object first");
         }
-
         qx.io.remote.Exchange.initTypes();
         var vUsage = qx.io.remote.Exchange.typesOrder;
-        var vSupported = qx.io.remote.Exchange.typesSupported; // Mapping settings to contenttype and needs to check later
+        var vSupported = qx.io.remote.Exchange.typesSupported;
+
+        // Mapping settings to contenttype and needs to check later
         // if the selected transport implementation can handle
         // fulfill these requirements.
-
         var vResponseType = vRequest.getResponseType();
         var vNeeds = {};
-
         if (vRequest.getAsynchronous()) {
           vNeeds.asynchronous = true;
         } else {
           vNeeds.synchronous = true;
         }
-
         if (vRequest.getCrossDomain()) {
           vNeeds.crossDomain = true;
         }
-
         if (vRequest.getFileUpload()) {
           vNeeds.fileUpload = true;
-        } // See if there are any programmatic form fields requested
-
-
-        for (var field in vRequest.getFormFields()) {
-          // There are.
-          vNeeds.programmaticFormFields = true; // No need to search further
-
-          break;
         }
 
-        var vTransportImpl, vTransport;
+        // See if there are any programmatic form fields requested
+        for (var field in vRequest.getFormFields()) {
+          // There are.
+          vNeeds.programmaticFormFields = true;
 
+          // No need to search further
+          break;
+        }
+        var vTransportImpl, vTransport;
         for (var i = 0, l = vUsage.length; i < l; i++) {
           vTransportImpl = vSupported[vUsage[i]];
-
           if (vTransportImpl) {
             if (!qx.io.remote.Exchange.canHandle(vTransportImpl, vNeeds, vResponseType)) {
               continue;
             }
-
             try {
               vTransport = new vTransportImpl();
               this.setImplementation(vTransport);
@@ -641,10 +534,8 @@
             }
           }
         }
-
         this.error("There is no transport implementation available to handle this request: " + vRequest);
       },
-
       /**
        * Force the transport into the aborted ("aborted")
        *  state.
@@ -652,64 +543,54 @@
        */
       abort: function abort() {
         var vImplementation = this.getImplementation();
-
         if (vImplementation) {
           vImplementation.abort();
         } else {
           this.setState("aborted");
         }
       },
-
       /**
        * Force the transport into the timeout state.
        *
        */
       timeout: function timeout() {
         var vImplementation = this.getImplementation();
-
         if (vImplementation) {
           var str = "";
-
           for (var key in vImplementation.getParameters()) {
             str += "&" + key + "=" + vImplementation.getParameters()[key];
           }
-
           this.warn("Timeout: implementation " + vImplementation.toHashCode() + ", " + vImplementation.getUrl() + " [" + vImplementation.getMethod() + "], " + str);
           vImplementation.timeout();
         } else {
           this.warn("Timeout: forcing state to timeout");
           this.setState("timeout");
-        } // Disable future timeouts in case user handler blocks
+        }
 
-
-        this.__P_240_0();
+        // Disable future timeouts in case user handler blocks
+        this.__P_250_0();
       },
-
       /*
       ---------------------------------------------------------------------------
         PRIVATES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Disables the timer of the request to prevent that the timer is expiring
        * even if the user handler (e.g. "completed") was already called.
        *
        */
-      __P_240_0: function __P_240_0() {
+      __P_250_0: function __P_250_0() {
         var vRequest = this.getRequest();
-
         if (vRequest) {
           vRequest.setTimeout(0);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for "sending" event.
        *
@@ -718,7 +599,6 @@
       _onsending: function _onsending(e) {
         this.setState("sending");
       },
-
       /**
        * Event listener for "receiving" event.
        *
@@ -727,7 +607,6 @@
       _onreceiving: function _onreceiving(e) {
         this.setState("receiving");
       },
-
       /**
        * Event listener for "completed" event.
        *
@@ -736,7 +615,6 @@
       _oncompleted: function _oncompleted(e) {
         this.setState("completed");
       },
-
       /**
        * Event listener for "abort" event.
        *
@@ -745,7 +623,6 @@
       _onabort: function _onabort(e) {
         this.setState("aborted");
       },
-
       /**
        * Event listener for "failed" event.
        *
@@ -754,7 +631,6 @@
       _onfailed: function _onfailed(e) {
         this.setState("failed");
       },
-
       /**
        * Event listener for "timeout" event.
        *
@@ -763,13 +639,11 @@
       _ontimeout: function _ontimeout(e) {
         this.setState("timeout");
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Apply method for the implementation property.
        *
@@ -785,7 +659,6 @@
           old.removeListener("timeout", this._ontimeout, this);
           old.removeListener("failed", this._onfailed, this);
         }
-
         if (value) {
           var vRequest = this.getRequest();
           value.setUrl(vRequest.getUrl());
@@ -795,22 +668,19 @@
           value.setPassword(vRequest.getPassword());
           value.setParameters(vRequest.getParameters(false));
           value.setFormFields(vRequest.getFormFields());
-          value.setRequestHeaders(vRequest.getRequestHeaders()); // Set the parseJson property which is currently only supported for XmlHttp transport
-          // (which is the only transport supporting JSON parsing so far).
+          value.setRequestHeaders(vRequest.getRequestHeaders());
 
+          // Set the parseJson property which is currently only supported for XmlHttp transport
+          // (which is the only transport supporting JSON parsing so far).
           if (value instanceof qx.io.remote.transport.XmlHttp) {
             value.setParseJson(vRequest.getParseJson());
           }
-
           var data = vRequest.getData();
-
           if (data === null) {
             var vParameters = vRequest.getParameters(true);
             var vParametersList = [];
-
             for (var vId in vParameters) {
               var paramValue = vParameters[vId];
-
               if (paramValue instanceof Array) {
                 for (var i = 0; i < paramValue.length; i++) {
                   vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(paramValue[i]));
@@ -819,14 +689,12 @@
                 vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(paramValue));
               }
             }
-
             if (vParametersList.length > 0) {
               value.setData(vParametersList.join("&"));
             }
           } else {
             value.setData(data);
           }
-
           value.setResponseType(vRequest.getResponseType());
           value.addListener("sending", this._onsending, this);
           value.addListener("receiving", this._onreceiving, this);
@@ -836,7 +704,6 @@
           value.addListener("failed", this._onfailed, this);
         }
       },
-
       /**
        * Apply method for the state property.
        *
@@ -848,31 +715,27 @@
           case "sending":
             this.fireEvent("sending");
             break;
-
           case "receiving":
             this.fireEvent("receiving");
             break;
-
           case "completed":
           case "aborted":
           case "timeout":
           case "failed":
             var vImpl = this.getImplementation();
-
             if (!vImpl) {
               // implementation has already been disposed
               break;
-            } // Disable future timeouts in case user handler blocks
+            }
 
-
-            this.__P_240_0();
-
+            // Disable future timeouts in case user handler blocks
+            this.__P_250_0();
             if (this.hasListener(value)) {
               var vResponse = qx.event.Registration.createEvent(value, qx.io.remote.Response);
-
               if (value == "completed") {
                 var vContent = vImpl.getResponseContent();
                 vResponse.setContent(vContent);
+
                 /*
                  * Was there acceptable content?  This might occur, for example, if
                  * the web server was shut down unexpectedly and thus the connection
@@ -881,37 +744,38 @@
 
                 if (vContent === null) {
                   // Nope.  Change COMPLETED to FAILED.
+
                   value = "failed";
                 }
               } else if (value == "failed") {
                 vResponse.setContent(vImpl.getResponseContent());
               }
-
               vResponse.setStatusCode(vImpl.getStatusCode());
               vResponse.setResponseHeaders(vImpl.getResponseHeaders());
               this.dispatchEvent(vResponse);
-            } // Disconnect and dispose implementation
+            }
 
-
+            // Disconnect and dispose implementation
             this.setImplementation(null);
-            vImpl.dispose(); // Fire event to listeners
+            vImpl.dispose();
+
+            // Fire event to listeners
             //this.fireDataEvent(vEventType, vResponse);
 
             break;
         }
       }
     },
-
     /*
     *****************************************************************************
        ENVIRONMENT SETTINGS
     *****************************************************************************
     */
+
     environment: {
       "qx.debug.io.remote": false,
       "qx.debug.io.remote.data": false
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -919,16 +783,14 @@
     */
     destruct: function destruct() {
       var vImpl = this.getImplementation();
-
       if (vImpl) {
         this.setImplementation(null);
         vImpl.dispose();
       }
-
       this.setRequest(null);
     }
   });
   qx.io.remote.Exchange.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Exchange.js.map?dt=1664789586935
+//# sourceMappingURL=Exchange.js.map?dt=1672653498131

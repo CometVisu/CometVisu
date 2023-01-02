@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 29,
-        "column": 0
+        "column": 0,
+        "index": 827
       },
       "end": {
-        "line": 69,
-        "column": 3
+        "line": 67,
+        "column": 3,
+        "index": 2279
       }
     },
     "jsdoc": {
@@ -41,12 +43,14 @@
     "onReady": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1162
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1691
         }
       },
       "jsdoc": {
@@ -81,12 +85,14 @@
     "onShutdown": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 2154
         },
         "end": {
-          "line": 67,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 2271
         }
       },
       "jsdoc": {

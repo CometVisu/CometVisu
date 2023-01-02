@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -32,7 +31,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * Renderer using the placeholder property of {@link qx.ui.form.AbstractField}
    * to visualize the name.
@@ -50,23 +48,19 @@
             column: 0,
             colSpan: 2
           });
-
           this._row++;
-        } // add the items
+        }
 
-
+        // add the items
         for (var i = 0; i < items.length; i++) {
           if (items[i].setPlaceholder === undefined) {
             throw new Error("Only widgets with placeholders supported.");
           }
-
           items[i].setPlaceholder(names[i]);
-
           this._add(items[i], {
             row: this._row,
             column: 0
           });
-
           this._row++;
         }
       }
@@ -75,4 +69,4 @@
   qx.ui.form.renderer.SinglePlaceholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SinglePlaceholder.js.map?dt=1664789597862
+//# sourceMappingURL=SinglePlaceholder.js.map?dt=1672653508787

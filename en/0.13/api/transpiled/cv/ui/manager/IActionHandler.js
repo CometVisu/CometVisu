@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IActionHandler.js 
-   * 
+  /* IActionHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -43,14 +42,12 @@
        * @param actionName {String} action name
        */
       canHandleAction: function canHandleAction(actionName) {},
-
       /**
        * Executes the action handling.
        * @param actionName {String} action name
        * @param data {var} action payload
        */
       handleAction: function handleAction(actionName, data) {},
-
       /**
        * The ActionHandler can configure the menubutton itself, e.g. disable it, when that action is currently not possible
        * or change the button text / tooltip text etc.
@@ -58,7 +55,6 @@
        * @param button {Widget} the button that should be configured
        */
       configureButton: function configureButton(actionId, button) {},
-
       /**
        * Undo all changes that have been applied to the button in configureButton
        * @param actionId {String} ID of the action that button triggers
@@ -70,4 +66,4 @@
   cv.ui.manager.IActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IActionHandler.js.map?dt=1664789564424
+//# sourceMappingURL=IActionHandler.js.map?dt=1672653473344

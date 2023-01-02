@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
       scrollToX: function scrollToX(value) {
         this.getContentElement().scrollToX(value, false);
       },
-
       /**
        * Scrolls the element's content to the given top coordinate
        *
@@ -66,4 +64,4 @@
   qx.ui.table.pane.Clipper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clipper.js.map?dt=1664789604792
+//# sourceMappingURL=Clipper.js.map?dt=1672653515019

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 627
       },
       "end": {
-        "line": 681,
-        "column": 3
+        "line": 679,
+        "column": 3,
+        "index": 21517
       }
     },
     "jsdoc": {
@@ -40,26 +42,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 14
+        "line": 27,
+        "column": 2,
+        "index": 707
       },
       "end": {
         "line": 38,
-        "column": 3
+        "column": 3,
+        "index": 1026
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "changeValid": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1102
         },
         "end": {
-          "line": 46,
-          "column": 40
+          "line": 44,
+          "column": 37,
+          "index": 1135
         }
       },
       "jsdoc": {
@@ -76,12 +81,14 @@
     "complete": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1374
         },
         "end": {
-          "line": 53,
-          "column": 38
+          "line": 51,
+          "column": 35,
+          "index": 1405
         }
       },
       "jsdoc": {
@@ -100,12 +107,14 @@
     "validator": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 1970
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2159
         }
       },
       "jsdoc": {
@@ -131,19 +140,21 @@
     "invalidMessage": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2345
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2406
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>The invalid message should store the message why the form validation\n failed. It will be added to the array returned by\n {@link #getInvalidMessages}.</p>"
+            "body": "<p>The invalid message stores the message why the form validation\n failed. It will be added to the array returned by\n {@link #getInvalidMessages}.</p>"
           }
         ]
       },
@@ -156,12 +167,14 @@
     "requiredFieldMessage": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2575
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2642
         }
       },
       "jsdoc": {
@@ -181,12 +194,14 @@
     "context": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2709
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2746
         }
       },
       "jsdoc": {
@@ -239,12 +254,14 @@
     "__formItems": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 101,
+          "column": 4,
+          "index": 2770
         },
         "end": {
-          "line": 112,
-          "column": 22
+          "line": 101,
+          "column": 21,
+          "index": 2787
         }
       },
       "type": "variable",
@@ -253,12 +270,14 @@
     "__valid": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 2793
         },
         "end": {
-          "line": 113,
-          "column": 18
+          "line": 102,
+          "column": 17,
+          "index": 2806
         }
       },
       "type": "variable",
@@ -267,12 +286,14 @@
     "__asyncResults": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2812
         },
         "end": {
-          "line": 114,
-          "column": 25
+          "line": 103,
+          "column": 24,
+          "index": 2832
         }
       },
       "type": "variable",
@@ -281,12 +302,14 @@
     "__syncValid": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 2838
         },
         "end": {
-          "line": 115,
-          "column": 22
+          "line": 104,
+          "column": 21,
+          "index": 2855
         }
       },
       "type": "variable",
@@ -295,12 +318,14 @@
     "add": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 4066
         },
         "end": {
-          "line": 167,
-          "column": 5
+          "line": 157,
+          "column": 5,
+          "index": 4763
         }
       },
       "jsdoc": {
@@ -345,12 +370,14 @@
     "remove": {
       "location": {
         "start": {
-          "line": 177,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 5039
         },
         "end": {
-          "line": 191,
-          "column": 5
+          "line": 177,
+          "column": 5,
+          "index": 5295
         }
       },
       "jsdoc": {
@@ -384,12 +411,14 @@
     "getItems": {
       "location": {
         "start": {
-          "line": 199,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 5454
         },
         "end": {
-          "line": 206,
-          "column": 5
+          "line": 190,
+          "column": 5,
+          "index": 5626
         }
       },
       "jsdoc": {
@@ -414,12 +443,14 @@
     "validate": {
       "location": {
         "start": {
-          "line": 220,
-          "column": 4
+          "line": 203,
+          "column": 4,
+          "index": 6224
         },
         "end": {
-          "line": 266,
-          "column": 5
+          "line": 251,
+          "column": 5,
+          "index": 7848
         }
       },
       "jsdoc": {
@@ -444,12 +475,14 @@
     "_validateRequired": {
       "location": {
         "start": {
-          "line": 277,
-          "column": 4
+          "line": 261,
+          "column": 4,
+          "index": 8160
         },
         "end": {
-          "line": 298,
-          "column": 5
+          "line": 282,
+          "column": 5,
+          "index": 9017
         }
       },
       "jsdoc": {
@@ -483,12 +516,14 @@
     "_validateItem": {
       "location": {
         "start": {
-          "line": 312,
-          "column": 4
+          "line": 295,
+          "column": 4,
+          "index": 9520
         },
         "end": {
-          "line": 351,
-          "column": 5
+          "line": 333,
+          "column": 5,
+          "index": 10738
         }
       },
       "jsdoc": {
@@ -529,12 +564,14 @@
     "__validateForm": {
       "location": {
         "start": {
-          "line": 364,
-          "column": 4
+          "line": 345,
+          "column": 4,
+          "index": 11239
         },
         "end": {
-          "line": 401,
-          "column": 5
+          "line": 382,
+          "column": 5,
+          "index": 12277
         }
       },
       "jsdoc": {
@@ -568,12 +605,14 @@
     "__isAsyncValidator": {
       "location": {
         "start": {
-          "line": 412,
-          "column": 4
+          "line": 392,
+          "column": 4,
+          "index": 12582
         },
         "end": {
-          "line": 420,
-          "column": 5
+          "line": 401,
+          "column": 5,
+          "index": 12851
         }
       },
       "jsdoc": {
@@ -610,12 +649,14 @@
     "__supportsInvalid": {
       "location": {
         "start": {
-          "line": 431,
-          "column": 4
+          "line": 411,
+          "column": 4,
+          "index": 13131
         },
         "end": {
-          "line": 434,
-          "column": 5
+          "line": 414,
+          "column": 5,
+          "index": 13267
         }
       },
       "jsdoc": {
@@ -649,12 +690,14 @@
     "__supportsSingleSelection": {
       "location": {
         "start": {
-          "line": 445,
-          "column": 4
+          "line": 424,
+          "column": 4,
+          "index": 13558
         },
         "end": {
-          "line": 448,
-          "column": 5
+          "line": 427,
+          "column": 5,
+          "index": 13713
         }
       },
       "jsdoc": {
@@ -688,12 +731,14 @@
     "__supportsDataBindingSelection": {
       "location": {
         "start": {
-          "line": 459,
-          "column": 4
+          "line": 437,
+          "column": 4,
+          "index": 14006
         },
         "end": {
-          "line": 462,
-          "column": 5
+          "line": 440,
+          "column": 5,
+          "index": 14168
         }
       },
       "jsdoc": {
@@ -727,12 +772,14 @@
     "_setValid": {
       "location": {
         "start": {
-          "line": 471,
-          "column": 4
+          "line": 448,
+          "column": 4,
+          "index": 14382
         },
         "end": {
-          "line": 479,
-          "column": 5
+          "line": 456,
+          "column": 5,
+          "index": 14636
         }
       },
       "jsdoc": {
@@ -761,12 +808,14 @@
     "_showToolTip": {
       "location": {
         "start": {
-          "line": 487,
-          "column": 4
+          "line": 463,
+          "column": 4,
+          "index": 14859
         },
         "end": {
-          "line": 526,
-          "column": 5
+          "line": 513,
+          "column": 5,
+          "index": 16497
         }
       },
       "jsdoc": {
@@ -792,12 +841,14 @@
     "getValid": {
       "location": {
         "start": {
-          "line": 534,
-          "column": 4
+          "line": 520,
+          "column": 4,
+          "index": 16636
         },
         "end": {
-          "line": 536,
-          "column": 5
+          "line": 522,
+          "column": 5,
+          "index": 16681
         }
       },
       "jsdoc": {
@@ -822,12 +873,14 @@
     "isValid": {
       "location": {
         "start": {
-          "line": 544,
-          "column": 4
+          "line": 529,
+          "column": 4,
+          "index": 16820
         },
         "end": {
-          "line": 546,
-          "column": 5
+          "line": 531,
+          "column": 5,
+          "index": 16867
         }
       },
       "jsdoc": {
@@ -852,12 +905,14 @@
     "getInvalidMessages": {
       "location": {
         "start": {
-          "line": 555,
-          "column": 4
+          "line": 539,
+          "column": 4,
+          "index": 17055
         },
         "end": {
-          "line": 570,
-          "column": 5
+          "line": 569,
+          "column": 5,
+          "index": 17967
         }
       },
       "jsdoc": {
@@ -882,12 +937,14 @@
     "getInvalidFormItems": {
       "location": {
         "start": {
-          "line": 578,
-          "column": 4
+          "line": 576,
+          "column": 4,
+          "index": 18073
         },
         "end": {
-          "line": 588,
-          "column": 5
+          "line": 586,
+          "column": 5,
+          "index": 18332
         }
       },
       "jsdoc": {
@@ -912,12 +969,14 @@
     "reset": {
       "location": {
         "start": {
-          "line": 594,
-          "column": 4
+          "line": 591,
+          "column": 4,
+          "index": 18384
         },
         "end": {
-          "line": 604,
-          "column": 5
+          "line": 601,
+          "column": 5,
+          "index": 18723
         }
       },
       "jsdoc": {
@@ -939,12 +998,14 @@
     "setItemValid": {
       "location": {
         "start": {
-          "line": 619,
-          "column": 4
+          "line": 615,
+          "column": 4,
+          "index": 19302
         },
         "end": {
-          "line": 624,
-          "column": 5
+          "line": 620,
+          "column": 5,
+          "index": 19495
         }
       },
       "jsdoc": {
@@ -983,12 +1044,14 @@
     "setFormValid": {
       "location": {
         "start": {
-          "line": 638,
-          "column": 4
+          "line": 633,
+          "column": 4,
+          "index": 19998
         },
         "end": {
-          "line": 641,
-          "column": 5
+          "line": 636,
+          "column": 5,
+          "index": 20119
         }
       },
       "jsdoc": {
@@ -1020,12 +1083,14 @@
     "__checkValidationComplete": {
       "location": {
         "start": {
-          "line": 649,
-          "column": 4
+          "line": 643,
+          "column": 4,
+          "index": 20344
         },
         "end": {
-          "line": 667,
-          "column": 5
+          "line": 661,
+          "column": 5,
+          "index": 20977
         }
       },
       "jsdoc": {
@@ -1127,6 +1192,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1151,6 +1217,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1443,12 +1510,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 676,
-        "column": 13
+        "line": 669,
+        "column": 2,
+        "index": 21172
       },
       "end": {
-        "line": 680,
-        "column": 3
+        "line": 672,
+        "column": 3,
+        "index": 21246
       }
     },
     "jsdoc": {}

@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Group.js 
-   * 
+  /* Group.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Group', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -54,7 +52,6 @@
        */
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-
         if (data.target) {
           data.classes += ' clickable';
           data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
@@ -63,24 +60,23 @@
         if (data.noWidget === true) {
           data.classes = data.classes.replace('widget ', '');
         }
-
         cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'nowidget': {
+          nowidget: {
             target: 'noWidget',
-            'default': false,
+            "default": false,
             transform: function transform(value) {
               return value === 'true';
             }
           },
-          'name': {
-            'default': ''
+          name: {
+            "default": ''
           },
-          'target': {
-            'default': ''
+          target: {
+            "default": ''
           }
         };
       }
@@ -92,4 +88,4 @@
   cv.parser.pure.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1664789561988
+//# sourceMappingURL=Group.js.map?dt=1672653470656

@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IModel.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -11,6 +8,7 @@
     "Interface",
     "define",
     "events",
+    "changeModel",
     "members",
     "setModel",
     "value",
@@ -20,8 +18,11 @@
     "form",
     "IModel"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,SAAH,CAAaC,MAAb,CAAoB,mBAApB,EACA;AAEE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,MAAM,EACN;AACE;AACA,qBAAgB;AAFlB,KATF;;AAgBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,OAAO,EACP;AACE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,kBAASC,KAAT,EAAgB,CAAE,CAN/B;;AASE;AACJ;AACA;AACA;AACA;AACIC,MAAAA,QAAQ,EAAG,oBAAW,CAAE,CAd1B;;AAiBE;AACJ;AACA;AACIC,MAAAA,UAAU,EAAG,sBAAW,CAAE;AApB5B;AAvBF,GADA;AAtBAX,EAAAA,EAAE,CAACY,EAAH,CAAMC,IAAN,CAAWC,MAAX,CAAkBX,aAAlB,GAAkCA,aAAlC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/form/IModel.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Each object which wants to store data representative for the real item\n * should implement this interface.\n */\nqx.Interface.define(\"qx.ui.form.IModel\",\n{\n\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events :\n  {\n    /** Fired when the model data changes */\n    \"changeModel\" : \"qx.event.type.Data\"\n  },\n\n\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members :\n  {\n    /**\n     * Set the representative data for the item.\n     *\n     * @param value {var} The data.\n     */\n    setModel : function(value) {},\n\n\n    /**\n     * Returns the representative data for the item\n     *\n     * @return {var} The data.\n     */\n    getModel : function() {},\n\n\n    /**\n     * Sets the representative data to null.\n     */\n    resetModel : function() {}\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Each object which wants to store data representative for the real item\n * should implement this interface.\n */\nqx.Interface.define(\"qx.ui.form.IModel\", {\n  /*\n  *****************************************************************************\n     EVENTS\n  *****************************************************************************\n  */\n\n  events: {\n    /** Fired when the model data changes */\n    changeModel: \"qx.event.type.Data\"\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /**\n     * Set the representative data for the item.\n     *\n     * @param value {var} The data.\n     */\n    setModel(value) {},\n\n    /**\n     * Returns the representative data for the item\n     *\n     * @return {var} The data.\n     */\n    getModel() {},\n\n    /**\n     * Sets the representative data to null.\n     */\n    resetModel() {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,SAAS,CAACC,MAAM,CAAC,mBAAmB,EAAE;IACvC;AACF;AACA;AACA;AACA;;IAEEC,MAAM,EAAE;MACN;MACAC,WAAW,EAAE;IACf,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MACIC,QAAQ,oBAACC,KAAK,EAAE,CAAC,CAAC;MAElB;AACJ;AACA;AACA;AACA;MACIC,QAAQ,sBAAG,CAAC,CAAC;MAEb;AACJ;AACA;MACIC,UAAU,wBAAG,CAAC;IAChB;EACF,CAAC,CAAC;EA5DFZ,EAAE,CAACa,EAAE,CAACC,IAAI,CAACC,MAAM,CAACZ,aAAa,GAAGA,aAAa;AAAC"
 }

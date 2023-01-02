@@ -15,11 +15,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Update.js 
-   * 
+  /* Update.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,7 +40,6 @@
    */
   qx.Mixin.define('cv.ui.common.Update', {
     include: cv.ui.common.BasicUpdate,
-
     /*
      ******************************************************
      CONSTRUCTOR
@@ -50,13 +48,12 @@
     construct: function construct() {
       if (this.getAddress) {
         if (this._initOnCreate === true) {
-          this.__P_523_0();
+          this.__P_538_0();
         } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
-          this.addListenerOnce('domReady', this.__P_523_0, this);
+          this.addListenerOnce('domReady', this.__P_538_0, this);
         }
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -64,25 +61,21 @@
     */
     members: {
       _initOnCreate: false,
-      __P_523_0: function __P_523_0() {
+      __P_538_0: function __P_538_0() {
         var model = cv.data.Model.getInstance();
         Object.getOwnPropertyNames(this.getAddress()).forEach(function (address) {
           if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
             // no read address
             return;
           }
-
           var state = model.getState(address);
-
           if (state !== undefined) {
             this.update(address, state);
-          } //add listener
-
-
+          }
+          //add listener
           model.addUpdateListener(address, this.update, this);
         }, this);
       },
-
       /**
        * Process the incoming data, update the shown value and the stylings
        *
@@ -94,7 +87,6 @@
           this._update(address, data);
         } else {
           var value = this.processIncomingValue(address, data);
-
           if (this.handleUpdate) {
             this.handleUpdate(value, address);
           }
@@ -102,19 +94,15 @@
       },
       processIncomingValue: function processIncomingValue(address, data) {
         if (this._processIncomingValue) {
-          var value = this._processIncomingValue(address, data); // store it to be able to suppress sending of unchanged data
-
-
+          var value = this._processIncomingValue(address, data);
+          // store it to be able to suppress sending of unchanged data
           if (value !== undefined) {
             this.setBasicValue(value);
           }
-
           return value;
         }
-
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       },
-
       /**
        * Description
        *
@@ -127,11 +115,9 @@
         ev.data.element.css('left', pos.x + 'px');
         ev.data.element.css('top', pos.y + 'px');
         var floorFilter = true;
-
         if (l.floorFilter) {
           floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter];
         }
-
         ev.data.element.css('display', floorFilter ? '' : 'none');
       }
     }
@@ -139,4 +125,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1664789612804
+//# sourceMappingURL=Update.js.map?dt=1672653522901

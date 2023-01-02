@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -17,7 +16,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +39,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Class.define("qx.util.fsm.State", {
     extend: qx.core.Object,
-
     /**
      * @param stateName {String}
      *   The name of this state.  This is the name which may be referenced in
@@ -163,71 +160,69 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
      *
      */
     construct: function construct(stateName, stateInfo) {
-      var context; // Call our superclass' constructor
+      var context;
 
-      qx.core.Object.constructor.call(this); // Save the state name
+      // Call our superclass' constructor
+      qx.core.Object.constructor.call(this);
 
-      this.setName(stateName); // Ensure they passed in an object
+      // Save the state name
+      this.setName(stateName);
 
+      // Ensure they passed in an object
       if (_typeof(stateInfo) != "object") {
         throw new Error("State info must be an object");
-      } // If a context was specified, retrieve it.
+      }
 
+      // If a context was specified, retrieve it.
+      context = stateInfo.context || window;
 
-      context = stateInfo.context || window; // Save it for future use
+      // Save it for future use
+      this.setUserData("context", context);
 
-      this.setUserData("context", context); // Save data from the stateInfo object
-
+      // Save data from the stateInfo object
       for (var field in stateInfo) {
         // If we find one of our properties, call its setter.
         switch (field) {
           case "onentry":
-            this.setOnentry(this.__P_501_0(stateInfo[field], context));
+            this.setOnentry(this.__P_516_0(stateInfo[field], context));
             break;
-
           case "onexit":
-            this.setOnexit(this.__P_501_0(stateInfo[field], context));
+            this.setOnexit(this.__P_516_0(stateInfo[field], context));
             break;
-
           case "autoActionsBeforeOnentry":
             this.setAutoActionsBeforeOnentry(stateInfo[field]);
             break;
-
           case "autoActionsAfterOnentry":
             this.setAutoActionsAfterOnentry(stateInfo[field]);
             break;
-
           case "autoActionsBeforeOnexit":
             this.setAutoActionsBeforeOnexit(stateInfo[field]);
             break;
-
           case "autoActionsAfterOnexit":
             this.setAutoActionsAfterOnexit(stateInfo[field]);
             break;
-
           case "events":
             this.setEvents(stateInfo[field]);
             break;
-
           case "context":
             // already handled
             break;
-
           default:
             // Anything else is user-provided data for their own use.  Save it.
-            this.setUserData(field, stateInfo[field]); // Log it in case it was a typo and they intended a built-in field
+            this.setUserData(field, stateInfo[field]);
 
+            // Log it in case it was a typo and they intended a built-in field
             this.debug("State " + stateName + ": " + "Adding user-provided field to state: " + field);
             break;
         }
-      } // Check for required but missing properties
+      }
 
-
+      // Check for required but missing properties
       if (!this.getEvents()) {
         throw new Error("The events object must be provided in new state info");
-      } // Initialize the transition list
+      }
 
-
+      // Initialize the transition list
       this.transitions = {};
     },
     statics: {
@@ -293,18 +288,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Validate that we received an object property value
         if (_typeof(value) != "object") {
           throw new Error("Invalid " + actionType + " value: " + _typeof(value));
-        } // We'll create a function to do the requested actions.  Initialize the
+        }
+
+        // We'll create a function to do the requested actions.  Initialize the
         // string into which we'll generate the common fragment added to the
         // function for each object.
+        var funcFragment;
 
-
-        var funcFragment; // Here, we'll keep the function body.  Initialize a try block.
-
+        // Here, we'll keep the function body.  Initialize a try block.
         var func = "try{";
         var param;
-        var objectAndGroupList; // Retrieve the function request, e.g.
-        // "enabled" :
+        var objectAndGroupList;
 
+        // Retrieve the function request, e.g.
+        // "enabled" :
         for (var f in value) {
           // Get the function request value object, e.g.
           // "setEnabled" :
@@ -315,29 +312,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           //     "groups"  : [ "group1", "group2" ],
           //   }
           // ];
-          var functionRequest = value[f]; // The function request value should be an object
+          var functionRequest = value[f];
 
+          // The function request value should be an object
           if (!functionRequest instanceof Array) {
             throw new Error("Invalid function request type: expected array, found " + _typeof(functionRequest));
-          } // For each function request...
+          }
 
-
+          // For each function request...
           for (var i = 0; i < functionRequest.length; i++) {
             // Retrieve the object and group list object
-            objectAndGroupList = functionRequest[i]; // The object and group list should be an object, e.g.
+            objectAndGroupList = functionRequest[i];
+
+            // The object and group list should be an object, e.g.
             // {
             //   "parameters"   : [ true ],
             //   "objects" : [ "obj1", "obj2" ]
             //   "groups"  : [ "group1", "group2" ],
             // }
-
             if (_typeof(objectAndGroupList) != "object") {
               throw new Error("Invalid function request parameter type: expected object, found " + _typeof(functionRequest[param]));
-            } // Retrieve the parameter list
+            }
 
+            // Retrieve the parameter list
+            var params = objectAndGroupList["parameters"];
 
-            var params = objectAndGroupList["parameters"]; // If it didn't exist, ...
-
+            // If it didn't exist, ...
             if (!params) {
               // ... use an empty array.
               params = [];
@@ -346,18 +346,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               if (!params instanceof Array) {
                 throw new Error("Invalid function parameters: expected array, found " + _typeof(params));
               }
-            } // Create the function to call on each object.  The object on which
+            }
+
+            // Create the function to call on each object.  The object on which
             // the function is called will be prepended later.
+            funcFragment = f + "(";
 
-
-            funcFragment = f + "("; // For each parameter...
-
+            // For each parameter...
             for (var j = 0; j < params.length; j++) {
               // If this isn't the first parameter, add a separator
               if (j != 0) {
                 funcFragment += ",";
               }
-
               if (typeof params[j] == "function") {
                 // If the parameter is a function, arrange for it to be called
                 // at run time.
@@ -369,53 +369,54 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 // Otherwise, just add the parameter's literal value
                 funcFragment += params[j];
               }
-            } // Complete the function call
+            }
 
+            // Complete the function call
+            funcFragment += ")";
 
-            funcFragment += ")"; // Get the "objects" list, e.g.
+            // Get the "objects" list, e.g.
             //   "objects" : [ "obj1", "obj2" ]
+            var a = objectAndGroupList["objects"];
 
-            var a = objectAndGroupList["objects"]; // Was there an "objects" list?
-
+            // Was there an "objects" list?
             if (!a) {
               // Nope.  Simplify code by creating an empty array.
               a = [];
             } else if (!a instanceof Array) {
               throw new Error("Invalid 'objects' list: expected array, got " + _typeof(a));
             }
-
             for (var j = 0; j < a.length; j++) {
               // Ensure we got a string
               if (typeof a[j] != "string") {
                 throw new Error("Invalid friendly name in 'objects' list: " + a[j]);
               }
-
               func += " fsm.getObject('" + a[j] + "')." + funcFragment + ";";
-            } // Get the "groups" list, e.g.
+            }
+
+            // Get the "groups" list, e.g.
             //   "groups" : [ "group1, "group2" ]
+            var g = objectAndGroupList["groups"];
 
-
-            var g = objectAndGroupList["groups"]; // Was a "groups" list found?
-
+            // Was a "groups" list found?
             if (g) {
               // Yup.  Ensure it's an array.
               if (!g instanceof Array) {
                 throw new Error("Invalid 'groups' list: expected array, got " + _typeof(g));
               }
-
               for (j = 0; j < g.length; j++) {
                 // Arrange to call the function on each object in each group
                 func += "  var groupObjects =     fsm.getGroupObjects('" + g[j] + "');" + "  for (var i = 0; i < groupObjects.length; i++)" + "  {" + "    var objName = groupObjects[i];" + "    fsm.getObject(objName)." + funcFragment + ";" + "  }";
               }
             }
           }
-        } // Terminate the try block for function invocations
+        }
 
+        // Terminate the try block for function invocations
+        func += "}catch(ex){  fsm.debug(ex);}";
 
-        func += "}catch(ex){  fsm.debug(ex);}"; // We've now built the entire body of a function that implements calls
+        // We've now built the entire body of a function that implements calls
         // to each of the requested automatic actions.  Create and return the
         // function, which will become the property value.
-
         return qx.lang.Function.bind(new Function("fsm", func), context);
       }
     },
@@ -426,10 +427,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * list in a State.
        */
       name: {
-        transform: "__P_501_1",
+        transform: "__P_516_1",
         nullable: true
       },
-
       /**
        * The onentry function for this state.  This is documented in the
        * constructor, and is typically provided through the constructor's
@@ -437,11 +437,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to change this dynamically.
        */
       onentry: {
-        transform: "__P_501_2",
+        transform: "__P_516_2",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * The onexit function for this state.  This is documented in the
        * constructor, and is typically provided through the constructor's
@@ -449,11 +448,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to change this dynamically.
        */
       onexit: {
-        transform: "__P_501_3",
+        transform: "__P_516_3",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * Automatic actions to take prior to calling the state's onentry function.
        *
@@ -483,11 +481,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsBeforeOnentry: {
-        transform: "__P_501_4",
+        transform: "__P_516_4",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * Automatic actions to take after return from the state's onentry
        * function.
@@ -518,11 +515,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsAfterOnentry: {
-        transform: "__P_501_5",
+        transform: "__P_516_5",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * Automatic actions to take prior to calling the state's onexit function.
        *
@@ -552,11 +548,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsBeforeOnexit: {
-        transform: "__P_501_6",
+        transform: "__P_516_6",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * Automatic actions to take after returning from the state's onexit
        * function.
@@ -587,11 +582,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *     </pre>
        */
       autoActionsAfterOnexit: {
-        transform: "__P_501_7",
+        transform: "__P_516_7",
         nullable: true,
         init: function init(fsm, event) {}
       },
-
       /**
        * The object representing handled and blocked events for this state.
        * This is documented in the constructor, and is typically provided
@@ -599,7 +593,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * (but highly NOT recommended) to change this dynamically.
        */
       events: {
-        transform: "__P_501_8",
+        transform: "__P_516_8",
         nullable: true
       }
     },
@@ -611,15 +605,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_501_1: function __P_501_1(value) {
+      __P_516_1: function __P_516_1(value) {
         // Ensure that we got a valid state name
         if (typeof value != "string" || value.length < 1) {
           throw new Error("Invalid state name");
         }
-
         return value;
       },
-
       /**
        * Internal transform method
        *
@@ -627,22 +619,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_501_2: function __P_501_2(value) {
+      __P_516_2: function __P_516_2(value) {
         // Validate the onentry function
         switch (_typeof(value)) {
           case "undefined":
             // None provided.  Convert it to a null function
             return function (fsm, event) {};
-
           case "function":
             // We're cool.  No changes required
             return qx.lang.Function.bind(value, this.getUserData("context"));
-
           default:
             throw new Error("Invalid onentry type: " + _typeof(value));
         }
       },
-
       /**
        * Internal transform method
        *
@@ -650,22 +639,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_501_3: function __P_501_3(value) {
+      __P_516_3: function __P_516_3(value) {
         // Validate the onexit function
         switch (_typeof(value)) {
           case "undefined":
             // None provided.  Convert it to a null function
             return function (fsm, event) {};
-
           case "function":
             // We're cool.  No changes required
             return qx.lang.Function.bind(value, this.getUserData("context"));
-
           default:
             throw new Error("Invalid onexit type: " + _typeof(value));
         }
       },
-
       /**
        * Internal transform method
        *
@@ -673,11 +659,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_501_8: function __P_501_8(value) {
+      __P_516_8: function __P_516_8(value) {
         // Validate that events is an object
         if (_typeof(value) != "object") {
           throw new Error("events must be an object");
-        } // Confirm that each property is a valid value
+        }
+
+        // Confirm that each property is a valid value
         // The property value should be one of:
         //
         // (a) qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE
@@ -690,11 +678,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         //     object (meaning that this rule applies if both the event and
         //     the event's target object's Friendly Name match), and its
         //     property value is one of (a), (b) or (c), above.
-
-
         for (var e in value) {
           var action = value[e];
-
           if (typeof action == "number" && action != qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE && action != qx.util.fsm.FiniteStateMachine.EventHandling.BLOCKED) {
             throw new Error("Invalid numeric value in events object: " + e + ": " + action);
           } else if (_typeof(action) == "object") {
@@ -708,52 +693,47 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } else if (typeof action != "string" && typeof action != "number") {
             throw new Error("Invalid value in events object: " + e + ": " + value[e]);
           }
-        } // We're cool.  No changes required.
+        }
 
-
+        // We're cool.  No changes required.
         return value;
       },
-
       /**
        * Internal transform method
        *
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_501_4: function __P_501_4(value) {
+      __P_516_4: function __P_516_4(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnentry", value, this.getUserData("context"));
       },
-
       /**
        * Internal transform method
        *
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_501_5: function __P_501_5(value) {
+      __P_516_5: function __P_516_5(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnentry", value, this.getUserData("context"));
       },
-
       /**
        * Internal transform method
        *
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_501_6: function __P_501_6(value) {
+      __P_516_6: function __P_516_6(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnexit", value, this.getUserData("context"));
       },
-
       /**
        * Internal transform method
        *
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_501_7: function __P_501_7(value) {
+      __P_516_7: function __P_516_7(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnexit", value, this.getUserData("context"));
       },
-
       /**
        * If given a function, bind it to a specified context.
        *
@@ -768,16 +748,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   be called in the specified context. Otherwise, f is returned
        *   unaltered.
        */
-      __P_501_0: function __P_501_0(f, context) {
+      __P_516_0: function __P_516_0(f, context) {
         // Is the first parameter a function?
         if (typeof f == "function") {
           // Yup. Bind it to the specified context.
           f = qx.lang.Function.bind(f, context);
         }
-
         return f;
       },
-
       /**
        * Add a transition to a state
        *
@@ -791,9 +769,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         // Ensure that we got valid transition info
         if (!trans instanceof qx.util.fsm.Transition) {
           throw new Error("Invalid transition: not an instance of qx.util.fsm.Transition");
-        } // Add the new transition object to the state
+        }
 
-
+        // Add the new transition object to the state
         this.transitions[trans.getName()] = trans;
       }
     }
@@ -801,4 +779,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.util.fsm.State.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=State.js.map?dt=1664789610783
+//# sourceMappingURL=State.js.map?dt=1672653520928

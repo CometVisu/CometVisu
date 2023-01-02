@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 928
       },
       "end": {
-        "line": 133,
-        "column": 3
+        "line": 138,
+        "column": 3,
+        "index": 4498
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 13
+        "line": 29,
+        "column": 2,
+        "index": 1116
       },
       "end": {
-        "line": 32,
-        "column": 3
+        "line": 31,
+        "column": 3,
+        "index": 1197
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "PENDING": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1353
         },
         "end": {
-          "line": 40,
-          "column": 15
+          "line": 39,
+          "column": 15,
+          "index": 1364
         }
       },
       "type": "variable",
@@ -60,12 +66,14 @@
     "__sendTime": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1524
         },
         "end": {
-          "line": 50,
-          "column": 20
+          "line": 48,
+          "column": 20,
+          "index": 1540
         }
       },
       "type": "variable",
@@ -74,12 +82,14 @@
     "getRequestHash": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1610
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1824
         }
       },
       "jsdoc": {
@@ -96,12 +106,14 @@
     "_onPhaseChange": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1831
         },
         "end": {
-          "line": 131,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 4490
         }
       },
       "type": "function",

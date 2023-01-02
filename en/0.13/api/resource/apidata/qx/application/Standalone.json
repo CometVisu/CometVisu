@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 900
       },
       "end": {
-        "line": 49,
-        "column": 3
+        "line": 44,
+        "column": 3,
+        "index": 1273
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "_createRootWidget": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1187
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 42,
+          "column": 5,
+          "index": 1265
         }
       },
       "type": "function",
@@ -150,6 +154,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -174,6 +179,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

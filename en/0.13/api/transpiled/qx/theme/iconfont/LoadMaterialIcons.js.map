@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIcons.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -14,8 +11,11 @@
     "iconfont",
     "LoadMaterialIcons"
   ],
-  "mappings": ";;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EAAuD,EAAvD;AA3BAL,EAAAA,EAAE,CAACM,KAAH,CAASC,QAAT,CAAkBC,iBAAlB,CAAoCL,aAApC,GAAoDA,aAApD",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIcons.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 OETIKER+PARTNER AG\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tobias Oetiker (oetiker)\n\n************************************************************************ */\n\n/**\n * A dummy class to trigger the compiler to copy the MaterialIcons font files\n */\n/**\n * @asset(qx/iconfont/MaterialIcons/materialicons-v70.ttf)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v70.woff2)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v70.woff)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v70.eot)\n */\nqx.Class.define(\"qx.theme.iconfont.LoadMaterialIcons\", {});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 OETIKER+PARTNER AG\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tobias Oetiker (oetiker)\n\n************************************************************************ */\n\n/**\n * A dummy class to trigger the compiler to copy the MaterialIcons font files\n */\n/**\n * @asset(qx/iconfont/MaterialIcons/materialicons-v126.ttf)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v126.woff2)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v126.woff)\n * @asset(qx/iconfont/MaterialIcons/materialicons-v126.eot)\n */\nqx.Class.define(\"qx.theme.iconfont.LoadMaterialIcons\", {});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE,CAAC,CAAC,CAAC;EA3B1DL,EAAE,CAACM,KAAK,CAACC,QAAQ,CAACC,iBAAiB,CAACL,aAAa,GAAGA,aAAa;AAAC"
 }

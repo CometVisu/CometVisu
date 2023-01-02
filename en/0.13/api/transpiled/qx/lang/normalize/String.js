@@ -41,7 +41,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,7 +58,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native 'String' object.
    * It checks if these methods are available and, if not, appends them to
@@ -79,9 +77,8 @@
        * @return {String} The trimmed string
        */
       trim: function trim() {
-        return this.replace(/^\s+|\s+$/g, '');
+        return this.replace(/^\s+|\s+$/g, "");
       },
-
       /**
        * Determines whether a string begins with the characters of another
        * string, returning true or false as appropriate.
@@ -96,7 +93,6 @@
         position = position || 0;
         return this.substr(position, searchString.length) === searchString;
       },
-
       /**
        * Determines whether a ends with the characters of another string,
        * returning true or false as appropriate.
@@ -110,98 +106,88 @@
        */
       endsWith: function endsWith(searchString, position) {
         var subjectString = this.toString();
-
-        if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length) {
+        if (typeof position !== "number" || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length) {
           position = subjectString.length;
         }
-
         position -= searchString.length;
         var lastIndex = subjectString.indexOf(searchString, position);
         return lastIndex !== -1 && lastIndex === position;
       },
-
       /**
        * Returns a non-negative integer that is the Unicode code point value.
        *   see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt
        *
-       * @param position {Integer} Position of an element in the string to 
+       * @param position {Integer} Position of an element in the string to
        *   return the code point value from.
-       * @return {Integer} A number representing the code point value of 
-       *   the character at the given pos. If there is no element at pos, 
+       * @return {Integer} A number representing the code point value of
+       *   the character at the given pos. If there is no element at pos,
        *   returns undefined..
        */
       codePointAt: function codePointAt(position) {
         if (this == null) {
           throw TypeError();
         }
-
         var string = String(this);
-        var size = string.length; // `ToInteger`
-
+        var size = string.length;
+        // `ToInteger`
         var index = position ? Number(position) : 0;
-
         if (index != index) {
           // better `isNaN`
           index = 0;
-        } // Account for out-of-bounds indices:
-
-
+        }
+        // Account for out-of-bounds indices:
         if (index < 0 || index >= size) {
           return undefined;
-        } // Get the first code unit
-
-
+        }
+        // Get the first code unit
         var first = string.charCodeAt(index);
         var second;
-
-        if ( // check if it’s the start of a surrogate pair
-        first >= 0xD800 && first <= 0xDBFF && // high surrogate
+        if (
+        // check if it’s the start of a surrogate pair
+        first >= 0xd800 && first <= 0xdbff &&
+        // high surrogate
         size > index + 1 // there is a next code unit
         ) {
-            second = string.charCodeAt(index + 1);
-
-            if (second >= 0xDC00 && second <= 0xDFFF) {
-              // low surrogate
-              // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
-              return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
-            }
+          second = string.charCodeAt(index + 1);
+          if (second >= 0xdc00 && second <= 0xdfff) {
+            // low surrogate
+            // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+            return (first - 0xd800) * 0x400 + second - 0xdc00 + 0x10000;
           }
-
+        }
         return first;
       },
-
       /**
        * Returns a string created by using the specified sequence of code points.
        *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint
        *
        * @param var_args {Integer} A sequence of code points as a variable argument list
-       *   The undescore is used as a throwaway variable.  
-       * @return {String} A string created by using 
+       *   The undescore is used as a throwaway variable.
+       * @return {String} A string created by using
        *   the specified sequence of code points.
        */
       fromCodePoint: function fromCodePoint(_) {
         var codeUnits = [],
-            codeLen = 0,
-            result = "";
-
+          codeLen = 0,
+          result = "";
         for (var index = 0, len = arguments.length; index !== len; ++index) {
-          var codePoint = +arguments[index]; // correctly handles all cases including `NaN`, `-Infinity`, `+Infinity`
+          var codePoint = +arguments[index];
+          // correctly handles all cases including `NaN`, `-Infinity`, `+Infinity`
           // The surrounding `!(...)` is required to correctly handle `NaN` cases
           // The (codePoint>>>0) === codePoint clause handles decimals and negatives
-
-          if (!(codePoint < 0x10FFFF && codePoint >>> 0 === codePoint)) {
+          if (!(codePoint < 0x10ffff && codePoint >>> 0 === codePoint)) {
             throw RangeError("Invalid code point: " + codePoint);
           }
-
-          if (codePoint <= 0xFFFF) {
+          if (codePoint <= 0xffff) {
             // BMP code point
             codeLen = codeUnits.push(codePoint);
           } else {
             // Astral code point; split in surrogate halves
             // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
             codePoint -= 0x10000;
-            codeLen = codeUnits.push((codePoint >> 10) + 0xD800, // highSurrogate
-            codePoint % 0x400 + 0xDC00 // lowSurrogate
+            codeLen = codeUnits.push((codePoint >> 10) + 0xd800,
+            // highSurrogate
+            codePoint % 0x400 + 0xdc00 // lowSurrogate
             );
           }
 
@@ -210,7 +196,6 @@
             codeUnits.length = 0;
           }
         }
-
         return result + String.fromCharCode.apply(null, codeUnits);
       }
     },
@@ -218,24 +203,20 @@
       // trim
       if (!qx.core.Environment.get("ecmascript.string.trim")) {
         String.prototype.trim = statics.trim;
-      } // startsWith
-
-
+      }
+      // startsWith
       if (!qx.core.Environment.get("ecmascript.string.startsWith")) {
         String.prototype.startsWith = statics.startsWith;
-      } // endsWith
-
-
+      }
+      // endsWith
       if (!qx.core.Environment.get("ecmascript.string.endsWith")) {
         String.prototype.endsWith = statics.endsWith;
-      } // codePointAt
-
-
+      }
+      // codePointAt
       if (!qx.core.Environment.get("ecmascript.string.codePointAt")) {
         String.prototype.codePointAt = statics.codePointAt;
-      } // fromCodePoint
-
-
+      }
+      // fromCodePoint
       if (!qx.core.Environment.get("ecmascript.string.fromCodePoint")) {
         String.fromCodePoint = statics.fromCodePoint;
       }
@@ -244,4 +225,4 @@
   qx.lang.normalize.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1664789588553
+//# sourceMappingURL=String.js.map?dt=1672653499984

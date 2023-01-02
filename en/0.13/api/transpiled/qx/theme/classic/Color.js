@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,7 +50,7 @@
    */
   qx.Theme.define("qx.theme.classic.Color", {
     colors: {
-      "background": "#EBE9ED",
+      background: "#EBE9ED",
       "background-light": "#F3F0F5",
       "light-background": "#EBE9ED",
       // compatibility
@@ -75,18 +74,18 @@
       "border-focused-dark": "#3E6CA8",
       "border-separator": "#808080",
       // shadows
-      "shadow": qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "#666666",
-      "invalid": "#990000",
+      shadow: qx.core.Environment.get("css.rgba") ? "rgba(0, 0, 0, 0.4)" : "#666666",
+      invalid: "#990000",
       "border-focused-invalid": "#FF9999",
-      "text": "black",
+      text: "black",
       "text-disabled": "#A7A6AA",
       "text-selected": "white",
       "text-focused": "#3E5B97",
       "text-placeholder": "#CBC8CD",
-      "tooltip": "#FFFFE1",
+      tooltip: "#FFFFE1",
       "tooltip-text": "black",
       "tooltip-invalid": "#C82C2C",
-      "button": "#EBE9ED",
+      button: "#EBE9ED",
       "button-hovered": "#F6F5F7",
       "button-abandoned": "#F9F8E9",
       "button-checked": "#F3F0F5",
@@ -97,7 +96,7 @@
       "date-chooser": "white",
       "date-chooser-title": [116, 116, 116],
       "date-chooser-selected": [52, 52, 52],
-      "effect": [254, 200, 60],
+      effect: [254, 200, 60],
       "table-pane": "white",
       "table-header": [242, 242, 242],
       "table-header-border": [214, 213, 217],
@@ -126,4 +125,4 @@
   qx.theme.classic.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1664789590804
+//# sourceMappingURL=Color.js.map?dt=1672653502153

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -47,6 +46,7 @@
    * Implementation of AbstractHandler that uses iframe and form DOM elements to
    * send the file.
    */
+
   qx.Class.define("com.zenesis.qx.upload.FormHandler", {
     extend: com.zenesis.qx.upload.AbstractHandler,
     members: {
@@ -56,32 +56,29 @@
       addBlob: function addBlob(filename, blob, params) {
         throw new Error("addBlob is not supported in the FormHandler.");
       },
-
       /*
        * @Override
        */
       _createFile: function _createFile(input) {
         var id = "upload-" + this._getUniqueFileId(),
-            filename = input.value.replace(/.*(\/|\\)/, ""),
-            file = new com.zenesis.qx.upload.File(input, filename, id);
-
+          filename = input.value.replace(/.*(\/|\\)/, ""),
+          file = new com.zenesis.qx.upload.File(input, filename, id);
         return file;
       },
-
       /*
        * @Override
        */
       _doUpload: function _doUpload(file) {
         var iframe = this._createIframe(file.getId()),
-            form = this._createForm(iframe, file);
-
+          form = this._createForm(iframe, file);
         form.appendChild(file.getBrowserObject());
         var self = this;
         qx.bom.Event.addNativeListener(iframe, "load", function (evt) {
           // when we remove iframe from dom the request stops, but in IE
           // load event fires
-          if (!iframe.parentNode) return; // fixing Opera 10.53
+          if (!iframe.parentNode) return;
 
+          // fixing Opera 10.53
           try {
             if (iframe.contentDocument && iframe.contentDocument.body && iframe.contentDocument.body.innerHTML == "false") {
               // In Opera event is fired second time when body.innerHTML
@@ -90,15 +87,16 @@
               // file with iframe
               return;
             }
-          } catch (e) {// IE fix
-          } // self.debug('iframe loaded');
+          } catch (e) {
+            // IE fix
+          }
 
+          // self.debug('iframe loaded');
 
           var response = self._getIframeContent(iframe);
+          self._onCompleted(file, response);
 
-          self._onCompleted(file, response); // timeout added to fix busy state in FF3.6
-
-
+          // timeout added to fix busy state in FF3.6
           setTimeout(function () {
             iframe.parentNode.removeChild(iframe);
             form.parentNode.removeChild(form);
@@ -106,7 +104,6 @@
         });
         form.submit();
       },
-
       /*
        * @Override
        */
@@ -114,30 +111,27 @@
         var data = file.getUserData("com.zenesis.qx.upload.FormHandler");
         if (!data) return;
         var iframe = document.getElementById("upload-iframe-" + file.getId()),
-            form = document.getElementById("upload-form-" + file.getId());
-
+          form = document.getElementById("upload-form-" + file.getId());
         if (iframe != null) {
           // to cancel request set src to something else
           // we use src="javascript:false;" because it doesn't
           // trigger ie6 prompt on https
-          iframe.setAttribute('src', 'javascript:false;');
+          iframe.setAttribute("src", "javascript:false;");
           iframe.parentNode.removeChild(iframe);
         }
-
         if (form != null) form.parentNode.removeChild(form);
       },
-
       /**
        * Returns text received by iframe from server.
-       * 
+       *
        * @return {String}
        */
       _getIframeContent: function _getIframeContent(iframe) {
         try {
           // iframe.contentWindow.document - for IE<7
           var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document,
-              response = doc.body.innerHTML; // this.debug("response=" + response);
-
+            response = doc.body.innerHTML;
+          // this.debug("response=" + response);
           return response;
         } catch (e) {
           // IE will throw an exception if the upload is cross domain and
@@ -145,10 +139,9 @@
           return null;
         }
       },
-
       /**
        * Creates iframe with unique name
-       * 
+       *
        * @return {DOMElement} the iframe
        */
       _createIframe: function _createIframe(id) {
@@ -157,6 +150,7 @@
         // on form submit will open
         // var iframe = document.createElement('iframe');
         // iframe.setAttribute('name', id);
+
         var iframe = qx.dom.Element.create("iframe", {
           src: "javascript:false;",
           // src="javascript:false;" removes ie6
@@ -165,15 +159,14 @@
           id: "upload-iframe-" + id
         });
         qx.bom.element.Style.setStyles(iframe, {
-          display: 'none'
+          display: "none"
         });
         document.body.appendChild(iframe);
         return iframe;
       },
-
       /**
        * Creates form, that will be submitted to iframe
-       * 
+       *
        * @return {DOMElement} the form
        */
       _createForm: function _createForm(iframe, file) {
@@ -191,20 +184,17 @@
           id: "upload-form-" + file.getId()
         });
         qx.bom.element.Style.setStyles(form, {
-          display: 'none'
+          display: "none"
         });
-
         var params = this._getMergedParams(file);
-
         for (var name in params) {
-          var el = qx.dom.Element.create('input', {
+          var el = qx.dom.Element.create("input", {
             type: "hidden",
             name: name,
             value: params[name]
           });
           form.appendChild(el);
         }
-
         document.body.appendChild(form);
         return form;
       }
@@ -213,4 +203,4 @@
   com.zenesis.qx.upload.FormHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FormHandler.js.map?dt=1664789616067
+//# sourceMappingURL=FormHandler.js.map?dt=1672653525852

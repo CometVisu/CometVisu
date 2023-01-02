@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -33,7 +32,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,7 +59,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    */
   qx.Class.define("qx.ui.form.core.VirtualDropDownList", {
     extend: qx.ui.popup.Popup,
-
     /**
      * Creates the drop-down list.
      *
@@ -73,12 +70,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       qx.core.Assert.assertInterface(target, qx.ui.form.core.AbstractVirtualBox, "Invalid parameter 'target'!");
       qx.ui.popup.Popup.constructor.call(this, new qx.ui.layout.VBox());
       this._target = target;
-
       this._createChildControl("list");
-
-      this.addListener("changeVisibility", this.__P_347_0, this);
-      this.__P_347_1 = new qx.data.Array();
-      this.initSelection(this.__P_347_1);
+      this.addListener("changeVisibility", this.__P_364_0, this);
+      this.__P_364_1 = new qx.data.Array();
+      this.initSelection(this.__P_364_1);
     },
     properties: {
       // overridden
@@ -91,7 +86,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         refine: true,
         init: true
       },
-
       /** Current selected items. */
       selection: {
         check: "qx.data.Array",
@@ -100,7 +94,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         nullable: false,
         deferredInit: true
       },
-
       /**
        * Allow the drop-down to grow wider than its parent.
        */
@@ -121,27 +114,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to get an event as soon as the user changes the selected item.
        * <pre class="javascript">obj.getSelection().addListener("change", listener, this);</pre>
        */
-      "changeSelection": "qx.event.type.Data"
+      changeSelection: "qx.event.type.Data"
     },
     members: {
       /** @type {qx.ui.form.core.AbstractVirtualBox} The composite widget. */
       _target: null,
-
       /** @type {var} The pre-selected model item. */
       _preselected: null,
-
       /**
        * @type {Boolean} Indicator to ignore selection changes from the
        * {@link #selection} array.
        */
-      __P_347_2: false,
-
+      __P_364_2: false,
       /** @type {Boolean} Indicator to ignore selection changes from the list. */
-      __P_347_3: false,
-
+      __P_364_3: false,
       /** @type {qx.data.Array} The initial selection array. */
-      __P_347_1: null,
-
+      __P_364_1: null,
       /**
        * When the drop-down is allowed to grow wider than its parent,
        * this member variable will contain the cached maximum list item width in pixels.
@@ -149,14 +137,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @type {Number}
        */
-      __P_347_4: 0,
-
+      __P_364_4: 0,
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Shows the drop-down.
        */
@@ -164,14 +150,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         this.placeToWidget(this._target, true);
         this.show();
       },
-
       /**
        * Hides the drop-down.
        */
       close: function close() {
         this.hide();
       },
-
       /**
        * Pre-selects the drop-down item corresponding to the given model object.
        *
@@ -179,16 +163,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       setPreselected: function setPreselected(modelItem) {
         this._preselected = modelItem;
-        this.__P_347_3 = true;
+        this.__P_364_3 = true;
         var listSelection = this.getChildControl("list").getSelection();
         var helper = new qx.data.Array([modelItem]);
-
-        this.__P_347_5(helper, listSelection);
-
+        this.__P_364_5(helper, listSelection);
         helper.dispose();
-        this.__P_347_3 = false;
+        this.__P_364_3 = false;
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL API
@@ -197,7 +178,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "list":
             control = new qx.ui.list.List().set({
@@ -220,16 +200,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             });
             break;
         }
-
         return control || qx.ui.form.core.VirtualDropDownList.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Handles the complete keyboard events dispatched on the widget.
        *
@@ -237,26 +214,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _handleKeyboard: function _handleKeyboard(event) {
         if (this.isVisible() && event.getKeyIdentifier() === "Enter") {
-          this.__P_347_6();
-
+          this.__P_364_6();
           return;
         }
-
         var clone = event.clone();
         clone.setTarget(this.getChildControl("list"));
         clone.setBubbles(false);
         this.getChildControl("list").dispatchEvent(clone);
       },
-
       /**
        * Handles all mouse events dispatched on the widget.
        *
        * @param event {qx.event.type.Mouse} The mouse event.
        */
       _handlePointer: function _handlePointer(event) {
-        this.__P_347_6();
+        this.__P_364_6();
       },
-
       /**
        * Handler for the local selection change. The method is responsible for
        * the synchronization between the own selection and the selection
@@ -264,25 +237,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *
        * @param event {qx.event.type.Data} The data event.
        */
-      __P_347_7: function __P_347_7(event) {
-        if (this.__P_347_2) {
+      __P_364_7: function __P_364_7(event) {
+        if (this.__P_364_2) {
           return;
         }
-
         var selection = this.getSelection();
         var listSelection = this.getChildControl("list").getSelection();
-        this.__P_347_3 = true;
-
-        this.__P_347_5(selection, listSelection);
-
-        this.__P_347_3 = false;
-        this.__P_347_2 = true;
-
-        this.__P_347_5(listSelection, selection);
-
-        this.__P_347_2 = false;
+        this.__P_364_3 = true;
+        this.__P_364_5(selection, listSelection);
+        this.__P_364_3 = false;
+        this.__P_364_2 = true;
+        this.__P_364_5(listSelection, selection);
+        this.__P_364_2 = false;
       },
-
       /**
        * Handler for the selection change on the list. The method is responsible
        * for the synchronization between the list selection and the own selection.
@@ -290,44 +257,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param event {qx.event.type.Data} The data event.
        */
       _onListChangeSelection: function _onListChangeSelection(event) {
-        if (this.__P_347_3) {
+        if (this.__P_364_3) {
           return;
         }
-
         var listSelection = this.getChildControl("list").getSelection();
-
         if (this.isVisible()) {
           this.setPreselected(listSelection.getItem(0));
         } else {
-          this.__P_347_2 = true;
-
-          this.__P_347_5(listSelection, this.getSelection());
-
-          this.__P_347_2 = false;
+          this.__P_364_2 = true;
+          this.__P_364_5(listSelection, this.getSelection());
+          this.__P_364_2 = false;
         }
       },
-
       /**
        * Handler for the own visibility changes. The method is responsible that
        * the list selects the current selected item.
        *
        * @param event {qx.event.type.Data} The event.
        */
-      __P_347_0: function __P_347_0(event) {
+      __P_364_0: function __P_364_0(event) {
         if (this.isVisible()) {
           if (this._preselected == null) {
             var selection = this.getSelection();
             var listSelection = this.getChildControl("list").getSelection();
-
-            this.__P_347_5(selection, listSelection);
+            this.__P_364_5(selection, listSelection);
           }
-
           this._adjustSize();
         } else {
           this.setPreselected(null);
         }
       },
-
       /**
        * Handler for the model change event.
        * Called when the whole model changes, not when its length changes.
@@ -339,10 +298,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (this.getAllowGrowDropDown()) {
           this._recalculateMaxListItemWidth();
         }
-
         this._adjustSize();
       },
-
       /**
        * Handler for the model length change event.
        * Called whenever items get added or removed from the model,
@@ -355,10 +312,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (this.getAllowGrowDropDown()) {
           this._recalculateMaxListItemWidth();
         }
-
         this._adjustSize();
       },
-
       /**
        * Handler for the delegate change event.
        *
@@ -367,7 +322,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _onChangeDelegate: function _onChangeDelegate(event) {
         this.getSelection().removeAll();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -375,26 +329,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       */
       // property apply
       _applySelection: function _applySelection(value, old) {
-        value.addListener("change", this.__P_347_7, this);
-
+        value.addListener("change", this.__P_364_7, this);
         if (old != null) {
-          old.removeListener("change", this.__P_347_7, this);
+          old.removeListener("change", this.__P_364_7, this);
         }
-
-        this.__P_347_5(value, this.getChildControl("list").getSelection(value));
+        this.__P_364_5(value, this.getChildControl("list").getSelection(value));
       },
-
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Helper method to select the current preselected item, also closes the
        * drop-down.
        */
-      __P_347_6: function __P_347_6() {
+      __P_364_6: function __P_364_6() {
         if (this._preselected != null) {
           var selection = this.getSelection();
           selection.splice(0, 1, this._preselected);
@@ -402,7 +352,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.close();
         }
       },
-
       /**
        * Helper method to synchronize both selection. The target selection has
        * the same selection like the source selection after the synchronization.
@@ -410,24 +359,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param source {qx.data.Array} The source selection.
        * @param target {qx.data.Array} The target selection.
        */
-      __P_347_5: function __P_347_5(source, target) {
+      __P_364_5: function __P_364_5(source, target) {
         if (source.equals(target)) {
           return;
         }
-
         if (source.getLength() <= 0) {
           target.removeAll();
         } else {
           // build arguments array for splice(0, target.length, source[0], source[1], ...)
           var spliceArg = [0, target.length];
-          spliceArg = spliceArg.concat(source.toArray()); // use apply since it allow to use an array as the argument array
+          spliceArg = spliceArg.concat(source.toArray());
+
+          // use apply since it allow to use an array as the argument array
           // (calling splice directly with an array insert it in the array on which splice is called)
           // don't forget to dispose the array created by splice
-
           target.splice.apply(target, spliceArg).dispose();
         }
       },
-
       /**
        * Adjust the drop-down to the available width and height, by calling
        * {@link #_adjustWidth} and {@link #_adjustHeight}.
@@ -437,27 +385,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           this.addListenerOnce("appear", this._adjustSize, this);
           return;
         }
-
         this._adjustWidth();
-
         this._adjustHeight();
       },
-
       /**
        * Adjust the drop-down to the available width. The width is limited by
        * the current width from the _target, unless allowGrowDropDown is true.
        */
       _adjustWidth: function _adjustWidth() {
         var width = this._target.getBounds().width;
-
-        var uiList = this.getChildControl('list');
-
+        var uiList = this.getChildControl("list");
         if (this.getAllowGrowDropDown()) {
           // Let the drop-down handle its own width.
           this.setWidth(null);
-
-          if (this.__P_347_4 > 0) {
-            uiList.setWidth(this.__P_347_4);
+          if (this.__P_364_4 > 0) {
+            uiList.setWidth(this.__P_364_4);
           } else {
             uiList.setWidth(width);
           }
@@ -467,7 +409,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           uiList.resetWidth();
         }
       },
-
       /**
        * Adjust the drop-down to the available height. Ensure that the list
        * is never bigger that the max list height and the available space
@@ -475,33 +416,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _adjustHeight: function _adjustHeight() {
         var availableHeight = this._getAvailableHeight();
-
         if (availableHeight === null) {
           return;
         }
-
         var maxHeight = this._target.getMaxListHeight();
-
         var list = this.getChildControl("list");
         var itemsHeight = list.getPane().getRowConfig().getTotalSize();
-
         if (maxHeight == null || itemsHeight < maxHeight) {
           maxHeight = itemsHeight;
         }
-
         if (maxHeight > availableHeight) {
           maxHeight = availableHeight;
         }
-
         var minHeight = list.getMinHeight();
-
         if (null !== minHeight && minHeight > maxHeight) {
           maxHeight = minHeight;
         }
-
         list.setMaxHeight(maxHeight);
       },
-
       /**
        * Calculates the available height in the viewport.
        *
@@ -509,18 +441,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       _getAvailableHeight: function _getAvailableHeight() {
         var distance = this.getLayoutLocation(this._target);
-
         if (!distance) {
           return null;
         }
+        var viewPortHeight = qx.bom.Viewport.getHeight();
 
-        var viewPortHeight = qx.bom.Viewport.getHeight(); // distance to the bottom and top borders of the viewport
-
+        // distance to the bottom and top borders of the viewport
         var toTop = distance.top;
         var toBottom = viewPortHeight - distance.bottom;
         return toTop > toBottom ? toTop : toBottom;
       },
-
       /**
        * Loop over all model items to recalculate the maximum list item width.
        *
@@ -530,52 +460,42 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var maxWidth = 0;
         var list = this.getChildControl("list");
         var model = list.getModel();
-
         if (model && model.length) {
           var createWidget = qx.util.Delegate.getMethod(list.getDelegate(), "createItem");
-
           if (!createWidget) {
             createWidget = function createWidget() {
               return new qx.ui.form.ListItem();
             };
           }
+          var tempListItem = createWidget();
 
-          var tempListItem = createWidget(); // Make sure the widget has the correct padding properties.
-
+          // Make sure the widget has the correct padding properties.
           tempListItem.syncAppearance();
           var styles;
           var font = tempListItem.getFont();
-
           if (font) {
             styles = qx.theme.manager.Font.getInstance().resolve(font).getStyles();
           }
-
           if (!styles) {
             styles = qx.bom.Font.getDefaultStyles();
           }
-
           var paddingX = list.getPaddingLeft() + list.getPaddingRight() + tempListItem.getPaddingLeft() + tempListItem.getPaddingRight() + tempListItem.getMarginLeft() + tempListItem.getMarginRight();
-          var label = tempListItem.getChildControl('label');
-
+          var label = tempListItem.getChildControl("label");
           if (label) {
             // Make sure the widget has the correct padding properties.
             label.syncAppearance();
             paddingX += label.getPaddingLeft() + label.getPaddingRight() + label.getMarginLeft() + label.getMarginRight();
           }
-
           model.forEach(function (item) {
             var width = 0;
             var content;
-
             if (typeof item === "string") {
               content = item;
             } else if (_typeof(item) === "object" && item !== null) {
               content = item.get(list.getLabelPath());
             }
-
             if (content) {
               width = qx.bom.Label.getHtmlSize(content, styles, undefined).width + paddingX;
-
               if (width > maxWidth) {
                 maxWidth = width;
               }
@@ -583,10 +503,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           });
           tempListItem.dispose();
         }
-
-        this.__P_347_4 = maxWidth;
+        this.__P_364_4 = maxWidth;
       },
-
       /**
        * Get the cached maximum list item width.
        *
@@ -594,16 +512,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @protected
        */
       _getMaxListItemWidth: function _getMaxListItemWidth() {
-        return this.__P_347_4;
+        return this.__P_364_4;
       }
     },
     destruct: function destruct() {
-      if (this.__P_347_1) {
-        this.__P_347_1.dispose();
+      if (this.__P_364_1) {
+        this.__P_364_1.dispose();
       }
     }
   });
   qx.ui.form.core.VirtualDropDownList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualDropDownList.js.map?dt=1664789597717
+//# sourceMappingURL=VirtualDropDownList.js.map?dt=1672653508652

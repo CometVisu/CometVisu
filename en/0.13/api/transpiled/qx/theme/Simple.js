@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * Simple Theme
    */
@@ -58,4 +56,4 @@
   qx.theme.Simple.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simple.js.map?dt=1664789590583
+//# sourceMappingURL=Simple.js.map?dt=1672653501896

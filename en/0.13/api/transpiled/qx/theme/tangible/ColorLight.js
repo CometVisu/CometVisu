@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Light Theme for Qooxdoo
@@ -30,21 +29,21 @@
     Origin:
       This theme is inspired by ideas from Material design.
   ************************************************************************ */
-
   /**
    * Simple color theme
    */
+
   qx.Theme.define("qx.theme.tangible.ColorLight", {
     extend: qx.theme.tangible.ColorEngine,
     colors: {
       // theme colors
-      "primary": "#6200ee",
-      "secondary": "#018786",
-      "surface": "#ffffff",
-      "error": "#b00020"
+      primary: "#6200ee",
+      secondary: "#018786",
+      surface: "#ffffff",
+      error: "#b00020"
     }
   });
   qx.theme.tangible.ColorLight.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorLight.js.map?dt=1664789592122
+//# sourceMappingURL=ColorLight.js.map?dt=1672653503608

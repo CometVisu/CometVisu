@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,11 +37,9 @@
   qx.Class.define("qx.ui.core.queue.Layout", {
     statics: {
       /** @type {Map} This contains all the queued widgets for the next flush. */
-      __P_308_0: {},
-
+      __P_323_0: {},
       /** Nesting level cache **/
-      __P_308_1: {},
-
+      __P_323_1: {},
       /**
        * Clears the widget from the internal queue. Normally only used
        * during interims disposes of one or a few widgets.
@@ -50,9 +47,8 @@
        * @param widget {qx.ui.core.Widget} The widget to clear
        */
       remove: function remove(widget) {
-        delete this.__P_308_0[widget.toHashCode()];
+        delete this.__P_323_0[widget.toHashCode()];
       },
-
       /**
        * Mark a widget's layout as invalid and add its layout root to
        * the queue.
@@ -62,22 +58,20 @@
        * @param widget {qx.ui.core.Widget} Widget to add.
        */
       add: function add(widget) {
-        this.__P_308_0[widget.toHashCode()] = widget;
+        this.__P_323_0[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("layout");
       },
-
       /**
-      * Check whether the queue has scheduled changes for a widget.
-      * Note that the layout parent can have changes scheduled that
-      * affect the children widgets.
-      *
-      * @param widget {qx.ui.core.Widget} Widget to check.
-      * @return {Boolean} Whether the widget given has layout changes queued.
-      */
+       * Check whether the queue has scheduled changes for a widget.
+       * Note that the layout parent can have changes scheduled that
+       * affect the children widgets.
+       *
+       * @param widget {qx.ui.core.Widget} Widget to check.
+       * @return {Boolean} Whether the widget given has layout changes queued.
+       */
       isScheduled: function isScheduled(widget) {
-        return !!this.__P_308_0[widget.toHashCode()];
+        return !!this.__P_323_0[widget.toHashCode()];
       },
-
       /**
        * Update the layout of all widgets, which layout is marked as invalid.
        *
@@ -86,19 +80,20 @@
        */
       flush: function flush() {
         // get sorted widgets to (re-)layout
-        var queue = this.__P_308_2(); // iterate in reversed order to process widgets with the smallest nesting
+        var queue = this.__P_323_2();
+
+        // iterate in reversed order to process widgets with the smallest nesting
         // level first because these may affect the inner lying children
-
-
         for (var i = queue.length - 1; i >= 0; i--) {
-          var widget = queue[i]; // continue if a relayout of one of the root's parents has made the
-          // layout valid
+          var widget = queue[i];
 
+          // continue if a relayout of one of the root's parents has made the
+          // layout valid
           if (widget.hasValidLayout()) {
             continue;
-          } // overflow areas or qx.ui.root.*
+          }
 
-
+          // overflow areas or qx.ui.root.*
           if (widget.isRootWidget() && !widget.hasUserBounds()) {
             // This is a real root widget. Set its size to its preferred size.
             var hint = widget.getSizeHint();
@@ -107,14 +102,12 @@
             // This is an inner item of layout changes. Do a relayout of its
             // children without changing its position and size.
             var bounds = widget.getBounds();
-
             if (bounds) {
               widget.renderLayout(bounds.left, bounds.top, bounds.width, bounds.height);
             }
           }
         }
       },
-
       /**
        * Get the widget's nesting level. Top level widgets have a nesting level
        * of <code>0</code>.
@@ -123,70 +116,66 @@
        * @return {Integer} The nesting level
        */
       getNestingLevel: function getNestingLevel(widget) {
-        var cache = this.__P_308_1;
+        var cache = this.__P_323_1;
         var level = 0;
-        var parent = widget; // Detecting level
+        var parent = widget;
 
+        // Detecting level
         while (true) {
           if (cache[parent.toHashCode()] != null) {
             level += cache[parent.toHashCode()];
             break;
           }
-
           if (!parent.$$parent) {
             break;
           }
-
           parent = parent.$$parent;
           level += 1;
-        } // Update the processed hierarchy (runs from inner to outer)
+        }
 
-
+        // Update the processed hierarchy (runs from inner to outer)
         var leveldown = level;
-
         while (widget && widget !== parent) {
           cache[widget.toHashCode()] = leveldown--;
           widget = widget.$$parent;
         }
-
         return level;
       },
-
       /**
        * Group widget by their nesting level.
        *
        * @return {Map[]} A sparse array. Each entry of the array contains a widget
        *     map with all widgets of the same level as the array index.
        */
-      __P_308_3: function __P_308_3() {
-        var VisibilityQueue = qx.ui.core.queue.Visibility; // clear cache
+      __P_323_3: function __P_323_3() {
+        var VisibilityQueue = qx.ui.core.queue.Visibility;
 
-        this.__P_308_1 = {}; // sparse level array
+        // clear cache
+        this.__P_323_1 = {};
 
+        // sparse level array
         var levels = [];
-        var queue = this.__P_308_0;
+        var queue = this.__P_323_0;
         var widget, level;
-
         for (var hash in queue) {
           widget = queue[hash];
-
           if (VisibilityQueue.isVisible(widget)) {
-            level = this.getNestingLevel(widget); // create hierarchy
+            level = this.getNestingLevel(widget);
 
+            // create hierarchy
             if (!levels[level]) {
               levels[level] = {};
-            } // store widget in level map
+            }
 
+            // store widget in level map
+            levels[level][hash] = widget;
 
-            levels[level][hash] = widget; // remove widget from layout queue
-
+            // remove widget from layout queue
             delete queue[hash];
           }
         }
-
         return levels;
       },
-
       /**
        * Compute all layout roots of the given widgets. Layout roots are either
        * root widgets or widgets, which preferred size has not changed by the
@@ -197,29 +186,26 @@
        *
        * @return {qx.ui.core.Widget[]} Ordered list or layout roots.
        */
-      __P_308_2: function __P_308_2() {
+      __P_323_2: function __P_323_2() {
         var sortedQueue = [];
-
-        var levels = this.__P_308_3();
-
+        var levels = this.__P_323_3();
         for (var level = levels.length - 1; level >= 0; level--) {
           // Ignore empty levels (levels is an sparse array)
           if (!levels[level]) {
             continue;
           }
-
           for (var hash in levels[level]) {
-            var widget = levels[level][hash]; // This is a real layout root. Add it directly to the list
+            var widget = levels[level][hash];
 
+            // This is a real layout root. Add it directly to the list
             if (level == 0 || widget.isRootWidget() || widget.hasUserBounds()) {
               sortedQueue.push(widget);
               widget.invalidateLayoutCache();
               continue;
-            } // compare old size hint to new size hint
+            }
 
-
+            // compare old size hint to new size hint
             var oldSizeHint = widget.getSizeHint(false);
-
             if (oldSizeHint) {
               widget.invalidateLayoutCache();
               var newSizeHint = widget.getSizeHint();
@@ -227,16 +213,13 @@
             } else {
               hintChanged = true;
             }
-
             if (hintChanged) {
               // Since the level is > 0, the widget must
               // have a parent != null.
               var parent = widget.getLayoutParent();
-
               if (!levels[level - 1]) {
                 levels[level - 1] = {};
               }
-
               levels[level - 1][parent.toHashCode()] = parent;
             } else {
               // this is an internal layout root since its own preferred size
@@ -245,7 +228,6 @@
             }
           }
         }
-
         return sortedQueue;
       }
     }
@@ -253,4 +235,4 @@
   qx.ui.core.queue.Layout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Layout.js.map?dt=1664789594515
+//# sourceMappingURL=Layout.js.map?dt=1672653505812

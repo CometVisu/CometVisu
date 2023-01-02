@@ -49,6 +49,7 @@
       <xsd:element name="cv-backend" type="cv-backend" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-loader" type="cv-loader" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-translations" type="cv-translations" minOccurs="0" />
+      <xsd:element name="style" type="html-style" minOccurs="0" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -527,6 +528,7 @@
       <xsd:element name="cv-color" type="cv-color" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
+      <xsd:element name="cv-plugin" type="cv-plugin"/>
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -636,35 +638,7 @@
     <xsd:attribute ref="style" />
     <xsd:attribute name="src" type="xsd:string"/>
     <xsd:attribute ref="refresh" />
-    <xsd:attribute name="proxy" type="xsd:boolean">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Use a proxy in the backend to load this picture to avoid loading errors.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Proxy im Backend benutzen, über den dieses Bild geladen wird. Dadurch können Fehler beim Laden vermieden werden.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="auth-type">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Type of authentication, if needed.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Art der Authentifizierung, falls erforderlich.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="basic" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute name="username" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Username for authentication.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Benutzername für die Authentifizierung.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="password" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Password for authentication.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Passwort für die Authentifizierung.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attributeGroup ref="proxy-attributes"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-chart">
@@ -672,9 +646,23 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" maxOccurs="unbounded">
           <xsd:complexType>
-            <xsd:attribute name="src" type="xsd:string"/>
-            <xsd:attribute name="src-type" type="xsd:string"/>
+            <xsd:attribute name="src" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+                <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="title" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
             <xsd:attribute name="type">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
               <xsd:simpleType>
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="line" />
@@ -682,30 +670,76 @@
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
-            <xsd:attribute name="color" type="color"/>
-            <xsd:attribute name="show-area" type="xsd:boolean"/>
-            <xsd:attribute name="series">
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="hour" />
-                  <xsd:enumeration value="day" />
-                  <xsd:enumeration value="week" />
-                  <xsd:enumeration value="month" />
-                  <xsd:enumeration value="year" />
-                </xsd:restriction>
-              </xsd:simpleType>
+            <xsd:attribute name="color" type="color">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+              </xsd:annotation>
             </xsd:attribute>
-            <xsd:attribute name="x-format" type="xsd:string"/>
+            <xsd:attribute name="show-area" type="xsd:boolean">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the chart.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel des Charts.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
-    <xsd:attribute name="y-format" type="xsd:string" />
-    <xsd:attribute name="x-format" type="xsd:string" />
+    <xsd:attribute name="y-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute name="series" type="xsd:string"/>
+    <xsd:attribute name="series">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="hour"/>
+          <xsd:enumeration value="day"/>
+          <xsd:enumeration value="week"/>
+          <xsd:enumeration value="month"/>
+          <xsd:enumeration value="year"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-x-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show x-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">X-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-y-axis" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show y-axis scale (default = true).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Y-Achsen Skala anzeigen (default = true).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="refresh"/>
   </xsd:complexType>
 
@@ -745,12 +779,7 @@
                 <xsd:documentation xml:lang="de">URL von der das Modell geladen werden soll (muss JSON zurückliefern).</xsd:documentation>
               </xsd:annotation>
             </xsd:attribute>
-            <xsd:attribute name="proxy" type="xsd:boolean">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Use a proxy to load the model from src (avoid CORS errors)</xsd:documentation>
-                <xsd:documentation xml:lang="de">Proxy benutzen, um Modell von src zu laden (Vermeidet CORS Fehler).</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
+            <xsd:attributeGroup ref="proxy-attributes"/>
             <xsd:attribute name="limit" type="xsd:positiveInteger">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Limits the model entries</xsd:documentation>
@@ -767,6 +796,24 @@
               </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="filter" type="xsd:string"/>
+            <xsd:attribute name="class">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Special builtin list models that are included in the CometVisu.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Spezielles Listenmodell, welches die CometVisu mitliefert.</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="FritzCallList"/>
+                  <xsd:enumeration value="RssLog"/>
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="parameters" type="xsd:string">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Parameter for the class list models.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Parameter für die class Listenmodelle.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
@@ -813,7 +860,24 @@
                   </xsd:annotation>
                   <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="rgb" />
+                      <xsd:enumeration value="RGB-r" />
+                      <xsd:enumeration value="RGB-g" />
+                      <xsd:enumeration value="RGB-b" />
+                      <xsd:enumeration value="rgbw" />
+                      <xsd:enumeration value="RGBW-r" />
+                      <xsd:enumeration value="RGBW-g" />
+                      <xsd:enumeration value="RGBW-b" />
+                      <xsd:enumeration value="RGBW-w" />
                       <xsd:enumeration value="hsv" />
+                      <xsd:enumeration value="h" />
+                      <xsd:enumeration value="s" />
+                      <xsd:enumeration value="v" />
+                      <xsd:enumeration value="xy" />
+                      <xsd:enumeration value="xyY" />
+                      <xsd:enumeration value="x" />
+                      <xsd:enumeration value="y" />
+                      <xsd:enumeration value="Y" />
                     </xsd:restriction>
                   </xsd:simpleType>
                 </xsd:attribute>
@@ -827,12 +891,178 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attributeGroup ref="layout-attributes" />
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of this popup</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel des Popups</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="throttle-interval" type="xsd:decimal">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
         <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="controls" type="xsd:string" default="triangle">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Liste the darzustellenden Kontrollelemente (durch Strichpunkte getrennt)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_x" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the red channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_y" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the red channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des roten Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_wavelength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_strength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_curve" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="r_scale" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the red channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des roten Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_x" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the green channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_y" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the green channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des grünen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_wavelength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_strength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_curve" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="g_scale" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the green channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des grünen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_x" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_y" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the blue channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des blauen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_wavelength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Wavelength in nanometers of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wellenlänge in Nanometern des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_strength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_curve" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="b_scale" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the blue channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des blauen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_x" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">x coordinate of the white channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">x Koordinate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_y" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">y coordinate of the white channel in the CIE xyY color space</xsd:documentation>
+        <xsd:documentation xml:lang="de">y Koordinate des weißen Kanals im CIE xyY Farbraum</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_strength" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Maximal strength of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Maximale Stärke des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_curve" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Dim curve of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dim-Kurve des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="w_scale" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Scaling of the dim curve of the white channel</xsd:documentation>
+        <xsd:documentation xml:lang="de">Skalierung der Dim-Kurve des weißen Kanals</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="send_on_finish" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Send only when the slider is released.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Sende nur beim Loslassen des Sliders.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-plugin">
+    <xsd:choice>
+      <xsd:element name="openweathermap" type="plugin-openweathermap"/>
+    </xsd:choice>
+    <xsd:attribute name="name"  type="xsd:string"/>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
   <!-- template based type (of templates that the structure has build in) -->
@@ -1493,6 +1723,51 @@
     <xsd:attribute ref="colspan"/>
   </xsd:attributeGroup>
 
+  <xsd:attributeGroup name="proxy-attributes">
+    <xsd:attribute name="proxy" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use a proxy to avoid loading errors or credentials from the hidden config.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Proxy im Backend benutzen, um Ladefehler zu vermeiden oder Zugangsdaten aus den versteckten Konfiguration zu nutzen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="auth-type">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Type of authentication, if needed.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Art der Authentifizierung, falls erforderlich.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="basic" />
+          <xsd:enumeration value="bearer" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="config-section" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Use uri and credentials from this section of the hidden config.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Uri und Zugangsdaten aus dieser Sektion der versteckten Konfiguration verwenden.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="username" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Username for authentication (or token for auth-type=bearer).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzername für die Authentifizierung (oder token für auth-type=bearer).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="password" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Password for authentication.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Passwort für die Authentifizierung.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="self-signed" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Disable certificate validation to allow loading pages with self-signed certificates.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zertifikatsprüfung deaktivieren, um Seiten mit selbst-signierten Zertifikaten laden zu können..</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+
   <xsd:attribute name="mapping" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping &lt;tile-element-mapping&gt;`</xsd:documentation>
@@ -1742,9 +2017,160 @@
     </xsd:sequence>
   </xsd:complexType>
 
+  <xsd:complexType name="html-style">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The style element contains style information for a document, or part of a document.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Das style-Element enthält Stylesheet-Angaben, die für das gesamte Dokument gelten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="media" default="all" type="xsd:string"/>
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # END: allowed HTML elements
+  #####################################################################################################################
+  # -->
+
+  <!--
+  #####################################################################################################################
+  # START: Plugins
+  #####################################################################################################################
+  # -->
+
+  <xsd:complexType name="plugin-openweathermap">
+    <xsd:attribute name="lang">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Language / format of the date
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Sprache / Datum-Formatierung
+        </xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="en" />
+          <xsd:enumeration value="de" />
+          <xsd:enumeration value="fr" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="appid" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Personal access key as obtained from https://openweathermap.org/
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Persönlicher Zugriffsschlüssel von https://openweathermap.org/
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="description" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Describing text, displays the place name when left empty. "false" disables the display
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Beschreibungstext, zeigt den Ortsnamen an, wenn leer gelassen. "false" deaktiviert Anzeige
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="detailItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Displays details when set to 1 (default) and hides them when set to 0
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzeige von Details, wenn Wert 1 ist (Voreinstellung). 0 deaktiviert Anzeige
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="forecast24hItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Number of items to show (0...8)
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzahl der Einträge (0...8)
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="forecastDailyItems" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Number of items to show (0...4)
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Anzahl der Einträge (0...4)
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="showSunrise" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Show the sun rise and set information
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Sonnenauf- und untergang anzeigen
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="owID" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          OpenWeatherMap city ID as defined in https://bulk.openweathermap.org/sample/city.list.json.gz
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          OpenWeatherMap City ID aus https://bulk.openweathermap.org/sample/city.list.json.gz
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="q" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID is not used: City name and country code divided by comma, use ISO 3166 country codes
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID nicht verwendet wird: Ortsname und ISO 3166 Ländercode, durch Komma getrennt
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="lat" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID or q is not used: latitude of place
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID oder q nicht verwendet wird: Geografische Breite des Ortes
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="lon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          When owID or q is not used: longitue of place
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Wenn owID oder q nicht verwendet wird: Geografische Länge des Ortes
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="refresh" type="xsd:integer">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Refresh interval of the data in minutes
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Aktualisierungsintervall in Minuten
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="class" />
+  </xsd:complexType>
+  
+  <!--
+  #####################################################################################################################
+  # END: Plugins
   #####################################################################################################################
   # -->
 </xsd:schema>

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,13 +40,11 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Conditional", {
     extend: qx.ui.table.cellrenderer.Default,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param align {String|null}
      *   The default text alignment to format the cell with by default.
@@ -66,46 +63,41 @@
       this.numericAllowed = ["==", "!=", ">", "<", ">=", "<="];
       this.betweenAllowed = ["between", "!between"];
       this.conditions = [];
-      this.__P_425_0 = align || "";
-      this.__P_425_1 = color || "";
-      this.__P_425_2 = style || "";
-      this.__P_425_3 = weight || "";
+      this.__P_439_0 = align || "";
+      this.__P_439_1 = color || "";
+      this.__P_439_2 = style || "";
+      this.__P_439_3 = weight || "";
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_425_0: null,
-      __P_425_1: null,
-      __P_425_2: null,
-      __P_425_3: null,
 
+    members: {
+      __P_439_0: null,
+      __P_439_1: null,
+      __P_439_2: null,
+      __P_439_3: null,
       /**
        * Applies the cell styles to the style map.
        * @param condition {Array} The matched condition
        * @param style {Map} map of already applied styles.
        */
-      __P_425_4: function __P_425_4(condition, style) {
+      __P_439_4: function __P_439_4(condition, style) {
         if (condition[1] != null) {
           style["text-align"] = condition[1];
         }
-
         if (condition[2] != null) {
           style["color"] = condition[2];
         }
-
         if (condition[3] != null) {
           style["font-style"] = condition[3];
         }
-
         if (condition[4] != null) {
           style["font-weight"] = condition[4];
         }
       },
-
       /**
        * The addNumericCondition method is used to add a basic numeric condition to
        * the cell renderer.
@@ -129,20 +121,17 @@
        */
       addNumericCondition: function addNumericCondition(condition, value1, align, color, style, weight, target) {
         var temp = null;
-
         if (this.numericAllowed.includes(condition)) {
           if (value1 != null) {
             temp = [condition, align, color, style, weight, value1, target];
           }
         }
-
         if (temp != null) {
           this.conditions.push(temp);
         } else {
           throw new Error("Condition not recognized or value is null!");
         }
       },
-
       /**
        * The addBetweenCondition method is used to add a between condition to the
        * cell renderer.
@@ -170,14 +159,12 @@
             var temp = [condition, align, color, style, weight, value1, value2, target];
           }
         }
-
         if (temp != null) {
           this.conditions.push(temp);
         } else {
           throw new Error("Condition not recognized or value1/value2 is null!");
         }
       },
-
       /**
        * The addRegex method is used to add a regular expression condition to the
        * cell renderer.
@@ -201,14 +188,12 @@
         if (regex != null) {
           var temp = ["regex", align, color, style, weight, regex, target];
         }
-
         if (temp != null) {
           this.conditions.push(temp);
         } else {
           throw new Error("regex cannot be null!");
         }
       },
-
       /**
        * Overridden; called whenever the cell updates. The cell will iterate through
        * each available condition and apply formatting for those that
@@ -226,63 +211,49 @@
         var cond_test;
         var compareValue;
         var style = {
-          "text-align": this.__P_425_0,
-          "color": this.__P_425_1,
-          "font-style": this.__P_425_2,
-          "font-weight": this.__P_425_3
+          "text-align": this.__P_439_0,
+          color: this.__P_439_1,
+          "font-style": this.__P_439_2,
+          "font-weight": this.__P_439_3
         };
-
         for (i in this.conditions) {
           cond_test = false;
-
           if (this.numericAllowed.includes(this.conditions[i][0])) {
             if (this.conditions[i][6] == null) {
               compareValue = cellInfo.value;
             } else {
               compareValue = tableModel.getValueById(this.conditions[i][6], cellInfo.row);
             }
-
             switch (this.conditions[i][0]) {
               case "==":
                 if (compareValue == this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
-
               case "!=":
                 if (compareValue != this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
-
               case ">":
                 if (compareValue > this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
-
               case "<":
                 if (compareValue < this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
-
               case ">=":
                 if (compareValue >= this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
-
               case "<=":
                 if (compareValue <= this.conditions[i][5]) {
                   cond_test = true;
                 }
-
                 break;
             }
           } else if (this.betweenAllowed.includes(this.conditions[i][0])) {
@@ -291,20 +262,16 @@
             } else {
               compareValue = tableModel.getValueById(this.conditions[i][7], cellInfo.row);
             }
-
             switch (this.conditions[i][0]) {
               case "between":
                 if (compareValue >= this.conditions[i][5] && compareValue <= this.conditions[i][6]) {
                   cond_test = true;
                 }
-
                 break;
-
               case "!between":
                 if (compareValue < this.conditions[i][5] || compareValue > this.conditions[i][6]) {
                   cond_test = true;
                 }
-
                 break;
             }
           } else if (this.conditions[i][0] == "regex") {
@@ -313,29 +280,24 @@
             } else {
               compareValue = tableModel.getValueById(this.conditions[i][6], cellInfo.row);
             }
-
-            var the_pattern = new RegExp(this.conditions[i][5], 'g');
+            var the_pattern = new RegExp(this.conditions[i][5], "g");
             cond_test = the_pattern.test(compareValue);
-          } // Apply formatting, if any.
+          }
 
-
+          // Apply formatting, if any.
           if (cond_test == true) {
-            this.__P_425_4(this.conditions[i], style);
+            this.__P_439_4(this.conditions[i], style);
           }
         }
-
         var styleString = [];
-
         for (var key in style) {
           if (style[key]) {
             styleString.push(key, ":", style[key], ";");
           }
         }
-
         return styleString.join("");
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -348,4 +310,4 @@
   qx.ui.table.cellrenderer.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1664789603987
+//# sourceMappingURL=Conditional.js.map?dt=1672653514232

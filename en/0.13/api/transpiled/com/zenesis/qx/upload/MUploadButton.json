@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 0
+        "line": 29,
+        "column": 0,
+        "index": 941
       },
       "end": {
-        "line": 86,
-        "column": 3
+        "line": 87,
+        "column": 3,
+        "index": 2461
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "acceptUpload": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1702
         },
         "end": {
-          "line": 52,
-          "column": 4
+          "line": 51,
+          "column": 5,
+          "index": 1821
         }
       },
       "jsdoc": {
@@ -60,11 +64,13 @@
       "location": {
         "start": {
           "line": 57,
-          "column": 4
+          "column": 4,
+          "index": 1948
         },
         "end": {
           "line": 62,
-          "column": 5
+          "column": 5,
+          "index": 2062
         }
       },
       "jsdoc": {
@@ -87,12 +93,14 @@
     "directory": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 2192
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2308
         }
       },
       "jsdoc": {
@@ -117,12 +125,14 @@
     "capture": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2351
         },
         "end": {
-          "line": 79,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2385
         }
       },
       "jsdoc": {},
@@ -132,12 +142,14 @@
     "releaseCapture": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2410
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2451
         }
       },
       "jsdoc": {},

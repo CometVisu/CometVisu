@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
        * Tobias Oetiker (oetiker)
   
   ************************************************************************ */
-
   /**
    * Mixin responsible for setting the css transition properties of a widget
    * This mixin is usually used by {@link qx.ui.decoration.Decorator}.
@@ -79,19 +77,16 @@
         nullable: true,
         apply: "_applyTransition"
       },
-
       /** transition duration */
       transitionDuration: {
         nullable: true,
         apply: "_applyTransition"
       },
-
       /** transition delay */
       transitionTimingFunction: {
         nullable: true,
         apply: "_applyTransition"
       },
-
       /** transition delay */
       transitionDelay: {
         nullable: true,
@@ -108,11 +103,9 @@
        */
       _styleTransition: function _styleTransition(styles) {
         var propName = qx.core.Environment.get("css.transition");
-
         if (!propName || this.getTransitionDuration() == null) {
           return;
         }
-
         if (qx.bom.client.Browser.getName() === "chrome" && qx.bom.client.Browser.getVersion() >= 71) {
           // chrome has a repaint problem ... as suggested in
           // https://stackoverflow.com/a/21947628/235990 we are setting
@@ -121,17 +114,15 @@
             styles.transform = "translateZ(0)";
           }
         }
-
         propName = qx.bom.Style.getCssName(propName.name);
         var transitionProperties = ["transitionProperty", "transitionDuration", "transitionTimingFunction", "transitionDelay"];
         (function (tPros, tDurs, tTims, tDels) {
           for (var i = 0; i < tPros.length; i++) {
-            var tPro = tPros[i] || 'all';
-            var tDur = tDurs[i] || '0s';
-            var tTim = tTims[i] || 'ease';
-            var tDel = tDels[i] || '0s';
-            var value = tPro + ' ' + tDur + ' ' + tTim + ' ' + tDel;
-
+            var tPro = tPros[i] || "all";
+            var tDur = tDurs[i] || "0s";
+            var tTim = tTims[i] || "ease";
+            var tDel = tDels[i] || "0s";
+            var value = tPro + " " + tDur + " " + tTim + " " + tDel;
             if (!styles[propName]) {
               styles[propName] = value;
             } else {
@@ -147,4 +138,4 @@
   qx.ui.decoration.MTransition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTransition.js.map?dt=1664789595594
+//# sourceMappingURL=MTransition.js.map?dt=1672653506763

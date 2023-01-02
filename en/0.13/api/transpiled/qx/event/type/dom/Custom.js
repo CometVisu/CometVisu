@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -26,7 +25,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +55,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         cancelable: true
       }
     },
-
     /**
      * @param type {String} event type
      * @param domEvent {Event} Native event that will be used as a template for the new event
@@ -67,11 +64,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     construct: function construct(type, domEvent, customProps) {
       this._type = type;
       this._event = this._createEvent();
-
       this._initEvent(domEvent, customProps);
-
       this._event._original = domEvent;
-
       this._event.preventDefault = function () {
         if (this._original.preventDefault) {
           this._original.preventDefault();
@@ -83,36 +77,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } catch (ex) {}
         }
       };
-
       if (this._event.stopPropagation) {
         this._event._nativeStopPropagation = this._event.stopPropagation;
       }
-
       this._event.stopPropagation = function () {
         this._stopped = true;
-
         if (this._nativeStopPropagation) {
           this._original.stopPropagation();
-
           this._nativeStopPropagation();
         } else {
           this._original.cancelBubble = true;
         }
       };
-
       return this._event;
     },
     members: {
       _type: null,
       _event: null,
-
       /**
        * Creates a custom event object
        * @return {Event} event object
        */
       _createEvent: function _createEvent() {
         var evt;
-
         if (qx.core.Environment.get("event.customevent")) {
           evt = new window.CustomEvent(this._type);
         } else if (typeof document.createEvent == "function") {
@@ -122,10 +109,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           evt = {};
           evt.type = this._type;
         }
-
         return evt;
       },
-
       /**
        * Initializes a custom event
        *
@@ -135,19 +120,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       _initEvent: function _initEvent(domEvent, customProps) {
         customProps = customProps || {};
         var properties = qx.lang.Object.clone(qx.event.type.dom.Custom.PROPERTIES);
-
         for (var prop in customProps) {
           properties[prop] = customProps[prop];
         }
-
         if (this._event.initEvent) {
           this._event.initEvent(this._type, properties.bubbles, properties.cancelable);
         }
-
         for (var prop in properties) {
           try {
             this._event[prop] = properties[prop];
-          } catch (ex) {//Nothing - strict mode prevents writing to read only properties
+          } catch (ex) {
+            //Nothing - strict mode prevents writing to read only properties
           }
         }
       }
@@ -156,4 +139,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.event.type.dom.Custom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Custom.js.map?dt=1664789586089
+//# sourceMappingURL=Custom.js.map?dt=1672653496548

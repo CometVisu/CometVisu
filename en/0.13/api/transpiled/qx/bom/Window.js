@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,27 +40,23 @@
       /** Internal blocker instance for all browsers which need an additional
        * blocker for modal windows because they do not support it natively.
        */
-      __P_116_0: null,
-
+      __P_118_0: null,
       /** Window handle which is currently blocked. */
-      __P_116_1: null,
-
+      __P_118_1: null,
       /** Timer instance to poll for unblocking if the modal window was closed */
-      __P_116_2: null,
-
+      __P_118_2: null,
       /** Supported options and their mapping to window options */
-      __P_116_3: {
-        "top": "dialogTop",
+      __P_118_3: {
+        top: "dialogTop",
         left: "dialogLeft",
         width: "dialogWidth",
         height: "dialogHeight",
         scrollbars: "scroll",
         resizable: "resizable"
       },
-
       /** Supported options for modeless windows */
-      __P_116_4: {
-        "top": 1,
+      __P_118_4: {
+        top: 1,
         left: 1,
         width: 1,
         height: 1,
@@ -73,16 +68,14 @@
         scrollbars: 1,
         toolbar: 1
       },
-
       /**
        * Whether the browser can open native modal window.
        *
        * @return {Boolean} Capability of open modal windows
        */
-      __P_116_5: function __P_116_5() {
+      __P_118_5: function __P_118_5() {
         return window.showModalDialog != null;
       },
-
       /**
        * Opens a native window with the given options.
        *
@@ -158,58 +151,44 @@
        */
       open: function open(url, name, options, modal, useNativeModalDialog, listener, self) {
         var newWindow = null;
-
         if (url == null) {
+          /* eslint-disable-next-line no-script-url */
           url = "javascript:/";
         }
-
         if (name == null) {
           name = "qxNativeWindow" + new Date().getTime();
         }
-
         if (useNativeModalDialog == null) {
           useNativeModalDialog = true;
         }
-
-        var configurationString = this.__P_116_6(options, modal && useNativeModalDialog);
-
+        var configurationString = this.__P_118_6(options, modal && useNativeModalDialog);
         if (modal) {
-          if (this.__P_116_5() && useNativeModalDialog) {
+          if (this.__P_118_5() && useNativeModalDialog) {
             newWindow = window.showModalDialog(url, [window.self], configurationString);
           } else {
             this.getBlocker().block();
-
-            if (this.__P_116_2 == null) {
-              this.__P_116_2 = new qx.event.Timer(500);
-
-              this.__P_116_2.addListener("interval", this.__P_116_7, this);
+            if (this.__P_118_2 == null) {
+              this.__P_118_2 = new qx.event.Timer(500);
+              this.__P_118_2.addListener("interval", this.__P_118_7, this);
             }
-
-            this.__P_116_1 = window.open(url, name, configurationString);
-
-            this.__P_116_2.restart();
-
-            newWindow = this.__P_116_1;
+            this.__P_118_1 = window.open(url, name, configurationString);
+            this.__P_118_2.restart();
+            newWindow = this.__P_118_1;
           }
         } else {
           newWindow = window.open(url, name, configurationString);
         }
-
         if (newWindow && listener && listener instanceof Function) {
           var context = self || newWindow;
           var onLoadFunction = qx.lang.Function.bind(listener, context);
-
           var onNativeLoad = function onNativeLoad() {
             onLoadFunction();
-            qx.bom.Event.removeNativeListener(newWindow, 'load', onNativeLoad);
+            qx.bom.Event.removeNativeListener(newWindow, "load", onNativeLoad);
           };
-
-          qx.bom.Event.addNativeListener(newWindow, 'load', onNativeLoad);
+          qx.bom.Event.addNativeListener(newWindow, "load", onNativeLoad);
         }
-
         return newWindow;
       },
-
       /**
        * Returns the given config as string for direct use for the "window.open" method
        *
@@ -218,61 +197,51 @@
        *
        * @return {String} configuration as string representation
        */
-      __P_116_6: function __P_116_6(options, modality) {
+      __P_118_6: function __P_118_6(options, modality) {
         var configurationString;
         var value;
         var configuration = [];
-
-        if (modality && this.__P_116_5()) {
+        if (modality && this.__P_118_5()) {
           for (var key in options) {
-            if (qx.bom.Window.__P_116_3[key]) {
+            if (qx.bom.Window.__P_118_3[key]) {
               var suffix = "";
-
               if (key != "scrollbars" && key != "resizable") {
                 suffix = "px";
               }
-
-              value = qx.bom.Window.__P_116_3[key] + ":" + options[key] + suffix;
+              value = qx.bom.Window.__P_118_3[key] + ":" + options[key] + suffix;
               configuration.push(value);
             } else {
               qx.log.Logger.warn("Option '" + key + "' is not supported for modal windows.");
             }
           }
-
           configurationString = configuration.join(";");
         } else {
           for (var key in options) {
-            if (qx.bom.Window.__P_116_4[key]) {
+            if (qx.bom.Window.__P_118_4[key]) {
               if (qx.lang.Type.isBoolean(options[key])) {
                 value = key + "=" + (options[key] ? "yes" : "no");
               } else {
                 value = key + "=" + options[key];
               }
-
               configuration.push(value);
             } else {
               qx.log.Logger.warn("Option '" + key + "' is not supported for native windows.");
             }
           }
-
           configurationString = configuration.join(",");
         }
-
         return configurationString;
       },
-
       /**
        * Interval method which checks if the native window was closed to also
        * stop the associated timer.
        */
-      __P_116_7: function __P_116_7() {
-        if (this.isClosed(this.__P_116_1)) {
+      __P_118_7: function __P_118_7() {
+        if (this.isClosed(this.__P_118_1)) {
           this.getBlocker().unblock();
-
-          this.__P_116_2.stop();
+          this.__P_118_2.stop();
         }
       },
-
       /**
        * If a modal window is opened with the option
        *
@@ -286,13 +255,11 @@
        * @return {qx.bom.Blocker?null} Blocker instance or null if no blocker is used
        */
       getBlocker: function getBlocker() {
-        if (this.__P_116_0 == null) {
-          this.__P_116_0 = new qx.bom.Blocker();
+        if (this.__P_118_0 == null) {
+          this.__P_118_0 = new qx.bom.Blocker();
         }
-
-        return this.__P_116_0;
+        return this.__P_118_0;
       },
-
       /**
        * Closes the given window
        *
@@ -305,7 +272,6 @@
           return win.close();
         }
       },
-
       /**
        * Checks if the window is closed
        *
@@ -314,16 +280,13 @@
        */
       isClosed: function isClosed(win) {
         var closed = true;
-
         if (win) {
           try {
             closed = win.closed;
           } catch (ex) {}
         }
-
         return closed;
       },
-
       /**
        * Moving an opened window is not allowed in the most browsers anymore.
        *
@@ -340,6 +303,7 @@
           Allow script-initiated windows without size or position constraints
           Code: 2102
         */
+
         if (!qx.bom.Window.isClosed(win)) {
           try {
             win.moveTo(left, top);
@@ -348,7 +312,6 @@
           }
         }
       },
-
       /**
        * Resizing an opened window is not allowed in the most browsers anymore.
        *
@@ -365,6 +328,7 @@
           Allow script-initiated windows without size or position constraints
           Code: 2102
         */
+
         if (!qx.bom.Window.isClosed(win)) {
           try {
             win.resizeTo(width, height);
@@ -378,4 +342,4 @@
   qx.bom.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1664789576967
+//# sourceMappingURL=Window.js.map?dt=1672653485345

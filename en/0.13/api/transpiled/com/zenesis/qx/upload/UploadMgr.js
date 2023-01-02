@@ -1,5 +1,7 @@
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -41,7 +43,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -69,10 +70,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
    * Manages uploading of files to the server; this class can use any suitable
    * widget to attach the input[type=file] to, provided the widget includes
    * com.zenesis.qx.upload.MUploadButton.
-   * 
+   *
    * Uploader will use XhrHandler to upload via XMLHttpRequest if supported or
    * will fall back to FormHandler.
-   * 
+   *
    * @require(qx.event.handler.Input)
    */
   qx.Class.define("com.zenesis.qx.upload.UploadMgr", {
@@ -80,7 +81,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     include: [com.zenesis.qx.upload.MParameters],
     construct: function construct(widget, uploadUrl) {
       qx.core.Object.constructor.call(this);
-      this.__P_528_0 = {};
+      this.__P_543_0 = {};
       if (widget) this.addWidget(widget);
       if (uploadUrl) this.setUploadUrl(uploadUrl);
     },
@@ -89,25 +90,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * Fired when a file is added to the queue; data is the
        * com.zenesis.qx.upload.File
        */
-      "addFile": "qx.event.type.Data",
-
+      addFile: "qx.event.type.Data",
       /**
        * Fired when a file starts to be uploaded; data is the
        * com.zenesis.qx.upload.File
        */
-      "beginUpload": "qx.event.type.Data",
-
+      beginUpload: "qx.event.type.Data",
       /**
        * Fired when a file has been uploaded; data is the
        * com.zenesis.qx.upload.File
        */
-      "completeUpload": "qx.event.type.Data",
-
+      completeUpload: "qx.event.type.Data",
       /**
        * Fired when a file upload has been cancelled; data is the
        * com.zenesis.qx.upload.File
        */
-      "cancelUpload": "qx.event.type.Data"
+      cancelUpload: "qx.event.type.Data"
     },
     properties: {
       /**
@@ -119,7 +117,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         init: "",
         event: "changeUploadUrl"
       },
-
       /**
        * Whether to automatically start uploading when a file is added
        * (default=true)
@@ -131,7 +128,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         event: "changeAutoUpload",
         apply: "_applyAutoUpload"
       },
-
       /**
        * Whether to support multiple files (default=true); this is not supported
        * on older browsers
@@ -150,7 +146,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         apply: "_applyDirectory",
         event: "changeDirectory"
       },
-
       /**
        * Prefix to apply to the name of input fields
        */
@@ -160,7 +155,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nullable: false,
         event: "changeInputNamePrefix"
       },
-
       /**
        * Whether the server can only handle multipart/form-data content type
        */
@@ -173,11 +167,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     members: {
-      __P_528_0: null,
-      __P_528_1: 0,
-      __P_528_2: null,
-      __P_528_3: 0,
-
+      __P_543_0: null,
+      __P_543_1: 0,
+      __P_543_2: null,
+      __P_543_3: 0,
       /**
        * Adds a widget which is to have an input[type=file] attached; this would
        * typically be an instance of com.zenesis.qx.upload.UploadButton (see
@@ -185,26 +178,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        */
       addWidget: function addWidget(widget) {
         var appearId = widget.addListenerOnce("appear", function (evt) {
-          var data = this.__P_528_0[widget.toHashCode()];
-
+          var data = this.__P_543_0[widget.toHashCode()];
           if (data) {
             data.appearId = null;
             var container = widget.getContentElement();
             container.setStyle("overflow", "hidden");
             if (widget.getEnabled() && !data.inputElement) container.addAt(this._createInputElement(widget), 0);
-
-            this.__P_528_4(widget);
+            this.__P_543_4(widget);
           }
         }, this);
         var keydownId = null;
-
         if (qx.core.Environment.get("engine.name") != "gecko") {
           keydownId = widget.addListener("keydown", function (evt) {
-            var data = this.__P_528_0[widget.toHashCode()];
-
+            var data = this.__P_543_0[widget.toHashCode()];
             if (data && data.inputElement) {
               var dom = data.inputElement.getDomElement();
-
               if (dom && typeof dom.click == "function") {
                 // dom.focus();
                 dom.click();
@@ -212,15 +200,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }
           }, this);
         }
-
-        this.__P_528_0[widget.toHashCode()] = {
+        this.__P_543_0[widget.toHashCode()] = {
           appearId: appearId,
           keydownId: keydownId,
           widget: widget,
           inputElement: null
         };
         widget.addListener("resize", function (evt) {
-          this.__P_528_4(widget);
+          this.__P_543_4(widget);
         }, this);
         widget.addListener("changeEnabled", function (evt) {
           if (evt.getData()) {
@@ -230,31 +217,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this._removeInputElement(widget);
           }
         }, this);
-
         if (qx.Class.hasMixin(widget.constructor, com.zenesis.qx.upload.MUploadButton)) {
           this.bind("multiple", widget, "multiple");
           this.bind("directory", widget, "directory");
         }
       },
-
       /**
        * Removes a widget
-       * 
+       *
        * @param widget {qx.ui.core.Widget} Widget to remvove
        */
       removeWidget: function removeWidget(widget) {
-        var data = this.__P_528_0[widget.toHashCode()];
-
+        var data = this.__P_543_0[widget.toHashCode()];
         if (data) {
           if (data.appearId) widget.removeListener(data.appearId);
           if (data.keydownId) widget.removeListener(data.keydownId);
-          delete this.__P_528_0[widget.toHashCode()];
+          delete this.__P_543_0[widget.toHashCode()];
         }
       },
-
       /**
-       * Adds a blob to the upload list 
-       * 
+       * Adds a blob to the upload list
+       *
        * @param blob    {Blob}    the blob to upload
        * @param params  {Object}  List of params added to the upload params
        */
@@ -262,21 +245,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.getUploadHandler().addBlob(filename, blob, params);
         if (this.getAutoUpload()) this.getUploadHandler().beginUploads();
       },
-
       /**
        * Helper method that corrects the size of the input element to match the
        * size of the widget
-       * 
+       *
        * @param widget {qx.ui.core.Widget} Widget to fixup size
        */
-      __P_528_4: function __P_528_4(widget) {
-        var data = this.__P_528_0[widget.toHashCode()];
-
+      __P_543_4: function __P_543_4(widget) {
+        var data = this.__P_543_0[widget.toHashCode()];
         if (data && data.inputElement) {
-          var bounds = widget.getBounds(); // It may be that if the widgets icon is styled
+          var bounds = widget.getBounds();
+          // It may be that if the widgets icon is styled
           // through a theme, neither label nor icon are set yet.
           // In this situation bounds calculation would fail.
-
           if (bounds) {
             data.inputElement.setStyles({
               width: bounds.width + "px",
@@ -291,82 +272,73 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       // property apply
       _applyMultiple: function _applyMultiple(value, oldValue) {
-        for (var hash in this.__P_528_0) {
-          var data = this.__P_528_0[hash];
+        for (var hash in this.__P_543_0) {
+          var data = this.__P_543_0[hash];
           if (data.inputElement) data.inputElement.setMultiple(value);
         }
       },
       // property directory
       _applyDirectory: function _applyDirectory(value, oldValue) {
-        for (var hash in this.__P_528_0) {
-          var data = this.__P_528_0[hash];
+        for (var hash in this.__P_543_0) {
+          var data = this.__P_543_0[hash];
           if (data.inputElement) data.inputElement.setDirectory(value);
         }
       },
       // property apply
       _applyRequireMultipartFormData: function _applyRequireMultipartFormData(value, oldValue) {
-        if (this.__P_528_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
+        if (this.__P_543_2) throw new Error("Changing the requireMultipartFormData property of " + this + " has no effect once uploads have started");
       },
-
       /**
        * Cancels a file being uploaded
-       * 
+       *
        * @param file {String} Upload to cancel
        */
       cancel: function cancel(file) {
         this.getUploadHandler().cancel(file);
       },
-
       /**
        * Cancels all files being uploaded
        */
       cancelAll: function cancelAll() {
         this.getUploadHandler().cancelAll();
       },
-
       /**
        * Creates the input[type=file] element
-       * 
+       *
        * @returns
        */
       _createInputElement: function _createInputElement(widget) {
-        var data = this.__P_528_0[widget.toHashCode()];
-
-        var name = this.getInputNamePrefix() + '-' + ++this.__P_528_1;
+        var data = this.__P_543_0[widget.toHashCode()];
+        var name = this.getInputNamePrefix() + "-" + ++this.__P_543_1;
         qx.core.Assert.assertNull(data.inputElement);
         var elem = data.inputElement = new com.zenesis.qx.upload.InputElement(widget, name);
         elem.addListenerOnce("change", qx.lang.Function.bind(this._onInputChange, this, elem));
         return elem;
       },
-
       /**
        * Removes the input element - ie discards the current one (which presumably
        * has already been queued for uploading)
        */
       _removeInputElement: function _removeInputElement(widget) {
-        var data = this.__P_528_0[widget.toHashCode()];
-
+        var data = this.__P_543_0[widget.toHashCode()];
         var elem = data.inputElement;
         var container = widget.getContentElement();
         data.inputElement = null;
         if (elem) container.remove(elem);
       },
-
       /**
        * Resets the input element - ie discards the current one (which presumably
        * has already been queued for uploading) and creates a new one
        */
       _resetInputElement: function _resetInputElement(widget) {
         this._removeInputElement(widget);
-
         var container = widget.getContentElement();
         container.addAt(this._createInputElement(widget), 0);
       },
-
       /**
        * Callback for changes to the input[ty=file]'s value, ie this is called
        * when the user has selected a file to upload
-       * 
+       *
        * @param elem {Element} Element which is affected
        * @param evt {Event} Event data
        */
@@ -374,42 +346,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var widget = elem.getWidget();
         this.getUploadHandler().addFile(elem.getDomElement(), widget);
         if (this.getAutoUpload()) this.getUploadHandler().beginUploads();
-
         this._resetInputElement(widget);
       },
-
       /**
        * Returns the upload handler
-       * 
+       *
        * @returns
        */
       getUploadHandler: function getUploadHandler() {
-        if (!this.__P_528_2) {
-          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_528_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_528_2 = new com.zenesis.qx.upload.FormHandler(this);
+        if (!this.__P_543_2) {
+          if (com.zenesis.qx.upload.XhrHandler.isSupported(this.isRequireMultipartFormData())) this.__P_543_2 = new com.zenesis.qx.upload.XhrHandler(this);else this.__P_543_2 = new com.zenesis.qx.upload.FormHandler(this);
         }
-
-        return this.__P_528_2;
+        return this.__P_543_2;
       },
-
       /**
        * Sets the upload handler
-       * 
+       *
        * @param elem {AbstractHandler} The upload handler
        */
       setUploadHandler: function setUploadHandler(handler) {
-        this.__P_528_2 = handler;
+        this.__P_543_2 = handler;
       },
-
       /**
        * Allocates a new upload ID; this is just a unique number that widgets or
        * application code can use to uniquely identify themselves to the server
        */
       allocateUploadId: function allocateUploadId() {
-        return "uploadId:" + ++this.__P_528_3;
+        return "uploadId:" + ++this.__P_543_3;
       }
     }
   });
   com.zenesis.qx.upload.UploadMgr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadMgr.js.map?dt=1664789614679
+//# sourceMappingURL=UploadMgr.js.map?dt=1672653524462

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 601
       },
       "end": {
-        "line": 93,
-        "column": 3
+        "line": 88,
+        "column": 3,
+        "index": 2002
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 32,
-        "column": 14
+        "line": 30,
+        "column": 2,
+        "index": 754
       },
       "end": {
-        "line": 53,
-        "column": 3
+        "line": 54,
+        "column": 3,
+        "index": 1451
       }
     },
     "jsdoc": {
@@ -67,12 +71,14 @@
     "__exc": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1471
         },
         "end": {
-          "line": 58,
-          "column": 16
+          "line": 57,
+          "column": 15,
+          "index": 1482
         }
       },
       "type": "variable",
@@ -81,12 +87,14 @@
     "__arguments": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1488
         },
         "end": {
-          "line": 59,
-          "column": 22
+          "line": 58,
+          "column": 21,
+          "index": 1505
         }
       },
       "type": "variable",
@@ -95,12 +103,14 @@
     "__failMessage": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1511
         },
         "end": {
-          "line": 60,
-          "column": 24
+          "line": 59,
+          "column": 23,
+          "index": 1530
         }
       },
       "type": "variable",
@@ -109,12 +119,14 @@
     "getArguments": {
       "location": {
         "start": {
-          "line": 78,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 1786
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 1839
         }
       },
       "jsdoc": {
@@ -139,12 +151,14 @@
     "getSourceException": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 1941
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 1994
         }
       },
       "jsdoc": {

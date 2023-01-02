@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -26,7 +25,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is a base class for the OO system defined by Class, Mixin
    * and Interface. It contains helper which are basically needed to create the
@@ -43,7 +41,6 @@
       classIsDefined: function classIsDefined(name) {
         return qx.Bootstrap.getByName(name) !== undefined;
       },
-
       /**
        * Returns the definition of the given property, if not redefined.
        * Returns null if the property does not exist.
@@ -57,13 +54,10 @@
           if (clazz.$$properties && clazz.$$properties[name]) {
             return clazz.$$properties[name];
           }
-
           clazz = clazz.superclass;
         }
-
         return null;
       },
-
       /**
        * Whether a class has the given property
        *
@@ -74,7 +68,6 @@
       hasProperty: function hasProperty(clazz, name) {
         return !!qx.util.OOUtil.getPropertyDefinition(clazz, name);
       },
-
       /**
        * Returns the event type of the given event. Returns null if
        * the event does not exist.
@@ -85,18 +78,14 @@
        */
       getEventType: function getEventType(clazz, name) {
         var clazz = clazz.constructor;
-
         while (clazz.superclass) {
           if (clazz.$$events && clazz.$$events[name] !== undefined) {
             return clazz.$$events[name];
           }
-
           clazz = clazz.superclass;
         }
-
         return null;
       },
-
       /**
        * Whether a class supports the given event type
        *
@@ -107,7 +96,6 @@
       supportsEvent: function supportsEvent(clazz, name) {
         return !!qx.util.OOUtil.getEventType(clazz, name);
       },
-
       /**
        * Returns the class or one of its super classes which contains the
        * declaration of the given interface. Returns null if the interface is not
@@ -119,24 +107,19 @@
        */
       getByInterface: function getByInterface(clazz, iface) {
         var list, i, l;
-
         while (clazz) {
           if (clazz.$$implements) {
             list = clazz.$$flatImplements;
-
             for (i = 0, l = list.length; i < l; i++) {
               if (list[i] === iface) {
                 return clazz;
               }
             }
           }
-
           clazz = clazz.superclass;
         }
-
         return null;
       },
-
       /**
        * Whether a given class or any of its super classes includes a given interface.
        *
@@ -152,7 +135,6 @@
       hasInterface: function hasInterface(clazz, iface) {
         return !!qx.util.OOUtil.getByInterface(clazz, iface);
       },
-
       /**
        * Returns a list of all mixins available in a given class.
        *
@@ -161,15 +143,12 @@
        */
       getMixins: function getMixins(clazz) {
         var list = [];
-
         while (clazz) {
           if (clazz.$$includes) {
             list.push.apply(list, clazz.$$flatIncludes);
           }
-
           clazz = clazz.superclass;
         }
-
         return list;
       }
     }
@@ -177,4 +156,4 @@
   qx.util.OOUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OOUtil.js.map?dt=1664789609668
+//# sourceMappingURL=OOUtil.js.map?dt=1672653520086

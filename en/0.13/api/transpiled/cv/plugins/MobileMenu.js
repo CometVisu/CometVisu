@@ -29,11 +29,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* MobileMenu.js 
-   * 
+  /* MobileMenu.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -57,7 +56,6 @@
   qx.Class.define('cv.plugins.MobileMenu', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren],
-
     /*
     ******************************************************
       STATICS
@@ -85,35 +83,31 @@
         });
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_10_0: null,
-      __P_10_1: null,
+      __P_12_0: null,
+      __P_12_1: null,
       // overridden
       getDomString: function getDomString() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-          var navLeft = this.__P_10_0 = document.querySelector('#navbarLeft');
-
+          var navLeft = this.__P_12_0 = document.querySelector('#navbarLeft');
           if (!navLeft.classList.contains('mobilemenu')) {
             navLeft.classList.add('mobilemenu');
           }
-
           navLeft.style.display = 'none';
           qx.event.message.Bus.subscribe('path.pageChanged', function () {
             var navbar = navLeft.querySelector('.navbar');
             var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
             animation.addListenerOnce('end', function () {
               navLeft.style.display = 'none';
-            }, this);
+            });
           });
           return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
         }
-
         return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
       },
       _onDomReady: function _onDomReady() {
@@ -124,10 +118,8 @@
       _action: function _action() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           if (this.isTouchDevice()) {
-            this.__P_10_0.style.display = 'block';
-
-            var navbar = this.__P_10_0.querySelector('.navbar.navbarActive');
-
+            this.__P_12_0.style.display = 'block';
+            var navbar = this.__P_12_0.querySelector('.navbar.navbarActive');
             qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
           }
         }
@@ -145,16 +137,15 @@
         }, false);
       },
       isTouchDevice: function isTouchDevice() {
-        if (this.__P_10_1 === null) {
+        if (this.__P_12_1 === null) {
           try {
             document.createEvent('TouchEvent');
-            this.__P_10_1 = true;
+            this.__P_12_1 = true;
           } catch (e) {
-            this.__P_10_1 = false;
+            this.__P_12_1 = false;
           }
         }
-
-        return this.__P_10_1;
+        return this.__P_12_1;
       }
     },
     // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
@@ -174,4 +165,4 @@
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1664789563027
+//# sourceMappingURL=MobileMenu.js.map?dt=1672653471634

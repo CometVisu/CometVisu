@@ -4,11 +4,14 @@
       "qx.Class": {
         "usage": "dynamic",
         "require": true
+      },
+      "qx.core.Assert": {},
+      "qx.log.Logger": {
+        "defer": "runtime"
       }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -25,6 +28,7 @@
      Authors:
        * Daniel Wagner (d_wagner)
        * Thomas Herchenroeder (thron7)
+       * Christian Boulanger (cboulanger)
   
   ************************************************************************ */
 
@@ -39,13 +43,37 @@
       /**
        * process.stdout
        */
-      __P_260_0: null,
-
+      __P_275_0: null,
       /**
        * process.stderr
        */
-      __P_260_1: null,
-
+      __P_275_1: null,
+      /**
+       * Whether to use color codes
+       */
+      __P_275_2: false,
+      /**
+       * Which ANSI color codes to use for which log level
+       */
+      __P_275_3: {
+        debug: "\x1B[38;5;3m",
+        // yellow
+        info: "\x1B[38;5;12m",
+        // light blue
+        warn: "\x1B[38;5;9m",
+        // light right
+        error: "\x1B[38;5;1m",
+        // red
+        reset: "\x1B[0m"
+      },
+      /**
+       * Turn the use of colors on or off
+       * @param {Boolean} value
+       */
+      setUseColors: function setUseColors(value) {
+        qx.core.Assert.assertBoolean(value);
+        this.__P_275_2 = value;
+      },
       /**
        * Writes a message to the shell. Errors will be sent to STDERR, everything
        * else goes to STDOUT
@@ -54,13 +82,15 @@
        * @param level {String} Log level. One of "debug", "info", "warn", "error"
        */
       log: function log(logMessage, level) {
-        if (level == "error") {
-          this.__P_260_1.write(logMessage + '\n');
+        if (this.__P_275_2 && this.__P_275_3[level]) {
+          logMessage = this.__P_275_3[level] + logMessage + this.__P_275_3.reset;
+        }
+        if (level === "error") {
+          this.__P_275_1.write(logMessage + "\n");
         } else {
-          this.__P_260_0.write(logMessage + '\n');
+          this.__P_275_0.write(logMessage + "\n");
         }
       },
-
       /**
        * Logs a debug message
        *
@@ -69,7 +99,6 @@
       debug: function debug(logMessage) {
         this.log(logMessage, "debug");
       },
-
       /**
        * Logs an info message
        *
@@ -78,7 +107,6 @@
       info: function info(logMessage) {
         this.log(logMessage, "info");
       },
-
       /**
        * Logs a warning message
        *
@@ -87,7 +115,6 @@
       warn: function warn(logMessage) {
         this.log(logMessage, "warn");
       },
-
       /**
        * Logs an error message
        *
@@ -96,7 +123,6 @@
       error: function error(logMessage) {
         this.log(logMessage, "error");
       },
-
       /**
        * Process a log entry object from qooxdoo's logging system.
        *
@@ -104,11 +130,10 @@
        */
       process: function process(entry) {
         var level = entry.level || "info";
-
-        for (var prop in entry) {
-          if (prop == "items") {
+        for (var _i = 0, _Object$keys = Object.keys(entry); _i < _Object$keys.length; _i++) {
+          var prop = _Object$keys[_i];
+          if (prop === "items") {
             var items = entry[prop];
-
             for (var p = 0; p < items.length; p++) {
               var item = items[p];
               this[level](item.text);
@@ -117,18 +142,18 @@
         }
       }
     },
-
     /**
      * @ignore(process.*)
      */
     defer: function defer(statics) {
       if (typeof process !== "undefined") {
-        statics.__P_260_0 = process.stdout;
-        statics.__P_260_1 = process.stderr;
+        statics.__P_275_0 = process.stdout;
+        statics.__P_275_1 = process.stderr;
+        qx.log.Logger.register(statics);
       }
     }
   });
   qx.log.appender.NodeConsole.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NodeConsole.js.map?dt=1664789589104
+//# sourceMappingURL=NodeConsole.js.map?dt=1672653500441

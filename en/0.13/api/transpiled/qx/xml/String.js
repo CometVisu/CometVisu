@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,16 +34,15 @@
     statics: {
       /** Mapping of XML entity names to the corresponding char code */
       TO_CHARCODE: {
-        "quot": 34,
+        quot: 34,
         // " - double-quote
-        "amp": 38,
+        amp: 38,
         // &
-        "lt": 60,
+        lt: 60,
         // <
-        "gt": 62,
+        gt: 62,
         // >
-        "apos": 39 // XML apostrophe
-
+        apos: 39 // XML apostrophe
       },
 
       /** Mapping of char codes to XML entity names */
@@ -58,9 +56,7 @@
         62: "gt",
         // >
         39: "apos" // XML apostrophe
-
       },
-
       /**
        * Escapes the characters in a <code>String</code> using XML entities.
        *
@@ -77,7 +73,6 @@
       escape: function escape(str) {
         return qx.util.StringEscape.escape(str, this.FROM_CHARCODE);
       },
-
       /**
        * Unescapes a string containing XML entity escapes to a string
        * containing the actual Unicode characters corresponding to the
@@ -97,4 +92,4 @@
   qx.xml.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1664789611062
+//# sourceMappingURL=String.js.map?dt=1672653521154

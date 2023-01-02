@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,21 +46,21 @@
    */
   qx.Class.define("qx.type.BaseString", {
     extend: Object,
-
     /**
      * @param txt {String?""} Initialize with this string
      */
     construct: function construct(txt) {
-      var txt = txt || ""; // no base call needed
+      var txt = txt || "";
 
-      this.__P_281_0 = txt;
+      // no base call needed
+
+      this.__P_296_0 = txt;
       this.length = txt.length;
     },
     members: {
       $$isString: true,
       length: 0,
-      __P_281_0: null,
-
+      __P_296_0: null,
       /**
        * Returns a string representing the specified object.
        *
@@ -73,9 +72,8 @@
        * @return {String} A new string containing the string value.
        */
       toString: function toString() {
-        return this.__P_281_0;
+        return this.__P_296_0;
       },
-
       /**
        *  Returns the specified character from a string.
        *
@@ -90,7 +88,6 @@
        * @return {String} The character.
        */
       charAt: null,
-
       /**
        * Returns the primitive value of a String object.
        *
@@ -103,7 +100,6 @@
        * @return {String} A new string containing the primitive value.
        */
       valueOf: null,
-
       /**
        * Returns a number indicating the Unicode value of the character at the given index.
        *
@@ -113,7 +109,6 @@
        * @return {Integer} The number.
        */
       charCodeAt: null,
-
       /**
        * Combines the text of two or more strings and returns a new string.
        * Changes to the text in one string do not affect the other string.
@@ -123,7 +118,6 @@
        * @return {String} The combined string.
        */
       concat: null,
-
       /**
        * Returns the index within the calling String object of the first
        * occurrence of the specified value, starting the search at fromIndex,
@@ -137,7 +131,6 @@
        * @return {Integer} The index or -1.
        */
       indexOf: null,
-
       /**
        * Returns the index within the calling String object of the last occurrence
        * of the specified value, or -1 if not found. The calling string is
@@ -152,7 +145,6 @@
        * @return {Integer} The index or -1.
        */
       lastIndexOf: null,
-
       /**
        * Used to retrieve the matches when matching a string against a regular
        * expression.
@@ -169,7 +161,6 @@
        *   matches.
        */
       match: null,
-
       /**
        * Finds a match between a regular expression and a string, and replaces the
        * matched substring with a new substring.
@@ -184,7 +175,6 @@
        * @return {String} The new substring.
        */
       replace: null,
-
       /**
        * Executes the search for a match between a regular expression and this
        * String object.
@@ -200,7 +190,6 @@
        *   matches.
        */
       search: null,
-
       /**
        * Extracts a section of a string and returns a new string.
        *
@@ -217,7 +206,6 @@
        * @return {String} The extracted string.
        */
       slice: null,
-
       /**
        * Splits a String object into an array of strings by separating the string
        * into substrings.
@@ -243,7 +231,6 @@
        * @return {Array} The Array containing substrings.
        */
       split: null,
-
       /**
        * Returns the characters in a string beginning at the specified location
        * through the specified number of characters.
@@ -263,7 +250,6 @@
        * @return {String} The substring.
        */
       substr: null,
-
       /**
        * Returns a subset of a String object.
        *
@@ -287,7 +273,6 @@
        * @return {String} The subset.
        */
       substring: null,
-
       /**
        * Returns the calling string value converted to lowercase.
        * The toLowerCase method returns the value of the string converted to
@@ -297,7 +282,6 @@
        * @return {String} The new string.
        */
       toLowerCase: null,
-
       /**
        * Returns the calling string value converted to uppercase.
        * The toUpperCase method returns the value of the string converted to
@@ -307,7 +291,6 @@
        * @return {String} The new string.
        */
       toUpperCase: null,
-
       /**
        * Return unique hash code of object
        *
@@ -316,7 +299,6 @@
       toHashCode: function toHashCode() {
         return qx.core.ObjectRegistry.toHashCode(this);
       },
-
       /**
        * The characters within a string are converted to lower case while
        * respecting the current locale.
@@ -328,7 +310,6 @@
        * @return {String} The new string.
        */
       toLocaleLowerCase: null,
-
       /**
        * The characters within a string are converted to upper case while
        * respecting the current locale.
@@ -339,7 +320,6 @@
        * @return {String} The new string.
        */
       toLocaleUpperCase: null,
-
       /**
        * Call the same method of the super class.
        *
@@ -351,7 +331,6 @@
         return qx.core.Object.prototype.base.apply(this, arguments);
       }
     },
-
     /*
      *****************************************************************************
         DEFER
@@ -359,15 +338,15 @@
      */
     defer: function defer(statics, members) {
       // add asserts into each debug build
-      var mappedFunctions = ['charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'replace', 'search', 'slice', 'split', 'substr', 'substring', 'toLowerCase', 'toUpperCase', 'toLocaleLowerCase', 'toLocaleUpperCase', 'trim', 'codePointAt']; // feature/bug detection:
+
+      var mappedFunctions = ["charAt", "charCodeAt", "concat", "indexOf", "lastIndexOf", "match", "replace", "search", "slice", "split", "substr", "substring", "toLowerCase", "toUpperCase", "toLocaleLowerCase", "toLocaleUpperCase", "trim", "codePointAt"];
+
+      // feature/bug detection:
       // Some older Firefox version (<2) break if valueOf is overridden
-
       members.valueOf = members.toString;
-
       if (new statics("").valueOf() == null) {
         delete members.valueOf;
       }
-
       for (var i = 0, l = mappedFunctions.length; i < l; i++) {
         members[mappedFunctions[i]] = String.prototype[mappedFunctions[i]];
       }
@@ -376,4 +355,4 @@
   qx.type.BaseString.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseString.js.map?dt=1664789592358
+//# sourceMappingURL=BaseString.js.map?dt=1672653503806

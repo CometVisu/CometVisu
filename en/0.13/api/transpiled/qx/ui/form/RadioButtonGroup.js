@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -39,7 +38,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,24 +72,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MLayoutHandling, qx.ui.form.MModelSelection],
     implement: [qx.ui.form.IForm, qx.ui.form.IField, qx.ui.core.ISingleSelection, qx.ui.form.IModelSelection],
-
     /**
      * @param layout {qx.ui.layout.Abstract} The new layout or
      *     <code>null</code> to reset the layout.
      */
     construct: function construct(layout) {
-      qx.ui.core.Widget.constructor.call(this); // if no layout is given, use the default layout (VBox)
+      qx.ui.core.Widget.constructor.call(this);
 
+      // if no layout is given, use the default layout (VBox)
       if (layout == null) {
         this.setLayout(new qx.ui.layout.VBox(4));
       } else {
         this.setLayout(layout);
-      } // create the radio group
+      }
 
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "radiogroup");
 
-      this.__P_335_0 = new qx.ui.form.RadioGroup(); // attach the listener
+      // create the radio group
+      this.__P_352_0 = new qx.ui.form.RadioGroup();
 
-      this.__P_335_0.addListener("changeSelection", this._onChangeSelection, this);
+      // attach the listener
+      this.__P_352_0.addListener("changeSelection", this._onChangeSelection, this);
     },
     properties: {
       /**
@@ -104,7 +106,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         apply: "_applyValid",
         event: "changeValid"
       },
-
       /**
        * Flag signaling if the group is required.
        */
@@ -113,7 +114,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         init: false,
         event: "changeRequired"
       },
-
       /**
        * Message which is shown in an invalid tooltip.
        */
@@ -123,7 +123,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         event: "changeInvalidMessage",
         apply: "_applyInvalidMessage"
       },
-
       /**
        * Message which is shown in an invalid tooltip if the {@link #required} is
        * set to true.
@@ -136,16 +135,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     },
     events: {
       /** Fires after the value was modified */
-      "changeValue": "qx.event.type.Data",
-
+      changeValue: "qx.event.type.Data",
       /**
        * Fires after the selection was modified
        */
-      "changeSelection": "qx.event.type.Data"
+      changeSelection: "qx.event.type.Data"
     },
     members: {
-      __P_335_0: null,
-
+      __P_352_0: null,
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -154,7 +151,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // property apply
       _applyInvalidMessage: function _applyInvalidMessage(value, old) {
         var children = this._getChildren();
-
         for (var i = 0; i < children.length; i++) {
           children[i].setInvalidMessage(value);
         }
@@ -162,27 +158,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       // property apply
       _applyValid: function _applyValid(value, old) {
         var children = this._getChildren();
-
         for (var i = 0; i < children.length; i++) {
           children[i].setValid(value);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         REGISTRY
       ---------------------------------------------------------------------------
       */
-
       /**
        * The internally used radio group instance will be returned.
        *
        * @return {qx.ui.form.RadioGroup} Returns the used RadioGroup instance.
        */
       getRadioGroup: function getRadioGroup() {
-        return this.__P_335_0;
+        return this.__P_352_0;
       },
-
       /**
        * Returns the children list
        *
@@ -191,7 +183,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       getChildren: function getChildren() {
         return this._getChildren();
       },
-
       /**
        * Adds a new child widget.
        *
@@ -203,22 +194,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @param options {Map?null} Optional layout data for widget.
        */
       add: function add(child, options) {
-        this.__P_335_0.add(child);
-
+        this.__P_352_0.add(child);
         this._add(child, options);
       },
-
       /**
        * Remove the given child widget.
        *
        * @param child {qx.ui.core.LayoutItem} the widget to remove
        */
       remove: function remove(child) {
-        this.__P_335_0.remove(child);
-
+        this.__P_352_0.remove(child);
         this._remove(child);
       },
-
       /**
        * Remove all children.
        *
@@ -226,21 +213,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       removeAll: function removeAll() {
         // remove all children from the radio group
-        var radioItems = this.__P_335_0.getItems();
-
+        var radioItems = this.__P_352_0.getItems();
         for (var i = radioItems.length - 1; i >= 0; i--) {
-          this.__P_335_0.remove(radioItems[i]);
+          this.__P_352_0.remove(radioItems[i]);
         }
-
         return this._removeAll();
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns an array of currently selected items.
        *
@@ -250,9 +233,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        return this.__P_335_0.getSelection();
+        return this.__P_352_0.getSelection();
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -260,16 +242,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {Error} if the item is not a child element.
        */
       setSelection: function setSelection(items) {
-        this.__P_335_0.setSelection(items);
+        this.__P_352_0.setSelection(items);
       },
-
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
-        this.__P_335_0.resetSelection();
+        this.__P_352_0.resetSelection();
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -278,18 +258,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @throws {Error} if the item is not a child element.
        */
       isSelected: function isSelected(item) {
-        return this.__P_335_0.isSelected(item);
+        return this.__P_352_0.isSelected(item);
       },
-
       /**
        * Whether the selection is empty.
        *
        * @return {Boolean} Whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_335_0.isSelectionEmpty();
+        return this.__P_352_0.isSelectionEmpty();
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -298,9 +276,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__P_335_0.getSelectables(all);
+        return this.__P_352_0.getSelectables(all);
       },
-
       /**
        * Select given value.
        *
@@ -308,27 +285,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * @return {null|Error} The status of this operation.
        */
       setValue: function setValue(item) {
-        if (item && 'object' === _typeof(item) && item instanceof qx.ui.form.IRadioItem) {
-          return this.__P_335_0.setValue(item);
+        if (item && "object" === _typeof(item) && item instanceof qx.ui.form.IRadioItem) {
+          return this.__P_352_0.setValue(item);
         } else {
           return new Error("can not select radio item from value");
         }
       },
-
       /**
        * @return {null|var} Returns the selected value.
        */
       getValue: function getValue() {
-        return this.__P_335_0.getValue();
+        return this.__P_352_0.getValue();
       },
-
       /**
        * Reset radio item selection.
        */
       resetValue: function resetValue() {
-        this.__P_335_0.resetValue();
+        this.__P_352_0.resetValue();
       },
-
       /**
        * Called on {@link qx.ui.form.RadioGroup} selection change event.
        *
@@ -340,12 +314,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       }
     },
     destruct: function destruct() {
-      this.__P_335_0.removeListener("changeSelection", this._onChangeSelection, this);
-
-      this._disposeObjects("__P_335_0");
+      this.__P_352_0.removeListener("changeSelection", this._onChangeSelection, this);
+      this._disposeObjects("__P_352_0");
     }
   });
   qx.ui.form.RadioButtonGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButtonGroup.js.map?dt=1664789596791
+//# sourceMappingURL=RadioButtonGroup.js.map?dt=1672653507885

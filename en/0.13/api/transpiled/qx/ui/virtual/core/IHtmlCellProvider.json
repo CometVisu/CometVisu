@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 603
       },
       "end": {
-        "line": 45,
-        "column": 3
+        "line": 43,
+        "column": 3,
+        "index": 1335
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getCellProperties": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1294
         },
         "end": {
-          "line": 43,
-          "column": 48
+          "line": 41,
+          "column": 37,
+          "index": 1327
         }
       },
       "jsdoc": {

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 0
+        "line": 27,
+        "column": 0,
+        "index": 593
       },
       "end": {
-        "line": 140,
-        "column": 3
+        "line": 131,
+        "column": 3,
+        "index": 3144
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 14
+        "line": 33,
+        "column": 2,
+        "index": 714
       },
       "end": {
-        "line": 38,
-        "column": 3
+        "line": 35,
+        "column": 3,
+        "index": 744
       }
     },
     "jsdoc": {
@@ -51,12 +55,14 @@
     "timestamp": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 832
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 872
         }
       },
       "jsdoc": {
@@ -74,12 +80,14 @@
     "latitude": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1014
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1053
         }
       },
       "jsdoc": {
@@ -97,12 +105,14 @@
     "longitude": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1223
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1263
         }
       },
       "jsdoc": {
@@ -120,12 +130,14 @@
     "altitude": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1375
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 68,
+          "column": 5,
+          "index": 1436
         }
       },
       "jsdoc": {
@@ -145,12 +157,14 @@
     "accuracy": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1555
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 1594
         }
       },
       "jsdoc": {
@@ -168,12 +182,14 @@
     "altitudeAccuracy": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 1680
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 1749
         }
       },
       "jsdoc": {
@@ -193,12 +209,14 @@
     "heading": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2195
         },
         "end": {
-          "line": 107,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2232
         }
       },
       "jsdoc": {
@@ -217,12 +235,14 @@
     "speed": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 2466
         },
         "end": {
-          "line": 120,
-          "column": 5
+          "line": 111,
+          "column": 5,
+          "index": 2574
         }
       },
       "jsdoc": {
@@ -236,7 +256,8 @@
       "name": "speed",
       "propertyType": "new",
       "nullable": true,
-      "allowNull": true
+      "allowNull": true,
+      "check": "[[ ObjectMethod Function ]]"
     },
     "qxOwner": {
       "type": "property",
@@ -275,12 +296,14 @@
     "init": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 120,
+          "column": 4,
+          "index": 2709
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 3136
         }
       },
       "jsdoc": {
@@ -395,6 +418,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -419,6 +443,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -923,6 +948,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for speed"
           }
         ]
@@ -946,6 +972,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for speed"
           }

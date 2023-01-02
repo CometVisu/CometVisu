@@ -13,11 +13,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ProgressBar.js 
-   * 
+  /* ProgressBar.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,7 +40,6 @@
    */
   qx.Class.define('cv.ui.util.ProgressBar', {
     extend: qx.core.Object,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -49,10 +47,8 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-
       this._createDomElement();
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -65,31 +61,29 @@
         apply: '_applyValue'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_555_0: null,
-      __P_555_1: null,
+      __P_571_0: null,
+      __P_571_1: null,
       _applyValue: function _applyValue(value) {
-        var rect = this.__P_555_0.getBoundingClientRect();
-
+        var rect = this.__P_571_0.getBoundingClientRect();
         var totalWidth = Math.round(rect.right - rect.left);
-        this.__P_555_1.style.width = Math.round(totalWidth * value / 100) + 'px';
+        this.__P_571_1.style.width = Math.round(totalWidth * value / 100) + 'px';
       },
       getDomElement: function getDomElement() {
-        return this.__P_555_0;
+        return this.__P_571_0;
       },
       _createDomElement: function _createDomElement() {
-        var container = this.__P_555_0 = qx.dom.Element.create('div', {
-          'class': 'progressbar'
+        var container = this.__P_571_0 = qx.dom.Element.create('div', {
+          "class": 'progressbar'
         });
-        this.__P_555_0.$$widget = this;
-        var progress = this.__P_555_1 = qx.dom.Element.create('div', {
-          'class': 'completed'
+        this.__P_571_0.$$widget = this;
+        var progress = this.__P_571_1 = qx.dom.Element.create('div', {
+          "class": 'completed'
         });
         container.appendChild(progress);
         return container;
@@ -99,4 +93,4 @@
   cv.ui.util.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1664789616887
+//# sourceMappingURL=ProgressBar.js.map?dt=1672653526260

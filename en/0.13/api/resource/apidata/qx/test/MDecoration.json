@@ -1,0 +1,33 @@
+{
+  "className": "qx.test.MDecoration",
+  "packageName": "qx.test",
+  "name": "MDecoration",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0,
+        "index": 623
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 860
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>This mixin must be included into themes decoration if you want to use that\n theme with the testrunner</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 644
       },
       "end": {
-        "line": 67,
-        "column": 3
+        "line": 62,
+        "column": 3,
+        "index": 1729
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getCellWidget": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1029
         },
         "end": {
-          "line": 37,
-          "column": 45
+          "line": 35,
+          "column": 34,
+          "index": 1059
         }
       },
       "jsdoc": {
@@ -77,12 +81,14 @@
     "pool": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1249
         },
         "end": {
-          "line": 47,
-          "column": 30
+          "line": 44,
+          "column": 19,
+          "index": 1264
         }
       },
       "jsdoc": {
@@ -108,12 +114,14 @@
     "updateStates": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1463
         },
         "end": {
-          "line": 56,
-          "column": 46
+          "line": 52,
+          "column": 35,
+          "index": 1494
         }
       },
       "jsdoc": {
@@ -146,12 +154,14 @@
     "updateData": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1694
         },
         "end": {
-          "line": 65,
-          "column": 42
+          "line": 60,
+          "column": 31,
+          "index": 1721
         }
       },
       "jsdoc": {

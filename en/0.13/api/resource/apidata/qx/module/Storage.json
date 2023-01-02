@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 844
       },
       "end": {
-        "line": 208,
-        "column": 3
+        "line": 194,
+        "column": 3,
+        "index": 5760
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "setLocalItem": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1128
         },
         "end": {
-          "line": 38,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 1213
         }
       },
       "jsdoc": {
@@ -75,12 +79,14 @@
     "getLocalItem": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1423
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 48,
+          "column": 5,
+          "index": 1501
         }
       },
       "jsdoc": {
@@ -120,12 +126,14 @@
     "removeLocalItem": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1662
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 57,
+          "column": 5,
+          "index": 1739
         }
       },
       "jsdoc": {
@@ -157,12 +165,14 @@
     "getLocalLength": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1919
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 66,
+          "column": 5,
+          "index": 1995
         }
       },
       "jsdoc": {
@@ -193,12 +203,14 @@
     "getLocalKey": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2231
         },
         "end": {
-          "line": 81,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2311
         }
       },
       "jsdoc": {
@@ -238,12 +250,14 @@
     "clearLocal": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2432
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2493
         }
       },
       "jsdoc": {
@@ -266,12 +280,14 @@
     "forEachLocal": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2864
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2959
         }
       },
       "jsdoc": {
@@ -310,12 +326,14 @@
     "setSessionItem": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 3192
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 108,
+          "column": 5,
+          "index": 3281
         }
       },
       "jsdoc": {
@@ -354,12 +372,14 @@
     "getSessionItem": {
       "location": {
         "start": {
-          "line": 126,
-          "column": 4
+          "line": 117,
+          "column": 4,
+          "index": 3493
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3575
         }
       },
       "jsdoc": {
@@ -399,12 +419,14 @@
     "removeSessionItem": {
       "location": {
         "start": {
-          "line": 136,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3738
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3819
         }
       },
       "jsdoc": {
@@ -436,12 +458,14 @@
     "getSessionLength": {
       "location": {
         "start": {
-          "line": 146,
-          "column": 4
+          "line": 135,
+          "column": 4,
+          "index": 4001
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 137,
+          "column": 5,
+          "index": 4081
         }
       },
       "jsdoc": {
@@ -472,12 +496,14 @@
     "getSessionKey": {
       "location": {
         "start": {
-          "line": 157,
-          "column": 4
+          "line": 145,
+          "column": 4,
+          "index": 4319
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 4403
         }
       },
       "jsdoc": {
@@ -517,12 +543,14 @@
     "clearSession": {
       "location": {
         "start": {
-          "line": 166,
-          "column": 4
+          "line": 153,
+          "column": 4,
+          "index": 4526
         },
         "end": {
-          "line": 168,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 4591
         }
       },
       "jsdoc": {
@@ -545,12 +573,14 @@
     "forEachSession": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4964
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 5063
         }
       },
       "jsdoc": {
@@ -590,15 +620,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 186,
-        "column": 10
+        "line": 171,
+        "column": 2,
+        "index": 5072
       },
       "end": {
-        "line": 207,
-        "column": 3
+        "line": 193,
+        "column": 3,
+        "index": 5756
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

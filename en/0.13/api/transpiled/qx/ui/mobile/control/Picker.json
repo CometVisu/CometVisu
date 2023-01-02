@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 44,
-        "column": 0
+        "column": 0,
+        "index": 1479
       },
       "end": {
-        "line": 335,
-        "column": 3
+        "line": 348,
+        "column": 3,
+        "index": 9824
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 49,
-        "column": 14
+        "line": 47,
+        "column": 2,
+        "index": 1575
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1774
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "changeSelection": {
       "location": {
         "start": {
-          "line": 72,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1973
         },
         "end": {
-          "line": 72,
-          "column": 42
+          "line": 67,
+          "column": 41,
+          "index": 2010
         }
       },
       "jsdoc": {
@@ -68,12 +73,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2055
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 75,
+          "column": 5,
+          "index": 2120
         }
       },
       "jsdoc": {},
@@ -90,12 +97,14 @@
     "visibleItems": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2211
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2308
         }
       },
       "jsdoc": {
@@ -121,12 +130,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 99,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2366
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 92,
+          "column": 5,
+          "index": 2420
         }
       },
       "jsdoc": {
@@ -180,12 +191,14 @@
     "_slots": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2444
         },
         "end": {
-          "line": 108,
-          "column": 17
+          "line": 96,
+          "column": 16,
+          "index": 2456
         }
       },
       "type": "variable",
@@ -194,12 +207,14 @@
     "_pickerModel": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2462
         },
         "end": {
-          "line": 109,
-          "column": 23
+          "line": 97,
+          "column": 22,
+          "index": 2480
         }
       },
       "type": "variable",
@@ -208,12 +223,14 @@
     "_onAppear": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 2564
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2832
         }
       },
       "jsdoc": {
@@ -230,12 +247,14 @@
     "_applyVisibleItems": {
       "location": {
         "start": {
-          "line": 126,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 2861
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 2941
         }
       },
       "jsdoc": {},
@@ -248,12 +267,14 @@
     "getModel": {
       "location": {
         "start": {
-          "line": 135,
-          "column": 4
+          "line": 120,
+          "column": 4,
+          "index": 3106
         },
         "end": {
-          "line": 137,
-          "column": 5
+          "line": 122,
+          "column": 5,
+          "index": 3156
         }
       },
       "jsdoc": {
@@ -278,12 +299,14 @@
     "_createPickerSlot": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3522
         },
         "end": {
-          "line": 197,
-          "column": 5
+          "line": 187,
+          "column": 5,
+          "index": 5183
         }
       },
       "jsdoc": {
@@ -333,12 +356,14 @@
     "_createPlaceholderItem": {
       "location": {
         "start": {
-          "line": 204,
-          "column": 4
+          "line": 193,
+          "column": 4,
+          "index": 5381
         },
         "end": {
-          "line": 210,
-          "column": 5
+          "line": 204,
+          "column": 5,
+          "index": 5760
         }
       },
       "jsdoc": {
@@ -363,12 +388,14 @@
     "_calcItemHeight": {
       "location": {
         "start": {
-          "line": 217,
-          "column": 4
+          "line": 210,
+          "column": 4,
+          "index": 5886
         },
         "end": {
-          "line": 219,
-          "column": 5
+          "line": 212,
+          "column": 5,
+          "index": 5967
         }
       },
       "jsdoc": {
@@ -393,12 +420,14 @@
     "_onChangeSelection": {
       "location": {
         "start": {
-          "line": 226,
-          "column": 4
+          "line": 218,
+          "column": 4,
+          "index": 6116
         },
         "end": {
-          "line": 228,
-          "column": 5
+          "line": 225,
+          "column": 5,
+          "index": 6289
         }
       },
       "jsdoc": {
@@ -424,12 +453,14 @@
     "_onWaypoint": {
       "location": {
         "start": {
-          "line": 235,
-          "column": 4
+          "line": 231,
+          "column": 4,
+          "index": 6438
         },
         "end": {
-          "line": 244,
-          "column": 5
+          "line": 240,
+          "column": 5,
+          "index": 6728
         }
       },
       "jsdoc": {
@@ -455,12 +486,14 @@
     "getSelectedIndex": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 247,
+          "column": 4,
+          "index": 6996
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 249,
+          "column": 5,
+          "index": 7090
         }
       },
       "jsdoc": {
@@ -494,12 +527,14 @@
     "setSelectedIndex": {
       "location": {
         "start": {
-          "line": 262,
-          "column": 4
+          "line": 256,
+          "column": 4,
+          "index": 7332
         },
         "end": {
-          "line": 268,
-          "column": 5
+          "line": 262,
+          "column": 5,
+          "index": 7587
         }
       },
       "jsdoc": {
@@ -532,12 +567,14 @@
     "getSlotCount": {
       "location": {
         "start": {
-          "line": 275,
-          "column": 4
+          "line": 268,
+          "column": 4,
+          "index": 7718
         },
         "end": {
-          "line": 277,
-          "column": 5
+          "line": 270,
+          "column": 5,
+          "index": 7784
         }
       },
       "jsdoc": {
@@ -562,12 +599,14 @@
     "addSlot": {
       "location": {
         "start": {
-          "line": 285,
-          "column": 4
+          "line": 277,
+          "column": 4,
+          "index": 8035
         },
         "end": {
-          "line": 295,
-          "column": 5
+          "line": 300,
+          "column": 5,
+          "index": 8625
         }
       },
       "jsdoc": {
@@ -602,12 +641,14 @@
     "removeSlot": {
       "location": {
         "start": {
-          "line": 302,
-          "column": 4
+          "line": 306,
+          "column": 4,
+          "index": 8774
         },
         "end": {
-          "line": 315,
-          "column": 5
+          "line": 328,
+          "column": 5,
+          "index": 9424
         }
       },
       "jsdoc": {
@@ -633,12 +674,14 @@
     "_onSlotDataChange": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 333,
+          "column": 4,
+          "index": 9546
         },
         "end": {
-          "line": 325,
-          "column": 5
+          "line": 340,
+          "column": 5,
+          "index": 9687
         }
       },
       "jsdoc": {
@@ -740,6 +783,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -764,6 +808,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1965,15 +2010,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 329,
-        "column": 13
+        "line": 343,
+        "column": 2,
+        "index": 9696
       },
       "end": {
-        "line": 334,
-        "column": 3
+        "line": 347,
+        "column": 3,
+        "index": 9820
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

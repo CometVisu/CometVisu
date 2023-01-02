@@ -23,11 +23,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Icons.js 
-   * 
+  /* Icons.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -48,7 +47,6 @@
    */
   qx.Class.define('cv.ui.manager.viewer.Icons', {
     extend: cv.ui.manager.viewer.Folder,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -58,7 +56,6 @@
       this._disableFileEvents = true;
       cv.ui.manager.viewer.Folder.constructor.call(this, true);
     },
-
     /*
     ***********************************************
       STATICS
@@ -69,7 +66,6 @@
       TITLE: qx.locale.Manager.tr('Show icons'),
       ICON: cv.theme.dark.Images.getIcon('icons', 18)
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -91,26 +87,21 @@
         var filtered = this.getModel().filter(function (entry) {
           return entry[0].includes(filterString);
         });
-
         this._controller.setModel(filtered);
       },
       _applyFile: function _applyFile(file, old) {
         if (file) {
           var container = this.getChildControl('list');
-
           if (!this._controller) {
             this._controller = new qx.data.controller.List(null, container);
-
             this._controller.setDelegate(this._getDelegate());
           }
-
           var model = this.getModel();
-          var handler = cv.IconHandler.getInstance(); // as the file is just a fake file, we do not really care about it
-
+          var handler = cv.IconHandler.getInstance();
+          // as the file is just a fake file, we do not really care about it
           Object.keys(cv.IconConfig.DB).forEach(function (name) {
             model.push([name, handler.getIconSource(name, 'icon-preview')]);
           });
-
           if (this.getChildControl('filter').getValue() || this.getPermanentFilter()) {
             this._onFilter();
           } else {
@@ -125,4 +116,4 @@
   cv.ui.manager.viewer.Icons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icons.js.map?dt=1664789569364
+//# sourceMappingURL=Icons.js.map?dt=1672653477834

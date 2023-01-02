@@ -15,11 +15,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Choice.js 
-   * 
+  /* Choice.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,7 +40,6 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.Choice', {
     extend: cv.ui.manager.model.schema.Base,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -51,7 +49,6 @@
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
       this.parse();
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -63,7 +60,6 @@
         init: 'choice'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -77,7 +73,6 @@
        */
       parse: function parse() {
         var _this = this;
-
         cv.ui.manager.model.schema.Choice.superclass.prototype.parse.call(this);
         var node = this.getNode();
         var schema = this.getSchema();
@@ -87,16 +82,19 @@
           subElement.setSortable(true);
           _this._allowedElements[subElement.getName()] = subElement;
         });
-        this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement(); // choices
+        this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
 
+        // choices
         Array.from(node.querySelectorAll(':scope > choice')).forEach(function (grouping) {
           _this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
-        }); // sequences
+        });
 
+        // sequences
         Array.from(node.querySelectorAll(':scope > sequence')).forEach(function (grouping) {
           _this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
-        }); // groups
+        });
 
+        // groups
         Array.from(node.querySelectorAll(':scope > group')).forEach(function (grouping) {
           _this._subGroupings.push(new cv.ui.manager.model.schema.Group(grouping, schema));
         });
@@ -107,7 +105,6 @@
         // if you want required elements, use sequence or all
         return [];
       },
-
       /**
        * get a regex (string) describing this choice
        *
@@ -120,41 +117,39 @@
           // use the cache if primed
           return this._regexCache;
         }
+        var regexString = '(';
 
-        var regexString = '('; // create list of allowed elements
-
+        // create list of allowed elements
         if (nocapture) {
           regexString += '?:';
         }
-
         var elementRegexes = [];
-
         for (var _i = 0, _Object$values = Object.values(this._allowedElements); _i < _Object$values.length; _i++) {
           var element = _Object$values[_i];
           elementRegexes.push(element.getRegex(separator, nocapture));
-        } // also collect the regex for each and every grouping we might have
+        }
 
-
+        // also collect the regex for each and every grouping we might have
         this._subGroupings.forEach(function (grouping) {
           elementRegexes.push(grouping.getRegex(separator, nocapture));
         });
-
         regexString += elementRegexes.join('|');
-        regexString += ')'; // append bounds to regex
+        regexString += ')';
 
+        // append bounds to regex
         regexString += '{';
         var bounds = this.getBounds();
         regexString += bounds.min === undefined ? 1 : bounds.min;
         regexString += ',';
-
         if (bounds.max !== Number.POSITIVE_INFINITY) {
           regexString += bounds.max === undefined ? 1 : bounds.max;
         }
+        regexString += '}';
 
-        regexString += '}'; // fill the cache
+        // fill the cache
+        this._regexCache = regexString;
 
-        this._regexCache = regexString; // thats about it.
-
+        // thats about it.
         return regexString;
       },
       getBoundsForElementName: function getBoundsForElementName(childName) {
@@ -162,10 +157,8 @@
         if (this.isElementAllowed(childName) === true) {
           return this.getBounds();
         }
-
         return undefined;
       },
-
       /**
        * get the sorting of the allowed elements.
        * For a choice, all elements have the same sorting, so they will all have the
@@ -177,32 +170,15 @@
        * @return  object              list of allowed elements, with their sort-number as value
        */
       getAllowedElementsSorting: function getAllowedElementsSorting(sortnumber) {
-        var namesWithSorting = {}; // all elements allowed directly
+        var namesWithSorting = {};
 
+        // all elements allowed directly
         Object.keys(this._allowedElements).forEach(function (name) {
           var item = this._allowedElements[name];
           var mySortnumber = 'x'; // for a choice, sortnumber is always the same
-
           if (sortnumber !== undefined) {
             mySortnumber = sortnumber + '.' + mySortnumber;
           }
-
-          if (item.getType() === 'element') {
-            namesWithSorting[item.getName()] = mySortnumber;
-          } else {
-            // go recursive
-            var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
-            Object.assign(namesWithSorting, subSortedElements);
-          }
-        }, this); // all elements allowed by subGroupings
-
-        this._subGroupings.forEach(function (item, i) {
-          var mySortnumber = 'x'; // for a choice, sortnumber is always the same
-
-          if (sortnumber !== undefined) {
-            mySortnumber = sortnumber + '.' + mySortnumber;
-          }
-
           if (item.getType() === 'element') {
             namesWithSorting[item.getName()] = mySortnumber;
           } else {
@@ -212,6 +188,20 @@
           }
         }, this);
 
+        // all elements allowed by subGroupings
+        this._subGroupings.forEach(function (item, i) {
+          var mySortnumber = 'x'; // for a choice, sortnumber is always the same
+          if (sortnumber !== undefined) {
+            mySortnumber = sortnumber + '.' + mySortnumber;
+          }
+          if (item.getType() === 'element') {
+            namesWithSorting[item.getName()] = mySortnumber;
+          } else {
+            // go recursive
+            var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+            Object.assign(namesWithSorting, subSortedElements);
+          }
+        }, this);
         return namesWithSorting;
       }
     }
@@ -219,4 +209,4 @@
   cv.ui.manager.model.schema.Choice.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Choice.js.map?dt=1664789568527
+//# sourceMappingURL=Choice.js.map?dt=1672653477095

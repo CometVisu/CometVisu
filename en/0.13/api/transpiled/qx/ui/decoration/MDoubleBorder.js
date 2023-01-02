@@ -42,7 +42,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,7 +59,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * Border implementation with two CSS borders. Both borders can be styled
    * independent of each other.
@@ -70,15 +68,15 @@
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__P_320_0;
-      this._styleBorder = this.__P_320_1;
+      this._getDefaultInsetsForBorder = this.__P_335_0;
+      this._styleBorder = this.__P_335_1;
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -92,34 +90,29 @@
         init: 0,
         apply: "_applyDoubleBorder"
       },
-
       /** right width of border */
       innerWidthRight: {
         check: "Number",
         init: 0,
         apply: "_applyDoubleBorder"
       },
-
       /** bottom width of border */
       innerWidthBottom: {
         check: "Number",
         init: 0,
         apply: "_applyDoubleBorder"
       },
-
       /** left width of border */
       innerWidthLeft: {
         check: "Number",
         init: 0,
         apply: "_applyDoubleBorder"
       },
-
       /** Property group to set the inner border width of all sides */
       innerWidth: {
         group: ["innerWidthTop", "innerWidthRight", "innerWidthBottom", "innerWidthLeft"],
         mode: "shorthand"
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY: INNER COLOR
@@ -132,28 +125,24 @@
         check: "Color",
         apply: "_applyDoubleBorder"
       },
-
       /** right inner color of border */
       innerColorRight: {
         nullable: true,
         check: "Color",
         apply: "_applyDoubleBorder"
       },
-
       /** bottom inner color of border */
       innerColorBottom: {
         nullable: true,
         check: "Color",
         apply: "_applyDoubleBorder"
       },
-
       /** left inner color of border */
       innerColorLeft: {
         nullable: true,
         check: "Color",
         apply: "_applyDoubleBorder"
       },
-
       /**
        * Property group for the inner color properties.
        */
@@ -161,7 +150,6 @@
         group: ["innerColorTop", "innerColorRight", "innerColorBottom", "innerColorLeft"],
         mode: "shorthand"
       },
-
       /**
        * The opacity of the inner border.
        */
@@ -179,10 +167,9 @@
        *
        * @param styles {Map} A map to add the styles.
        */
-      __P_320_1: function __P_320_1(styles) {
+      __P_335_1: function __P_335_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
-
         if (qx.core.Environment.get("qx.theme")) {
           var Color = qx.theme.manager.Color.getInstance();
           color = {
@@ -211,99 +198,85 @@
             left: this.getInnerColorLeft()
           };
         }
-
         innerWidth = {
           top: this.getInnerWidthTop(),
           right: this.getInnerWidthRight(),
           bottom: this.getInnerWidthBottom(),
           left: this.getInnerWidthLeft()
-        }; // Add outer borders
+        };
 
+        // Add outer borders
         var width = this.getWidthTop();
-
         if (width > 0) {
           styles["border-top"] = width + "px " + this.getStyleTop() + " " + color.top;
         }
-
         width = this.getWidthRight();
-
         if (width > 0) {
           styles["border-right"] = width + "px " + this.getStyleRight() + " " + color.right;
         }
-
         width = this.getWidthBottom();
-
         if (width > 0) {
           styles["border-bottom"] = width + "px " + this.getStyleBottom() + " " + color.bottom;
         }
-
         width = this.getWidthLeft();
-
         if (width > 0) {
           styles["border-left"] = width + "px " + this.getStyleLeft() + " " + color.left;
         }
-
         var innerOpacity = this.getInnerOpacity();
-
         if (innerOpacity < 1) {
-          this.__P_320_2(innerColor, innerOpacity);
-        } // inner border
+          this.__P_335_2(innerColor, innerOpacity);
+        }
 
-
+        // inner border
         if (innerWidth.top > 0 || innerWidth.right > 0 || innerWidth.bottom > 0 || innerWidth.left > 0) {
           var borderTop = (innerWidth.top || 0) + "px solid " + innerColor.top;
           var borderRight = (innerWidth.right || 0) + "px solid " + innerColor.right;
           var borderBottom = (innerWidth.bottom || 0) + "px solid " + innerColor.bottom;
           var borderLeft = (innerWidth.left || 0) + "px solid " + innerColor.left;
           styles[":before"] = {
-            "width": "100%",
-            "height": "100%",
-            "position": "absolute",
-            "content": '""',
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            content: '""',
             "border-top": borderTop,
             "border-right": borderRight,
             "border-bottom": borderBottom,
             "border-left": borderLeft,
-            "left": 0,
-            "top": 0
+            left: 0,
+            top: 0
           };
           var boxSizingKey = qx.bom.Style.getCssName(qx.core.Environment.get("css.boxsizing"));
-          styles[":before"][boxSizingKey] = "border-box"; // make sure to apply the border radius as well
+          styles[":before"][boxSizingKey] = "border-box";
 
+          // make sure to apply the border radius as well
           var borderRadiusKey = qx.core.Environment.get("css.borderradius");
-
           if (borderRadiusKey) {
             borderRadiusKey = qx.bom.Style.getCssName(borderRadiusKey);
             styles[":before"][borderRadiusKey] = "inherit";
-          } // Add inner borders as shadows
+          }
 
-
+          // Add inner borders as shadows
           var shadowStyle = [];
-
           if (innerColor.top && innerWidth.top && innerColor.top == innerColor.bottom && innerColor.top == innerColor.right && innerColor.top == innerColor.left && innerWidth.top == innerWidth.bottom && innerWidth.top == innerWidth.right && innerWidth.top == innerWidth.left) {
             shadowStyle.push("inset 0 0 0 " + innerWidth.top + "px " + innerColor.top);
           } else {
             if (innerColor.top) {
               shadowStyle.push("inset 0 " + (innerWidth.top || 0) + "px " + innerColor.top);
             }
-
             if (innerColor.right) {
               shadowStyle.push("inset -" + (innerWidth.right || 0) + "px 0 " + innerColor.right);
             }
-
             if (innerColor.bottom) {
               shadowStyle.push("inset 0 -" + (innerWidth.bottom || 0) + "px " + innerColor.bottom);
             }
-
             if (innerColor.left) {
               shadowStyle.push("inset " + (innerWidth.left || 0) + "px 0 " + innerColor.left);
             }
-          } // apply or append the box shadow styles
+          }
 
-
+          // apply or append the box shadow styles
           if (shadowStyle.length > 0 && propName) {
             propName = qx.bom.Style.getCssName(propName);
-
             if (!styles[propName]) {
               styles[propName] = shadowStyle.join(",");
             } else {
@@ -316,18 +289,16 @@
           };
         }
       },
-
       /**
        * Converts the inner border's colors to rgba.
        *
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __P_320_2: function __P_320_2(innerColor, innerOpacity) {
+      __P_335_2: function __P_335_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           return;
         }
-
         for (var edge in innerColor) {
           var rgb = qx.util.ColorUtil.stringToRgb(innerColor[edge]);
           rgb.push(innerOpacity);
@@ -336,14 +307,13 @@
         }
       },
       _applyDoubleBorder: function _applyDoubleBorder() {},
-
       /**
        * Implementation of the interface for the double border.
        *
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __P_320_0: function __P_320_0() {
+      __P_335_0: function __P_335_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -356,4 +326,4 @@
   qx.ui.decoration.MDoubleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDoubleBorder.js.map?dt=1664789595474
+//# sourceMappingURL=MDoubleBorder.js.map?dt=1672653506653

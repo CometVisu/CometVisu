@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 570
       },
       "end": {
-        "line": 119,
-        "column": 3
+        "line": 114,
+        "column": 3,
+        "index": 2787
       }
     },
     "jsdoc": {
@@ -30,26 +32,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 14
+        "line": 23,
+        "column": 2,
+        "index": 610
       },
       "end": {
-        "line": 30,
-        "column": 3
+        "line": 31,
+        "column": 3,
+        "index": 812
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "valid": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 956
         },
         "end": {
-          "line": 44,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1067
         }
       },
       "jsdoc": {
@@ -71,12 +76,14 @@
     "required": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1137
         },
         "end": {
-          "line": 54,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1227
         }
       },
       "jsdoc": {
@@ -97,51 +104,55 @@
     "invalidMessage": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1325
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1447
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       },
       "name": "invalidMessage",
       "propertyType": "new",
       "event": "changeInvalidMessage",
-      "init": "",
-      "check": "String",
-      "defaultValue": ""
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
     },
     "requiredInvalidMessage": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1575
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 1695
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       },
       "name": "requiredInvalidMessage",
       "propertyType": "new",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "nullable": true,
       "allowNull": true,
       "check": "String"
@@ -151,12 +162,14 @@
     "_applyValid": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 77,
+          "column": 4,
+          "index": 1739
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 79,
+          "column": 5,
+          "index": 1840
         }
       },
       "jsdoc": {},
@@ -169,12 +182,14 @@
     "__onChangeLocale": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 1976
         },
         "end": {
-          "line": 109,
-          "column": 6
+          "line": 102,
+          "column": 6,
+          "index": 2570
         }
       },
       "jsdoc": {
@@ -200,7 +215,7 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     },
     "getValid": {
@@ -519,15 +534,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 113,
-        "column": 13
+        "line": 105,
+        "column": 2,
+        "index": 2579
       },
       "end": {
-        "line": 118,
-        "column": 3
+        "line": 113,
+        "column": 3,
+        "index": 2783
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

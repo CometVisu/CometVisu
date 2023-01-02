@@ -4,7 +4,8 @@
   "name": "ListItem",
   "superClass": "qx.ui.basic.Atom",
   "interfaces": [
-    "qx.ui.form.IModel"
+    "qx.ui.form.IModel",
+    "qx.ui.form.IListItem"
   ],
   "mixins": [
     "qx.ui.form.MModelProperty"
@@ -14,11 +15,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 660
       },
       "end": {
-        "line": 124,
-        "column": 3
+        "line": 107,
+        "column": 3,
+        "index": 2646
       }
     },
     "jsdoc": {
@@ -34,12 +37,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 14
+        "line": 40,
+        "column": 2,
+        "index": 1159
       },
       "end": {
-        "line": 53,
-        "column": 3
+        "line": 49,
+        "column": 3,
+        "index": 1405
       }
     },
     "jsdoc": {
@@ -82,12 +87,14 @@
     "action": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1653
         },
         "end": {
-          "line": 67,
-          "column": 36
+          "line": 59,
+          "column": 33,
+          "index": 1682
         }
       },
       "jsdoc": {
@@ -122,12 +129,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1896
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 1958
         }
       },
       "name": "appearance",
@@ -163,12 +172,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2120
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 86,
+          "column": 5,
+          "index": 2228
         }
       },
       "jsdoc": {
@@ -191,12 +202,14 @@
     "_onPointerOver": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2300
         },
         "end": {
-          "line": 109,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2356
         }
       },
       "jsdoc": {
@@ -213,12 +226,14 @@
     "_onPointerOut": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2427
         },
         "end": {
-          "line": 117,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2485
         }
       },
       "jsdoc": {
@@ -396,6 +411,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -420,6 +436,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4637,15 +4654,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 120,
-        "column": 13
+        "line": 103,
+        "column": 2,
+        "index": 2494
       },
       "end": {
-        "line": 123,
-        "column": 3
+        "line": 106,
+        "column": 3,
+        "index": 2642
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": [
     "cv.ui.manager.form.ListItem"

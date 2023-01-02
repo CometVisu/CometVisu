@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 746
       },
       "end": {
-        "line": 70,
-        "column": 3
+        "line": 63,
+        "column": 3,
+        "index": 1572
       }
     },
     "jsdoc": {
@@ -52,26 +54,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 14
+        "line": 30,
+        "column": 2,
+        "index": 830
       },
       "end": {
-        "line": 34,
-        "column": 3
+        "line": 32,
+        "column": 3,
+        "index": 870
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "appearance": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 893
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 960
         }
       },
       "name": "appearance",
@@ -90,12 +95,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1002
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1564
         }
       },
       "jsdoc": {},
@@ -195,6 +202,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -219,6 +227,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

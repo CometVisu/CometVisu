@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/core/ValidationError.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -16,8 +13,11 @@
     "core",
     "ValidationError"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EACA;AACIC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC;AADrB,GADA;AArBAR,EAAAA,EAAE,CAACS,IAAH,CAAQC,eAAR,CAAwBP,aAAxB,GAAwCA,aAAxC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/core/ValidationError.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * A validation Error which should be thrown if a validation fails.\n */\nqx.Class.define(\"qx.core.ValidationError\",\n{\n    extend : qx.type.BaseError\n});"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * A validation Error which should be thrown if a validation fails.\n */\nqx.Class.define(\"qx.core.ValidationError\", {\n  extend: qx.type.BaseError\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC;EAClB,CAAC,CAAC;EAvBFR,EAAE,CAACS,IAAI,CAACC,eAAe,CAACP,aAAa,GAAGA,aAAa;AAAC"
 }

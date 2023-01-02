@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,23 +50,22 @@
     extend: qx.ui.virtual.cell.Abstract,
     construct: function construct() {
       qx.ui.virtual.cell.Abstract.constructor.call(this);
-      this.__P_458_0 = qx.ui.virtual.cell.CellStylesheet.getInstance();
-      this.__P_458_1 = {};
-      this.__P_458_2 = {};
-      this.__P_458_3 = {};
-      this.__P_458_4 = {};
-      this.__P_458_5 = {};
-      this.__P_458_6 = {};
+      this.__P_473_0 = qx.ui.virtual.cell.CellStylesheet.getInstance();
+      this.__P_473_1 = {};
+      this.__P_473_2 = {};
+      this.__P_473_3 = {};
+      this.__P_473_4 = {};
+      this.__P_473_5 = {};
+      this.__P_473_6 = {};
       this.initAppearance();
-
-      this.__P_458_7();
+      this.__P_473_7();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The appearance ID. This ID is used to identify the appearance theme
@@ -78,7 +76,6 @@
         init: "cell",
         apply: "_applyAppearance"
       },
-
       /** The cell's background color */
       backgroundColor: {
         nullable: true,
@@ -86,7 +83,6 @@
         apply: "_applyBackgroundColor",
         themeable: true
       },
-
       /** The cell's text color */
       textColor: {
         nullable: true,
@@ -94,7 +90,6 @@
         apply: "_applyTextColor",
         themeable: true
       },
-
       /** The text alignment of the cell's content */
       textAlign: {
         check: ["left", "center", "right", "justify"],
@@ -102,7 +97,6 @@
         themeable: true,
         apply: "_applyTextAlign"
       },
-
       /**
        * The cell's font. The value is either a font name defined in the font
        * theme or an instance of {@link qx.bom.Font}.
@@ -113,7 +107,6 @@
         check: "Font",
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         PADDING
@@ -127,7 +120,6 @@
         apply: "_applyPadding",
         themeable: true
       },
-
       /** Padding of the widget (right) */
       paddingRight: {
         check: "Integer",
@@ -135,7 +127,6 @@
         apply: "_applyPadding",
         themeable: true
       },
-
       /** Padding of the widget (bottom) */
       paddingBottom: {
         check: "Integer",
@@ -143,7 +134,6 @@
         apply: "_applyPadding",
         themeable: true
       },
-
       /** Padding of the widget (left) */
       paddingLeft: {
         check: "Integer",
@@ -151,7 +141,6 @@
         apply: "_applyPadding",
         themeable: true
       },
-
       /**
        * The 'padding' property is a shorthand property for setting 'paddingTop',
        * 'paddingRight', 'paddingBottom' and 'paddingLeft' at the same time.
@@ -167,49 +156,43 @@
         themeable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {Array} List of all non CSS themable properties */
-      __P_458_8: null,
-
+      __P_473_8: null,
       /** @type {String} Unique key over the current set of states */
-      __P_458_9: null,
-      __P_458_5: null,
-      __P_458_6: null,
-      __P_458_2: null,
-      __P_458_1: null,
-      __P_458_3: null,
-      __P_458_4: null,
-      __P_458_10: false,
-      __P_458_0: null,
-
+      __P_473_9: null,
+      __P_473_5: null,
+      __P_473_6: null,
+      __P_473_2: null,
+      __P_473_1: null,
+      __P_473_3: null,
+      __P_473_4: null,
+      __P_473_10: false,
+      __P_473_0: null,
       /**
        * Collect all themable properties, which are not CSS properties
        */
-      __P_458_7: function __P_458_7() {
+      __P_473_7: function __P_473_7() {
         var PropertyUtil = qx.util.PropertyUtil;
         var cssProperties = qx.lang.Object.fromArray(this._getCssProperties());
-        this.__P_458_8 = [];
+        this.__P_473_8 = [];
         var clazz = this.constructor;
-
         while (clazz) {
           var properties = PropertyUtil.getProperties(clazz);
-
           for (var prop in properties) {
             if (!cssProperties[prop]) {
-              this.__P_458_8.push(prop);
+              this.__P_473_8.push(prop);
             }
           }
-
           clazz = clazz.superclass;
         }
       },
-
       /**
        * Get a list of all properties, which should be applied as CSS styles.
        *
@@ -221,10 +204,9 @@
       // property apply
       _applyAppearance: function _applyAppearance(value, old) {
         if (old) {
-          this.__P_458_2 = {};
+          this.__P_473_2 = {};
         }
       },
-
       /**
        * Compute the value of the given property
        *
@@ -232,13 +214,12 @@
        * @return {var} The Property value
        */
       _getValue: function _getValue(propertyName) {
-        if (this.__P_458_10) {
+        if (this.__P_473_10) {
           return qx.util.PropertyUtil.getThemeValue(this, propertyName);
         } else {
           return qx.util.PropertyUtil.getUserValue(this, propertyName);
         }
       },
-
       /**
        * Store a properties computed style string either in the user or in the
        * theme values. User values will be applied as inline styles, while theme
@@ -249,13 +230,11 @@
        */
       _storeStyle: function _storeStyle(propertyName, styles) {
         var store;
-
-        if (this.__P_458_10) {
-          store = this.__P_458_2;
+        if (this.__P_473_10) {
+          store = this.__P_473_2;
         } else {
-          store = this.__P_458_1;
+          store = this.__P_473_1;
         }
-
         if (styles === null) {
           delete store[propertyName];
         } else {
@@ -265,7 +244,6 @@
       // property apply
       _applyBackgroundColor: function _applyBackgroundColor(value, old, name) {
         var value = this._getValue(name);
-
         if (!value) {
           this._storeStyle(name, null);
         } else {
@@ -275,7 +253,6 @@
       // property apply
       _applyTextColor: function _applyTextColor(value, old, name) {
         var value = this._getValue(name);
-
         if (!value) {
           this._storeStyle(name, null);
         } else {
@@ -285,7 +262,6 @@
       // property apply
       _applyTextAlign: function _applyTextAlign(value, old, name) {
         var value = this._getValue(name);
-
         if (!value) {
           this._storeStyle(name, null);
         } else {
@@ -295,40 +271,33 @@
       // property apply
       _applyFont: function _applyFont(value, old, name) {
         var value = this._getValue(name);
-
         if (!value) {
           this._storeStyle(name, null);
         } else {
           var font = qx.theme.manager.Font.getInstance().resolve(value);
-
           this._storeStyle(name, qx.bom.element.Style.compile(font.getStyles()));
         }
       },
       // property apply
       _applyPadding: function _applyPadding(value, old, name) {
         var value = this._getValue(name);
-
-        if (this.__P_458_10) {
-          var paddingStore = this.__P_458_4;
+        if (this.__P_473_10) {
+          var paddingStore = this.__P_473_4;
         } else {
-          paddingStore = this.__P_458_3;
+          paddingStore = this.__P_473_3;
         }
-
         if (value === null) {
           delete paddingStore[name];
         } else {
           paddingStore[name] = value;
         }
-
         if (value === null) {
           this._storeStyle(name, null);
         } else {
           var cssKey = qx.bom.Style.getCssName(name);
-
           this._storeStyle(name, cssKey + ":" + value + "px");
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         IMPLEMENT CELL API
@@ -336,8 +305,7 @@
       */
       // overridden
       getCellProperties: function getCellProperties(value, states) {
-        this.__P_458_11(states);
-
+        this.__P_473_11(states);
         return {
           classes: this.getCssClasses(value, states),
           style: this.getStyles(value, states),
@@ -356,129 +324,105 @@
       },
       // overridden
       getCssClasses: function getCssClasses(value, states) {
-        var cssClass = this.__P_458_0.getCssClass(this.__P_458_9) || "";
+        var cssClass = this.__P_473_0.getCssClass(this.__P_473_9) || "";
         return "qx-cell " + cssClass;
       },
-
       /**
        * Set the cell states and set the correct CSS class for the given state
        * combination
        *
        * @param states {Object} A map containing the cell's state names as map keys.
        */
-      __P_458_11: function __P_458_11(states) {
+      __P_473_11: function __P_473_11(states) {
         // Avoid errors if no states are set
         if (!states) {
           states = {};
         }
-
         var appearance = this.getAppearance();
         var statesKey = appearance + "-" + Object.keys(states).sort().join(" ");
-
-        if (this.__P_458_9 == statesKey) {
+        if (this.__P_473_9 == statesKey) {
           return;
         }
-
-        this.__P_458_9 = statesKey;
-        var themeStyles = this.__P_458_5[this.__P_458_9];
-
+        this.__P_473_9 = statesKey;
+        var themeStyles = this.__P_473_5[this.__P_473_9];
         if (!themeStyles) {
-          this.__P_458_12();
-
-          this.__P_458_13(states);
-
-          this.__P_458_14(states);
-
-          this.__P_458_15();
-
-          this.__P_458_5[this.__P_458_9] = 1;
+          this.__P_473_12();
+          this.__P_473_13(states);
+          this.__P_473_14(states);
+          this.__P_473_15();
+          this.__P_473_5[this.__P_473_9] = 1;
         }
-
-        this.__P_458_16();
+        this.__P_473_16();
       },
-
       /**
        * Remove the themed value from all CSS properties
        */
-      __P_458_12: function __P_458_12() {
+      __P_473_12: function __P_473_12() {
         var PropertyUtil = qx.util.PropertyUtil;
-
         var themableProperties = this._getCssProperties();
-
         for (var i = 0; i < themableProperties.length; i++) {
           PropertyUtil.deleteThemeValue(this, themableProperties[i]);
         }
       },
-
       /**
        * Set the new themed value for all CSS properties given the set of states
        *
        * @param states {Object} A map containing the cell's state names as map keys.
        */
-      __P_458_13: function __P_458_13(states) {
-        this.__P_458_2 = {};
-        this.__P_458_10 = true;
+      __P_473_13: function __P_473_13(states) {
+        this.__P_473_2 = {};
+        this.__P_473_10 = true;
         var appearance = this.getAppearance();
         var PropertyUtil = qx.util.PropertyUtil;
         var styles = qx.theme.manager.Appearance.getInstance().styleFrom(appearance, states);
-
         for (var prop in styles) {
           if (styles[prop] !== undefined) {
             PropertyUtil.setThemed(this, prop, styles[prop]);
           }
         }
-
-        this.__P_458_10 = false;
+        this.__P_473_10 = false;
       },
-
       /**
        * Compute a CSS class for the current values of all CSS properties
        */
-      __P_458_14: function __P_458_14() {
-        var styleString = Object.values(this.__P_458_2).join(";");
-
-        this.__P_458_0.computeClassForStyles(this.__P_458_9, styleString);
+      __P_473_14: function __P_473_14() {
+        var styleString = Object.values(this.__P_473_2).join(";");
+        this.__P_473_0.computeClassForStyles(this.__P_473_9, styleString);
       },
-
       /**
        * Cache the themed values for the current state combination
        */
-      __P_458_15: function __P_458_15() {
-        var properties = this.__P_458_8;
+      __P_473_15: function __P_473_15() {
+        var properties = this.__P_473_8;
         var PropertyUtil = qx.util.PropertyUtil;
         var themeValues = {};
-
         for (var i = 0; i < properties.length; i++) {
           var key = properties[i];
           var value = PropertyUtil.getThemeValue(this, key);
-
           if (value !== undefined) {
             themeValues[key] = value;
           }
         }
-
-        this.__P_458_6[this.__P_458_9] = themeValues;
+        this.__P_473_6[this.__P_473_9] = themeValues;
       },
-
       /**
        * Apply the themed values to the properties
        */
-      __P_458_16: function __P_458_16() {
+      __P_473_16: function __P_473_16() {
         var PropertyUtil = qx.util.PropertyUtil;
-        var themeValues = this.__P_458_6[this.__P_458_9] || {};
-
+        var themeValues = this.__P_473_6[this.__P_473_9] || {};
         for (var key in themeValues) {
           PropertyUtil.setThemed(this, key, themeValues[key]);
         }
       },
       // overridden
       getStyles: function getStyles(value, states) {
-        return Object.values(this.__P_458_1).join(";");
+        return Object.values(this.__P_473_1).join(";");
       },
       // overridden
       getInsets: function getInsets(value, states) {
-        var user = this.__P_458_3;
-        var theme = this.__P_458_4;
+        var user = this.__P_473_3;
+        var theme = this.__P_473_4;
         var top = (user.paddingTop !== undefined ? user.paddingTop : theme.paddingTop) || 0;
         var right = (user.paddingRight !== undefined ? user.paddingRight : theme.paddingRight) || 0;
         var bottom = (user.paddingBottom !== undefined ? user.paddingBottom : theme.paddingBottom) || 0;
@@ -487,10 +431,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_458_0 = this.__P_458_1 = this.__P_458_2 = this.__P_458_3 = this.__P_458_4 = this.__P_458_5 = this.__P_458_6 = this.__P_458_8 = null;
+      this.__P_473_0 = this.__P_473_1 = this.__P_473_2 = this.__P_473_3 = this.__P_473_4 = this.__P_473_5 = this.__P_473_6 = this.__P_473_8 = null;
     }
   });
   qx.ui.virtual.cell.Cell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cell.js.map?dt=1664789607145
+//# sourceMappingURL=Cell.js.map?dt=1672653517284

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,6 +37,7 @@
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Whether the widget should have horizontal scrollbars.
@@ -47,7 +47,6 @@
         nullable: true,
         apply: "_applyOverflowX"
       },
-
       /**
        * Whether the widget should have vertical scrollbars.
        */
@@ -56,7 +55,6 @@
         nullable: true,
         apply: "_applyOverflowY"
       },
-
       /**
        * Overflow group property
        */
@@ -64,12 +62,12 @@
         group: ["overflowX", "overflowY"]
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyOverflowX: function _applyOverflowX(value) {
@@ -84,4 +82,4 @@
   qx.ui.core.MNativeOverflow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MNativeOverflow.js.map?dt=1664789593828
+//# sourceMappingURL=MNativeOverflow.js.map?dt=1672653505175

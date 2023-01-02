@@ -34,7 +34,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,8 +61,8 @@
    *
    * For more information see:
    * http://www.w3.org/TR/geolocation-API/
-   * 
-   * This class does not need to be disposed, but you would obviously call 
+   *
+   * This class does not need to be disposed, but you would obviously call
    * stopWatchPosition() to top watching and free up resources consumed
    * by startWatchPosition().  The destructor will do this for you, if
    * you call dispose()
@@ -77,15 +76,13 @@
     },
     events: {
       /** Fired when the position is updated */
-      "position": "qx.event.type.GeoPosition",
-
+      position: "qx.event.type.GeoPosition",
       /** Fired when an error occurs */
-      "error": "qx.event.type.Data"
+      error: "qx.event.type.Data"
     },
     members: {
       _watchId: null,
       _geolocation: null,
-
       /**
        * Retrieves the current position and calls the "position" event.
        *
@@ -98,11 +95,9 @@
       getCurrentPosition: function getCurrentPosition(enableHighAccuracy, timeout, maximumAge) {
         var successHandler = qx.lang.Function.bind(this._successHandler, this);
         var errorHandler;
-
         if (qx.core.Environment.get("os.name") === "android" && qx.core.Environment.get("browser.name").indexOf("chrome") !== -1) {
           errorHandler = function () {
             var boundDefaultHandler = this._errorHandler.bind(this);
-
             this._geolocation.getCurrentPosition(successHandler, boundDefaultHandler, {
               enableHighAccuracy: enableHighAccuracy,
               timeout: timeout,
@@ -112,14 +107,12 @@
         } else {
           errorHandler = qx.lang.Function.bind(this._errorHandler, this);
         }
-
         this._geolocation.getCurrentPosition(successHandler, errorHandler, {
           enableHighAccuracy: enableHighAccuracy,
           timeout: timeout,
           maximumAge: maximumAge
         });
       },
-
       /**
        * Starts to watch the position. Calls the "position" event, when the position changed.
        *
@@ -139,18 +132,15 @@
           maximumAge: maximumAge
         });
       },
-
       /**
        * Stops watching the position.
        */
       stopWatchPosition: function stopWatchPosition() {
         if (this._watchId != null) {
           this._geolocation.clearWatch(this._watchId);
-
           this._watchId = null;
         }
       },
-
       /**
        * Success handler.
        *
@@ -159,7 +149,6 @@
       _successHandler: function _successHandler(position) {
         this.fireEvent("position", qx.event.type.GeoPosition, [position]);
       },
-
       /**
        * The Error handler.
        *
@@ -176,4 +165,4 @@
   qx.bom.GeoLocation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GeoLocation.js.map?dt=1664789575491
+//# sourceMappingURL=GeoLocation.js.map?dt=1672653484071

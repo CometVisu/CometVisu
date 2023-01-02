@@ -19,19 +19,21 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 28,
+        "column": 0,
+        "index": 913
       },
       "end": {
-        "line": 540,
-        "column": 3
+        "line": 504,
+        "column": 3,
+        "index": 13340
       }
     },
     "jsdoc": {
       "@description": [
         {
           "name": "@description",
-          "body": "<p>A list of items. Displays an automatically scrolling list for all\n added {@link qx.ui.form.ListItem} instances. Supports various\n selection options: single, multi, …</p>"
+          "body": "<p>A list of items. Displays an automatically scrolling list for all\n added {@link qx.ui.form.IListItem} instances (typically this would be instances of\n {@link qx.ui.form.ListItem} but can also be other Atoms, such as {@link qx.ui.form.CheckBox}).\n Supports various selection options: single, multi, …</p>"
         }
       ]
     }
@@ -41,11 +43,13 @@
     "location": {
       "start": {
         "line": 53,
-        "column": 14
+        "column": 2,
+        "index": 1559
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 79,
+        "column": 3,
+        "index": 2294
       }
     },
     "jsdoc": {
@@ -72,12 +76,14 @@
     "addItem": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2677
         },
         "end": {
-          "line": 97,
-          "column": 34
+          "line": 93,
+          "column": 33,
+          "index": 2706
         }
       },
       "jsdoc": {
@@ -94,12 +100,14 @@
     "removeItem": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2905
         },
         "end": {
-          "line": 104,
-          "column": 37
+          "line": 100,
+          "column": 36,
+          "index": 2937
         }
       },
       "jsdoc": {
@@ -230,12 +238,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3169
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 3227
         }
       },
       "jsdoc": {},
@@ -253,12 +263,14 @@
     "focusable": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 117,
+          "column": 4,
+          "index": 3252
         },
         "end": {
-          "line": 129,
-          "column": 5
+          "line": 120,
+          "column": 5,
+          "index": 3307
         }
       },
       "jsdoc": {},
@@ -275,12 +287,14 @@
     "width": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 3332
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 126,
+          "column": 5,
+          "index": 3382
         }
       },
       "jsdoc": {},
@@ -298,12 +312,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 3407
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 3458
         }
       },
       "jsdoc": {},
@@ -321,12 +337,14 @@
     "orientation": {
       "location": {
         "start": {
-          "line": 148,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 3548
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 141,
+          "column": 5,
+          "index": 3666
         }
       },
       "jsdoc": {
@@ -350,12 +368,14 @@
     "spacing": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
+          "line": 144,
+          "column": 4,
+          "index": 3710
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 3817
         }
       },
       "jsdoc": {
@@ -377,12 +397,14 @@
     "enableInlineFind": {
       "location": {
         "start": {
-          "line": 165,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 3896
         },
         "end": {
-          "line": 169,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 3962
         }
       },
       "jsdoc": {
@@ -402,12 +424,14 @@
     "readOnly": {
       "location": {
         "start": {
-          "line": 172,
-          "column": 4
+          "line": 158,
+          "column": 4,
+          "index": 4023
         },
         "end": {
-          "line": 178,
-          "column": 5
+          "line": 163,
+          "column": 5,
+          "index": 4144
         }
       },
       "jsdoc": {
@@ -520,7 +544,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -532,12 +556,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -547,12 +571,14 @@
     "__pressedString": {
       "location": {
         "start": {
-          "line": 191,
-          "column": 4
+          "line": 173,
+          "column": 4,
+          "index": 4352
         },
         "end": {
-          "line": 191,
-          "column": 26
+          "line": 173,
+          "column": 25,
+          "index": 4373
         }
       },
       "type": "variable",
@@ -561,12 +587,14 @@
     "__lastKeyPress": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 4379
         },
         "end": {
-          "line": 192,
-          "column": 25
+          "line": 174,
+          "column": 24,
+          "index": 4399
         }
       },
       "type": "variable",
@@ -575,12 +603,14 @@
     "__content": {
       "location": {
         "start": {
-          "line": 195,
-          "column": 4
+          "line": 177,
+          "column": 4,
+          "index": 4466
         },
         "end": {
-          "line": 195,
-          "column": 20
+          "line": 177,
+          "column": 19,
+          "index": 4481
         }
       },
       "jsdoc": {
@@ -603,12 +633,14 @@
     "SELECTION_MANAGER": {
       "location": {
         "start": {
-          "line": 198,
-          "column": 4
+          "line": 180,
+          "column": 4,
+          "index": 4553
         },
         "end": {
-          "line": 198,
-          "column": 55
+          "line": 180,
+          "column": 54,
+          "index": 4603
         }
       },
       "jsdoc": {
@@ -631,12 +663,14 @@
     "getChildrenContainer": {
       "location": {
         "start": {
-          "line": 209,
-          "column": 4
+          "line": 189,
+          "column": 4,
+          "index": 4820
         },
         "end": {
-          "line": 211,
-          "column": 5
+          "line": 191,
+          "column": 5,
+          "index": 4879
         }
       },
       "jsdoc": {},
@@ -650,12 +684,14 @@
     "_onAddChild": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 198,
+          "column": 4,
+          "index": 5017
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 200,
+          "column": 5,
+          "index": 5089
         }
       },
       "jsdoc": {
@@ -681,12 +717,14 @@
     "_onRemoveChild": {
       "location": {
         "start": {
-          "line": 227,
-          "column": 4
+          "line": 207,
+          "column": 4,
+          "index": 5230
         },
         "end": {
-          "line": 229,
-          "column": 5
+          "line": 209,
+          "column": 5,
+          "index": 5308
         }
       },
       "jsdoc": {
@@ -712,12 +750,14 @@
     "handleKeyPress": {
       "location": {
         "start": {
-          "line": 245,
-          "column": 4
+          "line": 223,
+          "column": 4,
+          "index": 5710
         },
         "end": {
-          "line": 250,
-          "column": 5
+          "line": 227,
+          "column": 5,
+          "index": 5823
         }
       },
       "jsdoc": {
@@ -743,12 +783,14 @@
     "_createListItemContainer": {
       "location": {
         "start": {
-          "line": 265,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 6178
         },
         "end": {
-          "line": 267,
-          "column": 5
+          "line": 242,
+          "column": 5,
+          "index": 6258
         }
       },
       "jsdoc": {
@@ -773,12 +815,14 @@
     "_applyOrientation": {
       "location": {
         "start": {
-          "line": 277,
-          "column": 4
+          "line": 251,
+          "column": 4,
+          "index": 6492
         },
         "end": {
-          "line": 300,
-          "column": 5
+          "line": 278,
+          "column": 5,
+          "index": 7220
         }
       },
       "jsdoc": {},
@@ -791,12 +835,14 @@
     "_applySpacing": {
       "location": {
         "start": {
-          "line": 303,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 7249
         },
         "end": {
-          "line": 305,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 7334
         }
       },
       "jsdoc": {},
@@ -809,12 +855,14 @@
     "_applyReadOnly": {
       "location": {
         "start": {
-          "line": 308,
-          "column": 4
+          "line": 286,
+          "column": 4,
+          "index": 7366
         },
         "end": {
-          "line": 340,
-          "column": 5
+          "line": 318,
+          "column": 5,
+          "index": 8161
         }
       },
       "jsdoc": {},
@@ -827,12 +875,14 @@
     "_applyEnabled": {
       "location": {
         "start": {
-          "line": 343,
-          "column": 4
+          "line": 321,
+          "column": 4,
+          "index": 8184
         },
         "end": {
-          "line": 360,
-          "column": 5
+          "line": 338,
+          "column": 5,
+          "index": 8661
         }
       },
       "jsdoc": {},
@@ -846,12 +896,14 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 376,
-          "column": 4
+          "line": 352,
+          "column": 4,
+          "index": 9058
         },
         "end": {
-          "line": 390,
-          "column": 5
+          "line": 364,
+          "column": 5,
+          "index": 9378
         }
       },
       "jsdoc": {
@@ -885,12 +937,14 @@
     "_onKeyInput": {
       "location": {
         "start": {
-          "line": 405,
-          "column": 4
+          "line": 377,
+          "column": 4,
+          "index": 9703
         },
         "end": {
-          "line": 436,
-          "column": 5
+          "line": 407,
+          "column": 5,
+          "index": 10559
         }
       },
       "jsdoc": {
@@ -916,12 +970,14 @@
     "findItemByLabelFuzzy": {
       "location": {
         "start": {
-          "line": 447,
-          "column": 4
+          "line": 418,
+          "column": 4,
+          "index": 11015
         },
         "end": {
-          "line": 471,
-          "column": 5
+          "line": 439,
+          "column": 5,
+          "index": 11687
         }
       },
       "jsdoc": {
@@ -955,12 +1011,14 @@
     "findItem": {
       "location": {
         "start": {
-          "line": 480,
-          "column": 4
+          "line": 448,
+          "column": 4,
+          "index": 11945
         },
         "end": {
-          "line": 527,
-          "column": 5
+          "line": 492,
+          "column": 5,
+          "index": 13085
         }
       },
       "jsdoc": {
@@ -2518,38 +2576,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -2995,6 +3021,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -3019,6 +3046,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -7146,15 +7174,19 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 537,
-        "column": 13
+        "line": 501,
+        "column": 2,
+        "index": 13281
       },
       "end": {
-        "line": 539,
-        "column": 3
+        "line": 503,
+        "column": 3,
+        "index": 13336
       }
     },
     "jsdoc": {}
   },
-  "descendants": []
+  "descendants": [
+    "qx.ui.form.CheckedList"
+  ]
 }

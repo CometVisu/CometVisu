@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "type",
+    "BaseError",
+    "construct",
+    "message",
+    "code",
+    "data",
+    "name",
+    "classname",
+    "io",
+    "exception",
+    "Exception"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/io/exception/Exception.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n * A generic class for representing exceptions that occur during io operations.\n */\nqx.Class.define(\"qx.io.exception.Exception\", {\n  extend: qx.type.BaseError,\n\n  /**\n   * Constructor\n   * @param message {String}\n   * @param code {Number}\n   * @param data {*|null}\n   */\n  construct(message, code, data) {\n    super(\"\", message);\n    this.code = code;\n    this.data = data;\n    this.name = this.classname;\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,SAAS;IAEzB;AACF;AACA;AACA;AACA;AACA;IACEC,SAAS,qBAACC,OAAO,EAAEC,IAAI,EAAEC,IAAI,EAAE;MAC7B,yCAAM,EAAE,EAAEF,OAAO;MACjB,IAAI,CAACC,IAAI,GAAGA,IAAI;MAChB,IAAI,CAACC,IAAI,GAAGA,IAAI;MAChB,IAAI,CAACC,IAAI,GAAG,IAAI,CAACC,SAAS;IAC5B;EACF,CAAC,CAAC;EApCFd,EAAE,CAACe,EAAE,CAACC,SAAS,CAACC,SAAS,CAACd,aAAa,GAAGA,aAAa;AAAC"
+}

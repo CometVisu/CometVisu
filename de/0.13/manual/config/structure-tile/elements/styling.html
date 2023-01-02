@@ -191,18 +191,18 @@ enthalten sind:</p>
 <p>Die Farben können je nach Design abweichen.</p>
 </div>
 <p>Mit diesem styling wird 0 (oft AUS) in grün und 1 (oft AN) in rot dargestellt.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;GreenRed&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GreenRed&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/cv-styling&gt;</span>
 </pre></div>
 </div>
 <p>Um ein Element mit den entgegen gesetzten Farben darzustellen, muss der
 folgende style tag erstellt werden. Jetzt hat das Element bei einem Wert
 von 0 die Farbe rot.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;Red_Green&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Red_Green&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/cv-styling&gt;</span>
 </pre></div>
 </div>
@@ -214,10 +214,10 @@ Im folgenden Beispiel wie folgt:</p>
 <li><p>der Wert 0: lila</p></li>
 <li><p>Werte größer 0: rot</p></li>
 </ul>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span> <span class="na">name=</span><span class="s">&quot;BluePurpleRed&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;-100&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>blue<span class="nt">&lt;/entry&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>purple<span class="nt">&lt;/entry&gt;</span>
-   <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;BluePurpleRed&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;-100&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>blue<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>purple<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/cv-styling&gt;</span>
 </pre></div>
 </div>
@@ -241,7 +241,7 @@ werden kommt auf die Definition in der CSS für’s jeweilige Designs an.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

@@ -9,15 +9,15 @@
         "construct": true,
         "require": true
       },
+      "cv.ui.manager.model.FileItem": {},
       "qx.locale.Manager": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* CompareFiles.js 
-   * 
+  /* CompareFiles.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -38,7 +38,6 @@
    */
   qx.Class.define('cv.ui.manager.model.CompareFiles', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -49,7 +48,6 @@
       this.setOriginalFile(original);
       this.setModifiedFile(modified);
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -84,7 +82,6 @@
         event: 'changeModified'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -124,7 +121,6 @@
       isMounted: function isMounted() {
         return this.getModifiedFile().isMounted() || this.getOriginalFile().isMounted();
       },
-
       /**
        * Returns a fake URI that can be used to identify the file.
        * Used by monaco editor as model URI.
@@ -138,4 +134,4 @@
   cv.ui.manager.model.CompareFiles.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CompareFiles.js.map?dt=1664789567772
+//# sourceMappingURL=CompareFiles.js.map?dt=1672653476431

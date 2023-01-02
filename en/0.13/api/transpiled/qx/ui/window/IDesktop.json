@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 549
       },
       "end": {
-        "line": 72,
-        "column": 3
+        "line": 70,
+        "column": 3,
+        "index": 1739
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "setWindowManager": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 748
         },
         "end": {
-          "line": 33,
-          "column": 5
+          "line": 31,
+          "column": 5,
+          "index": 847
         }
       },
       "jsdoc": {
@@ -62,12 +66,14 @@
     "getWindows": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1022
         },
         "end": {
-          "line": 40,
-          "column": 30
+          "line": 38,
+          "column": 19,
+          "index": 1037
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "supportsMaximize": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1228
         },
         "end": {
-          "line": 48,
-          "column": 36
+          "line": 46,
+          "column": 25,
+          "index": 1249
         }
       },
       "jsdoc": {
@@ -122,12 +130,14 @@
     "blockContent": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1460
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1522
         }
       },
       "jsdoc": {
@@ -153,12 +163,14 @@
     "unblock": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1572
         },
         "end": {
-          "line": 63,
-          "column": 27
+          "line": 61,
+          "column": 16,
+          "index": 1584
         }
       },
       "jsdoc": {
@@ -175,12 +187,14 @@
     "isBlocked": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1717
         },
         "end": {
-          "line": 70,
-          "column": 29
+          "line": 68,
+          "column": 18,
+          "index": 1731
         }
       },
       "jsdoc": {

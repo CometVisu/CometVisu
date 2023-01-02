@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 653
       },
       "end": {
-        "line": 109,
-        "column": 5
+        "line": 98,
+        "column": 3,
+        "index": 2308
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_cloneNativeEvent": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 6
+          "line": 34,
+          "column": 4,
+          "index": 947
         },
         "end": {
-          "line": 45,
-          "column": 7
+          "line": 40,
+          "column": 5,
+          "index": 1116
         }
       },
       "jsdoc": {},
@@ -53,12 +57,14 @@
     "getStartTime": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 6
+          "line": 47,
+          "column": 4,
+          "index": 1240
         },
         "end": {
-          "line": 55,
-          "column": 7
+          "line": 49,
+          "column": 5,
+          "index": 1305
         }
       },
       "jsdoc": {
@@ -83,12 +89,14 @@
     "getDuration": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 6
+          "line": 56,
+          "column": 4,
+          "index": 1427
         },
         "end": {
-          "line": 65,
-          "column": 7
+          "line": 58,
+          "column": 5,
+          "index": 1490
         }
       },
       "jsdoc": {
@@ -113,12 +121,14 @@
     "getAxis": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 6
+          "line": 65,
+          "column": 4,
+          "index": 1624
         },
         "end": {
-          "line": 75,
-          "column": 7
+          "line": 67,
+          "column": 5,
+          "index": 1679
         }
       },
       "jsdoc": {
@@ -143,12 +153,14 @@
     "getDirection": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 6
+          "line": 76,
+          "column": 4,
+          "index": 1870
         },
         "end": {
-          "line": 87,
-          "column": 7
+          "line": 78,
+          "column": 5,
+          "index": 1935
         }
       },
       "jsdoc": {
@@ -173,12 +185,14 @@
     "getVelocity": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 6
+          "line": 85,
+          "column": 4,
+          "index": 2054
         },
         "end": {
-          "line": 97,
-          "column": 7
+          "line": 87,
+          "column": 5,
+          "index": 2117
         }
       },
       "jsdoc": {
@@ -203,12 +217,14 @@
     "getDistance": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 6
+          "line": 94,
+          "column": 4,
+          "index": 2237
         },
         "end": {
-          "line": 107,
-          "column": 7
+          "line": 96,
+          "column": 5,
+          "index": 2300
         }
       },
       "jsdoc": {
@@ -318,6 +334,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -342,6 +359,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

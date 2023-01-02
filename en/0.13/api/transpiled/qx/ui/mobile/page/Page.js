@@ -47,7 +47,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -106,7 +105,6 @@
   qx.Class.define("qx.ui.mobile.page.Page", {
     extend: qx.ui.mobile.container.Composite,
     include: qx.ui.mobile.core.MResize,
-
     /*
      *****************************************************************************
         CONSTRUCTOR
@@ -115,15 +113,14 @@
     construct: function construct(layout) {
       qx.ui.mobile.container.Composite.constructor.call(this, layout || new qx.ui.mobile.layout.VBox());
     },
-
     /*
      *****************************************************************************
         STATICS
      *****************************************************************************
      */
+
     statics: {
       _currentPage: null,
-
       /**
        * Event handler. Called when the device is ready.
        */
@@ -131,24 +128,20 @@
         qx.bom.Event.addNativeListener(document, "backbutton", qx.ui.mobile.page.Page._onBackButton);
         qx.bom.Event.addNativeListener(document, "menubutton", qx.ui.mobile.page.Page._onMenuButton);
       },
-
       /**
        * Event handler. Called when the back button of the device was pressed.
        */
       _onBackButton: function _onBackButton() {
         if (qx.core.Environment.get("phonegap") && qx.core.Environment.get("os.name") == "android") {
           var exit = true;
-
           if (qx.ui.mobile.page.Page._currentPage) {
             exit = qx.ui.mobile.page.Page._currentPage.back(true);
           }
-
           if (exit) {
             navigator.app.exitApp();
           }
         }
       },
-
       /**
        * Event handler. Called when the menu button of the device was pressed.
        */
@@ -162,32 +155,25 @@
     },
     events: {
       /** Fired when the lifecycle method {@link #initialize} is called */
-      "initialize": "qx.event.type.Event",
-
+      initialize: "qx.event.type.Event",
       /** Fired when the lifecycle method {@link #start} is called */
-      "start": "qx.event.type.Event",
-
+      start: "qx.event.type.Event",
       /** Fired when the lifecycle method {@link #stop} is called */
-      "stop": "qx.event.type.Event",
-
+      stop: "qx.event.type.Event",
       /** Fired when the lifecycle method {@link #pause} is called */
-      "pause": "qx.event.type.Event",
-
+      pause: "qx.event.type.Event",
       /** Fired when the lifecycle method {@link #resume} is called */
-      "resume": "qx.event.type.Event",
-
+      resume: "qx.event.type.Event",
       /**
        * Fired when the method {@link #back} is called and not prevented by
        * {@link qx.application.Mobile#back}. Data indicating whether
        * the action was triggered by a key event or not.
        */
-      "back": "qx.event.type.Data",
-
+      back: "qx.event.type.Data",
       /** Fired when the method {@link #menu} is called */
-      "menu": "qx.event.type.Event",
-
+      menu: "qx.event.type.Event",
       /** Fired when the method {@link #wait} is called */
-      "wait": "qx.event.type.Event"
+      wait: "qx.event.type.Event"
     },
     properties: {
       // overridden
@@ -195,7 +181,6 @@
         refine: true,
         init: "page"
       },
-
       /**
        * The current active life cycle state of this page.
        */
@@ -205,20 +190,19 @@
         apply: "_applyLifeCycleState"
       }
     },
-
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
+
     members: {
-      __P_397_0: false,
+      __P_414_0: false,
       // overridden
       show: function show(properties) {
         if (qx.ui.mobile.page.Page._currentPage) {
           qx.ui.mobile.page.Page._currentPage.stop();
         }
-
         qx.ui.mobile.page.Page._currentPage = this;
         this.initialize();
         this.start();
@@ -229,7 +213,6 @@
         this.stop();
         qx.ui.mobile.page.Page.superclass.prototype.exclude.call(this, properties);
       },
-
       /**
        * Fires the <code>back</code> event. Call this method if you want to request
        * a back action. For Android PhoneGap applications this method gets called
@@ -246,15 +229,12 @@
       back: function back(triggeredByKeyEvent) {
         if (qx.core.Init.getApplication().fireDataEvent("back", triggeredByKeyEvent, null, true)) {
           this.fireDataEvent("back", triggeredByKeyEvent);
-
           var value = this._back(triggeredByKeyEvent);
-
           return value || false;
         } else {
           return false;
         }
       },
-
       /**
        * Override this method if you want to perform a certain action when back
        * is called.
@@ -266,7 +246,6 @@
        * @abstract
        */
       _back: function _back(triggeredByKeyEvent) {},
-
       /**
        * Only used by Android PhoneGap applications. Called by the used page manager
        * when the menu button was pressed. Fires the <code>menu</code> event.
@@ -274,13 +253,11 @@
       menu: function menu() {
         this.fireEvent("menu");
       },
-
       /*
       ---------------------------------------------------------------------------
         Lifecycle Methods
       ---------------------------------------------------------------------------
       */
-
       /**
        * Lifecycle method. Called by the page manager when the page is shown.
        * Fires the <code>initialize</code> event. You should create and add all your
@@ -293,12 +270,10 @@
       initialize: function initialize() {
         if (!this.isInitialized()) {
           this._initialize();
-
-          this.__P_397_0 = true;
+          this.__P_414_0 = true;
           this.setLifeCycleState("initialize");
         }
       },
-
       /**
        * Override this method if you would like to perform a certain action when initialize
        * is called.
@@ -306,16 +281,14 @@
        * @see #initialize
        */
       _initialize: function _initialize() {},
-
       /**
        * Returns the status of the initialization of the page.
        *
        * @return {Boolean} Whether the page is already initialized or not
        */
       isInitialized: function isInitialized() {
-        return this.__P_397_0;
+        return this.__P_414_0;
       },
-
       /**
        * Lifecycle method. Called by the page manager after the {@link #initialize}
        * method when the page is shown. Fires the <code>start</code> event. You should
@@ -324,10 +297,8 @@
        */
       start: function start() {
         this._start();
-
         this.setLifeCycleState("start");
       },
-
       /**
        * Override this method if you would like to perform a certain action when start
        * is called.
@@ -335,7 +306,6 @@
        * @see #start
        */
       _start: function _start() {},
-
       /**
        * Lifecycle method. Called by the page manager when another page is shown.
        * Fires the <code>stop</code> event. You should unregister all your event
@@ -345,12 +315,9 @@
         if (!this.isInitialized()) {
           return;
         }
-
         this._stop();
-
         this.setLifeCycleState("stop");
       },
-
       /**
        * Override this method if you would like to perform a certain action when stop
        * is called.
@@ -358,7 +325,6 @@
        * @see #stop
        */
       _stop: function _stop() {},
-
       /**
        * Lifecycle method. Not used right now. Should be called when the current page
        * is interrupted, e.g. by a dialog, so that page view updates can be interrupted.
@@ -366,10 +332,8 @@
        */
       pause: function pause() {
         this._pause();
-
         this.setLifeCycleState("pause");
       },
-
       /**
        * Override this method if you would like to perform a certain action when pause
        * is called.
@@ -377,7 +341,6 @@
        * @see #pause
        */
       _pause: function _pause() {},
-
       /**
        * Lifecycle method. Not used right now. Should be called when the current page
        * is resuming from a interruption, e.g. when a dialog is closed, so that page
@@ -386,10 +349,8 @@
        */
       resume: function resume() {
         this._resume();
-
         this.setLifeCycleState("resume");
       },
-
       /**
        * Override this method if you would like to perform a certain action when resume
        * is called.
@@ -397,7 +358,6 @@
        * @see #resume
        */
       _resume: function _resume() {},
-
       /**
        * Lifecycle method. Not used right now. Should be called when the current page
        * waits for data request etc.
@@ -405,10 +365,8 @@
        */
       wait: function wait() {
         this._wait();
-
         this.setLifeCycleState("wait");
       },
-
       /**
        * Override this method if you would like to perform a certain action when wait
        * is called.
@@ -421,11 +379,9 @@
         if (value == "start" || value == "stop") {
           qx.core.Init.getApplication().fireEvent(value);
         }
-
         this.fireEvent(value);
       }
     },
-
     /*
      *****************************************************************************
          DEFER
@@ -440,4 +396,4 @@
   qx.ui.mobile.page.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1664789602195
+//# sourceMappingURL=Page.js.map?dt=1672653512552

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,7 +48,8 @@
         CORE
       ---------------------------------------------------------------------------
       */
-      "main": {
+
+      main: {
         style: {
           width: 1,
           color: "border-dark"
@@ -62,13 +62,13 @@
           style: "dotted"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         THREE DIMENSIONAL
       ---------------------------------------------------------------------------
       */
-      "inset": {
+
+      inset: {
         style: {
           width: 1,
           innerWidth: 1,
@@ -76,7 +76,7 @@
           innerColor: ["border-dark", "border-light-shadow", "border-light-shadow", "border-dark"]
         }
       },
-      "outset": {
+      outset: {
         style: {
           width: 1,
           innerWidth: 1,
@@ -84,7 +84,7 @@
           innerColor: ["border-light", "border-dark-shadow", "border-dark-shadow", "border-light"]
         }
       },
-      "groove": {
+      groove: {
         style: {
           width: 1,
           innerWidth: 1,
@@ -92,7 +92,7 @@
           innerColor: ["border-light", "border-dark-shadow", "border-dark-shadow", "border-light"]
         }
       },
-      "ridge": {
+      ridge: {
         style: {
           width: 1,
           innerWidth: 1,
@@ -136,12 +136,12 @@
           innerColor: "invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SEPARATOR
       ---------------------------------------------------------------------------
       */
+
       "separator-horizontal": {
         style: {
           widthLeft: 1,
@@ -154,13 +154,13 @@
           colorTop: "border-separator"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-      "window": {
+
+      window: {
         include: "outset",
         style: {
           shadowLength: 1,
@@ -168,12 +168,12 @@
           shadowColor: "shadow"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LIST ITEM
       ---------------------------------------------------------------------------
       */
+
       "lead-item": {
         style: {
           width: 1,
@@ -181,13 +181,13 @@
           color: "border-lead"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOL TIP / POPUP
       ---------------------------------------------------------------------------
       */
-      "tooltip": {
+
+      tooltip: {
         style: {
           width: 1,
           color: "tooltip-text",
@@ -205,7 +205,7 @@
           shadowColor: "shadow"
         }
       },
-      "popup": {
+      popup: {
         include: "main",
         style: {
           shadowLength: 2,
@@ -213,12 +213,12 @@
           shadowColor: "shadow"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
+
       "toolbar-separator": {
         style: {
           widthLeft: 1,
@@ -235,13 +235,13 @@
           colorBottom: "border-dark-shadow"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
-      "menu": {
+
+      menu: {
         include: "outset",
         style: {
           shadowLength: 1,
@@ -257,12 +257,12 @@
           colorBottom: "border-light"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
       ---------------------------------------------------------------------------
       */
+
       "datechooser-date-pane": {
         style: {
           widthTop: 1,
@@ -293,12 +293,12 @@
           style: "solid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TAB VIEW
       ---------------------------------------------------------------------------
       */
+
       "tabview-page-button-top": {
         style: {
           width: 1,
@@ -339,12 +339,12 @@
           innerWidthLeft: 0
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
+
       "table-statusbar": {
         style: {
           widthTop: 1,
@@ -383,13 +383,13 @@
           styleBottom: "solid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
       ---------------------------------------------------------------------------
       */
-      "progressbar": {
+
+      progressbar: {
         style: {
           backgroundColor: "#FFF",
           width: 1,
@@ -401,4 +401,4 @@
   qx.theme.classic.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789590837
+//# sourceMappingURL=Decoration.js.map?dt=1672653502335

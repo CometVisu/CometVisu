@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,7 +41,6 @@
   qx.Class.define("qx.io.remote.transport.Abstract", {
     type: "abstract",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -54,82 +52,69 @@
       this.setParameters({});
       this.setFormFields({});
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Event when a request is created */
-      "created": "qx.event.type.Event",
-
+      created: "qx.event.type.Event",
       /** Event when a request is configured */
-      "configured": "qx.event.type.Event",
-
+      configured: "qx.event.type.Event",
       /** Event when a request is send */
-      "sending": "qx.event.type.Event",
-
+      sending: "qx.event.type.Event",
       /** Event when a request is received */
-      "receiving": "qx.event.type.Event",
-
+      receiving: "qx.event.type.Event",
       /** Event when a request is completed */
-      "completed": "qx.event.type.Event",
-
+      completed: "qx.event.type.Event",
       /** Event when a request is aborted */
-      "aborted": "qx.event.type.Event",
-
+      aborted: "qx.event.type.Event",
       /** Event when a request has failed */
-      "failed": "qx.event.type.Event",
-
+      failed: "qx.event.type.Event",
       /** Event when a request has timed out */
-      "timeout": "qx.event.type.Event"
+      timeout: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Target url to issue the request to */
       url: {
         check: "String",
         nullable: true
       },
-
       /** Determines what type of request to issue */
       method: {
         check: "String",
         nullable: true,
         init: "GET"
       },
-
       /** Set the request to asynchronous */
       asynchronous: {
         check: "Boolean",
         nullable: true,
         init: true
       },
-
       /** Set the data to be sent via this request */
       data: {
         check: "String",
         nullable: true
       },
-
       /** Username to use for HTTP authentication */
       username: {
         check: "String",
         nullable: true
       },
-
       /** Password to use for HTTP authentication */
       password: {
         check: "String",
         nullable: true
       },
-
       /** The state of the current request */
       state: {
         check: ["created", "configured", "sending", "receiving", "completed", "aborted", "timeout", "failed"],
@@ -137,50 +122,44 @@
         event: "changeState",
         apply: "_applyState"
       },
-
       /** Request headers */
       requestHeaders: {
         check: "Object",
         nullable: true
       },
-
       /** Request parameters to send. */
       parameters: {
         check: "Object",
         nullable: true
       },
-
       /** Request form fields to send. */
       formFields: {
         check: "Object",
         nullable: true
       },
-
       /** Response Type */
       responseType: {
         check: "String",
         nullable: true
       },
-
       /** Use Basic HTTP Authentication */
       useBasicHttpAuth: {
         check: "Boolean",
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         USER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sending a request.
        *
@@ -193,7 +172,6 @@
       send: function send() {
         throw new Error("send is abstract");
       },
-
       /**
        * Force the transport into the aborted state ("aborted").
        *
@@ -203,7 +181,6 @@
       abort: function abort() {
         this.setState("aborted");
       },
-
       /**
        * Force the transport into the timeout state ("timeout").
        *
@@ -213,7 +190,6 @@
       timeout: function timeout() {
         this.setState("timeout");
       },
-
       /**
        * Force the transport into the failed state ("failed").
        *
@@ -223,13 +199,11 @@
       failed: function failed() {
         this.setState("failed");
       },
-
       /*
       ---------------------------------------------------------------------------
         REQUEST HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add a request header to this transports qx.io.remote.Request.
        *
@@ -244,13 +218,11 @@
       setRequestHeader: function setRequestHeader(vLabel, vValue) {
         throw new Error("setRequestHeader is abstract");
       },
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the request header of the request.
        *
@@ -265,7 +237,6 @@
       getResponseHeader: function getResponseHeader(vLabel) {
         throw new Error("getResponseHeader is abstract");
       },
-
       /**
        * Provides an hash of all response headers.
        *
@@ -279,13 +250,11 @@
       getResponseHeaders: function getResponseHeaders() {
         throw new Error("getResponseHeaders is abstract");
       },
-
       /*
       ---------------------------------------------------------------------------
         STATUS SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the current status code of the request if available or -1 if not.
        *
@@ -299,7 +268,6 @@
       getStatusCode: function getStatusCode() {
         throw new Error("getStatusCode is abstract");
       },
-
       /**
        * Provides the status text for the current request if available and null otherwise.
        *
@@ -313,13 +281,11 @@
       getStatusText: function getStatusText() {
         throw new Error("getStatusText is abstract");
       },
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE DATA SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Provides the response text from the request when available and null otherwise.
        * By passing true as the "partial" parameter of this method, incomplete data will
@@ -335,7 +301,6 @@
       getResponseText: function getResponseText() {
         throw new Error("getResponseText is abstract");
       },
-
       /**
        * Provides the XML provided by the response if any and null otherwise.
        * By passing true as the "partial" parameter of this method, incomplete data will
@@ -351,7 +316,6 @@
       getResponseXml: function getResponseXml() {
         throw new Error("getResponseXml is abstract");
       },
-
       /**
        * Returns the length of the content as fetched thus far.
        *
@@ -365,13 +329,11 @@
       getFetchedLength: function getFetchedLength() {
         throw new Error("getFetchedLength is abstract");
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Apply method for "state" property. For each state value a corresponding
        * event is fired to inform the listeners.
@@ -384,40 +346,31 @@
           case "created":
             this.fireEvent("created");
             break;
-
           case "configured":
             this.fireEvent("configured");
             break;
-
           case "sending":
             this.fireEvent("sending");
             break;
-
           case "receiving":
             this.fireEvent("receiving");
             break;
-
           case "completed":
             this.fireEvent("completed");
             break;
-
           case "aborted":
             this.fireEvent("aborted");
             break;
-
           case "failed":
             this.fireEvent("failed");
             break;
-
           case "timeout":
             this.fireEvent("timeout");
             break;
         }
-
         return true;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -432,4 +385,4 @@
   qx.io.remote.transport.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789587249
+//# sourceMappingURL=Abstract.js.map?dt=1672653498410

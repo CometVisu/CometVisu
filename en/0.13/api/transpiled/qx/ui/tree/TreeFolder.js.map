@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/tree/TreeFolder.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -27,8 +24,11 @@
     "addLabel",
     "TreeFolder"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,IAAX,CAAgBC,gBAD3B;AAIEC,IAAAA,UAAU,EACV;AACEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAFF,KALF;AAcEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,WAAW,EAAG,uBACd;AACE,aAAKC,SAAL;AACA,aAAKC,aAAL;AACA,aAAKC,OAAL;AACA,aAAKC,QAAL;AACD;AARH;AAfF,GADA;AAzBApB,EAAAA,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWa,UAAX,CAAsBlB,aAAtB,GAAsCA,aAAtC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/tree/TreeFolder.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Derrell Lipman (derrell)\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * The tree folder is a tree element, which can have nested tree elements.\n */\nqx.Class.define(\"qx.ui.tree.TreeFolder\",\n{\n  extend : qx.ui.tree.core.AbstractTreeItem,\n\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"tree-folder\"\n    }\n  },\n\n\n  members :\n  {\n    // overridden\n    _addWidgets : function()\n    {\n      this.addSpacer();\n      this.addOpenButton();\n      this.addIcon();\n      this.addLabel();\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Derrell Lipman (derrell)\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\n\n/**\n * The tree folder is a tree element, which can have nested tree elements.\n */\nqx.Class.define(\"qx.ui.tree.TreeFolder\", {\n  extend: qx.ui.tree.core.AbstractTreeItem,\n\n  properties: {\n    appearance: {\n      refine: true,\n      init: \"tree-folder\"\n    }\n  },\n\n  members: {\n    // overridden\n    _addWidgets() {\n      this.addSpacer();\n      this.addOpenButton();\n      this.addIcon();\n      this.addLabel();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uBAAuB,EAAE;IACvCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,IAAI,CAACC,IAAI,CAACC,gBAAgB;IAExCC,UAAU,EAAE;MACVC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,WAAW,yBAAG;QACZ,IAAI,CAACC,SAAS,EAAE;QAChB,IAAI,CAACC,aAAa,EAAE;QACpB,IAAI,CAACC,OAAO,EAAE;QACd,IAAI,CAACC,QAAQ,EAAE;MACjB;IACF;EACF,CAAC,CAAC;EA5CFpB,EAAE,CAACO,EAAE,CAACC,IAAI,CAACa,UAAU,CAAClB,aAAa,GAAGA,aAAa;AAAC"
 }

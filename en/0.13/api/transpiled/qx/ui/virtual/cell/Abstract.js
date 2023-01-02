@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,8 +53,9 @@
     extend: qx.core.Object,
     implement: qx.ui.virtual.cell.ICell,
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // initialize stylesheet
+      qx.core.Object.constructor.call(this);
 
+      // initialize stylesheet
       qx.ui.virtual.cell.CellStylesheet.getInstance();
     },
     members: {
@@ -69,7 +69,6 @@
       getCssClasses: function getCssClasses(value, states) {
         return "qx-cell";
       },
-
       /**
        * Get the element attributes for the cell
        *
@@ -81,7 +80,6 @@
       getAttributes: function getAttributes(value, states) {
         return "";
       },
-
       /**
        * Get the CSS styles for the cell
        *
@@ -93,7 +91,6 @@
       getStyles: function getStyles(value, states) {
         return "";
       },
-
       /**
        * Get the cell's insets. Insets are the sum of the cell's padding and
        * border width.
@@ -106,7 +103,6 @@
       getInsets: function getInsets(value, states) {
         return [0, 0];
       },
-
       /**
        * Get cell'S HTML content
        *
@@ -131,4 +127,4 @@
   qx.ui.virtual.cell.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789607006
+//# sourceMappingURL=Abstract.js.map?dt=1672653517135

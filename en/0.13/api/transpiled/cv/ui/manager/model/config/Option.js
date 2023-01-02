@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Option.js 
-   * 
+  /* Option.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.ui.manager.model.config.Option', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -48,7 +46,6 @@
       this.setKey(key);
       this.setValue(value);
     },
-
     /*
     ***********************************************
       EVENTS
@@ -56,9 +53,8 @@
     */
     events: {
       // sent whenever the options key or value has been changed
-      'change': 'qx.event.type.Event'
+      change: 'qx.event.type.Event'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -78,7 +74,6 @@
         apply: '_applyChange'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -93,4 +88,4 @@
   cv.ui.manager.model.config.Option.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Option.js.map?dt=1664789568346
+//# sourceMappingURL=Option.js.map?dt=1672653476929

@@ -128,31 +128,31 @@ points are discussed below.</p>
 </section>
 <section id="install-webserver">
 <h2>2. Install webserver<a class="headerlink" href="#install-webserver" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Install web server with PHP
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Install<span class="w"> </span>web<span class="w"> </span>server<span class="w"> </span>with<span class="w"> </span>PHP
 <span class="go">sudo apt install apache2 php libapache2-mod-php php-soap</span>
 </pre></div>
 </div>
 <p>Replace the content of the file <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-enabled/000-default.conf</span></code> with the following
 (please replace <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> with the IP address or the host name of the openHAB server,
 if everything runs on one server, you can use <code class="docutils literal notranslate"><span class="pre">localhost</span></code>).</p>
-<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost<span class="w"></span>
-<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span><span class="w"></span>
+<div class="highlight-apacheconf notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerAdmin</span><span class="w"> </span>webmaster@localhost
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www/html</span>
 
-<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log<span class="w"></span>
-<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined<span class="w"></span>
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined
 
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
 
-<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"></span>
-<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span><span class="w"></span>
+<span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest
+<span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span>
 
-<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span><span class="w"></span>
-<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted<span class="w"></span>
-<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span><span class="w"></span>
-<span class="nt">&lt;/VirtualHost&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">all</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -164,10 +164,10 @@ The unpacked package contains the folder <em>cometvisu/release</em>, which must 
 Furthermore you have to set appropriate permissions for the webserver user and some
 configuration directories must be created.
 All this can be done with the following console commands:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Copy the release directory to the right place
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Copy<span class="w"> </span>the<span class="w"> </span>release<span class="w"> </span>directory<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>right<span class="w"> </span>place
 <span class="go">cp -r cometvisu/release /var/www/html</span>
 
-<span class="gp"># </span>Adjust user rights <span class="k">for</span> the web server
+<span class="gp"># </span>Adjust<span class="w"> </span>user<span class="w"> </span>rights<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>web<span class="w"> </span>server
 <span class="go">chown -R www-data:www-data /var/www/html</span>
 </pre></div>
 </div>
@@ -181,9 +181,9 @@ All this can be done with the following console commands:</p>
 now be copied (it will only be displayed once at this moment and can’t be viewed later) and be entered as
 username`` in the <code class="docutils literal notranslate"><span class="pre">pages</span></code> element of the CometVisu config file.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages</span>
-    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-    <span class="na">username=</span><span class="s">&quot;oh.CometVisu.NxR3...&quot;</span>
-    <span class="na">design=</span><span class="s">&quot;metal&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span> <span class="na">scroll_speed=</span><span class="s">&quot;0&quot;</span> <span class="na">lib_version=</span><span class="s">&quot;9&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">    </span><span class="na">username=</span><span class="s">&quot;oh.CometVisu.NxR3...&quot;</span>
+<span class="w">    </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="w"> </span><span class="na">scroll_speed=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;9&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
 <p>Now, the CometVisu is directly accessible in the browser with the URL <code class="docutils literal notranslate"><span class="pre">http://&lt;server&gt;/?config=&lt;name&gt;</span></code>,
@@ -202,7 +202,7 @@ where <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;<
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

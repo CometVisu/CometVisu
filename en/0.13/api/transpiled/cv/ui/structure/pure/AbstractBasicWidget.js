@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* AbstractBasicWidget.js 
-   * 
+  /* AbstractBasicWidget.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -43,7 +42,6 @@
   qx.Class.define('cv.ui.structure.pure.AbstractBasicWidget', {
     extend: qx.core.Object,
     type: 'abstract',
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -56,7 +54,6 @@
         }
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -69,14 +66,12 @@
       path: {
         check: 'String'
       },
-
       /**
        * The widget type
        */
       $$type: {
         check: 'String'
       },
-
       /**
        * The parents page type
        */
@@ -85,16 +80,14 @@
         init: 'text'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_54_0: null,
+      __P_56_0: null,
       _domElement: null,
-
       /**
        * Override DomElement
        * @param node {Node}
@@ -103,20 +96,18 @@
         this._domElement = node;
       },
       setParentWidget: function setParentWidget(value) {
-        this.__P_54_0 = value;
+        this.__P_56_0 = value;
       },
       getParentWidget: function getParentWidget() {
-        if (cv.Config.lazyLoading === true && this.__P_54_0 === null && this.getPath() !== 'id_') {
+        if (cv.Config.lazyLoading === true && this.__P_56_0 === null && this.getPath() !== 'id_') {
           // creating parent widget on demand
-          var parentData = cv.util.Tree.getParentData(this.getPath()); // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
-
+          var parentData = cv.util.Tree.getParentData(this.getPath());
+          // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
           var parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
           this.setParentWidget(parent);
         }
-
-        return this.__P_54_0;
+        return this.__P_56_0;
       },
-
       /**
        * Returns the DOMElement of this widget
        * @return {Element}
@@ -125,10 +116,8 @@
         if (!this._domElement) {
           this._domElement = document.querySelector('#' + this.getPath());
         }
-
         return this._domElement;
       },
-
       /**
        * Generates the DOM string for this widget
        * @return {String|null}
@@ -136,40 +125,32 @@
       getDomString: function getDomString() {
         return this._getInnerDomString ? this._getInnerDomString() : undefined;
       },
-
       /**
        * Get the widgets parent page. This might not be the same as the parent widget.
        * @return {cv.ui.structure.pure.Page|null}
        */
       getParentPage: function getParentPage() {
         var parent = this.getParentWidget();
-
         while (parent) {
           if (parent.get$$type() === 'page') {
             return parent;
           }
-
           parent = parent.getParentWidget();
         }
-
         return null;
       },
-
       /**
        * Get the parent element that defines if this widget is visible. Can be either a page or a navbar
        * @return {cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null}
        */
       getVisibilityParent: function getVisibilityParent() {
         var parent = this.getParentWidget();
-
         while (parent) {
           if (parent.get$$type() === 'page' || parent.get$$type() === 'navbar') {
             return parent;
           }
-
           parent = parent.getParentWidget();
         }
-
         return null;
       }
     }
@@ -177,4 +158,4 @@
   cv.ui.structure.pure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1664789569456
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1672653477910

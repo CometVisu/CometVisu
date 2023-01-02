@@ -24,7 +24,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,16 +52,15 @@
     extend: qx.core.Object,
     implement: [qx.application.IApplication],
     include: qx.locale.MTranslation,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.core.Widget} The root widget */
-      __P_92_0: null,
-
+      __P_95_0: null,
       /**
        * Create the root widget. This method is abstract and must be overridden
        * by sub classes.
@@ -73,7 +71,6 @@
       _createRootWidget: function _createRootWidget() {
         throw new Error("Abstract method call");
       },
-
       /**
        * Returns the application's root widget. The root widgets can act as container
        * for popups. It is configured with a {@link qx.ui.layout.Basic} (if the
@@ -86,25 +83,26 @@
        * @return {qx.ui.core.Widget} The application's root widget.
        */
       getRoot: function getRoot() {
-        return this.__P_92_0;
+        return this.__P_95_0;
       },
       // interface method
       main: function main() {
         // Initialize themes
-        qx.theme.manager.Meta.getInstance().initialize(); // Initialize tooltip manager
+        qx.theme.manager.Meta.getInstance().initialize();
 
+        // Initialize tooltip manager
         qx.ui.tooltip.Manager.getInstance();
         var rule = ["-webkit-touch-callout: none;", "-ms-touch-select: none;", "-webkit-tap-highlight-color: rgba(0,0,0,0);", "-webkit-tap-highlight-color: transparent;"].join("");
         qx.ui.style.Stylesheet.getInstance().addRule("*", rule);
-        this.__P_92_0 = this._createRootWidget(); // make sure we start with a good scroll position
+        this.__P_95_0 = this._createRootWidget();
 
+        // make sure we start with a good scroll position
         window.scrollTo(0, 0);
       },
       // interface method
       finalize: function finalize() {
         this.render();
       },
-
       /**
        * Updates the GUI rendering
        *
@@ -113,14 +111,16 @@
         qx.ui.core.queue.Manager.flush();
       },
       // interface method
-      close: function close(val) {// empty
+      close: function close(val) {
+        // empty
       },
       // interface method
-      terminate: function terminate() {// empty
+      terminate: function terminate() {
+        // empty
       }
     }
   });
   qx.application.AbstractGui.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractGui.js.map?dt=1664789574864
+//# sourceMappingURL=AbstractGui.js.map?dt=1672653483562

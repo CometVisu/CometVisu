@@ -2,19 +2,21 @@
   "className": "cv.theme.dark.Font",
   "packageName": "cv.theme.dark",
   "name": "Font",
-  "superClass": "osparc.theme.common.Font",
+  "superClass": "qx.theme.tangible.Font",
   "interfaces": [],
   "mixins": [],
   "functionName": null,
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 839
       },
       "end": {
-        "line": 112,
-        "column": 3
+        "line": 131,
+        "column": 3,
+        "index": 4057
       }
     },
     "jsdoc": {

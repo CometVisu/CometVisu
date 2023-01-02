@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* SimpleType.js 
-   * 
+  /* SimpleType.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     extend: cv.ui.manager.model.schema.Base,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -47,13 +45,12 @@
     */
     construct: function construct(node, schema) {
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
-      this.__P_48_0 = [];
-      this.__P_48_1 = [];
-      this.__P_48_2 = {};
-      this.__P_48_3 = [];
+      this.__P_50_0 = [];
+      this.__P_50_1 = [];
+      this.__P_50_2 = {};
+      this.__P_50_3 = [];
       this.parse();
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -68,7 +65,6 @@
         check: 'Boolean',
         init: false
       },
-
       /**
        * the baseType of this element, which is one of the xsd-namespaced types (like 'string')
        * @var string
@@ -78,90 +74,73 @@
         nullable: true
       }
     },
-
     /*
     ***********************************************
       MEMBERS
     ***********************************************
     */
     members: {
-      __P_48_1: null,
-      __P_48_0: null,
-      __P_48_3: null,
-      __P_48_2: null,
+      __P_50_1: null,
+      __P_50_0: null,
+      __P_50_3: null,
+      __P_50_2: null,
       parse: function parse() {
         var node = this.getNode();
         this.setOptional(node.getAttribute('use') === 'required');
-
-        this.__P_48_4(node);
+        this.__P_50_4(node);
       },
-
       /**
        * parse a node, find it's data (restrictions, extensions, bases ... whatever)
        *
        * @param   node    DOMNode the node to parse
        */
-      __P_48_4: function __P_48_4(node) {
+      __P_50_4: function __P_50_4(node) {
         var _this = this;
-
         var schema = this.getSchema();
-
         if (node.hasAttribute('ref')) {
           // it's a ref, seek other element!
           var refName = node.getAttribute('ref');
           node = schema.getReferencedNode('attribute', refName);
-
           if (!node) {
             throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
           }
         }
-
         if (node.hasAttribute('type')) {
           // hacked: allow this to be used for attributes
           var baseType = node.getAttribute('type');
-
           if (!baseType.match(/^xsd:/)) {
             // if it's not an xsd-default-basetype, we need to find out what it is
             var subnode = schema.getReferencedNode('simpleType', baseType);
-
-            this.__P_48_4(subnode);
+            this.__P_50_4(subnode);
           } else {
             this.setBaseType(baseType);
-          } // is this attribute optional?
-
-
+          }
+          // is this attribute optional?
           this.setOptional(node.getAttribute('use') !== 'required');
           return;
         }
-
         var subNodes = Array.from(node.querySelectorAll(':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension'));
         subNodes.forEach(function (subNode) {
           var baseType = subNode.getAttribute('base');
-
           if (!baseType.match(/^xsd:/)) {
             // don't dive in for default-types, they simply can not be found
             var _subnode = schema.getReferencedNode('simpleType', baseType);
-
-            _this.__P_48_4(_subnode);
+            _this.__P_50_4(_subnode);
           } else {
             _this.setBaseType(baseType);
           }
-
           Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(function (patternNode) {
-            _this.__P_48_1.push(patternNode.getAttribute('value'));
+            _this.__P_50_1.push(patternNode.getAttribute('value'));
           });
           Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(function (enumerationNode) {
-            _this.__P_48_0.push(enumerationNode.getAttribute('value'));
+            _this.__P_50_0.push(enumerationNode.getAttribute('value'));
           });
         });
-
         if (!this.getBaseType()) {
           this.setBaseType('xsd:anyType');
         }
-
-        this.__P_48_3.push(this.getBaseType());
+        this.__P_50_3.push(this.getBaseType());
       },
-
       /**
        * check if a given value is valid for this type
        *
@@ -170,27 +149,22 @@
        */
       isValueValid: function isValueValid(value) {
         var _this2 = this;
-
         var baseType = this.getBaseType();
         var schema = this.getSchema();
-
         if (!baseType) {
           throw new Error('something is wrong, do not have a baseType for type');
         }
-
         if (value === '') {
           // empty values are valid if this node is optional!
           return this.isOptional();
         }
-
         if (baseType.search(/^xsd:/) === -1) {
           // created our own type, will need to find and use it.
           var typeNode = schema.getTypeNode('simple', baseType);
           var subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
           return subType.isValueValid(value);
-        } // xsd:-namespaces types, those are the originals
-
-
+        }
+        // xsd:-namespaces types, those are the originals
         switch (baseType) {
           case 'xsd:string':
           case 'xsd:anyURI':
@@ -200,77 +174,61 @@
               // pretty much any input a user gives us is string, so this is pretty much moot.
               return false;
             }
-
             break;
-
           case 'xsd:decimal':
             if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
               return false;
             }
-
             break;
-
           case 'xsd:unsignedByte':
           case 'xsd:nonNegativeInteger':
             if (!value.match(/^[+]?[0-9]+$/)) {
               return false;
             }
-
             break;
-
           case 'xsd:integer':
             if (!value.match(/^[-+]?[0-9]+$/)) {
               return false;
             }
-
             break;
-
           case 'xsd:float':
             if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
               return false;
             }
-
             break;
-
           case 'xsd:boolean':
             if (!value.match(/^(true|false|0|1)$/)) {
               return false;
             }
-
             break;
-
           default:
             throw new Error('not implemented baseType ' + baseType);
-        } // check if the value is in our list of valid values, if there is such a list
+        }
 
-
-        if (this.__P_48_0.length > 0) {
-          if (!this.__P_48_0.includes(value)) {
+        // check if the value is in our list of valid values, if there is such a list
+        if (this.__P_50_0.length > 0) {
+          if (!this.__P_50_0.includes(value)) {
             return false;
           }
-        } // check if the value matches any given pattern
+        }
 
-
-        if (this.__P_48_1.length > 0) {
+        // check if the value matches any given pattern
+        if (this.__P_50_1.length > 0) {
           // start with assuming it's valid
           var boolValid = true;
-
-          this.__P_48_1.forEach(function (item) {
-            if (!Object.prototype.hasOwnProperty.call(_this2.__P_48_2, item)) {
+          this.__P_50_1.forEach(function (item) {
+            if (!Object.prototype.hasOwnProperty.call(_this2.__P_50_2, item)) {
               // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
               // so for our purpose, we need to add them for every branch (that is not inside [])
               var branchIndices = [];
               var start = 0;
               var i = item.indexOf('|', start);
-
               while (i < item.length) {
                 if (i < 0) {
                   break;
-                } // go backwards and look for an [ stop looking on ]
-
-
+                }
+                // go backwards and look for an [ stop looking on ]
                 var isRootBranch = true;
-
                 for (var j = i; j >= start; j--) {
                   if (item[j] === ']') {
                     break;
@@ -278,49 +236,41 @@
                     isRootBranch = false;
                   }
                 }
-
                 if (isRootBranch) {
                   branchIndices.push([start, i - start]);
                 }
-
                 start = i + 1;
                 i = item.indexOf('|', start);
-
                 if (branchIndices.length > 100) {
                   _this2.error('too many branchIndices');
-
                   break;
                 }
               }
-
               if (item.length > start) {
                 // append the rest
                 branchIndices.push([start, item.length - start]);
               }
-
               var branches = branchIndices.map(function (entry) {
                 return "^".concat(item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2'), "$");
               });
-              _this2.__P_48_2[item] = _this2.regexFromString(branches.join('|'));
+              _this2.__P_50_2[item] = _this2.regexFromString(branches.join('|'));
             }
-
-            if (_this2.__P_48_2[item].test(value) === false) {
+            if (_this2.__P_50_2[item].test(value) === false) {
               // regular expression did not match
               // bad bad value!
               boolValid = false;
             }
-          }, this); // if the value has been marked invalid by a regex, return invalid.
+          }, this);
 
-
+          // if the value has been marked invalid by a regex, return invalid.
           if (boolValid === false) {
             return false;
           }
-        } // if no check said the value is invalid, then it is not invalid
+        }
 
-
+        // if no check said the value is invalid, then it is not invalid
         return true;
       },
-
       /**
        * get this elements enumeration (if there is any)
        *
@@ -331,21 +281,19 @@
           // special handling for boolean, as we KNOW it to be an enumeration
           return ['true', 'false'];
         }
-
-        return this.__P_48_0;
+        return this.__P_50_0;
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_48_2 = null;
+      this.__P_50_2 = null;
     }
   });
   cv.ui.manager.model.schema.SimpleType.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleType.js.map?dt=1664789568844
+//# sourceMappingURL=SimpleType.js.map?dt=1672653477384

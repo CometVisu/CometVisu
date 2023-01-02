@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,7 +57,6 @@
    */
   qx.Class.define("qx.ui.mobile.tabbar.TabBar", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
      *****************************************************************************
         CONSTRUCTOR
@@ -66,24 +64,21 @@
      */
     construct: function construct() {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.mobile.layout.HBox());
-
       this.addListener("tap", this._onTap, this);
     },
-
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
+
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "tabBar"
       },
-
       /**
        * Sets the selected tab.
        */
@@ -95,12 +90,12 @@
         event: "changeSelection"
       }
     },
-
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
+
     members: {
       /**
        * Event handler. Called when a tab event occurs.
@@ -109,23 +104,19 @@
        */
       _onTap: function _onTap(evt) {
         var target = evt.getTarget();
-
         while (!(target instanceof qx.ui.mobile.tabbar.TabButton)) {
           if (target.getLayoutParent) {
             var layoutParent = target.getLayoutParent();
-
             if (layoutParent == null || layoutParent instanceof qx.ui.mobile.tabbar.TabBar) {
               target = null;
               break;
             }
-
             target = layoutParent;
           } else {
             target = null;
             break;
           }
         }
-
         if (target !== null) {
           this.setSelection(target);
         }
@@ -134,21 +125,17 @@
       _applySelection: function _applySelection(value, old) {
         if (old) {
           old.removeCssClass("selected");
-
           if (old.getView()) {
             old.getView().exclude();
           }
         }
-
         if (value) {
           value.addCssClass("selected");
-
           if (value.getView()) {
             value.getView().show();
           }
         }
       },
-
       /**
        * Adds a tab button to the tab bar.
        *
@@ -158,14 +145,11 @@
         this._add(button, {
           flex: 1
         });
-
         if (!this.getSelection()) {
           this.setSelection(button);
         }
-
         button.addListener("changeView", this._onChangeView, this);
       },
-
       /**
        * Event handler. Called when the view was changed.
        *
@@ -176,7 +160,6 @@
           evt.getData().show();
         }
       },
-
       /**
        * Removes a tab button from the tab bar.
        *
@@ -184,11 +167,9 @@
        */
       remove: function remove(button) {
         this._remove(button);
-
         if (this.getSelection() == button) {
           this.setSelection(null);
         }
-
         button.removeListener("changeView", this._onChangeView, this);
       }
     },
@@ -199,4 +180,4 @@
   qx.ui.mobile.tabbar.TabBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabBar.js.map?dt=1664789602223
+//# sourceMappingURL=TabBar.js.map?dt=1672653512576

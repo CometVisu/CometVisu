@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -30,6 +29,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.Spinner", {
     statics: {
       register: function register() {
@@ -38,41 +38,32 @@
       _registration: {
         initElement: function initElement(fieldType, fieldData, key) {
           var formElement = new qx.ui.form.Spinner();
-
           if (fieldData.min) {
             formElement.setMinimum(fieldData.min);
           }
-
           if (fieldData.max) {
             formElement.setMaximum(fieldData.max);
           }
-
           if (fieldData.step) {
             formElement.setSingleStep(fieldData.step);
           }
-
           if (fieldData.fractionsDigits) {
             var fd = fieldData.fractionsDigits;
             var nf = new qx.util.format.NumberFormat();
-
             if (fd.min) {
               nf.setMinimumFractionDigits(fd.min);
             }
-
             if (fd.max) {
               nf.setMaximumFractionDigits(fd.max);
             }
-
             formElement.setNumberFormat(nf);
           }
-
           return formElement;
         },
         addToFormController: function addToFormController(fieldType, fieldData, key, formElement) {
           this._formController.addTarget(formElement, "value", key, true, null, {
             converter: function (value) {
               this._form.getValidationManager().validate();
-
               return value;
             }.bind(this)
           });
@@ -83,4 +74,4 @@
   qxl.dialog.formElement.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1664789617077
+//# sourceMappingURL=Spinner.js.map?dt=1672653526425

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -109,7 +108,6 @@
       _getCellStyle: function _getCellStyle(cellInfo) {
         return "";
       },
-
       /**
        * Retrieve any extra attributes the cell renderer wants applied to this
        * cell.  Extra attributes could be such things as
@@ -125,7 +123,6 @@
       _getCellExtras: function _getCellExtras(cellInfo) {
         return "";
       },
-
       /**
        * Retrieve the HTML content to be added to the cell div.
        *
@@ -139,7 +136,6 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         return cellInfo.cellData || "";
       },
-
       /**
        * Given the provided cell information, generate the HTML for this
        * cell.
@@ -153,16 +149,13 @@
        */
       render: function render(cellInfo) {
         var html = [];
+        var style = this._getCellStyle(cellInfo);
 
-        var style = this._getCellStyle(cellInfo); // Render this cell
-
-
+        // Render this cell
         html.push("<div ", "class='", cellInfo.stylesheet, "' ");
-
         if (style) {
           html.push("style='", style, "'");
         }
-
         html.push(this._getCellExtras(cellInfo), ">", this._getContentHtml(cellInfo), "</div>");
         return html.join("");
       }
@@ -171,4 +164,4 @@
   qx.ui.progressive.renderer.table.cell.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789602701
+//# sourceMappingURL=Abstract.js.map?dt=1672653512979

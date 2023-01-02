@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 680
       },
       "end": {
-        "line": 935,
-        "column": 3
+        "line": 928,
+        "column": 3,
+        "index": 26673
       }
     },
     "jsdoc": {
@@ -45,12 +47,14 @@
     "REGEXP": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 801
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1413
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "SYSTEM": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1468
         },
         "end": {
-          "line": 79,
-          "column": 5
+          "line": 75,
+          "column": 5,
+          "index": 2197
         }
       },
       "jsdoc": {
@@ -89,12 +95,14 @@
     "NAMED": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2343
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 104,
+          "column": 5,
+          "index": 2961
         }
       },
       "jsdoc": {
@@ -111,12 +119,14 @@
     "isNamedColor": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 3156
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 3229
         }
       },
       "jsdoc": {
@@ -150,12 +160,14 @@
     "isSystemColor": {
       "location": {
         "start": {
-          "line": 130,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3426
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 124,
+          "column": 5,
+          "index": 3501
         }
       },
       "jsdoc": {
@@ -189,12 +201,14 @@
     "supportsThemes": {
       "location": {
         "start": {
-          "line": 141,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3705
         },
         "end": {
-          "line": 146,
-          "column": 5
+          "line": 137,
+          "column": 5,
+          "index": 3840
         }
       },
       "jsdoc": {
@@ -219,12 +233,14 @@
     "isThemedColor": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 145,
+          "column": 4,
+          "index": 4037
         },
         "end": {
-          "line": 165,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4298
         }
       },
       "jsdoc": {
@@ -258,12 +274,14 @@
     "stringToRgb": {
       "location": {
         "start": {
-          "line": 177,
-          "column": 4
+          "line": 165,
+          "column": 4,
+          "index": 4689
         },
         "end": {
-          "line": 183,
-          "column": 5
+          "line": 170,
+          "column": 5,
+          "index": 4894
         }
       },
       "jsdoc": {
@@ -305,12 +323,14 @@
     "cssStringToRgb": {
       "location": {
         "start": {
-          "line": 193,
-          "column": 4
+          "line": 180,
+          "column": 4,
+          "index": 5262
         },
         "end": {
-          "line": 227,
-          "column": 5
+          "line": 203,
+          "column": 5,
+          "index": 6109
         }
       },
       "jsdoc": {
@@ -352,12 +372,14 @@
     "stringToRgbString": {
       "location": {
         "start": {
-          "line": 240,
-          "column": 4
+          "line": 215,
+          "column": 4,
+          "index": 6488
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 217,
+          "column": 5,
+          "index": 6575
         }
       },
       "jsdoc": {
@@ -399,12 +421,14 @@
     "rgbToRgbString": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 226,
+          "column": 4,
+          "index": 6792
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 238,
+          "column": 5,
+          "index": 7051
         }
       },
       "jsdoc": {
@@ -438,12 +462,14 @@
     "rgbToHexString": {
       "location": {
         "start": {
-          "line": 263,
-          "column": 4
+          "line": 246,
+          "column": 4,
+          "index": 7256
         },
         "end": {
-          "line": 277,
-          "column": 5
+          "line": 261,
+          "column": 5,
+          "index": 7743
         }
       },
       "jsdoc": {
@@ -477,12 +503,14 @@
     "isValidPropertyValue": {
       "location": {
         "start": {
-          "line": 286,
-          "column": 4
+          "line": 269,
+          "column": 4,
+          "index": 7942
         },
         "end": {
-          "line": 294,
-          "column": 5
+          "line": 278,
+          "column": 5,
+          "index": 8207
         }
       },
       "jsdoc": {
@@ -516,12 +544,14 @@
     "isCssString": {
       "location": {
         "start": {
-          "line": 303,
-          "column": 4
+          "line": 286,
+          "column": 4,
+          "index": 8412
         },
         "end": {
-          "line": 311,
-          "column": 5
+          "line": 295,
+          "column": 5,
+          "index": 8668
         }
       },
       "jsdoc": {
@@ -555,12 +585,14 @@
     "ishexShortString": {
       "location": {
         "start": {
-          "line": 319,
-          "column": 4
+          "line": 303,
+          "column": 4,
+          "index": 8871
         },
         "end": {
-          "line": 321,
-          "column": 5
+          "line": 305,
+          "column": 5,
+          "index": 8945
         }
       },
       "jsdoc": {
@@ -594,12 +626,14 @@
     "isHex3String": {
       "location": {
         "start": {
-          "line": 328,
-          "column": 4
+          "line": 312,
+          "column": 4,
+          "index": 9139
         },
         "end": {
-          "line": 330,
-          "column": 5
+          "line": 314,
+          "column": 5,
+          "index": 9205
         }
       },
       "jsdoc": {
@@ -633,12 +667,14 @@
     "isHex6String": {
       "location": {
         "start": {
-          "line": 338,
-          "column": 4
+          "line": 322,
+          "column": 4,
+          "index": 9400
         },
         "end": {
-          "line": 340,
-          "column": 5
+          "line": 324,
+          "column": 5,
+          "index": 9466
         }
       },
       "jsdoc": {
@@ -672,12 +708,14 @@
     "ishexLongString": {
       "location": {
         "start": {
-          "line": 348,
-          "column": 4
+          "line": 332,
+          "column": 4,
+          "index": 9663
         },
         "end": {
-          "line": 350,
-          "column": 5
+          "line": 334,
+          "column": 5,
+          "index": 9735
         }
       },
       "jsdoc": {
@@ -711,12 +749,14 @@
     "isRgbString": {
       "location": {
         "start": {
-          "line": 358,
-          "column": 4
+          "line": 342,
+          "column": 4,
+          "index": 9928
         },
         "end": {
-          "line": 360,
-          "column": 5
+          "line": 344,
+          "column": 5,
+          "index": 9992
         }
       },
       "jsdoc": {
@@ -750,12 +790,14 @@
     "isRgbaString": {
       "location": {
         "start": {
-          "line": 369,
-          "column": 4
+          "line": 352,
+          "column": 4,
+          "index": 10187
         },
         "end": {
-          "line": 371,
-          "column": 5
+          "line": 354,
+          "column": 5,
+          "index": 10253
         }
       },
       "jsdoc": {
@@ -789,12 +831,14 @@
     "__rgbStringToRgb": {
       "location": {
         "start": {
-          "line": 379,
-          "column": 4
+          "line": 361,
+          "column": 4,
+          "index": 10409
         },
         "end": {
-          "line": 386,
-          "column": 5
+          "line": 367,
+          "column": 5,
+          "index": 10595
         }
       },
       "jsdoc": {
@@ -819,12 +863,14 @@
     "__rgbaStringToRgb": {
       "location": {
         "start": {
-          "line": 393,
-          "column": 4
+          "line": 374,
+          "column": 4,
+          "index": 10751
         },
         "end": {
-          "line": 407,
-          "column": 5
+          "line": 387,
+          "column": 5,
+          "index": 11220
         }
       },
       "jsdoc": {
@@ -849,12 +895,14 @@
     "__hexShortStringToRgb": {
       "location": {
         "start": {
-          "line": 416,
-          "column": 4
+          "line": 394,
+          "column": 4,
+          "index": 11380
         },
         "end": {
-          "line": 423,
-          "column": 5
+          "line": 401,
+          "column": 5,
+          "index": 11717
         }
       },
       "jsdoc": {
@@ -879,12 +927,14 @@
     "__hex3StringToRgb": {
       "location": {
         "start": {
-          "line": 431,
-          "column": 4
+          "line": 408,
+          "column": 4,
+          "index": 11873
         },
         "end": {
-          "line": 438,
-          "column": 5
+          "line": 414,
+          "column": 5,
+          "index": 12075
         }
       },
       "jsdoc": {
@@ -909,12 +959,14 @@
     "__hex6StringToRgb": {
       "location": {
         "start": {
-          "line": 446,
-          "column": 4
+          "line": 421,
+          "column": 4,
+          "index": 12231
         },
         "end": {
-          "line": 453,
-          "column": 5
+          "line": 427,
+          "column": 5,
+          "index": 12511
         }
       },
       "jsdoc": {
@@ -939,12 +991,14 @@
     "__hexLongStringToRgb": {
       "location": {
         "start": {
-          "line": 461,
-          "column": 4
+          "line": 434,
+          "column": 4,
+          "index": 12670
         },
         "end": {
-          "line": 468,
-          "column": 5
+          "line": 441,
+          "column": 5,
+          "index": 12993
         }
       },
       "jsdoc": {
@@ -969,12 +1023,14 @@
     "hex3StringToRgb": {
       "location": {
         "start": {
-          "line": 477,
-          "column": 4
+          "line": 449,
+          "column": 4,
+          "index": 13173
         },
         "end": {
-          "line": 484,
-          "column": 5
+          "line": 455,
+          "column": 5,
+          "index": 13351
         }
       },
       "jsdoc": {
@@ -1008,12 +1064,14 @@
     "hex3StringToHex6String": {
       "location": {
         "start": {
-          "line": 494,
-          "column": 4
+          "line": 464,
+          "column": 4,
+          "index": 13626
         },
         "end": {
-          "line": 500,
-          "column": 5
+          "line": 469,
+          "column": 5,
+          "index": 13794
         }
       },
       "jsdoc": {
@@ -1047,12 +1105,14 @@
     "hex6StringToRgb": {
       "location": {
         "start": {
-          "line": 509,
-          "column": 4
+          "line": 477,
+          "column": 4,
+          "index": 13977
         },
         "end": {
-          "line": 516,
-          "column": 5
+          "line": 483,
+          "column": 5,
+          "index": 14155
         }
       },
       "jsdoc": {
@@ -1086,12 +1146,14 @@
     "hexStringToRgb": {
       "location": {
         "start": {
-          "line": 525,
-          "column": 4
+          "line": 491,
+          "column": 4,
+          "index": 14385
         },
         "end": {
-          "line": 536,
-          "column": 5
+          "line": 501,
+          "column": 5,
+          "index": 14668
         }
       },
       "jsdoc": {
@@ -1125,12 +1187,14 @@
     "rgbToHsb": {
       "location": {
         "start": {
-          "line": 545,
-          "column": 4
+          "line": 509,
+          "column": 4,
+          "index": 14867
         },
         "end": {
-          "line": 599,
-          "column": 5
+          "line": 563,
+          "column": 5,
+          "index": 15988
         }
       },
       "jsdoc": {
@@ -1164,12 +1228,14 @@
     "hsbToRgb": {
       "location": {
         "start": {
-          "line": 608,
-          "column": 4
+          "line": 571,
+          "column": 4,
+          "index": 16193
         },
         "end": {
-          "line": 688,
-          "column": 5
+          "line": 646,
+          "column": 5,
+          "index": 17719
         }
       },
       "jsdoc": {
@@ -1203,12 +1269,14 @@
     "rgbToHsl": {
       "location": {
         "start": {
-          "line": 696,
-          "column": 4
+          "line": 654,
+          "column": 4,
+          "index": 17907
         },
         "end": {
-          "line": 707,
-          "column": 5
+          "line": 671,
+          "column": 5,
+          "index": 18498
         }
       },
       "jsdoc": {
@@ -1242,12 +1310,14 @@
     "hslToRgb": {
       "location": {
         "start": {
-          "line": 714,
-          "column": 4
+          "line": 678,
+          "column": 4,
+          "index": 18691
         },
         "end": {
-          "line": 726,
-          "column": 5
+          "line": 692,
+          "column": 5,
+          "index": 19196
         }
       },
       "jsdoc": {
@@ -1281,12 +1351,14 @@
     "randomColor": {
       "location": {
         "start": {
-          "line": 732,
-          "column": 4
+          "line": 698,
+          "column": 4,
+          "index": 19318
         },
         "end": {
-          "line": 739,
-          "column": 5
+          "line": 704,
+          "column": 5,
+          "index": 19526
         }
       },
       "jsdoc": {
@@ -1311,12 +1383,14 @@
     "__tuner": {
       "location": {
         "start": {
-          "line": 750,
-          "column": 4
+          "line": 715,
+          "column": 4,
+          "index": 19864
         },
         "end": {
-          "line": 825,
-          "column": 5
+          "line": 788,
+          "column": 5,
+          "index": 22087
         }
       },
       "jsdoc": {
@@ -1371,12 +1445,14 @@
     "scale": {
       "location": {
         "start": {
-          "line": 847,
-          "column": 4
+          "line": 810,
+          "column": 4,
+          "index": 22997
         },
         "end": {
-          "line": 864,
-          "column": 5
+          "line": 827,
+          "column": 5,
+          "index": 23457
         }
       },
       "jsdoc": {
@@ -1417,12 +1493,14 @@
     "adjust": {
       "location": {
         "start": {
-          "line": 882,
-          "column": 4
+          "line": 845,
+          "column": 4,
+          "index": 24138
         },
         "end": {
-          "line": 903,
-          "column": 5
+          "line": 870,
+          "column": 5,
+          "index": 24703
         }
       },
       "jsdoc": {
@@ -1463,12 +1541,14 @@
     "luminance": {
       "location": {
         "start": {
-          "line": 912,
-          "column": 4
+          "line": 879,
+          "column": 4,
+          "index": 24973
         },
         "end": {
-          "line": 919,
-          "column": 5
+          "line": 886,
+          "column": 5,
+          "index": 25251
         }
       },
       "jsdoc": {
@@ -1502,12 +1582,14 @@
     "contrast": {
       "location": {
         "start": {
-          "line": 929,
-          "column": 4
+          "line": 896,
+          "column": 4,
+          "index": 25522
         },
         "end": {
-          "line": 933,
-          "column": 5
+          "line": 900,
+          "column": 5,
+          "index": 25689
         }
       },
       "jsdoc": {
@@ -1539,6 +1621,77 @@
             "body": "{Number} contrast",
             "type": "Number",
             "description": " contrast"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "chooseContrastingColor": {
+      "location": {
+        "start": {
+          "line": 911,
+          "column": 4,
+          "index": 26166
+        },
+        "end": {
+          "line": 926,
+          "column": 5,
+          "index": 26665
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Picks a contrasting color</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rgb {Number[]|String} the color, either as a string or as an RGB array of 3 numbers",
+            "paramName": "rgb",
+            "description": " the color, either as a string or as an RGB array of 3 numbers",
+            "type": [
+              {
+                "type": "Number",
+                "dimensions": 2
+              },
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "threshold {Number?} the threshold between light and dark outputs, where the range is 0-255, defaults to 128",
+            "paramName": "threshold",
+            "description": " the threshold between light and dark outputs, where the range is 0-255, defaults to 128",
+            "optional": true,
+            "type": "Number"
+          },
+          {
+            "name": "@param",
+            "body": "dark {String?} the colour to use for \"dark\", defaults to black",
+            "paramName": "dark",
+            "description": " the colour to use for \"dark\", defaults to black",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "light {String?} the colour to use for \"light\", defaults to white",
+            "paramName": "light",
+            "description": " the colour to use for \"light\", defaults to white",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} colour string",
+            "type": "String",
+            "description": " colour string"
           }
         ]
       },

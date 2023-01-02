@@ -20,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Native.js 
-   * 
+  /* Native.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -71,6 +70,7 @@
      STATICS
      *****************************************************************************
      */
+
     statics: {
       /**
        * Processes a single log entry
@@ -81,17 +81,16 @@
         if (cv.Config.enableLogging) {
           // Firefox 4's Web Console doesn't support "debug"
           // eslint-disable-next-line no-console
-          var level = console[entry.level] ? entry.level : 'log'; // eslint-disable-next-line no-console
-
+          var level = console[entry.level] ? entry.level : 'log';
+          // eslint-disable-next-line no-console
           if (console[level]) {
-            var args = qx.log.appender.Util.toText(entry); // eslint-disable-next-line no-console
-
+            var args = qx.log.appender.Util.toText(entry);
+            // eslint-disable-next-line no-console
             console[level](args);
           }
         }
       }
     },
-
     /*
      *****************************************************************************
      DEFER
@@ -104,4 +103,4 @@
   cv.log.appender.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1664789611802
+//# sourceMappingURL=Native.js.map?dt=1672653521963

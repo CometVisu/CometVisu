@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,16 +60,12 @@
   qx.Mixin.define("qx.ui.virtual.selection.MModel", {
     construct: function construct() {
       this._initSelectionManager();
-
-      this.__P_471_0 = new qx.data.Array();
-
-      this.__P_471_0.addListener("change", this._onChangeSelection, this);
-
-      this._applySelection(this.__P_471_0, null);
+      this.__P_486_0 = new qx.data.Array();
+      this.__P_486_0.addListener("change", this._onChangeSelection, this);
+      this._applySelection(this.__P_486_0, null);
     },
     properties: {
       /** Current selected items */
-
       /* psuedo property - implemented manually in code below
       selection :
       {
@@ -93,7 +88,6 @@
         init: "single",
         apply: "_applySelectionMode"
       },
-
       /**
        * Enable drag selection (multi selection of items through
        * dragging the pointer in pressed states).
@@ -105,7 +99,6 @@
         init: false,
         apply: "_applyDragSelection"
       },
-
       /**
        * Enable quick selection mode, where no tap is needed to change the selection.
        *
@@ -126,22 +119,18 @@
        * to get an event as soon as the user changes the selected item.
        * <pre class="javascript">obj.getSelection().addListener("change", listener, this);</pre>
        */
-      "changeSelection": "qx.event.type.Data",
-
+      changeSelection: "qx.event.type.Data",
       /** Fires after the value was modified */
-      "changeValue": "qx.event.type.Data"
+      changeValue: "qx.event.type.Data"
     },
     members: {
       /** @type {qx.ui.virtual.selection.Row} selection manager */
       _manager: null,
-
       /** @type {Boolean} flag to ignore the selection change from {@link #selection} */
-      __P_471_1: false,
-
+      __P_486_1: false,
       /** @type {Boolean} flag to ignore the selection change from <code>_manager</code> */
-      __P_471_2: false,
-      __P_471_0: null,
-
+      __P_486_2: false,
+      __P_486_0: null,
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -154,10 +143,8 @@
         } else {
           this.setSelection(selection);
         }
-
         return null;
       },
-
       /**
        * getValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -166,14 +153,12 @@
       getValue: function getValue() {
         return this.getSelection();
       },
-
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
         this.resetSelection();
       },
-
       /**
        * Initialize the selection manager with his delegate.
        */
@@ -187,7 +172,6 @@
             if (type != "selected") {
               return;
             }
-
             if (wasAdded) {
               self._provider.styleSelectabled(row);
             } else {
@@ -196,14 +180,10 @@
           }
         };
         this._manager = new qx.ui.virtual.selection.Row(this.getPane(), selectionDelegate);
-
         this._manager.attachPointerEvents(this.getPane());
-
         this._manager.attachKeyEvents(this);
-
         this._manager.addListener("changeSelection", this._onManagerChangeSelection, this);
       },
-
       /**
        * Determines, if automatically scrolling of selected item is active.
        * Set <code>false</code> to suspend auto scrolling.
@@ -213,7 +193,6 @@
       setAutoScrollIntoView: function setAutoScrollIntoView(value) {
         this._manager._autoScrollIntoView = value;
       },
-
       /**
        * Returns true, if automatically scrolling of selected item is active.
        *
@@ -222,7 +201,6 @@
       getAutoScrollIntoView: function getAutoScrollIntoView() {
         return this._manager._autoScrollIntoView;
       },
-
       /**
        * Method to update the selection, this method can be used when the model has
        * changes.
@@ -231,60 +209,53 @@
         if (this._manager == null) {
           return;
         }
-
         this._onChangeSelection();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Setter for selection property; takes the selection on, and does not change the
        * array instance in `this.selection`
-       * 
+       *
        * @param value {qx.data.Array} the new selection
        */
       setSelection: function setSelection(value) {
         if (value) {
-          this.__P_471_0.replace(value);
+          this.__P_486_0.replace(value);
         } else {
-          this.__P_471_0.removeAll();
+          this.__P_486_0.removeAll();
         }
       },
-
       /**
        * Getter for selection property
-       * 
+       *
        * @return {qx.data.Array}
        */
       getSelection: function getSelection() {
-        return this.__P_471_0;
+        return this.__P_486_0;
       },
-
       /**
        * Reset for selection property
        */
       resetSelection: function resetSelection() {
-        this.__P_471_0.removeAll();
+        this.__P_486_0.removeAll();
       },
-
       /**
        * Init for selection property; takes the selection on, and does not change the
        * array instance in `this.selection`
-       * 
+       *
        * @param value {qx.data.Array} the new selection
        */
       initSelection: function initSelection(value) {
         this.warn("Using initSelection on " + this.classname + " is probably not what you intended - the selection instance does not change");
         this.setSelection(value);
       },
-
       /**
        * Apply method for selection property
-       * 
+       *
        * @param value {qx.data.Array} new value
        * @param old {qx.data.Array} old value
        */
@@ -303,49 +274,38 @@
       _applyQuickSelection: function _applyQuickSelection(value, old) {
         this._manager.setQuick(value);
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION HANDLERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for the internal selection change {@link #selection}.
        *
        * @param e {qx.event.type.Data} the change event.
        */
       _onChangeSelection: function _onChangeSelection(e) {
-        if (this.__P_471_2 == true) {
+        if (this.__P_486_2 == true) {
           return;
         }
-
-        this.__P_471_1 = true;
+        this.__P_486_1 = true;
         var selection = this.getSelection();
         var newSelection = [];
-
         for (var i = 0; i < selection.getLength(); i++) {
           var item = selection.getItem(i);
-
           var selectables = this._getSelectables();
-
           var index = -1;
-
           if (selectables != null) {
             index = selectables.indexOf(item);
           }
-
           var row = this._reverseLookup(index);
-
           if (row >= 0) {
             newSelection.push(row);
           }
         }
-
         if (this._beforeApplySelection != null && qx.lang.Type.isFunction(this._beforeApplySelection)) {
           this._beforeApplySelection(newSelection);
         }
-
         try {
           if (!qx.lang.Array.equals(newSelection, this._manager.getSelection())) {
             this._manager.replaceSelection(newSelection);
@@ -353,114 +313,86 @@
         } catch (ex) {
           this._manager.selectItem(newSelection[newSelection.length - 1]);
         }
-
-        this.__P_471_3();
-
+        this.__P_486_3();
         if (this._afterApplySelection != null && qx.lang.Type.isFunction(this._afterApplySelection)) {
           this._afterApplySelection();
         }
-
-        this.__P_471_1 = false;
+        this.__P_486_1 = false;
       },
-
       /**
        * Event handler for the selection change from the <code>_manager</code>.
        *
        * @param e {qx.event.type.Data} the change event.
        */
       _onManagerChangeSelection: function _onManagerChangeSelection(e) {
-        if (this.__P_471_1 == true) {
+        if (this.__P_486_1 == true) {
           return;
         }
-
-        this.__P_471_2 = true;
-
-        this.__P_471_3();
-
-        this.__P_471_2 = false;
+        this.__P_486_2 = true;
+        this.__P_486_3();
+        this.__P_486_2 = false;
         this.fireDataEvent("changeValue", e.getData(), e.getOldData());
       },
-
       /**
        * Synchronized the selection form the manager with the local one.
        */
-      __P_471_3: function __P_471_3() {
-        if (this.__P_471_4()) {
+      __P_486_3: function __P_486_3() {
+        if (this.__P_486_4()) {
           return;
         }
-
         var managerSelection = this._manager.getSelection();
-
         var newSelection = [];
-
         for (var i = 0; i < managerSelection.length; i++) {
           var item = this._getDataFromRow(managerSelection[i]);
-
           if (item != null) {
             newSelection.push(item);
           }
         }
-
-        this.__P_471_5(newSelection);
+        this.__P_486_5(newSelection);
       },
-
       /**
        * Replace the current selection with the passed selection Array.
        *
        * @param newSelection {qx.data.Array} The new selection.
        */
-      __P_471_5: function __P_471_5(newSelection) {
+      __P_486_5: function __P_486_5(newSelection) {
         var selection = this.getSelection();
-
         if (newSelection.length > 0) {
           var args = [0, selection.getLength()];
-          args = args.concat(newSelection); // dispose data array returned by splice to avoid memory leak
-
+          args = args.concat(newSelection);
+          // dispose data array returned by splice to avoid memory leak
           var temp = selection.splice.apply(selection, args);
           temp.dispose();
         } else {
           selection.removeAll();
         }
       },
-
       /**
        * Checks whether the local and the manager selection are equal.
        *
        * @return {Boolean} <code>true</code> if the selections are equal,
        *   <code>false</code> otherwise.
        */
-      __P_471_4: function __P_471_4() {
+      __P_486_4: function __P_486_4() {
         var selection = this.getSelection();
-
         var managerSelection = this._manager.getSelection();
-
         if (selection.getLength() !== managerSelection.length) {
           return false;
         }
-
         for (var i = 0; i < selection.getLength(); i++) {
           var item = selection.getItem(i);
-
           var selectables = this._getSelectables();
-
           var index = -1;
-
           if (selectables != null) {
             index = selectables.indexOf(item);
           }
-
           var row = this._reverseLookup(index);
-
           if (row !== managerSelection[i]) {
             return false;
           }
-
-          ;
         }
-
         return true;
       },
-
       /**
        * Helper Method to select default item.
        */
@@ -472,15 +404,13 @@
     },
     destruct: function destruct() {
       this._manager.dispose();
-
       this._manager = null;
-
-      if (this.__P_471_0) {
-        this.__P_471_0.dispose();
+      if (this.__P_486_0) {
+        this.__P_486_0.dispose();
       }
     }
   });
   qx.ui.virtual.selection.MModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MModel.js.map?dt=1664789608110
+//# sourceMappingURL=MModel.js.map?dt=1672653518166

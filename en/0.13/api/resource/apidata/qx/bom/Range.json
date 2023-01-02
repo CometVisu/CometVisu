@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 26,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 667
       },
       "end": {
-        "line": 112,
-        "column": 3
+        "line": 101,
+        "column": 3,
+        "index": 3028
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "get": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1118
         },
         "end": {
-          "line": 110,
-          "column": 6
+          "line": 99,
+          "column": 6,
+          "index": 3020
         }
       },
       "jsdoc": {

@@ -12,12 +12,12 @@
       "cv.ui.manager.MenuBar": {
         "construct": true
       },
+      "cv.ui.manager.model.FileItem": {},
       "cv.ui.manager.upload.UploadMgr": {},
       "cv.ui.manager.control.FileController": {},
       "qx.ui.toolbar.Part": {},
       "qx.ui.toolbar.MenuButton": {},
       "cv.theme.dark.Images": {},
-      "cv.ui.manager.model.FileItem": {},
       "qx.event.message.Bus": {},
       "qx.ui.toolbar.Button": {},
       "qx.locale.Manager": {},
@@ -25,11 +25,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ToolBar.js 
-   * 
+  /* ToolBar.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -50,7 +49,6 @@
    */
   qx.Class.define('cv.ui.manager.ToolBar', {
     extend: qx.ui.toolbar.ToolBar,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -58,27 +56,22 @@
     */
     construct: function construct(uploadManager, showOnly) {
       qx.ui.toolbar.ToolBar.constructor.call(this);
-
       if (showOnly) {
-        this.__P_26_0 = showOnly;
+        this.__P_28_0 = showOnly;
       }
-
       this._menuBar = cv.ui.manager.MenuBar.getInstance();
       this._menuButtonConfig = this._menuBar.getButtonConfiguration();
       this._uploadManager = uploadManager;
-
       this._init();
     },
-
     /*
     ***********************************************
       EVENTS
     ***********************************************
     */
     events: {
-      'reload': 'qx.event.type.Event'
+      reload: 'qx.event.type.Event'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -102,7 +95,6 @@
         event: 'changeFile'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -112,15 +104,15 @@
       _menuButtonConfig: null,
       _uploadManager: null,
       _menuBar: null,
-      __P_26_0: null,
-      __P_26_1: function __P_26_1(name) {
-        return this.__P_26_0 === null || this.__P_26_0.includes(name);
+      __P_28_0: null,
+      __P_28_1: function __P_28_1(name) {
+        return this.__P_28_0 === null || this.__P_28_0.includes(name);
       },
       _init: function _init() {
+        var _this = this;
         if (!this._uploadManager) {
           this._uploadManager = new cv.ui.manager.upload.UploadMgr();
         }
-
         var fileController = cv.ui.manager.control.FileController.getInstance();
         var createPart = new qx.ui.toolbar.Part();
         createPart.set({
@@ -128,13 +120,12 @@
         });
         this.add(createPart);
         var newButton;
-
-        if (this.__P_26_1('new-menu')) {
+        if (this.__P_28_1('new-menu')) {
           newButton = new qx.ui.toolbar.MenuButton(null, cv.theme.dark.Images.getIcon('new-file', 15), this._menuBar.getChildControl('new-menu'));
           this.bind('folder.writeable', newButton, 'enabled');
           createPart.add(newButton);
         } else {
-          if (this.__P_26_1('new-config-file')) {
+          if (this.__P_28_1('new-config-file')) {
             newButton = this._createButton('new-config-file', cv.theme.dark.Images.getIcon('new-file', 15));
             this.bind('folder.writeable', newButton, 'enabled');
             this.bind('folder', newButton, 'visibility', {
@@ -143,43 +134,37 @@
               }
             });
             newButton.addListener('execute', function () {
-              qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', this.getFolder());
-            }, this);
+              qx.event.message.Bus.dispatchByName('cv.manager.action.new-config-file', _this.getFolder());
+            });
             createPart.add(newButton);
-          } else if (this.__P_26_1('new-file')) {
+          } else if (this.__P_28_1('new-file')) {
             newButton = this._createButton('new-file', null, true);
             this.bind('folder.writeable', newButton, 'enabled');
             newButton.addListener('execute', function () {
-              qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', this.getFolder());
-            }, this);
+              qx.event.message.Bus.dispatchByName('cv.manager.action.new-file', _this.getFolder());
+            });
             createPart.add(newButton);
           }
-
-          if (this.__P_26_1('new-folder')) {
+          if (this.__P_28_1('new-folder')) {
             newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
             this.bind('folder.writeable', newButton, 'enabled');
             newButton.addListener('execute', function () {
-              qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', this.getFolder());
-            }, this);
+              qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', _this.getFolder());
+            });
             createPart.add(newButton);
           }
         }
-
-        if (this.__P_26_1('upload')) {
+        if (this.__P_28_1('upload')) {
           var upload = this._createButton('upload');
-
           this._uploadManager.addWidget(upload);
-
           this.bind('folder.writeable', upload, 'enabled');
           createPart.add(upload);
         }
-
-        if (this.__P_26_1('delete')) {
+        if (this.__P_28_1('delete')) {
           var deleteSelection = this._createButton('delete');
-
           deleteSelection.addListener('execute', function () {
-            fileController["delete"](this.getFile());
-          }, this);
+            fileController["delete"](_this.getFile());
+          });
           this.bind('file', deleteSelection, 'enabled', {
             converter: function converter(file) {
               return !!file && file.isWriteable() && !file.isFake();
@@ -187,15 +172,14 @@
           });
           this.add(deleteSelection);
         }
-
-        if (this.__P_26_1('download')) {
+        if (this.__P_28_1('download')) {
           var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
           download.setAppearance('cv-toolbar-button');
           download.setToolTipText(qx.locale.Manager.tr('Download'));
           download.addListener('execute', function () {
-            fileController.download(this.getFile());
-          }, this); // download button is only enabled when a file is selected
-
+            fileController.download(_this.getFile());
+          });
+          // download button is only enabled when a file is selected
           this.bind('file', download, 'enabled', {
             converter: function converter(file) {
               return !!file && file.getType() === 'file' && !file.isFake();
@@ -203,16 +187,16 @@
           });
           createPart.add(download);
         }
-
-        if (this.__P_26_1('validate')) {
+        if (this.__P_28_1('validate')) {
           // config check
           var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
           checkConfig.setAppearance('cv-toolbar-button');
           checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
           checkConfig.addListener('execute', function () {
-            fileController.validate(this.getFile());
-          }, this); // validate button is only enabled when a file is selected
+            fileController.validate(_this.getFile());
+          });
 
+          // validate button is only enabled when a file is selected
           this.bind('file', checkConfig, 'enabled', {
             converter: function converter(file) {
               return !!file && file.isConfigFile();
@@ -220,14 +204,13 @@
           });
           this.add(checkConfig);
         }
-
-        if (this.__P_26_1('reload')) {
+        if (this.__P_28_1('reload')) {
           var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
           reload.setAppearance('cv-toolbar-button');
           reload.setToolTipText(qx.locale.Manager.tr('Reload'));
           reload.addListener('execute', function () {
-            this.fireEvent('reload');
-          }, this);
+            _this.fireEvent('reload');
+          });
           this.add(new qx.ui.core.Spacer(), {
             flex: 1
           });
@@ -252,7 +235,6 @@
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -261,10 +243,10 @@
     destruct: function destruct() {
       this._menuButtonConfig = null;
       this._uploadManager = null;
-      this.__P_26_2 = null;
+      this.__P_28_2 = null;
     }
   });
   cv.ui.manager.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1664789564919
+//# sourceMappingURL=ToolBar.js.map?dt=1672653473806

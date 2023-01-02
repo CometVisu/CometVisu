@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,33 +57,33 @@
   qx.Class.define("qx.ui.core.selection.Abstract", {
     type: "abstract",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // {Map} Internal selection storage
+      qx.core.Object.constructor.call(this);
 
-      this.__P_315_0 = {};
+      // {Map} Internal selection storage
+      this.__P_330_0 = {};
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the selection was modified. Contains the selection under the data property. */
-      "changeSelection": "qx.event.type.Data"
+      changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Selects the selection mode to use.
@@ -99,7 +98,6 @@
         init: "single",
         apply: "_applyMode"
       },
-
       /**
        * Enable drag selection (multi selection of items through
        * dragging the pointer in pressed states).
@@ -110,7 +108,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Enable quick selection mode, where no tap is needed to change the selection.
        *
@@ -120,7 +117,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Whether the selection can be changed by user interaction
        */
@@ -129,44 +125,42 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __P_315_1: 0,
-      __P_315_2: 0,
-      __P_315_3: null,
-      __P_315_4: null,
-      __P_315_5: null,
-      __P_315_6: null,
-      __P_315_7: null,
-      __P_315_8: null,
-      __P_315_9: null,
-      __P_315_10: null,
-      __P_315_11: null,
-      __P_315_12: null,
-      __P_315_13: null,
-      __P_315_14: null,
-      __P_315_15: null,
-      __P_315_16: null,
-      __P_315_17: null,
-      __P_315_0: null,
-      __P_315_18: null,
-      __P_315_19: null,
+      __P_330_1: 0,
+      __P_330_2: 0,
+      __P_330_3: null,
+      __P_330_4: null,
+      __P_330_5: null,
+      __P_330_6: null,
+      __P_330_7: null,
+      __P_330_8: null,
+      __P_330_9: null,
+      __P_330_10: null,
+      __P_330_11: null,
+      __P_330_12: null,
+      __P_330_13: null,
+      __P_330_14: null,
+      __P_330_15: null,
+      __P_330_16: null,
+      __P_330_17: null,
+      __P_330_0: null,
+      __P_330_18: null,
+      __P_330_19: null,
       // A flag that signals an user interaction, which means the selection change
       // was triggered by pointer or keyboard [BUG #3344]
       _userInteraction: false,
-      __P_315_20: null,
-
+      __P_330_20: null,
       /*
       ---------------------------------------------------------------------------
         USER APIS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the selection context. One of <code>tap</code>,
        * <code>quick</code>, <code>drag</code> or <code>key</code> or
@@ -176,25 +170,20 @@
        *    <code>drag</code> or <code>key</code> or <code>null</code>
        */
       getSelectionContext: function getSelectionContext() {
-        return this.__P_315_16;
+        return this.__P_330_16;
       },
-
       /**
        * Selects all items of the managed object.
        *
        */
       selectAll: function selectAll() {
         var mode = this.getMode();
-
         if (mode == "single" || mode == "one") {
           throw new Error("Can not select all items in selection mode: " + mode);
         }
-
         this._selectAllItems();
-
         this._fireChange();
       },
-
       /**
        * Selects the given item. Replaces current selection
        * completely with the new item.
@@ -206,20 +195,14 @@
        */
       selectItem: function selectItem(item) {
         this._setSelectedItem(item);
-
         var mode = this.getMode();
-
         if (mode !== "single" && mode !== "one") {
           this._setLeadItem(item);
-
           this._setAnchorItem(item);
         }
-
         this._scrollItemIntoView(item);
-
         this._fireChange();
       },
-
       /**
        * Adds the given item to the existing selection.
        *
@@ -230,24 +213,18 @@
        */
       addItem: function addItem(item) {
         var mode = this.getMode();
-
         if (mode === "single" || mode === "one") {
           this._setSelectedItem(item);
         } else {
           if (this._getAnchorItem() == null) {
             this._setAnchorItem(item);
           }
-
           this._setLeadItem(item);
-
           this._addToSelection(item);
         }
-
         this._scrollItemIntoView(item);
-
         this._fireChange();
       },
-
       /**
        * Removes the given item from the selection.
        *
@@ -258,27 +235,22 @@
        */
       removeItem: function removeItem(item) {
         this._removeFromSelection(item);
-
         if (this.getMode() === "one" && this.isSelectionEmpty()) {
-          var selected = this._applyDefaultSelection(); // Do not fire any event in this case.
+          var selected = this._applyDefaultSelection();
 
-
+          // Do not fire any event in this case.
           if (selected == item) {
             return;
           }
         }
-
         if (this.getLeadItem() == item) {
           this._setLeadItem(null);
         }
-
         if (this._getAnchorItem() == item) {
           this._setAnchorItem(null);
         }
-
         this._fireChange();
       },
-
       /**
        * Selects an item range between two given items.
        *
@@ -287,22 +259,15 @@
        */
       selectItemRange: function selectItemRange(begin, end) {
         var mode = this.getMode();
-
         if (mode == "single" || mode == "one") {
           throw new Error("Can not select multiple items in selection mode: " + mode);
         }
-
         this._selectItemRange(begin, end);
-
         this._setAnchorItem(begin);
-
         this._setLeadItem(end);
-
         this._scrollItemIntoView(end);
-
         this._fireChange();
       },
-
       /**
        * Clears the whole selection at once. Also
        * resets the lead and anchor items and their
@@ -312,21 +277,15 @@
       clearSelection: function clearSelection() {
         if (this.getMode() == "one") {
           var selected = this._applyDefaultSelection(true);
-
           if (selected != null) {
             return;
           }
         }
-
         this._clearSelection();
-
         this._setLeadItem(null);
-
         this._setAnchorItem(null);
-
         this._fireChange();
       },
-
       /**
        * Replaces current selection with given array of items.
        *
@@ -337,24 +296,20 @@
        */
       replaceSelection: function replaceSelection(items) {
         var mode = this.getMode();
-
         if (mode == "one" || mode === "single") {
           if (items.length > 1) {
             throw new Error("Could not select more than one items in mode: " + mode + "!");
           }
-
           if (items.length == 1) {
             this.selectItem(items[0]);
           } else {
             this.clearSelection();
           }
-
           return;
         } else {
           this._replaceMultiSelection(items);
         }
       },
-
       /**
        * Get the selected item. This method does only work in <code>single</code>
        * selection mode.
@@ -363,16 +318,12 @@
        */
       getSelectedItem: function getSelectedItem() {
         var mode = this.getMode();
-
         if (mode === "single" || mode === "one") {
           var result = this._getSelectedItem();
-
           return result != undefined ? result : null;
         }
-
         throw new Error("The method getSelectedItem() is only supported in 'single' and 'one' selection mode!");
       },
-
       /**
        * Returns an array of currently selected items.
        *
@@ -382,9 +333,8 @@
        * @return {Object[]} List of items.
        */
       getSelection: function getSelection() {
-        return Object.values(this.__P_315_0);
+        return Object.values(this.__P_330_0);
       },
-
       /**
        * Returns the selection sorted by the index in the
        * container of the selection (the assigned widget)
@@ -393,13 +343,12 @@
        */
       getSortedSelection: function getSortedSelection() {
         var children = this.getSelectables();
-        var sel = Object.values(this.__P_315_0);
+        var sel = Object.values(this.__P_330_0);
         sel.sort(function (a, b) {
           return children.indexOf(a) - children.indexOf(b);
         });
         return sel;
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -408,44 +357,35 @@
        */
       isItemSelected: function isItemSelected(item) {
         var hash = this._selectableToHashCode(item);
-
-        return this.__P_315_0[hash] !== undefined;
+        return this.__P_330_0[hash] !== undefined;
       },
-
       /**
        * Whether the selection is empty
        *
        * @return {Boolean} Whether the selection is empty
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return qx.lang.Object.isEmpty(this.__P_315_0);
+        return qx.lang.Object.isEmpty(this.__P_330_0);
       },
-
       /**
        * Invert the selection. Select the non selected and deselect the selected.
        */
       invertSelection: function invertSelection() {
         var mode = this.getMode();
-
         if (mode === "single" || mode === "one") {
           throw new Error("The method invertSelection() is only supported in 'multi' and 'additive' selection mode!");
         }
-
         var selectables = this.getSelectables();
-
         for (var i = 0; i < selectables.length; i++) {
           this._toggleInSelection(selectables[i]);
         }
-
         this._fireChange();
       },
-
       /*
       ---------------------------------------------------------------------------
         LEAD/ANCHOR SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets the lead item. Generally the item which was last modified
        * by the user (tapped on etc.)
@@ -453,19 +393,15 @@
        * @param value {Object} Any valid item or <code>null</code>
        */
       _setLeadItem: function _setLeadItem(value) {
-        var old = this.__P_315_17;
-
+        var old = this.__P_330_17;
         if (old !== null) {
           this._styleSelectable(old, "lead", false);
         }
-
         if (value !== null) {
           this._styleSelectable(value, "lead", true);
         }
-
-        this.__P_315_17 = value;
+        this.__P_330_17 = value;
       },
-
       /**
        * Returns the current lead item. Generally the item which was last modified
        * by the user (tapped on etc.)
@@ -473,9 +409,8 @@
        * @return {Object} The lead item or <code>null</code>
        */
       getLeadItem: function getLeadItem() {
-        return this.__P_315_17;
+        return this.__P_330_17;
       },
-
       /**
        * Sets the anchor item. This is the item which is the starting
        * point for all range selections. Normally this is the item which was
@@ -484,19 +419,15 @@
        * @param value {Object} Any valid item or <code>null</code>
        */
       _setAnchorItem: function _setAnchorItem(value) {
-        var old = this.__P_315_18;
-
+        var old = this.__P_330_18;
         if (old != null) {
           this._styleSelectable(old, "anchor", false);
         }
-
         if (value != null) {
           this._styleSelectable(value, "anchor", true);
         }
-
-        this.__P_315_18 = value;
+        this.__P_330_18 = value;
       },
-
       /**
        * Returns the current anchor item. This is the item which is the starting
        * point for all range selections. Normally this is the item which was
@@ -505,15 +436,13 @@
        * @return {Object} The anchor item or <code>null</code>
        */
       _getAnchorItem: function _getAnchorItem() {
-        return this.__P_315_18 !== null ? this.__P_315_18 : null;
+        return this.__P_330_18 !== null ? this.__P_330_18 : null;
       },
-
       /*
       ---------------------------------------------------------------------------
         BASIC SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Whether the given item is selectable.
        *
@@ -523,7 +452,6 @@
       _isSelectable: function _isSelectable(item) {
         throw new Error("Abstract method call: _isSelectable()");
       },
-
       /**
        * Finds the selectable instance from a pointer event
        *
@@ -531,15 +459,13 @@
        * @return {Object|null} The resulting selectable
        */
       _getSelectableFromPointerEvent: function _getSelectableFromPointerEvent(event) {
-        var target = event.getTarget(); // check for target (may be null when leaving the viewport) [BUG #4378]
-
+        var target = event.getTarget();
+        // check for target (may be null when leaving the viewport) [BUG #4378]
         if (target && this._isSelectable(target)) {
           return target;
         }
-
         return null;
       },
-
       /**
        * Returns an unique hashcode for the given item.
        *
@@ -549,7 +475,6 @@
       _selectableToHashCode: function _selectableToHashCode(item) {
         throw new Error("Abstract method call: _selectableToHashCode()");
       },
-
       /**
        * Updates the style (appearance) of the given item.
        *
@@ -560,7 +485,6 @@
       _styleSelectable: function _styleSelectable(item, type, enabled) {
         throw new Error("Abstract method call: _styleSelectable()");
       },
-
       /**
        * Enables capturing of the container.
        *
@@ -568,7 +492,6 @@
       _capture: function _capture() {
         throw new Error("Abstract method call: _capture()");
       },
-
       /**
        * Releases capturing of the container
        *
@@ -576,13 +499,11 @@
       _releaseCapture: function _releaseCapture() {
         throw new Error("Abstract method call: _releaseCapture()");
       },
-
       /*
       ---------------------------------------------------------------------------
         DIMENSION AND LOCATION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the location of the container
        *
@@ -592,7 +513,6 @@
       _getLocation: function _getLocation() {
         throw new Error("Abstract method call: _getLocation()");
       },
-
       /**
        * Returns the dimension of the container (available scrolling space).
        *
@@ -601,7 +521,6 @@
       _getDimension: function _getDimension() {
         throw new Error("Abstract method call: _getDimension()");
       },
-
       /**
        * Returns the relative (to the container) horizontal location of the given item.
        *
@@ -611,7 +530,6 @@
       _getSelectableLocationX: function _getSelectableLocationX(item) {
         throw new Error("Abstract method call: _getSelectableLocationX()");
       },
-
       /**
        * Returns the relative (to the container) horizontal location of the given item.
        *
@@ -621,13 +539,11 @@
       _getSelectableLocationY: function _getSelectableLocationY(item) {
         throw new Error("Abstract method call: _getSelectableLocationY()");
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLL SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the scroll position of the container.
        *
@@ -636,7 +552,6 @@
       _getScroll: function _getScroll() {
         throw new Error("Abstract method call: _getScroll()");
       },
-
       /**
        * Scrolls by the given offset
        *
@@ -646,7 +561,6 @@
       _scrollBy: function _scrollBy(xoff, yoff) {
         throw new Error("Abstract method call: _scrollBy()");
       },
-
       /**
        * Scrolls the given item into the view (make it visible)
        *
@@ -655,24 +569,21 @@
       _scrollItemIntoView: function _scrollItemIntoView(item) {
         throw new Error("Abstract method call: _scrollItemIntoView()");
       },
-
       /*
       ---------------------------------------------------------------------------
         QUERY SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns all selectable items of the container.
        *
        * @param all {Boolean} true for all selectables, false for the
-        *   selectables the user can interactively select
+       *   selectables the user can interactively select
        * @return {Array} A list of items
        */
       getSelectables: function getSelectables(all) {
         throw new Error("Abstract method call: getSelectables()");
       },
-
       /**
        * Returns all selectable items between the two given items.
        *
@@ -685,7 +596,6 @@
       _getSelectableRange: function _getSelectableRange(item1, item2) {
         throw new Error("Abstract method call: _getSelectableRange()");
       },
-
       /**
        * Returns the first selectable item.
        *
@@ -694,7 +604,6 @@
       _getFirstSelectable: function _getFirstSelectable() {
         throw new Error("Abstract method call: _getFirstSelectable()");
       },
-
       /**
        * Returns the last selectable item.
        *
@@ -703,7 +612,6 @@
       _getLastSelectable: function _getLastSelectable() {
         throw new Error("Abstract method call: _getLastSelectable()");
       },
-
       /**
        * Returns the first visible and selectable item.
        *
@@ -712,7 +620,6 @@
       _getFirstVisibleSelectable: function _getFirstVisibleSelectable() {
         throw new Error("Abstract method call: _getFirstVisibleSelectable()");
       },
-
       /**
        * Returns the last visible and selectable item.
        *
@@ -721,7 +628,6 @@
       _getLastVisibleSelectable: function _getLastVisibleSelectable() {
         throw new Error("Abstract method call: _getLastVisibleSelectable()");
       },
-
       /**
        * Returns a selectable item which is related to the given
        * <code>item</code> through the value of <code>relation</code>.
@@ -734,7 +640,6 @@
       _getRelatedSelectable: function _getRelatedSelectable(item, relation) {
         throw new Error("Abstract method call: _getRelatedSelectable()");
       },
-
       /**
        * Returns the item which should be selected on pageUp/pageDown.
        *
@@ -747,7 +652,6 @@
       _getPage: function _getPage(lead, up) {
         throw new Error("Abstract method call: _getPage()");
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -756,25 +660,20 @@
       // property apply
       _applyMode: function _applyMode(value, old) {
         this._setLeadItem(null);
-
         this._setAnchorItem(null);
+        this._clearSelection();
 
-        this._clearSelection(); // Mode "one" requires one selected item
-
-
+        // Mode "one" requires one selected item
         if (value === "one") {
           this._applyDefaultSelection(true);
         }
-
         this._fireChange();
       },
-
       /*
       ---------------------------------------------------------------------------
         POINTER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * This method should be connected to the <code>pointerover</code> event
        * of the managed object.
@@ -785,50 +684,43 @@
         // All browsers (except Opera) fire a native "mouseover" event when a scroll appears
         // by keyboard interaction. We have to ignore the event to avoid a selection for
         // "pointerover" (quick selection). For more details see [BUG #4225]
-        if (this.__P_315_20 != null && this.__P_315_20 != this._getScroll().top) {
-          this.__P_315_20 = null;
+        if (this.__P_330_20 != null && this.__P_330_20 != this._getScroll().top) {
+          this.__P_330_20 = null;
           return;
-        } // quick select should only work on mouse events
+        }
 
-
+        // quick select should only work on mouse events
         if (event.getPointerType() != "mouse") {
           return;
-        } // this is a method invoked by an user interaction, so be careful to
+        }
+
+        // this is a method invoked by an user interaction, so be careful to
         // set / clear the mark this._userInteraction [BUG #3344]
-
-
         this._userInteraction = true;
-
         if (!this.getQuick()) {
           this._userInteraction = false;
           return;
         }
-
         var mode = this.getMode();
-
         if (mode !== "one" && mode !== "single") {
           this._userInteraction = false;
           return;
         }
-
         var item = this._getSelectableFromPointerEvent(event);
-
         if (item === null) {
           this._userInteraction = false;
           return;
         }
+        this._setSelectedItem(item);
 
-        this._setSelectedItem(item); // Be sure that item is in view
+        // Be sure that item is in view
         // This does not feel good when pointerover is used
         // this._scrollItemIntoView(item);
+
         // Fire change event as needed
-
-
         this._fireChange("quick");
-
         this._userInteraction = false;
       },
-
       /**
        * This method should be connected to the <code>pointerdown</code> event
        * of the managed object.
@@ -839,55 +731,51 @@
         // this is a method invoked by an user interaction, so be careful to
         // set / clear the mark this._userInteraction [BUG #3344]
         this._userInteraction = true;
-
         var item = this._getSelectableFromPointerEvent(event);
-
         if (item === null) {
           this._userInteraction = false;
           return;
-        } // Read in keyboard modifiers
+        }
 
-
+        // Read in keyboard modifiers
         var isCtrlPressed = event.isCtrlPressed() || qx.core.Environment.get("os.name") == "osx" && event.isMetaPressed();
-        var isShiftPressed = event.isShiftPressed(); // tapping on selected items deselect on pointerup, not on pointerdown
+        var isShiftPressed = event.isShiftPressed();
 
+        // tapping on selected items deselect on pointerup, not on pointerdown
         if (this.isItemSelected(item) && !isShiftPressed && !isCtrlPressed && !this.getDrag()) {
-          this.__P_315_19 = item;
+          this.__P_330_19 = item;
           this._userInteraction = false;
           return;
         } else {
-          this.__P_315_19 = null;
-        } // Be sure that item is in view
+          this.__P_330_19 = null;
+        }
 
+        // Be sure that item is in view
+        this._scrollItemIntoView(item);
 
-        this._scrollItemIntoView(item); // Drag selection
-
-
+        // Drag selection
         var mode = this.getMode();
-
         if (this.getDrag() && mode !== "single" && mode !== "one" && !isShiftPressed && !isCtrlPressed && event.getPointerType() == "mouse") {
           this._setAnchorItem(item);
+          this._setLeadItem(item);
 
-          this._setLeadItem(item); // Cache location/scroll data
+          // Cache location/scroll data
+          this.__P_330_7 = this._getLocation();
+          this.__P_330_4 = this._getScroll();
 
+          // Store position at start
+          this.__P_330_8 = event.getDocumentLeft() + this.__P_330_4.left;
+          this.__P_330_9 = event.getDocumentTop() + this.__P_330_4.top;
 
-          this.__P_315_7 = this._getLocation();
-          this.__P_315_4 = this._getScroll(); // Store position at start
-
-          this.__P_315_8 = event.getDocumentLeft() + this.__P_315_4.left;
-          this.__P_315_9 = event.getDocumentTop() + this.__P_315_4.top; // Switch to capture mode
-
-          this.__P_315_10 = true;
-
+          // Switch to capture mode
+          this.__P_330_10 = true;
           this._capture();
-        } // Fire change event as needed
+        }
 
-
+        // Fire change event as needed
         this._fireChange("tap");
-
         this._userInteraction = false;
       },
-
       /**
        * This method should be connected to the <code>tap</code> event
        * of the managed object.
@@ -897,83 +785,69 @@
       handleTap: function handleTap(event) {
         // this is a method invoked by an user interaction, so be careful to
         // set / clear the mark this._userInteraction [BUG #3344]
-        this._userInteraction = true; // Read in keyboard modifiers
+        this._userInteraction = true;
 
+        // Read in keyboard modifiers
         var isCtrlPressed = event.isCtrlPressed() || qx.core.Environment.get("os.name") == "osx" && event.isMetaPressed();
         var isShiftPressed = event.isShiftPressed();
-
-        if (!isCtrlPressed && !isShiftPressed && this.__P_315_19 != null) {
+        if (!isCtrlPressed && !isShiftPressed && this.__P_330_19 != null) {
           this._userInteraction = false;
-
           var item = this._getSelectableFromPointerEvent(event);
-
           if (item === null || !this.isItemSelected(item)) {
             return;
           }
         }
-
         var item = this._getSelectableFromPointerEvent(event);
-
         if (item === null) {
           this._userInteraction = false;
           return;
-        } // Action depends on selected mode
+        }
 
-
+        // Action depends on selected mode
         if (!this.isReadOnly()) {
           switch (this.getMode()) {
             case "single":
             case "one":
               this._setSelectedItem(item);
-
               break;
-
             case "additive":
               this._setLeadItem(item);
-
               this._setAnchorItem(item);
-
               this._toggleInSelection(item);
-
               break;
-
             case "multi":
               // Update lead item
-              this._setLeadItem(item); // Create/Update range selection
+              this._setLeadItem(item);
 
-
+              // Create/Update range selection
               if (isShiftPressed) {
                 var anchor = this._getAnchorItem();
-
                 if (anchor === null) {
                   anchor = this._getFirstSelectable();
-
                   this._setAnchorItem(anchor);
                 }
-
                 this._selectItemRange(anchor, item, isCtrlPressed);
-              } // Toggle in selection
+              }
+
+              // Toggle in selection
               else if (isCtrlPressed) {
-                  this._setAnchorItem(item);
+                this._setAnchorItem(item);
+                this._toggleInSelection(item);
+              }
 
-                  this._toggleInSelection(item);
-                } // Replace current selection
-                else {
-                    this._setAnchorItem(item);
-
-                    this._setSelectedItem(item);
-                  }
-
+              // Replace current selection
+              else {
+                this._setAnchorItem(item);
+                this._setSelectedItem(item);
+              }
               break;
           }
-        } // Cleanup operation
+        }
 
-
+        // Cleanup operation
         this._userInteraction = false;
-
         this._cleanup();
       },
-
       /**
        * This method should be connected to the <code>losecapture</code> event
        * of the managed object.
@@ -983,7 +857,6 @@
       handleLoseCapture: function handleLoseCapture(event) {
         this._cleanup();
       },
-
       /**
        * This method should be connected to the <code>pointermove</code> event
        * of the managed object.
@@ -992,73 +865,67 @@
        */
       handlePointerMove: function handlePointerMove(event) {
         // Only relevant when capturing is enabled
-        if (!this.__P_315_10) {
+        if (!this.__P_330_10) {
           return;
-        } // Update pointer position cache
+        }
 
+        // Update pointer position cache
+        this.__P_330_11 = event.getDocumentLeft();
+        this.__P_330_12 = event.getDocumentTop();
 
-        this.__P_315_11 = event.getDocumentLeft();
-        this.__P_315_12 = event.getDocumentTop(); // this is a method invoked by an user interaction, so be careful to
+        // this is a method invoked by an user interaction, so be careful to
         // set / clear the mark this._userInteraction [BUG #3344]
+        this._userInteraction = true;
 
-        this._userInteraction = true; // Detect move directions
-
-        var dragX = this.__P_315_11 + this.__P_315_4.left;
-
-        if (dragX > this.__P_315_8) {
-          this.__P_315_13 = 1;
-        } else if (dragX < this.__P_315_8) {
-          this.__P_315_13 = -1;
+        // Detect move directions
+        var dragX = this.__P_330_11 + this.__P_330_4.left;
+        if (dragX > this.__P_330_8) {
+          this.__P_330_13 = 1;
+        } else if (dragX < this.__P_330_8) {
+          this.__P_330_13 = -1;
         } else {
-          this.__P_315_13 = 0;
+          this.__P_330_13 = 0;
+        }
+        var dragY = this.__P_330_12 + this.__P_330_4.top;
+        if (dragY > this.__P_330_9) {
+          this.__P_330_14 = 1;
+        } else if (dragY < this.__P_330_9) {
+          this.__P_330_14 = -1;
+        } else {
+          this.__P_330_14 = 0;
         }
 
-        var dragY = this.__P_315_12 + this.__P_315_4.top;
-
-        if (dragY > this.__P_315_9) {
-          this.__P_315_14 = 1;
-        } else if (dragY < this.__P_315_9) {
-          this.__P_315_14 = -1;
+        // Update scroll steps
+        var location = this.__P_330_7;
+        if (this.__P_330_11 < location.left) {
+          this.__P_330_1 = this.__P_330_11 - location.left;
+        } else if (this.__P_330_11 > location.right) {
+          this.__P_330_1 = this.__P_330_11 - location.right;
         } else {
-          this.__P_315_14 = 0;
-        } // Update scroll steps
-
-
-        var location = this.__P_315_7;
-
-        if (this.__P_315_11 < location.left) {
-          this.__P_315_1 = this.__P_315_11 - location.left;
-        } else if (this.__P_315_11 > location.right) {
-          this.__P_315_1 = this.__P_315_11 - location.right;
+          this.__P_330_1 = 0;
+        }
+        if (this.__P_330_12 < location.top) {
+          this.__P_330_2 = this.__P_330_12 - location.top;
+        } else if (this.__P_330_12 > location.bottom) {
+          this.__P_330_2 = this.__P_330_12 - location.bottom;
         } else {
-          this.__P_315_1 = 0;
+          this.__P_330_2 = 0;
         }
 
-        if (this.__P_315_12 < location.top) {
-          this.__P_315_2 = this.__P_315_12 - location.top;
-        } else if (this.__P_315_12 > location.bottom) {
-          this.__P_315_2 = this.__P_315_12 - location.bottom;
-        } else {
-          this.__P_315_2 = 0;
-        } // Dynamically create required timer instance
+        // Dynamically create required timer instance
+        if (!this.__P_330_3) {
+          this.__P_330_3 = new qx.event.Timer(100);
+          this.__P_330_3.addListener("interval", this._onInterval, this);
+        }
 
+        // Start interval
+        this.__P_330_3.start();
 
-        if (!this.__P_315_3) {
-          this.__P_315_3 = new qx.event.Timer(100);
-
-          this.__P_315_3.addListener("interval", this._onInterval, this);
-        } // Start interval
-
-
-        this.__P_315_3.start(); // Auto select based on new cursor position
-
-
+        // Auto select based on new cursor position
         this._autoSelect();
-
         event.stopPropagation();
         this._userInteraction = false;
       },
-
       /**
        * This method should be connected to the <code>addItem</code> event
        * of the managed object.
@@ -1067,12 +934,10 @@
        */
       handleAddItem: function handleAddItem(e) {
         var item = e.getData();
-
         if (this.getMode() === "one" && this.isSelectionEmpty()) {
           this.addItem(item);
         }
       },
-
       /**
        * This method should be connected to the <code>removeItem</code> event
        * of the managed object.
@@ -1082,39 +947,37 @@
       handleRemoveItem: function handleRemoveItem(e) {
         this.removeItem(e.getData());
       },
-
       /*
       ---------------------------------------------------------------------------
         POINTER SUPPORT INTERNALS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Stops all timers, release capture etc. to cleanup drag selection
        */
       _cleanup: function _cleanup() {
-        if (!this.getDrag() && this.__P_315_10) {
+        if (!this.getDrag() && this.__P_330_10) {
           return;
-        } // Fire change event if needed
+        }
 
-
-        if (this.__P_315_15) {
+        // Fire change event if needed
+        if (this.__P_330_15) {
           this._fireChange("tap");
-        } // Remove flags
+        }
 
+        // Remove flags
+        delete this.__P_330_10;
+        delete this.__P_330_5;
+        delete this.__P_330_6;
 
-        delete this.__P_315_10;
-        delete this.__P_315_5;
-        delete this.__P_315_6; // Stop capturing
+        // Stop capturing
+        this._releaseCapture();
 
-        this._releaseCapture(); // Stop timer
-
-
-        if (this.__P_315_3) {
-          this.__P_315_3.stop();
+        // Stop timer
+        if (this.__P_330_3) {
+          this.__P_330_3.stop();
         }
       },
-
       /**
        * Event listener for timer used by drag selection
        *
@@ -1122,81 +985,81 @@
        */
       _onInterval: function _onInterval(e) {
         // Scroll by defined block size
-        this._scrollBy(this.__P_315_1, this.__P_315_2); // Update scroll cache
+        this._scrollBy(this.__P_330_1, this.__P_330_2);
 
+        // Update scroll cache
+        this.__P_330_4 = this._getScroll();
 
-        this.__P_315_4 = this._getScroll(); // Auto select based on new scroll position and cursor
-
+        // Auto select based on new scroll position and cursor
         this._autoSelect();
       },
-
       /**
        * Automatically selects items based on the pointer movement during a drag selection
        */
       _autoSelect: function _autoSelect() {
-        var inner = this._getDimension(); // Get current relative Y position and compare it with previous one
+        var inner = this._getDimension();
 
+        // Get current relative Y position and compare it with previous one
+        var relX = Math.max(0, Math.min(this.__P_330_11 - this.__P_330_7.left, inner.width)) + this.__P_330_4.left;
+        var relY = Math.max(0, Math.min(this.__P_330_12 - this.__P_330_7.top, inner.height)) + this.__P_330_4.top;
 
-        var relX = Math.max(0, Math.min(this.__P_315_11 - this.__P_315_7.left, inner.width)) + this.__P_315_4.left;
-
-        var relY = Math.max(0, Math.min(this.__P_315_12 - this.__P_315_7.top, inner.height)) + this.__P_315_4.top; // Compare old and new relative coordinates (for performance reasons)
-
-
-        if (this.__P_315_5 === relX && this.__P_315_6 === relY) {
+        // Compare old and new relative coordinates (for performance reasons)
+        if (this.__P_330_5 === relX && this.__P_330_6 === relY) {
           return;
         }
+        this.__P_330_5 = relX;
+        this.__P_330_6 = relY;
 
-        this.__P_315_5 = relX;
-        this.__P_315_6 = relY; // Cache anchor
-
+        // Cache anchor
         var anchor = this._getAnchorItem();
+        var lead = anchor;
 
-        var lead = anchor; // Process X-coordinate
-
-        var moveX = this.__P_315_13;
+        // Process X-coordinate
+        var moveX = this.__P_330_13;
         var nextX, locationX;
-
         while (moveX !== 0) {
           // Find next item to process depending on current scroll direction
-          nextX = moveX > 0 ? this._getRelatedSelectable(lead, "right") : this._getRelatedSelectable(lead, "left"); // May be null (e.g. first/last item)
+          nextX = moveX > 0 ? this._getRelatedSelectable(lead, "right") : this._getRelatedSelectable(lead, "left");
 
+          // May be null (e.g. first/last item)
           if (nextX !== null) {
-            locationX = this._getSelectableLocationX(nextX); // Continue when the item is in the visible area
+            locationX = this._getSelectableLocationX(nextX);
 
+            // Continue when the item is in the visible area
             if (moveX > 0 && locationX.left <= relX || moveX < 0 && locationX.right >= relX) {
               lead = nextX;
               continue;
             }
-          } // Otherwise break
+          }
 
-
+          // Otherwise break
           break;
-        } // Process Y-coordinate
+        }
 
-
-        var moveY = this.__P_315_14;
+        // Process Y-coordinate
+        var moveY = this.__P_330_14;
         var nextY, locationY;
-
         while (moveY !== 0) {
           // Find next item to process depending on current scroll direction
-          nextY = moveY > 0 ? this._getRelatedSelectable(lead, "under") : this._getRelatedSelectable(lead, "above"); // May be null (e.g. first/last item)
+          nextY = moveY > 0 ? this._getRelatedSelectable(lead, "under") : this._getRelatedSelectable(lead, "above");
 
+          // May be null (e.g. first/last item)
           if (nextY !== null) {
-            locationY = this._getSelectableLocationY(nextY); // Continue when the item is in the visible area
+            locationY = this._getSelectableLocationY(nextY);
 
+            // Continue when the item is in the visible area
             if (moveY > 0 && locationY.top <= relY || moveY < 0 && locationY.bottom >= relY) {
               lead = nextY;
               continue;
             }
-          } // Otherwise break
+          }
 
-
+          // Otherwise break
           break;
-        } // Differenciate between the two supported modes
+        }
 
-
+        // Differenciate between the two supported modes
         var mode = this.getMode();
-
         if (mode === "multi") {
           // Replace current selection with new range
           this._selectItemRange(anchor, lead);
@@ -1207,18 +1070,17 @@
             this._selectItemRange(anchor, lead, true);
           } else {
             this._deselectItemRange(anchor, lead);
-          } // Improve performance. This mode does not rely
+          }
+
+          // Improve performance. This mode does not rely
           // on full ranges as it always extend the old
           // selection/deselection.
-
-
           this._setAnchorItem(lead);
-        } // Fire change event as needed
+        }
 
-
+        // Fire change event as needed
         this._fireChange("drag");
       },
-
       /*
       ---------------------------------------------------------------------------
         KEYBOARD SUPPORT
@@ -1230,7 +1092,7 @@
        *
        * @lint ignoreReferenceField(__navigationKeys)
        */
-      __P_315_21: {
+      __P_330_21: {
         Home: 1,
         Down: 1,
         Right: 1,
@@ -1240,7 +1102,6 @@
         Left: 1,
         PageUp: 1
       },
-
       /**
        * This method should be connected to the <code>keypress</code> event
        * of the managed object.
@@ -1253,117 +1114,95 @@
         this._userInteraction = true;
         var current, next;
         var key = event.getKeyIdentifier();
-        var mode = this.getMode(); // Support both control keys on Mac
+        var mode = this.getMode();
 
+        // Support both control keys on Mac
         var isCtrlPressed = event.isCtrlPressed() || qx.core.Environment.get("os.name") == "osx" && event.isMetaPressed();
         var isShiftPressed = event.isShiftPressed();
         var consumed = false;
         var readOnly = this.isReadOnly();
-
         if (key === "A" && isCtrlPressed && !readOnly) {
           if (mode !== "single" && mode !== "one") {
             this._selectAllItems();
-
             consumed = true;
           }
         } else if (key === "Escape" && !readOnly) {
           if (mode !== "single" && mode !== "one") {
             this._clearSelection();
-
             consumed = true;
           }
         } else if (key === "Space" && !readOnly) {
           var lead = this.getLeadItem();
-
           if (lead != null && !isShiftPressed) {
             if (isCtrlPressed || mode === "additive") {
               this._toggleInSelection(lead);
             } else {
               this._setSelectedItem(lead);
             }
-
             consumed = true;
           }
-        } else if (this.__P_315_21[key] && readOnly) {
+        } else if (this.__P_330_21[key] && readOnly) {
           switch (key) {
             case "Home":
               next = this._getFirstSelectable();
               break;
-
             case "End":
               next = this._getLastSelectable();
               break;
-
             case "Up":
               next = this._getRelatedSelectable(this._getFirstVisibleSelectable(), "above");
               break;
-
             case "Down":
               next = this._getRelatedSelectable(this._getLastVisibleSelectable(), "under");
               break;
-
             case "Left":
               next = this._getRelatedSelectable(this._getFirstVisibleSelectable(), "left");
               break;
-
             case "Right":
               next = this._getRelatedSelectable(this._getLastVisibleSelectable(), "right");
               break;
-
             case "PageUp":
               next = this._getPage(this._getFirstVisibleSelectable(), true);
               break;
-
             case "PageDown":
               next = this._getPage(this._getLastVisibleSelectable(), false);
               break;
           }
-
           if (next) {
             consumed = true;
-            this.__P_315_20 = this._getScroll().top;
-
+            this.__P_330_20 = this._getScroll().top;
             this._scrollItemIntoView(next);
           }
-        } else if (this.__P_315_21[key]) {
+        } else if (this.__P_330_21[key]) {
           consumed = true;
-
           if (mode === "single" || mode == "one") {
             current = this._getSelectedItem();
           } else {
             current = this.getLeadItem();
           }
-
           if (current !== null) {
             switch (key) {
               case "Home":
                 next = this._getFirstSelectable();
                 break;
-
               case "End":
                 next = this._getLastSelectable();
                 break;
-
               case "Up":
                 next = this._getRelatedSelectable(current, "above");
                 break;
-
               case "Down":
                 next = this._getRelatedSelectable(current, "under");
                 break;
-
               case "Left":
                 next = this._getRelatedSelectable(current, "left");
                 break;
-
               case "Right":
                 next = this._getRelatedSelectable(current, "right");
                 break;
-
               case "PageUp":
                 next = this._getPage(current, true);
                 break;
-
               case "PageDown":
                 next = this._getPage(current, false);
                 break;
@@ -1376,7 +1215,6 @@
               case "PageDown":
                 next = this._getFirstSelectable();
                 break;
-
               case "End":
               case "Up":
               case "Left":
@@ -1384,92 +1222,72 @@
                 next = this._getLastSelectable();
                 break;
             }
-          } // Process result
+          }
 
-
+          // Process result
           if (next !== null) {
             switch (mode) {
               case "single":
               case "one":
                 this._setSelectedItem(next);
-
                 break;
-
               case "additive":
                 this._setLeadItem(next);
-
                 break;
-
               case "multi":
                 if (isShiftPressed) {
                   var anchor = this._getAnchorItem();
-
                   if (anchor === null) {
                     this._setAnchorItem(anchor = this._getFirstSelectable());
                   }
-
                   this._setLeadItem(next);
-
                   this._selectItemRange(anchor, next, isCtrlPressed);
                 } else {
                   this._setAnchorItem(next);
-
                   this._setLeadItem(next);
-
                   if (!isCtrlPressed) {
                     this._setSelectedItem(next);
                   }
                 }
-
                 break;
             }
-
-            this.__P_315_20 = this._getScroll().top;
-
+            this.__P_330_20 = this._getScroll().top;
             this._scrollItemIntoView(next);
           }
         }
-
         if (consumed) {
           // Stop processed events
-          event.stop(); // Fire change event as needed
+          event.stop();
 
+          // Fire change event as needed
           this._fireChange("key");
         }
-
         this._userInteraction = false;
       },
-
       /*
       ---------------------------------------------------------------------------
         SUPPORT FOR ITEM RANGES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds all items to the selection
        */
       _selectAllItems: function _selectAllItems() {
         var range = this.getSelectables();
-
         for (var i = 0, l = range.length; i < l; i++) {
           this._addToSelection(range[i]);
         }
       },
-
       /**
        * Clears current selection
        */
       _clearSelection: function _clearSelection() {
-        var selection = this.__P_315_0;
-
+        var selection = this.__P_330_0;
         for (var hash in selection) {
           this._removeFromSelection(selection[hash]);
         }
-
-        this.__P_315_0 = {};
+        this.__P_330_0 = {};
       },
-
       /**
        * Select a range from <code>item1</code> to <code>item2</code>.
        *
@@ -1479,27 +1297,24 @@
        *    selection should be replaced or extended.
        */
       _selectItemRange: function _selectItemRange(item1, item2, extend) {
-        var range = this._getSelectableRange(item1, item2); // Remove items which are not in the detected range
+        var range = this._getSelectableRange(item1, item2);
 
-
+        // Remove items which are not in the detected range
         if (!extend) {
-          var selected = this.__P_315_0;
-
-          var mapped = this.__P_315_22(range);
-
+          var selected = this.__P_330_0;
+          var mapped = this.__P_330_22(range);
           for (var hash in selected) {
             if (!mapped[hash]) {
               this._removeFromSelection(selected[hash]);
             }
           }
-        } // Add new items to the selection
+        }
 
-
+        // Add new items to the selection
         for (var i = 0, l = range.length; i < l; i++) {
           this._addToSelection(range[i]);
         }
       },
-
       /**
        * Deselect all items between <code>item1</code> and <code>item2</code>.
        *
@@ -1508,36 +1323,30 @@
        */
       _deselectItemRange: function _deselectItemRange(item1, item2) {
         var range = this._getSelectableRange(item1, item2);
-
         for (var i = 0, l = range.length; i < l; i++) {
           this._removeFromSelection(range[i]);
         }
       },
-
       /**
        * Internal method to convert a range to a map of hash
        * codes for faster lookup during selection compare routines.
        *
        * @param range {Array} List of selectable items
        */
-      __P_315_22: function __P_315_22(range) {
+      __P_330_22: function __P_330_22(range) {
         var mapped = {};
         var item;
-
         for (var i = 0, l = range.length; i < l; i++) {
           item = range[i];
           mapped[this._selectableToHashCode(item)] = item;
         }
-
         return mapped;
       },
-
       /*
       ---------------------------------------------------------------------------
         SINGLE ITEM QUERY AND MODIFICATION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the first selected item. Only makes sense
        * when using manager in single selection mode.
@@ -1545,13 +1354,11 @@
        * @return {var} The selected item (or <code>null</code>)
        */
       _getSelectedItem: function _getSelectedItem() {
-        for (var hash in this.__P_315_0) {
-          return this.__P_315_0[hash];
+        for (var hash in this.__P_330_0) {
+          return this.__P_330_0[hash];
         }
-
         return null;
       },
-
       /**
        * Replace current selection with given item.
        *
@@ -1560,24 +1367,19 @@
       _setSelectedItem: function _setSelectedItem(item) {
         if (this._isSelectable(item)) {
           // If already selected try to find out if this is the only item
-          var current = this.__P_315_0;
-
+          var current = this.__P_330_0;
           var hash = this._selectableToHashCode(item);
-
           if (!current[hash] || current.length >= 2) {
             this._clearSelection();
-
             this._addToSelection(item);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MODIFY ITEM SELECTION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds an item to the current selection.
        *
@@ -1585,16 +1387,12 @@
        */
       _addToSelection: function _addToSelection(item) {
         var hash = this._selectableToHashCode(item);
-
-        if (this.__P_315_0[hash] == null && this._isSelectable(item)) {
-          this.__P_315_0[hash] = item;
-
+        if (this.__P_330_0[hash] == null && this._isSelectable(item)) {
+          this.__P_330_0[hash] = item;
           this._styleSelectable(item, "selected", true);
-
-          this.__P_315_15 = true;
+          this.__P_330_15 = true;
         }
       },
-
       /**
        * Toggles the item e.g. remove it when already selected
        * or select it when currently not.
@@ -1603,20 +1401,15 @@
        */
       _toggleInSelection: function _toggleInSelection(item) {
         var hash = this._selectableToHashCode(item);
-
-        if (this.__P_315_0[hash] == null) {
-          this.__P_315_0[hash] = item;
-
+        if (this.__P_330_0[hash] == null) {
+          this.__P_330_0[hash] = item;
           this._styleSelectable(item, "selected", true);
         } else {
-          delete this.__P_315_0[hash];
-
+          delete this.__P_330_0[hash];
           this._styleSelectable(item, "selected", false);
         }
-
-        this.__P_315_15 = true;
+        this.__P_330_15 = true;
       },
-
       /**
        * Removes the given item from the current selection.
        *
@@ -1624,16 +1417,12 @@
        */
       _removeFromSelection: function _removeFromSelection(item) {
         var hash = this._selectableToHashCode(item);
-
-        if (this.__P_315_0[hash] != null) {
-          delete this.__P_315_0[hash];
-
+        if (this.__P_330_0[hash] != null) {
+          delete this.__P_330_0[hash];
           this._styleSelectable(item, "selected", false);
-
-          this.__P_315_15 = true;
+          this.__P_330_15 = true;
         }
       },
-
       /**
        * Replaces current selection with items from given array.
        *
@@ -1644,27 +1433,25 @@
           this.clearSelection();
           return;
         }
+        var modified = false;
 
-        var modified = false; // Build map from hash codes and filter non-selectables
-
+        // Build map from hash codes and filter non-selectables
         var selectable, hash;
         var incoming = {};
-
         for (var i = 0, l = items.length; i < l; i++) {
           selectable = items[i];
-
           if (this._isSelectable(selectable)) {
             hash = this._selectableToHashCode(selectable);
             incoming[hash] = selectable;
           }
-        } // Remember last
+        }
 
-
+        // Remember last
         var first = items[0];
-        var last = selectable; // Clear old entries from map
+        var last = selectable;
 
-        var current = this.__P_315_0;
-
+        // Clear old entries from map
+        var current = this.__P_330_0;
         for (var hash in current) {
           if (incoming[hash]) {
             // Reduce map to make next loop faster
@@ -1672,45 +1459,44 @@
           } else {
             // update internal map
             selectable = current[hash];
-            delete current[hash]; // apply styling
+            delete current[hash];
 
-            this._styleSelectable(selectable, "selected", false); // remember that the selection has been modified
+            // apply styling
+            this._styleSelectable(selectable, "selected", false);
 
-
+            // remember that the selection has been modified
             modified = true;
           }
-        } // Add remaining selectables to selection
+        }
 
-
+        // Add remaining selectables to selection
         for (var hash in incoming) {
           // update internal map
-          selectable = current[hash] = incoming[hash]; // apply styling
+          selectable = current[hash] = incoming[hash];
 
-          this._styleSelectable(selectable, "selected", true); // remember that the selection has been modified
+          // apply styling
+          this._styleSelectable(selectable, "selected", true);
 
-
+          // remember that the selection has been modified
           modified = true;
-        } // Do not do anything if selection is equal to previous one
+        }
 
-
+        // Do not do anything if selection is equal to previous one
         if (!modified) {
           return false;
-        } // Scroll last incoming item into view
+        }
 
+        // Scroll last incoming item into view
+        this._scrollItemIntoView(last);
 
-        this._scrollItemIntoView(last); // Reset anchor and lead item
-
-
+        // Reset anchor and lead item
         this._setLeadItem(first);
+        this._setAnchorItem(first);
 
-        this._setAnchorItem(first); // Finally fire change event
-
-
-        this.__P_315_15 = true;
-
+        // Finally fire change event
+        this.__P_330_15 = true;
         this._fireChange();
       },
-
       /**
        * Fires the selection change event if the selection has
        * been modified.
@@ -1719,15 +1505,15 @@
        *    <code>drag</code> or <code>key</code> or <code>null</code>
        */
       _fireChange: function _fireChange(context) {
-        if (this.__P_315_15) {
+        if (this.__P_330_15) {
           // Store context
-          this.__P_315_16 = context || null; // Fire data event which contains the current selection
+          this.__P_330_16 = context || null;
 
+          // Fire data event which contains the current selection
           this.fireDataEvent("changeSelection", this.getSelection());
-          delete this.__P_315_15;
+          delete this.__P_330_15;
         }
       },
-
       /**
        * Applies the default selection. The default item is the first item.
        *
@@ -1738,31 +1524,26 @@
       _applyDefaultSelection: function _applyDefaultSelection(force) {
         if (force === true || this.getMode() === "one" && this.isSelectionEmpty()) {
           var first = this._getFirstSelectable();
-
           if (first != null) {
             this.selectItem(first);
           }
-
           return first;
         }
-
         return null;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_315_3");
-
-      this.__P_315_0 = this.__P_315_19 = this.__P_315_18 = null;
-      this.__P_315_17 = null;
+      this._disposeObjects("__P_330_3");
+      this.__P_330_0 = this.__P_330_19 = this.__P_330_18 = null;
+      this.__P_330_17 = null;
     }
   });
   qx.ui.core.selection.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789595128
+//# sourceMappingURL=Abstract.js.map?dt=1672653506361

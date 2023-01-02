@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 28,
+        "column": 0,
+        "index": 788
       },
       "end": {
-        "line": 249,
-        "column": 3
+        "line": 250,
+        "column": 3,
+        "index": 7122
       }
     },
     "jsdoc": {
@@ -29,6 +31,12 @@
           "name": "@internal",
           "body": ""
         }
+      ],
+      "@ignore": [
+        {
+          "name": "@ignore",
+          "body": "process.*"
+        }
       ]
     }
   },
@@ -37,12 +45,14 @@
     "getName": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1036
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2827
         }
       },
       "jsdoc": {
@@ -65,6 +75,12 @@
             "name": "@internal",
             "body": ""
           }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "process.*"
+          }
         ]
       },
       "type": "function",
@@ -73,12 +89,14 @@
     "__ids": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2881
         },
         "end": {
-          "line": 157,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4328
         }
       },
       "jsdoc": {
@@ -95,12 +113,14 @@
     "getVersion": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 163,
+          "column": 4,
+          "index": 4564
         },
         "end": {
           "line": 179,
-          "column": 5
+          "column": 5,
+          "index": 4945
         }
       },
       "jsdoc": {
@@ -131,12 +151,14 @@
     "__getVersionForDesktopOs": {
       "location": {
         "start": {
-          "line": 187,
-          "column": 4
+          "line": 186,
+          "column": 4,
+          "index": 5147
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 200,
+          "column": 5,
+          "index": 5544
         }
       },
       "jsdoc": {
@@ -170,12 +192,14 @@
     "__getVersionForMobileOs": {
       "location": {
         "start": {
-          "line": 209,
-          "column": 4
+          "line": 207,
+          "column": 4,
+          "index": 5745
         },
         "end": {
-          "line": 242,
-          "column": 5
+          "line": 243,
+          "column": 5,
+          "index": 6969
         }
       },
       "jsdoc": {
@@ -210,15 +234,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 245,
-        "column": 10
+        "line": 246,
+        "column": 2,
+        "index": 6978
       },
       "end": {
-        "line": 248,
-        "column": 3
+        "line": 249,
+        "column": 3,
+        "index": 7118
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

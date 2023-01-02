@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 632
       },
       "end": {
-        "line": 910,
-        "column": 3
+        "line": 961,
+        "column": 3,
+        "index": 29350
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "TYPES": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 758
         },
         "end": {
-          "line": 30,
-          "column": 111
+          "line": 40,
+          "column": 5,
+          "index": 930
         }
       },
       "type": "variable",
@@ -47,12 +51,14 @@
     "GESTURE_EVENTS": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 937
         },
         "end": {
-          "line": 32,
-          "column": 86
+          "line": 47,
+          "column": 5,
+          "index": 1048
         }
       },
       "type": "variable",
@@ -61,12 +67,14 @@
     "TAP_MAX_DISTANCE": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1164
         },
         "end": {
-          "line": 35,
-          "column": 59
+          "line": 50,
+          "column": 54,
+          "index": 1214
         }
       },
       "jsdoc": {
@@ -89,12 +97,14 @@
     "DOUBLETAP_MAX_DISTANCE": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1345
         },
         "end": {
-          "line": 38,
-          "column": 65
+          "line": 53,
+          "column": 60,
+          "index": 1401
         }
       },
       "jsdoc": {
@@ -117,12 +127,14 @@
     "SWIPE_DIRECTION": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1508
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1584
         }
       },
       "jsdoc": {
@@ -145,12 +157,14 @@
     "LONGTAP_TIME": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1687
         },
         "end": {
-          "line": 50,
-          "column": 70
+          "line": 64,
+          "column": 71,
+          "index": 1754
         }
       },
       "jsdoc": {
@@ -173,12 +187,14 @@
     "DOUBLETAP_TIME": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 1883
         },
         "end": {
-          "line": 56,
-          "column": 24
+          "line": 70,
+          "column": 23,
+          "index": 1902
         }
       },
       "jsdoc": {
@@ -201,12 +217,14 @@
     "ROLL_FACTOR": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2044
         },
         "end": {
-          "line": 62,
-          "column": 19
+          "line": 76,
+          "column": 19,
+          "index": 2059
         }
       },
       "jsdoc": {
@@ -229,12 +247,14 @@
     "TOUCHPAD_ROLL_FACTOR": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2206
         },
         "end": {
-          "line": 68,
-          "column": 27
+          "line": 82,
+          "column": 27,
+          "index": 2229
         }
       },
       "jsdoc": {
@@ -257,12 +277,14 @@
     "TOUCHPAD_WHEEL_EVENTS_THRESHOLD": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2386
         },
         "end": {
-          "line": 74,
-          "column": 39
+          "line": 88,
+          "column": 39,
+          "index": 2421
         }
       },
       "jsdoc": {
@@ -285,12 +307,14 @@
     "TOUCHPAD_WHEEL_EVENTS_PERIOD": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 94,
+          "column": 4,
+          "index": 2562
         },
         "end": {
-          "line": 80,
-          "column": 37
+          "line": 94,
+          "column": 37,
+          "index": 2595
         }
       },
       "jsdoc": {
@@ -313,12 +337,14 @@
     "TOUCHPAD_WHEEL_EVENTS_TIMEOUT": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2757
         },
         "end": {
-          "line": 86,
-          "column": 39
+          "line": 100,
+          "column": 39,
+          "index": 2792
         }
       },
       "jsdoc": {
@@ -342,12 +368,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 94,
-        "column": 14
+        "line": 108,
+        "column": 2,
+        "index": 2999
       },
       "end": {
-        "line": 103,
-        "column": 3
+        "line": 117,
+        "column": 3,
+        "index": 3256
       }
     },
     "jsdoc": {
@@ -380,12 +408,14 @@
     "__defaultTarget": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 120,
+          "column": 4,
+          "index": 3276
         },
         "end": {
-          "line": 106,
-          "column": 26
+          "line": 120,
+          "column": 25,
+          "index": 3297
         }
       },
       "type": "variable",
@@ -394,12 +424,14 @@
     "__emitter": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3303
         },
         "end": {
-          "line": 107,
-          "column": 20
+          "line": 121,
+          "column": 19,
+          "index": 3318
         }
       },
       "type": "variable",
@@ -408,12 +440,14 @@
     "__gesture": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3324
         },
         "end": {
-          "line": 108,
-          "column": 20
+          "line": 122,
+          "column": 19,
+          "index": 3339
         }
       },
       "type": "variable",
@@ -422,12 +456,14 @@
     "__eventName": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 3345
         },
         "end": {
-          "line": 109,
-          "column": 22
+          "line": 123,
+          "column": 21,
+          "index": 3362
         }
       },
       "type": "variable",
@@ -436,12 +472,14 @@
     "__primaryTarget": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3368
         },
         "end": {
-          "line": 110,
-          "column": 26
+          "line": 124,
+          "column": 25,
+          "index": 3389
         }
       },
       "type": "variable",
@@ -450,12 +488,14 @@
     "__isMultiPointerGesture": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 125,
+          "column": 4,
+          "index": 3395
         },
         "end": {
-          "line": 111,
-          "column": 34
+          "line": 125,
+          "column": 33,
+          "index": 3424
         }
       },
       "type": "variable",
@@ -464,12 +504,14 @@
     "__initialAngle": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3430
         },
         "end": {
-          "line": 112,
-          "column": 25
+          "line": 126,
+          "column": 24,
+          "index": 3450
         }
       },
       "type": "variable",
@@ -478,12 +520,14 @@
     "__lastTap": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3456
         },
         "end": {
-          "line": 113,
-          "column": 20
+          "line": 127,
+          "column": 19,
+          "index": 3471
         }
       },
       "type": "variable",
@@ -492,12 +536,14 @@
     "__rollImpulseId": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 3477
         },
         "end": {
-          "line": 114,
-          "column": 26
+          "line": 128,
+          "column": 25,
+          "index": 3498
         }
       },
       "type": "variable",
@@ -506,12 +552,14 @@
     "__stopMomentum": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 3504
         },
         "end": {
-          "line": 115,
-          "column": 25
+          "line": 129,
+          "column": 24,
+          "index": 3524
         }
       },
       "type": "variable",
@@ -520,12 +568,14 @@
     "__initialDistance": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 3530
         },
         "end": {
-          "line": 116,
-          "column": 28
+          "line": 130,
+          "column": 27,
+          "index": 3553
         }
       },
       "type": "variable",
@@ -534,12 +584,14 @@
     "__momentum": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 3559
         },
         "end": {
-          "line": 117,
-          "column": 21
+          "line": 131,
+          "column": 20,
+          "index": 3575
         }
       },
       "type": "variable",
@@ -548,12 +600,14 @@
     "__rollEvents": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3581
         },
         "end": {
-          "line": 118,
-          "column": 23
+          "line": 132,
+          "column": 22,
+          "index": 3599
         }
       },
       "type": "variable",
@@ -562,12 +616,14 @@
     "__rollEventsCountStart": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 133,
+          "column": 4,
+          "index": 3605
         },
         "end": {
-          "line": 119,
-          "column": 30
+          "line": 133,
+          "column": 29,
+          "index": 3630
         }
       },
       "type": "variable",
@@ -576,12 +632,14 @@
     "__rollEventsCount": {
       "location": {
         "start": {
-          "line": 120,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 3636
         },
         "end": {
-          "line": 120,
-          "column": 25
+          "line": 134,
+          "column": 24,
+          "index": 3656
         }
       },
       "type": "variable",
@@ -590,12 +648,14 @@
     "__touchPadDetectionPerformed": {
       "location": {
         "start": {
-          "line": 121,
-          "column": 4
+          "line": 135,
+          "column": 4,
+          "index": 3662
         },
         "end": {
-          "line": 121,
-          "column": 40
+          "line": 135,
+          "column": 39,
+          "index": 3697
         }
       },
       "type": "variable",
@@ -604,12 +664,14 @@
     "__lastRollEventTime": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 3703
         },
         "end": {
-          "line": 122,
-          "column": 26
+          "line": 136,
+          "column": 26,
+          "index": 3725
         }
       },
       "type": "variable",
@@ -618,12 +680,14 @@
     "_initObserver": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 141,
+          "column": 4,
+          "index": 3788
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 4451
         }
       },
       "jsdoc": {
@@ -640,12 +704,14 @@
     "_stopObserver": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 4520
         },
         "end": {
-          "line": 160,
-          "column": 5
+          "line": 187,
+          "column": 5,
+          "index": 5156
         }
       },
       "jsdoc": {
@@ -662,12 +728,14 @@
     "checkAndFireGesture": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 196,
+          "column": 4,
+          "index": 5412
         },
         "end": {
-          "line": 188,
-          "column": 5
+          "line": 214,
+          "column": 5,
+          "index": 5959
         }
       },
       "jsdoc": {
@@ -711,12 +779,14 @@
     "gestureBegin": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 222,
+          "column": 4,
+          "index": 6114
         },
         "end": {
-          "line": 240,
-          "column": 5
+          "line": 266,
+          "column": 5,
+          "index": 7565
         }
       },
       "jsdoc": {
@@ -749,12 +819,14 @@
     "gestureMove": {
       "location": {
         "start": {
-          "line": 249,
-          "column": 4
+          "line": 274,
+          "column": 4,
+          "index": 7719
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 310,
+          "column": 5,
+          "index": 8872
         }
       },
       "jsdoc": {
@@ -787,12 +859,14 @@
     "_hasIntermediaryHandler": {
       "location": {
         "start": {
-          "line": 296,
-          "column": 4
+          "line": 320,
+          "column": 4,
+          "index": 9154
         },
         "end": {
-          "line": 304,
-          "column": 5
+          "line": 328,
+          "column": 5,
+          "index": 9387
         }
       },
       "jsdoc": {
@@ -826,12 +900,14 @@
     "gestureFinish": {
       "location": {
         "start": {
-          "line": 313,
-          "column": 4
+          "line": 336,
+          "column": 4,
+          "index": 9540
         },
         "end": {
-          "line": 398,
-          "column": 5
+          "line": 419,
+          "column": 5,
+          "index": 12253
         }
       },
       "jsdoc": {
@@ -864,12 +940,14 @@
     "stopMomentum": {
       "location": {
         "start": {
-          "line": 406,
-          "column": 4
+          "line": 426,
+          "column": 4,
+          "index": 12397
         },
         "end": {
-          "line": 408,
-          "column": 5
+          "line": 428,
+          "column": 5,
+          "index": 12459
         }
       },
       "jsdoc": {
@@ -895,12 +973,14 @@
     "gestureCancel": {
       "location": {
         "start": {
-          "line": 415,
-          "column": 4
+          "line": 434,
+          "column": 4,
+          "index": 12563
         },
         "end": {
-          "line": 424,
-          "column": 5
+          "line": 443,
+          "column": 5,
+          "index": 12841
         }
       },
       "jsdoc": {
@@ -926,12 +1006,14 @@
     "updateGestureTarget": {
       "location": {
         "start": {
-          "line": 435,
-          "column": 4
+          "line": 453,
+          "column": 4,
+          "index": 13101
         },
         "end": {
-          "line": 437,
-          "column": 5
+          "line": 455,
+          "column": 5,
+          "index": 13182
         }
       },
       "jsdoc": {
@@ -970,12 +1052,14 @@
     "__handleRollImpulse": {
       "location": {
         "start": {
-          "line": 448,
-          "column": 4
+          "line": 465,
+          "column": 4,
+          "index": 13607
         },
         "end": {
-          "line": 493,
-          "column": 5
+          "line": 521,
+          "column": 5,
+          "index": 15274
         }
       },
       "jsdoc": {
@@ -1030,12 +1114,14 @@
     "_calcAngle": {
       "location": {
         "start": {
-          "line": 500,
-          "column": 4
+          "line": 527,
+          "column": 4,
+          "index": 15425
         },
         "end": {
-          "line": 517,
-          "column": 5
+          "line": 544,
+          "column": 5,
+          "index": 15890
         }
       },
       "jsdoc": {
@@ -1060,12 +1146,14 @@
     "_calcDistance": {
       "location": {
         "start": {
-          "line": 524,
-          "column": 4
+          "line": 550,
+          "column": 4,
+          "index": 16023
         },
         "end": {
-          "line": 539,
-          "column": 5
+          "line": 569,
+          "column": 5,
+          "index": 16502
         }
       },
       "jsdoc": {
@@ -1090,12 +1178,14 @@
     "_isBelowTapMaxDistance": {
       "location": {
         "start": {
-          "line": 549,
-          "column": 4
+          "line": 578,
+          "column": 4,
+          "index": 16796
         },
         "end": {
-          "line": 558,
-          "column": 5
+          "line": 592,
+          "column": 5,
+          "index": 17169
         }
       },
       "jsdoc": {
@@ -1129,12 +1219,14 @@
     "__isBelowDoubleTapDistance": {
       "location": {
         "start": {
-          "line": 572,
-          "column": 4
+          "line": 605,
+          "column": 4,
+          "index": 17663
         },
         "end": {
-          "line": 579,
-          "column": 5
+          "line": 612,
+          "column": 5,
+          "index": 17938
         }
       },
       "jsdoc": {
@@ -1196,12 +1288,14 @@
     "_getDeltaCoordinates": {
       "location": {
         "start": {
-          "line": 587,
-          "column": 4
+          "line": 619,
+          "column": 4,
+          "index": 18194
         },
         "end": {
-          "line": 606,
-          "column": 5
+          "line": 638,
+          "column": 5,
+          "index": 18624
         }
       },
       "jsdoc": {
@@ -1235,12 +1329,14 @@
     "_fireEvent": {
       "location": {
         "start": {
-          "line": 617,
-          "column": 4
+          "line": 648,
+          "column": 4,
+          "index": 18942
         },
         "end": {
-          "line": 649,
-          "column": 5
+          "line": 681,
+          "column": 5,
+          "index": 20047
         }
       },
       "jsdoc": {
@@ -1290,12 +1386,14 @@
     "_onDblClick": {
       "location": {
         "start": {
-          "line": 658,
-          "column": 4
+          "line": 689,
+          "column": 4,
+          "index": 20243
         },
         "end": {
-          "line": 662,
-          "column": 5
+          "line": 693,
+          "column": 5,
+          "index": 20424
         }
       },
       "jsdoc": {
@@ -1321,12 +1419,14 @@
     "__getSwipeGesture": {
       "location": {
         "start": {
-          "line": 672,
-          "column": 4
+          "line": 702,
+          "column": 4,
+          "index": 20721
         },
         "end": {
-          "line": 696,
-          "column": 5
+          "line": 729,
+          "column": 5,
+          "index": 21571
         }
       },
       "jsdoc": {
@@ -1367,12 +1467,14 @@
     "__fireTrack": {
       "location": {
         "start": {
-          "line": 706,
-          "column": 4
+          "line": 738,
+          "column": 4,
+          "index": 21757
         },
         "end": {
-          "line": 709,
-          "column": 5
+          "line": 741,
+          "column": 5,
+          "index": 21926
         }
       },
       "jsdoc": {
@@ -1412,12 +1514,14 @@
     "__fireRollEvent": {
       "location": {
         "start": {
-          "line": 719,
-          "column": 4
+          "line": 750,
+          "column": 4,
+          "index": 22128
         },
         "end": {
-          "line": 727,
-          "column": 5
+          "line": 760,
+          "column": 5,
+          "index": 22546
         }
       },
       "jsdoc": {
@@ -1457,12 +1561,14 @@
     "__performAdaptativeRollScrolling": {
       "location": {
         "start": {
-          "line": 734,
-          "column": 4
+          "line": 767,
+          "column": 4,
+          "index": 22667
         },
         "end": {
-          "line": 747,
-          "column": 5
+          "line": 780,
+          "column": 5,
+          "index": 23239
         }
       },
       "jsdoc": {
@@ -1488,12 +1594,14 @@
     "__endTouchPadDetection": {
       "location": {
         "start": {
-          "line": 752,
-          "column": 4
+          "line": 785,
+          "column": 4,
+          "index": 23303
         },
         "end": {
-          "line": 762,
-          "column": 5
+          "line": 798,
+          "column": 5,
+          "index": 23773
         }
       },
       "jsdoc": {
@@ -1510,12 +1618,14 @@
     "_isTouchPadDetectionEnabled": {
       "location": {
         "start": {
-          "line": 769,
-          "column": 4
+          "line": 805,
+          "column": 4,
+          "index": 23995
         },
         "end": {
-          "line": 771,
-          "column": 5
+          "line": 810,
+          "column": 5,
+          "index": 24166
         }
       },
       "jsdoc": {
@@ -1546,12 +1656,14 @@
     "_fireRoll": {
       "location": {
         "start": {
-          "line": 782,
-          "column": 4
+          "line": 821,
+          "column": 4,
+          "index": 24600
         },
         "end": {
-          "line": 837,
-          "column": 5
+          "line": 892,
+          "column": 5,
+          "index": 27535
         }
       },
       "jsdoc": {
@@ -1591,12 +1703,14 @@
     "__fireRotate": {
       "location": {
         "start": {
-          "line": 846,
-          "column": 4
+          "line": 900,
+          "column": 4,
+          "index": 27679
         },
         "end": {
-          "line": 852,
-          "column": 5
+          "line": 906,
+          "column": 5,
+          "index": 27938
         }
       },
       "jsdoc": {
@@ -1629,12 +1743,14 @@
     "__firePinch": {
       "location": {
         "start": {
-          "line": 861,
-          "column": 4
+          "line": 914,
+          "column": 4,
+          "index": 28081
         },
         "end": {
-          "line": 868,
-          "column": 5
+          "line": 921,
+          "column": 5,
+          "index": 28381
         }
       },
       "jsdoc": {
@@ -1667,12 +1783,14 @@
     "__fireLongTap": {
       "location": {
         "start": {
-          "line": 877,
-          "column": 4
+          "line": 929,
+          "column": 4,
+          "index": 28529
         },
         "end": {
-          "line": 884,
-          "column": 5
+          "line": 936,
+          "column": 5,
+          "index": 28794
         }
       },
       "jsdoc": {
@@ -1705,12 +1823,14 @@
     "__stopLongTapTimer": {
       "location": {
         "start": {
-          "line": 891,
-          "column": 4
+          "line": 942,
+          "column": 4,
+          "index": 28926
         },
         "end": {
-          "line": 896,
-          "column": 5
+          "line": 947,
+          "column": 5,
+          "index": 29091
         }
       },
       "jsdoc": {
@@ -1736,12 +1856,14 @@
     "dispose": {
       "location": {
         "start": {
-          "line": 901,
-          "column": 4
+          "line": 952,
+          "column": 4,
+          "index": 29150
         },
         "end": {
-          "line": 908,
-          "column": 5
+          "line": 959,
+          "column": 5,
+          "index": 29342
         }
       },
       "jsdoc": {

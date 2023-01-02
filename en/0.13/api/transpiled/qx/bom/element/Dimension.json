@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 818
       },
       "end": {
-        "line": 218,
-        "column": 3
+        "line": 282,
+        "column": 3,
+        "index": 9189
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getWidth": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1507
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1631
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "getHeight": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 2080
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 66,
+          "column": 5,
+          "index": 2205
         }
       },
       "jsdoc": {
@@ -121,12 +127,14 @@
     "getSize": {
       "location": {
         "start": {
-          "line": 78,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2411
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 79,
+          "column": 5,
+          "index": 2538
         }
       },
       "jsdoc": {
@@ -157,15 +165,164 @@
       "type": "function",
       "access": "public"
     },
-    "__hiddenScrollbars": {
+    "getOuterHeight": {
       "location": {
         "start": {
           "line": 88,
-          "column": 4
+          "column": 4,
+          "index": 2853
         },
         "end": {
-          "line": 92,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3397
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the outer height of the given element, including height, vertical padding, and vertical borders</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "includeMargins {Boolean?} whether to include margins in teh",
+            "paramName": "includeMargins",
+            "description": " whether to include margins in teh",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the height of the element",
+            "type": "Integer",
+            "description": " the height of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOuterWidth": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3710
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4251
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the outer width of the given element, including height, vertical padding, and vertical borders</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "includeMargins {Boolean?} whether to include margins in teh",
+            "paramName": "includeMargins",
+            "description": " whether to include margins in teh",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the width of the element",
+            "type": "Integer",
+            "description": " the width of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getOuterSize": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4585
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 4775
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the outer size of the given element, including height, vertical padding, and vertical borders</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} element to query",
+            "paramName": "element",
+            "description": " element to query",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "includeMargins {Boolean?} whether to include margins in teh",
+            "paramName": "includeMargins",
+            "description": " whether to include margins in teh",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} map containing the width and height of the element",
+            "type": "Map",
+            "description": " map containing the width and height of the element"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__hiddenScrollbars": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 4865
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4932
         }
       },
       "jsdoc": {
@@ -188,12 +345,14 @@
     "getContentWidth": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 171,
+          "column": 4,
+          "index": 5493
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 225,
+          "column": 5,
+          "index": 7255
         }
       },
       "jsdoc": {
@@ -227,12 +386,14 @@
     "getContentHeight": {
       "location": {
         "start": {
-          "line": 175,
-          "column": 4
+          "line": 241,
+          "column": 4,
+          "index": 7824
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 267,
+          "column": 5,
+          "index": 8811
         }
       },
       "jsdoc": {
@@ -266,12 +427,14 @@
     "getContentSize": {
       "location": {
         "start": {
-          "line": 210,
-          "column": 4
+          "line": 275,
+          "column": 4,
+          "index": 9033
         },
         "end": {
-          "line": 216,
-          "column": 5
+          "line": 280,
+          "column": 5,
+          "index": 9181
         }
       },
       "jsdoc": {

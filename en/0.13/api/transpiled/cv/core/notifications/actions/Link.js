@@ -22,11 +22,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Link.js 
-   * 
+  /* Link.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -51,7 +50,6 @@
   qx.Class.define('cv.core.notifications.actions.Link', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -61,7 +59,6 @@
       cv.core.notifications.actions.AbstractActionHandler.constructor.call(this);
       this.set(props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -90,7 +87,6 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -101,17 +97,14 @@
         if (typeof value === 'function') {
           return value;
         }
-
         switch (value) {
           case 'reload':
           case 'restart':
             return cv.util.Location.reload;
         }
-
         if (value) {
           this.error('Unknown action: ' + value);
         }
-
         return null;
       },
       handleAction: function handleAction(ev) {
@@ -119,11 +112,9 @@
           ev.stopPropagation();
           ev.preventDefault();
         }
-
         if (this.getAction()) {
           this.getAction()(ev);
         }
-
         if (this.getUrl()) {
           if (this.isHidden()) {
             // open link in background (fire and forget)
@@ -133,16 +124,15 @@
             cv.util.Location.open(this.getUrl(), '_blank');
           }
         }
-
         if (this.isDeleteMessageAfterExecution) {
           this.fireEvent('close');
         }
       },
       getDomElement: function getDomElement() {
         var actionButton = qx.dom.Element.create('button', {
-          'class': 'action ' + this.getType(),
-          'text': this.getTitle(),
-          'style': this.getStyle()
+          "class": 'action ' + this.getType(),
+          text: this.getTitle(),
+          style: this.getStyle()
         });
         actionButton.$$handler = this;
         qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
@@ -156,4 +146,4 @@
   cv.core.notifications.actions.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1664789561422
+//# sourceMappingURL=Link.js.map?dt=1672653469590

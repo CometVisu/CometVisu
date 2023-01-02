@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,7 +37,6 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.cell.Conditional", {
     extend: qx.ui.progressive.renderer.table.cell.Abstract,
-
     /**
      * @param align {String}
      *   The default alignment to format the cell with if the condition matches.
@@ -54,23 +52,22 @@
      */
     construct: function construct(align, color, style, weight) {
       qx.ui.progressive.renderer.table.cell.Abstract.constructor.call(this);
-      this.__P_408_0 = ["==", "!=", ">", "<", ">=", "<="];
-      this.__P_408_1 = ["between", "!between"];
-      this.__P_408_2 = [];
-      this.__P_408_3 = align || "";
-      this.__P_408_4 = color || "";
-      this.__P_408_5 = style || "";
-      this.__P_408_6 = weight || "";
+      this.__P_424_0 = ["==", "!=", ">", "<", ">=", "<="];
+      this.__P_424_1 = ["between", "!between"];
+      this.__P_424_2 = [];
+      this.__P_424_3 = align || "";
+      this.__P_424_4 = color || "";
+      this.__P_424_5 = style || "";
+      this.__P_424_6 = weight || "";
     },
     members: {
-      __P_408_0: null,
-      __P_408_1: null,
-      __P_408_2: null,
-      __P_408_3: null,
-      __P_408_4: null,
-      __P_408_5: null,
-      __P_408_6: null,
-
+      __P_424_0: null,
+      __P_424_1: null,
+      __P_424_2: null,
+      __P_424_3: null,
+      __P_424_4: null,
+      __P_424_5: null,
+      __P_424_6: null,
       /**
        * Applies the cell styles to the style map.
        *
@@ -80,24 +77,20 @@
        * @param style {Map}
        *   map of already applied styles.
        */
-      __P_408_7: function __P_408_7(condition, style) {
+      __P_424_7: function __P_424_7(condition, style) {
         if (condition.align) {
           style["text-align"] = condition.align;
         }
-
         if (condition.color) {
           style["color"] = condition.color;
         }
-
         if (condition.style) {
           style["font-style"] = condition.style;
         }
-
         if (condition.weight) {
           style["font-weight"] = condition.weight;
         }
       },
-
       /**
        * The addNumericCondition method is used to add a basic numeric condition
        * to the cell renderer.
@@ -136,11 +129,10 @@
        * is null.
        */
       addNumericCondition: function addNumericCondition(condition, value1, align, color, style, weight, target) {
-        if (!this.__P_408_0.includes(condition) || value1 == null) {
+        if (!this.__P_424_0.includes(condition) || value1 == null) {
           throw new Error("Condition not recognized or value is null!");
         }
-
-        this.__P_408_2.push({
+        this.__P_424_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -150,7 +142,6 @@
           target: target
         });
       },
-
       /**
        * The addBetweenCondition method is used to add a between condition to
        * the cell renderer.
@@ -192,11 +183,10 @@
        * values is null.
        */
       addBetweenCondition: function addBetweenCondition(condition, value1, value2, align, color, style, weight, target) {
-        if (!this.__P_408_1.includes(condition) || value1 == null || value2 == null) {
+        if (!this.__P_424_1.includes(condition) || value1 == null || value2 == null) {
           throw new Error("Condition not recognized or value1/value2 is null!");
         }
-
-        this.__P_408_2.push({
+        this.__P_424_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -207,7 +197,6 @@
           target: target
         });
       },
-
       /**
        * The addRegex method is used to add a regular expression condition to
        * the cell renderer.
@@ -244,8 +233,7 @@
         if (!regex) {
           throw new Error("regex cannot be null!");
         }
-
-        this.__P_408_2.push({
+        this.__P_424_2.push({
           condition: "regex",
           align: align,
           color: color,
@@ -255,7 +243,6 @@
           target: target
         });
       },
-
       /**
        * Overridden; called whenever the cell updates. The cell will iterate
        * through each available condition and apply formatting for those that
@@ -270,94 +257,75 @@
        * @return {String}
        */
       _getCellStyle: function _getCellStyle(cellInfo) {
-        if (this.__P_408_2.length == 0) {
+        if (this.__P_424_2.length == 0) {
           return cellInfo.style || "";
         }
-
         var i;
         var bTestPassed;
         var compareValue;
         var style = {
-          "text-align": this.__P_408_3,
-          "color": this.__P_408_4,
-          "font-style": this.__P_408_5,
-          "font-weight": this.__P_408_6
+          "text-align": this.__P_424_3,
+          color: this.__P_424_4,
+          "font-style": this.__P_424_5,
+          "font-weight": this.__P_424_6
         };
-
-        for (i = 0; i < this.__P_408_2.length; i++) {
-          var test = this.__P_408_2[i];
+        for (i = 0; i < this.__P_424_2.length; i++) {
+          var test = this.__P_424_2[i];
           bTestPassed = false;
-
-          if (this.__P_408_0.includes(test.condition)) {
+          if (this.__P_424_0.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
-
             switch (test.condition) {
               case "==":
                 if (compareValue == test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case "!=":
                 if (compareValue != test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case ">":
                 if (compareValue > test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case "<":
                 if (compareValue < test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case ">=":
                 if (compareValue >= test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case "<=":
                 if (compareValue <= test.value1) {
                   bTestPassed = true;
                 }
-
                 break;
             }
-          } else if (this.__P_408_1.includes(test.condition)) {
+          } else if (this.__P_424_1.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
-
             switch (test.condition) {
               case "between":
                 if (compareValue >= test.value1 && compareValue <= test.value2) {
                   bTestPassed = true;
                 }
-
                 break;
-
               case "!between":
                 if (compareValue < test.value1 && compareValue > test.value2) {
                   bTestPassed = true;
                 }
-
                 break;
             }
           } else if (test.condition == "regex") {
@@ -366,33 +334,29 @@
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
-
-            var the_pattern = new RegExp(test.value1, 'g');
+            var the_pattern = new RegExp(test.value1, "g");
             bTestPassed = the_pattern.test(compareValue);
-          } // Apply formatting, if any.
-
-
-          if (bTestPassed) {
-            this.__P_408_7(test, style);
           }
 
+          // Apply formatting, if any.
+          if (bTestPassed) {
+            this.__P_424_7(test, style);
+          }
           var styleString = [];
-
           for (var key in style) {
             if (style[key]) {
               styleString.push(key, ":", style[key], ";");
             }
           }
         }
-
         return styleString.join("");
       }
     },
     destruct: function destruct() {
-      this.__P_408_0 = this.__P_408_1 = this.__P_408_2 = null;
+      this.__P_424_0 = this.__P_424_1 = this.__P_424_2 = null;
     }
   });
   qx.ui.progressive.renderer.table.cell.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1664789602777
+//# sourceMappingURL=Conditional.js.map?dt=1672653513043

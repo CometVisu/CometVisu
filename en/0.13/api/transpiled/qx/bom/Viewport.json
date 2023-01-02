@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 84,
-        "column": 0
+        "column": 0,
+        "index": 3018
       },
       "end": {
-        "line": 287,
-        "column": 3
+        "line": 281,
+        "column": 3,
+        "index": 10172
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "getWidth": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 3348
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 99,
+          "column": 5,
+          "index": 3553
         }
       },
       "jsdoc": {
@@ -72,12 +76,14 @@
     "getHeight": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 3836
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 4314
         }
       },
       "jsdoc": {
@@ -113,12 +119,14 @@
     "getScrollLeft": {
       "location": {
         "start": {
-          "line": 135,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 4904
         },
         "end": {
           "line": 149,
-          "column": 5
+          "column": 5,
+          "index": 5427
         }
       },
       "jsdoc": {
@@ -154,12 +162,14 @@
     "getScrollTop": {
       "location": {
         "start": {
-          "line": 163,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 6015
         },
         "end": {
-          "line": 177,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 6533
         }
       },
       "jsdoc": {
@@ -195,12 +205,14 @@
     "__getOrientationNormalizer": {
       "location": {
         "start": {
-          "line": 187,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 6803
         },
         "end": {
           "line": 215,
-          "column": 5
+          "column": 5,
+          "index": 7726
         }
       },
       "jsdoc": {
@@ -234,12 +246,14 @@
     "__orientationNormalizer": {
       "location": {
         "start": {
-          "line": 219,
-          "column": 4
+          "line": 218,
+          "column": 4,
+          "index": 7782
         },
         "end": {
-          "line": 219,
-          "column": 34
+          "line": 218,
+          "column": 33,
+          "index": 7811
         }
       },
       "jsdoc": {},
@@ -249,12 +263,14 @@
     "getOrientation": {
       "location": {
         "start": {
-          "line": 235,
-          "column": 4
+          "line": 233,
+          "column": 4,
+          "index": 8259
         },
         "end": {
-          "line": 258,
-          "column": 5
+          "line": 255,
+          "column": 5,
+          "index": 9364
         }
       },
       "jsdoc": {
@@ -290,12 +306,14 @@
     "isLandscape": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 264,
+          "column": 4,
+          "index": 9636
         },
         "end": {
-          "line": 271,
-          "column": 5
+          "line": 267,
+          "column": 5,
+          "index": 9766
         }
       },
       "jsdoc": {
@@ -331,12 +349,14 @@
     "isPortrait": {
       "location": {
         "start": {
-          "line": 281,
-          "column": 4
+          "line": 276,
+          "column": 4,
+          "index": 10036
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 279,
+          "column": 5,
+          "index": 10164
         }
       },
       "jsdoc": {

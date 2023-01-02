@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 0
+        "line": 30,
+        "column": 0,
+        "index": 832
       },
       "end": {
-        "line": 112,
-        "column": 3
+        "line": 113,
+        "column": 3,
+        "index": 3205
       }
     },
     "jsdoc": {
@@ -29,6 +31,12 @@
           "name": "@internal",
           "body": ""
         }
+      ],
+      "@require": [
+        {
+          "name": "@require",
+          "body": "qx.bom.client.OperatingSystem"
+        }
       ]
     }
   },
@@ -37,12 +45,14 @@
     "getLocale": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1234
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1454
         }
       },
       "jsdoc": {
@@ -73,12 +83,14 @@
     "getVariant": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1648
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 1897
         }
       },
       "jsdoc": {
@@ -109,12 +121,14 @@
     "__getNavigatorLocale": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2048
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 105,
+          "column": 5,
+          "index": 2995
         }
       },
       "jsdoc": {
@@ -140,15 +154,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 107,
-        "column": 10
+        "line": 108,
+        "column": 2,
+        "index": 3004
       },
       "end": {
-        "line": 111,
-        "column": 3
+        "line": 112,
+        "column": 3,
+        "index": 3201
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

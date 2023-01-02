@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 864
       },
       "end": {
-        "line": 298,
-        "column": 3
+        "line": 304,
+        "column": 3,
+        "index": 8612
       }
     },
     "jsdoc": {
@@ -32,12 +34,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 13
+        "line": 32,
+        "column": 2,
+        "index": 1120
       },
       "end": {
-        "line": 41,
-        "column": 3
+        "line": 38,
+        "column": 3,
+        "index": 1331
       }
     },
     "jsdoc": {}
@@ -46,12 +50,14 @@
     "MIMETYPES": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1473
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 55,
+          "column": 5,
+          "index": 1723
         }
       },
       "type": "variable",
@@ -60,12 +66,14 @@
     "getMimetypeFromSuffix": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1730
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1895
         }
       },
       "type": "function",
@@ -74,12 +82,14 @@
     "isAccepted": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 1902
         },
         "end": {
-          "line": 68,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 2007
         }
       },
       "type": "function",
@@ -90,12 +100,14 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 2151
         },
         "end": {
-          "line": 77,
-          "column": 43
+          "line": 74,
+          "column": 41,
+          "index": 2188
         }
       },
       "name": "changeSelection",
@@ -103,18 +115,42 @@
     }
   },
   "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2340
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2409
+        }
+      },
+      "name": "appearance",
+      "propertyType": "new",
+      "refine": true,
+      "init": "cv-filesystem",
+      "defaultValue": "cv-filesystem",
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": {
+        "qx.ui.core.Widget": "class"
+      }
+    },
     "rootFolder": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2416
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 91,
+          "column": 5,
+          "index": 2512
         }
       },
-      "jsdoc": {},
       "name": "rootFolder",
       "propertyType": "new",
       "apply": "_applyRootFolder",
@@ -123,12 +159,14 @@
     "selectedNode": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2519
         },
         "end": {
-          "line": 100,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 2641
         }
       },
       "name": "selectedNode",
@@ -191,12 +229,14 @@
     "__selectionTimer": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 2787
         },
         "end": {
-          "line": 109,
-          "column": 26
+          "line": 106,
+          "column": 26,
+          "index": 2809
         }
       },
       "type": "variable",
@@ -205,12 +245,14 @@
     "__doubleTapWaitingTime": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 107,
+          "column": 4,
+          "index": 2815
         },
         "end": {
-          "line": 110,
-          "column": 31
+          "line": 107,
+          "column": 31,
+          "index": 2842
         }
       },
       "type": "variable",
@@ -219,12 +261,14 @@
     "__ignoreSelectionChange": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 2848
         },
         "end": {
-          "line": 111,
-          "column": 34
+          "line": 108,
+          "column": 34,
+          "index": 2878
         }
       },
       "type": "variable",
@@ -233,12 +277,14 @@
     "_replacementManager": {
       "location": {
         "start": {
-          "line": 112,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 2884
         },
         "end": {
-          "line": 112,
-          "column": 29
+          "line": 109,
+          "column": 29,
+          "index": 2909
         }
       },
       "type": "variable",
@@ -247,12 +293,14 @@
     "reload": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 2916
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 122,
+          "column": 5,
+          "index": 3300
         }
       },
       "type": "function",
@@ -261,12 +309,14 @@
     "openPath": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3307
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 132,
+          "column": 5,
+          "index": 3523
         }
       },
       "type": "function",
@@ -275,12 +325,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 137,
-          "column": 4
+          "line": 134,
+          "column": 4,
+          "index": 3530
         },
         "end": {
-          "line": 139,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 3593
         }
       },
       "type": "function",
@@ -289,12 +341,14 @@
     "_applyRootFolder": {
       "location": {
         "start": {
-          "line": 141,
-          "column": 4
+          "line": 138,
+          "column": 4,
+          "index": 3600
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 3824
         }
       },
       "type": "function",
@@ -306,12 +360,14 @@
     "_applySelectedNode": {
       "location": {
         "start": {
-          "line": 151,
-          "column": 4
+          "line": 148,
+          "column": 4,
+          "index": 3831
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 4100
         }
       },
       "type": "function",
@@ -323,12 +379,14 @@
     "setSelection": {
       "location": {
         "start": {
-          "line": 160,
-          "column": 4
+          "line": 157,
+          "column": 4,
+          "index": 4107
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4200
         }
       },
       "type": "function",
@@ -337,12 +395,14 @@
     "_onDblTapTreeSelection": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 4
+          "line": 161,
+          "column": 4,
+          "index": 4207
         },
         "end": {
-          "line": 178,
-          "column": 5
+          "line": 175,
+          "column": 5,
+          "index": 4655
         }
       },
       "type": "function",
@@ -351,12 +411,14 @@
     "_onChangeTreeSelection": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 177,
+          "column": 4,
+          "index": 4662
         },
         "end": {
-          "line": 211,
-          "column": 5
+          "line": 213,
+          "column": 5,
+          "index": 5698
         }
       },
       "type": "function",
@@ -365,12 +427,14 @@
     "_onFsItemRightClick": {
       "location": {
         "start": {
-          "line": 213,
-          "column": 4
+          "line": 215,
+          "column": 4,
+          "index": 5705
         },
         "end": {
-          "line": 229,
-          "column": 5
+          "line": 232,
+          "column": 5,
+          "index": 6265
         }
       },
       "type": "function",
@@ -379,12 +443,14 @@
     "_onEnableTree": {
       "location": {
         "start": {
-          "line": 236,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 6388
         },
         "end": {
-          "line": 238,
-          "column": 5
+          "line": 241,
+          "column": 5,
+          "index": 6474
         }
       },
       "jsdoc": {
@@ -413,12 +479,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 241,
-          "column": 4
+          "line": 244,
+          "column": 4,
+          "index": 6499
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 291,
+          "column": 5,
+          "index": 8288
         }
       },
       "jsdoc": {},
@@ -933,9 +1001,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1539,6 +1609,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1883,11 +2004,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2404,6 +2525,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2427,6 +2549,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -7744,12 +7867,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 293,
-        "column": 12
+        "line": 299,
+        "column": 2,
+        "index": 8422
       },
       "end": {
-        "line": 297,
-        "column": 3
+        "line": 303,
+        "column": 3,
+        "index": 8608
       }
     },
     "jsdoc": {}

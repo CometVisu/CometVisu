@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 830
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 106,
+        "column": 3,
+        "index": 3163
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1400
         },
         "end": {
-          "line": 71,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2669
         }
       },
       "jsdoc": {
@@ -86,12 +90,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2676
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2941
         }
       },
       "type": "function",
@@ -100,12 +106,14 @@
     "makeAddressListFn": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2948
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 99,
+          "column": 5,
+          "index": 3034
         }
       },
       "type": "function",
@@ -115,15 +123,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 91,
-        "column": 9
+        "line": 102,
+        "column": 2,
+        "index": 3043
       },
       "end": {
-        "line": 94,
-        "column": 3
+        "line": 105,
+        "column": 3,
+        "index": 3159
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 0
+        "line": 33,
+        "column": 0,
+        "index": 846
       },
       "end": {
-        "line": 68,
-        "column": 3
+        "line": 71,
+        "column": 3,
+        "index": 1969
       }
     },
     "jsdoc": {
@@ -42,6 +44,10 @@
         {
           "name": "@ignore",
           "body": "Titanium.*"
+        },
+        {
+          "name": "@ignore",
+          "body": "Packages"
         }
       ]
     }
@@ -51,12 +57,14 @@
     "getName": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1235
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1874
         }
       },
       "jsdoc": {
@@ -79,12 +87,6 @@
             "name": "@internal",
             "body": ""
           }
-        ],
-        "@ignore": [
-          {
-            "name": "@ignore",
-            "body": "environment, process, Titanium.*, Packages"
-          }
         ]
       },
       "type": "function",
@@ -94,15 +96,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 65,
-        "column": 10
+        "line": 68,
+        "column": 2,
+        "index": 1883
       },
       "end": {
-        "line": 67,
-        "column": 3
+        "line": 70,
+        "column": 3,
+        "index": 1965
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

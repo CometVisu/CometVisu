@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ListItem.js 
-   * 
+  /* ListItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.ui.manager.form.ListItem', {
     extend: qx.ui.form.ListItem,
-
     /*
     ***********************************************
       MEMBERS
@@ -47,7 +45,6 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image(this.getIcon());
@@ -56,16 +53,12 @@
               scale: true,
               maxHeight: 64
             });
-
             this._addAt(control, 0);
-
             if (this.getIcon() === null || this.getShow() === 'label') {
               control.exclude();
             }
-
             break;
         }
-
         return control || cv.ui.manager.form.ListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -73,4 +66,4 @@
   cv.ui.manager.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1664789567405
+//# sourceMappingURL=ListItem.js.map?dt=1672653476201

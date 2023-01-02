@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 596
       },
       "end": {
-        "line": 155,
-        "column": 3
+        "line": 140,
+        "column": 3,
+        "index": 3681
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 723
         },
         "end": {
-          "line": 35,
-          "column": 5
+          "line": 31,
+          "column": 5,
+          "index": 796
         }
       },
       "jsdoc": {},
@@ -72,12 +76,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 904
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 948
         }
       },
       "jsdoc": {
@@ -100,12 +106,14 @@
     "_addWidgets": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 973
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1091
         }
       },
       "jsdoc": {},
@@ -119,12 +127,14 @@
     "_shouldShowOpenSymbol": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1116
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1289
         }
       },
       "jsdoc": {},
@@ -138,12 +148,14 @@
     "getLevel": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1314
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 1377
         }
       },
       "jsdoc": {},
@@ -157,12 +169,14 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1402
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 1664
         }
       },
       "jsdoc": {},
@@ -176,12 +190,14 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 1691
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 112,
+          "column": 5,
+          "index": 3032
         }
       },
       "jsdoc": {},
@@ -195,12 +211,14 @@
     "_onChangeLength": {
       "location": {
         "start": {
-          "line": 130,
-          "column": 4
+          "line": 117,
+          "column": 4,
+          "index": 3123
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3176
         }
       },
       "jsdoc": {
@@ -217,12 +235,14 @@
     "_onChangeChildProperty": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3341
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 138,
+          "column": 5,
+          "index": 3673
         }
       },
       "jsdoc": {
@@ -404,6 +424,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -428,6 +449,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

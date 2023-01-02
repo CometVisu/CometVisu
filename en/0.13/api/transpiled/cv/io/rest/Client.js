@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.TemplateEngine": {},
+      "qx.core.Init": {},
       "qx.util.Uri": {},
       "qx.io.rest.Resource": {},
       "cv.Config": {},
@@ -19,11 +19,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Client.js 
-   * 
+  /* Client.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,7 +43,6 @@
    */
   qx.Class.define('cv.io.rest.Client', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -52,29 +50,24 @@
     */
     statics: {
       BASE_URL: null,
-      __P_519_0: null,
-      __P_519_1: null,
-      __P_519_2: null,
-      __P_519_3: {},
+      __P_534_0: null,
+      __P_534_1: null,
+      __P_534_2: null,
+      __P_534_3: {},
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
           var path = '';
-          var engine = cv.TemplateEngine.getInstance();
-          var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
-
-          if (clientBackend.resources && clientBackend.resources.rest) {
-            path = clientBackend.resources.rest;
+          if (qx.core.Init.getApplication().isServedByOpenhab()) {
+            path = '/rest/cv';
           } else {
             path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
           }
-
           this.BASE_URL = path;
         }
-
         return this.BASE_URL;
       },
       getConfigClient: function getConfigClient() {
-        if (!this.__P_519_0) {
+        if (!this.__P_534_0) {
           var config = {
             get: {
               method: 'GET',
@@ -88,7 +81,7 @@
               method: 'POST',
               url: '/config/hidden/{section}/{key}'
             },
-            'delete': {
+            "delete": {
               method: 'DELETE',
               url: '/config/hidden/{section}/{key}'
             },
@@ -97,29 +90,23 @@
               url: '/config/hidden'
             }
           };
-          this.__P_519_0 = new qx.io.rest.Resource(config);
-
-          this.__P_519_0.setBaseUrl(this.getBaseUrl());
-
-          this.__P_519_0.configureRequest(function (req, action) {
+          this.__P_534_0 = new qx.io.rest.Resource(config);
+          this.__P_534_0.setBaseUrl(this.getBaseUrl());
+          this.__P_534_0.configureRequest(function (req, action) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
-
             if (action === 'save') {
               req.setRequestHeader('Content-Type', 'application/json');
             }
-
             req.setAccept('application/json');
           });
-
-          this._enableSync(this.__P_519_0, config);
+          this._enableSync(this.__P_534_0, config);
         }
-
-        return this.__P_519_0;
+        return this.__P_534_0;
       },
       getFsClient: function getFsClient() {
-        if (!this.__P_519_1) {
+        if (!this.__P_534_1) {
           var config = {
             read: {
               method: 'GET',
@@ -133,7 +120,7 @@
               method: 'POST',
               url: '/fs?path={path}&type={type}'
             },
-            'delete': {
+            "delete": {
               method: 'DELETE',
               url: '/fs?path={path}&force={force}'
             },
@@ -146,26 +133,20 @@
               url: '/fs/check'
             }
           };
-          this.__P_519_1 = new qx.io.rest.Resource(config);
-
-          this.__P_519_1.setBaseUrl(this.getBaseUrl());
-
-          this.__P_519_1.configureRequest(function (req, action, params) {
+          this.__P_534_1 = new qx.io.rest.Resource(config);
+          this.__P_534_1.setBaseUrl(this.getBaseUrl());
+          this.__P_534_1.configureRequest(function (req, action, params) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
-
             if (params.hash) {
               req.setUrl(req.getUrl() + '&hash=' + params.hash);
             }
-
             if (params.recursive === true && action === 'read') {
               req.setUrl(req.getUrl() + '&recursive=true');
             }
-
             if (action === 'update' || action === 'create') {
               var parts = params.path.split('.');
-
               if (parts.length > 1) {
                 var type = parts.pop();
                 var mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
@@ -173,27 +154,21 @@
               } else {
                 req.setRequestHeader('Content-Type', 'text/plain');
               }
-
               req.setAccept('application/json');
             }
           });
+          this._enableSync(this.__P_534_1, config);
 
-          this._enableSync(this.__P_519_1, config); // general listeners
-
-
-          this.__P_519_1.addListener('updateSuccess', this._onSaveSuccess, this);
-
-          this.__P_519_1.addListener('createSuccess', this._onSaveSuccess, this);
-
-          this.__P_519_1.addListener('updateError', this._onSaveError, this);
-
-          this.__P_519_1.addListener('createError', this._onSaveError, this);
+          // general listeners
+          this.__P_534_1.addListener('updateSuccess', this._onSaveSuccess, this);
+          this.__P_534_1.addListener('createSuccess', this._onSaveSuccess, this);
+          this.__P_534_1.addListener('updateError', this._onSaveError, this);
+          this.__P_534_1.addListener('createError', this._onSaveError, this);
         }
-
-        return this.__P_519_1;
+        return this.__P_534_1;
       },
       getDataProviderClient: function getDataProviderClient() {
-        if (!this.__P_519_2) {
+        if (!this.__P_534_2) {
           var config = {
             designs: {
               method: 'GET',
@@ -220,58 +195,50 @@
               url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
             }
           };
-          this.__P_519_2 = new qx.io.rest.Resource(config);
-
-          this.__P_519_2.setBaseUrl(this.getBaseUrl());
-
+          this.__P_534_2 = new qx.io.rest.Resource(config);
+          this.__P_534_2.setBaseUrl(this.getBaseUrl());
           if (cv.Config.transactionId) {
-            this.__P_519_2.configureRequest(function (req, action, params) {
+            this.__P_534_2.configureRequest(function (req, action, params) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             });
           }
-
-          this._enableSync(this.__P_519_2, config);
+          this._enableSync(this.__P_534_2, config);
         }
-
-        return this.__P_519_2;
+        return this.__P_534_2;
       },
       _enableSync: function _enableSync(client, config) {
+        var _this = this;
         // install the callback calls
         Object.keys(config).forEach(function (callName) {
           client[callName + 'Sync'] = function () {
             var args = qx.lang.Array.fromArguments(arguments);
             var callback;
             var context = args.pop();
-
             if (qx.lang.Type.isFunction(context)) {
               callback = context;
               context = this;
             } else {
               callback = args.pop();
             }
-
-            this.__P_519_3[client[callName].apply(client, args)] = callback.bind(context);
+            this.__P_534_3[client[callName].apply(client, args)] = callback.bind(context);
           }.bind(this);
-        }, this); // add the general listeners
+        }, this);
 
+        // add the general listeners
         client.addListener('success', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
-
-          if (Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
-            this.__P_519_3[id](null, ev.getData());
-
-            delete this.__P_519_3[id];
+          if (Object.prototype.hasOwnProperty.call(_this.__P_534_3, id)) {
+            _this.__P_534_3[id](null, ev.getData());
+            delete _this.__P_534_3[id];
           }
-        }, this);
+        });
         client.addListener('error', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
-
-          if (Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
+          if (Object.prototype.hasOwnProperty.call(_this.__P_534_3, id)) {
             var data = ev.getData();
             var error;
-
             if (data && data.message) {
               error = data.message;
             } else {
@@ -280,33 +247,29 @@
                 statusText: ev.getRequest().getStatusText()
               };
             }
-
-            qx.log.Logger.error(this, error);
-
-            this.__P_519_3[id](error, null);
-
-            delete this.__P_519_3[id];
+            qx.log.Logger.error(_this, error);
+            _this.__P_534_3[id](error, null);
+            delete _this.__P_534_3[id];
           }
-
           if (req.getPhase() === 'load') {
             // error during load phase => backend not reachable
             qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
           }
-        }, this);
+        });
       },
       _onSaveSuccess: function _onSaveSuccess(ev) {
         var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
-
-        if (!Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
+        var id = parseInt(req.toHashCode(), 10);
+        // only handle this events, when there is no callback for it
+        if (!Object.prototype.hasOwnProperty.call(this.__P_534_3, id)) {
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
         }
       },
       _onSaveError: function _onSaveError(ev) {
         var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
-
-        if (!Object.prototype.hasOwnProperty.call(this.__P_519_3, id)) {
+        var id = parseInt(req.toHashCode(), 10);
+        // only handle this events, when there is no callback for it
+        if (!Object.prototype.hasOwnProperty.call(this.__P_534_3, id)) {
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
         }
       }
@@ -315,4 +278,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1664789612328
+//# sourceMappingURL=Client.js.map?dt=1672653522457

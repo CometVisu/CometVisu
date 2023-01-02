@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 716
       },
       "end": {
-        "line": 73,
-        "column": 3
+        "line": 76,
+        "column": 3,
+        "index": 2340
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "_onDbltapPane": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1203
         },
         "end": {
-          "line": 71,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2332
         }
       },
       "jsdoc": {
@@ -189,6 +193,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -213,6 +218,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

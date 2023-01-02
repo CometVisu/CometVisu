@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Link.js 
-   * 
+  /* Link.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -45,7 +44,6 @@
    */
   qx.Class.define('cv.plugins.Link', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       PROPERTIES
@@ -69,7 +67,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -91,18 +88,18 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'class': {
+          "class": {
             target: 'cssClass',
-            'default': ''
+            "default": ''
           },
-          'text': {
-            'default': ''
+          text: {
+            "default": ''
           },
-          'href': {
-            'default': ''
+          href: {
+            "default": ''
           },
-          'newWindow': {
-            'default': false,
+          newWindow: {
+            "default": false,
             transform: function transform(value) {
               return value === 'true';
             }
@@ -110,7 +107,6 @@
         };
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -119,18 +115,14 @@
     members: {
       _getInnerDomString: function _getInnerDomString() {
         var classes = 'link';
-
         if (this.getCssClass()) {
           classes += ' ' + this.getCssClass();
         }
-
         var href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
         var attributes = '';
-
         if (this.isNewWindow()) {
           attributes += ' target="_blank"';
         }
-
         return '<a class="' + classes + '"' + href + attributes + '>' + this.getText() + '</a>';
       }
     },
@@ -142,4 +134,4 @@
   cv.plugins.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1664789562991
+//# sourceMappingURL=Link.js.map?dt=1672653471600

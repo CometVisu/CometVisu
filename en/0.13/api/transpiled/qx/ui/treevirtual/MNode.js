@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -10,7 +9,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +55,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           throw new Error("Expected node object or node id");
         }
       },
-
       /**
        * Toggle the opened state of the node: if the node is opened, close
        * it; if it is closed, open it.
@@ -71,7 +68,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       nodeToggleOpened: function nodeToggleOpened(nodeReference) {
         var node;
         var nodeId;
-
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
           nodeId = node.nodeId;
@@ -81,12 +77,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } else {
           throw new Error("Expected node object or node id");
         }
-
         this.getTableModel().setState(nodeId, {
           bOpened: !node.bOpened
         });
       },
-
       /**
        * Set state attributes of a tree node.
        *
@@ -103,7 +97,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       nodeSetState: function nodeSetState(nodeReference, attributes) {
         var nodeId;
-
         if (_typeof(nodeReference) == "object") {
           nodeId = nodeReference.nodeId;
         } else if (typeof nodeReference == "number") {
@@ -111,10 +104,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         } else {
           throw new Error("Expected node object or node id");
         }
-
         this.getTableModel().setState(nodeId, attributes);
       },
-
       /**
        * Set the label for a node.
        *
@@ -132,7 +123,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           label: label
         });
       },
-
       /**
        * Get the label for a node.
        *
@@ -148,7 +138,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.label;
       },
-
       /**
        * Set the selected state for a node.
        *
@@ -166,7 +155,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           bSelected: b
         });
       },
-
       /**
        * Get the selected state for a node.
        *
@@ -182,7 +170,79 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.bSelected;
       },
+      /**
+       * Opens all nodes in the tree with minimal redraw
+       */
+      nodeOpenAll: function nodeOpenAll() {
+        var model = this.getTableModel();
+        model.getData().forEach(function (node) {
+          if (node) {
+            model.setState(node.nodeId, {
+              bOpened: true
+            }, true);
+          }
+        });
+        model.setData();
+      },
+      /**
+       * Closes all nodes in the tree with minimal redraw
+       */
+      nodeCloseAll: function nodeCloseAll() {
+        var model = this.getTableModel();
+        model.getData().forEach(function (node) {
+          if (node) {
+            model.setState(node.nodeId, {
+              bOpened: false
+            }, true);
+          }
+        });
+        model.setData();
+      },
+      /**
+       * Internal call to set the opened state for a node. (Note that this method has no effect
+       * if the requested state is the same as the current state.)
+       *
+       * @param nodeReference {Object | Integer}
+       *   The node for which the opened state is being set.  The node can be
+       *   represented either by the node object, or the node id (as would have
+       *   been returned by addBranch(), addLeaf(), etc.)
+       *
+       * @param opened {Boolean}
+       *   The new opened state for the specified node.
+       *
+       * @param cascade {Boolean}
+       *   Whether to descend the tree changing opened state of all children
+       *
+       * @param isRecursed {Boolean?}
+       *   For internal use when cascading to determine outer level and call setData
+       */
+      _nodeSetOpenedInternal: function _nodeSetOpenedInternal(nodeReference, opened, cascade, isRecursed) {
+        var _this = this;
+        var node;
+        if (_typeof(nodeReference) == "object") {
+          node = nodeReference;
+        } else if (typeof nodeReference == "number") {
+          node = this.getTableModel().getData()[nodeReference];
+        } else {
+          throw new Error("Expected node object or node id");
+        }
 
+        // Only set new state if not already in the requested state, since
+        // setting new state involves dispatching events.
+        if (opened != node.bOpened) {
+          this.getTableModel().setState(node.nodeId, {
+            bOpened: opened
+          }, true);
+        }
+        if (cascade) {
+          node.children.forEach(function (child) {
+            return _this._nodeSetOpenedInternal(child, opened, cascade, true);
+          });
+        }
+        if (!cascade || !isRecursed) {
+          this.getTableModel().setData();
+        }
+      },
       /**
        * Set the opened state for a node.  (Note that this method has no effect
        * if the requested state is the same as the current state.)
@@ -192,28 +252,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   represented either by the node object, or the node id (as would have
        *   been returned by addBranch(), addLeaf(), etc.)
        *
-       * @param b {Boolean}
+       * @param opened {Boolean}
        *   The new opened state for the specified node.
        *
+       * @param cascade {Boolean}
+       *   Whether to descend the tree changing opened state of all children
        */
-      nodeSetOpened: function nodeSetOpened(nodeReference, b) {
-        var node;
-
-        if (_typeof(nodeReference) == "object") {
-          node = nodeReference;
-        } else if (typeof nodeReference == "number") {
-          node = this.getTableModel().getData()[nodeReference];
-        } else {
-          throw new Error("Expected node object or node id");
-        } // Only set new state if not already in the requested state, since
-        // setting new state involves dispatching events.
-
-
-        if (b != node.bOpened) {
-          this.nodeToggleOpened(node);
-        }
+      nodeSetOpened: function nodeSetOpened(nodeReference, opened, cascade) {
+        this._nodeSetOpenedInternal(nodeReference, opened, cascade, false);
       },
-
       /**
        * Get the opened state for a node.
        *
@@ -229,7 +276,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.bOpened;
       },
-
       /**
        * Set the hideOpenClose state for a node.
        *
@@ -247,7 +293,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           bHideOpenClose: b
         });
       },
-
       /**
        * Get the hideOpenClose state for a node.
        *
@@ -263,7 +308,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.bHideOpenClose;
       },
-
       /**
        * Set the icon for a node when in its unselected (normal) state.
        *
@@ -281,7 +325,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           icon: path
         });
       },
-
       /**
        * Get the icon for a node when in its unselected (normal) state.
        *
@@ -298,7 +341,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.icon;
       },
-
       /**
        * Set the icon for a node when in its selected state.
        * <p>
@@ -327,7 +369,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           iconSelected: path
         });
       },
-
       /**
        * Get the icon for a node when in its selected state.
        *
@@ -344,7 +385,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.iconSelected;
       },
-
       /**
        * Set the cell style for a node
        *
@@ -354,7 +394,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        *   been returned by addBranch(), addLeaf(), etc.)
        *
        * @param style {String}
-        *   The CSS style to be applied for the tree column cell for this node,
+       *   The CSS style to be applied for the tree column cell for this node,
        *   if a style has been previously provided (i.e. not using the default
        *   style).
        *
@@ -364,7 +404,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           cellStyle: style
         });
       },
-
       /**
        * Get the cell style for a node
        *
@@ -380,7 +419,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var node = this.nodeGet(nodeReference);
         return node.cellStyle;
       },
-
       /**
        * Set the label style for a node
        *
@@ -398,7 +436,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           labelStyle: style
         });
       },
-
       /**
        * Get the label style for a node
        *
@@ -420,4 +457,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.ui.treevirtual.MNode.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MNode.js.map?dt=1664789606560
+//# sourceMappingURL=MNode.js.map?dt=1672653516729

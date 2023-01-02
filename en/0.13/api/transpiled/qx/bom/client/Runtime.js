@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,7 +17,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,7 +46,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    * @ignore(environment)
    * @ignore(process)
    * @ignore(Titanium.*)
+   * @ignore(Packages)
    */
+  /* global Packages, enviroment, process, Titanium */
   qx.Bootstrap.define("qx.bom.client.Runtime", {
     statics: {
       /**
@@ -57,13 +57,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        * to the browser name defined by {@link qx.bom.client.Browser#getName}.
        * @return {String} The name of the current runtime.
        * @internal
-       * @ignore(environment, process, Titanium.*, Packages)
        */
       getName: function getName() {
-        var name = ""; // check for the Rhino runtime
+        var name = "";
 
+        // check for the Rhino runtime
         if ((typeof Packages === "undefined" ? "undefined" : _typeof(Packages)) === "object" && Object.prototype.toString.call(Packages) === "[object JavaPackage]") {
-          name = "rhino"; // check for the Node.js runtime
+          name = "rhino";
+          // check for the Node.js runtime
         } else if (typeof process !== "undefined") {
           name = "node.js";
         } else if (typeof Titanium !== "undefined" && typeof Titanium.userAgent !== "undefined") {
@@ -72,7 +73,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           // otherwise, we think its a browser
           name = qx.bom.client.Browser.getName();
         }
-
         return name;
       }
     },
@@ -83,4 +83,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.client.Runtime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Runtime.js.map?dt=1664789577977
+//# sourceMappingURL=Runtime.js.map?dt=1672653486208

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 557
       },
       "end": {
-        "line": 224,
-        "column": 3
+        "line": 218,
+        "column": 3,
+        "index": 6679
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "EXTENDED": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 831
         },
         "end": {
-          "line": 181,
-          "column": 5
+          "line": 178,
+          "column": 5,
+          "index": 5717
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "isExtendedColor": {
       "location": {
         "start": {
-          "line": 190,
-          "column": 4
+          "line": 186,
+          "column": 4,
+          "index": 5932
         },
         "end": {
-          "line": 192,
-          "column": 5
+          "line": 188,
+          "column": 5,
+          "index": 6011
         }
       },
       "jsdoc": {
@@ -92,12 +98,14 @@
     "toRgb": {
       "location": {
         "start": {
-          "line": 201,
-          "column": 4
+          "line": 196,
+          "column": 4,
+          "index": 6188
         },
         "end": {
-          "line": 210,
-          "column": 5
+          "line": 206,
+          "column": 5,
+          "index": 6397
         }
       },
       "jsdoc": {
@@ -131,12 +139,14 @@
     "toRgbString": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 214,
+          "column": 4,
+          "index": 6579
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 216,
+          "column": 5,
+          "index": 6671
         }
       },
       "jsdoc": {

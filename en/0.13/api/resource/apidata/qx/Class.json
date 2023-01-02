@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 77,
-        "column": 0
+        "column": 0,
+        "index": 2643
       },
       "end": {
-        "line": 1741,
-        "column": 3
+        "line": 1867,
+        "column": 3,
+        "index": 57475
       }
     },
     "jsdoc": {
@@ -69,12 +71,14 @@
     "__Property": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2809
         },
         "end": {
           "line": 85,
-          "column": 85
+          "column": 12,
+          "index": 2901
         }
       },
       "jsdoc": {
@@ -92,11 +96,13 @@
       "location": {
         "start": {
           "line": 161,
-          "column": 4
+          "column": 4,
+          "index": 6369
         },
         "end": {
-          "line": 281,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 6554
         }
       },
       "jsdoc": {
@@ -138,15 +144,63 @@
       "type": "function",
       "access": "public"
     },
+    "__defineImpl": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 6834
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 10455
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation behind <code>define</code> - this exists just for the simplicity of wrapping an exception\n handler around the code</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} name @see <code>define()</code>",
+            "paramName": "name",
+            "description": "@see <code>define()</code>",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "{*} config @see <code>define()</code>",
+            "paramName": "config",
+            "description": "@see <code>define()</code>",
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "@see <code>define()</code>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
     "undefine": {
       "location": {
         "start": {
-          "line": 289,
-          "column": 4
+          "line": 313,
+          "column": 4,
+          "index": 10594
         },
         "end": {
-          "line": 311,
-          "column": 5
+          "line": 338,
+          "column": 5,
+          "index": 11569
         }
       },
       "jsdoc": {
@@ -172,12 +226,14 @@
     "isDefined": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 347,
+          "column": 4,
+          "index": 11764
         },
         "end": {
-          "line": 321,
-          "column": 45
+          "line": 347,
+          "column": 44,
+          "index": 11804
         }
       },
       "jsdoc": {
@@ -217,12 +273,14 @@
     "getTotalNumber": {
       "location": {
         "start": {
-          "line": 329,
-          "column": 4
+          "line": 354,
+          "column": 4,
+          "index": 11931
         },
         "end": {
-          "line": 331,
-          "column": 5
+          "line": 356,
+          "column": 5,
+          "index": 12015
         }
       },
       "jsdoc": {
@@ -247,12 +305,14 @@
     "getByName": {
       "location": {
         "start": {
-          "line": 341,
-          "column": 4
+          "line": 365,
+          "column": 4,
+          "index": 12193
         },
         "end": {
-          "line": 341,
-          "column": 38
+          "line": 365,
+          "column": 37,
+          "index": 12226
         }
       },
       "jsdoc": {
@@ -292,12 +352,14 @@
     "include": {
       "location": {
         "start": {
-          "line": 352,
-          "column": 4
+          "line": 375,
+          "column": 4,
+          "index": 12636
         },
         "end": {
-          "line": 364,
-          "column": 5
+          "line": 389,
+          "column": 5,
+          "index": 13008
         }
       },
       "jsdoc": {
@@ -330,12 +392,14 @@
     "patch": {
       "location": {
         "start": {
-          "line": 381,
-          "column": 4
+          "line": 405,
+          "column": 4,
+          "index": 13694
         },
         "end": {
-          "line": 394,
-          "column": 5
+          "line": 420,
+          "column": 5,
+          "index": 14106
         }
       },
       "jsdoc": {
@@ -376,12 +440,14 @@
     "isClass": {
       "location": {
         "start": {
-          "line": 403,
-          "column": 4
+          "line": 428,
+          "column": 4,
+          "index": 14343
         },
         "end": {
-          "line": 405,
-          "column": 5
+          "line": 430,
+          "column": 5,
+          "index": 14434
         }
       },
       "jsdoc": {
@@ -416,12 +482,14 @@
     "isSubClassOf": {
       "location": {
         "start": {
-          "line": 416,
-          "column": 4
+          "line": 440,
+          "column": 4,
+          "index": 14748
         },
         "end": {
-          "line": 431,
-          "column": 5
+          "line": 454,
+          "column": 5,
+          "index": 15002
         }
       },
       "jsdoc": {
@@ -462,12 +530,14 @@
     "getPropertyDefinition": {
       "location": {
         "start": {
-          "line": 443,
-          "column": 4
+          "line": 465,
+          "column": 4,
+          "index": 15349
         },
         "end": {
-          "line": 443,
-          "column": 64
+          "line": 465,
+          "column": 63,
+          "index": 15408
         }
       },
       "jsdoc": {
@@ -514,12 +584,14 @@
     "getProperties": {
       "location": {
         "start": {
-          "line": 452,
-          "column": 4
+          "line": 473,
+          "column": 4,
+          "index": 15603
         },
         "end": {
-          "line": 466,
-          "column": 5
+          "line": 485,
+          "column": 5,
+          "index": 15848
         }
       },
       "jsdoc": {
@@ -553,12 +625,14 @@
     "getByProperty": {
       "location": {
         "start": {
-          "line": 478,
-          "column": 4
+          "line": 496,
+          "column": 4,
+          "index": 16255
         },
         "end": {
-          "line": 490,
-          "column": 5
+          "line": 506,
+          "column": 5,
+          "index": 16470
         }
       },
       "jsdoc": {
@@ -599,12 +673,14 @@
     "hasProperty": {
       "location": {
         "start": {
-          "line": 501,
-          "column": 4
+          "line": 516,
+          "column": 4,
+          "index": 16763
         },
         "end": {
-          "line": 501,
-          "column": 44
+          "line": 516,
+          "column": 43,
+          "index": 16802
         }
       },
       "jsdoc": {
@@ -651,12 +727,14 @@
     "getEventType": {
       "location": {
         "start": {
-          "line": 513,
-          "column": 4
+          "line": 527,
+          "column": 4,
+          "index": 17120
         },
         "end": {
-          "line": 513,
-          "column": 46
+          "line": 527,
+          "column": 45,
+          "index": 17161
         }
       },
       "jsdoc": {
@@ -703,12 +781,14 @@
     "supportsEvent": {
       "location": {
         "start": {
-          "line": 524,
-          "column": 4
+          "line": 537,
+          "column": 4,
+          "index": 17455
         },
         "end": {
-          "line": 524,
-          "column": 48
+          "line": 537,
+          "column": 47,
+          "index": 17498
         }
       },
       "jsdoc": {
@@ -755,12 +835,14 @@
     "hasOwnMixin": {
       "location": {
         "start": {
-          "line": 534,
-          "column": 4
+          "line": 546,
+          "column": 4,
+          "index": 17744
         },
         "end": {
-          "line": 536,
-          "column": 5
+          "line": 548,
+          "column": 5,
+          "index": 17850
         }
       },
       "jsdoc": {
@@ -801,12 +883,14 @@
     "getByMixin": {
       "location": {
         "start": {
-          "line": 548,
-          "column": 4
+          "line": 559,
+          "column": 4,
+          "index": 18233
         },
         "end": {
-          "line": 570,
-          "column": 5
+          "line": 577,
+          "column": 5,
+          "index": 18599
         }
       },
       "jsdoc": {
@@ -847,12 +931,14 @@
     "getMixins": {
       "location": {
         "start": {
-          "line": 580,
-          "column": 4
+          "line": 586,
+          "column": 4,
+          "index": 18844
         },
         "end": {
-          "line": 580,
-          "column": 40
+          "line": 586,
+          "column": 39,
+          "index": 18879
         }
       },
       "jsdoc": {
@@ -892,12 +978,14 @@
     "hasMixin": {
       "location": {
         "start": {
-          "line": 590,
-          "column": 4
+          "line": 595,
+          "column": 4,
+          "index": 19146
         },
         "end": {
-          "line": 592,
-          "column": 5
+          "line": 597,
+          "column": 5,
+          "index": 19222
         }
       },
       "jsdoc": {
@@ -938,12 +1026,14 @@
     "hasOwnInterface": {
       "location": {
         "start": {
-          "line": 606,
-          "column": 4
+          "line": 610,
+          "column": 4,
+          "index": 19672
         },
         "end": {
-          "line": 608,
-          "column": 5
+          "line": 612,
+          "column": 5,
+          "index": 19786
         }
       },
       "jsdoc": {
@@ -984,12 +1074,14 @@
     "getByInterface": {
       "location": {
         "start": {
-          "line": 621,
-          "column": 4
+          "line": 624,
+          "column": 4,
+          "index": 20236
         },
         "end": {
-          "line": 621,
-          "column": 50
+          "line": 624,
+          "column": 49,
+          "index": 20281
         }
       },
       "jsdoc": {
@@ -1036,12 +1128,14 @@
     "getInterfaces": {
       "location": {
         "start": {
-          "line": 630,
-          "column": 4
+          "line": 632,
+          "column": 4,
+          "index": 20514
         },
         "end": {
           "line": 644,
-          "column": 5
+          "column": 5,
+          "index": 20750
         }
       },
       "jsdoc": {
@@ -1075,12 +1169,14 @@
     "hasInterface": {
       "location": {
         "start": {
-          "line": 660,
-          "column": 4
+          "line": 659,
+          "column": 4,
+          "index": 21291
         },
         "end": {
-          "line": 660,
-          "column": 46
+          "line": 659,
+          "column": 45,
+          "index": 21332
         }
       },
       "jsdoc": {
@@ -1127,12 +1223,14 @@
     "implementsInterface": {
       "location": {
         "start": {
-          "line": 674,
-          "column": 4
+          "line": 672,
+          "column": 4,
+          "index": 21779
         },
         "end": {
-          "line": 691,
-          "column": 5
+          "line": 688,
+          "column": 5,
+          "index": 22120
         }
       },
       "jsdoc": {
@@ -1173,12 +1271,14 @@
     "getInstance": {
       "location": {
         "start": {
-          "line": 700,
-          "column": 4
+          "line": 696,
+          "column": 4,
+          "index": 22256
         },
         "end": {
-          "line": 717,
-          "column": 5
+          "line": 713,
+          "column": 5,
+          "index": 22851
         }
       },
       "jsdoc": {
@@ -1209,12 +1309,14 @@
     "getSubclasses": {
       "location": {
         "start": {
-          "line": 727,
-          "column": 4
+          "line": 722,
+          "column": 4,
+          "index": 23118
         },
         "end": {
-          "line": 743,
-          "column": 5
+          "line": 737,
+          "column": 5,
+          "index": 23469
         }
       },
       "jsdoc": {
@@ -1248,12 +1350,14 @@
     "genericToString": {
       "location": {
         "start": {
-          "line": 760,
-          "column": 4
+          "line": 752,
+          "column": 4,
+          "index": 23863
         },
         "end": {
-          "line": 762,
-          "column": 5
+          "line": 754,
+          "column": 5,
+          "index": 23935
         }
       },
       "jsdoc": {
@@ -1284,12 +1388,14 @@
     "$$registry": {
       "location": {
         "start": {
-          "line": 766,
-          "column": 4
+          "line": 757,
+          "column": 4,
+          "index": 23980
         },
         "end": {
-          "line": 766,
-          "column": 40
+          "line": 757,
+          "column": 39,
+          "index": 24015
         }
       },
       "jsdoc": {
@@ -1306,12 +1412,14 @@
     "__allowedKeys": {
       "location": {
         "start": {
-          "line": 770,
-          "column": 4
+          "line": 760,
+          "column": 4,
+          "index": 24089
         },
         "end": {
-          "line": 792,
-          "column": 6
+          "line": 780,
+          "column": 6,
+          "index": 24736
         }
       },
       "jsdoc": {
@@ -1334,12 +1442,14 @@
     "__staticAllowedKeys": {
       "location": {
         "start": {
-          "line": 796,
-          "column": 4
+          "line": 783,
+          "column": 4,
+          "index": 24806
         },
         "end": {
-          "line": 808,
-          "column": 6
+          "line": 793,
+          "column": 6,
+          "index": 25085
         }
       },
       "jsdoc": {
@@ -1362,12 +1472,14 @@
     "__validateConfig": {
       "location": {
         "start": {
-          "line": 818,
-          "column": 4
+          "line": 802,
+          "column": 4,
+          "index": 25332
         },
         "end": {
-          "line": 945,
-          "column": 6
+          "line": 1018,
+          "column": 6,
+          "index": 31607
         }
       },
       "jsdoc": {
@@ -1400,18 +1512,20 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     },
     "__validateAbstractInterfaces": {
       "location": {
         "start": {
-          "line": 954,
-          "column": 4
+          "line": 1026,
+          "column": 4,
+          "index": 31787
         },
         "end": {
-          "line": 977,
-          "column": 6
+          "line": 1045,
+          "column": 6,
+          "index": 32360
         }
       },
       "jsdoc": {
@@ -1437,18 +1551,20 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     },
     "__attachAnno": {
       "location": {
         "start": {
-          "line": 988,
-          "column": 4
+          "line": 1055,
+          "column": 4,
+          "index": 32622
         },
         "end": {
-          "line": 1008,
-          "column": 5
+          "line": 1074,
+          "column": 5,
+          "index": 33172
         }
       },
       "jsdoc": {
@@ -1495,12 +1611,14 @@
     "__createClass": {
       "location": {
         "start": {
-          "line": 1023,
-          "column": 4
+          "line": 1088,
+          "column": 4,
+          "index": 33736
         },
         "end": {
-          "line": 1150,
-          "column": 5
+          "line": 1217,
+          "column": 5,
+          "index": 37462
         }
       },
       "jsdoc": {
@@ -1576,12 +1694,14 @@
     "__addEvents": {
       "location": {
         "start": {
-          "line": 1170,
-          "column": 4
+          "line": 1232,
+          "column": 4,
+          "index": 37919
         },
         "end": {
-          "line": 1207,
-          "column": 5
+          "line": 1282,
+          "column": 5,
+          "index": 39394
         }
       },
       "jsdoc": {
@@ -1623,12 +1743,14 @@
     "__addProperties": {
       "location": {
         "start": {
-          "line": 1218,
-          "column": 4
+          "line": 1292,
+          "column": 4,
+          "index": 39755
         },
         "end": {
-          "line": 1297,
-          "column": 5
+          "line": 1367,
+          "column": 5,
+          "index": 42008
         }
       },
       "jsdoc": {
@@ -1670,12 +1792,14 @@
     "__validateProperty": {
       "location": {
         "start": {
-          "line": 1308,
-          "column": 4
+          "line": 1378,
+          "column": 4,
+          "index": 42335
         },
         "end": {
-          "line": 1387,
-          "column": 6
+          "line": 1528,
+          "column": 6,
+          "index": 46686
         }
       },
       "jsdoc": {
@@ -1730,12 +1854,14 @@
     "__addMembers": {
       "location": {
         "start": {
-          "line": 1401,
-          "column": 4
+          "line": 1541,
+          "column": 4,
+          "index": 47175
         },
         "end": {
-          "line": 1479,
-          "column": 5
+          "line": 1650,
+          "column": 5,
+          "index": 50828
         }
       },
       "jsdoc": {
@@ -1792,61 +1918,17 @@
       "type": "function",
       "access": "private"
     },
-    "__mixinMemberWrapper": {
-      "location": {
-        "start": {
-          "line": 1490,
-          "column": 4
-        },
-        "end": {
-          "line": 1512,
-          "column": 5
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Wraps a member function of a mixin, which is included using \"patch\". This\n allows \"base\" calls in the mixin member function.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "member {Function} The mixin method to wrap",
-            "paramName": "member",
-            "description": " The mixin method to wrap",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "base {Function} The overwritten method",
-            "paramName": "base",
-            "description": " The overwritten method",
-            "type": "Function"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Function} the wrapped mixin member",
-            "type": "Function",
-            "description": " the wrapped mixin member"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "private"
-    },
     "__addInterface": {
       "location": {
         "start": {
-          "line": 1521,
-          "column": 4
+          "line": 1658,
+          "column": 4,
+          "index": 51006
         },
         "end": {
-          "line": 1554,
-          "column": 5
+          "line": 1692,
+          "column": 5,
+          "index": 52162
         }
       },
       "jsdoc": {
@@ -1879,12 +1961,14 @@
     "__addMixin": {
       "location": {
         "start": {
-          "line": 1564,
-          "column": 4
+          "line": 1701,
+          "column": 4,
+          "index": 52492
         },
         "end": {
-          "line": 1612,
-          "column": 5
+          "line": 1743,
+          "column": 5,
+          "index": 53719
         }
       },
       "jsdoc": {
@@ -1924,12 +2008,14 @@
     "__createDefaultConstructor": {
       "location": {
         "start": {
-          "line": 1630,
-          "column": 4
+          "line": 1757,
+          "column": 4,
+          "index": 54117
         },
         "end": {
-          "line": 1637,
-          "column": 5
+          "line": 1763,
+          "column": 5,
+          "index": 54289
         }
       },
       "jsdoc": {
@@ -1954,12 +2040,14 @@
     "__wrapConstructor": {
       "location": {
         "start": {
-          "line": 1649,
-          "column": 4
+          "line": 1774,
+          "column": 4,
+          "index": 54693
         },
         "end": {
-          "line": 1719,
-          "column": 5
+          "line": 1845,
+          "column": 5,
+          "index": 56923
         }
       },
       "jsdoc": {
@@ -2008,15 +2096,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 1722,
-        "column": 10
+        "line": 1848,
+        "column": 2,
+        "index": 56932
       },
       "end": {
-        "line": 1740,
-        "column": 3
+        "line": 1866,
+        "column": 3,
+        "index": 57471
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

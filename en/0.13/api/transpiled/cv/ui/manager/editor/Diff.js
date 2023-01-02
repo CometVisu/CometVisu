@@ -1,15 +1,9 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -38,11 +32,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Diff.js 
-   * 
+  /* Diff.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -63,14 +56,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
    */
   qx.Class.define('cv.ui.manager.editor.Diff', {
     extend: cv.ui.manager.editor.Source,
-
     /*
     ***********************************************
       CONSTRUCTOR
     ***********************************************
     */
     construct: function construct() {
-      cv.ui.manager.editor.Source.constructor.call(this); // this._handledActions = [];
+      cv.ui.manager.editor.Source.constructor.call(this);
+      // this._handledActions = [];
     },
 
     /*
@@ -83,7 +76,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       TITLE: qx.locale.Manager.tr('File compare'),
       ICON: cv.theme.dark.Images.getIcon('compare', 18)
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -106,7 +98,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         apply: '_applyEditable'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -127,7 +118,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           cv.ui.manager.editor.Source.load(this._draw, this);
         } else {
           var domElement = this.getContentElement().getDomElement();
-
           if (!domElement) {
             this.addListenerOnce('appear', this._draw, this);
           } else {
@@ -138,7 +128,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               theme: 'vs-dark',
               readOnly: !this.getEditable()
             });
-
             if (this.getFile()) {
               this._loadFile(this.getFile());
             }
@@ -148,7 +137,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _applyContent: function _applyContent() {
         var original = this.getOriginalContent();
         var modified = this.getModifiedContent();
-
         if (original && modified) {
           var file = this.getFile();
           var originalFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getOriginalFile() : file;
@@ -157,7 +145,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           originalModel.updateOptions(this._getDefaultModelOptions());
           var modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(modifiedFile));
           modifiedModel.updateOptions(this._getDefaultModelOptions());
-
           this._editor.setModel({
             original: originalModel,
             modified: modifiedModel
@@ -169,12 +156,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       clear: function clear() {
         this._editor.getModel().original.dispose();
-
         this._editor.getModel().modified.dispose();
       },
       save: function save(callback) {
         var handlerOptions = this.getHandlerOptions();
-
         if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
           cv.ui.manager.editor.Diff.superclass.prototype.save.call(this, callback, 'ignore');
         }
@@ -183,20 +168,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (old && old instanceof cv.ui.manager.model.FileItem) {
           qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
         }
-
         if (this._editor) {
           var handlerOptions = this.getHandlerOptions();
-
           if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
             if (!file.isWriteable()) {
               cv.ui.manager.snackbar.Controller.error(this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath()));
               cv.ui.manager.Main.getInstance().closeFile(file);
               return;
             }
-
             qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
             this.setEditable(file.isWriteable());
-
             this._client.readSync({
               path: file.getFullPath()
             }, function (err, res) {
@@ -204,13 +185,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 cv.ui.manager.snackbar.Controller.error(err);
               } else {
                 this.setOriginalContent(res);
-
                 var _this$_upgradeConfig = this._upgradeConfig(res),
-                    _this$_upgradeConfig2 = _slicedToArray(_this$_upgradeConfig, 3),
-                    _err = _this$_upgradeConfig2[0],
-                    upgradedContent = _this$_upgradeConfig2[1],
-                    changes = _this$_upgradeConfig2[2];
-
+                  _this$_upgradeConfig2 = _slicedToArray(_this$_upgradeConfig, 3),
+                  _err = _this$_upgradeConfig2[0],
+                  upgradedContent = _this$_upgradeConfig2[1],
+                  changes = _this$_upgradeConfig2[2];
                 if (_err) {
                   qxl.dialog.Dialog.error(_err);
                   qx.event.message.Bus.dispatchByName('cv.manager.action.close');
@@ -238,7 +217,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             }, this);
           } else if (file && file instanceof cv.ui.manager.model.CompareFiles && this.isSupported(file.getModifiedFile())) {
             this.resetEditable();
-
             this._client.readSync({
               path: file.getModifiedFile().getFullPath()
             }, function (err, res) {
@@ -248,7 +226,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 this.setModifiedContent(res);
               }
             }, this);
-
             this._client.readSync({
               path: file.getOriginalFile().getFullPath()
             }, function (err, res) {
@@ -269,4 +246,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.Diff.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diff.js.map?dt=1664789565860
+//# sourceMappingURL=Diff.js.map?dt=1672653474694

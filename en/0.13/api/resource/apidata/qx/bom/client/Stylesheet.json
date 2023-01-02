@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 742
       },
       "end": {
-        "line": 120,
-        "column": 3
+        "line": 132,
+        "column": 3,
+        "index": 3672
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "__getStylesheet": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 937
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1167
         }
       },
       "jsdoc": {
@@ -67,12 +71,14 @@
     "getCreateStyleSheet": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1595
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1684
         }
       },
       "jsdoc": {
@@ -103,12 +109,14 @@
     "getInsertRule": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1873
         },
         "end": {
-          "line": 70,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 2012
         }
       },
       "jsdoc": {
@@ -139,12 +147,14 @@
     "getDeleteRule": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2201
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2340
         }
       },
       "jsdoc": {
@@ -175,12 +185,14 @@
     "getAddImport": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2603
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2730
         }
       },
       "jsdoc": {
@@ -211,12 +223,14 @@
     "getRemoveImport": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 2999
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3140
         }
       },
       "jsdoc": {
@@ -248,15 +262,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 113,
-        "column": 10
+        "line": 110,
+        "column": 2,
+        "index": 3149
       },
       "end": {
-        "line": 119,
-        "column": 3
+        "line": 131,
+        "column": 3,
+        "index": 3668
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

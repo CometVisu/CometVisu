@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,12 +37,12 @@
   qx.Class.define("qx.theme.manager.Color", {
     type: "singleton",
     extend: qx.util.ValueManager,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** the currently selected color theme */
       theme: {
@@ -53,30 +52,25 @@
         event: "changeTheme"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       _applyTheme: function _applyTheme(value) {
         var dest = {};
-
         this._setDynamic(dest); // reset dynamic cache
-
-
         if (value) {
           var colors = value.colors;
-
           for (var name in colors) {
             if (!dest[name]) {
-              dest[name] = this.__P_275_0(colors, name);
+              dest[name] = this.__P_290_0(colors, name);
             }
           }
         }
       },
-
       /**
        * Helper to take a color stored in the theme and returns the string color value.
        * In most of the times that means it just returns the string stored in the theme.
@@ -86,30 +80,25 @@
        * @param name {String} The name of the color to check.
        * @return {String} The resolved color as string.
        */
-      __P_275_0: function __P_275_0(colors, name) {
+      __P_290_0: function __P_290_0(colors, name) {
         var color = colors[name];
-
         if (typeof color === "string") {
           if (!qx.util.ColorUtil.isCssString(color)) {
             // check for references to in theme colors
             if (colors[color] != undefined) {
-              return this.__P_275_0(colors, color);
+              return this.__P_290_0(colors, color);
             }
-
             throw new Error("Could not parse color: " + color);
           }
-
           return color;
         } else if (color instanceof Array) {
           return qx.util.ColorUtil.rgbToRgbString(color);
         } else if (color instanceof Function) {
-          return this.__P_275_0(colors, color(name));
-        } // this is might already be a rgb or hex color
-
-
+          return this.__P_290_0(colors, color(name));
+        }
+        // this is might already be a rgb or hex color
         return name;
       },
-
       /**
        * Returns the dynamically interpreted result for the incoming value,
        * (if available), otherwise returns the original value
@@ -120,24 +109,20 @@
       resolve: function resolve(value) {
         var cache = this._dynamic;
         var resolved = cache[value];
-
         if (resolved) {
           return resolved;
-        } // If the font instance is not yet cached create a new one to return
+        }
+
+        // If the font instance is not yet cached create a new one to return
         // This is true whenever a runtime include occurred (using "qx.Theme.include"
         // or "qx.Theme.patch"), since these methods only merging the keys of
         // the theme and are not updating the cache
-
-
         var theme = this.getTheme();
-
         if (theme !== null && theme.colors[value]) {
-          return cache[value] = this.__P_275_0(theme.colors, value);
+          return cache[value] = this.__P_290_0(theme.colors, value);
         }
-
         return value;
       },
-
       /**
        * Whether a value is interpreted dynamically
        *
@@ -146,22 +131,19 @@
        */
       isDynamic: function isDynamic(value) {
         var cache = this._dynamic;
-
         if (value && cache[value] !== undefined) {
-          return true;
-        } // If the font instance is not yet cached create a new one to return
-        // This is true whenever a runtime include occurred (using "qx.Theme.include"
-        // or "qx.Theme.patch"), since these methods only merging the keys of
-        // the theme and are not updating the cache
-
-
-        var theme = this.getTheme();
-
-        if (theme !== null && value && theme.colors[value] !== undefined) {
-          cache[value] = this.__P_275_0(theme.colors, value);
           return true;
         }
 
+        // If the font instance is not yet cached create a new one to return
+        // This is true whenever a runtime include occurred (using "qx.Theme.include"
+        // or "qx.Theme.patch"), since these methods only merging the keys of
+        // the theme and are not updating the cache
+        var theme = this.getTheme();
+        if (theme !== null && value && theme.colors[value] !== undefined) {
+          cache[value] = this.__P_290_0(theme.colors, value);
+          return true;
+        }
         return false;
       }
     }
@@ -169,4 +151,4 @@
   qx.theme.manager.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1664789591096
+//# sourceMappingURL=Color.js.map?dt=1672653502589

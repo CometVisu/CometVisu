@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 1,
-        "column": 0
+        "column": 0,
+        "index": 0
       },
       "end": {
-        "line": 308,
-        "column": 3
+        "line": 359,
+        "column": 3,
+        "index": 9479
       }
     }
   },
@@ -24,11 +26,13 @@
       "location": {
         "start": {
           "line": 6,
-          "column": 4
+          "column": 4,
+          "index": 202
         },
         "end": {
           "line": 9,
-          "column": 5
+          "column": 5,
+          "index": 281
         }
       },
       "jsdoc": {
@@ -85,12 +89,14 @@
     "formatOffset": {
       "location": {
         "start": {
-          "line": 23,
-          "column": 4
+          "line": 22,
+          "column": 4,
+          "index": 555
         },
         "end": {
-          "line": 33,
-          "column": 5
+          "line": 32,
+          "column": 5,
+          "index": 784
         }
       },
       "jsdoc": {
@@ -133,12 +139,14 @@
     "formatEntryTime": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1004
         },
         "end": {
           "line": 49,
-          "column": 5
+          "column": 5,
+          "index": 1402
         }
       },
       "jsdoc": {
@@ -173,11 +181,13 @@
       "location": {
         "start": {
           "line": 60,
-          "column": 4
+          "column": 4,
+          "index": 1708
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 87,
+          "column": 5,
+          "index": 2321
         }
       },
       "jsdoc": {
@@ -211,12 +221,14 @@
     "formatEntryObjectAndClass": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2519
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 106,
+          "column": 5,
+          "index": 2843
         }
       },
       "jsdoc": {
@@ -250,12 +262,14 @@
     "formatEntryItems": {
       "location": {
         "start": {
-          "line": 110,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3001
         },
         "end": {
-          "line": 139,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 3735
         }
       },
       "jsdoc": {
@@ -289,12 +303,14 @@
     "toText": {
       "location": {
         "start": {
-          "line": 147,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 3909
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 4170
         }
       },
       "jsdoc": {
@@ -328,12 +344,14 @@
     "toTextArray": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 176,
+          "column": 4,
+          "index": 4771
         },
         "end": {
-          "line": 178,
-          "column": 5
+          "line": 184,
+          "column": 5,
+          "index": 4998
         }
       },
       "jsdoc": {
@@ -373,12 +391,14 @@
     "toHtml": {
       "location": {
         "start": {
-          "line": 186,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 5152
         },
         "end": {
-          "line": 246,
-          "column": 5
+          "line": 294,
+          "column": 5,
+          "index": 7999
         }
       },
       "jsdoc": {
@@ -495,6 +515,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -519,6 +540,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -614,12 +636,14 @@
     "__DATETIME_FORMAT": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 299,
+          "column": 4,
+          "index": 8089
         },
         "end": {
-          "line": 252,
-          "column": 27
+          "line": 299,
+          "column": 27,
+          "index": 8112
         }
       },
       "jsdoc": {
@@ -642,12 +666,14 @@
     "__defaultFormatter": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 302,
+          "column": 4,
+          "index": 8185
         },
         "end": {
-          "line": 255,
-          "column": 28
+          "line": 302,
+          "column": 28,
+          "index": 8209
         }
       },
       "jsdoc": {
@@ -670,12 +696,14 @@
     "getFormatter": {
       "location": {
         "start": {
-          "line": 262,
-          "column": 4
+          "line": 309,
+          "column": 4,
+          "index": 8319
         },
         "end": {
-          "line": 267,
-          "column": 5
+          "line": 315,
+          "column": 5,
+          "index": 8565
         }
       },
       "jsdoc": {
@@ -700,12 +728,14 @@
     "setFormatter": {
       "location": {
         "start": {
-          "line": 274,
-          "column": 4
+          "line": 322,
+          "column": 4,
+          "index": 8680
         },
         "end": {
-          "line": 276,
-          "column": 5
+          "line": 324,
+          "column": 5,
+          "index": 8773
         }
       },
       "jsdoc": {
@@ -728,12 +758,14 @@
     "escapeHTML": {
       "location": {
         "start": {
-          "line": 285,
-          "column": 4
+          "line": 333,
+          "column": 4,
+          "index": 8945
         },
         "end": {
-          "line": 287,
-          "column": 5
+          "line": 338,
+          "column": 5,
+          "index": 9089
         }
       },
       "jsdoc": {
@@ -767,12 +799,14 @@
     "__escapeHTMLReplace": {
       "location": {
         "start": {
-          "line": 296,
-          "column": 4
+          "line": 347,
+          "column": 4,
+          "index": 9275
         },
         "end": {
-          "line": 306,
-          "column": 5
+          "line": 357,
+          "column": 5,
+          "index": 9471
         }
       },
       "jsdoc": {

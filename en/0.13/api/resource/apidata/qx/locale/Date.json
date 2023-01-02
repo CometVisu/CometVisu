@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 685
       },
       "end": {
-        "line": 504,
-        "column": 3
+        "line": 501,
+        "column": 3,
+        "index": 15018
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "__mgr": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 818
         },
         "end": {
-          "line": 36,
-          "column": 43
+          "line": 34,
+          "column": 42,
+          "index": 856
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "getAmMarker": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1031
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1115
         }
       },
       "jsdoc": {
@@ -104,12 +110,14 @@
     "getPmMarker": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1290
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1374
         }
       },
       "jsdoc": {
@@ -143,12 +151,14 @@
     "getDayNames": {
       "location": {
         "start": {
-          "line": 73,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1967
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2826
         }
       },
       "jsdoc": {
@@ -204,12 +214,14 @@
     "getDayName": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 3453
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 131,
+          "column": 5,
+          "index": 4255
         }
       },
       "jsdoc": {
@@ -272,12 +284,14 @@
     "getMonthNames": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 145,
+          "column": 4,
+          "index": 4857
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 170,
+          "column": 5,
+          "index": 5642
         }
       },
       "jsdoc": {
@@ -333,12 +347,14 @@
     "getMonthName": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 185,
+          "column": 4,
+          "index": 6281
         },
         "end": {
-          "line": 185,
-          "column": 5
+          "line": 202,
+          "column": 5,
+          "index": 6930
         }
       },
       "jsdoc": {
@@ -401,12 +417,14 @@
     "getDateFormat": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 212,
+          "column": 4,
+          "index": 7283
         },
         "end": {
-          "line": 204,
-          "column": 5
+          "line": 219,
+          "column": 5,
+          "index": 7552
         }
       },
       "jsdoc": {
@@ -448,12 +466,14 @@
     "getDateTimeFormat": {
       "location": {
         "start": {
-          "line": 220,
-          "column": 4
+          "line": 234,
+          "column": 4,
+          "index": 8301
         },
         "end": {
-          "line": 230,
-          "column": 5
+          "line": 243,
+          "column": 5,
+          "index": 8587
         }
       },
       "jsdoc": {
@@ -501,12 +521,14 @@
     "getTimeFormat": {
       "location": {
         "start": {
-          "line": 241,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 8940
         },
         "end": {
-          "line": 269,
-          "column": 5
+          "line": 279,
+          "column": 5,
+          "index": 9719
         }
       },
       "jsdoc": {
@@ -547,12 +569,14 @@
     "getWeekStart": {
       "location": {
         "start": {
-          "line": 280,
-          "column": 4
+          "line": 289,
+          "column": 4,
+          "index": 10017
         },
         "end": {
-          "line": 355,
-          "column": 5
+          "line": 362,
+          "column": 5,
+          "index": 11257
         }
       },
       "jsdoc": {
@@ -586,12 +610,14 @@
     "getWeekendStart": {
       "location": {
         "start": {
-          "line": 366,
-          "column": 4
+          "line": 372,
+          "column": 4,
+          "index": 11561
         },
         "end": {
-          "line": 396,
-          "column": 5
+          "line": 400,
+          "column": 5,
+          "index": 12142
         }
       },
       "jsdoc": {
@@ -625,12 +651,14 @@
     "getWeekendEnd": {
       "location": {
         "start": {
-          "line": 407,
-          "column": 4
+          "line": 410,
+          "column": 4,
+          "index": 12443
         },
         "end": {
-          "line": 438,
-          "column": 5
+          "line": 439,
+          "column": 5,
+          "index": 13017
         }
       },
       "jsdoc": {
@@ -665,11 +693,13 @@
       "location": {
         "start": {
           "line": 448,
-          "column": 4
+          "column": 4,
+          "index": 13308
         },
         "end": {
-          "line": 458,
-          "column": 5
+          "line": 457,
+          "column": 5,
+          "index": 13641
         }
       },
       "jsdoc": {
@@ -710,12 +740,14 @@
     "_getTerritory": {
       "location": {
         "start": {
-          "line": 467,
-          "column": 4
+          "line": 465,
+          "column": 4,
+          "index": 13794
         },
         "end": {
-          "line": 476,
-          "column": 5
+          "line": 473,
+          "column": 5,
+          "index": 14036
         }
       },
       "jsdoc": {
@@ -749,12 +781,14 @@
     "__localizeWithFallback": {
       "location": {
         "start": {
-          "line": 490,
-          "column": 4
+          "line": 487,
+          "column": 4,
+          "index": 14613
         },
         "end": {
-          "line": 502,
-          "column": 5
+          "line": 499,
+          "column": 5,
+          "index": 15010
         }
       },
       "jsdoc": {

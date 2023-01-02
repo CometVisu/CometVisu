@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,7 +33,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * This is a simple rating widget which can be used to display a predefined
    * number of symbols which the user can click or tap to give a rating e.g.
@@ -99,7 +97,6 @@
         length: 5,
         symbol: "★"
       },
-
       /**
        * Factory method which converts the current collection into a collection of
        * rating widgets. Therefore, an initialization process needs to be done which
@@ -115,25 +112,20 @@
         var rating = new qx.ui.website.Rating(this);
         rating.init();
         var modified = false;
-
         if (length != undefined && length != rating.getConfig("length")) {
           rating.setConfig("length", length);
           modified = true;
         }
-
         if (symbol != undefined) {
           rating.setConfig("symbol", symbol);
           modified = true;
         }
-
         if (modified) {
           rating.render();
         }
-
         if (initValue != undefined) {
           rating.setValue(initValue);
         }
-
         return rating;
       }
     },
@@ -142,7 +134,7 @@
     },
     events: {
       /** Fired at each value change */
-      "changeValue": "Number"
+      changeValue: "Number"
     },
     members: {
       // overridden
@@ -150,19 +142,14 @@
         if (!qx.ui.website.Rating.superclass.prototype.init.call(this)) {
           return false;
         }
-
         this._updateSymbolLength();
-
         var cssPrefix = this.getCssPrefix();
-
         if (this.getAttribute("tabindex") < 0) {
           this.setAttribute("tabindex", 0);
         }
-
         this.on("focus", this._onFocus, this).on("blur", this._onBlur, this).getChildren("span").addClasses([cssPrefix + "-item", cssPrefix + "-item-off"]).on("tap", this._onTap, this);
         return true;
       },
-
       /**
        * Sets the given value of the raining widget's in the collection. The value will be
        * converted to the maximum or minimum if our of range.
@@ -174,11 +161,9 @@
         if (this.getValue() == value) {
           return this;
         }
-
         if (value < 0) {
           value = 0;
         }
-
         var cssPrefix = this.getCssPrefix();
         var children = this.getChildren("span");
         children.removeClass(cssPrefix + "-item-off");
@@ -186,7 +171,6 @@
         this.emit("changeValue", this.getValue());
         return this;
       },
-
       /**
        * Reads the current value of the first rating widget in the collection
        * from the DOM and returns it.
@@ -201,7 +185,6 @@
       render: function render() {
         this._updateSymbolLength();
       },
-
       /**
        * Checks the set length and adds / removes spans containing the rating symbol.
        *
@@ -213,7 +196,6 @@
         var children = this.getChildren();
         children.setHtml(this.getConfig("symbol"));
         var diff = length - children.length;
-
         if (diff > 0) {
           for (var i = 0; i < diff; i++) {
             qxWeb.create("<span>" + this.getConfig("symbol") + "</span>").on("tap", this._onTap, this).addClasses([cssPrefix + "-item", cssPrefix + "-item-off"]).appendTo(this);
@@ -223,10 +205,8 @@
             this.getChildren().getLast().off("tap", this._onTap, this).remove();
           }
         }
-
         return this;
       },
-
       /**
        * Tap handler which updates the value depending on the selected element.
        *
@@ -236,7 +216,6 @@
         var parents = qxWeb(e.getTarget()).getParents();
         this.setValue(parents.getChildren().indexOf(e.getTarget()) + 1);
       },
-
       /**
        * Attaches the keydown listener.
        * @param e {Event} The native focus event.
@@ -244,7 +223,6 @@
       _onFocus: function _onFocus(e) {
         qxWeb(document.documentElement).on("keydown", this._onKeyDown, this);
       },
-
       /**
        * Removes the keydown listener if the widget loses focus.
        *
@@ -253,7 +231,6 @@
       _onBlur: function _onBlur(e) {
         qxWeb(document.documentElement).off("keydown", this._onKeyDown, this);
       },
-
       /**
        * Changes the value if the left or right arrow key is pressed.
        *
@@ -261,7 +238,6 @@
        */
       _onKeyDown: function _onKeyDown(e) {
         var key = e.getKeyIdentifier();
-
         if (key === "Right") {
           this.setValue(this.getValue() + 1);
         } else if (key === "Left") {
@@ -286,4 +262,4 @@
   qx.ui.website.Rating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rating.js.map?dt=1664789608490
+//# sourceMappingURL=Rating.js.map?dt=1672653519003

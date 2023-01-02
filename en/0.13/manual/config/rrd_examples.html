@@ -145,7 +145,7 @@ or an <a class="reference external" href="CometVisu/rrdtool">RRDtool with patche
 </ul>
 <p>(both are on the wiregate and on the Raspberry Pi image
 standard available)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd#<span class="w"> </span>cat<span class="w"> </span>/etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
 <span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
 <span class="c1"># command to install the new version when you edit this file</span>
@@ -159,10 +159,10 @@ standard available)</p>
 
 <span class="c1"># several rows away, please do NOT use this file copy &amp; paste but attach the RRD Cron down to the existing File!!!``</span>
 
-*/5 *   * * *   root    /var/www/rrd/cputemp
-*/5 *   * * *   root    /var/www/rrd/processes
-*/5 *   * * *   root    /var/www/rrd/cpuload
-*/5 *   * * *   root    /var/www/rrd/cpuload15
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cputemp
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/processes
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cpuload
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cpuload15
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> means that the job every 5 minutes at any time
@@ -201,13 +201,13 @@ then be executed regularly via cron.</p>
 <p>If RRD-based data is not displayed as intended, you can look directly
 into the database to see if any (meaningful) values exist. There
 is this for that</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump
 </pre></div>
 </div>
 <p>Command. This represents the database as text. You should then filter
 out lines with NaN (Not a Number) and only look at data lines.
 This can be done e.g. with the grep command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEOFTHEDATABASE.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump<span class="w"> </span>NAMEOFTHEDATABASE.rrd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>row<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>NaN
 </pre></div>
 </div>
 </section>
@@ -247,7 +247,7 @@ temperature of an RTR) in an RRD database.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

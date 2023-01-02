@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 828
       },
       "end": {
-        "line": 98,
-        "column": 3
+        "line": 101,
+        "column": 3,
+        "index": 3507
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "xml": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1147
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1265
         }
       },
       "jsdoc": {
@@ -70,12 +74,14 @@
     "_prettifyNode": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1272
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 99,
+          "column": 5,
+          "index": 3499
         }
       },
       "type": "function",

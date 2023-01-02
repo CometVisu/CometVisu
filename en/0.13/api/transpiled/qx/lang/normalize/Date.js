@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native 'Date' object.
    * It checks if these methods are available and, if not, appends them to
@@ -55,6 +53,12 @@
    * For usage samples, check out the attached links.
    *
    * @group (Polyfill)
+   *
+   * @deprecated {7.0}
+   *  This normalizer handles Date.parse and Date.now. The former has
+   *  been standardized since IE version 3, and the latter, since IE
+   *  version 9, both ancient. There is no need for this normalizer any
+   *  longer.
    */
   qx.Bootstrap.define("qx.lang.normalize.Date", {
     statics: {
@@ -69,7 +73,6 @@
       now: function now() {
         return +new Date();
       },
-
       /**
        * Parses a string representation of a date and return number of
        * milliseconds since Epoch or NaN if string is unrecognized.
@@ -89,60 +92,55 @@
       parse: function parse(dateString) {
         // Match input against ISO8601 regular expression
         var captureGroups = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/.exec(dateString);
-
         if (!captureGroups) {
           //
           // if the regular expression does not match parse the string
-          // using the original function. 
-          // Additionally check if it returns a real time value, which we 
-          // ensure by using setTime with an intermediate Date object and the 
-          // parsed time value. 
-          // Safari 11 e.g. parses the date string '19700101' successfully 
+          // using the original function.
+          // Additionally check if it returns a real time value, which we
+          // ensure by using setTime with an intermediate Date object and the
+          // parsed time value.
+          // Safari 11 e.g. parses the date string '19700101' successfully
           // into a time value, but returns NaN if that value is used in setTime.
-          // 
+          //
           // See:
           //   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse
           //   https://github.com/qooxdoo/qooxdoo/issues/9451
           //
           var time = Date.originalParse(dateString);
-
           if (isNaN(time) || isNaN(new Date().setTime(time))) {
             return NaN;
           }
-
           return time;
-        } // Just a date without time?
+        }
 
-
+        // Just a date without time?
         var noTime = [4, 5, 6, 7].every(function (i) {
           return captureGroups[i] === undefined;
-        }); // Avoid invalid timestamps caused by undefined values being passed to Date.UTC
+        });
 
+        // Avoid invalid timestamps caused by undefined values being passed to Date.UTC
         [1, 4, 5, 6, 7, 10, 11].forEach(function (i) {
           captureGroups[i] = +captureGroups[i] || 0;
         });
         captureGroups[2] = (+captureGroups[2] || 1) - 1; // Allow undefined months
-
         captureGroups[3] = +captureGroups[3] || 1; // Allow undefined days
-        // No timezone offset given and *not* just a date (without time)
 
+        // No timezone offset given and *not* just a date (without time)
         if (captureGroups[8] !== "Z" && captureGroups[9] === undefined && !noTime) {
           // => Treat as local
           return new Date(captureGroups[1], captureGroups[2], captureGroups[3], captureGroups[4], captureGroups[5], captureGroups[6], captureGroups[7]).getTime();
-        } // Handle timezone offsets
+        }
 
-
+        // Handle timezone offsets
         var minutesOffset = 0;
-
         if (captureGroups[8] !== "Z") {
           minutesOffset = captureGroups[10] * 60 + captureGroups[11];
-
           if (captureGroups[9] === "+") {
             minutesOffset = -minutesOffset;
           }
-        } // Return the number of milliseconds since Epoch
+        }
 
-
+        // Return the number of milliseconds since Epoch
         return Date.UTC(captureGroups[1], captureGroups[2], captureGroups[3], captureGroups[4], captureGroups[5] + minutesOffset, captureGroups[6], captureGroups[7]);
       }
     },
@@ -150,14 +148,12 @@
       // Date.now
       if (!qx.core.Environment.get("ecmascript.date.now")) {
         Date.now = statics.now;
-      } // Date.parse
-
-
+      }
+      // Date.parse
       if (!qx.core.Environment.get("ecmascript.date.parse")) {
         Date.originalParse = Date.parse || function (dateString) {
           return NaN;
         };
-
         Date.parse = statics.parse;
       }
     }
@@ -165,4 +161,4 @@
   qx.lang.normalize.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1664789588429
+//# sourceMappingURL=Date.js.map?dt=1672653499878

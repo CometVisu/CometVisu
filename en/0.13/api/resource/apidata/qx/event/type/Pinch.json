@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 639
       },
       "end": {
-        "line": 51,
-        "column": 3
+        "line": 45,
+        "column": 3,
+        "index": 1112
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_cloneNativeEvent": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 6
+          "line": 28,
+          "column": 4,
+          "index": 749
         },
         "end": {
-          "line": 39,
-          "column": 7
+          "line": 34,
+          "column": 5,
+          "index": 918
         }
       },
       "jsdoc": {},
@@ -53,12 +57,14 @@
     "getScale": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 6
+          "line": 41,
+          "column": 4,
+          "index": 1053
         },
         "end": {
-          "line": 49,
-          "column": 7
+          "line": 43,
+          "column": 5,
+          "index": 1104
         }
       },
       "jsdoc": {
@@ -168,6 +174,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -192,6 +199,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

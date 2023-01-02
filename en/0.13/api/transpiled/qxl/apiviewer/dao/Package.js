@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,6 +33,7 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.dao.Package", {
     extend: qx.core.Object,
     construct: function construct(packageName) {
@@ -41,10 +41,8 @@
       this._packageName = packageName;
       this._classes = {};
       this._packages = {};
-
       if (packageName) {
         this._parentPackage = qxl.apiviewer.dao.Package.getParentPackage(packageName);
-
         this._parentPackage.addPackage(this);
       }
     },
@@ -55,7 +53,6 @@
       _packages: null,
       _loadingPromise: null,
       _loaded: false,
-
       /**
        * Loads the class
        *
@@ -63,18 +60,15 @@
        */
       load: function load() {
         var _this = this;
-
         if (this._loadingPromise) {
           return this._loadingPromise;
         }
-
         var url = qxl.apiviewer.ClassLoader.getBaseUri() + this._packageName.replace(/\./g, "/") + "/package.html";
         return this._loadingPromise = qxl.apiviewer.RequestUtil.get(url).then(function (content) {
           _this._desc = content;
           _this._loaded = true;
         })["catch"](function (e) {
           _this.error("Couldn't load file: " + url + " " + e.message);
-
           _this._loaded = true;
         });
       },
@@ -119,8 +113,7 @@
       }
     },
     statics: {
-      __P_552_0: null,
-
+      __P_568_0: null,
       /**
        * Locates a package by name
        * @param name {String} package name, null or "" for top level
@@ -128,38 +121,29 @@
        * @return {Package?}
        */
       getPackage: function getPackage(name, create) {
-        var root = qxl.apiviewer.dao.Package.__P_552_0;
-
+        var root = qxl.apiviewer.dao.Package.__P_568_0;
         if (!root) {
-          root = qxl.apiviewer.dao.Package.__P_552_0 = new qxl.apiviewer.dao.Package("");
+          root = qxl.apiviewer.dao.Package.__P_568_0 = new qxl.apiviewer.dao.Package("");
         }
-
         if (!name) {
           return root;
         }
-
         var current = root;
         var segs = name.split(".");
         var parentName = "";
-
         for (var i = 0; i < segs.length; i++) {
           var tmp = current.getPackageByName(parentName + segs[i]);
-
           if (!tmp) {
             if (!create) {
               return null;
             }
-
             tmp = new qxl.apiviewer.dao.Package(i == 0 ? segs[i] : current.getFullName() + "." + segs[i]);
           }
-
           current = tmp;
           parentName += segs[i] + ".";
         }
-
         return current;
       },
-
       /**
        * Returns the package that a given package or class is a direct child of
        *
@@ -170,13 +154,10 @@
         if (!name) {
           throw new Error("Cannot get the parent package of a root package");
         }
-
         var pos = name.lastIndexOf(".");
-
         if (pos < 0) {
           return qxl.apiviewer.dao.Package.getPackage("");
         }
-
         var parentName = name.substring(0, pos);
         return qxl.apiviewer.dao.Package.getPackage(parentName, true);
       }
@@ -185,4 +166,4 @@
   qxl.apiviewer.dao.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1664789616813
+//# sourceMappingURL=Package.js.map?dt=1672653526196

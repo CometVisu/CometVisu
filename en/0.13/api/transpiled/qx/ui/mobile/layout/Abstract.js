@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,34 +39,32 @@
   qx.Class.define("qx.ui.mobile.layout.Abstract", {
     extend: qx.core.Object,
     type: "abstract",
-
     /*
      *****************************************************************************
         EVENTS
      *****************************************************************************
      */
+
     events: {
       /** Fired when the layout is updated. Data contains the "widget", "action", "properties" */
       updateLayout: "qx.event.type.Data"
     },
-
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
+
     members: {
       _widget: null,
-      __P_389_0: null,
-      __P_389_1: null,
-
+      __P_406_0: null,
+      __P_406_1: null,
       /**
        * Returns the css classes in an array that the layout is using.
        *
        * @return {Array} The css classes that the layout is using
        */
       _getCssClasses: function _getCssClasses() {},
-
       /**
        * Returns the supported child layout properties. Needed to validate
        * the incoming layout properties. Override this function in your implementation.
@@ -77,7 +74,6 @@
       _getSupportedChildLayoutProperties: function _getSupportedChildLayoutProperties() {
         return null;
       },
-
       /**
        * Abstracts method. Override this in your implementation.
        * The function is called for all given layout properties once.
@@ -87,7 +83,6 @@
        * @param value {var?} Optional. The value of the layout property.
        */
       _setLayoutProperty: function _setLayoutProperty(widget, property, value) {},
-
       /**
        * Sets the given layout properties to a widget.
        *
@@ -98,26 +93,19 @@
         if (properties == null) {
           return;
         }
-
         var supportedChildLayoutProperties = this._getSupportedChildLayoutProperties();
-
         if (!supportedChildLayoutProperties) {
           return;
         }
-
         for (var property in properties) {
           if (!supportedChildLayoutProperties[property]) {
             throw new Error("The layout does not support the " + property + " property");
           }
-
           var value = properties[property];
-
           this._setLayoutProperty(widget, property, value);
-
           this._addPropertyToChildLayoutCache(widget, property, value);
         }
       },
-
       /**
        * This method is called by the widget to connect the widget with the layout.
        *
@@ -127,23 +115,19 @@
         if (this._widget) {
           this._widget.removeCssClasses(this._getCssClasses());
         }
-
         this._widget = widget;
-
         if (widget) {
           widget.addCssClasses(this._getCssClasses());
-
-          if (this.__P_389_0) {
-            for (var property in this.__P_389_0) {
+          if (this.__P_406_0) {
+            for (var property in this.__P_406_0) {
               this.reset(property);
-              this.set(property, this.__P_389_0[property]);
+              this.set(property, this.__P_406_0[property]);
             }
           }
         } else {
-          this.__P_389_0 = null;
+          this.__P_406_0 = null;
         }
       },
-
       /**
        * Connects the layout to a given child widget. Can be overridden in a concrete
        * interface implementation.
@@ -151,7 +135,6 @@
        * @param widget {qx.ui.mobile.core.Widget} The widget to connect to
        */
       connectToChildWidget: function connectToChildWidget(widget) {},
-
       /**
        * Disconnects the layout from a given child widget. Can be overridden in a concrete
        * interface implementation.
@@ -159,7 +142,6 @@
        * @param widget {qx.ui.mobile.core.Widget} The widget to connect to
        */
       disconnectFromChildWidget: function disconnectFromChildWidget(widget) {},
-
       /**
        * Updates the layout. Method is called by a widget, when it changes its state.
        *
@@ -174,7 +156,6 @@
           properties: properties
         });
       },
-
       /**
        * Adds a property to the cache. Needed when the layout is not yet
        * connected with the widget.
@@ -183,13 +164,11 @@
        * @param value {var} The value of the property to add
        */
       _addCachedProperty: function _addCachedProperty(property, value) {
-        if (!this.__P_389_0) {
-          this.__P_389_0 = {};
+        if (!this.__P_406_0) {
+          this.__P_406_0 = {};
         }
-
-        this.__P_389_0[property] = value;
+        this.__P_406_0[property] = value;
       },
-
       /**
        * Returns a child layout property value.
        *
@@ -198,11 +177,9 @@
        * @return {var} The value of the given property
        */
       _getChildLayoutPropertyValue: function _getChildLayoutPropertyValue(widget, property) {
-        var cache = this.__P_389_2(widget);
-
+        var cache = this.__P_406_2(widget);
         return cache[property];
       },
-
       /**
        * Adds a child layout property to the cache. When the value is
        * <code>null</code> the property will be deleted from the cache.
@@ -212,15 +189,13 @@
        * @param value {var} The value of the property to add
        */
       _addPropertyToChildLayoutCache: function _addPropertyToChildLayoutCache(widget, property, value) {
-        var cache = this.__P_389_2(widget);
-
+        var cache = this.__P_406_2(widget);
         if (value == null) {
           delete cache[property];
         } else {
           cache[property] = value;
         }
       },
-
       /**
        * Returns the child layout property cache.
        *
@@ -228,22 +203,18 @@
        * @return {Map} The child layout property cache for the given widget.
        *     Key / value pairs.
        */
-      __P_389_2: function __P_389_2(widget) {
-        if (!this.__P_389_1) {
-          this.__P_389_1 = {};
+      __P_406_2: function __P_406_2(widget) {
+        if (!this.__P_406_1) {
+          this.__P_406_1 = {};
         }
-
-        var cache = this.__P_389_1;
+        var cache = this.__P_406_1;
         var hash = widget.toHashCode();
-
         if (!cache[hash]) {
           cache[hash] = {};
         }
-
         return cache[hash];
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -256,4 +227,4 @@
   qx.ui.mobile.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789601540
+//# sourceMappingURL=Abstract.js.map?dt=1672653511997

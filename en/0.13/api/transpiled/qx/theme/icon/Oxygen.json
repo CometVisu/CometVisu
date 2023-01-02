@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 536
       },
       "end": {
-        "line": 28,
-        "column": 3
+        "line": 27,
+        "column": 3,
+        "index": 644
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "aliases": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 2
+        "line": 24,
+        "column": 2,
+        "index": 599
       },
       "end": {
-        "line": 27,
-        "column": 3
+        "line": 26,
+        "column": 3,
+        "index": 640
       }
     },
     "aliasMap": {

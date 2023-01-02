@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,14 +51,12 @@
        * @param rowElement {Element} the DOM element that renders the data row.
        */
       updateDataRowElement: function updateDataRowElement(rowInfo, rowElement) {},
-
       /**
        * Get the row's height CSS style taking the box model into account
        *
        * @param height {Integer} The row's (border-box) height in pixel
        */
       getRowHeightStyle: function getRowHeightStyle(height) {},
-
       /**
        * Create a style string, which will be set as the style property of the row.
        *
@@ -67,7 +64,6 @@
        *      update. See {@link #updateDataRowElement} for more information.
        */
       createRowStyle: function createRowStyle(rowInfo) {},
-
       /**
        * Create a HTML class string, which will be set as the class property of the row.
        *
@@ -80,4 +76,4 @@
   qx.ui.table.IRowRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IRowRenderer.js.map?dt=1664789603419
+//# sourceMappingURL=IRowRenderer.js.map?dt=1672653513646

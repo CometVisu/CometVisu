@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 0
+        "line": 27,
+        "column": 0,
+        "index": 1064
       },
       "end": {
-        "line": 83,
-        "column": 3
+        "line": 89,
+        "column": 3,
+        "index": 2511
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1324
         },
         "end": {
-          "line": 41,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1397
         }
       },
       "name": "name",
@@ -63,11 +67,13 @@
       "location": {
         "start": {
           "line": 42,
-          "column": 4
+          "column": 4,
+          "index": 1404
         },
         "end": {
           "line": 45,
-          "column": 5
+          "column": 5,
+          "index": 1457
         }
       },
       "name": "wstyle",
@@ -79,12 +85,14 @@
     "address": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1464
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1518
         }
       },
       "name": "address",
@@ -96,12 +104,14 @@
     "bindClickToWidget": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1525
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 55,
+          "column": 5,
+          "index": 1588
         }
       },
       "name": "bindClickToWidget",
@@ -119,12 +129,14 @@
     "getDomString": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1766
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 78,
+          "column": 5,
+          "index": 2290
         }
       },
       "jsdoc": {},
@@ -139,12 +151,14 @@
     "action": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2315
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2408
         }
       },
       "jsdoc": {},
@@ -312,6 +326,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -336,6 +351,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1973,15 +1989,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 80,
-        "column": 9
+        "line": 86,
+        "column": 2,
+        "index": 2417
       },
       "end": {
-        "line": 82,
-        "column": 3
+        "line": 88,
+        "column": 3,
+        "index": 2507
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 654
       },
       "end": {
-        "line": 66,
-        "column": 3
+        "line": 64,
+        "column": 3,
+        "index": 2781
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_moveToEdgeAndAlign": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1431
         },
         "end": {
-          "line": 41,
-          "column": 76
+          "line": 39,
+          "column": 75,
+          "index": 1502
         }
       },
       "jsdoc": {
@@ -91,12 +95,14 @@
     "computeStart": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 2638
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 2773
         }
       },
       "jsdoc": {

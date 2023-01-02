@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 578
       },
       "end": {
-        "line": 108,
-        "column": 3
+        "line": 86,
+        "column": 3,
+        "index": 2312
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "PRIORITY": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 941
         },
         "end": {
-          "line": 41,
-          "column": 52
+          "line": 35,
+          "column": 51,
+          "index": 988
         }
       },
       "jsdoc": {
@@ -61,12 +65,14 @@
     "SUPPORTED_TYPES": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1040
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1109
         }
       },
       "jsdoc": {
@@ -89,12 +95,14 @@
     "TARGET_CHECK": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1169
         },
         "end": {
-          "line": 53,
-          "column": 56
+          "line": 44,
+          "column": 55,
+          "index": 1220
         }
       },
       "jsdoc": {
@@ -117,12 +125,14 @@
     "IGNORE_CAN_HANDLE": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1305
         },
         "end": {
-          "line": 57,
-          "column": 28
+          "line": 47,
+          "column": 27,
+          "index": 1328
         }
       },
       "jsdoc": {
@@ -147,12 +157,14 @@
     "canHandleEvent": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1773
         },
         "end": {
-          "line": 79,
-          "column": 46
+          "line": 64,
+          "column": 35,
+          "index": 1804
         }
       },
       "jsdoc": {},
@@ -166,12 +178,14 @@
     "registerEvent": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 67,
+          "column": 4,
+          "index": 1843
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 1926
         }
       },
       "jsdoc": {},
@@ -185,12 +199,14 @@
     "unregisterEvent": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 1965
         },
         "end": {
-          "line": 91,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2050
         }
       },
       "jsdoc": {},
@@ -289,6 +305,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -313,6 +330,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -341,12 +359,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 105,
-        "column": 10
+        "line": 83,
+        "column": 2,
+        "index": 2241
       },
       "end": {
-        "line": 107,
-        "column": 3
+        "line": 85,
+        "column": 3,
+        "index": 2308
       }
     },
     "jsdoc": {}

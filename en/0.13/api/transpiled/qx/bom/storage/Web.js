@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,34 +42,29 @@
    */
   qx.Bootstrap.define("qx.bom.storage.Web", {
     statics: {
-      __P_149_0: null,
-      __P_149_1: null,
-
+      __P_150_0: null,
+      __P_150_1: null,
       /**
        * Static accessor for the local storage.
        * @return {qx.bom.storage.Web} An instance of a local storage.
        */
       getLocal: function getLocal() {
-        if (this.__P_149_0) {
-          return this.__P_149_0;
+        if (this.__P_150_0) {
+          return this.__P_150_0;
         }
-
-        return this.__P_149_0 = new qx.bom.storage.Web("local");
+        return this.__P_150_0 = new qx.bom.storage.Web("local");
       },
-
       /**
        * Static accessor for the session storage.
        * @return {qx.bom.storage.Web} An instance of a session storage.
        */
       getSession: function getSession() {
-        if (this.__P_149_1) {
-          return this.__P_149_1;
+        if (this.__P_150_1) {
+          return this.__P_150_1;
         }
-
-        return this.__P_149_1 = new qx.bom.storage.Web("session");
+        return this.__P_150_1 = new qx.bom.storage.Web("session");
       }
     },
-
     /**
      * Create a new instance. Usually, you should take the static
      * accessors to get your instance.
@@ -79,11 +73,10 @@
      *   <code>local</code> or <code>session</code>.
      */
     construct: function construct(type) {
-      this.__P_149_2 = type;
+      this.__P_150_2 = type;
     },
     members: {
-      __P_149_2: null,
-
+      __P_150_2: null,
       /**
        * Returns the internal used storage (the native object).
        *
@@ -91,17 +84,15 @@
        * @return {Storage} The native storage implementation.
        */
       getStorage: function getStorage() {
-        return window[this.__P_149_2 + "Storage"];
+        return window[this.__P_150_2 + "Storage"];
       },
-
       /**
        * Returns the amount of key-value pairs stored.
        * @return {Integer} The length of the storage.
        */
       getLength: function getLength() {
-        return this.getStorage(this.__P_149_2).length;
+        return this.getStorage(this.__P_150_2).length;
       },
-
       /**
        * Store an item in the storage.
        *
@@ -110,14 +101,12 @@
        */
       setItem: function setItem(key, value) {
         value = qx.lang.Json.stringify(value);
-
         try {
-          this.getStorage(this.__P_149_2).setItem(key, value);
+          this.getStorage(this.__P_150_2).setItem(key, value);
         } catch (e) {
           throw new Error("Storage full.");
         }
       },
-
       /**
        * Returns the stored item.
        *
@@ -125,31 +114,27 @@
        * @return {var} The stored data.
        */
       getItem: function getItem(key) {
-        var item = this.getStorage(this.__P_149_2).getItem(key);
-
+        var item = this.getStorage(this.__P_150_2).getItem(key);
         if (qx.lang.Type.isString(item)) {
-          item = qx.lang.Json.parse(item); // special case for FF3
+          item = qx.lang.Json.parse(item);
+          // special case for FF3
         } else if (item && item.value && qx.lang.Type.isString(item.value)) {
           item = qx.lang.Json.parse(item.value);
         }
-
         return item;
       },
-
       /**
        * Removes an item form the storage.
        * @param key {String} The identifier.
        */
       removeItem: function removeItem(key) {
-        this.getStorage(this.__P_149_2).removeItem(key);
+        this.getStorage(this.__P_150_2).removeItem(key);
       },
-
       /**
        * Deletes every stored item in the storage.
        */
       clear: function clear() {
-        var storage = this.getStorage(this.__P_149_2);
-
+        var storage = this.getStorage(this.__P_150_2);
         if (!storage.clear) {
           for (var i = storage.length - 1; i >= 0; i--) {
             storage.removeItem(storage.key(i));
@@ -158,16 +143,14 @@
           storage.clear();
         }
       },
-
       /**
        * Returns the named key at the given index.
        * @param index {Integer} The index in the storage.
        * @return {String} The key stored at the given index.
        */
       getKey: function getKey(index) {
-        return this.getStorage(this.__P_149_2).key(index);
+        return this.getStorage(this.__P_150_2).key(index);
       },
-
       /**
        * Helper to access every stored item.
        *
@@ -178,7 +161,6 @@
        */
       forEach: function forEach(callback, scope) {
         var length = this.getLength();
-
         for (var i = 0; i < length; i++) {
           var key = this.getKey(i);
           callback.call(scope, key, this.getItem(key));
@@ -189,4 +171,4 @@
   qx.bom.storage.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1664789579594
+//# sourceMappingURL=Web.js.map?dt=1672653487699

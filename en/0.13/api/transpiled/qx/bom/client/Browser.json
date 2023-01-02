@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 47,
-        "column": 0
+        "column": 0,
+        "index": 1189
       },
       "end": {
-        "line": 226,
-        "column": 3
+        "line": 233,
+        "column": 3,
+        "index": 7031
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "getName": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1401
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1486
         }
       },
       "jsdoc": {
@@ -76,15 +80,58 @@
       "type": "function",
       "access": "public"
     },
+    "detectName": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1700
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3268
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Examines the user agent of the browser to determine the browser name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "agent {String} the user agent string",
+            "paramName": "agent",
+            "description": " the user agent string",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the current browser.",
+            "type": "String",
+            "description": " The name of the current browser."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "getVersion": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 3419
         },
         "end": {
-          "line": 162,
-          "column": 5
+          "line": 169,
+          "column": 5,
+          "index": 4723
         }
       },
       "jsdoc": {
@@ -115,12 +162,14 @@
     "getDocumentMode": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 177,
+          "column": 4,
+          "index": 4905
         },
         "end": {
-          "line": 176,
-          "column": 5
+          "line": 182,
+          "column": 5,
+          "index": 5027
         }
       },
       "jsdoc": {
@@ -151,12 +200,14 @@
     "getQuirksMode": {
       "location": {
         "start": {
-          "line": 185,
-          "column": 4
+          "line": 190,
+          "column": 4,
+          "index": 5187
         },
         "end": {
-          "line": 193,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 5477
         }
       },
       "jsdoc": {
@@ -187,12 +238,14 @@
     "__agents": {
       "location": {
         "start": {
-          "line": 199,
-          "column": 4
+          "line": 204,
+          "column": 4,
+          "index": 5573
         },
         "end": {
-          "line": 217,
-          "column": 37
+          "line": 224,
+          "column": 37,
+          "index": 6716
         }
       },
       "jsdoc": {
@@ -210,15 +263,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 220,
-        "column": 10
+        "line": 227,
+        "column": 2,
+        "index": 6725
       },
       "end": {
-        "line": 225,
-        "column": 3
+        "line": 232,
+        "column": 3,
+        "index": 7027
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

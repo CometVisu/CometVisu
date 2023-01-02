@@ -12,12 +12,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 34,
-        "column": 0
+        "line": 33,
+        "column": 0,
+        "index": 1174
       },
       "end": {
-        "line": 172,
-        "column": 3
+        "line": 173,
+        "column": 3,
+        "index": 5000
       }
     },
     "jsdoc": {
@@ -58,12 +60,14 @@
     "width": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1486
         },
         "end": {
-          "line": 45,
-          "column": 50
+          "line": 44,
+          "column": 44,
+          "index": 1526
         }
       },
       "name": "width",
@@ -75,12 +79,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1532
         },
         "end": {
-          "line": 46,
-          "column": 52
+          "line": 45,
+          "column": 47,
+          "index": 1575
         }
       },
       "name": "height",
@@ -92,12 +98,14 @@
     "cropTop": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1581
         },
         "end": {
-          "line": 47,
-          "column": 36
+          "line": 46,
+          "column": 32,
+          "index": 1609
         }
       },
       "name": "cropTop",
@@ -107,12 +115,14 @@
     "cropBottom": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1615
         },
         "end": {
-          "line": 48,
-          "column": 36
+          "line": 47,
+          "column": 35,
+          "index": 1646
         }
       },
       "name": "cropBottom",
@@ -122,12 +132,14 @@
     "src": {
       "location": {
         "start": {
-          "line": 49,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1652
         },
         "end": {
-          "line": 49,
-          "column": 46
+          "line": 48,
+          "column": 38,
+          "index": 1686
         }
       },
       "name": "src",
@@ -139,12 +151,14 @@
     "widthFit": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1692
         },
         "end": {
-          "line": 50,
-          "column": 50
+          "line": 49,
+          "column": 47,
+          "index": 1735
         }
       },
       "name": "widthFit",
@@ -156,12 +170,14 @@
     "placeholder": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1741
         },
         "end": {
-          "line": 54,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1829
         }
       },
       "name": "placeholder",
@@ -281,12 +297,14 @@
     "__src": {
       "location": {
         "start": {
-          "line": 63,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1989
         },
         "end": {
-          "line": 63,
-          "column": 15
+          "line": 62,
+          "column": 15,
+          "index": 2000
         }
       },
       "type": "variable",
@@ -295,12 +313,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 2025
         },
         "end": {
           "line": 108,
-          "column": 5
+          "column": 5,
+          "index": 3355
         }
       },
       "jsdoc": {},
@@ -315,11 +335,13 @@
       "location": {
         "start": {
           "line": 113,
-          "column": 4
+          "column": 4,
+          "index": 3411
         },
         "end": {
           "line": 124,
-          "column": 5
+          "column": 5,
+          "index": 3804
         }
       },
       "jsdoc": {
@@ -337,11 +359,13 @@
       "location": {
         "start": {
           "line": 126,
-          "column": 4
+          "column": 4,
+          "index": 3811
         },
         "end": {
-          "line": 148,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 4470
         }
       },
       "type": "function",
@@ -350,12 +374,14 @@
     "getValueElement": {
       "location": {
         "start": {
-          "line": 151,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 4495
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 4576
         }
       },
       "jsdoc": {},
@@ -369,12 +395,14 @@
     "_applyVisible": {
       "location": {
         "start": {
-          "line": 156,
-          "column": 4
+          "line": 157,
+          "column": 4,
+          "index": 4601
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 167,
+          "column": 5,
+          "index": 4900
         }
       },
       "jsdoc": {},
@@ -1501,6 +1529,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1525,6 +1554,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3450,15 +3480,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 169,
-        "column": 9
+        "line": 170,
+        "column": 2,
+        "index": 4909
       },
       "end": {
-        "line": 171,
-        "column": 3
+        "line": 172,
+        "column": 3,
+        "index": 4996
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

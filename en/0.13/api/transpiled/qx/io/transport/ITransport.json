@@ -1,0 +1,222 @@
+{
+  "className": "qx.io.transport.ITransport",
+  "packageName": "qx.io.transport",
+  "name": "ITransport",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 0,
+        "index": 70
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1065
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>The interface for all transports located in this namespace</p>"
+        }
+      ]
+    }
+  },
+  "type": "interface",
+  "properties": {
+    "endpoint": {
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 4,
+          "index": 210
+        },
+        "end": {
+          "line": 12,
+          "column": 5,
+          "index": 257
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The URI of the endpoint</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "name": "endpoint",
+      "propertyType": "new",
+      "event": "changeEndpoint"
+    }
+  },
+  "events": {
+    "message": {
+      "type": "event",
+      "name": "message",
+      "abstract": true,
+      "mixin": false,
+      "access": "public",
+      "overriddenFrom": null,
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a message is received from the endpoint. Event data\n is an UTF-8 encoded string</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "send": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 763
+        },
+        "end": {
+          "line": 32,
+          "column": 26,
+          "index": 785
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transport the given message to the endpoint</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point.",
+            "type": "qx.Promise",
+            "description": " Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point."
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getTransportImpl": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1036
+        },
+        "end": {
+          "line": 40,
+          "column": 25,
+          "index": 1057
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object which implements the transport on the underlying\n level, so that transport-specific configuration can be done on it.\n The object might be a new one for each request.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "getEndpoint": {
+      "type": "function",
+      "name": "getEndpoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>endpoint</code>.\n\nFor further details take a look at the property definition: {@link #endpoint}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for endpoint"
+          }
+        ]
+      }
+    },
+    "setEndpoint": {
+      "type": "function",
+      "name": "setEndpoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>endpoint</code>.\n\nFor further details take a look at the property definition: {@link #endpoint}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for endpoint"
+          }
+        ]
+      }
+    },
+    "resetEndpoint": {
+      "type": "function",
+      "name": "resetEndpoint",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>endpoint</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #endpoint}."
+          }
+        ]
+      }
+    }
+  },
+  "descendants": []
+}

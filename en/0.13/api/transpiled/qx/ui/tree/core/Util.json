@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 572
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 76,
+        "column": 3,
+        "index": 2325
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "isNode": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 960
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 1144
         }
       },
       "jsdoc": {
@@ -77,12 +81,14 @@
     "hasChildren": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1703
         },
         "end": {
-          "line": 78,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2317
         }
       },
       "jsdoc": {

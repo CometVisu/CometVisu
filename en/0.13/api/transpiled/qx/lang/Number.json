@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 619
       },
       "end": {
-        "line": 100,
-        "column": 3
+        "line": 95,
+        "column": 3,
+        "index": 2676
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "isInRange": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 968
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1040
         }
       },
       "jsdoc": {
@@ -84,12 +88,14 @@
     "isBetweenRange": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1346
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1421
         }
       },
       "jsdoc": {
@@ -137,12 +143,14 @@
     "limit": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1928
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 2126
         }
       },
       "jsdoc": {
@@ -190,12 +198,14 @@
     "equals": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 81,
+          "column": 4,
+          "index": 2310
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2668
         }
       },
       "jsdoc": {

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,7 +57,6 @@
         for (var i = 0, l = featureList.length; i < l; i++) {
           var feature = featureList[i];
           var hasMethodName = "has" + qx.lang.String.capitalize(feature);
-
           if (this[hasMethodName]) {
             if (this[hasMethodName]() === true) {
               continue;
@@ -66,25 +64,20 @@
               throw new qx.dev.unit.RequirementError(feature);
             }
           }
-
           if (qx.core.Environment.getChecks()[feature]) {
             var envValue = qx.core.Environment.get(feature);
-
             if (envValue === true) {
               continue;
             }
-
             if (envValue === false) {
               throw new qx.dev.unit.RequirementError(feature);
             } else {
               throw new Error("The Environment key " + feature + " cannot be used" + " as a Test Requirement since its value is not boolean!");
             }
           }
-
           if (qx.core.Environment.getAsyncChecks()[feature]) {
-            throw new Error('Unable to verify requirement ' + feature + ': ' + 'Asynchronous environment checks are not supported!');
+            throw new Error("Unable to verify requirement " + feature + ": " + "Asynchronous environment checks are not supported!");
           }
-
           throw new Error('Unable to verify requirement: No method "' + hasMethodName + '" or valid Environment key "' + feature + '" found');
         }
       }
@@ -93,4 +86,4 @@
   qx.dev.unit.MRequirementsBasic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequirementsBasic.js.map?dt=1664789582248
+//# sourceMappingURL=MRequirementsBasic.js.map?dt=1672653490428

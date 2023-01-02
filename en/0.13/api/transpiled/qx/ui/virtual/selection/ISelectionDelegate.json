@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
-        "column": 0
+        "line": 29,
+        "column": 0,
+        "index": 971
       },
       "end": {
-        "line": 59,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 2064
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "isItemSelectable": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1671
         },
         "end": {
-          "line": 46,
-          "column": 40
+          "line": 43,
+          "column": 29,
+          "index": 1696
         }
       },
       "jsdoc": {
@@ -70,12 +74,14 @@
     "styleSelectable": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 2016
         },
         "end": {
-          "line": 57,
-          "column": 55
+          "line": 53,
+          "column": 44,
+          "index": 2056
         }
       },
       "jsdoc": {

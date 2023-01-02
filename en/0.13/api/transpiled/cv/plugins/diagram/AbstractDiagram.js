@@ -34,11 +34,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* AbstractDiagram.js 
-   * 
+  /* AbstractDiagram.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -104,7 +103,6 @@
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Refresh],
     type: 'abstract',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -114,7 +112,6 @@
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this._debouncedLoadDiagramData = qx.util.Function.debounce(this.loadDiagramData.bind(this), 200);
     },
-
     /*
     ******************************************************
       STATICS
@@ -122,7 +119,6 @@
     */
     statics: {
       cache: {},
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -138,7 +134,6 @@
         } else {
           mappings = this.getAttributeToPropertyMappings();
         }
-
         cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
         cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         var legend = xml.getAttribute('legend') || 'both';
@@ -151,28 +146,28 @@
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
           series: {
-            'default': 'day'
+            "default": 'day'
           },
           seriesStart: {
-            'default': 'end-month'
+            "default": 'end-month'
           },
           seriesEnd: {
-            'default': 'now'
+            "default": 'now'
           },
           seriesResolution: {
-            'default': 300,
+            "default": 300,
             transform: parseInt
           },
           period: {
-            'default': 1,
+            "default": 1,
             transform: parseInt
           },
           legendposition: {
-            'default': 'ne'
+            "default": 'ne'
           },
           timeformat: {},
           timeformatTooltip: {
-            'default': '%d.%m.%Y %H:%M'
+            "default": '%d.%m.%Y %H:%M'
           },
           zoomYAxis: {
             transform: function transform(value) {
@@ -184,7 +179,7 @@
           },
           refresh: {},
           gridcolor: {
-            'default': '#81664B'
+            "default": '#81664B'
           },
           previewlabels: {
             transform: function transform(value) {
@@ -248,26 +243,21 @@
             align: elem.getAttribute('align') || 'center',
             barWidth: elem.getAttribute('barWidth') || 1
           };
-
           if (elem.tagName === 'influx') {
             retVal.ts[retVal.tsnum].filter = this.getInfluxFilter(elem, 'AND');
             retVal.ts[retVal.tsnum].field = elem.getAttribute('field');
             retVal.ts[retVal.tsnum].authentication = elem.getAttribute('authentication');
           } else {
             var dsIndex = elem.getAttribute('datasourceIndex') || 0;
-
             if (dsIndex < 0) {
               dsIndex = 0;
             }
-
             retVal.ts[retVal.tsnum].dsIndex = dsIndex;
           }
-
           retVal.tsnum++;
         }, this);
         return retVal;
       },
-
       /**
        * Recursively walk through the elem to build filter sting
        * @param elem
@@ -278,39 +268,31 @@
         var length = children.length;
         var retval = '';
         var i = 0;
-
         for (; i < length; i++) {
           var child = children[i];
-
           if (retval !== '') {
             retval += ' ' + type + ' ';
           }
-
           switch (child.tagName) {
             case 'and':
               retval += this.getInfluxFilter(child, 'AND');
               break;
-
             case 'or':
               retval += this.getInfluxFilter(child, 'OR');
               break;
-
             case 'tag':
               retval += child.getAttribute('key') + ' ' + child.getAttribute('operator') + ' \'' + child.getAttribute('value') + '\'';
               break;
-
-            default: // ignore unknown
-
+            default:
+            // ignore unknown
           }
         }
 
         if (type) {
           return '(' + retval + ')';
         }
-
         return retval;
       },
-
       /**
        * Get the rrd or InfluxDB and put it's content in the cache.
        * @param ts
@@ -324,6 +306,7 @@
        * @param callbackParameter
        */
       lookupTsCache: function lookupTsCache(ts, start, end, res, forceNowDatapoint, refresh, force, callback, callbackParameter) {
+        var _this = this;
         var client = cv.io.BackendConnections.getClient();
         var key;
         var url;
@@ -332,46 +315,41 @@
           start: start,
           end: end
         });
-
         if (ts.tsType !== 'influx' && chartsResource !== null) {
           // the backend provides an charts resource that must be processed differently (e.g. openHABs persistence data
           url = chartsResource;
           key = url;
         } else {
-          url = (ts.tsType === 'influx' ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') + '&ds=' + encodeURIComponent(ts.cFunc) + // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
+          url = (ts.tsType === 'influx' ? 'resource/plugins/diagram/influxfetch.php?ts=' + ts.src : client.getResourcePath('rrd') + '?rrd=' + encodeURIComponent(ts.src) + '.rrd') + '&ds=' + encodeURIComponent(ts.cFunc) +
+          // NOTE: don't encodeURIComponent `start` and `end` for RRD as the "+" needs to be in the URL in plain text
           //       although it looks wrong (as a "+" in a URL translates in the decode to a space: " ")
           '&start=' + (ts.tsType === 'rrd' ? start : encodeURIComponent(start)) + '&end=' + (ts.tsType === 'rrd' ? end : encodeURIComponent(end)) + '&res=' + encodeURIComponent(res) + (ts.fillTs ? '&fill=' + encodeURIComponent(ts.fillTs) : '') + (ts.filter ? '&filter=' + encodeURIComponent(ts.filter) : '') + (ts.field ? '&field=' + encodeURIComponent(ts.field) : '') + (ts.authentication ? '&auth=' + encodeURIComponent(ts.authentication) : '');
           key = url + (ts.tsType === 'rrd' ? '|' + ts.dsIndex : '');
         }
-
         var urlNotInCache = !(key in this.cache);
         var doLoad = force || urlNotInCache || !('data' in this.cache[key]) || refresh !== undefined && Date.now() - this.cache[key].timestamp > refresh * 1000;
-
         if (doLoad) {
           if (urlNotInCache) {
             this.cache[key] = {
               waitingCallbacks: []
             };
           }
-
           this.cache[key].waitingCallbacks.push([callback, callbackParameter]);
-
           if (this.cache[key].waitingCallbacks.length === 1) {
             if (this.cache[key].xhr) {
               this.cache[key].xhr.dispose();
             }
-
             var xhr = new qx.io.request.Xhr(url);
             client.authorize(xhr);
             xhr.set({
               accept: 'application/json'
             });
             xhr.addListener('success', function (ev) {
-              this._onSuccess(ts, key, ev, forceNowDatapoint);
-            }, this);
+              _this._onSuccess(ts, key, ev, forceNowDatapoint);
+            });
             xhr.addListener('statusError', function (ev) {
-              this._onStatusError(ts, key, ev);
-            }, this);
+              _this._onStatusError(ts, key, ev);
+            });
             this.cache[key].xhr = xhr;
             xhr.send();
           }
@@ -381,10 +359,8 @@
       },
       _onSuccess: function _onSuccess(ts, key, ev, forceNowDatapoint) {
         var tsdata = ev.getTarget().getResponse();
-
         if (tsdata !== null) {
           var client = cv.io.BackendConnections.getClient();
-
           if (client.hasCustomChartsDataProcessor(tsdata)) {
             tsdata = client.processChartsData(tsdata);
           } else {
@@ -393,7 +369,6 @@
             var newRrd = new Array(tsdata.length);
             var j = 0;
             var l = tsdata.length;
-
             for (; j < l; j++) {
               if (ts.tsType === 'rrd') {
                 newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling];
@@ -401,20 +376,15 @@
                 newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
               }
             }
-
             tsdata = newRrd;
           }
         }
-
         var now = Date.now();
-
         if (forceNowDatapoint && tsdata.length > 0) {
           var last = Array.from(tsdata[tsdata.length - 1]); // force copy
-
           last[0] = now;
           tsdata.push(last);
         }
-
         this.cache[key].data = tsdata;
         this.cache[key].timestamp = now;
         this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
@@ -519,7 +489,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -531,7 +500,7 @@
       plot: null,
       plotted: null,
       _timerPopup: null,
-      __P_18_0: false,
+      __P_20_0: false,
       // property apply
       _applyTitle: function _applyTitle(value) {
         if (value) {
@@ -540,25 +509,22 @@
         }
       },
       _setupRefreshAction: function _setupRefreshAction() {
+        var _this2 = this;
         if (this.getRefresh()) {
           if (!this._timer) {
             this._timer = new qx.event.Timer(this.getRefresh());
-
             this._timer.addListener('interval', function () {
-              this.loadDiagramData(this.plot, false, true);
-            }, this);
+              _this2.loadDiagramData(_this2.plot, false, true);
+            });
           }
-
           if (!this._timerPopup) {
             this._timerPopup = new qx.event.Timer(this.getRefresh());
-
             this._timerPopup.addListener('interval', function () {
-              this.loadDiagramData(this.popupplot, false, true);
-            }, this);
+              _this2.loadDiagramData(_this2.popupplot, false, true);
+            });
           }
         }
       },
-
       /**
        * Stop the refresh timer
        *
@@ -570,7 +536,6 @@
           timer.stop();
         }
       },
-
       /**
        * Start the refresh timer
        *
@@ -583,15 +548,15 @@
           if (!timer.isEnabled()) {
             timer.start();
           }
-
           if (runImmediately === true) {
             timer.fireEvent('interval');
           }
         }
       },
       _action: function _action() {
+        var _this3 = this;
         var popupDiagram = qx.dom.Element.create('div', {
-          'class': 'diagram',
+          "class": 'diagram',
           id: this.getPath() + '_big',
           style: 'height: 90%'
         });
@@ -600,20 +565,19 @@
           title: this.getLabel(),
           content: popupDiagram,
           page: this.getParentPage().getPath()
-        }); // this will be called when the popup is being closed.
+        });
+
+        // this will be called when the popup is being closed.
         // NOTE: this will be called twice, one time for the foreground and one
         //       time for the background.
-
         popup.addListener('close', function () {
-          this._stopRefresh(this._timerPopup);
-
+          _this3._stopRefresh(_this3._timerPopup);
           qx.event.Registration.removeAllListeners(popupDiagram);
-
-          if (this.popupplot) {
-            this.popupplot.shutdown();
-            this.popupplot = null;
+          if (_this3.popupplot) {
+            _this3.popupplot.shutdown();
+            _this3.popupplot = null;
           }
-        }, this);
+        });
         var parent = popupDiagram.parentNode;
         Object.entries({
           height: '100%',
@@ -621,24 +585,23 @@
           margin: 'auto'
         }).forEach(function (key_value) {
           parent.style[key_value[0]] = key_value[1];
-        }); // define parent as 100%!
+        });
 
+        // define parent as 100%!
         popupDiagram.innerHTML = '';
         qx.event.Registration.addListener(popupDiagram, 'tap', function (event) {
           // don't let the popup know about the click, or it will close
           event.stopPropagation();
         }, this);
         this.initDiagram(true);
-
         this._startRefresh(this._timerPopup, true);
       },
       initDiagram: function initDiagram(isPopup) {
         if (!this._init) {
           return;
         }
-
         this._init = false;
-        isPopup = isPopup || this.__P_18_0;
+        isPopup = isPopup || this.__P_20_0;
         var options = {
           canvas: true,
           tooltip: this.getTooltip(),
@@ -701,9 +664,9 @@
             dbltapThreshold: 200,
             // delay needed to detect a double tap
             tapPrecision: 30 // tap events boundaries ( 60px square by default )
-
           }
         };
+
         options.yaxes.forEach(function (val) {
           Object.assign(val, {
             axisLabelColour: this.getGridcolor(),
@@ -716,7 +679,6 @@
             color: this.getGridcolor()
           });
         }, this);
-
         if (isPopup) {
           Object.assign(options, {
             yaxis: {
@@ -729,12 +691,10 @@
             }
           });
         }
-
         if (this.getTooltip()) {
           options.grid.hoverable = true;
           options.grid.clickable = true;
         }
-
         if (!isPopup && !this.getPreviewlabels()) {
           Object.assign(options, {
             xaxes: [{
@@ -742,24 +702,21 @@
               mode: options.xaxes[0].mode
             }]
           });
-
           if (options.yaxes.length === 0) {
             options.yaxes[0] = {};
           }
-
           options.yaxes.forEach(function (val) {
             Object.assign(val, {
               ticks: 0,
               axisLabel: null
             });
           }, this);
-        } // plot diagram initially with empty values
+        }
 
-
+        // plot diagram initially with empty values
         var diagram = isPopup ? $('#' + this.getPath() + '_big') : $('#' + this.getPath() + ' .actor div');
         diagram.empty();
         var plot = $.plot(diagram, [], options);
-
         if (isPopup) {
           this.debug('popup plot generated');
           this.popupplot = plot;
@@ -767,7 +724,6 @@
           this.debug('plot generated');
           this.plot = plot;
         }
-
         this.plotted = true;
         var that = this;
         diagram.bind('plotpan', function (event, plot) {
@@ -779,22 +735,18 @@
         }).bind('tap', function () {
           var self = this;
           var container = $(self).closest('.widget_container')[0];
-
           if (!isPopup && container !== undefined) {
             var actor = $(self).closest('.actor')[0];
             var path = container.id;
-
             if (actor !== undefined && path.length > 0) {
               that.action();
             }
           }
         });
-
         if (!isPopup) {
           // disable touch plugin in non-popup
           plot.getPlaceholder().unbind('touchstart').unbind('touchmove').unbind('touchend');
         }
-
         this.loadDiagramData(plot, isPopup, false);
       },
       getSeriesSettings: function getSeriesSettings(xAxis, isInteractive) {
@@ -835,7 +787,6 @@
           end: null,
           res: null
         };
-
         if (this.getSeries() === 'custom') {
           // initial load, take parameters from custom configuration
           ret.start = this.getSeriesStart();
@@ -843,49 +794,44 @@
           ret.res = this.getSeriesResolution();
         } else {
           var selectedSeries = series[this.getSeries()];
-
           if (!selectedSeries) {
             return null;
-          } // initial load, take parameters from configuration
+          }
 
-
+          // initial load, take parameters from configuration
           ret.start = 'end-' + this.getPeriod() + selectedSeries.start;
           ret.end = selectedSeries.end;
           ret.res = this.getSeriesResolution() ? this.getSeriesResolution() : selectedSeries.res;
         }
-
         if (xAxis.datamin && xAxis.datamax && isInteractive) {
           ret.start = (xAxis.min / 1000).toFixed(0);
         }
-
         return ret;
       },
       loadDiagramData: function loadDiagramData(plot, isInteractive, forceReload) {
         if (!plot) {
           return;
         }
-
         var series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
-
         if (!series) {
           return;
-        } // init
+        }
 
-
+        // init
         var loadedData = [];
         var tsloaded = 0;
-        var tsSuccessful = 0; // get all time series data
-
+        var tsSuccessful = 0;
+        // get all time series data
         this.getContent().ts.forEach(function (ts, index) {
           var res = Number.isFinite(ts.resol) ? ts.resol : series.res;
           var forceNowDatapoint = this.getForceNowDatapoint();
           var refresh = this.getRefresh() ? this.getRefresh() : res;
           cv.plugins.diagram.AbstractDiagram.lookupTsCache(ts, series.start, series.end, res, forceNowDatapoint, refresh, forceReload, function (tsdata) {
             tsloaded++;
-
             if (tsdata !== null) {
-              tsSuccessful++; // store the data for diagram plotting
+              tsSuccessful++;
 
+              // store the data for diagram plotting
               loadedData[index] = {
                 label: ts.label,
                 color: ts.color,
@@ -908,20 +854,19 @@
                   fill: ts.fill
                 }
               };
-            } // if loading has finished, i.e. all time series have been retrieved,
+            }
+
+            // if loading has finished, i.e. all time series have been retrieved,
             // go on and plot the diagram
-
-
             if (tsloaded === this.getContent().tsnum) {
-              var fulldata; // If all time series were successfully loaded, no extra action is needed.
+              var fulldata;
+              // If all time series were successfully loaded, no extra action is needed.
               // Otherwise we need to reduce the array to the loaded data.
-
               if (tsSuccessful === tsloaded) {
                 fulldata = loadedData;
               } else {
                 fulldata = [];
                 var loadedIndex = -1;
-
                 for (var j = 0; j < tsSuccessful; j++) {
                   for (var k = loadedIndex + 1; k < loadedData.length; k++) {
                     if (loadedData[k] !== null) {
@@ -931,9 +876,9 @@
                     }
                   }
                 }
-              } // plot
+              }
 
-
+              // plot
               plot.setData(fulldata);
               plot.setupGrid();
               plot.draw();
@@ -943,7 +888,6 @@
         }, this);
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -962,4 +906,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1664789563754
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1672653472370

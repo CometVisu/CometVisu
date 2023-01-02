@@ -4,17 +4,21 @@
   "name": "Color",
   "superClass": "cv.ui.structure.tile.components.AbstractComponent",
   "interfaces": [],
-  "mixins": [],
+  "mixins": [
+    "cv.ui.structure.tile.MResize"
+  ],
   "functionName": null,
   "clazz": {
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 891
       },
       "end": {
-        "line": 153,
-        "column": 3
+        "line": 191,
+        "column": 3,
+        "index": 6377
       }
     },
     "jsdoc": {
@@ -43,12 +47,14 @@
     "throttleInterval": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1198
         },
         "end": {
-          "line": 38,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1301
         }
       },
       "name": "throttleInterval",
@@ -57,18 +63,46 @@
       "init": 250,
       "check": "Number",
       "defaultValue": 250
+    },
+    "resizeTarget": {
+      "type": "property",
+      "name": "resizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
+    }
+  },
+  "statics": {
+    "CC_COUNTER": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1447
+        },
+        "end": {
+          "line": 48,
+          "column": 17,
+          "index": 1460
+        }
+      },
+      "type": "variable",
+      "access": "public"
     }
   },
   "members": {
-    "__input": {
+    "__colorChooser": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1606
         },
         "end": {
-          "line": 46,
-          "column": 17
+          "line": 57,
+          "column": 24,
+          "index": 1626
         }
       },
       "type": "variable",
@@ -77,12 +111,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1633
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 4827
         }
       },
       "type": "function",
@@ -93,46 +129,49 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
-    "_applyThrottleInterval": {
+    "_onColorChanged": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 4834
         },
         "end": {
-          "line": 78,
-          "column": 5
+          "line": 144,
+          "column": 5,
+          "index": 5151
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "throttleInterval"
-      ]
+      "access": "protected"
     },
-    "onInput": {
+    "__convertToHex": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 5158
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 150,
+          "column": 5,
+          "index": 5265
         }
       },
       "type": "function",
-      "access": "public"
+      "access": "private"
     },
     "_updateValue": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 152,
+          "column": 4,
+          "index": 5272
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 169,
+          "column": 5,
+          "index": 5951
         }
       },
       "type": "function",
@@ -142,56 +181,83 @@
         "cv.ui.structure.tile.components.AbstractComponent"
       ]
     },
-    "onStateUpdate": {
-      "location": {
-        "start": {
-          "line": 106,
-          "column": 4
-        },
-        "end": {
-          "line": 123,
-          "column": 5
-        }
-      },
+    "_applyResizeTarget": {
       "type": "function",
+      "name": "_applyResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
+    },
+    "getResizeTarget": {
+      "type": "function",
+      "name": "getResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
-      "appearsIn": [
-        "cv.ui.structure.tile.components.AbstractComponent"
-      ],
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "get",
       "jsdoc": {
-        "@param": [
+        "@description": [
           {
-            "name": "@param",
-            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
-            "paramName": "ev",
-            "description": " stateUpdate event fired from an cv-address component",
-            "type": "CustomEvent"
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} true of the update has been handled",
-            "type": "Boolean",
-            "description": " true of the update has been handled"
+            "type": "Element",
+            "desc": "Returns the value for resizeTarget"
           }
         ]
       }
     },
-    "__sendValue": {
-      "location": {
-        "start": {
-          "line": 125,
-          "column": 4
-        },
-        "end": {
-          "line": 143,
-          "column": 5
-        }
-      },
+    "setResizeTarget": {
       "type": "function",
-      "access": "private"
+      "name": "setResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Element",
+            "paramName": "value",
+            "desc": "Value for resizeTarget"
+          }
+        ]
+      }
+    },
+    "resetResizeTarget": {
+      "type": "function",
+      "name": "resetResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizeTarget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
+          }
+        ]
+      }
     },
     "getQxOwner": {
       "type": "function",
@@ -281,6 +347,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -305,6 +372,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -791,16 +859,43 @@
       }
     }
   },
+  "destruct": {
+    "location": {
+      "start": {
+        "line": 177,
+        "column": 12,
+        "index": 6095
+      },
+      "end": {
+        "line": 179,
+        "column": 3,
+        "index": 6156
+      }
+    },
+    "jsdoc": {}
+  },
   "defer": {
     "location": {
       "start": {
-        "line": 146,
-        "column": 2
+        "line": 181,
+        "column": 2,
+        "index": 6161
       },
       "end": {
-        "line": 152,
-        "column": 3
+        "line": 190,
+        "column": 3,
+        "index": 6373
       }
+    }
+  },
+  "events": {
+    "resized": {
+      "type": "event",
+      "name": "resized",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
     }
   },
   "descendants": []

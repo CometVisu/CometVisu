@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +39,6 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.cell.Image", {
     extend: qx.ui.progressive.renderer.table.cell.Icon,
-
     /**
      * @param height {Integer ? 16}
      *   The height of the image. The default is 16.
@@ -50,31 +48,33 @@
      */
     construct: function construct(width, height) {
       qx.ui.progressive.renderer.table.cell.Icon.constructor.call(this);
-
-      if (width === undefined) {
-        this.__P_410_0 = width;
+      if (width !== undefined) {
+        this._imageWidth = width;
       } else {
-        this.__P_410_0 = 16;
+        this._imageWidth = 16;
       }
-
-      if (height === undefined) {
-        this.__P_410_1 = height;
+      if (height !== undefined) {
+        this._imageHeight = height;
       } else {
-        this.__P_410_1 = 16;
+        this._imageHeight = 16;
       }
     },
     members: {
-      __P_410_0: null,
-      __P_410_1: null,
+      _imageWidth: null,
+      _imageHeight: null,
+      _getDefaultImageData: function _getDefaultImageData(cellInfo) {
+        return {
+          imageWidth: this._imageWidth,
+          imageHeight: this._imageHeight
+        };
+      },
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
-        var imageData = {
-          imageWidth: this.__P_410_0,
-          imageHeight: this.__P_410_1
-        };
-        var height; // String data is the unresolved url for the image.
-        // Object data is a map containing the url, tooltip, and a height
+        var height;
+        var imageData = this._getDefaultImageData(cellInfo);
 
+        // String data is the unresolved url for the image.
+        // Object data is a map containing the url, tooltip, and a height
         if (typeof cellInfo.cellData == "string") {
           imageData.url = cellInfo.cellData;
         } else {
@@ -82,7 +82,6 @@
           imageData.tooltip = cellInfo.cellData.tooltip;
           height = cellInfo.cellData.height;
         }
-
         if (imageData.url == "") {
           imageData.url = this._imageBlank;
         } else {
@@ -90,13 +89,12 @@
           var resourceManager = qx.util.ResourceManager.getInstance();
           var resolved = aliasManager.resolve(imageData.url);
           imageData.url = resourceManager.toUri(resolved);
-        } // Adjust the row height, if necessary, to let this image fit
+        }
 
-
+        // Adjust the row height, if necessary, to let this image fit
         if (height) {
           cellInfo.height = height;
         }
-
         return imageData;
       }
     }
@@ -104,4 +102,4 @@
   qx.ui.progressive.renderer.table.cell.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1664789602868
+//# sourceMappingURL=Image.js.map?dt=1672653513125

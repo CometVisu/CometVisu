@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,20 +35,20 @@
         size: 13,
         family: ["arial", "sans-serif"]
       },
-      "bold": {
+      bold: {
         size: 13,
         family: ["arial", "sans-serif"],
         bold: true
       },
-      "headline": {
+      headline: {
         size: 24,
         family: ["sans-serif", "arial"]
       },
-      "small": {
+      small: {
         size: 11,
         family: ["arial", "sans-serif"]
       },
-      "monospace": {
+      monospace: {
         size: 11,
         family: ["DejaVu Sans Mono", "Courier New", "monospace"]
       }
@@ -58,4 +57,4 @@
   qx.theme.simple.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1664789591843
+//# sourceMappingURL=Font.js.map?dt=1672653503319

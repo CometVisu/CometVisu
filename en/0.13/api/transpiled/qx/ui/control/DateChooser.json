@@ -17,11 +17,13 @@
     "location": {
       "start": {
         "line": 60,
-        "column": 0
+        "column": 0,
+        "index": 2704
       },
       "end": {
-        "line": 771,
-        "column": 3
+        "line": 795,
+        "column": 3,
+        "index": 23261
       }
     },
     "jsdoc": {
@@ -137,12 +139,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 84,
-        "column": 14
+        "line": 76,
+        "column": 2,
+        "index": 3235
       },
       "end": {
-        "line": 117,
-        "column": 3
+        "line": 115,
+        "column": 3,
+        "index": 4414
       }
     },
     "jsdoc": {
@@ -169,12 +173,14 @@
     "MONTH_YEAR_FORMAT": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 4710
         },
         "end": {
-          "line": 132,
-          "column": 28
+          "line": 127,
+          "column": 27,
+          "index": 4733
         }
       },
       "jsdoc": {
@@ -197,12 +203,14 @@
     "WEEKDAY_FORMAT": {
       "location": {
         "start": {
-          "line": 137,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 4845
         },
         "end": {
-          "line": 137,
-          "column": 25
+          "line": 132,
+          "column": 24,
+          "index": 4865
         }
       },
       "jsdoc": {
@@ -225,12 +233,14 @@
     "WEEK_FORMAT": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 4975
         },
         "end": {
-          "line": 142,
-          "column": 22
+          "line": 137,
+          "column": 21,
+          "index": 4992
         }
       },
       "jsdoc": {
@@ -255,12 +265,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 148,
+          "column": 4,
+          "index": 5224
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 151,
+          "column": 5,
+          "index": 5289
         }
       },
       "jsdoc": {},
@@ -277,12 +289,14 @@
     "width": {
       "location": {
         "start": {
-          "line": 162,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 5314
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 157,
+          "column": 5,
+          "index": 5364
         }
       },
       "jsdoc": {},
@@ -299,12 +313,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 169,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 5389
         },
         "end": {
-          "line": 173,
-          "column": 5
+          "line": 163,
+          "column": 5,
+          "index": 5440
         }
       },
       "jsdoc": {},
@@ -321,12 +337,14 @@
     "shownMonth": {
       "location": {
         "start": {
-          "line": 176,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 5523
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 171,
+          "column": 5,
+          "index": 5638
         }
       },
       "jsdoc": {
@@ -347,12 +365,14 @@
     "shownYear": {
       "location": {
         "start": {
-          "line": 185,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5682
         },
         "end": {
-          "line": 191,
-          "column": 5
+          "line": 179,
+          "column": 5,
+          "index": 5795
         }
       },
       "jsdoc": {
@@ -373,19 +393,21 @@
     "value": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 201,
+          "column": 4,
+          "index": 6617
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 207,
+          "column": 5,
+          "index": 6747
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>The date value of the widget.</p>"
+            "body": "<p>The date value of the widget.\n CAUTION: Date is a reference type. If you call <code>setValue</code> with\n a Date object, and then change that Date object's value, e.g.,\n with <code>date.setYear()</code>, and then call <code>setValue</code> with that same\n Date object, ** the widget will not update **. Instead, you\n should instantiate a new Date object with the old (modified)\n date object as its initiatializer, and pass that to <code>setValue</code>,\n e.g.,\n <code></code><code>\n date = new Date();\n dateChooser.setValue(date);\n\n date = date.setDate(date.getDate() + 1);\n // dateChooser.setValue(date);\n dateChooser.setValue(new Date(date));\n </code><code></code></p>"
           }
         ]
       },
@@ -393,6 +415,62 @@
       "propertyType": "new",
       "event": "changeValue",
       "apply": "_applyValue",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Date"
+    },
+    "minValue": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 6911
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 7019
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The minimal date value of the widget. Dates which are less\n than this property value will be shown as disabled (not clickable).</p>"
+          }
+        ]
+      },
+      "name": "minValue",
+      "propertyType": "new",
+      "apply": "_applyMinValue",
+      "nullable": true,
+      "allowNull": true,
+      "check": "Date"
+    },
+    "maxValue": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 7186
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7294
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximal date value of the widget. Dates which are greater\n than this property value will be shown as disabled (not clickable).</p>"
+          }
+        ]
+      },
+      "name": "maxValue",
+      "propertyType": "new",
+      "apply": "_applyMaxValue",
       "nullable": true,
       "allowNull": true,
       "check": "Date"
@@ -460,7 +538,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -472,12 +550,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -519,12 +597,14 @@
     "__weekdayLabelArr": {
       "location": {
         "start": {
-          "line": 215,
-          "column": 4
+          "line": 239,
+          "column": 4,
+          "index": 7555
         },
         "end": {
-          "line": 215,
-          "column": 28
+          "line": 239,
+          "column": 27,
+          "index": 7578
         }
       },
       "type": "variable",
@@ -533,12 +613,14 @@
     "__dayLabelArr": {
       "location": {
         "start": {
-          "line": 216,
-          "column": 4
+          "line": 240,
+          "column": 4,
+          "index": 7584
         },
         "end": {
-          "line": 216,
-          "column": 24
+          "line": 240,
+          "column": 23,
+          "index": 7603
         }
       },
       "type": "variable",
@@ -547,12 +629,14 @@
     "__weekLabelArr": {
       "location": {
         "start": {
-          "line": 217,
-          "column": 4
+          "line": 241,
+          "column": 4,
+          "index": 7609
         },
         "end": {
-          "line": 217,
-          "column": 25
+          "line": 241,
+          "column": 24,
+          "index": 7629
         }
       },
       "type": "variable",
@@ -561,12 +645,14 @@
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 224,
-          "column": 4
+          "line": 247,
+          "column": 4,
+          "index": 7720
         },
         "end": {
-          "line": 227,
-          "column": 5
+          "line": 249,
+          "column": 5,
+          "index": 7763
         }
       },
       "jsdoc": {
@@ -589,12 +675,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 237,
-          "column": 4
+          "line": 258,
+          "column": 4,
+          "index": 7986
         },
         "end": {
-          "line": 389,
-          "column": 5
+          "line": 405,
+          "column": 5,
+          "index": 13113
         }
       },
       "jsdoc": {},
@@ -608,12 +696,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 393,
-          "column": 4
+          "line": 408,
+          "column": 4,
+          "index": 13141
         },
         "end": {
-          "line": 427,
-          "column": 5
+          "line": 438,
+          "column": 5,
+          "index": 14154
         }
       },
       "jsdoc": {},
@@ -623,15 +713,55 @@
         "value"
       ]
     },
+    "_applyMinValue": {
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 14161
+        },
+        "end": {
+          "line": 442,
+          "column": 5,
+          "index": 14214
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "minValue"
+      ]
+    },
+    "_applyMaxValue": {
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 4,
+          "index": 14221
+        },
+        "end": {
+          "line": 446,
+          "column": 5,
+          "index": 14274
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "maxValue"
+      ]
+    },
     "_onPointerUpDown": {
       "location": {
         "start": {
-          "line": 443,
-          "column": 4
+          "line": 460,
+          "column": 4,
+          "index": 14692
         },
         "end": {
-          "line": 451,
-          "column": 5
+          "line": 470,
+          "column": 5,
+          "index": 14940
         }
       },
       "jsdoc": {
@@ -657,12 +787,14 @@
     "_onNavButtonTap": {
       "location": {
         "start": {
-          "line": 459,
-          "column": 4
+          "line": 477,
+          "column": 4,
+          "index": 15096
         },
         "end": {
-          "line": 498,
-          "column": 5
+          "line": 512,
+          "column": 5,
+          "index": 15825
         }
       },
       "jsdoc": {
@@ -688,12 +820,14 @@
     "_onDayTap": {
       "location": {
         "start": {
-          "line": 506,
-          "column": 4
+          "line": 519,
+          "column": 4,
+          "index": 15962
         },
         "end": {
-          "line": 510,
-          "column": 5
+          "line": 522,
+          "column": 5,
+          "index": 16071
         }
       },
       "jsdoc": {
@@ -719,12 +853,14 @@
     "_onDayDblTap": {
       "location": {
         "start": {
-          "line": 516,
-          "column": 4
+          "line": 527,
+          "column": 4,
+          "index": 16158
         },
         "end": {
-          "line": 518,
-          "column": 5
+          "line": 529,
+          "column": 5,
+          "index": 16202
         }
       },
       "jsdoc": {
@@ -741,12 +877,14 @@
     "_onKeyPress": {
       "location": {
         "start": {
-          "line": 526,
-          "column": 4
+          "line": 536,
+          "column": 4,
+          "index": 16335
         },
         "end": {
-          "line": 612,
-          "column": 5
+          "line": 622,
+          "column": 5,
+          "index": 18262
         }
       },
       "jsdoc": {
@@ -772,12 +910,14 @@
     "showMonth": {
       "location": {
         "start": {
-          "line": 623,
-          "column": 4
+          "line": 632,
+          "column": 4,
+          "index": 18555
         },
         "end": {
-          "line": 637,
-          "column": 5
+          "line": 647,
+          "column": 5,
+          "index": 18911
         }
       },
       "jsdoc": {
@@ -814,12 +954,14 @@
     "handleKeyPress": {
       "location": {
         "start": {
-          "line": 645,
-          "column": 4
+          "line": 654,
+          "column": 4,
+          "index": 19042
         },
         "end": {
-          "line": 647,
-          "column": 5
+          "line": 656,
+          "column": 5,
+          "index": 19094
         }
       },
       "jsdoc": {
@@ -845,12 +987,14 @@
     "_updateDatePane": {
       "location": {
         "start": {
-          "line": 653,
-          "column": 4
+          "line": 661,
+          "column": 4,
+          "index": 19147
         },
         "end": {
-          "line": 751,
-          "column": 5
+          "line": 767,
+          "column": 5,
+          "index": 22490
         }
       },
       "jsdoc": {
@@ -863,6 +1007,22 @@
       },
       "type": "function",
       "access": "protected"
+    },
+    "__exceedsLimits": {
+      "location": {
+        "start": {
+          "line": 769,
+          "column": 4,
+          "index": 22497
+        },
+        "end": {
+          "line": 775,
+          "column": 5,
+          "index": 22779
+        }
+      },
+      "type": "function",
+      "access": "private"
     },
     "setCommand": {
       "type": "function",
@@ -1303,38 +1463,6 @@
       "access": "protected",
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
-    },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
     },
     "isValid": {
       "type": "function",
@@ -1784,6 +1912,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1808,6 +1937,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -5412,17 +5542,151 @@
           }
         ]
       }
+    },
+    "getMinValue": {
+      "type": "function",
+      "name": "getMinValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>minValue</code>.\n\nFor further details take a look at the property definition: {@link #minValue}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Date",
+            "desc": "Returns the value for minValue"
+          }
+        ]
+      }
+    },
+    "setMinValue": {
+      "type": "function",
+      "name": "setMinValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>minValue</code>.\n\nFor further details take a look at the property definition: {@link #minValue}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Date",
+            "paramName": "value",
+            "desc": "Value for minValue"
+          }
+        ]
+      }
+    },
+    "resetMinValue": {
+      "type": "function",
+      "name": "resetMinValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>minValue</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minValue}."
+          }
+        ]
+      }
+    },
+    "getMaxValue": {
+      "type": "function",
+      "name": "getMaxValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>maxValue</code>.\n\nFor further details take a look at the property definition: {@link #maxValue}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Date",
+            "desc": "Returns the value for maxValue"
+          }
+        ]
+      }
+    },
+    "setMaxValue": {
+      "type": "function",
+      "name": "setMaxValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>maxValue</code>.\n\nFor further details take a look at the property definition: {@link #maxValue}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Date",
+            "paramName": "value",
+            "desc": "Value for maxValue"
+          }
+        ]
+      }
+    },
+    "resetMaxValue": {
+      "type": "function",
+      "name": "resetMaxValue",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>maxValue</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxValue}."
+          }
+        ]
+      }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 763,
-        "column": 13
+        "line": 784,
+        "column": 2,
+        "index": 22975
       },
       "end": {
-        "line": 770,
-        "column": 3
+        "line": 794,
+        "column": 3,
+        "index": 23257
       }
     },
     "jsdoc": {}

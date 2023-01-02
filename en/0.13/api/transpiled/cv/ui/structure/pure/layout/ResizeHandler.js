@@ -23,11 +23,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ResizeHandler.js 
-   * 
+  /* ResizeHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -47,7 +46,6 @@
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-
   /**
    * Manager for all resizing issues. It ensures that the real resizing
    * calculations are only done as often as really necessary.
@@ -55,7 +53,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.layout.ResizeHandler', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -68,8 +65,8 @@
       $navbarBottom: null,
       width: 0,
       height: 0,
-      __P_68_0: true,
-      __P_68_1: 0,
+      __P_70_0: true,
+      __P_70_1: 0,
       validationQueue: [],
       reset: function reset() {
         this.states.resetAll();
@@ -79,35 +76,31 @@
         this.width = 0;
         this.height = 0;
       },
-      __P_68_2: null,
+      __P_70_2: null,
       getPageSize: function getPageSize(noCache) {
         if (!this.$pageSize || noCache === true) {
           this.$pageSize = document.querySelector('#pageSize');
         }
-
         return this.$pageSize;
       },
       getNavbarTop: function getNavbarTop(noCache) {
         if (!this.$navbarTop || noCache === true) {
           this.$navbarTop = document.querySelector('#navbarTop');
         }
-
         return this.$navbarTop;
       },
       getNavbarBottom: function getNavbarBottom(noCache) {
         if (!this.$navbarBottom || noCache === true) {
           this.$navbarBottom = document.querySelector('#navbarBottom');
         }
-
         return this.$navbarBottom;
       },
       queueJob: function queueJob(callback) {
         if (this.validationQueue.indexOf(callback) === -1) {
           this.validationQueue.push(callback);
         }
-
-        if (!this.__P_68_2) {
-          this.__P_68_2 = qx.bom.AnimationFrame.request(this.flush, this);
+        if (!this.__P_70_2) {
+          this.__P_70_2 = qx.bom.AnimationFrame.request(this.flush, this);
         }
       },
       flush: function flush() {
@@ -115,43 +108,36 @@
           var job = this.validationQueue.shift();
           job.apply(this);
         }
-
-        this.__P_68_2 = null;
+        this.__P_70_2 = null;
       },
       makeAllSizesValid: function makeAllSizesValid() {
         if (this.states.isPageSizeInvalid()) {
           this.makePagesizeValid();
         } // must be first due to dependencies
-
-
         if (this.states.isNavbarInvalid()) {
           this.makeNavbarValid();
         }
-
         if (this.states.isRowspanInvalid()) {
           this.makeRowspanValid();
         }
-
         if (this.states.isBackdropInvalid()) {
           this.makeBackdropValid();
         }
       },
       makeBackdropValid: function makeBackdropValid() {
-        this.queueJob(this.__P_68_3);
+        this.queueJob(this.__P_70_3);
       },
-      __P_68_3: function __P_68_3() {
+      __P_70_3: function __P_70_3() {
         qx.log.Logger.debug(this, 'makeBackdropValid');
         var page = cv.Application.structureController.getCurrentPage();
-
         if (!page) {
           return;
-        } // TODO use page object
-
+        }
+        // TODO use page object
 
         if (page.getPageType() === '2d') {
           var cssPosRegEx = /(\d*)(.*)/;
           var backdrop = page.getDomElement().querySelector('div > ' + page.getBackdropType());
-
           try {
             var backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null;
             var backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {};
@@ -167,30 +153,28 @@
             var backdropLeft = backdropLeftRaw[2] === '%' ? (this.width - backdropWidth) * +backdropLeftRaw[1] / 100 : +backdropLeftRaw[1];
             var backdropTop = backdropTopRaw[2] === '%' ? this.height > backdropHeight ? (this.height - backdropHeight) * +backdropTopRaw[1] / 100 : 0 : +backdropTopRaw[1];
             var uagent = navigator.userAgent.toLowerCase();
-
             if (backdrop.complete === false || page.getBackdropType() === 'embed' && backdropSVG === null || backdropBBox.width === 0 && backdropBBox.height === 0 || this.width === 0 && this.height === 0) {
               // backdrop not available yet - reload
               qx.event.Timer.once(this.invalidateBackdrop, this, 100);
               return;
-            } // backdrop available
+            }
 
-
+            // backdrop available
             if (page.getSize() === 'scaled' && page.getBackdropType() === 'embed' && backdropSVG && backdropSVG.children[0].getAttribute('preserveAspectRatio') !== 'none') {
               backdropSVG.children[0].setAttribute('preserveAspectRatio', 'none');
-            } // Note 1: this here is a work around for older browsers that can't use
+            }
+
+            // Note 1: this here is a work around for older browsers that can't use
             // the object-fit property yet.
             // Currently (26.05.16) only Safari is known to not support
             // object-position although object-fit itself does work
             // Note 2: The embed element always needs it
-
-
             if ((page.getBackdropType() === 'embed' || uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1) && page.getSize() !== 'scaled') {
               backdrop.style.width = backdropWidth + 'px';
               backdrop.style.height = backdropHeight + 'px';
               backdrop.style.left = backdropLeft + 'px';
               backdrop.style.top = backdropTop + 'px';
             }
-
             if (backdropFixed && !backdropSVG) {
               if (this.height < backdropHeight) {
                 backdrop.style.height = backdropHeight + 'px';
@@ -198,163 +182,135 @@
                 backdrop.style.height = '100%';
               }
             }
-
             page.getDomElement().querySelectorAll('.widget_container').forEach(function (widgetContainer) {
               var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
               var value;
               var layout = widget.getResponsiveLayout();
               var scale = backdropScale;
-
               if (layout) {
                 // this assumes that a .widget_container has only one child and this
                 // is the .widget itself
                 var style = widgetContainer.children[0].style;
-
                 if (layout.scale === 'false') {
                   scale = 1.0;
                 }
-
                 if ('x' in layout) {
                   value = layout.x.match(cssPosRegEx);
-
                   if (value[2] === 'px') {
                     style.left = backdropLeft + value[1] * scale + 'px';
                   } else {
                     style.left = layout.x;
                   }
                 }
-
                 if ('y' in layout) {
                   value = layout.y.match(cssPosRegEx);
-
                   if (value[2] === 'px') {
                     style.top = backdropTop + value[1] * scale + 'px';
                   } else {
                     style.top = layout.y;
                   }
                 }
-
                 if ('width' in layout) {
                   style.width = layout.width;
                 }
-
                 if ('height' in layout) {
                   style.height = layout.height;
                 }
               }
             }, this);
-            this.__P_68_1 = 0;
+            this.__P_70_1 = 0;
           } catch (e) {
             if (e.name === 'NotSupportedError') {
-              if (this.__P_68_1 <= 5) {
-                qx.bom.AnimationFrame.request(this.__P_68_3, this);
-                this.__P_68_1++;
+              if (this.__P_70_1 <= 5) {
+                qx.bom.AnimationFrame.request(this.__P_70_3, this);
+                this.__P_70_1++;
               }
             }
-
             qx.log.Logger.error(this, e);
           }
         }
-
         this.states.setBackdropInvalid(false);
       },
       makeNavbarValid: function makeNavbarValid() {
-        this.queueJob(this.__P_68_4);
+        this.queueJob(this.__P_70_4);
       },
-      __P_68_4: function __P_68_4() {
+      __P_70_4: function __P_70_4() {
         qx.log.Logger.debug(this, 'makeNavbarValid');
-
         if (cv.ui.structure.pure.layout.Manager.adjustColumns()) {
           // the amount of columns has changed -> recalculate the widgets widths
           cv.ui.structure.pure.layout.Manager.applyColumnWidths();
         }
-
         this.states.setNavbarInvalid(false);
       },
       makePagesizeValid: function makePagesizeValid() {
-        if (this.__P_68_0 === true) {
+        if (this.__P_70_0 === true) {
           // do not queue -> call now
-          this.__P_68_0 = false;
-
-          this.__P_68_5();
+          this.__P_70_0 = false;
+          this.__P_70_5();
         } else {
-          this.queueJob(this.__P_68_5);
+          this.queueJob(this.__P_70_5);
         }
       },
-      __P_68_5: function __P_68_5() {
+      __P_70_5: function __P_70_5() {
         if (!cv.Config.currentPageId) {
           return;
         }
-
         qx.log.Logger.debug(this, 'makePagesizeValid');
         var page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
-
         if (page && !page.isInitialized()) {
-          page.addListenerOnce('changeInitialized', this.__P_68_5, this);
+          page.addListenerOnce('changeInitialized', this.__P_70_5, this);
           return;
         }
-
         this.width = cv.ui.structure.pure.layout.Manager.getAvailableWidth();
         this.height = cv.ui.structure.pure.layout.Manager.getAvailableHeight();
         var pageSizeElement = this.getPageSize();
-
         if (pageSizeElement) {
           pageSizeElement.innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
         }
-
         this.states.setPageSizeInvalid(false);
       },
       makeRowspanValid: function makeRowspanValid() {
-        this.queueJob(this.__P_68_6);
+        this.queueJob(this.__P_70_6);
       },
-      __P_68_6: function __P_68_6() {
+      __P_70_6: function __P_70_6() {
         qx.log.Logger.debug(this, 'makeRowspanValid');
         var elem = document.querySelector('#calcrowspan');
-
         if (!elem) {
           elem = qx.dom.Element.create('div', {
-            'class': 'clearfix',
-            'id': 'calcrowspan',
-            'html': '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
+            "class": 'clearfix',
+            id: 'calcrowspan',
+            html: '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
           });
           document.body.appendChild(elem);
-        } // use the internal div for height as in mobile view the elem uses the full screen height
-
-
-        this.__P_68_7(elem.querySelector('#containerDiv'));
+        }
+        // use the internal div for height as in mobile view the elem uses the full screen height
+        this.__P_70_7(elem.querySelector('#containerDiv'));
       },
-      __P_68_7: function __P_68_7(elem) {
+      __P_70_7: function __P_70_7(elem) {
         var rect = elem.getBoundingClientRect();
         var height = Math.round(rect.bottom - rect.top);
-
         if (height === 0) {
           // not ready try again
           var self = this;
           window.requestAnimationFrame(function () {
-            self.__P_68_7(elem);
+            self.__P_70_7(elem);
           });
           return;
         }
-
         var styles = '';
-
         for (var rowspan in cv.Config.configSettings.usedRowspans) {
           styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + 'px;}\n';
         }
-
         var calcrowspan = document.querySelector('#calcrowspan');
-
         if (calcrowspan) {
           calcrowspan.parentNode.removeChild(calcrowspan);
-        } // set css style
+        }
 
-
+        // set css style
         var rowSpanStyle = document.querySelector('#rowspanStyle');
-
         if (rowSpanStyle) {
           rowSpanStyle.innerHTML = styles;
         }
-
         this.states.setRowspanInvalid(false);
       },
       invalidateBackdrop: function invalidateBackdrop() {
@@ -390,4 +346,4 @@
   cv.ui.structure.pure.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1664789571024
+//# sourceMappingURL=ResizeHandler.js.map?dt=1672653479390

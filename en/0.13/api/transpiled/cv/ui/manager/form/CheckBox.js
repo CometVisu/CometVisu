@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* CheckBox.js 
-   * 
+  /* CheckBox.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.ui.manager.form.CheckBox', {
     extend: qx.ui.form.CheckBox,
-
     /*
     ***********************************************
       MEMBERS
@@ -59,7 +57,6 @@
       },
       _applyValue: function _applyValue(value, old) {
         cv.ui.manager.form.CheckBox.superclass.prototype._applyValue.call(this, value, old);
-
         if (value === null) {
           this.setLabel(' - ' + this.tr('not set') + ' - ');
         } else {
@@ -71,4 +68,4 @@
   cv.ui.manager.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1664789566907
+//# sourceMappingURL=CheckBox.js.map?dt=1672653475719

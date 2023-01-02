@@ -9,11 +9,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* ActionRegistry.js 
-   * 
+  /* ActionRegistry.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -38,7 +37,6 @@
    */
   qx.Class.define('cv.core.notifications.ActionRegistry', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -46,7 +44,6 @@
     */
     statics: {
       __P_3_0: {},
-
       /**
        * Register an action handler for an action type.
        *
@@ -60,10 +57,8 @@
         if (this.__P_3_0[type]) {
           qx.log.Logger.warn(this, 'there is already an action handler registered for \'' + type + '\' action. replacing now');
         }
-
         this.__P_3_0[type] = handler;
       },
-
       /**
        * Unregister an action handler for an action type.
        *
@@ -74,7 +69,6 @@
           delete this.__P_3_0[type];
         }
       },
-
       /**
        * Get an instance of the registered action handler for the requested action type.
        * @param type {String} action type
@@ -85,10 +79,8 @@
         if (this.__P_3_0[type]) {
           return new this.__P_3_0[type](config);
         }
-
         return null;
       },
-
       /**
        * Creates an action element for the given action type. Unsually this is a button or a similar DOMElement
        * with a listener attached.
@@ -102,7 +94,6 @@
           qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
           return null;
         }
-
         var actionHandler = new this.__P_3_0[type](config);
         return actionHandler.getDomElement();
       }
@@ -111,4 +102,4 @@
   cv.core.notifications.ActionRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionRegistry.js.map?dt=1664789560901
+//# sourceMappingURL=ActionRegistry.js.map?dt=1672653469133

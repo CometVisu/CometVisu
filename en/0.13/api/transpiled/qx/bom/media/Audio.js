@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +34,11 @@
   /**
    *
    * Media object for playing sounds.
-   * 
+   *
    * NOTE: Instances of this class must be disposed of to free resources
    */
   qx.Class.define("qx.bom.media.Audio", {
     extend: qx.bom.media.Abstract,
-
     /**
      * @param source {String} the source url to the sound file.
      */
@@ -55,4 +53,4 @@
   qx.bom.media.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1664789578990
+//# sourceMappingURL=Audio.js.map?dt=1672653487164

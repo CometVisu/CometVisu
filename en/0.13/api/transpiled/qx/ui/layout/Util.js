@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,7 +37,6 @@
     statics: {
       /** @type {RegExp} Regular expression to match percent values */
       PERCENT_VALUE: /[0-9]+(?:\.[0-9]+)?%/,
-
       /**
        * Computes the flex offsets needed to reduce the space
        * difference as much as possible by respecting the
@@ -61,10 +59,10 @@
         var child, key, flexSum, flexStep;
         var grow = avail > used;
         var remaining = Math.abs(avail - used);
-        var roundingOffset, currentOffset; // Preprocess data
+        var roundingOffset, currentOffset;
 
+        // Preprocess data
         var result = {};
-
         for (key in flexibles) {
           child = flexibles[key];
           result[key] = {
@@ -72,66 +70,60 @@
             flex: grow ? child.flex : 1 / child.flex,
             offset: 0
           };
-        } // Continue as long as we need to do anything
+        }
 
-
+        // Continue as long as we need to do anything
         while (remaining != 0) {
           // Find minimum potential for next correction
           flexStep = Infinity;
           flexSum = 0;
-
           for (key in result) {
             child = result[key];
-
             if (child.potential > 0) {
               flexSum += child.flex;
               flexStep = Math.min(flexStep, child.potential / child.flex);
             }
-          } // No potential found, quit here
+          }
 
-
+          // No potential found, quit here
           if (flexSum == 0) {
             break;
-          } // Respect maximum potential given through remaining space
+          }
+
+          // Respect maximum potential given through remaining space
           // The parent should always win in such conflicts.
+          flexStep = Math.min(remaining, flexStep * flexSum) / flexSum;
 
-
-          flexStep = Math.min(remaining, flexStep * flexSum) / flexSum; // Start with correction
-
+          // Start with correction
           roundingOffset = 0;
-
           for (key in result) {
             child = result[key];
-
             if (child.potential > 0) {
               // Compute offset for this step
-              currentOffset = Math.min(remaining, child.potential, Math.ceil(flexStep * child.flex)); // Fix rounding issues
+              currentOffset = Math.min(remaining, child.potential, Math.ceil(flexStep * child.flex));
 
+              // Fix rounding issues
               roundingOffset += currentOffset - flexStep * child.flex;
-
               if (roundingOffset >= 1) {
                 roundingOffset -= 1;
                 currentOffset -= 1;
-              } // Update child status
+              }
 
-
+              // Update child status
               child.potential -= currentOffset;
-
               if (grow) {
                 child.offset += currentOffset;
               } else {
                 child.offset -= currentOffset;
-              } // Update parent status
+              }
 
-
+              // Update parent status
               remaining -= currentOffset;
             }
           }
         }
-
         return result;
       },
-
       /**
        * Computes the offset which needs to be added to the top position
        * to result in the stated vertical alignment. Also respects
@@ -148,40 +140,33 @@
         if (marginLeft == null) {
           marginLeft = 0;
         }
-
         if (marginRight == null) {
           marginRight = 0;
         }
-
         var value = 0;
-
         switch (align) {
           case "left":
             value = marginLeft;
             break;
-
           case "right":
             // Align right changes priority to right edge:
             // To align to the right is more important here than to left.
             value = availWidth - width - marginRight;
             break;
-
           case "center":
             // Ideal center position
-            value = Math.round((availWidth - width) / 2); // Try to make this possible (with left-right priority)
+            value = Math.round((availWidth - width) / 2);
 
+            // Try to make this possible (with left-right priority)
             if (value < marginLeft) {
               value = marginLeft;
             } else if (value < marginRight) {
               value = Math.max(marginLeft, availWidth - width - marginRight);
             }
-
             break;
         }
-
         return value;
       },
-
       /**
        * Computes the offset which needs to be added to the top position
        * to result in the stated vertical alignment. Also respects
@@ -198,40 +183,33 @@
         if (marginTop == null) {
           marginTop = 0;
         }
-
         if (marginBottom == null) {
           marginBottom = 0;
         }
-
         var value = 0;
-
         switch (align) {
           case "top":
             value = marginTop;
             break;
-
           case "bottom":
             // Align bottom changes priority to bottom edge:
             // To align to the bottom is more important here than to top.
             value = availHeight - height - marginBottom;
             break;
-
           case "middle":
             // Ideal middle position
-            value = Math.round((availHeight - height) / 2); // Try to make this possible (with top-down priority)
+            value = Math.round((availHeight - height) / 2);
 
+            // Try to make this possible (with top-down priority)
             if (value < marginTop) {
               value = marginTop;
             } else if (value < marginBottom) {
               value = Math.max(marginTop, availHeight - height - marginBottom);
             }
-
             break;
         }
-
         return value;
       },
-
       /**
        * Collapses two margins.
        *
@@ -245,21 +223,17 @@
        */
       collapseMargins: function collapseMargins(varargs) {
         var max = 0,
-            min = 0;
-
+          min = 0;
         for (var i = 0, l = arguments.length; i < l; i++) {
           var value = arguments[i];
-
           if (value < 0) {
             min = Math.min(min, value);
           } else if (value > 0) {
             max = Math.max(max, value);
           }
         }
-
         return max + min;
       },
-
       /**
        * Computes the sum of all horizontal gaps. Normally the
        * result is used to compute the available width in a widget.
@@ -276,32 +250,27 @@
         if (spacing == null) {
           spacing = 0;
         }
-
         var gaps = 0;
-
         if (collapse) {
           // Add first child
           gaps += children[0].getMarginLeft();
-
           for (var i = 1, l = children.length; i < l; i += 1) {
             gaps += this.collapseMargins(spacing, children[i - 1].getMarginRight(), children[i].getMarginLeft());
-          } // Add last child
+          }
 
-
+          // Add last child
           gaps += children[l - 1].getMarginRight();
         } else {
           // Simple adding of all margins
           for (var i = 1, l = children.length; i < l; i += 1) {
             gaps += children[i].getMarginLeft() + children[i].getMarginRight();
-          } // Add spacing
+          }
 
-
+          // Add spacing
           gaps += spacing * (l - 1);
         }
-
         return gaps;
       },
-
       /**
        * Computes the sum of all vertical gaps. Normally the
        * result is used to compute the available height in a widget.
@@ -318,32 +287,27 @@
         if (spacing == null) {
           spacing = 0;
         }
-
         var gaps = 0;
-
         if (collapse) {
           // Add first child
           gaps += children[0].getMarginTop();
-
           for (var i = 1, l = children.length; i < l; i += 1) {
             gaps += this.collapseMargins(spacing, children[i - 1].getMarginBottom(), children[i].getMarginTop());
-          } // Add last child
+          }
 
-
+          // Add last child
           gaps += children[l - 1].getMarginBottom();
         } else {
           // Simple adding of all margins
           for (var i = 1, l = children.length; i < l; i += 1) {
             gaps += children[i].getMarginTop() + children[i].getMarginBottom();
-          } // Add spacing
+          }
 
-
+          // Add spacing
           gaps += spacing * (l - 1);
         }
-
         return gaps;
       },
-
       /**
        * Computes the gaps together with the configuration of separators.
        *
@@ -357,16 +321,13 @@
         var insets = instance.getInsets();
         var width = insets.left + insets.right;
         var gaps = 0;
-
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
           gaps += child.getMarginLeft() + child.getMarginRight();
         }
-
         gaps += (spacing + width + spacing) * (l - 1);
         return gaps;
       },
-
       /**
        * Computes the gaps together with the configuration of separators.
        *
@@ -380,16 +341,13 @@
         var insets = instance.getInsets();
         var height = insets.top + insets.bottom;
         var gaps = 0;
-
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
           gaps += child.getMarginTop() + child.getMarginBottom();
         }
-
         gaps += (spacing + height + spacing) * (l - 1);
         return gaps;
       },
-
       /**
        * Arranges two sizes in one box to best respect their individual limitations.
        *
@@ -416,22 +374,23 @@
           } else if (beginIdeal < beginMin) {
             // Reduce end, increase begin to min
             endIdeal -= beginMin - beginIdeal;
-            beginIdeal = beginMin; // Re-check to keep min size of end
+            beginIdeal = beginMin;
 
+            // Re-check to keep min size of end
             if (endIdeal < endMin) {
               endIdeal = endMin;
             }
           } else if (endIdeal < endMin) {
             // Reduce begin, increase end to min
             beginIdeal -= endMin - endIdeal;
-            endIdeal = endMin; // Re-check to keep min size of begin
+            endIdeal = endMin;
 
+            // Re-check to keep min size of begin
             if (beginIdeal < beginMin) {
               beginIdeal = beginMin;
             }
           }
         }
-
         if (beginIdeal > beginMax || endIdeal > endMax) {
           if (beginIdeal > beginMax && endIdeal > endMax) {
             // Just reduce both, can not rearrange them otherwise
@@ -441,22 +400,23 @@
           } else if (beginIdeal > beginMax) {
             // Increase end, reduce begin to max
             endIdeal += beginIdeal - beginMax;
-            beginIdeal = beginMax; // Re-check to keep max size of end
+            beginIdeal = beginMax;
 
+            // Re-check to keep max size of end
             if (endIdeal > endMax) {
               endIdeal = endMax;
             }
           } else if (endIdeal > endMax) {
             // Increase begin, reduce end to max
             beginIdeal += endIdeal - endMax;
-            endIdeal = endMax; // Re-check to keep max size of begin
+            endIdeal = endMax;
 
+            // Re-check to keep max size of begin
             if (beginIdeal > beginMax) {
               beginIdeal = beginMax;
             }
           }
         }
-
         return {
           begin: beginIdeal,
           end: endIdeal
@@ -467,4 +427,4 @@
   qx.ui.layout.Util.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Util.js.map?dt=1664789598882
+//# sourceMappingURL=Util.js.map?dt=1672653509588

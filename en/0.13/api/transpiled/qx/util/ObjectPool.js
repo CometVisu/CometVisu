@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,30 +47,27 @@
   qx.Class.define("qx.util.ObjectPool", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param size {Integer} Size of each class pool
      */
     construct: function construct(size) {
       qx.core.Object.constructor.call(this);
-      this.__P_491_0 = {};
-
+      this.__P_506_0 = {};
       if (size != null) {
         this.setSize(size);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -89,22 +85,20 @@
         init: Infinity
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {Map} Stores arrays of instances for all managed classes */
-      __P_491_0: null,
-
+      __P_506_0: null,
       /*
       ---------------------------------------------------------------------------
         IMPL
       ---------------------------------------------------------------------------
       */
-
       /**
        * This method finds and returns an instance of a requested type in the pool,
        * if there is one.  Note that the pool determines which instance (if any) to
@@ -119,27 +113,21 @@
         if (this.$$disposed) {
           return new clazz();
         }
-
         if (!clazz) {
           throw new Error("Class needs to be defined!");
         }
-
         var obj = null;
-        var pool = this.__P_491_0[clazz.classname];
-
+        var pool = this.__P_506_0[clazz.classname];
         if (pool) {
           obj = pool.pop();
         }
-
         if (obj) {
           obj.$$pooled = false;
         } else {
           obj = new clazz();
         }
-
         return obj;
       },
-
       /**
        * This method places an Object in a pool of Objects of its type. Note that
        * once an instance has been pooled, there is no means to get that exact
@@ -153,22 +141,19 @@
        */
       poolObject: function poolObject(obj) {
         // Dispose check
-        if (!this.__P_491_0) {
+        if (!this.__P_506_0) {
           return;
         }
-
         var classname = obj.classname;
-        var pool = this.__P_491_0[classname];
-
+        var pool = this.__P_506_0[classname];
         if (obj.$$pooled) {
           throw new Error("Object is already pooled: " + obj);
         }
-
         if (!pool) {
-          this.__P_491_0[classname] = pool = [];
-        } // Check to see whether the pool for this type is already full
+          this.__P_506_0[classname] = pool = [];
+        }
 
-
+        // Check to see whether the pool for this type is already full
         if (pool.length > this.getSize()) {
           // Use enhanced destroy() method instead of simple dispose
           // when available to work together with queues etc.
@@ -177,36 +162,30 @@
           } else {
             obj.dispose();
           }
-
           return;
         }
-
         obj.$$pooled = true;
         pool.push(obj);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      var pool = this.__P_491_0;
+      var pool = this.__P_506_0;
       var classname, list, i, l;
-
       for (classname in pool) {
         list = pool[classname];
-
         for (i = 0, l = list.length; i < l; i++) {
           list[i].dispose();
         }
       }
-
-      delete this.__P_491_0;
+      delete this.__P_506_0;
     }
   });
   qx.util.ObjectPool.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectPool.js.map?dt=1664789609699
+//# sourceMappingURL=ObjectPool.js.map?dt=1672653520105

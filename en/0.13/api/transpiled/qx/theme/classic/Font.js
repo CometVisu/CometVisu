@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,18 +37,18 @@
         lineHeight: 1.4,
         family: ["Lucida Grande", "Tahoma", "Verdana", "Bitstream Vera Sans", "Liberation Sans"]
       },
-      "bold": {
+      bold: {
         size: 11,
         lineHeight: 1.4,
         family: ["Lucida Grande", "Tahoma", "Verdana", "Bitstream Vera Sans", "Liberation Sans"],
         bold: true
       },
-      "small": {
+      small: {
         size: 10,
         lineHeight: 1.4,
         family: ["Lucida Grande", "Tahoma", "Verdana", "Bitstream Vera Sans", "Liberation Sans"]
       },
-      "monospace": {
+      monospace: {
         size: 11,
         lineHeight: 1.4,
         family: ["DejaVu Sans Mono", "Courier New", "monospace"]
@@ -59,4 +58,4 @@
   qx.theme.classic.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1664789590852
+//# sourceMappingURL=Font.js.map?dt=1672653502360

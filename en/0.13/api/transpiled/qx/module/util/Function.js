@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Tobias Oberrauch (toberrauch)
   
   ************************************************************************ */
-
   /**
    * Utility module to give some support to work with functions.
    *
@@ -57,7 +55,6 @@
        * @return {Function} a wrapper function which <em>shields</em> the given callback function
        */
       debounce: qx.util.Function.debounce,
-
       /**
        * Returns a throttled version of the given callback. The execution of the callback
        * is throttled which means it is only executed in the given interval.
@@ -83,4 +80,4 @@
   qx.module.util.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1664789590458
+//# sourceMappingURL=Function.js.map?dt=1672653501763

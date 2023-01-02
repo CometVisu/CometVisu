@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 969
       },
       "end": {
-        "line": 102,
-        "column": 3
+        "line": 109,
+        "column": 3,
+        "index": 3290
       }
     },
     "jsdoc": {
@@ -50,11 +52,13 @@
       "location": {
         "start": {
           "line": 36,
-          "column": 4
+          "column": 4,
+          "index": 1231
         },
         "end": {
           "line": 39,
-          "column": 5
+          "column": 5,
+          "index": 1293
         }
       },
       "name": "visibility",
@@ -73,11 +77,13 @@
       "location": {
         "start": {
           "line": 48,
-          "column": 4
+          "column": 4,
+          "index": 1455
         },
         "end": {
           "line": 48,
-          "column": 36
+          "column": 36,
+          "index": 1487
         }
       },
       "type": "variable",
@@ -87,11 +93,13 @@
       "location": {
         "start": {
           "line": 50,
-          "column": 4
+          "column": 4,
+          "index": 1494
         },
         "end": {
           "line": 59,
-          "column": 5
+          "column": 5,
+          "index": 1894
         }
       },
       "type": "function",
@@ -106,11 +114,13 @@
       "location": {
         "start": {
           "line": 61,
-          "column": 4
+          "column": 4,
+          "index": 1901
         },
         "end": {
           "line": 81,
-          "column": 5
+          "column": 5,
+          "index": 2616
         }
       },
       "type": "function",
@@ -208,6 +218,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -232,6 +243,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -656,14 +668,15 @@
     "location": {
       "start": {
         "line": 84,
-        "column": 9
+        "column": 2,
+        "index": 2625
       },
       "end": {
-        "line": 101,
-        "column": 3
+        "line": 108,
+        "column": 3,
+        "index": 3286
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Unknown.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -22,8 +19,10 @@
     "Model",
     "getInstance",
     "setWidgetData",
+    "unknownType",
     "nodeName",
     "toLowerCase",
+    "$$type",
     "defer",
     "parser",
     "pure",
@@ -32,8 +31,11 @@
     "widgets",
     "Unknown"
   ],
-  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAGA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,gCAAhB,EAAkD;AAChDC,IAAAA,IAAI,EAAE,QAD0C;;AAGhD;AACF;AACA;AACA;AACA;AACEC,IAAAA,OAAO,EAAE;AACPC,MAAAA,KAAK,EAAE,eAAUC,GAAV,EAAeC,IAAf,EAAqBC,OAArB,EAA8BC,QAA9B,EAAwC;AAC7C,eAAOC,EAAE,CAACC,IAAH,CAAQC,KAAR,CAAcC,WAAd,GAA4BC,aAA5B,CAA0CP,IAA1C,EAAgD;AACrD,kBAAQA,IAD6C;AAErD,yBAAeD,GAAG,CAACS,QAAJ,CAAaC,WAAb,EAFsC;AAGrD,oBAAU,SAH2C;AAIrD,sBAAYP;AAJyC,SAAhD,CAAP;AAMD;AARM,KARuC;AAmBhDQ,IAAAA,KAAK,EAAE,eAAUb,OAAV,EAAmB;AACxB;AACAM,MAAAA,EAAE,CAACQ,MAAH,CAAUC,IAAV,CAAeC,YAAf,CAA4BC,UAA5B,CAAuC,SAAvC,EAAkDjB,OAAlD;AACD;AAtB+C,GAAlD;AA3BAM,EAAAA,EAAE,CAACQ,MAAH,CAAUC,IAAV,CAAeG,OAAf,CAAuBC,OAAvB,CAA+BvB,aAA/B,GAA+CA,aAA/C",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Unknown.js"
+  ],
   "sourcesContent": [
-    "/* Unknown.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\n/**\n * Fallback widget shown when an unknown widget is defined in the configuration.\n * You must not use this one directly.\n *\n * @author Christian Mayer\n * @since 0.8.0 (2012)\n */\nqx.Class.define('cv.parser.pure.widgets.Unknown', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    parse: function (xml, path, flavour, pageType) {\n      return cv.data.Model.getInstance().setWidgetData(path, {\n        'path': path,\n        'unknownType': xml.nodeName.toLowerCase(),\n        '$$type': 'unknown',\n        'pageType': pageType\n      });\n    }\n  },\n\n  defer: function (statics) {\n    // register the parser\n    cv.parser.pure.WidgetParser.addHandler('unknown', statics);\n  }\n});\n\n"
-  ]
+    "/* Unknown.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Fallback widget shown when an unknown widget is defined in the configuration.\n * You must not use this one directly.\n *\n * @author Christian Mayer\n * @since 0.8.0 (2012)\n */\nqx.Class.define('cv.parser.pure.widgets.Unknown', {\n  type: 'static',\n\n  /*\n  ******************************************************\n    STATICS\n  ******************************************************\n  */\n  statics: {\n    parse(xml, path, flavour, pageType) {\n      return cv.data.Model.getInstance().setWidgetData(path, {\n        path: path,\n        unknownType: xml.nodeName.toLowerCase(),\n        $$type: 'unknown',\n        pageType: pageType\n      });\n    }\n  },\n\n  defer(statics) {\n    // register the parser\n    cv.parser.pure.WidgetParser.addHandler('unknown', statics);\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,gCAAgC,EAAE;IAChDC,IAAI,EAAE,QAAQ;IAEd;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,KAAK,iBAACC,GAAG,EAAEC,IAAI,EAAEC,OAAO,EAAEC,QAAQ,EAAE;QAClC,OAAOC,EAAE,CAACC,IAAI,CAACC,KAAK,CAACC,WAAW,EAAE,CAACC,aAAa,CAACP,IAAI,EAAE;UACrDA,IAAI,EAAEA,IAAI;UACVQ,WAAW,EAAET,GAAG,CAACU,QAAQ,CAACC,WAAW,EAAE;UACvCC,MAAM,EAAE,SAAS;UACjBT,QAAQ,EAAEA;QACZ,CAAC,CAAC;MACJ;IACF,CAAC;IAEDU,KAAK,iBAACf,OAAO,EAAE;MACb;MACAM,EAAE,CAACU,MAAM,CAACC,IAAI,CAACC,YAAY,CAACC,UAAU,CAAC,SAAS,EAAEnB,OAAO,CAAC;IAC5D;EACF,CAAC,CAAC;EAjDFM,EAAE,CAACU,MAAM,CAACC,IAAI,CAACG,OAAO,CAACC,OAAO,CAACzB,aAAa,GAAGA,aAAa;AAAC"
 }

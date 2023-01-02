@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 656
       },
       "end": {
-        "line": 246,
-        "column": 3
+        "line": 218,
+        "column": 3,
+        "index": 6639
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 43,
-        "column": 14
+        "line": 40,
+        "column": 2,
+        "index": 1280
       },
       "end": {
-        "line": 53,
-        "column": 3
+        "line": 49,
+        "column": 3,
+        "index": 1515
       }
     },
     "jsdoc": {
@@ -69,12 +73,14 @@
     "_autoScrollIntoView": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1802
         },
         "end": {
-          "line": 65,
-          "column": 30
+          "line": 59,
+          "column": 29,
+          "index": 1827
         }
       },
       "jsdoc": {},
@@ -84,12 +90,14 @@
     "_isSelectable": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 2050
         },
         "end": {
-          "line": 79,
-          "column": 5
+          "line": 72,
+          "column": 5,
+          "index": 2186
         }
       },
       "jsdoc": {},
@@ -103,12 +111,14 @@
     "_styleSelectable": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2211
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 79,
+          "column": 5,
+          "index": 2369
         }
       },
       "jsdoc": {},
@@ -122,12 +132,14 @@
     "attachPointerEvents": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2630
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 3079
         }
       },
       "jsdoc": {
@@ -144,12 +156,14 @@
     "detatchPointerEvents": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 3238
         },
         "end": {
-          "line": 119,
-          "column": 5
+          "line": 106,
+          "column": 5,
+          "index": 3302
         }
       },
       "jsdoc": {
@@ -172,12 +186,14 @@
     "detachPointerEvents": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 3377
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 3841
         }
       },
       "jsdoc": {
@@ -194,12 +210,14 @@
     "attachKeyEvents": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 4206
         },
         "end": {
-          "line": 145,
-          "column": 5
+          "line": 131,
+          "column": 5,
+          "index": 4302
         }
       },
       "jsdoc": {
@@ -225,12 +243,14 @@
     "detachKeyEvents": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 138,
+          "column": 4,
+          "index": 4418
         },
         "end": {
-          "line": 155,
-          "column": 5
+          "line": 140,
+          "column": 5,
+          "index": 4517
         }
       },
       "jsdoc": {
@@ -256,12 +276,14 @@
     "attachListEvents": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4932
         },
         "end": {
-          "line": 171,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 5090
         }
       },
       "jsdoc": {
@@ -287,12 +309,14 @@
     "detachListEvents": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 5270
         },
         "end": {
-          "line": 184,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 5434
         }
       },
       "jsdoc": {
@@ -318,12 +342,14 @@
     "_capture": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5667
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 5713
         }
       },
       "jsdoc": {},
@@ -337,12 +363,14 @@
     "_releaseCapture": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 179,
+          "column": 4,
+          "index": 5738
         },
         "end": {
-          "line": 202,
-          "column": 5
+          "line": 181,
+          "column": 5,
+          "index": 5798
         }
       },
       "jsdoc": {},
@@ -356,12 +384,14 @@
     "_getScroll": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 184,
+          "column": 4,
+          "index": 5823
         },
         "end": {
-          "line": 212,
-          "column": 5
+          "line": 189,
+          "column": 5,
+          "index": 5943
         }
       },
       "jsdoc": {},
@@ -375,12 +405,14 @@
     "_scrollBy": {
       "location": {
         "start": {
-          "line": 216,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 5968
         },
         "end": {
-          "line": 220,
-          "column": 5
+          "line": 195,
+          "column": 5,
+          "index": 6119
         }
       },
       "jsdoc": {},
@@ -394,12 +426,14 @@
     "_getLocation": {
       "location": {
         "start": {
-          "line": 224,
-          "column": 4
+          "line": 198,
+          "column": 4,
+          "index": 6144
         },
         "end": {
-          "line": 228,
-          "column": 5
+          "line": 201,
+          "column": 5,
+          "index": 6293
         }
       },
       "jsdoc": {},
@@ -413,12 +447,14 @@
     "_getDimension": {
       "location": {
         "start": {
-          "line": 232,
-          "column": 4
+          "line": 204,
+          "column": 4,
+          "index": 6318
         },
         "end": {
-          "line": 234,
-          "column": 5
+          "line": 206,
+          "column": 5,
+          "index": 6381
         }
       },
       "jsdoc": {},
@@ -517,6 +553,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -541,6 +578,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -920,12 +958,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 243,
-        "column": 13
+        "line": 215,
+        "column": 2,
+        "index": 6579
       },
       "end": {
-        "line": 245,
-        "column": 3
+        "line": 217,
+        "column": 3,
+        "index": 6635
       }
     },
     "jsdoc": {}

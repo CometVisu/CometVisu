@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 763
       },
       "end": {
-        "line": 165,
-        "column": 3
+        "line": 171,
+        "column": 3,
+        "index": 4837
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "OPERATION_DELETE": {
       "location": {
         "start": {
-          "line": 32,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 822
         },
         "end": {
-          "line": 32,
-          "column": 24
+          "line": 28,
+          "column": 23,
+          "index": 841
         }
       },
       "type": "variable",
@@ -45,12 +49,14 @@
     "OPERATION_INSERT": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 847
         },
         "end": {
-          "line": 33,
-          "column": 24
+          "line": 29,
+          "column": 23,
+          "index": 866
         }
       },
       "type": "variable",
@@ -59,12 +65,14 @@
     "OPERATION_REPLACE": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 30,
+          "column": 4,
+          "index": 872
         },
         "end": {
-          "line": 34,
-          "column": 25
+          "line": 30,
+          "column": 24,
+          "index": 892
         }
       },
       "type": "variable",
@@ -73,12 +81,14 @@
     "__computeLevenshteinDistance": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1175
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2182
         }
       },
       "jsdoc": {
@@ -119,12 +129,14 @@
     "__computeEditOperations": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2523
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 4353
         }
       },
       "jsdoc": {
@@ -172,12 +184,14 @@
     "getEditOperations": {
       "location": {
         "start": {
-          "line": 157,
-          "column": 4
+          "line": 164,
+          "column": 4,
+          "index": 4617
         },
         "end": {
-          "line": 163,
-          "column": 5
+          "line": 169,
+          "column": 5,
+          "index": 4829
         }
       },
       "jsdoc": {

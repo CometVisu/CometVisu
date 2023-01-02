@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -29,9 +28,7 @@
       This theme is based in large parts on the osparc.theme
   
   ************************************************************************ */
-
   /* eslint no-negated-condition: "off", no-nested-ternary: "off" */
-
   /* ************************************************************************
   
   
@@ -56,25 +53,26 @@
         CORE
       ---------------------------------------------------------------------------
       */
-      "widget": {},
-      "label": {
+
+      widget: {},
+      label: {
         style: function style(states) {
           return {
             textColor: states.disabled ? "text-disabled-on-surface" : undefined
           };
         }
       },
-      "image": {
+      image: {
         style: function style(states) {
           return {
             opacity: !states.replacement && states.disabled ? 0.3 : undefined
           };
         }
       },
-      "atom": {},
+      atom: {},
       "atom/label": "label",
       "atom/icon": "image",
-      "root": {
+      root: {
         style: function style(states) {
           return {
             backgroundColor: "surface",
@@ -83,7 +81,7 @@
           };
         }
       },
-      "popup": {
+      popup: {
         style: function style(states) {
           return {
             decorator: "popup",
@@ -91,7 +89,7 @@
           };
         }
       },
-      "tooltip": {
+      tooltip: {
         include: "popup",
         style: function style(states) {
           return {
@@ -118,7 +116,7 @@
         }
       },
       "tooltip-error/atom": "atom",
-      "iframe": {
+      iframe: {
         style: function style(states) {
           return {
             backgroundColor: "surface",
@@ -137,7 +135,6 @@
       "dragdrop-cursor": {
         style: function style(states) {
           var icon = "nodrop";
-
           if (states.copy) {
             icon = "copy";
           } else if (states.move) {
@@ -145,7 +142,6 @@
           } else if (states.alias) {
             icon = "alias";
           }
-
           return {
             source: qx.theme.tangible.Image.URLS["cursor-" + icon],
             position: "right-top",
@@ -153,14 +149,15 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON
       ---------------------------------------------------------------------------
       */
-      "button": {
+
+      button: {
         /* qx.ui.form.Button */
+
         alias: "material-button",
         include: "material-button",
         style: function style(states) {
@@ -186,8 +183,6 @@
               textColor: undefined
             };
           }
-
-          ;
           return {
             textColor: undefined
           };
@@ -197,7 +192,6 @@
         alias: "atom",
         style: function style(states) {
           var decorator = "material-button";
-
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -207,11 +201,9 @@
           } else {
             decorator += "-disabled";
           }
-
           if (states.invalid && !states.disabled) {
             decorator += "-invalid";
           }
-
           return {
             decorator: decorator,
             padding: [6, 15],
@@ -230,11 +222,18 @@
           };
         }
       },
+      "material-button/icon": {
+        alias: "atom/label",
+        style: function style(states) {
+          return {
+            textColor: states.disabled ? "text-disabled-on-primary" : "text-on-primary"
+          };
+        }
+      },
       "button-frame": {
         alias: "atom",
         style: function style(states) {
           var decorator = "button-box";
-
           if (!states.disabled) {
             if (states.hovered && !states.pressed && !states.checked) {
               decorator = "button-box-hovered";
@@ -244,13 +243,11 @@
               decorator = "button-box-pressed";
             }
           }
-
           if (states.invalid && !states.disabled) {
             decorator += "-invalid";
           } else if (states.focused) {
             decorator += "-focused";
           }
-
           return {
             decorator: decorator,
             padding: [3, 8],
@@ -277,7 +274,7 @@
           };
         }
       },
-      "menubutton": {
+      menubutton: {
         include: "button",
         alias: "button",
         style: function style(states) {
@@ -287,19 +284,18 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TEXT FIELD
       ---------------------------------------------------------------------------
       */
+
       "material-textfield": {
         style: function style(states) {
           var decorator;
           var padding;
           decorator = "material-textfield";
           padding = [3, 0, 4, 0];
-
           if (states.readonly) {
             decorator += "-readonly";
             padding = [3, 0, 5, 0];
@@ -307,16 +303,13 @@
             decorator += "-disabled";
           } else if (states.focused) {
             decorator += "-focused";
-
             if (states.invalid) {
               decorator += "-invalid";
             }
-
             padding = [3, 0, 3, 0];
           } else if (states.invalid) {
             decorator += "-invalid";
           }
-
           return {
             decorator: decorator,
             padding: padding,
@@ -324,13 +317,12 @@
           };
         }
       },
-      "textfield": "material-textfield",
-      "textarea": "textfield",
-      "framebox": {
+      textfield: "material-textfield",
+      textarea: "textfield",
+      framebox: {
         style: function style(states) {
           var decorator;
           var padding;
-
           if (states.disabled) {
             decorator = "border-disabled";
             padding = [1, 2];
@@ -344,7 +336,6 @@
             padding = [1, 2];
             decorator = "border";
           }
-
           return {
             decorator: decorator,
             padding: padding,
@@ -352,18 +343,16 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPLIT BUTTON
       ---------------------------------------------------------------------------
       */
-      "splitbutton": {},
+      splitbutton: {},
       "splitbutton/button": {
         alias: "material-button",
         style: function style(states) {
           var decorator = "material-button";
-
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -375,7 +364,6 @@
           } else {
             decorator += "-disabled";
           }
-
           decorator += "-left";
           return {
             decorator: decorator,
@@ -390,7 +378,6 @@
         alias: "material-button",
         style: function style(states) {
           var decorator = "material-button";
-
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -402,7 +389,6 @@
           } else {
             decorator += "-disabled";
           }
-
           decorator += "-right";
           return {
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -421,13 +407,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SLIDEBAR
       ---------------------------------------------------------------------------
       */
-      "slidebar": {},
+
+      slidebar: {},
       "slidebar/scrollpane": {},
       "slidebar/content": {},
       "slidebar/button-forward": {
@@ -448,13 +434,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
-      "table": {
+
+      table: {
         style: function style(states) {
           return {
             rowHeight: 30
@@ -506,7 +492,8 @@
       "table-scroller/pane": {},
       "table-scroller/focus-indicator": {
         style: function style(states) {
-          return {// attention hackerery in the qx.ui.table.pane.Scroller
+          return {
+            // attention hackerery in the qx.ui.table.pane.Scroller
             // decorator: "table-scroller-focus-indicator"
             // gets applied hardcoded! So do not try to change its
             // name here!
@@ -557,7 +544,8 @@
         style: function style(states) {
           return {
             decorator: undefined,
-            padding: [2, 2]
+            padding: [2, 2],
+            backgroundColor: "surface"
           };
         }
       },
@@ -566,7 +554,8 @@
         alias: "selectbox",
         style: function style(states) {
           return {
-            padding: [0, 2]
+            padding: [0, 2],
+            backgroundColor: "surface"
           };
         }
       },
@@ -575,7 +564,8 @@
         alias: "combobox",
         style: function style(states) {
           return {
-            decorator: undefined
+            decorator: undefined,
+            backgroundColor: "surface"
           };
         }
       },
@@ -594,13 +584,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREEVIRTUAL
       ---------------------------------------------------------------------------
       */
-      "treevirtual": {
+
+      treevirtual: {
         include: "framebox",
         alias: "table",
         style: function style(states, superStyles) {
@@ -612,8 +602,7 @@
       "treevirtual-folder": {
         style: function style(states) {
           return {
-            icon: states.opened ? // the old treevirtual code can not use fonticons
-            "icon/16/places/folder-open.png" : "icon/16/places/folder.png",
+            icon: states.opened ? qx.theme.tangible.Image.URLS["folder-open"] : qx.theme.tangible.Image.URLS["folder"],
             opacity: states.drag ? 0.5 : undefined
           };
         }
@@ -623,15 +612,15 @@
         alias: "treevirtual-folder",
         style: function style(states) {
           return {
-            icon: "icon/16/mimetypes/text-plain.png",
+            icon: qx.theme.tangible.Image.URLS["file"],
             opacity: states.drag ? 0.5 : undefined
           };
         }
       },
-      "treevirtual-line": {
+      "treevirtual-blank": {
         style: function style(states) {
           return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-line"]
+            icon: qx.theme.tangible.Image.URLS["blank"]
           };
         }
       },
@@ -649,96 +638,37 @@
           };
         }
       },
-      "treevirtual-only-contract": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-minus-only"]
-          };
-        }
-      },
-      "treevirtual-only-expand": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-plus-only"]
-          };
-        }
-      },
-      "treevirtual-start-contract": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-minus-start"]
-          };
-        }
-      },
-      "treevirtual-start-expand": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-plus-start"]
-          };
-        }
-      },
-      "treevirtual-end-contract": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-minus-end"]
-          };
-        }
-      },
-      "treevirtual-end-expand": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-plus-end"]
-          };
-        }
-      },
-      "treevirtual-cross-contract": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-minus-cross"]
-          };
-        }
-      },
-      "treevirtual-cross-expand": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-plus-cross"]
-          };
-        }
-      },
-      "treevirtual-end": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-end"]
-          };
-        }
-      },
-      "treevirtual-cross": {
-        style: function style(states) {
-          return {
-            icon: qx.theme.tangible.Image.URLS["treevirtual-cross"]
-          };
-        }
-      },
-
+      "treevirtual-only-contract": "treevirtual-contract",
+      "treevirtual-only-expand": "treevirtual-expand",
+      "treevirtual-start-contract": "treevirtual-contract",
+      "treevirtual-start-expand": "treevirtual-expand",
+      "treevirtual-end-contract": "treevirtual-contract",
+      "treevirtual-end-expand": "treevirtual-expand",
+      "treevirtual-cross-contract": "treevirtual-contract",
+      "treevirtual-cross-expand": "treevirtual-expand",
+      "treevirtual-line": "treevirtual-blank",
+      "treevirtual-end": "treevirtual-blank",
+      "treevirtual-cross": "treevirtual-blank",
       /*
       ---------------------------------------------------------------------------
         RESIZER
       ---------------------------------------------------------------------------
       */
-      "resizer": {
+
+      resizer: {
         style: function style(states) {
           return {
             decorator: "main"
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPLITPANE
       ---------------------------------------------------------------------------
       */
-      "splitpane": {},
+
+      splitpane: {},
       "splitpane/splitter": {
         style: function style(states) {
           return {
@@ -762,13 +692,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
-      "menu": {
+
+      menu: {
         style: function style(states) {
           var result = {
             backgroundColor: "surface",
@@ -780,16 +710,13 @@
             padding: 1,
             placementModeY: states.submenu || states.contextmenu ? "best-fit" : "keep-align"
           };
-
           if (states.submenu) {
             result.position = "right-top";
             result.offset = [-2, -3];
           }
-
           if (states.contextmenu) {
             result.offset = 4;
           }
-
           return result;
         }
       },
@@ -884,11 +811,9 @@
         include: "menu-button",
         style: function style(states) {
           var icon = "menu-checkbox";
-
           if (states.checked) {
             icon += "-checked";
           }
-
           return {
             icon: qx.theme.tangible.Image.URLS[icon]
           };
@@ -899,23 +824,21 @@
         include: "menu-button",
         style: function style(states) {
           var icon = "menu-radiobutton";
-
           if (states.checked) {
             icon += "-checked";
           }
-
           return {
             icon: qx.theme.tangible.Image.URLS[icon]
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU BAR
       ---------------------------------------------------------------------------
       */
-      "menubar": {
+
+      menubar: {
         style: function style(states) {
           return {
             backgroundColor: "surface",
@@ -927,7 +850,6 @@
         style: function style(states) {
           var decorator;
           var padding = [2, 6];
-
           if (!states.disabled) {
             if (states.pressed) {
               decorator = "menubar-button-pressed";
@@ -935,7 +857,6 @@
               decorator = "menubar-button-hovered";
             }
           }
-
           return {
             padding: padding,
             cursor: states.disabled ? undefined : "pointer",
@@ -944,7 +865,13 @@
           };
         }
       },
-
+      "menubar-button/icon": {
+        style: function style(states) {
+          return {
+            textColor: states.disabled ? "text-disabled-on-surface" : states.pressed || states.hovered ? "text-on-primary" : "text-on-surface"
+          };
+        }
+      },
       /*
       ---------------------------------------------------------------------------
         VIRTUAL WIDGETS
@@ -987,7 +914,7 @@
       },
       "virtual-tree-folder": "tree-folder",
       "virtual-tree-file": "tree-file",
-      "cell": {
+      cell: {
         style: function style(states) {
           return {
             backgroundColor: states.selected ? "primary-selected" : "surface",
@@ -1010,18 +937,17 @@
       "cell-atom": "cell",
       "cell-date": "cell",
       "cell-html": "cell",
-
       /*
       ---------------------------------------------------------------------------
         SCROLLBAR
       ---------------------------------------------------------------------------
       */
-      "scrollbar": {},
+
+      scrollbar: {},
       "scrollbar/slider": {},
       "scrollbar/slider/knob": {
         style: function style(states) {
           var decorator = "scroll-knob";
-
           if (!states.disabled) {
             if (states.hovered && !states.pressed && !states.checked) {
               decorator = "scroll-knob-hovered";
@@ -1031,7 +957,6 @@
               decorator = "scroll-knob-pressed";
             }
           }
-
           return {
             height: 8,
             width: 8,
@@ -1055,12 +980,12 @@
       },
       "scrollbar/button-begin": "scrollbar/button",
       "scrollbar/button-end": "scrollbar/button",
-
       /*
       ---------------------------------------------------------------------------
         SCROLLAREA
       ---------------------------------------------------------------------------
       */
+
       "scrollarea/corner": {
         style: function style(states) {
           return {
@@ -1068,17 +993,17 @@
           };
         }
       },
-      "scrollarea": "widget",
+      scrollarea: "widget",
       "scrollarea/pane": "widget",
       "scrollarea/scrollbar-x": "scrollbar",
       "scrollarea/scrollbar-y": "scrollbar",
-
       /*
       ---------------------------------------------------------------------------
         RADIO BUTTON
       ---------------------------------------------------------------------------
       */
-      "radiobutton": {
+
+      radiobutton: {
         style: function style(states) {
           return {
             icon: qx.theme.tangible.Image.URLS[states.checked ? "radiobutton-checked" : "radiobutton-unchecked"],
@@ -1096,7 +1021,6 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FORM
@@ -1110,13 +1034,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHECK BOX
       ---------------------------------------------------------------------------
       */
-      "checkbox": {
+      checkbox: {
         alias: "atom",
         style: function style(states) {
           return {
@@ -1134,13 +1057,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPINNER
       ---------------------------------------------------------------------------
       */
-      "spinner": {
+
+      spinner: {
         style: function style(states) {
           return {
             textColor: states.disabled ? "text-disabled-on-surface" : undefined
@@ -1174,13 +1097,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTBOX
       ---------------------------------------------------------------------------
       */
-      "selectbox": "textfield",
+
+      selectbox: "textfield",
       "selectbox/atom": "atom",
       "selectbox/popup": "popup",
       "selectbox/list": {
@@ -1203,22 +1126,47 @@
           };
         }
       },
-
+      /*
+      ---------------------------------------------------------------------------
+        CHECKED SELECT BOX
+      ---------------------------------------------------------------------------
+      */
+      "checked-selectbox": "selectbox",
+      "checked-selectbox/allNone": {
+        include: "button",
+        style: function style(states) {
+          return {
+            padding: [2, 10],
+            textColor: "text-on-primary"
+          };
+        }
+      },
+      "checked-selectbox/tag": "tag",
+      tag: {
+        alias: "button",
+        include: "button",
+        style: function style(states) {
+          return {
+            padding: [1, 7],
+            margin: 0,
+            decorator: "tag"
+          };
+        }
+      },
       /*
       ---------------------------------------------------------------------------
         COMBO BOX
       ---------------------------------------------------------------------------
       */
-      "combobox": {},
+
+      combobox: {},
       "combobox/button": {
         alias: "button-frame",
         include: "button-frame",
         style: function style(states) {
           var decorator = "material-textfield";
-
           if (states.focused) {
             decorator += "-focused";
-
             if (states.invalid) {
               decorator += "-invalid";
             }
@@ -1227,7 +1175,6 @@
           } else if (states.disabled) {
             decorator += "-disabled";
           }
-
           return {
             backgroundColor: undefined,
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -1246,13 +1193,13 @@
         }
       },
       "combobox/textfield": "textfield",
-
       /*
       ---------------------------------------------------------------------------
         DATEFIELD
       ---------------------------------------------------------------------------
       */
-      "datefield": "textfield",
+
+      datefield: "textfield",
       "datefield/button": {
         alias: "combobox/button",
         include: "combobox/button",
@@ -1285,29 +1232,26 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LIST
       ---------------------------------------------------------------------------
       */
-      "list": {
+
+      list: {
         alias: "scrollarea",
         include: "framebox"
       },
-      "listitem": {
+      listitem: {
         alias: "atom",
         style: function style(states) {
           var padding = [3, 5, 3, 5];
-
           if (states.lead) {
             padding = [2, 4, 2, 4];
           }
-
           if (states.dragover) {
             padding[2] -= 2;
           }
-
           return {
             gap: 4,
             padding: padding,
@@ -1318,17 +1262,16 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SLIDER
       ---------------------------------------------------------------------------
       */
-      "slider": {
+
+      slider: {
         style: function style(states) {
           var decorator;
           var padding;
-
           if (states.disabled) {
             decorator = "border-disabled";
             padding = [1, 2];
@@ -1342,7 +1285,6 @@
             padding = [1, 2];
             decorator = "border";
           }
-
           return {
             decorator: decorator,
             padding: padding
@@ -1350,13 +1292,13 @@
         }
       },
       "slider/knob": "scrollbar/slider/knob",
-
       /*
       ---------------------------------------------------------------------------
         GROUP BOX
       ---------------------------------------------------------------------------
       */
-      "groupbox": {},
+
+      groupbox: {},
       "groupbox/legend": {
         alias: "atom",
         style: function style(states) {
@@ -1404,12 +1346,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREE
       ---------------------------------------------------------------------------
       */
+
       "tree-folder/open": {
         include: "image",
         style: function style(states) {
@@ -1457,7 +1399,7 @@
           };
         }
       },
-      "tree": {
+      tree: {
         include: "list",
         alias: "list",
         style: function style(states) {
@@ -1467,13 +1409,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-      "window": {
+
+      window: {
         style: function style(states) {
           return {
             contentPadding: [10, 10, 10, 10],
@@ -1573,13 +1515,12 @@
         }
       },
       "window/statusbar-text": "label",
-
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
       ---------------------------------------------------------------------------
       */
-      "datechooser": {
+      datechooser: {
         style: function style(states) {
           return {
             decorator: "main",
@@ -1612,7 +1553,6 @@
             show: "icon",
             cursor: states.disabled ? undefined : "pointer"
           };
-
           if (states.lastYear) {
             result.icon = qx.theme.tangible.Image.URLS["arrow-rewind"];
           } else if (states.lastMonth) {
@@ -1622,7 +1562,6 @@
           } else if (states.nextMonth) {
             result.icon = qx.theme.tangible.Image.URLS["arrow-right"];
           }
-
           return result;
         }
       },
@@ -1675,13 +1614,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
       ---------------------------------------------------------------------------
       */
-      "progressbar": {
+      progressbar: {
         style: function style(states) {
           return {
             decorator: "progressbar",
@@ -1699,13 +1637,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
-      "toolbar": {
+
+      toolbar: {
         style: function style(states) {
           return {
             backgroundColor: "primary",
@@ -1736,17 +1674,13 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 10];
-
           if (states.left || states.middle || states.right) {
             margin = [7, 3];
           }
-
           var decorator = "toolbar-button";
-
           if (states.hovered || states.pressed || states.checked) {
             decorator += "-hovered";
           }
-
           return {
             cursor: states.disabled ? undefined : "pointer",
             decorator: decorator,
@@ -1785,17 +1719,13 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 0, 7, 10];
-
           if (states.left || states.middle || states.right) {
             margin = [7, 0, 7, 3];
           }
-
           var decorator = "toolbar-button";
-
           if (states.hovered || states.pressed || states.focused || states.checked) {
             decorator += "-hovered";
           }
-
           decorator += "-left";
           return {
             decorator: decorator,
@@ -1809,17 +1739,13 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 10, 7, 0];
-
           if (states.left || states.middle || states.right) {
             margin = [7, 3, 7, 0];
           }
-
           var decorator = "toolbar-button";
-
           if (states.hovered || states.pressed || states.focused || states.checked) {
             decorator += "-hovered";
           }
-
           decorator += "-right";
           return {
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -1828,13 +1754,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABVIEW
       ---------------------------------------------------------------------------
       */
-      "tabview": {},
+
+      tabview: {},
       "tabview/bar": {
         alias: "slidebar",
         style: function style(states) {
@@ -1842,7 +1768,6 @@
           var marginRight = 0;
           var marginBottom = 0;
           var marginLeft = 0;
-
           if (states.barTop) {
             marginBottom -= 1;
           } else if (states.barBottom) {
@@ -1852,7 +1777,6 @@
           } else {
             marginRight -= 1;
           }
-
           return {
             marginBottom: marginBottom,
             marginTop: marginTop,
@@ -1884,7 +1808,6 @@
               decorator: null
             };
           }
-
           return {
             marginLeft: 2,
             marginRight: 4,
@@ -1915,7 +1838,6 @@
               decorator: null
             };
           }
-
           return {
             marginLeft: 2,
             marginRight: 4,
@@ -1930,7 +1852,6 @@
           var marginLeft = 0;
           var marginRight = 0;
           var decorator;
-
           if (states.barTop) {
             marginTop = -1;
             decorator = "main-top";
@@ -1944,7 +1865,6 @@
             marginRight = -1;
             decorator = "main-right";
           }
-
           return {
             marginLeft: marginLeft,
             marginRight: marginRight,
@@ -1960,17 +1880,17 @@
       "tabview-page/button": {
         style: function style(states) {
           var decorator;
-          var padding; // default padding
-
+          var padding;
+          // default padding
           if (states.barTop || states.barBottom) {
             padding = [8, 16, 8, 13];
           } else if (states.barRight) {
             padding = [8, 8, 8, 12];
           } else if (states.barLeft) {
             padding = [8, 8, 8, 8];
-          } // decorator
+          }
 
-
+          // decorator
           if (states.checked) {
             if (states.barTop) {
               decorator = "tabview-page-button-top";
@@ -1986,7 +1906,6 @@
               padding[1] -= 2;
             }
           }
-
           return {
             zIndex: states.checked ? 10 : 5,
             decorator: decorator,
@@ -2015,13 +1934,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COLOR POPUP
       ---------------------------------------------------------------------------
       */
-      "colorpopup": {
+
+      colorpopup: {
         alias: "popup",
         include: "popup",
         style: function style(states) {
@@ -2084,13 +2003,13 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COLOR SELECTOR
       ---------------------------------------------------------------------------
       */
-      "colorselector": "widget",
+
+      colorselector: "widget",
       "colorselector/control-bar": "widget",
       "colorselector/visual-pane": "groupbox",
       "colorselector/control-pane": "widget",
@@ -2172,12 +2091,12 @@
       "colorselector/hue-saturation-handle": "widget",
       "colorselector/brightness-pane": "widget",
       "colorselector/brightness-handle": "widget",
-
       /*
       ---------------------------------------------------------------------------
         APPLICATION
       ---------------------------------------------------------------------------
       */
+
       "app-header": {
         style: function style(states) {
           return {
@@ -2203,18 +2122,18 @@
           };
         }
       },
-
       /*
         --------------------
         VIRTUAL SELECTBOX
         --------------------
       */
+
       "list-search-highlight": {
         style: function style(states) {
           return {
-            backgroundColor: 'rgba(255, 251, 0, 0.53)',
-            textDecorationStyle: 'dotted',
-            textDecorationLine: 'underline'
+            backgroundColor: "rgba(255, 251, 0, 0.53)",
+            textDecorationStyle: "dotted",
+            textDecorationLine: "underline"
           };
         }
       }
@@ -2223,4 +2142,4 @@
   qx.theme.tangible.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1664789592060
+//# sourceMappingURL=Appearance.js.map?dt=1672653503546

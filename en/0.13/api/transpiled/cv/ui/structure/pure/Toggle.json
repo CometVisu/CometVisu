@@ -13,12 +13,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 29,
-        "column": 0
+        "line": 28,
+        "column": 0,
+        "index": 1097
       },
       "end": {
-        "line": 52,
-        "column": 3
+        "line": 51,
+        "column": 3,
+        "index": 1808
       }
     },
     "jsdoc": {
@@ -47,12 +49,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1453
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1565
         }
       },
       "jsdoc": {},
@@ -66,12 +70,14 @@
     "getActionValue": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1697
         },
         "end": {
-          "line": 50,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1800
         }
       },
       "jsdoc": {
@@ -1120,6 +1126,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1144,6 +1151,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

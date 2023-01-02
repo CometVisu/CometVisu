@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -31,6 +30,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.RadioGroup", {
     statics: {
       register: function register() {
@@ -39,27 +39,21 @@
       _registration: {
         initElement: function initElement(fieldType, fieldData, key) {
           var layout; // default uses VBox
-
           if (fieldData.orientation == "horizontal") {
             layout = new qx.ui.layout.HBox(4);
           } else if (fieldData.layout) {
             layout = fieldData.layout;
           }
-
           var formElement = new qx.ui.form.RadioButtonGroup(layout);
-
           if (fieldData.orientation) {
             formElement.setUserData("orientation", fieldData.orientation);
           }
-
           fieldData.options.forEach(function (item, index) {
             var radioButton = new qx.ui.form.RadioButton(item.label);
             radioButton.setUserData("value", item.value !== undefined ? item.value : item.label);
-
             if (index === 0 && "tabIndex" in item) {
               radioButton.setTabIndex(item.tabIndex);
             }
-
             formElement.add(radioButton);
           }, this);
           return formElement;
@@ -69,17 +63,14 @@
             converter: function (value) {
               var selectables = formElement.getSelectables();
               var selection = [];
-
               if (value) {
                 selectables.forEach(function (selectable) {
                   var sValue = selectable.getUserData("value");
-
                   if (sValue === value) {
                     selection = [selectable];
                   }
                 }, this);
               }
-
               return selection;
             }.bind(this)
           }, {
@@ -95,4 +86,4 @@
   qxl.dialog.formElement.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1664789617035
+//# sourceMappingURL=RadioGroup.js.map?dt=1672653526386

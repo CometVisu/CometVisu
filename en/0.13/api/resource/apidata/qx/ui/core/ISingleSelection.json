@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 630
       },
       "end": {
-        "line": 109,
-        "column": 3
+        "line": 103,
+        "column": 3,
+        "index": 2699
       }
     },
     "jsdoc": {
@@ -49,12 +51,14 @@
     "getSelection": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1449
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1490
         }
       },
       "jsdoc": {
@@ -79,12 +83,14 @@
     "setSelection": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1694
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 63,
+          "column": 5,
+          "index": 1757
         }
       },
       "jsdoc": {
@@ -118,12 +124,14 @@
     "resetSelection": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 1823
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 70,
+          "column": 5,
+          "index": 1866
         }
       },
       "jsdoc": {
@@ -140,12 +148,14 @@
     "isSelected": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2136
         },
         "end": {
-          "line": 87,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2196
         }
       },
       "jsdoc": {
@@ -187,12 +197,14 @@
     "isSelectionEmpty": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2322
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2367
         }
       },
       "jsdoc": {
@@ -217,12 +229,14 @@
     "getSelectables": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 2628
         },
         "end": {
-          "line": 107,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 2691
         }
       },
       "jsdoc": {

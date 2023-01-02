@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 700
       },
       "end": {
-        "line": 170,
-        "column": 3
+        "line": 151,
+        "column": 3,
+        "index": 4397
       }
     },
     "jsdoc": {
@@ -36,12 +38,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 36,
-        "column": 14
+        "line": 35,
+        "column": 2,
+        "index": 1013
       },
       "end": {
-        "line": 39,
-        "column": 3
+        "line": 37,
+        "column": 3,
+        "index": 1108
       }
     },
     "jsdoc": {
@@ -80,12 +84,14 @@
     "__packagesToLoad": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1128
         },
         "end": {
-          "line": 44,
-          "column": 24
+          "line": 40,
+          "column": 23,
+          "index": 1147
         }
       },
       "type": "variable",
@@ -94,12 +100,14 @@
     "preload": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1172
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1781
         }
       },
       "jsdoc": {},
@@ -113,12 +121,14 @@
     "load": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 2132
         },
         "end": {
-          "line": 127,
-          "column": 5
+          "line": 112,
+          "column": 5,
+          "index": 3339
         }
       },
       "jsdoc": {
@@ -156,12 +166,14 @@
     "__executePackages": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3469
         },
         "end": {
-          "line": 140,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 3638
         }
       },
       "jsdoc": {
@@ -178,12 +190,14 @@
     "_onPackageLoad": {
       "location": {
         "start": {
-          "line": 150,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3896
         },
         "end": {
-          "line": 168,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 4389
         }
       },
       "jsdoc": {

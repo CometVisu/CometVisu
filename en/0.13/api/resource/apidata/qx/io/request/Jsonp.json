@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 72,
-        "column": 0
+        "column": 0,
+        "index": 1955
       },
       "end": {
-        "line": 209,
-        "column": 3
+        "line": 206,
+        "column": 3,
+        "index": 5799
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "success": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2148
         },
         "end": {
-          "line": 82,
-          "column": 36
+          "line": 79,
+          "column": 34,
+          "index": 2178
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "load": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2550
         },
         "end": {
-          "line": 92,
-          "column": 33
+          "line": 89,
+          "column": 31,
+          "index": 2577
         }
       },
       "jsdoc": {
@@ -75,12 +81,14 @@
     "statusError": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 3332
         },
         "end": {
-          "line": 109,
-          "column": 40
+          "line": 106,
+          "column": 38,
+          "index": 3366
         }
       },
       "jsdoc": {
@@ -99,12 +107,14 @@
     "cache": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3638
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 121,
+          "column": 5,
+          "index": 3693
         }
       },
       "jsdoc": {
@@ -126,12 +136,14 @@
     "_createTransport": {
       "location": {
         "start": {
-          "line": 141,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 4021
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 138,
+          "column": 5,
+          "index": 4088
         }
       },
       "jsdoc": {
@@ -160,12 +172,14 @@
     "_getConfiguredUrl": {
       "location": {
         "start": {
-          "line": 153,
-          "column": 4
+          "line": 148,
+          "column": 4,
+          "index": 4311
         },
         "end": {
-          "line": 168,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 4810
         }
       },
       "jsdoc": {
@@ -194,12 +208,14 @@
     "_getParsedResponse": {
       "location": {
         "start": {
-          "line": 177,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5001
         },
         "end": {
-          "line": 179,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 5072
         }
       },
       "jsdoc": {
@@ -228,12 +244,14 @@
     "setCallbackParam": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 191,
+          "column": 4,
+          "index": 5460
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 193,
+          "column": 5,
+          "index": 5538
         }
       },
       "jsdoc": {
@@ -259,12 +277,14 @@
     "setCallbackName": {
       "location": {
         "start": {
-          "line": 205,
-          "column": 4
+          "line": 202,
+          "column": 4,
+          "index": 5717
         },
         "end": {
-          "line": 207,
-          "column": 5
+          "line": 204,
+          "column": 5,
+          "index": 5791
         }
       },
       "jsdoc": {
@@ -375,6 +395,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -399,6 +420,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -580,6 +602,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for requestData"
           }
         ]
@@ -604,6 +627,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for requestData"
           }

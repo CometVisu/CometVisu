@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Location.js 
-   * 
+  /* Location.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -34,7 +33,6 @@
    */
   qx.Class.define('cv.util.Location', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -49,7 +47,6 @@
       getHref: function getHref() {
         return window.location.href;
       },
-
       /**
        * Changes <code>window.location.href</code> to trigger a redirect
        *
@@ -58,7 +55,6 @@
       setHref: function setHref(loc) {
         window.location.href = loc;
       },
-
       /**
        * Wrapper for calling <code>window.location.reload()</code>
        *
@@ -67,7 +63,6 @@
       reload: function reload(value) {
         window.location.reload(value);
       },
-
       /**
        * Wrapper for calling <code>window.open()</code>
        *
@@ -82,4 +77,4 @@
   cv.util.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1664789611889
+//# sourceMappingURL=Location.js.map?dt=1672653522044

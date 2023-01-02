@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 733
       },
       "end": {
-        "line": 436,
-        "column": 3
+        "line": 496,
+        "column": 3,
+        "index": 13421
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "getStackTrace": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1080
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1486
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "getMutationObserver": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1687
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1769
         }
       },
       "jsdoc": {
@@ -115,12 +121,14 @@
     "getArrayIndexOf": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 1942
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 2007
         }
       },
       "jsdoc": {
@@ -151,12 +159,14 @@
     "getArrayLastIndexOf": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2184
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2257
         }
       },
       "jsdoc": {
@@ -187,12 +197,14 @@
     "getArrayForEach": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2430
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2495
         }
       },
       "jsdoc": {
@@ -223,12 +235,14 @@
     "getArrayFilter": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 2667
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 98,
+          "column": 5,
+          "index": 2730
         }
       },
       "jsdoc": {
@@ -259,12 +273,14 @@
     "getArrayMap": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 2899
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 2956
         }
       },
       "jsdoc": {
@@ -295,12 +311,14 @@
     "getArraySome": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3126
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 3185
         }
       },
       "jsdoc": {
@@ -331,12 +349,14 @@
     "getArrayFind": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 123,
+          "column": 4,
+          "index": 3355
         },
         "end": {
-          "line": 136,
-          "column": 5
+          "line": 125,
+          "column": 5,
+          "index": 3414
         }
       },
       "jsdoc": {
@@ -367,12 +387,14 @@
     "getArrayFindIndex": {
       "location": {
         "start": {
-          "line": 144,
-          "column": 4
+          "line": 132,
+          "column": 4,
+          "index": 3589
         },
         "end": {
-          "line": 146,
-          "column": 5
+          "line": 134,
+          "column": 5,
+          "index": 3658
         }
       },
       "jsdoc": {
@@ -403,12 +425,14 @@
     "getArrayEvery": {
       "location": {
         "start": {
-          "line": 154,
-          "column": 4
+          "line": 141,
+          "column": 4,
+          "index": 3829
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 3890
         }
       },
       "jsdoc": {
@@ -439,12 +463,14 @@
     "getArrayReduce": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 4
+          "line": 150,
+          "column": 4,
+          "index": 4062
         },
         "end": {
-          "line": 166,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 4125
         }
       },
       "jsdoc": {
@@ -475,12 +501,14 @@
     "getArrayReduceRight": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 159,
+          "column": 4,
+          "index": 4302
         },
         "end": {
-          "line": 176,
-          "column": 5
+          "line": 161,
+          "column": 5,
+          "index": 4375
         }
       },
       "jsdoc": {
@@ -511,12 +539,14 @@
     "getArrayIncludes": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 168,
+          "column": 4,
+          "index": 4549
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 170,
+          "column": 5,
+          "index": 4616
         }
       },
       "jsdoc": {
@@ -547,12 +577,14 @@
     "getErrorToString": {
       "location": {
         "start": {
-          "line": 195,
-          "column": 4
+          "line": 178,
+          "column": 4,
+          "index": 4825
         },
         "end": {
-          "line": 198,
-          "column": 5
+          "line": 183,
+          "column": 5,
+          "index": 4988
         }
       },
       "jsdoc": {
@@ -583,12 +615,14 @@
     "getFunctionBind": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 190,
+          "column": 4,
+          "index": 5161
         },
         "end": {
-          "line": 208,
-          "column": 5
+          "line": 192,
+          "column": 5,
+          "index": 5246
         }
       },
       "jsdoc": {
@@ -619,12 +653,14 @@
     "getAsyncFunction": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 4
+          "line": 202,
+          "column": 4,
+          "index": 5476
         },
         "end": {
-          "line": 222,
-          "column": 5
+          "line": 210,
+          "column": 5,
+          "index": 5677
         }
       },
       "jsdoc": {
@@ -661,12 +697,14 @@
     "getObjectKeys": {
       "location": {
         "start": {
-          "line": 229,
-          "column": 4
+          "line": 217,
+          "column": 4,
+          "index": 5848
         },
         "end": {
-          "line": 231,
-          "column": 5
+          "line": 219,
+          "column": 5,
+          "index": 5899
         }
       },
       "jsdoc": {
@@ -697,12 +735,14 @@
     "getObjectValues": {
       "location": {
         "start": {
-          "line": 238,
-          "column": 4
+          "line": 226,
+          "column": 4,
+          "index": 6072
         },
         "end": {
-          "line": 240,
-          "column": 5
+          "line": 228,
+          "column": 5,
+          "index": 6127
         }
       },
       "jsdoc": {
@@ -733,12 +773,14 @@
     "getObjectIs": {
       "location": {
         "start": {
-          "line": 247,
-          "column": 4
+          "line": 235,
+          "column": 4,
+          "index": 6296
         },
         "end": {
-          "line": 249,
-          "column": 5
+          "line": 237,
+          "column": 5,
+          "index": 6343
         }
       },
       "jsdoc": {
@@ -769,12 +811,14 @@
     "getObjectAssign": {
       "location": {
         "start": {
-          "line": 256,
-          "column": 4
+          "line": 244,
+          "column": 4,
+          "index": 6516
         },
         "end": {
-          "line": 258,
-          "column": 5
+          "line": 246,
+          "column": 5,
+          "index": 6571
         }
       },
       "jsdoc": {
@@ -805,12 +849,14 @@
     "getDateNow": {
       "location": {
         "start": {
-          "line": 265,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 6739
         },
         "end": {
-          "line": 267,
-          "column": 5
+          "line": 255,
+          "column": 5,
+          "index": 6784
         }
       },
       "jsdoc": {
@@ -841,12 +887,14 @@
     "getDateParse": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 4
+          "line": 266,
+          "column": 4,
+          "index": 7173
         },
         "end": {
-          "line": 284,
-          "column": 5
+          "line": 274,
+          "column": 5,
+          "index": 7445
         }
       },
       "jsdoc": {
@@ -877,12 +925,14 @@
     "getStringStartsWith": {
       "location": {
         "start": {
-          "line": 292,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 7622
         },
         "end": {
-          "line": 294,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 7715
         }
       },
       "jsdoc": {
@@ -913,12 +963,14 @@
     "getStringEndsWith": {
       "location": {
         "start": {
-          "line": 302,
-          "column": 4
+          "line": 290,
+          "column": 4,
+          "index": 7890
         },
         "end": {
-          "line": 304,
-          "column": 5
+          "line": 292,
+          "column": 5,
+          "index": 7979
         }
       },
       "jsdoc": {
@@ -949,12 +1001,14 @@
     "getStringTrim": {
       "location": {
         "start": {
-          "line": 312,
-          "column": 4
+          "line": 299,
+          "column": 4,
+          "index": 8150
         },
         "end": {
-          "line": 314,
-          "column": 5
+          "line": 301,
+          "column": 5,
+          "index": 8231
         }
       },
       "jsdoc": {
@@ -985,12 +1039,14 @@
     "getStringCodePointAt": {
       "location": {
         "start": {
-          "line": 322,
-          "column": 4
+          "line": 308,
+          "column": 4,
+          "index": 8409
         },
         "end": {
-          "line": 324,
-          "column": 5
+          "line": 310,
+          "column": 5,
+          "index": 8504
         }
       },
       "jsdoc": {
@@ -1021,12 +1077,14 @@
     "getStringFromCodePoint": {
       "location": {
         "start": {
-          "line": 332,
-          "column": 4
+          "line": 317,
+          "column": 4,
+          "index": 8684
         },
         "end": {
-          "line": 334,
-          "column": 5
+          "line": 319,
+          "column": 5,
+          "index": 8753
         }
       },
       "jsdoc": {
@@ -1057,12 +1115,14 @@
     "getBigInt": {
       "location": {
         "start": {
-          "line": 343,
-          "column": 4
+          "line": 327,
+          "column": 4,
+          "index": 8929
         },
         "end": {
-          "line": 345,
-          "column": 5
+          "line": 329,
+          "column": 5,
+          "index": 8992
         }
       },
       "jsdoc": {
@@ -1099,12 +1159,14 @@
     "getBigIntToLocaleString": {
       "location": {
         "start": {
-          "line": 357,
-          "column": 4
+          "line": 340,
+          "column": 4,
+          "index": 9320
         },
         "end": {
-          "line": 362,
-          "column": 5
+          "line": 348,
+          "column": 5,
+          "index": 9630
         }
       },
       "jsdoc": {
@@ -1145,12 +1207,14 @@
     "getPromiseNative": {
       "location": {
         "start": {
-          "line": 368,
-          "column": 4
+          "line": 353,
+          "column": 4,
+          "index": 9705
         },
         "end": {
-          "line": 370,
-          "column": 5
+          "line": 358,
+          "column": 5,
+          "index": 9870
         }
       },
       "jsdoc": {
@@ -1167,12 +1231,14 @@
     "getEpsilon": {
       "location": {
         "start": {
-          "line": 375,
-          "column": 4
+          "line": 363,
+          "column": 4,
+          "index": 9945
         },
         "end": {
-          "line": 377,
-          "column": 5
+          "line": 365,
+          "column": 5,
+          "index": 10027
         }
       },
       "jsdoc": {
@@ -1190,15 +1256,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 381,
-        "column": 10
+        "line": 368,
+        "column": 2,
+        "index": 10036
       },
       "end": {
-        "line": 435,
-        "column": 3
+        "line": 495,
+        "column": 3,
+        "index": 13417
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

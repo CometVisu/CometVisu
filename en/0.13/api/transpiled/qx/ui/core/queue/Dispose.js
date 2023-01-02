@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,8 +36,7 @@
   qx.Class.define("qx.ui.core.queue.Dispose", {
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
-      __P_307_0: [],
-
+      __P_322_0: [],
       /**
        * Adds a widget to the queue.
        *
@@ -47,25 +45,21 @@
        * @param widget {qx.ui.core.Widget} The widget to add.
        */
       add: function add(widget) {
-        var queue = this.__P_307_0;
-
+        var queue = this.__P_322_0;
         if (queue.includes(widget)) {
           return;
         }
-
         queue.unshift(widget);
         qx.ui.core.queue.Manager.scheduleFlush("dispose");
       },
-
       /**
        * Whether the dispose queue is empty
        * @return {Boolean}
        * @internal
        */
       isEmpty: function isEmpty() {
-        return this.__P_307_0.length == 0;
+        return this.__P_322_0.length == 0;
       },
-
       /**
        * Flushes the dispose queue.
        *
@@ -73,25 +67,24 @@
        */
       flush: function flush() {
         // Dispose all registered objects
-        var queue = this.__P_307_0;
-
+        var queue = this.__P_322_0;
         for (var i = queue.length - 1; i >= 0; i--) {
           var widget = queue[i];
           queue.splice(i, 1);
           widget.dispose();
-        } // Empty check
+        }
 
-
+        // Empty check
         if (queue.length != 0) {
           return;
-        } // Recreate the array is cheaper compared to keep a sparse array over time
+        }
 
-
-        this.__P_307_0 = [];
+        // Recreate the array is cheaper compared to keep a sparse array over time
+        this.__P_322_0 = [];
       }
     }
   });
   qx.ui.core.queue.Dispose.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dispose.js.map?dt=1664789594482
+//# sourceMappingURL=Dispose.js.map?dt=1672653505781

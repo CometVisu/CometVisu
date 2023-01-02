@@ -12,6 +12,7 @@
       "qx.ui.layout.HBox": {
         "construct": true
       },
+      "cv.ui.manager.model.Message": {},
       "qx.event.Timer": {},
       "qx.ui.basic.Image": {},
       "qx.ui.basic.Label": {},
@@ -19,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Message.js 
-   * 
+  /* Message.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -44,7 +44,6 @@
    */
   qx.Class.define('cv.ui.manager.snackbar.Message', {
     extend: qx.ui.core.Widget,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,21 +51,17 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.HBox(8));
-
       this.addListener('appear', this._onAppear, this);
     },
-
     /*
     ***********************************************
       EVENTS
     ***********************************************
     */
     events: {
-      'close': 'qx.event.type.Data'
+      close: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -93,7 +88,6 @@
         apply: '_applyType'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -106,7 +100,6 @@
           old.removeRelatedBindings(this);
           old.removeRelatedBindings(this.getChildControl('content'));
         }
-
         if (value) {
           value.bind('title', this.getChildControl('content'), 'value');
           value.bind('type', this, 'type');
@@ -128,7 +121,6 @@
       _applyTimeout: function _applyTimeout(value) {
         if (this._timer) {
           this._timer.stop();
-
           if (value === 0) {
             this._timer = null;
           }
@@ -136,11 +128,9 @@
       },
       _onAppear: function _onAppear() {
         var timeout = this.getTimeout();
-
         if (this._timer) {
           this._timer.stop();
         }
-
         if (timeout > 0) {
           this._timer = qx.event.Timer.once(this.close, this, timeout);
         }
@@ -151,41 +141,30 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
-
         switch (id) {
           case 'icon':
             control = new qx.ui.basic.Image();
-
             this._addAt(control, 0);
-
             break;
-
           case 'content':
             control = new qx.ui.basic.Label();
             control.set({
               rich: true,
               wrap: true
             });
-
             this._addAt(control, 1, {
               flex: 1
             });
-
             break;
-
           case 'close':
             control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon('close', 15));
             control.addListener('tap', this.close, this);
-
             this._addAt(control, 2);
-
             break;
         }
-
         return control || cv.ui.manager.snackbar.Message.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -198,4 +177,4 @@
   cv.ui.manager.snackbar.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1664789568916
+//# sourceMappingURL=Message.js.map?dt=1672653477450

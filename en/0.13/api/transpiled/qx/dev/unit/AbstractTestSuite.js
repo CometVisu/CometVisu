@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,7 +44,6 @@
     },
     members: {
       _tests: null,
-
       /**
        * Add a single function to test
        *
@@ -55,7 +53,6 @@
       addTestFunction: function addTestFunction(name, fcn) {
         this._tests.push(new qx.dev.unit.TestFunction(null, name, fcn));
       },
-
       /**
        * Add a method from a class as test to the suite
        *
@@ -65,7 +62,6 @@
       addTestMethod: function addTestMethod(testCase, functionName) {
         this._tests.push(new qx.dev.unit.TestFunction(testCase, functionName));
       },
-
       /**
        * Add a test function to the suite, which fails.
        *
@@ -77,7 +73,6 @@
           this.fail(message);
         });
       },
-
       /**
        * Run all tests using the given test result
        *
@@ -88,7 +83,6 @@
           this._tests[i].run(testResult);
         }
       },
-
       /**
        * Get a list of all test methods in the suite
        *
@@ -96,15 +90,12 @@
        */
       getTestMethods: function getTestMethods() {
         var methods = [];
-
         for (var i = 0; i < this._tests.length; i++) {
           var test = this._tests[i];
-
           if (test instanceof qx.dev.unit.TestFunction) {
             methods.push(test);
           }
         }
-
         return methods;
       }
     },
@@ -115,4 +106,4 @@
   qx.dev.unit.AbstractTestSuite.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTestSuite.js.map?dt=1664789582060
+//# sourceMappingURL=AbstractTestSuite.js.map?dt=1672653490260

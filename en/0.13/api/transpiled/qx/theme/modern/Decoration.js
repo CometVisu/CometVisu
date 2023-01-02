@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,13 +51,14 @@
         CORE
       ---------------------------------------------------------------------------
       */
-      "main": {
+
+      main: {
         style: {
           width: 1,
           color: "border-main"
         }
       },
-      "selected": {
+      selected: {
         style: {
           startColorPosition: 0,
           endColorPosition: 100,
@@ -66,12 +66,12 @@
           endColor: "selected-end"
         }
       },
-      "dragover": {
+      dragover: {
         style: {
           bottom: [2, "solid", "border-dragover"]
         }
       },
-      "pane": {
+      pane: {
         style: {
           width: 1,
           color: "tabview-background",
@@ -83,7 +83,7 @@
           gradientEnd: ["pane-end", 100]
         }
       },
-      "group": {
+      group: {
         style: {
           backgroundColor: "group-background",
           radius: 4,
@@ -98,13 +98,12 @@
           style: "dotted"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         RADIO BUTTON
       ---------------------------------------------------------------------------
       */
-      "radiobutton": {
+      radiobutton: {
         style: {
           backgroundColor: "radiobutton-background",
           radius: 5,
@@ -203,12 +202,12 @@
           backgroundColor: "radiobutton-hovered-invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SEPARATOR
       ---------------------------------------------------------------------------
       */
+
       "separator-horizontal": {
         style: {
           widthLeft: 1,
@@ -221,7 +220,6 @@
           colorTop: "border-separator"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLTIP
@@ -236,13 +234,13 @@
           shadowLength: 1
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         POPUP
       ---------------------------------------------------------------------------
       */
-      "popup": {
+
+      popup: {
         style: {
           width: 1,
           color: "border-main",
@@ -251,7 +249,6 @@
           shadowLength: 1
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLLBAR
@@ -296,13 +293,12 @@
           color: "button-border-disabled"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON
       ---------------------------------------------------------------------------
       */
-      "button": {
+      button: {
         style: {
           radius: 3,
           color: "border-button",
@@ -405,13 +401,12 @@
           color: "border-invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHECK BOX
       ---------------------------------------------------------------------------
       */
-      "checkbox": {
+      checkbox: {
         style: {
           width: 1,
           color: "checkbox-border",
@@ -465,13 +460,13 @@
           shadowColor: "invalid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TEXT FIELD
       ---------------------------------------------------------------------------
       */
-      "input": {
+
+      input: {
         style: {
           color: "border-input",
           innerColor: "border-inner-input",
@@ -512,13 +507,13 @@
           color: "input-border-disabled"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
-      "toolbar": {
+
+      toolbar: {
         style: {
           startColorPosition: 40,
           endColorPosition: 60,
@@ -560,12 +555,12 @@
           backgroundRepeat: "repeat-y"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABVIEW
       ---------------------------------------------------------------------------
       */
+
       "tabview-pane": {
         style: {
           width: 1,
@@ -651,13 +646,13 @@
           colorLeft: "tabview-background"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPLITPANE
       ---------------------------------------------------------------------------
       */
-      "splitpane": {
+
+      splitpane: {
         style: {
           backgroundColor: "background-pane",
           width: 3,
@@ -665,13 +660,12 @@
           style: "solid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-      "window": {
+      window: {
         style: {
           radius: [5, 5, 0, 0],
           shadowBlurRadius: 4,
@@ -731,13 +725,13 @@
           widthTop: 0
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
-      "table": {
+
+      table: {
         style: {
           width: 1,
           color: "border-main",
@@ -783,12 +777,12 @@
           style: "solid"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSIVE
       ---------------------------------------------------------------------------
       */
+
       "progressive-table-header": {
         style: {
           width: 1,
@@ -804,13 +798,13 @@
           colorRight: "progressive-table-header-border-right"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
-      "menu": {
+
+      menu: {
         style: {
           gradientStart: ["menu-start", 0],
           gradientEnd: ["menu-end", 100],
@@ -829,13 +823,13 @@
           colorBottom: "menu-separator-bottom"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU BAR
       ---------------------------------------------------------------------------
       */
-      "menubar": {
+
+      menubar: {
         style: {
           gradientStart: ["menubar-start", 0],
           gradientEnd: ["menu-end", 100],
@@ -843,36 +837,36 @@
           color: "border-separator"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLICATION
       ---------------------------------------------------------------------------
       */
+
       "app-header": {
         style: {
           gradientStart: ["#243B58", 0],
           gradientEnd: ["#1D2D45", 100]
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
       ---------------------------------------------------------------------------
       */
-      "progressbar": {
+
+      progressbar: {
         style: {
           width: 1,
           color: "border-input"
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         VIRTUAL WIDGETS
       ---------------------------------------------------------------------------
       */
+
       "group-item": {
         style: {
           startColorPosition: 0,
@@ -886,4 +880,4 @@
   qx.theme.modern.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789591522
+//# sourceMappingURL=Decoration.js.map?dt=1672653503003

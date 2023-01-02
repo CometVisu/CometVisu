@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Color.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -11,16 +8,23 @@
     "Theme",
     "define",
     "extend",
-    "osparc",
     "theme",
-    "osparcdark",
-    "Color",
+    "tangible",
+    "ColorDark",
     "colors",
+    "primary",
+    "secondary",
+    "surface",
+    "error",
     "cv",
-    "dark"
+    "dark",
+    "Color"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAGAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qBAAhB,EAAuC;AACrCC,IAAAA,MAAM,EAAGC,MAAM,CAACC,KAAP,CAAaC,UAAb,CAAwBC,KADI;AAGrCC,IAAAA,MAAM,EAAG;AACP,qBAAe,SADR;AAEP,uBAAiB,4BAFV;AAGP,uBAAiB;AAHV;AAH4B,GAAvC;AApBAC,EAAAA,EAAE,CAACJ,KAAH,CAASK,IAAT,CAAcH,KAAd,CAAoBP,aAApB,GAAoCA,aAApC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Color.js"
+  ],
   "sourcesContent": [
-    "/* Color.js \n * \n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n * \n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n\nqx.Theme.define('cv.theme.dark.Color', {\n  extend : osparc.theme.osparcdark.Color,\n\n  colors : {\n    'valid-color': '#22822d',\n    'invalid-color': 'material-textfield-invalid',\n    'warning-color': '#a85500'\n  }\n});\n"
-  ]
+    "/* Color.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\nqx.Theme.define('cv.theme.dark.Color', {\n  extend: qx.theme.tangible.ColorDark,\n\n  colors: {\n    // theme colors\n    primary: '#444444',\n    secondary: '#646464',\n    surface: '#202020',\n    error: '#b00020',\n\n    'valid-color': '#22822d',\n    'invalid-color': 'error-focused',\n    'warning-color': '#a85500'\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,QAAQ,CAACC,SAAS;IAEnCC,MAAM,EAAE;MACN;MACAC,OAAO,EAAE,SAAS;MAClBC,SAAS,EAAE,SAAS;MACpBC,OAAO,EAAE,SAAS;MAClBC,KAAK,EAAE,SAAS;MAEhB,aAAa,EAAE,SAAS;MACxB,eAAe,EAAE,eAAe;MAChC,eAAe,EAAE;IACnB;EACF,CAAC,CAAC;EAjCFC,EAAE,CAACR,KAAK,CAACS,IAAI,CAACC,KAAK,CAACd,aAAa,GAAGA,aAAa;AAAC"
 }

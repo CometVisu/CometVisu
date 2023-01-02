@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 829
       },
       "end": {
-        "line": 697,
-        "column": 3
+        "line": 768,
+        "column": 3,
+        "index": 27676
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "labelColumnWidth": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 1054
         },
         "end": {
-          "line": 36,
-          "column": 5
+          "line": 35,
+          "column": 5,
+          "index": 1115
         }
       },
       "name": "labelColumnWidth",
@@ -52,12 +56,14 @@
     "useBlocker": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1122
         },
         "end": {
-          "line": 41,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1178
         }
       },
       "name": "useBlocker",
@@ -73,12 +79,14 @@
     "blockerOpacity": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1185
         },
         "end": {
-          "line": 46,
-          "column": 5
+          "line": 45,
+          "column": 5,
+          "index": 1244
         }
       },
       "name": "blockerOpacity",
@@ -94,12 +102,14 @@
     "blockerColor": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1251
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1314
         }
       },
       "name": "blockerColor",
@@ -617,12 +627,14 @@
     "__mappedKeys": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1460
         },
         "end": {
-          "line": 60,
-          "column": 22
+          "line": 59,
+          "column": 22,
+          "index": 1478
         }
       },
       "type": "variable",
@@ -631,12 +643,14 @@
     "__hints": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1484
         },
         "end": {
-          "line": 61,
-          "column": 17
+          "line": 60,
+          "column": 17,
+          "index": 1497
         }
       },
       "type": "variable",
@@ -645,12 +659,14 @@
     "_rootListenerId": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1503
         },
         "end": {
-          "line": 62,
-          "column": 25
+          "line": 61,
+          "column": 25,
+          "index": 1524
         }
       },
       "type": "variable",
@@ -659,12 +675,14 @@
     "_applyFormData": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 63,
+          "column": 4,
+          "index": 1531
         },
         "end": {
-          "line": 661,
-          "column": 5
+          "line": 735,
+          "column": 5,
+          "index": 26683
         }
       },
       "type": "function",
@@ -698,12 +716,14 @@
     "_handleOk": {
       "location": {
         "start": {
-          "line": 663,
-          "column": 4
+          "line": 737,
+          "column": 4,
+          "index": 26690
         },
         "end": {
-          "line": 683,
-          "column": 5
+          "line": 754,
+          "column": 5,
+          "index": 27361
         }
       },
       "type": "function",
@@ -4519,9 +4539,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -5125,6 +5147,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -5469,11 +5542,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -5990,6 +6063,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -6013,6 +6087,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -12878,12 +12953,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 691,
-        "column": 12
+        "line": 762,
+        "column": 2,
+        "index": 27495
       },
       "end": {
-        "line": 696,
-        "column": 3
+        "line": 767,
+        "column": 3,
+        "index": 27672
       }
     },
     "jsdoc": {}

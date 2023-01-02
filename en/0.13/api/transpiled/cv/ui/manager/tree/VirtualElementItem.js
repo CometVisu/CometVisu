@@ -38,11 +38,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* VirtualElementItem.js 
-   * 
+  /* VirtualElementItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -63,7 +62,6 @@
    */
   qx.Class.define('cv.ui.manager.tree.VirtualElementItem', {
     extend: qx.ui.tree.VirtualTreeItem,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -71,12 +69,10 @@
     */
     construct: function construct(label) {
       qx.ui.tree.VirtualTreeItem.constructor.call(this, label);
-
       if (qx.core.Environment.get('device.touch')) {
         this.addState('touch');
       }
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -122,7 +118,6 @@
         apply: '_applyDragging'
       }
     },
-
     /*
     ***********************************************
       EVENTS
@@ -132,16 +127,14 @@
       edit: 'qx.event.type.Data',
       action: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       MEMBERS
     ***********************************************
     */
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      // eslint-disable-line @qooxdoo/qx/no-refs-in-members
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -149,7 +142,7 @@
         selected: true,
         touch: true
       },
-      __P_50_0: false,
+      __P_52_0: false,
       _applyName: function _applyName(value) {
         this.getContentElement().setAttribute('data-nodename', value);
       },
@@ -193,12 +186,10 @@
       _applyStatus: function _applyStatus(value, old) {
         var icon = this.getChildControl('icon');
         var label = this.getChildControl('label');
-
         if (old) {
           icon.removeState(old);
           label.removeState(old);
         }
-
         if (value) {
           icon.addState(value);
           label.addState(value);
@@ -206,9 +197,7 @@
       },
       _addWidgets: function _addWidgets() {
         cv.ui.manager.tree.VirtualElementItem.superclass.prototype._addWidgets.call(this);
-
         var open = this.getChildControl('open', true);
-
         if (open && qx.core.Environment.get('device.touch')) {
           open.getContentElement().addClass('touch-tree-open-icon');
         }
@@ -216,9 +205,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var _this = this;
-
         var control;
-
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image().set({
@@ -230,12 +217,10 @@
               maxHeight: 22
             });
             break;
-
           case 'buttons':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
             control.setAnonymous(true);
             break;
-
           case 'move-button':
             control = new qx.ui.basic.Atom('', cv.theme.dark.Images.getIcon('drag-handle', qx.core.Environment.get('device.touch') ? 36 : 18));
             control.setToolTipText(this.tr('Drag to move'));
@@ -243,7 +228,6 @@
             control.setShow('icon');
             this.getChildControl('buttons').addAt(control, 0);
             break;
-
           case 'menu-button':
             control = new qx.ui.form.MenuButton('', cv.theme.dark.Images.getIcon('menu', qx.core.Environment.get('device.touch') ? 24 : 14), new cv.ui.manager.contextmenu.ConfigElement());
             control.getMenu().addListener('action', function (ev) {
@@ -252,38 +236,30 @@
             this.getChildControl('buttons').addAt(control, 1);
             break;
         }
-
         return control || cv.ui.manager.tree.VirtualElementItem.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       addLabel: function addLabel(text) {
         var label = this.getChildControl('label');
-
-        if (this.__P_50_0) {
+        if (this.__P_52_0) {
           this._remove(label);
         }
-
         if (text) {
           this.setLabel(text);
         } else {
           label.setValue(this.getLabel());
         }
-
         this._add(label);
-
         this._add(new qx.ui.core.Spacer(), {
           flex: 1
         });
-
         var buttons = this.getChildControl('buttons');
-
         this._add(buttons);
-
-        this.__P_50_0 = true;
+        this.__P_52_0 = true;
       }
     }
   });
   cv.ui.manager.tree.VirtualElementItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualElementItem.js.map?dt=1664789569018
+//# sourceMappingURL=VirtualElementItem.js.map?dt=1672653477534

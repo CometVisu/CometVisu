@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,7 +43,6 @@
       toString: function toString(value) {
         return value + "";
       },
-
       /**
        * Options for the {@link qx.data.SingleValueBinding}
        * containing the {@link #toString} converter.
@@ -52,7 +50,6 @@
       TOSTRINGOPTIONS: {
         converter: null
       },
-
       /**
        * Converts the given value to a number via <code>parseFloat</code>.
        *
@@ -62,7 +59,6 @@
       toNumber: function toNumber(value) {
         return parseFloat(value);
       },
-
       /**
        * Options for the {@link qx.data.SingleValueBinding}
        * containing the {@link #toNumber} converter.
@@ -70,7 +66,6 @@
       TONUMBEROPTIONS: {
         converter: null
       },
-
       /**
        * Converts the given value to a boolean via <code>!!value</code>.
        *
@@ -80,7 +75,6 @@
       toBoolean: function toBoolean(value) {
         return !!value;
       },
-
       /**
        * Options for the {@link qx.data.SingleValueBinding}
        * containing the {@link #toBoolean} converter.
@@ -100,4 +94,4 @@
   qx.data.Conversion.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conversion.js.map?dt=1664789580811
+//# sourceMappingURL=Conversion.js.map?dt=1672653489078

@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
         nullable: true,
         init: null
       },
-
       /** array of data to construct ListItem widgets with */
       listData: {
         check: "Array",
@@ -67,41 +65,32 @@
           appearance: "table-editor-combobox"
         });
         var value = cellInfo.value;
-        cellEditor.originalValue = value; // check if renderer does something with value
+        cellEditor.originalValue = value;
 
+        // check if renderer does something with value
         var cellRenderer = cellInfo.table.getTableColumnModel().getDataCellRenderer(cellInfo.col);
-
         var label = cellRenderer._getContentHtml(cellInfo);
-
         if (value != label) {
           value = label;
-        } // replace null values
+        }
 
-
+        // replace null values
         if (value === null || value === undefined) {
           value = "";
         }
-
         var list = this.getListData();
-
         if (list) {
           var item;
-
           for (var i = 0, l = list.length; i < l; i++) {
             var row = list[i];
-
             if (row instanceof Array) {
               item = new qx.ui.form.ListItem(row[0], row[1]);
             } else {
               item = new qx.ui.form.ListItem(row, null);
             }
-
             cellEditor.add(item);
           }
-
-          ;
         }
-
         cellEditor.setValue("" + value);
         cellEditor.addListener("appear", function () {
           cellEditor.selectAllText();
@@ -110,18 +99,16 @@
       },
       // interface implementations
       getCellEditorValue: function getCellEditorValue(cellEditor) {
-        var value = cellEditor.getValue() || ""; // validation function will be called with new and old value
+        var value = cellEditor.getValue() || "";
 
+        // validation function will be called with new and old value
         var validationFunc = this.getValidationFunction();
-
         if (validationFunc) {
           value = validationFunc(value, cellEditor.originalValue);
         }
-
         if (typeof cellEditor.originalValue == "number") {
           value = parseFloat(value);
         }
-
         return value;
       }
     }
@@ -129,4 +116,4 @@
   qx.ui.table.celleditor.ComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ComboBox.js.map?dt=1664789603759
+//# sourceMappingURL=ComboBox.js.map?dt=1672653514002

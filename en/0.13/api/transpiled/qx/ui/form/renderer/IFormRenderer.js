@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -26,7 +25,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * This interface defines the necessary features a form renderer should have.
    * Keep in mind that all renderes has to be widgets.
@@ -47,7 +45,6 @@
        *   for the current group header.
        */
       addItems: function addItems(items, names, title, itemsOptions, headerOptions) {},
-
       /**
        * Adds a button the form renderer.
        *
@@ -61,4 +58,4 @@
   qx.ui.form.renderer.IFormRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IFormRenderer.js.map?dt=1664789597811
+//# sourceMappingURL=IFormRenderer.js.map?dt=1672653508732

@@ -14,11 +14,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* OpenHab.js 
-   * 
+  /* OpenHab.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -51,75 +50,68 @@
         return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
       }
     },
-
     /**
      * This class defines the default transforms: encode: transform JavaScript to
      * bus value decode: transform bus to JavaScript value
      */
     defer: function defer() {
       cv.Transform.addTransform('OH', {
-        'switch': {
+        "switch": {
           name: 'OH_Switch',
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
-            return phy == 1 ? 'ON' : 'OFF'; // jshint ignore:line
+            return phy == 1 ? 'ON' : 'OFF';
           },
           decode: function decode(string) {
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'ON' || parseInt(string) > 0 ? 1 : 0;
           }
         },
-        'playPause': {
+        playPause: {
           name: 'OH_PlayPause',
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
-            return phy == 1 ? 'PLAY' : 'PAUSE'; // jshint ignore:line
+            return phy == 1 ? 'PLAY' : 'PAUSE';
           },
           decode: function decode(string) {
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'PLAY' || parseInt(string) > 0 ? 1 : 0;
           }
         },
-        'contact': {
+        contact: {
           name: 'OH_Contact',
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
-            return phy == 1 ? 'OPEN' : 'CLOSED'; // jshint ignore:line
+            return phy == 1 ? 'OPEN' : 'CLOSED';
           },
           decode: function decode(string) {
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'OPEN' ? 1 : 0;
           }
         },
-        'rollershutter': {
+        rollershutter: {
           name: 'OH_RollerShutter',
           encode: function encode(phy) {
             // using == comparisons to make sure that e.g. 1 equals "1"
             // noinspection EqualityComparisonWithCoercionJS
             if (phy == -1) {
               return 'STOP';
-            } // noinspection EqualityComparisonWithCoercionJS
-
-
+            }
+            // noinspection EqualityComparisonWithCoercionJS
             if (phy == 1 || phy == 100) {
               return 'DOWN';
-            } // noinspection EqualityComparisonWithCoercionJS
-
-
+            }
+            // noinspection EqualityComparisonWithCoercionJS
             if (phy == 0) {
               // eslint-disable-line no-lonely-if
               return 'UP';
             }
-
             return phy;
           },
           decode: function decode(str) {
@@ -132,11 +124,10 @@
             } else if (str === 'STOP') {
               return -1;
             }
-
             return str;
           }
         },
-        'dimmer': {
+        dimmer: {
           name: 'OH_Dimmer',
           encode: function encode(phy) {
             return parseInt(phy);
@@ -149,11 +140,10 @@
             } else if (str === 'OFF') {
               return 0;
             }
-
             return parseInt(str);
           }
         },
-        'number': {
+        number: {
           name: 'OH_Number',
           encode: function encode(phy) {
             return parseFloat(phy);
@@ -162,11 +152,10 @@
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return 0;
             }
-
             return parseFloat(str);
           }
         },
-        'string': {
+        string: {
           name: 'OH_String',
           encode: function encode(phy) {
             return phy;
@@ -175,41 +164,36 @@
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '';
             }
-
             return str;
           }
         },
-        'datetime': {
+        datetime: {
           name: 'OH_DateTime',
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleDateString();
             }
-
             return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '-';
             }
-
             return new Date(Date.parse(str));
           }
         },
-        'time': {
+        time: {
           name: 'OH_Time',
           encode: function encode(phy) {
             if (phy instanceof Date) {
               return phy.toLocaleTimeString();
             }
-
             return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '-';
             }
-
             var date = new Date();
             var parts = str.split(':');
             date.setHours(parseInt(parts[0]));
@@ -218,13 +202,12 @@
             return date;
           }
         },
-        'color': {
+        color: {
           name: 'OH_Color',
           encode: function encode(phy) {
             if (!(phy instanceof Map)) {
               return '0, 0, 0';
             }
-
             if (phy.has('h') && phy.has('s') && phy.has('v')) {
               var hsv = [phy.get('h') || 0, phy.get('s') || 0, phy.get('v') || 0];
               return hsv.join(', ');
@@ -232,21 +215,18 @@
               var rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
               return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
             }
-
             return '0, 0, 0';
           },
           decode: function decode(hsbString, variant) {
             if (cv.transforms.OpenHab.isUndefined(hsbString)) {
               return variant === 'rgb' ? new Map([['r', 0], ['g', 0], ['b', 0]]) : new Map([['h', 0], ['s', 0], ['v', 0]]);
-            } // decode HSV/HSB to RGB
-
-
+            }
+            // decode HSV/HSB to RGB
             if (variant === 'rgb') {
               // decode HSV/HSB to RGB
               var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
               return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
             }
-
             var hsv = hsbString.split(',').map(parseFloat);
             return new Map([['h', hsv[0]], ['s', hsv[1]], ['v', hsv[2]]]);
           }
@@ -266,4 +246,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1664789564404
+//# sourceMappingURL=OpenHab.js.map?dt=1672653473322

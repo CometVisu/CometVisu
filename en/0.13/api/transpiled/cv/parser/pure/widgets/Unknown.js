@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Unknown.js 
-   * 
+  /* Unknown.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -41,7 +40,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Unknown', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -50,10 +48,10 @@
     statics: {
       parse: function parse(xml, path, flavour, pageType) {
         return cv.data.Model.getInstance().setWidgetData(path, {
-          'path': path,
-          'unknownType': xml.nodeName.toLowerCase(),
-          '$$type': 'unknown',
-          'pageType': pageType
+          path: path,
+          unknownType: xml.nodeName.toLowerCase(),
+          $$type: 'unknown',
+          pageType: pageType
         });
       }
     },
@@ -65,4 +63,4 @@
   cv.parser.pure.widgets.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1664789562615
+//# sourceMappingURL=Unknown.js.map?dt=1672653471263

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 882
       },
       "end": {
-        "line": 96,
-        "column": 3
+        "line": 95,
+        "column": 3,
+        "index": 2423
       }
     },
     "jsdoc": {
@@ -36,12 +38,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 31,
-        "column": 13
+        "line": 30,
+        "column": 2,
+        "index": 1060
       },
       "end": {
-        "line": 42,
-        "column": 3
+        "line": 41,
+        "column": 3,
+        "index": 1379
       }
     },
     "jsdoc": {}
@@ -50,12 +54,14 @@
     "resized": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1519
         },
         "end": {
-          "line": 50,
-          "column": 33
+          "line": 49,
+          "column": 33,
+          "index": 1548
         }
       },
       "name": "resized",
@@ -66,12 +72,14 @@
     "resizeTarget": {
       "location": {
         "start": {
-          "line": 59,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1700
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1801
         }
       },
       "name": "resizeTarget",
@@ -86,12 +94,14 @@
     "_observer": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 74,
+          "column": 4,
+          "index": 1992
         },
         "end": {
-          "line": 75,
-          "column": 19
+          "line": 74,
+          "column": 19,
+          "index": 2007
         }
       },
       "jsdoc": {
@@ -114,12 +124,14 @@
     "_applyResizeTarget": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2014
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2209
         }
       },
       "type": "function",
@@ -198,12 +210,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 92,
-        "column": 12
+        "line": 91,
+        "column": 2,
+        "index": 2343
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 94,
+        "column": 3,
+        "index": 2419
       }
     },
     "jsdoc": {}

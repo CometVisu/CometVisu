@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 26,
-        "column": 0
+        "line": 20,
+        "column": 0,
+        "index": 730
       },
       "end": {
-        "line": 105,
-        "column": 3
+        "line": 88,
+        "column": 3,
+        "index": 2540
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 41,
-        "column": 14
+        "line": 33,
+        "column": 2,
+        "index": 1131
       },
       "end": {
-        "line": 55,
-        "column": 3
+        "line": 46,
+        "column": 3,
+        "index": 1598
       }
     },
     "jsdoc": {
@@ -67,12 +71,14 @@
     "DEFAULTMESSAGE": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1801
         },
         "end": {
-          "line": 66,
-          "column": 28
+          "line": 54,
+          "column": 27,
+          "index": 1824
         }
       },
       "type": "variable",
@@ -83,12 +89,14 @@
     "__sTrace": {
       "location": {
         "start": {
-          "line": 79,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 2032
         },
         "end": {
-          "line": 79,
-          "column": 19
+          "line": 64,
+          "column": 18,
+          "index": 2046
         }
       },
       "type": "variable",
@@ -97,12 +105,14 @@
     "__comment": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 2052
         },
         "end": {
-          "line": 80,
-          "column": 20
+          "line": 65,
+          "column": 19,
+          "index": 2067
         }
       },
       "type": "variable",
@@ -111,12 +121,14 @@
     "message": {
       "location": {
         "start": {
-          "line": 83,
-          "column": 4
+          "line": 68,
+          "column": 4,
+          "index": 2139
         },
         "end": {
-          "line": 83,
-          "column": 18
+          "line": 68,
+          "column": 17,
+          "index": 2152
         }
       },
       "jsdoc": {
@@ -139,12 +151,14 @@
     "getComment": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2291
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 77,
+          "column": 5,
+          "index": 2340
         }
       },
       "jsdoc": {
@@ -169,6 +183,7 @@
   },
   "descendants": [
     "qx.core.AssertionError",
-    "qx.core.ValidationError"
+    "qx.core.ValidationError",
+    "qx.io.exception.Exception"
   ]
 }

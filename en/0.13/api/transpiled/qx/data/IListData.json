@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 664
       },
       "end": {
-        "line": 108,
-        "column": 3
+        "line": 99,
+        "column": 3,
+        "index": 3084
       }
     },
     "jsdoc": {
@@ -65,12 +67,14 @@
     "getItem": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1678
         },
         "end": {
-          "line": 57,
-          "column": 32
+          "line": 53,
+          "column": 21,
+          "index": 1695
         }
       },
       "jsdoc": {
@@ -104,12 +108,14 @@
     "setItem": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1942
         },
         "end": {
-          "line": 67,
-          "column": 38
+          "line": 62,
+          "column": 27,
+          "index": 1965
         }
       },
       "jsdoc": {
@@ -142,12 +148,14 @@
     "splice": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2486
         },
         "end": {
-          "line": 81,
-          "column": 53
+          "line": 75,
+          "column": 42,
+          "index": 2524
         }
       },
       "jsdoc": {
@@ -195,12 +203,14 @@
     "contains": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2763
         },
         "end": {
-          "line": 90,
-          "column": 32
+          "line": 83,
+          "column": 21,
+          "index": 2780
         }
       },
       "jsdoc": {
@@ -234,12 +244,14 @@
     "getLength": {
       "location": {
         "start": {
-          "line": 98,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2933
         },
         "end": {
-          "line": 98,
-          "column": 29
+          "line": 90,
+          "column": 18,
+          "index": 2947
         }
       },
       "jsdoc": {
@@ -264,12 +276,14 @@
     "toArray": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 3064
         },
         "end": {
-          "line": 106,
-          "column": 26
+          "line": 97,
+          "column": 16,
+          "index": 3076
         }
       },
       "jsdoc": {

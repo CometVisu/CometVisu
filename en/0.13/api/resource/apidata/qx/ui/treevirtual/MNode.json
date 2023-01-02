@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 592
       },
       "end": {
-        "line": 451,
-        "column": 3
+        "line": 448,
+        "column": 3,
+        "index": 15486
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "nodeGet": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1199
         },
         "end": {
-          "line": 54,
-          "column": 5
+          "line": 46,
+          "column": 5,
+          "index": 1503
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "nodeToggleOpened": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1907
         },
         "end": {
-          "line": 88,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2384
         }
       },
       "jsdoc": {
@@ -107,12 +113,14 @@
     "nodeSetState": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 89,
+          "column": 4,
+          "index": 2924
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 101,
+          "column": 5,
+          "index": 3301
         }
       },
       "jsdoc": {
@@ -148,12 +156,14 @@
     "nodeSetLabel": {
       "location": {
         "start": {
-          "line": 138,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 3703
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 117,
+          "column": 5,
+          "index": 3803
         }
       },
       "jsdoc": {
@@ -189,12 +199,14 @@
     "nodeGetLabel": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 4195
         },
         "end": {
-          "line": 159,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 4301
         }
       },
       "jsdoc": {
@@ -231,12 +243,14 @@
     "nodeSetSelected": {
       "location": {
         "start": {
-          "line": 174,
-          "column": 4
+          "line": 147,
+          "column": 4,
+          "index": 4728
         },
         "end": {
-          "line": 177,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 4827
         }
       },
       "jsdoc": {
@@ -272,12 +286,14 @@
     "nodeGetSelected": {
       "location": {
         "start": {
-          "line": 191,
-          "column": 4
+          "line": 162,
+          "column": 4,
+          "index": 5248
         },
         "end": {
-          "line": 195,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 5361
         }
       },
       "jsdoc": {
@@ -311,15 +327,123 @@
       "type": "function",
       "access": "public"
     },
-    "nodeSetOpened": {
+    "nodeOpenAll": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 5439
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 5667
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens all nodes in the tree with minimal redraw</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "nodeCloseAll": {
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5746
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 5976
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Closes all nodes in the tree with minimal redraw</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_nodeSetOpenedInternal": {
       "location": {
         "start": {
           "line": 211,
-          "column": 4
+          "column": 4,
+          "index": 6754
         },
         "end": {
-          "line": 234,
-          "column": 5
+          "line": 235,
+          "column": 5,
+          "index": 7604
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal call to set the opened state for a node. (Note that this method has no effect\n if the requested state is the same as the current state.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "opened {Boolean}\n   The new opened state for the specified node.",
+            "paramName": "opened",
+            "description": "\n   The new opened state for the specified node.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "cascade {Boolean}\n   Whether to descend the tree changing opened state of all children",
+            "paramName": "cascade",
+            "description": "\n   Whether to descend the tree changing opened state of all children",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "isRecursed {Boolean?}\n   For internal use when cascading to determine outer level and call setData",
+            "paramName": "isRecursed",
+            "description": "\n   For internal use when cascading to determine outer level and call setData",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "nodeSetOpened": {
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 8239
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 8366
         }
       },
       "jsdoc": {
@@ -342,9 +466,16 @@
           },
           {
             "name": "@param",
-            "body": "b {Boolean}\n   The new opened state for the specified node.",
-            "paramName": "b",
+            "body": "opened {Boolean}\n   The new opened state for the specified node.",
+            "paramName": "opened",
             "description": "\n   The new opened state for the specified node.",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "cascade {Boolean}\n   Whether to descend the tree changing opened state of all children",
+            "paramName": "cascade",
+            "description": "\n   Whether to descend the tree changing opened state of all children",
             "type": "Boolean"
           }
         ]
@@ -355,12 +486,14 @@
     "nodeGetOpened": {
       "location": {
         "start": {
-          "line": 248,
-          "column": 4
+          "line": 266,
+          "column": 4,
+          "index": 8781
         },
         "end": {
-          "line": 252,
-          "column": 5
+          "line": 269,
+          "column": 5,
+          "index": 8890
         }
       },
       "jsdoc": {
@@ -397,12 +530,14 @@
     "nodeSetHideOpenClose": {
       "location": {
         "start": {
-          "line": 267,
-          "column": 4
+          "line": 283,
+          "column": 4,
+          "index": 9332
         },
         "end": {
-          "line": 270,
-          "column": 5
+          "line": 285,
+          "column": 5,
+          "index": 9441
         }
       },
       "jsdoc": {
@@ -438,12 +573,14 @@
     "nodeGetHideOpenClose": {
       "location": {
         "start": {
-          "line": 284,
-          "column": 4
+          "line": 298,
+          "column": 4,
+          "index": 9881
         },
         "end": {
-          "line": 288,
-          "column": 5
+          "line": 301,
+          "column": 5,
+          "index": 10004
         }
       },
       "jsdoc": {
@@ -480,12 +617,14 @@
     "nodeSetIcon": {
       "location": {
         "start": {
-          "line": 303,
-          "column": 4
+          "line": 315,
+          "column": 4,
+          "index": 10466
         },
         "end": {
-          "line": 306,
-          "column": 5
+          "line": 317,
+          "column": 5,
+          "index": 10562
         }
       },
       "jsdoc": {
@@ -521,12 +660,14 @@
     "nodeGetIcon": {
       "location": {
         "start": {
-          "line": 321,
-          "column": 4
+          "line": 331,
+          "column": 4,
+          "index": 11103
         },
         "end": {
-          "line": 325,
-          "column": 5
+          "line": 334,
+          "column": 5,
+          "index": 11207
         }
       },
       "jsdoc": {
@@ -563,12 +704,14 @@
     "nodeSetSelectedIcon": {
       "location": {
         "start": {
-          "line": 351,
-          "column": 4
+          "line": 359,
+          "column": 4,
+          "index": 12355
         },
         "end": {
-          "line": 354,
-          "column": 5
+          "line": 361,
+          "column": 5,
+          "index": 12467
         }
       },
       "jsdoc": {
@@ -604,12 +747,14 @@
     "nodeGetSelectedIcon": {
       "location": {
         "start": {
-          "line": 369,
-          "column": 4
+          "line": 375,
+          "column": 4,
+          "index": 12993
         },
         "end": {
-          "line": 373,
-          "column": 5
+          "line": 378,
+          "column": 5,
+          "index": 13113
         }
       },
       "jsdoc": {
@@ -646,12 +791,14 @@
     "nodeSetCellStyle": {
       "location": {
         "start": {
-          "line": 391,
-          "column": 4
+          "line": 395,
+          "column": 4,
+          "index": 13650
         },
         "end": {
-          "line": 394,
-          "column": 5
+          "line": 397,
+          "column": 5,
+          "index": 13758
         }
       },
       "jsdoc": {
@@ -687,12 +834,14 @@
     "nodeGetCellStyle": {
       "location": {
         "start": {
-          "line": 408,
-          "column": 4
+          "line": 410,
+          "column": 4,
+          "index": 14194
         },
         "end": {
-          "line": 412,
-          "column": 5
+          "line": 413,
+          "column": 5,
+          "index": 14308
         }
       },
       "jsdoc": {
@@ -730,11 +879,13 @@
       "location": {
         "start": {
           "line": 427,
-          "column": 4
+          "column": 4,
+          "index": 14741
         },
         "end": {
-          "line": 430,
-          "column": 5
+          "line": 429,
+          "column": 5,
+          "index": 14851
         }
       },
       "jsdoc": {
@@ -770,12 +921,14 @@
     "nodeGetLabelStyle": {
       "location": {
         "start": {
-          "line": 445,
-          "column": 4
+          "line": 443,
+          "column": 4,
+          "index": 15363
         },
         "end": {
-          "line": 449,
-          "column": 5
+          "line": 446,
+          "column": 5,
+          "index": 15478
         }
       },
       "jsdoc": {

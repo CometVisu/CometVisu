@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 826
       },
       "end": {
-        "line": 270,
-        "column": 3
+        "line": 297,
+        "column": 3,
+        "index": 9570
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "deg2rad": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 1053
         },
         "end": {
-          "line": 35,
-          "column": 5
+          "line": 34,
+          "column": 5,
+          "index": 1121
         }
       },
       "type": "function",
@@ -48,12 +52,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1469
         },
         "end": {
-          "line": 74,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 3050
         }
       },
       "jsdoc": {
@@ -100,12 +106,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 3057
         },
         "end": {
-          "line": 263,
-          "column": 5
+          "line": 290,
+          "column": 5,
+          "index": 9445
         }
       },
       "type": "function",
@@ -115,15 +123,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 266,
-        "column": 9
+        "line": 293,
+        "column": 2,
+        "index": 9454
       },
       "end": {
-        "line": 269,
-        "column": 3
+        "line": 296,
+        "column": 3,
+        "index": 9566
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

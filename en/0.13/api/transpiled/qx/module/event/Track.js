@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
        */
       TYPES: ["track"],
       BIND_METHODS: ["getDelta"],
-
       /**
        * Returns a map with the calculated delta coordinates and axis,
        * relative to the position on <code>trackstart</code> event.
@@ -61,7 +59,6 @@
       getDelta: function getDelta() {
         return this._original.delta;
       },
-
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -74,17 +71,14 @@
       normalize: function normalize(event, element) {
         if (!event) {
           return event;
-        } // apply mouse event normalizations
-
-
+        }
+        // apply mouse event normalizations
         var bindMethods = qx.module.event.Track.BIND_METHODS;
-
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Track[bindMethods[i]].bind(event);
           }
         }
-
         return event;
       }
     },
@@ -95,4 +89,4 @@
   qx.module.event.Track.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Track.js.map?dt=1664789590419
+//# sourceMappingURL=Track.js.map?dt=1672653501728

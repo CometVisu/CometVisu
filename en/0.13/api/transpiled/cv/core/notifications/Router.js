@@ -28,11 +28,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Router.js 
-   * 
+  /* Router.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -58,7 +57,6 @@
   qx.Class.define('cv.core.notifications.Router', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -71,7 +69,6 @@
       this.__P_4_1 = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
       this.__P_4_2 = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
     },
-
     /*
     ******************************************************
       STATICS
@@ -92,11 +89,9 @@
         } else if (typeof message.condition === 'function') {
           return message.condition();
         }
-
         qx.log.Logger.error(this, 'unhandled message condition type: ' + message.condition);
         return false;
       },
-
       /**
        * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
        * @param topic
@@ -106,7 +101,6 @@
       dispatchMessage: function dispatchMessage(topic, message, target) {
         return this.getInstance().dispatchMessage(topic, message, target);
       },
-
       /**
        * Converts a target name to the related target object/function.
        *
@@ -117,27 +111,21 @@
         switch (name) {
           case 'popup':
             return cv.ui.PopupHandler;
-
           case 'notificationCenter':
             return cv.ui.NotificationCenter.getInstance();
-
           case 'speech':
             if (!window.speechSynthesis) {
               // not supported
               qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
               return null;
             }
-
             return cv.core.notifications.SpeechHandler.getInstance();
-
           case 'toast':
             return cv.ui.ToastManager.getInstance();
         }
-
         return null;
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -151,7 +139,6 @@
       getStateMessageConfig: function getStateMessageConfig() {
         return this.__P_4_3;
       },
-
       /**
        * Register state update handler for one or more addresses.
        *
@@ -182,7 +169,6 @@
           cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
         }, this);
       },
-
       /**
        * Unregister state update listeners for a list of addresses
        * @param addresses {Array}
@@ -190,13 +176,11 @@
       unregisterStateUpdatehandler: function unregisterStateUpdatehandler(addresses) {
         addresses.forEach(function (address) {
           cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
-
           if (this.__P_4_3[address]) {
             delete this.__P_4_3[address];
           }
         }, this);
       },
-
       /**
        * Register a handler for a list of topics
        * @param handler {cv.core.notifications.IHandler}
@@ -207,31 +191,26 @@
           var segments = topic.split('.');
           var firstSegment = segments.shift();
           var currentSegment = this.__P_4_0[firstSegment];
-
           if (!currentSegment) {
             this.__P_4_0[firstSegment] = {
               __P_4_4: []
             };
             currentSegment = this.__P_4_0[firstSegment];
           }
-
           segments.forEach(function (segment) {
             if (!currentSegment[segment]) {
               currentSegment[segment] = {
                 __P_4_4: []
               };
             }
-
             currentSegment = currentSegment[segment];
           }, this);
-
           currentSegment.__P_4_4.push({
             handler: handler,
             config: topics[topic]
           });
         }, this);
       },
-
       /**
        * Handle address state updates and show them as message
        * @param address {String} GA or openHAB item name
@@ -244,39 +223,33 @@
         if (!this.__P_4_3[address]) {
           return;
         }
-
         var now = new Date();
-
         var formattedDate = this.__P_4_1.format(now);
-
         var formattedTime = this.__P_4_2.format(now);
-
         this.__P_4_3[address].forEach(function (config) {
           if (initial === true && config.skipInitial === true || changed === false) {
             // do not handle the first update
             return;
-          } // process value
+          }
 
-
+          // process value
           state = cv.Transform.decode(config.addressConfig, state);
           var templateData = {
             address: address,
             value: state,
             date: formattedDate,
             time: formattedTime
-          }; // transform the raw value to a JavaScript type
+          };
 
+          // transform the raw value to a JavaScript type
           templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
-
           if (config.valueMapping) {
             // apply mapping
             templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
           }
-
           if (config.addressMapping) {
             templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
           }
-
           var message = {
             topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
             title: qx.bom.Template.render('' + config.titleTemplate, templateData),
@@ -285,19 +258,15 @@
             unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
             severity: config.severity
           };
-
           if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
-            message.condition = state == config.condition; // jshint ignore:line
+            message.condition = state == config.condition;
           }
-
           if (config.icon) {
             message.icon = config.icon;
-
             if (config.iconClasses) {
               message.iconClasses = config.iconClasses;
             }
           }
-
           this.dispatchMessage(message.topic, message, config.target);
         }, this);
       },
@@ -314,25 +283,20 @@
           } else if (segmentName === '*') {
             // collect all
             this.__P_4_6(currentSegment, handlers);
-
             return true;
           }
-
           if (currentSegment['*']) {
             handlers.append(currentSegment['*'].__P_4_4);
           }
-
           if (currentSegment[segmentName]) {
             if (idx === last) {
               handlers.append(currentSegment[segmentName].__P_4_4);
             }
-
             currentSegment = currentSegment[segmentName];
           } else {
             // stop searching
             return true;
           }
-
           return false;
         }, this);
         return handlers;
@@ -350,7 +314,6 @@
         if (message.target && !target) {
           target = cv.core.notifications.Router.getTarget(message.target);
         }
-
         if (target && target.handleMessage) {
           this.debug('dispatching \'' + topic + '\' message to handler: ' + target);
           target.handleMessage(message, {});
@@ -366,7 +329,6 @@
         this.__P_4_3 = {};
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -374,11 +336,10 @@
     */
     destruct: function destruct() {
       this.clear();
-
       this._disposeObjects("__P_4_1", "__P_4_2");
     }
   });
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1664789561270
+//# sourceMappingURL=Router.js.map?dt=1672653469431

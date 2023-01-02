@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,34 +39,30 @@
    */
   qx.Class.define("qx.ui.embed.AbstractIframe", {
     extend: qx.ui.core.Widget,
-
     /**
      * @param source {String} URL which should initially set.
      */
     construct: function construct(source) {
       qx.ui.core.Widget.constructor.call(this);
-
       if (source) {
         this.setSource(source);
       }
-
-      this._getIframeElement().addListener("navigate", this.__P_322_0, this);
+      this._getIframeElement().addListener("navigate", this.__P_337_0, this);
     },
     events: {
       /**
        * The "load" event is fired after the iframe content has successfully been loaded.
        */
-      "load": "qx.event.type.Event",
-
+      load: "qx.event.type.Event",
       /**
-      * The "navigate" event is fired whenever the location of the iframe
-      * changes.
-      *
-      * Useful to track user navigation and internally used to keep the source
-      * property in sync. Only works when the destination source is of same
-      * origin than the page embedding the iframe.
-      */
-      "navigate": "qx.event.type.Data"
+       * The "navigate" event is fired whenever the location of the iframe
+       * changes.
+       *
+       * Useful to track user navigation and internally used to keep the source
+       * property in sync. Only works when the destination source is of same
+       * origin than the page embedding the iframe.
+       */
+      navigate: "qx.event.type.Data"
     },
     properties: {
       /**
@@ -78,7 +73,6 @@
         apply: "_applySource",
         init: "about:blank"
       },
-
       /**
        * Name of the iframe.
        */
@@ -106,7 +100,6 @@
       _applyFrameName: function _applyFrameName(value, old) {
         this._getIframeElement().setAttribute("name", value);
       },
-
       /**
        * Get the DOM window object of an iframe.
        *
@@ -115,7 +108,6 @@
       getWindow: function getWindow() {
         return this._getIframeElement().getWindow();
       },
-
       /**
        * Get the DOM document object of an iframe.
        *
@@ -124,7 +116,6 @@
       getDocument: function getDocument() {
         return this._getIframeElement().getDocument();
       },
-
       /**
        * Get the HTML body element of the iframe.
        *
@@ -133,7 +124,6 @@
       getBody: function getBody() {
         return this._getIframeElement().getBody();
       },
-
       /**
        * Get the current name.
        *
@@ -142,7 +132,6 @@
       getName: function getName() {
         return this._getIframeElement().getName();
       },
-
       /**
        * Reload the contents of the iframe.
        *
@@ -150,19 +139,16 @@
       reload: function reload() {
         this._getIframeElement().reload();
       },
-
       /**
-      * Handle user navigation. Sync actual URL of iframe with source property.
-      *
-      * @param e {qx.event.type.Data} navigate event
-      */
-      __P_322_0: function __P_322_0(e) {
+       * Handle user navigation. Sync actual URL of iframe with source property.
+       *
+       * @param e {qx.event.type.Data} navigate event
+       */
+      __P_337_0: function __P_337_0(e) {
         var actualUrl = e.getData();
-
         if (actualUrl) {
           this.setSource(actualUrl);
         }
-
         this.fireDataEvent("navigate", actualUrl);
       }
     }
@@ -170,4 +156,4 @@
   qx.ui.embed.AbstractIframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractIframe.js.map?dt=1664789595622
+//# sourceMappingURL=AbstractIframe.js.map?dt=1672653506781

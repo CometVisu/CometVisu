@@ -1,3 +1,4 @@
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -37,6 +38,11 @@
         "require": true,
         "defer": "runtime"
       },
+      "qx.core.Environment": {
+        "defer": "load",
+        "usage": "dynamic",
+        "require": true
+      },
       "qx.Bootstrap": {
         "usage": "dynamic",
         "require": true
@@ -44,15 +50,22 @@
       "qx.core.Property": {
         "require": true
       },
-      "qx.core.Environment": {},
       "qx.util.OOUtil": {
         "require": true
       },
-      "qx.lang.Type": {}
+      "qx.lang.Type": {},
+      "qx.lang.Function": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.debug": {
+          "load": true
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -115,8 +128,8 @@
    *
    * By using <code>qx.Class</code> within an app, the native JS data types are
    * conveniently polyfilled according to {@link qx.lang.normalize}.
-   * 
-   * Annotations can be added to classes, constructors, destructors, and methods, properties, and statics - 
+   *
+   * Annotations can be added to classes, constructors, destructors, and methods, properties, and statics -
    * see <code>qx.Annotation</code> for examples and means access annotations at runtime.
    *
    * @require(qx.Interface)
@@ -135,14 +148,12 @@
        * A static reference to the property implementation in the case it
        * should be included.
        */
-      __P_86_0: true ? qx.core.Property : null,
-
+      __P_89_0: true ? qx.core.Property : null,
       /*
       ---------------------------------------------------------------------------
          PUBLIC METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Define a new class using the qooxdoo class system. This sets up the
        * namespace for the class and generates the class from the definition map.
@@ -212,79 +223,96 @@
        * @return {Class} The defined class
        */
       define: function define(name, config) {
+        try {
+          return this.__P_89_1(name, config);
+        } catch (ex) {
+          qx.Class.$$brokenClassDefinitions = true;
+          throw ex;
+        }
+      },
+      /**
+       * Implementation behind `define` - this exists just for the simplicity of wrapping an exception
+       * handler around the code
+       *
+       * @param {String} name @see `define()`
+       * @param {*} config @see `define()`
+       * @returns  @see `define()`
+       */
+      __P_89_1: function __P_89_1(name, config) {
         if (!config) {
           config = {};
-        } // Normalize include to array
+        }
 
-
+        // Normalize include to array
         if (config.include && !(qx.Bootstrap.getClass(config.include) === "Array")) {
           config.include = [config.include];
-        } // Normalize implement to array
+        }
 
-
+        // Normalize implement to array
         if (config.implement && !(qx.Bootstrap.getClass(config.implement) === "Array")) {
           config.implement = [config.implement];
-        } // Normalize type
+        }
 
-
+        // Normalize type
         var implicitType = false;
-
         if (!config.hasOwnProperty("extend") && !config.type) {
           config.type = "static";
           implicitType = true;
-        } // Validate incoming data
+        }
 
+        // Validate incoming data
 
         // Create the class
-        var clazz = this.__P_86_1(name, config.type, config.extend, config.statics, config.construct, config.destruct, config.include); // Initialise class and constructor/destructor annotations
+        var clazz = this.__P_89_2(name, config.type, config.extend, config.statics, config.construct, config.destruct, config.include);
 
-
+        // Initialise class and constructor/destructor annotations
         ["@", "@construct", "@destruct"].forEach(function (id) {
-          this.__P_86_2(clazz, id, null, config[id]);
-        }, this); // Members, properties, events and mixins are only allowed for non-static classes
+          this.__P_89_3(clazz, id, null, config[id]);
+        }, this);
 
+        // Members, properties, events and mixins are only allowed for non-static classes
         if (config.extend) {
           // Attach properties
           if (config.properties) {
-            this.__P_86_3(clazz, config.properties, true);
-          } // Attach members
+            this.__P_89_4(clazz, config.properties, true);
+          }
 
-
+          // Attach members
           if (config.members) {
-            this.__P_86_4(clazz, config.members, true, true, false);
-          } // Process events
+            this.__P_89_5(clazz, config.members, true, true, false);
+          }
 
-
+          // Process events
           if (config.events) {
-            this.__P_86_5(clazz, config.events, true);
-          } // Include mixins
+            this.__P_89_6(clazz, config.events, true);
+          }
+
+          // Include mixins
           // Must be the last here to detect conflicts
-
-
           if (config.include) {
             for (var i = 0, l = config.include.length; i < l; i++) {
-              this.__P_86_6(clazz, config.include[i], false);
+              this.__P_89_7(clazz, config.include[i], false);
             }
           }
-        } // If config has a 'extend' key but it's null or undefined
-        else if (config.hasOwnProperty('extend') && false) {
-            throw new Error('"extend" parameter is null or undefined');
-          } // Process environment
+        }
+        // If config has a 'extend' key but it's null or undefined
+        else if (config.hasOwnProperty("extend") && false) {
+          throw new Error('"extend" parameter is null or undefined');
+        }
 
-
+        // Process environment
         if (config.environment) {
           for (var key in config.environment) {
             qx.core.Environment.add(key, config.environment[key]);
           }
-        } // Interface support for non-static classes
-
-
-        if (config.implement) {
-          for (var i = 0, l = config.implement.length; i < l; i++) {
-            this.__P_86_7(clazz, config.implement[i]);
-          }
         }
 
+        // Interface support for non-static classes
+        if (config.implement) {
+          for (var i = 0, l = config.implement.length; i < l; i++) {
+            this.__P_89_8(clazz, config.implement[i]);
+          }
+        }
         // Process defer
         if (config.defer) {
           config.defer.self = clazz;
@@ -294,17 +322,16 @@
               add: function add(name, config) {
                 // build pseudo properties map
                 var properties = {};
-                properties[name] = config; // execute generic property handler
+                properties[name] = config;
 
-                qx.Class.__P_86_3(clazz, properties, true);
+                // execute generic property handler
+                qx.Class.__P_89_4(clazz, properties, true);
               }
             });
           });
         }
-
         return clazz;
       },
-
       /**
        * Removes a class from qooxdoo defined by {@link #define}
        *
@@ -312,29 +339,28 @@
        */
       undefine: function undefine(name) {
         // first, delete the class from the registry
-        delete this.$$registry[name]; // delete the class reference from the namespaces and all empty namespaces
-
-        var ns = name.split("."); // build up an array containing all namespace objects including window
-
+        delete this.$$registry[name];
+        // delete the class reference from the namespaces and all empty namespaces
+        var ns = name.split(".");
+        // build up an array containing all namespace objects including window
         var objects = [window];
-
         for (var i = 0; i < ns.length; i++) {
           objects.push(objects[i][ns[i]]);
-        } // go through all objects and check for the constructor or empty namespaces
+        }
 
-
+        // go through all objects and check for the constructor or empty namespaces
         for (var i = objects.length - 1; i >= 1; i--) {
           var last = objects[i];
           var parent = objects[i - 1];
-
-          if (qx.Bootstrap.isFunction(last) || qx.Bootstrap.objectGetLength(last) === 0) {
+          if (
+          // The class being undefined, but parent classes in case it is a nested class that is being undefined
+          i == objects.length - 1 && qx.Bootstrap.isFunction(last) || qx.Bootstrap.objectGetLength(last) === 0) {
             delete parent[ns[i - 1]];
           } else {
             break;
           }
         }
       },
-
       /**
        * Whether the given class exists
        *
@@ -343,7 +369,6 @@
        * @return {Boolean} true if class exists
        */
       isDefined: qx.util.OOUtil.classIsDefined,
-
       /**
        * Determine the total number of classes
        *
@@ -352,7 +377,6 @@
       getTotalNumber: function getTotalNumber() {
         return qx.Bootstrap.objectGetLength(this.$$registry);
       },
-
       /**
        * Find a class by its name
        *
@@ -361,7 +385,6 @@
        * @return {Class} the class
        */
       getByName: qx.Bootstrap.getByName,
-
       /**
        * Include all features of the given mixin into the class. The mixin must
        * not include any methods or properties that are already available in the
@@ -371,9 +394,8 @@
        * @param mixin {Mixin} The mixin to be included.
        */
       include: function include(clazz, mixin) {
-        qx.Class.__P_86_6(clazz, mixin, false);
+        qx.Class.__P_89_7(clazz, mixin, false);
       },
-
       /**
        * Include all features of the given mixin into the class. The mixin may
        * include features, which are already defined in the target class. Existing
@@ -381,7 +403,7 @@
        * Please keep in mind that this functionality is not intended for regular
        * use, but as a formalized way (and a last resort) in order to patch
        * existing classes.
-       * 
+       *
        * <b>WARNING</b>: You may break working classes and features.
        *
        * @param clazz {Class} An existing class which should be modified by including a mixin.
@@ -389,21 +411,18 @@
        * @return {Class} the new class definition
        */
       patch: function patch(clazz, mixin) {
-        qx.Class.__P_86_6(clazz, mixin, true);
-
+        qx.Class.__P_89_7(clazz, mixin, true);
         return qx.Class.getByName(clazz.classname);
       },
-
       /**
        * Detects whether the object is a Class (and not an instance of a class)
-       * 
+       *
        *  @param obj {Object?} the object to inspect
        *  @return {Boolean} true if it is a class, false if it is anything else
        */
       isClass: function isClass(obj) {
         return obj && obj.$$type === "Class" && obj.constructor === obj;
       },
-
       /**
        * Whether a class is a direct or indirect sub class of another class,
        * or both classes coincide.
@@ -416,18 +435,14 @@
         if (!clazz) {
           return false;
         }
-
         if (clazz == superClass) {
           return true;
         }
-
         if (clazz.prototype instanceof superClass) {
           return true;
         }
-
         return false;
       },
-
       /**
        * Returns the definition of the given property. Returns null
        * if the property does not exist.
@@ -438,7 +453,6 @@
        * @return {Map|null} whether the object support the given event.
        */
       getPropertyDefinition: qx.util.OOUtil.getPropertyDefinition,
-
       /**
        * Returns a list of all properties supported by the given class
        *
@@ -447,18 +461,14 @@
        */
       getProperties: function getProperties(clazz) {
         var list = [];
-
         while (clazz) {
           if (clazz.$$properties) {
             list.push.apply(list, Object.keys(clazz.$$properties));
           }
-
           clazz = clazz.superclass;
         }
-
         return list;
       },
-
       /**
        * Returns the class or one of its superclasses which contains the
        * declaration for the given property in its class definition. Returns null
@@ -473,13 +483,10 @@
           if (clazz.$$properties && clazz.$$properties[name]) {
             return clazz;
           }
-
           clazz = clazz.superclass;
         }
-
         return null;
       },
-
       /**
        * Whether a class has the given property
        *
@@ -489,7 +496,6 @@
        * @return {Boolean} whether the class includes the given property.
        */
       hasProperty: qx.util.OOUtil.hasProperty,
-
       /**
        * Returns the event type of the given event. Returns null if
        * the event does not exist.
@@ -500,7 +506,6 @@
        * @return {String|null} Event type of the given event.
        */
       getEventType: qx.util.OOUtil.getEventType,
-
       /**
        * Whether a class supports the given event type
        *
@@ -510,7 +515,6 @@
        * @return {Boolean} whether the class supports the given event.
        */
       supportsEvent: qx.util.OOUtil.supportsEvent,
-
       /**
        * Whether a class directly includes a mixin.
        *
@@ -521,7 +525,6 @@
       hasOwnMixin: function hasOwnMixin(clazz, mixin) {
         return clazz.$$includes && clazz.$$includes.indexOf(mixin) !== -1;
       },
-
       /**
        * Returns the class or one of its superclasses which contains the
        * declaration for the given mixin. Returns null if the mixin is not
@@ -533,24 +536,19 @@
        */
       getByMixin: function getByMixin(clazz, mixin) {
         var list, i, l;
-
         while (clazz) {
           if (clazz.$$includes) {
             list = clazz.$$flatIncludes;
-
             for (i = 0, l = list.length; i < l; i++) {
               if (list[i] === mixin) {
                 return clazz;
               }
             }
           }
-
           clazz = clazz.superclass;
         }
-
         return null;
       },
-
       /**
        * Returns a list of all mixins available in a given class.
        *
@@ -559,7 +557,6 @@
        * @return {Mixin[]} array of mixins this class uses
        */
       getMixins: qx.util.OOUtil.getMixins,
-
       /**
        * Whether a given class or any of its superclasses includes a given mixin.
        *
@@ -570,7 +567,6 @@
       hasMixin: function hasMixin(clazz, mixin) {
         return !!this.getByMixin(clazz, mixin);
       },
-
       /**
        * Whether a given class directly includes an interface.
        *
@@ -585,7 +581,6 @@
       hasOwnInterface: function hasOwnInterface(clazz, iface) {
         return clazz.$$implements && clazz.$$implements.indexOf(iface) !== -1;
       },
-
       /**
        * Returns the class or one of its super classes which contains the
        * declaration of the given interface. Returns null if the interface is not
@@ -597,7 +592,6 @@
        * @return {Class | null} the class which directly implements the given interface
        */
       getByInterface: qx.util.OOUtil.getByInterface,
-
       /**
        * Returns a list of all interfaces a given class has to implement.
        *
@@ -606,18 +600,14 @@
        */
       getInterfaces: function getInterfaces(clazz) {
         var list = [];
-
         while (clazz) {
           if (clazz.$$implements) {
             list.push.apply(list, clazz.$$flatImplements);
           }
-
           clazz = clazz.superclass;
         }
-
         return list;
       },
-
       /**
        * Whether a given class or any of its super classes includes a given interface.
        *
@@ -632,7 +622,6 @@
        * @return {Boolean} whether the class includes the interface.
        */
       hasInterface: qx.util.OOUtil.hasInterface,
-
       /**
        * Whether a given class complies to an interface.
        *
@@ -646,22 +635,17 @@
        */
       implementsInterface: function implementsInterface(obj, iface) {
         var clazz = obj.constructor;
-
         if (this.hasInterface(clazz, iface)) {
           return true;
         }
-
         if (qx.Interface.objectImplements(obj, iface)) {
           return true;
         }
-
         if (qx.Interface.classImplements(clazz, iface)) {
           return true;
         }
-
         return false;
       },
-
       /**
        * Helper method to handle singletons
        *
@@ -672,48 +656,39 @@
         if (this.$$instance === null) {
           throw new Error("Singleton instance of " + this + " is requested, but not ready yet. This is most likely due to a recursive call in the constructor path.");
         }
-
         if (!this.$$instance) {
           this.$$allowconstruct = true;
           this.$$instance = null; // null means "object is being created"; needed for another call of getInstance() during instantiation
-
           this.$$instance = new this();
           delete this.$$allowconstruct;
         }
-
         return this.$$instance;
       },
-
       /**
        * Retreive all subclasses of a given class
        *
        * @param clazz {Class} the class which should be inspected
-       * 
+       *
        * @return {Object} class name hash holding the references to the subclasses or null if the class does not exist.
        */
       getSubclasses: function getSubclasses(clazz) {
         if (!clazz) {
           return null;
         }
-
         var subclasses = {};
         var registry = qx.Class.$$registry;
-
         for (var name in registry) {
           if (registry[name].superclass && registry[name].superclass == clazz) {
             subclasses[name] = registry[name];
           }
         }
-
         return subclasses;
       },
-
       /*
       ---------------------------------------------------------------------------
          PRIVATE/INTERNAL BASICS
       ---------------------------------------------------------------------------
       */
-
       /**
        * This method will be attached to all classes to return
        * a nice identifier for them.
@@ -724,16 +699,56 @@
       genericToString: function genericToString() {
         return "[Class " + this.classname + "]";
       },
-
       /** Stores all defined classes */
       $$registry: qx.Bootstrap.$$registry,
-
       /** @type {Map} allowed keys in non-static class definition */
-      __P_86_8: null,
+      __P_89_9: qx.core.Environment.select("qx.debug", {
+        "true": {
+          "@": "object",
+          "@construct": "object",
+          "@destruct": "object",
+          type: "string",
+          // String
+          extend: "function",
+          // Function
+          implement: "object",
+          // Interface[]
+          include: "object",
+          // Mixin[]
+          construct: "function",
+          // Function
+          statics: "object",
+          // Map
+          properties: "object",
+          // Map
+          members: "object",
+          // Map
+          environment: "object",
+          // Map
+          events: "object",
+          // Map
+          defer: "function",
+          // Function
+          destruct: "function" // Function
+        },
 
+        "default": null
+      }),
       /** @type {Map} allowed keys in static class definition */
-      __P_86_9: null,
+      __P_89_10: qx.core.Environment.select("qx.debug", {
+        "true": {
+          "@": "object",
+          type: "string",
+          // String
+          statics: "object",
+          // Map
+          environment: "object",
+          // Map
+          defer: "function" // Function
+        },
 
+        "default": null
+      }),
       /**
        * Validates an incoming configuration and checks for proper keys and values
        *
@@ -741,16 +756,129 @@
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __P_86_10: function __P_86_10(name, config) {},
+      __P_89_11: qx.core.Environment.select("qx.debug", {
+        "true": function _true(name, config) {
+          // Validate type
+          if (config.type && !(config.type === "static" || config.type === "abstract" || config.type === "singleton")) {
+            throw new Error('Invalid type "' + config.type + '" definition for class "' + name + '"!');
+          }
 
+          // Validate non-static class on the "extend" key
+          if (config.type && config.type !== "static" && !config.extend) {
+            throw new Error('Invalid config in class "' + name + '"! Every non-static class has to extend at least the "qx.core.Object" class.');
+          }
+
+          // Validate keys
+          var allowed = config.type === "static" ? this.__P_89_10 : this.__P_89_9;
+          for (var key in config) {
+            if (!allowed[key]) {
+              throw new Error('The configuration key "' + key + '" in class "' + name + '" is not allowed!');
+            }
+            if (config[key] == null) {
+              throw new Error('Invalid key "' + key + '" in class "' + name + '"! The value is undefined/null!');
+            }
+            if (_typeof(config[key]) !== allowed[key]) {
+              throw new Error('Invalid type of key "' + key + '" in class "' + name + '"! The type of the key must be "' + allowed[key] + '"!');
+            }
+          }
+
+          // Validate maps
+          var maps = ["statics", "properties", "members", "environment", "settings", "variants", "events"];
+          for (var i = 0, l = maps.length; i < l; i++) {
+            var key = maps[i];
+            if (config[key] !== undefined && (config[key].$$hash !== undefined || !qx.Bootstrap.isObject(config[key]))) {
+              throw new Error('Invalid key "' + key + '" in class "' + name + '"! The value needs to be a map!');
+            }
+          }
+
+          // Validate include definition
+          if (config.include) {
+            if (qx.Bootstrap.getClass(config.include) === "Array") {
+              for (var i = 0, a = config.include, l = a.length; i < l; i++) {
+                if (a[i] == null || a[i].$$type !== "Mixin") {
+                  throw new Error('The include definition in class "' + name + '" contains an invalid mixin at position ' + i + ": " + a[i]);
+                }
+              }
+            } else {
+              throw new Error('Invalid include definition in class "' + name + '"! Only mixins and arrays of mixins are allowed!');
+            }
+          }
+
+          // Validate implement definition
+          if (config.implement) {
+            if (qx.Bootstrap.getClass(config.implement) === "Array") {
+              for (var i = 0, a = config.implement, l = a.length; i < l; i++) {
+                if (a[i] == null || a[i].$$type !== "Interface") {
+                  throw new Error('The implement definition in class "' + name + '" contains an invalid interface at position ' + i + ": " + a[i]);
+                }
+              }
+            } else {
+              throw new Error('Invalid implement definition in class "' + name + '"! Only interfaces and arrays of interfaces are allowed!');
+            }
+          }
+
+          // Check mixin compatibility
+          if (config.include) {
+            try {
+              qx.Mixin.checkCompatibility(config.include);
+            } catch (ex) {
+              throw new Error('Error in include definition of class "' + name + '"! ' + ex.message);
+            }
+          }
+
+          // Validate environment
+          if (config.environment) {
+            for (var key in config.environment) {
+              if (key.substr(0, key.indexOf(".")) != name.substr(0, name.indexOf("."))) {
+                throw new Error('Forbidden environment setting "' + key + '" found in "' + name + '". It is forbidden to define a ' + "environment setting for an external namespace!");
+              }
+            }
+          }
+
+          // Validate settings
+          if (config.settings) {
+            for (var key in config.settings) {
+              if (key.substr(0, key.indexOf(".")) != name.substr(0, name.indexOf("."))) {
+                throw new Error('Forbidden setting "' + key + '" found in "' + name + '". It is forbidden to define a default setting for an external namespace!');
+              }
+            }
+          }
+
+          // Validate variants
+          if (config.variants) {
+            for (var key in config.variants) {
+              if (key.substr(0, key.indexOf(".")) != name.substr(0, name.indexOf("."))) {
+                throw new Error('Forbidden variant "' + key + '" found in "' + name + '". It is forbidden to define a variant for an external namespace!');
+              }
+            }
+          }
+        },
+        "default": function _default(name, config) {}
+      }),
       /**
        * Validates the interfaces required by abstract base classes
        *
        * @signature function(clazz)
        * @param clazz {Class} The configured class.
        */
-      __P_86_11: function __P_86_11(clazz) {},
-
+      __P_89_12: qx.core.Environment.select("qx.debug", {
+        "true": function _true(clazz) {
+          var superclass = clazz.superclass;
+          while (superclass) {
+            if (superclass.$$classtype !== "abstract") {
+              break;
+            }
+            var interfaces = superclass.$$implements;
+            if (interfaces) {
+              for (var i = 0; i < interfaces.length; i++) {
+                qx.Interface.assert(clazz, interfaces[i], true);
+              }
+            }
+            superclass = superclass.superclass;
+          }
+        },
+        "default": function _default(clazz) {}
+      }),
       /**
        * Attaches an annotation to a class
        *
@@ -759,7 +887,7 @@
        * @param key {String} Name of the annotated item
        * @param anno {Object} Annotation object
        */
-      __P_86_2: function __P_86_2(clazz, group, key, anno) {
+      __P_89_3: function __P_89_3(clazz, group, key, anno) {
         if (anno !== undefined) {
           if (clazz.$$annotations === undefined) {
             clazz.$$annotations = {};
@@ -767,11 +895,9 @@
           } else if (clazz.$$annotations[group] === undefined) {
             clazz.$$annotations[group] = {};
           }
-
           if (!qx.lang.Type.isArray(anno)) {
             anno = [anno];
           }
-
           if (key) {
             clazz.$$annotations[group][key] = anno;
           } else {
@@ -779,7 +905,6 @@
           }
         }
       },
-
       /**
        * Creates a class by type. Supports modern inheritance etc.
        *
@@ -792,103 +917,96 @@
        * @param mixins {Mixin[]} array of mixins of the class
        * @return {Class} The generated class
        */
-      __P_86_1: function __P_86_1(name, type, extend, statics, construct, destruct, mixins) {
+      __P_89_2: function __P_89_2(name, type, extend, statics, construct, destruct, mixins) {
         var isStrictMode = function isStrictMode() {
-          return typeof this == 'undefined';
+          return typeof this == "undefined";
         };
-
         var clazz;
-
         if (!extend && true) {
           // Create empty/non-empty class
           clazz = statics || {};
           qx.Bootstrap.setDisplayNames(clazz, name);
         } else {
           clazz = {};
-
           if (extend) {
             // Create default constructor
             if (!construct) {
-              construct = this.__P_86_12();
+              construct = this.__P_89_13();
             }
+            clazz = this.__P_89_14(construct, name, type);
 
-            clazz = this.__P_86_13(construct, name, type); // Add singleton getInstance()
-
+            // Add singleton getInstance()
             if (type === "singleton") {
               clazz.getInstance = this.getInstance;
             }
-
             qx.Bootstrap.setDisplayName(construct, name, "constructor");
-          } // Copy statics
+          }
 
-
+          // Copy statics
           if (statics) {
             qx.Bootstrap.setDisplayNames(statics, name);
             var key;
-
             for (var i = 0, a = Object.keys(statics), l = a.length; i < l; i++) {
               key = a[i];
               var staticValue = statics[key];
-
-              if (key.charAt(0) === '@') {
+              if (key.charAt(0) === "@") {
                 continue;
               }
-
               {
                 clazz[key] = staticValue;
-              } // Attach annotations
+              }
 
-              this.__P_86_2(clazz, "statics", key, statics["@" + key]);
+              // Attach annotations
+              this.__P_89_3(clazz, "statics", key, statics["@" + key]);
             }
           }
-        } // Create namespace
+        }
 
+        // Create namespace
+        var basename = name ? qx.Bootstrap.createNamespace(name, clazz) : "";
 
-        var basename = name ? qx.Bootstrap.createNamespace(name, clazz) : ""; // Store names in constructor/object
-
+        // Store names in constructor/object
         clazz.classname = name;
-
         if (!isStrictMode()) {
           try {
             clazz.name = name;
-          } catch (ex) {// Nothing
+          } catch (ex) {
+            // Nothing
           }
         }
+        clazz.basename = basename;
 
-        clazz.basename = basename; // Store type info
-
+        // Store type info
         clazz.$$type = "Class";
-
         if (type) {
           clazz.$$classtype = type;
-        } // Attach toString
+        }
 
-
+        // Attach toString
         if (!clazz.hasOwnProperty("toString")) {
           clazz.toString = this.genericToString;
         }
-
         if (extend) {
-          qx.Bootstrap.extendClass(clazz, construct, extend, name, basename); // Store destruct onto class
+          qx.Bootstrap.extendClass(clazz, construct, extend, name, basename);
 
+          // Store destruct onto class
           if (destruct) {
             clazz.$$destructor = destruct;
             qx.Bootstrap.setDisplayName(destruct, name, "destruct");
           }
-        } // Store class reference in global class registry
+        }
 
+        // Store class reference in global class registry
+        this.$$registry[name] = clazz;
 
-        this.$$registry[name] = clazz; // Return final class object
-
+        // Return final class object
         return clazz;
       },
-
       /*
       ---------------------------------------------------------------------------
          PRIVATE ADD HELPERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Attach events to the class
        *
@@ -896,7 +1014,7 @@
        * @param events {Map} map of event names the class fires.
        * @param patch {Boolean ? false} Enable redefinition of event type?
        */
-      __P_86_5: function __P_86_5(clazz, events, patch) {
+      __P_89_6: function __P_89_6(clazz, events, patch) {
         if (clazz.$$events) {
           for (var key in events) {
             clazz.$$events[key] = events[key];
@@ -905,7 +1023,6 @@
           clazz.$$events = events;
         }
       },
-
       /**
        * Attach properties to classes
        *
@@ -914,67 +1031,63 @@
        * @param patch {Boolean ? false} Overwrite property with the limitations of a property
                  which means you are able to refine but not to replace (esp. for new properties)
        */
-      __P_86_3: function __P_86_3(clazz, properties, patch) {
+      __P_89_4: function __P_89_4(clazz, properties, patch) {
         // check for the property module
-        var config;
 
+        var config;
         if (patch === undefined) {
           patch = false;
         }
-
         var proto = clazz.prototype;
-
         for (var name in properties) {
-          config = properties[name]; // Check incoming configuration
+          config = properties[name];
+
+          // Check incoming configuration
 
           // Store name into configuration
-          config.name = name; // Add config to local registry
+          config.name = name;
 
+          // Add config to local registry
           if (!config.refine) {
             if (clazz.$$properties === undefined) {
               clazz.$$properties = {};
             }
-
             clazz.$$properties[name] = config;
-          } // Store init value to prototype. This makes it possible to
+          }
+
+          // Store init value to prototype. This makes it possible to
           // overwrite this value in derived classes.
-
-
           if (config.init !== undefined) {
             clazz.prototype["$$init_" + name] = config.init;
-          } // register event name
+          }
 
-
+          // register event name
           if (config.event !== undefined) {
             // break if no events layer loaded
+
             var event = {};
             event[config.event] = "qx.event.type.Data";
-
             if (config.async) {
               event[config.event + "Async"] = "qx.event.type.Data";
             }
-
-            this.__P_86_5(clazz, event, patch);
-          } // Remember inheritable properties
-
-
-          if (config.inheritable) {
-            this.__P_86_0.$$inheritable[name] = true;
-
-            if (!proto.$$refreshInheritables) {
-              this.__P_86_0.attachRefreshInheritables(clazz);
-            }
+            this.__P_89_6(clazz, event, patch);
           }
 
+          // Remember inheritable properties
+          if (config.inheritable) {
+            this.__P_89_0.$$inheritable[name] = true;
+            if (!proto.$$refreshInheritables) {
+              this.__P_89_0.attachRefreshInheritables(clazz);
+            }
+          }
           if (!config.refine) {
-            this.__P_86_0.attachMethods(clazz, name, config);
-          } // Add annotations
+            this.__P_89_0.attachMethods(clazz, name, config);
+          }
 
-
-          this.__P_86_2(clazz, "properties", name, config["@"]);
+          // Add annotations
+          this.__P_89_3(clazz, "properties", name, config["@"]);
         }
       },
-
       /**
        * Validates the given property
        *
@@ -984,8 +1097,60 @@
        * @param config {Map} configuration map
        * @param patch {Boolean ? false} enable refine/patch?
        */
-      __P_86_14: null,
+      __P_89_15: qx.core.Environment.select("qx.debug", {
+        "true": function _true(clazz, name, config, patch) {
+          // check for properties
 
+          var has = this.hasProperty(clazz, name);
+          if (has) {
+            var existingProperty = this.getPropertyDefinition(clazz, name);
+            if (config.refine && existingProperty.init === undefined && existingProperty["@"] === undefined) {
+              this.warn("Refine a property when there is previously no init or annotations defined. Property '" + name + "' of class '" + clazz.classname + "'.");
+            }
+          }
+          if (!has && config.refine) {
+            throw new Error("Could not refine non-existent property: '" + name + "' of class: '" + clazz.classname + "'!");
+          }
+          if (has && !patch) {
+            throw new Error("Class " + clazz.classname + " already has a property: " + name + "!");
+          }
+          if (has && patch) {
+            if (!config.refine) {
+              throw new Error('Could not refine property "' + name + '" without a "refine" flag in the property definition! This class: ' + clazz.classname + ", original class: " + this.getByProperty(clazz, name).classname + ".");
+            }
+            for (var key in config) {
+              if (key !== "init" && key !== "refine" && key !== "@") {
+                throw new Error("Class " + clazz.classname + " could not refine property: " + name + "! Key: " + key + " could not be refined!");
+              }
+            }
+          }
+
+          // Check 0.7 keys
+          var allowed = config.group ? this.__P_89_0.$$allowedGroupKeys : this.__P_89_0.$$allowedKeys;
+          for (var key in config) {
+            if (allowed[key] === undefined) {
+              throw new Error('The configuration key "' + key + '" of property "' + name + '" in class "' + clazz.classname + '" is not allowed!');
+            }
+            if (config[key] === undefined) {
+              throw new Error('Invalid key "' + key + '" of property "' + name + '" in class "' + clazz.classname + '"! The value is undefined: ' + config[key]);
+            }
+            if (allowed[key] !== null && _typeof(config[key]) !== allowed[key]) {
+              throw new Error('Invalid type of key "' + key + '" of property "' + name + '" in class "' + clazz.classname + '"! The type of the key must be "' + allowed[key] + '"!');
+            }
+          }
+          if (config.transform != null) {
+            if (!(typeof config.transform === "string")) {
+              throw new Error('Invalid transform definition of property "' + name + '" in class "' + clazz.classname + '"! Needs to be a String.');
+            }
+          }
+          if (config.check != null) {
+            if (!qx.Bootstrap.isString(config.check) && !qx.Bootstrap.isArray(config.check) && !qx.Bootstrap.isFunction(config.check)) {
+              throw new Error('Invalid check definition of property "' + name + '" in class "' + clazz.classname + '"! Needs to be a String, Array or Function.');
+            }
+          }
+        },
+        "default": null
+      }),
       /**
        * Attach members to a class
        *
@@ -997,81 +1162,63 @@
        * @param wrap {Boolean ? false} Whether the member method should be wrapped.
        *     this is needed to allow base calls in patched mixin members.
        */
-      __P_86_4: function __P_86_4(clazz, members, patch, base, wrap) {
+      __P_89_5: function __P_89_5(clazz, members, patch, base, wrap) {
         var proto = clazz.prototype;
         var key, member;
         qx.Bootstrap.setDisplayNames(members, clazz.classname + ".prototype");
-
         for (var i = 0, a = Object.keys(members), l = a.length; i < l; i++) {
           key = a[i];
           member = members[key];
-
           // Annotations are not members
-          if (key.charAt(0) === '@') {
+          if (key.charAt(0) === "@") {
             var annoKey = key.substring(1);
-
             if (members[annoKey] === undefined) {
-              this.__P_86_2(clazz, "members", annoKey, members[key]);
+              this.__P_89_3(clazz, "members", annoKey, members[key]);
             }
-
             continue;
-          } // If it's a property accessor, we need to install it now so that this.base can refer to it
+          }
 
-
+          // If it's a property accessor, we need to install it now so that this.base can refer to it
           if (proto[key] != undefined && proto[key].$$install) {
             proto[key].$$install();
-          } // Added helper stuff to functions
+          }
+
+          // Added helper stuff to functions
           // Hint: Could not use typeof function because RegExp objects are functions, too
           // Protect to apply base property and aspect support on special attributes e.g.
           // classes which are function like as well.
-
-
           if (base !== false && member instanceof Function && member.$$type == null) {
-            if (false && wrap == true) {
-              // wrap "patched" mixin member
-              member = this.__P_86_15(member, proto[key]);
-            } else if (wrap != true) {
-              // Configure extend (named base here)
-              // Hint: proto[key] is not yet overwritten here
+            // If the class has it's own implementation, we need to remember that method in the
+            //  mixed-in method's `.base`; wrap the method with a closure so that it can have a
+            //  `.base` set, if we were to set `member.base` it would mean that the mixin can
+            //  only be added into one class
+            if (wrap) {
               if (proto[key]) {
-                member.base = proto[key];
+                member = qx.lang.Function.create(member, {
+                  always: true
+                });
               }
-
               member.self = clazz;
             }
-          } // Attach member
+            member.base = proto[key];
+          }
 
+          // Attach member
+          proto[key] = member;
 
-          proto[key] = member; // Attach annotations
-
-          this.__P_86_2(clazz, "members", key, members["@" + key]);
+          // Attach annotations
+          this.__P_89_3(clazz, "members", key, members["@" + key]);
         }
       },
-
-      /**
-       * Wraps a member function of a mixin, which is included using "patch". This
-       * allows "base" calls in the mixin member function.
-       *
-       * @param member {Function} The mixin method to wrap
-       * @param base {Function} The overwritten method
-       * @return {Function} the wrapped mixin member
-       */
-      __P_86_15: function __P_86_15(member, base) {
-        {
-          throw new Error("This function should not be used except with code compiled by the generator (ie python toolchain)");
-        }
-      },
-
       /**
        * Add a single interface to a class
        *
        * @param clazz {Class} class to add interface to
        * @param iface {Interface} the Interface to add
        */
-      __P_86_7: function __P_86_7(clazz, iface) {
+      __P_89_8: function __P_89_8(clazz, iface) {
         // Store interface reference
         var list = qx.Interface.flatten([iface]);
-
         if (clazz.$$implements) {
           clazz.$$implements.push(iface);
           clazz.$$flatImplements.push.apply(clazz.$$flatImplements, list);
@@ -1080,7 +1227,6 @@
           clazz.$$flatImplements = list;
         }
       },
-
       /**
        * Include all features of the mixin into the given class, recursively.
        *
@@ -1088,34 +1234,34 @@
        * @param mixin {Mixin} Include all features of this mixin
        * @param patch {Boolean} Overwrite existing fields, functions and properties
        */
-      __P_86_6: function __P_86_6(clazz, mixin, patch) {
+      __P_89_7: function __P_89_7(clazz, mixin, patch) {
         if (this.hasMixin(clazz, mixin)) {
           return;
-        } // Attach content
+        }
 
-
+        // Attach content
         var list = qx.Mixin.flatten([mixin]);
         var entry;
-
         for (var i = 0, l = list.length; i < l; i++) {
-          entry = list[i]; // Attach events
+          entry = list[i];
 
+          // Attach events
           if (entry.$$events) {
-            this.__P_86_5(clazz, entry.$$events, patch);
-          } // Attach properties (Properties are already readonly themselves, no patch handling needed)
-
-
-          if (entry.$$properties) {
-            this.__P_86_3(clazz, entry.$$properties, patch);
-          } // Attach members (Respect patch setting, but dont apply base variables)
-
-
-          if (entry.$$members) {
-            this.__P_86_4(clazz, entry.$$members, patch, patch, patch);
+            this.__P_89_6(clazz, entry.$$events, patch);
           }
-        } // Store mixin reference
 
+          // Attach properties (Properties are already readonly themselves, no patch handling needed)
+          if (entry.$$properties) {
+            this.__P_89_4(clazz, entry.$$properties, patch);
+          }
 
+          // Attach members (Respect patch setting, but dont apply base variables)
+          if (entry.$$members) {
+            this.__P_89_5(clazz, entry.$$members, patch, patch, patch);
+          }
+        }
+
+        // Store mixin reference
         if (clazz.$$includes) {
           clazz.$$includes.push(mixin);
           clazz.$$flatIncludes.push.apply(clazz.$$flatIncludes, list);
@@ -1124,27 +1270,23 @@
           clazz.$$flatIncludes = list;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
          PRIVATE FUNCTION HELPERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the default constructor.
        * This constructor just calls the constructor of the base class.
        *
        * @return {Function} The default constructor.
        */
-      __P_86_12: function __P_86_12() {
+      __P_89_13: function __P_89_13() {
         function defaultConstructor() {
           defaultConstructor.base.apply(this, arguments);
         }
-
         return defaultConstructor;
       },
-
       /**
        * Generate a wrapper of the original class constructor in order to enable
        * some of the advanced OO features (e.g. abstract class, singleton, mixins)
@@ -1154,32 +1296,32 @@
        * @param type {String} the user specified class type
        * @return {Function} The wrapped constructor
        */
-      __P_86_13: function __P_86_13(construct, name, type) {
-        var _wrapper = function wrapper() {
-          var clazz = _wrapper;
+      __P_89_14: function __P_89_14(construct, name, type) {
+        var wrapper = function wrapper() {
+          var clazz = wrapper;
           // Execute default constructor
-          var retval = clazz.$$original.apply(this, arguments); // Initialize local mixins
+          var retval = clazz.$$original.apply(this, arguments);
 
+          // Initialize local mixins
           if (clazz.$$includes) {
             var mixins = clazz.$$flatIncludes;
-
             for (var i = 0, l = mixins.length; i < l; i++) {
               if (mixins[i].$$constructor) {
                 mixins[i].$$constructor.apply(this, arguments);
               }
             }
           }
-
           // Return optional return value
           return retval;
         };
-
         // Store original constructor
-        _wrapper.$$original = construct; // Store wrapper into constructor (needed for base calls etc.)
+        wrapper.$$original = construct;
 
-        construct.wrapper = _wrapper; // Return generated wrapper
+        // Store wrapper into constructor (needed for base calls etc.)
+        construct.wrapper = wrapper;
 
-        return _wrapper;
+        // Return generated wrapper
+        return wrapper;
       }
     },
     defer: function defer() {}
@@ -1187,4 +1329,4 @@
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1664789573487
+//# sourceMappingURL=Class.js.map?dt=1672653482217

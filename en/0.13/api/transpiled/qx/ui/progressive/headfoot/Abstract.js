@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,8 +44,7 @@
       qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.HBox());
     },
     members: {
-      __P_401_0: null,
-
+      __P_418_0: null,
       /**
        * Join this header/footer to a Progressive.  This makes the Progressive
        * object available to the header/footer through the _progressive member.
@@ -56,14 +54,14 @@
        *
        */
       join: function join(progressive) {
-        this.__P_401_0 = progressive;
+        this.__P_418_0 = progressive;
       }
     },
     destruct: function destruct() {
-      this.__P_401_0 = null;
+      this.__P_418_0 = null;
     }
   });
   qx.ui.progressive.headfoot.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789602432
+//# sourceMappingURL=Abstract.js.map?dt=1672653512749

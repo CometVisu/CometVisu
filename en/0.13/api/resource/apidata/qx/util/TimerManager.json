@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 73,
-        "column": 0
+        "column": 0,
+        "index": 2153
       },
       "end": {
-        "line": 305,
-        "column": 3
+        "line": 296,
+        "column": 3,
+        "index": 9681
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "__timerQueue": {
       "location": {
         "start": {
-          "line": 81,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2300
         },
         "end": {
-          "line": 81,
-          "column": 21
+          "line": 79,
+          "column": 20,
+          "index": 2316
         }
       },
       "jsdoc": {
@@ -56,12 +60,14 @@
     "__timerData": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2360
         },
         "end": {
-          "line": 84,
-          "column": 21
+          "line": 82,
+          "column": 19,
+          "index": 2375
         }
       },
       "jsdoc": {
@@ -78,12 +84,14 @@
     "__timerId": {
       "location": {
         "start": {
-          "line": 87,
-          "column": 4
+          "line": 85,
+          "column": 4,
+          "index": 2448
         },
         "end": {
-          "line": 87,
-          "column": 20
+          "line": 85,
+          "column": 16,
+          "index": 2460
         }
       },
       "jsdoc": {
@@ -102,12 +110,14 @@
     "__timerListenerActive": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 2557
         },
         "end": {
-          "line": 93,
-          "column": 33
+          "line": 90,
+          "column": 32,
+          "index": 2585
         }
       },
       "jsdoc": {
@@ -124,12 +134,14 @@
     "start": {
       "location": {
         "start": {
-          "line": 131,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 4080
         },
         "end": {
-          "line": 157,
-          "column": 5
+          "line": 151,
+          "column": 5,
+          "index": 4909
         }
       },
       "jsdoc": {
@@ -200,12 +212,14 @@
     "stop": {
       "location": {
         "start": {
-          "line": 165,
-          "column": 4
+          "line": 159,
+          "column": 4,
+          "index": 5050
         },
         "end": {
-          "line": 195,
-          "column": 5
+          "line": 188,
+          "column": 5,
+          "index": 5994
         }
       },
       "jsdoc": {
@@ -231,12 +245,14 @@
     "__insertNewTimer": {
       "location": {
         "start": {
-          "line": 207,
-          "column": 4
+          "line": 200,
+          "column": 4,
+          "index": 6273
         },
         "end": {
-          "line": 246,
-          "column": 5
+          "line": 236,
+          "column": 5,
+          "index": 7609
         }
       },
       "jsdoc": {
@@ -269,12 +285,14 @@
     "__processQueue": {
       "location": {
         "start": {
-          "line": 255,
-          "column": 4
+          "line": 245,
+          "column": 4,
+          "index": 7903
         },
         "end": {
-          "line": 303,
-          "column": 5
+          "line": 294,
+          "column": 5,
+          "index": 9673
         }
       },
       "jsdoc": {
@@ -376,6 +394,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -400,6 +419,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

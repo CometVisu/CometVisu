@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -26,7 +25,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * Defines the methods needed by every marshaler which should work with the
    * qooxdoo data stores.
@@ -44,7 +42,6 @@
        *   the bubbling of change events or not.
        */
       toClass: function toClass(data, includeBubbleEvents) {},
-
       /**
        * Creates for the given data the needed models. Be sure to have the classes
        * created with {@link #toClass} before calling this method.
@@ -59,4 +56,4 @@
   qx.data.marshal.IMarshaler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IMarshaler.js.map?dt=1664789581494
+//# sourceMappingURL=IMarshaler.js.map?dt=1672653489751

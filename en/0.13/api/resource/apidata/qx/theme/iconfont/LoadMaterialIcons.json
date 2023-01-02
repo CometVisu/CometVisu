@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 783
       },
       "end": {
         "line": 28,
-        "column": 59
+        "column": 59,
+        "index": 842
       }
     },
     "jsdoc": {
@@ -31,19 +33,19 @@
       "@asset": [
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v70.ttf"
+          "body": "qx/iconfont/MaterialIcons/materialicons-v126.ttf"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v70.woff2"
+          "body": "qx/iconfont/MaterialIcons/materialicons-v126.woff2"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v70.woff"
+          "body": "qx/iconfont/MaterialIcons/materialicons-v126.woff"
         },
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v70.eot"
+          "body": "qx/iconfont/MaterialIcons/materialicons-v126.eot"
         }
       ]
     }

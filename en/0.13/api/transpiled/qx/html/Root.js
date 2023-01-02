@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,13 +42,11 @@
    */
   qx.Class.define("qx.html.Root", {
     extend: qx.html.Element,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Creates a root element
      *
@@ -57,17 +54,16 @@
      */
     construct: function construct(elem) {
       qx.html.Element.constructor.call(this);
-
       if (elem != null) {
-        this.useElement(elem);
+        this.useNode(elem);
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Sets the element to an already existing node. It will be
@@ -77,12 +73,14 @@
        * @param elem {Element} the dom element to set
        * @throws {Error} if the element is assigned again
        */
-      useElement: function useElement(elem) {
+      useNode: function useNode(elem) {
         // Base call
-        qx.html.Root.superclass.prototype.useElement.call(this, elem); // Mark as root
+        qx.html.Root.superclass.prototype.useNode.call(this, elem);
 
-        this.setRoot(true); // Register for synchronization
+        // Mark as root
+        this.setRoot(true);
 
+        // Register for synchronization
         qx.html.Element._modified[this.toHashCode()] = this;
       }
     }
@@ -90,4 +88,4 @@
   qx.html.Root.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Root.js.map?dt=1664789586680
+//# sourceMappingURL=Root.js.map?dt=1672653497342

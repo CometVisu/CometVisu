@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 938
       },
       "end": {
-        "line": 155,
-        "column": 3
+        "line": 157,
+        "column": 3,
+        "index": 4402
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 33,
-        "column": 15
+        "line": 31,
+        "column": 2,
+        "index": 1143
       },
       "end": {
-        "line": 41,
-        "column": 5
+        "line": 39,
+        "column": 3,
+        "index": 1299
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "file": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1446
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1615
         }
       },
       "name": "file",
@@ -63,12 +69,14 @@
     "handlerId": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1622
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 57,
+          "column": 5,
+          "index": 1735
         }
       },
       "name": "handlerId",
@@ -81,12 +89,14 @@
     "handlerOptions": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 1742
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 62,
+          "column": 5,
+          "index": 1806
         }
       },
       "name": "handlerOptions",
@@ -98,12 +108,14 @@
     "permanent": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 2082
         },
         "end": {
-          "line": 75,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2174
         }
       },
       "jsdoc": {
@@ -124,12 +136,14 @@
     "icon": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 2238
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 82,
+          "column": 5,
+          "index": 2316
         }
       },
       "jsdoc": {
@@ -150,12 +164,14 @@
     "closeable": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 2323
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 2414
         }
       },
       "name": "closeable",
@@ -202,12 +218,14 @@
     "__ibid": {
       "location": {
         "start": {
-          "line": 99,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2560
         },
         "end": {
-          "line": 99,
-          "column": 16
+          "line": 97,
+          "column": 16,
+          "index": 2572
         }
       },
       "type": "variable",
@@ -216,12 +234,14 @@
     "_applyFile": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 99,
+          "column": 4,
+          "index": 2579
         },
         "end": {
-          "line": 111,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2911
         }
       },
       "type": "function",
@@ -233,12 +253,14 @@
     "_maintainIcon": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 111,
+          "column": 4,
+          "index": 2918
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3508
         }
       },
       "type": "function",
@@ -250,12 +272,14 @@
     "_maintainPermanent": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 130,
+          "column": 4,
+          "index": 3515
         },
         "end": {
-          "line": 137,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 3707
         }
       },
       "type": "function",
@@ -264,12 +288,14 @@
     "save": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 3714
         },
         "end": {
-          "line": 153,
-          "column": 5
+          "line": 155,
+          "column": 5,
+          "index": 4394
         }
       },
       "type": "function",
@@ -307,9 +333,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -913,6 +941,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1257,11 +1336,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -1778,6 +1857,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1801,6 +1881,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 857
       },
       "end": {
-        "line": 153,
-        "column": 3
+        "line": 156,
+        "column": 3,
+        "index": 5716
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "animate": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 3325
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 3707
         }
       },
       "jsdoc": {
@@ -86,11 +90,13 @@
       "location": {
         "start": {
           "line": 107,
-          "column": 4
+          "column": 4,
+          "index": 4208
         },
         "end": {
-          "line": 114,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 4611
         }
       },
       "jsdoc": {
@@ -139,12 +145,14 @@
     "__hasOnlyCssKeys": {
       "location": {
         "start": {
-          "line": 124,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 4936
         },
         "end": {
-          "line": 151,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 5708
         }
       },
       "jsdoc": {

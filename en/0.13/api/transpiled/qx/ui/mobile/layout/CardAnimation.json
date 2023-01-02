@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 792
       },
       "end": {
-        "line": 151,
-        "column": 3
+        "line": 174,
+        "column": 3,
+        "index": 4980
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 34,
-        "column": 14
+        "line": 32,
+        "column": 2,
+        "index": 1063
       },
       "end": {
-        "line": 97,
-        "column": 3
+        "line": 100,
+        "column": 3,
+        "index": 2772
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "_cardAnimationsMap": {
       "location": {
         "start": {
-          "line": 102,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 2792
         },
         "end": {
-          "line": 102,
-          "column": 29
+          "line": 103,
+          "column": 28,
+          "index": 2816
         }
       },
       "type": "variable",
@@ -59,11 +65,13 @@
       "location": {
         "start": {
           "line": 112,
-          "column": 4
+          "column": 4,
+          "index": 3275
         },
         "end": {
-          "line": 135,
-          "column": 5
+          "line": 160,
+          "column": 5,
+          "index": 4753
         }
       },
       "jsdoc": {
@@ -111,12 +119,14 @@
     "getMap": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 166,
+          "column": 4,
+          "index": 4861
         },
         "end": {
-          "line": 144,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 4915
         }
       },
       "jsdoc": {
@@ -226,6 +236,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -250,6 +261,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -278,15 +290,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 148,
-        "column": 13
+        "line": 171,
+        "column": 2,
+        "index": 4924
       },
       "end": {
-        "line": 150,
-        "column": 3
+        "line": 173,
+        "column": 3,
+        "index": 4976
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

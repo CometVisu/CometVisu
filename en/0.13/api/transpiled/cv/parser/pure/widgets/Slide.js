@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Slide.js 
-   * 
+  /* Slide.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Slide', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -63,15 +61,11 @@
           return m.matches('address');
         }).forEach(function (elem) {
           var transform = elem.getAttribute('transform');
-
           if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
             if (!(datatype_min > cv.Transform.registry[transform].range.min)) {
-              // jshint ignore:line
               datatype_min = cv.Transform.registry[transform].range.min;
             }
-
             if (!(datatype_max < cv.Transform.registry[transform].range.max)) {
-              // jshint ignore:line
               datatype_max = cv.Transform.registry[transform].range.max;
             }
           }
@@ -84,13 +78,13 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'step': {
-            'default': 0.5,
+          step: {
+            "default": 0.5,
             transform: parseFloat
           },
-          'send_on_finish': {
+          send_on_finish: {
             target: 'sendOnFinish',
-            'default': false,
+            "default": false,
             transform: function transform(value) {
               return value === 'true';
             }
@@ -106,4 +100,4 @@
   cv.parser.pure.widgets.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1664789562504
+//# sourceMappingURL=Slide.js.map?dt=1672653471149

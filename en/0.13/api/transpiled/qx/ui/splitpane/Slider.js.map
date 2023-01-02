@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/splitpane/Slider.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -22,8 +19,11 @@
     "splitpane",
     "Slider"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,MADtB;;AAKE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,YAAY,EACZ;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAHF;AAQE;AACAC,MAAAA,YAAY,EACZ;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAVF;AAZF,GADA;AAxBAb,EAAAA,EAAE,CAACO,EAAH,CAAMQ,SAAN,CAAgBC,MAAhB,CAAuBb,aAAvB,GAAuCA,aAAvC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/splitpane/Slider.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * The slider of the SplitPane (used during drag sessions for fast feedback)\n *\n * @internal\n */\nqx.Class.define(\"qx.ui.splitpane.Slider\",\n{\n  extend : qx.ui.core.Widget,\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    allowShrinkX :\n    {\n      refine : true,\n      init : false\n    },\n\n    // overridden\n    allowShrinkY :\n    {\n      refine : true,\n      init : false\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * The slider of the SplitPane (used during drag sessions for fast feedback)\n *\n * @internal\n */\nqx.Class.define(\"qx.ui.splitpane.Slider\", {\n  extend: qx.ui.core.Widget,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties: {\n    // overridden\n    allowShrinkX: {\n      refine: true,\n      init: false\n    },\n\n    // overridden\n    allowShrinkY: {\n      refine: true,\n      init: false\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,IAAI,CAACC,MAAM;IAEzB;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACV;MACAC,YAAY,EAAE;QACZC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR,CAAC;MAED;MACAC,YAAY,EAAE;QACZF,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF;EACF,CAAC,CAAC;EA9CFb,EAAE,CAACO,EAAE,CAACQ,SAAS,CAACC,MAAM,CAACb,aAAa,GAAGA,aAAa;AAAC"
 }

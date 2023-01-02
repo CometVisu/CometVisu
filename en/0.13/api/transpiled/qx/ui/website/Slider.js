@@ -31,7 +31,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -135,7 +134,6 @@
         offset: 0,
         step: 1
       },
-
       /**
        * *knobContent*
        *
@@ -146,7 +144,6 @@
       _templates: {
         knobContent: "{{value}}"
       },
-
       /**
        * Factory method which converts the current collection into a collection of
        * slider widgets.
@@ -160,17 +157,14 @@
       slider: function slider(value, step) {
         var slider = new qx.ui.website.Slider(this);
         slider.init();
-
         if (typeof step !== "undefined") {
           slider.setConfig("step", step);
         }
-
         if (typeof value !== "undefined") {
           slider.setValue(value);
         } else {
           slider.setValue(slider.getConfig("minimum"));
         }
-
         return slider;
       }
     },
@@ -179,43 +173,36 @@
     },
     events: {
       /** Fired at each value change */
-      "changeValue": "Number",
-
+      changeValue: "Number",
       /** Fired with each pointer move event */
-      "changePosition": "Number"
+      changePosition: "Number"
     },
     members: {
-      __P_475_0: null,
+      __P_490_0: null,
       _value: 0,
       init: function init() {
         if (!qx.ui.website.Slider.superclass.prototype.init.call(this)) {
           return false;
         }
-
         var cssPrefix = this.getCssPrefix();
-
         if (!this.getValue()) {
           var step = this.getConfig("step");
           var defaultVal = qxWeb.type.get(step) == "Array" ? step[0] : this.getConfig("minimum");
           this._value = defaultVal;
         }
-
         this.on("pointerup", this._onSliderPointerUp, this).on("focus", this._onSliderFocus, this).setStyle("touch-action", "pan-y");
         qxWeb(document).on("pointerup", this._onDocPointerUp, this);
         qxWeb(window).on("resize", this._onWindowResize, this);
-
         if (this.getChildren("." + cssPrefix + "-knob").length === 0) {
           this.append(qx.ui.website.Widget.create("<button>").addClass(cssPrefix + "-knob"));
         }
-
         this.getChildren("." + cssPrefix + "-knob").setAttributes({
-          "draggable": "false",
-          "unselectable": "true"
+          draggable: "false",
+          unselectable: "true"
         }).setHtml(this._getKnobContent()).on("pointerdown", this._onPointerDown, this).on("dragstart", this._onDragStart, this).on("focus", this._onKnobFocus, this).on("blur", this._onKnobBlur, this);
         this.render();
         return true;
       },
-
       /**
        * Returns the current value of the slider
        *
@@ -224,7 +211,6 @@
       getValue: function getValue() {
         return this._value;
       },
-
       /**
        * Sets the current value of the slider.
        *
@@ -236,43 +222,32 @@
         if (qxWeb.type.get(value) != "Number") {
           throw Error("Please provide a Number value for 'value'!");
         }
-
         var step = this.getConfig("step");
-
         if (qxWeb.type.get(step) != "Array") {
           var min = this.getConfig("minimum");
           var max = this.getConfig("maximum");
-
           if (value < min) {
             value = min;
           }
-
           if (value > max) {
             value = max;
           }
-
           if (qxWeb.type.get(step) == "Number") {
             value = Math.round(value / step) * step;
           }
         }
-
         this._value = value;
-
         if (qxWeb.type.get(step) != "Array" || step.indexOf(value) != -1) {
-          this.__P_475_1(value);
-
+          this.__P_490_1(value);
           this.getChildren("." + this.getCssPrefix() + "-knob").setHtml(this._getKnobContent());
           this.emit("changeValue", value);
         }
-
         return this;
       },
       render: function render() {
         var step = this.getConfig("step");
-
         if (qxWeb.type.get(step) == "Array") {
           this._getPixels();
-
           if (step.indexOf(this.getValue()) == -1) {
             this.setValue(step[0]);
           } else {
@@ -283,11 +258,9 @@
         } else {
           this.setValue(this.getValue());
         }
-
         this.getChildren("." + this.getCssPrefix() + "-knob").setHtml(this._getKnobContent());
         return this;
       },
-
       /**
        * Returns the content that should be displayed in the knob
        * @return {String} knob content
@@ -297,7 +270,6 @@
           value: this.getValue()
         });
       },
-
       /**
        * Returns half of the slider knob's width, used for positioning
        * @return {Integer} half knob width
@@ -306,7 +278,6 @@
         var knobWidth = this.getChildren("." + this.getCssPrefix() + "-knob").getWidth();
         return Math.round(parseFloat(knobWidth / 2));
       },
-
       /**
        * Returns the boundaries (in pixels) of the slider's range of motion
        * @return {Map} a map with the keys <code>min</code> and <code>max</code>
@@ -320,7 +291,6 @@
           max: this.getOffset().left + this.getWidth() - offset - paddingRight
         };
       },
-
       /**
        * Creates a lookup table to get the pixel values for each slider step
        * and computes the "breakpoint" between two steps in pixel.
@@ -329,74 +299,63 @@
        */
       _getPixels: function _getPixels() {
         var step = this.getConfig("step");
-
         if (qxWeb.type.get(step) != "Array") {
           return [];
         }
-
         var dragBoundaries = this._getDragBoundaries();
+        var pixel = [];
 
-        var pixel = []; // First pixel value is fixed
-
+        // First pixel value is fixed
         pixel.push(dragBoundaries.min);
         var lastIndex = step.length - 1;
         var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
-        var paddingRight = Math.ceil(parseFloat(this.getStyle("paddingRight")) || 0); //The width really used by the slider (drag area)
+        var paddingRight = Math.ceil(parseFloat(this.getStyle("paddingRight")) || 0);
 
-        var usedWidth = this.getWidth() - this.getConfig("offset") * 2 - paddingLeft - paddingRight; //The width of a single slider step
+        //The width really used by the slider (drag area)
+        var usedWidth = this.getWidth() - this.getConfig("offset") * 2 - paddingLeft - paddingRight;
 
+        //The width of a single slider step
         var stepWidth = usedWidth / (step[lastIndex] - step[0]);
         var stepCount = 0;
-
         for (var i = 1, j = step.length - 1; i < j; i++) {
           stepCount = step[i] - step[0];
           pixel.push(Math.round(stepCount * stepWidth) + dragBoundaries.min);
-        } // Last pixel value is fixed
+        }
 
-
+        // Last pixel value is fixed
         pixel.push(dragBoundaries.max);
         return pixel;
       },
-
       /**
-      * Returns the nearest existing slider value according to he position of the knob element.
-      * @param position {Integer} The current knob position in pixels
-      * @return {Integer} The next position to snap to
-      */
+       * Returns the nearest existing slider value according to he position of the knob element.
+       * @param position {Integer} The current knob position in pixels
+       * @return {Integer} The next position to snap to
+       */
       _getNearestValue: function _getNearestValue(position) {
         var pixels = this._getPixels();
-
         if (pixels.length === 0) {
           var dragBoundaries = this._getDragBoundaries();
-
           var availableWidth = dragBoundaries.max - dragBoundaries.min;
           var relativePosition = position - dragBoundaries.min;
           var fraction = relativePosition / availableWidth;
           var min = this.getConfig("minimum");
           var max = this.getConfig("maximum");
           var result = (max - min) * fraction + min;
-
           if (result < min) {
             result = min;
           }
-
           if (result > max) {
             result = max;
           }
-
           var step = this.getConfig("step");
-
           if (qxWeb.type.get(step) == "Number") {
             result = Math.round(result / step) * step;
           }
-
           return result;
         }
-
         var currentIndex = 0,
-            before = 0,
-            after = 0;
-
+          before = 0,
+          after = 0;
         for (var i = 0, j = pixels.length; i < j; i++) {
           if (position >= pixels[i]) {
             currentIndex = i;
@@ -406,11 +365,9 @@
             break;
           }
         }
-
         currentIndex = Math.abs(position - before) <= Math.abs(position - after) ? currentIndex : currentIndex + 1;
         return this.getConfig("step")[currentIndex];
       },
-
       /**
        * Reads the pointer's position and sets slider value to the nearest step.
        *
@@ -420,10 +377,8 @@
         if (e.getDocumentLeft() === 0 && e.getDocumentTop() === 0 || !this.getEnabled()) {
           return;
         }
-
         this.setValue(this._getNearestValue(e.getDocumentLeft()));
       },
-
       /**
        * Listener for the pointerdown event. Initializes drag or tracking mode.
        *
@@ -432,15 +387,13 @@
       _onPointerDown: function _onPointerDown(e) {
         // this can happen if the user releases the button while dragging outside
         // of the browser viewport
-        if (this.__P_475_0) {
+        if (this.__P_490_0) {
           return;
         }
-
-        this.__P_475_0 = true;
+        this.__P_490_0 = true;
         qxWeb(document.documentElement).on("pointermove", this._onPointerMove, this).setStyle("cursor", "pointer");
         e.stopPropagation();
       },
-
       /**
        * Listener for the pointerup event. Used for cleanup of previously
        * initialized modes.
@@ -448,17 +401,14 @@
        * @param e {qx.event.Emitter} Incoming event object
        */
       _onDocPointerUp: function _onDocPointerUp(e) {
-        if (this.__P_475_0 === true) {
+        if (this.__P_490_0 === true) {
           // Cleanup status flags
-          delete this.__P_475_0;
-
-          this.__P_475_1(this.getValue());
-
+          delete this.__P_490_0;
+          this.__P_490_1(this.getValue());
           qxWeb(document.documentElement).off("pointermove", this._onPointerMove, this).setStyle("cursor", "auto");
           e.stopPropagation();
         }
       },
-
       /**
        * Listener for the pointermove event for the knob. Only used in drag mode.
        *
@@ -466,29 +416,21 @@
        */
       _onPointerMove: function _onPointerMove(e) {
         e.preventDefault();
-
-        if (this.__P_475_0) {
+        if (this.__P_490_0) {
           var dragPosition = e.getDocumentLeft();
-
           var dragBoundaries = this._getDragBoundaries();
-
           var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
           var positionKnob = dragPosition - this.getOffset().left - this._getHalfKnobWidth() - paddingLeft;
-
           if (dragPosition >= dragBoundaries.min && dragPosition <= dragBoundaries.max) {
             this.setValue(this._getNearestValue(dragPosition));
-
             if (positionKnob > 0) {
               this._setKnobPosition(positionKnob);
-
               this.emit("changePosition", positionKnob);
             }
           }
-
           e.stopPropagation();
         }
       },
-
       /**
        * Prevents drag event propagation
        * @param e {Event} e drag start event
@@ -497,7 +439,6 @@
         e.stopPropagation();
         e.preventDefault();
       },
-
       /**
        * Delegates the Slider's focus to the knob
        * @param e {Event} focus event
@@ -505,7 +446,6 @@
       _onSliderFocus: function _onSliderFocus(e) {
         this.getChildren("." + this.getCssPrefix() + "-knob").focus();
       },
-
       /**
        * Attaches the event listener for keyboard support to the knob on focus
        * @param e {Event} focus event
@@ -513,7 +453,6 @@
       _onKnobFocus: function _onKnobFocus(e) {
         this.getChildren("." + this.getCssPrefix() + "-knob").on("keydown", this._onKeyDown, this);
       },
-
       /**
        * Removes the event listener for keyboard support from the knob on blur
        * @param e {Event} blur event
@@ -521,7 +460,6 @@
       _onKnobBlur: function _onKnobBlur(e) {
         this.getChildren("." + this.getCssPrefix() + "-knob").off("keydown", this._onKeyDown, this);
       },
-
       /**
        * Moves the knob if the left or right arrow key is pressed
        * @param e {Event} keydown event
@@ -533,11 +471,9 @@
         var stepType = qxWeb.type.get(step);
         var key = e.getKeyIdentifier();
         var idx;
-
         if (key == "Right") {
           if (stepType === "Array") {
             idx = step.indexOf(currentValue);
-
             if (idx !== undefined) {
               newValue = step[idx + 1] || currentValue;
             }
@@ -549,7 +485,6 @@
         } else if (key == "Left") {
           if (stepType === "Array") {
             idx = step.indexOf(currentValue);
-
             if (idx !== undefined) {
               newValue = step[idx - 1] || currentValue;
             }
@@ -561,24 +496,20 @@
         } else {
           return;
         }
-
         this.setValue(newValue);
       },
-
       /**
-      * Applies the horizontal position
-      * @param x {Integer} the position to move to
-      */
+       * Applies the horizontal position
+       * @param x {Integer} the position to move to
+       */
       _setKnobPosition: function _setKnobPosition(x) {
         var knob = this.getChildren("." + this.getCssPrefix() + "-knob");
-
         if (qxWeb.env.get("css.transform")) {
           knob.translate([x + "px", 0, 0]);
         } else {
           knob.setStyle("left", x + "px");
         }
       },
-
       /**
        * Listener for window resize events. This listener method resets the
        * calculated values which are used to position the slider knob.
@@ -587,39 +518,32 @@
         if (qxWeb.type.get(this.getConfig("step")) == "Array") {
           this._getPixels();
         }
-
-        this.__P_475_1(this._value);
+        this.__P_490_1(this._value);
       },
-
       /**
        * Positions the slider knob to the given value and fires the "changePosition"
        * event with the current position as integer.
        *
        * @param value {Integer} slider step value
        */
-      __P_475_1: function __P_475_1(value) {
+      __P_490_1: function __P_490_1(value) {
         var pixels = this._getPixels();
-
         var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
         var valueToPixel;
-
         if (pixels.length > 0) {
           // Get the pixel value of the current step value
           valueToPixel = pixels[this.getConfig("step").indexOf(value)] - paddingLeft;
         } else {
           var dragBoundaries = this._getDragBoundaries();
-
           var availableWidth = dragBoundaries.max - dragBoundaries.min;
           var range = this.getConfig("maximum") - this.getConfig("minimum");
           var fraction = (value - this.getConfig("minimum")) / range;
           valueToPixel = availableWidth * fraction + dragBoundaries.min - paddingLeft;
-        } // relative position is necessary here
+        }
 
-
+        // relative position is necessary here
         var position = valueToPixel - this.getOffset().left - this._getHalfKnobWidth();
-
         this._setKnobPosition(position);
-
         this.emit("changePosition", position);
       },
       dispose: function dispose() {
@@ -641,4 +565,4 @@
   qx.ui.website.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1664789608580
+//# sourceMappingURL=Slider.js.map?dt=1672653519089

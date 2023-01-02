@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 24,
-        "column": 0
+        "line": 23,
+        "column": 0,
+        "index": 822
       },
       "end": {
-        "line": 55,
-        "column": 3
+        "line": 54,
+        "column": 3,
+        "index": 1690
       }
     },
     "jsdoc": {
@@ -34,12 +36,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1384
         },
         "end": {
-          "line": 44,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1518
         }
       },
       "jsdoc": {
@@ -86,12 +90,14 @@
     "getDefaultClasses": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1525
         },
         "end": {
-          "line": 48,
-          "column": 5
+          "line": 47,
+          "column": 5,
+          "index": 1569
         }
       },
       "type": "function",
@@ -101,15 +107,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 51,
-        "column": 9
+        "line": 50,
+        "column": 2,
+        "index": 1578
       },
       "end": {
-        "line": 54,
-        "column": 3
+        "line": 53,
+        "column": 3,
+        "index": 1686
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

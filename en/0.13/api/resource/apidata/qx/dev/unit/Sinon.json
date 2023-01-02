@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 56,
-        "column": 0
+        "line": 52,
+        "column": 0,
+        "index": 1266
       },
       "end": {
-        "line": 69,
-        "column": 3
+        "line": 65,
+        "column": 5,
+        "index": 1511
       }
     },
     "jsdoc": {
@@ -29,26 +31,6 @@
           "name": "@internal",
           "body": ""
         }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "module, require, global, ProgressEvent, CustomEvent, clearImmediate"
-        },
-        {
-          "name": "@ignore",
-          "body": "process.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "module.exports.*"
-        }
-      ],
-      "@lint": [
-        {
-          "name": "@lint",
-          "body": "ignoreDeprecated(eval)"
-        }
       ]
     }
   },
@@ -57,12 +39,14 @@
     "getSinon": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 63,
+          "column": 6,
+          "index": 1485
         },
         "end": {
-          "line": 67,
-          "column": 18
+          "line": 63,
+          "column": 20,
+          "index": 1499
         }
       },
       "jsdoc": {

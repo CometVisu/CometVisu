@@ -21,11 +21,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Refresh.js 
-   * 
+  /* Refresh.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -50,7 +49,6 @@
   qx.Class.define('cv.ui.structure.pure.Refresh', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
-
     /*
     ******************************************************
       PROPERTIES
@@ -62,7 +60,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -72,7 +69,6 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Refresh.superclass.prototype._onDomReady.call(this);
-
         this.defaultUpdate(undefined, this.getSendValue());
       },
       // overridden
@@ -87,4 +83,4 @@
   cv.ui.structure.pure.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1664789570415
+//# sourceMappingURL=Refresh.js.map?dt=1672653478822

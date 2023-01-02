@@ -33,7 +33,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,7 +60,6 @@
    */
   qx.Class.define("qx.ui.virtual.core.Scroller", {
     extend: qx.ui.core.scroll.AbstractScrollArea,
-
     /**
      * @param rowCount {Integer?0} The number of rows of the virtual grid.
      * @param columnCount {Integer?0} The number of columns of the virtual grid.
@@ -70,20 +68,16 @@
      */
     construct: function construct(rowCount, columnCount, cellHeight, cellWidth) {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
-      this.__P_462_0 = new qx.ui.virtual.core.Pane(rowCount, columnCount, cellHeight, cellWidth);
-
-      this.__P_462_0.addListener("update", this._computeScrollbars, this);
-
-      this.__P_462_0.addListener("scrollX", this._onScrollPaneX, this);
-
-      this.__P_462_0.addListener("scrollY", this._onScrollPaneY, this);
-
+      this.__P_477_0 = new qx.ui.virtual.core.Pane(rowCount, columnCount, cellHeight, cellWidth);
+      this.__P_477_0.addListener("update", this._computeScrollbars, this);
+      this.__P_477_0.addListener("scrollX", this._onScrollPaneX, this);
+      this.__P_477_0.addListener("scrollY", this._onScrollPaneY, this);
       if (qx.core.Environment.get("os.scrollBarOverlayed")) {
-        this._add(this.__P_462_0, {
+        this._add(this.__P_477_0, {
           edge: 0
         });
       } else {
-        this._add(this.__P_462_0, {
+        this._add(this.__P_477_0, {
           row: 0,
           column: 0
         });
@@ -91,23 +85,20 @@
     },
     members: {
       /** @type {qx.ui.virtual.core.Pane} Virtual pane. */
-      __P_462_0: null,
-
+      __P_477_0: null,
       /*
       ---------------------------------------------------------------------------
         ACCESSOR METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the scroller's virtual pane.
        *
        * @return {qx.ui.virtual.core.Pane} The scroller's pane.
        */
       getPane: function getPane() {
-        return this.__P_462_0;
+        return this.__P_477_0;
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILD CONTROL SUPPORT
@@ -116,18 +107,16 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         if (id === "pane") {
-          return this.__P_462_0;
+          return this.__P_477_0;
         } else {
           return qx.ui.virtual.core.Scroller.superclass.prototype._createChildControlImpl.call(this, id);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         ITEM LOCATION SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * NOT IMPLEMENTED
        *
@@ -138,7 +127,6 @@
       getItemTop: function getItemTop(item) {
         throw new Error("The method 'getItemTop' is not implemented!");
       },
-
       /**
        * NOT IMPLEMENTED
        *
@@ -149,7 +137,6 @@
       getItemBottom: function getItemBottom(item) {
         throw new Error("The method 'getItemBottom' is not implemented!");
       },
-
       /**
        * NOT IMPLEMENTED
        *
@@ -160,7 +147,6 @@
       getItemLeft: function getItemLeft(item) {
         throw new Error("The method 'getItemLeft' is not implemented!");
       },
-
       /**
        * NOT IMPLEMENTED
        *
@@ -171,7 +157,6 @@
       getItemRight: function getItemRight(item) {
         throw new Error("The method 'getItemRight' is not implemented!");
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
@@ -179,20 +164,19 @@
       */
       // overridden
       _onScrollBarX: function _onScrollBarX(e) {
-        this.__P_462_0.setScrollX(e.getData());
+        this.__P_477_0.setScrollX(e.getData());
       },
       // overridden
       _onScrollBarY: function _onScrollBarY(e) {
-        this.__P_462_0.setScrollY(e.getData());
+        this.__P_477_0.setScrollY(e.getData());
       }
     },
     destruct: function destruct() {
-      this.__P_462_0.dispose();
-
-      this.__P_462_0 = null;
+      this.__P_477_0.dispose();
+      this.__P_477_0 = null;
     }
   });
   qx.ui.virtual.core.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1664789607565
+//# sourceMappingURL=Scroller.js.map?dt=1672653517658

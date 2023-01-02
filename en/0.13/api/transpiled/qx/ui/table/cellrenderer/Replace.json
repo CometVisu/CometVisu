@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 61,
-        "column": 0
+        "line": 60,
+        "column": 0,
+        "index": 2023
       },
       "end": {
-        "line": 145,
-        "column": 3
+        "line": 130,
+        "column": 3,
+        "index": 3804
       }
     },
     "jsdoc": {
@@ -48,12 +50,14 @@
     "replaceMap": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 2392
         },
         "end": {
-          "line": 80,
-          "column": 5
+          "line": 75,
+          "column": 5,
+          "index": 2473
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "replaceFunction": {
       "location": {
         "start": {
-          "line": 85,
-          "column": 4
+          "line": 80,
+          "column": 4,
+          "index": 2558
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2646
         }
       },
       "jsdoc": {
@@ -100,12 +106,14 @@
     "_getContentHtml": {
       "location": {
         "start": {
-          "line": 104,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2872
         },
         "end": {
-          "line": 128,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 3457
         }
       },
       "jsdoc": {},
@@ -120,12 +128,14 @@
     "addReversedReplaceMap": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3615
         },
         "end": {
-          "line": 143,
-          "column": 5
+          "line": 128,
+          "column": 5,
+          "index": 3796
         }
       },
       "jsdoc": {
@@ -235,6 +245,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -259,6 +270,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

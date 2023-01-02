@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,7 +38,7 @@
       decoration: "qx/decoration/Simple"
     },
     decorations: {
-      "window": {
+      window: {
         style: {
           width: 1,
           color: "window-border",
@@ -71,7 +70,7 @@
           backgroundColor: "white"
         }
       },
-      "statusbar": {
+      statusbar: {
         style: {
           widthTop: 1,
           colorTop: "border-main",
@@ -94,4 +93,4 @@
   qx.theme.indigo.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1664789591014
+//# sourceMappingURL=Decoration.js.map?dt=1672653502509

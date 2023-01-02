@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 793
       },
       "end": {
-        "line": 134,
-        "column": 3
+        "line": 129,
+        "column": 3,
+        "index": 3651
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_cancelRoll": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 855
         },
         "end": {
-          "line": 30,
-          "column": 22
+          "line": 28,
+          "column": 21,
+          "index": 872
         }
       },
       "type": "variable",
@@ -45,12 +49,14 @@
     "_addRollHandling": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 972
         },
         "end": {
-          "line": 39,
-          "column": 5
+          "line": 36,
+          "column": 5,
+          "index": 1123
         }
       },
       "jsdoc": {
@@ -67,12 +73,14 @@
     "_removeRollHandling": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1225
         },
         "end": {
-          "line": 48,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1385
         }
       },
       "jsdoc": {
@@ -89,12 +97,14 @@
     "_onPointerDownForRoll": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1557
         },
         "end": {
-          "line": 58,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1632
         }
       },
       "jsdoc": {
@@ -120,12 +130,14 @@
     "_onRoll": {
       "location": {
         "start": {
-          "line": 66,
-          "column": 4
+          "line": 60,
+          "column": 4,
+          "index": 1736
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 127,
+          "column": 5,
+          "index": 3643
         }
       },
       "jsdoc": {

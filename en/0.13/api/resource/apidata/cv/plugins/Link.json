@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 927
       },
       "end": {
-        "line": 110,
-        "column": 3
+        "line": 122,
+        "column": 3,
+        "index": 3280
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "cssClass": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1171
         },
         "end": {
-          "line": 39,
-          "column": 5
+          "line": 38,
+          "column": 5,
+          "index": 1226
         }
       },
       "name": "cssClass",
@@ -61,11 +65,13 @@
       "location": {
         "start": {
           "line": 40,
-          "column": 4
+          "column": 4,
+          "index": 1233
         },
         "end": {
           "line": 43,
-          "column": 5
+          "column": 5,
+          "index": 1284
         }
       },
       "name": "text",
@@ -77,12 +83,14 @@
     "href": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1291
         },
         "end": {
-          "line": 47,
-          "column": 5
+          "line": 48,
+          "column": 5,
+          "index": 1342
         }
       },
       "name": "href",
@@ -94,12 +102,14 @@
     "newWindow": {
       "location": {
         "start": {
-          "line": 48,
-          "column": 4
+          "line": 50,
+          "column": 4,
+          "index": 1349
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1409
         }
       },
       "name": "newWindow",
@@ -153,12 +163,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 70,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 1983
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 81,
+          "column": 5,
+          "index": 2212
         }
       },
       "jsdoc": {
@@ -213,12 +225,14 @@
     "getAttributeToPropertyMappings": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2219
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2532
         }
       },
       "type": "function",
@@ -229,12 +243,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 92,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 2692
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 115,
+          "column": 5,
+          "index": 3112
         }
       },
       "type": "function",
@@ -370,9 +386,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -976,6 +994,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1320,11 +1389,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -1841,6 +1910,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1864,6 +1934,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -5189,15 +5260,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 106,
-        "column": 9
+        "line": 118,
+        "column": 2,
+        "index": 3121
       },
       "end": {
-        "line": 109,
-        "column": 3
+        "line": 121,
+        "column": 3,
+        "index": 3276
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

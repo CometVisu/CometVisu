@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 614
       },
       "end": {
-        "line": 290,
-        "column": 3
+        "line": 278,
+        "column": 3,
+        "index": 7950
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "specialCharCodeMap": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1029
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 46,
+          "column": 5,
+          "index": 1393
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "numpadToCharCode": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1554
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 2024
         }
       },
       "jsdoc": {
@@ -99,12 +105,14 @@
     "keyCodeToIdentifierMap": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2190
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 3815
         }
       },
       "jsdoc": {
@@ -133,12 +141,14 @@
     "charCodeA": {
       "location": {
         "start": {
-          "line": 128,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 3857
         },
         "end": {
-          "line": 128,
-          "column": 33
+          "line": 122,
+          "column": 32,
+          "index": 3885
         }
       },
       "jsdoc": {
@@ -155,12 +165,14 @@
     "charCodeZ": {
       "location": {
         "start": {
-          "line": 130,
-          "column": 4
+          "line": 124,
+          "column": 4,
+          "index": 3926
         },
         "end": {
-          "line": 130,
-          "column": 33
+          "line": 124,
+          "column": 32,
+          "index": 3954
         }
       },
       "jsdoc": {
@@ -177,12 +189,14 @@
     "charCode0": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3987
         },
         "end": {
-          "line": 132,
-          "column": 33
+          "line": 126,
+          "column": 32,
+          "index": 4015
         }
       },
       "jsdoc": {
@@ -199,12 +213,14 @@
     "charCode9": {
       "location": {
         "start": {
-          "line": 134,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 4048
         },
         "end": {
-          "line": 134,
-          "column": 33
+          "line": 128,
+          "column": 32,
+          "index": 4076
         }
       },
       "jsdoc": {
@@ -221,12 +237,14 @@
     "keyCodeToIdentifier": {
       "location": {
         "start": {
-          "line": 142,
-          "column": 4
+          "line": 136,
+          "column": 4,
+          "index": 4250
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 152,
+          "column": 5,
+          "index": 4706
         }
       },
       "jsdoc": {
@@ -260,12 +278,14 @@
     "charCodeToIdentifier": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 160,
+          "column": 4,
+          "index": 4887
         },
         "end": {
-          "line": 169,
-          "column": 5
+          "line": 165,
+          "column": 5,
+          "index": 5046
         }
       },
       "jsdoc": {
@@ -299,12 +319,14 @@
     "isIdentifiableKeyCode": {
       "location": {
         "start": {
-          "line": 178,
-          "column": 4
+          "line": 173,
+          "column": 4,
+          "index": 5303
         },
         "end": {
-          "line": 205,
-          "column": 5
+          "line": 199,
+          "column": 5,
+          "index": 5881
         }
       },
       "jsdoc": {
@@ -338,12 +360,14 @@
     "isNonPrintableKeyCode": {
       "location": {
         "start": {
-          "line": 214,
-          "column": 4
+          "line": 207,
+          "column": 4,
+          "index": 6103
         },
         "end": {
-          "line": 216,
-          "column": 5
+          "line": 209,
+          "column": 5,
+          "index": 6207
         }
       },
       "jsdoc": {
@@ -377,12 +401,14 @@
     "isValidKeyIdentifier": {
       "location": {
         "start": {
-          "line": 225,
-          "column": 4
+          "line": 217,
+          "column": 4,
+          "index": 6431
         },
         "end": {
-          "line": 255,
-          "column": 5
+          "line": 245,
+          "column": 5,
+          "index": 7000
         }
       },
       "jsdoc": {
@@ -416,12 +442,14 @@
     "isPrintableKeyIdentifier": {
       "location": {
         "start": {
-          "line": 264,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 7234
         },
         "end": {
-          "line": 271,
-          "column": 5
+          "line": 259,
+          "column": 5,
+          "index": 7438
         }
       },
       "jsdoc": {
@@ -456,15 +484,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 274,
-        "column": 10
+        "line": 262,
+        "column": 2,
+        "index": 7447
       },
       "end": {
-        "line": 289,
-        "column": 3
+        "line": 277,
+        "column": 3,
+        "index": 7946
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

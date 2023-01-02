@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
    */
   qx.Class.define("qxl.apiviewer.ui.LegendView", {
     extend: qx.ui.container.Scroll,
-
     /*
     *****************************************************************************
      CONSTRUCTOR
@@ -70,7 +68,7 @@
       layout.setColumnWidth(1, 150);
       layout.setColumnFlex(1, 1);
       var content = new qx.ui.container.Composite(layout);
-      this.__P_548_0 = [{
+      this.__P_564_0 = [{
         icon: "ICON_PACKAGE",
         desc: "Package"
       }, {
@@ -123,7 +121,7 @@
         desc: "Constant"
       }, {
         icon: "ICON_BLANK",
-        desc: "<span style=\"text-decoration: line-through;color: #7193b9;\">deprecated</span>"
+        desc: '<span style="text-decoration: line-through;color: #7193b9;">deprecated</span>'
       }, {
         icon: "OVERLAY_WARN",
         desc: "Package/Class/Mixin/Interface is not fully documented"
@@ -140,18 +138,15 @@
         icon: "OVERLAY_OVERRIDDEN",
         desc: "Method/Property overrides the Method/Property of the super class"
       }];
-      var length = this.__P_548_0.length;
+      var length = this.__P_564_0.length;
       var entry;
       var imageUrl;
-
       for (var i = 0; i < length; i++) {
-        entry = this.__P_548_0[i];
+        entry = this.__P_564_0[i];
         imageUrl = qxl.apiviewer.TreeUtil.iconNameToIconPath(entry.icon);
-
         if (typeof imageUrl != "string") {
           imageUrl = imageUrl[0];
         }
-
         content.add(new qx.ui.basic.Image(imageUrl).set({
           alignX: "center",
           alignY: "middle"
@@ -167,29 +162,27 @@
           column: 1
         });
       }
-
       this.add(content);
     },
-
     /*
     *****************************************************************************
      MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_548_0: null
-    },
 
+    members: {
+      __P_564_0: null
+    },
     /*
     *****************************************************************************
      DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__P_548_0");
+      this._disposeMap("__P_564_0");
     }
   });
   qxl.apiviewer.ui.LegendView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LegendView.js.map?dt=1664789616576
+//# sourceMappingURL=LegendView.js.map?dt=1672653525985

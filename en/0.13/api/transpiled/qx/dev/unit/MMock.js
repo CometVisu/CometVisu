@@ -5,11 +5,11 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.dev.unit.Sinon": {}
+      "qx.dev.unit.Sinon": {},
+      "qx.lang.Type": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -27,7 +27,6 @@
        * Tristan Koch (tristankoch)
   
   ************************************************************************ */
-
   /**
    *
    * Provides test spies, stubs and mocks as well as custom assertions.
@@ -106,16 +105,13 @@
    */
   qx.Mixin.define("qx.dev.unit.MMock", {
     construct: function construct() {
-      var sinon = this.__P_185_0();
-
-      this.__P_185_1();
-
-      this.__P_185_2 = sinon.sandbox;
+      var sinon = this.__P_188_0();
+      this.__P_188_1();
+      this.__P_188_2 = sinon.createSandbox();
     },
     members: {
-      __P_185_2: null,
-      __P_185_3: null,
-
+      __P_188_2: null,
+      __P_188_3: null,
       /**
        * Expose Sinon.JS assertions. Provides methods such
        * as assertCalled(), assertCalledWith().
@@ -123,264 +119,256 @@
        * Does not override existing assertion methods.
        * @ignore(sinon.assert.expose)
        */
-      __P_185_1: function __P_185_1() {
+      __P_188_1: function __P_188_1() {
         var temp = {};
         sinon.assert.expose(temp, {
           includeFail: false
         });
-
         for (var method in temp) {
           if (!this[method]) {
             this[method] = temp[method];
           }
         }
       },
-
       /**
-      * Get the Sinon.JS object.
-      *
-      * @return {Object}
-      * @internal
-      */
-      __P_185_0: function __P_185_0() {
+       * Get the Sinon.JS object.
+       *
+       * @return {Object}
+       * @internal
+       */
+      __P_188_0: function __P_188_0() {
         return qx.dev.unit.Sinon.getSinon();
       },
-
       /**
-      * Test spies allow introspection on how a function is used
-      * throughout the system under test.
-      *
-      * * spy()
-      *   Creates an anonymous function that records arguments,
-      *   this value, exceptions and return values for all calls.
-      *
-      * * spy(func)
-      *   Spies on the provided function
-      *
-      * * spy(object, "method")
-      *   Creates a spy for object.method and replaces the original method
-      *   with the spy. The spy acts exactly like the original method in all cases.
-      *   The original method can be restored by calling object.method.restore().
-      *   The returned spy is the function object which replaced the original method.
-      *   spy === object.method.
-      *
-      * * spy.withArgs(arg1[, arg2, ...])
-      *   Creates a spy that only records calls when the received arguments matches those
-      *   passed to <code>withArgs</code>.
-      *
-      * A spy has a rich interface to introspect how the wrapped function was used:
-      *
-      * * spy.withArgs(arg1[, arg2, ...]);
-      * * spy.callCount
-      * * spy.called
-      * * spy.calledOnce
-      * * spy.calledTwice
-      * * spy.calledThrice
-      * * spy.firstCall
-      * * spy.secondCall
-      * * spy.thirdCall
-      * * spy.lastCall
-      * * spy.calledBefore(anotherSpy)
-      * * spy.calledAfter(anotherSpy)
-      * * spy.calledOn(obj)
-      * * spy.alwaysCalledOn(obj)
-      * * spy.calledWith(arg1, arg2, ...)
-      * * spy.alwaysCalledWith(arg1, arg2, ...)
-      * * spy.calledWithExactly(arg1, arg2, ...)
-      * * spy.alwaysCalledWithExactly(arg1, arg2, ...)
-      * * spy.calledWithMatch(arg1, arg2, ...);
-      * * spy.alwaysCalledWithMatch(arg1, arg2, ...);
-      * * spy.calledWithNew();
-      * * spy.neverCalledWith(arg1, arg2, ...);
-      * * spy.neverCalledWithMatch(arg1, arg2, ...);
-      * * spy.threw()
-      * * spy.threw("TypeError")
-      * * spy.threw(obj)
-      * * spy.alwaysThrew()
-      * * spy.alwaysThrew("TypeError")
-      * * spy.alwaysThrew(obj)
-      * * spy.returned(obj)
-      * * spy.alwaysReturned(obj)
-      * * spy.getCall(n)
-      * * spy.thisValues
-      * * spy.args
-      * * spy.exceptions
-      * * spy.returnValues
-      * * spy.reset()
-      * * spy.printf("format string", [arg1, arg2, ...])
-      *
-      * See http://sinonjs.org/docs/#spies.
-      *
-      * Note: Spies are transparently added to a sandbox. To restore
-      * the original function for all spies run <code>this.getSandbox().restore()</code>
-      * in your <code>tearDown()</code> method.
-      *
-      * @param function_or_object {Function|Object} Spies on the
-      *   provided function or object.
-      * @param method {String?null} The method to spy upon if an object was given.
-      * @return {Function} The wrapped function enhanced with properties and methods
-      *   that allow for introspection. See http://sinonjs.org/docs/#spies.
-      */
+       * Test spies allow introspection on how a function is used
+       * throughout the system under test.
+       *
+       * * spy()
+       *   Creates an anonymous function that records arguments,
+       *   this value, exceptions and return values for all calls.
+       *
+       * * spy(func)
+       *   Spies on the provided function
+       *
+       * * spy(object, "method")
+       *   Creates a spy for object.method and replaces the original method
+       *   with the spy. The spy acts exactly like the original method in all cases.
+       *   The original method can be restored by calling object.method.restore().
+       *   The returned spy is the function object which replaced the original method.
+       *   spy === object.method.
+       *
+       * * spy.withArgs(arg1[, arg2, ...])
+       *   Creates a spy that only records calls when the received arguments matches those
+       *   passed to <code>withArgs</code>.
+       *
+       * A spy has a rich interface to introspect how the wrapped function was used:
+       *
+       * * spy.withArgs(arg1[, arg2, ...]);
+       * * spy.callCount
+       * * spy.called
+       * * spy.calledOnce
+       * * spy.calledTwice
+       * * spy.calledThrice
+       * * spy.firstCall
+       * * spy.secondCall
+       * * spy.thirdCall
+       * * spy.lastCall
+       * * spy.calledBefore(anotherSpy)
+       * * spy.calledAfter(anotherSpy)
+       * * spy.calledOn(obj)
+       * * spy.alwaysCalledOn(obj)
+       * * spy.calledWith(arg1, arg2, ...)
+       * * spy.alwaysCalledWith(arg1, arg2, ...)
+       * * spy.calledWithExactly(arg1, arg2, ...)
+       * * spy.alwaysCalledWithExactly(arg1, arg2, ...)
+       * * spy.calledWithMatch(arg1, arg2, ...);
+       * * spy.alwaysCalledWithMatch(arg1, arg2, ...);
+       * * spy.calledWithNew();
+       * * spy.neverCalledWith(arg1, arg2, ...);
+       * * spy.neverCalledWithMatch(arg1, arg2, ...);
+       * * spy.threw()
+       * * spy.threw("TypeError")
+       * * spy.threw(obj)
+       * * spy.alwaysThrew()
+       * * spy.alwaysThrew("TypeError")
+       * * spy.alwaysThrew(obj)
+       * * spy.returned(obj)
+       * * spy.alwaysReturned(obj)
+       * * spy.getCall(n)
+       * * spy.thisValues
+       * * spy.args
+       * * spy.exceptions
+       * * spy.returnValues
+       * * spy.reset()
+       * * spy.printf("format string", [arg1, arg2, ...])
+       *
+       * See http://sinonjs.org/docs/#spies.
+       *
+       * Note: Spies are transparently added to a sandbox. To restore
+       * the original function for all spies run <code>this.getSandbox().restore()</code>
+       * in your <code>tearDown()</code> method.
+       *
+       * @param function_or_object {Function|Object} Spies on the
+       *   provided function or object.
+       * @param method {String?null} The method to spy upon if an object was given.
+       * @return {Function} The wrapped function enhanced with properties and methods
+       *   that allow for introspection. See http://sinonjs.org/docs/#spies.
+       */
       spy: function spy(function_or_object, method) {
-        return this.__P_185_2.spy.apply(this.__P_185_2, arguments);
+        return this.__P_188_2.spy.apply(this.__P_188_2, arguments);
       },
-
       /**
-      * Test stubs are functions (spies) with pre-programmed behavior.
-      *
-      * * stub()
-      *   Creates an anonymous stub function
-      *
-      * * stub(object, "method")
-      *   Replaces object.method with a stub function. The original function
-      *   can be restored by calling object.method.restore() (or stub.restore()).
-      *   An exception is thrown if the property is not already a function,
-      *   to help avoid typos when stubbing methods.
-      *
-      * * stub(obj)
-      *   Stubs all the object's methods.
-      *
-      * * stub.withArgs(arg1[, arg2, ...])
-      *   Stubs the method only for the provided arguments. Can be used to create
-      *   a stub that acts differently in response to different arguments.
-      *
-      * A stub has the interface of a spy in addition to methods that allow to define behaviour:
-      *
-      * * stub.returns(obj)
-      * * stub.throws()
-      * * stub.throws("TypeError")
-      * * stub.throws(obj)
-      * * stub.callsArg(index)
-      * * stub.callsArg(0)
-      * * stub.callsArgWith(index, arg1, arg2, ...)
-      *
-      * See http://sinonjs.org/docs/#stubs.
-      *
-      * Note: Stubs are transparently added to a sandbox. To restore
-      * the original function for all stubs run <code>this.getSandbox().restore()</code>
-      * in your <code>tearDown()</code> method.
-      *
-      * @param object {Object?null} Object to stub. Creates an anonymous stub function
-      *   if not given.
-      * @param  method {String?null} Replaces object.method with a stub function.
-      *   An exception is thrown if the property is not already a function, to
-      *   help avoid typos when stubbing methods.
-      * @return {Function} A stub. Has the interface of a spy in addition to methods
-      *   that allow to define behaviour. See http://sinonjs.org/docs/#stubs.
-      *
-      */
-      stub: function stub(object, method) {
-        return this.__P_185_2.stub.apply(this.__P_185_2, arguments);
+       * Test stubs are functions (spies) with pre-programmed behavior.
+       *
+       * * stub()
+       *   Creates an anonymous stub function
+       *
+       * * stub(object, "method")
+       *   Replaces object.method with a stub function. The original function
+       *   can be restored by calling object.method.restore() (or stub.restore()).
+       *   An exception is thrown if the property is not already a function,
+       *   to help avoid typos when stubbing methods.
+       *
+       * * stub(obj)
+       *   Stubs all the object's methods.
+       *
+       * * stub.withArgs(arg1[, arg2, ...])
+       *   Stubs the method only for the provided arguments. Can be used to create
+       *   a stub that acts differently in response to different arguments.
+       *
+       * A stub has the interface of a spy in addition to methods that allow to define behaviour:
+       *
+       * * stub.returns(obj)
+       * * stub.throws()
+       * * stub.throws("TypeError")
+       * * stub.throws(obj)
+       * * stub.callsArg(index)
+       * * stub.callsArg(0)
+       * * stub.callsArgWith(index, arg1, arg2, ...)
+       *
+       * See http://sinonjs.org/docs/#stubs.
+       *
+       * Note: Stubs are transparently added to a sandbox. To restore
+       * the original function for all stubs run <code>this.getSandbox().restore()</code>
+       * in your <code>tearDown()</code> method.
+       *
+       * @param object {Object?null} Object to stub. Creates an anonymous stub function
+       *   if not given.
+       * @param  method {String?null} Replaces object.method with a stub function.
+       *   An exception is thrown if the property is not already a function, to
+       *   help avoid typos when stubbing methods.
+       * @return {Function} A stub. Has the interface of a spy in addition to methods
+       *   that allow to define behaviour. See http://sinonjs.org/docs/#stubs.
+       *
+       */
+      stub: function stub(object, method, func) {
+        var res = this.__P_188_2.stub.bind(this.__P_188_2)(object, method);
+        if (func && qx.lang.Type.isFunction(func)) {
+          res = res.callsFake(func);
+        }
+        return res;
       },
-
       /**
-      * Mocks are slightly different from spies and stubs in that you mock an
-      * object, and then set an expectation on one or more of its objects.
-      *
-      * * var mock = mock(obj)
-      *   Creates a mock for the provided object. Does not change the object, but
-      *   returns a mock object to set expectations on the object's methods.
-      *
-      * * var expectation = mock.expects("method")
-      *   Overrides obj.method with a mock function and returns an expectation
-      *   object. Expectations implement both the spy and stub interface plus
-      *   the methods described below.
-      *
-      * Set expectations with following methods. All methods return the expectation
-      * itself, meaning expectations can be chained.
-      *
-      * * expectation.atLeast(number);
-      * * expectation.atMost(number);
-      * * expectation.never();
-      * * expectation.once();
-      * * expectation.twice();
-      * * expectation.thrice();
-      * * expectation.exactly(number);
-      * * expectation.withArgs(arg1, arg2, ...);
-      * * expectation.withExactArgs(arg1, arg2, ...);
-      * * expectation.on(obj);
-      * * expectation.verify();
-      *
-      * See http://sinonjs.org/docs/#mocks.
-      *
-      * @param object {Object} The object to create a mock of.
-      * @return {Function} A mock to set expectations on. See http://sinonjs.org/docs/#mocks.
-      */
+       * Mocks are slightly different from spies and stubs in that you mock an
+       * object, and then set an expectation on one or more of its objects.
+       *
+       * * var mock = mock(obj)
+       *   Creates a mock for the provided object. Does not change the object, but
+       *   returns a mock object to set expectations on the object's methods.
+       *
+       * * var expectation = mock.expects("method")
+       *   Overrides obj.method with a mock function and returns an expectation
+       *   object. Expectations implement both the spy and stub interface plus
+       *   the methods described below.
+       *
+       * Set expectations with following methods. All methods return the expectation
+       * itself, meaning expectations can be chained.
+       *
+       * * expectation.atLeast(number);
+       * * expectation.atMost(number);
+       * * expectation.never();
+       * * expectation.once();
+       * * expectation.twice();
+       * * expectation.thrice();
+       * * expectation.exactly(number);
+       * * expectation.withArgs(arg1, arg2, ...);
+       * * expectation.withExactArgs(arg1, arg2, ...);
+       * * expectation.on(obj);
+       * * expectation.verify();
+       *
+       * See http://sinonjs.org/docs/#mocks.
+       *
+       * @param object {Object} The object to create a mock of.
+       * @return {Function} A mock to set expectations on. See http://sinonjs.org/docs/#mocks.
+       */
       mock: function mock(object) {
-        var sinon = this.__P_185_0();
-
+        var sinon = this.__P_188_0();
         return sinon.mock.apply(sinon, arguments);
       },
-
       /**
-      * Replace the native XMLHttpRequest object in browsers that support it with
-      * a custom implementation which does not send actual requests.
-      *
-      * Note: The fake XHR is transparently added to a sandbox. To restore
-      * the original host method run <code>this.getSandbox().restore()</code>
-      * in your <code>tearDown()</code> method.
-      *
-      * See http://sinonjs.org/docs/#useFakeXMLHttpRequest.
-      *
-      * @return {Object}
-      */
+       * Replace the native XMLHttpRequest object in browsers that support it with
+       * a custom implementation which does not send actual requests.
+       *
+       * Note: The fake XHR is transparently added to a sandbox. To restore
+       * the original host method run <code>this.getSandbox().restore()</code>
+       * in your <code>tearDown()</code> method.
+       *
+       * See http://sinonjs.org/docs/#useFakeXMLHttpRequest.
+       *
+       * @return {Object}
+       */
       useFakeXMLHttpRequest: function useFakeXMLHttpRequest() {
-        return this.__P_185_3 = this.__P_185_2.useFakeXMLHttpRequest();
+        return this.__P_188_3 = this.__P_188_2.useFakeServer();
       },
-
       /**
-      * Get requests made with faked XHR or server.
-      *
-      * Each request can be queried for url, method, requestHeaders,
-      * status and more.
-      *
-      * See http://sinonjs.org/docs/#FakeXMLHttpRequest.
-      *
-      * @return {Array} Array of faked requests.
-      */
+       * Get requests made with faked XHR or server.
+       *
+       * Each request can be queried for url, method, requestHeaders,
+       * status and more.
+       *
+       * See http://sinonjs.org/docs/#FakeXMLHttpRequest.
+       *
+       * @return {Array} Array of faked requests.
+       */
       getRequests: function getRequests() {
-        return this.__P_185_3.requests;
+        return this.__P_188_3.requests;
       },
-
       /**
-      * As {@link #useFakeXMLHttpRequest}, but additionally provides a high-level
-      * API to setup server responses. To setup responses, use the server
-      * returned by {@link #getServer}.
-      *
-      * See http://sinonjs.org/docs/#server.
-      *
-      * Note: The fake server is transparently added to a sandbox. To restore
-      * the original host method run <code>this.getSandbox().restore()</code>
-      * in your <code>tearDown()</code> method.
-      *
-      * @return {Object}
-      */
+       * As {@link #useFakeXMLHttpRequest}, but additionally provides a high-level
+       * API to setup server responses. To setup responses, use the server
+       * returned by {@link #getServer}.
+       *
+       * See http://sinonjs.org/docs/#server.
+       *
+       * Note: The fake server is transparently added to a sandbox. To restore
+       * the original host method run <code>this.getSandbox().restore()</code>
+       * in your <code>tearDown()</code> method.
+       *
+       * @return {Object}
+       */
       useFakeServer: function useFakeServer() {
-        return this.__P_185_3 = this.__P_185_2.useFakeServer();
+        return this.__P_188_3 = this.__P_188_2.useFakeServer();
       },
-
       /**
-      * Get fake server created by {@link #useFakeServer}.
-      *
-      * @return {Object} Fake server.
-      */
+       * Get fake server created by {@link #useFakeServer}.
+       *
+       * @return {Object} Fake server.
+       */
       getServer: function getServer() {
-        return this.__P_185_2.server;
+        return this.__P_188_2.server;
       },
-
       /**
-      * Get sandbox.
-      *
-      * The sandbox holds all stubs and mocks. Run <code>this.getSandbox().restore()</code>
-      * to restore all mock objects.
-      *
-      * @return {Object}
-      *        Sandbox object.
-      */
+       * Get sandbox.
+       *
+       * The sandbox holds all stubs and mocks. Run <code>this.getSandbox().restore()</code>
+       * to restore all mock objects.
+       *
+       * @return {Object}
+       *        Sandbox object.
+       */
       getSandbox: function getSandbox() {
-        return this.__P_185_2;
+        return this.__P_188_2;
       },
-
       /**
        *
        * Returns a deep copied, API-identical stubbed out clone of the given
@@ -393,13 +381,11 @@
        * @return {Object} A stub.
        */
       deepStub: function deepStub(object) {
-        this.__P_185_4(object).forEach(function (prop) {
-          this.__P_185_5(object, prop);
+        this.__P_188_4(object).forEach(function (prop) {
+          this.__P_188_5(object, prop);
         }, this);
-
         return object;
       },
-
       /**
        *
        * Shallowly stub all methods (except excluded) that belong to classes found in inheritance
@@ -411,18 +397,15 @@
        * @return {Object} A stub.
        */
       shallowStub: function shallowStub(object, targetClazz, propsToExclude) {
-        this.__P_185_4(object, targetClazz).forEach(function (prop) {
+        this.__P_188_4(object, targetClazz).forEach(function (prop) {
           if (propsToExclude && propsToExclude.indexOf(prop) >= 0) {
             // don't stub excluded prop
             return;
           }
-
-          this.__P_185_5(object, prop);
+          this.__P_188_5(object, prop);
         }, this);
-
         return object;
       },
-
       /**
        *
        * Changes the given factory (e.g. a constructor) to return a stub. The
@@ -443,7 +426,6 @@
         this.stub(object, property).returns(stub);
         return stub;
       },
-
       /**
        * Changes the given factory (e.g. a constructor) to make a mock of the
        * object returned. The method itself returns this mock.
@@ -460,28 +442,25 @@
        * @return {Object} Mock of the object built.
        */
       revealMock: function revealMock(object, property, customObject) {
-        var source = customObject || this.__P_185_6(new object[property]());
-
+        var source = customObject || this.__P_188_6(new object[property]());
         this.stub(object, property).returns(source);
         return this.mock(source);
       },
-
       /**
        * Deep clone object by copying properties from prototype.
        *
        * @param obj {Object} Object to prepare (that is, clone).
        * @return {Object} Prepared (deeply cloned) object.
        */
-      __P_185_6: function __P_185_6(obj) {
-        var clone = {}; // Copy from prototype
+      __P_188_6: function __P_188_6(obj) {
+        var clone = {};
 
+        // Copy from prototype
         for (var prop in obj) {
           clone[prop] = obj[prop];
         }
-
         return clone;
       },
-
       /**
        * Get the object’s own properties.
        *
@@ -489,52 +468,47 @@
        * @param targetClazz {Object} Class which marks the end of the chain.
        * @return {Array} Array of the object’s own properties.
        */
-      __P_185_4: function __P_185_4(object, targetClazz) {
+      __P_188_4: function __P_188_4(object, targetClazz) {
         var clazz = object.constructor,
-            clazzes = [],
-            properties = []; // Find classes in inheritance chain up to targetClazz
+          clazzes = [],
+          properties = [];
 
+        // Find classes in inheritance chain up to targetClazz
         if (targetClazz) {
           while (clazz.superclass) {
             clazzes.push(clazz);
             clazz = clazz.superclass;
-
             if (clazz == targetClazz.superclass) {
               break;
             }
           }
-        } // Check if property is own in one of the classes in chain
+        }
 
-
+        // Check if property is own in one of the classes in chain
         for (var prop in object) {
           if (clazzes.length) {
             var found = clazzes.some(function (clazz) {
               return clazz.prototype.hasOwnProperty(prop);
             });
-
             if (!found) {
               continue;
             }
           }
-
           properties.push(prop);
         }
-
         return properties;
       },
-
       /**
        * Safely stub property.
        *
        * @param object {Object} Object to stub.
        * @param prop {String} Property to stub.
        */
-      __P_185_5: function __P_185_5(object, prop) {
+      __P_188_5: function __P_188_5(object, prop) {
         // Leave constructor and properties intact
         if (prop === "constructor" || typeof object[prop] !== "function") {
           return;
         }
-
         this.stub(object, prop);
       }
     }
@@ -542,4 +516,4 @@
   qx.dev.unit.MMock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMock.js.map?dt=1664789582183
+//# sourceMappingURL=MMock.js.map?dt=1672653490371

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 593
       },
       "end": {
-        "line": 74,
-        "column": 3
+        "line": 67,
+        "column": 3,
+        "index": 1757
       }
     },
     "jsdoc": {
@@ -33,26 +35,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 28,
-        "column": 14
+        "line": 26,
+        "column": 2,
+        "index": 687
       },
       "end": {
-        "line": 32,
-        "column": 3
+        "line": 30,
+        "column": 3,
+        "index": 794
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__rules": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 814
         },
         "end": {
-          "line": 37,
-          "column": 18
+          "line": 33,
+          "column": 17,
+          "index": 827
         }
       },
       "type": "variable",
@@ -61,12 +66,14 @@
     "__sheet": {
       "location": {
         "start": {
-          "line": 38,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 833
         },
         "end": {
-          "line": 38,
-          "column": 18
+          "line": 34,
+          "column": 17,
+          "index": 846
         }
       },
       "type": "variable",
@@ -75,12 +82,14 @@
     "addRule": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1031
         },
         "end": {
-          "line": 52,
-          "column": 5
+          "line": 47,
+          "column": 5,
+          "index": 1218
         }
       },
       "jsdoc": {
@@ -113,12 +122,14 @@
     "hasRule": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 54,
+          "column": 4,
+          "index": 1389
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1465
         }
       },
       "jsdoc": {
@@ -152,12 +163,14 @@
     "removeRule": {
       "location": {
         "start": {
-          "line": 69,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1602
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 65,
+          "column": 5,
+          "index": 1749
         }
       },
       "jsdoc": {
@@ -268,6 +281,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -292,6 +306,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

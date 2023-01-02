@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,6 +56,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Returns the range object of the given node.
@@ -66,7 +66,7 @@
        * @return {Range} valid range of given selection
        */
       get: qx.core.Environment.select("html.selection", {
-        "selection": function selection(node) {
+        selection: function selection(node) {
           // check for the type of the given node
           // for legacy IE the nodes input, textarea, button and body
           // have access to own TextRange objects. Everything else is
@@ -83,36 +83,31 @@
                   case "file":
                   case "submit":
                     return node.createTextRange();
-
                   default:
                     return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).createRange();
                 }
-
-                break;
-
               case "textarea":
               case "body":
               case "button":
                 return node.createTextRange();
-
               default:
                 return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).createRange();
             }
           } else {
             if (node == null) {
               node = window;
-            } // need to pass the document node to work with multi-documents
+            }
 
-
+            // need to pass the document node to work with multi-documents
             return qx.bom.Selection.getSelectionObject(qx.dom.Node.getDocument(node)).createRange();
           }
         },
         // suitable for gecko, opera and webkit
         "default": function _default(node) {
-          var doc = qx.dom.Node.getDocument(node); // get the selection object of the corresponding document
+          var doc = qx.dom.Node.getDocument(node);
 
+          // get the selection object of the corresponding document
           var sel = qx.bom.Selection.getSelectionObject(doc);
-
           if (sel.rangeCount > 0) {
             return sel.getRangeAt(0);
           } else {
@@ -125,4 +120,4 @@
   qx.bom.Range.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Range.js.map?dt=1664789576051
+//# sourceMappingURL=Range.js.map?dt=1672653484568

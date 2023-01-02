@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 26,
-        "column": 0
+        "line": 25,
+        "column": 0,
+        "index": 897
       },
       "end": {
-        "line": 149,
-        "column": 3
+        "line": 158,
+        "column": 3,
+        "index": 5014
       }
     },
     "jsdoc": {
@@ -51,12 +53,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1594
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 50,
+          "column": 5,
+          "index": 1833
         }
       },
       "jsdoc": {
@@ -111,12 +115,14 @@
     "getWidgetElements": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 52,
+          "column": 4,
+          "index": 1840
         },
         "end": {
-          "line": 57,
-          "column": 5
+          "line": 56,
+          "column": 5,
+          "index": 1988
         }
       },
       "type": "function",
@@ -127,12 +133,14 @@
     "__navLeft": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 2148
         },
         "end": {
-          "line": 67,
-          "column": 20
+          "line": 65,
+          "column": 19,
+          "index": 2163
         }
       },
       "type": "variable",
@@ -141,12 +149,14 @@
     "__isTouchDevice": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2169
         },
         "end": {
-          "line": 68,
-          "column": 25
+          "line": 66,
+          "column": 25,
+          "index": 2190
         }
       },
       "type": "variable",
@@ -155,12 +165,14 @@
     "getDomString": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 69,
+          "column": 4,
+          "index": 2215
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 88,
+          "column": 5,
+          "index": 3090
         }
       },
       "jsdoc": {},
@@ -175,12 +187,14 @@
     "_onDomReady": {
       "location": {
         "start": {
-          "line": 91,
-          "column": 4
+          "line": 90,
+          "column": 4,
+          "index": 3097
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 3200
         }
       },
       "type": "function",
@@ -193,12 +207,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 96,
+          "column": 4,
+          "index": 3207
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 104,
+          "column": 5,
+          "index": 3557
         }
       },
       "type": "function",
@@ -207,12 +223,14 @@
     "touchScroll": {
       "location": {
         "start": {
-          "line": 107,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 3564
         },
         "end": {
-          "line": 120,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 4151
         }
       },
       "type": "function",
@@ -221,12 +239,14 @@
     "isTouchDevice": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 131,
+          "column": 4,
+          "index": 4158
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 141,
+          "column": 5,
+          "index": 4438
         }
       },
       "type": "function",
@@ -539,9 +559,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -1145,6 +1167,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1489,11 +1562,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -2010,6 +2083,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2033,6 +2107,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -5070,12 +5145,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 143,
-        "column": 9
+        "line": 152,
+        "column": 2,
+        "index": 4737
       },
       "end": {
-        "line": 148,
-        "column": 3
+        "line": 157,
+        "column": 3,
+        "index": 5010
       }
     },
     "jsdoc": {}

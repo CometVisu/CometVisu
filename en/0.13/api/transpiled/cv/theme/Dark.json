@@ -9,19 +9,21 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 986
       },
       "end": {
-        "line": 33,
-        "column": 3
+        "line": 32,
+        "column": 3,
+        "index": 1213
       }
     },
     "jsdoc": {
       "@description": [
         {
           "name": "@description",
-          "body": "<p>Basic theme for QX-UI relevant parts (should be seen as equilavent to designglobals.css, not design specific\n but something like the common sense of all designs)</p>"
+          "body": "<p>Basic theme for QX-UI relevant parts (should be seen as equivalent to designglobals.css, not design specific\n but something like the common sense of all designs)</p>"
         }
       ]
     }
@@ -30,12 +32,14 @@
   "themeMeta": {
     "location": {
       "start": {
-        "line": 26,
-        "column": 2
+        "line": 25,
+        "column": 2,
+        "index": 1023
       },
       "end": {
-        "line": 32,
-        "column": 3
+        "line": 31,
+        "column": 3,
+        "index": 1209
       }
     },
     "themeMetaMap": {

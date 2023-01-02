@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 25,
-        "column": 0
+        "line": 24,
+        "column": 0,
+        "index": 980
       },
       "end": {
-        "line": 124,
-        "column": 3
+        "line": 129,
+        "column": 3,
+        "index": 4113
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 32,
-        "column": 13
+        "line": 30,
+        "column": 2,
+        "index": 1168
       },
       "end": {
-        "line": 48,
-        "column": 3
+        "line": 47,
+        "column": 3,
+        "index": 1824
       }
     },
     "jsdoc": {}
@@ -44,12 +48,14 @@
     "children": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 2032
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 2086
         }
       },
       "jsdoc": {
@@ -69,12 +75,14 @@
     "childWidgets": {
       "location": {
         "start": {
-          "line": 68,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2148
         },
         "end": {
-          "line": 71,
-          "column": 5
+          "line": 69,
+          "column": 5,
+          "index": 2206
         }
       },
       "jsdoc": {
@@ -96,12 +104,14 @@
     "getChildrenDomString": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 84,
+          "column": 4,
+          "index": 2616
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3562
         }
       },
       "jsdoc": {
@@ -135,12 +145,14 @@
     "getChildrenDom": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 116,
+          "column": 4,
+          "index": 3680
         },
         "end": {
-          "line": 122,
-          "column": 5
+          "line": 127,
+          "column": 5,
+          "index": 4105
         }
       },
       "jsdoc": {

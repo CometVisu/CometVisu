@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 520
       },
       "end": {
-        "line": 43,
-        "column": 3
+        "line": 39,
+        "column": 3,
+        "index": 912
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 831
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 904
         }
       },
       "jsdoc": {},
@@ -143,6 +147,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -167,6 +172,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 36,
-        "column": 0
+        "column": 0,
+        "index": 1026
       },
       "end": {
-        "line": 77,
-        "column": 3
+        "line": 71,
+        "column": 3,
+        "index": 2025
       }
     },
     "jsdoc": {
@@ -41,12 +43,14 @@
     "process": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1381
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 59,
+          "column": 5,
+          "index": 1773
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 74,
-        "column": 10
+        "line": 68,
+        "column": 2,
+        "index": 1964
       },
       "end": {
-        "line": 76,
-        "column": 3
+        "line": 70,
+        "column": 3,
+        "index": 2021
       }
     },
     "jsdoc": {}

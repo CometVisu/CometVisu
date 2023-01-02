@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 527
       },
       "end": {
-        "line": 207,
-        "column": 3
+        "line": 170,
+        "column": 3,
+        "index": 5047
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "familyGetFirstChild": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 991
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1424
         }
       },
       "jsdoc": {
@@ -73,12 +77,14 @@
     "familyGetLastChild": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 64,
+          "column": 4,
+          "index": 1828
         },
         "end": {
-          "line": 97,
-          "column": 5
+          "line": 80,
+          "column": 5,
+          "index": 2283
         }
       },
       "jsdoc": {
@@ -115,12 +121,14 @@
     "familyGetNextSibling": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 2693
         },
         "end": {
-          "line": 151,
-          "column": 5
+          "line": 124,
+          "column": 5,
+          "index": 3661
         }
       },
       "jsdoc": {
@@ -157,12 +165,14 @@
     "familyGetPrevSibling": {
       "location": {
         "start": {
-          "line": 165,
-          "column": 4
+          "line": 137,
+          "column": 4,
+          "index": 4083
         },
         "end": {
-          "line": 205,
-          "column": 5
+          "line": 168,
+          "column": 5,
+          "index": 5039
         }
       },
       "jsdoc": {

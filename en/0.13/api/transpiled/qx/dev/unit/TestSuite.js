@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +39,6 @@
    */
   qx.Class.define("qx.dev.unit.TestSuite", {
     extend: qx.dev.unit.AbstractTestSuite,
-
     /**
      * @param testClassOrNamespace {var} Either a string with the name of the test
      *    class or test namespace or a reference to the test class or namespace.
@@ -49,7 +47,6 @@
     construct: function construct(testClassOrNamespace) {
       qx.dev.unit.AbstractTestSuite.constructor.call(this);
       this._tests = [];
-
       if (testClassOrNamespace) {
         this.add(testClassOrNamespace);
       }
@@ -70,14 +67,11 @@
         //      {
         if (qx.lang.Type.isString(testClassOrNamespace)) {
           var evalTestClassOrNamespace = window.eval(testClassOrNamespace);
-
           if (!evalTestClassOrNamespace) {
             this.addFail(testClassOrNamespace, "The class/namespace '" + testClassOrNamespace + "' is undefined!");
           }
-
           testClassOrNamespace = evalTestClassOrNamespace;
         }
-
         if (qx.lang.Type.isFunction(testClassOrNamespace)) {
           this.addTestClass(testClassOrNamespace);
         } else if (qx.lang.Type.isObject(testClassOrNamespace)) {
@@ -85,14 +79,13 @@
         } else {
           this.addFail("existsCheck", "Unknown test class '" + testClassOrNamespace + "'!");
           return;
-        } //      }
+        }
+        //      }
         //      catch (ex)
         //      {
         //        window.alert("An error occurred while adding test classes/namespaces\nPlease try a different test file.");
         //      }
-
       },
-
       /**
        * Add all tests from the given namespace to the suite
        *
@@ -104,7 +97,6 @@
             if (namespace.$$classtype !== "abstract") {
               this.addTestClass(namespace);
             }
-
             return;
           }
         } else if (qx.lang.Type.isObject(namespace) && !(namespace instanceof Array)) {
@@ -113,7 +105,6 @@
           }
         }
       },
-
       /**
        * Add a test class to the suite
        *
@@ -122,7 +113,6 @@
       addTestClass: function addTestClass(clazz) {
         this._tests.push(new qx.dev.unit.TestClass(clazz));
       },
-
       /**
        * Get a list of all test classes in the suite
        *
@@ -130,15 +120,12 @@
        */
       getTestClasses: function getTestClasses() {
         var classes = [];
-
         for (var i = 0; i < this._tests.length; i++) {
           var test = this._tests[i];
-
           if (test instanceof qx.dev.unit.TestClass) {
             classes.push(test);
           }
         }
-
         return classes;
       }
     }
@@ -146,4 +133,4 @@
   qx.dev.unit.TestSuite.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestSuite.js.map?dt=1664789583412
+//# sourceMappingURL=TestSuite.js.map?dt=1672653494043

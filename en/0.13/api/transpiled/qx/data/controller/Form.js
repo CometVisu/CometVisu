@@ -12,6 +12,7 @@
       "qx.core.IDisposable": {
         "require": true
       },
+      "qx.ui.form.Form": {},
       "qx.ui.core.ISingleSelection": {},
       "qx.data.marshal.Json": {},
       "qx.data.SingleValueBinding": {},
@@ -20,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,7 +38,6 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
-
   /**
    * <h2>Form Controller</h2>
    *
@@ -69,7 +68,6 @@
   qx.Class.define("qx.data.controller.Form", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * @param model {qx.core.Object | null} The model to bind the target to. The
      *   given object will be set as {@link #model} property.
@@ -83,12 +81,10 @@
     construct: function construct(model, target, selfUpdate) {
       qx.core.Object.constructor.call(this);
       this._selfUpdate = !!selfUpdate;
-      this.__P_170_0 = {};
-
+      this.__P_172_0 = {};
       if (model != null) {
         this.setModel(model);
       }
-
       if (target != null) {
         this.setTarget(target);
       }
@@ -102,7 +98,6 @@
         nullable: true,
         dereference: true
       },
-
       /** The target widget which should show the data. */
       target: {
         check: "qx.ui.form.Form",
@@ -114,9 +109,8 @@
       }
     },
     members: {
-      __P_170_1: null,
-      __P_170_0: null,
-
+      __P_172_1: null,
+      __P_172_0: null,
       /**
        * The form controller uses for setting up the bindings the fundamental
        * binding layer, the {@link qx.data.SingleValueBinding}. To achieve a
@@ -133,22 +127,22 @@
        *   {@link qx.data.SingleValueBinding} class.
        */
       addBindingOptions: function addBindingOptions(name, model2target, target2model) {
-        this.__P_170_0[name] = [model2target, target2model]; // return if not both, model and target are given
+        this.__P_172_0[name] = [model2target, target2model];
 
+        // return if not both, model and target are given
         if (this.getModel() == null || this.getTarget() == null) {
           return;
-        } // renew the affected binding
+        }
 
-
+        // renew the affected binding
         var item = this.getTarget().getItems()[name];
-        var targetProperty = this.__P_170_2(item) ? "modelSelection[0]" : "value"; // remove the binding
+        var targetProperty = this.__P_172_2(item) ? "modelSelection[0]" : "value";
 
-        this.__P_170_1.removeTarget(item, targetProperty, name); // set up the new binding with the options
-
-
-        this.__P_170_1.addTarget(item, targetProperty, name, !this._selfUpdate, model2target, target2model);
+        // remove the binding
+        this.__P_172_1.removeTarget(item, targetProperty, name);
+        // set up the new binding with the options
+        this.__P_172_1.addTarget(item, targetProperty, name, !this._selfUpdate, model2target, target2model);
       },
-
       /**
        * Creates and sets a model using the {@link qx.data.marshal.Json} object.
        * Remember that this method can only work if the form is set. The created
@@ -160,76 +154,66 @@
        * @return {qx.core.Object} The created model.
        */
       createModel: function createModel(includeBubbleEvents) {
-        var target = this.getTarget(); // throw an error if no target is set
+        var target = this.getTarget();
 
+        // throw an error if no target is set
         if (target == null) {
           throw new Error("No target is set.");
         }
-
         var items = target.getItems();
         var data = {};
-
         for (var name in items) {
           var names = name.split(".");
           var currentData = data;
-
           for (var i = 0; i < names.length; i++) {
             // if its the last item
             if (i + 1 == names.length) {
               // check if the target is a selection
               var clazz = items[name].constructor;
               var itemValue = null;
-
               if (qx.Class.hasInterface(clazz, qx.ui.core.ISingleSelection)) {
                 // use the first element of the selection because passed to the
                 // marshaler (and its single selection anyway) [BUG #3541]
                 itemValue = items[name].getModelSelection().getItem(0) || null;
               } else {
                 itemValue = items[name].getValue();
-              } // call the converter if available [BUG #4382]
-
-
-              if (this.__P_170_0[name] && this.__P_170_0[name][1]) {
-                itemValue = this.__P_170_0[name][1].converter(itemValue);
               }
-
+              // call the converter if available [BUG #4382]
+              if (this.__P_172_0[name] && this.__P_172_0[name][1]) {
+                itemValue = this.__P_172_0[name][1].converter(itemValue);
+              }
               currentData[names[i]] = itemValue;
             } else {
               // if its not the last element, check if the object exists
               if (!currentData[names[i]]) {
                 currentData[names[i]] = {};
               }
-
               currentData = currentData[names[i]];
             }
           }
         }
-
         var model = qx.data.marshal.Json.createModel(data, includeBubbleEvents);
         this.setModel(model);
         return model;
       },
-
       /**
        * Responsible for syncing the data from entered in the form to the model.
        * Please keep in mind that this method only works if you create the form
-       * with <code>selfUpdate</code> set to true. Otherwise, this method will
-       * do nothing because updates will be synced automatically on every
-       * change.
+       * controller with <code>selfUpdate</code> parameter set to true. Otherwise,
+       * this method will do nothing because updates will be synced automatically
+       * on every change.
        */
       updateModel: function updateModel() {
         // only do stuff if self update is enabled and a model or target is set
         if (!this._selfUpdate || !this.getModel() || !this.getTarget()) {
           return;
         }
-
         var items = this.getTarget().getItems();
-
         for (var name in items) {
           var item = items[name];
-          var sourceProperty = this.__P_170_2(item) ? "modelSelection[0]" : "value";
-          var options = this.__P_170_0[name];
-          options = options && this.__P_170_0[name][1];
+          var sourceProperty = this.__P_172_2(item) ? "modelSelection[0]" : "value";
+          var options = this.__P_172_0[name];
+          options = options && this.__P_172_0[name][1];
           qx.data.SingleValueBinding.updateTarget(item, sourceProperty, this.getModel(), name, options);
         }
       },
@@ -237,114 +221,110 @@
       _applyTarget: function _applyTarget(value, old) {
         // if an old target is given, remove the binding
         if (old != null) {
-          this.__P_170_3(old);
-        } // do nothing if no target is set
+          this.__P_172_3(old);
+        }
 
-
+        // do nothing if no target is set
         if (this.getModel() == null) {
           return;
-        } // target and model are available
+        }
 
-
+        // target and model are available
         if (value != null) {
-          this.__P_170_4();
+          this.__P_172_4();
         }
       },
       // apply method
       _applyModel: function _applyModel(value, old) {
         // set the model to null to reset all items before removing them
-        if (this.__P_170_1 != null && value == null) {
-          this.__P_170_1.setModel(null);
-        } // first, get rid off all bindings (avoids wrong data population)
+        if (this.__P_172_1 != null && value == null) {
+          this.__P_172_1.setModel(null);
+        }
 
-
-        if (this.__P_170_1 != null && this.getTarget() != null) {
+        // first, get rid off all bindings (avoids wrong data population)
+        if (this.__P_172_1 != null && this.getTarget() != null) {
           var items = this.getTarget().getItems();
-
           for (var name in items) {
             var item = items[name];
-            var targetProperty = this.__P_170_2(item) ? "modelSelection[0]" : "value";
-
-            this.__P_170_1.removeTarget(item, targetProperty, name);
+            var targetProperty = this.__P_172_2(item) ? "modelSelection[0]" : "value";
+            this.__P_172_1.removeTarget(item, targetProperty, name);
           }
-        } // set the model of the object controller if available
+        }
 
+        // set the model of the object controller if available
+        if (this.__P_172_1 != null) {
+          this.__P_172_1.setModel(value);
+        }
 
-        if (this.__P_170_1 != null) {
-          this.__P_170_1.setModel(value);
-        } // do nothing is no target is set
-
-
+        // do nothing is no target is set
         if (this.getTarget() == null) {
           return;
         } else {
           // if form was validated with errors and model changes
           // the errors should be cleared see #8977
           this.getTarget().getValidationManager().reset();
-        } // model and target are available
+        }
 
-
+        // model and target are available
         if (value != null) {
-          this.__P_170_4();
+          this.__P_172_4();
         }
       },
-
       /**
        * Internal helper for setting up the bindings using
        * {@link qx.data.controller.Object#addTarget}. All bindings are set
        * up bidirectional.
        */
-      __P_170_4: function __P_170_4() {
+      __P_172_4: function __P_172_4() {
         // create the object controller
-        if (this.__P_170_1 == null) {
-          this.__P_170_1 = new qx.data.controller.Object(this.getModel());
-        } // get the form items
+        if (this.__P_172_1 == null) {
+          this.__P_172_1 = new qx.data.controller.Object(this.getModel());
+        }
 
+        // get the form items
+        var items = this.getTarget().getItems();
 
-        var items = this.getTarget().getItems(); // connect all items
-
+        // connect all items
         for (var name in items) {
           var item = items[name];
-          var targetProperty = this.__P_170_2(item) ? "modelSelection[0]" : "value";
-          var options = this.__P_170_0[name]; // try to bind all given items in the form
+          var targetProperty = this.__P_172_2(item) ? "modelSelection[0]" : "value";
+          var options = this.__P_172_0[name];
 
+          // try to bind all given items in the form
           try {
             if (options == null) {
-              this.__P_170_1.addTarget(item, targetProperty, name, !this._selfUpdate);
+              this.__P_172_1.addTarget(item, targetProperty, name, !this._selfUpdate);
             } else {
-              this.__P_170_1.addTarget(item, targetProperty, name, !this._selfUpdate, options[0], options[1]);
-            } // ignore not working items
-
+              this.__P_172_1.addTarget(item, targetProperty, name, !this._selfUpdate, options[0], options[1]);
+            }
+            // ignore not working items
           } catch (ex) {}
-        } // make sure the initial values of the model are taken for resetting [BUG #5874]
-
-
+        }
+        // make sure the initial values of the model are taken for resetting [BUG #5874]
         this.getTarget().redefineResetter();
       },
-
       /**
        * Internal helper for removing all set up bindings using
        * {@link qx.data.controller.Object#removeTarget}.
        *
        * @param oldTarget {qx.ui.form.Form} The form which has been removed.
        */
-      __P_170_3: function __P_170_3(oldTarget) {
+      __P_172_3: function __P_172_3(oldTarget) {
         // do nothing if the object controller has not been created
-        if (this.__P_170_1 == null) {
+        if (this.__P_172_1 == null) {
           return;
-        } // get the items
+        }
 
+        // get the items
+        var items = oldTarget.getItems();
 
-        var items = oldTarget.getItems(); // disconnect all items
-
+        // disconnect all items
         for (var name in items) {
           var item = items[name];
-          var targetProperty = this.__P_170_2(item) ? "modelSelection[0]" : "value";
-
-          this.__P_170_1.removeTarget(item, targetProperty, name);
+          var targetProperty = this.__P_172_2(item) ? "modelSelection[0]" : "value";
+          this.__P_172_1.removeTarget(item, targetProperty, name);
         }
       },
-
       /**
        * Returns whether the given item implements
        * {@link qx.ui.core.ISingleSelection} and
@@ -354,11 +334,10 @@
        *
        * @return {Boolean} true, if given item fits.
        */
-      __P_170_2: function __P_170_2(item) {
+      __P_172_2: function __P_172_2(item) {
         return qx.Class.hasInterface(item.constructor, qx.ui.core.ISingleSelection) && qx.Class.hasInterface(item.constructor, qx.ui.form.IModelSelection);
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -366,12 +345,12 @@
      */
     destruct: function destruct() {
       // dispose the object controller because the bindings need to be removed
-      if (this.__P_170_1) {
-        this.__P_170_1.dispose();
+      if (this.__P_172_1) {
+        this.__P_172_1.dispose();
       }
     }
   });
   qx.data.controller.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1664789581084
+//# sourceMappingURL=Form.js.map?dt=1672653489389

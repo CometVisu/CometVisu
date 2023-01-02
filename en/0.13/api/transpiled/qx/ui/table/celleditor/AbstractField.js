@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,13 +64,10 @@
       // interface implementation
       createCellEditor: function createCellEditor(cellInfo) {
         var cellEditor = this._createEditor();
-
         cellEditor.originalValue = cellInfo.value;
-
         if (cellInfo.value === null || cellInfo.value === undefined) {
           cellInfo.value = "";
         }
-
         cellEditor.setValue("" + cellInfo.value);
         cellEditor.addListener("appear", function () {
           cellEditor.selectAllText();
@@ -80,18 +76,16 @@
       },
       // interface implementation
       getCellEditorValue: function getCellEditorValue(cellEditor) {
-        var value = cellEditor.getValue(); // validation function will be called with new and old value
+        var value = cellEditor.getValue();
 
+        // validation function will be called with new and old value
         var validationFunc = this.getValidationFunction();
-
         if (validationFunc) {
           value = validationFunc(value, cellEditor.originalValue);
         }
-
         if (typeof cellEditor.originalValue == "number") {
           value = parseFloat(value);
         }
-
         return value;
       }
     }
@@ -99,4 +93,4 @@
   qx.ui.table.celleditor.AbstractField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractField.js.map?dt=1664789603718
+//# sourceMappingURL=AbstractField.js.map?dt=1672653513961

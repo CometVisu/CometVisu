@@ -170,26 +170,26 @@ festgelegten Timeouts ohne Aktivität wird die angegebene Seite der Visualisieru
 Code <code class="docutils literal notranslate"><span class="pre">&lt;timeout</span> <span class="pre">time=&quot;60&quot;</span> <span class="pre">target=&quot;Main1&quot;/&gt;</span></code> einzutragen.</p>
 <p>Nachstehend ein vollständiges Config-File für eine Visualisierungsseite mit Timeout-Plugin.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="nt">&lt;pages</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">design=</span><span class="s">&quot;metal&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;./visu_config.xsd&quot;</span> <span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;plugins&gt;</span>
-            <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;timeout&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/plugins&gt;</span>
-    <span class="nt">&lt;/meta&gt;</span>
-    <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Main1&quot;</span> <span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span> <span class="na">showfooter=</span><span class="s">&quot;false&quot;</span> <span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;timeout</span> <span class="na">time=</span><span class="s">&quot;60&quot;</span> <span class="na">target=</span><span class="s">&quot;Main1&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;text</span> <span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;label&gt;</span>Seite Main<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;/text&gt;</span>
-        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Seite2&quot;</span> <span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span> <span class="na">showfooter=</span><span class="s">&quot;false&quot;</span> <span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;text</span> <span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;2&quot;</span> <span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span> <span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;label&gt;</span>Seite2<span class="nt">&lt;/label&gt;</span>
-            <span class="nt">&lt;/text&gt;</span>
-        <span class="nt">&lt;/page&gt;</span>
-    <span class="nt">&lt;/page&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;./visu_config.xsd&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;timeout&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Main1&quot;</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeout</span><span class="w"> </span><span class="na">time=</span><span class="s">&quot;60&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Main1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;label&gt;</span>Seite<span class="w"> </span>Main<span class="nt">&lt;/label&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/text&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Seite2&quot;</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;label&gt;</span>Seite2<span class="nt">&lt;/label&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/text&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
@@ -207,7 +207,7 @@ Code <code class="docutils literal notranslate"><span class="pre">&lt;timeout</s
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

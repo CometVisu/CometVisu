@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 6,
-        "column": 0
+        "column": 0,
+        "index": 150
       },
       "end": {
-        "line": 80,
-        "column": 3
+        "line": 73,
+        "column": 3,
+        "index": 1943
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "__states": {
       "location": {
         "start": {
-          "line": 20,
-          "column": 2
+          "line": 17,
+          "column": 4,
+          "index": 446
         },
         "end": {
-          "line": 20,
-          "column": 16
+          "line": 17,
+          "column": 18,
+          "index": 460
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "addState": {
       "location": {
         "start": {
-          "line": 27,
-          "column": 4
+          "line": 24,
+          "column": 4,
+          "index": 576
         },
         "end": {
-          "line": 33,
-          "column": 5
+          "line": 30,
+          "column": 5,
+          "index": 737
         }
       },
       "jsdoc": {
@@ -84,12 +90,14 @@
     "hasState": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 968
         },
         "end": {
-          "line": 43,
-          "column": 5
+          "line": 40,
+          "column": 5,
+          "index": 1052
         }
       },
       "jsdoc": {
@@ -123,12 +131,14 @@
     "removeState": {
       "location": {
         "start": {
-          "line": 50,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1175
         },
         "end": {
-          "line": 55,
-          "column": 5
+          "line": 52,
+          "column": 5,
+          "index": 1316
         }
       },
       "jsdoc": {
@@ -154,12 +164,14 @@
     "replaceState": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 62,
+          "column": 4,
+          "index": 1647
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1935
         }
       },
       "jsdoc": {

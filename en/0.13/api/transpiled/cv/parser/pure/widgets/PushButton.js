@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* PushButton.js 
-   * 
+  /* PushButton.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.PushButton', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -60,12 +58,12 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'downValue': {
+          downValue: {
             target: 'downValue',
-            'default': '1'
+            "default": '1'
           },
-          'upValue': {
-            'default': '0'
+          upValue: {
+            "default": '0'
           }
         };
       },
@@ -81,4 +79,4 @@
   cv.parser.pure.widgets.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1664789562329
+//# sourceMappingURL=PushButton.js.map?dt=1672653470987

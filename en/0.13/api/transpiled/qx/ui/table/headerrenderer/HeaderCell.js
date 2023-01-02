@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,13 +51,15 @@
       layout.setColumnFlex(1, 1);
       layout.setColumnFlex(2, 1);
       this.setLayout(layout);
+
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "columnheader");
     },
     properties: {
       appearance: {
         refine: true,
         init: "table-header-cell"
       },
-
       /** header cell label */
       label: {
         check: "String",
@@ -66,7 +67,6 @@
         nullable: true,
         apply: "_applyLabel"
       },
-
       /** The icon URL of the sorting indicator */
       sortIcon: {
         check: "String",
@@ -75,7 +75,6 @@
         apply: "_applySortIcon",
         themeable: true
       },
-
       /** Icon URL */
       icon: {
         check: "String",
@@ -112,46 +111,36 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "label":
             control = new qx.ui.basic.Label(this.getLabel()).set({
               anonymous: true,
               allowShrinkX: true
             });
-
             this._add(control, {
               row: 0,
               column: 1
             });
-
             break;
-
           case "sort-icon":
             control = new qx.ui.basic.Image(this.getSortIcon());
             control.setAnonymous(true);
-
             this._add(control, {
               row: 0,
               column: 2
             });
-
             break;
-
           case "icon":
             control = new qx.ui.basic.Image(this.getIcon()).set({
               anonymous: true,
               allowShrinkX: true
             });
-
             this._add(control, {
               row: 0,
               column: 0
             });
-
             break;
         }
-
         return control || qx.ui.table.headerrenderer.HeaderCell.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -159,4 +148,4 @@
   qx.ui.table.headerrenderer.HeaderCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HeaderCell.js.map?dt=1664789604476
+//# sourceMappingURL=HeaderCell.js.map?dt=1672653514694

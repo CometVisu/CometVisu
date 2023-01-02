@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,32 +62,29 @@
    */
   qx.Class.define("qx.event.type.Event", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** The current event phase is the capturing phase. */
       CAPTURING_PHASE: 1,
-
       /** The event is currently being evaluated at the target */
       AT_TARGET: 2,
-
       /** The current event phase is the bubbling phase. */
       BUBBLING_PHASE: 3
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** {qx.Promise[]} promises returned by event handlers */
       _promises: null,
-
       /**
        * Initialize the fields of the event. The event must be initialized before
        * it can be dispatched.
@@ -119,7 +115,6 @@
         this._promises = null;
         return this;
       },
-
       /**
        * Create a clone of the event object, which is not automatically disposed
        * or pooled after an event dispatch.
@@ -136,7 +131,6 @@
         } else {
           var clone = qx.event.Pool.getInstance().getObject(this.constructor);
         }
-
         clone._type = this._type;
         clone._target = this._target;
         clone._currentTarget = this._currentTarget;
@@ -149,7 +143,6 @@
         clone._promises = this._promises;
         return clone;
       },
-
       /**
        * Stops event from all further processing. Execute this when the
        * current handler should have "exclusive rights" to the event
@@ -159,12 +152,10 @@
         if (this._bubbles) {
           this.stopPropagation();
         }
-
         if (this._cancelable) {
           this.preventDefault();
         }
       },
-
       /**
        * This method is used to prevent further propagation of an event during event
        * flow. If this method is called by any event listener the event will cease
@@ -175,7 +166,6 @@
       stopPropagation: function stopPropagation() {
         this._stopPropagation = true;
       },
-
       /**
        * Get whether further event propagation has been stopped.
        *
@@ -184,7 +174,6 @@
       getPropagationStopped: function getPropagationStopped() {
         return !!this._stopPropagation;
       },
-
       /**
        * Prevent the default action of cancelable events, e.g. opening the context
        * menu, ...
@@ -193,7 +182,6 @@
       preventDefault: function preventDefault() {
         this._preventDefault = true;
       },
-
       /**
        * Adds a promise to the list of promises returned by event handlers
        * @param promise {qx.Promise} the promise to add
@@ -210,7 +198,6 @@
           throw new Error(this.classname + ".addPromise not supported because qx.promise==false");
         }
       }),
-
       /**
        * Returns the array of promises, or null if there are no promises
        * @return {qx.Promise[]?}
@@ -223,7 +210,6 @@
           throw new Error(this.classname + ".getPromises not supported because qx.promise==false");
         }
       }),
-
       /**
        * Returns a promise for this event; if the event is defaultPrevented, the promise
        * is a rejected promise, otherwise it is fulfilled.  The promise returned will only
@@ -234,18 +220,15 @@
           if (this.getDefaultPrevented()) {
             return qx.Promise.reject();
           }
-
           if (this._promises === null) {
             return qx.Promise.resolve(true);
           }
-
           return qx.Promise.all(this._promises);
         },
         "false": function _false() {
           throw new Error(this.classname + ".promise not supported because qx.promise==false");
         }
       }),
-
       /**
        * Get whether the default action has been prevented
        *
@@ -254,7 +237,6 @@
       getDefaultPrevented: function getDefaultPrevented() {
         return !!this._preventDefault;
       },
-
       /**
        * The name of the event
        *
@@ -263,7 +245,6 @@
       getType: function getType() {
         return this._type;
       },
-
       /**
        * Override the event type
        *
@@ -272,7 +253,6 @@
       setType: function setType(type) {
         this._type = type;
       },
-
       /**
        * Used to indicate which phase of event flow is currently being evaluated.
        *
@@ -282,7 +262,6 @@
       getEventPhase: function getEventPhase() {
         return this._eventPhase;
       },
-
       /**
        * Override the event phase
        *
@@ -291,7 +270,6 @@
       setEventPhase: function setEventPhase(eventPhase) {
         this._eventPhase = eventPhase;
       },
-
       /**
        * The time (in milliseconds relative to the epoch) at which the event was created.
        *
@@ -300,7 +278,6 @@
       getTimeStamp: function getTimeStamp() {
         return this._timeStamp;
       },
-
       /**
        * Returns the event target to which the event was originally
        * dispatched.
@@ -311,7 +288,6 @@
       getTarget: function getTarget() {
         return this._target;
       },
-
       /**
        * Override event target.
        *
@@ -320,7 +296,6 @@
       setTarget: function setTarget(target) {
         this._target = target;
       },
-
       /**
        * Get the event target node whose event listeners are currently being
        * processed. This is particularly useful during event capturing and
@@ -332,7 +307,6 @@
       getCurrentTarget: function getCurrentTarget() {
         return this._currentTarget || this._target;
       },
-
       /**
        * Override current target.
        *
@@ -341,7 +315,6 @@
       setCurrentTarget: function setCurrentTarget(currentTarget) {
         this._currentTarget = currentTarget;
       },
-
       /**
        * Get the related event target. This is only configured for
        * events which also had an influences on another element e.g.
@@ -352,7 +325,6 @@
       getRelatedTarget: function getRelatedTarget() {
         return this._relatedTarget;
       },
-
       /**
        * Override related target.
        *
@@ -361,7 +333,6 @@
       setRelatedTarget: function setRelatedTarget(relatedTarget) {
         this._relatedTarget = relatedTarget;
       },
-
       /**
        * Get the original event target. This is only configured
        * for events which are fired by another event (often when
@@ -373,7 +344,6 @@
       getOriginalTarget: function getOriginalTarget() {
         return this._originalTarget;
       },
-
       /**
        * Override original target.
        *
@@ -382,7 +352,6 @@
       setOriginalTarget: function setOriginalTarget(originalTarget) {
         this._originalTarget = originalTarget;
       },
-
       /**
        * Check whether or not the event is a bubbling event. If the event can
        * bubble the value is true, else the value is false.
@@ -392,7 +361,6 @@
       getBubbles: function getBubbles() {
         return this._bubbles;
       },
-
       /**
        * Set whether the event bubbles.
        *
@@ -401,7 +369,6 @@
       setBubbles: function setBubbles(bubbles) {
         this._bubbles = bubbles;
       },
-
       /**
        * Get whether the event is cancelable
        *
@@ -410,7 +377,6 @@
       isCancelable: function isCancelable() {
         return this._cancelable;
       },
-
       /**
        * Set whether the event is cancelable
        *
@@ -424,4 +390,4 @@
   qx.event.type.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1664789585645
+//# sourceMappingURL=Event.js.map?dt=1672653496168

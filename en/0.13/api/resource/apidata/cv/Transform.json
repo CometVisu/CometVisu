@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 45,
-        "column": 0
+        "line": 44,
+        "column": 0,
+        "index": 1559
       },
       "end": {
-        "line": 259,
-        "column": 3
+        "line": 272,
+        "column": 3,
+        "index": 9571
       }
     },
     "jsdoc": {
@@ -46,12 +48,14 @@
     "registry": {
       "location": {
         "start": {
-          "line": 54,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1767
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 83,
+          "column": 5,
+          "index": 2296
         }
       },
       "type": "variable",
@@ -60,12 +64,14 @@
     "addTransform": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2852
         },
         "end": {
-          "line": 102,
-          "column": 5
+          "line": 103,
+          "column": 5,
+          "index": 3201
         }
       },
       "jsdoc": {
@@ -98,12 +104,14 @@
     "clip": {
       "location": {
         "start": {
-          "line": 113,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3578
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 117,
+          "column": 5,
+          "index": 3744
         }
       },
       "jsdoc": {
@@ -158,12 +166,14 @@
     "clipInt": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 128,
+          "column": 4,
+          "index": 4139
         },
         "end": {
-          "line": 130,
-          "column": 5
+          "line": 131,
+          "column": 5,
+          "index": 4320
         }
       },
       "jsdoc": {
@@ -218,12 +228,14 @@
     "encodeBusAndRaw": {
       "location": {
         "start": {
-          "line": 139,
-          "column": 4
+          "line": 140,
+          "column": 4,
+          "index": 4656
         },
         "end": {
-          "line": 171,
-          "column": 5
+          "line": 173,
+          "column": 5,
+          "index": 5921
         }
       },
       "jsdoc": {
@@ -261,12 +273,14 @@
     "encode": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 182,
+          "column": 4,
+          "index": 6207
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 184,
+          "column": 5,
+          "index": 6292
         }
       },
       "jsdoc": {
@@ -304,12 +318,14 @@
     "decode": {
       "location": {
         "start": {
-          "line": 190,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 6593
         },
         "end": {
-          "line": 234,
-          "column": 5
+          "line": 244,
+          "column": 5,
+          "index": 8517
         }
       },
       "jsdoc": {
@@ -347,12 +363,14 @@
     "__getFirstElement": {
       "location": {
         "start": {
-          "line": 241,
-          "column": 4
+          "line": 251,
+          "column": 4,
+          "index": 8711
         },
         "end": {
-          "line": 257,
-          "column": 5
+          "line": 270,
+          "column": 5,
+          "index": 9563
         }
       },
       "jsdoc": {

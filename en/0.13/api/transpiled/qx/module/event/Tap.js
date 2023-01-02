@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,14 +54,12 @@
        * List of event types to be normalized
        */
       TYPES: ["tap", "longtap", "dbltap"],
-
       /**
        * List methods to be attached to gesture event
        * objects
        * @internal
        */
       BIND_METHODS: ["getViewportLeft", "getViewportTop", "getDocumentLeft", "getDocumentTop", "getScreenLeft", "getScreenTop"],
-
       /**
        * Get the horizontal coordinate at which the event occurred relative
        * to the viewport.
@@ -72,7 +69,6 @@
       getViewportLeft: function getViewportLeft() {
         return this._original.getViewportLeft();
       },
-
       /**
        * Get the vertical coordinate at which the event occurred relative
        * to the viewport.
@@ -83,7 +79,6 @@
       getViewportTop: function getViewportTop() {
         return this._original.getViewportTop();
       },
-
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -94,7 +89,6 @@
       getDocumentLeft: function getDocumentLeft() {
         return this._original.getDocumentLeft();
       },
-
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -105,7 +99,6 @@
       getDocumentTop: function getDocumentTop() {
         return this._original.getDocumentTop();
       },
-
       /**
        * Get the horizontal coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -118,7 +111,6 @@
       getScreenLeft: function getScreenLeft() {
         return this._original.getScreenLeft();
       },
-
       /**
        * Get the vertical coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -131,7 +123,6 @@
       getScreenTop: function getScreenTop() {
         return this._original.getScreenTop();
       },
-
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -145,15 +136,12 @@
         if (!event) {
           return event;
         }
-
         var bindMethods = qx.module.event.Tap.BIND_METHODS;
-
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Tap[bindMethods[i]].bind(event);
           }
         }
-
         return event;
       }
     },
@@ -164,4 +152,4 @@
   qx.module.event.Tap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tap.js.map?dt=1664789590358
+//# sourceMappingURL=Tap.js.map?dt=1672653501660

@@ -8,11 +8,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IHandler.js 
-   * 
+  /* IHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -46,11 +45,10 @@
        * @param message {Map}
        * @param config {Map?} optional configuration of this message for the handler
        */
-      handleMessage: function handleMessage(message, config) {} // jshint ignore:line
-
+      handleMessage: function handleMessage(message, config) {}
     }
   });
   cv.core.notifications.IHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IHandler.js.map?dt=1664789561087
+//# sourceMappingURL=IHandler.js.map?dt=1672653469281

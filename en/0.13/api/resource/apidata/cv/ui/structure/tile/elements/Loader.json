@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 949
       },
       "end": {
-        "line": 142,
-        "column": 3
+        "line": 149,
+        "column": 3,
+        "index": 4818
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1210
         },
         "end": {
-          "line": 65,
-          "column": 5
+          "line": 64,
+          "column": 5,
+          "index": 2110
         }
       },
       "type": "function",
@@ -61,12 +65,14 @@
     "loadXml": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 66,
+          "column": 4,
+          "index": 2117
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 102,
+          "column": 5,
+          "index": 3523
         }
       },
       "type": "function",
@@ -75,12 +81,14 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 3530
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 136,
+          "column": 5,
+          "index": 4596
         }
       },
       "type": "function",
@@ -174,6 +182,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -198,6 +207,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -320,12 +330,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 135,
-        "column": 2
+        "line": 139,
+        "column": 2,
+        "index": 4605
       },
       "end": {
-        "line": 141,
-        "column": 3
+        "line": 148,
+        "column": 3,
+        "index": 4814
       }
     }
   },

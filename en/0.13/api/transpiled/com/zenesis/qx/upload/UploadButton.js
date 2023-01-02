@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -49,4 +48,4 @@
   com.zenesis.qx.upload.UploadButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UploadButton.js.map?dt=1664789614723
+//# sourceMappingURL=UploadButton.js.map?dt=1672653524499

@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* IconConfig.js 
-   * 
+  /* IconConfig.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.IconConfig', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -186,6 +184,7 @@
           }
         },
         // Do not remove this line: Dynamic Icons Start
+
         'audio_audio': {
           '*': {
             'white': '*/white',
@@ -13177,12 +13176,13 @@
               '*': cv.util.IconTools.svgKUF('weather_winter')
             }
           }
-        } // Do not remove this line: Dynamic Icons End
+        }
 
+        // Do not remove this line: Dynamic Icons End
       }
     }
   });
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1664789614565
+//# sourceMappingURL=IconConfig.js.map?dt=1672653524350

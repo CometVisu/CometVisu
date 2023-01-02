@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* AbstractActionHandler.js 
-   * 
+  /* AbstractActionHandler.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -40,7 +39,6 @@
   qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
     extend: qx.core.Object,
     type: 'abstract',
-
     /*
     ******************************************************
       PROPERTIES
@@ -60,7 +58,6 @@
         init: ''
       }
     },
-
     /*
     ***********************************************
       EVENTS
@@ -73,4 +70,4 @@
   cv.core.notifications.actions.AbstractActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractActionHandler.js.map?dt=1664789561369
+//# sourceMappingURL=AbstractActionHandler.js.map?dt=1672653469552

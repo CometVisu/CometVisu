@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 74,
-        "column": 0
+        "column": 0,
+        "index": 2431
       },
       "end": {
-        "line": 122,
-        "column": 3
+        "line": 119,
+        "column": 3,
+        "index": 3593
       }
     },
     "jsdoc": {
@@ -44,11 +46,13 @@
       "location": {
         "start": {
           "line": 85,
-          "column": 8
+          "column": 4,
+          "index": 2732
         },
         "end": {
           "line": 87,
-          "column": 9
+          "column": 5,
+          "index": 2807
         }
       },
       "jsdoc": {
@@ -65,12 +69,14 @@
     "accordion": {
       "location": {
         "start": {
-          "line": 99,
-          "column": 8
+          "line": 98,
+          "column": 4,
+          "index": 3148
         },
         "end": {
-          "line": 108,
-          "column": 9
+          "line": 107,
+          "column": 5,
+          "index": 3428
         }
       },
       "jsdoc": {
@@ -112,28 +118,30 @@
   "construct": {
     "location": {
       "start": {
-        "line": 112,
-        "column": 15
+        "line": 110,
+        "column": 2,
+        "index": 3437
       },
       "end": {
-        "line": 114,
-        "column": 5
+        "line": 112,
+        "column": 3,
+        "index": 3501
       }
-    },
-    "jsdoc": {}
+    }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 117,
-        "column": 11
+        "line": 114,
+        "column": 2,
+        "index": 3506
       },
       "end": {
-        "line": 121,
-        "column": 5
+        "line": 118,
+        "column": 3,
+        "index": 3589
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

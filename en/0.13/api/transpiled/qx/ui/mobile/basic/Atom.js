@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,37 +56,32 @@
    */
   qx.Class.define("qx.ui.mobile.basic.Atom", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
      */
     construct: function construct(label, icon) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
-      this.__P_364_0(label, icon);
-
+      this.__P_381_0(label, icon);
       this.addCssClass("gap");
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "atom"
       },
-
       /** The label/caption/text of the qx.ui.mobile.basic.Atom instance */
       label: {
         apply: "_applyLabel",
@@ -95,7 +89,6 @@
         check: "String",
         event: "changeLabel"
       },
-
       /** Any URI String supported by qx.ui.mobile.basic.Image to display an icon */
       icon: {
         check: "String",
@@ -103,7 +96,6 @@
         nullable: true,
         event: "changeIcon"
       },
-
       /**
        * Configure the visibility of the sub elements/widgets.
        * Possible values: both, text, icon
@@ -114,7 +106,6 @@
         inheritable: true,
         apply: "_applyShow"
       },
-
       /**
        * The position of the icon in relation to the text.
        * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
@@ -126,60 +117,53 @@
       }
     },
     members: {
-      __P_364_1: null,
-      __P_364_2: null,
-      __P_364_3: null,
-      __P_364_4: null,
+      __P_381_1: null,
+      __P_381_2: null,
+      __P_381_3: null,
+      __P_381_4: null,
       // property apply
       _applyIconPosition: function _applyIconPosition(value, old) {
         var verticalLayout = ["top", "bottom"].indexOf(value) != -1;
-        var hasNoLabel = !this.__P_364_2;
-
-        this.__P_364_5(verticalLayout, hasNoLabel);
-
+        var hasNoLabel = !this.__P_381_2;
+        this.__P_381_5(verticalLayout, hasNoLabel);
         var isReverse = ["right", "bottom"].indexOf(value) != -1;
-
-        this.__P_364_4.setLayout(this.__P_364_1);
-
-        this.__P_364_1.setReversed(isReverse);
-
+        this.__P_381_4.setLayout(this.__P_381_1);
+        this.__P_381_1.setReversed(isReverse);
         this._domUpdated();
       },
       // property apply
       _applyShow: function _applyShow(value, old) {
-        if (this.__P_364_2) {
-          if (value === 'both' || value === 'label') {
-            this.__P_364_2.show();
-          } else if (value === 'icon') {
-            this.__P_364_2.exclude();
+        if (this.__P_381_2) {
+          if (value === "both" || value === "label") {
+            this.__P_381_2.show();
+          } else if (value === "icon") {
+            this.__P_381_2.exclude();
           }
         }
-
-        if (this.__P_364_3) {
-          if (value === 'both' || value === 'icon') {
-            this.__P_364_3.show();
-          } else if (value === 'label') {
-            this.__P_364_3.exclude();
+        if (this.__P_381_3) {
+          if (value === "both" || value === "icon") {
+            this.__P_381_3.show();
+          } else if (value === "label") {
+            this.__P_381_3.exclude();
           }
         }
       },
       // property apply
       _applyLabel: function _applyLabel(value, old) {
-        if (this.__P_364_2) {
-          this.__P_364_2.setValue(value);
+        if (this.__P_381_2) {
+          this.__P_381_2.setValue(value);
         } else {
-          this.__P_364_2 = this._createLabelWidget(value);
+          this.__P_381_2 = this._createLabelWidget(value);
         }
       },
       // property apply
       _applyIcon: function _applyIcon(value, old) {
-        if (this.__P_364_3) {
-          this.__P_364_3.setSource(value);
+        if (this.__P_381_3) {
+          this.__P_381_3.setSource(value);
         } else {
-          this.__P_364_3 = this._createIconWidget(value);
+          this.__P_381_3 = this._createIconWidget(value);
         }
       },
-
       /**
        * Takes care of lazily creating the layout and disposing an already
        * present layout if necessary.
@@ -187,51 +171,49 @@
        * @param verticalLayout {Boolean} Whether icon and label should be vertically aligned.
        * @param hasNoLabel {Boolean} Whether the atom currently contains a label.
        */
-      __P_364_5: function __P_364_5(verticalLayout, hasNoLabel) {
+      __P_381_5: function __P_381_5(verticalLayout, hasNoLabel) {
         if (verticalLayout || hasNoLabel) {
-          if (this.__P_364_1) {
-            if (this.__P_364_1.classname !== "qx.ui.mobile.layout.VBox") {
-              this.__P_364_1.dispose();
-
-              this.__P_364_1 = new qx.ui.mobile.layout.VBox();
+          if (this.__P_381_1) {
+            if (this.__P_381_1.classname !== "qx.ui.mobile.layout.VBox") {
+              this.__P_381_1.dispose();
+              this.__P_381_1 = new qx.ui.mobile.layout.VBox();
             }
-          } // layout == null
-          else {
-              this.__P_364_1 = new qx.ui.mobile.layout.VBox();
-            }
-        } // horizontal layout and has label
-        else {
-            if (this.__P_364_1) {
-              if (this.__P_364_1.classname !== "qx.ui.mobile.layout.HBox") {
-                this.__P_364_1.dispose();
-
-                this.__P_364_1 = new qx.ui.mobile.layout.HBox();
-              }
-            } // layout == null
-            else {
-                this.__P_364_1 = new qx.ui.mobile.layout.HBox();
-              }
           }
+          // layout == null
+          else {
+            this.__P_381_1 = new qx.ui.mobile.layout.VBox();
+          }
+        }
+        // horizontal layout and has label
+        else {
+          if (this.__P_381_1) {
+            if (this.__P_381_1.classname !== "qx.ui.mobile.layout.HBox") {
+              this.__P_381_1.dispose();
+              this.__P_381_1 = new qx.ui.mobile.layout.HBox();
+            }
+          }
+          // layout == null
+          else {
+            this.__P_381_1 = new qx.ui.mobile.layout.HBox();
+          }
+        }
       },
-
       /**
        * Returns the icon widget.
        *
        * @return {qx.ui.mobile.basic.Image} The icon widget.
        */
       getIconWidget: function getIconWidget() {
-        return this.__P_364_3;
+        return this.__P_381_3;
       },
-
       /**
        * Returns the label widget.
        *
        * @return {qx.ui.mobile.basic.Label} The label widget.
        */
       getLabelWidget: function getLabelWidget() {
-        return this.__P_364_2;
+        return this.__P_381_2;
       },
-
       /**
        * Creates the icon widget.
        *
@@ -245,7 +227,6 @@
         iconWidget.addCssClass("gap");
         return iconWidget;
       },
-
       /**
        * Creates the label widget.
        *
@@ -259,7 +240,6 @@
         labelWidget.addCssClass("gap");
         return labelWidget;
       },
-
       /**
        * This function is responsible for creating and adding 2 children controls to the Button widget.
        * A label and an icon.
@@ -267,70 +247,55 @@
        * @param icon {String} A path to an image resource
        *
        */
-      __P_364_0: function __P_364_0(label, icon) {
-        this.__P_364_2 = this._createLabelWidget(label);
-
+      __P_381_0: function __P_381_0(label, icon) {
+        this.__P_381_2 = this._createLabelWidget(label);
         if (label) {
           this.setLabel(label);
         }
-
-        this.__P_364_3 = this._createIconWidget(icon);
-
+        this.__P_381_3 = this._createIconWidget(icon);
         if (icon) {
           this.setIcon(icon);
         } else {
-          this.__P_364_3.exclude();
+          this.__P_381_3.exclude();
+        }
+        var verticalLayout = ["top", "bottom"].indexOf(this.getIconPosition()) != -1;
+        // If Atom has no Label, only Icon is shown, and should vertically centered.
+        var hasNoLabel = !this.__P_381_2;
+        this.__P_381_5(verticalLayout, hasNoLabel);
+        if (this.__P_381_4) {
+          this.__P_381_4.dispose();
+        }
+        this.__P_381_4 = new qx.ui.mobile.container.Composite(this.__P_381_1);
+        this.__P_381_4.addCssClass("qx-flex-center");
+        this.__P_381_4.setAnonymous(true);
+        if (this.__P_381_3) {
+          this.__P_381_4.add(this.__P_381_3);
+        }
+        if (this.__P_381_2) {
+          this.__P_381_2.addCssClass("qx-flex-center");
+          this.__P_381_4.add(this.__P_381_2);
         }
 
-        var verticalLayout = ["top", "bottom"].indexOf(this.getIconPosition()) != -1; // If Atom has no Label, only Icon is shown, and should vertically centered.
-
-        var hasNoLabel = !this.__P_364_2;
-
-        this.__P_364_5(verticalLayout, hasNoLabel);
-
-        if (this.__P_364_4) {
-          this.__P_364_4.dispose();
+        // Show/Hide Label/Icon
+        if (this.getShow() === "icon" && this.__P_381_2) {
+          this.__P_381_2.exclude();
         }
-
-        this.__P_364_4 = new qx.ui.mobile.container.Composite(this.__P_364_1);
-
-        this.__P_364_4.addCssClass("qx-flex-center");
-
-        this.__P_364_4.setAnonymous(true);
-
-        if (this.__P_364_3) {
-          this.__P_364_4.add(this.__P_364_3);
+        if (this.getShow() === "label" && this.__P_381_3) {
+          this.__P_381_3.exclude();
         }
-
-        if (this.__P_364_2) {
-          this.__P_364_2.addCssClass("qx-flex-center");
-
-          this.__P_364_4.add(this.__P_364_2);
-        } // Show/Hide Label/Icon
-
-
-        if (this.getShow() === 'icon' && this.__P_364_2) {
-          this.__P_364_2.exclude();
-        }
-
-        if (this.getShow() === 'label' && this.__P_364_3) {
-          this.__P_364_3.exclude();
-        }
-
-        this._add(this.__P_364_4);
+        this._add(this.__P_381_4);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_364_1", "__P_364_2", "__P_364_3", "__P_364_4");
+      this._disposeObjects("__P_381_1", "__P_381_2", "__P_381_3", "__P_381_4");
     }
   });
   qx.ui.mobile.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1664789599629
+//# sourceMappingURL=Atom.js.map?dt=1672653510307

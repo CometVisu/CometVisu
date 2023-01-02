@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* NotificationCenterBadge.js 
-   * 
+  /* NotificationCenterBadge.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.NotificationCenterBadge', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -77,4 +75,4 @@
   cv.parser.pure.widgets.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1664789562233
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1672653470894

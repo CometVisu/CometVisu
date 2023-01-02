@@ -38,7 +38,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,70 +69,62 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired when the lifecycle method {@link #start} of any {@link qx.ui.mobile.page.Page page} is called */
-      "start": "qx.event.type.Event",
-
+      start: "qx.event.type.Event",
       /** Fired when the lifecycle method {@link #stop} of any {@link qx.ui.mobile.page.Page page} is called */
-      "stop": "qx.event.type.Event",
-
+      stop: "qx.event.type.Event",
       /**
        * Fired when the method {@link qx.ui.mobile.page.Page#back} is called. It is possible to prevent
        * the <code>back</code> event on {@link qx.ui.mobile.page.Page} by calling the
        * {@link qx.event.type.Event#preventDefault}. Data indicating whether the action
        * was triggered by a key event or not.
        */
-      "back": "qx.event.type.Data",
-
+      back: "qx.event.type.Data",
       /** Fired when a {@link qx.ui.mobile.dialog.Popup popup} appears on screen. */
-      "popup": "qx.event.type.Event"
+      popup: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_93_0: null,
-      __P_93_1: null,
+      __P_96_0: null,
+      __P_96_1: null,
       // interface method
       main: function main() {
-        this.__P_93_0 = this._createRootWidget();
-
+        this.__P_96_0 = this._createRootWidget();
         if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
-          this.__P_93_0.setShowScrollbarY(false);
+          this.__P_96_0.setShowScrollbarY(false);
         }
       },
-
       /**
        * Returns the application's root widget.
        *
        * @return {qx.ui.mobile.core.Widget} The application's root widget.
        */
       getRoot: function getRoot() {
-        return this.__P_93_0;
+        return this.__P_96_0;
       },
-
       /**
        * Returns the application's routing.
        *
        * @return {qx.application.Routing} The application's routing.
        */
       getRouting: function getRouting() {
-        if (!this.__P_93_1) {
-          this.__P_93_1 = new qx.application.Routing();
+        if (!this.__P_96_1) {
+          this.__P_96_1 = new qx.application.Routing();
         }
-
-        return this.__P_93_1;
+        return this.__P_96_1;
       },
-
       /**
        * Creates the application's root widget. Override this function to create
        * your own root widget.
@@ -144,17 +135,20 @@
         return new qx.ui.mobile.core.Root();
       },
       // interface method
-      finalize: function finalize() {// empty
+      finalize: function finalize() {
+        // empty
       },
       // interface method
-      close: function close() {// empty
+      close: function close() {
+        // empty
       },
       // interface method
-      terminate: function terminate() {// empty
+      terminate: function terminate() {
+        // empty
       }
     }
   });
   qx.application.Mobile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mobile.js.map?dt=1664789574939
+//# sourceMappingURL=Mobile.js.map?dt=1672653483638

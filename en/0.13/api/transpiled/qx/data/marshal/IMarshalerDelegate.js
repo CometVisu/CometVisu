@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
        * @return {Boolean} <code>true</code> if the set should be ignored
        */
       ignore: function ignore(properties, parentProperty, depth) {},
-
       /**
        * Gives the possibility to change the names given in the data to convert
        * to something different.
@@ -64,7 +62,6 @@
        *   the model.
        */
       getPropertyMapping: function getPropertyMapping(property, properties) {},
-
       /**
        * Determines the user defined class for the given properties string.
        * This class could contain additional methods but needs to have the
@@ -87,7 +84,6 @@
        *   will be returned, the marshaler will create a class.
        */
       getModelClass: function getModelClass(properties, object, parentProperty, depth) {},
-
       /**
        * Returns the class which the created model class uses as superclass.
        *
@@ -101,7 +97,6 @@
        *   will be returned, {@link qx.core.Object} will be used as superclass.
        */
       getModelSuperClass: function getModelSuperClass(properties, parentProperty, depth) {},
-
       /**
        * Returns the mixins which should be included to the class, created by the
        * marshaler and identified by the given properties string.
@@ -117,7 +112,6 @@
        *   will be included.
        */
       getModelMixins: function getModelMixins(properties, parentProperty, depth) {},
-
       /**
        * Returns the validation rules which should be added to the created class
        * for the given property. This method will be called for every property.
@@ -131,7 +125,6 @@
        *   {@link qx.core.Property} for more details.
        */
       getValidationRule: function getValidationRule(properties, propertyName) {},
-
       /**
        * Returns the array class which should be used by the marshaler. The passed
        * parameters can be used to determine the array class. The return array class
@@ -144,7 +137,6 @@
        *   If <code>null</code> will be returned, {@link qx.data.Array} will be used as array class.
        */
       getArrayClass: function getArrayClass(parentProperty, depth) {},
-
       /**
        * Converts a given object into a hash which will be used to identify the
        * classes under the namespace <code>qx.data.model</code>.
@@ -161,4 +153,4 @@
   qx.data.marshal.IMarshalerDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IMarshalerDelegate.js.map?dt=1664789581519
+//# sourceMappingURL=IMarshalerDelegate.js.map?dt=1672653489770

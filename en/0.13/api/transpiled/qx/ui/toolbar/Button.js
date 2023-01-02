@@ -6,7 +6,6 @@
         "require": true
       },
       "qx.ui.form.Button": {
-        "construct": true,
         "require": true
       },
       "qx.ui.toolbar.PartContainer": {},
@@ -14,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,28 +34,16 @@
 
   /**
    * The normal toolbar button. Like a normal {@link qx.ui.form.Button}
-   * but with a style matching the toolbar and without keyboard support.
+   * but with a style matching the toolbar.
    */
   qx.Class.define("qx.ui.toolbar.Button", {
     extend: qx.ui.form.Button,
-
-    /*
-    *****************************************************************************
-       CONSTRUCTOR
-    *****************************************************************************
-    */
-    construct: function construct(label, icon, command) {
-      qx.ui.form.Button.constructor.call(this, label, icon, command); // Toolbar buttons should not support the keyboard events
-
-      this.removeListener("keydown", this._onKeyDown);
-      this.removeListener("keyup", this._onKeyUp);
-    },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       appearance: {
         refine: true,
@@ -66,20 +52,14 @@
       show: {
         refine: true,
         init: "inherit"
-      },
-      focusable: {
-        refine: true,
-        init: false
       }
     },
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.Button.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
-
-
+        qx.ui.toolbar.Button.superclass.prototype._applyVisibility.call(this, value, old);
+        // trigger a appearance recalculation of the parent
         var parent = this.getLayoutParent();
-
         if (parent && parent instanceof qx.ui.toolbar.PartContainer) {
           qx.ui.core.queue.Appearance.add(parent);
         }
@@ -89,4 +69,4 @@
   qx.ui.toolbar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1664789605540
+//# sourceMappingURL=Button.js.map?dt=1672653515762

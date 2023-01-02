@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 31,
-        "column": 0
+        "column": 0,
+        "index": 989
       },
       "end": {
-        "line": 175,
-        "column": 3
+        "line": 159,
+        "column": 3,
+        "index": 4932
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "__callback": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 1052
         },
         "end": {
-          "line": 35,
-          "column": 21
+          "line": 33,
+          "column": 20,
+          "index": 1068
         }
       },
       "type": "variable",
@@ -51,12 +55,14 @@
     "__originalOnError": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1075
         },
         "end": {
-          "line": 37,
-          "column": 28
+          "line": 35,
+          "column": 27,
+          "index": 1098
         }
       },
       "type": "variable",
@@ -65,12 +71,14 @@
     "__context": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 37,
+          "column": 4,
+          "index": 1105
         },
         "end": {
-          "line": 39,
-          "column": 20
+          "line": 37,
+          "column": 19,
+          "index": 1120
         }
       },
       "type": "variable",
@@ -79,12 +87,14 @@
     "__isGlobalErrorHandlingEnabled": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1276
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1528
         }
       },
       "jsdoc": {
@@ -109,12 +119,14 @@
     "setErrorHandler": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 58,
+          "column": 4,
+          "index": 1813
         },
         "end": {
-          "line": 95,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2893
         }
       },
       "jsdoc": {
@@ -151,12 +163,14 @@
     "__onErrorWindow": {
       "location": {
         "start": {
-          "line": 109,
-          "column": 4
+          "line": 103,
+          "column": 4,
+          "index": 3340
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 3565
         }
       },
       "jsdoc": {
@@ -210,12 +224,14 @@
     "observeMethod": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 4
+          "line": 118,
+          "column": 4,
+          "index": 3864
         },
         "end": {
-          "line": 147,
-          "column": 5
+          "line": 135,
+          "column": 5,
+          "index": 4325
         }
       },
       "jsdoc": {
@@ -249,12 +265,14 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 4493
         },
         "end": {
-          "line": 160,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 4603
         }
       },
       "jsdoc": {
@@ -284,15 +302,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 164,
-        "column": 10
+        "line": 149,
+        "column": 2,
+        "index": 4612
       },
       "end": {
-        "line": 174,
-        "column": 3
+        "line": 158,
+        "column": 3,
+        "index": 4928
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

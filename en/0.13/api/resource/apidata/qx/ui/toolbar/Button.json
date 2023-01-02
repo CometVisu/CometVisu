@@ -10,46 +10,37 @@
     "location": {
       "start": {
         "line": 24,
-        "column": 0
+        "column": 0,
+        "index": 629
       },
       "end": {
-        "line": 86,
-        "column": 3
+        "line": 56,
+        "column": 3,
+        "index": 1393
       }
     },
     "jsdoc": {
       "@description": [
         {
           "name": "@description",
-          "body": "<p>The normal toolbar button. Like a normal {@link qx.ui.form.Button}\n but with a style matching the toolbar and without keyboard support.</p>"
+          "body": "<p>The normal toolbar button. Like a normal {@link qx.ui.form.Button}\n but with a style matching the toolbar.</p>"
         }
       ]
     }
   },
   "type": "class",
-  "construct": {
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 14
-      },
-      "end": {
-        "line": 43,
-        "column": 3
-      }
-    },
-    "jsdoc": {}
-  },
   "properties": {
     "appearance": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 908
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 976
         }
       },
       "name": "appearance",
@@ -67,12 +58,14 @@
     "show": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 983
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 42,
+          "column": 5,
+          "index": 1038
         }
       },
       "name": "show",
@@ -84,40 +77,20 @@
       "appearsIn": {
         "qx.ui.basic.Atom": "class"
       }
-    },
-    "focusable": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4
-        },
-        "end": {
-          "line": 72,
-          "column": 5
-        }
-      },
-      "name": "focusable",
-      "propertyType": "new",
-      "refine": true,
-      "init": false,
-      "defaultValue": false,
-      "overriddenFrom": "qx.ui.form.Button",
-      "appearsIn": {
-        "qx.ui.form.Button": "class",
-        "qx.ui.core.Widget": "class"
-      }
     }
   },
   "members": {
     "_applyVisibility": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 47,
+          "column": 4,
+          "index": 1080
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 54,
+          "column": 5,
+          "index": 1385
         }
       },
       "jsdoc": {},
@@ -287,6 +260,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -311,6 +285,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

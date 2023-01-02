@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
-
   /**
    * This class acts as abstract class for all decorators. It offers the
    * properties for the insets handling. Each decorator has to define its own
@@ -45,8 +43,7 @@
     implement: [qx.ui.decoration.IDecorator],
     type: "abstract",
     members: {
-      __P_317_0: null,
-
+      __P_332_0: null,
       /**
        * Abstract method. Should return a map containing the default insets of
        * the decorator. This could look like this:
@@ -63,7 +60,6 @@
       _getDefaultInsets: function _getDefaultInsets() {
         throw new Error("Abstract method called.");
       },
-
       /**
        * Abstract method. Should return an boolean value if the decorator is
        * already initialized or not.
@@ -72,33 +68,30 @@
       _isInitialized: function _isInitialized() {
         throw new Error("Abstract method called.");
       },
-
       /**
        * Resets the insets.
        */
       _resetInsets: function _resetInsets() {
-        this.__P_317_0 = null;
+        this.__P_332_0 = null;
       },
       // interface implementation
       getInsets: function getInsets() {
-        if (!this.__P_317_0) {
-          this.__P_317_0 = this._getDefaultInsets();
+        if (!this.__P_332_0) {
+          this.__P_332_0 = this._getDefaultInsets();
         }
-
-        return this.__P_317_0;
+        return this.__P_332_0;
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__P_317_0 = null;
+      this.__P_332_0 = null;
     }
   });
   qx.ui.decoration.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789595217
+//# sourceMappingURL=Abstract.js.map?dt=1672653506443

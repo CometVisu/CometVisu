@@ -17,11 +17,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Client.js 
-   * 
+  /* Client.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -43,7 +42,6 @@
   qx.Class.define('cv.io.mqtt.Client', {
     extend: qx.core.Object,
     implement: cv.io.IClient,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -54,10 +52,9 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_508_0 = {};
-      this.__P_508_1 = {};
+      this.__P_523_0 = {};
+      this.__P_523_1 = {};
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -75,7 +72,6 @@
         event: 'changedServer'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -87,7 +83,6 @@
        */
       _client: null,
       _type: null,
-
       /**
        * Returns the current backend configuration
        * @return {Map}
@@ -98,7 +93,6 @@
       getType: function getType() {
         return this._type;
       },
-
       /**
        * Returns true, when the backend provides a special data provider for this kins of data
        * @param name {String}
@@ -107,7 +101,6 @@
       hasProvider: function hasProvider(name) {
         return false;
       },
-
       /**
        * URL to the provided data
        * @param name
@@ -116,7 +109,6 @@
       getProviderUrl: function getProviderUrl(name) {
         return null;
       },
-
       /**
        * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.
        * @param name {String}
@@ -124,7 +116,9 @@
       getProviderConvertFunction: function getProviderConvertFunction(name) {
         return null;
       },
-
+      getProviderData: function getProviderData(name, format) {
+        return null;
+      },
       /**
        * Set a subset of addresses the client should request initially (e.g. the ones one the start page).
        * This can be used to increase the init state loading speed by sending an initial request with a smaller
@@ -132,7 +126,6 @@
        * @param addresses {Array}
        */
       setInitialAddresses: function setInitialAddresses(addresses) {},
-
       /**
        * Subscribe to the addresses in the parameter. The second parameter
        * (filter) is optional
@@ -143,12 +136,10 @@
        */
       subscribe: function subscribe(addresses, filters) {
         var _this = this;
-
         addresses.forEach(function (value) {
           return _this._client.subscribe(value);
         });
       },
-
       /**
        * This function starts the communication by a login and then runs the
        * ongoing communication task
@@ -162,22 +153,20 @@
        */
       login: function login(loginOnly, credentials, callback, context) {
         var self = this;
+
         /**
          * @param param
          */
-
         function onConnect(param) {
           self.setConnected(true);
-
           if (callback) {
             callback.call(context);
           }
         }
+
         /**
          * @param param
          */
-
-
         function onFailure(param) {
           self.setConnected(false);
           var n = cv.core.notifications.Router.getInstance();
@@ -189,22 +178,18 @@
             deletable: false
           }, 'popup');
         }
-
         var options = {
           reconnect: true,
           timeout: 10,
           onSuccess: onConnect,
           onFailure: onFailure
         };
-
         if (this._backendUrl.username !== '') {
           options.userName = this._backendUrl.username;
         }
-
         if (this._backendUrl.password !== '') {
           options.password = this._backendUrl.password;
         }
-
         try {
           this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + Math.random().toString(16).substr(2, 8));
         } catch (e) {
@@ -212,18 +197,15 @@
           self.setConnected(false);
           return;
         }
-
         this._client.onConnectionLost = function (responseObject) {
           self.warn('Connection Lost: ' + responseObject.errorMessage, responseObject);
           self.setConnected(false);
         };
-
         this._client.onMessageArrived = function (message) {
           var update = {};
           update[message.topic] = message.payloadString;
           self.update(update);
         };
-
         try {
           this._client.connect(options);
         } catch (e) {
@@ -233,13 +215,11 @@
           });
         }
       },
-
       /**
        * Authorize a Request by adding the necessary headers.
        * @param req {qx.io.request.Xhr}
        */
       authorize: function authorize(req) {},
-
       /**
        * return the relative path to a resource on the currently used backend
        *
@@ -248,19 +228,16 @@
        * @return {String|null} relative path to the resource, returns `null` when the backend does not provide that resource
        */
       getResourcePath: function getResourcePath(name, params) {},
-
       /**
        * This client provides an own processor for charts data
        * @return {Boolean}
        */
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {},
-
       /**
        * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
        * @param data {var}
        */
       processChartsData: function processChartsData(data) {},
-
       /**
        * This function sends a value
        * @param address {String} address to send the value to
@@ -272,47 +249,38 @@
         if (this.isConnected()) {
           var message = new Paho.MQTT.Message(value.toString());
           message.destinationName = address;
-
           if (options.qos !== undefined) {
             message.qos = options.qos;
           }
-
           if (options.retain !== undefined) {
             message.retained = options.retain;
           }
-
           this._client.send(message);
         }
       },
-
       /**
        * Get the last recorded error
        *
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {},
-
       /**
        * Restart the connection
        * @param full
        */
       restart: function restart(full) {},
-
       /**
        * Handle the incoming state updates. This method is not implemented by the client itself.
        * It is injected by the project using the client.
        * @param json
        */
       update: function update(json) {},
-      // jshint ignore:line
-
       /**
        * Can be overridden to record client communication with backend
        * @param type {String} type of event to record
        * @param data {Object} data to record
        */
       record: function record(type, data) {},
-
       /**
        * Can be overridden to provide an error handler for client errors
        * @param type {Number} one of cv.io.Client.ERROR_CODES
@@ -325,7 +293,6 @@
           this._client.disconnect();
         }
       },
-
       /**
        * Destructor
        */
@@ -333,7 +300,6 @@
         if (this.isConnected()) {
           this._client.disconnect();
         }
-
         this._client = null;
       }
     }
@@ -341,4 +307,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1664789611473
+//# sourceMappingURL=Client.js.map?dt=1672653521555

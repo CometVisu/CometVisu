@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/application/Basic.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -23,8 +20,11 @@
     "terminate",
     "Basic"
   ],
-  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,sBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,IAAH,CAAQC,MADnB;AAEEC,IAAAA,SAAS,EAAG,CAACT,EAAE,CAACU,WAAH,CAAeC,YAAhB,CAFd;AAKEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,IAAI,EAAG,gBACP,CACE;AACD,OALH;AAQE;AACAC,MAAAA,QAAQ,EAAG,oBACX,CACE;AACD,OAZH;AAeE;AACAC,MAAAA,KAAK,EAAG,iBACR,CACE;AACD,OAnBH;AAqBE;AACAC,MAAAA,SAAS,EAAG,qBACZ,CACE;AACD;AAzBH;AANF,GADA;AArBAhB,EAAAA,EAAE,CAACU,WAAH,CAAeO,KAAf,CAAqBd,aAArB,GAAqCA,aAArC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/application/Basic.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Thomas Herchenroeder (thron7)\n\n************************************************************************ */\n\n/**\n * For a basic, out-of-browser application (running e.g. on Node.js, Rhino).\n */\nqx.Class.define(\"qx.application.Basic\",\n{\n  extend : qx.core.Object,\n  implement : [qx.application.IApplication],\n\n\n  members :\n  {\n    // interface method\n    main : function()\n    {\n      // empty\n    },\n\n\n    // interface method\n    finalize : function()\n    {\n      // empty\n    },\n\n\n    // interface method\n    close : function()\n    {\n      // empty\n    },\n\n    // interface method\n    terminate : function()\n    {\n      // empty\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Thomas Herchenroeder (thron7)\n\n************************************************************************ */\n\n/**\n * For a basic, out-of-browser application (running e.g. on Node.js, Rhino).\n *\n * @use(qx.core.BaseInit)\n */\nqx.Class.define(\"qx.application.Basic\", {\n  extend: qx.core.Object,\n  implement: [qx.application.IApplication],\n\n  members: {\n    // interface method\n    main() {\n      // empty\n    },\n\n    // interface method\n    finalize() {\n      // empty\n    },\n\n    // interface method\n    close() {\n      // empty\n    },\n\n    // interface method\n    terminate() {\n      // empty\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,SAAS,EAAE,CAACT,EAAE,CAACU,WAAW,CAACC,YAAY,CAAC;IAExCC,OAAO,EAAE;MACP;MACAC,IAAI,kBAAG;QACL;MAAA,CACD;MAED;MACAC,QAAQ,sBAAG;QACT;MAAA,CACD;MAED;MACAC,KAAK,mBAAG;QACN;MAAA,CACD;MAED;MACAC,SAAS,uBAAG;QACV;MAAA;IAEJ;EACF,CAAC,CAAC;EAhDFhB,EAAE,CAACU,WAAW,CAACO,KAAK,CAACd,aAAa,GAAGA,aAAa;AAAC"
 }

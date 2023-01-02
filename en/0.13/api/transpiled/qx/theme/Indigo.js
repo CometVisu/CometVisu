@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,7 +41,6 @@
        * Tristan Koch (trkoch)
   
   ************************************************************************ */
-
   /**
    * Simple Theme
    */
@@ -59,4 +57,4 @@
   qx.theme.Indigo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Indigo.js.map?dt=1664789590552
+//# sourceMappingURL=Indigo.js.map?dt=1672653501863

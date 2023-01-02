@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 821
       },
       "end": {
-        "line": 126,
-        "column": 3
+        "line": 89,
+        "column": 3,
+        "index": 2309
       }
     },
     "jsdoc": {
@@ -43,29 +45,18 @@
     }
   },
   "type": "class",
-  "construct": {
-    "location": {
-      "start": {
-        "line": 39,
-        "column": 14
-      },
-      "end": {
-        "line": 46,
-        "column": 3
-      }
-    },
-    "jsdoc": {}
-  },
   "properties": {
     "appearance": {
       "location": {
         "start": {
-          "line": 60,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1128
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1201
         }
       },
       "jsdoc": {},
@@ -79,41 +70,20 @@
         "qx.ui.form.SplitButton": "class",
         "qx.ui.core.Widget": "class"
       }
-    },
-    "focusable": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4
-        },
-        "end": {
-          "line": 72,
-          "column": 5
-        }
-      },
-      "jsdoc": {},
-      "name": "focusable",
-      "propertyType": "new",
-      "refine": true,
-      "init": false,
-      "defaultValue": false,
-      "overriddenFrom": "qx.ui.form.SplitButton",
-      "appearsIn": {
-        "qx.ui.form.SplitButton": "class",
-        "qx.ui.core.Widget": "class"
-      }
     }
   },
   "members": {
     "_forwardStates": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 1493
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 1614
         }
       },
       "jsdoc": {
@@ -136,12 +106,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 105,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 1831
         },
         "end": {
-          "line": 124,
-          "column": 5
+          "line": 87,
+          "column": 5,
+          "index": 2301
         }
       },
       "jsdoc": {},
@@ -312,6 +284,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -336,6 +309,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

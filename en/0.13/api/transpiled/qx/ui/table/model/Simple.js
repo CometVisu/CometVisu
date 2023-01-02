@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,10 +39,11 @@
     construct: function construct() {
       qx.ui.table.model.Abstract.constructor.call(this);
       this._rowArr = [];
-      this.__P_433_0 = -1; // Array of objects, each with property "ascending" and "descending"
+      this.__P_447_0 = -1;
 
-      this.__P_433_1 = [];
-      this.__P_433_2 = null;
+      // Array of objects, each with property "ascending" and "descending"
+      this.__P_447_1 = [];
+      this.__P_447_2 = null;
     },
     properties: {
       /**
@@ -67,24 +67,19 @@
       _defaultSortComparatorAscending: function _defaultSortComparatorAscending(row1, row2, columnIndex) {
         var obj1 = row1[columnIndex];
         var obj2 = row2[columnIndex];
-
         if (qx.lang.Type.isNumber(obj1) && qx.lang.Type.isNumber(obj2)) {
           var result = isNaN(obj1) ? isNaN(obj2) ? 0 : 1 : isNaN(obj2) ? -1 : null;
-
           if (result != null) {
             return result;
           }
         }
-
         if (obj1 == null && obj2 !== null) {
           return -1;
         } else if (obj2 == null && obj1 !== null) {
           return 1;
         }
-
         return obj1 > obj2 ? 1 : obj1 == obj2 ? 0 : -1;
       },
-
       /**
        * Same as the Default ascending sort method but using case insensitivity
        *
@@ -96,24 +91,19 @@
       _defaultSortComparatorInsensitiveAscending: function _defaultSortComparatorInsensitiveAscending(row1, row2, columnIndex) {
         var obj1 = row1[columnIndex].toLowerCase ? row1[columnIndex].toLowerCase() : row1[columnIndex];
         var obj2 = row2[columnIndex].toLowerCase ? row2[columnIndex].toLowerCase() : row2[columnIndex];
-
         if (qx.lang.Type.isNumber(obj1) && qx.lang.Type.isNumber(obj2)) {
           var result = isNaN(obj1) ? isNaN(obj2) ? 0 : 1 : isNaN(obj2) ? -1 : null;
-
           if (result != null) {
             return result;
           }
         }
-
         if (obj1 == null && obj2 !== null) {
           return -1;
         } else if (obj2 == null && obj1 !== null) {
           return 1;
         }
-
         return obj1 > obj2 ? 1 : obj1 == obj2 ? 0 : -1;
       },
-
       /**
        * Default descending sort method to use if no custom method has been
        * provided.
@@ -126,24 +116,19 @@
       _defaultSortComparatorDescending: function _defaultSortComparatorDescending(row1, row2, columnIndex) {
         var obj1 = row1[columnIndex];
         var obj2 = row2[columnIndex];
-
         if (qx.lang.Type.isNumber(obj1) && qx.lang.Type.isNumber(obj2)) {
           var result = isNaN(obj1) ? isNaN(obj2) ? 0 : 1 : isNaN(obj2) ? -1 : null;
-
           if (result != null) {
             return result;
           }
         }
-
         if (obj1 == null && obj2 !== null) {
           return 1;
         } else if (obj2 == null && obj1 !== null) {
           return -1;
         }
-
         return obj1 < obj2 ? 1 : obj1 == obj2 ? 0 : -1;
       },
-
       /**
        * Same as the Default descending sort method but using case insensitivity
        *
@@ -155,42 +140,36 @@
       _defaultSortComparatorInsensitiveDescending: function _defaultSortComparatorInsensitiveDescending(row1, row2, columnIndex) {
         var obj1 = row1[columnIndex].toLowerCase ? row1[columnIndex].toLowerCase() : row1[columnIndex];
         var obj2 = row2[columnIndex].toLowerCase ? row2[columnIndex].toLowerCase() : row2[columnIndex];
-
         if (qx.lang.Type.isNumber(obj1) && qx.lang.Type.isNumber(obj2)) {
           var result = isNaN(obj1) ? isNaN(obj2) ? 0 : 1 : isNaN(obj2) ? -1 : null;
-
           if (result != null) {
             return result;
           }
         }
-
         if (obj1 == null && obj2 !== null) {
           return 1;
         } else if (obj2 == null && obj1 !== null) {
           return -1;
         }
-
         return obj1 < obj2 ? 1 : obj1 == obj2 ? 0 : -1;
       }
     },
     members: {
       _rowArr: null,
-      __P_433_2: null,
-      __P_433_3: null,
-      __P_433_1: null,
-      __P_433_0: null,
-      __P_433_4: null,
+      __P_447_2: null,
+      __P_447_3: null,
+      __P_447_1: null,
+      __P_447_0: null,
+      __P_447_4: null,
       // overridden
       getRowData: function getRowData(rowIndex) {
         var rowData = this._rowArr[rowIndex];
-
         if (rowData == null || rowData.originalData == null) {
           return rowData;
         } else {
           return rowData.originalData;
         }
       },
-
       /**
        * Returns the data of one row as map containing the column IDs as key and
        * the cell values as value. Also the meta data is included.
@@ -200,14 +179,12 @@
        */
       getRowDataAsMap: function getRowDataAsMap(rowIndex) {
         var rowData = this._rowArr[rowIndex];
-
         if (rowData != null) {
-          var map = {}; // get the current set data
-
+          var map = {};
+          // get the current set data
           for (var col = 0; col < this.getColumnCount(); col++) {
             map[this.getColumnId(col)] = rowData[col];
           }
-
           if (rowData.originalData != null) {
             // merge in the meta data
             for (var key in rowData.originalData) {
@@ -216,14 +193,11 @@
               }
             }
           }
-
           return map;
-        } // may be null, which is ok
-
-
+        }
+        // may be null, which is ok
         return rowData && rowData.originalData ? rowData.originalData : null;
       },
-
       /**
        * Gets the whole data as an array of maps.
        *
@@ -233,29 +207,23 @@
       getDataAsMapArray: function getDataAsMapArray() {
         var len = this.getRowCount();
         var data = [];
-
         for (var i = 0; i < len; i++) {
           data.push(this.getRowDataAsMap(i));
         }
-
         return data;
       },
-
       /**
        * Sets all columns editable or not editable.
        *
        * @param editable {Boolean} whether all columns are editable.
        */
       setEditable: function setEditable(editable) {
-        this.__P_433_2 = [];
-
+        this.__P_447_2 = [];
         for (var col = 0; col < this.getColumnCount(); col++) {
-          this.__P_433_2[col] = editable;
+          this.__P_447_2[col] = editable;
         }
-
         this.fireEvent("metaDataChanged");
       },
-
       /**
        * Sets whether a column is editable.
        *
@@ -264,19 +232,17 @@
        */
       setColumnEditable: function setColumnEditable(columnIndex, editable) {
         if (editable != this.isColumnEditable(columnIndex)) {
-          if (this.__P_433_2 == null) {
-            this.__P_433_2 = [];
+          if (this.__P_447_2 == null) {
+            this.__P_447_2 = [];
           }
-
-          this.__P_433_2[columnIndex] = editable;
+          this.__P_447_2[columnIndex] = editable;
           this.fireEvent("metaDataChanged");
         }
       },
       // overridden
       isColumnEditable: function isColumnEditable(columnIndex) {
-        return this.__P_433_2 ? this.__P_433_2[columnIndex] == true : false;
+        return this.__P_447_2 ? this.__P_447_2[columnIndex] == true : false;
       },
-
       /**
        * Sets whether a column is sortable.
        *
@@ -285,25 +251,23 @@
        */
       setColumnSortable: function setColumnSortable(columnIndex, sortable) {
         if (sortable != this.isColumnSortable(columnIndex)) {
-          if (this.__P_433_3 == null) {
-            this.__P_433_3 = [];
+          if (this.__P_447_3 == null) {
+            this.__P_447_3 = [];
           }
-
-          this.__P_433_3[columnIndex] = sortable;
+          this.__P_447_3[columnIndex] = sortable;
           this.fireEvent("metaDataChanged");
         }
       },
       // overridden
       isColumnSortable: function isColumnSortable(columnIndex) {
-        return this.__P_433_3 ? this.__P_433_3[columnIndex] !== false : true;
+        return this.__P_447_3 ? this.__P_447_3[columnIndex] !== false : true;
       },
       // overridden
       sortByColumn: function sortByColumn(columnIndex, ascending) {
         // NOTE: We use different comparators for ascending and descending,
         //     because comparators should be really fast.
         var comparator;
-        var sortMethods = this.__P_433_1[columnIndex];
-
+        var sortMethods = this.__P_447_1[columnIndex];
         if (sortMethods) {
           comparator = ascending ? sortMethods.ascending : sortMethods.descending;
         } else {
@@ -313,15 +277,12 @@
             comparator = ascending ? qx.ui.table.model.Simple._defaultSortComparatorInsensitiveAscending : qx.ui.table.model.Simple._defaultSortComparatorInsensitiveDescending;
           }
         }
-
         comparator.columnIndex = columnIndex;
-
         this._rowArr.sort(function (row1, row2) {
           return comparator(row1, row2, columnIndex);
         });
-
-        this.__P_433_0 = columnIndex;
-        this.__P_433_4 = ascending;
+        this.__P_447_0 = columnIndex;
+        this.__P_447_4 = ascending;
         var data = {
           columnIndex: columnIndex,
           ascending: ascending
@@ -329,7 +290,6 @@
         this.fireDataEvent("sorted", data);
         this.fireEvent("metaDataChanged");
       },
-
       /**
        * Specify the methods to use for ascending and descending sorts of a
        * particular column.
@@ -341,12 +301,12 @@
        * @param compare {Function|Map}
        *   If provided as a Function, this is the comparator function to sort in
        *   ascending order. It takes three parameters: the two arrays of row data,
-       *   row1 and row2, being compared and the column index sorting was requested 
-       *   for. 
+       *   row1 and row2, being compared and the column index sorting was requested
+       *   for.
        *
-       *   For backwards compatability, user-supplied compare functions may still 
-       *   take only two parameters, the two arrays of row data, row1 and row2, 
-       *   being compared and obtain the column index as arguments.callee.columnIndex. 
+       *   For backwards compatability, user-supplied compare functions may still
+       *   take only two parameters, the two arrays of row data, row1 and row2,
+       *   being compared and obtain the column index as arguments.callee.columnIndex.
        *   This is deprecated, however, as arguments.callee is disallowed in ES5 strict
        *   mode and ES6.
        *
@@ -370,17 +330,16 @@
        */
       setSortMethods: function setSortMethods(columnIndex, compare) {
         var methods;
-
         if (qx.lang.Type.isFunction(compare)) {
           methods = {
             ascending: compare,
             descending: function descending(row1, row2, columnIndex) {
               /* assure backwards compatibility for sort functions using
                * arguments.callee.columnIndex and fix a bug where retreiveing
-               * column index via this way did not work for the case where a 
-               * single comparator function was used. 
-               * Note that arguments.callee is not available in ES5 strict mode and ES6. 
-               * See discussion in 
+               * column index via this way did not work for the case where a
+               * single comparator function was used.
+               * Note that arguments.callee is not available in ES5 strict mode and ES6.
+               * See discussion in
                * https://github.com/qooxdoo/qooxdoo/pull/9499#pullrequestreview-99655182
                */
               compare.columnIndex = columnIndex;
@@ -390,10 +349,8 @@
         } else {
           methods = compare;
         }
-
-        this.__P_433_1[columnIndex] = methods;
+        this.__P_447_1[columnIndex] = methods;
       },
-
       /**
        * Returns the sortMethod(s) for a table column.
        *
@@ -406,24 +363,22 @@
        *   in {@link #setSortMethods}.
        */
       getSortMethods: function getSortMethods(columnIndex) {
-        return this.__P_433_1[columnIndex];
+        return this.__P_447_1[columnIndex];
       },
-
       /**
        * Clears the sorting.
        */
       clearSorting: function clearSorting() {
-        if (this.__P_433_0 != -1) {
-          this.__P_433_0 = -1;
-          this.__P_433_4 = true;
+        if (this.__P_447_0 != -1) {
+          this.__P_447_0 = -1;
+          this.__P_447_4 = true;
           this.fireEvent("metaDataChanged");
         }
       },
       // overridden
       getSortColumnIndex: function getSortColumnIndex() {
-        return this.__P_433_0;
+        return this.__P_447_0;
       },
-
       /**
        * Set the sort column index
        *
@@ -433,13 +388,12 @@
        * @param columnIndex {Integer} index of the column
        */
       _setSortColumnIndex: function _setSortColumnIndex(columnIndex) {
-        this.__P_433_0 = columnIndex;
+        this.__P_447_0 = columnIndex;
       },
       // overridden
       isSortAscending: function isSortAscending() {
-        return this.__P_433_4;
+        return this.__P_447_4;
       },
-
       /**
        * Set whether to sort in ascending order or not.
        *
@@ -451,7 +405,7 @@
        *   <i> false</i> for a descending sort.
        */
       _setSortAscending: function _setSortAscending(ascending) {
-        this.__P_433_4 = ascending;
+        this.__P_447_4 = ascending;
       },
       // overridden
       getRowCount: function getRowCount() {
@@ -462,14 +416,14 @@
         if (rowIndex < 0 || rowIndex >= this._rowArr.length) {
           throw new Error("this._rowArr out of bounds: " + rowIndex + " (0.." + this._rowArr.length + ")");
         }
-
         return this._rowArr[rowIndex][columnIndex];
       },
       // overridden
       setValue: function setValue(columnIndex, rowIndex, value) {
         if (this._rowArr[rowIndex][columnIndex] != value) {
-          this._rowArr[rowIndex][columnIndex] = value; // Inform the listeners
+          this._rowArr[rowIndex][columnIndex] = value;
 
+          // Inform the listeners
           if (this.hasListener("dataChanged")) {
             var data = {
               firstRow: rowIndex,
@@ -479,13 +433,11 @@
             };
             this.fireDataEvent("dataChanged", data);
           }
-
-          if (columnIndex == this.__P_433_0) {
+          if (columnIndex == this.__P_447_0) {
             this.clearSorting();
           }
         }
       },
-
       /**
        * Sets the whole data in a bulk.
        *
@@ -495,8 +447,10 @@
        * @param clearSorting {Boolean ? true} Whether to clear the sort state.
        */
       setData: function setData(rowArr, clearSorting) {
-        this._rowArr = rowArr; // Inform the listeners
+        this._checkEditing();
+        this._rowArr = rowArr;
 
+        // Inform the listeners
         if (this.hasListener("dataChanged")) {
           var data = {
             firstRow: 0,
@@ -506,12 +460,10 @@
           };
           this.fireDataEvent("dataChanged", data);
         }
-
         if (clearSorting !== false) {
           this.clearSorting();
         }
       },
-
       /**
        * Returns the data of this model.
        *
@@ -525,7 +477,6 @@
       getData: function getData() {
         return this._rowArr;
       },
-
       /**
        * Sets the whole data in a bulk.
        *
@@ -538,7 +489,6 @@
       setDataAsMapArray: function setDataAsMapArray(mapArr, rememberMaps, clearSorting) {
         this.setData(this._mapArray2RowArr(mapArr, rememberMaps), clearSorting);
       },
-
       /**
        * Adds some rows to the model.
        *
@@ -554,13 +504,15 @@
       addRows: function addRows(rowArr, startIndex, clearSorting) {
         if (startIndex == null) {
           startIndex = this._rowArr.length;
-        } // Prepare the rowArr so it can be used for apply
+        }
 
+        // Prepare the rowArr so it can be used for apply
+        rowArr.splice(0, 0, startIndex, 0);
 
-        rowArr.splice(0, 0, startIndex, 0); // Insert the new rows
+        // Insert the new rows
+        Array.prototype.splice.apply(this._rowArr, rowArr);
 
-        Array.prototype.splice.apply(this._rowArr, rowArr); // Inform the listeners
-
+        // Inform the listeners
         var data = {
           firstRow: startIndex,
           lastRow: this._rowArr.length - 1,
@@ -568,12 +520,10 @@
           lastColumn: this.getColumnCount() - 1
         };
         this.fireDataEvent("dataChanged", data);
-
         if (clearSorting !== false) {
           this.clearSorting();
         }
       },
-
       /**
        * Adds some rows to the model.
        *
@@ -590,7 +540,6 @@
       addRowsAsMapArray: function addRowsAsMapArray(mapArr, startIndex, rememberMaps, clearSorting) {
         this.addRows(this._mapArray2RowArr(mapArr, rememberMaps), startIndex, clearSorting);
       },
-
       /**
        * Sets rows in the model. The rows overwrite the old rows starting at
        * <code>startIndex</code> to <code>startIndex+rowArr.length</code>.
@@ -605,17 +554,21 @@
        * @param clearSorting {Boolean ? true} Whether to clear the sort state.
        */
       setRows: function setRows(rowArr, startIndex, clearSorting) {
+        this._checkEditing();
         if (startIndex == null) {
           startIndex = 0;
-        } // store the original length before we alter rowArr for use in splice.apply
+        }
 
+        // store the original length before we alter rowArr for use in splice.apply
+        var rowArrLength = rowArr.length;
 
-        var rowArrLength = rowArr.length; // Prepare the rowArr so it can be used for apply
+        // Prepare the rowArr so it can be used for apply
+        rowArr.splice(0, 0, startIndex, rowArr.length);
 
-        rowArr.splice(0, 0, startIndex, rowArr.length); // Replace rows
+        // Replace rows
+        Array.prototype.splice.apply(this._rowArr, rowArr);
 
-        Array.prototype.splice.apply(this._rowArr, rowArr); // Inform the listeners
-
+        // Inform the listeners
         var data = {
           firstRow: startIndex,
           lastRow: startIndex + rowArrLength - 1,
@@ -623,12 +576,10 @@
           lastColumn: this.getColumnCount() - 1
         };
         this.fireDataEvent("dataChanged", data);
-
         if (clearSorting !== false) {
           this.clearSorting();
         }
       },
-
       /**
        * Set rows in the model. The rows overwrite the old rows starting at
        * <code>startIndex</code> to <code>startIndex+rowArr.length</code>.
@@ -646,7 +597,6 @@
       setRowsAsMapArray: function setRowsAsMapArray(mapArr, startIndex, rememberMaps, clearSorting) {
         this.setRows(this._mapArray2RowArr(mapArr, rememberMaps), startIndex, clearSorting);
       },
-
       /**
        * Removes some rows from the model.
        *
@@ -655,9 +605,14 @@
        * @param clearSorting {Boolean ? true} Whether to clear the sort state.
        */
       removeRows: function removeRows(startIndex, howMany, clearSorting) {
-        this._rowArr.splice(startIndex, howMany); // Inform the listeners
-
-
+        this._checkEditing();
+        // In the case of `removeRows`, specifically, we must create the
+        // listeners' event data before actually removing the rows from
+        // the row data, so that the `lastRow` calculation is correct.
+        // If we do the delete operation first, as is done in other
+        // methods, the final rows of the table can escape being
+        // updated, thus leaving hanging old data on the rendered table.
+        // This reordering (deleting after creating event data) fixes #10365.
         var data = {
           firstRow: startIndex,
           lastRow: this._rowArr.length - 1,
@@ -666,13 +621,14 @@
           removeStart: startIndex,
           removeCount: howMany
         };
-        this.fireDataEvent("dataChanged", data);
+        this._rowArr.splice(startIndex, howMany);
 
+        // Inform the listeners
+        this.fireDataEvent("dataChanged", data);
         if (clearSorting !== false) {
           this.clearSorting();
         }
       },
-
       /**
        * Creates an array of maps to an array of arrays.
        *
@@ -689,29 +645,24 @@
         var columnCount = this.getColumnCount();
         var dataArr = new Array(rowCount);
         var columnArr;
-
         for (var i = 0; i < rowCount; ++i) {
           columnArr = [];
-
           if (rememberMaps) {
             columnArr.originalData = mapArr[i];
           }
-
           for (var j = 0; j < columnCount; ++j) {
             columnArr[j] = mapArr[i][this.getColumnId(j)];
           }
-
           dataArr[i] = columnArr;
         }
-
         return dataArr;
       }
     },
     destruct: function destruct() {
-      this._rowArr = this.__P_433_2 = this.__P_433_1 = this.__P_433_3 = null;
+      this._rowArr = this.__P_447_2 = this.__P_447_1 = this.__P_447_3 = null;
     }
   });
   qx.ui.table.model.Simple.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simple.js.map?dt=1664789604750
+//# sourceMappingURL=Simple.js.map?dt=1672653514979

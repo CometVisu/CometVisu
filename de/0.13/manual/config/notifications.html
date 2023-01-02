@@ -128,17 +128,17 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Einfaches Beispiel zeigt eine Nachricht in der Nachrichtenzentrale, wenn die Wohnzimmerlampe eingeschaltet ist.</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;notifications&gt;</span>
-        <span class="nt">&lt;state-notification</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;title-template&gt;</span>Wohnzimmerlicht<span class="nt">&lt;/title-template&gt;</span>
-            <span class="nt">&lt;message-template&gt;</span>eingeschaltet um {{ time }} Uhr<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
-            <span class="nt">&lt;addresses&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
-            <span class="nt">&lt;/addresses&gt;</span>
-        <span class="nt">&lt;/state-notification&gt;</span>
-    <span class="nt">&lt;/notifications&gt;</span>
-    ...
+<span class="w">    </span><span class="nt">&lt;notifications&gt;</span>
+<span class="w">        </span><span class="nt">&lt;state-notification</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span><span class="w"> </span><span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;title-template&gt;</span>Wohnzimmerlicht<span class="nt">&lt;/title-template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;message-template&gt;</span>eingeschaltet<span class="w"> </span>um<span class="w"> </span>{{<span class="w"> </span>time<span class="w"> </span>}}<span class="w"> </span>Uhr<span class="nt">&lt;/message-template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+<span class="w">            </span><span class="nt">&lt;addresses&gt;</span>
+<span class="w">                </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/addresses&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/state-notification&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/notifications&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -261,27 +261,27 @@ wenn die Lampe eingeschaltet ist, wenn sie ausgeschaltet wird, wird die Nachrich
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Komplexes Beispiel mit Benachrichtigungen für Bewegungen inkl. Mapping</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;mappings&gt;</span>
-        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Flur OG<span class="nt">&lt;/entry&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Küche<span class="nt">&lt;/entry&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Esszimmer<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;/mapping&gt;</span>
-        ...
-    <span class="nt">&lt;/mappings&gt;</span>
-    ...
-    <span class="nt">&lt;notifications&gt;</span>
-        <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span> <span class="na">severity=</span><span class="s">&quot;high&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;title-template&gt;</span>Bewegungsalarm<span class="nt">&lt;/title-template&gt;</span>
-            <span class="nt">&lt;message-template&gt;</span>Bewegung erkannt: {{ address }}, {{ time }}<span class="nt">&lt;/message-template&gt;</span>
-            <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
-            <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
-                <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
-            <span class="nt">&lt;/addresses&gt;</span>
-        <span class="nt">&lt;/state-notification&gt;</span>
-    <span class="nt">&lt;/notifications&gt;</span>
+<span class="w">    </span><span class="nt">&lt;mappings&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Flur<span class="w"> </span>OG<span class="nt">&lt;/entry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Küche<span class="nt">&lt;/entry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Esszimmer<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mapping&gt;</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/mappings&gt;</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;notifications&gt;</span>
+<span class="w">        </span><span class="nt">&lt;state-notification</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;motion&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span><span class="w"> </span><span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">severity=</span><span class="s">&quot;high&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;title-template&gt;</span>Bewegungsalarm<span class="nt">&lt;/title-template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;message-template&gt;</span>Bewegung<span class="w"> </span>erkannt:<span class="w"> </span>{{<span class="w"> </span>address<span class="w"> </span>}},<span class="w"> </span>{{<span class="w"> </span>time<span class="w"> </span>}}<span class="nt">&lt;/message-template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+<span class="w">            </span><span class="nt">&lt;addresses</span><span class="w"> </span><span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
+<span class="w">                </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
+<span class="w">                </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/addresses&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/state-notification&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/notifications&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -302,28 +302,28 @@ folgenden Inhalt haben:</p>
 <h3>Sprachausgabe<a class="headerlink" href="#sprachausgabe" title="Link zu dieser Überschrift">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Ausgabe der Nachricht über die Text-to-speech Engine des Browsers</span><a class="headerlink" href="#id4" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;mappings&gt;</span>
-            <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Flur OG<span class="nt">&lt;/entry&gt;</span>
-                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Küche<span class="nt">&lt;/entry&gt;</span>
-                <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Esszimmer<span class="nt">&lt;/entry&gt;</span>
-            <span class="nt">&lt;/mapping&gt;</span>
-            ...
-        <span class="nt">&lt;/mappings&gt;</span>
-        ...
-        <span class="nt">&lt;notifications&gt;</span>
-            <span class="nt">&lt;state-notification</span> <span class="na">name=</span><span class="s">&quot;motion&quot;</span> <span class="na">target=</span><span class="s">&quot;speech&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;message-template&gt;</span>Bewegung im {{ address }}<span class="nt">&lt;/message-template&gt;</span>
-                <span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
-                <span class="nt">&lt;addresses</span> <span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
-                <span class="nt">&lt;/addresses&gt;</span>
-            <span class="nt">&lt;/state-notification&gt;</span>
-        <span class="nt">&lt;/notifications&gt;</span>
-    <span class="nt">&lt;/meta&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mappings&gt;</span>
+<span class="w">            </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Corridor&quot;</span><span class="nt">&gt;</span>Flur<span class="w"> </span>OG<span class="nt">&lt;/entry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Kitchen&quot;</span><span class="nt">&gt;</span>Küche<span class="nt">&lt;/entry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;Motion_FF_Dining&quot;</span><span class="nt">&gt;</span>Esszimmer<span class="nt">&lt;/entry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/mapping&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/mappings&gt;</span>
+<span class="w">        </span>...
+<span class="w">        </span><span class="nt">&lt;notifications&gt;</span>
+<span class="w">            </span><span class="nt">&lt;state-notification</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;motion&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;speech&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;message-template&gt;</span>Bewegung<span class="w"> </span>im<span class="w"> </span>{{<span class="w"> </span>address<span class="w"> </span>}}<span class="nt">&lt;/message-template&gt;</span>
+<span class="w">                </span><span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
+<span class="w">                </span><span class="nt">&lt;addresses</span><span class="w"> </span><span class="na">address-mapping=</span><span class="s">&quot;Motion_name&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Dining<span class="nt">&lt;/address&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Corridor<span class="nt">&lt;/address&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Motion_FF_Kitchen<span class="nt">&lt;/address&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/addresses&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/state-notification&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/notifications&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -348,7 +348,7 @@ als Wert <code class="docutils literal notranslate"><span class="pre">ON</span><
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

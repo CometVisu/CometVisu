@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 636
       },
       "end": {
-        "line": 84,
-        "column": 3
+        "line": 74,
+        "column": 3,
+        "index": 2881
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "fullUpdate": {
       "location": {
         "start": {
-          "line": 40,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 1390
         },
         "end": {
-          "line": 49,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1666
         }
       },
       "jsdoc": {
@@ -83,12 +87,14 @@
     "updateLayerWindow": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 2472
         },
         "end": {
-          "line": 76,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 2755
         }
       },
       "jsdoc": {
@@ -135,12 +141,14 @@
     "updateLayerData": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 72,
+          "column": 4,
+          "index": 2853
         },
         "end": {
-          "line": 82,
-          "column": 35
+          "line": 72,
+          "column": 24,
+          "index": 2873
         }
       },
       "jsdoc": {

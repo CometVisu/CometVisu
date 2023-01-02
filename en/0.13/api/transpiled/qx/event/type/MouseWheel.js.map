@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/event/type/MouseWheel.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -26,8 +23,11 @@
     "_native",
     "MouseWheel"
   ],
-  "mappings": ";;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,KADzB;AAGEC,IAAAA,OAAO,EACP;AACE;AACAC,MAAAA,IAAI,EAAG,gBACP;AACE,aAAKC,eAAL;AACA,aAAKC,cAAL;AACD,OANH;;AASE;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACIC,MAAAA,aAAa,EAAG,uBAASC,IAAT,EAAe;AAC7B,eAAOf,EAAE,CAACgB,IAAH,CAAQC,KAAR,CAAcC,QAAd,CAAuB,KAAKC,OAA5B,EAAqCJ,IAArC,CAAP;AACD;AAnBH;AAJF,GADA;AAtBAf,EAAAA,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcY,UAAd,CAAyBjB,aAAzB,GAAyCA,aAAzC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/event/type/MouseWheel.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Mouse wheel event object.\n */\nqx.Class.define(\"qx.event.type.MouseWheel\",\n{\n  extend : qx.event.type.Mouse,\n\n  members :\n  {\n    // overridden\n    stop : function()\n    {\n      this.stopPropagation();\n      this.preventDefault();\n    },\n\n\n    /**\n     * Get the amount the wheel has been scrolled\n     *\n     * @param axis {String?} Optional parameter which defines the scroll axis.\n     *   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.\n     * @return {Integer} Scroll wheel movement for the given axis. If no axis\n     *   is given, the y axis is used.\n     */\n    getWheelDelta : function(axis) {\n      return qx.util.Wheel.getDelta(this._native, axis);\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Mouse wheel event object.\n */\nqx.Class.define(\"qx.event.type.MouseWheel\", {\n  extend: qx.event.type.Mouse,\n\n  members: {\n    // overridden\n    stop() {\n      this.stopPropagation();\n      this.preventDefault();\n    },\n\n    /**\n     * Get the amount the wheel has been scrolled\n     *\n     * @param axis {String?} Optional parameter which defines the scroll axis.\n     *   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.\n     * @return {Integer} Scroll wheel movement for the given axis. If no axis\n     *   is given, the y axis is used.\n     */\n    getWheelDelta(axis) {\n      return qx.util.Wheel.getDelta(this._native, axis);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,KAAK;IAE3BC,OAAO,EAAE;MACP;MACAC,IAAI,kBAAG;QACL,IAAI,CAACC,eAAe,EAAE;QACtB,IAAI,CAACC,cAAc,EAAE;MACvB,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACIC,aAAa,yBAACC,IAAI,EAAE;QAClB,OAAOf,EAAE,CAACgB,IAAI,CAACC,KAAK,CAACC,QAAQ,CAAC,IAAI,CAACC,OAAO,EAAEJ,IAAI,CAAC;MACnD;IACF;EACF,CAAC,CAAC;EA5CFf,EAAE,CAACO,KAAK,CAACC,IAAI,CAACY,UAAU,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

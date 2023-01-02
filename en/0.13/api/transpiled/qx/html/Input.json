@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 606
       },
       "end": {
-        "line": 256,
-        "column": 3
+        "line": 261,
+        "column": 3,
+        "index": 7650
       }
     },
     "jsdoc": {
@@ -30,12 +32,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 46,
-        "column": 14
+        "line": 44,
+        "column": 2,
+        "index": 1572
       },
       "end": {
-        "line": 58,
-        "column": 3
+        "line": 63,
+        "column": 3,
+        "index": 2012
       }
     },
     "jsdoc": {
@@ -48,9 +52,9 @@
       "@param": [
         {
           "name": "@param",
-          "body": "type {String} The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, and <code>reset</code>.",
+          "body": "type {String} The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, <code>reset</code>,\n   <code>select</code> and <code>textarea</code>.",
           "paramName": "type",
-          "description": " The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, and <code>reset</code>.",
+          "description": " The type of the input field. Valid values are\n   <code>text</code>, <code>textarea</code>, <code>select</code>,\n   <code>checkbox</code>, <code>radio</code>, <code>password</code>,\n   <code>hidden</code>, <code>submit</code>, <code>image</code>,\n   <code>file</code>, <code>search</code>, <code>reset</code>,\n   <code>select</code> and <code>textarea</code>.",
           "type": "String"
         },
         {
@@ -79,11 +83,13 @@
       "location": {
         "start": {
           "line": 72,
-          "column": 4
+          "column": 4,
+          "index": 2216
         },
         "end": {
           "line": 72,
-          "column": 17
+          "column": 16,
+          "index": 2228
         }
       },
       "type": "variable",
@@ -93,11 +99,13 @@
       "location": {
         "start": {
           "line": 74,
-          "column": 4
+          "column": 4,
+          "index": 2262
         },
         "end": {
           "line": 74,
-          "column": 23
+          "column": 22,
+          "index": 2280
         }
       },
       "jsdoc": {},
@@ -108,25 +116,50 @@
       "location": {
         "start": {
           "line": 75,
-          "column": 4
+          "column": 4,
+          "index": 2286
         },
         "end": {
           "line": 75,
-          "column": 20
+          "column": 19,
+          "index": 2301
         }
       },
       "type": "variable",
       "access": "private"
     },
+    "_useNodeImpl": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2501
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2591
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "qx.html.Node",
+      "appearsIn": [
+        "qx.html.Node"
+      ]
+    },
     "_createDomElement": {
       "location": {
         "start": {
-          "line": 84,
-          "column": 4
+          "line": 88,
+          "column": 4,
+          "index": 2615
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 90,
+          "column": 5,
+          "index": 2689
         }
       },
       "jsdoc": {},
@@ -134,37 +167,121 @@
       "access": "protected",
       "overriddenFrom": "qx.html.Element",
       "appearsIn": [
-        "qx.html.Element"
+        "qx.html.Element",
+        "qx.html.Node"
       ]
     },
-    "_applyProperty": {
+    "_setValueProperty": {
       "location": {
         "start": {
-          "line": 90,
-          "column": 4
+          "line": 97,
+          "column": 4,
+          "index": 2819
         },
         "end": {
-          "line": 108,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2938
         }
       },
-      "jsdoc": {},
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of setter for the \"value\" property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String?} value to set",
+            "paramName": "value",
+            "description": " value to set",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
       "type": "function",
-      "access": "protected",
-      "overriddenFrom": "qx.html.Element",
-      "appearsIn": [
-        "qx.html.Element"
-      ]
+      "access": "protected"
+    },
+    "_getValueProperty": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3067
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3206
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of getter for the \"value\" property</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String?} value on the dom",
+            "type": "String?",
+            "description": " value on the dom"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_setWrapProperty": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3335
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3906
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of setter for the \"wrap\" property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String?} value to set",
+            "paramName": "value",
+            "description": " value to set",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
     },
     "setEnabled": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 142,
+          "column": 4,
+          "index": 4388
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 160,
+          "column": 5,
+          "index": 4858
         }
       },
       "jsdoc": {
@@ -190,12 +307,14 @@
     "setSelectable": {
       "location": {
         "start": {
-          "line": 152,
-          "column": 4
+          "line": 170,
+          "column": 4,
+          "index": 5183
         },
         "end": {
-          "line": 166,
-          "column": 6
+          "line": 181,
+          "column": 6,
+          "index": 5475
         }
       },
       "jsdoc": {
@@ -221,12 +340,14 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 182,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 5851
         },
         "end": {
-          "line": 198,
-          "column": 5
+          "line": 209,
+          "column": 5,
+          "index": 6251
         }
       },
       "jsdoc": {
@@ -260,12 +381,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 216,
+          "column": 4,
+          "index": 6364
         },
         "end": {
-          "line": 215,
-          "column": 5
+          "line": 224,
+          "column": 5,
+          "index": 6549
         }
       },
       "jsdoc": {
@@ -290,12 +413,14 @@
     "setWrap": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 236,
+          "column": 4,
+          "index": 6970
         },
         "end": {
-          "line": 237,
-          "column": 5
+          "line": 244,
+          "column": 5,
+          "index": 7203
         }
       },
       "jsdoc": {
@@ -338,12 +463,14 @@
     "getWrap": {
       "location": {
         "start": {
-          "line": 247,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 7448
         },
         "end": {
-          "line": 254,
-          "column": 5
+          "line": 259,
+          "column": 5,
+          "index": 7642
         }
       },
       "jsdoc": {
@@ -453,6 +580,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -477,6 +605,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -497,6 +626,169 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getVisible": {
+      "type": "function",
+      "name": "getVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for visible"
+          }
+        ]
+      }
+    },
+    "isVisible": {
+      "type": "function",
+      "name": "isVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for visible"
+          }
+        ]
+      }
+    },
+    "setVisible": {
+      "type": "function",
+      "name": "setVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for visible"
+          }
+        ]
+      }
+    },
+    "resetVisible": {
+      "type": "function",
+      "name": "resetVisible",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ]
+      }
+    },
+    "getCssClass": {
+      "type": "function",
+      "name": "getCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>cssClass</code>.\n\nFor further details take a look at the property definition: {@link #cssClass}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for cssClass"
+          }
+        ]
+      }
+    },
+    "setCssClass": {
+      "type": "function",
+      "name": "setCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>cssClass</code>.\n\nFor further details take a look at the property definition: {@link #cssClass}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for cssClass"
+          }
+        ]
+      }
+    },
+    "resetCssClass": {
+      "type": "function",
+      "name": "resetCssClass",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.html.Element",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>cssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cssClass}."
           }
         ]
       }

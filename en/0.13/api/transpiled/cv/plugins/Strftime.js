@@ -21,11 +21,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Strftime.js 
-   * 
+  /* Strftime.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -50,7 +49,6 @@
    */
   qx.Class.define('cv.plugins.Strftime', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       PROPERTIES
@@ -66,17 +64,15 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       STATICS
     ******************************************************
     */
     statics: {
-      __P_15_0: {},
-      __P_15_1: 0,
-      __P_15_2: null,
-
+      __P_17_0: {},
+      __P_17_1: 0,
+      __P_17_2: null,
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -91,75 +87,71 @@
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'lang': {
+          lang: {
             target: 'locale'
           },
-          'format': {
-            'default': '%c'
+          format: {
+            "default": '%c'
           }
         };
       },
       uniqid: function uniqid() {
-        return this.__P_15_1++;
+        return this.__P_17_1++;
       },
       startTimer: function startTimer() {
-        if (!this.__P_15_2) {
-          this.__P_15_2 = new qx.event.Timer(1000);
+        if (!this.__P_17_2) {
+          this.__P_17_2 = new qx.event.Timer(1000);
         }
-
-        if (!this.__P_15_2.isEnabled()) {
-          this.__P_15_2.start();
+        if (!this.__P_17_2.isEnabled()) {
+          this.__P_17_2.start();
         }
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_15_3: false,
-      __P_15_4: null,
+      __P_17_3: false,
+      __P_17_4: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="strftime_value"></div>';
       },
       // overridden
       getValueElement: function getValueElement() {
-        if (!this.__P_15_4) {
-          this.__P_15_4 = this.getDomElement().querySelector('.strftime_value');
+        if (!this.__P_17_4) {
+          this.__P_17_4 = this.getDomElement().querySelector('.strftime_value');
         }
-
-        return this.__P_15_4;
+        return this.__P_17_4;
       },
       // overridden
       _onDomReady: function _onDomReady() {
         cv.plugins.Strftime.startTimer();
-
-        cv.plugins.Strftime.__P_15_2.addListener('interval', this.__P_15_5, this);
+        cv.plugins.Strftime.__P_17_2.addListener('interval', this.__P_17_5, this);
       },
-      __P_15_5: function __P_15_5() {
+      __P_17_5: function __P_17_5() {
         var elem = this.getValueElement();
         var d = new Date();
         d.locale = this.getLocale();
         elem.innerText = d.strftime(this.getFormat());
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
     ******************************************************
     */
     destruct: function destruct() {
-      cv.plugins.Strftime.__P_15_2.removeListener('interval', this.__P_15_5, this);
+      cv.plugins.Strftime.__P_17_2.removeListener('interval', this.__P_17_5, this);
     },
     defer: function defer(statics) {
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/strftime/strftime.css');
       cv.parser.pure.WidgetParser.addHandler('strftime', statics);
-      cv.ui.structure.WidgetFactory.registerClass('strftime', statics); // extend locales by German and French
+      cv.ui.structure.WidgetFactory.registerClass('strftime', statics);
 
+      // extend locales by German and French
       Date.ext.locales.de = {
         a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
         A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
@@ -187,4 +179,4 @@
   cv.plugins.Strftime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Strftime.js.map?dt=1664789563421
+//# sourceMappingURL=Strftime.js.map?dt=1672653471996

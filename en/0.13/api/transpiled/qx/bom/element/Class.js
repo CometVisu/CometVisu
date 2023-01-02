@@ -1,5 +1,4 @@
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -27,7 +26,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -73,13 +71,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {RegExp} Regular expressions to split class names */
-      __P_134_0: /\s+/g,
-
+      __P_135_0: /\s+/g,
       /** @type {RegExp} String trim regular expression. */
-      __P_134_1: /^\s+|\s+$/g,
-
+      __P_135_1: /^\s+|\s+$/g,
       /**
        * Adds a className to the given element
        * If successfully added the given className will be returned
@@ -94,18 +91,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           if (name.length > 0) {
             element.classList.add(name);
           }
-
           return name;
         },
         "default": function _default(element, name) {
           if (!this.has(element, name)) {
             element.className += (element.className ? " " : "") + name;
           }
-
           return name;
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
-
       /**
        * Adds multiple classes to the given element
        *
@@ -121,21 +115,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               element.classList.add(classes[i]);
             }
           }
-
           return element.className;
         },
         "default": function _default(element, classes) {
           var keys = {};
           var result;
           var old = element.className;
-
           if (old) {
-            result = old.split(this.__P_134_0);
-
+            result = old.split(this.__P_135_0);
             for (var i = 0, l = result.length; i < l; i++) {
               keys[result[i]] = true;
             }
-
             for (var i = 0, l = classes.length; i < l; i++) {
               if (!keys[classes[i]]) {
                 result.push(classes[i]);
@@ -144,11 +134,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } else {
             result = classes;
           }
-
           return element.className = result.join(" ");
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
-
       /**
        * Gets the classname of the given element
        *
@@ -157,24 +145,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
        */
       get: function get(element) {
         var className = element.className;
-
-        if (typeof className.split !== 'function') {
-          if (_typeof(className) === 'object') {
-            if (qx.Bootstrap.getClass(className) == 'SVGAnimatedString') {
+        if (typeof className.split !== "function") {
+          if (_typeof(className) === "object") {
+            if (qx.Bootstrap.getClass(className) == "SVGAnimatedString") {
               className = className.baseVal;
             } else {
-              className = '';
+              className = "";
             }
           }
-
-          if (typeof className === 'undefined') {
-            className = '';
+          if (typeof className === "undefined") {
+            className = "";
           }
         }
-
         return className;
       },
-
       /**
        * Whether the given element has the given className.
        *
@@ -192,7 +176,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return regexp.test(element.className);
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
-
       /**
        * Removes a className from the given element
        *
@@ -212,7 +195,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return name;
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
-
       /**
        * Removes multiple classes from the given element
        *
@@ -226,15 +208,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           for (var i = 0; i < classes.length; i++) {
             element.classList.remove(classes[i]);
           }
-
           return element.className;
         },
         "default": function _default(element, classes) {
           var reg = new RegExp("\\b" + classes.join("\\b|\\b") + "\\b", "g");
-          return element.className = element.className.replace(reg, "").replace(this.__P_134_1, "").replace(this.__P_134_0, " ");
+          return element.className = element.className.replace(reg, "").replace(this.__P_135_1, "").replace(this.__P_135_0, " ");
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
-
       /**
        * Replaces the first given class name with the second one
        *
@@ -247,11 +227,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         if (!this.has(element, oldName)) {
           return "";
         }
-
         this.remove(element, oldName);
         return this.add(element, newName);
       },
-
       /**
        * Toggles a className of the given element
        *
@@ -269,14 +247,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           } else {
             toggle ? this.add(element, name) : this.remove(element, name);
           }
-
           return name;
         },
         "default": function _default(element, name, toggle) {
           if (toggle == null) {
             toggle = !this.has(element, name);
           }
-
           toggle ? this.add(element, name) : this.remove(element, name);
           return name;
         }
@@ -286,4 +262,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
   qx.bom.element.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1664789578444
+//# sourceMappingURL=Class.js.map?dt=1672653486651

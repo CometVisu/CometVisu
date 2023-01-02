@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/toolbar/Button.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -21,8 +18,11 @@
     "init",
     "toolbar"
   ],
-  "mappings": ";;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,6BAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaC,IAAb,CAAkBC,MAD7B;;AAGE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACE;AACAC,MAAAA,eAAe,EACf;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAHF;AAVF,GADA;AAtBAd,EAAAA,EAAE,CAACO,EAAH,CAAMC,MAAN,CAAaO,OAAb,CAAqBL,MAArB,CAA4BP,aAA5B,GAA4CA,aAA5C",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/toolbar/Button.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Gabriel Munteanu (gabios)\n\n************************************************************************ */\n\n/**\n * A button used in toolbars.\n *\n */\nqx.Class.define(\"qx.ui.mobile.toolbar.Button\",\n{\n  extend : qx.ui.mobile.form.Button,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    // overridden\n    defaultCssClass :\n    {\n      refine : true,\n      init : \"toolbar-button\"\n    }\n  }\n\n});"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Gabriel Munteanu (gabios)\n\n************************************************************************ */\n\n/**\n * A button used in toolbars.\n *\n */\nqx.Class.define(\"qx.ui.mobile.toolbar.Button\", {\n  extend: qx.ui.mobile.form.Button,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties: {\n    // overridden\n    defaultCssClass: {\n      refine: true,\n      init: \"toolbar-button\"\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,MAAM,CAACC,IAAI,CAACC,MAAM;IAEhC;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACV;MACAC,eAAe,EAAE;QACfC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF;EACF,CAAC,CAAC;EAtCFd,EAAE,CAACO,EAAE,CAACC,MAAM,CAACO,OAAO,CAACL,MAAM,CAACP,aAAa,GAAGA,aAAa;AAAC"
 }

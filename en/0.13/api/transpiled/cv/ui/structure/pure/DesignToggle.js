@@ -30,11 +30,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* DesignToggle.js 
-   * 
+  /* DesignToggle.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -66,20 +65,19 @@
   qx.Class.define('cv.ui.structure.pure.DesignToggle', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
-
     /*
      ******************************************************
      CONSTRUCTOR
      ******************************************************
      */
     construct: function construct(props) {
+      var _this = this;
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
       store.addListener('loaded', function (ev) {
-        this.setAvailableDesigns(ev.getData());
-      }, this);
+        _this.setAvailableDesigns(ev.getData());
+      });
     },
-
     /*
      ******************************************************
      PROPERTIES
@@ -91,7 +89,6 @@
         init: []
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -102,7 +99,6 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
       },
-
       /**
        * Action performed when the widget got clicked
        *
@@ -115,13 +111,11 @@
         if (isCanceled) {
           return;
         }
-
         var designs = this.getAvailableDesigns();
         var oldDesign = this.getDomElement().querySelector('.value').textContent;
         var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
         var URL = cv.util.Location.getHref();
         var regexp = new RegExp('design=' + oldDesign);
-
         if (URL.search(regexp) !== -1) {
           // has URL-parameter design
           cv.util.Location.setHref(URL.replace(regexp, 'design=' + newDesign));
@@ -130,11 +124,9 @@
           var req = qx.util.Uri.appendParamsToUrl(parts[0], {
             design: newDesign
           });
-
           if (parts.length > 1) {
             req += '#' + parts[1];
           }
-
           cv.util.Location.setHref(req);
         }
       }
@@ -146,4 +138,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1664789569950
+//# sourceMappingURL=DesignToggle.js.map?dt=1672653478411

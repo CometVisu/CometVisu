@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +35,12 @@
    */
   qx.Class.define("qx.io.remote.Response", {
     extend: qx.event.type.Event,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -54,18 +53,15 @@
         check: "Integer",
         nullable: true
       },
-
       /** Status code of the response. */
       statusCode: {
         check: "Integer",
         nullable: true
       },
-
       /** Content of the response. */
       content: {
         nullable: true
       },
-
       /** The headers of the response. */
       responseHeaders: {
         check: "Object",
@@ -73,15 +69,14 @@
         apply: "_applyResponseHeaders"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_243_0: null,
 
+    members: {
+      __P_253_0: null,
       /*
       ---------------------------------------------------------------------------
         USER METHODS
@@ -97,20 +92,17 @@
         clone.setResponseHeaders(this.getResponseHeaders());
         return clone;
       },
-
       /**
        * Returns a specific response header
        * @param vHeader {String} Response header name
        * @return {Object | null} The header value or null;
        */
       getResponseHeader: function getResponseHeader(vHeader) {
-        if (this.__P_243_0) {
-          return this.__P_243_0[vHeader.toLowerCase()] || null;
+        if (this.__P_253_0) {
+          return this.__P_253_0[vHeader.toLowerCase()] || null;
         }
-
         return null;
       },
-
       /**
        * Keep lower-cased shadow of response headers for later
        * case-insensitive matching.
@@ -120,12 +112,11 @@
        */
       _applyResponseHeaders: function _applyResponseHeaders(value, old) {
         var lowerHeaders = {};
-
         if (value !== null) {
           Object.keys(value).forEach(function (key) {
             lowerHeaders[key.toLowerCase()] = value[key];
           });
-          this.__P_243_0 = lowerHeaders;
+          this.__P_253_0 = lowerHeaders;
         }
       }
     }
@@ -133,4 +124,4 @@
   qx.io.remote.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1664789587087
+//# sourceMappingURL=Response.js.map?dt=1672653498272

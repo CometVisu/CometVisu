@@ -21,6 +21,7 @@
       "cv.ui.manager.model.Preferences": {
         "construct": true
       },
+      "cv.ui.manager.model.FileItem": {},
       "cv.ui.manager.tree.FileSystem": {},
       "qxl.dialog.Dialog": {},
       "qx.lang.String": {},
@@ -38,11 +39,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* FileListItem.js 
-   * 
+  /* FileListItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -65,7 +65,6 @@
     extend: qx.ui.core.Widget,
     implement: [qx.ui.form.IModel],
     include: [cv.ui.manager.upload.MDragUpload],
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -75,19 +74,15 @@
       qx.ui.core.Widget.constructor.call(this, label, icon);
       var layout = new qx.ui.layout.Canvas();
       layout.setDesktop(true);
-
       this._setLayout(layout);
-
       if (model) {
         this.setModel(model);
       }
-
       this.addListener('pointerover', this._onPointerOver, this);
       this.addListener('pointerout', this._onPointerOut, this);
       cv.ui.manager.model.Preferences.getInstance().addListener('changeDefaultConfigEditor', this._maintainFileActions, this);
       this.setUploadHint(this.tr('Drop the file here to replace the content.'));
     },
-
     /*
     *****************************************************************************
        EVENTS
@@ -95,9 +90,8 @@
     */
     events: {
       /** (Fired by {@link qx.ui.form.List}) */
-      'action': 'qx.event.type.Event'
+      action: 'qx.event.type.Event'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -115,7 +109,6 @@
         dereference: true,
         check: 'cv.ui.manager.model.FileItem'
       },
-
       /**
        * Show the action buttons.
        */
@@ -124,14 +117,12 @@
         init: false,
         apply: '_maintainFileActions'
       },
-
       /** The label/caption/text of the qx.ui.basic.Atom instance */
       label: {
         nullable: true,
         check: 'String',
         event: 'changeLabel'
       },
-
       /** Any URI String supported by qx.ui.basic.Image to display an icon */
       icon: {
         check: 'String',
@@ -139,7 +130,6 @@
         themeable: true,
         event: 'changeIcon'
       },
-
       /**
        * The space between the icon and the label
        */
@@ -150,7 +140,6 @@
         themeable: true,
         init: 4
       },
-
       /**
        * Configure the visibility of the sub elements/widgets.
        * Possible values: both, label, icon
@@ -162,7 +151,6 @@
         inheritable: true,
         event: 'changeShow'
       },
-
       /**
        * The position of the icon in relation to the text.
        * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
@@ -173,7 +161,6 @@
         themeable: true,
         event: 'changeIconPosition'
       },
-
       /**
        * Whether the content should be rendered centrally when to much space
        * is available. Enabling this property centers in both axis. The behavior
@@ -189,7 +176,6 @@
         themeable: true,
         event: 'changeCenter'
       },
-
       /**
        * Restrict possible file uploads (not supported by every browxer)
        */
@@ -204,17 +190,15 @@
         apply: '_applyViewMode'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
     ***********************************************
     */
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      // eslint-disable-line @qooxdoo/qx/no-refs-in-members
       _uploadManager: null,
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -241,7 +225,6 @@
               left: null
             });
             break;
-
           case 'preview':
             this.removeState('list');
             this.getChildControl('atom').setLayoutProperties({
@@ -259,14 +242,12 @@
             break;
         }
       },
-
       /**
        * Event handler for the pointer over event.
        */
       _onPointerOver: function _onPointerOver() {
         this.addState('hovered');
       },
-
       /**
        * Event handler for the pointer out event.
        */
@@ -278,16 +259,13 @@
           if (this.getModel().getSpecial() === 'add-file') {
             return true;
           }
-
           var myMime = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(this.getModel().getName().split('.').pop());
           return myMime === files[0].type;
         }
-
         return false;
       },
       _onDrop: function _onDrop(ev) {
         ev.preventDefault();
-
         if (this.getModel().getSpecial() === 'add-file') {
           cv.ui.manager.upload.MDragUpload.uploadFile(cv.ui.manager.upload.MDragUpload.getFiles(ev)[0]);
         } else {
@@ -298,39 +276,33 @@
             }
           }, this);
         }
-
         this._onStopDragging(ev);
       },
       _applyModel: function _applyModel(value) {
         if (value && value.getType() === 'file') {
           var control = this.getChildControl('file-type');
-
           if (!value.isFake()) {
             var name = value.getName();
             this.getChildControl('atom').setToolTipText(this.tr('Double click to open "%1"', name));
-            var type = name.split('.').pop(); // do not use file types that are longer than 4 chars (not enough space)
+            var type = name.split('.').pop();
 
+            // do not use file types that are longer than 4 chars (not enough space)
             if (type.length <= 4) {
               var handled = false;
-
               switch (type) {
                 case 'xml':
                   control.setValue('</>');
                   handled = true;
                   break;
-
                 case 'js':
                   type = qx.lang.String.firstUp(type);
-                // jshint ignore:line
                 // eslint-disable-next-line no-fallthrough
-
                 case 'css':
                 case 'conf':
                   control.setValue(type);
                   handled = true;
                   break;
               }
-
               if (handled && this.getViewMode() === 'preview') {
                 control.show();
               } else {
@@ -343,17 +315,16 @@
         } else {
           this.getChildControl('file-type').exclude();
           this.getChildControl('atom').resetToolTipText();
-        } // this.getChildControl('bottom-bar').show();
+        }
+        // this.getChildControl('bottom-bar').show();
         // this.setUploadHint(this.tr('Drop the file here to replace the content.'));
         // this.getChildControl('atom').setToolTipText(this.tr('Double click to open'));
-
-
-        this._maintainFileActions(); // if (this._uploadManager) {
+        this._maintainFileActions();
+        // if (this._uploadManager) {
         //   try {
         //     this._uploadManager.removeWidget(this);
         //   } catch (e) {}
         // }
-
       },
       _onOpenWith: function _onOpenWith(ev) {
         var handlerId = ev.getTarget().getUserData('handlerId');
@@ -364,21 +335,18 @@
       },
       _applyIcon: function _applyIcon(value, old) {
         cv.ui.manager.form.FileListItem.superclass.prototype._applyIcon.call(this, value, old);
-
         if (value && !value.startsWith('@')) {
           var control = this.getChildControl('atom').getChildControl('icon');
-
           if (!cv.ui.manager.viewer.Image.getImageData(value)) {
             // wait for image to be loaded
-            control.addListenerOnce('loaded', this.__P_37_0, this);
+            control.addListenerOnce('loaded', this.__P_39_0, this);
           } else {
-            this.__P_37_0();
+            this.__P_39_0();
           }
         }
       },
       _maintainFileActions: function _maintainFileActions() {
         var file = this.getModel();
-
         if (this.isShowFileActions() && file) {
           this.getChildControl('download-button').setVisibility(file.getType() === 'dir' || file.isFake() ? 'excluded' : 'visible');
           this.getChildControl('action-button').setVisibility(file.isFake() ? 'excluded' : 'visible');
@@ -386,7 +354,6 @@
           var viewerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, 'view');
           var openButton = this.getChildControl('open-button');
           var editButton = this.getChildControl('edit-button');
-
           if (file.isWriteable() && editorConf) {
             editButton.setUserData('handlerId', editorConf.Clazz.classname);
             editButton.set({
@@ -398,7 +365,6 @@
           } else {
             editButton.exclude();
           }
-
           if (viewerConf) {
             openButton.setUserData('handlerId', viewerConf.Clazz.classname);
             openButton.set({
@@ -410,21 +376,19 @@
           } else {
             openButton.exclude();
           }
-
           this.getChildControl('action-button');
           this.getChildControl('bottom-bar').show();
         } else {
           this.getChildControl('bottom-bar').exclude();
         }
       },
-      __P_37_0: function __P_37_0() {
+      __P_39_0: function __P_39_0() {
         var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
         var control = this.getChildControl('atom').getChildControl('icon');
         var sizeHint = control.getSizeHint();
         var width = sizeHint.width;
         var height = Math.round(1 / data.aspectRatio * width);
         var padding = [0, 0, 0, 0];
-
         if (height > sizeHint.height) {
           height = sizeHint.height;
           width = Math.round(data.aspectRatio * height);
@@ -434,7 +398,6 @@
           padding[0] = Math.round((sizeHint.height - height) / 2);
           padding[2] = padding[0];
         }
-
         control.setPadding(padding);
       },
       _maintainFileTypePosition: function _maintainFileTypePosition() {
@@ -449,8 +412,8 @@
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
+        var _this = this;
         var control;
-
         switch (id) {
           case 'atom':
             control = new qx.ui.basic.Atom();
@@ -458,16 +421,13 @@
               this.bind(prop, control, prop);
             }, this);
             control.setAnonymous(true);
-
             this._add(control, {
               top: 0,
               left: 0,
               right: 0,
               bottom: 34
             });
-
             break;
-
           case 'file-type':
             {
               control = new qx.ui.basic.Label();
@@ -476,77 +436,66 @@
                 anonymous: true,
                 font: 'title',
                 textAlign: 'center',
-                textColor: 'background-main',
+                textColor: 'surface',
                 minWidth: 70
               });
               var icon = this.getChildControl('atom').getChildControl('icon');
               icon.bind('visibility', control, 'visibility');
               icon.addListener('resize', this._maintainFileTypePosition, this);
-
               this._add(control, {
                 width: '100%'
               });
-
               break;
             }
-
           case 'bottom-bar':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox(4, 'center'));
             control.setAnonymous(true);
-
             this._add(control, {
               left: 0,
               bottom: 0,
               right: 0
             });
-
             break;
-
           case 'download-button':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('download', 18));
             control.setToolTipText(this.tr('Download file'));
             control.addListener('execute', function () {
-              cv.ui.manager.control.FileController.getInstance().download(this.getModel());
-            }, this);
+              cv.ui.manager.control.FileController.getInstance().download(_this.getModel());
+            });
             this.getChildControl('bottom-bar').add(control);
             break;
-
           case 'action-button':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('menu', 18));
             control.setToolTipText(this.tr('Other file actions'));
             this.getChildControl('bottom-bar').add(control);
             control.addListener('tap', function (ev) {
-              this.fireEvent('action', qx.event.type.Tap, [ev.getNativeEvent(), this, ev.getTarget(), false, true]);
-            }, this);
+              _this.fireEvent('action', qx.event.type.Tap, [ev.getNativeEvent(), _this, ev.getTarget(), false, true]);
+            });
             break;
-
           case 'open-button':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('preview', 18));
             control.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
-                file: this.getModel(),
+                file: _this.getModel(),
                 handler: control.getUserData('handlerId')
               });
-            }, this);
+            });
             this.getChildControl('bottom-bar').add(control);
             break;
-
           case 'edit-button':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('preview', 18));
             control.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
-                file: this.getModel(),
+                file: _this.getModel(),
                 handler: control.getUserData('handlerId')
               });
-            }, this);
+            });
             this.getChildControl('bottom-bar').add(control);
             break;
         }
-
         if (!control) {
           control = this._createMDragUploadChildControlImpl(id);
         }
-
         return control || cv.ui.manager.form.FileListItem.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
@@ -564,7 +513,6 @@
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -573,13 +521,11 @@
     destruct: function destruct() {
       this.removeListener('pointerover', this._onPointerOver, this);
       this.removeListener('pointerout', this._onPointerOut, this);
-
       this._disposeObjects('_uploadManager');
-
       cv.ui.manager.model.Preferences.getInstance().removeListener('changeDefaultConfigEditor', this._maintainFileActions, this);
     }
   });
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1664789567336
+//# sourceMappingURL=FileListItem.js.map?dt=1672653476138

@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 564
       },
       "end": {
-        "line": 86,
-        "column": 3
+        "line": 55,
+        "column": 3,
+        "index": 1336
       }
     },
     "jsdoc": {
@@ -27,29 +29,18 @@
     }
   },
   "type": "class",
-  "construct": {
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 14
-      },
-      "end": {
-        "line": 43,
-        "column": 3
-      }
-    },
-    "jsdoc": {}
-  },
   "properties": {
     "appearance": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 33,
+          "column": 4,
+          "index": 851
         },
         "end": {
-          "line": 60,
-          "column": 5
+          "line": 36,
+          "column": 5,
+          "index": 919
         }
       },
       "name": "appearance",
@@ -67,12 +58,14 @@
     "show": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 38,
+          "column": 4,
+          "index": 926
         },
         "end": {
-          "line": 66,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 981
         }
       },
       "name": "show",
@@ -84,40 +77,20 @@
       "appearsIn": {
         "qx.ui.basic.Atom": "class"
       }
-    },
-    "focusable": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4
-        },
-        "end": {
-          "line": 72,
-          "column": 5
-        }
-      },
-      "name": "focusable",
-      "propertyType": "new",
-      "refine": true,
-      "init": false,
-      "defaultValue": false,
-      "overriddenFrom": "qx.ui.form.ToggleButton",
-      "appearsIn": {
-        "qx.ui.form.ToggleButton": "class",
-        "qx.ui.core.Widget": "class"
-      }
     }
   },
   "members": {
     "_applyVisibility": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 46,
+          "column": 4,
+          "index": 1023
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 53,
+          "column": 5,
+          "index": 1328
         }
       },
       "jsdoc": {},
@@ -407,6 +380,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -431,6 +405,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

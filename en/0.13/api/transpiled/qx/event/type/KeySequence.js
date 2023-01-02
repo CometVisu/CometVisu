@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,12 +40,12 @@
    */
   qx.Class.define("qx.event.type.KeySequence", {
     extend: qx.event.type.Dom,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Initialize the fields of the event.
@@ -69,7 +68,6 @@
         clone._identifier = this._identifier;
         return clone;
       },
-
       /**
        * Identifier of the pressed key. This property is modeled after the <em>KeyboardEvent.keyIdentifier</em> property
        * of the W3C DOM 3 event specification
@@ -124,7 +122,6 @@
       getKeyIdentifier: function getKeyIdentifier() {
         return this._identifier;
       },
-
       /**
        * Returns the native keyCode and is best used on keydown/keyup events to
        * check which physical key was pressed.
@@ -142,7 +139,6 @@
       getKeyCode: function getKeyCode() {
         return this._keyCode;
       },
-
       /**
        * Checks whether the pressed key is printable.
        *
@@ -156,4 +152,4 @@
   qx.event.type.KeySequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeySequence.js.map?dt=1664789585740
+//# sourceMappingURL=KeySequence.js.map?dt=1672653496245

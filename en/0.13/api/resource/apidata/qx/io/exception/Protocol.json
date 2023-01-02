@@ -1,0 +1,33 @@
+{
+  "className": "qx.io.exception.Protocol",
+  "packageName": "qx.io.exception",
+  "name": "Protocol",
+  "superClass": "qx.io.exception.Exception",
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 0,
+        "index": 601
+      },
+      "end": {
+        "line": 25,
+        "column": 3,
+        "index": 686
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>A class for representing errors that occurred on server and are handled\n according to the service protocol (JSON-RPC, GraphQL, etc.)</p>"
+        }
+      ]
+    }
+  },
+  "type": "class",
+  "descendants": []
+}

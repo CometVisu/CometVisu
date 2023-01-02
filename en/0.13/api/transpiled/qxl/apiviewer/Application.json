@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 31,
-        "column": 0
+        "column": 0,
+        "index": 790
       },
       "end": {
         "line": 72,
-        "column": 5
+        "column": 3,
+        "index": 1870
       }
     },
     "jsdoc": {
@@ -42,26 +44,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 35,
-        "column": 15
+        "line": 34,
+        "column": 2,
+        "index": 877
       },
       "end": {
-        "line": 39,
-        "column": 5
+        "line": 40,
+        "column": 3,
+        "index": 1053
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "main": {
       "location": {
         "start": {
           "line": 44,
-          "column": 6
+          "column": 4,
+          "index": 1091
         },
         "end": {
           "line": 58,
-          "column": 7
+          "column": 5,
+          "index": 1571
         }
       },
       "jsdoc": {},
@@ -77,11 +82,13 @@
       "location": {
         "start": {
           "line": 61,
-          "column": 6
+          "column": 4,
+          "index": 1596
         },
         "end": {
           "line": 66,
-          "column": 7
+          "column": 5,
+          "index": 1789
         }
       },
       "jsdoc": {},
@@ -181,6 +188,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -205,6 +213,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -234,14 +243,15 @@
     "location": {
       "start": {
         "line": 69,
-        "column": 14
+        "column": 2,
+        "index": 1799
       },
       "end": {
         "line": 71,
-        "column": 5
+        "column": 3,
+        "index": 1865
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

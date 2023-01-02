@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +39,6 @@
   qx.Class.define("qx.ui.progressive.structure.Abstract", {
     type: "abstract",
     extend: qx.core.Object,
-
     /**
      * The abstract structure for use by Progressive.  It defines the pane
      * container in which items are progressively rendered.
@@ -51,22 +49,21 @@
      *   use as the pane.
      */
     construct: function construct(pane) {
-      qx.core.Object.constructor.call(this); // If no pane was specified. Create one.
+      qx.core.Object.constructor.call(this);
 
+      // If no pane was specified. Create one.
       if (!pane) {
-        this.__P_411_0 = new qx.ui.core.Widget();
-        this.__P_411_1 = this.__P_411_0;
+        this.__P_425_0 = new qx.ui.core.Widget();
+        this.__P_425_1 = this.__P_425_0;
       } else {
-        this.__P_411_0 = null;
-        this.__P_411_1 = pane;
+        this.__P_425_0 = null;
+        this.__P_425_1 = pane;
       }
-
-      this.__P_411_1.getContentElement().setStyle("overflowY", "auto");
+      this.__P_425_1.getContentElement().setStyle("overflowY", "auto");
     },
     members: {
-      __P_411_0: null,
-      __P_411_1: null,
-
+      __P_425_0: null,
+      __P_425_1: null,
       /**
        * Apply the structure typically defined in the constructor to the
        * Progressive.
@@ -77,25 +74,23 @@
       applyStructure: function applyStructure(progressive) {
         throw new Error("applyStructure() is abstract");
       },
-
       /**
        * Get the pane in which this Progressive renders.
        *
        * @return {qx.ui.core.Widget}
        */
       getPane: function getPane() {
-        return this.__P_411_1;
+        return this.__P_425_1;
       }
     },
     destruct: function destruct() {
-      if (this.__P_411_0) {
-        this.__P_411_0.dispose();
+      if (this.__P_425_0) {
+        this.__P_425_0.dispose();
       }
-
-      this.__P_411_0 = this.__P_411_1 = null;
+      this.__P_425_0 = this.__P_425_1 = null;
     }
   });
   qx.ui.progressive.structure.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1664789602912
+//# sourceMappingURL=Abstract.js.map?dt=1672653513155

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +35,12 @@
    */
   qx.Class.define("qx.ui.virtual.selection.Row", {
     extend: qx.ui.virtual.selection.Abstract,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Returns the number of all items in the pane. This number may contain
@@ -52,7 +51,6 @@
       _getItemCount: function _getItemCount() {
         return this._pane.getRowConfig().getItemCount();
       },
-
       /*
       ---------------------------------------------------------------------------
         IMPLEMENT ABSTRACT METHODS
@@ -61,23 +59,19 @@
       // overridden
       _getSelectableFromPointerEvent: function _getSelectableFromPointerEvent(event) {
         var cell = this._pane.getCellAtPosition(event.getDocumentLeft(), event.getDocumentTop());
-
         if (!cell) {
           return null;
         }
-
         return this._isSelectable(cell.row) ? cell.row : null;
       },
       // overridden
       getSelectables: function getSelectables(all) {
         var selectables = [];
-
         for (var i = 0, l = this._getItemCount(); i < l; i++) {
           if (this._isSelectable(i)) {
             selectables.push(i);
           }
         }
-
         return selectables;
       },
       // overridden
@@ -85,37 +79,31 @@
         var selectables = [];
         var min = Math.min(item1, item2);
         var max = Math.max(item1, item2);
-
         for (var i = min; i <= max; i++) {
           if (this._isSelectable(i)) {
             selectables.push(i);
           }
         }
-
         return selectables;
       },
       // overridden
       _getFirstSelectable: function _getFirstSelectable() {
         var count = this._getItemCount();
-
         for (var i = 0; i < count; i++) {
           if (this._isSelectable(i)) {
             return i;
           }
         }
-
         return null;
       },
       // overridden
       _getLastSelectable: function _getLastSelectable() {
         var count = this._getItemCount();
-
         for (var i = count - 1; i >= 0; i--) {
           if (this._isSelectable(i)) {
             return i;
           }
         }
-
         return null;
       },
       // overridden
@@ -131,13 +119,11 @@
         } else {
           return null;
         }
-
         for (var i = startIndex; i !== endIndex + increment; i += increment) {
           if (this._isSelectable(i)) {
             return i;
           }
         }
-
         return null;
       },
       // overridden
@@ -145,23 +131,24 @@
         var paneSize;
         var scrollY;
         var newItem;
+        var rowConfig = this._pane.getRowConfig();
 
-        var rowConfig = this._pane.getRowConfig(); // Determine the height of the pane
+        // Determine the height of the pane
+        paneSize = this._pane.getInnerSize();
 
+        // Determine our current y position
+        scrollY = this._pane.getScrollY();
 
-        paneSize = this._pane.getInnerSize(); // Determine our current y position
-
-        scrollY = this._pane.getScrollY(); // Scroll to the new page
-
+        // Scroll to the new page
         if (up) {
           // Add item size so we include the immediately previous item, i.e., so
           // that pageDown followed by pageUp returns to the same location
           this._pane.setScrollY(scrollY - paneSize.height + rowConfig.getDefaultItemSize());
         } else {
           this._pane.setScrollY(scrollY + paneSize.height);
-        } // Determine new y position, and from that, what row we moved to
+        }
 
-
+        // Determine new y position, and from that, what row we moved to
         scrollY = this._pane.getScrollY();
         newItem = rowConfig.getItemAtPosition(scrollY);
         return newItem.index;
@@ -186,7 +173,6 @@
       // overridden
       _getSelectableLocationY: function _getSelectableLocationY(item) {
         var rowConfig = this._pane.getRowConfig();
-
         var itemTop = rowConfig.getItemPosition(item);
         var itemBottom = itemTop + rowConfig.getItemSize(item) - 1;
         return {
@@ -199,4 +185,4 @@
   qx.ui.virtual.selection.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1664789608145
+//# sourceMappingURL=Row.js.map?dt=1672653518202

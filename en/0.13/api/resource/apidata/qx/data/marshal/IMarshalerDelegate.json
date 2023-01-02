@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 0
+        "column": 0,
+        "index": 1002
       },
       "end": {
-        "line": 157,
-        "column": 3
+        "line": 149,
+        "column": 3,
+        "index": 6674
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "ignore": {
       "location": {
         "start": {
-          "line": 45,
-          "column": 4
+          "line": 43,
+          "column": 4,
+          "index": 1584
         },
         "end": {
-          "line": 45,
-          "column": 59
+          "line": 43,
+          "column": 48,
+          "index": 1628
         }
       },
       "jsdoc": {
@@ -87,12 +91,14 @@
     "getPropertyMapping": {
       "location": {
         "start": {
-          "line": 58,
-          "column": 4
+          "line": 55,
+          "column": 4,
+          "index": 2045
         },
         "end": {
-          "line": 58,
-          "column": 58
+          "line": 55,
+          "column": 47,
+          "index": 2088
         }
       },
       "jsdoc": {
@@ -133,12 +139,14 @@
     "getModelClass": {
       "location": {
         "start": {
-          "line": 82,
-          "column": 4
+          "line": 78,
+          "column": 4,
+          "index": 3224
         },
         "end": {
-          "line": 82,
-          "column": 74
+          "line": 78,
+          "column": 63,
+          "index": 3283
         }
       },
       "jsdoc": {
@@ -196,12 +204,14 @@
     "getModelSuperClass": {
       "location": {
         "start": {
-          "line": 97,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 3935
         },
         "end": {
-          "line": 97,
-          "column": 71
+          "line": 92,
+          "column": 60,
+          "index": 3991
         }
       },
       "jsdoc": {
@@ -252,12 +262,14 @@
     "getModelMixins": {
       "location": {
         "start": {
-          "line": 114,
-          "column": 4
+          "line": 108,
+          "column": 4,
+          "index": 4741
         },
         "end": {
-          "line": 114,
-          "column": 67
+          "line": 108,
+          "column": 56,
+          "index": 4793
         }
       },
       "jsdoc": {
@@ -308,12 +320,14 @@
     "getValidationRule": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 122,
+          "column": 4,
+          "index": 5412
         },
         "end": {
-          "line": 129,
-          "column": 61
+          "line": 122,
+          "column": 50,
+          "index": 5458
         }
       },
       "jsdoc": {
@@ -354,12 +368,14 @@
     "getArrayClass": {
       "location": {
         "start": {
-          "line": 143,
-          "column": 4
+          "line": 135,
+          "column": 4,
+          "index": 6113
         },
         "end": {
-          "line": 143,
-          "column": 54
+          "line": 135,
+          "column": 43,
+          "index": 6152
         }
       },
       "jsdoc": {
@@ -403,12 +419,14 @@
     "getJsonHash": {
       "location": {
         "start": {
-          "line": 155,
-          "column": 4
+          "line": 147,
+          "column": 4,
+          "index": 6625
         },
         "end": {
-          "line": 155,
-          "column": 56
+          "line": 147,
+          "column": 45,
+          "index": 6666
         }
       },
       "jsdoc": {

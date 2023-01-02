@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 29,
-        "column": 0
+        "column": 0,
+        "index": 850
       },
       "end": {
-        "line": 751,
-        "column": 3
+        "line": 779,
+        "column": 3,
+        "index": 24938
       }
     },
     "jsdoc": {
@@ -45,25 +47,28 @@
     "location": {
       "start": {
         "line": 30,
-        "column": 14
+        "column": 2,
+        "index": 890
       },
       "end": {
         "line": 32,
-        "column": 3
+        "column": 3,
+        "index": 935
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "allowBrowserAutocomplete": {
       "location": {
         "start": {
           "line": 38,
-          "column": 4
+          "column": 4,
+          "index": 1042
         },
         "end": {
-          "line": 42,
-          "column": 5
+          "line": 41,
+          "column": 5,
+          "index": 1117
         }
       },
       "jsdoc": {
@@ -83,12 +88,14 @@
     "formData": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 2370
         },
         "end": {
-          "line": 101,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2491
         }
       },
       "jsdoc": {
@@ -110,12 +117,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 105,
+          "column": 4,
+          "index": 2550
         },
         "end": {
-          "line": 110,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2645
         }
       },
       "jsdoc": {
@@ -136,12 +145,14 @@
     "labelColumnWidth": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 2729
         },
         "end": {
-          "line": 120,
-          "column": 5
+          "line": 119,
+          "column": 5,
+          "index": 2857
         }
       },
       "jsdoc": {
@@ -164,12 +175,14 @@
     "setupFormRendererFunction": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3103
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 3202
         }
       },
       "jsdoc": {
@@ -189,12 +202,14 @@
     "beforeFormFunction": {
       "location": {
         "start": {
-          "line": 141,
-          "column": 4
+          "line": 139,
+          "column": 4,
+          "index": 3507
         },
         "end": {
-          "line": 146,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 3599
         }
       },
       "jsdoc": {
@@ -214,12 +229,14 @@
     "formReadyFunction": {
       "location": {
         "start": {
-          "line": 157,
-          "column": 4
+          "line": 154,
+          "column": 4,
+          "index": 4115
         },
         "end": {
-          "line": 163,
-          "column": 5
+          "line": 159,
+          "column": 5,
+          "index": 4247
         }
       },
       "jsdoc": {
@@ -240,12 +257,14 @@
     "afterFormFunction": {
       "location": {
         "start": {
-          "line": 171,
-          "column": 4
+          "line": 167,
+          "column": 4,
+          "index": 4548
         },
         "end": {
-          "line": 176,
-          "column": 5
+          "line": 171,
+          "column": 5,
+          "index": 4639
         }
       },
       "jsdoc": {
@@ -265,12 +284,14 @@
     "afterButtonsFunction": {
       "location": {
         "start": {
-          "line": 184,
-          "column": 4
+          "line": 179,
+          "column": 4,
+          "index": 4929
         },
         "end": {
-          "line": 189,
-          "column": 5
+          "line": 183,
+          "column": 5,
+          "index": 5023
         }
       },
       "jsdoc": {
@@ -290,12 +311,14 @@
     "finalizeFunction": {
       "location": {
         "start": {
-          "line": 196,
-          "column": 4
+          "line": 190,
+          "column": 4,
+          "index": 5197
         },
         "end": {
-          "line": 201,
-          "column": 5
+          "line": 194,
+          "column": 5,
+          "index": 5287
         }
       },
       "jsdoc": {
@@ -317,12 +340,14 @@
     "registerFormElementHandlers": {
       "location": {
         "start": {
-          "line": 280,
-          "column": 4
+          "line": 273,
+          "column": 4,
+          "index": 8204
         },
         "end": {
-          "line": 286,
-          "column": 5
+          "line": 279,
+          "column": 5,
+          "index": 8479
         }
       },
       "jsdoc": {
@@ -440,12 +465,14 @@
     "_registeredFormElements": {
       "location": {
         "start": {
-          "line": 289,
-          "column": 4
+          "line": 282,
+          "column": 4,
+          "index": 8557
         },
         "end": {
-          "line": 289,
-          "column": 32
+          "line": 282,
+          "column": 31,
+          "index": 8584
         }
       },
       "jsdoc": {
@@ -462,12 +489,14 @@
     "_internalFormElements": {
       "location": {
         "start": {
-          "line": 291,
-          "column": 4
+          "line": 284,
+          "column": 4,
+          "index": 8591
         },
         "end": {
-          "line": 304,
-          "column": 5
+          "line": 297,
+          "column": 5,
+          "index": 9220
         }
       },
       "type": "variable",
@@ -478,12 +507,14 @@
     "_formContainer": {
       "location": {
         "start": {
-          "line": 308,
-          "column": 4
+          "line": 301,
+          "column": 4,
+          "index": 9245
         },
         "end": {
-          "line": 308,
-          "column": 24
+          "line": 301,
+          "column": 24,
+          "index": 9265
         }
       },
       "type": "variable",
@@ -492,12 +523,14 @@
     "_form": {
       "location": {
         "start": {
-          "line": 309,
-          "column": 4
+          "line": 302,
+          "column": 4,
+          "index": 9271
         },
         "end": {
-          "line": 309,
-          "column": 15
+          "line": 302,
+          "column": 15,
+          "index": 9282
         }
       },
       "type": "variable",
@@ -506,12 +539,14 @@
     "_formValidator": {
       "location": {
         "start": {
-          "line": 310,
-          "column": 4
+          "line": 303,
+          "column": 4,
+          "index": 9288
         },
         "end": {
-          "line": 310,
-          "column": 24
+          "line": 303,
+          "column": 24,
+          "index": 9308
         }
       },
       "type": "variable",
@@ -520,12 +555,14 @@
     "_formController": {
       "location": {
         "start": {
-          "line": 311,
-          "column": 4
+          "line": 304,
+          "column": 4,
+          "index": 9314
         },
         "end": {
-          "line": 311,
-          "column": 25
+          "line": 304,
+          "column": 25,
+          "index": 9335
         }
       },
       "type": "variable",
@@ -534,12 +571,14 @@
     "_formElements": {
       "location": {
         "start": {
-          "line": 312,
-          "column": 4
+          "line": 305,
+          "column": 4,
+          "index": 9341
         },
         "end": {
-          "line": 312,
-          "column": 24
+          "line": 305,
+          "column": 23,
+          "index": 9360
         }
       },
       "type": "variable",
@@ -548,12 +587,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 314,
-          "column": 4
+          "line": 307,
+          "column": 4,
+          "index": 9367
         },
         "end": {
-          "line": 337,
-          "column": 5
+          "line": 330,
+          "column": 5,
+          "index": 10509
         }
       },
       "type": "function",
@@ -562,12 +603,14 @@
     "getForm": {
       "location": {
         "start": {
-          "line": 343,
-          "column": 4
+          "line": 336,
+          "column": 4,
+          "index": 10588
         },
         "end": {
-          "line": 345,
-          "column": 5
+          "line": 338,
+          "column": 5,
+          "index": 10630
         }
       },
       "jsdoc": {
@@ -592,12 +635,14 @@
     "_createWidgetContent": {
       "location": {
         "start": {
-          "line": 351,
-          "column": 4
+          "line": 344,
+          "column": 4,
+          "index": 10723
         },
         "end": {
-          "line": 410,
-          "column": 5
+          "line": 406,
+          "column": 5,
+          "index": 12922
         }
       },
       "jsdoc": {
@@ -622,12 +667,14 @@
     "_applyFormData": {
       "location": {
         "start": {
-          "line": 418,
-          "column": 4
+          "line": 414,
+          "column": 4,
+          "index": 13115
         },
         "end": {
-          "line": 700,
-          "column": 5
+          "line": 726,
+          "column": 5,
+          "index": 23464
         }
       },
       "jsdoc": {
@@ -672,12 +719,14 @@
     "_applyLabelColumnWidth": {
       "location": {
         "start": {
-          "line": 707,
-          "column": 4
+          "line": 733,
+          "column": 4,
+          "index": 23588
         },
         "end": {
-          "line": 718,
-          "column": 5
+          "line": 746,
+          "column": 5,
+          "index": 24047
         }
       },
       "jsdoc": {
@@ -715,12 +764,14 @@
     "_onFormReady": {
       "location": {
         "start": {
-          "line": 727,
-          "column": 4
+          "line": 755,
+          "column": 4,
+          "index": 24367
         },
         "end": {
-          "line": 733,
-          "column": 5
+          "line": 761,
+          "column": 5,
+          "index": 24551
         }
       },
       "jsdoc": {
@@ -746,12 +797,14 @@
     "_handleOk": {
       "location": {
         "start": {
-          "line": 739,
-          "column": 4
+          "line": 767,
+          "column": 4,
+          "index": 24660
         },
         "end": {
-          "line": 749,
-          "column": 5
+          "line": 777,
+          "column": 5,
+          "index": 24928
         }
       },
       "jsdoc": {

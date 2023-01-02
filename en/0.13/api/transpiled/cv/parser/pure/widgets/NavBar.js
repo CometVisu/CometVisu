@@ -12,11 +12,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* NavBar.js 
-   * 
+  /* NavBar.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.NavBar', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -54,69 +52,64 @@
        * @param pageType {String} Page type (2d, 3d, ...)
        */
       parse: function parse(xml, path, flavour, pageType) {
-        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings()); // navbars are no 2d/3d pages
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
 
+        // navbars are no 2d/3d pages
         cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, 'text');
         return data;
       },
       createDefaultWidget: function createDefaultWidget(widgetType, n, path) {
         var classes = 'navbar clearfix';
-
         if (n.getAttribute('flavour')) {
           classes += ' flavour_' + n.getAttribute('flavour');
         } // sub design choice
+
         // store scope globally
-
-
         var id = path.split('_');
         id.pop();
         var pos = n.getAttribute('position') || 'left';
         cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-          'dynamic': cv.parser.pure.widgets.NavBar._transformDynamic(n.getAttribute('dynamic')),
-          'scope': cv.parser.pure.widgets.NavBar._transformScope(n.getAttribute('scope')),
-          'width': n.getAttribute('width')
+          dynamic: cv.parser.pure.widgets.NavBar._transformDynamic(n.getAttribute('dynamic')),
+          scope: cv.parser.pure.widgets.NavBar._transformScope(n.getAttribute('scope')),
+          width: n.getAttribute('width')
         });
         return cv.data.Model.getInstance().setWidgetData(cv.parser.pure.WidgetParser.getStoragePath(n, path), {
-          'path': path,
-          'classes': classes,
-          '$$type': widgetType
+          path: path,
+          classes: classes,
+          $$type: widgetType
         });
       },
       _transformDynamic: function _transformDynamic(value) {
         switch (value) {
           case 'true':
             return true;
-
           case 'false':
             return false;
         }
-
         return null;
       },
       _transformScope: function _transformScope(value) {
         value = parseInt(value);
-
         if (value >= 0) {
           return value;
         }
-
         return -1;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'scope': {
-            'default': -1,
+          scope: {
+            "default": -1,
             transform: cv.parser.pure.widgets.NavBar._transformScope
           },
-          'name': {},
-          'dynamic': {
+          name: {},
+          dynamic: {
             transform: cv.parser.pure.widgets.NavBar._transformDynamic
           },
-          'width': {
-            'default': '300'
+          width: {
+            "default": '300'
           },
-          'position': {
-            'default': 'left'
+          position: {
+            "default": 'left'
           }
         };
       }
@@ -128,4 +121,4 @@
   cv.parser.pure.widgets.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1664789562211
+//# sourceMappingURL=NavBar.js.map?dt=1672653470867

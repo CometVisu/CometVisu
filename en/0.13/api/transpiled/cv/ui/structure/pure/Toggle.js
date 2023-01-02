@@ -20,11 +20,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Toggle.js 
-   * 
+  /* Toggle.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -51,7 +50,6 @@
   qx.Class.define('cv.ui.structure.pure.Toggle', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
-
     /*
     ******************************************************
       MEMBERS
@@ -62,7 +60,6 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
-
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @return {var}
@@ -75,4 +72,4 @@
   cv.ui.structure.pure.Toggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Toggle.js.map?dt=1664789570727
+//# sourceMappingURL=Toggle.js.map?dt=1672653479102

@@ -14,11 +14,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* VirtualFsItem.js 
-   * 
+  /* VirtualFsItem.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
     extend: qx.ui.tree.VirtualTreeItem,
-
     /*
     ***********************************************
       PROPERTIES
@@ -71,7 +69,6 @@
         apply: '_applyStatus'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -81,15 +78,14 @@
       _applyEditing: function _applyEditing(value, old) {
         if (value !== old) {
           var field = this.getChildControl('edit');
-
           if (value) {
             field.setValue(this.getLabel());
             field.show();
             qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', false);
           } else {
             qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', true);
-            field.exclude(); // save new name
-
+            field.exclude();
+            // save new name
             if (field.getValue() !== this.getName()) {
               cv.ui.manager.control.FileController.getInstance().rename(this.getModel(), field.getValue());
             }
@@ -106,11 +102,9 @@
       // overridden
       _applyModel: function _applyModel(value, old) {
         cv.ui.manager.tree.VirtualFsItem.superclass.prototype._applyModel.call(this, value, old);
-
         if (old) {
           old.removeRelatedBindings(this);
         }
-
         if (value) {
           if (value.isTrash()) {
             this.setLabel(this.tr('Trash'));
@@ -122,9 +116,7 @@
               }
             });
           }
-
           value.bind('temporary', this, 'temporary');
-
           if (value.getType() === 'dir') {
             this.setDroppable(true);
             this.addListener('drop', this._onDrop, this);
@@ -136,20 +128,17 @@
       },
       _applyStatus: function _applyStatus(value) {
         var control = this.getChildControl('icon');
-
         if (value) {
           switch (value) {
             case 'valid':
               control.removeState('error');
               break;
-
             case 'error':
               control.addState('error');
               break;
           }
         }
       },
-
       /**
        * Handle drop events
        * @param ev {Event}
@@ -158,7 +147,7 @@
       _onDrop: function _onDrop(ev) {
         this.info(ev.getRelatedTarget());
       },
-      __P_51_0: function __P_51_0() {
+      __P_53_0: function __P_53_0() {
         this.getChildControl('edit').setValue(this.getName());
         this.setEditing(false);
       },
@@ -166,13 +155,13 @@
         if (ev.getKeyIdentifier() === 'Enter') {
           this.setEditing(false);
         } else if (ev.getKeyIdentifier() === 'Esc') {
-          this.__P_51_0();
+          this.__P_53_0();
         }
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
+        var _this = this;
         var control;
-
         switch (id) {
           case 'edit':
             control = new qx.ui.form.TextField();
@@ -180,20 +169,17 @@
             control.exclude();
             control.addListener('changeVisibility', function (ev) {
               if (ev.getData() === 'visible') {
-                this.getChildControl('label').exclude();
+                _this.getChildControl('label').exclude();
               } else {
-                this.getChildControl('label').show();
+                _this.getChildControl('label').show();
               }
-            }, this);
+            });
             control.addListener('blur', function () {
-              this.setEditing(false);
-            }, this);
-
+              _this.setEditing(false);
+            });
             this._add(control);
-
             break;
         }
-
         return control || cv.ui.manager.tree.VirtualFsItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -201,4 +187,4 @@
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1664789569054
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1672653477569

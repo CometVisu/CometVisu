@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,16 +49,15 @@
    */
   qx.Class.define("qx.event.type.Orientation", {
     extend: qx.event.type.Event,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_226_0: null,
-      __P_226_1: null,
 
+    members: {
+      __P_231_0: null,
+      __P_231_1: null,
       /**
        * Initialize the fields of the event. The event must be initialized before
        * it can be dispatched.
@@ -70,11 +68,10 @@
        */
       init: function init(orientation, mode) {
         qx.event.type.Orientation.superclass.prototype.init.call(this, false, false);
-        this.__P_226_0 = orientation;
-        this.__P_226_1 = mode;
+        this.__P_231_0 = orientation;
+        this.__P_231_1 = mode;
         return this;
       },
-
       /**
        * Get a copy of this object
        *
@@ -87,11 +84,10 @@
        */
       clone: function clone(embryo) {
         var clone = qx.event.type.Orientation.superclass.prototype.clone.call(this, embryo);
-        clone.__P_226_0 = this.__P_226_0;
-        clone.__P_226_1 = this.__P_226_1;
+        clone.__P_231_0 = this.__P_231_0;
+        clone.__P_231_1 = this.__P_231_1;
         return clone;
       },
-
       /**
        * Returns the current orientation of the viewport in degree.
        *
@@ -105,9 +101,8 @@
        * @return {Integer} The current orientation in degree
        */
       getOrientation: function getOrientation() {
-        return this.__P_226_0;
+        return this.__P_231_0;
       },
-
       /**
        * Whether the viewport orientation is currently in landscape mode.
        *
@@ -115,9 +110,8 @@
        *     is currently in landscape mode.
        */
       isLandscape: function isLandscape() {
-        return this.__P_226_1 == "landscape";
+        return this.__P_231_1 == "landscape";
       },
-
       /**
        * Whether the viewport orientation is currently in portrait mode.
        *
@@ -125,11 +119,11 @@
        *     is currently in portrait mode.
        */
       isPortrait: function isPortrait() {
-        return this.__P_226_1 == "portrait";
+        return this.__P_231_1 == "portrait";
       }
     }
   });
   qx.event.type.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1664789585851
+//# sourceMappingURL=Orientation.js.map?dt=1672653496338

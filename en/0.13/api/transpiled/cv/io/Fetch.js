@@ -10,11 +10,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Fetch.js 
-   * 
+  /* Fetch.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -35,7 +34,6 @@
    */
   qx.Class.define('cv.io.Fetch', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -51,38 +49,49 @@
        * @returns {Promise<Response>}
        */
       fetch: function fetch(resource) {
-        var _this = this;
-
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         var proxy = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
         var client = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
-
         if (proxy) {
           var url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-          url.searchParams.set('url', resource);
+          if (resource) {
+            url.searchParams.set('url', resource);
+          }
+          if (options) {
+            for (var _i = 0, _arr = ['self-signed', 'config-section', 'auth-type']; _i < _arr.length; _i++) {
+              var proxyParam = _arr[_i];
+              if (Object.prototype.hasOwnProperty.call(options, proxyParam)) {
+                url.searchParams.set(proxyParam, options[proxyParam]);
+                delete options[proxyParam];
+              }
+            }
+          }
           resource = url;
+        } else if (options) {
+          for (var _i2 = 0, _arr2 = ['self-signed', 'config-section', 'auth-type']; _i2 < _arr2.length; _i2++) {
+            var _proxyParam = _arr2[_i2];
+            if (Object.prototype.hasOwnProperty.call(options, _proxyParam)) {
+              delete options[_proxyParam];
+            }
+          }
         }
-
         return new Promise(function (resolve, reject) {
           var xhr = new qx.io.request.Xhr('' + resource);
           xhr.set(options);
-
           if (client) {
             client.authorize(xhr);
           }
-
           xhr.addListener('success', function (ev) {
             var request = ev.getTarget();
             resolve(request.getResponse());
-          }, _this);
+          });
           xhr.addListener('statusError', function (ev) {
             var request = ev.getTarget();
             reject(request.getResponse());
-          }, _this);
+          });
           xhr.send();
         });
       },
-
       /**
        *
        * @param resource {URL|string}
@@ -98,4 +107,4 @@
   cv.io.Fetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Fetch.js.map?dt=1664789614947
+//# sourceMappingURL=Fetch.js.map?dt=1672653524758

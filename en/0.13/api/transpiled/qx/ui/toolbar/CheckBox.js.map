@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/CheckBox.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -14,18 +11,11 @@
     "ui",
     "form",
     "ToggleButton",
-    "construct",
-    "label",
-    "icon",
-    "removeListener",
-    "_onKeyDown",
-    "_onKeyUp",
     "properties",
     "appearance",
     "refine",
     "init",
     "show",
-    "focusable",
     "members",
     "_applyVisibility",
     "value",
@@ -40,8 +30,11 @@
     "add",
     "CheckBox"
   ],
-  "mappings": ";;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EACA;AACEC,IAAAA,MAAM,EAAGN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,YADtB;;AAME;AACF;AACA;AACA;AACA;AAEEC,IAAAA,SAAS,EAAG,mBAASC,KAAT,EAAgBC,IAAhB,EACZ;AACE,qDAAqBD,KAArB,EAA4BC,IAA5B,EADF,CAGE;;AACA,WAAKC,cAAL,CAAoB,SAApB,EAA+B,KAAKC,UAApC;AACA,WAAKD,cAAL,CAAoB,OAApB,EAA6B,KAAKE,QAAlC;AACD,KAnBH;;AAwBE;AACF;AACA;AACA;AACA;AAEEC,IAAAA,UAAU,EACV;AACEC,MAAAA,UAAU,EACV;AACEC,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OAFF;AAOEC,MAAAA,IAAI,EACJ;AACEF,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT,OARF;AAaEE,MAAAA,SAAS,EACT;AACEH,QAAAA,MAAM,EAAG,IADX;AAEEC,QAAAA,IAAI,EAAG;AAFT;AAdF,KA/BF;AAmDEG,IAAAA,OAAO,EAAG;AACR;AACAC,MAAAA,gBAAgB,EAAG,0BAASC,KAAT,EAAgBC,GAAhB,EAAqB;AACtC,gFAAqBD,KAArB,EAA4BC,GAA5B,EADsC,CAEtC;;;AACA,YAAIC,MAAM,GAAG,KAAKC,eAAL,EAAb;;AACA,YAAID,MAAM,IAAIA,MAAM,YAAY1B,EAAE,CAACO,EAAH,CAAMqB,OAAN,CAAcC,aAA9C,EAA6D;AAC3D7B,UAAAA,EAAE,CAACO,EAAH,CAAMuB,IAAN,CAAWC,KAAX,CAAiBC,UAAjB,CAA4BC,GAA5B,CAAgCP,MAAhC;AACD;AACF;AATO;AAnDZ,GADA;AAtBA1B,EAAAA,EAAE,CAACO,EAAH,CAAMqB,OAAN,CAAcM,QAAd,CAAuB/B,aAAvB,GAAuCA,aAAvC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/CheckBox.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A button which is toggle-able for toolbars.\n */\nqx.Class.define(\"qx.ui.toolbar.CheckBox\",\n{\n  extend : qx.ui.form.ToggleButton,\n\n\n\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct : function(label, icon)\n  {\n    this.base(arguments, label, icon);\n\n    // Toolbar buttons should not support the keyboard events\n    this.removeListener(\"keydown\", this._onKeyDown);\n    this.removeListener(\"keyup\", this._onKeyUp);\n  },\n\n\n\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties :\n  {\n    appearance :\n    {\n      refine : true,\n      init : \"toolbar-button\"\n    },\n\n    show :\n    {\n      refine : true,\n      init : \"inherit\"\n    },\n\n    focusable :\n    {\n      refine : true,\n      init : false\n    }\n  },\n\n  members : {\n    // overridden\n    _applyVisibility : function(value, old) {\n      this.base(arguments, value, old);\n      // trigger a appearance recalculation of the parent\n      var parent = this.getLayoutParent();\n      if (parent && parent instanceof qx.ui.toolbar.PartContainer) {\n        qx.ui.core.queue.Appearance.add(parent);\n      }\n    }\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n\n************************************************************************ */\n\n/**\n * A button which is toggle-able for toolbars.\n */\nqx.Class.define(\"qx.ui.toolbar.CheckBox\", {\n  extend: qx.ui.form.ToggleButton,\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties: {\n    appearance: {\n      refine: true,\n      init: \"toolbar-button\"\n    },\n\n    show: {\n      refine: true,\n      init: \"inherit\"\n    }\n  },\n\n  members: {\n    // overridden\n    _applyVisibility(value, old) {\n      super._applyVisibility(value, old);\n      // trigger a appearance recalculation of the parent\n      var parent = this.getLayoutParent();\n      if (parent && parent instanceof qx.ui.toolbar.PartContainer) {\n        qx.ui.core.queue.Appearance.add(parent);\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,IAAI,CAACC,YAAY;IAE/B;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACVC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR,CAAC;MAEDC,IAAI,EAAE;QACJF,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF,CAAC;IAEDE,OAAO,EAAE;MACP;MACAC,gBAAgB,4BAACC,KAAK,EAAEC,GAAG,EAAE;QAC3B,wEAAuBD,KAAK,EAAEC,GAAG;QACjC;QACA,IAAIC,MAAM,GAAG,IAAI,CAACC,eAAe,EAAE;QACnC,IAAID,MAAM,IAAIA,MAAM,YAAYnB,EAAE,CAACO,EAAE,CAACc,OAAO,CAACC,aAAa,EAAE;UAC3DtB,EAAE,CAACO,EAAE,CAACgB,IAAI,CAACC,KAAK,CAACC,UAAU,CAACC,GAAG,CAACP,MAAM,CAAC;QACzC;MACF;IACF;EACF,CAAC,CAAC;EAtDFnB,EAAE,CAACO,EAAE,CAACc,OAAO,CAACM,QAAQ,CAACxB,aAAa,GAAGA,aAAa;AAAC"
 }

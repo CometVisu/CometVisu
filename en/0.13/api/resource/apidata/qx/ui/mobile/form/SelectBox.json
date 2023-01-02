@@ -19,11 +19,13 @@
     "location": {
       "start": {
         "line": 55,
-        "column": 0
+        "column": 0,
+        "index": 1448
       },
       "end": {
-        "line": 389,
-        "column": 3
+        "line": 362,
+        "column": 3,
+        "index": 9380
       }
     },
     "jsdoc": {
@@ -39,12 +41,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 76,
-        "column": 14
+        "line": 71,
+        "column": 2,
+        "index": 1923
       },
       "end": {
-        "line": 95,
-        "column": 3
+        "line": 93,
+        "column": 3,
+        "index": 2552
       }
     },
     "jsdoc": {}
@@ -53,12 +57,14 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 108,
-          "column": 4
+          "line": 104,
+          "column": 4,
+          "index": 2809
         },
         "end": {
-          "line": 108,
-          "column": 42
+          "line": 104,
+          "column": 41,
+          "index": 2846
         }
       },
       "jsdoc": {
@@ -189,12 +195,14 @@
     "defaultCssClass": {
       "location": {
         "start": {
-          "line": 122,
-          "column": 4
+          "line": 115,
+          "column": 4,
+          "index": 3078
         },
         "end": {
-          "line": 126,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 3146
         }
       },
       "jsdoc": {},
@@ -211,12 +219,14 @@
     "activatable": {
       "location": {
         "start": {
-          "line": 130,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3171
         },
         "end": {
-          "line": 134,
-          "column": 5
+          "line": 124,
+          "column": 5,
+          "index": 3228
         }
       },
       "jsdoc": {},
@@ -233,12 +243,14 @@
     "nullable": {
       "location": {
         "start": {
-          "line": 140,
-          "column": 4
+          "line": 129,
+          "column": 4,
+          "index": 3330
         },
         "end": {
-          "line": 145,
-          "column": 5
+          "line": 133,
+          "column": 5,
+          "index": 3419
         }
       },
       "jsdoc": {
@@ -259,12 +271,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 151,
-          "column": 4
+          "line": 138,
+          "column": 4,
+          "index": 3486
         },
         "end": {
-          "line": 158,
-          "column": 5
+          "line": 144,
+          "column": 5,
+          "index": 3625
         }
       },
       "jsdoc": {
@@ -286,12 +300,14 @@
     "selection": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 4
+          "line": 149,
+          "column": 4,
+          "index": 3693
         },
         "end": {
-          "line": 170,
-          "column": 5
+          "line": 154,
+          "column": 5,
+          "index": 3820
         }
       },
       "jsdoc": {
@@ -370,7 +386,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip.</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
       }
@@ -382,12 +398,12 @@
       "mixin": true,
       "access": "public",
       "overriddenFrom": "qx.ui.form.MForm",
-      "event": "changeInvalidMessage",
+      "event": "changeRequiredInvalidMessage",
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Message which is shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
       }
@@ -445,12 +461,14 @@
     "__selectionDialog": {
       "location": {
         "start": {
-          "line": 176,
-          "column": 4
+          "line": 158,
+          "column": 4,
+          "index": 3844
         },
         "end": {
-          "line": 176,
-          "column": 28
+          "line": 158,
+          "column": 27,
+          "index": 3867
         }
       },
       "type": "variable",
@@ -459,12 +477,14 @@
     "_getTagName": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 161,
+          "column": 4,
+          "index": 3892
         },
         "end": {
-          "line": 184,
-          "column": 5
+          "line": 164,
+          "column": 5,
+          "index": 3974
         }
       },
       "jsdoc": {},
@@ -478,12 +498,14 @@
     "_createSelectionDialog": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 171,
+          "column": 4,
+          "index": 4156
         },
         "end": {
-          "line": 203,
-          "column": 5
+          "line": 182,
+          "column": 5,
+          "index": 4514
         }
       },
       "jsdoc": {
@@ -508,12 +530,14 @@
     "getSelectionDialog": {
       "location": {
         "start": {
-          "line": 210,
-          "column": 4
+          "line": 188,
+          "column": 4,
+          "index": 4636
         },
         "end": {
-          "line": 212,
-          "column": 5
+          "line": 190,
+          "column": 5,
+          "index": 4701
         }
       },
       "jsdoc": {
@@ -538,12 +562,14 @@
     "setDialogTitle": {
       "location": {
         "start": {
-          "line": 219,
-          "column": 4
+          "line": 196,
+          "column": 4,
+          "index": 4845
         },
         "end": {
-          "line": 221,
-          "column": 5
+          "line": 198,
+          "column": 5,
+          "index": 4920
         }
       },
       "jsdoc": {
@@ -569,12 +595,14 @@
     "setClearButtonLabel": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 204,
+          "column": 4,
+          "index": 5087
         },
         "end": {
-          "line": 230,
-          "column": 5
+          "line": 206,
+          "column": 5,
+          "index": 5178
         }
       },
       "jsdoc": {
@@ -600,12 +628,14 @@
     "_setValue": {
       "location": {
         "start": {
-          "line": 237,
-          "column": 4
+          "line": 212,
+          "column": 4,
+          "index": 5326
         },
         "end": {
-          "line": 253,
-          "column": 5
+          "line": 228,
+          "column": 5,
+          "index": 5713
         }
       },
       "jsdoc": {
@@ -631,12 +661,14 @@
     "_getValue": {
       "location": {
         "start": {
-          "line": 261,
-          "column": 4
+          "line": 235,
+          "column": 4,
+          "index": 5909
         },
         "end": {
-          "line": 263,
-          "column": 5
+          "line": 237,
+          "column": 5,
+          "index": 5970
         }
       },
       "jsdoc": {
@@ -661,12 +693,14 @@
     "_render": {
       "location": {
         "start": {
-          "line": 270,
-          "column": 4
+          "line": 243,
+          "column": 4,
+          "index": 6139
         },
         "end": {
-          "line": 277,
-          "column": 5
+          "line": 250,
+          "column": 5,
+          "index": 6382
         }
       },
       "jsdoc": {
@@ -683,12 +717,14 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 285,
-          "column": 4
+          "line": 257,
+          "column": 4,
+          "index": 6554
         },
         "end": {
-          "line": 292,
-          "column": 5
+          "line": 264,
+          "column": 5,
+          "index": 6754
         }
       },
       "jsdoc": {
@@ -725,12 +761,14 @@
     "__showSelectionDialog": {
       "location": {
         "start": {
-          "line": 298,
-          "column": 4
+          "line": 269,
+          "column": 4,
+          "index": 6832
         },
         "end": {
-          "line": 305,
-          "column": 5
+          "line": 276,
+          "column": 5,
+          "index": 7150
         }
       },
       "jsdoc": {
@@ -747,12 +785,14 @@
     "_onChangeSelection": {
       "location": {
         "start": {
-          "line": 312,
-          "column": 4
+          "line": 282,
+          "column": 4,
+          "index": 7302
         },
         "end": {
-          "line": 315,
-          "column": 5
+          "line": 285,
+          "column": 5,
+          "index": 7401
         }
       },
       "jsdoc": {
@@ -778,12 +818,14 @@
     "_onTap": {
       "location": {
         "start": {
-          "line": 322,
-          "column": 4
+          "line": 291,
+          "column": 4,
+          "index": 7544
         },
         "end": {
-          "line": 328,
-          "column": 5
+          "line": 297,
+          "column": 5,
+          "index": 7751
         }
       },
       "jsdoc": {
@@ -809,12 +851,14 @@
     "_validateSelection": {
       "location": {
         "start": {
-          "line": 335,
-          "column": 4
+          "line": 303,
+          "column": 4,
+          "index": 7875
         },
         "end": {
-          "line": 360,
-          "column": 5
+          "line": 330,
+          "column": 5,
+          "index": 8665
         }
       },
       "jsdoc": {
@@ -840,12 +884,14 @@
     "_applySelection": {
       "location": {
         "start": {
-          "line": 364,
-          "column": 4
+          "line": 333,
+          "column": 4,
+          "index": 8694
         },
         "end": {
-          "line": 369,
-          "column": 5
+          "line": 341,
+          "column": 5,
+          "index": 8914
         }
       },
       "jsdoc": {},
@@ -858,12 +904,14 @@
     "_applyNullable": {
       "location": {
         "start": {
-          "line": 373,
-          "column": 4
+          "line": 344,
+          "column": 4,
+          "index": 8943
         },
         "end": {
-          "line": 376,
-          "column": 5
+          "line": 347,
+          "column": 5,
+          "index": 9063
         }
       },
       "jsdoc": {},
@@ -1609,38 +1657,6 @@
       "overriddenFrom": "qx.ui.form.MForm",
       "jsdoc": {}
     },
-    "__onChangeLocale": {
-      "type": "function",
-      "name": "__onChangeLocale",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Locale change event handler</p>"
-          }
-        ],
-        "@signature": [
-          {
-            "name": "@signature",
-            "body": "function(e)"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "e {Event} the change event",
-            "paramName": "e",
-            "description": " the change event",
-            "type": "Event"
-          }
-        ]
-      }
-    },
     "isValid": {
       "type": "function",
       "name": "isValid",
@@ -2256,6 +2272,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -2280,6 +2297,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -3454,15 +3472,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 380,
-        "column": 13
+        "line": 350,
+        "column": 2,
+        "index": 9072
       },
       "end": {
-        "line": 388,
-        "column": 3
+        "line": 361,
+        "column": 3,
+        "index": 9376
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

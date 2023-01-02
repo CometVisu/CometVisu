@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 40,
-        "column": 0
+        "column": 0,
+        "index": 946
       },
       "end": {
-        "line": 464,
-        "column": 3
+        "line": 462,
+        "column": 3,
+        "index": 14838
       }
     },
     "jsdoc": {
@@ -43,12 +45,14 @@
     "getCaller": {
       "location": {
         "start": {
-          "line": 51,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1304
         },
         "end": {
-          "line": 53,
-          "column": 5
+          "line": 51,
+          "column": 5,
+          "index": 1395
         }
       },
       "jsdoc": {
@@ -82,12 +86,14 @@
     "getName": {
       "location": {
         "start": {
-          "line": 64,
-          "column": 4
+          "line": 61,
+          "column": 4,
+          "index": 1717
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 110,
+          "column": 5,
+          "index": 3047
         }
       },
       "jsdoc": {
@@ -121,12 +127,14 @@
     "globalEval": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 120,
+          "column": 4,
+          "index": 3255
         },
         "end": {
-          "line": 139,
-          "column": 5
+          "line": 126,
+          "column": 5,
+          "index": 3413
         }
       },
       "jsdoc": {
@@ -166,12 +174,14 @@
     "create": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 4
+          "line": 151,
+          "column": 4,
+          "index": 4974
         },
         "end": {
-          "line": 235,
-          "column": 5
+          "line": 239,
+          "column": 5,
+          "index": 7410
         }
       },
       "jsdoc": {
@@ -191,9 +201,9 @@
           },
           {
             "name": "@param",
-            "body": "options {Map?} Map of options\n <ul>\n <li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n <li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\n     Default is no custom arguments; the function will receive the standard arguments when called.</li>\n <li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\n     Default is no delay.</li>\n <li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\n      and return a timer handle when called. Default is no periodical execution.</li>\n <li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n </ul>",
+            "body": "options {Map?} Map of options\n <ul>\n <li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n <li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\n     Default is no custom arguments; the function will receive the standard arguments when called.</li>\n <li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\n     Default is no delay.</li>\n <li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\n      and return a timer handle when called. Default is no periodical execution.</li>\n <li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n <li><strong>always</strong>: Always wrap the function with a closure, even if the options suggest that it is not necessary</li>\n </ul>",
             "paramName": "options",
-            "description": " Map of options\n <ul>\n <li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n <li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\n     Default is no custom arguments; the function will receive the standard arguments when called.</li>\n <li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\n     Default is no delay.</li>\n <li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\n      and return a timer handle when called. Default is no periodical execution.</li>\n <li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n </ul>",
+            "description": " Map of options\n <ul>\n <li><strong>self</strong>: The object that the \"this\" of the function will refer to. Default is the same as the wrapper function is called.</li>\n <li><strong>args</strong>: An array of arguments that will be passed as arguments to the function when called.\n     Default is no custom arguments; the function will receive the standard arguments when called.</li>\n <li><strong>delay</strong>: If set, the returned function will delay the actual execution by this amount of milliseconds and return a timer handle when called.\n     Default is no delay.</li>\n <li><strong>periodical</strong>: If set the returned function will periodically perform the actual execution with this specified interval\n      and return a timer handle when called. Default is no periodical execution.</li>\n <li><strong>attempt</strong>: If set to true, the returned function will try to execute and return either the results or false on error. Default is false.</li>\n <li><strong>always</strong>: Always wrap the function with a closure, even if the options suggest that it is not necessary</li>\n </ul>",
             "optional": true,
             "type": "Map"
           }
@@ -213,12 +223,14 @@
     "bind": {
       "location": {
         "start": {
-          "line": 278,
-          "column": 4
+          "line": 281,
+          "column": 4,
+          "index": 8870
         },
         "end": {
-          "line": 285,
-          "column": 5
+          "line": 289,
+          "column": 5,
+          "index": 9086
         }
       },
       "jsdoc": {
@@ -276,12 +288,14 @@
     "curry": {
       "location": {
         "start": {
-          "line": 310,
-          "column": 4
+          "line": 313,
+          "column": 4,
+          "index": 9790
         },
         "end": {
-          "line": 315,
-          "column": 5
+          "line": 320,
+          "column": 5,
+          "index": 9981
         }
       },
       "jsdoc": {
@@ -322,12 +336,14 @@
     "listener": {
       "location": {
         "start": {
-          "line": 330,
-          "column": 4
+          "line": 334,
+          "column": 4,
+          "index": 10498
         },
         "end": {
-          "line": 355,
-          "column": 5
+          "line": 353,
+          "column": 5,
+          "index": 11108
         }
       },
       "jsdoc": {
@@ -379,12 +395,14 @@
     "attempt": {
       "location": {
         "start": {
-          "line": 387,
-          "column": 4
+          "line": 384,
+          "column": 4,
+          "index": 12055
         },
         "end": {
-          "line": 395,
-          "column": 5
+          "line": 393,
+          "column": 5,
+          "index": 12299
         }
       },
       "jsdoc": {
@@ -436,12 +454,14 @@
     "delay": {
       "location": {
         "start": {
-          "line": 422,
-          "column": 4
+          "line": 419,
+          "column": 4,
+          "index": 13412
         },
         "end": {
-          "line": 430,
-          "column": 5
+          "line": 428,
+          "column": 5,
+          "index": 13660
         }
       },
       "jsdoc": {
@@ -500,12 +520,14 @@
     "periodical": {
       "location": {
         "start": {
-          "line": 454,
-          "column": 4
+          "line": 451,
+          "column": 4,
+          "index": 14566
         },
         "end": {
-          "line": 462,
-          "column": 5
+          "line": 460,
+          "column": 5,
+          "index": 14830
         }
       },
       "jsdoc": {

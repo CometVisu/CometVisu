@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 56,
-        "column": 0
+        "column": 0,
+        "index": 1643
       },
       "end": {
-        "line": 102,
-        "column": 3
+        "line": 100,
+        "column": 3,
+        "index": 3091
       }
     },
     "jsdoc": {
@@ -49,12 +51,14 @@
     "getPdfjs": {
       "location": {
         "start": {
-          "line": 67,
-          "column": 4
+          "line": 65,
+          "column": 4,
+          "index": 1940
         },
         "end": {
-          "line": 69,
-          "column": 5
+          "line": 67,
+          "column": 5,
+          "index": 2035
         }
       },
       "jsdoc": {
@@ -93,12 +97,14 @@
     "__isAvailable": {
       "location": {
         "start": {
-          "line": 77,
-          "column": 4
+          "line": 75,
+          "column": 4,
+          "index": 2286
         },
         "end": {
-          "line": 86,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2767
         }
       },
       "jsdoc": {
@@ -131,12 +137,14 @@
     "__getPluginDetect": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2908
         },
         "end": {
-          "line": 93,
-          "column": 27
+          "line": 91,
+          "column": 27,
+          "index": 2931
         }
       },
       "jsdoc": {
@@ -162,12 +170,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 99,
-        "column": 10
+        "line": 97,
+        "column": 2,
+        "index": 2999
       },
       "end": {
-        "line": 101,
-        "column": 3
+        "line": 99,
+        "column": 3,
+        "index": 3087
       }
     },
     "jsdoc": {

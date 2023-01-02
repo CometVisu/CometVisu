@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 21,
-        "column": 0
+        "line": 20,
+        "column": 0,
+        "index": 822
       },
       "end": {
-        "line": 42,
-        "column": 3
+        "line": 39,
+        "column": 3,
+        "index": 1504
       }
     },
     "jsdoc": {}
@@ -24,12 +26,14 @@
     "shortThreshold": {
       "location": {
         "start": {
-          "line": 29,
-          "column": 4
+          "line": 27,
+          "column": 4,
+          "index": 1033
         },
         "end": {
-          "line": 29,
-          "column": 47
+          "line": 27,
+          "column": 49,
+          "index": 1078
         }
       },
       "name": "shortThreshold",
@@ -41,12 +45,14 @@
     "shortDefault": {
       "location": {
         "start": {
-          "line": 30,
-          "column": 4
+          "line": 28,
+          "column": 4,
+          "index": 1084
         },
         "end": {
-          "line": 30,
-          "column": 49
+          "line": 28,
+          "column": 51,
+          "index": 1131
         }
       },
       "name": "shortDefault",
@@ -58,12 +64,14 @@
     "sendLongOnRelease": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1429
         },
         "end": {
-          "line": 39,
-          "column": 5
+          "line": 37,
+          "column": 5,
+          "index": 1496
         }
       },
       "jsdoc": {

@@ -24,7 +24,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,10 +63,9 @@
     },
     events: {
       /** Fired when the included checkbox changed its value */
-      "changeValue": "qx.event.type.Data",
-
+      changeValue: "qx.event.type.Data",
       /** Fired if the {@link #execute} method is invoked.*/
-      "execute": "qx.event.type.Event"
+      execute: "qx.event.type.Event"
     },
     members: {
       /*
@@ -78,7 +76,6 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "legend":
             control = new qx.ui.form.CheckBox();
@@ -87,29 +84,23 @@
             control.addListener("changeValue", this._onRadioChangeValue, this);
             control.addListener("resize", this._repositionFrame, this);
             control.addListener("execute", this._onExecute, this);
-
             this._add(control, {
               left: 0,
               right: 0
             });
-
         }
-
         return control || qx.ui.groupbox.CheckGroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
         qx.ui.groupbox.CheckGroupBox.superclass.prototype._applyEnabled.call(this, value, old);
-
         this.getChildrenContainer().setEnabled(value && this.getValue());
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for execute event of checkbox.
        *
@@ -118,20 +109,19 @@
       _onExecute: function _onExecute(e) {
         this.fireEvent("execute");
       },
-
       /**
        * Event listener for change event of checkbox
        *
        * @param e {qx.event.type.Data} Data event which holds the current status
        */
       _onRadioChangeValue: function _onRadioChangeValue(e) {
-        var checked = e.getData() ? true : false; // Disable content
+        var checked = e.getData() ? true : false;
+        // Disable content
+        this.getChildrenContainer().setEnabled(checked);
 
-        this.getChildrenContainer().setEnabled(checked); // Fire event to the outside
-
+        // Fire event to the outside
         this.fireDataEvent("changeValue", checked, e.getOldData());
       },
-
       /*
       ---------------------------------------------------------------------------
         REDIRECTIONS TO LEGEND (CHECKBOX COMPATIBILITY MODE)
@@ -149,7 +139,6 @@
       getCommand: function getCommand() {
         return this.getChildControl("legend").getCommand();
       },
-
       /**
        * The value of the groupbox.
        *
@@ -158,7 +147,6 @@
       getValue: function getValue() {
         return this.getChildControl("legend").getValue();
       },
-
       /**
        * Configures the value of the groupbox.
        *
@@ -167,7 +155,6 @@
       setValue: function setValue(value) {
         this.getChildControl("legend").setValue(value);
       },
-
       /**
        * Resets the value.
        */
@@ -179,4 +166,4 @@
   qx.ui.groupbox.CheckGroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckGroupBox.js.map?dt=1664789598014
+//# sourceMappingURL=CheckGroupBox.js.map?dt=1672653508922

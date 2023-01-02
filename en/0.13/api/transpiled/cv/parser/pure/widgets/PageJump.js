@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* PageJump.js 
-   * 
+  /* PageJump.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.PageJump', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -55,26 +53,24 @@
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         var widgetInfo = xml.querySelector('widgetinfo > *');
-
         if (widgetInfo !== undefined) {
           data.classes += ' infoaction';
         }
-
         cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
-          'target': {
-            'default': '0'
+          target: {
+            "default": '0'
           },
-          'active_scope': {
+          active_scope: {
             target: 'activeScope',
-            'default': 'target'
+            "default": 'target'
           },
-          'name': {},
-          'path': {
+          name: {},
+          path: {
             target: 'targetPath'
           }
         };
@@ -88,4 +84,4 @@
   cv.parser.pure.widgets.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1664789562304
+//# sourceMappingURL=PageJump.js.map?dt=1672653470959

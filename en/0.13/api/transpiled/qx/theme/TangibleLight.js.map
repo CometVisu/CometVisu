@@ -1,8 +1,5 @@
 {
   "version": 3,
-  "sources": [
-    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/compiler/node_modules/@qooxdoo/framework/source/class/qx/theme/TangibleLight.js"
-  ],
   "names": [
     "qx",
     "Bootstrap",
@@ -26,8 +23,11 @@
     "Tango",
     "TangibleLight"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAAA,EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACAH,EAAAA,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EAA0C;AACxCC,IAAAA,KAAK,EAAE,sBADiC;AAExCC,IAAAA,IAAI,EAAE;AACJC,MAAAA,KAAK,EAAER,EAAE,CAACS,KAAH,CAASC,QAAT,CAAkBC,UADrB;AAEJC,MAAAA,UAAU,EAAEZ,EAAE,CAACS,KAAH,CAASC,QAAT,CAAkBG,UAF1B;AAGJC,MAAAA,IAAI,EAAEd,EAAE,CAACS,KAAH,CAASC,QAAT,CAAkBK,IAHpB;AAIJC,MAAAA,UAAU,EAAEhB,EAAE,CAACS,KAAH,CAASC,QAAT,CAAkBO,UAJ1B;AAKJC,MAAAA,IAAI,EAAElB,EAAE,CAACS,KAAH,CAASS,IAAT,CAAcC;AALhB;AAFkC,GAA1C;AA1BAnB,EAAAA,EAAE,CAACS,KAAH,CAASW,aAAT,CAAuBjB,aAAvB,GAAuCA,aAAvC",
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/TangibleLight.js"
+  ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n  OSparc Dark Theme for Qooxdoo\n\n  Copyright:\n     2018 IT'IS Foundation\n\n  License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n  Authors:\n    * Tobias Oetiker (oetiker)\n\n  Origin:\n    This theme is based in large parts on the osparc.theme\n************************************************************************ */\n/**\n * Tangible Theme (Light)\n *\n * The tangible theme is inspired by ideas from material design. A lot of work went into designing a higly automated color\n * system. In order to customize the theme to your taste, simply create your own color system. Use qx.theme.tangible.ColorLight for inspiration.\n *\n * The Tangible Theme is very new and still in a state of flux. PRs highly welcome. Use https://material.io as a visual guide.\n * \n */\nqx.Theme.define(\"qx.theme.TangibleLight\", {\n  title: \"Tangible Light Theme\",\n  meta: {\n    color: qx.theme.tangible.ColorLight,\n    decoration: qx.theme.tangible.Decoration,\n    font: qx.theme.tangible.Font,\n    appearance: qx.theme.tangible.Appearance,\n    icon: qx.theme.icon.Tango\n  }\n});\n"
-  ]
+    "/* ************************************************************************\n\n  OSparc Dark Theme for Qooxdoo\n\n  Copyright:\n     2018 IT'IS Foundation\n\n  License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n  Authors:\n    * Tobias Oetiker (oetiker)\n\n  Origin:\n    This theme is based in large parts on the osparc.theme\n************************************************************************ */\n/**\n * Tangible Theme (Light)\n *\n * The tangible theme is inspired by ideas from material design. A lot of work went into designing a higly automated color\n * system. In order to customize the theme to your taste, simply create your own color system. Use qx.theme.tangible.ColorLight for inspiration.\n *\n * The Tangible Theme is very new and still in a state of flux. PRs highly welcome. Use https://material.io as a visual guide.\n *\n */\nqx.Theme.define(\"qx.theme.TangibleLight\", {\n  title: \"Tangible Light Theme\",\n  meta: {\n    color: qx.theme.tangible.ColorLight,\n    decoration: qx.theme.tangible.Decoration,\n    font: qx.theme.tangible.Font,\n    appearance: qx.theme.tangible.Appearance,\n    icon: qx.theme.icon.Tango\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,KAAK,EAAE,sBAAsB;IAC7BC,IAAI,EAAE;MACJC,KAAK,EAAER,EAAE,CAACS,KAAK,CAACC,QAAQ,CAACC,UAAU;MACnCC,UAAU,EAAEZ,EAAE,CAACS,KAAK,CAACC,QAAQ,CAACG,UAAU;MACxCC,IAAI,EAAEd,EAAE,CAACS,KAAK,CAACC,QAAQ,CAACK,IAAI;MAC5BC,UAAU,EAAEhB,EAAE,CAACS,KAAK,CAACC,QAAQ,CAACO,UAAU;MACxCC,IAAI,EAAElB,EAAE,CAACS,KAAK,CAACS,IAAI,CAACC;IACtB;EACF,CAAC,CAAC;EAnCFnB,EAAE,CAACS,KAAK,CAACW,aAAa,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

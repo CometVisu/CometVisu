@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,33 +63,31 @@
    */
   qx.Class.define("qx.data.controller.Object", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param model {qx.core.Object?null} The model for the model property.
      */
     construct: function construct(model) {
-      qx.core.Object.constructor.call(this); // create a map for all created binding ids
+      qx.core.Object.constructor.call(this);
 
-      this.__P_173_0 = {}; // create an array to store all current targets
-
-      this.__P_173_1 = [];
-
+      // create a map for all created binding ids
+      this.__P_175_0 = {};
+      // create an array to store all current targets
+      this.__P_175_1 = [];
       if (model != null) {
         this.setModel(model);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The model object which does have the properties for the binding. */
       model: {
@@ -101,17 +98,16 @@
         dereference: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // private members
-      __P_173_1: null,
-      __P_173_0: null,
-
+      __P_175_1: null,
+      __P_175_0: null,
       /**
        * Apply-method which will be called if a new model has been set.
        * All bindings will be moved to the new model.
@@ -121,30 +117,30 @@
        */
       _applyModel: function _applyModel(value, old) {
         // for every target
-        for (var i = 0; i < this.__P_173_1.length; i++) {
+        for (var i = 0; i < this.__P_175_1.length; i++) {
           // get the properties
-          var targetObject = this.__P_173_1[i][0];
-          var targetProperty = this.__P_173_1[i][1];
-          var sourceProperty = this.__P_173_1[i][2];
-          var bidirectional = this.__P_173_1[i][3];
-          var options = this.__P_173_1[i][4];
-          var reverseOptions = this.__P_173_1[i][5]; // remove it from the old if possible
+          var targetObject = this.__P_175_1[i][0];
+          var targetProperty = this.__P_175_1[i][1];
+          var sourceProperty = this.__P_175_1[i][2];
+          var bidirectional = this.__P_175_1[i][3];
+          var options = this.__P_175_1[i][4];
+          var reverseOptions = this.__P_175_1[i][5];
 
+          // remove it from the old if possible
           if (old != undefined && !old.isDisposed()) {
-            this.__P_173_2(targetObject, targetProperty, sourceProperty, old);
-          } // add it to the new if available
+            this.__P_175_2(targetObject, targetProperty, sourceProperty, old);
+          }
 
-
+          // add it to the new if available
           if (value != undefined) {
-            this.__P_173_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions);
+            this.__P_175_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions);
           } else {
             // in shutdown situations, it may be that something is already
             // disposed [BUG #4343]
             if (targetObject.isDisposed() || qx.core.ObjectRegistry.inShutDown) {
               continue;
-            } // if the model is null, reset the current target
-
-
+            }
+            // if the model is null, reset the current target
             if (targetProperty.indexOf("[") == -1) {
               targetObject["reset" + qx.lang.String.firstUp(targetProperty)]();
             } else {
@@ -152,11 +148,9 @@
               var index = parseInt(targetProperty.substring(open + 1, targetProperty.length - 1), 10);
               targetProperty = targetProperty.substring(0, open);
               var targetArray = targetObject["get" + qx.lang.String.firstUp(targetProperty)]();
-
               if (index == "last") {
                 index = targetArray.length;
               }
-
               if (targetArray) {
                 targetArray.setItem(index, null);
               }
@@ -164,7 +158,6 @@
           }
         }
       },
-
       /**
        * Adds a new target to the controller. After adding the target, the given
        * property of the model will be bound to the targets property.
@@ -190,60 +183,56 @@
        */
       addTarget: function addTarget(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions) {
         // store the added target
-        this.__P_173_1.push([targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions]); // delegate the adding
+        this.__P_175_1.push([targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions]);
 
-
-        this.__P_173_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions);
+        // delegate the adding
+        this.__P_175_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions);
       },
-
       /**
-      * Does the work for {@link #addTarget} but without saving the target
-      * to the internal target registry.
-      *
-      * @param targetObject {qx.core.Object} The object on which the property
-      *   should be bound.
-      *
-      * @param targetProperty {String} The property to which the binding should
-      *   go.
-      *
-      * @param sourceProperty {String} The name of the property in the model.
-      *
-      * @param bidirectional {Boolean?false} Signals if the binding should also work
-      *   in the reverse direction, from the target to source.
-      *
-      * @param options {Map?null} The options Map used by the binding from source
-      *   to target. The possible options can be found in the
-      *   {@link qx.data.SingleValueBinding} class.
-      *
-      * @param reverseOptions {Map?null} The options used by the binding in the
-      *   reverse direction. The possible options can be found in the
-      *   {@link qx.data.SingleValueBinding} class.
-      */
-      __P_173_3: function __P_173_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions) {
+       * Does the work for {@link #addTarget} but without saving the target
+       * to the internal target registry.
+       *
+       * @param targetObject {qx.core.Object} The object on which the property
+       *   should be bound.
+       *
+       * @param targetProperty {String} The property to which the binding should
+       *   go.
+       *
+       * @param sourceProperty {String} The name of the property in the model.
+       *
+       * @param bidirectional {Boolean?false} Signals if the binding should also work
+       *   in the reverse direction, from the target to source.
+       *
+       * @param options {Map?null} The options Map used by the binding from source
+       *   to target. The possible options can be found in the
+       *   {@link qx.data.SingleValueBinding} class.
+       *
+       * @param reverseOptions {Map?null} The options used by the binding in the
+       *   reverse direction. The possible options can be found in the
+       *   {@link qx.data.SingleValueBinding} class.
+       */
+      __P_175_3: function __P_175_3(targetObject, targetProperty, sourceProperty, bidirectional, options, reverseOptions) {
         // do nothing if no model is set
         if (this.getModel() == null) {
           return;
-        } // create the binding
-
-
-        var id = this.getModel().bind(sourceProperty, targetObject, targetProperty, options); // create the reverse binding if necessary
-
-        var idReverse = null;
-
-        if (bidirectional) {
-          idReverse = targetObject.bind(targetProperty, this.getModel(), sourceProperty, reverseOptions);
-        } // save the binding
-
-
-        var targetHash = targetObject.toHashCode();
-
-        if (this.__P_173_0[targetHash] == undefined) {
-          this.__P_173_0[targetHash] = [];
         }
 
-        this.__P_173_0[targetHash].push([id, idReverse, targetProperty, sourceProperty, options, reverseOptions]);
-      },
+        // create the binding
+        var id = this.getModel().bind(sourceProperty, targetObject, targetProperty, options);
 
+        // create the reverse binding if necessary
+        var idReverse = null;
+        if (bidirectional) {
+          idReverse = targetObject.bind(targetProperty, this.getModel(), sourceProperty, reverseOptions);
+        }
+
+        // save the binding
+        var targetHash = targetObject.toHashCode();
+        if (this.__P_175_0[targetHash] == undefined) {
+          this.__P_175_0[targetHash] = [];
+        }
+        this.__P_175_0[targetHash].push([id, idReverse, targetProperty, sourceProperty, options, reverseOptions]);
+      },
       /**
        * Removes the target identified by the three properties.
        *
@@ -256,16 +245,15 @@
        * @param sourceProperty {String} The name of the property of the model.
        */
       removeTarget: function removeTarget(targetObject, targetProperty, sourceProperty) {
-        this.__P_173_2(targetObject, targetProperty, sourceProperty, this.getModel()); // delete the target in the targets reference
+        this.__P_175_2(targetObject, targetProperty, sourceProperty, this.getModel());
 
-
-        for (var i = 0; i < this.__P_173_1.length; i++) {
-          if (this.__P_173_1[i][0] == targetObject && this.__P_173_1[i][1] == targetProperty && this.__P_173_1[i][2] == sourceProperty) {
-            this.__P_173_1.splice(i, 1);
+        // delete the target in the targets reference
+        for (var i = 0; i < this.__P_175_1.length; i++) {
+          if (this.__P_175_1[i][0] == targetObject && this.__P_175_1[i][1] == targetProperty && this.__P_175_1[i][2] == sourceProperty) {
+            this.__P_175_1.splice(i, 1);
           }
         }
       },
-
       /**
        * Does the work for {@link #removeTarget} but without removing the target
        * from the internal registry.
@@ -281,40 +269,36 @@
        * @param sourceObject {String} The source object from which the binding
        *   comes.
        */
-      __P_173_2: function __P_173_2(targetObject, targetProperty, sourceProperty, sourceObject) {
+      __P_175_2: function __P_175_2(targetObject, targetProperty, sourceProperty, sourceObject) {
         // check for not fitting targetObjects
         if (!(targetObject instanceof qx.core.Object)) {
           // just do nothing
           return;
         }
-
-        var currentListing = this.__P_173_0[targetObject.toHashCode()]; // if no binding is stored
-
-
+        var currentListing = this.__P_175_0[targetObject.toHashCode()];
+        // if no binding is stored
         if (currentListing == undefined || currentListing.length == 0) {
           return;
-        } // go threw all listings for the object
+        }
 
-
+        // go threw all listings for the object
         for (var i = 0; i < currentListing.length; i++) {
           // if it is the listing
           if (currentListing[i][2] == targetProperty && currentListing[i][3] == sourceProperty) {
             // remove the binding
             var id = currentListing[i][0];
-            sourceObject.removeBinding(id); // check for the reverse binding
-
+            sourceObject.removeBinding(id);
+            // check for the reverse binding
             if (currentListing[i][1] != null) {
               targetObject.removeBinding(currentListing[i][1]);
-            } // delete the entry and return
-
-
+            }
+            // delete the entry and return
             currentListing.splice(i, 1);
             return;
           }
         }
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCT
@@ -330,4 +314,4 @@
   qx.data.controller.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1664789581328
+//# sourceMappingURL=Object.js.map?dt=1672653489612

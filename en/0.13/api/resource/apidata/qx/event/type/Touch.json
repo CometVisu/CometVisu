@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 717
       },
       "end": {
-        "line": 313,
-        "column": 5
+        "line": 289,
+        "column": 3,
+        "index": 9597
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_cloneNativeEvent": {
       "location": {
         "start": {
-          "line": 41,
-          "column": 6
+          "line": 37,
+          "column": 4,
+          "index": 1007
         },
         "end": {
-          "line": 76,
-          "column": 7
+          "line": 71,
+          "column": 5,
+          "index": 2169
         }
       },
       "jsdoc": {},
@@ -51,12 +55,14 @@
     "stop": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 6
+          "line": 74,
+          "column": 4,
+          "index": 2194
         },
         "end": {
-          "line": 82,
-          "column": 7
+          "line": 76,
+          "column": 5,
+          "index": 2238
         }
       },
       "jsdoc": {},
@@ -70,12 +76,14 @@
     "getAllTouches": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 6
+          "line": 86,
+          "column": 4,
+          "index": 2636
         },
         "end": {
-          "line": 95,
-          "column": 7
+          "line": 88,
+          "column": 5,
+          "index": 2694
         }
       },
       "jsdoc": {
@@ -100,12 +108,14 @@
     "getTargetTouches": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 6
+          "line": 98,
+          "column": 4,
+          "index": 3109
         },
         "end": {
-          "line": 108,
-          "column": 7
+          "line": 100,
+          "column": 5,
+          "index": 3176
         }
       },
       "jsdoc": {
@@ -130,12 +140,14 @@
     "getChangedTargetTouches": {
       "location": {
         "start": {
-          "line": 125,
-          "column": 6
+          "line": 116,
+          "column": 4,
+          "index": 3877
         },
         "end": {
-          "line": 127,
-          "column": 7
+          "line": 118,
+          "column": 5,
+          "index": 3952
         }
       },
       "jsdoc": {
@@ -160,12 +172,14 @@
     "isMultiTouch": {
       "location": {
         "start": {
-          "line": 136,
-          "column": 6
+          "line": 126,
+          "column": 4,
+          "index": 4116
         },
         "end": {
-          "line": 138,
-          "column": 7
+          "line": 128,
+          "column": 5,
+          "index": 4196
         }
       },
       "jsdoc": {
@@ -190,12 +204,14 @@
     "getScale": {
       "location": {
         "start": {
-          "line": 151,
-          "column": 6
+          "line": 140,
+          "column": 4,
+          "index": 4548
         },
         "end": {
-          "line": 153,
-          "column": 7
+          "line": 142,
+          "column": 5,
+          "index": 4599
         }
       },
       "jsdoc": {
@@ -220,12 +236,14 @@
     "getRotation": {
       "location": {
         "start": {
-          "line": 164,
-          "column": 6
+          "line": 152,
+          "column": 4,
+          "index": 4833
         },
         "end": {
-          "line": 170,
-          "column": 7
+          "line": 158,
+          "column": 5,
+          "index": 5013
         }
       },
       "jsdoc": {
@@ -250,12 +268,14 @@
     "getDelta": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 6
+          "line": 167,
+          "column": 4,
+          "index": 5423
         },
         "end": {
-          "line": 182,
-          "column": 7
+          "line": 169,
+          "column": 5,
+          "index": 5474
         }
       },
       "jsdoc": {
@@ -280,12 +300,14 @@
     "getDocumentLeft": {
       "location": {
         "start": {
-          "line": 193,
-          "column": 6
+          "line": 179,
+          "column": 4,
+          "index": 5827
         },
         "end": {
-          "line": 195,
-          "column": 7
+          "line": 181,
+          "column": 5,
+          "index": 5923
         }
       },
       "jsdoc": {
@@ -321,12 +343,14 @@
     "getDocumentTop": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 6
+          "line": 191,
+          "column": 4,
+          "index": 6271
         },
         "end": {
-          "line": 208,
-          "column": 7
+          "line": 193,
+          "column": 5,
+          "index": 6366
         }
       },
       "jsdoc": {
@@ -362,12 +386,14 @@
     "getScreenLeft": {
       "location": {
         "start": {
-          "line": 218,
-          "column": 6
+          "line": 202,
+          "column": 4,
+          "index": 6655
         },
         "end": {
-          "line": 220,
-          "column": 7
+          "line": 204,
+          "column": 5,
+          "index": 6751
         }
       },
       "jsdoc": {
@@ -403,12 +429,14 @@
     "getScreenTop": {
       "location": {
         "start": {
-          "line": 230,
-          "column": 6
+          "line": 213,
+          "column": 4,
+          "index": 7036
         },
         "end": {
-          "line": 232,
-          "column": 7
+          "line": 215,
+          "column": 5,
+          "index": 7131
         }
       },
       "jsdoc": {
@@ -444,12 +472,14 @@
     "getViewportLeft": {
       "location": {
         "start": {
-          "line": 242,
-          "column": 6
+          "line": 224,
+          "column": 4,
+          "index": 7394
         },
         "end": {
-          "line": 244,
-          "column": 7
+          "line": 226,
+          "column": 5,
+          "index": 7492
         }
       },
       "jsdoc": {
@@ -485,12 +515,14 @@
     "getViewportTop": {
       "location": {
         "start": {
-          "line": 254,
-          "column": 6
+          "line": 235,
+          "column": 4,
+          "index": 7747
         },
         "end": {
-          "line": 256,
-          "column": 7
+          "line": 237,
+          "column": 5,
+          "index": 7844
         }
       },
       "jsdoc": {
@@ -526,12 +558,14 @@
     "getIdentifier": {
       "location": {
         "start": {
-          "line": 265,
-          "column": 6
+          "line": 245,
+          "column": 4,
+          "index": 8071
         },
         "end": {
-          "line": 267,
-          "column": 7
+          "line": 247,
+          "column": 5,
+          "index": 8170
         }
       },
       "jsdoc": {
@@ -567,12 +601,14 @@
     "__getEventSpecificTouch": {
       "location": {
         "start": {
-          "line": 279,
-          "column": 6
+          "line": 258,
+          "column": 4,
+          "index": 8515
         },
         "end": {
-          "line": 283,
-          "column": 7
+          "line": 261,
+          "column": 5,
+          "index": 8673
         }
       },
       "jsdoc": {
@@ -608,12 +644,14 @@
     "__getEventSpecificTouches": {
       "location": {
         "start": {
-          "line": 293,
-          "column": 6
+          "line": 270,
+          "column": 4,
+          "index": 8939
         },
         "end": {
-          "line": 297,
-          "column": 7
+          "line": 275,
+          "column": 5,
+          "index": 9111
         }
       },
       "jsdoc": {
@@ -638,12 +676,14 @@
     "_isTouchEnd": {
       "location": {
         "start": {
-          "line": 308,
-          "column": 6
+          "line": 285,
+          "column": 4,
+          "index": 9490
         },
         "end": {
-          "line": 311,
-          "column": 7
+          "line": 287,
+          "column": 5,
+          "index": 9589
         }
       },
       "jsdoc": {
@@ -753,6 +793,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -777,6 +818,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

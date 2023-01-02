@@ -22,7 +22,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
-    <link rel="next" title="Icon" href="icon.html" />
+    <link rel="next" title="Chart" href="chart.html" />
     <link rel="prev" title="Slider" href="slider.html" /> 
 </head>
 
@@ -114,50 +114,50 @@ auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmode
 <img alt="../../../_images/cv-js-list.png" src="../../../_images/cv-js-list.png" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
-    <span class="nt">&lt;cv-list</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;model&gt;</span>
-            <span class="nt">&lt;script&gt;</span>
-                for (let i = 0; i <span class="ni">&amp;lt;</span> 4; i++) {
-                    model.push({
-                        label: &#39;Listeneintrag &#39; + i,
-                        subLabel: &#39;Zusatztext Nummer &#39; + i
-                    })
-                }
-            <span class="nt">&lt;/script&gt;</span>
-        <span class="nt">&lt;/model&gt;</span>
-        <span class="nt">&lt;template&gt;</span>
-            <span class="nt">&lt;li&gt;</span>
-                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>${subLabel}<span class="nt">&lt;/label&gt;</span>
-            <span class="nt">&lt;/li&gt;</span>
-        <span class="nt">&lt;/template&gt;</span>
-    <span class="nt">&lt;/cv-list&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;model&gt;</span>
+<span class="w">            </span><span class="nt">&lt;script&gt;</span>
+<span class="w">                </span>for<span class="w"> </span>(let<span class="w"> </span>i<span class="w"> </span>=<span class="w"> </span>0;<span class="w"> </span>i<span class="w"> </span><span class="ni">&amp;lt;</span><span class="w"> </span>4;<span class="w"> </span>i++)<span class="w"> </span>{
+<span class="w">                    </span>model.push({
+<span class="w">                        </span>label:<span class="w"> </span>&#39;Listeneintrag<span class="w"> </span>&#39;<span class="w"> </span>+<span class="w"> </span>i,
+<span class="w">                        </span>subLabel:<span class="w"> </span>&#39;Zusatztext<span class="w"> </span>Nummer<span class="w"> </span>&#39;<span class="w"> </span>+<span class="w"> </span>i
+<span class="w">                    </span>})
+<span class="w">                </span>}
+<span class="w">            </span><span class="nt">&lt;/script&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/model&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;li&gt;</span>
+<span class="w">                </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
+<span class="w">                </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>${subLabel}<span class="nt">&lt;/label&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/li&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-list&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
 <p>Das Datenmodell wird in diesem Fall aus einfachen JavaScript-Code erzeugt und hat folgenden Inhalt.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 0&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 0&quot;</span><span class="w"></span>
-<span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 1&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 1&quot;</span><span class="w"></span>
-<span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 2&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 2&quot;</span><span class="w"></span>
-<span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 3&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 3&quot;</span><span class="w"></span>
-<span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">     </span><span class="p">{</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 4&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 4&quot;</span><span class="w"></span>
-<span class="w">     </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 0&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 0&quot;</span>
+<span class="w">     </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 1&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 1&quot;</span>
+<span class="w">     </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 2&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 2&quot;</span>
+<span class="w">     </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 3&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 3&quot;</span>
+<span class="w">     </span><span class="p">},</span>
+<span class="w">     </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is list item no 4&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">&quot;subLabel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sublabel number 4&quot;</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 <p>Für jeden Eintrag in diesem Array wird nun ein HTML-Element aus dem Template erzeugt und mit den Daten aus dem
@@ -184,52 +184,52 @@ Hier wird ein <code class="docutils literal notranslate"><span class="pre">cv-li
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
 <span class="nt">&lt;cv-tile&gt;</span>
-    <span class="nt">&lt;cv-list</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;model&gt;</span>
-            <span class="nt">&lt;cv-data</span> <span class="na">label=</span><span class="s">&quot;Licht WZ&quot;</span> <span class="na">control-address=</span><span class="s">&quot;1/4/0&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;cv-data</span> <span class="na">label=</span><span class="s">&quot;Licht Büro&quot;</span> <span class="na">control-address=</span><span class="s">&quot;1/4/1&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;cv-data</span> <span class="na">label=</span><span class="s">&quot;Licht SZ&quot;</span> <span class="na">control-address=</span><span class="s">&quot;1/4/2&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/model&gt;</span>
-        <span class="nt">&lt;template&gt;</span>
-            <span class="nt">&lt;cv-listitem&gt;</span>
-                <span class="nt">&lt;cv-button</span> <span class="na">class=</span><span class="s">&quot;round-button&quot;</span> <span class="na">mapping=</span><span class="s">&quot;light&quot;</span> <span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="nt">&gt;</span>${control-address}<span class="nt">&lt;/cv-address&gt;</span>
-                    <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;/cv-button&gt;</span>
-                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;/div&gt;</span>
-            <span class="nt">&lt;/cv-listitem&gt;</span>
-        <span class="nt">&lt;/template&gt;</span>
-    <span class="nt">&lt;/cv-list&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;model&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-data</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Licht WZ&quot;</span><span class="w"> </span><span class="na">control-address=</span><span class="s">&quot;1/4/0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-data</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Licht Büro&quot;</span><span class="w"> </span><span class="na">control-address=</span><span class="s">&quot;1/4/1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-data</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Licht SZ&quot;</span><span class="w"> </span><span class="na">control-address=</span><span class="s">&quot;1/4/2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/model&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-listitem&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="nt">&gt;</span>${control-address}<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/cv-button&gt;</span>
+<span class="w">                </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-listitem&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-list&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
 <p>Das daraus erzeugte Modell hat folgenden Inhalt:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht WZ&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/0&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Büro&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/1&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht SZ&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/2&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht WZ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/0&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Büro&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/1&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht SZ&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;control-address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1/4/2&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 <p><strong>Backend als Quelle</strong></p>
@@ -265,61 +265,117 @@ definieren (<code class="docutils literal notranslate"><span class="pre">&lt;tem
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>
-    <span class="nt">&lt;cv-mapping</span> <span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
-<span class="nt">&lt;cv-tile</span> <span class="na">size=</span><span class="s">&quot;1x2&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;cv-list</span> <span class="na">rowspan=</span><span class="s">&quot;3&quot;</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;model</span> <span class="na">filter=</span><span class="s">&quot;item.active===true&quot;</span> <span class="na">sort-by=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;cv-address</span> <span class="na">transform=</span><span class="s">&quot;raw&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>members:Lights<span class="nt">&lt;/cv-address&gt;</span>
-        <span class="nt">&lt;/model&gt;</span>
-        <span class="nt">&lt;header&gt;</span>
-            <span class="nt">&lt;h4&gt;</span>Eingeschaltete Lichter<span class="nt">&lt;/h4&gt;</span>
-        <span class="nt">&lt;/header&gt;</span>
-        <span class="nt">&lt;template&gt;</span>
-            <span class="nt">&lt;cv-listitem&gt;</span>
-                <span class="nt">&lt;cv-button</span> <span class="na">class=</span><span class="s">&quot;round-button&quot;</span> <span class="na">mapping=</span><span class="s">&quot;light&quot;</span> <span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;cv-address</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>${name}<span class="nt">&lt;/cv-address&gt;</span>
-                    <span class="nt">&lt;cv-icon</span> <span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;/cv-button&gt;</span>
-                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
-                <span class="nt">&lt;/div&gt;</span>
-            <span class="nt">&lt;/cv-listitem&gt;</span>
-        <span class="nt">&lt;/template&gt;</span>
-        <span class="nt">&lt;template</span> <span class="na">when=</span><span class="s">&quot;empty&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;li&gt;&lt;label</span> <span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>Zur Zeit sind keine Lampen eingeschaltet<span class="nt">&lt;/label&gt;&lt;/li&gt;</span>
-        <span class="nt">&lt;/template&gt;</span>
-   <span class="nt">&lt;/cv-list&gt;</span>
+<span class="nt">&lt;cv-tile</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;1x2&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">filter=</span><span class="s">&quot;item.active===true&quot;</span><span class="w"> </span><span class="na">sort-by=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;raw&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>members:Lights<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/model&gt;</span>
+<span class="w">        </span><span class="nt">&lt;header&gt;</span>
+<span class="w">            </span><span class="nt">&lt;h4&gt;</span>Eingeschaltete<span class="w"> </span>Lichter<span class="nt">&lt;/h4&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/header&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-listitem&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;small&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>${name}<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/cv-button&gt;</span>
+<span class="w">                </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-listitem&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;empty&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;li&gt;&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>Zur<span class="w"> </span>Zeit<span class="w"> </span>sind<span class="w"> </span>keine<span class="w"> </span>Lampen<span class="w"> </span>eingeschaltet<span class="nt">&lt;/label&gt;&lt;/li&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/cv-list&gt;</span>
 <span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
 <p>Das Modell für die Mitglieder eines GroupItems, hat folgende Struktur:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Wohnzimmer&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Living&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="p">},</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Bad&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Toilet&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="p">},</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Küche&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Kitchen&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
-<span class="p">}]</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Wohnzimmer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Living&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Bad&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Toilet&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;switch&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OFF&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Licht Küche&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Light_FF_Kitchen&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<p><strong>Mitgelieferte Modelle</strong></p>
+<p>Die CometVisu liefert einige vordefinierte Modelle mit, mit denen einige Datenquellen von Plugins eingebunden werden
+können. Bisher ist es möglich die Anrufliste einer Fritz!Box über das <a class="reference internal" href="../../widgets/plugins/tr064/index.html"><span class="doc">tr064</span></a>-Plugin und die Daten aus der
+<a class="reference internal" href="../../widgets/plugins/rsslog/index.html"><span class="doc">RSSlog</span></a> -Datenbank abzufragen. Hierfür ist es nicht nötig die Plugins in der Config einzubinden, denn
+es werden nur die Daten abgefragt und ansonsten nichts von den Plugins selbst benutzt.
+Erforderliche Konfigurationen, wie z.B. das Hinterlegen von Zugangsdaten in der versteckten
+Konfiguration, wie z.B. für das <a class="reference internal" href="../../widgets/plugins/tr064/index.html"><span class="doc">tr064</span></a>-Plugin müssen natürlich auch hier vorgenommen werden, damit die
+Datenabfrage für Listen-Modelle funktioniert.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Für die beiden hier vorgestellten Modelle ist es zwingend erforderlich, dass die CometVisu von einem Webserver
+mit PHP-Support ausgeliefert wird. Im Offiziellen Docker-Container der CometVisu ist diese Voraussetzung gegeben.
+Wird die CometVisu von dem openHAB-Webserver ausgeliefert, ist dies nicht der Fall und die Listen-Modelle können
+nicht benutzt werden.</p>
+</div>
+<p>Beispiel zur Anzeige der Anruferliste aus dem tr064-Plugin:</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-tr064plugin-list.png" src="../../../_images/cv-tr064plugin-list.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;120&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;FritzCallList&quot;</span><span class="w"> </span><span class="na">parameters=</span><span class="s">&quot;device=tr064device,max=10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template&gt;</span>
+<span class="w">          </span><span class="nt">&lt;li&gt;</span>
+<span class="w">            </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;float: left; font-size: 1.5em; padding-right: 8px&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;i</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;knxuf-phone_call_in&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #268DDA; vertical-align: middle;&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;${Type}=1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;i</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;knxuf-phone_missed_in&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #E45F3B; vertical-align: middle;&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;${Type}=2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;i</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;knxuf-phone_call_out&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #8BBF68; vertical-align: middle;&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;${Type}=3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">            </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span>${Name<span class="w"> </span>||<span class="w"> </span>Caller}
+<span class="w">              </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;font-size: 0.9em; color: #777;&quot;</span><span class="nt">&gt;</span>${Date}<span class="nt">&lt;/div&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/div&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/li&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-list&gt;</span>
+<span class="nt">&lt;/cv-tile&gt;</span>
+</pre></div>
+</div>
+<p>Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-rsslogplugin-list.png" src="../../../_images/cv-rsslogplugin-list.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;120&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;model</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;RssLog&quot;</span><span class="w"> </span><span class="na">parameters=</span><span class="s">&quot;limit=10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;template&gt;</span>
+<span class="w">          </span><span class="nt">&lt;li</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;font-weight: bold&quot;</span><span class="nt">&gt;</span>${title}<span class="nt">&lt;/div&gt;</span>
+<span class="w">            </span><span class="nt">&lt;div</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #999&quot;</span><span class="nt">&gt;</span>${content}<span class="nt">&lt;/div&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/li&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-list&gt;</span>
+<span class="nt">&lt;/cv-tile&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -414,7 +470,7 @@ definieren (<code class="docutils literal notranslate"><span class="pre">&lt;tem
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<tr class="row-odd"><td rowspan="7"><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>model</p></li>
 </ul>
@@ -425,25 +481,29 @@ definieren (<code class="docutils literal notranslate"><span class="pre">&lt;tem
 <td><p>anyURI</p></td>
 <td><p>URL von der das Modell geladen werden soll (muss JSON zurückliefern).</p></td>
 </tr>
-<tr class="row-even"><td><p>proxy</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Proxy benutzen, um Modell von src zu laden (Vermeidet CORS Fehler).</p></td>
-</tr>
-<tr class="row-odd"><td><p>limit</p></td>
+<tr class="row-even"><td><p>limit</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Limitiert die Einträge des Modells.</p></td>
 </tr>
-<tr class="row-even"><td><p>sort-by</p></td>
+<tr class="row-odd"><td><p>sort-by</p></td>
 <td><p>Text</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>sort-mode</p></td>
+<tr class="row-even"><td><p>sort-mode</p></td>
 <td><p><em>asc</em> oder <em>desc</em></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>filter</p></td>
+<tr class="row-odd"><td><p>filter</p></td>
 <td><p>Text</p></td>
 <td></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p><em>FritzCallList</em> oder <em>RssLog</em></p></td>
+<td><p>Spezielles Listenmodell, welches die CometVisu mitliefert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>parameters</p></td>
+<td><p>Text</p></td>
+<td><p>Parameter für die class Listenmodelle.</p></td>
 </tr>
 </tbody>
 </table>
@@ -644,13 +704,13 @@ definieren (<code class="docutils literal notranslate"><span class="pre">&lt;tem
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="slider.html" class="btn btn-neutral float-left" title="Slider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="icon.html" class="btn btn-neutral float-right" title="Icon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chart.html" class="btn btn-neutral float-right" title="Chart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

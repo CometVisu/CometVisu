@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 595
       },
       "end": {
-        "line": 49,
-        "column": 3
+        "line": 46,
+        "column": 3,
+        "index": 1536
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "toClass": {
       "location": {
         "start": {
-          "line": 36,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1159
         },
         "end": {
-          "line": 36,
-          "column": 52
+          "line": 34,
+          "column": 41,
+          "index": 1196
         }
       },
       "jsdoc": {
@@ -69,12 +73,14 @@
     "toModel": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1512
         },
         "end": {
-          "line": 47,
-          "column": 31
+          "line": 44,
+          "column": 20,
+          "index": 1528
         }
       },
       "jsdoc": {

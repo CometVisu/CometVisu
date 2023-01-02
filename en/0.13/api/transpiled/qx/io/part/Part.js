@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,11 +41,10 @@
      * @param loader {qx.Part} The loader of this part.
      */
     construct: function construct(name, packages, loader) {
-      this.__P_239_0 = name;
+      this.__P_249_0 = name;
       this._readyState = "complete";
       this._packages = packages;
       this._loader = loader;
-
       for (var i = 0; i < packages.length; i++) {
         if (packages[i].getReadyState() !== "complete") {
           this._readyState = "initialized";
@@ -58,8 +56,7 @@
       _readyState: null,
       _loader: null,
       _packages: null,
-      __P_239_0: null,
-
+      __P_249_0: null,
       /**
        * Get the ready state of the part. The value is one of
        * <ul>
@@ -76,16 +73,14 @@
       getReadyState: function getReadyState() {
         return this._readyState;
       },
-
       /**
        * The part name as defined in the config file
        *
        * @return {String} The part name
        */
       getName: function getName() {
-        return this.__P_239_0;
+        return this.__P_249_0;
       },
-
       /**
        * Internal helper for testing purposes.
        * @internal
@@ -94,7 +89,6 @@
       getPackages: function getPackages() {
         return this._packages;
       },
-
       /**
        * Method for preloading this part.
        * Empty implementation! Regular parts can not be preloaded.
@@ -113,7 +107,6 @@
           }, 0);
         }
       },
-
       /**
        * Loads the part asynchronously. The callback is called after the part and
        * its dependencies are fully loaded. If the part is already loaded the
@@ -128,51 +121,35 @@
         if (this._checkCompleteLoading(callback, self)) {
           return;
         }
-
-        ;
         this._readyState = "loading";
-
         if (callback) {
           this._appendPartListener(callback, self, this);
         }
-
         var part = this;
-
         var onLoad = function onLoad() {
           part.load();
         };
-
         for (var i = 0; i < this._packages.length; i++) {
           var pkg = this._packages[i];
-
           switch (pkg.getReadyState()) {
             case "initialized":
               this._loader.addPackageListener(pkg, onLoad);
-
               pkg.load(this._loader.notifyPackageResult, this._loader);
               return;
-
             case "loading":
               this._loader.addPackageListener(pkg, onLoad);
-
               return;
-
             case "complete":
               break;
-
             case "error":
               this._markAsCompleted("error");
-
               return;
-
             default:
               throw new Error("Invalid case! " + pkg.getReadyState());
           }
         }
-
         this._markAsCompleted("complete");
       },
-
       /**
        * Helper for appending a listener for this part.
        *
@@ -183,14 +160,11 @@
        */
       _appendPartListener: function _appendPartListener(callback, self, part) {
         var that = this;
-
         this._loader.addPartListener(this, function () {
           that._signalStartup();
-
           callback.call(self, part._readyState);
         });
       },
-
       /**
        * Helper for marking the part as complete.
        *
@@ -198,10 +172,8 @@
        */
       _markAsCompleted: function _markAsCompleted(readyState) {
         this._readyState = readyState;
-
         this._loader.notifyPartResult(this);
       },
-
       /**
        * Method used to start up the application in case not all parts
        * necessary to initialize the application are in the boot part. [BUG #3793]
@@ -212,7 +184,6 @@
           qx.$$loader.signalStartup();
         }
       },
-
       /**
        * Helper for checking if the part is loaded completely.
        *
@@ -224,28 +195,25 @@
       _checkCompleteLoading: function _checkCompleteLoading(callback, self) {
         // check if its already loaded
         var readyState = this._readyState;
-
         if (readyState == "complete" || readyState == "error") {
           if (callback) {
             var that = this;
             setTimeout(function () {
               that._signalStartup();
-
               callback.call(self, readyState);
             }, 0);
           }
-
           return true;
-        } // add a listener if it is currently loading
+        }
+        // add a listener if it is currently loading
         else if (readyState == "loading" && callback) {
-            this._appendPartListener(callback, self, this);
-
-            return true;
-          }
+          this._appendPartListener(callback, self, this);
+          return true;
+        }
       }
     }
   });
   qx.io.part.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1664789586849
+//# sourceMappingURL=Part.js.map?dt=1672653498046

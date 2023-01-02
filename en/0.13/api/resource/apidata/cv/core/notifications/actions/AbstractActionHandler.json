@@ -9,12 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 27,
-        "column": 0
+        "line": 26,
+        "column": 0,
+        "index": 917
       },
       "end": {
         "line": 60,
-        "column": 3
+        "column": 3,
+        "index": 1588
       }
     },
     "jsdoc": {
@@ -46,12 +48,14 @@
     "needsConfirmation": {
       "location": {
         "start": {
-          "line": 37,
-          "column": 4
+          "line": 36,
+          "column": 4,
+          "index": 1196
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 39,
+          "column": 5,
+          "index": 1264
         }
       },
       "name": "needsConfirmation",
@@ -63,12 +67,14 @@
     "deleteMessageAfterExecution": {
       "location": {
         "start": {
-          "line": 42,
-          "column": 4
+          "line": 41,
+          "column": 4,
+          "index": 1271
         },
         "end": {
-          "line": 45,
-          "column": 5
+          "line": 44,
+          "column": 5,
+          "index": 1349
         }
       },
       "name": "deleteMessageAfterExecution",
@@ -81,11 +87,13 @@
       "location": {
         "start": {
           "line": 46,
-          "column": 4
+          "column": 4,
+          "index": 1356
         },
         "end": {
           "line": 49,
-          "column": 5
+          "column": 5,
+          "index": 1408
         }
       },
       "name": "style",
@@ -132,11 +140,13 @@
       "location": {
         "start": {
           "line": 58,
-          "column": 4
+          "column": 4,
+          "index": 1552
         },
         "end": {
           "line": 58,
-          "column": 32
+          "column": 32,
+          "index": 1580
         }
       },
       "name": "close",
@@ -176,9 +186,11 @@
           },
           {
             "name": "@param",
-            "body": "targetProperty {String} The property name of the target object.",
+            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
             "paramName": "targetProperty",
-            "description": " The property name of the target object.",
+            "description": " The property name of the target object,\n   defaults to \"value\".",
+            "optional": true,
+            "defaultValue": "\"value\"",
             "type": "String"
           },
           {
@@ -782,6 +794,57 @@
         ]
       }
     },
+    "__trackPendingEvent": {
+      "type": "function",
+      "name": "__trackPendingEvent",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var} result the result from the event handler",
+            "paramName": "result",
+            "description": "the result from the event handler",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|var} the value to return",
+            "type": "qx.Promise|var",
+            "description": " the value to return"
+          }
+        ]
+      }
+    },
+    "waitForPendingEvents": {
+      "type": "function",
+      "name": "waitForPendingEvents",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for all pending events to be resolved</p>"
+          }
+        ]
+      }
+    },
     "fireEvent": {
       "type": "function",
       "name": "fireEvent",
@@ -1126,11 +1189,11 @@
         "@param": [
           {
             "name": "@param",
-            "body": "data {Map | String} a map of property values. The key is the name of the property.",
+            "body": "data {Object | String} a map of property values. The key is the name of the property.",
             "paramName": "data",
             "description": " a map of property values. The key is the name of the property.",
             "type": [
-              "Map",
+              "Object",
               "String"
             ]
           },
@@ -1647,6 +1710,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -1670,6 +1734,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

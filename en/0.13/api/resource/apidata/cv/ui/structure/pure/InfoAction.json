@@ -11,12 +11,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 69,
-        "column": 0
+        "line": 68,
+        "column": 0,
+        "index": 2228
       },
       "end": {
-        "line": 102,
-        "column": 3
+        "line": 100,
+        "column": 3,
+        "index": 2936
       }
     },
     "jsdoc": {
@@ -51,12 +53,14 @@
     "anonymous": {
       "location": {
         "start": {
-          "line": 80,
-          "column": 4
+          "line": 79,
+          "column": 4,
+          "index": 2526
         },
         "end": {
-          "line": 83,
-          "column": 5
+          "line": 82,
+          "column": 5,
+          "index": 2581
         }
       },
       "name": "anonymous",
@@ -106,12 +110,14 @@
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 94,
-          "column": 4
+          "line": 92,
+          "column": 4,
+          "index": 2761
         },
         "end": {
-          "line": 96,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2831
         }
       },
       "jsdoc": {},
@@ -470,6 +476,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -494,6 +501,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1933,15 +1941,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 99,
-        "column": 9
+        "line": 97,
+        "column": 2,
+        "index": 2840
       },
       "end": {
-        "line": 101,
-        "column": 3
+        "line": 99,
+        "column": 3,
+        "index": 2932
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": []

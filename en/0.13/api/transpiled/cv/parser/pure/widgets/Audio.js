@@ -11,11 +11,10 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
-  /* Audio.js 
-   * 
+  /* Audio.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Audio', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -59,17 +57,16 @@
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
       },
-
       /**
        * Returns a map with definitions for the XML Parser to map XML-Attribute values
        * to properties e.g
        * <pre>{
-         *  <attribute-name>: {
-         *    target: <property-name>,
-         *    default: <default-value>,
-         *    transform: <callback to transform the value to the desired value>
-         *  }
-         * }</pre>
+       *  <attribute-name>: {
+       *    target: <property-name>,
+       *    default: <default-value>,
+       *    transform: <callback to transform the value to the desired value>
+       *  }
+       * }</pre>
        * @return {Object}
        */
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
@@ -89,7 +86,7 @@
             }
           },
           thresholdValue: {
-            'default': 1
+            "default": 1
           }
         };
       }
@@ -102,4 +99,4 @@
   cv.parser.pure.widgets.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1664789561857
+//# sourceMappingURL=Audio.js.map?dt=1672653470523

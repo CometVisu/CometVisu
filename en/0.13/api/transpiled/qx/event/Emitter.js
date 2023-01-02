@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +34,11 @@
     extend: Object,
     statics: {
       /** Static storage for all event listener */
-      __P_193_0: []
+      __P_197_0: []
     },
     members: {
-      __P_193_1: null,
-      __P_193_2: null,
-
+      __P_197_1: null,
+      __P_197_2: null,
       /**
        * Attach a listener to the event emitter. The given <code>name</code>
        * will define the type of event. Handing in a <code>'*'</code> will
@@ -52,24 +50,20 @@
        * @return {Integer} An unique <code>id</code> for the attached listener.
        */
       on: function on(name, listener, ctx) {
-        var id = qx.event.Emitter.__P_193_0.length;
-
-        this.__P_193_3(name).push({
+        var id = qx.event.Emitter.__P_197_0.length;
+        this.__P_197_3(name).push({
           listener: listener,
           ctx: ctx,
           id: id,
           name: name
         });
-
-        qx.event.Emitter.__P_193_0.push({
+        qx.event.Emitter.__P_197_0.push({
           name: name,
           listener: listener,
           ctx: ctx
         });
-
         return id;
       },
-
       /**
        * Attach a listener to the event emitter which will be executed only once.
        * The given <code>name</code> will define the type of event. Handing in a
@@ -81,24 +75,20 @@
        * @return {Integer} An unique <code>id</code> for the attached listener.
        */
       once: function once(name, listener, ctx) {
-        var id = qx.event.Emitter.__P_193_0.length;
-
-        this.__P_193_3(name).push({
+        var id = qx.event.Emitter.__P_197_0.length;
+        this.__P_197_3(name).push({
           listener: listener,
           ctx: ctx,
           once: true,
           id: id
         });
-
-        qx.event.Emitter.__P_193_0.push({
+        qx.event.Emitter.__P_197_0.push({
           name: name,
           listener: listener,
           ctx: ctx
         });
-
         return id;
       },
-
       /**
        * Remove a listener from the event emitter. The given <code>name</code>
        * will define the type of event.
@@ -110,21 +100,17 @@
        * <code>null</code> if it wasn't found
        */
       off: function off(name, listener, ctx) {
-        var storage = this.__P_193_3(name);
-
+        var storage = this.__P_197_3(name);
         for (var i = storage.length - 1; i >= 0; i--) {
           var entry = storage[i];
-
           if (entry.listener == listener && entry.ctx == ctx) {
             storage.splice(i, 1);
-            qx.event.Emitter.__P_193_0[entry.id] = null;
+            qx.event.Emitter.__P_197_0[entry.id] = null;
             return entry.id;
           }
         }
-
         return null;
       },
-
       /**
        * Removes the listener identified by the given <code>id</code>. The id
        * will be return on attaching the listener and can be stored for removing.
@@ -134,15 +120,12 @@
        * <code>null</code> if it wasn't found
        */
       offById: function offById(id) {
-        var entry = qx.event.Emitter.__P_193_0[id];
-
+        var entry = qx.event.Emitter.__P_197_0[id];
         if (entry) {
           this.off(entry.name, entry.listener, entry.ctx);
         }
-
         return null;
       },
-
       /**
        * Alternative for {@link #on}.
        * @param name {String} The name of the event to listen to.
@@ -153,7 +136,6 @@
       addListener: function addListener(name, listener, ctx) {
         return this.on(name, listener, ctx);
       },
-
       /**
        * Alternative for {@link #once}.
        * @param name {String} The name of the event to listen to.
@@ -164,7 +146,6 @@
       addListenerOnce: function addListenerOnce(name, listener, ctx) {
         return this.once(name, listener, ctx);
       },
-
       /**
        * Alternative for {@link #off}.
        * @param name {String} The name of the event to listen to.
@@ -174,7 +155,6 @@
       removeListener: function removeListener(name, listener, ctx) {
         this.off(name, listener, ctx);
       },
-
       /**
        * Alternative for {@link #offById}.
        * @param id {Integer} The id of the listener.
@@ -182,7 +162,6 @@
       removeListenerById: function removeListenerById(id) {
         this.offById(id);
       },
-
       /**
        * Emits an event with the given name. The data will be passed
        * to the listener.
@@ -190,36 +169,31 @@
        * @param data {var?undefined} The data which should be passed to the listener.
        */
       emit: function emit(name, data) {
-        var storage = this.__P_193_3(name).concat();
-
+        var storage = this.__P_197_3(name).concat();
         var toDelete = [];
-
         for (var i = 0; i < storage.length; i++) {
           var entry = storage[i];
           entry.listener.call(entry.ctx, data);
-
           if (entry.once) {
             toDelete.push(entry);
           }
-        } // listener callbacks could manipulate the storage
+        }
+
+        // listener callbacks could manipulate the storage
         // (e.g. module.Event.once)
-
-
         toDelete.forEach(function (entry) {
-          var origStorage = this.__P_193_3(name);
-
+          var origStorage = this.__P_197_3(name);
           var idx = origStorage.indexOf(entry);
           origStorage.splice(idx, 1);
-        }.bind(this)); // call on any
+        }.bind(this));
 
-        storage = this.__P_193_3("*");
-
+        // call on any
+        storage = this.__P_197_3("*");
         for (var i = storage.length - 1; i >= 0; i--) {
           var entry = storage[i];
           entry.listener.call(entry.ctx, data);
         }
       },
-
       /**
        * Returns the internal attached listener.
        * @internal
@@ -227,9 +201,8 @@
        *   arrays containing a map with 'listener' and 'ctx'.
        */
       getListeners: function getListeners() {
-        return this.__P_193_1;
+        return this.__P_197_1;
       },
-
       /**
        * Returns the data entry for a given event id. If the entry could
        * not be found, undefined will be returned.
@@ -238,9 +211,8 @@
        * @return {Map|undefined} The data entry if found
        */
       getEntryById: function getEntryById(id) {
-        for (var name in this.__P_193_1) {
-          var store = this.__P_193_1[name];
-
+        for (var name in this.__P_197_1) {
+          var store = this.__P_197_1[name];
           for (var i = 0, j = store.length; i < j; i++) {
             if (store[i].id === id) {
               return store[i];
@@ -248,27 +220,24 @@
           }
         }
       },
-
       /**
        * Internal helper which will return the storage for the given name.
        * @param name {String} The name of the event.
        * @return {Array} An array which is the storage for the listener and
        *   the given event name.
        */
-      __P_193_3: function __P_193_3(name) {
-        if (this.__P_193_1 == null) {
-          this.__P_193_1 = {};
+      __P_197_3: function __P_197_3(name) {
+        if (this.__P_197_1 == null) {
+          this.__P_197_1 = {};
         }
-
-        if (this.__P_193_1[name] == null) {
-          this.__P_193_1[name] = [];
+        if (this.__P_197_1[name] == null) {
+          this.__P_197_1[name] = [];
         }
-
-        return this.__P_193_1[name];
+        return this.__P_197_1[name];
       }
     }
   });
   qx.event.Emitter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Emitter.js.map?dt=1664789583605
+//# sourceMappingURL=Emitter.js.map?dt=1672653494232

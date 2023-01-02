@@ -42,7 +42,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -72,7 +71,6 @@
   qx.Class.define("qx.ui.mobile.core.EventHandler", {
     extend: qx.core.Object,
     implement: qx.event.IEventHandler,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -80,18 +78,17 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_372_0 = qx.event.Registration.getManager(window);
+      this.__P_389_0 = qx.event.Registration.getManager(window);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_FIRST,
-
       /** @type {Map} Supported event types. Identical to events map of qx.ui.core.Widget */
       SUPPORTED_TYPES: {
         // mouse events
@@ -124,6 +121,7 @@
         disappear: 1,
         // resize event
         // resize : 1,
+
         // drag drop events
         dragstart: 1,
         dragend: 1,
@@ -158,15 +156,13 @@
         pointerup: 1,
         pointercancel: 1
       },
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false,
-      __P_372_1: null,
-      __P_372_2: null,
-      __P_372_3: null,
-      __P_372_4: null,
-      __P_372_5: null,
-
+      __P_389_1: null,
+      __P_389_2: null,
+      __P_389_3: null,
+      __P_389_4: null,
+      __P_389_5: null,
       /**
        * Event handler. Called when the pointerdown event occurs.
        * Sets the <code>active</class> class to the event target after a certain
@@ -174,45 +170,37 @@
        *
        * @param domEvent {qx.event.type.Pointer} The pointerdown event
        */
-      __P_372_6: function __P_372_6(domEvent) {
+      __P_389_6: function __P_389_6(domEvent) {
         if (!domEvent.isPrimary()) {
           return;
         }
-
         var EventHandler = qx.ui.mobile.core.EventHandler;
-        EventHandler.__P_372_2 = qx.bom.Viewport.getScrollLeft();
-        EventHandler.__P_372_3 = qx.bom.Viewport.getScrollTop();
-        EventHandler.__P_372_4 = domEvent.getScreenTop();
-
-        EventHandler.__P_372_7();
-
+        EventHandler.__P_389_2 = qx.bom.Viewport.getScrollLeft();
+        EventHandler.__P_389_3 = qx.bom.Viewport.getScrollTop();
+        EventHandler.__P_389_4 = domEvent.getScreenTop();
+        EventHandler.__P_389_7();
         var target = domEvent.getTarget();
-
         while (target && target.parentNode && target.parentNode.nodeType == 1 && qx.bom.element.Attribute.get(target, "data-activatable") != "true") {
           target = target.parentNode;
         }
-
-        EventHandler.__P_372_1 = target;
-        EventHandler.__P_372_8 = window.setTimeout(function () {
-          EventHandler.__P_372_8 = null;
-          var target = EventHandler.__P_372_1;
-
+        EventHandler.__P_389_1 = target;
+        EventHandler.__P_389_8 = window.setTimeout(function () {
+          EventHandler.__P_389_8 = null;
+          var target = EventHandler.__P_389_1;
           if (target && qx.bom.element.Attribute.get(target, "data-selectable") != "false") {
             qx.bom.element.Class.add(target, "active");
           }
         }, 100);
       },
-
       /**
        * Event handler. Called when the pointerup event occurs.
        * Removes the <code>active</class> class from the event target.
        *
        * @param domEvent {qx.event.type.Pointer} The pointerup event
        */
-      __P_372_9: function __P_372_9(domEvent) {
-        qx.ui.mobile.core.EventHandler.__P_372_10();
+      __P_389_9: function __P_389_9(domEvent) {
+        qx.ui.mobile.core.EventHandler.__P_389_10();
       },
-
       /**
        * Event handler. Called when the pointermove event occurs.
        * Removes the <code>active</class> class from the event target
@@ -220,61 +208,50 @@
        *
        * @param domEvent {qx.event.type.Pointer} The pointermove event
        */
-      __P_372_11: function __P_372_11(domEvent) {
+      __P_389_11: function __P_389_11(domEvent) {
         if (!domEvent.isPrimary()) {
           return;
         }
-
         var EventHandler = qx.ui.mobile.core.EventHandler;
-
-        var deltaY = domEvent.getScreenTop() - EventHandler.__P_372_4;
-
-        if (EventHandler.__P_372_1 && Math.abs(deltaY) >= qx.event.handler.GestureCore.TAP_MAX_DISTANCE[domEvent.getPointerType()]) {
-          EventHandler.__P_372_10();
+        var deltaY = domEvent.getScreenTop() - EventHandler.__P_389_4;
+        if (EventHandler.__P_389_1 && Math.abs(deltaY) >= qx.event.handler.GestureCore.TAP_MAX_DISTANCE[domEvent.getPointerType()]) {
+          EventHandler.__P_389_10();
         }
-
-        if (EventHandler.__P_372_1 && (EventHandler.__P_372_2 != qx.bom.Viewport.getScrollLeft() || EventHandler.__P_372_3 != qx.bom.Viewport.getScrollTop())) {
-          EventHandler.__P_372_10();
+        if (EventHandler.__P_389_1 && (EventHandler.__P_389_2 != qx.bom.Viewport.getScrollLeft() || EventHandler.__P_389_3 != qx.bom.Viewport.getScrollTop())) {
+          EventHandler.__P_389_10();
         }
       },
-
       /**
        * Cancels the active state timer.
        */
-      __P_372_7: function __P_372_7() {
+      __P_389_7: function __P_389_7() {
         var EventHandler = qx.ui.mobile.core.EventHandler;
-
-        if (EventHandler.__P_372_8) {
-          window.clearTimeout(EventHandler.__P_372_8);
-          EventHandler.__P_372_8 = null;
+        if (EventHandler.__P_389_8) {
+          window.clearTimeout(EventHandler.__P_389_8);
+          EventHandler.__P_389_8 = null;
         }
       },
-
       /**
        * Removes the <code>active</class> class from the active target.
        */
-      __P_372_10: function __P_372_10() {
+      __P_389_10: function __P_389_10() {
         var EventHandler = qx.ui.mobile.core.EventHandler;
-
-        EventHandler.__P_372_7();
-
-        var activeTarget = EventHandler.__P_372_1;
-
+        EventHandler.__P_389_7();
+        var activeTarget = EventHandler.__P_389_1;
         if (activeTarget) {
           qx.bom.element.Class.remove(activeTarget, "active");
         }
-
-        EventHandler.__P_372_1 = null;
+        EventHandler.__P_389_1 = null;
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
-      __P_372_0: null,
+      __P_389_0: null,
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {
         return target instanceof qx.ui.mobile.core.Widget;
@@ -289,7 +266,6 @@
         var element = target.getContainerElement();
         qx.event.Registration.removeListener(element, type, this._dispatchEvent, this, capture);
       },
-
       /**
        * Dispatches a DOM event on a widget.
        *
@@ -298,85 +274,78 @@
       _dispatchEvent: function _dispatchEvent(domEvent) {
         // EVENT TARGET
         var domTarget = domEvent.getTarget();
-
         if (!domTarget || domTarget.id == null) {
           return;
         }
+        var widgetTarget = qx.ui.mobile.core.Widget.getWidgetById(domTarget.id);
 
-        var widgetTarget = qx.ui.mobile.core.Widget.getWidgetById(domTarget.id); // EVENT RELATED TARGET
-
+        // EVENT RELATED TARGET
         if (domEvent.getRelatedTarget) {
           var domRelatedTarget = domEvent.getRelatedTarget();
-
           if (domRelatedTarget && domRelatedTarget.id) {
             var widgetRelatedTarget = qx.ui.mobile.core.Widget.getWidgetById(domRelatedTarget.id);
           }
-        } // EVENT CURRENT TARGET
+        }
 
-
+        // EVENT CURRENT TARGET
         var currentTarget = domEvent.getCurrentTarget();
         var currentWidget = qx.ui.mobile.core.Widget.getWidgetById(currentTarget.id);
-
         if (!currentWidget) {
           return;
-        } // PROCESS LISTENERS
+        }
+
+        // PROCESS LISTENERS
+
         // Load listeners
-
-
         var capture = domEvent.getEventPhase() == qx.event.type.Event.CAPTURING_PHASE;
         var type = domEvent.getType();
-
-        var listeners = this.__P_372_0.getListeners(currentWidget, type, capture);
-
+        var listeners = this.__P_389_0.getListeners(currentWidget, type, capture);
         if (!listeners || listeners.length === 0) {
           return;
-        } // Create cloned event with correct target
+        }
 
-
+        // Create cloned event with correct target
         var widgetEvent = qx.event.Pool.getInstance().getObject(domEvent.constructor);
         domEvent.clone(widgetEvent);
         widgetEvent.setTarget(widgetTarget);
         widgetEvent.setRelatedTarget(widgetRelatedTarget || null);
-        widgetEvent.setCurrentTarget(currentWidget); // Keep original target of DOM event, otherwise map it to the original
+        widgetEvent.setCurrentTarget(currentWidget);
 
+        // Keep original target of DOM event, otherwise map it to the original
         var orig = domEvent.getOriginalTarget();
-
         if (orig && orig.id) {
           var widgetOriginalTarget = qx.ui.mobile.core.Widget.getWidgetById(orig.id);
           widgetEvent.setOriginalTarget(widgetOriginalTarget);
         } else {
           widgetEvent.setOriginalTarget(domTarget);
-        } // Dispatch it on all listeners
+        }
 
-
+        // Dispatch it on all listeners
         for (var i = 0, l = listeners.length; i < l; i++) {
           var context = listeners[i].context || currentWidget;
           listeners[i].handler.call(context, widgetEvent);
-        } // Synchronize propagation stopped/prevent default property
+        }
 
-
+        // Synchronize propagation stopped/prevent default property
         if (widgetEvent.getPropagationStopped()) {
           domEvent.stopPropagation();
         }
-
         if (widgetEvent.getDefaultPrevented()) {
           domEvent.preventDefault();
-        } // Release the event instance to the event pool
+        }
 
-
+        // Release the event instance to the event pool
         qx.event.Pool.getInstance().poolObject(widgetEvent);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_372_0 = null;
+      this.__P_389_0 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -384,13 +353,13 @@
     */
     defer: function defer(statics) {
       qx.event.Registration.addHandler(statics);
-      qx.event.Registration.addListener(document, "pointerdown", statics.__P_372_6);
-      qx.event.Registration.addListener(document, "pointerup", statics.__P_372_9);
-      qx.event.Registration.addListener(document, "pointercancel", statics.__P_372_9);
-      qx.event.Registration.addListener(document, "pointermove", statics.__P_372_11);
+      qx.event.Registration.addListener(document, "pointerdown", statics.__P_389_6);
+      qx.event.Registration.addListener(document, "pointerup", statics.__P_389_9);
+      qx.event.Registration.addListener(document, "pointercancel", statics.__P_389_9);
+      qx.event.Registration.addListener(document, "pointermove", statics.__P_389_11);
     }
   });
   qx.ui.mobile.core.EventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventHandler.js.map?dt=1664789600345
+//# sourceMappingURL=EventHandler.js.map?dt=1672653510954

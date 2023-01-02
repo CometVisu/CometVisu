@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 20,
-        "column": 0
+        "column": 0,
+        "index": 562
       },
       "end": {
-        "line": 36,
-        "column": 5
+        "line": 33,
+        "column": 3,
+        "index": 868
       }
     },
     "jsdoc": {}
@@ -24,12 +26,14 @@
     "__objectDb": {
       "location": {
         "start": {
-          "line": 24,
-          "column": 4
+          "line": 22,
+          "column": 4,
+          "index": 629
         },
         "end": {
-          "line": 24,
-          "column": 19
+          "line": 22,
+          "column": 18,
+          "index": 643
         }
       },
       "type": "variable",
@@ -38,12 +42,14 @@
     "register": {
       "location": {
         "start": {
-          "line": 26,
-          "column": 4
+          "line": 24,
+          "column": 4,
+          "index": 650
         },
         "end": {
-          "line": 29,
-          "column": 5
+          "line": 27,
+          "column": 5,
+          "index": 772
         }
       },
       "type": "function",
@@ -52,12 +58,14 @@
     "getObjectFromHashCode": {
       "location": {
         "start": {
-          "line": 31,
-          "column": 4
+          "line": 29,
+          "column": 4,
+          "index": 779
         },
         "end": {
-          "line": 33,
-          "column": 5
+          "line": 31,
+          "column": 5,
+          "index": 858
         }
       },
       "type": "function",

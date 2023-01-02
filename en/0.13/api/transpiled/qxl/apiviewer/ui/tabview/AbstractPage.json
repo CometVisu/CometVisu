@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 21,
-        "column": 0
+        "column": 0,
+        "index": 615
       },
       "end": {
-        "line": 102,
-        "column": 5
+        "line": 103,
+        "column": 3,
+        "index": 2724
       }
     },
     "jsdoc": {}
@@ -26,26 +28,29 @@
   "construct": {
     "location": {
       "start": {
-        "line": 26,
-        "column": 16
+        "line": 25,
+        "column": 2,
+        "index": 727
       },
       "end": {
-        "line": 40,
-        "column": 5
+        "line": 39,
+        "column": 3,
+        "index": 1090
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "classNode": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1113
         },
         "end": {
-          "line": 48,
-          "column": 5
+          "line": 45,
+          "column": 5,
+          "index": 1182
         }
       },
       "name": "classNode",
@@ -58,12 +63,14 @@
     "_viewer": {
       "location": {
         "start": {
-          "line": 53,
-          "column": 4
+          "line": 49,
+          "column": 4,
+          "index": 1207
         },
         "end": {
-          "line": 53,
-          "column": 18
+          "line": 49,
+          "column": 17,
+          "index": 1220
         }
       },
       "type": "variable",
@@ -72,12 +79,14 @@
     "_bindings": {
       "location": {
         "start": {
-          "line": 55,
-          "column": 4
+          "line": 51,
+          "column": 4,
+          "index": 1227
         },
         "end": {
-          "line": 55,
-          "column": 20
+          "line": 51,
+          "column": 19,
+          "index": 1242
         }
       },
       "type": "variable",
@@ -86,12 +95,14 @@
     "_createViewer": {
       "location": {
         "start": {
-          "line": 57,
-          "column": 4
+          "line": 53,
+          "column": 4,
+          "index": 1249
         },
         "end": {
-          "line": 59,
-          "column": 5
+          "line": 55,
+          "column": 5,
+          "index": 1320
         }
       },
       "type": "function",
@@ -100,12 +111,14 @@
     "_applyClassNode": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 57,
+          "column": 4,
+          "index": 1327
         },
         "end": {
-          "line": 72,
-          "column": 5
+          "line": 71,
+          "column": 5,
+          "index": 1767
         }
       },
       "type": "function",
@@ -117,12 +130,14 @@
     "__bindViewer": {
       "location": {
         "start": {
-          "line": 74,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 1774
         },
         "end": {
-          "line": 84,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2373
         }
       },
       "type": "function",
@@ -131,12 +146,14 @@
     "__removeBinding": {
       "location": {
         "start": {
-          "line": 86,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2380
         },
         "end": {
-          "line": 94,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 2612
         }
       },
       "type": "function",
@@ -230,6 +247,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -254,6 +272,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -4166,6 +4185,75 @@
         ]
       }
     },
+    "getTabVisibility": {
+      "type": "function",
+      "name": "getTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.tabview.Page",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>tabVisibility</code>.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for tabVisibility"
+          }
+        ]
+      }
+    },
+    "setTabVisibility": {
+      "type": "function",
+      "name": "setTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.tabview.Page",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>tabVisibility</code>.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for tabVisibility"
+          }
+        ]
+      }
+    },
+    "resetTabVisibility": {
+      "type": "function",
+      "name": "resetTabVisibility",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "qx.ui.tabview.Page",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>tabVisibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabVisibility}."
+          }
+        ]
+      }
+    },
     "getClassNode": {
       "type": "function",
       "name": "getClassNode",
@@ -4292,15 +4380,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 97,
-        "column": 15
+        "line": 98,
+        "column": 2,
+        "index": 2622
       },
       "end": {
-        "line": 101,
-        "column": 5
+        "line": 102,
+        "column": 3,
+        "index": 2719
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {},
   "descendants": [

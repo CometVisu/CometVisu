@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -32,6 +31,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.List", {
     statics: {
       register: function register() {
@@ -40,28 +40,24 @@
       _registration: {
         initElement: function initElement(fieldType, fieldData, key) {
           var formElement = new qx.ui.form.List();
-
           if (fieldData.selectionMode) {
             formElement.setSelectionMode(fieldData.selectionMode);
           }
-
           if (fieldData.dragSelection) {
             var mode = formElement.getSelectionMode();
-
             if (mode == "single" || mode == "one") {
               this.debug("Drag selection not available in " + mode);
             } else {
               formElement.setDragSelection(fieldData.dragSelection);
             }
           }
-
           var model = qx.data.marshal.Json.createModel(fieldData.options);
           new qx.data.controller.List(model, formElement, "label");
           return formElement;
         },
         addToFormController: function addToFormController(fieldType, fieldData, key, formElement) {
           this._formController.addTarget(formElement, "selection", key, true, {
-            "converter": function converter(value) {
+            converter: function converter(value) {
               var selected = [];
               var selectables = formElement.getSelectables();
               selectables.forEach(function (selectable) {
@@ -72,7 +68,7 @@
               return selected;
             }
           }, {
-            "converter": function converter(selection) {
+            converter: function converter(selection) {
               var value = [];
               selection.forEach(function (selected) {
                 value.push(selected.getModel().getValue());
@@ -87,4 +83,4 @@
   qxl.dialog.formElement.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1664789616995
+//# sourceMappingURL=List.js.map?dt=1672653526353

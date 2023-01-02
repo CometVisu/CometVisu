@@ -12,11 +12,13 @@
     "location": {
       "start": {
         "line": 22,
-        "column": 0
+        "column": 0,
+        "index": 502
       },
       "end": {
-        "line": 140,
-        "column": 3
+        "line": 131,
+        "column": 3,
+        "index": 3378
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
     "validationFunction": {
       "location": {
         "start": {
-          "line": 35,
-          "column": 4
+          "line": 32,
+          "column": 4,
+          "index": 854
         },
         "end": {
-          "line": 40,
-          "column": 5
+          "line": 36,
+          "column": 5,
+          "index": 945
         }
       },
       "jsdoc": {
@@ -58,12 +62,14 @@
     "listData": {
       "location": {
         "start": {
-          "line": 43,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1012
         },
         "end": {
-          "line": 48,
-          "column": 5
+          "line": 43,
+          "column": 5,
+          "index": 1090
         }
       },
       "jsdoc": {
@@ -117,12 +123,14 @@
     "createCellEditor": {
       "location": {
         "start": {
-          "line": 56,
-          "column": 4
+          "line": 48,
+          "column": 4,
+          "index": 1146
         },
         "end": {
-          "line": 113,
-          "column": 5
+          "line": 106,
+          "column": 5,
+          "index": 2690
         }
       },
       "jsdoc": {},
@@ -136,12 +144,14 @@
     "getCellEditorValue": {
       "location": {
         "start": {
-          "line": 117,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 2729
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 129,
+          "column": 5,
+          "index": 3370
         }
       },
       "jsdoc": {},
@@ -240,6 +250,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -264,6 +275,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

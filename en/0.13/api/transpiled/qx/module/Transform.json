@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 27,
-        "column": 0
+        "column": 0,
+        "index": 755
       },
       "end": {
-        "line": 280,
-        "column": 3
+        "line": 263,
+        "column": 3,
+        "index": 8134
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "transform": {
       "location": {
         "start": {
-          "line": 46,
-          "column": 4
+          "line": 44,
+          "column": 4,
+          "index": 1643
         },
         "end": {
-          "line": 51,
-          "column": 5
+          "line": 49,
+          "column": 5,
+          "index": 1804
         }
       },
       "jsdoc": {
@@ -76,12 +80,14 @@
     "translate": {
       "location": {
         "start": {
-          "line": 62,
-          "column": 4
+          "line": 59,
+          "column": 4,
+          "index": 2105
         },
         "end": {
-          "line": 64,
-          "column": 5
+          "line": 61,
+          "column": 5,
+          "index": 2180
         }
       },
       "jsdoc": {
@@ -124,12 +130,14 @@
     "scale": {
       "location": {
         "start": {
-          "line": 75,
-          "column": 4
+          "line": 71,
+          "column": 4,
+          "index": 2448
         },
         "end": {
-          "line": 77,
-          "column": 5
+          "line": 73,
+          "column": 5,
+          "index": 2515
         }
       },
       "jsdoc": {
@@ -172,12 +180,14 @@
     "rotate": {
       "location": {
         "start": {
-          "line": 88,
-          "column": 4
+          "line": 83,
+          "column": 4,
+          "index": 2811
         },
         "end": {
-          "line": 90,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2880
         }
       },
       "jsdoc": {
@@ -220,12 +230,14 @@
     "skew": {
       "location": {
         "start": {
-          "line": 101,
-          "column": 4
+          "line": 95,
+          "column": 4,
+          "index": 3172
         },
         "end": {
-          "line": 103,
-          "column": 5
+          "line": 97,
+          "column": 5,
+          "index": 3237
         }
       },
       "jsdoc": {
@@ -268,12 +280,14 @@
     "setTransformOrigin": {
       "location": {
         "start": {
-          "line": 116,
-          "column": 4
+          "line": 109,
+          "column": 4,
+          "index": 3582
         },
         "end": {
-          "line": 121,
-          "column": 5
+          "line": 114,
+          "column": 5,
+          "index": 3742
         }
       },
       "jsdoc": {
@@ -313,12 +327,14 @@
     "getTransformOrigin": {
       "location": {
         "start": {
-          "line": 133,
-          "column": 4
+          "line": 125,
+          "column": 4,
+          "index": 4063
         },
         "end": {
-          "line": 138,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 4223
         }
       },
       "jsdoc": {
@@ -349,12 +365,14 @@
     "setTransformStyle": {
       "location": {
         "start": {
-          "line": 150,
-          "column": 4
+          "line": 141,
+          "column": 4,
+          "index": 4539
         },
         "end": {
-          "line": 155,
-          "column": 5
+          "line": 146,
+          "column": 5,
+          "index": 4697
         }
       },
       "jsdoc": {
@@ -394,12 +412,14 @@
     "getTransformStyle": {
       "location": {
         "start": {
-          "line": 167,
-          "column": 4
+          "line": 157,
+          "column": 4,
+          "index": 5007
         },
         "end": {
-          "line": 172,
-          "column": 5
+          "line": 162,
+          "column": 5,
+          "index": 5165
         }
       },
       "jsdoc": {
@@ -430,12 +450,14 @@
     "setTransformPerspective": {
       "location": {
         "start": {
-          "line": 185,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5503
         },
         "end": {
-          "line": 190,
-          "column": 5
+          "line": 179,
+          "column": 5,
+          "index": 5673
         }
       },
       "jsdoc": {
@@ -475,12 +497,14 @@
     "getTransformPerspective": {
       "location": {
         "start": {
-          "line": 201,
-          "column": 4
+          "line": 189,
+          "column": 4,
+          "index": 5934
         },
         "end": {
-          "line": 206,
-          "column": 5
+          "line": 194,
+          "column": 5,
+          "index": 6104
         }
       },
       "jsdoc": {
@@ -511,12 +535,14 @@
     "setTransformPerspectiveOrigin": {
       "location": {
         "start": {
-          "line": 219,
-          "column": 4
+          "line": 206,
+          "column": 4,
+          "index": 6453
         },
         "end": {
-          "line": 224,
-          "column": 5
+          "line": 211,
+          "column": 5,
+          "index": 6635
         }
       },
       "jsdoc": {
@@ -556,12 +582,14 @@
     "getTransformPerspectiveOrigin": {
       "location": {
         "start": {
-          "line": 235,
-          "column": 4
+          "line": 221,
+          "column": 4,
+          "index": 6914
         },
         "end": {
-          "line": 240,
-          "column": 5
+          "line": 226,
+          "column": 5,
+          "index": 7096
         }
       },
       "jsdoc": {
@@ -592,12 +620,14 @@
     "setTransformBackfaceVisibility": {
       "location": {
         "start": {
-          "line": 252,
-          "column": 4
+          "line": 237,
+          "column": 4,
+          "index": 7420
         },
         "end": {
-          "line": 257,
-          "column": 5
+          "line": 242,
+          "column": 5,
+          "index": 7604
         }
       },
       "jsdoc": {
@@ -637,12 +667,14 @@
     "getTransformBackfaceVisibility": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 252,
+          "column": 4,
+          "index": 7889
         },
         "end": {
-          "line": 273,
-          "column": 5
+          "line": 257,
+          "column": 5,
+          "index": 8073
         }
       },
       "jsdoc": {
@@ -674,15 +706,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 277,
-        "column": 10
+        "line": 260,
+        "column": 2,
+        "index": 8082
       },
       "end": {
-        "line": 279,
-        "column": 3
+        "line": 262,
+        "column": 3,
+        "index": 8130
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

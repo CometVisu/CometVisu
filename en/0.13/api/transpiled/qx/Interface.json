@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 718
       },
       "end": {
-        "line": 660,
-        "column": 3
+        "line": 690,
+        "column": 3,
+        "index": 21127
       }
     },
     "jsdoc": {
@@ -37,12 +39,14 @@
     "define": {
       "location": {
         "start": {
-          "line": 95,
-          "column": 4
+          "line": 93,
+          "column": 4,
+          "index": 3349
         },
         "end": {
-          "line": 150,
-          "column": 5
+          "line": 147,
+          "column": 5,
+          "index": 4664
         }
       },
       "jsdoc": {
@@ -85,12 +89,14 @@
     "getByName": {
       "location": {
         "start": {
-          "line": 159,
-          "column": 4
+          "line": 155,
+          "column": 4,
+          "index": 4813
         },
         "end": {
-          "line": 161,
-          "column": 5
+          "line": 157,
+          "column": 5,
+          "index": 4872
         }
       },
       "jsdoc": {
@@ -124,12 +130,14 @@
     "isDefined": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 165,
+          "column": 4,
+          "index": 5041
         },
         "end": {
-          "line": 172,
-          "column": 5
+          "line": 167,
+          "column": 5,
+          "index": 5113
         }
       },
       "jsdoc": {
@@ -163,12 +171,14 @@
     "getTotalNumber": {
       "location": {
         "start": {
-          "line": 180,
-          "column": 4
+          "line": 174,
+          "column": 4,
+          "index": 5252
         },
         "end": {
-          "line": 182,
-          "column": 5
+          "line": 176,
+          "column": 5,
+          "index": 5336
         }
       },
       "jsdoc": {
@@ -193,12 +203,14 @@
     "flatten": {
       "location": {
         "start": {
-          "line": 192,
-          "column": 4
+          "line": 185,
+          "column": 4,
+          "index": 5591
         },
         "end": {
-          "line": 209,
-          "column": 5
+          "line": 200,
+          "column": 5,
+          "index": 5965
         }
       },
       "jsdoc": {
@@ -234,12 +246,14 @@
     "__checkMembers": {
       "location": {
         "start": {
-          "line": 224,
-          "column": 4
+          "line": 214,
+          "column": 4,
+          "index": 6514
         },
         "end": {
-          "line": 280,
-          "column": 5
+          "line": 279,
+          "column": 5,
+          "index": 8664
         }
       },
       "jsdoc": {
@@ -303,12 +317,14 @@
     "__isPropertyMethod": {
       "location": {
         "start": {
-          "line": 293,
-          "column": 4
+          "line": 291,
+          "column": 4,
+          "index": 8998
         },
         "end": {
-          "line": 313,
-          "column": 5
+          "line": 317,
+          "column": 5,
+          "index": 9642
         }
       },
       "jsdoc": {
@@ -349,12 +365,14 @@
     "__checkProperties": {
       "location": {
         "start": {
-          "line": 325,
-          "column": 4
+          "line": 328,
+          "column": 4,
+          "index": 10019
         },
         "end": {
-          "line": 344,
-          "column": 5
+          "line": 349,
+          "column": 5,
+          "index": 10613
         }
       },
       "jsdoc": {
@@ -402,12 +420,14 @@
     "__checkEvents": {
       "location": {
         "start": {
-          "line": 356,
-          "column": 4
+          "line": 360,
+          "column": 4,
+          "index": 10982
         },
         "end": {
-          "line": 375,
-          "column": 5
+          "line": 381,
+          "column": 5,
+          "index": 11553
         }
       },
       "jsdoc": {
@@ -455,12 +475,14 @@
     "assertObject": {
       "location": {
         "start": {
-          "line": 386,
-          "column": 4
+          "line": 391,
+          "column": 4,
+          "index": 11893
         },
         "end": {
-          "line": 401,
-          "column": 5
+          "line": 404,
+          "column": 5,
+          "index": 12341
         }
       },
       "jsdoc": {
@@ -493,12 +515,14 @@
     "assert": {
       "location": {
         "start": {
-          "line": 412,
-          "column": 4
+          "line": 414,
+          "column": 4,
+          "index": 12650
         },
         "end": {
           "line": 426,
-          "column": 5
+          "column": 5,
+          "index": 13066
         }
       },
       "jsdoc": {
@@ -540,12 +564,14 @@
     "objectImplements": {
       "location": {
         "start": {
-          "line": 437,
-          "column": 4
+          "line": 436,
+          "column": 4,
+          "index": 13402
         },
         "end": {
-          "line": 458,
-          "column": 5
+          "line": 457,
+          "column": 5,
+          "index": 13961
         }
       },
       "jsdoc": {
@@ -586,12 +612,14 @@
     "classImplements": {
       "location": {
         "start": {
-          "line": 469,
-          "column": 4
+          "line": 467,
+          "column": 4,
+          "index": 14290
         },
         "end": {
-          "line": 488,
-          "column": 5
+          "line": 487,
+          "column": 5,
+          "index": 14804
         }
       },
       "jsdoc": {
@@ -632,12 +660,14 @@
     "genericToString": {
       "location": {
         "start": {
-          "line": 505,
-          "column": 4
+          "line": 502,
+          "column": 4,
+          "index": 15201
         },
         "end": {
-          "line": 507,
-          "column": 5
+          "line": 504,
+          "column": 5,
+          "index": 15272
         }
       },
       "jsdoc": {
@@ -668,12 +698,14 @@
     "$$registry": {
       "location": {
         "start": {
-          "line": 511,
-          "column": 4
+          "line": 507,
+          "column": 4,
+          "index": 15325
         },
         "end": {
-          "line": 511,
-          "column": 19
+          "line": 507,
+          "column": 18,
+          "index": 15339
         }
       },
       "jsdoc": {
@@ -690,12 +722,14 @@
     "__wrapInterfaceMember": {
       "location": {
         "start": {
-          "line": 527,
-          "column": 4
+          "line": 522,
+          "column": 4,
+          "index": 16024
         },
         "end": {
-          "line": 551,
-          "column": 6
+          "line": 543,
+          "column": 6,
+          "index": 16783
         }
       },
       "jsdoc": {
@@ -750,18 +784,20 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     },
     "__allowedKeys": {
       "location": {
         "start": {
-          "line": 555,
-          "column": 4
+          "line": 546,
+          "column": 4,
+          "index": 16850
         },
         "end": {
-          "line": 567,
-          "column": 6
+          "line": 556,
+          "column": 6,
+          "index": 17146
         }
       },
       "jsdoc": {
@@ -784,12 +820,14 @@
     "__validateConfig": {
       "location": {
         "start": {
-          "line": 577,
-          "column": 4
+          "line": 565,
+          "column": 4,
+          "index": 17379
         },
         "end": {
-          "line": 658,
-          "column": 6
+          "line": 688,
+          "column": 6,
+          "index": 21119
         }
       },
       "jsdoc": {
@@ -822,7 +860,7 @@
           }
         ]
       },
-      "type": "function",
+      "type": "variable",
       "access": "private"
     }
   },

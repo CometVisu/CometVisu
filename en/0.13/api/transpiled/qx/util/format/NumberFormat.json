@@ -13,11 +13,13 @@
     "location": {
       "start": {
         "line": 25,
-        "column": 0
+        "column": 0,
+        "index": 581
       },
       "end": {
-        "line": 318,
-        "column": 3
+        "line": 311,
+        "column": 3,
+        "index": 8400
       }
     },
     "jsdoc": {
@@ -33,12 +35,14 @@
   "construct": {
     "location": {
       "start": {
-        "line": 41,
-        "column": 14
+        "line": 39,
+        "column": 2,
+        "index": 1028
       },
       "end": {
-        "line": 63,
-        "column": 3
+        "line": 60,
+        "column": 3,
+        "index": 1620
       }
     },
     "jsdoc": {
@@ -71,12 +75,14 @@
     "minimumIntegerDigits": {
       "location": {
         "start": {
-          "line": 78,
-          "column": 4
+          "line": 73,
+          "column": 4,
+          "index": 1994
         },
         "end": {
-          "line": 82,
-          "column": 5
+          "line": 76,
+          "column": 5,
+          "index": 2060
         }
       },
       "jsdoc": {
@@ -96,12 +102,14 @@
     "maximumIntegerDigits": {
       "location": {
         "start": {
-          "line": 89,
-          "column": 4
+          "line": 82,
+          "column": 4,
+          "index": 2188
         },
         "end": {
-          "line": 93,
-          "column": 5
+          "line": 85,
+          "column": 5,
+          "index": 2261
         }
       },
       "jsdoc": {
@@ -121,12 +129,14 @@
     "minimumFractionDigits": {
       "location": {
         "start": {
-          "line": 100,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2433
         },
         "end": {
-          "line": 104,
-          "column": 5
+          "line": 94,
+          "column": 5,
+          "index": 2500
         }
       },
       "jsdoc": {
@@ -146,12 +156,14 @@
     "maximumFractionDigits": {
       "location": {
         "start": {
-          "line": 111,
-          "column": 4
+          "line": 100,
+          "column": 4,
+          "index": 2673
         },
         "end": {
-          "line": 115,
-          "column": 5
+          "line": 103,
+          "column": 5,
+          "index": 2747
         }
       },
       "jsdoc": {
@@ -171,12 +183,14 @@
     "groupingUsed": {
       "location": {
         "start": {
-          "line": 119,
-          "column": 4
+          "line": 106,
+          "column": 4,
+          "index": 2830
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 109,
+          "column": 5,
+          "index": 2892
         }
       },
       "jsdoc": {
@@ -196,12 +210,14 @@
     "prefix": {
       "location": {
         "start": {
-          "line": 127,
-          "column": 4
+          "line": 112,
+          "column": 4,
+          "index": 2971
         },
         "end": {
-          "line": 132,
-          "column": 5
+          "line": 116,
+          "column": 5,
+          "index": 3059
         }
       },
       "jsdoc": {
@@ -222,12 +238,14 @@
     "postfix": {
       "location": {
         "start": {
-          "line": 136,
-          "column": 4
+          "line": 119,
+          "column": 4,
+          "index": 3139
         },
         "end": {
-          "line": 141,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 3228
         }
       },
       "jsdoc": {
@@ -248,12 +266,14 @@
     "locale": {
       "location": {
         "start": {
-          "line": 144,
-          "column": 4
+          "line": 126,
+          "column": 4,
+          "index": 3258
         },
         "end": {
-          "line": 149,
-          "column": 5
+          "line": 130,
+          "column": 5,
+          "index": 3342
         }
       },
       "jsdoc": {
@@ -306,12 +326,14 @@
     "format": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 146,
+          "column": 4,
+          "index": 3705
         },
         "end": {
-          "line": 258,
-          "column": 5
+          "line": 244,
+          "column": 5,
+          "index": 6500
         }
       },
       "jsdoc": {
@@ -349,12 +371,14 @@
     "parse": {
       "location": {
         "start": {
-          "line": 268,
-          "column": 4
+          "line": 253,
+          "column": 4,
+          "index": 6716
         },
         "end": {
-          "line": 309,
-          "column": 5
+          "line": 303,
+          "column": 5,
+          "index": 8247
         }
       },
       "jsdoc": {
@@ -485,6 +509,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -509,6 +534,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -1089,15 +1115,16 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 313,
-        "column": 12
+        "line": 306,
+        "column": 2,
+        "index": 8256
       },
       "end": {
-        "line": 317,
-        "column": 3
+        "line": 310,
+        "column": 3,
+        "index": 8396
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

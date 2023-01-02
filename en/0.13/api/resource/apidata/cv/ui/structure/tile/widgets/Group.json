@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 26,
-        "column": 0
+        "column": 0,
+        "index": 954
       },
       "end": {
-        "line": 116,
-        "column": 3
+        "line": 120,
+        "column": 3,
+        "index": 4034
       }
     },
     "jsdoc": {
@@ -44,11 +46,13 @@
       "location": {
         "start": {
           "line": 35,
-          "column": 4
+          "column": 4,
+          "index": 1227
         },
         "end": {
           "line": 76,
-          "column": 5
+          "column": 5,
+          "index": 2833
         }
       },
       "type": "function",
@@ -63,11 +67,13 @@
       "location": {
         "start": {
           "line": 78,
-          "column": 4
+          "column": 4,
+          "index": 2840
         },
         "end": {
           "line": 84,
-          "column": 5
+          "column": 5,
+          "index": 3031
         }
       },
       "type": "function",
@@ -77,11 +83,13 @@
       "location": {
         "start": {
           "line": 91,
-          "column": 4
+          "column": 4,
+          "index": 3210
         },
         "end": {
-          "line": 106,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3809
         }
       },
       "jsdoc": {
@@ -196,6 +204,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -220,6 +229,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }
@@ -643,15 +653,16 @@
   "defer": {
     "location": {
       "start": {
-        "line": 109,
-        "column": 9
+        "line": 110,
+        "column": 2,
+        "index": 3818
       },
       "end": {
-        "line": 115,
-        "column": 3
+        "line": 119,
+        "column": 3,
+        "index": 4030
       }
-    },
-    "jsdoc": {}
+    }
   },
   "descendants": []
 }

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,12 +41,12 @@
    */
   qx.Class.define("qx.event.type.Drag", {
     extend: qx.event.type.Event,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Initialize the fields of the event. The event must be initialized before
@@ -64,7 +63,6 @@
        */
       init: function init(cancelable, originalEvent) {
         qx.event.type.Drag.superclass.prototype.init.call(this, true, cancelable);
-
         if (originalEvent) {
           this._native = originalEvent.getNativeEvent() || null;
           this._originalTarget = originalEvent.getOriginalTarget() || null;
@@ -72,7 +70,6 @@
           this._native = null;
           this._originalTarget = null;
         }
-
         return this;
       },
       // overridden
@@ -81,7 +78,6 @@
         clone._native = this._native;
         return clone;
       },
-
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -93,22 +89,18 @@
         if (this._native == null) {
           return 0;
         }
-
         var x = this._native.pageX;
-
         if (x !== undefined) {
           // iOS 6 does not copy pageX over to the fake pointer event
           if (x == 0 && this._native.pointerType == "touch") {
             x = this._native._original.changedTouches[0].pageX || 0;
           }
-
           return Math.round(x);
         } else {
           var win = qx.dom.Node.getWindow(this._native.srcElement);
           return Math.round(this._native.clientX) + qx.bom.Viewport.getScrollLeft(win);
         }
       },
-
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -120,22 +112,18 @@
         if (this._native == null) {
           return 0;
         }
-
         var y = this._native.pageY;
-
         if (y !== undefined) {
           // iOS 6 does not copy pageY over to the fake pointer event
           if (y == 0 && this._native.pointerType == "touch") {
             y = this._native._original.changedTouches[0].pageY || 0;
           }
-
           return Math.round(y);
         } else {
           var win = qx.dom.Node.getWindow(this._native.srcElement);
           return Math.round(this._native.clientY) + qx.bom.Viewport.getScrollTop(win);
         }
       },
-
       /**
        * Returns the drag&drop event handler responsible for the target
        *
@@ -144,7 +132,6 @@
       getManager: function getManager() {
         return qx.event.Registration.getManager(this.getTarget()).getHandler(qx.event.handler.DragDrop);
       },
-
       /**
        * Used during <code>dragstart</code> listener to
        * inform the manager about supported data types.
@@ -154,7 +141,6 @@
       addType: function addType(type) {
         this.getManager().addType(type);
       },
-
       /**
        * Used during <code>dragstart</code> listener to
        * inform the manager about supported drop actions.
@@ -164,7 +150,6 @@
       addAction: function addAction(action) {
         this.getManager().addAction(action);
       },
-
       /**
        * Whether the given type is supported by the drag
        * target (source target).
@@ -178,7 +163,6 @@
       supportsType: function supportsType(type) {
         return this.getManager().supportsType(type);
       },
-
       /**
        * Whether the given action is supported by the drag
        * target (source target).
@@ -192,7 +176,6 @@
       supportsAction: function supportsAction(action) {
         return this.getManager().supportsAction(action);
       },
-
       /**
        * Adds data of the given type to the internal storage. The data
        * is available until the <code>dragend</code> event is fired.
@@ -203,11 +186,10 @@
       addData: function addData(type, data) {
         this.getManager().addData(type, data);
       },
-
       /**
        * Returns the data of the given type. Used in the <code>drop</code> listener.
-       * 
-       * Note that this is a synchronous method and if any of the drag and drop 
+       *
+       * Note that this is a synchronous method and if any of the drag and drop
        * events handlers are implemented using Promises, this may fail; @see
        * `getDataAsync`.
        *
@@ -217,17 +199,15 @@
       getData: function getData(type) {
         return this.getManager().getData(type);
       },
-
       /**
        * Returns the data of the given type. Used in the <code>drop</code> listener.
-       * 
+       *
        * @param type {String} Any of the supported types.
        * @return {qx.Promise|var} The data for the given type
        */
       getDataAsync: function getDataAsync(type) {
         return this.getManager().getDataAsync(type);
       },
-
       /**
        * Returns the type which was requested last, to be used
        * in the <code>droprequest</code> listener.
@@ -237,7 +217,6 @@
       getCurrentType: function getCurrentType() {
         return this.getManager().getCurrentType();
       },
-
       /**
        * Returns the currently selected action. Depends on the
        * supported actions of the source target and the modification
@@ -252,10 +231,8 @@
         if (this.getDefaultPrevented()) {
           return null;
         }
-
         return this.getManager().getCurrentAction();
       },
-
       /**
        * Returns the currently selected action. Depends on the
        * supported actions of the source target and the modification
@@ -270,10 +247,8 @@
         if (this.getDefaultPrevented()) {
           return null;
         }
-
         return this.getManager().getCurrentActionAsync();
       },
-
       /**
        * Whether the current drop target allows the current drag target.
        *
@@ -287,7 +262,6 @@
       setDropAllowed: function setDropAllowed(isAllowed) {
         this.getManager().setDropAllowed(isAllowed);
       },
-
       /**
        * Returns the target which has been initially tapped on.
        * @return {qx.ui.core.Widget} The tapped widget.
@@ -295,7 +269,6 @@
       getDragTarget: function getDragTarget() {
         return this.getManager().getDragTarget();
       },
-
       /**
        * Stops the drag&drop session and fires a <code>dragend</code> event.
        */
@@ -307,4 +280,4 @@
   qx.event.type.Drag.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Drag.js.map?dt=1664789585602
+//# sourceMappingURL=Drag.js.map?dt=1672653496124

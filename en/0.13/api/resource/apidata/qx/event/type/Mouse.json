@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 28,
-        "column": 0
+        "column": 0,
+        "index": 788
       },
       "end": {
-        "line": 323,
-        "column": 3
+        "line": 320,
+        "column": 3,
+        "index": 9863
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "_cloneNativeEvent": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 39,
+          "column": 4,
+          "index": 1131
         },
         "end": {
-          "line": 85,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2879
         }
       },
       "jsdoc": {},
@@ -51,12 +55,14 @@
     "__buttonsDom2EventModel": {
       "location": {
         "start": {
-          "line": 93,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 3030
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 95,
+          "column": 5,
+          "index": 3115
         }
       },
       "jsdoc": {
@@ -85,12 +91,14 @@
     "__buttonsDom3EventModel": {
       "location": {
         "start": {
-          "line": 106,
-          "column": 4
+          "line": 102,
+          "column": 4,
+          "index": 3266
         },
         "end": {
-          "line": 112,
-          "column": 5
+          "line": 107,
+          "column": 5,
+          "index": 3368
         }
       },
       "jsdoc": {
@@ -119,12 +127,14 @@
     "__buttonsMshtmlEventModel": {
       "location": {
         "start": {
-          "line": 120,
-          "column": 4
+          "line": 114,
+          "column": 4,
+          "index": 3521
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 3608
         }
       },
       "jsdoc": {
@@ -153,12 +163,14 @@
     "stop": {
       "location": {
         "start": {
-          "line": 129,
-          "column": 4
+          "line": 121,
+          "column": 4,
+          "index": 3633
         },
         "end": {
-          "line": 131,
-          "column": 5
+          "line": 123,
+          "column": 5,
+          "index": 3677
         }
       },
       "jsdoc": {},
@@ -172,12 +184,14 @@
     "getButton": {
       "location": {
         "start": {
-          "line": 159,
-          "column": 4
+          "line": 150,
+          "column": 4,
+          "index": 4658
         },
         "end": {
-          "line": 186,
-          "column": 5
+          "line": 185,
+          "column": 5,
+          "index": 5887
         }
       },
       "jsdoc": {
@@ -202,12 +216,14 @@
     "isLeftPressed": {
       "location": {
         "start": {
-          "line": 194,
-          "column": 4
+          "line": 192,
+          "column": 4,
+          "index": 6021
         },
         "end": {
-          "line": 196,
-          "column": 5
+          "line": 194,
+          "column": 5,
+          "index": 6086
         }
       },
       "jsdoc": {
@@ -232,12 +248,14 @@
     "isMiddlePressed": {
       "location": {
         "start": {
-          "line": 204,
-          "column": 4
+          "line": 201,
+          "column": 4,
+          "index": 6224
         },
         "end": {
-          "line": 206,
-          "column": 5
+          "line": 203,
+          "column": 5,
+          "index": 6293
         }
       },
       "jsdoc": {
@@ -262,12 +280,14 @@
     "isRightPressed": {
       "location": {
         "start": {
-          "line": 214,
-          "column": 4
+          "line": 210,
+          "column": 4,
+          "index": 6429
         },
         "end": {
-          "line": 216,
-          "column": 5
+          "line": 212,
+          "column": 5,
+          "index": 6496
         }
       },
       "jsdoc": {
@@ -292,12 +312,14 @@
     "getRelatedTarget": {
       "location": {
         "start": {
-          "line": 228,
-          "column": 4
+          "line": 223,
+          "column": 4,
+          "index": 6891
         },
         "end": {
-          "line": 230,
-          "column": 5
+          "line": 225,
+          "column": 5,
+          "index": 6951
         }
       },
       "jsdoc": {
@@ -332,12 +354,14 @@
     "getViewportLeft": {
       "location": {
         "start": {
-          "line": 239,
-          "column": 4
+          "line": 233,
+          "column": 4,
+          "index": 7137
         },
         "end": {
-          "line": 241,
-          "column": 5
+          "line": 235,
+          "column": 5,
+          "index": 7209
         }
       },
       "jsdoc": {
@@ -362,12 +386,14 @@
     "getViewportTop": {
       "location": {
         "start": {
-          "line": 251,
-          "column": 4
+          "line": 244,
+          "column": 4,
+          "index": 7417
         },
         "end": {
-          "line": 253,
-          "column": 5
+          "line": 246,
+          "column": 5,
+          "index": 7488
         }
       },
       "jsdoc": {
@@ -398,12 +424,14 @@
     "getDocumentLeft": {
       "location": {
         "start": {
-          "line": 263,
-          "column": 4
+          "line": 255,
+          "column": 4,
+          "index": 7765
         },
         "end": {
-          "line": 273,
-          "column": 5
+          "line": 269,
+          "column": 5,
+          "index": 8245
         }
       },
       "jsdoc": {
@@ -428,12 +456,14 @@
     "getDocumentTop": {
       "location": {
         "start": {
-          "line": 283,
-          "column": 4
+          "line": 278,
+          "column": 4,
+          "index": 8517
         },
         "end": {
-          "line": 293,
-          "column": 5
+          "line": 292,
+          "column": 5,
+          "index": 8994
         }
       },
       "jsdoc": {
@@ -458,12 +488,14 @@
     "getScreenLeft": {
       "location": {
         "start": {
-          "line": 305,
-          "column": 4
+          "line": 303,
+          "column": 4,
+          "index": 9357
         },
         "end": {
-          "line": 307,
-          "column": 5
+          "line": 305,
+          "column": 5,
+          "index": 9427
         }
       },
       "jsdoc": {
@@ -488,12 +520,14 @@
     "getScreenTop": {
       "location": {
         "start": {
-          "line": 319,
-          "column": 4
+          "line": 316,
+          "column": 4,
+          "index": 9786
         },
         "end": {
-          "line": 321,
-          "column": 5
+          "line": 318,
+          "column": 5,
+          "index": 9855
         }
       },
       "jsdoc": {
@@ -603,6 +637,7 @@
         "@return": [
           {
             "name": "@return",
+            "type": "[[ ObjectMethod Function ]]",
             "desc": "Returns the value for qxObjectId"
           }
         ]
@@ -627,6 +662,7 @@
         "@param": [
           {
             "name": "@param",
+            "type": "[[ ObjectMethod Function ]]",
             "paramName": "value",
             "desc": "Value for qxObjectId"
           }

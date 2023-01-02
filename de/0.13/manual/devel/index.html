@@ -151,20 +151,20 @@ Es wäre jedoch möglich ein neues auf Qooxdoo-UI basierendes Widgetpaket zu imp
 <div><p><code class="docutils literal notranslate"><span class="pre">v</span></code>: Ist die Protokollversion</p>
 <p><code class="docutils literal notranslate"><span class="pre">s</span></code>: Die Session ID</p>
 <p><code class="docutils literal notranslate"><span class="pre">c</span></code>: Die optionale Backend-Konfiguration</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;openhab2&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;transport&quot;</span><span class="p">:</span><span class="s2">&quot;sse&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;baseURL&quot;</span><span class="p">:</span><span class="s2">&quot;/rest/cv/&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;read&quot;</span><span class="p">:</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;rrd&quot;</span><span class="p">:</span><span class="s2">&quot;rrdfetch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;write&quot;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;openhab2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transport&quot;</span><span class="p">:</span><span class="s2">&quot;sse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;baseURL&quot;</span><span class="p">:</span><span class="s2">&quot;/rest/cv/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;read&quot;</span><span class="p">:</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;rrd&quot;</span><span class="p">:</span><span class="s2">&quot;rrdfetch&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;write&quot;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -227,22 +227,22 @@ Konfigurations-Optionen.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace für alle in den <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">Benachrichtigungen</span></a> benutzten Nachrichten</p></li>
 </ul>
 <p>Ein Nachrichtenempfänger (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) kann sich nun für eines oder mehrere solcher Topics registrieren:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s1">&#39;cv.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>Auch Wildcards sind möglich:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.*&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;cv.*&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 </section>
@@ -283,7 +283,7 @@ solange das Problem besteht und verschwinden automatisch, sobald das Problem beh
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    

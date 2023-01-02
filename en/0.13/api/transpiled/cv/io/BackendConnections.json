@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 876
       },
       "end": {
-        "line": 294,
-        "column": 3
+        "line": 358,
+        "column": 3,
+        "index": 12465
       }
     },
     "jsdoc": {
@@ -35,11 +37,13 @@
       "location": {
         "start": {
           "line": 31,
-          "column": 4
+          "column": 4,
+          "index": 1079
         },
         "end": {
           "line": 31,
-          "column": 17
+          "column": 17,
+          "index": 1092
         }
       },
       "type": "variable",
@@ -49,11 +53,29 @@
       "location": {
         "start": {
           "line": 32,
-          "column": 4
+          "column": 4,
+          "index": 1098
         },
         "end": {
           "line": 32,
-          "column": 30
+          "column": 30,
+          "index": 1124
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__disconnectTimer": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1130
+        },
+        "end": {
+          "line": 33,
+          "column": 27,
+          "index": 1153
         }
       },
       "type": "variable",
@@ -62,12 +84,14 @@
     "__hasBeenConnected": {
       "location": {
         "start": {
-          "line": 33,
-          "column": 4
+          "line": 34,
+          "column": 4,
+          "index": 1159
         },
         "end": {
-          "line": 33,
-          "column": 29
+          "line": 34,
+          "column": 29,
+          "index": 1184
         }
       },
       "type": "variable",
@@ -76,12 +100,14 @@
     "__activeChangeListenerId": {
       "location": {
         "start": {
-          "line": 34,
-          "column": 4
+          "line": 35,
+          "column": 4,
+          "index": 1190
         },
         "end": {
-          "line": 34,
-          "column": 34
+          "line": 35,
+          "column": 34,
+          "index": 1220
         }
       },
       "type": "variable",
@@ -90,12 +116,14 @@
     "initBackendClient": {
       "location": {
         "start": {
-          "line": 39,
-          "column": 4
+          "line": 40,
+          "column": 4,
+          "index": 1312
         },
         "end": {
-          "line": 63,
-          "column": 5
+          "line": 74,
+          "column": 5,
+          "index": 2583
         }
       },
       "jsdoc": {
@@ -112,12 +140,14 @@
     "addBackendClient": {
       "location": {
         "start": {
-          "line": 65,
-          "column": 4
+          "line": 76,
+          "column": 4,
+          "index": 2590
         },
         "end": {
-          "line": 116,
-          "column": 5
+          "line": 131,
+          "column": 5,
+          "index": 4699
         }
       },
       "type": "function",
@@ -126,12 +156,14 @@
     "removeClient": {
       "location": {
         "start": {
-          "line": 118,
-          "column": 4
+          "line": 133,
+          "column": 4,
+          "index": 4706
         },
         "end": {
-          "line": 125,
-          "column": 5
+          "line": 140,
+          "column": 5,
+          "index": 4896
         }
       },
       "type": "function",
@@ -140,12 +172,14 @@
     "hasClient": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 147,
+          "column": 4,
+          "index": 5054
         },
         "end": {
-          "line": 134,
-          "column": 5
+          "line": 149,
+          "column": 5,
+          "index": 5150
         }
       },
       "jsdoc": {
@@ -179,12 +213,14 @@
     "getClient": {
       "location": {
         "start": {
-          "line": 141,
-          "column": 4
+          "line": 156,
+          "column": 4,
+          "index": 5394
         },
         "end": {
-          "line": 156,
-          "column": 5
+          "line": 171,
+          "column": 5,
+          "index": 5965
         }
       },
       "jsdoc": {
@@ -211,12 +247,14 @@
     "startInitialRequest": {
       "location": {
         "start": {
-          "line": 161,
-          "column": 4
+          "line": 176,
+          "column": 4,
+          "index": 6030
         },
         "end": {
-          "line": 176,
-          "column": 5
+          "line": 191,
+          "column": 5,
+          "index": 6665
         }
       },
       "jsdoc": {
@@ -233,12 +271,14 @@
     "_onActiveChanged": {
       "location": {
         "start": {
-          "line": 178,
-          "column": 4
+          "line": 193,
+          "column": 4,
+          "index": 6672
         },
         "end": {
-          "line": 204,
-          "column": 5
+          "line": 243,
+          "column": 5,
+          "index": 8591
         }
       },
       "type": "function",
@@ -247,12 +287,14 @@
     "_checkBackendConnection": {
       "location": {
         "start": {
-          "line": 206,
-          "column": 4
+          "line": 245,
+          "column": 4,
+          "index": 8598
         },
         "end": {
-          "line": 238,
-          "column": 5
+          "line": 283,
+          "column": 5,
+          "index": 9860
         }
       },
       "type": "function",
@@ -261,12 +303,14 @@
     "_updateClientScope": {
       "location": {
         "start": {
-          "line": 240,
-          "column": 4
+          "line": 285,
+          "column": 4,
+          "index": 9867
         },
         "end": {
-          "line": 248,
-          "column": 5
+          "line": 293,
+          "column": 5,
+          "index": 10141
         }
       },
       "type": "function",
@@ -275,12 +319,14 @@
     "_handleClientError": {
       "location": {
         "start": {
-          "line": 250,
-          "column": 4
+          "line": 295,
+          "column": 4,
+          "index": 10148
         },
         "end": {
-          "line": 292,
-          "column": 5
+          "line": 356,
+          "column": 5,
+          "index": 12457
         }
       },
       "type": "function",

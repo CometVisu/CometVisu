@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 23,
-        "column": 0
+        "column": 0,
+        "index": 912
       },
       "end": {
-        "line": 75,
-        "column": 3
+        "line": 91,
+        "column": 3,
+        "index": 2967
       }
     },
     "jsdoc": {
@@ -35,11 +37,13 @@
       "location": {
         "start": {
           "line": 40,
-          "column": 4
+          "column": 4,
+          "index": 1296
         },
         "end": {
-          "line": 62,
-          "column": 5
+          "line": 78,
+          "column": 5,
+          "index": 2686
         }
       },
       "jsdoc": {
@@ -82,12 +86,14 @@
     "proxyFetch": {
       "location": {
         "start": {
-          "line": 71,
-          "column": 4
+          "line": 87,
+          "column": 4,
+          "index": 2856
         },
         "end": {
-          "line": 73,
-          "column": 5
+          "line": 89,
+          "column": 5,
+          "index": 2959
         }
       },
       "jsdoc": {

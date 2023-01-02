@@ -10,11 +10,13 @@
     "location": {
       "start": {
         "line": 33,
-        "column": 0
+        "column": 0,
+        "index": 972
       },
       "end": {
-        "line": 254,
-        "column": 3
+        "line": 249,
+        "column": 3,
+        "index": 6992
       }
     },
     "jsdoc": {
@@ -31,12 +33,14 @@
     "changeValue": {
       "location": {
         "start": {
-          "line": 44,
-          "column": 4
+          "line": 42,
+          "column": 4,
+          "index": 1274
         },
         "end": {
-          "line": 44,
-          "column": 40
+          "line": 42,
+          "column": 37,
+          "index": 1307
         }
       },
       "jsdoc": {
@@ -53,12 +57,14 @@
     "changeSelection": {
       "location": {
         "start": {
-          "line": 47,
-          "column": 4
+          "line": 45,
+          "column": 4,
+          "index": 1364
         },
         "end": {
-          "line": 47,
-          "column": 44
+          "line": 45,
+          "column": 41,
+          "index": 1401
         }
       },
       "jsdoc": {
@@ -77,12 +83,14 @@
     "__manager": {
       "location": {
         "start": {
-          "line": 61,
-          "column": 4
+          "line": 56,
+          "column": 4,
+          "index": 1691
         },
         "end": {
-          "line": 61,
-          "column": 20
+          "line": 56,
+          "column": 19,
+          "index": 1706
         }
       },
       "jsdoc": {
@@ -105,12 +113,14 @@
     "setValue": {
       "location": {
         "start": {
-          "line": 76,
-          "column": 4
+          "line": 70,
+          "column": 4,
+          "index": 2142
         },
         "end": {
-          "line": 89,
-          "column": 5
+          "line": 84,
+          "column": 5,
+          "index": 2496
         }
       },
       "jsdoc": {
@@ -147,12 +157,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 96,
-          "column": 4
+          "line": 91,
+          "column": 4,
+          "index": 2699
         },
         "end": {
-          "line": 98,
-          "column": 5
+          "line": 93,
+          "column": 5,
+          "index": 2773
         }
       },
       "jsdoc": {
@@ -177,12 +189,14 @@
     "resetValue": {
       "location": {
         "start": {
-          "line": 103,
-          "column": 4
+          "line": 98,
+          "column": 4,
+          "index": 2874
         },
         "end": {
-          "line": 105,
-          "column": 5
+          "line": 100,
+          "column": 5,
+          "index": 2937
         }
       },
       "jsdoc": {
@@ -199,12 +213,14 @@
     "getSelection": {
       "location": {
         "start": {
-          "line": 115,
-          "column": 4
+          "line": 110,
+          "column": 4,
+          "index": 3216
         },
         "end": {
-          "line": 123,
-          "column": 5
+          "line": 118,
+          "column": 5,
+          "index": 3386
         }
       },
       "jsdoc": {
@@ -229,12 +245,14 @@
     "setSelection": {
       "location": {
         "start": {
-          "line": 132,
-          "column": 4
+          "line": 127,
+          "column": 4,
+          "index": 3653
         },
         "end": {
-          "line": 145,
-          "column": 5
+          "line": 143,
+          "column": 5,
+          "index": 4077
         }
       },
       "jsdoc": {
@@ -268,12 +286,14 @@
     "resetSelection": {
       "location": {
         "start": {
-          "line": 150,
-          "column": 4
+          "line": 148,
+          "column": 4,
+          "index": 4143
         },
         "end": {
-          "line": 152,
-          "column": 5
+          "line": 150,
+          "column": 5,
+          "index": 4210
         }
       },
       "jsdoc": {
@@ -290,12 +310,14 @@
     "isSelected": {
       "location": {
         "start": {
-          "line": 161,
-          "column": 4
+          "line": 159,
+          "column": 4,
+          "index": 4489
         },
         "end": {
-          "line": 163,
-          "column": 5
+          "line": 161,
+          "column": 5,
+          "index": 4564
         }
       },
       "jsdoc": {
@@ -337,12 +359,14 @@
     "isSelectionEmpty": {
       "location": {
         "start": {
-          "line": 170,
-          "column": 4
+          "line": 168,
+          "column": 4,
+          "index": 4690
         },
         "end": {
-          "line": 172,
-          "column": 5
+          "line": 170,
+          "column": 5,
+          "index": 4769
         }
       },
       "jsdoc": {
@@ -367,12 +391,14 @@
     "getSelectables": {
       "location": {
         "start": {
-          "line": 182,
-          "column": 4
+          "line": 179,
+          "column": 4,
+          "index": 5030
         },
         "end": {
-          "line": 184,
-          "column": 5
+          "line": 181,
+          "column": 5,
+          "index": 5111
         }
       },
       "jsdoc": {
@@ -406,12 +432,14 @@
     "_onChangeSelected": {
       "location": {
         "start": {
-          "line": 200,
-          "column": 4
+          "line": 195,
+          "column": 4,
+          "index": 5481
         },
         "end": {
-          "line": 208,
-          "column": 5
+          "line": 203,
+          "column": 5,
+          "index": 5843
         }
       },
       "jsdoc": {
@@ -437,12 +465,14 @@
     "__getManager": {
       "location": {
         "start": {
-          "line": 216,
-          "column": 4
+          "line": 211,
+          "column": 4,
+          "index": 6049
         },
         "end": {
-          "line": 240,
-          "column": 5
+          "line": 237,
+          "column": 5,
+          "index": 6736
         }
       },
       "jsdoc": {
@@ -468,12 +498,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 251,
-        "column": 13
+        "line": 246,
+        "column": 2,
+        "index": 6933
       },
       "end": {
-        "line": 253,
-        "column": 3
+        "line": 248,
+        "column": 3,
+        "index": 6988
       }
     },
     "jsdoc": {}

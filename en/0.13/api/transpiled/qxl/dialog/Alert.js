@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -43,7 +42,6 @@
        */
       _createWidgetContent: function _createWidgetContent() {
         var container = this._createDialogContainer();
-
         this.add(container);
         var hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
         container.add(hbox);
@@ -54,25 +52,17 @@
         });
         hbox.add(this._image);
         this._message = new qx.ui.basic.Label();
-
         this._message.setRich(true);
-
         this._message.setWidth(200);
-
         this._message.setAllowStretchX(true);
-
         hbox.add(this._message, {
           flex: 1
         });
-
         var buttonPane = this._createButtonPane();
-
         var okButton = this._createOkButton();
-
         buttonPane.add(okButton);
         container.add(buttonPane);
       },
-
       /**
        * @override
        */
@@ -86,4 +76,4 @@
   qxl.dialog.Alert.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Alert.js.map?dt=1664789613432
+//# sourceMappingURL=Alert.js.map?dt=1672653523401
