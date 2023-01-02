@@ -725,7 +725,7 @@
     <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Erlaubt die Vergrösserung des Charts auf volle Bildschirmgröße.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="show-x-axis" type="xsd:boolean">
