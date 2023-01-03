@@ -115,7 +115,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
           this.__colorChooser = new cv.ui.structure.pure.ColorChooser(props);
           this.__colorChooser.addListener('colorChanged', this._onColorChanged, this);
           this._onColorChanged();
-          popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
+          popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
           element.appendChild(popup);
           element.addEventListener('click', ev => {
             if (ev.path.indexOf(popup) < 0) {
