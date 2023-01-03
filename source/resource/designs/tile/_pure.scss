@@ -1,3 +1,4 @@
+/* Copy of some rules needed for the imported pure structure widgets */
 .ui-slider {
   position: relative;
   text-align: left;
@@ -48,4 +49,17 @@
       width: calc(100% - 2em);
     }
   }
+}
+
+cv-popup .jowm {
+  padding: 0;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
