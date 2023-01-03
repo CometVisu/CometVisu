@@ -36,17 +36,16 @@ qx.Class.define('cv.ui.structure.tile.components.Plugin', {
         if (part) {
           // find the main class file in the package
           let Clazz = null;
-          for (let url of part.getPackages()[0].getUrls()) {
-            let fileName = url.split('/').pop();
-            if (fileName.toLowerCase() === name + '.js') {
-              Clazz = qx.Class.getByName('cv.plugins.' + fileName.split('.')[0]);
+          for (let baseName in cv.plugins) {
+            if (baseName.toLowerCase() === name) {
+              Clazz = cv.plugins[baseName];
               break;
             }
           }
           if (Clazz) {
             cv.ui.structure.tile.components.Plugin.PL_COUNTER++;
             const id = 'id_9_' + cv.ui.structure.tile.components.Plugin.PL_COUNTER;
-            const props = Clazz.parse(this._element.firstElementChild, id, '', '2d');
+            const props = Clazz.parse(this._element.firstElementChild, id, '', 'text');
             cv.TemplateEngine.getInstance().setDomFinished(false);
             this.__widget = new Clazz(props);
             this._element.innerHTML = `<div class="widget_container" id="${id}" data-type="${props.$$type}">${this.__widget.getDomString()}</div>`;
@@ -61,6 +60,8 @@ qx.Class.define('cv.ui.structure.tile.components.Plugin', {
                 cv.TemplateEngine.getInstance().setDomFinished(true);
               }
             });
+          } else {
+            this.error('no main plugin class found for ' + pluginName);
           }
         }
       } else {
