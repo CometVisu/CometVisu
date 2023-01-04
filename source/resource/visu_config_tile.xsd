@@ -574,6 +574,7 @@
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
+      <xsd:element name="cv-menu" type="cv-menu"/>
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -861,6 +862,7 @@
             </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
@@ -1480,7 +1482,7 @@
       </xsd:element>
       <xsd:element name="cv-menu-item" minOccurs="0">
         <xsd:complexType>
-          <xsd:simpleContent>
+          <xsd:complexContent>
             <xsd:extension base="cv-menu-item">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
@@ -1490,7 +1492,7 @@
                 </xsd:simpleType>
               </xsd:attribute>
             </xsd:extension>
-          </xsd:simpleContent>
+          </xsd:complexContent>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
@@ -1645,7 +1647,7 @@
         </xsd:attribute>
         <xsd:attribute name="send-mode" default="on-change">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Usually the elements that are using this address recevice an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
+            <xsd:documentation xml:lang="en">Usually the elements that are using this address receive an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
             <xsd:documentation xml:lang="de">Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (``on-change``). Mit ``always`` wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
@@ -1903,7 +1905,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widgetfläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -2069,7 +2071,7 @@
 
   <xsd:complexType name="custom">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Custom HTML section where any content is allowed an no validation takes place.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Custom HTML section where any content is allowed and no validation takes place.</xsd:documentation>
       <xsd:documentation xml:lang="de">Individueller HTML-Bereich in dem jedes Element erlaubt ist und keine Validierung stattfindet.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
@@ -2171,7 +2173,7 @@
           Show the sun rise and set information
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
-          Sonnenauf- und untergang anzeigen
+          Sonnen Auf- und Untergang anzeigen
         </xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2208,7 +2210,7 @@
     <xsd:attribute name="lon" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">
-          When owID or q is not used: longitue of place
+          When owID or q is not used: longitude of place
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
           Wenn owID oder q nicht verwendet wird: Geografische Länge des Ortes

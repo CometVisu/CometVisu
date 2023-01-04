@@ -22,6 +22,9 @@
     </cv-meta>
     <template id="switch">
         <cv-tile>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
             <cv-row colspan="3" row="middle">
                 <cv-button class="round-button" slot-whole-tile="true" slot-mapping="tile-light" slot-styling="tile-button" slot-size="large" slot-progress-mapping="" slot-on-value="1" slot-off-value="0">
                     <slot name="address">NEEDS ADDRESS</slot>
@@ -43,6 +46,9 @@
                     <label class="value"/>
                 </cv-value>
             </cv-row>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
             <cv-button class="round-button" row="2" column="1" slot-styling="" size="small">
                 <slot name="downAddress" parent-scope="1">NEEDS DOWNADDRESS</slot>
                 <cv-icon class="ri-arrow-down-s-line"/>
@@ -63,6 +69,9 @@
     </template>
     <template id="info">
         <cv-tile>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
             <cv-row colspan="3" row="2">
                 <cv-value slot-mapping="" slot-format="" slot-styling="">
                     <slot name="address">NEEDS ADDRESS</slot>
@@ -95,6 +104,9 @@
                 <slot name="temperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <label class="value primary"/>
             </cv-spinner>
+            <cv-menu>
+                <slot name="menu" parent-scope="1"/>
+            </cv-menu>
             <cv-value row="2" colspan="3" slot-mapping="" slot-format="%.1f °C" slot-styling="">
                 <slot name="measuredTemperatureAddress" parent-scope="1">NEEDS ADDRESS</slot>
                 <p class="center">
