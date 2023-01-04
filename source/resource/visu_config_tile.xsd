@@ -281,6 +281,11 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-menu-item" type="cv-menu-item" />
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute name="model">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Data-model this menu is generated from.</xsd:documentation>
@@ -289,6 +294,7 @@
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="pages" />
+          <xsd:enumeration value="menuItems" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
@@ -316,6 +322,39 @@
         <xsd:documentation xml:lang="en">Controls the label visibility.</xsd:documentation>
         <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit des Texts.</xsd:documentation>
       </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-menu-item">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-popup" type="cv-popup" />
+        <xsd:element name="cv-address" type="address"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the menu entry.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name des Menü-Eintrags.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon of the menu entry.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon des Menü-Eintrags.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="action">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The action that is executed when this menu item has been clicked.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die Aktion die ausgeführt wird, wenn dieser Menu-Eintrag angeklickt wird.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="popup" />
+          <xsd:enumeration value="toggleState" />
+        </xsd:restriction>
+      </xsd:simpleType>
     </xsd:attribute>
   </xsd:complexType>
 
@@ -406,6 +445,12 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Disables the background while the popup is open.</xsd:documentation>
         <xsd:documentation xml:lang="de">Deaktiviert den Hintergrund solange das Popup geöffnet ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Headline of this popup.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Überschrift dieses Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
@@ -1426,6 +1471,21 @@
                     <xsd:enumeration value="nextAddress" />
                     <xsd:enumeration value="volumeAddress" />
                     <xsd:enumeration value="tileAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cv-menu-item" minOccurs="0">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="cv-menu-item">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="menu" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>

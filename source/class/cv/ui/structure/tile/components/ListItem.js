@@ -23,6 +23,29 @@
 qx.Class.define('cv.ui.structure.tile.components.ListItem', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    _init() {
+      super._init();
+      // install fireEvent function
+      this._element.fireEvent = (name, value) => {
+        const ev = new CustomEvent(name, {
+          bubbles: true,
+          cancelable: true,
+          detail: {
+            value: value,
+            source: this
+          }
+        });
+        this._element.dispatchEvent(ev);
+      };
+    }
+  },
+
   defer(QxClass) {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'listitem',

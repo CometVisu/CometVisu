@@ -32,6 +32,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
   ***********************************************
   */
   properties: {
+    model: {
+      check: ['pages', 'menuItems'],
+      apply: '_applyModel'
+    },
     appearance: {
       check: ['text', 'icons', 'dock'],
       init: 'text',
@@ -83,9 +87,48 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       qx.event.message.Bus.unsubscribe('setup.dom.append', this._onDomAppended, this);
     },
 
+    _applyModel(model) {
+      if (model) {
+        const rootList = document.createElement('ul');
+        this._element.appendChild(rootList);
+
+        // add some general listeners to close
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+
+        if (model === 'pages') {
+          // add hamburger menu
+          const ham = document.createElement('a');
+          ham.href = '#';
+          ham.classList.add('menu');
+          ham.onclick = event => this._onHamburgerMenu(event);
+          const icon = document.createElement('i');
+
+          ham.appendChild(icon);
+          this._element.appendChild(ham);
+
+          qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
+          qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+          qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
+          icon.classList.add('ri-menu-line');
+        } else if (model === 'menuItems') {
+          // add hamburger menu
+          const icon = document.createElement('i');
+          icon.classList.add('ri-more-2-fill');
+          this._element.appendChild(icon);
+          // listen on whole element
+          this._element.onclick = event => this._onHamburgerMenu(event);
+          rootList.classList.add('context-menu');
+          this._generateMenu();
+        }
+      } else {
+        this.error('visual-model of type', model, 'is not implemented');
+      }
+    },
+
     _init() {
       const element = this._element;
-      const model = element.getAttribute('model');
+      const model = element.hasAttribute('model') ? element.getAttribute('model')
+        : (element.querySelectorAll(':scope > cv-menu-item').length > 0) ? 'menuItems' : null;
       if (!model) {
         this.error('no model defined, menu will be empty');
         return;
@@ -93,54 +136,66 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       if (element.getAttribute('show-labels') === 'false') {
         this.setShowLabels(false);
       }
-      if (model === 'pages') {
-        qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
-
-        const rootList = document.createElement('ul');
-        element.appendChild(rootList);
-
-        // add hamburger menu
-        const ham = document.createElement('a');
-        ham.href = '#';
-        ham.classList.add('menu');
-        ham.onclick = () => this._onHamburgerMenu();
-        const icon = document.createElement('i');
-        icon.classList.add('ri-menu-line');
-        ham.appendChild(icon);
-        element.appendChild(ham);
-
-        qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
-
-        // add some general listeners to close
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
-
-        qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
-      } else {
-        this.error('visual-model of type', model, 'is not implemented');
-      }
+      this.setModel(model);
     },
 
     _generateMenu() {
-      const currentPage = window.location.hash.substring(1);
-      let parentElement = document.querySelector('main');
-      if (parentElement) {
-        const firstPage = document.querySelector('cv-page');
-        if (firstPage) {
-          parentElement = firstPage.parentElement;
+      switch (this.getModel()) {
+        case 'pages': {
+          const currentPage = window.location.hash.substring(1);
+          let parentElement = document.querySelector('main');
+          if (parentElement) {
+            const firstPage = document.querySelector('cv-page');
+            if (firstPage) {
+              parentElement = firstPage.parentElement;
+            }
+          }
+          const rootList = this._element.querySelector(':scope > ul');
+          if (rootList) {
+            rootList.replaceChildren();
+            this.__generatePagesModel(rootList, parentElement, currentPage, 0);
+          }
+          break;
         }
-      }
-      const rootList = this._element.querySelector(':scope > ul');
-      if (rootList) {
-        rootList.replaceChildren();
-        this.__generatePagesModel(rootList, parentElement, currentPage, 0);
+        case 'menuItems': {
+          const rootList = this._element.querySelector(':scope > ul');
+          if (rootList) {
+            rootList.replaceChildren();
+            for (let item of this._element.querySelectorAll(':scope > cv-menu-item')) {
+              const pageName = item.getAttribute('name') || '';
+              const pageIcon = item.getAttribute('icon') || '';
+              const li = document.createElement('li');
+              if (pageIcon) {
+                const i = document.createElement('i');
+                i.classList.add(pageIcon);
+                i.title = pageName;
+                li.appendChild(i);
+              }
+              if (this.isShowLabels()) {
+                const text = document.createTextNode(pageName);
+                li.appendChild(text);
+              }
+              li.addEventListener('click', event => {
+                item.getInstance().onClick(event);
+              });
+              rootList.appendChild(li);
+            }
+          }
+          break;
+        }
       }
     },
 
-    _onHamburgerMenu() {
-      this._element.classList.toggle('responsive');
-      for (let detail of this._element.querySelectorAll('details')) {
-        detail.setAttribute('open', '');
+    _onHamburgerMenu(event) {
+      let toggleClass = 'open';
+      if (this.getModel() === 'pages') {
+        toggleClass = 'responsive';
+        for (let detail of this._element.querySelectorAll('details')) {
+          detail.setAttribute('open', '');
+        }
       }
+      this._element.classList.toggle(toggleClass);
+      event.stopPropagation();
     },
 
     /**
@@ -151,7 +206,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       const target = ev.getTarget();
       if (
         target.classList.contains('menu') ||
-        (target.parentElement && target.parentElement.classList.contains('menu'))
+        (target.parentElement && target.parentElement.classList.contains('menu')) ||
+        target.nodeName.toLowerCase() === 'cv-menu' ||
+        (target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu')
       ) {
         // clicked in hamburger menu, do nothing
       } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
@@ -191,7 +248,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      * @private
      */
     _closeAll(except) {
-      if (this._element.classList.contains('responsive')) {
+      if (this._element.classList.contains('open')) {
+        this._element.classList.remove('open');
+      } else if (this._element.classList.contains('responsive')) {
         this._element.classList.remove('responsive');
       } else {
         for (let detail of this._element.querySelectorAll('details[open]')) {

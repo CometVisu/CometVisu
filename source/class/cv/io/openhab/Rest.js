@@ -215,7 +215,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     subscribe(addresses, filters) {
       // send first request to get all states once
-      const req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
+      const req = this.createAuthorizedRequest('items?fields=name,state,stateDescription,members,type,label&recursive=true');
 
       req.addListener('success', e => {
         const req = e.getTarget();
@@ -231,6 +231,7 @@ qx.Class.define('cv.io.openhab.Rest', {
               map[obj.name] = {
                 type: obj.type.toLowerCase(),
                 state: obj.state,
+                stateDescription: obj.stateDescription,
                 label: obj.label,
                 name: obj.name,
                 active: false
@@ -256,6 +257,9 @@ qx.Class.define('cv.io.openhab.Rest', {
             update['members:' + entry.name] = Object.values(map);
           }
           update[entry.name] = entry.state;
+          if (entry.stateDescription && entry.stateDescription.options) {
+            update['options:' + entry.name] = entry.stateDescription.options;
+          }
         }, this);
         this.update(update);
         this.__subscribedAddresses = addresses;
