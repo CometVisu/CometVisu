@@ -66,13 +66,11 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     TITLE: qx.locale.Manager.tr('Texteditor'),
     COUNTER: 0,
     MONACO_EXTENSION_REGEX: null,
+    FALLBACK_EXTENSION_REGEX: /\.(xml|xsd|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i,
     SUPPORTED_FILES(file) {
       let filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
-      if (window.monaco && window.monaco.languages) {
-        const extRegex = this.getExtensionRegex();
-        return extRegex.test(filename);
-      }
-      return /\.(xml|xsd|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
+      const extRegex = cv.ui.manager.editor.Source.getExtensionRegex();
+      return extRegex.test(filename);
     },
     DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
@@ -97,7 +95,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
           }
         }
       }
-      return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX
+      return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX || cv.ui.manager.editor.Source.FALLBACK_EXTENSION_REGEX;
     },
 
     load(callback, context) {
