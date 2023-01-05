@@ -98,6 +98,10 @@ body {
 	    color: #FF00FF;
     }
 
+    iframe {
+        border: none;
+    }
+
     > header, > footer {
         max-width: 100vw;
         background-color: var(--headerBackground);
@@ -1003,7 +1007,10 @@ body {
             }
         }
 
-        &.active {
+        &.active:not(.progress) {
+            color: var(--primaryColor);
+        }
+        &.active.progress > * {
             color: var(--primaryColor);
         }
      /*   &.active:not(.progress) {

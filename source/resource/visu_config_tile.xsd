@@ -368,6 +368,7 @@
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="aside" type="aside" minOccurs="0" maxOccurs="2"/>
+        <xsd:element name="iframe" type="iframe" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -403,6 +404,7 @@
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="p" type="p"/>
         <xsd:element name="h1" type="text"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:string" use="required">
@@ -442,6 +444,7 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="modal" type="xsd:boolean">
@@ -475,6 +478,7 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="icon" type="xsd:string">
@@ -2089,6 +2093,15 @@
       <xsd:documentation xml:lang="de">Das style-Element enthält Stylesheet-Angaben, die für das gesamte Dokument gelten.</xsd:documentation>
     </xsd:annotation>
     <xsd:attribute name="media" default="all" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="iframe">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An iframe allows other websites to be embedded.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ein iframe erlaubt die Einbettung anderer Webseiten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute ref="style"/>
+    <xsd:attribute name="src" type="xsd:anyURI"/>
   </xsd:complexType>
 
   <!--
