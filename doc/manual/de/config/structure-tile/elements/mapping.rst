@@ -8,7 +8,7 @@ Mapping
     Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht wesentlich von den Mappings in der Pure-Struktur.
     Lediglich der Name des Elements in der Konfigurationsdatei ist anders: ``<cv-mapping>``.
     Dennoch können Mappings aus einer alten Config nicht einfach übernommen werden, da die Widgets in der Tile-Struktur
-    zum Teil mit den gemappten Werte nichts anfangen können.
+    zum Teil mit den gemappten Werten nichts anfangen können.
 
 Mit dem Element "cv-mapping" können verschiedene Werte, die auf dem Bus
 gesendet werden für die Visualisierung unterschiedliche Bezeichnungen
@@ -336,6 +336,61 @@ Der openHAB-DateTime-Datentyp wird auf ein JavaScript-Date gemappt.
 `Hier <http://www.w3schools.com/jsref/jsref_obj_date.asp>`__ findet sich
 die Referenz der verfügbaren JavaScript-Methoden, welche man auf diesem
 Objekt aufrufen kann.
+
+Formeln mit lokalem Store
+-------------------------
+
+Eine Besonderheit, die momentan nur für :ref:`\<cv-button\><tile-component-button>` implementiert ist, ist das Benutzen
+eines Wertspeichers (Store) innerhalb einer Formel. Das ermöglicht es in der Formel Berechnungen durchzuführen, die
+von mehreren Status-Werte abhängen. Möchte man z.B. berechnen wie viel Prozent eines Lieds bereits abgespielt wurde
+benötigt man die aktuelle Position im Song und die gesamte Spielzeit, um den Prozentwert berechnen zu können.
+
+.. code-block:: xml
+
+     <cv-button class="round-button" mapping="tile-play-stop" progress-mapping="tile-play-progress">
+        <cv-address transform="DPT:1.001">1/4/0</cv-address>
+        <cv-address transform="DPT:5.010" mode="read" target="progress">1/4/1</cv-address>
+        <cv-address transform="DPT:5.010" mode="read" target="store">1/4/2</cv-address>
+        <cv-icon class="value">ri-stop-fill</cv-icon>
+    </cv-button>
+
+Die Adresse ``1/4/1`` liefert den aktuellen Position im Lied in Sekunden und wird für den Fortschrittsbalken benutzt
+(``target="progress"``). Die Adresse ``1/4/2`` liefert die Gesamtdauer des Liedes und wird in dem Wertspeicher abgelegt (``target="store"``).
+Der Wertspeicher ist eine `Javascript Map <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map?retiredLocale=de>`_
+und benutzt die Adresse als Schlüssel um den letzten Wert vom Bus zu speichern (z.B. ``{"1/4/2": 240}``).
+
+Dieser Wert kann nun im Mapping für den Fortschrittsbalken genutzt werden (``progress-mapping="tile-play-progress"``)
+
+.. code-block:: xml
+
+    <cv-mapping name="tile-play-progress">
+        <formula>
+            d = store.get('1/4/2');
+            y = d > 0 ? Math.round(100/d*x) : 0;
+        </formula>
+    </cv-mapping>
+
+Möchte man einen aussagekräftigeren Namen als die Gruppen-Adresse für den Store benutzen, so kann man diesen mit angeben:
+``<cv-address transform="DPT:5.010" mode="read" target="store:duration">1/4/2</cv-address>``. In diesem Fall würde
+die Zeile im Mapping die diesen Wert ausliest dann so aussehen ``d = store.get('duration');``.
+
+Um dieses Mapping mehrfach verwenden zu können und Namenskonflikte im selben Store zu vermeiden, erlauben die
+mapping-Attribute die Angabe von zusätzlichen Parametern:
+``<cv-button class="round-button" mapping="tile-play-stop" progress-mapping="tile-play-progress('duration_key1')">``
+
+Dieser kann dann als Variable in der Formel benutzen werden:
+
+.. code-block:: xml
+
+    <cv-mapping name="tile-play-progress">
+        <formula>
+            d = store.get(params[0]);
+            y = d > 0 ? Math.round(100/d*x) : 0;
+        </formula>
+    </cv-mapping>
+
+``params[0]`` enthält in dem Fall den Wert ``duration_key1``. Die ``params`` Variable ist den den Formeln immer als Array vorhanden
+und leer, wenn keine angeben wurden.
 
 Beispiel-Mappings
 -----------------

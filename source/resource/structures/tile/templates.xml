@@ -11,7 +11,7 @@
         </cv-mapping>
         <cv-mapping name="tile-play-progress">
             <formula>
-                d = store.get('duration');
+                d = store.get(params[0] || 'duration');
                 y = d > 0 ? Math.round(100/d*x) : 0;
             </formula>
         </cv-mapping>

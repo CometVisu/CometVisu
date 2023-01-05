@@ -68,6 +68,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     PREFIX: 'cv-',
     __MAP: {},
     __I: {},
+
+    MAPPING_PARAM_REGEX: /^(.+)\(([^)]+)\)$/,
+
     register(webComponentName, qxClass) {
       this.__MAP[webComponentName] = qxClass;
     },
@@ -395,8 +398,19 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     mapValue(mappingName, value, store) {
+      let match;
+      let params = [];
+      if ((match = cv.ui.structure.tile.Controller.MAPPING_PARAM_REGEX.exec(mappingName)) !== null) {
+        // this mapping name contains a parameter
+        try {
+          params = JSON.parse(`[${match[2].replaceAll('\'', '"')}]`)
+        } catch (e) {
+          this.error('error parsing parameters from ' + mappingName);
+        }
+        mappingName = match[1];
+      }
       if (this.__mappings && Object.prototype.hasOwnProperty.call(this.__mappings, mappingName)) {
-        return this.__mappings[mappingName].mapValue(value, store);
+        return this.__mappings[mappingName].mapValue(value, store, params);
       }
       return value;
     },
