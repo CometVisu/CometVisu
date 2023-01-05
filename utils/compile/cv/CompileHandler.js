@@ -15,6 +15,8 @@ const additionalResources = [
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
+  'config/custom_visu_config.xsd',
+  'config/media/*templates*.xml',
   'config/hidden.php'
 ];
 

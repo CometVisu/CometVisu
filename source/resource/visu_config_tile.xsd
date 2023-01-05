@@ -2,7 +2,7 @@
 <xsd:schema
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xml="http://www.w3.org/XML/1998/namespace">
-
+  <xsd:include schemaLocation="config/custom_visu_config.xsd"/>
   <!-- root element -->
   <xsd:element name="config">
     <xsd:complexType>
@@ -363,6 +363,7 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
@@ -396,6 +397,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
@@ -435,6 +437,7 @@
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:group ref="Components"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
@@ -468,6 +471,7 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="summary" type="summary"/>
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
