@@ -53,8 +53,8 @@ qx.Class.define('cv.ui.structure.tile.components.MenuAction', {
           break;
         }
         case 'popup':
-          if (this._element.querySelector(':scope > cv-popup')) {
-            this.error('a cv-menu-item with action "popup" must have a cv-popup as child,');
+          if (!this._element.querySelector(':scope > cv-popup')) {
+            this.error('a cv-menu-item with action "popup" must have a cv-popup as child.');
           }
           break;
       }
