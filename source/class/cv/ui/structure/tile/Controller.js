@@ -403,7 +403,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       if ((match = cv.ui.structure.tile.Controller.MAPPING_PARAM_REGEX.exec(mappingName)) !== null) {
         // this mapping name contains a parameter
         try {
-          params = JSON.parse(`[${match[2].replaceAll('\'', '"')}]`)
+          params = JSON.parse(`[${match[2].replaceAll('\'', '"')}]`);
         } catch (e) {
           this.error('error parsing parameters from ' + mappingName);
         }

@@ -169,7 +169,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         accept: 'application/xml'
       });
 
-      ajaxRequest.addListenerOnce('success', async (e) => {
+      ajaxRequest.addListenerOnce('success', async e => {
         const req = e.getTarget();
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
@@ -195,7 +195,6 @@ qx.Class.define('cv.ui.manager.model.Schema', {
     },
 
     async loadXml(file) {
-      console.log('loading', file);
       return new Promise((resolve, reject) => {
         const ajaxRequest = new qx.io.request.Xhr(file);
         ajaxRequest.set({
@@ -213,7 +212,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         ajaxRequest.addListenerOnce('statusError', e => {
           const req = e.getTarget();
           reject(new Error(req.getStatusText()));
-        })
+        });
         ajaxRequest.send();
       });
     },
