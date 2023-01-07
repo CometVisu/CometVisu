@@ -37,5 +37,7 @@
     "cv-color": "8dbf68cabff90b3beb326a3daa4e506d",
     "cv-color-popup": "9d456af25a294ed900c322f6874c3ccd",
     "cv-tr064plugin-list": "d1083a8413ddd769a6427ca48bc31510",
-    "cv-rsslogplugin-list": "4ef2758fef1ecd07489dc1cdb4aa9193"
+    "cv-rsslogplugin-list": "4ef2758fef1ecd07489dc1cdb4aa9193",
+    "tile-context-menu-closed": "9c78fa792674f5829a89da62b40cbd19",
+    "tile-context-menu-open": "bf10ddff93808307ed068472613ae59b"
 }
