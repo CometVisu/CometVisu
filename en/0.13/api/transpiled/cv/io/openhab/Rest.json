@@ -16,9 +16,9 @@
         "index": 957
       },
       "end": {
-        "line": 481,
+        "line": 485,
         "column": 3,
-        "index": 14580
+        "index": 14817
       }
     },
     "jsdoc": {
@@ -547,9 +547,9 @@
           "index": 5706
         },
         "end": {
-          "line": 307,
+          "line": 311,
           "column": 5,
-          "index": 9017
+          "index": 9254
         }
       },
       "type": "function",
@@ -582,14 +582,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 313,
           "column": 4,
-          "index": 9024
+          "index": 9261
         },
         "end": {
-          "line": 316,
+          "line": 320,
           "column": 5,
-          "index": 9226
+          "index": 9463
         }
       },
       "type": "function",
@@ -602,14 +602,14 @@
     "handleMessage": {
       "location": {
         "start": {
-          "line": 318,
+          "line": 322,
           "column": 4,
-          "index": 9233
+          "index": 9470
         },
         "end": {
-          "line": 363,
+          "line": 367,
           "column": 5,
-          "index": 11137
+          "index": 11374
         }
       },
       "type": "function",
@@ -618,14 +618,14 @@
     "write": {
       "location": {
         "start": {
-          "line": 365,
+          "line": 369,
           "column": 4,
-          "index": 11144
+          "index": 11381
         },
         "end": {
-          "line": 370,
+          "line": 374,
           "column": 5,
-          "index": 11363
+          "index": 11600
         }
       },
       "type": "function",
@@ -663,14 +663,14 @@
     "handleError": {
       "location": {
         "start": {
-          "line": 372,
+          "line": 376,
           "column": 4,
-          "index": 11370
+          "index": 11607
         },
         "end": {
-          "line": 374,
+          "line": 378,
           "column": 5,
-          "index": 11421
+          "index": 11658
         }
       },
       "type": "function",
@@ -679,14 +679,14 @@
     "login": {
       "location": {
         "start": {
-          "line": 376,
+          "line": 380,
           "column": 4,
-          "index": 11428
+          "index": 11665
         },
         "end": {
-          "line": 392,
+          "line": 396,
           "column": 5,
-          "index": 12111
+          "index": 12348
         }
       },
       "type": "function",
@@ -731,14 +731,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 394,
+          "line": 398,
           "column": 4,
-          "index": 12118
+          "index": 12355
         },
         "end": {
-          "line": 396,
+          "line": 400,
           "column": 5,
-          "index": 12171
+          "index": 12408
         }
       },
       "type": "function",
@@ -761,14 +761,14 @@
     "restart": {
       "location": {
         "start": {
-          "line": 397,
+          "line": 401,
           "column": 4,
-          "index": 12177
+          "index": 12414
         },
         "end": {
-          "line": 406,
+          "line": 410,
           "column": 5,
-          "index": 12466
+          "index": 12703
         }
       },
       "type": "function",
@@ -791,14 +791,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 408,
+          "line": 412,
           "column": 4,
-          "index": 12473
+          "index": 12710
         },
         "end": {
-          "line": 408,
+          "line": 412,
           "column": 19,
-          "index": 12488
+          "index": 12725
         }
       },
       "type": "function",
@@ -821,14 +821,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 409,
+          "line": 413,
           "column": 4,
-          "index": 12494
+          "index": 12731
         },
         "end": {
-          "line": 409,
+          "line": 413,
           "column": 25,
-          "index": 12515
+          "index": 12752
         }
       },
       "type": "function",
@@ -859,14 +859,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 410,
+          "line": 414,
           "column": 4,
-          "index": 12521
+          "index": 12758
         },
         "end": {
-          "line": 410,
+          "line": 414,
           "column": 37,
-          "index": 12554
+          "index": 12791
         }
       },
       "type": "function",
@@ -903,14 +903,14 @@
     "getProviderData": {
       "location": {
         "start": {
-          "line": 412,
+          "line": 416,
           "column": 4,
-          "index": 12561
+          "index": 12798
         },
         "end": {
-          "line": 414,
+          "line": 418,
           "column": 5,
-          "index": 12628
+          "index": 12865
         }
       },
       "type": "function",
@@ -946,14 +946,14 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 416,
+          "line": 420,
           "column": 4,
-          "index": 12635
+          "index": 12872
         },
         "end": {
-          "line": 418,
+          "line": 422,
           "column": 5,
-          "index": 12710
+          "index": 12947
         }
       },
       "type": "function",
@@ -982,14 +982,14 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 419,
+          "line": 423,
           "column": 4,
-          "index": 12716
+          "index": 12953
         },
         "end": {
-          "line": 428,
+          "line": 432,
           "column": 5,
-          "index": 12985
+          "index": 13222
         }
       },
       "type": "function",
@@ -1020,14 +1020,14 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 429,
+          "line": 433,
           "column": 4,
-          "index": 12991
+          "index": 13228
         },
         "end": {
-          "line": 479,
+          "line": 483,
           "column": 5,
-          "index": 14572
+          "index": 14809
         }
       },
       "type": "function",

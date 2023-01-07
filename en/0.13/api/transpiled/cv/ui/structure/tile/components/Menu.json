@@ -14,9 +14,9 @@
         "index": 944
       },
       "end": {
-        "line": 334,
+        "line": 393,
         "column": 3,
-        "index": 10645
+        "index": 12988
       }
     },
     "jsdoc": {
@@ -42,7 +42,7 @@
   },
   "type": "class",
   "properties": {
-    "appearance": {
+    "model": {
       "location": {
         "start": {
           "line": 35,
@@ -50,9 +50,30 @@
           "index": 1209
         },
         "end": {
-          "line": 39,
+          "line": 38,
           "column": 5,
-          "index": 1320
+          "index": 1287
+        }
+      },
+      "name": "model",
+      "propertyType": "new",
+      "apply": "_applyModel",
+      "possibleValues": [
+        "pages",
+        "menuItems"
+      ]
+    },
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1293
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1404
         }
       },
       "name": "appearance",
@@ -69,14 +90,14 @@
     "depth": {
       "location": {
         "start": {
-          "line": 41,
+          "line": 45,
           "column": 4,
-          "index": 1327
+          "index": 1411
         },
         "end": {
-          "line": 45,
+          "line": 49,
           "column": 5,
-          "index": 1445
+          "index": 1529
         }
       },
       "name": "depth",
@@ -89,14 +110,14 @@
     "domReady": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 51,
           "column": 4,
-          "index": 1452
+          "index": 1536
         },
         "end": {
-          "line": 51,
+          "line": 55,
           "column": 5,
-          "index": 1541
+          "index": 1625
         }
       },
       "name": "domReady",
@@ -109,14 +130,14 @@
     "showLabels": {
       "location": {
         "start": {
-          "line": 53,
+          "line": 57,
           "column": 4,
-          "index": 1548
+          "index": 1632
         },
         "end": {
-          "line": 56,
+          "line": 60,
           "column": 5,
-          "index": 1608
+          "index": 1692
         }
       },
       "name": "showLabels",
@@ -130,14 +151,14 @@
     "_applyAppearance": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 69,
           "column": 4,
-          "index": 1754
+          "index": 1838
         },
         "end": {
-          "line": 73,
+          "line": 77,
           "column": 5,
-          "index": 2008
+          "index": 2092
         }
       },
       "type": "function",
@@ -149,14 +170,14 @@
     "_applyDepth": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 79,
           "column": 4,
-          "index": 2015
+          "index": 2099
         },
         "end": {
-          "line": 79,
+          "line": 83,
           "column": 5,
-          "index": 2105
+          "index": 2189
         }
       },
       "type": "function",
@@ -168,30 +189,49 @@
     "_onDomAppended": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 85,
           "column": 4,
-          "index": 2112
+          "index": 2196
         },
         "end": {
-          "line": 84,
+          "line": 88,
           "column": 5,
-          "index": 2253
+          "index": 2337
         }
       },
       "type": "function",
       "access": "protected"
     },
+    "_applyModel": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2344
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3850
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "model"
+      ]
+    },
     "_init": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 128,
           "column": 4,
-          "index": 2260
+          "index": 3857
         },
         "end": {
-          "line": 121,
+          "line": 140,
           "column": 5,
-          "index": 3566
+          "index": 4322
         }
       },
       "type": "function",
@@ -205,14 +245,14 @@
     "_generateMenu": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 142,
           "column": 4,
-          "index": 3573
+          "index": 4329
         },
         "end": {
-          "line": 137,
+          "line": 187,
           "column": 5,
-          "index": 4106
+          "index": 6032
         }
       },
       "type": "function",
@@ -224,14 +264,14 @@
     "_onHamburgerMenu": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 189,
           "column": 4,
-          "index": 4113
+          "index": 6039
         },
         "end": {
-          "line": 144,
+          "line": 199,
           "column": 5,
-          "index": 4310
+          "index": 6394
         }
       },
       "type": "function",
@@ -240,14 +280,14 @@
     "_onPointerDown": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 205,
           "column": 4,
-          "index": 4388
+          "index": 6472
         },
         "end": {
-          "line": 164,
+          "line": 221,
           "column": 5,
-          "index": 4993
+          "index": 7227
         }
       },
       "jsdoc": {
@@ -276,14 +316,14 @@
     "_onSwipe": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 223,
           "column": 4,
-          "index": 5000
+          "index": 7234
         },
         "end": {
-          "line": 186,
+          "line": 243,
           "column": 5,
-          "index": 5629
+          "index": 7863
         }
       },
       "type": "function",
@@ -292,14 +332,14 @@
     "_closeAll": {
       "location": {
         "start": {
-          "line": 193,
+          "line": 250,
           "column": 4,
-          "index": 5754
+          "index": 7988
         },
         "end": {
-          "line": 203,
+          "line": 262,
           "column": 5,
-          "index": 6106
+          "index": 8449
         }
       },
       "jsdoc": {
@@ -332,14 +372,14 @@
     "__generatePagesModel": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 264,
           "column": 4,
-          "index": 6113
+          "index": 8456
         },
         "end": {
-          "line": 284,
+          "line": 343,
           "column": 5,
-          "index": 9129
+          "index": 11472
         }
       },
       "type": "function",
@@ -348,14 +388,14 @@
     "_onPageChange": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 345,
           "column": 4,
-          "index": 9136
+          "index": 11479
         },
         "end": {
-          "line": 307,
+          "line": 366,
           "column": 5,
-          "index": 9986
+          "index": 12329
         }
       },
       "type": "function",
@@ -894,6 +934,72 @@
         ]
       }
     },
+    "getModel": {
+      "type": "function",
+      "name": "getModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "any",
+            "desc": "Returns the value for model"
+          }
+        ]
+      }
+    },
+    "setModel": {
+      "type": "function",
+      "name": "setModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "any",
+            "paramName": "value",
+            "desc": "Value for model"
+          }
+        ]
+      }
+    },
+    "resetModel": {
+      "type": "function",
+      "name": "resetModel",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
+          }
+        ]
+      }
+    },
     "getAppearance": {
       "type": "function",
       "name": "getAppearance",
@@ -1210,14 +1316,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 315,
+        "line": 374,
         "column": 2,
-        "index": 10120
+        "index": 12463
       },
       "end": {
-        "line": 319,
+        "line": 378,
         "column": 3,
-        "index": 10331
+        "index": 12674
       }
     },
     "jsdoc": {}
@@ -1225,14 +1331,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 321,
+        "line": 380,
         "column": 2,
-        "index": 10336
+        "index": 12679
       },
       "end": {
-        "line": 333,
+        "line": 392,
         "column": 3,
-        "index": 10641
+        "index": 12984
       }
     }
   },

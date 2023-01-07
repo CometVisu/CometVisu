@@ -110,7 +110,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Die Funktionalität der Mappings in der Tile-Struktur unterscheidet nicht nicht wesentlich von den Mappings in der Pure-Struktur.
 Lediglich der Name des Elements in der Konfigurationsdatei ist anders: <code class="docutils literal notranslate"><span class="pre">&lt;cv-mapping&gt;</span></code>.
 Dennoch können Mappings aus einer alten Config nicht einfach übernommen werden, da die Widgets in der Tile-Struktur
-zum Teil mit den gemappten Werte nichts anfangen können.</p>
+zum Teil mit den gemappten Werten nichts anfangen können.</p>
 </div>
 <p>Mit dem Element „cv-mapping“ können verschiedene Werte, die auf dem Bus
 gesendet werden für die Visualisierung unterschiedliche Bezeichnungen
@@ -422,6 +422,51 @@ wird das Mapping nicht funktionieren. <em>DateTime</em> ist nicht gleich
 <a class="reference external" href="http://www.w3schools.com/jsref/jsref_obj_date.asp">Hier</a> findet sich
 die Referenz der verfügbaren JavaScript-Methoden, welche man auf diesem
 Objekt aufrufen kann.</p>
+</section>
+<section id="formeln-mit-lokalem-store">
+<h2>Formeln mit lokalem Store<a class="headerlink" href="#formeln-mit-lokalem-store" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Eine Besonderheit, die momentan nur für <a class="reference internal" href="../components/button.html#tile-component-button"><span class="std std-ref">&lt;cv-button&gt;</span></a> implementiert ist, ist das Benutzen
+eines Wertspeichers (Store) innerhalb einer Formel. Das ermöglicht es in der Formel Berechnungen durchzuführen, die
+von mehreren Status-Werten abhängen. Möchte man z.B. berechnen wie viel Prozent eines Lieds bereits abgespielt wurde
+benötigt man die aktuelle Position im Song und die gesamte Spielzeit, um den Prozentwert berechnen zu können.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;tile-play-stop&quot;</span><span class="w"> </span><span class="na">progress-mapping=</span><span class="s">&quot;tile-play-progress&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.010&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;progress&quot;</span><span class="nt">&gt;</span>1/4/1<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.010&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;store&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>ri-stop-fill<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="nt">&lt;/cv-button&gt;</span>
+</pre></div>
+</div>
+<p>Die Adresse <code class="docutils literal notranslate"><span class="pre">1/4/1</span></code> liefert die aktuelle Position im Lied in Sekunden und wird für den Fortschrittsbalken benutzt
+(<code class="docutils literal notranslate"><span class="pre">target=&quot;progress&quot;</span></code>). Die Adresse <code class="docutils literal notranslate"><span class="pre">1/4/2</span></code> liefert die Gesamtdauer des Liedes und wird in dem Wertspeicher abgelegt (<code class="docutils literal notranslate"><span class="pre">target=&quot;store&quot;</span></code>).
+Der Wertspeicher ist eine <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map?retiredLocale=de">Javascript Map</a>
+und benutzt die Adresse als Schlüssel um den letzten Wert vom Bus zu speichern (z.B. <code class="docutils literal notranslate"><span class="pre">{&quot;1/4/2&quot;:</span> <span class="pre">240}</span></code>).</p>
+<p>Dieser Wert kann nun im Mapping für den Fortschrittsbalken genutzt werden (<code class="docutils literal notranslate"><span class="pre">progress-mapping=&quot;tile-play-progress&quot;</span></code>)</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tile-play-progress&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;formula&gt;</span>
+<span class="w">        </span>d<span class="w"> </span>=<span class="w"> </span>store.get(&#39;1/4/2&#39;);
+<span class="w">        </span>y<span class="w"> </span>=<span class="w"> </span>d<span class="w"> </span>&gt;<span class="w"> </span>0<span class="w"> </span>?<span class="w"> </span>Math.round(100/d*x)<span class="w"> </span>:<span class="w"> </span>0;
+<span class="w">    </span><span class="nt">&lt;/formula&gt;</span>
+<span class="nt">&lt;/cv-mapping&gt;</span>
+</pre></div>
+</div>
+<p>Möchte man einen aussagekräftigeren Namen als die Gruppen-Adresse für den Store benutzen, so kann man diesen mit angeben:
+<code class="docutils literal notranslate"><span class="pre">&lt;cv-address</span> <span class="pre">transform=&quot;DPT:5.010&quot;</span> <span class="pre">mode=&quot;read&quot;</span> <span class="pre">target=&quot;store:duration&quot;&gt;1/4/2&lt;/cv-address&gt;</span></code>. In diesem Fall würde
+die Zeile im Mapping die diesen Wert ausliest dann so aussehen <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">store.get('duration');</span></code>.</p>
+<p>Um dieses Mapping mehrfach verwenden zu können und Namenskonflikte im selben Store zu vermeiden, erlauben die
+mapping-Attribute die Angabe von zusätzlichen Parametern:
+<code class="docutils literal notranslate"><span class="pre">&lt;cv-button</span> <span class="pre">class=&quot;round-button&quot;</span> <span class="pre">mapping=&quot;tile-play-stop&quot;</span> <span class="pre">progress-mapping=&quot;tile-play-progress('duration_key1')&quot;&gt;</span></code></p>
+<p>Dieser kann dann als Variable in der Formel benutzen werden:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tile-play-progress&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;formula&gt;</span>
+<span class="w">        </span>d<span class="w"> </span>=<span class="w"> </span>store.get(params[0]);
+<span class="w">        </span>y<span class="w"> </span>=<span class="w"> </span>d<span class="w"> </span>&gt;<span class="w"> </span>0<span class="w"> </span>?<span class="w"> </span>Math.round(100/d*x)<span class="w"> </span>:<span class="w"> </span>0;
+<span class="w">    </span><span class="nt">&lt;/formula&gt;</span>
+<span class="nt">&lt;/cv-mapping&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">params[0]</span></code> enthält in dem Fall den Wert <code class="docutils literal notranslate"><span class="pre">duration_key1</span></code>. Die <code class="docutils literal notranslate"><span class="pre">params</span></code> Variable ist den den Formeln immer als Array vorhanden
+und leer, wenn keine angeben wurden.</p>
 </section>
 <section id="beispiel-mappings">
 <h2>Beispiel-Mappings<a class="headerlink" href="#beispiel-mappings" title="Link zu dieser Überschrift">¶</a></h2>

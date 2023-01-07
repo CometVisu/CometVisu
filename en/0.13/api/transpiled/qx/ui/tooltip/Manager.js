@@ -387,4 +387,4 @@
   qx.ui.tooltip.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1672653516048
+//# sourceMappingURL=Manager.js.map?dt=1673093875954

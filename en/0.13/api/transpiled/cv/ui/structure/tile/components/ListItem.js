@@ -51,6 +51,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
    */
   qx.Class.define('cv.ui.structure.tile.components.ListItem', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
+    /*
+    ***********************************************
+      MEMBERS
+    ***********************************************
+    */
+    members: {
+      _init: function _init() {
+        var _this = this;
+        cv.ui.structure.tile.components.ListItem.superclass.prototype._init.call(this);
+        // install fireEvent function
+        this._element.fireEvent = function (name, value) {
+          var ev = new CustomEvent(name, {
+            bubbles: true,
+            cancelable: true,
+            detail: {
+              value: value,
+              source: _this
+            }
+          });
+          _this._element.dispatchEvent(ev);
+        };
+      }
+    },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'listitem', /*#__PURE__*/function (_QxConnector) {
         "use strict";
@@ -68,4 +91,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1672653480815
+//# sourceMappingURL=ListItem.js.map?dt=1673093845205

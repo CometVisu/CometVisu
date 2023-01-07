@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xml="http://www.w3.org/XML/1998/namespace">
+    <xsd:include schemaLocation="../visu_config_tile.xsd"/>
+
+    <xsd:group name="CustomWidgets">
+        <xsd:choice>
+            <xsd:element name="cv-music-player" type="cv-music-player" />
+        </xsd:choice>
+    </xsd:group>
+
+    <xsd:complexType name="cv-music-player">
+        <xsd:sequence>
+            <xsd:element name="span" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="slot" use="required">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                        <xsd:enumeration value="title" />
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="cv-address" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="address">
+                            <xsd:attribute name="slot" use="required">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string">
+                                        <xsd:enumeration value="subtitleAddress" />
+                                        <xsd:enumeration value="titleAddress" />
+                                        <xsd:enumeration value="previousAddress" />
+                                        <xsd:enumeration value="playPauseAddress" />
+                                        <xsd:enumeration value="playTimeAddress" />
+                                        <xsd:enumeration value="durationAddress" />
+                                        <xsd:enumeration value="nextAddress" />
+                                        <xsd:enumeration value="volumeAddress" />
+                                        <xsd:enumeration value="tileAddress" />
+                                        <xsd:enumeration value="favoritesListAddress" />
+                                        <xsd:enumeration value="playFavoriteAddress" />
+                                        <xsd:enumeration value="muteAddress" />
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:attribute>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute ref="progress-mapping" />
+        <xsd:attribute ref="mapping" />
+        <xsd:attribute ref="class" />
+        <xsd:attribute ref="style" />
+    </xsd:complexType>
+</xsd:schema>

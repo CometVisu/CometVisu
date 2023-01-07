@@ -129,6 +129,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       PREFIX: 'cv-',
       __P_72_1: {},
       __P_72_2: {},
+      MAPPING_PARAM_REGEX: /^(.+)\(([^)]+)\)$/,
       register: function register(webComponentName, qxClass) {
         this.__P_72_1[webComponentName] = qxClass;
       },
@@ -474,8 +475,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       mapValue: function mapValue(mappingName, value, store) {
+        var match;
+        var params = [];
+        if ((match = cv.ui.structure.tile.Controller.MAPPING_PARAM_REGEX.exec(mappingName)) !== null) {
+          // this mapping name contains a parameter
+          try {
+            params = JSON.parse("[".concat(match[2].replaceAll('\'', '"'), "]"));
+          } catch (e) {
+            this.error('error parsing parameters from ' + mappingName);
+          }
+          mappingName = match[1];
+        }
         if (this.__P_72_3 && Object.prototype.hasOwnProperty.call(this.__P_72_3, mappingName)) {
-          return this.__P_72_3[mappingName].mapValue(value, store);
+          return this.__P_72_3[mappingName].mapValue(value, store, params);
         }
         return value;
       },
@@ -656,4 +668,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1672653479821
+//# sourceMappingURL=Controller.js.map?dt=1673093844336

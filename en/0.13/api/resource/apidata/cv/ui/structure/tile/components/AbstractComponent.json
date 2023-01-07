@@ -3988,6 +3988,7 @@
     "cv.ui.structure.tile.components.List",
     "cv.ui.structure.tile.components.ListItem",
     "cv.ui.structure.tile.components.Menu",
+    "cv.ui.structure.tile.components.MenuAction",
     "cv.ui.structure.tile.components.RoundProgress",
     "cv.ui.structure.tile.components.Select",
     "cv.ui.structure.tile.components.Slider",

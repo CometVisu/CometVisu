@@ -335,9 +335,78 @@ und einen für das Label: <code class="docutils literal notranslate"><span class
 <span class="nt">&lt;/custom&gt;</span>
 </pre></div>
 </div>
-<p>Die selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
+<p>Da selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
 muss man diese in ein <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
-wird.</p>
+wird. Damit verliert man an dieser Stelle aber den Vorteil, dass dieser Teil der Konfigurationsdatei auf Gültigkeit
+geprüft werden kann. Sofern man darauf werden legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
+dem das eigene Widget eingetragen wird. Dazu muss die Datei „custom_visu_config.xsd“ im „config/“ Ordner vorhanden sein.
+Sofern sie nicht vorhanden ist, muss sie mit folgender Grundstruktur angelegt werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xsd:schema</span><span class="w"> </span><span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="w"> </span><span class="na">xmlns:xml=</span><span class="s">&quot;http://www.w3.org/XML/1998/namespace&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- uncomment the next line if you want to reference types from the main pure schema --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:include schemaLocation=&quot;../visu_config.xsd&quot;/&gt; --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- uncomment the next line if you want to reference types from the main tile schema --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:include schemaLocation=&quot;../visu_config_tile.xsd&quot;/&gt; --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;CustomWidgets&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:choice&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- reference new widgets here, e.g.</span>
+<span class="cm">                &lt;xsd:element name=&quot;cv-music-player&quot; type=&quot;cv-music-player&quot; /&gt;</span>
+<span class="cm">            --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:choice&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:group&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- add definition for new widgets here --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:complexType name=&quot;cv-music-player&quot;&gt;...&lt;/xsd:complexType&gt; --&gt;</span>
+<span class="nt">&lt;/xsd:schema&gt;</span>
+</pre></div>
+</div>
+<p>Das vollständige Beispiel für das <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code>-Widget sieht so aus.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xsd:schema</span><span class="w"> </span><span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="w"> </span><span class="na">xmlns:xml=</span><span class="s">&quot;http://www.w3.org/XML/1998/namespace&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:include</span><span class="w"> </span><span class="na">schemaLocation=</span><span class="s">&quot;../visu_config_tile.xsd&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;CustomWidgets&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:choice&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-meter&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;cv-meter&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:choice&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:group&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:complexType</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-meter&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:sequence&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;span&quot;</span><span class="w"> </span><span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;xsd:complexType&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;xsd:simpleContent&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;xsd:extension</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;slot&quot;</span><span class="w"> </span><span class="na">use=</span><span class="s">&quot;required&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;xsd:simpleType&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;xsd:restriction</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;xsd:enumeration</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;label&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/xsd:restriction&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/xsd:simpleType&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/xsd:attribute&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/xsd:extension&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/xsd:simpleContent&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/xsd:element&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-address&quot;</span><span class="w"> </span><span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;xsd:complexType&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;xsd:simpleContent&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;xsd:extension</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;address&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;slot&quot;</span><span class="w"> </span><span class="na">use=</span><span class="s">&quot;required&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;xsd:simpleType&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;xsd:restriction</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;xsd:enumeration</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/xsd:restriction&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/xsd:simpleType&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/xsd:attribute&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/xsd:extension&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/xsd:simpleContent&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/xsd:element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:sequence&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;format&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="nt">&lt;/xsd:schema&gt;</span>
+</pre></div>
+</div>
+<p>Danach kann das <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code>-Widget ohne <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> benutzt werden und es wird auch auf Gültigkeit geprüft.</p>
 <section id="komponenten">
 <span id="tile-components"></span><h2>Komponenten<a class="headerlink" href="#komponenten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Eine Komponente ist ein einzelnes visuelles Element, das entweder bedienbar (z.B. Button) oder zur reinen

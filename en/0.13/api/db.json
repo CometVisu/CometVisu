@@ -1,19 +1,19 @@
 {
   "libraries": {
     "cv": "0.13.0-dev",
+    "cv.io": "1.0.0",
+    "qxl.versionlabel": "2.0.0",
+    "com.zenesis.qx.upload": "2.0.0",
+    "qxl.apiviewer": "2.0.0",
     "qxl.dialog": "5.0.0",
     "qx.io.remote": "1.0.2",
-    "qxl.apiviewer": "2.0.0",
-    "cv.io": "1.0.0",
-    "com.zenesis.qx.upload": "2.0.0",
-    "qxl.versionlabel": "2.0.0",
     "qx": "7.4.2"
   },
   "environmentHash": "db327deb39402f148a595fa6f7dd991a91616ac4",
   "compilerVersion": "7.4.2",
   "classInfo": {
     "cv.Application": {
-      "mtime": "2023-01-02T09:52:27.539Z",
+      "mtime": "2023-01-07T12:12:28.000Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/Application.js",
       "dependsOn": {
@@ -168,7 +168,7 @@
       ]
     },
     "cv.core.notifications.ActionRegistry": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/ActionRegistry.js",
       "dependsOn": {
@@ -184,7 +184,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IActionHandler": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/IActionHandler.js",
       "dependsOn": {
@@ -199,7 +199,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.IHandler": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/IHandler.js",
       "dependsOn": {
@@ -214,7 +214,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.Router": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/Router.js",
       "dependsOn": {
@@ -249,7 +249,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.SpeechHandler": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/SpeechHandler.js",
       "dependsOn": {
@@ -275,7 +275,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.AbstractActionHandler": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/actions/AbstractActionHandler.js",
       "dependsOn": {
@@ -293,7 +293,7 @@
       "hasDefer": null
     },
     "cv.core.notifications.actions.Link": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/actions/Link.js",
       "dependsOn": {
@@ -324,7 +324,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.Option": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/actions/Option.js",
       "dependsOn": {
@@ -352,7 +352,7 @@
       "hasDefer": true
     },
     "cv.core.notifications.actions.OptionGroup": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/core/notifications/actions/OptionGroup.js",
       "dependsOn": {
@@ -380,7 +380,7 @@
       "hasDefer": true
     },
     "cv.io.listmodel.FritzCallList": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/FritzCallList.js",
       "dependsOn": {
@@ -438,7 +438,7 @@
       ]
     },
     "cv.io.listmodel.IListModel": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/IListModel.js",
       "dependsOn": {
@@ -454,7 +454,7 @@
       "hasDefer": null
     },
     "cv.io.listmodel.Registry": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/Registry.js",
       "dependsOn": {
@@ -471,7 +471,7 @@
       "hasDefer": null
     },
     "cv.io.listmodel.RssLog": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/listmodel/RssLog.js",
       "dependsOn": {
@@ -503,7 +503,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.MetaParser": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/MetaParser.js",
       "dependsOn": {
@@ -540,7 +540,7 @@
       ]
     },
     "cv.parser.pure.WidgetParser": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/WidgetParser.js",
       "dependsOn": {
@@ -565,7 +565,7 @@
       "hasDefer": null
     },
     "cv.parser.pure.widgets.Audio": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Audio.js",
       "dependsOn": {
@@ -583,7 +583,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Break": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Break.js",
       "dependsOn": {
@@ -601,7 +601,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.ColorChooser": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/ColorChooser.js",
       "dependsOn": {
@@ -620,7 +620,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.DesignToggle": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/DesignToggle.js",
       "dependsOn": {
@@ -638,7 +638,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Group": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Group.js",
       "dependsOn": {
@@ -656,7 +656,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Image": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Image.js",
       "dependsOn": {
@@ -674,7 +674,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.ImageTrigger": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/ImageTrigger.js",
       "dependsOn": {
@@ -692,7 +692,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Info": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Info.js",
       "dependsOn": {
@@ -710,7 +710,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.InfoAction": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/InfoAction.js",
       "dependsOn": {
@@ -728,7 +728,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.InfoTrigger": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/InfoTrigger.js",
       "dependsOn": {
@@ -746,7 +746,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Line": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Line.js",
       "dependsOn": {
@@ -764,7 +764,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.MultiTrigger": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/MultiTrigger.js",
       "dependsOn": {
@@ -782,7 +782,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.NavBar": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/NavBar.js",
       "dependsOn": {
@@ -801,7 +801,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.NotificationCenterBadge": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/NotificationCenterBadge.js",
       "dependsOn": {
@@ -819,7 +819,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Page": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Page.js",
       "dependsOn": {
@@ -839,7 +839,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.PageJump": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/PageJump.js",
       "dependsOn": {
@@ -857,7 +857,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.PushButton": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/PushButton.js",
       "dependsOn": {
@@ -875,7 +875,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Refresh": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Refresh.js",
       "dependsOn": {
@@ -893,7 +893,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Reload": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Reload.js",
       "dependsOn": {
@@ -911,7 +911,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Rgb": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Rgb.js",
       "dependsOn": {
@@ -929,7 +929,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Roundbar": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Roundbar.js",
       "dependsOn": {
@@ -947,7 +947,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Slide": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Slide.js",
       "dependsOn": {
@@ -966,7 +966,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Switch": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Switch.js",
       "dependsOn": {
@@ -984,7 +984,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Text": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Text.js",
       "dependsOn": {
@@ -1002,7 +1002,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Toggle": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Toggle.js",
       "dependsOn": {
@@ -1020,7 +1020,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Trigger": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Trigger.js",
       "dependsOn": {
@@ -1038,7 +1038,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Unknown": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Unknown.js",
       "dependsOn": {
@@ -1057,7 +1057,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.UrlTrigger": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/UrlTrigger.js",
       "dependsOn": {
@@ -1075,7 +1075,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Video": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Video.js",
       "dependsOn": {
@@ -1093,7 +1093,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.Web": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/Web.js",
       "dependsOn": {
@@ -1114,7 +1114,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.WgPluginInfo": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/WgPluginInfo.js",
       "dependsOn": {
@@ -1132,7 +1132,7 @@
       "hasDefer": true
     },
     "cv.parser.pure.widgets.WidgetInfoAction": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/parser/pure/widgets/WidgetInfoAction.js",
       "dependsOn": {
@@ -1150,7 +1150,7 @@
       "hasDefer": true
     },
     "cv.plugins.Clock": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Clock.js",
       "dependsOn": {
@@ -1209,7 +1209,7 @@
       ]
     },
     "cv.plugins.Gauge": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Gauge.js",
       "dependsOn": {
@@ -1271,7 +1271,7 @@
       ]
     },
     "cv.plugins.Link": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Link.js",
       "dependsOn": {
@@ -1314,7 +1314,7 @@
       "hasDefer": true
     },
     "cv.plugins.MobileMenu": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/MobileMenu.js",
       "dependsOn": {
@@ -1374,7 +1374,7 @@
       ]
     },
     "cv.plugins.OpenweatherMap": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/OpenweatherMap.js",
       "dependsOn": {
@@ -1437,7 +1437,7 @@
       ]
     },
     "cv.plugins.PowerSpectrum": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/PowerSpectrum.js",
       "dependsOn": {
@@ -1497,7 +1497,7 @@
       ]
     },
     "cv.plugins.Rss": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Rss.js",
       "dependsOn": {
@@ -1552,7 +1552,7 @@
       ]
     },
     "cv.plugins.RssLog": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/RssLog.js",
       "dependsOn": {
@@ -1625,7 +1625,7 @@
       ]
     },
     "cv.plugins.Speech": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Speech.js",
       "dependsOn": {
@@ -1660,7 +1660,7 @@
       "hasDefer": true
     },
     "cv.plugins.Strftime": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Strftime.js",
       "dependsOn": {
@@ -1710,7 +1710,7 @@
       ]
     },
     "cv.plugins.Svg": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Svg.js",
       "dependsOn": {
@@ -1763,7 +1763,7 @@
       ]
     },
     "cv.plugins.Timeout": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/Timeout.js",
       "dependsOn": {
@@ -1795,7 +1795,7 @@
       "hasDefer": true
     },
     "cv.plugins.UpnpController": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/UpnpController.js",
       "dependsOn": {
@@ -1854,7 +1854,7 @@
       ]
     },
     "cv.plugins.diagram.AbstractDiagram": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/diagram/AbstractDiagram.js",
       "dependsOn": {
@@ -1940,7 +1940,7 @@
       ]
     },
     "cv.plugins.diagram.Diagram": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/diagram/Diagram.js",
       "dependsOn": {
@@ -1973,7 +1973,7 @@
       "hasDefer": true
     },
     "cv.plugins.diagram.Info": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/diagram/Info.js",
       "dependsOn": {
@@ -2009,7 +2009,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Openhab": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/openhab/Openhab.js",
       "dependsOn": {
@@ -2056,7 +2056,7 @@
       "hasDefer": true
     },
     "cv.plugins.openhab.Settings": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/openhab/Settings.js",
       "dependsOn": {
@@ -2113,7 +2113,7 @@
       ]
     },
     "cv.plugins.openhab.renderer.Single": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/openhab/renderer/Single.js",
       "dependsOn": {
@@ -2145,7 +2145,7 @@
       "hasDefer": null
     },
     "cv.plugins.tr064.CallList": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/plugins/tr064/CallList.js",
       "dependsOn": {
@@ -2242,7 +2242,7 @@
       ]
     },
     "cv.transforms.Knx": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/transforms/Knx.js",
       "dependsOn": {
@@ -2260,7 +2260,7 @@
       "hasDefer": true
     },
     "cv.transforms.Mqtt": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/transforms/Mqtt.js",
       "dependsOn": {
@@ -2278,7 +2278,7 @@
       "hasDefer": true
     },
     "cv.transforms.OpenHab": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/transforms/OpenHab.js",
       "dependsOn": {
@@ -2299,7 +2299,7 @@
       "hasDefer": true
     },
     "cv.ui.manager.IActionHandler": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/IActionHandler.js",
       "dependsOn": {
@@ -2314,7 +2314,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.Main": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/Main.js",
       "dependsOn": {
@@ -2539,7 +2539,7 @@
       ]
     },
     "cv.ui.manager.MenuBar": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/MenuBar.js",
       "dependsOn": {
@@ -2684,7 +2684,7 @@
       ]
     },
     "cv.ui.manager.Start": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/Start.js",
       "dependsOn": {
@@ -2762,7 +2762,7 @@
       ]
     },
     "cv.ui.manager.ToolBar": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/ToolBar.js",
       "dependsOn": {
@@ -2814,7 +2814,7 @@
       ]
     },
     "cv.ui.manager.basic.Icon": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/basic/Icon.js",
       "dependsOn": {
@@ -2835,7 +2835,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.basic.Image": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/basic/Image.js",
       "dependsOn": {
@@ -2904,7 +2904,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.contextmenu.ConfigElement": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/contextmenu/ConfigElement.js",
       "dependsOn": {
@@ -2969,7 +2969,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.FileItem": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/contextmenu/FileItem.js",
       "dependsOn": {
@@ -3095,7 +3095,7 @@
       ]
     },
     "cv.ui.manager.contextmenu.GlobalFileItem": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/contextmenu/GlobalFileItem.js",
       "dependsOn": {
@@ -3125,7 +3125,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.ActionDispatcher": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/control/ActionDispatcher.js",
       "dependsOn": {
@@ -3150,7 +3150,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.FileController": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/control/FileController.js",
       "dependsOn": {
@@ -3276,7 +3276,7 @@
       ]
     },
     "cv.ui.manager.control.FileHandlerRegistry": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/control/FileHandlerRegistry.js",
       "dependsOn": {
@@ -3329,7 +3329,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.IFileEventHandler": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/control/IFileEventHandler.js",
       "dependsOn": {
@@ -3344,7 +3344,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.control.MFileEventHandler": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/control/MFileEventHandler.js",
       "dependsOn": {
@@ -3362,7 +3362,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.GlobalState": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/core/GlobalState.js",
       "dependsOn": {
@@ -3381,7 +3381,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.core.IconAtom": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/core/IconAtom.js",
       "dependsOn": {
@@ -3416,7 +3416,7 @@
       ]
     },
     "cv.ui.manager.dialog.BigAlert": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/dialog/BigAlert.js",
       "dependsOn": {
@@ -3441,7 +3441,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.Prompt": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/dialog/Prompt.js",
       "dependsOn": {
@@ -3459,7 +3459,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.dialog.ValidationError": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/dialog/ValidationError.js",
       "dependsOn": {
@@ -3530,7 +3530,7 @@
       ]
     },
     "cv.ui.manager.editor.AbstractEditor": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/AbstractEditor.js",
       "dependsOn": {
@@ -3575,7 +3575,7 @@
       ]
     },
     "cv.ui.manager.editor.Config": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Config.js",
       "dependsOn": {
@@ -3650,7 +3650,7 @@
       ]
     },
     "cv.ui.manager.editor.Diff": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Diff.js",
       "dependsOn": {
@@ -3738,7 +3738,7 @@
       ]
     },
     "cv.ui.manager.editor.IEditor": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/IEditor.js",
       "dependsOn": {
@@ -3754,7 +3754,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.Source": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Source.js",
       "dependsOn": {
@@ -3809,32 +3809,32 @@
         },
         {
           "msgid": "Hidden config is invalid, please correct the errors",
-          "lineNo": 323
+          "lineNo": 330
         },
         {
           "msgid": "Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?",
-          "lineNo": 327
+          "lineNo": 334
         },
         {
           "msgid": "Confirm saving with warnings",
-          "lineNo": 337
+          "lineNo": 344
         },
         {
           "msgid": "Saving hidden config failed with error %1 (%2)",
-          "lineNo": 354
+          "lineNo": 361
         },
         {
           "msgid": "Hidden config has been saved",
-          "lineNo": 357
+          "lineNo": 364
         },
         {
           "msgid": "\"%1\" is not writable. Upgrading not possible.",
-          "lineNo": 444
+          "lineNo": 451
         }
       ]
     },
     "cv.ui.manager.editor.Tree": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Tree.js",
       "dependsOn": {
@@ -4097,7 +4097,7 @@
       ]
     },
     "cv.ui.manager.editor.Worker": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/Worker.js",
       "dependsOn": {
@@ -4122,7 +4122,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.CometVisu": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/completion/CometVisu.js",
       "dependsOn": {
@@ -4143,7 +4143,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.editor.completion.Config": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/completion/Config.js",
       "dependsOn": {
@@ -4174,7 +4174,7 @@
       ]
     },
     "cv.ui.manager.editor.data.Provider": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/editor/data/Provider.js",
       "dependsOn": {
@@ -4207,7 +4207,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.CheckBox": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/CheckBox.js",
       "dependsOn": {
@@ -4234,7 +4234,7 @@
       ]
     },
     "cv.ui.manager.form.ElementForm": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/ElementForm.js",
       "dependsOn": {
@@ -4332,7 +4332,7 @@
       ]
     },
     "cv.ui.manager.form.ElementFormRenderer": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/ElementFormRenderer.js",
       "dependsOn": {
@@ -4353,7 +4353,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.FileListItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/FileListItem.js",
       "dependsOn": {
@@ -4432,7 +4432,7 @@
       ]
     },
     "cv.ui.manager.form.FileTabItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/FileTabItem.js",
       "dependsOn": {
@@ -4473,7 +4473,7 @@
       ]
     },
     "cv.ui.manager.form.ListItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/ListItem.js",
       "dependsOn": {
@@ -4495,7 +4495,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.Option": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/Option.js",
       "dependsOn": {
@@ -4514,7 +4514,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.OptionListItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/OptionListItem.js",
       "dependsOn": {
@@ -4562,7 +4562,7 @@
       ]
     },
     "cv.ui.manager.form.SectionListItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/SectionListItem.js",
       "dependsOn": {
@@ -4606,7 +4606,7 @@
       ]
     },
     "cv.ui.manager.form.SourceCodeField": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/SourceCodeField.js",
       "dependsOn": {
@@ -4648,7 +4648,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.form.VirtualSelectBox": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/form/VirtualSelectBox.js",
       "dependsOn": {
@@ -4673,7 +4673,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.BackupFolder": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/BackupFolder.js",
       "dependsOn": {
@@ -4704,7 +4704,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.CompareFiles": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/CompareFiles.js",
       "dependsOn": {
@@ -4731,7 +4731,7 @@
       ]
     },
     "cv.ui.manager.model.ElementChange": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/ElementChange.js",
       "dependsOn": {
@@ -4751,7 +4751,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.FileItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/FileItem.js",
       "dependsOn": {
@@ -4817,7 +4817,7 @@
       ]
     },
     "cv.ui.manager.model.Message": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/Message.js",
       "dependsOn": {
@@ -4835,7 +4835,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.OpenFile": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/OpenFile.js",
       "dependsOn": {
@@ -4857,7 +4857,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Preferences": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/Preferences.js",
       "dependsOn": {
@@ -4879,7 +4879,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.Schema": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/Schema.js",
       "dependsOn": {
@@ -4902,7 +4902,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.XmlElement": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/XmlElement.js",
       "dependsOn": {
@@ -4995,7 +4995,7 @@
       ]
     },
     "cv.ui.manager.model.config.Option": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/config/Option.js",
       "dependsOn": {
@@ -5014,7 +5014,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.config.Section": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/config/Section.js",
       "dependsOn": {
@@ -5037,7 +5037,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Any": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Any.js",
       "dependsOn": {
@@ -5061,7 +5061,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Attribute": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Attribute.js",
       "dependsOn": {
@@ -5098,7 +5098,7 @@
       ]
     },
     "cv.ui.manager.model.schema.Base": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Base.js",
       "dependsOn": {
@@ -5118,7 +5118,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Choice": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Choice.js",
       "dependsOn": {
@@ -5143,7 +5143,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.DocumentationMapping": {
-      "mtime": "2023-01-02T09:57:41.803Z",
+      "mtime": "2023-01-07T12:17:07.934Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/DocumentationMapping.js",
       "dependsOn": {
@@ -5158,7 +5158,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Element": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Element.js",
       "dependsOn": {
@@ -5194,7 +5194,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Group": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Group.js",
       "dependsOn": {
@@ -5218,7 +5218,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.MAnnotation": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/MAnnotation.js",
       "dependsOn": {
@@ -5237,7 +5237,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.Sequence": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/Sequence.js",
       "dependsOn": {
@@ -5263,7 +5263,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.model.schema.SimpleType": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/model/schema/SimpleType.js",
       "dependsOn": {
@@ -5285,7 +5285,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Controller": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/snackbar/Controller.js",
       "dependsOn": {
@@ -5322,7 +5322,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.snackbar.Message": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/snackbar/Message.js",
       "dependsOn": {
@@ -5352,7 +5352,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.FileSystem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/tree/FileSystem.js",
       "dependsOn": {
@@ -5395,7 +5395,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.tree.VirtualElementItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/tree/VirtualElementItem.js",
       "dependsOn": {
@@ -5446,7 +5446,7 @@
       ]
     },
     "cv.ui.manager.tree.VirtualFsItem": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/tree/VirtualFsItem.js",
       "dependsOn": {
@@ -5473,7 +5473,7 @@
       ]
     },
     "cv.ui.manager.upload.MDragUpload": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/upload/MDragUpload.js",
       "dependsOn": {
@@ -5500,7 +5500,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.upload.UploadMgr": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/upload/UploadMgr.js",
       "dependsOn": {
@@ -5557,7 +5557,7 @@
       ]
     },
     "cv.ui.manager.viewer.AbstractViewer": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/AbstractViewer.js",
       "dependsOn": {
@@ -5594,7 +5594,7 @@
       "hasDefer": null
     },
     "cv.ui.manager.viewer.Config": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/Config.js",
       "dependsOn": {
@@ -5656,7 +5656,7 @@
       ]
     },
     "cv.ui.manager.viewer.Folder": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/Folder.js",
       "dependsOn": {
@@ -5762,7 +5762,7 @@
       ]
     },
     "cv.ui.manager.viewer.Icons": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/Icons.js",
       "dependsOn": {
@@ -5822,7 +5822,7 @@
       ]
     },
     "cv.ui.manager.viewer.Image": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/Image.js",
       "dependsOn": {
@@ -5864,7 +5864,7 @@
       ]
     },
     "cv.ui.manager.viewer.SvgIcon": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/manager/viewer/SvgIcon.js",
       "dependsOn": {
@@ -5888,7 +5888,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.AbstractBasicWidget": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/AbstractBasicWidget.js",
       "dependsOn": {
@@ -5912,7 +5912,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.AbstractWidget": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/AbstractWidget.js",
       "dependsOn": {
@@ -5961,7 +5961,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Audio": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Audio.js",
       "dependsOn": {
@@ -6006,7 +6006,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Break": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Break.js",
       "dependsOn": {
@@ -6030,7 +6030,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.ColorChooser": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/ColorChooser.js",
       "dependsOn": {
@@ -6099,7 +6099,7 @@
       ]
     },
     "cv.ui.structure.pure.Controller": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Controller.js",
       "dependsOn": {
@@ -6170,7 +6170,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.DesignToggle": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/DesignToggle.js",
       "dependsOn": {
@@ -6228,7 +6228,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Group": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Group.js",
       "dependsOn": {
@@ -6277,7 +6277,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Image": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Image.js",
       "dependsOn": {
@@ -6331,7 +6331,7 @@
       ]
     },
     "cv.ui.structure.pure.ImageTrigger": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/ImageTrigger.js",
       "dependsOn": {
@@ -6391,7 +6391,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Info": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Info.js",
       "dependsOn": {
@@ -6435,7 +6435,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.InfoAction": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/InfoAction.js",
       "dependsOn": {
@@ -6483,7 +6483,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.InfoTrigger": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/InfoTrigger.js",
       "dependsOn": {
@@ -6541,7 +6541,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Line": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Line.js",
       "dependsOn": {
@@ -6580,7 +6580,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.MultiTrigger": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/MultiTrigger.js",
       "dependsOn": {
@@ -6634,7 +6634,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NavBar": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/NavBar.js",
       "dependsOn": {
@@ -6685,7 +6685,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.NotificationCenterBadge": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/NotificationCenterBadge.js",
       "dependsOn": {
@@ -6727,7 +6727,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Page": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Page.js",
       "dependsOn": {
@@ -6787,7 +6787,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageJump": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/PageJump.js",
       "dependsOn": {
@@ -6842,7 +6842,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PageLink": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/PageLink.js",
       "dependsOn": {
@@ -6884,7 +6884,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.PushButton": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/PushButton.js",
       "dependsOn": {
@@ -6933,7 +6933,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Refresh": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Refresh.js",
       "dependsOn": {
@@ -6986,7 +6986,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Reload": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Reload.js",
       "dependsOn": {
@@ -7031,7 +7031,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Rgb": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Rgb.js",
       "dependsOn": {
@@ -7077,7 +7077,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Roundbar": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Roundbar.js",
       "dependsOn": {
@@ -7124,7 +7124,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Slide": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Slide.js",
       "dependsOn": {
@@ -7182,7 +7182,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Switch": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Switch.js",
       "dependsOn": {
@@ -7230,7 +7230,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Text": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Text.js",
       "dependsOn": {
@@ -7269,7 +7269,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Toggle": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Toggle.js",
       "dependsOn": {
@@ -7321,7 +7321,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Trigger": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Trigger.js",
       "dependsOn": {
@@ -7377,7 +7377,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Unknown": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Unknown.js",
       "dependsOn": {
@@ -7406,7 +7406,7 @@
       ]
     },
     "cv.ui.structure.pure.UrlTrigger": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/UrlTrigger.js",
       "dependsOn": {
@@ -7461,7 +7461,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.Video": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Video.js",
       "dependsOn": {
@@ -7500,7 +7500,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.Web": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Web.js",
       "dependsOn": {
@@ -7550,7 +7550,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.WgPluginInfo": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/WgPluginInfo.js",
       "dependsOn": {
@@ -7596,7 +7596,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.WidgetInfoAction": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/WidgetInfoAction.js",
       "dependsOn": {
@@ -7644,7 +7644,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.layout.Manager": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/layout/Manager.js",
       "dependsOn": {
@@ -7664,7 +7664,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.layout.ResizeHandler": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/layout/ResizeHandler.js",
       "dependsOn": {
@@ -7694,7 +7694,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.pure.layout.States": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/layout/States.js",
       "dependsOn": {
@@ -7712,7 +7712,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.navigation.PageHandler": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/navigation/PageHandler.js",
       "dependsOn": {
@@ -7754,7 +7754,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.pure.navigation.PagePartsHandler": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/navigation/PagePartsHandler.js",
       "dependsOn": {
@@ -7777,7 +7777,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.Controller": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/Controller.js",
       "dependsOn": {
@@ -7827,7 +7827,7 @@
       ]
     },
     "cv.ui.structure.tile.MPopup": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MPopup.js",
       "dependsOn": {
@@ -7844,7 +7844,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.MRefresh": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MRefresh.js",
       "dependsOn": {
@@ -7860,7 +7860,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.MResize": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MResize.js",
       "dependsOn": {
@@ -7875,7 +7875,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.MVisibility": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MVisibility.js",
       "dependsOn": {
@@ -7890,7 +7890,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.components.AbstractComponent": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/AbstractComponent.js",
       "dependsOn": {
@@ -7910,7 +7910,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.components.Button": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Button.js",
       "dependsOn": {
@@ -7935,7 +7935,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Chart": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Chart.js",
       "dependsOn": {
@@ -7982,7 +7982,7 @@
       ]
     },
     "cv.ui.structure.tile.components.Color": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Color.js",
       "dependsOn": {
@@ -8011,7 +8011,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Icon": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Icon.js",
       "dependsOn": {
@@ -8033,7 +8033,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Image": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Image.js",
       "dependsOn": {
@@ -8064,7 +8064,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.List": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/List.js",
       "dependsOn": {
@@ -8097,7 +8097,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.ListItem": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/ListItem.js",
       "dependsOn": {
@@ -8118,7 +8118,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Menu": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Menu.js",
       "dependsOn": {
@@ -8141,8 +8141,30 @@
       "implement": [],
       "hasDefer": true
     },
+    "cv.ui.structure.tile.components.MenuAction": {
+      "mtime": "2023-01-07T12:12:28.020Z",
+      "libraryName": "cv",
+      "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/MenuAction.js",
+      "dependsOn": {
+        "qx.Class": {
+          "load": true,
+          "usage": "dynamic"
+        },
+        "cv.ui.structure.tile.components.AbstractComponent": {
+          "load": true
+        },
+        "cv.ui.structure.tile.elements.Address": {},
+        "cv.ui.structure.tile.Controller": {
+          "defer": "runtime"
+        }
+      },
+      "extends": "cv.ui.structure.tile.components.AbstractComponent",
+      "include": [],
+      "implement": [],
+      "hasDefer": true
+    },
     "cv.ui.structure.tile.components.Plugin": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Plugin.js",
       "dependsOn": {
@@ -8166,7 +8188,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.RoundProgress": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/RoundProgress.js",
       "dependsOn": {
@@ -8193,7 +8215,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Select": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Select.js",
       "dependsOn": {
@@ -8214,7 +8236,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Slider": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Slider.js",
       "dependsOn": {
@@ -8236,7 +8258,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Spinner": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Spinner.js",
       "dependsOn": {
@@ -8257,7 +8279,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.components.Value": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Value.js",
       "dependsOn": {
@@ -8289,7 +8311,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.elements.AbstractCustomElement": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/AbstractCustomElement.js",
       "dependsOn": {
@@ -8307,7 +8329,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.tile.elements.Address": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Address.js",
       "dependsOn": {
@@ -8335,7 +8357,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.elements.Backend": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Backend.js",
       "dependsOn": {
@@ -8375,7 +8397,7 @@
       ]
     },
     "cv.ui.structure.tile.elements.Loader": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Loader.js",
       "dependsOn": {
@@ -8420,7 +8442,7 @@
       ]
     },
     "cv.ui.structure.tile.elements.Mapping": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Mapping.js",
       "dependsOn": {
@@ -8443,7 +8465,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.elements.Styling": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Styling.js",
       "dependsOn": {
@@ -8468,7 +8490,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.widgets.Group": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/widgets/Group.js",
       "dependsOn": {
@@ -8490,7 +8512,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.widgets.Page": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/widgets/Page.js",
       "dependsOn": {
@@ -8511,7 +8533,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.widgets.Popup": {
-      "mtime": "2023-01-02T09:52:27.559Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/widgets/Popup.js",
       "dependsOn": {
@@ -8538,7 +8560,7 @@
       "hasDefer": true
     },
     "cv.ui.structure.tile.widgets.Tile": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/widgets/Tile.js",
       "dependsOn": {
@@ -8565,7 +8587,7 @@
       "hasDefer": true
     },
     "cv.theme.Dark": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/Dark.js",
       "dependsOn": {
@@ -35743,7 +35765,7 @@
       }
     },
     "cv.io.Client": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/Client.js",
       "dependsOn": {
@@ -35787,7 +35809,7 @@
       "hasDefer": null
     },
     "cv.Config": {
-      "mtime": "2023-01-02T09:52:27.539Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/Config.js",
       "dependsOn": {
@@ -35839,7 +35861,7 @@
       "hasDefer": true
     },
     "cv.io.Mockup": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/Mockup.js",
       "dependsOn": {
@@ -35876,7 +35898,7 @@
       "hasDefer": null
     },
     "cv.io.openhab.Rest": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/openhab/Rest.js",
       "dependsOn": {
@@ -35902,7 +35924,7 @@
       "hasDefer": null
     },
     "cv.io.mqtt.Client": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/mqtt/Client.js",
       "dependsOn": {
@@ -35934,7 +35956,7 @@
       ]
     },
     "cv.ConfigCache": {
-      "mtime": "2023-01-02T09:52:27.539Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ConfigCache.js",
       "dependsOn": {
@@ -35956,7 +35978,7 @@
       "hasDefer": null
     },
     "cv.report.Record": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/report/Record.js",
       "dependsOn": {
@@ -35987,7 +36009,7 @@
       "hasDefer": null
     },
     "cv.Version": {
-      "mtime": "2023-01-02T09:54:18.731Z",
+      "mtime": "2023-01-07T12:14:11.002Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/Version.js",
       "dependsOn": {
@@ -36002,7 +36024,7 @@
       "hasDefer": null
     },
     "cv.TemplateEngine": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/TemplateEngine.js",
       "dependsOn": {
@@ -36042,7 +36064,7 @@
       "hasDefer": null
     },
     "cv.log.appender.Native": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/log/appender/Native.js",
       "dependsOn": {
@@ -36069,7 +36091,7 @@
       "hasDefer": true
     },
     "cv.data.FileWorker": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/data/FileWorker.js",
       "dependsOn": {
@@ -36091,7 +36113,7 @@
       "hasDefer": null
     },
     "cv.ui.PopupHandler": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/PopupHandler.js",
       "dependsOn": {
@@ -36110,7 +36132,7 @@
       "hasDefer": true
     },
     "cv.util.Location": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/Location.js",
       "dependsOn": {
@@ -36125,7 +36147,7 @@
       "hasDefer": null
     },
     "cv.ui.NotificationCenter": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/NotificationCenter.js",
       "dependsOn": {
@@ -36192,7 +36214,7 @@
       ]
     },
     "cv.ui.ToastManager": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/ToastManager.js",
       "dependsOn": {
@@ -36236,7 +36258,7 @@
       "hasDefer": null
     },
     "cv.util.ConfigLoader": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/ConfigLoader.js",
       "dependsOn": {
@@ -36314,7 +36336,7 @@
       ]
     },
     "cv.util.ScriptLoader": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/ScriptLoader.js",
       "dependsOn": {
@@ -36360,7 +36382,7 @@
       ]
     },
     "cv.data.Model": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/data/Model.js",
       "dependsOn": {
@@ -36378,7 +36400,7 @@
       "hasDefer": null
     },
     "cv.io.BackendConnections": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/BackendConnections.js",
       "dependsOn": {
@@ -36454,7 +36476,7 @@
       ]
     },
     "cv.ui.structure.WidgetFactory": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/WidgetFactory.js",
       "dependsOn": {
@@ -36472,7 +36494,7 @@
       "hasDefer": null
     },
     "cv.io.rest.Client": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/rest/Client.js",
       "dependsOn": {
@@ -36512,7 +36534,7 @@
       ]
     },
     "cv.Transform": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/Transform.js",
       "dependsOn": {
@@ -36555,7 +36577,7 @@
       ]
     },
     "cv.ui.common.BasicUpdate": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/BasicUpdate.js",
       "dependsOn": {
@@ -36579,7 +36601,7 @@
       "hasDefer": null
     },
     "cv.IconHandler": {
-      "mtime": "2023-01-02T09:52:27.539Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/IconHandler.js",
       "dependsOn": {
@@ -36602,7 +36624,7 @@
       "hasDefer": null
     },
     "cv.util.Color": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/Color.js",
       "dependsOn": {
@@ -36620,7 +36642,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Update": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/Update.js",
       "dependsOn": {
@@ -36644,7 +36666,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Operate": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/Operate.js",
       "dependsOn": {
@@ -36674,7 +36696,7 @@
       ]
     },
     "cv.util.Function": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/Function.js",
       "dependsOn": {
@@ -36689,7 +36711,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasChildren": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/HasChildren.js",
       "dependsOn": {
@@ -36713,7 +36735,7 @@
       "hasDefer": null
     },
     "cv.ui.common.Refresh": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/Refresh.js",
       "dependsOn": {
@@ -36736,7 +36758,7 @@
       "hasDefer": null
     },
     "cv.util.String": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/String.js",
       "dependsOn": {
@@ -36752,7 +36774,7 @@
       "hasDefer": null
     },
     "cv.util.Tree": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/Tree.js",
       "dependsOn": {
@@ -36768,7 +36790,7 @@
       "hasDefer": null
     },
     "cv.util.IconTools": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/IconTools.js",
       "dependsOn": {
@@ -36844,7 +36866,7 @@
       ]
     },
     "cv.util.ConfigUpgrader": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/ConfigUpgrader.js",
       "dependsOn": {
@@ -36876,7 +36898,7 @@
       ]
     },
     "cv.theme.dark.Images": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Images.js",
       "dependsOn": {
@@ -37056,7 +37078,7 @@
       "hasDefer": null
     },
     "cv.util.Prettifier": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/Prettifier.js",
       "dependsOn": {
@@ -37072,7 +37094,7 @@
       "hasDefer": null
     },
     "cv.IconConfig": {
-      "mtime": "2023-01-02T09:52:27.539Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/IconConfig.js",
       "dependsOn": {
@@ -37260,7 +37282,7 @@
       "hasDefer": null
     },
     "cv.svg.Element": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/svg/Element.js",
       "dependsOn": {
@@ -37282,7 +37304,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasStyling": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.012Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/HasStyling.js",
       "dependsOn": {
@@ -37298,7 +37320,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HandleLongpress": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/HandleLongpress.js",
       "dependsOn": {
@@ -37313,7 +37335,7 @@
       "hasDefer": null
     },
     "cv.util.LimitedRateUpdateAnimator": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/util/LimitedRateUpdateAnimator.js",
       "dependsOn": {
@@ -37332,7 +37354,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.IController": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/IController.js",
       "dependsOn": {
@@ -37347,7 +37369,7 @@
       "hasDefer": null
     },
     "cv.ui.TrickOMatic": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/TrickOMatic.js",
       "dependsOn": {
@@ -37363,7 +37385,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAnimatedButton": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/HasAnimatedButton.js",
       "dependsOn": {
@@ -37379,7 +37401,7 @@
       "hasDefer": null
     },
     "cv.io.Fetch": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/Fetch.js",
       "dependsOn": {
@@ -37396,7 +37418,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Color": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Color.js",
       "dependsOn": {
@@ -37414,7 +37436,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Decoration": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Decoration.js",
       "dependsOn": {
@@ -37432,7 +37454,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Font": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Font.js",
       "dependsOn": {
@@ -37450,7 +37472,7 @@
       "hasDefer": null
     },
     "cv.theme.dark.Icon": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Icon.js",
       "dependsOn": {
@@ -37474,7 +37496,7 @@
       }
     },
     "cv.theme.dark.Appearance": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/theme/dark/Appearance.js",
       "dependsOn": {
@@ -37786,7 +37808,7 @@
       "hasDefer": null
     },
     "cv.io.IClient": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/IClient.js",
       "dependsOn": {
@@ -37801,7 +37823,7 @@
       "hasDefer": null
     },
     "cv.io.transport.LongPolling": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/transport/LongPolling.js",
       "dependsOn": {
@@ -37837,7 +37859,7 @@
       "hasDefer": null
     },
     "cv.io.transport.Sse": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/transport/Sse.js",
       "dependsOn": {
@@ -37856,7 +37878,7 @@
       "hasDefer": null
     },
     "cv.io.parser.Json": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/parser/Json.js",
       "dependsOn": {
@@ -37885,7 +37907,7 @@
       "hasDefer": null
     },
     "cv.io.request.Jquery": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/request/Jquery.js",
       "dependsOn": {
@@ -37906,7 +37928,7 @@
       ]
     },
     "cv.report.utils.MXhrHook": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/report/utils/MXhrHook.js",
       "dependsOn": {
@@ -37923,7 +37945,7 @@
       "hasDefer": null
     },
     "cv.ui.structure.IPage": {
-      "mtime": "2023-01-02T09:52:27.555Z",
+      "mtime": "2023-01-07T12:12:28.016Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/IPage.js",
       "dependsOn": {
@@ -37938,7 +37960,7 @@
       "hasDefer": null
     },
     "cv.ui.Popup": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/Popup.js",
       "dependsOn": {
@@ -37972,7 +37994,7 @@
       ]
     },
     "cv.ui.MHandleMessage": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/MHandleMessage.js",
       "dependsOn": {
@@ -37992,7 +38014,7 @@
       "hasDefer": null
     },
     "cv.ui.BodyBlocker": {
-      "mtime": "2023-01-02T09:52:27.547Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/BodyBlocker.js",
       "dependsOn": {
@@ -38014,7 +38036,7 @@
       "hasDefer": null
     },
     "cv.io.System": {
-      "mtime": "2023-01-02T09:52:27.543Z",
+      "mtime": "2023-01-07T12:12:28.004Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/System.js",
       "dependsOn": {
@@ -38046,7 +38068,7 @@
       "hasDefer": null
     },
     "cv.ui.common.HasAddress": {
-      "mtime": "2023-01-02T09:52:27.551Z",
+      "mtime": "2023-01-07T12:12:28.008Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/common/HasAddress.js",
       "dependsOn": {
@@ -38697,7 +38719,7 @@
       "hasDefer": null
     },
     "cv.io.Watchdog": {
-      "mtime": "2023-01-02T09:52:27.271Z",
+      "mtime": "2023-01-07T12:12:27.768Z",
       "libraryName": "cv.io",
       "filename": "/home/runner/work/CometVisu/CometVisu/client/source/class/cv/io/Watchdog.js",
       "dependsOn": {
@@ -38716,7 +38738,7 @@
       "hasDefer": null
     },
     "cv.ui.util.ProgressBar": {
-      "mtime": "2023-01-02T09:52:27.563Z",
+      "mtime": "2023-01-07T12:12:28.020Z",
       "libraryName": "cv",
       "filename": "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/util/ProgressBar.js",
       "dependsOn": {

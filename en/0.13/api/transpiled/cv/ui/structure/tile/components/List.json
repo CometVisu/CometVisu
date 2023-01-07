@@ -17,9 +17,9 @@
         "index": 2001
       },
       "end": {
-        "line": 401,
+        "line": 419,
         "column": 3,
-        "index": 14008
+        "index": 14759
       }
     },
     "jsdoc": {
@@ -216,9 +216,9 @@
           "index": 2706
         },
         "end": {
-          "line": 210,
+          "line": 228,
           "column": 5,
-          "index": 7555
+          "index": 8306
         }
       },
       "type": "function",
@@ -232,14 +232,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 212,
+          "line": 230,
           "column": 4,
-          "index": 7562
+          "index": 8313
         },
         "end": {
-          "line": 226,
+          "line": 244,
           "column": 5,
-          "index": 7989
+          "index": 8740
         }
       },
       "type": "function",
@@ -271,14 +271,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 228,
+          "line": 246,
           "column": 4,
-          "index": 7996
+          "index": 8747
         },
         "end": {
-          "line": 232,
+          "line": 250,
           "column": 5,
-          "index": 8132
+          "index": 8883
         }
       },
       "type": "function",
@@ -291,14 +291,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 234,
+          "line": 252,
           "column": 4,
-          "index": 8139
+          "index": 8890
         },
         "end": {
-          "line": 375,
+          "line": 393,
           "column": 5,
-          "index": 13477
+          "index": 14228
         }
       },
       "type": "function",
@@ -1040,14 +1040,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 383,
+        "line": 401,
         "column": 2,
-        "index": 13611
+        "index": 14362
       },
       "end": {
-        "line": 389,
+        "line": 407,
         "column": 3,
-        "index": 13788
+        "index": 14539
       }
     },
     "jsdoc": {}
@@ -1055,14 +1055,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 391,
+        "line": 409,
         "column": 2,
-        "index": 13793
+        "index": 14544
       },
       "end": {
-        "line": 400,
+        "line": 418,
         "column": 3,
-        "index": 14004
+        "index": 14755
       }
     }
   },

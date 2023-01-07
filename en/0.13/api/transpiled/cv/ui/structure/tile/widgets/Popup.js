@@ -90,6 +90,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             return _this.close();
           });
         }
+        popup.addEventListener('close', function (ev) {
+          _this.close();
+        });
         if (popup.hasAttribute('title')) {
           var header = document.createElement('header');
           popup.insertBefore(header, popup.firstChild);
@@ -200,4 +203,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1672653481832
+//# sourceMappingURL=Popup.js.map?dt=1673093846140

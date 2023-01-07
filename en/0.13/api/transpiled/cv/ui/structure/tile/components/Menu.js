@@ -66,6 +66,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     properties: {
+      model: {
+        check: ['pages', 'menuItems'],
+        apply: '_applyModel'
+      },
       appearance: {
         check: ['text', 'icons', 'dock'],
         init: 'text',
@@ -110,10 +114,48 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.setDomReady(true);
         qx.event.message.Bus.unsubscribe('setup.dom.append', this._onDomAppended, this);
       },
-      _init: function _init() {
+      _applyModel: function _applyModel(model) {
         var _this = this;
+        if (model) {
+          var rootList = document.createElement('ul');
+          this._element.appendChild(rootList);
+
+          // add some general listeners to close
+          qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+          if (model === 'pages') {
+            // add hamburger menu
+            var ham = document.createElement('a');
+            ham.href = '#';
+            ham.classList.add('menu');
+            ham.onclick = function (event) {
+              return _this._onHamburgerMenu(event);
+            };
+            var icon = document.createElement('i');
+            ham.appendChild(icon);
+            this._element.appendChild(ham);
+            qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
+            qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+            qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
+            icon.classList.add('ri-menu-line');
+          } else if (model === 'menuItems') {
+            // add hamburger menu
+            var _icon = document.createElement('i');
+            _icon.classList.add('ri-more-2-fill');
+            this._element.appendChild(_icon);
+            // listen on whole element
+            this._element.onclick = function (event) {
+              return _this._onHamburgerMenu(event);
+            };
+            rootList.classList.add('context-menu');
+            this._generateMenu();
+          }
+        } else {
+          this.error('visual-model of type', model, 'is not implemented');
+        }
+      },
+      _init: function _init() {
         var element = this._element;
-        var model = element.getAttribute('model');
+        var model = element.hasAttribute('model') ? element.getAttribute('model') : element.querySelectorAll(':scope > cv-menu-item').length > 0 ? 'menuItems' : null;
         if (!model) {
           this.error('no model defined, menu will be empty');
           return;
@@ -121,60 +163,88 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (element.getAttribute('show-labels') === 'false') {
           this.setShowLabels(false);
         }
-        if (model === 'pages') {
-          qx.event.message.Bus.subscribe('setup.dom.append', this._onDomAppended, this);
-          var rootList = document.createElement('ul');
-          element.appendChild(rootList);
-
-          // add hamburger menu
-          var ham = document.createElement('a');
-          ham.href = '#';
-          ham.classList.add('menu');
-          ham.onclick = function () {
-            return _this._onHamburgerMenu();
-          };
-          var icon = document.createElement('i');
-          icon.classList.add('ri-menu-line');
-          ham.appendChild(icon);
-          element.appendChild(ham);
-          qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
-
-          // add some general listeners to close
-          qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
-          qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
-        } else {
-          this.error('visual-model of type', model, 'is not implemented');
-        }
+        this.setModel(model);
       },
       _generateMenu: function _generateMenu() {
-        var currentPage = window.location.hash.substring(1);
-        var parentElement = document.querySelector('main');
-        if (parentElement) {
-          var firstPage = document.querySelector('cv-page');
-          if (firstPage) {
-            parentElement = firstPage.parentElement;
-          }
-        }
-        var rootList = this._element.querySelector(':scope > ul');
-        if (rootList) {
-          rootList.replaceChildren();
-          this.__P_77_0(rootList, parentElement, currentPage, 0);
+        var _this2 = this;
+        switch (this.getModel()) {
+          case 'pages':
+            {
+              var currentPage = window.location.hash.substring(1);
+              var parentElement = document.querySelector('main');
+              if (parentElement) {
+                var firstPage = document.querySelector('cv-page');
+                if (firstPage) {
+                  parentElement = firstPage.parentElement;
+                }
+              }
+              var rootList = this._element.querySelector(':scope > ul');
+              if (rootList) {
+                rootList.replaceChildren();
+                this.__P_77_0(rootList, parentElement, currentPage, 0);
+              }
+              break;
+            }
+          case 'menuItems':
+            {
+              var _rootList = this._element.querySelector(':scope > ul');
+              if (_rootList) {
+                _rootList.replaceChildren();
+                var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > cv-menu-item')),
+                  _step;
+                try {
+                  var _loop = function _loop() {
+                    var item = _step.value;
+                    var pageName = item.getAttribute('name') || '';
+                    var pageIcon = item.getAttribute('icon') || '';
+                    var li = document.createElement('li');
+                    if (pageIcon) {
+                      var i = document.createElement('i');
+                      i.classList.add(pageIcon);
+                      i.title = pageName;
+                      li.appendChild(i);
+                    }
+                    if (_this2.isShowLabels()) {
+                      var text = document.createTextNode(pageName);
+                      li.appendChild(text);
+                    }
+                    li.addEventListener('click', function (event) {
+                      item.getInstance().onClick(event);
+                    });
+                    _rootList.appendChild(li);
+                  };
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    _loop();
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+              }
+              break;
+            }
         }
       },
-      _onHamburgerMenu: function _onHamburgerMenu() {
-        this._element.classList.toggle('responsive');
-        var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll('details')),
-          _step;
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var detail = _step.value;
-            detail.setAttribute('open', '');
+      _onHamburgerMenu: function _onHamburgerMenu(event) {
+        var toggleClass = 'open';
+        if (this.getModel() === 'pages') {
+          toggleClass = 'responsive';
+          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll('details')),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var detail = _step2.value;
+              detail.setAttribute('open', '');
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
           }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
         }
+        this._element.classList.toggle(toggleClass);
+        event.stopPropagation();
       },
       /**
        * @param ev {qx.event.type.Event}
@@ -182,7 +252,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _onPointerDown: function _onPointerDown(ev) {
         var target = ev.getTarget();
-        if (target.classList.contains('menu') || target.parentElement && target.parentElement.classList.contains('menu')) {
+        if (target.classList.contains('menu') || target.parentElement && target.parentElement.classList.contains('menu') || target.nodeName.toLowerCase() === 'cv-menu' || target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu') {
           // clicked in hamburger menu, do nothing
         } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
           // defer closing because it would prevent the link clicks and page selection
@@ -215,36 +285,38 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @private
        */
       _closeAll: function _closeAll(except) {
-        if (this._element.classList.contains('responsive')) {
+        if (this._element.classList.contains('open')) {
+          this._element.classList.remove('open');
+        } else if (this._element.classList.contains('responsive')) {
           this._element.classList.remove('responsive');
         } else {
-          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll('details[open]')),
-            _step2;
+          var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('details[open]')),
+            _step3;
           try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var detail = _step2.value;
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var detail = _step3.value;
               if (!except || detail !== except) {
                 detail.removeAttribute('open');
               }
             }
           } catch (err) {
-            _iterator2.e(err);
+            _iterator3.e(err);
           } finally {
-            _iterator2.f();
+            _iterator3.f();
           }
         }
       },
       __P_77_0: function __P_77_0(parentList, parentElement, currentPage, currentLevel) {
-        var _this2 = this;
+        var _this3 = this;
         if (!parentElement) {
           return;
         }
         var pages = parentElement.querySelectorAll(':scope > cv-page:not([menu="false"])');
-        var _iterator3 = _createForOfIteratorHelper(pages.values()),
-          _step3;
+        var _iterator4 = _createForOfIteratorHelper(pages.values()),
+          _step4;
         try {
-          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-            var page = _step3.value;
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var page = _step4.value;
             var pageId = page.getAttribute('id');
             if (!pageId) {
               this.error('page has no id, skipping');
@@ -301,7 +373,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                     _i.title = pageName;
                     p.appendChild(_i);
                   }
-                  if (_this2.isShowLabels()) {
+                  if (_this3.isShowLabels()) {
                     p.appendChild(document.createTextNode(pageName));
                   }
                   summary.appendChild(p);
@@ -309,7 +381,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 details.appendChild(summary);
                 var subList = document.createElement('ul');
                 details.appendChild(subList);
-                _this2.__P_77_0(subList, page, currentPage, currentLevel++);
+                _this3.__P_77_0(subList, page, currentPage, currentLevel++);
                 li.appendChild(details);
               })();
             } else {
@@ -317,33 +389,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         } catch (err) {
-          _iterator3.e(err);
+          _iterator4.e(err);
         } finally {
-          _iterator3.f();
+          _iterator4.f();
         }
       },
       _onPageChange: function _onPageChange(ev) {
         var pageElement = ev.getData();
         // unset all currently active
-        var _iterator4 = _createForOfIteratorHelper(this._element.querySelectorAll('li.active, li.sub-active')),
-          _step4;
+        var _iterator5 = _createForOfIteratorHelper(this._element.querySelectorAll('li.active, li.sub-active')),
+          _step5;
         try {
-          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-            var link = _step4.value;
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var link = _step5.value;
             link.classList.remove('active');
             link.classList.remove('sub-active');
           }
           // find link to current page
         } catch (err) {
-          _iterator4.e(err);
+          _iterator5.e(err);
         } finally {
-          _iterator4.f();
+          _iterator5.f();
         }
-        var _iterator5 = _createForOfIteratorHelper(this._element.querySelectorAll("a[href=\"#".concat(pageElement.id, "\"]"))),
-          _step5;
+        var _iterator6 = _createForOfIteratorHelper(this._element.querySelectorAll("a[href=\"#".concat(pageElement.id, "\"]"))),
+          _step6;
         try {
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            var _link = _step5.value;
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var _link = _step6.value;
             // activate all parents
             var parent = _link.parentElement;
             var activeName = 'active';
@@ -357,9 +429,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         } catch (err) {
-          _iterator5.e(err);
+          _iterator6.e(err);
         } finally {
-          _iterator5.f();
+          _iterator6.f();
         }
       }
     },
@@ -395,4 +467,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1672653480917
+//# sourceMappingURL=Menu.js.map?dt=1673093845320

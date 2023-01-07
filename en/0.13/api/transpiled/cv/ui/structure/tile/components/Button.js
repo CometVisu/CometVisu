@@ -346,7 +346,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       /**
        * Handles the incoming data from the backend for this widget
        *
-       * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+       * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
        */
       onStateUpdate: function onStateUpdate(ev) {
         // using == comparisons to make sure that e.g. 1 equals "1"
@@ -366,6 +366,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           this.setProgress(ev.detail.state);
         } else if (target.startsWith('store:')) {
           this.__P_74_0.set(target.substring(6), ev.detail.state);
+        } else if (target === 'store') {
+          // use address as store key
+          this.__P_74_0.set(ev.detail.address, ev.detail.state);
         }
       },
       onClicked: function onClicked(event) {
@@ -467,4 +470,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1672653480057
+//# sourceMappingURL=Button.js.map?dt=1673093844543

@@ -14,9 +14,9 @@
         "index": 31
       },
       "end": {
-        "line": 93,
+        "line": 94,
         "column": 3,
-        "index": 2957
+        "index": 2939
       }
     },
     "jsdoc": {
@@ -72,9 +72,9 @@
           "index": 473
         },
         "end": {
-          "line": 69,
+          "line": 70,
           "column": 5,
-          "index": 2399
+          "index": 2381
         }
       },
       "type": "function",
@@ -87,14 +87,14 @@
     "loadPluginPart": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 72,
           "column": 4,
-          "index": 2406
+          "index": 2388
         },
         "end": {
-          "line": 80,
+          "line": 81,
           "column": 5,
-          "index": 2731
+          "index": 2713
         }
       },
       "type": "function",
@@ -3458,14 +3458,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 83,
+        "line": 84,
         "column": 2,
-        "index": 2740
+        "index": 2722
       },
       "end": {
-        "line": 92,
+        "line": 93,
         "column": 3,
-        "index": 2953
+        "index": 2935
       }
     }
   },

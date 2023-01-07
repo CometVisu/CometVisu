@@ -14,9 +14,9 @@
         "index": 955
       },
       "end": {
-        "line": 157,
+        "line": 158,
         "column": 3,
-        "index": 5213
+        "index": 5323
       }
     },
     "jsdoc": {
@@ -96,14 +96,14 @@
     "mapValue": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 4,
-          "index": 2134
+          "index": 2218
         },
         "end": {
-          "line": 122,
+          "line": 123,
           "column": 5,
-          "index": 4523
+          "index": 4633
         }
       },
       "jsdoc": {
@@ -125,6 +125,14 @@
             "description": " optional stored values from other addresses",
             "optional": true,
             "type": "Map<string, variant>"
+          },
+          {
+            "name": "@param",
+            "body": "params {Array<variant>?} optional array of parameters for the mapping",
+            "paramName": "params",
+            "description": " optional array of parameters for the mapping",
+            "optional": true,
+            "type": "Array<variant>"
           }
         ],
         "@return": [
@@ -142,14 +150,14 @@
     "_convert": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 125,
           "column": 4,
-          "index": 4530
+          "index": 4640
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5,
-          "index": 4819
+          "index": 4929
         }
       },
       "type": "function",
@@ -391,14 +399,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 143,
+        "line": 144,
         "column": 2,
-        "index": 4953
+        "index": 5063
       },
       "end": {
-        "line": 145,
+        "line": 146,
         "column": 3,
-        "index": 4994
+        "index": 5104
       }
     },
     "jsdoc": {}
@@ -406,14 +414,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 147,
+        "line": 148,
         "column": 2,
-        "index": 4999
+        "index": 5109
       },
       "end": {
-        "line": 156,
+        "line": 157,
         "column": 3,
-        "index": 5209
+        "index": 5319
       }
     }
   },

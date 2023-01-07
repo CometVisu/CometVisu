@@ -81,6 +81,17 @@ das Bild direkt als `Data-URI <https://de.wikipedia.org/wiki/Data-URL>`_. Letzte
 Datenmenge, die auf dem KNX-Bus gesendet werden können mit dem KNX-Backend wohl nicht möglich sein, aber z.B. das
 openHAB-Backend kann solche Daten ausliefern.
 
+Das Media-Player Widget unterstützt ein optionales :ref:`Menü <tile-item-menu>` indem einer oder mehrere
+``<cv-menu-item slot="menu">`` Elemente hinzugefügt werden.
+
+.. code-block:: xml
+
+    <cv-media-player>
+       <cv-menu-item slot="menu" name="Favoriten" action="popup" icon="ri-star-line">...</cv-menu-item>
+       <cv-menu-item slot="menu" name="Stumm" action="toggleState" icon="ri-volume-mute-line">...</cv-menu-item>
+        ...
+    </cv-media-player>
+
 
 Erlaubte Attribute im Media-Player-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

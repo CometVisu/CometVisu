@@ -172,6 +172,20 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           }
         }
       },
+      /**
+       *
+       * @return {boolean} true if this is a read address
+       */
+      isRead: function isRead() {
+        return this._element.getAttribute('mode') !== 'write';
+      },
+      /**
+       *
+       * @return {boolean} true if this is a write address
+       */
+      isWrite: function isWrite() {
+        return this._element.getAttribute('mode') !== 'read';
+      },
       getValue: function getValue() {
         return this.__P_84_1;
       }
@@ -193,4 +207,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1672653481482
+//# sourceMappingURL=Address.js.map?dt=1673093845831

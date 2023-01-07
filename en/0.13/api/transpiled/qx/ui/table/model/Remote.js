@@ -719,4 +719,4 @@
   qx.ui.table.model.Remote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Remote.js.map?dt=1672653514890
+//# sourceMappingURL=Remote.js.map?dt=1673093874975

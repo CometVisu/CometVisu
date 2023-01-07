@@ -14,9 +14,9 @@
         "index": 824
       },
       "end": {
-        "line": 376,
+        "line": 409,
         "column": 3,
-        "index": 10805
+        "index": 12020
       }
     },
     "jsdoc": {
@@ -513,9 +513,9 @@
           "index": 3871
         },
         "end": {
-          "line": 185,
+          "line": 195,
           "column": 5,
-          "index": 4492
+          "index": 4945
         }
       },
       "jsdoc": {
@@ -529,17 +529,33 @@
       "type": "function",
       "access": "protected"
     },
+    "loadXml": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4952
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5707
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_parseXSD": {
       "location": {
         "start": {
-          "line": 190,
+          "line": 223,
           "column": 4,
-          "index": 4544
+          "index": 5759
         },
         "end": {
-          "line": 197,
+          "line": 230,
           "column": 5,
-          "index": 4869
+          "index": 6084
         }
       },
       "jsdoc": {
@@ -556,14 +572,14 @@
     "getElementNode": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 232,
           "column": 4,
-          "index": 4876
+          "index": 6091
         },
         "end": {
-          "line": 204,
+          "line": 237,
           "column": 5,
-          "index": 5152
+          "index": 6367
         }
       },
       "type": "function",
@@ -572,14 +588,14 @@
     "getReferencedNode": {
       "location": {
         "start": {
-          "line": 216,
+          "line": 249,
           "column": 4,
-          "index": 5674
+          "index": 6889
         },
         "end": {
-          "line": 257,
+          "line": 290,
           "column": 5,
-          "index": 7206
+          "index": 8421
         }
       },
       "jsdoc": {
@@ -616,14 +632,14 @@
     "getTypeNode": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 298,
           "column": 4,
-          "index": 7434
+          "index": 8649
         },
         "end": {
-          "line": 286,
+          "line": 319,
           "column": 5,
-          "index": 8136
+          "index": 9351
         }
       },
       "jsdoc": {
@@ -650,14 +666,14 @@
     "getTextNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 293,
+          "line": 326,
           "column": 4,
-          "index": 8263
+          "index": 9478
         },
         "end": {
-          "line": 303,
+          "line": 336,
           "column": 5,
-          "index": 8700
+          "index": 9915
         }
       },
       "jsdoc": {
@@ -680,14 +696,14 @@
     "getCommentNodeSchemaElement": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 343,
           "column": 4,
-          "index": 8833
+          "index": 10048
         },
         "end": {
-          "line": 322,
+          "line": 355,
           "column": 5,
-          "index": 9387
+          "index": 10602
         }
       },
       "jsdoc": {
@@ -710,14 +726,14 @@
     "getSchemaDOM": {
       "location": {
         "start": {
-          "line": 329,
+          "line": 362,
           "column": 4,
-          "index": 9480
+          "index": 10695
         },
         "end": {
-          "line": 331,
+          "line": 364,
           "column": 5,
-          "index": 9527
+          "index": 10742
         }
       },
       "jsdoc": {
@@ -740,14 +756,14 @@
     "getWidgetNames": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 370,
           "column": 4,
-          "index": 9676
+          "index": 10891
         },
         "end": {
-          "line": 351,
+          "line": 384,
           "column": 5,
-          "index": 10249
+          "index": 11464
         }
       },
       "jsdoc": {
@@ -772,14 +788,14 @@
     "isRoot": {
       "location": {
         "start": {
-          "line": 353,
+          "line": 386,
           "column": 4,
-          "index": 10256
+          "index": 11471
         },
         "end": {
-          "line": 355,
+          "line": 388,
           "column": 5,
-          "index": 10322
+          "index": 11537
         }
       },
       "type": "function",
@@ -788,14 +804,14 @@
     "isPage": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 390,
           "column": 4,
-          "index": 10329
+          "index": 11544
         },
         "end": {
-          "line": 359,
+          "line": 392,
           "column": 5,
-          "index": 10395
+          "index": 11610
         }
       },
       "type": "function",
@@ -4225,14 +4241,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 367,
+        "line": 400,
         "column": 2,
-        "index": 10529
+        "index": 11744
       },
       "end": {
-        "line": 375,
+        "line": 408,
         "column": 3,
-        "index": 10801
+        "index": 12016
       }
     },
     "jsdoc": {}

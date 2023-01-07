@@ -211,7 +211,7 @@
       subscribe: function subscribe(addresses, filters) {
         var _this = this;
         // send first request to get all states once
-        var req = this.createAuthorizedRequest('items?fields=name,state,members,type,label&recursive=true');
+        var req = this.createAuthorizedRequest('items?fields=name,state,stateDescription,members,type,label&recursive=true');
         req.addListener('success', function (e) {
           var req = e.getTarget();
           var res = req.getResponse();
@@ -225,6 +225,7 @@
                 map[obj.name] = {
                   type: obj.type.toLowerCase(),
                   state: obj.state,
+                  stateDescription: obj.stateDescription,
                   label: obj.label,
                   name: obj.name,
                   active: false
@@ -248,6 +249,9 @@
               update['members:' + entry.name] = Object.values(map);
             }
             update[entry.name] = entry.state;
+            if (entry.stateDescription && entry.stateDescription.options) {
+              update['options:' + entry.name] = entry.stateDescription.options;
+            }
           }, _this);
           _this.update(update);
           _this.__P_522_4 = addresses;
@@ -476,4 +480,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1672653521508
+//# sourceMappingURL=Rest.js.map?dt=1673093880766

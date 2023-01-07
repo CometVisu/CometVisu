@@ -34,6 +34,12 @@
     extend: qx.theme.tangible.Decoration,
     decorations: {
       'window-caption-active': {},
+      'main-dark': {
+        style: {
+          width: 1,
+          color: 'button-border'
+        }
+      },
       'cv-editor-config-section': {
         style: {
           width: 1,
@@ -109,4 +115,4 @@
   cv.theme.dark.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1672653524783
+//# sourceMappingURL=Decoration.js.map?dt=1673093883642

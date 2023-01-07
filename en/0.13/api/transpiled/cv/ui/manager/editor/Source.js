@@ -109,30 +109,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       TITLE: qx.locale.Manager.tr('Texteditor'),
       COUNTER: 0,
       MONACO_EXTENSION_REGEX: null,
+      FALLBACK_EXTENSION_REGEX: /\.(xml|xsd|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i,
       SUPPORTED_FILES: function SUPPORTED_FILES(file) {
         var filename = typeof file === 'string' ? file : file.getFullPath().toLowerCase();
-        if (window.monaco && window.monaco.languages) {
-          if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
-            // monaco has already been loaded, we can use its languages configuration to check if this file is supported
-            var extensions = [];
-            monaco.languages.getLanguages().forEach(function (lang) {
-              if (lang.extensions) {
-                lang.extensions.forEach(function (ext) {
-                  ext = ext.replace(/\./g, '\\.');
-                  if (extensions.indexOf(ext) === -1) {
-                    extensions.push(ext);
-                  }
-                });
-              }
-            });
-            cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
-          }
-          return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX.test(filename);
-        }
-        return /\.(xml|html|php|css|js|svg|json|md|yaml|conf|ts|rst|py|txt)$/i.test(filename);
+        var extRegex = cv.ui.manager.editor.Source.getExtensionRegex();
+        return extRegex.test(filename);
       },
       DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
+      getExtensionRegex: function getExtensionRegex() {
+        if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
+          if (window.monaco && window.monaco.languages) {
+            if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
+              // monaco has already been loaded, we can use its languages configuration to check if this file is supported
+              var extensions = ['\\.xsd'];
+              monaco.languages.getLanguages().forEach(function (lang) {
+                if (lang.extensions) {
+                  lang.extensions.forEach(function (ext) {
+                    ext = ext.replace(/\./g, '\\.');
+                    if (extensions.indexOf(ext) === -1) {
+                      extensions.push(ext);
+                    }
+                  });
+                }
+              });
+              cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX = new RegExp('(' + extensions.join('|') + ')$');
+            }
+          }
+        }
+        return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX || cv.ui.manager.editor.Source.FALLBACK_EXTENSION_REGEX;
+      },
       load: function load(callback, context) {
         var _this = this;
         var version = false ? 'dev' : 'min';
@@ -441,9 +447,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var parts = file.getName().split('.');
         var fileType = parts.length > 1 ? parts.pop() : 'txt';
         var typeExt = '.' + fileType;
-        return monaco.languages.getLanguages().some(function (lang) {
-          return lang.id === fileType || lang.extensions && lang.extensions.indexOf(typeExt) >= 0;
-        });
+        var extRegex = cv.ui.manager.editor.Source.getExtensionRegex();
+        return extRegex.test(typeExt);
       },
       showErrors: function showErrors(path, errorList) {
         var markers = [];
@@ -500,6 +505,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var type = file.getName().split('.').pop();
         switch (type) {
           case 'svg':
+          case 'xsd':
             return 'xml';
           case 'js':
             return 'javascript';
@@ -541,4 +547,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1672653474831
+//# sourceMappingURL=Source.js.map?dt=1673093839208

@@ -77,6 +77,38 @@ Modell-Eintrag gefüllt. Für den ersten Eintrag aus dem Modell wird also folgen
         <label class="secondary">Sublabel number 0</label>
     </li>
 
+Daten senden bei Selektion
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sofern als Listen-Elemente ``<cv-listitem>`` benutzt werden besteht die Möglichkeit beim Klick auf ein solches
+einen Wert an das Backend zu senden. Wenn das Modell z.B. ein ``value``-Attribut enthält, kann dieser Wert
+an eine Backend-Adresse gesendet werden.
+
+.. code-block:: xml
+
+    <cv-tile>
+        <cv-list rowspan="3" colspan="3">
+            <cv-address transform="DPT:5.010" mode="write">1/4/1</cv-address>
+            <model>
+                <script><![CDATA[
+                    for (let i = 0; i < 4; i++) {
+                        model.push({
+                            label: 'Listeneintrag ' + i,
+                            value: i
+                        })
+                    }]]>
+                </script>
+            </model>
+            <template>
+                <cv-listitem onclick="fireEvent('sendState', ${value})">
+                    <div class="content">
+                      <label class="primary">${label}</label>
+                    </div>
+                </cv-listitem>
+            </template>
+        </cv-list>
+    </cv-tile>
+
 Datenmodell
 ^^^^^^^^^^^
 

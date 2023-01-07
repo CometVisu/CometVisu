@@ -159,7 +159,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             this.__P_75_0 = new cv.ui.structure.pure.ColorChooser(props);
             this.__P_75_0.addListener('colorChanged', this._onColorChanged, this);
             this._onColorChanged();
-            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_75_0.getDomString(), "</div>");
+            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_75_0.getDomString(), "</div>");
             element.appendChild(popup);
             element.addEventListener('click', function (ev) {
               if (ev.path.indexOf(popup) < 0) {
@@ -228,4 +228,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1672653480445
+//# sourceMappingURL=Color.js.map?dt=1673093844874

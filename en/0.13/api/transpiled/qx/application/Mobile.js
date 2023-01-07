@@ -151,4 +151,4 @@
   qx.application.Mobile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mobile.js.map?dt=1672653483638
+//# sourceMappingURL=Mobile.js.map?dt=1673093847687

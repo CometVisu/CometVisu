@@ -86,9 +86,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
        *
        * @param val {variant}
        * @param store {Map<string, variant>?} optional stored values from other addresses
+       * @param params {Array<variant>?} optional array of parameters for the mapping
        * @return {string|*|string}
        */
-      mapValue: function mapValue(val, store) {
+      mapValue: function mapValue(val, store, params) {
         var _this = this;
         if (Object.prototype.hasOwnProperty.call(this.__P_86_0, val)) {
           return this.__P_86_0[val];
@@ -105,9 +106,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         if (formula) {
           if (!formula._formula) {
             var content = formula.textContent;
-            formula._formula = new Function('x', 'store', 'let y;' + content + '; return y;');
+            formula._formula = new Function('x', 'store', 'params', 'let y;' + content + '; return y;');
           }
-          mappedValue = this._convert(formula._formula(val, store), type);
+          mappedValue = this._convert(formula._formula(val, store, params), type);
           return mappedValue;
         }
         var entries = this._element.querySelectorAll(':scope > entry');
@@ -182,4 +183,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Mapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mapping.js.map?dt=1672653481661
+//# sourceMappingURL=Mapping.js.map?dt=1673093845987

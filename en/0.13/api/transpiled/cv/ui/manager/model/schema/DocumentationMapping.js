@@ -132,7 +132,9 @@
         'tile-element-mapping': '/develop/manual/config/structure-tile/elements/mapping.html#tile-element-mapping',
         'tile-element-styling': '/develop/manual/config/structure-tile/elements/styling.html#tile-element-styling',
         'tile-info': '/develop/manual/config/structure-tile/widgets/info.html#tile-info',
+        'tile-item-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-item-menu',
         'tile-media-player': '/develop/manual/config/structure-tile/widgets/media-player.html#tile-media-player',
+        'tile-nav-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-nav-menu',
         'tile-rtc': '/develop/manual/config/structure-tile/widgets/rtc.html#tile-rtc',
         'tile-shutter': '/develop/manual/config/structure-tile/widgets/shutter.html#tile-shutter',
         'tile-simmer': '/develop/manual/config/structure-tile/widgets/dimmer.html#tile-simmer',
@@ -170,4 +172,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1672653477112
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1673093841893

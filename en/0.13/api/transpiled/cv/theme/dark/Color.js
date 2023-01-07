@@ -40,10 +40,12 @@
       error: '#b00020',
       'valid-color': '#22822d',
       'invalid-color': 'error-focused',
-      'warning-color': '#a85500'
+      'warning-color': '#a85500',
+      'border-separator': '#222222',
+      'button-border': '#BBB'
     }
   });
   cv.theme.dark.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1672653524770
+//# sourceMappingURL=Color.js.map?dt=1673093883629

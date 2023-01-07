@@ -17,7 +17,7 @@
  */
 
 /**
- * Webworker for CometVisu's XML text editor. Detects changes in document,
+ * Webworker for CometVisu's XML text editor. Detect changes in document,
  * Syntax errors and other stuff.
  *
  * @since 0.11.0
@@ -89,10 +89,8 @@ class SourceFile {
 
     if (this.isConfigFile) {
       if (!configSchemas.hasOwnProperty(schemaFile)) {
-        // load scheme file
-        configSchemas[schemaFile] = getFileContent(schemaFile);
+        loadSchema(schemaFile);
       }
-      currentSchema = configSchemas[schemaFile];
     }
 
     if (this.features.hash) {
@@ -114,7 +112,7 @@ class SourceFile {
     if (!data || !data.code) {
       return;
     }
-    this.initialCode = data.split("\n");
+    this.initialCode = data.split('\n');
     if (this.features.hash) {
       this.initialHash = SourceFile.hashCode(data);
     }
@@ -198,8 +196,7 @@ const openFiles = {};
 // eslint-disable-next-line no-unused-vars
 function openFile(data, features) {
   if (!openFiles.hasOwnProperty(data.path)) {
-    const source = new SourceFile(data.path, features);
-    openFiles[data.path] = source;
+    openFiles[data.path] = new SourceFile(data.path, features);
   }
   openFiles[data.path].open(data);
 }
@@ -256,14 +253,14 @@ function parseErrors(content, errors, includePaths) {
   // parse errors and add xpath expressions to the errors to make the position findable
   const parsedErrors = [];
   const lineElementMap = new Map();
-  const contentLines = content.split("\n");
+  const contentLines = content.split('\n');
   if (includePaths) {
     let currentElement;
     let currentParent;
     let root;
     let context;
     contentLines.forEach((line, lineNo) => {
-      if (context === "comment") {
+      if (context === 'comment') {
         // do not parse comments
         const endOfComment = line.indexOf('-->');
         if (endOfComment < 0) {
@@ -427,14 +424,43 @@ function parseErrors(content, errors, includePaths) {
   return parsedErrors;
 }
 
-function loadSchema(content) {
+/**
+ * @param content
+ */
+function loadContentSchema(content) {
   const match = schemaRegex.exec(content);
   let schemaFile = '../visu_config.xsd';
   if (match) {
     schemaFile = match[1];
   }
+  loadSchema(schemaFile);
+}
+
+/**
+ * @param schemaFile
+ */
+function loadSchema(schemaFile) {
   if (!configSchemas.hasOwnProperty(schemaFile)) {
-    configSchemas[schemaFile] = getFileContent(schemaFile);
+    // load scheme file
+    let content = getFileContent(schemaFile);
+    let file;
+    let includedContent;
+    const matches = content.matchAll(/<xsd:include schemaLocation="([^"]+)"\s?\/>/g);
+    const includeRegex = /<xsd:schema[^>]+>(.+)<\/xsd:schema>/gms;
+    const cyclicIncludeRegex = new RegExp(`<xsd:include schemaLocation="${schemaFile}"\s?\/>`);
+    for (const match of matches) {
+      file = '../' + match[1];
+      includedContent = getFileContent(file);
+      // only copy what is inside of <xsd:schema>...</xsd:schema>
+      const incMatch = includeRegex.exec(includedContent);
+      let replacement = incMatch ? incMatch[1] : '';
+      const cyclicIncludeMatch = cyclicIncludeRegex.exec(replacement);
+      if (cyclicIncludeMatch) {
+        replacement = replacement.replace(cyclicIncludeMatch[0], '');
+      }
+      content = content.replace(match[0], replacement);
+    }
+    configSchemas[schemaFile] = content;
   }
   currentSchema = configSchemas[schemaFile];
 }
@@ -447,7 +473,7 @@ function validateConfig (data) {
   const url = data.path.startsWith('http') ? data.path : '../../' + data.path;
   const content = getFileContent(url);
   if (content) {
-    loadSchema(content);
+    loadContentSchema(content);
     const lint = xmllint.validateXML({
       xml: content,
       schema: currentSchema
@@ -467,7 +493,7 @@ function validateConfig (data) {
  */
 // eslint-disable-next-line no-unused-vars
 function validateXmlConfig(id, content, includePaths) {
-  loadSchema(content);
+  loadContentSchema(content);
   const lint = xmllint.validateXML({
     xml: content,
     schema: currentSchema

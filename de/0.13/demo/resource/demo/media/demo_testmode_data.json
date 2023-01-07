@@ -3856,6 +3856,17 @@
         "body": [
           {
             "type": "file",
+            "name": "custom_visu_config.xsd",
+            "hasChildren": false,
+            "parentFolder": "",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": false
+          },
+          {
+            "type": "file",
             "name": "hidden.php",
             "hasChildren": false,
             "parentFolder": "",

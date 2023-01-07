@@ -14,9 +14,9 @@
         "index": 851
       },
       "end": {
-        "line": 36,
+        "line": 59,
         "column": 3,
-        "index": 1196
+        "index": 1706
       }
     },
     "jsdoc": {
@@ -29,21 +29,28 @@
     }
   },
   "type": "class",
-  "defer": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 2,
-        "index": 977
-      },
-      "end": {
-        "line": 35,
-        "column": 3,
-        "index": 1192
-      }
-    }
-  },
   "members": {
+    "_init": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1114
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1478
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
     "getQxOwner": {
       "type": "function",
       "name": "getQxOwner",
@@ -575,6 +582,20 @@
             "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
           }
         ]
+      }
+    }
+  },
+  "defer": {
+    "location": {
+      "start": {
+        "line": 49,
+        "column": 2,
+        "index": 1487
+      },
+      "end": {
+        "line": 58,
+        "column": 3,
+        "index": 1702
       }
     }
   },

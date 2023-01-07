@@ -209,6 +209,15 @@ Auf der Adresse muss dazu entweder die URL des Bilds geliefert werden unter der 
 das Bild direkt als <a class="reference external" href="https://de.wikipedia.org/wiki/Data-URL">Data-URI</a>. Letztes wird mit den Beschränkungen bzgl. der
 Datenmenge, die auf dem KNX-Bus gesendet werden können mit dem KNX-Backend wohl nicht möglich sein, aber z.B. das
 openHAB-Backend kann solche Daten ausliefern.</p>
+<p>Das Media-Player Widget unterstützt ein optionales <a class="reference internal" href="../components/menu.html#tile-item-menu"><span class="std std-ref">Menü</span></a> indem einer oder mehrere
+<code class="docutils literal notranslate"><span class="pre">&lt;cv-menu-item</span> <span class="pre">slot=&quot;menu&quot;&gt;</span></code> Elemente hinzugefügt werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-media-player&gt;</span>
+<span class="w">   </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;menu&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Favoriten&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;popup&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-star-line&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">   </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;menu&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Stumm&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;toggleState&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-volume-mute-line&quot;</span><span class="nt">&gt;</span>...<span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">    </span>...
+<span class="nt">&lt;/cv-media-player&gt;</span>
+</pre></div>
+</div>
 <section id="erlaubte-attribute-im-media-player-element">
 <h3>Erlaubte Attribute im Media-Player-Element<a class="headerlink" href="#erlaubte-attribute-im-media-player-element" title="Link zu dieser Überschrift">¶</a></h3>
 <table class="docutils align-default">
@@ -366,6 +375,101 @@ openHAB-Backend kann solche Daten ausliefern.</p>
 <tr class="row-even"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-media-player</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>name</p></td>
+<td><p>Text</p></td>
+<td><p>Name des Menü-Eintrags.</p></td>
+</tr>
+<tr class="row-even"><td><p>icon</p></td>
+<td><p>Text</p></td>
+<td><p>Icon des Menü-Eintrags.</p></td>
+</tr>
+<tr class="row-odd"><td><p>action</p></td>
+<td><p><em>popup</em> oder <em>toggleState</em></p></td>
+<td><p>Die Aktion die ausgeführt wird, wenn dieser Menu-Eintrag angeklickt wird.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><dl class="simple">
+<dt>cv-media-player</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
+</tr>
+<tr class="row-even"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-media-player</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
 </tr>
 </tbody>
 </table>

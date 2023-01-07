@@ -14,9 +14,9 @@
         "index": 867
       },
       "end": {
-        "line": 481,
+        "line": 484,
         "column": 3,
-        "index": 14830
+        "index": 14966
       }
     },
     "jsdoc": {
@@ -518,12 +518,12 @@
         "start": {
           "line": 361,
           "column": 4,
-          "index": 10897
+          "index": 10896
         },
         "end": {
-          "line": 380,
+          "line": 383,
           "column": 5,
-          "index": 11760
+          "index": 11896
         }
       },
       "jsdoc": {
@@ -536,9 +536,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
+            "body": "ev {CustomEvent} stateUpdate event fired from a cv-address component",
             "paramName": "ev",
-            "description": " stateUpdate event fired from an cv-address component",
+            "description": " stateUpdate event fired from a cv-address component",
             "type": "CustomEvent"
           }
         ]
@@ -549,14 +549,14 @@
     "onClicked": {
       "location": {
         "start": {
-          "line": 382,
+          "line": 385,
           "column": 4,
-          "index": 11767
+          "index": 11903
         },
         "end": {
-          "line": 412,
+          "line": 415,
           "column": 5,
-          "index": 12720
+          "index": 12856
         }
       },
       "type": "function",
@@ -565,14 +565,14 @@
     "onPointerDown": {
       "location": {
         "start": {
-          "line": 414,
+          "line": 417,
           "column": 4,
-          "index": 12727
+          "index": 12863
         },
         "end": {
-          "line": 427,
+          "line": 430,
           "column": 5,
-          "index": 13136
+          "index": 13272
         }
       },
       "type": "function",
@@ -581,14 +581,14 @@
     "onPointerUp": {
       "location": {
         "start": {
-          "line": 429,
+          "line": 432,
           "column": 4,
-          "index": 13143
+          "index": 13279
         },
         "end": {
-          "line": 442,
+          "line": 445,
           "column": 5,
-          "index": 13548
+          "index": 13684
         }
       },
       "type": "function",
@@ -597,14 +597,14 @@
     "createRipple": {
       "location": {
         "start": {
-          "line": 444,
+          "line": 447,
           "column": 4,
-          "index": 13555
+          "index": 13691
         },
         "end": {
-          "line": 468,
+          "line": 471,
           "column": 5,
-          "index": 14604
+          "index": 14740
         }
       },
       "type": "function",
@@ -4586,14 +4586,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 471,
+        "line": 474,
         "column": 2,
-        "index": 14613
+        "index": 14749
       },
       "end": {
-        "line": 480,
+        "line": 483,
         "column": 3,
-        "index": 14826
+        "index": 14962
       }
     }
   },
