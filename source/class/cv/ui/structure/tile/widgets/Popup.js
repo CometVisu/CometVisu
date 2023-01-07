@@ -57,6 +57,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
         popup.insertBefore(this._closeButton, popup.firstChild);
         this._closeButton.addEventListener('click', () => this.close());
       }
+      popup.addEventListener('close', ev => {
+        this.close();
+      });
       if (popup.hasAttribute('title')) {
         const header = document.createElement('header');
         popup.insertBefore(header, popup.firstChild);

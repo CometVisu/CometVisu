@@ -29,6 +29,8 @@ qx.Theme.define('cv.theme.dark.Color', {
 
     'valid-color': '#22822d',
     'invalid-color': 'error-focused',
-    'warning-color': '#a85500'
+    'warning-color': '#a85500',
+    'border-separator': '#222222',
+    'button-border': '#BBB'
   }
 });

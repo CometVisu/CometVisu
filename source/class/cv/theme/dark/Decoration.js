@@ -23,6 +23,13 @@ qx.Theme.define('cv.theme.dark.Decoration', {
   decorations: {
     'window-caption-active': {},
 
+    'main-dark': {
+      style: {
+        width: 1,
+        color: 'button-border'
+      }
+    },
+
     'cv-editor-config-section': {
       style: {
         width: 1,

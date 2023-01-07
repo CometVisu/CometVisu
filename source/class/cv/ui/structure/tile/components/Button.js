@@ -356,7 +356,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @param ev {CustomEvent} stateUpdate event fired from an cv-address component
+     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
      */
     onStateUpdate(ev) {
       // using == comparisons to make sure that e.g. 1 equals "1"
@@ -376,6 +376,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this.setProgress(ev.detail.state);
       } else if (target.startsWith('store:')) {
         this.__store.set(target.substring(6), ev.detail.state);
+      } else if (target === 'store') {
+        // use address as store key
+        this.__store.set(ev.detail.address, ev.detail.state);
       }
     },
 

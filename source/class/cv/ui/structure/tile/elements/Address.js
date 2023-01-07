@@ -157,6 +157,22 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
       }
     },
 
+    /**
+     *
+     * @return {boolean} true if this is a read address
+     */
+    isRead() {
+      return this._element.getAttribute('mode') !== 'write';
+    },
+
+    /**
+     *
+     * @return {boolean} true if this is a write address
+     */
+    isWrite() {
+      return this._element.getAttribute('mode') !== 'read';
+    },
+
     getValue() {
       return this.__transformedValue;
     }

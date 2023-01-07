@@ -169,12 +169,22 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         accept: 'application/xml'
       });
 
-      ajaxRequest.addListenerOnce('success', e => {
+      ajaxRequest.addListenerOnce('success', async e => {
         const req = e.getTarget();
         // Response parsed according to the server's response content type
         let xml = req.getResponse();
         if (xml && typeof xml === 'string') {
           xml = qx.xml.Document.fromString(xml);
+        }
+        // embed all includes
+        let includeXml;
+        for (let include of xml.querySelectorAll('schema include')) {
+          includeXml = await this.loadXml('resource/' + include.getAttribute('schemaLocation'));
+          const target = include.parentElement;
+          include.remove();
+          for (let includedChild of includeXml.querySelectorAll('schema > *')) {
+            target.appendChild(includedChild);
+          }
         }
         this.__xsd = xml;
 
@@ -182,6 +192,29 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         this._parseXSD();
       });
       ajaxRequest.send();
+    },
+
+    async loadXml(file) {
+      return new Promise((resolve, reject) => {
+        const ajaxRequest = new qx.io.request.Xhr(file);
+        ajaxRequest.set({
+          accept: 'application/xml'
+        });
+        ajaxRequest.addListenerOnce('success', e => {
+          const req = e.getTarget();
+          // Response parsed according to the server's response content type
+          let xml = req.getResponse();
+          if (xml && typeof xml === 'string') {
+            xml = qx.xml.Document.fromString(xml);
+          }
+          resolve(xml);
+        });
+        ajaxRequest.addListenerOnce('statusError', e => {
+          const req = e.getTarget();
+          reject(new Error(req.getStatusText()));
+        });
+        ajaxRequest.send();
+      });
     },
 
     /**

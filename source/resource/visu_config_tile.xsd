@@ -2,7 +2,7 @@
 <xsd:schema
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xml="http://www.w3.org/XML/1998/namespace">
-
+  <xsd:include schemaLocation="config/custom_visu_config.xsd"/>
   <!-- root element -->
   <xsd:element name="config">
     <xsd:complexType>
@@ -281,6 +281,11 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-menu-item" type="cv-menu-item" />
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute name="model">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Data-model this menu is generated from.</xsd:documentation>
@@ -289,6 +294,7 @@
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="pages" />
+          <xsd:enumeration value="menuItems" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
@@ -319,15 +325,50 @@
     </xsd:attribute>
   </xsd:complexType>
 
+  <xsd:complexType name="cv-menu-item">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-popup" type="cv-popup" />
+        <xsd:element name="cv-address" type="address"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the menu entry.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name des Menü-Eintrags.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Icon of the menu entry.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Icon des Menü-Eintrags.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="action">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The action that is executed when this menu item has been clicked.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die Aktion die ausgeführt wird, wenn dieser Menu-Eintrag angeklickt wird.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="popup" />
+          <xsd:enumeration value="toggleState" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
   <xsd:complexType name="main">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="aside" type="aside" minOccurs="0" maxOccurs="2"/>
+        <xsd:element name="iframe" type="iframe" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -357,11 +398,13 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="p" type="p"/>
         <xsd:element name="h1" type="text"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="id" type="xsd:string" use="required">
@@ -396,16 +439,24 @@
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:group ref="Components"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="modal" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Disables the background while the popup is open.</xsd:documentation>
         <xsd:documentation xml:lang="de">Deaktiviert den Hintergrund solange das Popup geöffnet ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Headline of this popup.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Überschrift dieses Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="class" />
@@ -423,9 +474,11 @@
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="summary" type="summary"/>
         <xsd:group ref="Widgets"/>
+        <xsd:group ref="CustomWidgets"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
+        <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="icon" type="xsd:string">
@@ -529,6 +582,7 @@
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
+      <xsd:element name="cv-menu" type="cv-menu"/>
       <xsd:element name="custom" type="custom"/>
     </xsd:choice>
   </xsd:group>
@@ -816,6 +870,7 @@
             </xsd:attribute>
           </xsd:complexType>
         </xsd:element>
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class" />
@@ -1433,6 +1488,21 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="cv-menu-item" minOccurs="0">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="cv-menu-item">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="menu" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
     </xsd:sequence>
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="mapping" />
@@ -1585,7 +1655,7 @@
         </xsd:attribute>
         <xsd:attribute name="send-mode" default="on-change">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Usually the elements that are using this address recevice an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
+            <xsd:documentation xml:lang="en">Usually the elements that are using this address receive an update-event only when that value hast changed (``on-change``). This check can be disabled ``always`` to send the update-event every time when a new value has been received from the backend.</xsd:documentation>
             <xsd:documentation xml:lang="de">Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (``on-change``). Mit ``always`` wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
@@ -1843,7 +1913,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widgetfläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -2009,7 +2079,7 @@
 
   <xsd:complexType name="custom">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Custom HTML section where any content is allowed an no validation takes place.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Custom HTML section where any content is allowed and no validation takes place.</xsd:documentation>
       <xsd:documentation xml:lang="de">Individueller HTML-Bereich in dem jedes Element erlaubt ist und keine Validierung stattfindet.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
@@ -2023,6 +2093,15 @@
       <xsd:documentation xml:lang="de">Das style-Element enthält Stylesheet-Angaben, die für das gesamte Dokument gelten.</xsd:documentation>
     </xsd:annotation>
     <xsd:attribute name="media" default="all" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="iframe">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">An iframe allows other websites to be embedded.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ein iframe erlaubt die Einbettung anderer Webseiten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute ref="style"/>
+    <xsd:attribute name="src" type="xsd:anyURI"/>
   </xsd:complexType>
 
   <!--
@@ -2111,7 +2190,7 @@
           Show the sun rise and set information
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
-          Sonnenauf- und untergang anzeigen
+          Sonnen Auf- und Untergang anzeigen
         </xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -2148,7 +2227,7 @@
     <xsd:attribute name="lon" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">
-          When owID or q is not used: longitue of place
+          When owID or q is not used: longitude of place
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
           Wenn owID oder q nicht verwendet wird: Geografische Länge des Ortes

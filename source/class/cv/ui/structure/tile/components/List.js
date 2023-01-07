@@ -100,6 +100,24 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       }
       const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
 
+      // if we have top level write addresses, we need to listen to sendState Events from the list items
+      for (let address of element.querySelectorAll(':scope > cv-address')) {
+        if (address.getAttribute('mode') !== 'read') {
+          element.addEventListener('sendState', ev => {
+            // forward event copy (dispatching the same is not possible) to all write addresses
+            const evCopy = new CustomEvent('sendState', {
+              bubbles: ev.bubbles,
+              cancelable: ev.cancelable,
+              detail: ev.detail
+            });
+            for (let a of element.querySelectorAll(':scope > cv-address')) {
+              a.dispatchEvent(evCopy);
+            }
+          });
+          break;
+        }
+      }
+
       if (model.hasAttribute('sort-by')) {
         const sortBy = model.getAttribute('sort-by');
         // reverse order in 'desc' sort mode

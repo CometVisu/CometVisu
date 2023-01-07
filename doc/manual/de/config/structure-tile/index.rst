@@ -301,9 +301,83 @@ Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget
         </cv-meter>
     </custom>
 
-Die selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
+Da selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
 muss man diese in ein ``<custom>...</custom>`` Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
-wird.
+wird. Damit verliert man an dieser Stelle aber den Vorteil, dass dieser Teil der Konfigurationsdatei auf Gültigkeit
+geprüft werden kann. Sofern man darauf werden legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
+dem das eigene Widget eingetragen wird. Dazu muss die Datei "custom_visu_config.xsd" im "config/" Ordner vorhanden sein.
+Sofern sie nicht vorhanden ist, muss sie mit folgender Grundstruktur angelegt werden.
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+        <!-- uncomment the next line if you want to reference types from the main pure schema -->
+        <!-- <xsd:include schemaLocation="../visu_config.xsd"/> -->
+        <!-- uncomment the next line if you want to reference types from the main tile schema -->
+        <!-- <xsd:include schemaLocation="../visu_config_tile.xsd"/> -->
+        <xsd:group name="CustomWidgets">
+            <xsd:choice>
+                <!-- reference new widgets here, e.g.
+                    <xsd:element name="cv-music-player" type="cv-music-player" />
+                -->
+            </xsd:choice>
+        </xsd:group>
+        <!-- add definition for new widgets here -->
+        <!-- <xsd:complexType name="cv-music-player">...</xsd:complexType> -->
+    </xsd:schema>
+
+
+Das vollständige Beispiel für das ``<cv-meter>``-Widget sieht so aus.
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+        <xsd:include schemaLocation="../visu_config_tile.xsd"/>
+        <xsd:group name="CustomWidgets">
+            <xsd:choice>
+                <xsd:element name="cv-meter" type="cv-meter" />
+            </xsd:choice>
+        </xsd:group>
+        <xsd:complexType name="cv-meter">
+            <xsd:sequence>
+                <xsd:element name="span" minOccurs="0">
+                    <xsd:complexType>
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:string">
+                                <xsd:attribute name="slot" use="required">
+                                    <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                            <xsd:enumeration value="label" />
+                                        </xsd:restriction>
+                                    </xsd:simpleType>
+                                </xsd:attribute>
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="cv-address" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:simpleContent>
+                            <xsd:extension base="address">
+                                <xsd:attribute name="slot" use="required">
+                                    <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                            <xsd:enumeration value="address" />
+                                        </xsd:restriction>
+                                    </xsd:simpleType>
+                                </xsd:attribute>
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute ref="format" />
+        </xsd:complexType>
+    </xsd:schema>
+
+Danach kann das ``<cv-meter>``-Widget ohne ``<custom>...</custom>`` benutzt werden und es wird auch auf Gültigkeit geprüft.
 
 .. _tile-components:
 
