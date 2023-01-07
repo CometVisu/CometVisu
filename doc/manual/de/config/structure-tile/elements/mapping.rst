@@ -342,7 +342,7 @@ Formeln mit lokalem Store
 
 Eine Besonderheit, die momentan nur für :ref:`\<cv-button\><tile-component-button>` implementiert ist, ist das Benutzen
 eines Wertspeichers (Store) innerhalb einer Formel. Das ermöglicht es in der Formel Berechnungen durchzuführen, die
-von mehreren Status-Werte abhängen. Möchte man z.B. berechnen wie viel Prozent eines Lieds bereits abgespielt wurde
+von mehreren Status-Werten abhängen. Möchte man z.B. berechnen wie viel Prozent eines Lieds bereits abgespielt wurde
 benötigt man die aktuelle Position im Song und die gesamte Spielzeit, um den Prozentwert berechnen zu können.
 
 .. code-block:: xml
@@ -354,7 +354,7 @@ benötigt man die aktuelle Position im Song und die gesamte Spielzeit, um den Pr
         <cv-icon class="value">ri-stop-fill</cv-icon>
     </cv-button>
 
-Die Adresse ``1/4/1`` liefert den aktuellen Position im Lied in Sekunden und wird für den Fortschrittsbalken benutzt
+Die Adresse ``1/4/1`` liefert die aktuelle Position im Lied in Sekunden und wird für den Fortschrittsbalken benutzt
 (``target="progress"``). Die Adresse ``1/4/2`` liefert die Gesamtdauer des Liedes und wird in dem Wertspeicher abgelegt (``target="store"``).
 Der Wertspeicher ist eine `Javascript Map <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map?retiredLocale=de>`_
 und benutzt die Adresse als Schlüssel um den letzten Wert vom Bus zu speichern (z.B. ``{"1/4/2": 240}``).
