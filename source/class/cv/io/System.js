@@ -38,6 +38,9 @@ qx.Class.define('cv.io.System', {
   construct() {
     super();
     this.addresses = [];
+    this.__persistedTargets = {
+      theme: '_applyTheme'
+    };
     qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
   },
 
@@ -72,6 +75,7 @@ qx.Class.define('cv.io.System', {
     backendName: 'system',
     addresses: null,
     implementedAddresses: null,
+    __persistedTargets: null,
 
     _onPageChange(ev) {
       const page = ev.getData();
@@ -94,6 +98,20 @@ qx.Class.define('cv.io.System', {
 
     subscribe(addresses, filters) {
       this.addresses = addresses ? addresses : [];
+      if (qx.core.Environment.get('html.storage.local')) {
+        let value;
+        for (const name in this.__persistedTargets) {
+          value = localStorage.getItem('system:' + name);
+          if (value) {
+            const func = this[this.__persistedTargets[name]];
+            if (typeof func === 'function') {
+              func(value);
+            } else {
+              this.error(name + 'is no function');
+            }
+          }
+        }
+      }
     },
 
     write(address, value, options) {
@@ -137,10 +155,7 @@ qx.Class.define('cv.io.System', {
               break;
           }
         } else if (target === 'theme') {
-          const theme = value;
-          document.documentElement.setAttribute('data-theme', theme);
-          const model = cv.data.Model.getInstance();
-          model.onUpdate('theme', theme, 'system');
+          this._applyTheme(value);
         } else if (target === 'http' || target === 'https') {
           // send HTTP request, ignore the answer
           if (parts.length >= 2 && parts[0] === 'proxy') {
@@ -155,7 +170,16 @@ qx.Class.define('cv.io.System', {
           // just write the value to the states to update Listeners
           cv.data.Model.getInstance().onUpdate(address, value, 'system');
         }
+
+        if (qx.core.Environment.get('html.storage.local') && target in this.__persistedTargets) {
+          localStorage.setItem('system:' + target, value);
+        }
       }
+    },
+
+    _applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      cv.data.Model.getInstance().onUpdate('theme', theme, 'system');
     },
 
     restart() {},

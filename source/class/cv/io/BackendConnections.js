@@ -170,6 +170,18 @@ qx.Class.define('cv.io.BackendConnections', {
       return this.__clients[backendName];
     },
 
+    initSystemBackend() {
+      // make sure that we have a "system" backend
+      if (!this.hasClient('system')) {
+        this.__clients.system = new cv.io.System();
+      }
+      const client = this.__clients.system;
+      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses('system');
+      if (addressesToSubscribe.length !== 0) {
+        client.subscribe(addressesToSubscribe);
+      }
+    },
+
     /**
      * Start retrieving data from backend
      */
