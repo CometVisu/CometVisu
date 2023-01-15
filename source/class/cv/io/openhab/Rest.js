@@ -141,13 +141,16 @@ qx.Class.define('cv.io.openhab.Rest', {
       return true;
     },
 
-    processChartsData : function (response) {
-      const data = response.data;
-      const newRrd = new Array(data.length);
-      for (let j = 0, l = data.length; j < l; j++) {
-        newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+    processChartsData : function (data) {
+      if (Array.isArray(data)) {
+        const newRrd = new Array(data.length);
+        for (let j = 0, l = data.length; j < l; j++) {
+          newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+        }
+        return newRrd;
       }
-      return newRrd;
+      this.error("invalid chart data response");
+      return [];
     },
 
     /**
