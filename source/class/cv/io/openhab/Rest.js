@@ -86,8 +86,13 @@ qx.Class.define('cv.io.openhab.Rest', {
 
     getResourcePath(name, map) {
       if (name === 'charts' && map && map.src) {
-        let url = this._backendUrl + 'persistence/items/' + map.src;
+        const parts = map.src.split(':');
+        const item = parts.pop();
+        let url = this._backendUrl + 'persistence/items/' + item;
         const params = [];
+        if (parts.length > 0) {
+          params.push('serviceId=' + parts[0]);
+        }
         if (map.start) {
           let endTime = map.end ? this.__convertTimes(map.end) : new Date();
           let startTime = new Date();
