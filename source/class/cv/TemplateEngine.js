@@ -248,6 +248,7 @@ qx.Class.define('cv.TemplateEngine', {
           callback.apply(context, entry);
         }, this);
         this._domFinishedQueue = [];
+        cv.io.BackendConnections.initSystemBackend();
       }
     },
 
