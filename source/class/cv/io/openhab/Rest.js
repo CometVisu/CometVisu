@@ -149,7 +149,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         }
         return newRrd;
       }
-      this.error("invalid chart data response");
+      this.error('invalid chart data response');
       return [];
     },
 
