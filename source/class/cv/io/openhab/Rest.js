@@ -141,8 +141,9 @@ qx.Class.define('cv.io.openhab.Rest', {
       return true;
     },
 
-    processChartsData : function (data) {
-      if (Array.isArray(data)) {
+    processChartsData : function (response) {
+      if (response && response.data) {
+        const data = response.data;
         const newRrd = new Array(data.length);
         for (let j = 0, l = data.length; j < l; j++) {
           newRrd[j] = [data[j].time, parseFloat(data[j].state)];
