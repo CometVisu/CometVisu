@@ -195,10 +195,13 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
     _maintainPreviewVisibility() {
       const handlerOptions = this.getHandlerOptions();
       let enablePreview = qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview);
-      if (enablePreview && !cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
-        // config folder is not writable, preview can only work when the file already exists and is writeable
+      if (enablePreview) {
         const previewFile = this.__getPreviewFile();
-        if (previewFile.isTemporary() || !previewFile.isWriteable()) {
+        if (!previewFile.isTemporary() && !previewFile.isWriteable()) {
+          // preview file already exists, but it is not writable
+          enablePreview = false;
+        } else if (previewFile.isTemporary() && !cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+          // parent folder is not writable and preview file does not exist
           enablePreview = false;
         }
       }
