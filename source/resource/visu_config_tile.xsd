@@ -724,6 +724,19 @@
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
+            <xsd:attribute name="curve">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="linear" />
+                  <xsd:enumeration value="step" />
+                  <xsd:enumeration value="natural" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
             <xsd:attribute name="color" type="color">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>

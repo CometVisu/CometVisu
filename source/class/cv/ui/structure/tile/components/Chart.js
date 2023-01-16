@@ -235,7 +235,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           title: '',
           start: 'end-1day',
           end: 'now',
-          xTicks: d3.timeHour.every(4)
+          xTicks: d3.timeHour.every(4),
+          curve: 'linear'
         }, seriesConfig);
 
         let attr;
@@ -385,7 +386,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           ]
         ]);
       }
-
 
       this._chart = this._lineChart(chartData, {
         x: d => d.time,
@@ -660,13 +660,35 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       if (lineGroups.size > 0) {
-        // Construct a line generator.
-        const line = d3
-          .line()
-          //.defined(i => D[i])
-          .curve(config.curve)
-          .x(i => xScale(X[i]))
-          .y(i => yScale(Y[i]));
+        const lineFunctions = {};
+        for (let key of lineGroups.keys()) {
+          const curveName = this._dataSetConfigs[key].curve || 'linear';
+          if (!Object.prototype.hasOwnProperty.call(lineFunctions, curveName)) {
+            let curveFunction;
+            switch (curveName) {
+              case 'linear':
+                curveFunction = d3.curveLinear;
+                break;
+
+              case 'step':
+                curveFunction = d3.curveStep;
+                break;
+
+              case 'natural':
+                curveFunction = d3.curveNatural;
+                break;
+            }
+            if (curveFunction) {
+              // Construct a line generator.
+              lineFunctions[curveName] = d3
+                .line()
+                //.defined(i => D[i])
+                .curve(curveFunction)
+                .x(i => xScale(X[i]))
+                .y(i => yScale(Y[i]));
+            }
+          }
+        }
 
         linePath = svg
           .append('g')
@@ -681,18 +703,45 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
           .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
-          .attr('d', d => line(d[1]));
+          .attr('d', d => {
+            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
+            const func = lineFunctions[curveName] || lineFunctions.linear;
+            return func(d[1]);
+          });
       }
 
       // Add the area
       if (areaGroups.size > 0) {
-        const area = d3
-          .area()
-          //.defined(i => D[i])
-          .curve(config.curve)
-          .x(i => xScale(X[i]))
-          .y0(() => config.yRange[0])
-          .y1(i => yScale(Y[i]));
+        const areaFunctions = {};
+        for (let key of areaGroups.keys()) {
+          const curveName = this._dataSetConfigs[key].curve || 'linear';
+          if (!Object.prototype.hasOwnProperty.call(areaFunctions, curveName)) {
+            let curveFunction;
+            switch (curveName) {
+              case 'linear':
+                curveFunction = d3.curveLinear;
+                break;
+
+              case 'step':
+                curveFunction = d3.curveStep;
+                break;
+
+              case 'natural':
+                curveFunction = d3.curveNatural;
+                break;
+            }
+            if (curveFunction) {
+              // Construct a line generator.
+              areaFunctions[curveName] = d3
+                .area()
+                //.defined(i => D[i])
+                .curve(curveFunction)
+                .x(i => xScale(X[i]))
+                .y0(() => config.yRange[0])
+                .y1(i => yScale(Y[i]));
+            }
+          }
+        }
 
         svg
           .append('g')
@@ -703,7 +752,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
           .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
-          .attr('d', d => area(d[1]));
+          .attr('d', d => {
+            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
+            const func = areaFunctions[curveName] || areaFunctions.linear;
+            return func(d[1]);
+          });
       }
 
       if (barGroups.size > 0) {
