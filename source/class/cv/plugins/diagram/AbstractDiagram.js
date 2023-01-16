@@ -324,7 +324,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
         const client = cv.TemplateEngine.getInstance().visu;
-        if (client.hasCustomChartsDataProcessor(tsdata)) {
+        if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         } else {
           // calculate timestamp offset and scaling
