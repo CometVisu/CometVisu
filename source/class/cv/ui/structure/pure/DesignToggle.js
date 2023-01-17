@@ -1,7 +1,7 @@
-/* DesignToggle.js 
- * 
+/* DesignToggle.js
+ *
  * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -37,28 +37,6 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
 
   /*
    ******************************************************
-   CONSTRUCTOR
-   ******************************************************
-   */
-  construct: function(props) {
-    this.base(arguments, props);
-    const store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
-    store.addListener('loaded', function (ev) {
-      this.setAvailableDesigns(ev.getData());
-    }, this);
-  },
-
-  /*
-   ******************************************************
-   PROPERTIES
-   ******************************************************
-   */
-  properties: {
-    availableDesigns: { check: 'Array', init: [] }
-  },
-
-  /*
-   ******************************************************
    MEMBERS
    ******************************************************
    */
@@ -80,10 +58,10 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
  return; 
 }
 
-      const designs = this.getAvailableDesigns();
+      const designs = cv.Config.designStructureMap.pure;
 
       const oldDesign = this.getDomElement().querySelector('.value').textContent;
-      const newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
+      const newDesign = designs[(designs.indexOf(oldDesign) + 1) % designs.length];
 
       const URL = cv.util.Location.getHref();
       const regexp = new RegExp('design=' + oldDesign);
