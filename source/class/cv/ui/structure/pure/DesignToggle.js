@@ -36,29 +36,6 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
 
   /*
    ******************************************************
-   CONSTRUCTOR
-   ******************************************************
-   */
-  construct(props) {
-    super(props);
-    const store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
-
-    store.addListener('loaded', ev => {
-      this.setAvailableDesigns(ev.getData());
-    });
-  },
-
-  /*
-   ******************************************************
-   PROPERTIES
-   ******************************************************
-   */
-  properties: {
-    availableDesigns: { check: 'Array', init: [] }
-  },
-
-  /*
-   ******************************************************
    MEMBERS
    ******************************************************
    */
@@ -80,10 +57,10 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
         return;
       }
 
-      const designs = this.getAvailableDesigns();
+      const designs = cv.Config.designStructureMap.pure;
 
       const oldDesign = this.getDomElement().querySelector('.value').textContent;
-      const newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
+      const newDesign = designs[(designs.indexOf(oldDesign) + 1) % designs.length];
 
       const URL = cv.util.Location.getHref();
       const regexp = new RegExp('design=' + oldDesign);
