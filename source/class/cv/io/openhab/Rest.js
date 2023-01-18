@@ -155,18 +155,22 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     processChartsData(response) {
-      const data = response.data;
-      const newRrd = [];
-      let lastValue;
-      let value;
-      for (let j = 0, l = data.length; j < l; j++) {
-        value = parseFloat(data[j].state);
-        if (value !== lastValue) {
-          newRrd.push([data[j].time, value]);
+      if (response && response.data) {
+        const data = response.data;
+        const newRrd = [];
+        let lastValue;
+        let value;
+        for (let j = 0, l = data.length; j < l; j++) {
+          value = parseFloat(data[j].state);
+          if (value !== lastValue) {
+            newRrd.push([data[j].time, value]);
+          }
+          lastValue = value;
         }
-        lastValue = value;
+        return newRrd;
       }
-      return newRrd;
+      this.error('invalid chart data response');
+      return [];
     },
 
     /**

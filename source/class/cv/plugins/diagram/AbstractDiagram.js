@@ -354,7 +354,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       let tsdata = ev.getTarget().getResponse();
       if (tsdata !== null) {
         const client = cv.io.BackendConnections.getClient();
-        if (client.hasCustomChartsDataProcessor(tsdata)) {
+        // never convert influx data
+        if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
           tsdata = client.processChartsData(tsdata);
         } else {
           // calculate timestamp offset and scaling
@@ -371,23 +372,22 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           }
           tsdata = newRrd;
         }
+        let now = Date.now();
+
+        if (forceNowDatapoint && tsdata.length > 0) {
+          let last = Array.from(tsdata[tsdata.length - 1]); // force copy
+          last[0] = now;
+          tsdata.push(last);
+        }
+
+        this.cache[key].data = tsdata;
+        this.cache[key].timestamp = now;
+
+        this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+          waitingCallback[0](tsdata, waitingCallback[1]);
+        }, this);
+        this.cache[key].waitingCallbacks.length = 0; // empty array)
       }
-
-      let now = Date.now();
-
-      if (forceNowDatapoint && tsdata.length > 0) {
-        let last = Array.from(tsdata[tsdata.length - 1]); // force copy
-        last[0] = now;
-        tsdata.push(last);
-      }
-
-      this.cache[key].data = tsdata;
-      this.cache[key].timestamp = now;
-
-      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-        waitingCallback[0](tsdata, waitingCallback[1]);
-      }, this);
-      this.cache[key].waitingCallbacks.length = 0; // empty array)
     },
 
     _onStatusError(ts, key, ev) {
