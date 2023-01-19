@@ -180,6 +180,18 @@
       </xsd:attribute>
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
+    <xsd:attribute name="foreground-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the value bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Wertbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="background-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the background bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Hintergrundbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
@@ -739,7 +751,7 @@
             </xsd:attribute>
             <xsd:attribute name="color" type="color">
               <xsd:annotation>
-                <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
                 <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
               </xsd:annotation>
             </xsd:attribute>

@@ -107,40 +107,69 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       }
       const type = this.getType();
       let height = type === 'semiCircle' ? radius : radius * 2;
-      let code = `<svg height="${height}" width="${radius * 2}" type="${type}">`;
+      const ns = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('height', height);
+      svg.setAttribute('width', '' + (radius * 2));
+      svg.setAttribute('type', type);
+      //let code = `<svg height="${height}" width="${radius * 2}" type="${type}">`;
       if (type === 'circle') {
         if (!element.hasAttribute('no-background')) {
-          code += `<circle class="bg" 
-                r="${normalizedRadius}" 
-                cx="50%" 
-                cy="50%" 
-                fill="transparent" 
-                stroke-width="${strokeWidth}"/>`;
+          const bg = document.createElementNS(ns, 'circle');
+          bg.classList.add('bg');
+          bg.setAttribute('r', '' +normalizedRadius);
+          bg.setAttribute('cx', '50%');
+          bg.setAttribute('cy', '50%');
+          bg.setAttribute('fill', 'transparent');
+          bg.setAttribute('stroke-width', strokeWidth);
+          if (element.hasAttribute('background-color')) {
+            bg.style.stroke = element.getAttribute('background-color');
+          }
+          svg.appendChild(bg);
         }
-        code += `<circle class="bar" 
-              r="${normalizedRadius}" 
-              cx="50%" 
-              cy="50%" 
-              stroke-width="${strokeWidth}" 
-              stroke-dasharray="${this.__circumference} ${this.__circumference}" 
-              stroke-dashoffset="${this.__circumference}"/>`;
+        const bar = document.createElementNS(ns, 'circle');
+        bar.classList.add('bar');
+        bar.setAttribute('r', '' +normalizedRadius);
+        bar.setAttribute('cx', '50%');
+        bar.setAttribute('cy', '50%');
+        bar.setAttribute('stroke-width', strokeWidth);
+        bar.setAttribute('stroke-dasharray', `${this.__circumference} ${this.__circumference}`);
+        bar.setAttribute('stroke-dashoffset', this.__circumference);
+        if (element.hasAttribute('foreground-color')) {
+          bar.style.stroke = element.getAttribute('foreground-color');
+        }
+        svg.appendChild(bar);
       } else if (type === 'semiCircle') {
         if (!element.hasAttribute('no-background')) {
-          code += `<path class="bg" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${
+          const bg = document.createElementNS(ns, 'path');
+          bg.classList.add('bg');
+          bg.setAttribute('d', `M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 1 ${
             radius * 2 - strokeWidth / 2
-          } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
+          } ${radius}`);
+          bg.setAttribute('fill', 'transparent');
+          bg.setAttribute('stroke-width', strokeWidth);
+          if (element.hasAttribute('background-color')) {
+            bg.style.stroke = element.getAttribute('background-color');
+          }
+          svg.appendChild(bg);
         }
         this.__start = {
           x: strokeWidth / 2,
           y: radius
         };
-
-        code += `<path class="bar" d="M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${
+        const bar = document.createElementNS(ns, 'path');
+        bar.classList.add('bar');
+        bar.setAttribute('d', `M ${strokeWidth / 2} ${radius} A ${normalizedRadius} ${normalizedRadius} 0 0 0 ${
           strokeWidth / 2
-        } ${radius}" fill="transparent" stroke-width="${strokeWidth}"/>`;
+        } ${radius}`);
+        bar.setAttribute('fill', 'transparent');
+        bar.setAttribute('stroke-width', strokeWidth);
+        if (element.hasAttribute('foreground-color')) {
+          bar.style.stroke = element.getAttribute('foreground-color');
+        }
+        svg.appendChild(bar);
       }
-      code += '</svg><label></label>';
-      element.innerHTML = code;
+      element.replaceChildren(svg, document.createElement('label'));
 
       this.__availableLabelWidth = radius * 2 - strokeWidth * 2 - 24;
 
