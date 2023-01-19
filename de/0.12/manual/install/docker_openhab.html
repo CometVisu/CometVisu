@@ -35,7 +35,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -118,68 +118,68 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Update
 <span class="go">sudo apt-get update</span>
 
-<span class="gp"># </span>Vorausetzungen installieren
+<span class="gp"># </span>Vorausetzungen<span class="w"> </span>installieren
 <span class="go">sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</span>
 
-<span class="gp"># </span>Hinzufügen vom Docker GPG-Key
+<span class="gp"># </span>Hinzufügen<span class="w"> </span>vom<span class="w"> </span>Docker<span class="w"> </span>GPG-Key
 <span class="go">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
 
-<span class="gp"># </span>Hinzufügen vom Docker Repository
+<span class="gp"># </span>Hinzufügen<span class="w"> </span>vom<span class="w"> </span>Docker<span class="w"> </span>Repository
 <span class="go">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span>
 
-<span class="gp"># </span>Nochmal ein Update
+<span class="gp"># </span>Nochmal<span class="w"> </span>ein<span class="w"> </span>Update
 <span class="go">sudo apt-get update</span>
 
-<span class="gp"># </span>Installation docker-ce und Compose
+<span class="gp"># </span>Installation<span class="w"> </span>docker-ce<span class="w"> </span>und<span class="w"> </span>Compose
 <span class="go">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose</span>
 </pre></div>
 </div>
 </section>
 <section id="systemvorbereitungen">
 <h2>3. Systemvorbereitungen<a class="headerlink" href="#systemvorbereitungen" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Aktuellen Benutzer zur Gruppe *Docker* hinzufügen
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Aktuellen<span class="w"> </span>Benutzer<span class="w"> </span>zur<span class="w"> </span>Gruppe<span class="w"> </span>*Docker*<span class="w"> </span>hinzufügen
 <span class="go">sudo usermod -aG docker $USER</span>
 </pre></div>
 </div>
 <p>Nach dem Aufnehmen des Benutzers nochmal neu Anmelden</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen vom Verzeichnis resource/config unter dem aktuellen Benutzer
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen<span class="w"> </span>vom<span class="w"> </span>Verzeichnis<span class="w"> </span>resource/config<span class="w"> </span>unter<span class="w"> </span>dem<span class="w"> </span>aktuellen<span class="w"> </span>Benutzer
 <span class="go">sudo mkdir -p resource/config</span>
 
-<span class="gp"># </span>Anlegen einer Beispiel XML-Datei unter resource/config
+<span class="gp"># </span>Anlegen<span class="w"> </span>einer<span class="w"> </span>Beispiel<span class="w"> </span>XML-Datei<span class="w"> </span>unter<span class="w"> </span>resource/config
 <span class="go">sudo nano resource/config/visu_config.xml</span>
 </pre></div>
 </div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="nt">&lt;pages</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span> <span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;pure&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;statusbar&gt;</span>
-    <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">    </span><span class="nt">&lt;statusbar&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            &lt;img src=&quot;resource/icons/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
 <span class="cp">            -&lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
 <span class="cp">            -&lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;!edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;!edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
 <span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">        - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
 <span class="cp">        &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
 <span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;/statusbar&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/statusbar&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
-<span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Startseite&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Startseite&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen der Verzeichnisse Backup und media unter resource/config
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen<span class="w"> </span>der<span class="w"> </span>Verzeichnisse<span class="w"> </span>Backup<span class="w"> </span>und<span class="w"> </span>media<span class="w"> </span>unter<span class="w"> </span>resource/config
 <span class="go">sudo mkdir -p resource/config/media</span>
 <span class="go">sudo mkdir -p resource/config/backup</span>
 
-<span class="gp"># </span>Rechte für den Webserver setzen
+<span class="gp"># </span>Rechte<span class="w"> </span>für<span class="w"> </span>den<span class="w"> </span>Webserver<span class="w"> </span>setzen
 <span class="go">sudo chown -hR www-data:www-data resource/config</span>
 </pre></div>
 </div>
@@ -188,37 +188,37 @@ Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich is
 <h2>4. CometVisu per Docker installieren<a class="headerlink" href="#cometvisu-per-docker-installieren" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Jetzt den Container installieren</p>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># yaml datei Anlegen</span>
-sudo nano docker-compose.yaml
+sudo<span class="w"> </span>nano<span class="w"> </span>docker-compose.yaml
 
 <span class="c"># Beispielinhalt für openhab</span>
 
-version: <span class="s1">&#39;3.4&#39;</span>
+version:<span class="w"> </span><span class="s1">&#39;3.4&#39;</span>
 services:
-    cometvisu:
-        image: <span class="s2">&quot;cometvisu/cometvisu:latest&quot;</span>
-        restart: always
-        ports:
-        - <span class="m">80</span>:80
-        volumes:
-            - ./resource/config:/var/www/html/resource/config
-        environment:
-            KNX_INTERFACE: <span class="s2">&quot;&quot;</span>
-            CGI_URL_PATH: <span class="s2">&quot;/rest/cv/&quot;</span>
-            BACKEND_PROXY_SOURCE: <span class="s2">&quot;/rest&quot;</span>
-            BACKEND_PROXY_TARGET: <span class="s2">&quot;http://&lt;IP-Openhab2&gt;:8080/rest&quot;</span>
+<span class="w">    </span>cometvisu:
+<span class="w">        </span>image:<span class="w"> </span><span class="s2">&quot;cometvisu/cometvisu:latest&quot;</span>
+<span class="w">        </span>restart:<span class="w"> </span>always
+<span class="w">        </span>ports:
+<span class="w">        </span>-<span class="w"> </span><span class="m">80</span>:80
+<span class="w">        </span>volumes:
+<span class="w">            </span>-<span class="w"> </span>./resource/config:/var/www/html/resource/config
+<span class="w">        </span>environment:
+<span class="w">            </span>BACKEND_NAME:<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
+<span class="w">            </span>BACKEND_OPENHAB:<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
+<span class="w">            </span>BACKEND_PROXY_SOURCE:<span class="w"> </span><span class="s2">&quot;/rest&quot;</span>
+<span class="w">            </span>BACKEND_PROXY_TARGET:<span class="w"> </span><span class="s2">&quot;http://&lt;IP-Openhab2&gt;:8080/rest&quot;</span>
 </pre></div>
 </div>
 <div class="admonition hint">
 <p class="admonition-title">Hinweis</p>
 <p>Bei der YAML-Datei ist darauf zu achten, dass die Einrückungen jeweils mit 2 Leerzeichen erstellt werden.</p>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>docker starten
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>docker<span class="w"> </span>starten
 <span class="go">docker-compose up -d</span>
 
-<span class="gp"># </span>Name des laufenden containers herausfinden
+<span class="gp"># </span>Name<span class="w"> </span>des<span class="w"> </span>laufenden<span class="w"> </span>containers<span class="w"> </span>herausfinden
 <span class="go">docker-compose ps</span>
 
-<span class="gp"># </span>IP Adresse des Docker Container herausfinden &lt;name&gt; bitte mit dem passenden Namen ersetzen
+<span class="gp"># </span>IP<span class="w"> </span>Adresse<span class="w"> </span>des<span class="w"> </span>Docker<span class="w"> </span>Container<span class="w"> </span>herausfinden<span class="w"> </span>&lt;name&gt;<span class="w"> </span>bitte<span class="w"> </span>mit<span class="w"> </span>dem<span class="w"> </span>passenden<span class="w"> </span>Namen<span class="w"> </span>ersetzen
 <span class="go">docker inspect -f &#39;{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39; &lt;name&gt;</span>
 </pre></div>
 </div>
@@ -237,7 +237,7 @@ services:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -252,7 +252,7 @@ services:
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

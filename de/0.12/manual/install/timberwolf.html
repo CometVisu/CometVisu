@@ -35,7 +35,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -399,12 +399,12 @@ Empfehlung die Testing Version mit diesen Parametern zu installieren:</p>
 <dd><p>Um den Inhalt einer RRD Datei <code class="docutils literal notranslate"><span class="pre">RRD_Name</span></code> von einer Architektur auf eine
 andere zu übertragen muss auf dem Quell-System (also z.B. dem WireGate) der
 Befehl</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump<span class="w"> </span>/var/www/rrd/RRD_Name.rrd<span class="w"> </span>&gt;<span class="w"> </span>RRD_Name.xml
 </pre></div>
 </div>
 <p>ausgeführt werden. Auf dem Ziel-System (also z.B. einem Container auf dem
 Timberwolf) wird dann mit dem Befehl</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>restore<span class="w"> </span>-f<span class="w"> </span>RRD_Name.xml<span class="w"> </span>RRD_Name.rrd
 </pre></div>
 </div>
 <p>die neue RRD-Datei angelegt.</p>
@@ -415,11 +415,11 @@ Punkt erfolgt und somit der Import fehl schlägt. Hier wäre dann der Export
 mit generischem <code class="docutils literal notranslate"><span class="pre">LANG=C</span></code> durchzuführen.</p>
 <p>Um eine größere Menge an RRD-Dateien zu konvertieren kann dies über eine
 Schleife vereinfacht werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span> <span class="k">for</span> f <span class="k">in</span> *.rrd<span class="p">;</span> <span class="k">do</span> rrdtool dump <span class="si">${</span><span class="nv">f</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span> <span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.rrd<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rrdtool<span class="w"> </span>dump<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
 <p>bzw.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> f <span class="k">in</span> *.xml<span class="p">;</span> <span class="k">do</span> rrdtool restore <span class="si">${</span><span class="nv">f</span><span class="si">}</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span> <span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.xml<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rrdtool<span class="w"> </span>restore<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
 </dd>
@@ -438,7 +438,7 @@ Schleife vereinfacht werden:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -453,7 +453,7 @@ Schleife vereinfacht werden:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

@@ -29,6 +29,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.bom.PageVisibility": {
         "construct": true
       },
+      "qx.io.request.Xhr": {
+        "construct": true
+      },
       "qx.util.Uri": {},
       "qx.util.LibraryManager": {},
       "cv.io.Client": {},
@@ -70,8 +73,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.bom.client.Html": {
         "require": true
       },
-      "cv.io.rest.Client": {},
-      "qx.io.request.Xhr": {}
+      "cv.io.rest.Client": {}
     },
     "environment": {
       "provided": [],
@@ -124,6 +126,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     ***********************************************
     */
     construct: function construct() {
+      var _this = this;
+
       qx.application.Native.constructor.call(this);
       this.__P_2_0 = false;
       this.initCommandManager(new qx.ui.command.GroupManager());
@@ -147,7 +151,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         window.showConfigErrors = window.parent.showConfigErrors;
       } else {
         window.showConfigErrors = this.showConfigErrors.bind(this);
-      }
+      } // check HTTP server by requesting a small file
+
+
+      var xhr = new qx.io.request.Xhr('version');
+      xhr.set({
+        method: 'GET'
+      });
+
+      var check = function check(e) {
+        var req = e.getTarget();
+        var server = req.getResponseHeader('Server');
+        var isOpenHAB = server ? server.startsWith('Jetty') : false;
+
+        _this.setServedByOpenhab(isOpenHAB);
+
+        _this.setServerChecked(true);
+      };
+
+      xhr.addListenerOnce('success', check, this);
+      xhr.addListenerOnce('statusError', check, this);
+      xhr.addListenerOnce('error', function (e) {
+        var req = e.getTarget();
+
+        _this.error('error checking server environment needed to setup the REST url', req.getStatus());
+      });
+      xhr.send();
     },
 
     /*
@@ -281,6 +310,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         init: false,
         event: 'changeMobile',
         apply: '_applyMobile'
+      },
+      serverChecked: {
+        check: 'Boolean',
+        init: false,
+        event: 'serverCheckedChanged'
+      },
+      servedByOpenhab: {
+        check: 'Boolean',
+        init: false
+      },
+      serverHasPhpSupport: {
+        check: 'Boolean',
+        init: false,
+        event: 'serverHasPhpSupportChanged'
       }
     },
 
@@ -335,11 +378,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
        * during startup of the application
        */
       main: function main() {
-        var _this = this;
+        var _this2 = this;
 
         cv.ConfigCache.init();
 
-        this._checkBackend();
+        if (this.isServerChecked()) {
+          this._checkBackend();
+        } else {
+          this.addListenerOnce('serverCheckedChanged', this._checkBackend, this);
+        }
 
         qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
         cv.report.Record.prepare();
@@ -356,7 +403,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var manCommand = new qx.ui.command.Command('Ctrl+M');
         cv.TemplateEngine.getInstance().getCommands().add('open-manager', manCommand);
         manCommand.addListener('execute', function () {
-          return _this.showManager();
+          return _this2.showManager();
         }, this);
         this.registerServiceWorker();
         // Call super class
@@ -465,7 +512,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         });
       },
       validateConfig: function validateConfig(configName) {
-        var _this2 = this;
+        var _this3 = this;
 
         var worker = cv.data.FileWorker.getInstance();
         var displayConfigName = configName;
@@ -515,7 +562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           } else {
             // show result message as dialog
-            qx.log.Logger.error(_this2, res);
+            qx.log.Logger.error(_this3, res);
             cv.core.notifications.Router.dispatchMessage(notification.topic, Object.assign({}, notification, {
               target: 'popup',
               message: qx.locale.Manager.tr('The %1 configuration has %2 errors!', displayConfigName, res.length),
@@ -532,7 +579,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }));
           }
         })["catch"](function (err) {
-          _this2.error(err);
+          _this3.error(err);
         });
       },
       __P_2_2: function __P_2_2(ex) {
@@ -1063,12 +1110,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       },
       _checkBackend: function _checkBackend() {
-        var _this3 = this;
+        var _this4 = this;
 
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
         } else {
-          var url = cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
+          var isOpenHab = this.isServedByOpenhab();
+          var url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment' : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
           var xhr = new qx.io.request.Xhr(url);
           xhr.set({
             method: 'GET',
@@ -1077,79 +1125,92 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           xhr.addListenerOnce('success', function (e) {
             var req = e.getTarget();
             var env = req.getResponse();
-            var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
 
-            var disable = false;
+            if (typeof env === 'string' && env.startsWith('<?php')) {
+              // no php support
+              this.setServerHasPhpSupport(false);
+              this.error('Disabling manager due to missing PHP support.');
+              this.setManagerDisabled(true);
+              this.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
+              this.setManagerChecked(true);
+            } else {
+              // is this is served by native openHAB server, we do not have native PHP support, only the basic
+              // rest api is available, but nothing else that needs PHP (like some plugin backend code)
+              this.setServerHasPhpSupport(!isOpenHab);
+              var serverVersionId = env.PHP_VERSION_ID; //const [major, minor] = env.phpversion.split('.').map(ver => parseInt(ver));
 
-            if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
-              var parts = env.required_php_version.split(' ');
-              disable = parts.some(function (constraint) {
-                var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
+              var disable = false;
 
-                if (match) {
-                  var operator = match[1];
-                  var majorConstraint = parseInt(match[2]);
-                  var hasMinorVersion = match[3] !== undefined;
-                  var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
-                  var hasPatchVersion = match[4] !== undefined;
-                  var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
-                  var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
-                  var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
+              if (Object.prototype.hasOwnProperty.call(env, 'required_php_version')) {
+                var parts = env.required_php_version.split(' ');
+                disable = parts.some(function (constraint) {
+                  var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
 
-                  switch (operator) {
-                    case '>=':
-                      if (serverVersionId < constraintId) {
-                        return true;
-                      }
+                  if (match) {
+                    var operator = match[1];
+                    var majorConstraint = parseInt(match[2]);
+                    var hasMinorVersion = match[3] !== undefined;
+                    var minorConstraint = hasMinorVersion ? parseInt(match[3]) : 0;
+                    var hasPatchVersion = match[4] !== undefined;
+                    var patchConstraint = hasPatchVersion ? parseInt(match[4]) : 0;
+                    var constraintId = 10000 * majorConstraint + 100 * minorConstraint + patchConstraint;
+                    var maxId = 10000 * majorConstraint + (hasMinorVersion ? 100 * minorConstraint : 999) + (hasPatchVersion ? patchConstraint : 99); // incomplete implementation of: https://getcomposer.org/doc/articles/versions.md#writing-version-constraints
 
-                      break;
+                    switch (operator) {
+                      case '>=':
+                        if (serverVersionId < constraintId) {
+                          return true;
+                        }
 
-                    case '>':
-                      if (serverVersionId <= constraintId) {
-                        return true;
-                      }
+                        break;
 
-                      break;
+                      case '>':
+                        if (serverVersionId <= constraintId) {
+                          return true;
+                        }
 
-                    case '<=':
-                      if (serverVersionId > maxId) {
-                        return true;
-                      }
+                        break;
 
-                      break;
+                      case '<=':
+                        if (serverVersionId > maxId) {
+                          return true;
+                        }
 
-                    case '<':
-                      if (serverVersionId >= maxId) {
-                        return true;
-                      }
+                        break;
 
-                      break;
+                      case '<':
+                        if (serverVersionId >= maxId) {
+                          return true;
+                        }
 
-                    case '^':
-                      if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
-                        return true;
-                      }
+                        break;
 
-                      break;
+                      case '^':
+                        if (serverVersionId < constraintId || serverVersionId > 10000 * (majorConstraint + 1)) {
+                          return true;
+                        }
 
-                    case '~':
-                      if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
-                        return true;
-                      }
+                        break;
 
-                      break;
+                      case '~':
+                        if (serverVersionId < constraintId || hasPatchVersion ? serverVersionId > 10000 * (majorConstraint + 1) : serverVersionId > 10000 * majorConstraint + 100 * (patchConstraint + 1)) {
+                          return true;
+                        }
+
+                        break;
+                    }
                   }
+
+                  return false;
+                });
+
+                if (disable) {
+                  this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+                  this.setManagerDisabled(true);
+                  this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+                } else {
+                  this.info('Manager available for PHP version', env.phpversion);
                 }
-
-                return false;
-              });
-
-              if (disable) {
-                this.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-                this.setManagerDisabled(true);
-                this.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
-              } else {
-                this.info('Manager available for PHP version', env.phpversion);
               }
             }
 
@@ -1172,7 +1233,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }, this);
           xhr.addListener('statusError', function (e) {
-            _this3.setManagerChecked(true);
+            _this4.setManagerChecked(true);
           });
           xhr.send();
         }
@@ -1227,4 +1288,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1661116904033
+//# sourceMappingURL=Application.js.map?dt=1674150449421

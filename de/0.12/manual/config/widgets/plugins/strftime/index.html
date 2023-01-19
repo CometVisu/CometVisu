@@ -35,7 +35,7 @@
             <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -311,13 +311,13 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;plugins&gt;</span>
-        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y %H:%M:%S&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;strftime</span><span class="w"> </span><span class="na">lang=</span><span class="s">&quot;de&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y %H:%M:%S&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/strftime&gt;</span>
 </pre></div>
 </div>
@@ -348,47 +348,47 @@ class=&quot;timedate&quot;
 </pre></div>
 </div>
 <p>In der config.xml sieht dieser Abschnitt wie folgt aus:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Aktuelle Zeit&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%H:%M&quot;</span> <span class="na">class=</span><span class="s">&quot;timebig&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/strftime&gt;</span>
-        <span class="nt">&lt;strftime</span> <span class="na">lang=</span><span class="s">&quot;de&quot;</span> <span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y&quot;</span> <span class="na">class=</span><span class="s">&quot;timedate&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/strftime&gt;</span>
-    <span class="nt">&lt;/group&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Aktuelle Zeit&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;strftime</span><span class="w"> </span><span class="na">lang=</span><span class="s">&quot;de&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%H:%M&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;timebig&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/strftime&gt;</span>
+<span class="w">        </span><span class="nt">&lt;strftime</span><span class="w"> </span><span class="na">lang=</span><span class="s">&quot;de&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;timedate&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/strftime&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/group&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
 <p>Für die Formatierung (Farbe, Schriftgröße und Schriftart) muss im Visu Verzeichnis unter
 <code class="docutils literal notranslate"><span class="pre">/designs/metal/custom.css</span></code> noch folgender Abschnitt eingefügt werden:</p>
-<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#75d5ff</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">12</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#75d5ff</span><span class="p">;</span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">12</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">custom_timebig</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="kt">mm</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">3</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">mm</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">mm</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="w"> </span><span class="mi">3</span><span class="kt">mm</span><span class="w"> </span><span class="s2">&quot;Lucida Grande&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Lucida</span><span class="p">,</span><span class="w"> </span><span class="n">Verdana</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">custom_timedate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">strftime_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p class="rubric">Fußnoten</p>
@@ -412,7 +412,7 @@ class=&quot;timedate&quot;
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -427,7 +427,7 @@ class=&quot;timedate&quot;
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

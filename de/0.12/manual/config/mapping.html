@@ -35,7 +35,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -128,9 +128,9 @@ beziehen kann.</p>
 <section id="mapping-von-werten-zu-text">
 <h2>Mapping von Werten zu Text<a class="headerlink" href="#mapping-von-werten-zu-text" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Eine einfache Definition im Meta-Bereich sieht folgendermaßen aus:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AusAn&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Aus<span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>An<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AusAn&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Aus<span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>An<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -155,13 +155,13 @@ Rechner auf dem die CometVisu läuft unter
 <p>Man kann damit Mapping nutzen um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.</p>
 <p>Die Definition im Meta-Bereich sieht dann folgendermaßen aus:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_light_dim_00&quot;</span> <span class="na">color=</span><span class="s">&quot;grey&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_light_dim_100&quot;</span> <span class="na">color=</span><span class="s">&quot;white&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;On_Off_Symbol&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light_light_dim_00&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;grey&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light_light_dim_100&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;white&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -192,16 +192,16 @@ sondern direkt im Mapping.</p>
 <section id="mapping-von-nicht-binaren-werten">
 <h2>Mapping von nicht-binären Werten<a class="headerlink" href="#mapping-von-nicht-binaren-werten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mapping funktioniert nicht nur bei binären Datentypen:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;AufZuTuerSymbol&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_door&quot;</span> <span class="na">color=</span><span class="s">&quot;green&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_door_open&quot;</span> <span class="na">color=</span><span class="s">&quot;red&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_door_tilt&quot;</span> <span class="na">color=</span><span class="s">&quot;orange&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;AufZuTuerSymbol&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_door&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;green&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_door_open&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;red&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_door_tilt&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;orange&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -223,10 +223,10 @@ durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 <h2>Wertebereiche<a class="headerlink" href="#wertebereiche" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Es können auch Wertbereiche für die entsprechende Darstellung gewählt
 werden:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Vorzeichen&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;-1e99&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Negativ<span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Null<span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Positiv<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Vorzeichen&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;-1e99&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Negativ<span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Null<span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Positiv<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -245,9 +245,9 @@ die „Null“) zu definieren.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>: wird angewendet, wenn kein vorher definiertes Mapping für den Wert gefunden wurde</p></li>
 </ul>
 </div></blockquote>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Fehler&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;NULL&quot;</span><span class="nt">&gt;</span>Fehler<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;*&quot;</span><span class="nt">&gt;</span>Ok<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Fehler&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;NULL&quot;</span><span class="nt">&gt;</span>Fehler<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;*&quot;</span><span class="nt">&gt;</span>Ok<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -263,8 +263,8 @@ Wert „y“ zuweisen muss.</p>
 nicht durchgeführt werden, dafür muss eine externe Logik Engine (linknx
 o.ä.) eingesetzt werden. Allerdings ist es durchaus möglich, die
 gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Umrechnen_kW&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;formula&gt;</span>y = x*1000<span class="nt">&lt;/formula&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Umrechnen_kW&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>x*1000<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -274,30 +274,30 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
- <span class="nt">&lt;mappings&gt;</span>
-  <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;formula&gt;</span>y = x*1.8+32<span class="nt">&lt;/formula&gt;</span>
-  <span class="nt">&lt;/mapping&gt;</span>
- <span class="nt">&lt;/mappings&gt;</span>
+<span class="w"> </span><span class="nt">&lt;mappings&gt;</span>
+<span class="w">  </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>x*1.8+32<span class="nt">&lt;/formula&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/mapping&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/mappings&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;group</span> <span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f C&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;label&gt;</span>Aussentemperatur<span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/6/0<span class="nt">&lt;/address&gt;</span>
-    <span class="nt">&lt;/info&gt;</span>
-    <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f F&quot;</span> <span class="na">mapping=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;label&gt;</span>Aussentemperatur<span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/6/0<span class="nt">&lt;/address&gt;</span>
-    <span class="nt">&lt;/info&gt;</span>
+<span class="nt">&lt;group</span><span class="w"> </span><span class="na">nowidget=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f C&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;label&gt;</span>Aussentemperatur<span class="nt">&lt;/label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/6/0<span class="nt">&lt;/address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/info&gt;</span>
+<span class="w">    </span><span class="nt">&lt;info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f F&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;C-to-F&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;label&gt;</span>Aussentemperatur<span class="nt">&lt;/label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>3/6/0<span class="nt">&lt;/address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/info&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
 <p>Mit diesem Beispiel können fehlerhafte Sensoren in einer Übersichtsseite markiert werden.
 Sensoren liefern in der Regel nummerische Werte. Bleiben diesen aus, kann z.B. das expire-Binding
 in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein <em>OK</em> oder <em>not OK</em> liefern:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;formula&gt;</span>y = (x &gt;= 0) ? &quot;OK&quot; : &quot;not OK&quot;;<span class="nt">&lt;/formula&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>(x<span class="w"> </span>&gt;=<span class="w"> </span>0)<span class="w"> </span>?<span class="w"> </span>&quot;OK&quot;<span class="w"> </span>:<span class="w"> </span>&quot;not<span class="w"> </span>OK&quot;;<span class="nt">&lt;/formula&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -324,15 +324,15 @@ folgendem Mapping:</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
- <span class="nt">&lt;mappings&gt;</span>
-  <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;formula&gt;</span>y = x <span class="ni">&amp;amp;&amp;amp;</span> x.constructor === Date ? x.getHours() + &#39;:&#39; + x.getMinutes() : x;<span class="nt">&lt;/formula&gt;</span>
-  <span class="nt">&lt;/mapping&gt;</span>
- <span class="nt">&lt;/mappings&gt;</span>
+<span class="w"> </span><span class="nt">&lt;mappings&gt;</span>
+<span class="w">  </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>x<span class="w"> </span><span class="ni">&amp;amp;&amp;amp;</span><span class="w"> </span>x.constructor<span class="w"> </span>===<span class="w"> </span>Date<span class="w"> </span>?<span class="w"> </span>x.getHours()<span class="w"> </span>+<span class="w"> </span>&#39;:&#39;<span class="w"> </span>+<span class="w"> </span>x.getMinutes()<span class="w"> </span>:<span class="w"> </span>x;<span class="nt">&lt;/formula&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/mapping&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/mappings&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%s Uhr&quot;</span> <span class="na">class=</span><span class="s">&quot;value_right&quot;</span> <span class="na">mapping=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:datetime&quot;</span><span class="nt">&gt;</span>Sunrise_Time<span class="nt">&lt;/address&gt;</span>
+<span class="nt">&lt;info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%s Uhr&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value_right&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;HourMinute&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:datetime&quot;</span><span class="nt">&gt;</span>Sunrise_Time<span class="nt">&lt;/address&gt;</span>
 <span class="nt">&lt;/info&gt;</span>
 </pre></div>
 </div>
@@ -357,185 +357,185 @@ Objekt aufrufen kann.</p>
 <section id="wind-und-windstarke">
 <h3>Wind und Windstärke<a class="headerlink" href="#wind-und-windstarke" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Für Wetterdaten in km/h:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;11&quot;</span> <span class="na">range_max=</span><span class="s">&quot;19&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;19&quot;</span> <span class="na">range_max=</span><span class="s">&quot;28&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;28&quot;</span> <span class="na">range_max=</span><span class="s">&quot;38&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;38&quot;</span> <span class="na">range_max=</span><span class="s">&quot;49&quot;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;49&quot;</span> <span class="na">range_max=</span><span class="s">&quot;61&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;61&quot;</span> <span class="na">range_max=</span><span class="s">&quot;74&quot;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;74&quot;</span> <span class="na">range_max=</span><span class="s">&quot;88&quot;</span><span class="nt">&gt;</span>9<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;88&quot;</span> <span class="na">range_max=</span><span class="s">&quot;102&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;102&quot;</span> <span class="na">range_max=</span><span class="s">&quot;117&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;117&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>12<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kmh2bft&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;11&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;19&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;19&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;28&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;28&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;38&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;38&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;49&quot;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;49&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;61&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;61&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;74&quot;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;74&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;88&quot;</span><span class="nt">&gt;</span>9<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;88&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;102&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;102&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;117&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;117&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>12<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 
-<span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;kmh2wind_text&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>Windstille<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>leiser Zug<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>leichte Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;11&quot;</span> <span class="na">range_max=</span><span class="s">&quot;19&quot;</span><span class="nt">&gt;</span>schwache Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;19&quot;</span> <span class="na">range_max=</span><span class="s">&quot;28&quot;</span><span class="nt">&gt;</span>maessige Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;28&quot;</span> <span class="na">range_max=</span><span class="s">&quot;38&quot;</span><span class="nt">&gt;</span>frische Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;38&quot;</span> <span class="na">range_max=</span><span class="s">&quot;49&quot;</span><span class="nt">&gt;</span>starker Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;49&quot;</span> <span class="na">range_max=</span><span class="s">&quot;61&quot;</span><span class="nt">&gt;</span>steifer Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;61&quot;</span> <span class="na">range_max=</span><span class="s">&quot;74&quot;</span><span class="nt">&gt;</span>stuermischer Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;74&quot;</span> <span class="na">range_max=</span><span class="s">&quot;88&quot;</span><span class="nt">&gt;</span>Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;88&quot;</span> <span class="na">range_max=</span><span class="s">&quot;102&quot;</span><span class="nt">&gt;</span>schwerer Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;102&quot;</span> <span class="na">range_max=</span><span class="s">&quot;117&quot;</span><span class="nt">&gt;</span>orkanartiker Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;117&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan<span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;kmh2wind_text&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>Windstille<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;5&quot;</span><span class="nt">&gt;</span>leiser<span class="w"> </span>Zug<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>leichte<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;11&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;19&quot;</span><span class="nt">&gt;</span>schwache<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;19&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;28&quot;</span><span class="nt">&gt;</span>maessige<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;28&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;38&quot;</span><span class="nt">&gt;</span>frische<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;38&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;49&quot;</span><span class="nt">&gt;</span>starker<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;49&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;61&quot;</span><span class="nt">&gt;</span>steifer<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;61&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;74&quot;</span><span class="nt">&gt;</span>stuermischer<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;74&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;88&quot;</span><span class="nt">&gt;</span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;88&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;102&quot;</span><span class="nt">&gt;</span>schwerer<span class="w"> </span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;102&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;117&quot;</span><span class="nt">&gt;</span>orkanartiker<span class="w"> </span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;117&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
 <p>Für Wetterdaten in m/s:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span> <span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;3.4&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5.5&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;8.0&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;8.0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;10.8&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;10.8&quot;</span> <span class="na">range_max=</span><span class="s">&quot;13.9&quot;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;13.9&quot;</span> <span class="na">range_max=</span><span class="s">&quot;17.2&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;17.2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;20.8&quot;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;20.8&quot;</span> <span class="na">range_max=</span><span class="s">&quot;24.5&quot;</span><span class="nt">&gt;</span>9<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;24.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;28.5&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;28.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;32.7&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;32.7&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>12<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ms2bft&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>0<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;3.4&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;5.5&quot;</span><span class="nt">&gt;</span>3<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;5.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;8.0&quot;</span><span class="nt">&gt;</span>4<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;8.0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;10.8&quot;</span><span class="nt">&gt;</span>5<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;10.8&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;13.9&quot;</span><span class="nt">&gt;</span>6<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;13.9&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;17.2&quot;</span><span class="nt">&gt;</span>7<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;17.2&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;20.8&quot;</span><span class="nt">&gt;</span>8<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;20.8&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;24.5&quot;</span><span class="nt">&gt;</span>9<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;24.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;28.5&quot;</span><span class="nt">&gt;</span>10<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;28.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;32.7&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;32.7&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>12<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 
-<span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2wind_text&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>Windstille<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>leiser Zug<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span> <span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>leichte Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;3.4&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5.5&quot;</span><span class="nt">&gt;</span>schwache Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;8.0&quot;</span><span class="nt">&gt;</span>maessige Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;8.0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;10.8&quot;</span><span class="nt">&gt;</span>frische Brise<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;10.8&quot;</span> <span class="na">range_max=</span><span class="s">&quot;13.9&quot;</span><span class="nt">&gt;</span>starker Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;13.9&quot;</span> <span class="na">range_max=</span><span class="s">&quot;17.2&quot;</span><span class="nt">&gt;</span>steifer Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;17.2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;20.8&quot;</span><span class="nt">&gt;</span>stuermischer Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;20.8&quot;</span> <span class="na">range_max=</span><span class="s">&quot;24.5&quot;</span><span class="nt">&gt;</span>Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;24.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;28.5&quot;</span><span class="nt">&gt;</span>schwerer Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;28.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;32.7&quot;</span><span class="nt">&gt;</span>orkanartiger Sturm<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;32.7&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan<span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ms2wind_text&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0.3&quot;</span><span class="nt">&gt;</span>Windstille<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0.3&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1.6&quot;</span><span class="nt">&gt;</span>leiser<span class="w"> </span>Zug<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;1.6&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;3.4&quot;</span><span class="nt">&gt;</span>leichte<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;3.4&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;5.5&quot;</span><span class="nt">&gt;</span>schwache<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;5.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;8.0&quot;</span><span class="nt">&gt;</span>maessige<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;8.0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;10.8&quot;</span><span class="nt">&gt;</span>frische<span class="w"> </span>Brise<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;10.8&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;13.9&quot;</span><span class="nt">&gt;</span>starker<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;13.9&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;17.2&quot;</span><span class="nt">&gt;</span>steifer<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;17.2&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;20.8&quot;</span><span class="nt">&gt;</span>stuermischer<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;20.8&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;24.5&quot;</span><span class="nt">&gt;</span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;24.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;28.5&quot;</span><span class="nt">&gt;</span>schwerer<span class="w"> </span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;28.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;32.7&quot;</span><span class="nt">&gt;</span>orkanartiger<span class="w"> </span>Sturm<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;32.7&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 
-<span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;ms2wind_fulltext&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;0.2&quot;</span><span class="nt">&gt;</span>Windstille - Keine Luftbewegung. Rauch steigt senkrecht empor<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.2&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1.5&quot;</span><span class="nt">&gt;</span>Geringer Wind - Kaum merklich. Rauch treibt leicht ab<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;1.5&quot;</span> <span class="na">range_max=</span><span class="s">&quot;3.3&quot;</span><span class="nt">&gt;</span>Leichter Wind - Blätter rascheln. Wind im Gesicht spürbar<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;3.3&quot;</span> <span class="na">range_max=</span><span class="s">&quot;5.4&quot;</span><span class="nt">&gt;</span>Schwacher Wind - Blätter und dünne Zweige bewegen sich, Wimpel werden gestreckt <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;5.4&quot;</span> <span class="na">range_max=</span><span class="s">&quot;7.9&quot;</span><span class="nt">&gt;</span>Mäßiger Wind - Zweige bewegen sich, loses Papier wird vom Boden gehoben<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;7.9&quot;</span> <span class="na">range_max=</span><span class="s">&quot;10.9&quot;</span><span class="nt">&gt;</span>Frischer Wind - Größere Zweige und Bäume bewegen sich, Wind deutlich hörbar <span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;10.9&quot;</span> <span class="na">range_max=</span><span class="s">&quot;13.8&quot;</span><span class="nt">&gt;</span>Starker Wind - Dicke Äste bewegen sich, hörbares Pfeifen an Drahtseilen, in Telefonleitungen<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;13.8&quot;</span> <span class="na">range_max=</span><span class="s">&quot;17.1&quot;</span><span class="nt">&gt;</span>Steifer Wind - Bäume schwanken, Widerstand beim Gehen gegen den Wind<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;17.1&quot;</span> <span class="na">range_max=</span><span class="s">&quot;20.7&quot;</span><span class="nt">&gt;</span>Stürmischer Wind - Große Bäume werden bewegt, Fensterläden werden geöffnet, Zweige brechen von Bäumen, beim Gehen erhebliche Behinderung<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;20.7&quot;</span> <span class="na">range_max=</span><span class="s">&quot;24.4&quot;</span><span class="nt">&gt;</span>Sturm - Äste brechen, kleiner Schäden an Häusern, Ziegel und Rauchhauben werden von Dächern gehoben, Gartenmöbel werden umgeworfen und verweht, beim Gehen erhebliche Behinderung<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;24.4&quot;</span> <span class="na">range_max=</span><span class="s">&quot;28.4&quot;</span><span class="nt">&gt;</span>schwerer Sturm - Bäume werden entwurzelt, Baumstämme brechen, Gartenmöbel werden weggeweht, größere Schäden an Häusern; selten im Landesinneren<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;28.4&quot;</span> <span class="na">range_max=</span><span class="s">&quot;32.6&quot;</span><span class="nt">&gt;</span>orkanartiker Sturm - heftige Böen, schwere Sturmschäden, schwere Schäden an Wäldern (Windbruch), Dächer werden abgedeckt, Autos werden aus der Spur geworfen, dicke Mauern werden beschädigt, Gehen ist unmöglich; sehr selten im Landesinneren<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;32.6&quot;</span> <span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan - Schwerste Sturmschäden und Verwüstungen; sehr selten im Landesinneren<span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ms2wind_fulltext&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0.2&quot;</span><span class="nt">&gt;</span>Windstille<span class="w"> </span>-<span class="w"> </span>Keine<span class="w"> </span>Luftbewegung.<span class="w"> </span>Rauch<span class="w"> </span>steigt<span class="w"> </span>senkrecht<span class="w"> </span>empor<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0.2&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1.5&quot;</span><span class="nt">&gt;</span>Geringer<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Kaum<span class="w"> </span>merklich.<span class="w"> </span>Rauch<span class="w"> </span>treibt<span class="w"> </span>leicht<span class="w"> </span>ab<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;1.5&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;3.3&quot;</span><span class="nt">&gt;</span>Leichter<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Blätter<span class="w"> </span>rascheln.<span class="w"> </span>Wind<span class="w"> </span>im<span class="w"> </span>Gesicht<span class="w"> </span>spürbar<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;3.3&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;5.4&quot;</span><span class="nt">&gt;</span>Schwacher<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Blätter<span class="w"> </span>und<span class="w"> </span>dünne<span class="w"> </span>Zweige<span class="w"> </span>bewegen<span class="w"> </span>sich,<span class="w"> </span>Wimpel<span class="w"> </span>werden<span class="w"> </span>gestreckt<span class="w"> </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;5.4&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;7.9&quot;</span><span class="nt">&gt;</span>Mäßiger<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Zweige<span class="w"> </span>bewegen<span class="w"> </span>sich,<span class="w"> </span>loses<span class="w"> </span>Papier<span class="w"> </span>wird<span class="w"> </span>vom<span class="w"> </span>Boden<span class="w"> </span>gehoben<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;7.9&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;10.9&quot;</span><span class="nt">&gt;</span>Frischer<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Größere<span class="w"> </span>Zweige<span class="w"> </span>und<span class="w"> </span>Bäume<span class="w"> </span>bewegen<span class="w"> </span>sich,<span class="w"> </span>Wind<span class="w"> </span>deutlich<span class="w"> </span>hörbar<span class="w"> </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;10.9&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;13.8&quot;</span><span class="nt">&gt;</span>Starker<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Dicke<span class="w"> </span>Äste<span class="w"> </span>bewegen<span class="w"> </span>sich,<span class="w"> </span>hörbares<span class="w"> </span>Pfeifen<span class="w"> </span>an<span class="w"> </span>Drahtseilen,<span class="w"> </span>in<span class="w"> </span>Telefonleitungen<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;13.8&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;17.1&quot;</span><span class="nt">&gt;</span>Steifer<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Bäume<span class="w"> </span>schwanken,<span class="w"> </span>Widerstand<span class="w"> </span>beim<span class="w"> </span>Gehen<span class="w"> </span>gegen<span class="w"> </span>den<span class="w"> </span>Wind<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;17.1&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;20.7&quot;</span><span class="nt">&gt;</span>Stürmischer<span class="w"> </span>Wind<span class="w"> </span>-<span class="w"> </span>Große<span class="w"> </span>Bäume<span class="w"> </span>werden<span class="w"> </span>bewegt,<span class="w"> </span>Fensterläden<span class="w"> </span>werden<span class="w"> </span>geöffnet,<span class="w"> </span>Zweige<span class="w"> </span>brechen<span class="w"> </span>von<span class="w"> </span>Bäumen,<span class="w"> </span>beim<span class="w"> </span>Gehen<span class="w"> </span>erhebliche<span class="w"> </span>Behinderung<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;20.7&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;24.4&quot;</span><span class="nt">&gt;</span>Sturm<span class="w"> </span>-<span class="w"> </span>Äste<span class="w"> </span>brechen,<span class="w"> </span>kleiner<span class="w"> </span>Schäden<span class="w"> </span>an<span class="w"> </span>Häusern,<span class="w"> </span>Ziegel<span class="w"> </span>und<span class="w"> </span>Rauchhauben<span class="w"> </span>werden<span class="w"> </span>von<span class="w"> </span>Dächern<span class="w"> </span>gehoben,<span class="w"> </span>Gartenmöbel<span class="w"> </span>werden<span class="w"> </span>umgeworfen<span class="w"> </span>und<span class="w"> </span>verweht,<span class="w"> </span>beim<span class="w"> </span>Gehen<span class="w"> </span>erhebliche<span class="w"> </span>Behinderung<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;24.4&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;28.4&quot;</span><span class="nt">&gt;</span>schwerer<span class="w"> </span>Sturm<span class="w"> </span>-<span class="w"> </span>Bäume<span class="w"> </span>werden<span class="w"> </span>entwurzelt,<span class="w"> </span>Baumstämme<span class="w"> </span>brechen,<span class="w"> </span>Gartenmöbel<span class="w"> </span>werden<span class="w"> </span>weggeweht,<span class="w"> </span>größere<span class="w"> </span>Schäden<span class="w"> </span>an<span class="w"> </span>Häusern;<span class="w"> </span>selten<span class="w"> </span>im<span class="w"> </span>Landesinneren<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;28.4&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;32.6&quot;</span><span class="nt">&gt;</span>orkanartiker<span class="w"> </span>Sturm<span class="w"> </span>-<span class="w"> </span>heftige<span class="w"> </span>Böen,<span class="w"> </span>schwere<span class="w"> </span>Sturmschäden,<span class="w"> </span>schwere<span class="w"> </span>Schäden<span class="w"> </span>an<span class="w"> </span>Wäldern<span class="w"> </span>(Windbruch),<span class="w"> </span>Dächer<span class="w"> </span>werden<span class="w"> </span>abgedeckt,<span class="w"> </span>Autos<span class="w"> </span>werden<span class="w"> </span>aus<span class="w"> </span>der<span class="w"> </span>Spur<span class="w"> </span>geworfen,<span class="w"> </span>dicke<span class="w"> </span>Mauern<span class="w"> </span>werden<span class="w"> </span>beschädigt,<span class="w"> </span>Gehen<span class="w"> </span>ist<span class="w"> </span>unmöglich;<span class="w"> </span>sehr<span class="w"> </span>selten<span class="w"> </span>im<span class="w"> </span>Landesinneren<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;32.6&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;1e99&quot;</span><span class="nt">&gt;</span>Orkan<span class="w"> </span>-<span class="w"> </span>Schwerste<span class="w"> </span>Sturmschäden<span class="w"> </span>und<span class="w"> </span>Verwüstungen;<span class="w"> </span>sehr<span class="w"> </span>selten<span class="w"> </span>im<span class="w"> </span>Landesinneren<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="windrichtung">
 <h3>Windrichtung<a class="headerlink" href="#windrichtung" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0&quot;</span> <span class="na">range_max=</span><span class="s">&quot;11.25&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;11.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;33.75&quot;</span><span class="nt">&gt;</span>Nordnordost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;33.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;56.25&quot;</span><span class="nt">&gt;</span>Nordost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;56.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;78.75&quot;</span><span class="nt">&gt;</span>Ostnordost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;78.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;101.25&quot;</span><span class="nt">&gt;</span>Ost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;101.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;123.75&quot;</span><span class="nt">&gt;</span>Ostsüdost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;123.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;146.25&quot;</span><span class="nt">&gt;</span>Südost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;146.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;168.75&quot;</span><span class="nt">&gt;</span>Südsüdost<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;168.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;191.25&quot;</span><span class="nt">&gt;</span>Süd<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;191.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;213.75&quot;</span><span class="nt">&gt;</span>Südsüdwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;213.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;236.25&quot;</span><span class="nt">&gt;</span>Südwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;236.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;258.75&quot;</span><span class="nt">&gt;</span>Westsüdwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;258.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;281.25&quot;</span><span class="nt">&gt;</span>West<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;281.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;303.75&quot;</span><span class="nt">&gt;</span>Westnordwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;303.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;326.25&quot;</span><span class="nt">&gt;</span>Nordwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;326.25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;348.75&quot;</span><span class="nt">&gt;</span>Nordnordwest<span class="nt">&lt;/entry&gt;</span>
-    <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;348.75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;360&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Windrichtung_°&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;11.25&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;11.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;33.75&quot;</span><span class="nt">&gt;</span>Nordnordost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;33.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;56.25&quot;</span><span class="nt">&gt;</span>Nordost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;56.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;78.75&quot;</span><span class="nt">&gt;</span>Ostnordost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;78.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;101.25&quot;</span><span class="nt">&gt;</span>Ost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;101.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;123.75&quot;</span><span class="nt">&gt;</span>Ostsüdost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;123.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;146.25&quot;</span><span class="nt">&gt;</span>Südost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;146.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;168.75&quot;</span><span class="nt">&gt;</span>Südsüdost<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;168.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;191.25&quot;</span><span class="nt">&gt;</span>Süd<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;191.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;213.75&quot;</span><span class="nt">&gt;</span>Südsüdwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;213.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;236.25&quot;</span><span class="nt">&gt;</span>Südwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;236.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;258.75&quot;</span><span class="nt">&gt;</span>Westsüdwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;258.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;281.25&quot;</span><span class="nt">&gt;</span>West<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;281.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;303.75&quot;</span><span class="nt">&gt;</span>Westnordwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;303.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;326.25&quot;</span><span class="nt">&gt;</span>Nordwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;326.25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;348.75&quot;</span><span class="nt">&gt;</span>Nordnordwest<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;348.75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;360&quot;</span><span class="nt">&gt;</span>Nord<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="rollladen-raffstores-und-jalousien">
 <h3>Rollläden, Raffstores und Jalousien<a class="headerlink" href="#rollladen-raffstores-und-jalousien" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Jalousie&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_window_2w&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.01&quot;</span> <span class="na">range_max=</span><span class="s">&quot;14.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_10&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;15&quot;</span> <span class="na">range_max=</span><span class="s">&quot;24.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_20&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;34.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_30&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;35&quot;</span> <span class="na">range_max=</span><span class="s">&quot;44.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_40&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;45&quot;</span> <span class="na">range_max=</span><span class="s">&quot;54.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_50&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;55&quot;</span> <span class="na">range_max=</span><span class="s">&quot;64.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_60&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;65&quot;</span> <span class="na">range_max=</span><span class="s">&quot;74.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_70&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;84.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_80&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;85&quot;</span> <span class="na">range_max=</span><span class="s">&quot;99.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_90&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_shutter_100&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Jalousie&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_window_2w&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0.01&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;14.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;15&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;24.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_20&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;34.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_30&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;35&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;44.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_40&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;45&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;54.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_50&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;55&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;64.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_60&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;65&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;74.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_70&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;84.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_80&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;85&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;99.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_90&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter_100&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
-<span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Lamelle&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_00&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;0.01&quot;</span> <span class="na">range_max=</span><span class="s">&quot;14.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_10&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;15&quot;</span> <span class="na">range_max=</span><span class="s">&quot;24.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_20&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;25&quot;</span> <span class="na">range_max=</span><span class="s">&quot;34.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_30&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;35&quot;</span> <span class="na">range_max=</span><span class="s">&quot;44.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_40&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;45&quot;</span> <span class="na">range_max=</span><span class="s">&quot;54.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_50&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;55&quot;</span> <span class="na">range_max=</span><span class="s">&quot;64.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_60&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;65&quot;</span> <span class="na">range_max=</span><span class="s">&quot;74.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_70&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;75&quot;</span> <span class="na">range_max=</span><span class="s">&quot;84.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_80&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">range_min=</span><span class="s">&quot;85&quot;</span> <span class="na">range_max=</span><span class="s">&quot;99.99&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_90&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
-  <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;fts_blade_arc_100&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Lamelle&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_00&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0.01&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;14.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_10&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;15&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;24.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_20&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;25&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;34.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_30&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;35&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;44.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_40&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;45&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;54.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_50&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;55&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;64.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_60&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;65&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;74.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_70&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;75&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;84.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_80&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;85&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;99.99&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_90&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
+<span class="w">  </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_blade_arc_100&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/mapping&gt;</span>
 </pre></div>
 </div>
@@ -554,7 +554,7 @@ Objekt aufrufen kann.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -569,7 +569,7 @@ Objekt aufrufen kann.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

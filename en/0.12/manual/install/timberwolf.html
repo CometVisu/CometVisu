@@ -34,7 +34,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -391,12 +391,12 @@ the testing version should be installed with these parameters:</p>
 <dd><p>In order to transfer the contents of an RRD file <code class="docutils literal notranslate"><span class="pre">RRD_Name</span></code>
 from one architecture to another, the command has to be
 executed on the source system (eg, WireGate)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump /var/www/rrd/RRD_Name.rrd &gt; RRD_Name.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump<span class="w"> </span>/var/www/rrd/RRD_Name.rrd<span class="w"> </span>&gt;<span class="w"> </span>RRD_Name.xml
 </pre></div>
 </div>
 <p>On the target system (for example, a container on the Timber Wolf)
 is then the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool restore -f RRD_Name.xml RRD_Name.rrd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>restore<span class="w"> </span>-f<span class="w"> </span>RRD_Name.xml<span class="w"> </span>RRD_Name.rrd
 </pre></div>
 </div>
 <p>executed to create a new RRD-File.</p>
@@ -407,11 +407,11 @@ done with a comma instead of a point and thus the import fails.
 Here export would then be performed with generic <code class="docutils literal notranslate"><span class="pre">LANG=C</span></code>.</p>
 <p>To convert a larger amount of RRD files this can be done
 through a loop:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span> <span class="k">for</span> f <span class="k">in</span> *.rrd<span class="p">;</span> <span class="k">do</span> rrdtool dump <span class="si">${</span><span class="nv">f</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span> <span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LANG</span><span class="o">=</span>C<span class="p">;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.rrd<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rrdtool<span class="w"> </span>dump<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span>.xml<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> f <span class="k">in</span> *.xml<span class="p">;</span> <span class="k">do</span> rrdtool restore <span class="si">${</span><span class="nv">f</span><span class="si">}</span> <span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span> <span class="k">done</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.xml<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>rrdtool<span class="w"> </span>restore<span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">f</span><span class="si">}</span>.rrd<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
 </dd>
@@ -430,7 +430,7 @@ through a loop:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -445,7 +445,7 @@ through a loop:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

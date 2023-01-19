@@ -35,7 +35,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -139,7 +139,7 @@ oder ein <a class="reference external" href="CometVisu/rrdtool">RRDtool mit Patc
 </ul>
 <p>(beides ist auf dem wiregate und auf dem Raspberry Pi image
 standardmäßig verfügbar)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd# cat /etc/crontab
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd#<span class="w"> </span>cat<span class="w"> </span>/etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
 <span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
 <span class="c1"># command to install the new version when you edit this file</span>
@@ -153,10 +153,10 @@ standardmäßig verfügbar)</p>
 
 <span class="c1"># etliche Zeilen entfernt, bitte NICHT diese Datei per copy&amp;paste nutzen sondern die RRD-Crons unten an die bestehende Datei anhängen!!!``</span>
 
-*/5 *   * * *   root    /var/www/rrd/cputemp
-*/5 *   * * *   root    /var/www/rrd/processes
-*/5 *   * * *   root    /var/www/rrd/cpuload
-*/5 *   * * *   root    /var/www/rrd/cpuload15
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cputemp
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/processes
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cpuload
+*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/cpuload15
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">*/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> bedeutet hierbei das der Job jederzeit alle 5 Minuten
@@ -196,14 +196,14 @@ das man dann per cron regelmäßig ausführen lässt.</p>
 <p>wenn RRD basierte Daten nicht wie vorgesehen angezeigt werden kann man
 direkt in die Datenbank schauen ob überhaupt (sinnvolle) Werte vorhanden
 sind. Hierfür gibt es das</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump
 </pre></div>
 </div>
 <p>Kommando. Dieses stellt die Datenbank als Text dar. Man sollte dann
 Zeilen mit NaN (Not a Number = Kein Wert vorhanden) ausfiltern sowie nur
 Daten-Zeilen mit anschauen. Dies kann man z.B. mit dem grep-Kommando
 machen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool dump NAMEDERDATENBANK.rrd <span class="p">|</span> grep row <span class="p">|</span> grep -v NaN
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rrdtool<span class="w"> </span>dump<span class="w"> </span>NAMEDERDATENBANK.rrd<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>row<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>NaN
 </pre></div>
 </div>
 </section>
@@ -243,7 +243,7 @@ eine Temperatur eines RTR) in einer RRD Datenbank.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -258,7 +258,7 @@ eine Temperatur eines RTR) in einer RRD Datenbank.</p></li>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

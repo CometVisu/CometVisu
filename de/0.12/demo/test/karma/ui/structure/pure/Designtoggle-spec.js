@@ -23,6 +23,16 @@
  *
  */
 describe('testing a designtoggle widget', function() {
+  const origValues = cv.Config.designStructureMap.pure;
+
+  beforeEach(() => {
+    cv.Config.designStructureMap.pure = ['metal', 'pure'];
+  });
+
+  afterEach(() => {
+    cv.Config.designStructureMap.pure = origValues;
+  });
+
   it('should test the designtoggle creator', function() {
     const [widget, element] = this.createTestWidgetString('designtoggle', {}, '<label>Test</label>');
 
@@ -33,19 +43,12 @@ describe('testing a designtoggle widget', function() {
   });
 
   it('should trigger the designtoggle action', function() {
-    var spiedStore;
-    var OriginalConstructor = qx.data.store.Json;
-    spyOn(qx.data.store, 'Json').and.callFake(function() {
-      spiedStore = new OriginalConstructor();
-      return spiedStore;
-    });
-
     var parts = window.location.href.split('#');
     var loc = parts[0];
     var anchor = parts[1] ? '#'+parts[1] : '';
     var creator = this.createTestElement('designtoggle');
     spyOn(cv.util.Location, 'setHref');
-    spiedStore.fireDataEvent('loaded', new qx.data.Array(['metal', 'pure']));
+
     var actor = creator.getActor();
 
     expect(actor).not.toBe(null);

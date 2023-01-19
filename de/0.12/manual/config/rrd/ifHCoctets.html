@@ -35,7 +35,7 @@
             <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -127,31 +127,31 @@ bei allen Geräten gegeben sein.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#</span>
 
-<span class="nb">cd</span> /var/www/rrd
+<span class="nb">cd</span><span class="w"> </span>/var/www/rrd
 
 <span class="c1"># create database if not exists</span>
-<span class="o">[</span> -f network_internet.rrd <span class="o">]</span> <span class="o">||</span> <span class="o">{</span>
-/usr/bin/rrdtool create network_internet.rrd --step <span class="m">60</span> <span class="se">\</span>
-DS:Internet_IN:COUNTER:1200:U:U <span class="se">\</span>
-DS:Internet_OUT:COUNTER:1200:U:U <span class="se">\</span>
-RRA:AVERAGE:0.5:1:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:6:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:36:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:144:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:1008:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:4320:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:52560:3200 <span class="se">\</span>
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>network_internet.rrd<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span>
+/usr/bin/rrdtool<span class="w"> </span>create<span class="w"> </span>network_internet.rrd<span class="w"> </span>--step<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="se">\</span>
+DS:Internet_IN:COUNTER:1200:U:U<span class="w"> </span><span class="se">\</span>
+DS:Internet_OUT:COUNTER:1200:U:U<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:6:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:36:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:144:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1008:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:4320:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:52560:3200<span class="w"> </span><span class="se">\</span>
 RRA:AVERAGE:0.5:525600:3200
 <span class="o">}</span>
 
-<span class="nv">NET_INTERNET_IN</span><span class="o">=</span><span class="k">$(</span>expr <span class="k">$(</span>snmpget -Oqv -v 2c -c GEHEIMECOMMUNITY <span class="m">192</span>.168.1.1 IF-MIB::ifHCInOctets.1<span class="k">)</span> / <span class="m">1000</span> <span class="se">\*</span> <span class="m">8</span><span class="k">)</span>
-<span class="nv">NET_INTERNET_OUT</span><span class="o">=</span><span class="k">$(</span>expr <span class="k">$(</span>snmpget -Oqv -v 2c -c GEHEIMECOMMUNITY <span class="m">192</span>.168.1.1 IF-MIB::ifHCOutOctets.1<span class="k">)</span> / <span class="m">1000</span> <span class="se">\*</span> <span class="m">8</span><span class="k">)</span>
+<span class="nv">NET_INTERNET_IN</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="k">$(</span>snmpget<span class="w"> </span>-Oqv<span class="w"> </span>-v<span class="w"> </span>2c<span class="w"> </span>-c<span class="w"> </span>GEHEIMECOMMUNITY<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>IF-MIB::ifHCInOctets.1<span class="k">)</span><span class="w"> </span>/<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\*</span><span class="w"> </span><span class="m">8</span><span class="k">)</span>
+<span class="nv">NET_INTERNET_OUT</span><span class="o">=</span><span class="k">$(</span>expr<span class="w"> </span><span class="k">$(</span>snmpget<span class="w"> </span>-Oqv<span class="w"> </span>-v<span class="w"> </span>2c<span class="w"> </span>-c<span class="w"> </span>GEHEIMECOMMUNITY<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>IF-MIB::ifHCOutOctets.1<span class="k">)</span><span class="w"> </span>/<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\*</span><span class="w"> </span><span class="m">8</span><span class="k">)</span>
 
-/usr/bin/rrdtool update network_internet.rrd <span class="sb">`</span>date +%s<span class="sb">`</span>:<span class="nv">$NET_INTERNET_IN</span>:<span class="nv">$NET_INTERNET_OUT</span>
+/usr/bin/rrdtool<span class="w"> </span>update<span class="w"> </span>network_internet.rrd<span class="w"> </span><span class="sb">`</span>date<span class="w"> </span>+%s<span class="sb">`</span>:<span class="nv">$NET_INTERNET_IN</span>:<span class="nv">$NET_INTERNET_OUT</span>
 </pre></div>
 </div>
 <p>Im /etc/crontab muss folgende Zeile hinzugefügt werden, um das Script alle 5 Minuten aufzurufen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/network_internet
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/network_internet
 </pre></div>
 </div>
 </section>
@@ -167,7 +167,7 @@ RRA:AVERAGE:0.5:525600:3200
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -182,7 +182,7 @@ RRA:AVERAGE:0.5:525600:3200
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

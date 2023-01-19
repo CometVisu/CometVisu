@@ -96,8 +96,14 @@
       setInitialAddresses: function setInitialAddresses(addresses) {},
       getResourcePath: function getResourcePath(name, map) {
         if (name === 'charts' && map && map.src) {
-          var url = this._backendUrl + 'persistence/items/' + map.src;
+          var parts = map.src.split(':');
+          var item = parts.pop();
+          var url = this._backendUrl + 'persistence/items/' + item;
           var params = [];
+
+          if (parts.length > 0) {
+            params.push('serviceId=' + parts[0]);
+          }
 
           if (map.start) {
             var endTime = map.end ? this.__P_487_4(map.end) : new Date();
@@ -164,14 +170,19 @@
         return true;
       },
       processChartsData: function processChartsData(response) {
-        var data = response.data;
-        var newRrd = new Array(data.length);
+        if (response && response.data) {
+          var data = response.data;
+          var newRrd = new Array(data.length);
 
-        for (var j = 0, l = data.length; j < l; j++) {
-          newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+          for (var j = 0, l = data.length; j < l; j++) {
+            newRrd[j] = [data[j].time, parseFloat(data[j].state)];
+          }
+
+          return newRrd;
         }
 
-        return newRrd;
+        this.error('invalid chart data response');
+        return [];
       },
 
       /**
@@ -453,4 +464,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1661116939719
+//# sourceMappingURL=Rest.js.map?dt=1674150492811

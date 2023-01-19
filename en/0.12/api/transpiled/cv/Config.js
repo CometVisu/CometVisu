@@ -232,7 +232,11 @@
        * Defines which structure is supported by which designs
        */
       designStructureMap: {
-        'pure': ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure']
+        'pure': [
+        /*broken  'alaska', 'alaska_slim', */
+        'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack',
+        /* broken 'planet', */
+        'pure']
       },
 
       /**
@@ -452,4 +456,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1661116939589
+//# sourceMappingURL=Config.js.map?dt=1674150492648

@@ -61,7 +61,7 @@
 
       if (!version) {
         // if no parameter value given: use the environment variable
-        version = "0.12.0";
+        version = "0.12.2";
 
         if (!version) {
           // revision or version number as fallback
@@ -92,4 +92,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1661116943703
+//# sourceMappingURL=VersionLabel.js.map?dt=1674150497509

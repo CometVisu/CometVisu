@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "cv.TemplateEngine": {},
+      "qx.core.Init": {},
       "qx.util.Uri": {},
       "qx.io.rest.Resource": {},
       "cv.ui.manager.tree.FileSystem": {},
@@ -58,11 +58,9 @@
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
           var path = '';
-          var engine = cv.TemplateEngine.getInstance();
-          var clientBackend = engine.visu && typeof engine.visu.getBackend === 'function' ? engine.visu.getBackend() : {};
 
-          if (clientBackend.resources && clientBackend.resources.rest) {
-            path = clientBackend.resources.rest;
+          if (qx.core.Init.getApplication().isServedByOpenhab()) {
+            path = '/rest/cv';
           } else {
             path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
           }
@@ -300,4 +298,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1661116940419
+//# sourceMappingURL=Client.js.map?dt=1674150493780

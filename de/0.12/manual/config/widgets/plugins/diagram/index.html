@@ -35,7 +35,7 @@
             <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -1009,18 +1009,18 @@ Mögliche Operatoren sind:</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span> <span class="na">series=</span><span class="s">&quot;fullday&quot;</span> <span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;12&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;influx</span> <span class="na">field=</span><span class="s">&quot;Val&quot;</span> <span class="na">fillMissing=</span><span class="s">&quot;linear&quot;</span> <span class="na">style=</span><span class="s">&quot;lines&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span> <span class="na">measurement=</span><span class="s">&quot;timeseries_db/KNX_LINE1&quot;</span> <span class="na">authentication=</span><span class="s">&quot;influx&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;and&gt;</span>
-      <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;PA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;1.2.3&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;or&gt;</span>
-        <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;GA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;4/2/0&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;tag</span> <span class="na">key=</span><span class="s">&quot;GA&quot;</span> <span class="na">operator=</span><span class="s">&quot;=&quot;</span> <span class="na">value=</span><span class="s">&quot;4/2/1&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;/or&gt;</span>
-    <span class="nt">&lt;/and&gt;</span>
-  <span class="nt">&lt;/influx&gt;</span>
-  <span class="nt">&lt;rrd</span> <span class="na">datasourceIndex=</span><span class="s">&quot;0&quot;</span> <span class="na">consolidationFunction=</span><span class="s">&quot;AVERAGE&quot;</span> <span class="na">fill=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>26.F25EE7000000_hum<span class="nt">&lt;/rrd&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;fullday&quot;</span><span class="w"> </span><span class="na">period=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;12&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">field=</span><span class="s">&quot;Val&quot;</span><span class="w"> </span><span class="na">fillMissing=</span><span class="s">&quot;linear&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;lines&quot;</span><span class="w"> </span><span class="na">fill=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">measurement=</span><span class="s">&quot;timeseries_db/KNX_LINE1&quot;</span><span class="w"> </span><span class="na">authentication=</span><span class="s">&quot;influx&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;and&gt;</span>
+<span class="w">      </span><span class="nt">&lt;tag</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;PA&quot;</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;=&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.2.3&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;or&gt;</span>
+<span class="w">        </span><span class="nt">&lt;tag</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;GA&quot;</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;=&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;4/2/0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;tag</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;GA&quot;</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;=&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;4/2/1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/or&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/and&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/influx&gt;</span>
+<span class="w">  </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">datasourceIndex=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">consolidationFunction=</span><span class="s">&quot;AVERAGE&quot;</span><span class="w"> </span><span class="na">fill=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>26.F25EE7000000_hum<span class="nt">&lt;/rrd&gt;</span>
 <span class="nt">&lt;/diagram&gt;</span>
 </pre></div>
 </div>
@@ -1046,14 +1046,14 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <figure class="align-default">
 <img alt="../../../../_images/Diagram_simple_inline3.png" src="../../../../_images/Diagram_simple_inline3.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span>  <span class="na">period=</span><span class="s">&quot;24&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;hour&quot;</span> <span class="na">gridcolor=</span><span class="s">&quot;#707070&quot;</span> <span class="na">popup=</span><span class="s">&quot;true&quot;</span> <span class="na">previewlabels=</span><span class="s">&quot;true&quot;</span> <span class="na">legend=</span><span class="s">&quot;both&quot;</span> <span class="na">legendposition=</span><span class="s">&quot;nw&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;axis</span> <span class="na">unit=</span><span class="s">&quot;°C&quot;</span> <span class="na">label=</span><span class="s">&quot;Temperatur&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span> <span class="na">label=</span><span class="s">&quot;Solar RL [°C]&quot;</span><span class="nt">&gt;</span>28.9B3172020000_temp<span class="nt">&lt;/rrd&gt;</span>
-    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FF00FF&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 190cm [°C]&quot;</span><span class="nt">&gt;</span>28.56A61B030000_temp<span class="nt">&lt;/rrd&gt;</span>
-    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 160cm [°C]&quot;</span><span class="nt">&gt;</span>28.DCA672020000_temp<span class="nt">&lt;/rrd&gt;</span>
-    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#00FF00&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 100cm [°C]&quot;</span><span class="nt">&gt;</span>28.EEA21B030000_temp<span class="nt">&lt;/rrd&gt;</span>
-    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#0000FF&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 40cm [°C]&quot;</span><span class="nt">&gt;</span>28.E7E17D020000_temp<span class="nt">&lt;/rrd&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span><span class="w">  </span><span class="na">period=</span><span class="s">&quot;24&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;hour&quot;</span><span class="w"> </span><span class="na">gridcolor=</span><span class="s">&quot;#707070&quot;</span><span class="w"> </span><span class="na">popup=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">previewlabels=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">legend=</span><span class="s">&quot;both&quot;</span><span class="w"> </span><span class="na">legendposition=</span><span class="s">&quot;nw&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">&quot;°C&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Temperatur&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Solar RL [°C]&quot;</span><span class="nt">&gt;</span>28.9B3172020000_temp<span class="nt">&lt;/rrd&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF00FF&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Buffer 190cm [°C]&quot;</span><span class="nt">&gt;</span>28.56A61B030000_temp<span class="nt">&lt;/rrd&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Buffer 160cm [°C]&quot;</span><span class="nt">&gt;</span>28.DCA672020000_temp<span class="nt">&lt;/rrd&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#00FF00&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Buffer 100cm [°C]&quot;</span><span class="nt">&gt;</span>28.EEA21B030000_temp<span class="nt">&lt;/rrd&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rrd</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#0000FF&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Buffer 40cm [°C]&quot;</span><span class="nt">&gt;</span>28.E7E17D020000_temp<span class="nt">&lt;/rrd&gt;</span>
 <span class="nt">&lt;/diagram&gt;</span>
 </pre></div>
 </div>
@@ -1071,7 +1071,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -1086,7 +1086,7 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

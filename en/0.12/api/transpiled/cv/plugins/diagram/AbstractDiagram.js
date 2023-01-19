@@ -385,7 +385,7 @@
         if (tsdata !== null) {
           var client = cv.TemplateEngine.getInstance().visu;
 
-          if (client.hasCustomChartsDataProcessor(tsdata)) {
+          if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
             tsdata = client.processChartsData(tsdata);
           } else {
             // calculate timestamp offset and scaling
@@ -962,4 +962,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1661116906351
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1674150452538

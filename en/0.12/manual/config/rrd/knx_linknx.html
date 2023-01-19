@@ -34,7 +34,7 @@
             <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -111,8 +111,8 @@
 <h1>Temperature from KNX with linknx<a class="headerlink" href="#temperature-from-knx-with-linknx" title="Permalink to this headline">¶</a></h1>
 <p>linknx has the option of marking KNX objects as “persistent”.</p>
 <p>Example:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;object</span> <span class="na">type=</span><span class="s">&quot;9.xxx&quot;</span> <span class="na">id=</span><span class="s">&quot;temp_office&quot;</span> <span class="na">gad=</span><span class="s">&quot;2/1/0&quot;</span> <span class="na">flags=</span><span class="s">&quot;cwu&quot;</span> <span class="na">init=</span><span class="s">&quot;persist&quot;</span> <span class="na">log=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-    Temperature Office
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;object</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;9.xxx&quot;</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;temp_office&quot;</span><span class="w"> </span><span class="na">gad=</span><span class="s">&quot;2/1/0&quot;</span><span class="w"> </span><span class="na">flags=</span><span class="s">&quot;cwu&quot;</span><span class="w"> </span><span class="na">init=</span><span class="s">&quot;persist&quot;</span><span class="w"> </span><span class="na">log=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>Temperature<span class="w"> </span>Office
 <span class="nt">&lt;/object&gt;</span>
 </pre></div>
 </div>
@@ -126,32 +126,32 @@ under /var/www/rrd/linknx_temp_office</p>
 <span class="c1">#</span>
 <span class="c1"># $Id: update_cputemp 275 2013-05-16 05:20:56Z lenik $</span>
 
-<span class="nb">cd</span> /var/www/rrd
+<span class="nb">cd</span><span class="w"> </span>/var/www/rrd
 
 <span class="c1"># create database if not exists</span>
-<span class="o">[</span> -f linknx_temp_office.rrd <span class="o">]</span> <span class="o">||</span> <span class="o">{</span>
-/usr/bin/rrdtool create linknx_temp_office.rrd --step <span class="m">300</span> <span class="se">\</span>
-DS:Temperatur:GAUGE:1200:U:U <span class="se">\</span>
-RRA:AVERAGE:0.5:1:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:6:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:36:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:144:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:1008:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:4320:3200 <span class="se">\</span>
-RRA:AVERAGE:0.5:52560:3200 <span class="se">\</span>
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>linknx_temp_office.rrd<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">{</span>
+/usr/bin/rrdtool<span class="w"> </span>create<span class="w"> </span>linknx_temp_office.rrd<span class="w"> </span>--step<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="se">\</span>
+DS:Temperatur:GAUGE:1200:U:U<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:6:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:36:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:144:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:1008:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:4320:3200<span class="w"> </span><span class="se">\</span>
+RRA:AVERAGE:0.5:52560:3200<span class="w"> </span><span class="se">\</span>
 RRA:AVERAGE:0.5:525600:3200
 <span class="o">}</span>
 
 <span class="c1"># Read temperature from text file</span>
-<span class="nv">temp</span><span class="o">=</span><span class="sb">`</span>cat /var/lib/linknx/temp_office<span class="sb">`</span>
+<span class="nv">temp</span><span class="o">=</span><span class="sb">`</span>cat<span class="w"> </span>/var/lib/linknx/temp_office<span class="sb">`</span>
 
 
 <span class="c1"># Update database</span>
-rrdtool update linknx_temp_office.rrd N:<span class="nv">$temp</span>
+rrdtool<span class="w"> </span>update<span class="w"> </span>linknx_temp_office.rrd<span class="w"> </span>N:<span class="nv">$temp</span>
 </pre></div>
 </div>
 <p>The following line must be added in /etc/crontab to call the script every 5 minutes:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5 *   * * *   root    /var/www/rrd/linknx_temp_office
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/5<span class="w"> </span>*<span class="w">   </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w">   </span>root<span class="w">    </span>/var/www/rrd/linknx_temp_office
 </pre></div>
 </div>
 </section>
@@ -167,7 +167,7 @@ rrdtool update linknx_temp_office.rrd N:<span class="nv">$temp</span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -182,7 +182,7 @@ rrdtool update linknx_temp_office.rrd N:<span class="nv">$temp</span>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

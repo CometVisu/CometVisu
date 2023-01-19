@@ -35,7 +35,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -110,7 +110,7 @@ Attribute müssen zwingend vergeben werden.</p>
 <span id="xml-format-header"></span><h2>Der Header der visu_config.xml<a class="headerlink" href="#der-header-der-visu-config-xml" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="nt">&lt;pages</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;visu_config.xsd&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;pure&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;visu_config.xsd&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
 <p>In der zweiten Zeile sind folgende Einstellungen relevant:</p>
@@ -220,11 +220,11 @@ einzuhalten!</p>
 </tbody>
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;files&gt;</span>
-        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/style.css<span class="nt">&lt;/file&gt;</span>
-        <span class="nt">&lt;file</span> <span class="na">type=</span><span class="s">&quot;js&quot;</span> <span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/media/MyCustomWidget.js<span class="nt">&lt;/file&gt;</span>
-    <span class="nt">&lt;/files&gt;</span>
-    ...
+<span class="w">    </span><span class="nt">&lt;files&gt;</span>
+<span class="w">        </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="nt">&gt;</span>resource/config/media/style.css<span class="nt">&lt;/file&gt;</span>
+<span class="w">        </span><span class="nt">&lt;file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;js&quot;</span><span class="w"> </span><span class="na">content=</span><span class="s">&quot;plugin&quot;</span><span class="nt">&gt;</span>resource/config/media/MyCustomWidget.js<span class="nt">&lt;/file&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/files&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -255,10 +255,10 @@ einzuhalten!</p>
 </tbody>
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;plugins&gt;</span>
-        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;clock&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/plugins&gt;</span>
-    ...
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;clock&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -293,14 +293,14 @@ einzuhalten!</p>
 </tbody>
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    ...
-    <span class="nt">&lt;mappings&gt;</span>
-        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Start/Stop&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Stop<span class="nt">&lt;/entry&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>Start<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;/mapping&gt;</span>
-    <span class="nt">&lt;/mappings&gt;</span>
-    ...
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;mappings&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Start/Stop&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Stop<span class="nt">&lt;/entry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>Start<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/mappings&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -335,14 +335,14 @@ einzuhalten!</p>
 </tbody>
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    ...
-    <span class="nt">&lt;stylings&gt;</span>
-        <span class="nt">&lt;styling</span> <span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
-        <span class="nt">&lt;/styling&gt;</span>
-    <span class="nt">&lt;/stylings&gt;</span>
-    ...
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;stylings&gt;</span>
+<span class="w">        </span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/stylings&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -372,11 +372,11 @@ einzuhalten!</p>
 </tbody>
 </table>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    ...
-    <span class="nt">&lt;icons&gt;</span>
-        <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./icon/unterverzeichnis/icon1.png&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/icons&gt;</span>
-    ...
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;icons&gt;</span>
+<span class="w">        </span><span class="nt">&lt;icon-definition</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Icon1&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;./icon/unterverzeichnis/icon1.png&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/icons&gt;</span>
+<span class="w">    </span>...
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -393,24 +393,24 @@ Zeile eingebunden werden: <code class="docutils literal notranslate"><span class
 <span id="xml-format-statusbar"></span><h2>Statusbar<a class="headerlink" href="#statusbar" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt z.B. das Anzeigen von externen Links (über URL).</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-    ...
-    <span class="nt">&lt;statusbar&gt;</span>
-        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">    </span>...
+<span class="w">    </span><span class="nt">&lt;statusbar&gt;</span>
+<span class="w">        </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            &lt;img src=&quot;resource/icons/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
 <span class="cp">            - &lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
 <span class="cp">            - &lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;!edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">        </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;!edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">        </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="w">        </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
 <span class="cp">            - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
 <span class="cp">            &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-    <span class="nt">&lt;/statusbar&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/statusbar&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 </pre></div>
 </div>
@@ -432,61 +432,61 @@ die entsprechenden Werte ersetzt werden. Das folgende Beispiel zeigt, wie man ei
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Beispiel eines Templates für eine Heizung und dessen Verwendung in verschiedenen Räumen</span><a class="headerlink" href="#id1" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;templates&gt;</span>
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-                  {{{ additional_content }}}
-                  <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;label&gt;</span>
-                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
-                      Heizung
-                    <span class="nt">&lt;/label&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
-                  <span class="nt">&lt;/slide&gt;</span>
-                  <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;label&gt;</span>
-                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
-                      Ist
-                    <span class="nt">&lt;/label&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
-                  <span class="nt">&lt;/info&gt;</span>
-                  <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
-                               <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
-                               <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
-                    <span class="nt">&lt;label&gt;</span>
-                      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
-                      Soll
-                    <span class="nt">&lt;/label&gt;</span>
-                    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
-                  <span class="nt">&lt;/infotrigger&gt;</span>
-                <span class="nt">&lt;/group&gt;</span>
-            <span class="nt">&lt;/template&gt;</span>
-        <span class="nt">&lt;/templates&gt;</span>
-    <span class="nt">&lt;/meta&gt;</span>
-    <span class="nt">&lt;page&gt;</span>
-        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
-            ...
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
-            <span class="nt">&lt;/template&gt;</span>
-            ...
-        <span class="nt">&lt;/page&gt;</span>
-        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
-            ...
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
-              <span class="nt">&lt;/value&gt;</span>
-            <span class="nt">&lt;/template&gt;</span>
-            ...
-        <span class="nt">&lt;/page&gt;</span>
-    <span class="nt">&lt;/page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;templates&gt;</span>
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span>{{{<span class="w"> </span>additional_content<span class="w"> </span>}}}
+<span class="w">                  </span><span class="nt">&lt;slide</span><span class="w"> </span><span class="na">min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">max=</span><span class="s">&quot;100&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">                      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                      </span>Heizung
+<span class="w">                    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>control_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;/slide&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">                      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                      </span>Ist
+<span class="w">                    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>currenttemp_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;/info&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;infotrigger</span><span class="w"> </span><span class="na">uplabel=</span><span class="s">&quot;+&quot;</span><span class="w"> </span><span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span><span class="w"> </span><span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
+<span class="w">                               </span><span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
+<span class="w">                               </span><span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">change=</span><span class="s">&quot;absolute&quot;</span><span class="w"> </span><span class="na">min=</span><span class="s">&quot;15&quot;</span><span class="w"> </span><span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">                      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;temp_control&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                      </span>Soll
+<span class="w">                    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>targettemp_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;/infotrigger&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/group&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/templates&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;page&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>...
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>...
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung<span class="w"> </span>Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
@@ -500,65 +500,65 @@ kann die mustache.js Dokumentation zu Rate gezogen werden.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Beispiel einer Template-Definition aus einer externen Datei</span><a class="headerlink" href="#id2" title="Link zu diesem Quellcode">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;pages&gt;</span>
-    <span class="nt">&lt;meta&gt;</span>
-        <span class="nt">&lt;templates&gt;</span>
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span> <span class="na">ref=</span><span class="s">&quot;resource/config/media/heizung.template.xml&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/templates&gt;</span>
-    <span class="nt">&lt;/meta&gt;</span>
-    <span class="nt">&lt;page&gt;</span>
-        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
-            ...
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
-            <span class="nt">&lt;/template&gt;</span>
-            ...
-        <span class="nt">&lt;/page&gt;</span>
-        <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
-            ...
-            <span class="nt">&lt;template</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
-              <span class="nt">&lt;value</span> <span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
-              <span class="nt">&lt;/value&gt;</span>
-            <span class="nt">&lt;/template&gt;</span>
-            ...
-        <span class="nt">&lt;/page&gt;</span>
-    <span class="nt">&lt;/page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;meta&gt;</span>
+<span class="w">        </span><span class="nt">&lt;templates&gt;</span>
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;resource/config/media/heizung.template.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/templates&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;page&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>...
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Living<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Living_Target<span class="nt">&lt;/value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>...
+<span class="w">            </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_address&quot;</span><span class="nt">&gt;</span>Heating_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;currenttemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;targettemp_address&quot;</span><span class="nt">&gt;</span>Temperature_FF_Kitchen_Target<span class="nt">&lt;/value&gt;</span>
+<span class="w">              </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;additional_content&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;text&gt;&lt;label&gt;</span>Heizung<span class="w"> </span>Küche<span class="nt">&lt;/label&gt;&lt;/text&gt;</span>
+<span class="w">              </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">            </span>...
+<span class="w">        </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Inhalt der externen Datei <code class="docutils literal notranslate"><span class="pre">resource/config/media/heizung.template.xml</span></code></span><a class="headerlink" href="#id3" title="Link zu diesem Quellcode">¶</a></div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
-  {{{ additional_content }}}
-  <span class="nt">&lt;slide</span> <span class="na">min=</span><span class="s">&quot;0&quot;</span> <span class="na">max=</span><span class="s">&quot;100&quot;</span> <span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;label&gt;</span>
-      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span> <span class="nt">/&gt;</span>
-      Heizung
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ control_address }}<span class="nt">&lt;/address&gt;</span>
-  <span class="nt">&lt;/slide&gt;</span>
-  <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;label&gt;</span>
-      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span> <span class="nt">/&gt;</span>
-      Ist
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ currenttemp_address }}<span class="nt">&lt;/address&gt;</span>
-  <span class="nt">&lt;/info&gt;</span>
-  <span class="nt">&lt;infotrigger</span> <span class="na">uplabel=</span><span class="s">&quot;+&quot;</span> <span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span> <span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
-                           <span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span> <span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
-                           <span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span> <span class="na">change=</span><span class="s">&quot;absolute&quot;</span> <span class="na">min=</span><span class="s">&quot;15&quot;</span> <span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;label&gt;</span>
-      <span class="nt">&lt;icon</span> <span class="na">name=</span><span class="s">&quot;temp_control&quot;</span> <span class="nt">/&gt;</span>
-      Soll
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{ targettemp_address }}<span class="nt">&lt;/address&gt;</span>
-  <span class="nt">&lt;/infotrigger&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Heizung&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span>{{{<span class="w"> </span>additional_content<span class="w"> </span>}}}
+<span class="w">  </span><span class="nt">&lt;slide</span><span class="w"> </span><span class="na">min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">max=</span><span class="s">&quot;100&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sani_heating&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span>Heizung
+<span class="w">    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:dimmer&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>control_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/slide&gt;</span>
+<span class="w">  </span><span class="nt">&lt;info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;temp_temperature&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span>Ist
+<span class="w">    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>currenttemp_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/info&gt;</span>
+<span class="w">  </span><span class="nt">&lt;infotrigger</span><span class="w"> </span><span class="na">uplabel=</span><span class="s">&quot;+&quot;</span><span class="w"> </span><span class="na">upvalue=</span><span class="s">&quot;0.5&quot;</span><span class="w"> </span><span class="na">downlabel=</span><span class="s">&quot;-&quot;</span>
+<span class="w">                           </span><span class="na">downvalue=</span><span class="s">&quot;-0.5&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;BluePurpleRedTemp&quot;</span>
+<span class="w">                           </span><span class="na">infoposition=</span><span class="s">&quot;middle&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">change=</span><span class="s">&quot;absolute&quot;</span><span class="w"> </span><span class="na">min=</span><span class="s">&quot;15&quot;</span><span class="w"> </span><span class="na">max=</span><span class="s">&quot;25&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;temp_control&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span>Soll
+<span class="w">    </span><span class="nt">&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>{{<span class="w"> </span>targettemp_address<span class="w"> </span>}}<span class="nt">&lt;/address&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/infotrigger&gt;</span>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
@@ -584,24 +584,24 @@ wird von oben nach unten verarbeitet. Das sieht schematisch so aus:</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
-    <span class="nt">&lt;plugins&gt;</span>
-     <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;clock&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/plugins&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">     </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;clock&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Startseite&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Seite1&quot;</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;switch</span> <span class="na">on_value=</span><span class="s">&quot;1&quot;</span> <span class="na">off_value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;label&gt;</span>Spot Fernseher<span class="nt">&lt;/label&gt;</span>
-          <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>1/0/5<span class="nt">&lt;/address&gt;</span>
-       <span class="nt">&lt;/switch&gt;</span>
-   <span class="nt">&lt;/page&gt;</span>
-   <span class="nt">&lt;colorchooser&gt;</span>
-      <span class="nt">&lt;label&gt;</span>RGB Küche<span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
-      <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
-      <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span> <span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
-   <span class="nt">&lt;/colorchooser&gt;</span>
+<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Startseite&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Seite1&quot;</span><span class="nt">&gt;</span>
+<span class="w">       </span><span class="nt">&lt;switch</span><span class="w"> </span><span class="na">on_value=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">off_value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;label&gt;</span>Spot<span class="w"> </span>Fernseher<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>1/0/5<span class="nt">&lt;/address&gt;</span>
+<span class="w">       </span><span class="nt">&lt;/switch&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/page&gt;</span>
+<span class="w">   </span><span class="nt">&lt;colorchooser&gt;</span>
+<span class="w">      </span><span class="nt">&lt;label&gt;</span>RGB<span class="w"> </span>Küche<span class="nt">&lt;/label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/address&gt;</span>
+<span class="w">      </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/address&gt;</span>
+<span class="w">      </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/address&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/colorchooser&gt;</span>
 <span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
@@ -636,7 +636,7 @@ werden:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -651,7 +651,7 @@ werden:</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

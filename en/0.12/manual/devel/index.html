@@ -34,7 +34,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -155,20 +155,20 @@ as JSON:</p>
 <p><code class="docutils literal notranslate"><span class="pre">v</span></code>: Is the protocol version</p>
 <p><code class="docutils literal notranslate"><span class="pre">s</span></code>: Session ID</p>
 <p><code class="docutils literal notranslate"><span class="pre">c</span></code>: The optional backend configuration</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;openhab2&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;transport&quot;</span><span class="p">:</span><span class="s2">&quot;sse&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;baseURL&quot;</span><span class="p">:</span><span class="s2">&quot;/rest/cv/&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;read&quot;</span><span class="p">:</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;rrd&quot;</span><span class="p">:</span><span class="s2">&quot;rrdfetch&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">            </span><span class="nt">&quot;write&quot;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;s&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;openhab2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;transport&quot;</span><span class="p">:</span><span class="s2">&quot;sse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;baseURL&quot;</span><span class="p">:</span><span class="s2">&quot;/rest/cv/&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;read&quot;</span><span class="p">:</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;rrd&quot;</span><span class="p">:</span><span class="s2">&quot;rrdfetch&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;write&quot;</span><span class="p">:</span><span class="s2">&quot;w&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -239,22 +239,22 @@ assignment, a title, text and various configuration options.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">cv.state.*</span></code>: Namespace for all in the <a class="reference internal" href="../config/notifications.html#notifications"><span class="std std-ref">notifications</span></a> messages used</p></li>
 </ul>
 <p>A message receiver (<code class="docutils literal notranslate"><span class="pre">NotificationHandler</span></code>) can now register for one or more such topics:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;cv.config.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s1">&#39;cv.error&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="nx">icon</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;message_attention&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>Wildcards are also possible:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;cv.*&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">cv</span><span class="p">.</span><span class="nx">core</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">Router</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">registerMessageHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;cv.*&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 </section>
@@ -298,7 +298,7 @@ persists and disappear automatically once the problem is resolved.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -313,7 +313,7 @@ persists and disappear automatically once the problem is resolved.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">

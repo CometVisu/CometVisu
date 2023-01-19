@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.ui.structure.AbstractWidget": {
-        "construct": true,
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -14,12 +13,6 @@
       },
       "cv.ui.common.HasAnimatedButton": {
         "require": true
-      },
-      "qx.data.store.Json": {
-        "construct": true
-      },
-      "cv.io.rest.Client": {
-        "construct": true
       },
       "cv.Config": {},
       "cv.util.Location": {},
@@ -31,10 +24,10 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
 
-  /* DesignToggle.js 
-   * 
+  /* DesignToggle.js
+   *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
-   * 
+   *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
    * Software Foundation; either version 3 of the License, or (at your option)
@@ -69,31 +62,6 @@
 
     /*
      ******************************************************
-     CONSTRUCTOR
-     ******************************************************
-     */
-    construct: function construct(props) {
-      cv.ui.structure.AbstractWidget.constructor.call(this, props);
-      var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
-      store.addListener('loaded', function (ev) {
-        this.setAvailableDesigns(ev.getData());
-      }, this);
-    },
-
-    /*
-     ******************************************************
-     PROPERTIES
-     ******************************************************
-     */
-    properties: {
-      availableDesigns: {
-        check: 'Array',
-        init: []
-      }
-    },
-
-    /*
-     ******************************************************
      MEMBERS
      ******************************************************
      */
@@ -116,9 +84,9 @@
           return;
         }
 
-        var designs = this.getAvailableDesigns();
+        var designs = cv.Config.designStructureMap.pure;
         var oldDesign = this.getDomElement().querySelector('.value').textContent;
-        var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
+        var newDesign = designs[(designs.indexOf(oldDesign) + 1) % designs.length];
         var URL = cv.util.Location.getHref();
         var regexp = new RegExp('design=' + oldDesign);
 
@@ -146,4 +114,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1661116910703
+//# sourceMappingURL=DesignToggle.js.map?dt=1674150457965

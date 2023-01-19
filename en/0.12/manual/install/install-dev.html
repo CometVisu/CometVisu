@@ -34,7 +34,7 @@
             <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                0.12.0
+                0.12.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -149,7 +149,7 @@ you have to install this first.</p>
 <p>On newer Debian based systems git can easily be installed
 via the command line (eg remote SSH connection) as root
 with this command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install git-core
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>git-core
 </pre></div>
 </div>
 </section>
@@ -163,24 +163,24 @@ yourself - recommended variant - or you can use the master.zip file.</p>
 </section>
 <section id="install-the-latest-git-version-yourself-and-compile">
 <h4>Install the latest Git version yourself and compile<a class="headerlink" href="#install-the-latest-git-version-yourself-and-compile" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install tcl
-apt-get install tk
-apt-get install python-apt
-apt-get install python-software-properties
-apt-get install zlib1g-dev
-apt-get install build-essential autoconf
-apt-get install gettext
-<span class="nb">cd</span> /usr/local/src
-wget https://www.kernel.org/pub/software/scm/git/git-2.4.1.tar.gz
-tar -xzvf git-2.4.1.tar.gz
-<span class="nb">cd</span> git-2.4.1
-make configure
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>tcl
+apt-get<span class="w"> </span>install<span class="w"> </span>tk
+apt-get<span class="w"> </span>install<span class="w"> </span>python-apt
+apt-get<span class="w"> </span>install<span class="w"> </span>python-software-properties
+apt-get<span class="w"> </span>install<span class="w"> </span>zlib1g-dev
+apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>autoconf
+apt-get<span class="w"> </span>install<span class="w"> </span>gettext
+<span class="nb">cd</span><span class="w"> </span>/usr/local/src
+wget<span class="w"> </span>https://www.kernel.org/pub/software/scm/git/git-2.4.1.tar.gz
+tar<span class="w"> </span>-xzvf<span class="w"> </span>git-2.4.1.tar.gz
+<span class="nb">cd</span><span class="w"> </span>git-2.4.1
+make<span class="w"> </span>configure
 ./configure
 make
-make install
-<span class="nb">cd</span> ..
-rm -rf git-2.4.1
-rm git-2.4.1.tar.gz
+make<span class="w"> </span>install
+<span class="nb">cd</span><span class="w"> </span>..
+rm<span class="w"> </span>-rf<span class="w"> </span>git-2.4.1
+rm<span class="w"> </span>git-2.4.1.tar.gz
 </pre></div>
 </div>
 <p>If the installation/configuration of ‘python-software-properties’ aborts,
@@ -191,12 +191,12 @@ then the following command helps:</p>
 can damage the WireGate installation! Please only run when you
 know what you’re doing!</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -f /usr/bin/python2.5 /usr/bin/python
-dpkg --configure -a
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-f<span class="w"> </span>/usr/bin/python2.5<span class="w"> </span>/usr/bin/python
+dpkg<span class="w"> </span>--configure<span class="w"> </span>-a
 </pre></div>
 </div>
 <p>The installation can be checked with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git --version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>--version
 </pre></div>
 </div>
 </section>
@@ -207,7 +207,7 @@ dpkg --configure -a
 <p>This zip file contains a readme with the make command that you must execute.</p>
 <p>If there are difficulties, you may need the following libraries
 be reinstalled:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get install libexpat1-dev build-essential libcurl4-openssl-dev libssl-dev gettext
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt-get<span class="w"> </span>install<span class="w"> </span>libexpat1-dev<span class="w"> </span>build-essential<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span>libssl-dev<span class="w"> </span>gettext
 </pre></div>
 </div>
 </section>
@@ -230,38 +230,38 @@ however, SVN (or Subversion) remains available.</p>
 <section id="git">
 <h4>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h4>
 <p>The own fork of the CometVisu is now installed by a simple command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-git clone https://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;Accountname&gt;/CometVisu.git<span class="w"> </span>CometVisuGit
 </pre></div>
 </div>
 <p>Under certain circumstances, the retrieval via https does not work,
 then the fork should be initialized via the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-git clone git://github.com/&lt;Accountname&gt;/CometVisu.git CometVisuGit
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
+git<span class="w"> </span>clone<span class="w"> </span>git://github.com/&lt;Accountname&gt;/CometVisu.git<span class="w"> </span>CometVisuGit
 </pre></div>
 </div>
 <p>The result should now be a text similar to this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Klone nach <span class="s1">&#39;CometVisuGit&#39;</span>...
-remote: Counting objects: <span class="m">20347</span>, <span class="k">done</span>.
-remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>, <span class="k">done</span>.
-remote: Total <span class="m">20347</span> <span class="o">(</span>delta <span class="m">14950</span><span class="o">)</span>, reused <span class="m">20280</span> <span class="o">(</span>delta <span class="m">14905</span><span class="o">)</span>
-Empfange Objekte: <span class="m">100</span>% <span class="o">(</span><span class="m">20347</span>/20347<span class="o">)</span>, <span class="m">48</span>.50 MiB <span class="p">|</span> <span class="m">346</span>.00 KiB/s, Fertig.
-Löse Unterschiede auf: <span class="m">100</span>% <span class="o">(</span><span class="m">14950</span>/14950<span class="o">)</span>, Fertig.
-Prüfe Konnektivität... Fertig.
-Checke Dateien aus: <span class="m">100</span>% <span class="o">(</span><span class="m">1175</span>/1175<span class="o">)</span>, Fertig.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Klone<span class="w"> </span>nach<span class="w"> </span><span class="s1">&#39;CometVisuGit&#39;</span>...
+remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">20347</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">20347</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">14950</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">20280</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">14905</span><span class="o">)</span>
+Empfange<span class="w"> </span>Objekte:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">20347</span>/20347<span class="o">)</span>,<span class="w"> </span><span class="m">48</span>.50<span class="w"> </span>MiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">346</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span>Fertig.
+Löse<span class="w"> </span>Unterschiede<span class="w"> </span>auf:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">14950</span>/14950<span class="o">)</span>,<span class="w"> </span>Fertig.
+Prüfe<span class="w"> </span>Konnektivität...<span class="w"> </span>Fertig.
+Checke<span class="w"> </span>Dateien<span class="w"> </span>aus:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1175</span>/1175<span class="o">)</span>,<span class="w"> </span>Fertig.
 </pre></div>
 </div>
 <p>If cloning has been successful, this version will be listed as <em>origin</em>.
 Then you can add the main repository as <em>upstream</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/CometVisu/CometVisu.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/CometVisu/CometVisu.git
 </pre></div>
 </div>
 </section>
 <section id="subversion">
 <h4>Subversion<a class="headerlink" href="#subversion" title="Permalink to this headline">¶</a></h4>
 <p>If the git clone did not work and an error message like</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>error: The requested URL returned error: <span class="m">403</span>
-warning: remote HEAD refers to nonexistent ref, unable to checkout.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>error:<span class="w"> </span>The<span class="w"> </span>requested<span class="w"> </span>URL<span class="w"> </span>returned<span class="w"> </span>error:<span class="w"> </span><span class="m">403</span>
+warning:<span class="w"> </span>remote<span class="w"> </span>HEAD<span class="w"> </span>refers<span class="w"> </span>to<span class="w"> </span>nonexistent<span class="w"> </span>ref,<span class="w"> </span>unable<span class="w"> </span>to<span class="w"> </span>checkout.
 </pre></div>
 </div>
 <p>appeared, it may be that the installed Git version is too old.</p>
@@ -277,24 +277,24 @@ Subversion.” and click on the word “Subversion”. Now copy the URL under
 the now appearing “Subversion checkout URL”. This should be the form
 <code class="docutils literal notranslate"><span class="pre">https://github.com/</span> <span class="pre">&lt;accountname&gt;/CometVisu</span></code> to have.</p>
 <p>At the WireGate command line, execute these commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
-svn co --depth empty https://github.com/&lt;Accountname&gt;/CometVisu CometVisuGitSVN
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www
+svn<span class="w"> </span>co<span class="w"> </span>--depth<span class="w"> </span>empty<span class="w"> </span>https://github.com/&lt;Accountname&gt;/CometVisu<span class="w"> </span>CometVisuGitSVN
 </pre></div>
 </div>
 <p>Wait for something should appear as confirmation text similar to this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Checkout, Revision <span class="m">1342</span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Checkout,<span class="w"> </span>Revision<span class="w"> </span><span class="m">1342</span>.
 </pre></div>
 </div>
 <p>Now you can continue in the installation and execute these commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> CometVisuGitSVN/
-svn up trunk
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>CometVisuGitSVN/
+svn<span class="w"> </span>up<span class="w"> </span>trunk
 </pre></div>
 </div>
 <p>If many lines with filenames appear on the screen, the command was successful.
 This is now completed by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn up --depth empty branches
-<span class="nb">cd</span> ..
-ln -s CometVisuGitSVN/trunk/src visu_git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span>up<span class="w"> </span>--depth<span class="w"> </span>empty<span class="w"> </span>branches
+<span class="nb">cd</span><span class="w"> </span>..
+ln<span class="w"> </span>-s<span class="w"> </span>CometVisuGitSVN/trunk/src<span class="w"> </span>visu_git
 </pre></div>
 </div>
 <p>Congratulations! Under <code class="docutils literal notranslate"><span class="pre">http://wiregate/visu_git/</span></code> should now run the CometVisu!</p>
@@ -305,15 +305,15 @@ ln -s CometVisuGitSVN/trunk/src visu_git
 follow these steps.</p>
 <p>In order to be able to save the Visu Config via the editor,
 write permissions still have to be set up for the file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/visu_config.xml
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>a+rw<span class="w"> </span>/var/www/visu_git/config/visu_config.xml
 </pre></div>
 </div>
 <p>The backup folder also needs write permissions:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw /var/www/visu_git/config/backup
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>a+rw<span class="w"> </span>/var/www/visu_git/config/backup
 </pre></div>
 </div>
 <p>And the preview also:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod a+rw
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>a+rw
 /var/www/visu_git/config/visu_config_previewtemp.xml
 </pre></div>
 </div>
@@ -354,19 +354,19 @@ which is closed again after completion and a pull to
 <li><p><code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">local</span> <span class="pre">computer</span> <span class="pre">(or</span> <span class="pre">WireGate)</span> <span class="pre">-&gt;</span> <span class="pre">...</span></code> - local Branches.</p></li>
 </ul>
 <p>This means that there are essentially three different locations for the files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span> &lt;-&gt; <span class="nb">local</span> on the WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>&lt;-&gt;<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>&lt;-&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>WireGate
 </pre></div>
 </div>
 <p>To keep these locations in sync, several steps must be taken.</p>
 <section id="generic">
 <h3>Generic<a class="headerlink" href="#generic" title="Permalink to this headline">¶</a></h3>
 <p>This chapter will describe the synchronization of</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;-&gt; ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>&lt;-&gt;<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <section id="update-des-github-forks">
 <h4>Update des GitHub Forks<a class="headerlink" href="#update-des-github-forks" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> -&gt; ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>To take over the last changes of the development branch
@@ -397,7 +397,7 @@ can be merged automatically.*</strong> - click here again <em>Merge pull request
 </section>
 <section id="update-of-the-main-repository-on-github">
 <h4>Update of the main repository on GitHub<a class="headerlink" href="#update-of-the-main-repository-on-github" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu <span class="o">(</span>upstream<span class="o">)</span> &lt;- ** <span class="o">(</span>origin<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>CometVisu<span class="w"> </span><span class="o">(</span>upstream<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span>
 </pre></div>
 </div>
 <p>This step is necessary to make your own changes in the
@@ -416,28 +416,28 @@ and under <em>head fork</em> the <code class="docutils literal notranslate"><spa
 <code class="docutils literal notranslate"><span class="pre">&lt;Accountname/CometVisu</span></code> as origin.</p>
 <p>This can be easily done by the command `` git remote -v``
 check:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote -v
-origin  https://github.com/&lt;Accountname&gt;/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  https://github.com/&lt;Accountname&gt;/CometVisu.git&gt;  <span class="o">(</span>push<span class="o">)</span>
-upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>fetch<span class="o">)</span>
-upstream https://github.com/CometVisu/CometVisu.git  <span class="o">(</span>push<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
+origin<span class="w">  </span>https://github.com/&lt;Accountname&gt;/CometVisu.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+origin<span class="w">  </span>https://github.com/&lt;Accountname&gt;/CometVisu.git&gt;<span class="w">  </span><span class="o">(</span>push<span class="o">)</span>
+upstream<span class="w"> </span>https://github.com/CometVisu/CometVisu.git<span class="w">  </span><span class="o">(</span>fetch<span class="o">)</span>
+upstream<span class="w"> </span>https://github.com/CometVisu/CometVisu.git<span class="w">  </span><span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <section id="update-on-wiregate">
 <h4>Update on WireGate<a class="headerlink" href="#update-on-wiregate" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>** <span class="o">(</span>origin<span class="o">)</span> -&gt; <span class="nb">local</span> on WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
 <p>Unfortunately, working with Git can not be explained in this short
 manual. Please look up here in suitable sources!</p>
 <p>The essential command for this is:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
 </pre></div>
 </div>
 </section>
 <section id="update-on-github">
 <h4>Update on GitHub<a class="headerlink" href="#update-on-github" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- <span class="nb">local</span> on WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
 <p>Publishing your own changes to GitHub requires
@@ -452,9 +452,9 @@ GitHub page.</p>
 <p>Unfortunately, working with Git can not be explained in this
 short manual. Please look up here in suitable sources!
 However, the most basic command in this context is:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add .
-git commit
-git push
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit
+git<span class="w"> </span>push
 </pre></div>
 </div>
 </section>
@@ -463,18 +463,18 @@ git push
 <h3>Subversion<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <section id="id3">
 <h4>Update on WireGate<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> -&gt; <span class="nb">local</span> on WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
 <p>To update the local files on the WireGate use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www/visu_git
-svn update .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/var/www/visu_git
+svn<span class="w"> </span>update<span class="w"> </span>.
 </pre></div>
 </div>
 </section>
 <section id="update-to-github">
 <h4>Update to GitHub<a class="headerlink" href="#update-to-github" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt; <span class="o">(</span>origin<span class="o">)</span> &lt;- <span class="nb">local</span> on WireGate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;Accountname&gt;<span class="w"> </span><span class="o">(</span>origin<span class="o">)</span><span class="w"> </span>&lt;-<span class="w"> </span><span class="nb">local</span><span class="w"> </span>on<span class="w"> </span>WireGate
 </pre></div>
 </div>
 <p>Publishing your own changes to GitHub requires several (but simple) steps.</p>
@@ -483,7 +483,7 @@ From there you can now use pull request to transfer these changes to the
 main repository <code class="docutils literal notranslate"><span class="pre">CometVisu/CometVisu</span></code>. In the pull request you can also
 choose in which branch should be integrated there.</p>
 <p>By the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn ci --username &lt;GitHub Login&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>svn<span class="w"> </span>ci<span class="w"> </span>--username<span class="w"> </span>&lt;GitHub<span class="w"> </span>Login&gt;
 </pre></div>
 </div>
 <p>own changes can be transferred to your own fork on GitHub</p>
@@ -503,7 +503,7 @@ choose in which branch should be integrated there.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2022 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -518,7 +518,7 @@ choose in which branch should be integrated there.</p>
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> Version</span>
-      v: 0.12.0
+      v: 0.12.2
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
