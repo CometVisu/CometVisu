@@ -1142,7 +1142,7 @@ msgstr "In Tile-Struktur konvertieren"
 
 #: cv/ui/manager/core/IconAtom.js
 msgid "Icon name has been copied to clipboard"
-msgstr ""
+msgstr "Der Icon-Name wurde in die Zwischenablage kopiert"
 
 #: cv/io/BackendConnections.js
 msgid "Connection to backend \"%1\" is lost."
@@ -1155,3 +1155,19 @@ msgstr "Datei \"%1\" wurde umbenannt in \"%2\""
 #: cv/ui/manager/control/FileController.js
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr "Ordner \"%1\" wurde umbenannt in \"%2\""
+
+#: cv/Application.js
+msgid "Your server does not support PHP"
+msgstr "Ihr Server unterstützt kein PHP"
+
+#: cv/ui/manager/Main.js
+msgid "Server"
+msgstr "Server"
+
+#: cv/ui/manager/Main.js
+msgid "PHP version"
+msgstr "PHP Version"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Disabling preview because the preview file could not be created."
+msgstr "Vorschau wurde deaktiviert, weil die Vorschaudatei nicht erzeugt werden konnte."

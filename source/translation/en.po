@@ -1247,3 +1247,19 @@ msgstr ""
 #: cv/ui/manager/control/FileController.js
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr ""
+
+#: cv/Application.js
+msgid "Your server does not support PHP"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Server"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "PHP version"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Disabling preview because the preview file could not be created."
+msgstr ""
