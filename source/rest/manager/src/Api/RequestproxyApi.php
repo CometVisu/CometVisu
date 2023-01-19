@@ -23,6 +23,9 @@ class RequestproxyApi extends AbstractRequestproxyApi {
     $selfSigned = Helper::getQueryParam($request, 'self-signed', 'false') === "true";
     $allowed = false;
     $configSection = [];
+    if (is_null($hidden)) {
+      $hidden = [];
+    }
     if ($hiddenConfigSection != null) {
       if (array_key_exists($hiddenConfigSection, $hidden)) {
         $configSection = $hidden[$hiddenConfigSection];
