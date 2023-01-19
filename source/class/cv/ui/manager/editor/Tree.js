@@ -194,7 +194,18 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
     _maintainPreviewVisibility() {
       const handlerOptions = this.getHandlerOptions();
-      this.setShowPreview(qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview));
+      let enablePreview = qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview);
+      if (enablePreview) {
+        const previewFile = this.__getPreviewFile();
+        if (!previewFile.isTemporary() && !previewFile.isWriteable()) {
+          // preview file already exists, but it is not writable
+          enablePreview = false;
+        } else if (previewFile.isTemporary() && !cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
+          // parent folder is not writable and preview file does not exist
+          enablePreview = false;
+        }
+      }
+      this.setShowPreview(enablePreview);
     },
 
     _applyShowPreview(value) {
@@ -2274,19 +2285,24 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               path: previewFile.getFullPath(),
               hash: 'ignore'
             },
-
             content,
-            () => {
-              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-                type: 'contentChanged',
-                file: previewFile,
-                data: content,
-                source: this
-              });
-
-              this.__modifiedPreviewElements.removeAll();
-              this.resetPreviewState();
-              previewFile.resetTemporary();
+            err => {
+              if (err) {
+                // disable preview, because the file could not be created
+                this.setShowPreview(false);
+                this.error(err);
+                cv.ui.manager.snackbar.Controller.error(this.tr('Disabling preview because the preview file could not be created.'));
+              } else {
+                qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                  type: 'contentChanged',
+                  file: previewFile,
+                  data: content,
+                  source: this
+                });
+                this.__modifiedPreviewElements.removeAll();
+                this.resetPreviewState();
+                previewFile.resetTemporary();
+              }
             },
             this
           );
@@ -2296,18 +2312,21 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               path: previewFile.getFullPath(),
               hash: 'ignore'
             },
-
             content,
-            () => {
-              qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
-                type: 'contentChanged',
-                file: previewFile,
-                data: content,
-                source: this
-              });
+            err => {
+              if (err) {
+                cv.ui.manager.snackbar.Controller.error(err);
+              } else {
+                qx.event.message.Bus.dispatchByName(previewFile.getBusTopic(), {
+                  type: 'contentChanged',
+                  file: previewFile,
+                  data: content,
+                  source: this
+                });
 
-              this.__modifiedPreviewElements.removeAll();
-              this.resetPreviewState();
+                this.__modifiedPreviewElements.removeAll();
+                this.resetPreviewState();
+              }
             },
             this
           );
