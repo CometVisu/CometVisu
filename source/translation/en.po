@@ -468,11 +468,11 @@ msgstr ""
 msgid "Option key duplicate: \"%1\" in section \"%2\"."
 msgstr ""
 
-#: cv/ui/manager/editor/Config.js
+#: cv/ui/manager/editor/Source.js
 msgid "Saving hidden config failed with error %1 (%2)"
 msgstr ""
 
-#: cv/ui/manager/editor/Config.js
+#: cv/ui/manager/editor/Source.js
 msgid "Hidden config has been saved"
 msgstr ""
 
@@ -1178,4 +1178,16 @@ msgstr ""
 
 #: cv/util/ConfigLoader.js
 msgid "Open manager"
+msgstr ""
+
+#: cv/Application.js
+msgid "Your server does not support PHP"
+msgstr ""
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Disabling preview because the preview file could not be created."
+msgstr ""
+
+#: cv/TemplateEngine.js
+msgid "Restart connection"
 msgstr ""

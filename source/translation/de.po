@@ -1103,3 +1103,15 @@ msgstr "Sie können den Manager öffnen, um eine neue Konfigurations-Datei zu er
 #: cv/util/ConfigLoader.js
 msgid "Open manager"
 msgstr "Manager öffnen"
+
+#: cv/Application.js
+msgid "Your server does not support PHP"
+msgstr "Ihr Server unterstützt kein PHP"
+
+#: cv/ui/manager/editor/Tree.js
+msgid "Disabling preview because the preview file could not be created."
+msgstr "Vorschau wurde deaktiviert, weil die Vorschaudatei nicht erzeugt werden konnte."
+
+#: cv/TemplateEngine.js
+msgid "Restart connection"
+msgstr "Verbindung neu starten"
