@@ -81,7 +81,33 @@ qx.Class.define('cv.ui.manager.editor.Config', {
 
     _onModelValueChange(ev) {
       if (this.getFile()) {
-        this.setContent(ev.getData());
+        const content = ev.getData();
+        if (Object.prototype.hasOwnProperty.call(content, 'error')) {
+          // loading error
+          qxl.dialog.Dialog.confirm(
+            this.tr(
+              'Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text Editor?.'
+            ),
+            function (confirmed) {
+              const file = this.getFile();
+              qx.event.message.Bus.dispatchByName('cv.manager.action.close', file);
+
+              if (confirmed) {
+                qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                  file: file.getFullPath(),
+                  handler: 'cv.ui.manager.editor.Source',
+                  handlerOptions: {
+                    jumpToError: true
+                  }
+                });
+              }
+            },
+            this,
+            qx.locale.Manager.tr('Hidden configuration error')
+          );
+        } else {
+          this.setContent(content);
+        }
       }
     },
 
