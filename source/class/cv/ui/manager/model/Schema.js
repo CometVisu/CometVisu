@@ -50,11 +50,22 @@ qx.Class.define('cv.ui.manager.model.Schema', {
   statics: {
     __CACHE: {},
 
-    getInstance(schemaFile) {
+    async getInstance(schemaFile) {
       if (!Object.prototype.hasOwnProperty.call(this.__CACHE, schemaFile)) {
-        this.__CACHE[schemaFile] = new cv.ui.manager.model.Schema(
+        const schema = this.__CACHE[schemaFile] = new cv.ui.manager.model.Schema(
           qx.util.ResourceManager.getInstance().toUri(schemaFile)
         );
+        if (!schema.isLoaded()) {
+          return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+              reject(new Error('timeout loading schema file'));
+            }, 5000);
+            schema.addListenerOnce('changeLoaded', () => {
+              clearTimeout(timer);
+              resolve(schema);
+            });
+          });
+        }
       }
       return this.__CACHE[schemaFile];
     }

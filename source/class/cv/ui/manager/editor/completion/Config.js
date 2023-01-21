@@ -74,13 +74,13 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       this.__rootTagName = '';
     },
 
-    setStructure(name) {
+    async setStructure(name) {
       const loaded = Object.prototype.hasOwnProperty.call(this.__currentSchemas, name);
 
       switch (name) {
         case 'pure':
           if (!loaded) {
-            this.__currentSchemas.pure = cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
+            this.__currentSchemas.pure = await cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
           }
           this.__currentSchema = this.__currentSchemas.pure;
           this.__rootTagName = 'pages';
@@ -90,7 +90,7 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
 
         case 'tile':
           if (!loaded) {
-            this.__currentSchemas.tile = cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
+            this.__currentSchemas.tile = await cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
           }
           this.__currentSchema = this.__currentSchemas.tile;
           this.__rootTagName = 'config';
@@ -306,24 +306,24 @@ qx.Class.define('cv.ui.manager.editor.completion.Config', {
       return availableItems;
     },
 
-    detectSchema(completeText) {
+    async detectSchema(completeText) {
       const match = /:noNamespaceSchemaLocation="([^"]+)"/.exec(completeText.substring(0, 200));
 
       if (match && match[1].endsWith('visu_config_tile.xsd')) {
-        this.setStructure('tile');
+        await this.setStructure('tile');
       } else {
-        this.setStructure('pure');
+        await this.setStructure('pure');
       }
     },
 
     getProvider() {
       return {
         triggerCharacters: ['<', '"'],
-        provideCompletionItems: function (model, position) {
+        provideCompletionItems: async function (model, position) {
           this.setCurrentPath(model.uri.toString());
           const completeText = model.getValue();
           if (!this.__currentSchema) {
-            this.detectSchema(completeText);
+            await this.detectSchema(completeText);
           }
           if (this._getSuggestions) {
             return this._getSuggestions(model, position);
