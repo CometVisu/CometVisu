@@ -630,14 +630,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         // run the Trick-O-Matic scripts for great SVG backdrops
         document.querySelectorAll('embed').forEach(function(elem) {
-          if (typeof elem.getSVGDocument === 'function') {
-            const svg = elem.getSVGDocument();
-            if (svg === null || svg.readyState !== 'complete') {
-              elem.onload = cv.ui.TrickOMatic.run;
-            } else {
-              cv.ui.TrickOMatic.run.call(elem);
-            }
-          }
+          this._runTrickOMatic(elem, 0);
         });
 
         this.startInitialRequest();
@@ -655,6 +648,32 @@ qx.Class.define('cv.TemplateEngine', {
           qx.dev.Profile.showResults(50);
         }
       }, this);
+    },
+
+    _runTrickOMatic(elem, retries) {
+      if (elem && typeof elem.getSVGDocument === 'function') {
+        try {
+          const svg = elem.getSVGDocument();
+          if (svg === null || svg.readyState !== 'complete') {
+            elem.onload = cv.ui.TrickOMatic.run;
+          } else {
+            cv.ui.TrickOMatic.run.call(elem);
+          }
+        } catch (e) {
+          if (e.name === 'NotSupportedError') {
+            if (retries <= 5) {
+              retries++;
+              window.requestAnimationFrame(() => {
+                this._runTrickOMatic(elem, retries);
+              });
+            } else {
+              this.error(e);
+            }
+          } else {
+            this.error(e);
+          }
+        }
+      }
     },
 
     /**

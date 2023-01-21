@@ -235,9 +235,12 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
             if (this.__backdropRetries <= 5) {
               qx.bom.AnimationFrame.request(this.__makeBackdropValid, this);
               this.__backdropRetries++;
+            } else {
+              qx.log.Logger.error(this, e);
             }
+          } else {
+            qx.log.Logger.error(this, e);
           }
-          qx.log.Logger.error(this, e);
         }
       }
 
