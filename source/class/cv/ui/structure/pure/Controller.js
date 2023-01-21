@@ -321,15 +321,8 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
 
       // run the Trick-O-Matic scripts for great SVG backdrops
       document.querySelectorAll('embed').forEach(function (elem) {
-        if (typeof elem.getSVGDocument === 'function') {
-          const svg = elem.getSVGDocument();
-          if (svg === null || svg.readyState !== 'complete') {
-            elem.onload = cv.ui.TrickOMatic.run;
-          } else {
-            cv.ui.TrickOMatic.run.call(elem);
-          }
-        }
-      });
+        this._runTrickOMatic(elem, 0);
+      }, this);
 
       document.querySelectorAll('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
       document.querySelectorAll('.loading').forEach(function (elem) {
@@ -337,6 +330,32 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }, this);
 
       qx.core.Init.getApplication().addListener('changeMobile', this._onMobileChanged, this);
+    },
+
+    _runTrickOMatic(elem, retries) {
+      if (elem && typeof elem.getSVGDocument === 'function') {
+        try {
+          const svg = elem.getSVGDocument();
+          if (svg === null || svg.readyState !== 'complete') {
+            elem.onload = cv.ui.TrickOMatic.run;
+          } else {
+            cv.ui.TrickOMatic.run.call(elem);
+          }
+        } catch (e) {
+          if (e.name === 'NotSupportedError') {
+            if (retries <= 5) {
+              retries++;
+              window.requestAnimationFrame(() => {
+                this._runTrickOMatic(elem, retries);
+              });
+            } else {
+              this.error(e);
+            }
+          } else {
+            this.error(e);
+          }
+        }
+      }
     },
 
     doScreenSave() {
