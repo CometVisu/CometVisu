@@ -779,12 +779,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         svg
           .append('g')
           .attr('stroke', 'none')
-          .attr('fill', typeof config.color === 'string' ? config.color + '30' : null)
+          .attr('fill', typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null)
           .selectAll('path')
           .data(areaGroups)
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
-          .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
+          .attr('fill', typeof config.color === 'function' ? p => this.__opacifyColor(config.color(p[0]), '30') : null)
           .attr('d', d => {
             const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
             const func = areaFunctions[curveName] || areaFunctions.linear;
@@ -799,7 +799,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .selectAll('g')
           .data(barGroups)
           .join('g')
-          .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) + '30' : null)
+          .attr('fill', typeof config.color === 'function' ? d => this.__opacifyColor(config.color(d[0]), '30') : null)
           .selectAll('rect')
           .data(d => {
             return d[1].map(val => {
@@ -828,6 +828,22 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('y', -8);
 
       return Object.assign(svg.node(), { value: null });
+    },
+
+    /**
+     * add opacity to color
+     * @param color
+     * @param opacity {string} hex number 0 - 255
+     * @return {string|*}
+     * @private
+     */
+    __opacifyColor(color, opacity) {
+      if (color.startsWith('rgb(')) {
+        return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
+      } else if (color.startsWith('#') && color.length === 7) {
+        return color + opacity;
+      }
+      return color;
     }
   },
 
