@@ -52,6 +52,14 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       init: 'visible',
       apply: '_applyVisibility',
       event: 'changeVisibility'
+    },
+
+    /**
+     * True if this tile is the content of a template based widget
+     */
+    widget: {
+      check: 'Boolean',
+      init: 'false'
     }
   },
 
@@ -64,7 +72,21 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _writeAddresses: null,
     _visibleDisplayMode: null,
 
+    __checkIfWidget() {
+      const parent = this._element.parentElement;
+      let isWidget = false;
+      const name = parent ? parent.tagName.toLowerCase() : '';
+      if (name.startsWith('cv-')) {
+        let template = document.getElementById(name.substring(3));
+        // parent is a template and this is the only child
+        isWidget = !!template && parent.childElementCount === 1;
+      }
+      this.setWidget(isWidget);
+    },
+
     _init() {
+      this.__checkIfWidget();
+
       const element = this._element;
       let hasReadAddress = false;
       const writeAddresses = [];
@@ -161,23 +183,24 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     },
 
     _applyVisibility(value, oldValue) {
+      const target = this.isWidget() ? this._element.parentElement : this._element;
       if (oldValue === 'hidden') {
-        this._element.style.opacity = '1.0';
+        target.style.opacity = '1.0';
       }
       switch (value) {
         case 'visible':
           if (this._visibleDisplayMode) {
-            this._element.style.display = this._visibleDisplayMode || 'initial';
+            target.style.display = this._visibleDisplayMode || 'initial';
           }
           break;
 
         case 'hidden':
-          this._element.style.opacity = '0';
+          target.style.opacity = '0';
           break;
 
         case 'excluded':
-          this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
-          this._element.style.display = 'none';
+          this._visibleDisplayMode = getComputedStyle(target).getPropertyValue('display');
+          target.style.display = 'none';
           break;
       }
     },
