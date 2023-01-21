@@ -733,6 +733,7 @@
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="line" />
                   <xsd:enumeration value="bar" />
+                  <xsd:enumeration value="stacked-bar" />
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
@@ -820,6 +821,20 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="refresh"/>
+    <xsd:attribute name="show-grid">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show grid lines.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige Gitterlinien.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="xy" />
+          <xsd:enumeration value="x" />
+          <xsd:enumeration value="y" />
+          <xsd:enumeration value="false" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">

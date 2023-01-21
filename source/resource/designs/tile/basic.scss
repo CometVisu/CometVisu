@@ -24,6 +24,7 @@ $tileColumns: 3;
     --primaryColor: #ff9900;
     --secondaryColor: #666666;
     --borderColor: #7a7a7a;
+    --chart-grid-color: #484848;
     --baseShadowColor-r: 0;
     --baseShadowColor-g: 0;
     --baseShadowColor-b: 0;
@@ -1339,6 +1340,12 @@ body {
             text-anchor: middle;
             font-size: 16px;
             fill: var(--primaryText);
+        }
+
+        svg {
+            .grid {
+                color: var(--chart-grid-color);
+            }
         }
     }
 

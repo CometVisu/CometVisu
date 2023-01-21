@@ -309,7 +309,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           for (let [time, value] of tsdata) {
             chartData.push({
               src: entry.ts.src,
-              time,
+              time: entry.ts.aggregationInterval > 0 && entry.ts.type === 'stacked-bar' // stacked bar times must be aggregated, the have to be at the same time inden for stacking
+                ? Math.round(time / entry.ts.aggregationInterval) * entry.ts.aggregationInterval : time,
               value
             });
           }
@@ -517,14 +518,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const I = d3.range(X.length).filter(i => config.zDomain.has(Z[i]));
 
       // Construct scales and axes.
-      const xScale = config.xType(config.xDomain, config.xRange);
-      const yScale = config.yType(config.yDomain, config.yRange);
+      let xScale = config.xType(config.xDomain, config.xRange);
+      let xzScale = d => 0;
+      let yScale = config.yType(config.yDomain, config.yRange);
+      const xTicks = config.width / 80;
+      const yTicks = config.height / 60;
       const xAxis = d3
         .axisBottom(xScale)
-        .ticks(config.width / 80)
+        .ticks(xTicks)
         .tickSizeOuter(0)
         .tickFormat(config.xFormat);
-      const yAxis = d3.axisLeft(yScale).ticks(config.height / 60, config.yFormat);
+      const yAxis = d3.axisLeft(yScale).ticks(yTicks, config.yFormat);
 
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
@@ -544,7 +548,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const scaleFactorX = this._element.offsetWidth / config.width;
         const scaleFactorY = this._element.offsetHeight / config.height;
         // closest point
-        dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
+        const xOffset = xzScale(Z[i]) + (typeof xzScale.bandwidth === 'function' ? xzScale.bandwidth()/2 : 0);
+        dot.attr('transform', `translate(${xScale(X[i]) + xOffset},${yScale(Y[i])})`);
         if (T) {
           const ttNode = tooltip.node();
           const timeString = config.xFormat(new Date(X[i]));
@@ -598,6 +603,26 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           { passive: false }
         );
 
+      const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
+      if (showGrid.includes('x')) {
+        svg.append('g')
+          .attr('class', 'grid')
+          .attr('transform', `translate(0,${config.height - config.marginBottom})`)
+          .call(d3.axisBottom(xScale).ticks(xTicks)
+            .tickSize(-config.height + config.marginBottom + config.marginTop)
+            .tickFormat('')
+          );
+      }
+      if (showGrid.includes('y')) {
+        svg.append('g')
+          .attr('class', 'grid')
+          .attr('transform', `translate(${config.marginLeft},0)`)
+          .call(d3.axisLeft(yScale).ticks(yTicks)
+            .tickSize(-config.width + config.marginRight + config.marginLeft)
+            .tickFormat('')
+          );
+      }
+
       const showXAxis = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
       const showYAxis = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
       if (showXAxis) {
@@ -634,9 +659,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const lineGroups = new Map();
       const areaGroups = new Map();
       const barGroups = new Map();
+      const stackedBarGroups = new Map();
       for (let i of I) {
         const key = Z[i];
-        if (typeof config.showArea === 'function' && config.showArea(key)) {
+        if (this._dataSetConfigs[key].type === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
           if (!areaGroups.has(key)) {
             areaGroups.set(key, []);
           }
@@ -655,6 +681,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               barGroups.set(key, []);
             }
             barGroups.get(key).push(i);
+            break;
+
+          case 'stacked-bar':
+            if (!stackedBarGroups.has(key)) {
+              stackedBarGroups.set(key, []);
+            }
+            stackedBarGroups.get(key).push(i);
             break;
         }
       }
