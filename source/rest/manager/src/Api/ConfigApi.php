@@ -39,7 +39,11 @@ class ConfigApi extends AbstractConfigApi
 $data = \'' .
             json_encode($this->hidden, JSON_PRETTY_PRINT) .
             '\';
-$hidden = json_decode($data, true);
+try {
+  $hidden = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+  $hidden = ["error" => $e->getMessage(), "data" => $data];
+}
 ';
         // step 3: write
         $res = file_put_contents($this->configFile, $out);

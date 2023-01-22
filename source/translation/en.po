@@ -1263,3 +1263,15 @@ msgstr ""
 #: cv/ui/manager/editor/Tree.js
 msgid "Disabling preview because the preview file could not be created."
 msgstr ""
+
+#. NO LONGER USED
+msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text Editor?"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration error"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
+msgstr ""
