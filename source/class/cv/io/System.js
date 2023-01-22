@@ -27,7 +27,7 @@
  * - trigger HTTP requests
  */
 qx.Class.define('cv.io.System', {
-  extend: qx.core.Object,
+  extend: cv.io.AbstractClient,
   implement: cv.io.IClient,
 
   /*

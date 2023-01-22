@@ -317,7 +317,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     createUI(config) {},
 
     translate(doc) {
-      for (const attr of ['name', 'label']) {
+      for (const attr of ['name', 'label', 'title']) {
         for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
           const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
 

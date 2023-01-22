@@ -5,6 +5,7 @@
         version="1">
     <cv-meta>
         <cv-backend name="si" type="simulated" default="true">
+            <cv-resource name="charts">resource/demo/media</cv-resource>
             <cv-data address="1/4/4">80</cv-data>
             <cv-data address="1/4/6">80</cv-data>
             <cv-data address="1/4/9">80</cv-data>
@@ -21,18 +22,19 @@
             <cv-data address="1/4/22">80</cv-data>
             <cv-data address="1/4/23">FF</cv-data>
             <cv-data address="1/4/24">B0</cv-data>
+            <cv-data address="1/4/25">B0</cv-data>
+            <cv-data address="1/4/26">0EB0</cv-data>
+            <cv-data address="1/4/27">2FF</cv-data>
+            <cv-data address="1/4/28">0F</cv-data>
+            <cv-data address="1/4/29">1A7D</cv-data>
+            <cv-data address="1/4/30">2A9</cv-data>
         </cv-backend>
         <cv-mapping name="PlayStop">
             <entry value="0">ri-play-fill</entry>
             <entry value="1">ri-stop-fill</entry>
         </cv-mapping>
-        <cv-mapping name="WindowOpen">
-            <entry value="0">knxuf-fts_window_1w</entry>
-            <entry value="1">knxuf-fts_window_1w_open</entry>
-        </cv-mapping>
         <cv-styling name="WindowOpen">
-            <entry value="0">green</entry>
-            <entry value="1">red</entry>
+            <entry range-min="1">red</entry>
         </cv-styling>
         <cv-mapping name="WindowOpen">
             <entry value="0">knxuf-fts_window_1w</entry>
@@ -41,6 +43,10 @@
         <cv-styling name="OpenAlert">
             <entry range-min="1">red</entry>
         </cv-styling>
+        <cv-mapping name="speaker">
+            <entry value="0">ri-speaker-line</entry>
+            <entry value="1">ri-speaker-fill</entry>
+        </cv-mapping>
         <cv-translations>
             <language name="de">
                 <tr key="Dashboard">Dashboard</tr>
@@ -51,6 +57,10 @@
                 <tr key="Kitchen">Küche</tr>
                 <tr key="All lights">Alle Lichter</tr>
                 <tr key="Currently no lights are switched on">Zur Zeit sind keine Lampen eingeschaltet</tr>
+                <tr key="All windows">Alle Fenster</tr>
+                <tr key="Currently there are no open windows">Zur Zeit sind keine Fenster offen</tr>
+                <tr key="All speakers">Alle Lautsprecher</tr>
+                <tr key="Currently no speakers are switched on">Zur Zeit sind keine Lautsprecher eingeschaltet</tr>
                 <tr key="Rooms">Räume</tr>
                 <tr key="Light">Licht</tr>
                 <tr key="Widgets">Widgets</tr>
@@ -74,10 +84,23 @@
                 <tr key="Shutter">Rollladen</tr>
                 <tr key="Shutters">Rollläden</tr>
                 <tr key="Windows">Fenster</tr>
+                <tr key="Speakers">Lautsprecher</tr>
                 <tr key="Media player">Medien Abspieler</tr>
                 <tr key="Info">Info</tr>
                 <tr key="Room temperature controllers">Raumtemperaturregler</tr>
                 <tr key="Tile-pair">Tile-Paar</tr>
+                <tr key="Consumptions">Verbräuche</tr>
+                <tr key="Power consumption">Aktueller Stromverbrauch</tr>
+                <tr key="Power meter reading">Z&#228;hlerstand Strom</tr>
+                <tr key="PV production today">PV Produktion heute</tr>
+                <tr key="PV production">PV Produktion</tr>
+                <tr key="Power">Strom</tr>
+                <tr key="From grid">Netzbezug</tr>
+                <tr key="Production">Produktion</tr>
+                <tr key="Gas meter reading">Z&#228;hlerstand Gas</tr>
+                <tr key="Water meter reading">Z&#228;hlerstand Wasser</tr>
+                <tr key="Water consumption">Wasserverbrauch</tr>
+                <tr key="Gas consumption">Gasverbrauch</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -120,48 +143,132 @@
                         </cv-list>
                     </cv-popup>
                 </cv-status>
-                <!--<cv-status format="%d offen">
-                    <cv-icon slot="icon" size="x-large">knxuf-fts_shutter_10</cv-icon>
-                    <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Shutters</cv-address>
-                    <span slot="label">Rollladen</span>
-                </cv-status>
                 <cv-status format="%d offen">
                     <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
                         <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                        <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
+                        <cv-address transform="DPT:5.001" mode="read">1/4/0</cv-address>
                     </cv-value>
-                    <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
-                    <span slot="label">Fenster</span>
+                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                    <span slot="label" tr="true">Windows</span>
+                    <cv-popup slot="popup" modal="true">
+                        <cv-list rowspan="3" colspan="3">
+                            <model sort-by="label">
+                                <cv-data label="tr('Office')" read-address="4/5/0"/>
+                                <cv-data label="tr('Bathroom')" read-address="4/6/0"/>
+                                <cv-data label="tr('Living room')" read-address="3/1/0"/>
+                                <cv-data label="tr('Kitchen')" read-address="3/2/2"/>
+                            </model>
+                            <header>
+                                <h4 tr="true">All windows</h4>
+                            </header>
+                            <template>
+                                <cv-listitem>
+                                    <cv-value styling="WindowOpen" mapping="WindowOpen">
+                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                        <cv-icon class="value">knxuf-fts_window_1w_open</cv-icon>
+                                    </cv-value>
+                                    <div class="content">
+                                        <label class="primary">${label}</label>
+                                    </div>
+                                </cv-listitem>
+                            </template>
+                            <template when="empty">
+                                <li><label class="primary" tr="true">Currently no windows are open</label></li>
+                            </template>
+                        </cv-list>
+                    </cv-popup>
                 </cv-status>
                 <cv-status format="%d an">
-                <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
-                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Speakers</cv-address>
-                <span slot="label">Lautsprecher</span>
-                <cv-popup slot="popup" modal="true">
-                    <cv-list rowspan="3" colspan="3">
-                        <model filter="item.active===true" sort-by="label">
-                            <cv-address transform="raw" mode="read" backend="main">members:Speakers</cv-address>
-                        </model>
-                        <header>
-                            <h4>Eingeschaltete Lautsprecher</h4>
-                        </header>
-                        <template>
-                            <cv-listitem>
-                                <cv-button class="round-button" mapping="speaker" size="small">
-                                    <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
-                                    <cv-icon class="value" />
-                                </cv-button>
-                                <div class="content">
-                                    <label class="primary">${label}</label>
-                                </div>
-                            </cv-listitem>
-                        </template>
-                        <template when="empty">
-                            <li><label class="primary">Zur Zeit sind keine Lautsprecher eingeschaltet</label></li>
-                        </template>
-                    </cv-list>
-                </cv-popup>
-            </cv-status>-->
+                    <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
+                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                    <span slot="label" tr="true">Speakers</span>
+                    <cv-popup slot="popup" modal="true">
+                        <cv-list rowspan="3" colspan="3">
+                            <model sort-by="label">
+                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
+                            </model>
+                            <header>
+                                <h4 tr="true">All speakers</h4>
+                            </header>
+                            <template>
+                                <cv-listitem>
+                                    <cv-button class="round-button" mapping="speaker" size="small">
+                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                        <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
+                                        <cv-icon class="value"/>
+                                    </cv-button>
+                                    <div class="content">
+                                        <label class="primary">${label}</label>
+                                    </div>
+                                </cv-listitem>
+                            </template>
+                            <template when="empty">
+                                <li><label class="primary" tr="true">Currently there are no speakers switched on.</label></li>
+                            </template>
+                        </cv-list>
+                    </cv-popup>
+            </cv-status>
+            </cv-group>
+            <cv-group open="true" name="tr('Consumptions')">
+                <cv-tile-pair>
+                    <cv-info format="%d" style="color: #f2495c">
+                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/25</cv-address>
+                        <span slot="title" tr="true">Power consumption</span>
+                        <span slot="unit">W</span>
+                    </cv-info>
+                    <cv-info format="%d" style="color: #f2495c">
+                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/26</cv-address>
+                        <span slot="title" tr="true">Power meter reading</span>
+                        <span slot="unit">kWh</span>
+                    </cv-info>
+                </cv-tile-pair>
+                <cv-info format="%.1f W">
+                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/27</cv-address>
+                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
+                    <span slot="label" tr="true">PV production</span>
+                </cv-info>
+                <cv-info format="%.1f kWh">
+                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/28</cv-address>
+                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
+                    <span slot="label" tr="true">PV production today</span>
+                </cv-info>
+                <cv-tile size="2x1">
+                    <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                        <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
+                    </cv-chart>
+                </cv-tile>
+                <cv-tile-pair>
+                    <cv-info format="%d" style="color: rgb(255, 203, 125);">
+                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/29</cv-address>
+                        <span slot="title" tr="true">Gas meter reading</span>
+                        <span slot="unit">m³</span>
+                        <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.2f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                        </cv-chart>
+                        <cv-popup slot="popup" modal="true" fullscreen="true">
+                            <cv-chart title="tr('Gas consumption')" y-format="%.2f m³" series="month" refresh="300" x-format="%d. %b" >
+                                <dataset src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                            </cv-chart>
+                        </cv-popup>
+                    </cv-info>
+                    <cv-info format="%d" style="color: #719aff">
+                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/30</cv-address>
+                        <span slot="title" tr="true">Water meter reading</span>
+                        <span slot="unit">m³</span>
+                        <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.1f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
+                        </cv-chart>
+                        <cv-popup slot="popup" fullscreen="true" modal="true">
+                            <cv-chart title="tr('Water consumption')" y-format="%.1f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                                <dataset src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
+                            </cv-chart>
+                        </cv-popup>
+                    </cv-info>
+                </cv-tile-pair>
             </cv-group>
         </cv-page>
         <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">

@@ -111,11 +111,18 @@ qx.Interface.define('cv.io.IClient', {
     /**
      * return the relative path to a resource on the currently used backend
      *
-     * @param name {String} Name of the resource (e.g. login, read, write, rrd)
+     * @param name {String} Name of the resource (e.g. login, read, write, chart)
      * @param params {Map?} optional data needed to generate the resource path
      * @return {String|null} relative path to the resource, returns `null` when the backend does not provide that resource
      */
     getResourcePath(name, params) {},
+
+    /**
+     * Set the relative path to a resource on the currently used backend
+     * @param name {String} Name of the resource (e.g. login, read, write, chart)
+     * @param path {String} relative path to the resource
+     */
+    setResourcePath(name, path) {},
 
     /**
      * This client provides an own processor for charts data

@@ -159,6 +159,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             this.__applyValues.push([data.getAttribute('address'), value]);
           }
         }
+
+        for (const data of element.querySelectorAll(':scope > cv-resource')) {
+          client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
+        }
       } else {
         this.error('<cv-backend> must have a type attribute');
       }

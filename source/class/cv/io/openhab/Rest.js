@@ -22,7 +22,7 @@
  * need the openHAB-cometvisu binding to be installed
  */
 qx.Class.define('cv.io.openhab.Rest', {
-  extend: qx.core.Object,
+  extend: cv.io.AbstractClient,
   implement: cv.io.IClient,
 
   /*

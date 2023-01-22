@@ -283,12 +283,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
                 data = client.processChartsData(data, ts);
               }
               return {
-                data: data,
+                data: data || [],
                 ts: ts
               };
             })
             .catch(err => {
               this._onStatusError(ts, url, err);
+              return {
+                data: [],
+                ts: ts
+              };
             })
         );
       }

@@ -195,7 +195,7 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
-    <xsd:sequence>
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
@@ -205,7 +205,16 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
-    </xsd:sequence>
+      <xsd:element name="cv-resource" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:token">
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:choice>
     <xsd:attribute name="type" use="required">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
@@ -1308,6 +1317,26 @@
             </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
+      </xsd:choice>
+      <xsd:element name="span" maxOccurs="unbounded" minOccurs="0">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="label" />
+                    <xsd:enumeration value="unit" />
+                    <xsd:enumeration value="title" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+              <xsd:attribute ref="tr"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:choice maxOccurs="unbounded" minOccurs="2">
         <xsd:element name="cv-chart" minOccurs="0">
           <xsd:complexType>
             <xsd:complexContent>
@@ -1339,24 +1368,6 @@
           </xsd:complexType>
         </xsd:element>
       </xsd:choice>
-      <xsd:element name="span" maxOccurs="unbounded" minOccurs="0">
-        <xsd:complexType>
-          <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-              <xsd:attribute name="slot" use="required">
-                <xsd:simpleType>
-                  <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="label" />
-                    <xsd:enumeration value="unit" />
-                    <xsd:enumeration value="title" />
-                  </xsd:restriction>
-                </xsd:simpleType>
-              </xsd:attribute>
-              <xsd:attribute ref="tr"/>
-            </xsd:extension>
-          </xsd:simpleContent>
-        </xsd:complexType>
-      </xsd:element>
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
@@ -1810,7 +1821,7 @@
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="#[\dA-F]{6}([\dA-F][\dA-F])?"/>
+      <xsd:pattern value="#[\da-fA-F]{6}([\da-fA-F]{2})?|#rgb\([0-2],\s?[0-2],\s[0-2]\)?|#rgba\([0-2],\s?[0-2],\s[0-2],\s?(1.0|0\.[0-9]+)\)?"/>
     </xsd:restriction>
   </xsd:simpleType>
 

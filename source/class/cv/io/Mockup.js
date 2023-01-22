@@ -25,7 +25,7 @@
  */
 /* istanbul ignore next */
 qx.Class.define('cv.io.Mockup', {
-  extend: qx.core.Object,
+  extend: cv.io.AbstractClient,
   implement: cv.io.IClient,
 
   /*
@@ -473,8 +473,12 @@ qx.Class.define('cv.io.Mockup', {
     stop() {},
 
     getResourcePath(name, map) {
+      let basePath = '';
+      if (Object.prototype.hasOwnProperty.call(this._resources, name)) {
+        basePath = this._resources[name];
+      }
       if (name === 'charts' && map && map.src) {
-        return name + '/' + map.src;
+        return basePath + '/' + name + '/' + map.src;
       }
       return name;
     },
