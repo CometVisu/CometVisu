@@ -1662,6 +1662,12 @@
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
     <xsd:attribute ref="step-width" />
+    <xsd:attribute name="allow-column-layout" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Shows the two tiles side by side, when the screen size is only 2 columns wide.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ordnet die beiden Kacheln nebeneinander, wenn der Bildschirm nur 2 Spalten breit ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <!--
   #####################################################################################################################

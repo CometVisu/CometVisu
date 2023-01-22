@@ -59,6 +59,7 @@ function resizeTiles() {
     style.setProperty('--tileCellWidth', cellWidth + 'px');
     qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', cellWidth);
     lastWindowWidth = page.offsetWidth;
+    document.body.setAttribute('data-columns', columns.toString(10));
   }
 }
 setTimeout(resizeTiles, 100);

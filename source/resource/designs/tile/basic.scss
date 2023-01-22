@@ -568,6 +568,13 @@ body {
         }
     }
 
+    &[data-columns="2"] {
+        cv-tile-pair[allow-column-layout="true"] {
+            flex-flow: row;
+            column-gap: var(--spacing);
+        }
+    }
+
     cv-tile {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
