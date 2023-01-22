@@ -1171,3 +1171,11 @@ msgstr "PHP Version"
 #: cv/ui/manager/editor/Tree.js
 msgid "Disabling preview because the preview file could not be created."
 msgstr "Vorschau wurde deaktiviert, weil die Vorschaudatei nicht erzeugt werden konnte."
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration error"
+msgstr "Fehler in der versteckten Konfiguration"
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
+msgstr "Die versteckte Konfiguration enthält einen Syntax-Fehler und konnte nicht geladen werden, Sie können versuchen das Problem im Texteditor zu beheben. Möchten Sie die Datei im Texteditor öffnen?"

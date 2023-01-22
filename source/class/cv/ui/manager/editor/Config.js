@@ -86,7 +86,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
           // loading error
           qxl.dialog.Dialog.confirm(
             this.tr(
-              'Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text Editor?.'
+              'Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?'
             ),
             function (confirmed) {
               const file = this.getFile();
