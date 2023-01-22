@@ -314,7 +314,13 @@ qx.Class.define('cv.ui.manager.editor.Source', {
         if (!this._configClient) {
           this._configClient = cv.io.rest.Client.getConfigClient();
           this._configClient.addListener('getSuccess', ev => {
-            this.setContent(JSON.stringify(ev.getData(), null, 2));
+            const content = ev.getData();
+            if (Object.prototype.hasOwnProperty.call(content, 'error')) {
+              // hidden config json could not be parsed, show the raw data
+              this.setContent(content.data);
+            } else {
+              this.setContent(JSON.stringify(ev.getData(), null, 2));
+            }
           });
           this._configClient.addListener('updateSuccess', this._onSaved, this);
         }

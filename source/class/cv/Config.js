@@ -182,14 +182,14 @@ qx.Class.define('cv.Config', {
      */
     designStructureMap: {
       pure: [
-        'alaska',
-        'alaska_slim',
+        // broken: 'alaska',
+        // broken: 'alaska_slim',
         'discreet',
         'discreet_sand',
         'discreet_slim',
         'metal',
         'pitchblack',
-        'planet',
+        // broken: 'planet',
         'pure'
       ],
 

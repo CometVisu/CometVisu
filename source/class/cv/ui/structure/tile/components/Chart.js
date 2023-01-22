@@ -748,7 +748,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               // Construct a line generator.
               lineFunctions[curveName] = d3
                 .line()
-                //.defined(i => D[i])
                 .curve(curveFunction)
                 .x(i => xScale(X[i]))
                 .y(i => yScale(Y[i]));
@@ -800,7 +799,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               // Construct a line generator.
               areaFunctions[curveName] = d3
                 .area()
-                //.defined(i => D[i])
                 .curve(curveFunction)
                 .x(i => xScale(X[i]))
                 .y0(() => config.yRange[0])

@@ -15,4 +15,9 @@ $data = '{
   "proxy.whitelist": {
   }
 }';
-$hidden = json_decode($data, true);
+
+try {
+  $hidden = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+  $hidden = ["error" => $e->getMessage(), "data" => $data];
+}
