@@ -27,7 +27,7 @@ window.addEventListener('resize', () => {
  */
 function resizeTiles() {
   const page = document.querySelector('cv-page.active');
-  if (lastWindowWidth !== window.innerWidth && page) {
+  if (page && lastWindowWidth !== page.offsetWidth) {
     const style = document.querySelector(':root').style;
     let spacing = parseInt(style.getPropertyValue('--spacing')) || 8;
     const pageStyle = getComputedStyle(page);
@@ -38,29 +38,27 @@ function resizeTiles() {
       pageXPadding = 16;
     }
     // paddingLeft + paddingRight (2*spacing)
-    let availableWidth = window.innerWidth - pageXPadding;
-    if (availableWidth >= 1000) {
-      // reset to defaults
-      style.setProperty('--spacing', '8px');
-      style.setProperty('--tileCellWidth', '64px');
+    let availableWidth = page.offsetWidth - pageXPadding;
+    const minWidth = 168;
+    const columns = Math.max(1, Math.floor(availableWidth / minWidth));
+    let tileWidth = minWidth;
+    if (columns === 1) {
+      availableWidth -= spacing;
+      style.setProperty('--spacing', spacing + 'px');
+      tileWidth = availableWidth;
     } else {
-      const minWidth = 168;
-      const columns = Math.max(1, Math.floor(availableWidth / minWidth));
-      if (columns === 1) {
-        availableWidth -= spacing;
-        style.setProperty('--spacing', spacing + 'px');
-      } else if (spacing > 8) {
+      if (spacing > 8) {
         spacing = 8;
-        availableWidth = window.innerWidth - spacing * 2;
+        availableWidth = page.offsetWidth - spacing * 2;
         style.setProperty('--spacing', spacing + 'px');
       }
-      const tileWidth = availableWidth / columns - (columns - 1) * spacing;
-      const cellWidth = Math.floor(tileWidth / 3);
-      //console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
-      style.setProperty('--tileCellWidth', cellWidth + 'px');
-      qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', cellWidth);
+      tileWidth = Math.floor(availableWidth / columns) - spacing;
     }
-    lastWindowWidth = window.innerWidth;
+    const cellWidth = Math.floor(tileWidth / 3);
+    //console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
+    style.setProperty('--tileCellWidth', cellWidth + 'px');
+    qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', cellWidth);
+    lastWindowWidth = page.offsetWidth;
   }
 }
 setTimeout(resizeTiles, 100);
