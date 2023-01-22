@@ -84,7 +84,8 @@
             <cv-row colspan="3" row="last">
                 <label class="secondary"><slot name="label" parent-scope="2">LABEL</slot></label>
             </cv-row>
-            <slot name="additional"/>
+            <slot name="chart"/>
+            <slot name="popup"/>
         </cv-tile>
     </template>
     <template id="status">
@@ -97,6 +98,7 @@
                 </cv-value>
                 <label class="secondary"><slot name="label">LABEL</slot></label>
             </cv-row>
+            <slot name="chart"/>
             <slot name="popup"/>
         </cv-tile>
     </template>

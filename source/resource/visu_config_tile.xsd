@@ -1315,7 +1315,7 @@
                 <xsd:attribute name="slot" use="required">
                   <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                      <xsd:enumeration value="additional" />
+                      <xsd:enumeration value="chart" />
                     </xsd:restriction>
                   </xsd:simpleType>
                 </xsd:attribute>
@@ -1330,7 +1330,7 @@
                 <xsd:attribute name="slot" use="required">
                   <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-                      <xsd:enumeration value="additional" />
+                      <xsd:enumeration value="popup" />
                     </xsd:restriction>
                   </xsd:simpleType>
                 </xsd:attribute>
@@ -1454,6 +1454,21 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="popup" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cv-chart" minOccurs="0">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="cv-chart">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="chart" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
