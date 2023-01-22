@@ -39,7 +39,7 @@ function resizeTiles() {
     }
     // paddingLeft + paddingRight (2*spacing)
     let availableWidth = page.offsetWidth - pageXPadding;
-    const minWidth = 168;
+    const minWidth = availableWidth > 1000 ? 192 : 168;
     const columns = Math.max(1, Math.floor(availableWidth / minWidth));
     let tileWidth = minWidth;
     if (columns === 1) {
