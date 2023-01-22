@@ -126,6 +126,8 @@ qx.Class.define('cv.io.Mockup', {
       }
 
       const that = this;
+      const sinon = qx.dev.unit.Sinon.getSinon();
+      sinon.sandbox = sinon;
 
       // override sinons filter handling to be able to manipulate the target URL from the filter
       // eslint-disable-next-line consistent-return
@@ -288,23 +290,6 @@ qx.Class.define('cv.io.Mockup', {
     login(loginOnly, credentials, callback, context) {
       if (callback) {
         callback.call(context);
-        if (qx.core.Environment.get('cv.testMode')) {
-          if (cv.Config.initialDemoData) {
-            this.receive({
-              i: new Date().getTime(),
-              d: cv.Config.initialDemoData.states
-            });
-
-            if (cv.Config.initialDemoData.sequence) {
-              this.__sequence = cv.Config.initialDemoData.sequence;
-              this._startSequence();
-            }
-            if (cv.Config.initialDemoData.simulations) {
-              this._registerSimulations(cv.Config.initialDemoData.simulations);
-            }
-            cv.Config.initialDemoData = null;
-          }
-        }
       }
     },
 
@@ -397,6 +382,9 @@ qx.Class.define('cv.io.Mockup', {
                 i: new Date().getTime(),
                 d: {}
               };
+              if (cv.Config.initialDemoData.encodeFirst && simulation.targetAddress in this._addressConfigs) {
+                newValue = cv.Transform.encodeBusAndRaw(this._addressConfigs[simulation.targetAddress], newValue).raw;
+              }
 
               update.d[simulation.targetAddress] = newValue;
               this.receive(update);
@@ -421,6 +409,46 @@ qx.Class.define('cv.io.Mockup', {
      */
     subscribe(addresses) {
       this.addresses = addresses ? addresses : [];
+      if (qx.core.Environment.get('cv.testMode')) {
+        if (cv.Config.initialDemoData) {
+          if (cv.Config.initialDemoData.encodeFirst) {
+            // connect address data from widgets first
+            this._addressConfigs = {};
+            const widgetData = cv.data.Model.getInstance().getWidgetDataModel();
+            for (const id in widgetData) {
+              if (widgetData[id].address) {
+                this._addressConfigs = Object.assign(this._addressConfigs, widgetData[id].address);
+              }
+            }
+
+            for (let ga in cv.Config.initialDemoData.states) {
+              if (ga in this._addressConfigs) {
+                cv.Config.initialDemoData.states[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], cv.Config.initialDemoData.states[ga]).raw;
+              }
+            }
+            for (const seq of cv.Config.initialDemoData.sequence) {
+              for (const ga in seq.data) {
+                if (ga in this._addressConfigs) {
+                  seq.data[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga],  seq.data[ga]).raw;
+                }
+              }
+            }
+          }
+          this.receive({
+            i: new Date().getTime(),
+            d: cv.Config.initialDemoData.states
+          });
+
+          if (cv.Config.initialDemoData.sequence) {
+            this.__sequence = cv.Config.initialDemoData.sequence;
+            this._startSequence();
+          }
+          if (cv.Config.initialDemoData.simulations) {
+            this._registerSimulations(cv.Config.initialDemoData.simulations);
+          }
+          cv.Config.initialDemoData = null;
+        }
+      }
     },
 
     /**
