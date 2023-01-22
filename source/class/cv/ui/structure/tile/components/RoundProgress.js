@@ -112,7 +112,7 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       svg.setAttribute('height', height);
       svg.setAttribute('width', '' + (radius * 2));
       svg.setAttribute('type', type);
-      //let code = `<svg height="${height}" width="${radius * 2}" type="${type}">`;
+
       if (type === 'circle') {
         if (!element.hasAttribute('no-background')) {
           const bg = document.createElementNS(ns, 'circle');
