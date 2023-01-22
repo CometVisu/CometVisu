@@ -117,11 +117,14 @@ qx.Class.define('cv.io.BackendConnections', {
         client.addListener('changedServer', () => this._updateClientScope(name));
       }
       if (!this.__activeChangeListenerId) {
-        this.__activeChangeListenerId = qx.core.Init.getApplication().addListener(
-          'changeActive',
-          this._onActiveChanged,
-          this
-        );
+        const app = qx.core.Init.getApplication();
+        if (app) {
+          this.__activeChangeListenerId = app.addListener(
+            'changeActive',
+            this._onActiveChanged,
+            this
+          );
+        }
       }
 
       // show connection state in NotificationCenter

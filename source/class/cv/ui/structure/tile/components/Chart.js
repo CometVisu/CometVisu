@@ -235,7 +235,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           title: '',
           start: 'end-1day',
           end: 'now',
-          xTicks: d3.timeHour.every(4)
+          xTicks: d3.timeHour.every(4),
+          curve: 'linear'
         }, seriesConfig);
 
         let attr;
@@ -308,7 +309,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           for (let [time, value] of tsdata) {
             chartData.push({
               src: entry.ts.src,
-              time,
+              time: entry.ts.aggregationInterval > 0 && entry.ts.type === 'stacked-bar' // stacked bar times must be aggregated, the have to be at the same time inden for stacking
+                ? Math.round(time / entry.ts.aggregationInterval) * entry.ts.aggregationInterval : time,
               value
             });
           }
@@ -385,7 +387,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           ]
         ]);
       }
-
 
       this._chart = this._lineChart(chartData, {
         x: d => d.time,
@@ -517,14 +518,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const I = d3.range(X.length).filter(i => config.zDomain.has(Z[i]));
 
       // Construct scales and axes.
-      const xScale = config.xType(config.xDomain, config.xRange);
-      const yScale = config.yType(config.yDomain, config.yRange);
+      let xScale = config.xType(config.xDomain, config.xRange);
+      let xzScale = d => 0;
+      let yScale = config.yType(config.yDomain, config.yRange);
+      const xTicks = config.width / 80;
+      const yTicks = config.height / 60;
       const xAxis = d3
         .axisBottom(xScale)
-        .ticks(config.width / 80)
+        .ticks(xTicks)
         .tickSizeOuter(0)
         .tickFormat(config.xFormat);
-      const yAxis = d3.axisLeft(yScale).ticks(config.height / 60, config.yFormat);
+      const yAxis = d3.axisLeft(yScale).ticks(yTicks, config.yFormat);
 
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
@@ -544,7 +548,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const scaleFactorX = this._element.offsetWidth / config.width;
         const scaleFactorY = this._element.offsetHeight / config.height;
         // closest point
-        dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
+        const xOffset = xzScale(Z[i]) + (typeof xzScale.bandwidth === 'function' ? xzScale.bandwidth()/2 : 0);
+        dot.attr('transform', `translate(${xScale(X[i]) + xOffset},${yScale(Y[i])})`);
         if (T) {
           const ttNode = tooltip.node();
           const timeString = config.xFormat(new Date(X[i]));
@@ -598,6 +603,26 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           { passive: false }
         );
 
+      const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
+      if (showGrid.includes('x')) {
+        svg.append('g')
+          .attr('class', 'grid')
+          .attr('transform', `translate(0,${config.height - config.marginBottom})`)
+          .call(d3.axisBottom(xScale).ticks(xTicks)
+            .tickSize(-config.height + config.marginBottom + config.marginTop)
+            .tickFormat('')
+          );
+      }
+      if (showGrid.includes('y')) {
+        svg.append('g')
+          .attr('class', 'grid')
+          .attr('transform', `translate(${config.marginLeft},0)`)
+          .call(d3.axisLeft(yScale).ticks(yTicks)
+            .tickSize(-config.width + config.marginRight + config.marginLeft)
+            .tickFormat('')
+          );
+      }
+
       const showXAxis = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
       const showYAxis = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
       if (showXAxis) {
@@ -634,9 +659,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const lineGroups = new Map();
       const areaGroups = new Map();
       const barGroups = new Map();
+      const stackedBarGroups = new Map();
       for (let i of I) {
         const key = Z[i];
-        if (typeof config.showArea === 'function' && config.showArea(key)) {
+        if (this._dataSetConfigs[key].type === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
           if (!areaGroups.has(key)) {
             areaGroups.set(key, []);
           }
@@ -656,17 +682,45 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             }
             barGroups.get(key).push(i);
             break;
+
+          case 'stacked-bar':
+            if (!stackedBarGroups.has(key)) {
+              stackedBarGroups.set(key, []);
+            }
+            stackedBarGroups.get(key).push(i);
+            break;
         }
       }
 
       if (lineGroups.size > 0) {
-        // Construct a line generator.
-        const line = d3
-          .line()
-          //.defined(i => D[i])
-          .curve(config.curve)
-          .x(i => xScale(X[i]))
-          .y(i => yScale(Y[i]));
+        const lineFunctions = {};
+        for (let key of lineGroups.keys()) {
+          const curveName = this._dataSetConfigs[key].curve || 'linear';
+          if (!Object.prototype.hasOwnProperty.call(lineFunctions, curveName)) {
+            let curveFunction;
+            switch (curveName) {
+              case 'linear':
+                curveFunction = d3.curveLinear;
+                break;
+
+              case 'step':
+                curveFunction = d3.curveStep;
+                break;
+
+              case 'natural':
+                curveFunction = d3.curveNatural;
+                break;
+            }
+            if (curveFunction) {
+              // Construct a line generator.
+              lineFunctions[curveName] = d3
+                .line()
+                .curve(curveFunction)
+                .x(i => xScale(X[i]))
+                .y(i => yScale(Y[i]));
+            }
+          }
+        }
 
         linePath = svg
           .append('g')
@@ -681,29 +735,59 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
           .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
-          .attr('d', d => line(d[1]));
+          .attr('d', d => {
+            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
+            const func = lineFunctions[curveName] || lineFunctions.linear;
+            return func(d[1]);
+          });
       }
 
       // Add the area
       if (areaGroups.size > 0) {
-        const area = d3
-          .area()
-          //.defined(i => D[i])
-          .curve(config.curve)
-          .x(i => xScale(X[i]))
-          .y0(() => config.yRange[0])
-          .y1(i => yScale(Y[i]));
+        const areaFunctions = {};
+        for (let key of areaGroups.keys()) {
+          const curveName = this._dataSetConfigs[key].curve || 'linear';
+          if (!Object.prototype.hasOwnProperty.call(areaFunctions, curveName)) {
+            let curveFunction;
+            switch (curveName) {
+              case 'linear':
+                curveFunction = d3.curveLinear;
+                break;
+
+              case 'step':
+                curveFunction = d3.curveStep;
+                break;
+
+              case 'natural':
+                curveFunction = d3.curveNatural;
+                break;
+            }
+            if (curveFunction) {
+              // Construct a line generator.
+              areaFunctions[curveName] = d3
+                .area()
+                .curve(curveFunction)
+                .x(i => xScale(X[i]))
+                .y0(() => config.yRange[0])
+                .y1(i => yScale(Y[i]));
+            }
+          }
+        }
 
         svg
           .append('g')
           .attr('stroke', 'none')
-          .attr('fill', typeof config.color === 'string' ? config.color + '30' : null)
+          .attr('fill', typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null)
           .selectAll('path')
           .data(areaGroups)
           .join('path')
           .style('mix-blend-mode', config.mixBlendMode)
-          .attr('fill', typeof config.color === 'function' ? p => config.color(p[0]) + '30' : null)
-          .attr('d', d => area(d[1]));
+          .attr('fill', typeof config.color === 'function' ? p => this.__opacifyColor(config.color(p[0]), '30') : null)
+          .attr('d', d => {
+            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
+            const func = areaFunctions[curveName] || areaFunctions.linear;
+            return func(d[1]);
+          });
       }
 
       if (barGroups.size > 0) {
@@ -713,7 +797,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .selectAll('g')
           .data(barGroups)
           .join('g')
-          .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) + '30' : null)
+          .attr('fill', typeof config.color === 'function' ? d => this.__opacifyColor(config.color(d[0]), '30') : null)
           .selectAll('rect')
           .data(d => {
             return d[1].map(val => {
@@ -742,6 +826,22 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .attr('y', -8);
 
       return Object.assign(svg.node(), { value: null });
+    },
+
+    /**
+     * add opacity to color
+     * @param color
+     * @param opacity {string} hex number 0 - 255
+     * @return {string|*}
+     * @private
+     */
+    __opacifyColor(color, opacity) {
+      if (color.startsWith('rgb(')) {
+        return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
+      } else if (color.startsWith('#') && color.length === 7) {
+        return color + opacity;
+      }
+      return color;
     }
   },
 

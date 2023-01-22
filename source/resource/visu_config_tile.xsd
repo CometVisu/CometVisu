@@ -180,6 +180,18 @@
       </xsd:attribute>
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
+    <xsd:attribute name="foreground-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the value bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Wertbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="background-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the background bar.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Hintergrundbalkens.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
@@ -721,12 +733,26 @@
                 <xsd:restriction base="xsd:string">
                   <xsd:enumeration value="line" />
                   <xsd:enumeration value="bar" />
+                  <xsd:enumeration value="stacked-bar" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="curve">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
+                <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
+              </xsd:annotation>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="linear" />
+                  <xsd:enumeration value="step" />
+                  <xsd:enumeration value="natural" />
                 </xsd:restriction>
               </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="color" type="color">
               <xsd:annotation>
-                <xsd:documentation xml:lang="en">Farbe of the chart element.</xsd:documentation>
+                <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
                 <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
               </xsd:annotation>
             </xsd:attribute>
@@ -795,6 +821,20 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="refresh"/>
+    <xsd:attribute name="show-grid">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show grid lines.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige Gitterlinien.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="xy" />
+          <xsd:enumeration value="x" />
+          <xsd:enumeration value="y" />
+          <xsd:enumeration value="false" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
