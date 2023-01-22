@@ -465,6 +465,12 @@
         <xsd:documentation xml:lang="de">Deaktiviert den Hintergrund solange das Popup geöffnet ist.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Open the popup in fullscreen mode.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Das geöffnete Popup belegt den gesamten Bildschirm.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="title" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Headline of this popup.</xsd:documentation>
@@ -530,21 +536,7 @@
         <xsd:element name="cv-popup" type="cv-popup" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="size">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Size of the tile in {columns}x{rows}, 1x1 is the default size.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="1x0.5" />
-          <xsd:enumeration value="2x1" />
-          <xsd:enumeration value="1x2" />
-          <xsd:enumeration value="2x2" />
-          <xsd:enumeration value="2x4" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+    <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute name="background-image" type="xsd:anyURI">
@@ -834,6 +826,12 @@
           <xsd:enumeration value="false" />
         </xsd:restriction>
       </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="background" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show the chart in the background of a tile.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt den Chart im Hintergrund einer Kachel.</xsd:documentation>
+      </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
 
@@ -1310,6 +1308,36 @@
             </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
+        <xsd:element name="cv-chart" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-chart">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="additional" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-popup" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-popup">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="additional" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
       </xsd:choice>
       <xsd:element name="span" maxOccurs="unbounded" minOccurs="0">
         <xsd:complexType>
@@ -1320,6 +1348,7 @@
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="label" />
                     <xsd:enumeration value="unit" />
+                    <xsd:enumeration value="title" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -1334,6 +1363,7 @@
     <xsd:attribute ref="class" />
     <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
+    <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute name="value-size">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the font size of the value.</xsd:documentation>
@@ -1766,6 +1796,20 @@
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
       <xsd:pattern value="#[\dA-F]{6}([\dA-F][\dA-F])?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="tile-size">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Size of the tile in {columns}x{rows}, 1x1 is the default size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="1x0.5" />
+      <xsd:enumeration value="2x1" />
+      <xsd:enumeration value="1x2" />
+      <xsd:enumeration value="2x2" />
+      <xsd:enumeration value="2x4" />
     </xsd:restriction>
   </xsd:simpleType>
 

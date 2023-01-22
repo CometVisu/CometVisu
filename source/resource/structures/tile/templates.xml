@@ -68,7 +68,8 @@
         </cv-tile>
     </template>
     <template id="info">
-        <cv-tile>
+        <cv-tile slot-size="">
+            <label class="title"><slot name="title">TITLE</slot></label>
             <cv-menu>
                 <slot name="menu" parent-scope="1"/>
             </cv-menu>
@@ -81,8 +82,9 @@
                 </cv-value>
             </cv-row>
             <cv-row colspan="3" row="last">
-                <label class="secondary"><slot name="label">LABEL</slot></label>
+                <label class="secondary"><slot name="label" parent-scope="2">LABEL</slot></label>
             </cv-row>
+            <slot name="additional"/>
         </cv-tile>
     </template>
     <template id="status">

@@ -388,7 +388,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         ]);
       }
 
-      this._chart = this._lineChart(chartData, {
+      let config = {
         x: d => d.time,
         y: d => d.value,
         z: d => d.src,
@@ -407,7 +407,30 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         },
         mixBlendMode: 'normal',
         xFormat: timeFormat
-      });
+      };
+
+      if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
+        // no margins
+        config = Object.assign(config, {
+          marginTop: 0,
+          marginRight: 0,
+          marginBottom: 0,
+          marginLeft: 0,
+          chartOpacity: 0.5,
+          disableToolTips: true
+        });
+
+        // because we have no margins we need to cut the overflow on the tile
+        let tile = this._element.parentElement;
+        while (tile && tile.nodeName.toLowerCase() !== 'cv-tile') {
+          tile = tile.parentElement;
+        }
+        if (tile && tile.nodeName.toLowerCase() === 'cv-tile') {
+          tile.style.overflow = 'hidden';
+        }
+      }
+
+      this._chart = this._lineChart(chartData, config);
 
       this._loaded = Date.now();
     },
@@ -484,7 +507,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           strokeOpacity: undefined, // stroke opacity of line
           mixBlendMode: 'multiply', // blend mode of lines
           showArea: undefined, // show area below the line,
-          xPadding: 0.1 // amount of x-range to reserve to separate bars
+          xPadding: 0.1, // amount of x-range to reserve to separate bars
+          chartOpacity: 1.0, // opacity of the chart content
+          disableToolTips: false // do not show tooltip values
         };
       }
       const config = Object.assign({}, cv.ui.structure.tile.components.Chart.CONFIG, c);
@@ -553,7 +578,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (T) {
           const ttNode = tooltip.node();
           const timeString = config.xFormat(new Date(X[i]));
-          const top = ym*scaleFactorY - ttNode.offsetHeight - 40;
+          const top = ym*scaleFactorY - ttNode.offsetHeight - (event.pointerType === 'mouse' ? 8 : 40);
           let left = (xm*scaleFactorX + ttNode.offsetWidth) > this._element.offsetWidth ? xm*scaleFactorX - ttNode.offsetWidth : xm*scaleFactorX;
 
           const key = Z[i];
@@ -584,11 +609,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .select(this._element)
         .append('svg')
         .attr('viewBox', [0, 0, config.width, config.height])
-        .attr('style', 'max-width: 100%; height: auto; height: intrinsic;')
+        .attr('preserveAspectRatio', 'none')
+        .attr('style', `width: 100%; height: 100%; display: block; opacity: ${config.chartOpacity};`)
         .style('-webkit-tap-highlight-color', 'transparent')
-        .on('pointerenter', pointerEntered)
-        .on('pointermove', pointerMoved)
-        .on('pointerleave', pointerLeft)
         .on(
           'touchmove',
           event => {
@@ -602,6 +625,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           },
           { passive: false }
         );
+
+      if (!config.disableToolTips) {
+        svg.on('pointerenter', pointerEntered)
+          .on('pointermove', pointerMoved)
+          .on('pointerleave', pointerLeft);
+      }
 
       const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
       if (showGrid.includes('x')) {
