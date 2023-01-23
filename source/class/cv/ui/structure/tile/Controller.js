@@ -38,6 +38,7 @@
  * @asset(structures/tile/*)
  * @author Tobias Bräutigam
  * @since 2022
+ * @ignore(IntersectionObserver)
  */
 qx.Class.define('cv.ui.structure.tile.Controller', {
   extend: qx.core.Object,
@@ -242,6 +243,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           }
           document.body.classList.remove('loading-structure');
           this.debug('finalizing');
+          this.observeVisibility();
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
           this.__gotoStartPage();
@@ -315,6 +317,24 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats
      */
     createUI(config) {},
+
+    observeVisibility() {
+      // find all pages with an iframe with attribute "data-src" and observe its parent page
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.target.nodeName.toLowerCase() === 'iframe' && entry.target.hasAttribute('data-src')) {
+            entry.target.setAttribute('src', entry.target.getAttribute('data-src'));
+            entry.target.removeAttribute('data-src');
+            observer.unobserve(entry.target);
+          }
+        }, {
+          root: document.querySelector('body > main')
+        });
+      });
+      for (const iframe of document.querySelectorAll('iframe[data-src]')) {
+        observer.observe(iframe);
+      }
+    },
 
     translate(doc) {
       for (const attr of ['name', 'label', 'title']) {
