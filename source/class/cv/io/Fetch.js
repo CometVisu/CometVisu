@@ -51,13 +51,14 @@ qx.Class.define('cv.io.Fetch', {
         delete options.ttl;
       }
       const ps = cv.io.Fetch.fetch(resource, options, proxy, client);
-      cache[resource] = {
+      const cacheEntry = {
         data: ps,
         time: 0,
         ttl: options.ttl || cv.io.Fetch.DEFAULT_CACHE_TTL
       }
+      cache[resource] = cacheEntry;
       ps.then(() => {
-        cache[resource].time = Date.now();
+        cacheEntry.time = Date.now();
       });
       if (!cv.io.Fetch.__gcInterval) {
         cv.io.Fetch.__gcInterval = setInterval(() => {
