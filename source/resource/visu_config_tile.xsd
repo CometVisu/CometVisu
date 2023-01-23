@@ -2218,6 +2218,7 @@
     </xsd:annotation>
     <xsd:attribute ref="style"/>
     <xsd:attribute name="src" type="xsd:anyURI"/>
+    <xsd:attribute name="data-src" type="xsd:anyURI"/>
   </xsd:complexType>
 
   <!--
