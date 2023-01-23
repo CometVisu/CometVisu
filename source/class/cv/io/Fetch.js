@@ -59,6 +59,9 @@ qx.Class.define('cv.io.Fetch', {
       cache[resource] = cacheEntry;
       ps.then(() => {
         cacheEntry.time = Date.now();
+      }).catch(e => {
+        qx.log.Logger.error(cv.io.Fetch, 'error loading ' + resource + ': ', e);
+        delete cache[resource];
       });
       if (!cv.io.Fetch.__gcInterval) {
         cv.io.Fetch.__gcInterval = setInterval(() => {
