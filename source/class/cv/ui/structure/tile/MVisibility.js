@@ -40,8 +40,10 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
     observer: new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.target._instance) {
-          entry.target._instance.setVisible(entry.intersectionRatio > 0);
+          entry.target._instance.setVisible(entry.isIntersecting);
         }
+      }, {
+        root: document.querySelector('body > main')
       });
     })
   },
