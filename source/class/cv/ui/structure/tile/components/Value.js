@@ -25,6 +25,17 @@
 qx.Class.define('cv.ui.structure.tile.components.Value', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
   include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(element) {
+    super(element);
+    this.addListener('changeVisible', this._applyVisible, this);
+  },
+
   /*
   ***********************************************
     MEMBERS
@@ -46,8 +57,8 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
       }
     },
 
-    _applyVisible(visible) {
-      if (visible) {
+    _applyVisible(ev) {
+      if (ev.getData()) {
         if (this._queuedOverflowDetection) {
           this._debouncedDetectOverflow();
         }

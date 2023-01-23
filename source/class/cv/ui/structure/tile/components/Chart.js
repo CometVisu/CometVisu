@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Chart', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: cv.ui.structure.tile.MVisibility,
+  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
 
   /*
   ***********************************************
@@ -181,12 +181,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       cv.ui.structure.tile.components.Chart.ChartCounter++;
+
+      if (element.hasAttribute('refresh')) {
+        this.setRefresh(parseInt(element.getAttribute('refresh')));
+      }
     },
 
-    _applyVisible(value) {
-      if (value && typeof window.d3 === 'object') {
-        this._loadData();
-      }
+    refresh() {
+      this._loaded = false;
+      this._loadData();
     },
 
     _loadData() {
@@ -264,8 +267,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
           ts[name] = value;
         }
-        let start = new Date();
-        start.setTime(start.getTime() - 60 * 60 * 24 * 1000);
         url = client.getResourcePath('charts', {
           src: ts.src,
           start: ts.start,
@@ -277,10 +278,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
         this._dataSetConfigs[ts.src] = ts;
         promises.push(
-          cv.io.Fetch.fetch(url, null, false, client)
+          cv.io.Fetch.cachedFetch(url, {ttl: this.getRefresh()}, false, client)
             .then(data => {
               if (client.hasCustomChartsDataProcessor(data)) {
                 data = client.processChartsData(data, ts);
+              }
+              if (!this._lastRefresh) {
+                this._lastRefresh = Date.now();
               }
               return {
                 data: data || [],

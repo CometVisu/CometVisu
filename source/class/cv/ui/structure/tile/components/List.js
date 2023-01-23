@@ -152,13 +152,15 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       if (model.hasAttribute('src') || model.hasAttribute('config-section')) {
         // fetch from url
         this._getModel = async () => {
-          const options = {};
+          const options = {
+            ttl: this.getRefresh()
+          };
           for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
             if (model.hasAttribute(proxyParam)) {
               options[proxyParam] = model.getAttribute(proxyParam);
             }
           }
-          const res = await cv.io.Fetch.fetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
+          const res = await cv.io.Fetch.cachedFetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
           return res;
         };
       } else if (model.hasAttribute('class')) {

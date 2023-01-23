@@ -55,7 +55,7 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
     visible: {
       check: 'Boolean',
       init: false,
-      apply: '_applyVisible'
+      event: 'changeVisible'
     }
   },
 
