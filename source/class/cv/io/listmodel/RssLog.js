@@ -137,11 +137,12 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         // no json -> error
         this.error('Expected JSON, but got response MIME:', ev.getTarget().getResponseContentType());
         this.error(response);
+        this.fireDataEvent('finished', false);
       } else {
         const model = this.getModel();
         model.replace(response.responseData.feed.entries);
+        this.fireDataEvent('finished', true);
       }
-      this.fireDataEvent('finished', false);
     },
 
     async refresh() {
