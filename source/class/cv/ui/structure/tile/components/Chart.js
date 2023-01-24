@@ -430,12 +430,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         // because we have no margins we need to cut the overflow on the tile
         let tile = this._element.parentElement;
-        while (tile && tile.nodeName.toLowerCase() !== 'cv-tile') {
+        while (tile && tile.localName !== 'cv-tile') {
           tile = tile.parentElement;
         }
-        if (tile && tile.nodeName.toLowerCase() === 'cv-tile') {
+        if (tile && tile.localName === 'cv-tile') {
           tile.style.overflow = 'hidden';
         }
+      }
+
+      if (this._element.parentElement.localName === 'cv-popup' && this._element.parentElement.getAttribute('fullscreen') === 'true') {
+        config.width = Math.round(window.innerWidth / 2);
+        config.height = Math.round(window.innerHeight / 2);
       }
 
       this._chart = this._lineChart(chartData, config);
