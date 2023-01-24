@@ -34,6 +34,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   */
   statics: {
     ChartCounter: 0,
+    DEFAULT_ASPECT_RATIO: 392/192,
 
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
@@ -112,6 +113,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   members: {
+    _id: null,
     _downloadedImage: null,
     _url: null,
     _headers: null,
@@ -131,8 +133,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this.isVisible()) {
         this._loadData();
       }
+      this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
+      element.setAttribute('data-chart-id', this._id.toString());
       if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-        const chartId = 'chart-' + cv.ui.structure.tile.components.Chart.ChartCounter;
+        const chartId = 'chart-' + this._id;
         // add fullscreen button + address
         const button = document.createElement('cv-button');
         button.classList.add('fullscreen');
@@ -179,8 +183,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           });
         }
       }
-
-      cv.ui.structure.tile.components.Chart.ChartCounter++;
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
@@ -438,9 +440,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      if (this._element.parentElement.localName === 'cv-popup' && this._element.parentElement.getAttribute('fullscreen') === 'true') {
-        config.width = Math.round(window.innerWidth / 2);
-        config.height = Math.round(window.innerHeight / 2);
+      // on the end of the next frame we are fully rendered
+      window.requestAnimationFrame(() => {
+        setTimeout(() => {
+          this._onRendered(chartData, config);
+        }, 0);
+      });
+    },
+
+    _onRendered(chartData, config) {
+      const parent = this._element.parentElement;
+      let containerWidth = this._element.offsetWidth;
+      let containerHeight = this._element.offsetHeight;
+      let factor = 1;
+
+      if (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true') {
+        containerWidth = window.innerWidth;
+        containerHeight = window.innerHeight;
+        factor = 2;
+      }
+      const landscape = containerWidth > containerHeight;
+      if (landscape) {
+        config.width = Math.round(containerWidth / factor);
+        config.height = Math.round(containerHeight / factor); //config.width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
+      } else {
+        config.height = Math.round(containerHeight / factor);
+        config.width = Math.round(containerWidth / factor); // config.height * cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
 
       this._chart = this._lineChart(chartData, config);
@@ -503,6 +528,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           marginLeft: 30, // left margin, in pixels
           width: 392, // outer width, in pixels
           height: 192, // outer height, in pixels
+          aspectRatio: 392/192,
           xType: d3.scaleTime, // type of x-scale
           xDomain: undefined, // [xmin, xmax]
           xRange: undefined, // [left, right]
@@ -622,7 +648,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         .select(this._element)
         .append('svg')
         .attr('viewBox', [0, 0, config.width, config.height])
-        .attr('preserveAspectRatio', 'none')
+        //.attr('preserveAspectRatio', 'none')
         .attr('style', `width: 100%; height: 100%; display: block; opacity: ${config.chartOpacity};`)
         .style('-webkit-tap-highlight-color', 'transparent')
         .on(
