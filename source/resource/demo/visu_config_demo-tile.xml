@@ -213,7 +213,7 @@
             </cv-status>
             </cv-group>
             <cv-group open="true" name="tr('Consumptions')">
-                <cv-tile-pair>
+                <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: #f2495c">
                         <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
