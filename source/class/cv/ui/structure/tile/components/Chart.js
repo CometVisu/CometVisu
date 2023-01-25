@@ -426,7 +426,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           marginRight: 0,
           marginBottom: 0,
           marginLeft: 0,
-          chartOpacity: 0.5,
+          chartOpacity: 0.4,
           disableToolTips: true
         });
 
@@ -444,7 +444,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       window.requestAnimationFrame(() => {
         setTimeout(() => {
           this._onRendered(chartData, config);
-        }, 0);
+        }, 10);
       });
     },
 
@@ -461,11 +461,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       const landscape = containerWidth > containerHeight;
       if (landscape) {
+        // obeying aspect ratio in landscape mode is not necessary
         config.width = Math.round(containerWidth / factor);
-        config.height = Math.round(containerHeight / factor); //config.width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
-      } else {
         config.height = Math.round(containerHeight / factor);
-        config.width = Math.round(containerWidth / factor); // config.height * cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
+      } else {
+        config.width = Math.round(containerWidth / factor);
+        config.height = config.width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
 
       this._chart = this._lineChart(chartData, config);
