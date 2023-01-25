@@ -2097,7 +2097,7 @@
   <xsd:attribute name="visible-on">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Controls this element's visibility by screen size.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit dieses Element anhand der Bildschirmgröße.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
