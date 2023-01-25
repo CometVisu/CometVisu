@@ -64,10 +64,25 @@ class Schema:
                 # get all attributes from extension
                 for attr in self.get_widget_attributes(ext.get("base")):
                     res.append(attr)
+
+        # find and resolve attribute groups
+        res += self.get_group_attributes("xs:complexType[@name='%s']/xs:attributeGroup" % widget_name)
+        res += self.get_group_attributes("xs:complexType[@name='%s']/xs:simpleContent/xs:extension/xs:attributeGroup" % widget_name)
+
         return res
+
+    def get_group_attributes(self, query):
+        for group in self.findall(query):
+            if "ref" in group.attrib:
+                name = group.get('ref')
+                return self.get_group_attributes(name)
+        return []
 
     def get_attribute(self, widget_name):
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
+
+    def get_group_attributes(self, widget_name):
+        return self.findall("xs:attributeGroup[@name='%s']/xs:attribute" % widget_name)
 
     def get_widget_elements(self, widget_name, locale='en', ctype=None, sub_type=False):
         if ctype is None:
