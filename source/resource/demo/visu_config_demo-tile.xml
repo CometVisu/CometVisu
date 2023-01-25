@@ -26,6 +26,10 @@
             <entry value="0">ri-speaker-line</entry>
             <entry value="1">ri-speaker-fill</entry>
         </cv-mapping>
+        <cv-styling name="LightTheme">
+            <entry value="light">active</entry>
+            <entry value="dark">inactive</entry>
+        </cv-styling>
         <cv-translations>
             <language name="de">
                 <tr key="Dashboard">Dashboard</tr>
@@ -80,6 +84,9 @@
                 <tr key="Water meter reading">Z&#228;hlerstand Wasser</tr>
                 <tr key="Water consumption">Wasserverbrauch</tr>
                 <tr key="Gas consumption">Gasverbrauch</tr>
+                <tr key="Others">Sonstige</tr>
+                <tr key="Rooms">Räume</tr>
+                <tr key="Light-Theme">Light Theme</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -192,7 +199,7 @@
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
             <h2 visible-on="mobile">CometVisu - Tile demo</h2>
-            <cv-group open="true" name="tr('Consumptions')">
+            <cv-group open="true">
                 <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: #f2495c">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
@@ -249,6 +256,18 @@
                         </cv-popup>
                     </cv-info>
                 </cv-tile-pair>
+            </cv-group>
+            <cv-group name="tr('Others')">
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="floorplan">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-settings-3-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Rooms</span>
+                </cv-switch>
+                <cv-switch on-value="light" off-value="dark" mapping="" styling="LightTheme">
+                    <cv-address slot="address" backend="system">theme</cv-address>
+                    <cv-icon slot="icon">ri-sun-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Light-Theme</span>
+                </cv-switch>
             </cv-group>
         </cv-page>
         <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">
