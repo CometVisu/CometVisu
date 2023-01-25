@@ -31,6 +31,7 @@ $tileColumns: 3;
     --shadowColor: rgba(var(--baseShadowColor-r), var(--baseShadowColor-g), var(--baseShadowColor-b), 0.2);
     --blockerColor: rgba(var(--baseShadowColor-r), var(--baseShadowColor-g), var(--baseShadowColor-b), 0.9);
     --greenBackground: #175927;
+    --tileTitleBackground: #222;
 
     --overlayColor: rgba(0, 0, 0, 0.75);
 
@@ -49,6 +50,7 @@ $tileColumns: 3;
     --secondaryColor: #666666;
     --primaryText: #1f1f1f;
     --chart-grid-color: #d8d4d4;
+    --tileTitleBackground: #dedede;
 
     --shadowColor: rgba(0, 0, 0, 0.05);
     --rippleBackgroundColor: rgba(0, 0, 0, 0.1);
@@ -573,7 +575,15 @@ body {
 
         &:first-of-type {
             border-top: none;
-            margin-top: 0;
+
+            &[name] {
+                margin-top: 0;
+            }
+        }
+
+        &:not([name]) {
+            /* add some top space for groups that do not show a label */
+            margin-top: calc(var(--spacing)*2);
         }
 
         &[open] > summary:before {
@@ -670,7 +680,7 @@ body {
             position: absolute;
             width: calc(100% - 2*var(--spacing));
             text-align: center;
-            background: #222;
+            background: var(--tileTitleBackground);
             padding: var(--spacing);
             overflow: hidden;
             text-overflow: ellipsis;
