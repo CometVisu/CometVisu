@@ -226,7 +226,7 @@ module.exports = function(grunt) {
 
             return grunt.template.process('/* <%= filename %> \n'+
               ' * \n'+
-              ' * copyright (c) 2010-<%= grunt.template.today("yyyy") %>, Christian Mayer and the CometVisu contributers.\n'+
+              ' * copyright (c) 2010-<%= grunt.template.today("yyyy") %>, Christian Mayer and the CometVisu contributors.\n'+
               ' * \n'+
               ' * This program is free software; you can redistribute it and/or modify it\n'+
               ' * under the terms of the GNU General Public License as published by the Free\n'+
