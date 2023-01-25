@@ -17,6 +17,15 @@ qx.Class.define('cv.io.AbstractClient', {
 
   /*
   ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    resourcePathAdded: 'qx.event.type.Data'
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -25,6 +34,7 @@ qx.Class.define('cv.io.AbstractClient', {
 
     setResourcePath(name, path) {
       this._resources[name] = path;
+      this.fireDataEvent('resourcePathAdded', name);
     }
   },
 });

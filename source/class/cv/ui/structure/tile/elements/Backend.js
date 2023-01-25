@@ -147,19 +147,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           }
         });
 
-        for (const data of element.querySelectorAll(':scope > cv-data')) {
-          if (data.hasAttribute('address')) {
-            let value = data.textContent.trim();
-            if (data.hasAttribute('transform')) {
-              const encoding = data.getAttribute('transform');
-              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
-
-              value = encodedValue.bus;
-            }
-            this.__applyValues.push([data.getAttribute('address'), value]);
-          }
-        }
-
         for (const data of element.querySelectorAll(':scope > cv-resource')) {
           client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
         }

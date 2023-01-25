@@ -45,9 +45,25 @@ qx.Class.define('cv.io.Mockup', {
 
     const testMode = qx.core.Environment.get('cv.testMode');
     if (typeof testMode === 'string' && testMode !== 'true') {
-      this.__loadTestData();
+      this.__loadTestData(testMode);
     }
     this.addresses = [];
+
+    let file = this._resources['simulation'];
+    if (file) {
+      this.__loadTestData(file);
+    } else {
+      this.addListener('resourcePathAdded', ev => {
+        switch (ev.getData()) {
+          case 'simulation':
+            const file = this._resources['simulation'];
+            if (file) {
+              this.__loadTestData(file);
+            }
+            break;
+        }
+      });
+    }
   },
 
   /*
@@ -79,6 +95,8 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   members: {
+    __simulating: false,
+    __encodeSimulatedStates: false,
     backendName: 'mockup',
     addresses: null,
     __xhr: null,
@@ -90,11 +108,12 @@ qx.Class.define('cv.io.Mockup', {
       return this.backendName;
     },
 
-    __loadTestData() {
+    __loadTestData(file) {
       // load the demo data to fill the visu with some values
-      const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      const r = new qx.io.request.Xhr(file);
       r.addListener('success', e => {
         cv.Config.initialDemoData = e.getTarget().getResponse();
+        this.__simulating = true;
         this.__applyTestData();
       });
       r.send();
@@ -157,7 +176,7 @@ qx.Class.define('cv.io.Mockup', {
       };
 
       // configure server
-      qx.dev.FakeServer.getInstance().addFilter(function (args) {
+      qx.dev.FakeServer.getInstance().addFilter((args) => {
         const method = args[0];
         const url = args[1];
         if (url.startsWith('https://sentry.io')) {
@@ -167,7 +186,8 @@ qx.Class.define('cv.io.Mockup', {
           (url.indexOf('resource/visu_config') >= 0 ||
             url.indexOf('resource/demo/visu_config') >= 0 ||
             url.indexOf('resource/hidden-schema.json') >= 0 ||
-            url.indexOf('resource/manager/') >= 0)
+            url.indexOf('resource/manager/') >= 0) ||
+            url.startsWith(this.getResourcePath('charts'))
         ) {
           return true;
         } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
@@ -178,7 +198,7 @@ qx.Class.define('cv.io.Mockup', {
           return true;
         }
         return false;
-      }, this);
+      });
       const server = qx.dev.FakeServer.getInstance().getFakeServer();
       server.respondWith(
         function (request) {
@@ -204,13 +224,14 @@ qx.Class.define('cv.io.Mockup', {
 
             if (request.readyState === 4 && request.status === 404) {
               // This is a hack, sometimes the request has a 404 status and send readystate
-              // the respond would fail if we do not override it here
+              // the response would fail if we do not override it here
               request.readyState = 1;
             }
             request.respond(response.status, response.headers, JSON.stringify(response.body));
           }
         }.bind(this)
       );
+      this.__prepareTestData();
     },
 
     defake(fakeXhr, xhrArgs) {
@@ -331,6 +352,9 @@ qx.Class.define('cv.io.Mockup', {
       if (!simulation) {
         return;
       }
+      if (this.__encodeSimulatedStates && address in this._addressConfigs) {
+        value = cv.Transform.encodeBusAndRaw(this._addressConfigs[address], value).raw;
+      }
       let start = false;
       let stop = false;
       if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
@@ -348,11 +372,12 @@ qx.Class.define('cv.io.Mockup', {
       if (start) {
         // start simulation
         if (simulation.type === 'shutter') {
-          simulation.direction = value === '0' ? 'up' : 'down';
+          simulation.direction = value === '00' ? 'up' : 'down';
           let initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
-
           if (initValue === undefined) {
             initValue = 0;
+          } else if (this.__encodeSimulatedStates && simulation.targetAddress in this._addressConfigs) {
+            initValue = cv.Transform.decode(this._addressConfigs[simulation.targetAddress], initValue);
           }
           simulation.value = initValue;
 
@@ -382,11 +407,12 @@ qx.Class.define('cv.io.Mockup', {
                 i: new Date().getTime(),
                 d: {}
               };
-              if (cv.Config.initialDemoData.encodeFirst && simulation.targetAddress in this._addressConfigs) {
-                newValue = cv.Transform.encodeBusAndRaw(this._addressConfigs[simulation.targetAddress], newValue).raw;
+              let sendValue = newValue;
+              if (this.__encodeSimulatedStates && simulation.targetAddress in this._addressConfigs) {
+                sendValue = cv.Transform.encodeBusAndRaw(this._addressConfigs[simulation.targetAddress], newValue).raw;
               }
 
-              update.d[simulation.targetAddress] = newValue;
+              update.d[simulation.targetAddress] = sendValue;
               this.receive(update);
               if (simulation.value !== newValue) {
                 simulation.value = newValue;
@@ -409,46 +435,90 @@ qx.Class.define('cv.io.Mockup', {
      */
     subscribe(addresses) {
       this.addresses = addresses ? addresses : [];
-      if (qx.core.Environment.get('cv.testMode')) {
-        if (cv.Config.initialDemoData) {
-          if (cv.Config.initialDemoData.encodeFirst) {
-            // connect address data from widgets first
-            this._addressConfigs = {};
-            const widgetData = cv.data.Model.getInstance().getWidgetDataModel();
-            for (const id in widgetData) {
-              if (widgetData[id].address) {
-                this._addressConfigs = Object.assign(this._addressConfigs, widgetData[id].address);
-              }
-            }
+      this.__prepareTestData();
+    },
 
-            for (let ga in cv.Config.initialDemoData.states) {
+    __prepareTestData() {
+      if (cv.Config.initialDemoData && this.addresses.length > 0) {
+        if (cv.Config.initialDemoData.encodeFirst) {
+          this.__encodeSimulatedStates = true;
+          // connect address data from widgets first
+          this._addressConfigs = {};
+          const widgetData = cv.data.Model.getInstance().getWidgetDataModel();
+          for (const id in widgetData) {
+            if (widgetData[id].address) {
+              this._addressConfigs = Object.assign(this._addressConfigs, widgetData[id].address);
+            }
+          }
+          // lookup cv-address elements (tile structure)
+          for (const addressElement of document.querySelectorAll('cv-address')) {
+            this._addressConfigs[addressElement.textContent.trim()] = {
+              transform: addressElement.getAttribute('transform')
+            }
+          }
+
+          for (let ga in cv.Config.initialDemoData.states) {
+            if (ga in this._addressConfigs) {
+              cv.Config.initialDemoData.states[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], cv.Config.initialDemoData.states[ga]).raw;
+            }
+          }
+          for (const seq of cv.Config.initialDemoData.sequence) {
+            for (const ga in seq.data) {
               if (ga in this._addressConfigs) {
-                cv.Config.initialDemoData.states[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], cv.Config.initialDemoData.states[ga]).raw;
-              }
-            }
-            for (const seq of cv.Config.initialDemoData.sequence) {
-              for (const ga in seq.data) {
-                if (ga in this._addressConfigs) {
-                  seq.data[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga],  seq.data[ga]).raw;
-                }
+                seq.data[ga] = cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], seq.data[ga]).raw;
               }
             }
           }
-          this.receive({
-            i: new Date().getTime(),
-            d: cv.Config.initialDemoData.states
-          });
+          for (const ga in cv.Config.initialDemoData.simulations) {
+            if (ga in this._addressConfigs) {
+              // startValues
+              const sim = cv.Config.initialDemoData.simulations[ga];
+              const mapping = valueArray => {
+                return valueArray.map(val => {
+                  if (val.indexOf('|') >= 0) {
+                    const [startAddress, startVal] = val.split('|');
+                    if (startAddress in this._addressConfigs) {
+                      return startAddress + '|' + cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], startVal).raw;
+                    }
+                    return val;
+                  } else {
+                    return cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], val).raw;
+                  }
+                });
+              }
+              sim.startValues = mapping(sim.startValues);
+              sim.stopValues = mapping(sim.stopValues);
+            }
+          }
+        }
+        this.receive({
+          i: new Date().getTime(),
+          d: cv.Config.initialDemoData.states
+        });
 
-          if (cv.Config.initialDemoData.sequence) {
-            this.__sequence = cv.Config.initialDemoData.sequence;
-            this._startSequence();
+        if (cv.Config.initialDemoData.sequence) {
+          this.__sequence = cv.Config.initialDemoData.sequence;
+          this._startSequence();
+        }
+        if (cv.Config.initialDemoData.simulations) {
+          this._registerSimulations(cv.Config.initialDemoData.simulations);
+        }
+        console.log(cv.Config.initialDemoData);
+        cv.Config.initialDemoData = null;
+      }
+    },
+
+    __decode(address, value) {
+      if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
+        if (/^[\da-fA-F]+$/.test(value)) {
+          if (value.length <= 2) {
+            value = '' + (parseInt(value, 16) & 63);
+          } else {
+            value = value.substring(2);
           }
-          if (cv.Config.initialDemoData.simulations) {
-            this._registerSimulations(cv.Config.initialDemoData.simulations);
-          }
-          cv.Config.initialDemoData = null;
         }
       }
+      return value;
     },
 
     /**
@@ -469,6 +539,8 @@ qx.Class.define('cv.io.Mockup', {
         ts: ts
       };
 
+      value = this.__decode(address, value);
+
       if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
         this._processSimulation(address, value);
       } else {
@@ -477,17 +549,7 @@ qx.Class.define('cv.io.Mockup', {
           i: ts,
           d: {}
         };
-
-        if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
-          if (/^[\da-fA-F]+$/.test(value)) {
-            if (value.length <= 2) {
-              value = '' + (parseInt(value, 16) & 63);
-            } else {
-              value = value.substring(2);
-            }
-            lastWrite.transformedValue = value;
-          }
-        }
+        lastWrite.transformedValue = value;
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
@@ -504,11 +566,14 @@ qx.Class.define('cv.io.Mockup', {
       let basePath = '';
       if (Object.prototype.hasOwnProperty.call(this._resources, name)) {
         basePath = this._resources[name];
+        if (basePath && !basePath.endsWith('/')) {
+          basePath += '/';
+        }
       }
       if (name === 'charts' && map && map.src) {
-        return basePath + '/' + name + '/' + map.src;
+        return basePath + '/' + map.src;
       }
-      return name;
+      return basePath;
     },
 
     getLastError() {

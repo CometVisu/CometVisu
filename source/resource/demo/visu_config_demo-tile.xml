@@ -5,29 +5,8 @@
         version="1">
     <cv-meta>
         <cv-backend name="si" type="simulated" default="true">
-            <cv-resource name="charts">resource/demo/media</cv-resource>
-            <cv-data address="1/4/4">80</cv-data>
-            <cv-data address="1/4/6">80</cv-data>
-            <cv-data address="1/4/9">80</cv-data>
-            <cv-data address="1/4/10">0C1A</cv-data>
-            <cv-data address="1/4/11">80</cv-data>
-            <cv-data address="1/4/12">00</cv-data>
-            <cv-data address="1/4/13">01</cv-data>
-            <cv-data address="1/4/14">00</cv-data>
-            <cv-data address="1/4/15">02</cv-data>
-            <cv-data address="1/4/16">01</cv-data>
-            <cv-data address="1/4/17">0C20</cv-data>
-            <cv-data address="1/4/18">536f6e6720616c62756d</cv-data>
-            <cv-data address="1/4/19">536f6e67207469746c65</cv-data>
-            <cv-data address="1/4/22">80</cv-data>
-            <cv-data address="1/4/23">FF</cv-data>
-            <cv-data address="1/4/24">B0</cv-data>
-            <cv-data address="1/4/25">B0</cv-data>
-            <cv-data address="1/4/26">0EB0</cv-data>
-            <cv-data address="1/4/27">2FF</cv-data>
-            <cv-data address="1/4/28">0F</cv-data>
-            <cv-data address="1/4/29">1A7D</cv-data>
-            <cv-data address="1/4/30">2A9</cv-data>
+            <cv-resource name="charts">resource/demo/media/charts</cv-resource>
+            <cv-resource name="simulation">resource/demo/media/demo_tile_testmode_data.json</cv-resource>
         </cv-backend>
         <cv-mapping name="PlayStop">
             <entry value="0">ri-play-fill</entry>
@@ -142,9 +121,9 @@
             <cv-status format="%d offen">
                 <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
                     <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                    <cv-address transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                    <cv-address transform="DPT:5.001" mode="read">1/5/0</cv-address>
                 </cv-value>
-                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/5/0</cv-address>
                 <span slot="label" tr="true">Windows</span>
                 <cv-popup slot="popup" modal="true">
                     <cv-list rowspan="3" colspan="3">
@@ -216,23 +195,23 @@
             <cv-group open="true" name="tr('Consumptions')">
                 <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: #f2495c">
-                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/25</cv-address>
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
                         <span slot="unit">W</span>
                     </cv-info>
                     <cv-info format="%d" style="color: #f2495c">
-                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/26</cv-address>
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/26</cv-address>
                         <span slot="title" tr="true">Power meter reading</span>
                         <span slot="unit">kWh</span>
                     </cv-info>
                 </cv-tile-pair>
                 <cv-info format="%.1f W">
-                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/27</cv-address>
+                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/27</cv-address>
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
                     <span slot="label" tr="true">PV production</span>
                 </cv-info>
                 <cv-info format="%.1f kWh">
-                    <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/28</cv-address>
+                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/28</cv-address>
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
                     <span slot="label" tr="true">PV production today</span>
                 </cv-info>
@@ -244,7 +223,7 @@
                 </cv-tile>
                 <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: rgb(255, 203, 125);">
-                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/29</cv-address>
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
                         <span slot="unit">m³</span>
                         <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.2f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
@@ -257,7 +236,7 @@
                         </cv-popup>
                     </cv-info>
                     <cv-info format="%d" style="color: #719aff">
-                        <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/30</cv-address>
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/30</cv-address>
                         <span slot="title" tr="true">Water meter reading</span>
                         <span slot="unit">m³</span>
                         <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.1f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
@@ -276,8 +255,7 @@
             <cv-group name="tr('Office')" icon="knxuf-it_pc">
                 <summary>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
-                        <cv-address mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                        <cv-address mode="read" transform="DPT:1.001">4/5/0</cv-address>
+                        <cv-address transform="DPT:1.001">4/5/0</cv-address>
                         <cv-icon class="value ri-question-mark"/>
                     </cv-button>
                     <cv-value format="%.1f °C">
@@ -286,8 +264,7 @@
                     </cv-value>
                 </summary>
                 <cv-switch>
-                    <cv-address slot="address" mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                    <cv-address slot="address" mode="read" transform="DPT:1.001">4/5/0</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001">4/5/0</cv-address>
                     <span slot="primaryLabel" tr="true">Light</span>
                 </cv-switch>
             </cv-group>
@@ -328,7 +305,7 @@
             <cv-group name="tr('Shutters')">
                 <cv-shutter>
                     <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
-                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="0">1/4/8</cv-address>
+                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="1">1/4/8</cv-address>
                     <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
                     <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
                     <span slot="primaryLabel" tr="true">Shutter</span>
@@ -405,8 +382,8 @@
                     <cv-address slot="durationAddress" transform="DPT:7.001" mode="read" target="store:duration">1/4/23</cv-address>
                     <cv-address slot="nextAddress" transform="DPT:1.001" value="1" mode="write">1/4/20</cv-address>
                     <cv-address slot="volumeAddress" transform="DPT:5.001">1/4/24</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/4/25</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/4/26</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/5/25</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/5/26</cv-address>
                 </cv-media-player>
             </cv-group>
             <cv-group name="tr('Tile-pair')">

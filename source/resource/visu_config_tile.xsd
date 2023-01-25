@@ -196,15 +196,6 @@
 
   <xsd:complexType name="cv-backend">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
-      <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:simpleContent>
-            <xsd:extension base="xsd:token">
-              <xsd:attribute name="address" type="addr"/>
-            </xsd:extension>
-          </xsd:simpleContent>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="cv-resource" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
