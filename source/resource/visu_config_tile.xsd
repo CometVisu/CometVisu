@@ -127,7 +127,7 @@
   <xsd:complexType name="cv-icon">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute ref="class"/>
+        <xsd:attributeGroup ref="appearance-attributes" />
         <xsd:attribute name="size">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Defines the size of the icon.</xsd:documentation>
@@ -165,7 +165,7 @@
           <xsd:documentation xml:lang="de">Randbreite des Kreises.</xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
       <xsd:attribute name="type">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Visualization type.</xsd:documentation>
@@ -277,6 +277,7 @@
         <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="footer">
@@ -288,6 +289,7 @@
         <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="nav">
@@ -297,6 +299,7 @@
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
@@ -402,7 +405,7 @@
         <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="mobile" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Controls the visibility on small screens.</xsd:documentation>
@@ -443,8 +446,7 @@
         <xsd:documentation xml:lang="de">Icon der Seite in Navigationsmenüs</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="menu" type="xsd:boolean" default="true">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines if this page should be visible in the navigation menus.</xsd:documentation>
@@ -484,8 +486,7 @@
         <xsd:documentation xml:lang="de">Überschrift dieses Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="auto-close-timeout" type="xsd:integer">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in seconds when the popup is automatically closed.</xsd:documentation>
@@ -531,8 +532,7 @@
         <xsd:documentation xml:lang="de">Verhindert Zeilenumbrüche, wenn der Inhalt zu breit für die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -545,8 +545,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="background-image" type="xsd:anyURI">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Background image for this tile.</xsd:documentation>
@@ -562,7 +561,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -623,8 +622,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
@@ -646,8 +644,7 @@
         <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="size"/>
@@ -667,8 +664,7 @@
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
@@ -696,8 +692,7 @@
         <xsd:element name="label" type="label" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
@@ -711,8 +706,7 @@
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:string"/>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
@@ -783,8 +777,7 @@
         <xsd:documentation xml:lang="de">Titel des Charts.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="y-format" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
@@ -930,7 +923,7 @@
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
@@ -952,10 +945,9 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-color">
@@ -1000,8 +992,7 @@
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="title" type="xsd:string">
       <xsd:annotation>
@@ -1172,8 +1163,7 @@
       <xsd:element name="openweathermap" type="plugin-openweathermap"/>
     </xsd:choice>
     <xsd:attribute name="name"  type="xsd:string"/>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
@@ -1230,8 +1220,7 @@
         <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-shutter">
@@ -1259,8 +1248,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-info">
@@ -1381,8 +1369,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute name="value-size">
@@ -1500,8 +1487,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
   </xsd:complexType>
 
@@ -1543,8 +1529,7 @@
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
@@ -1612,8 +1597,7 @@
     </xsd:sequence>
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-dimmer">
@@ -1655,8 +1639,7 @@
     </xsd:sequence>
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="styling" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
 
@@ -1666,8 +1649,7 @@
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-info" type="cv-info" />
     </xsd:choice>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
@@ -2001,6 +1983,26 @@
     </xsd:simpleType>
   </xsd:attribute>
 
+
+  <xsd:attributeGroup name="appearance-attributes">
+    <xsd:attribute ref="visible-on"/>
+    <xsd:attribute ref="class"/>
+    <xsd:attribute ref="style"/>
+  </xsd:attributeGroup>
+
+  <xsd:attribute name="visible-on">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Controls this element's visibility by screen size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit dieses Element anhand der Bildschirmgröße.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="mobile" />
+        <xsd:enumeration value="desktop" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
   <xsd:attribute name="class" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
@@ -2035,13 +2037,6 @@
     </xsd:simpleType>
   </xsd:attribute>
   <xsd:attribute name="variant" type="xsd:string" />
-
-  <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widgetfläche als Schaltfläche genutzt</xsd:documentation>
-    </xsd:annotation>
-  </xsd:attribute>
 
   <xsd:attribute name="row" default="1">
     <xsd:annotation>
@@ -2139,7 +2134,7 @@
         <xsd:element name="cv-icon" type="cv-icon"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="value-size">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the font size.</xsd:documentation>
@@ -2159,8 +2154,7 @@
   <xsd:complexType name="text">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute ref="class" />
-        <xsd:attribute ref="style" />
+        <xsd:attributeGroup ref="appearance-attributes" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -2171,8 +2165,7 @@
         <xsd:element name="label" type="label"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="summary">
@@ -2181,10 +2174,11 @@
         <xsd:group ref="Components"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="meter">
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="min" type="xsd:integer"/>
     <xsd:attribute name="max" type="xsd:integer"/>
     <xsd:attribute name="value" type="xsd:integer"/>
@@ -2230,7 +2224,7 @@
       <xsd:documentation xml:lang="en">An iframe allows other websites to be embedded.</xsd:documentation>
       <xsd:documentation xml:lang="de">Ein iframe erlaubt die Einbettung anderer Webseiten.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute ref="style"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:anyURI"/>
     <xsd:attribute name="data-src" type="xsd:anyURI"/>
   </xsd:complexType>

@@ -1,4 +1,13 @@
 body {
+
+  [visible-on="desktop"] {
+    display: none;
+  }
+
+  [visible-on="mobile"] {
+    display: unset;
+  }
+
   header nav cv-menu {
     ul li {
       display: none;

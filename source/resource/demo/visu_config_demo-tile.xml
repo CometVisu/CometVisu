@@ -105,113 +105,114 @@
         </cv-translations>
     </cv-meta>
     <header>
-        <h1>CometVisu - Tile demo</h1>
+        <cv-group open="true" wrap="false">
+            <cv-status format="%d an">
+                <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <span slot="label" tr="true">All lights</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
+                        </model>
+                        <header>
+                            <h4 tr="true">All lights</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-button class="round-button" mapping="tile-light" size="small">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
+                                    <cv-icon class="value" />
+                                </cv-button>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <cv-status format="%d offen">
+                <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
+                    <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
+                    <cv-address transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                </cv-value>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <span slot="label" tr="true">Windows</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" read-address="3/2/2"/>
+                        </model>
+                        <header>
+                            <h4 tr="true">All windows</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-value styling="WindowOpen" mapping="WindowOpen">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-icon class="value">knxuf-fts_window_1w_open</cv-icon>
+                                </cv-value>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary" tr="true">Currently no windows are open</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <cv-status format="%d an">
+                <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <span slot="label" tr="true">Speakers</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
+                        </model>
+                        <header>
+                            <h4 tr="true">All speakers</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-button class="round-button" mapping="speaker" size="small">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
+                                    <cv-icon class="value"/>
+                                </cv-button>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary" tr="true">Currently there are no speakers switched on.</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <h2 visible-on="desktop" style="align-self: center; margin-left: auto; margin-right: calc(var(--spacing)*2);">CometVisu - Tile demo</h2>
+        </cv-group>
     </header>
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
-            <cv-group open="true" name="tr('States')">
-                <cv-status format="%d an">
-                    <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
-                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    <span slot="label" tr="true">All lights</span>
-                    <cv-popup slot="popup" modal="true">
-                        <cv-list rowspan="3" colspan="3">
-                            <model sort-by="label">
-                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
-                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
-                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
-                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
-                            </model>
-                            <header>
-                                <h4 tr="true">All lights</h4>
-                            </header>
-                            <template>
-                                <cv-listitem>
-                                    <cv-button class="round-button" mapping="tile-light" size="small">
-                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
-                                        <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
-                                        <cv-icon class="value" />
-                                    </cv-button>
-                                    <div class="content">
-                                        <label class="primary">${label}</label>
-                                    </div>
-                                </cv-listitem>
-                            </template>
-                            <template when="empty">
-                                <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
-                            </template>
-                        </cv-list>
-                    </cv-popup>
-                </cv-status>
-                <cv-status format="%d offen">
-                    <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
-                        <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                        <cv-address transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    </cv-value>
-                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    <span slot="label" tr="true">Windows</span>
-                    <cv-popup slot="popup" modal="true">
-                        <cv-list rowspan="3" colspan="3">
-                            <model sort-by="label">
-                                <cv-data label="tr('Office')" read-address="4/5/0"/>
-                                <cv-data label="tr('Bathroom')" read-address="4/6/0"/>
-                                <cv-data label="tr('Living room')" read-address="3/1/0"/>
-                                <cv-data label="tr('Kitchen')" read-address="3/2/2"/>
-                            </model>
-                            <header>
-                                <h4 tr="true">All windows</h4>
-                            </header>
-                            <template>
-                                <cv-listitem>
-                                    <cv-value styling="WindowOpen" mapping="WindowOpen">
-                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
-                                        <cv-icon class="value">knxuf-fts_window_1w_open</cv-icon>
-                                    </cv-value>
-                                    <div class="content">
-                                        <label class="primary">${label}</label>
-                                    </div>
-                                </cv-listitem>
-                            </template>
-                            <template when="empty">
-                                <li><label class="primary" tr="true">Currently no windows are open</label></li>
-                            </template>
-                        </cv-list>
-                    </cv-popup>
-                </cv-status>
-                <cv-status format="%d an">
-                    <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
-                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    <span slot="label" tr="true">Speakers</span>
-                    <cv-popup slot="popup" modal="true">
-                        <cv-list rowspan="3" colspan="3">
-                            <model sort-by="label">
-                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
-                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
-                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
-                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
-                            </model>
-                            <header>
-                                <h4 tr="true">All speakers</h4>
-                            </header>
-                            <template>
-                                <cv-listitem>
-                                    <cv-button class="round-button" mapping="speaker" size="small">
-                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
-                                        <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
-                                        <cv-icon class="value"/>
-                                    </cv-button>
-                                    <div class="content">
-                                        <label class="primary">${label}</label>
-                                    </div>
-                                </cv-listitem>
-                            </template>
-                            <template when="empty">
-                                <li><label class="primary" tr="true">Currently there are no speakers switched on.</label></li>
-                            </template>
-                        </cv-list>
-                    </cv-popup>
-            </cv-status>
-            </cv-group>
+            <h2 visible-on="mobile">CometVisu - Tile demo</h2>
             <cv-group open="true" name="tr('Consumptions')">
                 <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: #f2495c">
@@ -241,7 +242,7 @@
                         <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
                     </cv-chart>
                 </cv-tile>
-                <cv-tile-pair>
+                <cv-tile-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: rgb(255, 203, 125);">
                         <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
