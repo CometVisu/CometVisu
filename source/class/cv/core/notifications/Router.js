@@ -146,10 +146,14 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param config {Map}
      */
     registerStateUpdateHandler(config) {
-      this.__stateMessageConfig = config;
-      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function (address) {
+      if (this.__stateMessageConfig) {
+        this.__stateMessageConfig = Object.assign(this.__stateMessageConfig, config);
+      } else {
+        this.__stateMessageConfig = config;
+      }
+      for (const address in config) {
         cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
-      }, this);
+      }
     },
 
     /**

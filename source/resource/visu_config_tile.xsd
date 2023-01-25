@@ -50,6 +50,7 @@
       <xsd:element name="cv-loader" type="cv-loader" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-translations" type="cv-translations" minOccurs="0" />
       <xsd:element name="style" type="html-style" minOccurs="0" />
+      <xsd:element name="cv-state-notification" type="cv-state-notification" minOccurs="0" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -1827,6 +1828,118 @@
       <xsd:enumeration value="2x4" />
     </xsd:restriction>
   </xsd:simpleType>
+
+  <xsd:complexType name="cv-state-notification">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-title-template" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="cv-addresses" type="cv-addresses" />
+        <xsd:element name="cv-message-template" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="cv-condition" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name is required when unique=true</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name muss definiert werden, wenn unique=true ist</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="target">
+      <xsd:simpleType>
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Where to show the message</xsd:documentation>
+          <xsd:documentation xml:lang="de">Wo die Nachricht angezeigt werden soll</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="popup">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Show message as popup</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht als Popup anzeigen</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="notificationCenter">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Show message in notification center</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht im Notification-Center anzeigen</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="speech">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Say message with text-to-speech</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht per Sprachausgabe ausgeben</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="unique" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show only one message for this update (name is required)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="deletable" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzer kann diese Nachricht löschen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Ignore initial state update</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="severity" default="normal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Messages with higher priority are marked with different colors</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nachrichten mit höherer Priorität werden farblich gekennzeichnet</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="urgent" />
+          <xsd:enumeration value="high" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="low" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show this icon with the message.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt dieses Icon zusammen mit der Nachricht.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon-classes" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Additional CSS-classes to customize the icon.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-addresses">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="cv-address" type="address" />
+    </xsd:sequence>
+    <xsd:attribute name="value-mapping" type="xsd:string" />
+    <xsd:attribute name="address-mapping" type="xsd:string" />
+  </xsd:complexType>
 
   <!--
   #####################################################################################################################
