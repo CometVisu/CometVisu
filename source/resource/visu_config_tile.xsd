@@ -274,8 +274,7 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -286,8 +285,7 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
   </xsd:complexType>
@@ -385,6 +383,7 @@
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="CustomWidgets"/>
+        <xsd:group ref="HTMLTextElements"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
@@ -400,8 +399,7 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="class"/>
@@ -423,8 +421,7 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
         <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
@@ -466,6 +463,7 @@
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
         <xsd:element name="iframe" type="iframe"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="modal" type="xsd:boolean">
@@ -506,6 +504,7 @@
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
         <xsd:element name="iframe" type="iframe"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="icon" type="xsd:string">
@@ -597,6 +596,17 @@
       <xsd:element name="cv-plugin" type="cv-plugin"/>
       <xsd:element name="cv-menu" type="cv-menu"/>
       <xsd:element name="custom" type="custom"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:group name="HTMLTextElements">
+    <xsd:choice>
+      <xsd:element name="h1" type="text" />
+      <xsd:element name="h2" type="text" />
+      <xsd:element name="h3" type="text" />
+      <xsd:element name="h4" type="text" />
+      <xsd:element name="label" type="label"/>
+      <xsd:element name="p" type="p"/>
     </xsd:choice>
   </xsd:group>
 
@@ -2148,7 +2158,10 @@
 
   <xsd:complexType name="text">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:string"/>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute ref="class" />
+        <xsd:attribute ref="style" />
+      </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
 
@@ -2158,7 +2171,8 @@
         <xsd:element name="label" type="label"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attribute ref="class" />
+    <xsd:attribute ref="style" />
   </xsd:complexType>
 
   <xsd:complexType name="summary">
