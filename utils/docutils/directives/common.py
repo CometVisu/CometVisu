@@ -94,29 +94,22 @@ class BaseXsdDirective(BaseDirective):
         for attr in attributes:
             if 'name' in attr.attrib:
                 name = attr.get('name')
-                atype, values, enums = schema.get_attribute_type(attr)
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is not None:
-                    description = re.sub("\n\s+", " ", description.text).strip()
-                elif enums is not None:
+                atype, values, enums, description = schema.get_attribute_type(attr, self.locale)
+                if len(description) == 0 and enums is not None:
                     description = self.get_description(enums, schema)
-                else:
-                    description = ''
             elif 'ref' in attr.attrib:
                 name = attr.get('ref')
                 type_def = schema.get_attribute(name)
-                atype, values, enums = schema.get_attribute_type(type_def)
+                atype, values, enums, description = schema.get_attribute_type(type_def, self.locale)
                 # check if there is some documentation here
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is None:
-                    # check the referenced definition for documentation as fallback
-                    description = schema.get_node_documentation(type_def, self.locale)
-                if description is not None:
-                    description = re.sub("\n\s+", " ", description.text).strip()
-                elif enums is not None:
-                    description = self.get_description(enums, schema)
-                else:
-                    description = ''
+                if len(description) == 0:
+                    description = schema.get_node_documentation(attr, self.locale)
+                    if description is not None:
+                        description = re.sub("\n\s+", " ", description.text).strip()
+                    elif enums is not None:
+                        description = self.get_description(enums, schema)
+                    else:
+                        description = ''
 
             #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
@@ -171,7 +164,7 @@ class BaseXsdDirective(BaseDirective):
             return ""
 
     def generate_complex_table(self, element_name, structure_name="pure", include_name=False, mandatory=False, element_type=None,
-                               table_body=None, sub_run=False, parent=None, node=None, depth=-1, level=0):
+                               table_body=None, sub_run=False, parent=None, node=None, depth=-1, level=0, exclude_attributes=[]):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
@@ -188,25 +181,25 @@ class BaseXsdDirective(BaseDirective):
             for attr in attributes:
                 if 'name' in attr.attrib:
                     name = attr.get('name')
-                    atype, values, enums = schema.get_attribute_type(attr)
-                    description = schema.get_node_documentation(attr, self.locale)
-                    if description is not None:
-                        description = description.text
-                    elif enums is not None:
+                    if name in exclude_attributes:
+                        continue
+                    atype, values, enums, description = schema.get_attribute_type(attr, self.locale)
+                    if len(description) == 0 and enums is not None:
                         description = self.get_description(enums, schema)
-                    else:
-                        description = ''
                 elif 'ref' in attr.attrib:
                     name = attr.get('ref')
+                    if name in exclude_attributes:
+                        continue
                     type_def = schema.get_attribute(name)
-                    atype, values, enums = schema.get_attribute_type(type_def)
-                    description = schema.get_node_documentation(type_def, self.locale)
-                    if description is not None:
-                        description = description.text
-                    elif enums is not None:
-                        description = self.get_description(enums, schema)
-                    else:
-                        description = ''
+                    atype, values, enums, description = schema.get_attribute_type(type_def, self.locale)
+                    if len(description) == 0:
+                        description = schema.get_node_documentation(attr, self.locale)
+                        if description is not None:
+                            description = re.sub("\n\s+", " ", description.text).strip()
+                        elif enums is not None:
+                            description = self.get_description(enums, schema)
+                        else:
+                            description = ''
 
                 #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
@@ -248,7 +241,7 @@ class BaseXsdDirective(BaseDirective):
                     if sub_type != element_type and (depth < 0 or depth < level):
                         self.generate_complex_table(name, include_name=include_name,
                                                     mandatory=mandatory, table_body=table_body, element_type=sub_type,
-                                                    sub_run=True, parent=sub_parent, depth=depth, level=level+1)
+                                                    sub_run=True, parent=sub_parent, depth=depth, level=level+1, exclude_attributes=[])
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1

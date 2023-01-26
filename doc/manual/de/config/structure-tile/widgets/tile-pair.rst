@@ -22,11 +22,11 @@ benutzen oder sich ein eigenes definieren innerhalb eines ``cv-tile``-Elements.
         </screenshot>
     </settings>
     <cv-tile-pair>
-        <cv-switch size="normal">
+        <cv-switch>
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="secondaryLabel">Wohnzimmer</span>
         </cv-switch>
-        <cv-switch size="normal">
+        <cv-switch>
             <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
             <span slot="secondaryLabel">Schlafzimmer</span>
         </cv-switch>
@@ -39,3 +39,4 @@ Erlaubte Kind-Elemente und deren Attribute
 
 .. elements-information:: cv-tile-pair tile
     :depth: 1
+    :exclude-attributes: size

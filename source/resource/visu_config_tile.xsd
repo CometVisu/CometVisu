@@ -639,7 +639,19 @@
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute ref="size"/>
+    <xsd:attribute name="size">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="small" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="large" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
@@ -1159,7 +1171,11 @@
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
-  <!-- template based type (of templates that the structure has build in) -->
+  <!--
+  #####################################################################################################################
+  # START: template based type (of templates that the structure has build in)
+  #####################################################################################################################
+  # -->
   <xsd:complexType name="cv-switch">
     <xsd:sequence>
       <xsd:element name="cv-address" maxOccurs="unbounded">
@@ -1197,7 +1213,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="size" />
+    <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="whole-tile" />
     <xsd:attribute name="on-value" type="xsd:string">
@@ -1240,6 +1256,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
+    <xsd:attribute name="size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
@@ -1528,6 +1545,7 @@
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
     <xsd:attribute ref="step-width" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-media-player">
@@ -1590,6 +1608,7 @@
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="mapping" />
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-dimmer">
@@ -1632,8 +1651,8 @@
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="styling" />
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
-
 
   <xsd:complexType name="cv-tile-pair">
     <xsd:choice minOccurs="2" maxOccurs="2">
@@ -1653,6 +1672,14 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
+  <!--
+  #####################################################################################################################
+  # END: template based type (of templates that the structure has build in)
+  #####################################################################################################################
+  # -->
+
+
+
   <!--
   #####################################################################################################################
   # START: simple types
@@ -2195,20 +2222,6 @@
       <xsd:restriction base="xsd:integer">
         <xsd:minInclusive value="1"/>
         <xsd:maxInclusive value="3"/>
-      </xsd:restriction>
-    </xsd:simpleType>
-  </xsd:attribute>
-
-  <xsd:attribute name="size">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleType>
-      <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="small" />
-        <xsd:enumeration value="normal" />
-        <xsd:enumeration value="large" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>

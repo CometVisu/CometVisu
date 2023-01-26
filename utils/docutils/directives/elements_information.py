@@ -31,10 +31,11 @@ class ElementsInformationDirective(BaseXsdDirective):
     @since 0.10.0
     """
     required_arguments = 1
-    optional_arguments = 1
+    optional_arguments = 2
     final_argument_whitespace = True
     option_spec = {
-        'depth': int
+        'depth': int,
+        'exclude-attributes': str
     }
     has_content = False
 
@@ -58,6 +59,7 @@ class ElementsInformationDirective(BaseXsdDirective):
         structure_name = self.arguments[1] if len(self.arguments) > 1 else "pure"
         schema = tile_schema if structure_name == "tile" else pure_schema
         depth = int(self.options['depth']) if 'depth' in self.options else -1
+        exclude_attributes = str(self.options['exclude-attributes']).split(',') if 'exclude-attributes' in self.options else []
         res_nodes = []
         for element in schema.get_widget_elements(element_name):
             if not isinstance(element, tuple):
@@ -71,7 +73,8 @@ class ElementsInformationDirective(BaseXsdDirective):
                                                          mandatory=mandatory,
                                                          parent=element_name,
                                                          element_type=elem_type,
-                                                         depth=depth)
+                                                         depth=depth,
+                                                         exclude_attributes=exclude_attributes)
                 if table_node is not None:
                     res_nodes.append(table_node)
 
