@@ -157,6 +157,36 @@ qx.Class.define('cv.core.notifications.Router', {
     },
 
     /**
+     * Toggle state update handler enabled state
+     * @param id {number} ID of the handler
+     * @param enable {boolean}
+     */
+    enableStateUpdateHandler(id, enable) {
+      for (const address in this.__stateMessageConfig) {
+        for (const config of this.__stateMessageConfig[address]) {
+          if (config.id === id) {
+            config.enabled = enable;
+          }
+        }
+      }
+    },
+
+    /**
+     * Change state update severity
+     * @param id {number} ID of the handler
+     * @param severity {string} new severity
+     */
+    changeStateUpdateHandlerSeverity(id, severity) {
+      for (const address in this.__stateMessageConfig) {
+        for (const config of this.__stateMessageConfig[address]) {
+          if (config.id === id) {
+            config.severity = severity;
+          }
+        }
+      }
+    },
+
+    /**
      * Unregister state update listeners for a list of addresses
      * @param addresses {Array}
      */
@@ -216,7 +246,7 @@ qx.Class.define('cv.core.notifications.Router', {
       const formattedTime = this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function (config) {
-        if ((initial === true && config.skipInitial === true) || changed === false) {
+        if (config.enabled === false || (initial === true && config.skipInitial === true) || changed === false) {
           // do not handle the first update
           return;
         }

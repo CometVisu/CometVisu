@@ -639,19 +639,7 @@
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute name="size">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="small" />
-          <xsd:enumeration value="normal" />
-          <xsd:enumeration value="large" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+    <xsd:attribute name="size" type="button-size" />
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
@@ -1214,6 +1202,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute name="button-size" type="button-size" />
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="whole-tile" />
     <xsd:attribute name="on-value" type="xsd:string">
@@ -1856,6 +1845,18 @@
     </xsd:restriction>
   </xsd:simpleType>
 
+  <xsd:simpleType name="button-size">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="small" />
+      <xsd:enumeration value="normal" />
+      <xsd:enumeration value="large" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
   <xsd:complexType name="cv-state-notification">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
@@ -1880,6 +1881,12 @@
         </xsd:element>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID that can be used in addresses to manipulate this notification.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID die in Adressen benutzt werden kann, um diese Nachricht zu verändern</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Name is required when unique=true</xsd:documentation>
@@ -1924,6 +1931,12 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
         <xsd:documentation xml:lang="de">Benutzer kann diese Nachricht löschen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="enabled" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert diese Nachricht</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">

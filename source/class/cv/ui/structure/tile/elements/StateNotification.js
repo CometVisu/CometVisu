@@ -34,88 +34,110 @@ qx.Class.define('cv.ui.structure.tile.elements.StateNotification', {
     _init() {
     const stateConfig = {};
     const elem = this._element;
-      const target =
-        cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
+    const target =
+      cv.core.notifications.Router.getTarget(elem.getAttribute('target')) || cv.ui.NotificationCenter.getInstance();
 
-      const addressContainer = elem.querySelector('cv-addresses');
+    const addressContainer = elem.querySelector('cv-addresses');
 
-      const config = {
-        target: target,
-        severity: elem.getAttribute('severity'),
-        skipInitial: elem.getAttribute('skip-initial') !== 'false',
-        deletable: elem.getAttribute('deletable') !== 'false',
-        unique: elem.getAttribute('unique') === 'true',
-        valueMapping: addressContainer.getAttribute('value-mapping'),
-        addressMapping: addressContainer.getAttribute('address-mapping')
+    const config = {
+      target: target,
+      severity: elem.getAttribute('severity'),
+      skipInitial: elem.getAttribute('skip-initial') !== 'false',
+      deletable: elem.getAttribute('deletable') !== 'false',
+      unique: elem.getAttribute('unique') === 'true',
+      valueMapping: addressContainer.getAttribute('value-mapping'),
+      addressMapping: addressContainer.getAttribute('address-mapping'),
+      enabled: !elem.hasAttribute('enabled') || elem.getAttribute('enabled') === 'true'
+    };
+    if (elem.hasAttribute('id')) {
+      config.id = elem.getAttribute('id');
+      // notifications with id can be changed by the system backend, so we need to listen to some addresses
+      const model = cv.data.Model.getInstance();
+      model.addUpdateListener(`notification:${config.id}:enabled`, this._onStateUpdate, this, 'system');
+      model.addUpdateListener(`notification:${config.id}:severity`, this._onStateUpdate, this, 'system');
+
+      model.onUpdate(`notification:${config.id}:enabled`, config.enabled, 'system');
+      model.onUpdate(`notification:${config.id}:severity`, config.severity, 'system');
+    }
+
+    const name = elem.getAttribute('name');
+    if (name) {
+      config.topic = 'cv.state.' + name;
+    }
+    const icon = elem.getAttribute('icon');
+    if (icon) {
+      config.icon = icon;
+      const iconClasses = elem.getAttribute('icon-classes');
+      if (iconClasses) {
+        config.iconClasses = iconClasses;
+      }
+    }
+
+    // templates
+    const titleElem = elem.querySelector('cv-title-template');
+    if (titleElem) {
+      config.titleTemplate = titleElem.innerHTML;
+    }
+    const messageElem = elem.querySelector('cv-message-template');
+    if (messageElem) {
+      config.messageTemplate = messageElem.innerHTML;
+    }
+
+    // condition
+    const conditionElem = elem.querySelector('cv-condition');
+    let condition = conditionElem.textContent;
+    if (condition === 'true') {
+      condition = true;
+    } else if (condition === 'false') {
+      condition = false;
+    }
+    config.condition = condition;
+
+    let address;
+    for (const addressElement of addressContainer.querySelectorAll(':scope > cv-address')) {
+      address = addressElement.textContent.trim();
+      if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
+        stateConfig[address] = [];
+      }
+      const addressConfig = Object.assign({}, config);
+      let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      switch (addressElement.getAttribute('mode')) {
+        case 'disable':
+          mode = 0;
+          break;
+        case 'read':
+          mode = 1;
+          break;
+        case 'write':
+          mode = 2;
+          break;
+        case 'readwrite':
+          mode = 1 | 2;
+          break;
+      }
+      addressConfig.addressConfig = {
+        transform: addressElement.getAttribute('transform'),
+        mode: mode,
+        selector: addressElement.getAttribute('selector'),
+        ignoreError: addressElement.getAttribute('ignore-error') === 'true',
+        qos: (addressElement.getAttribute('qos') || 0) | 0, // force integer
+        retain: addressElement.getAttribute('retain') === 'true',
+        variantInfo: addressElement.getAttribute('variant')
       };
+      stateConfig[address].push(addressConfig);
+    }
+    cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
+  },
 
-      const name = elem.getAttribute('name');
-      if (name) {
-        config.topic = 'cv.state.' + name;
+    _onStateUpdate(address, state, initial, changed) {
+      console.log(address, state, initial, changed);
+      const [topic, id, property] = address.split(":");
+      const router = cv.core.notifications.Router.getInstance();
+      if (property === 'enabled') {
+        router.enableStateUpdateHandler(id, state == 1);
+      } else if (property === 'severity') {
+        router.changeStateUpdateHandlerSeverity(id, state);
       }
-      const icon = elem.getAttribute('icon');
-      if (icon) {
-        config.icon = icon;
-        const iconClasses = elem.getAttribute('icon-classes');
-        if (iconClasses) {
-          config.iconClasses = iconClasses;
-        }
-      }
-
-      // templates
-      const titleElem = elem.querySelector('cv-title-template');
-      if (titleElem) {
-        config.titleTemplate = titleElem.innerHTML;
-      }
-      const messageElem = elem.querySelector('cv-message-template');
-      if (messageElem) {
-        config.messageTemplate = messageElem.innerHTML;
-      }
-
-      // condition
-      const conditionElem = elem.querySelector('cv-condition');
-      let condition = conditionElem.textContent;
-      if (condition === 'true') {
-        condition = true;
-      } else if (condition === 'false') {
-        condition = false;
-      }
-      config.condition = condition;
-
-      let address;
-      for (const addressElement of addressContainer.querySelectorAll(':scope > cv-address')) {
-        address = addressElement.textContent.trim();
-        if (!Object.prototype.hasOwnProperty.call(stateConfig, address)) {
-          stateConfig[address] = [];
-        }
-        const addressConfig = Object.assign({}, config);
-        let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
-        switch (addressElement.getAttribute('mode')) {
-          case 'disable':
-            mode = 0;
-            break;
-          case 'read':
-            mode = 1;
-            break;
-          case 'write':
-            mode = 2;
-            break;
-          case 'readwrite':
-            mode = 1 | 2;
-            break;
-        }
-        addressConfig.addressConfig = {
-          transform: addressElement.getAttribute('transform'),
-          mode: mode,
-          selector: addressElement.getAttribute('selector'),
-          ignoreError: addressElement.getAttribute('ignore-error') === 'true',
-          qos: (addressElement.getAttribute('qos') || 0) | 0, // force integer
-          retain: addressElement.getAttribute('retain') === 'true',
-          variantInfo: addressElement.getAttribute('variant')
-        };
-        stateConfig[address].push(addressConfig);
-      }
-      cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
     }
   },
 

@@ -271,6 +271,11 @@
             </cv-group>
         </cv-page>
         <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">
+            <cv-group name="tr('Dining room')" icon="knxuf-scene_dinner">
+            </cv-group>
+            <cv-group name="tr('Living room')" icon="knxuf-scene_livingroom"></cv-group>
+            <cv-group name="tr('Kitchen')" icon="knxuf-scene_baking_oven"></cv-group>
+            <cv-group name="tr('Bathroom')" icon="knxuf-scene_bath"></cv-group>
             <cv-group name="tr('Office')" icon="knxuf-it_pc">
                 <summary>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
@@ -287,6 +292,10 @@
                     <span slot="primaryLabel" tr="true">Light</span>
                 </cv-switch>
             </cv-group>
+            <cv-group name="tr('Bedroom')" icon="knxuf-scene_sleeping"></cv-group>
+        </cv-page>
+        <cv-page id="categories" name="tr('Categories')" icon="">
+
         </cv-page>
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
             <cv-group name="tr('Switches')">
@@ -407,11 +416,11 @@
             </cv-group>
             <cv-group name="tr('Tile-pair')">
                 <cv-tile-pair>
-                    <cv-switch size="normal">
+                    <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 1</span>
                     </cv-switch>
-                    <cv-switch size="normal">
+                    <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 2</span>
                     </cv-switch>

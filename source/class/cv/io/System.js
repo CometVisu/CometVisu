@@ -166,7 +166,7 @@ qx.Class.define('cv.io.System', {
           }
           const xhr = new qx.io.request.Xhr(address);
           xhr.send();
-        } else if (target === 'state') {
+        } else if (target === 'state' || target === 'notification') {
           // just write the value to the states to update Listeners
           cv.data.Model.getInstance().onUpdate(address, value, 'system');
         }
