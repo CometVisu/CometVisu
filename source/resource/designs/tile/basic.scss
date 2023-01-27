@@ -1070,7 +1070,7 @@ body {
             border-radius: calc(max(var(--tileCellWidth), var(--tileCellHeight)) / 2);
         }
 
-        &[size="small"] {
+        &[size="small"], &[button-size="small"] {
             width: calc(var(--defaultButtonSize) - var(--spacing));
             height: calc(var(--defaultButtonSize) - var(--spacing));
 
@@ -1079,7 +1079,7 @@ body {
             }
         }
 
-        &[size="large"] {
+        &[size="large"], &[button-size="large"] {
             width: min(var(--tileCellWidth), var(--tileCellHeight));
             height: min(var(--tileCellWidth), var(--tileCellHeight));
 
