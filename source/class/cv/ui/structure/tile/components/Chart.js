@@ -25,7 +25,11 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Chart', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
+  include: [
+    cv.ui.structure.tile.MVisibility,
+    cv.ui.structure.tile.MRefresh,
+    cv.ui.structure.tile.MResize
+  ],
 
   /*
   ***********************************************
@@ -187,6 +191,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
       }
+
+      // create needed elements
+      let tooltip = document.createElement('div');
+      tooltip.classList.add('tooltip');
+      tooltip.style.opacity = '0';
+      this._element.appendChild(tooltip);
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      //svg.setAttributeNS('http://www.w3.org/2000/svg', 'preserveAspectRatio', 'xMinYMin meet');
+      this._element.appendChild(svg);
     },
 
     refresh() {
@@ -449,29 +463,39 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _onRendered(chartData, config) {
+      const [width, height] = this._getSize();
+      config.width = width;
+      config.height = height;
+
+      this._chart = this._lineChart(chartData, config);
+      this._loaded = Date.now();
+    },
+
+    _getSize() {
       const parent = this._element.parentElement;
-      let containerWidth = this._element.offsetWidth;
-      let containerHeight = this._element.offsetHeight;
+      let padding = 8;
+      let containerWidth = this._element.offsetWidth - padding;
+      let containerHeight = this._element.offsetHeight - padding;
       let factor = 1;
 
       if (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true') {
-        containerWidth = window.innerWidth;
-        containerHeight = window.innerHeight;
+        containerWidth = window.innerWidth - padding;
+        containerHeight = window.innerHeight - padding;
         factor = 2;
       }
       const landscape = containerWidth > containerHeight;
+      let width = 0;
+      let height = 0;
+
       if (landscape) {
         // obeying aspect ratio in landscape mode is not necessary
-        config.width = Math.round(containerWidth / factor);
-        config.height = Math.round(containerHeight / factor);
+        width = Math.round(containerWidth / factor);
+        height = Math.round(containerHeight / factor);
       } else {
-        config.width = Math.round(containerWidth / factor);
-        config.height = config.width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
+        width = Math.round(containerWidth / factor);
+        height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
-
-      this._chart = this._lineChart(chartData, config);
-
-      this._loaded = Date.now();
+      return [width, height];
     },
 
     multiTimeFormat(formatsArray) {
@@ -503,6 +527,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this.error('Chart _onStatusError', ts, key, err);
     },
+
 
     /**
      * Copyright 2021 Observable, Inc.
@@ -598,12 +623,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
 
-      d3.select(this._element).select('svg').remove();
-
-      const tooltip = d3.select(this._element)
-        .append('div')
-        .style('opacity', 0)
-        .attr('class', 'tooltip');
+      let tooltip = d3.select(this._element).select('div.tooltip');
 
       let linePath;
 
@@ -647,11 +667,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const svg = d3
         .select(this._element)
-        .append('svg')
+        .select('svg')
         .attr('viewBox', [0, 0, config.width, config.height])
-        //.attr('preserveAspectRatio', 'none')
-        .attr('style', `width: 100%; height: 100%; display: block; opacity: ${config.chartOpacity};`)
-        .style('-webkit-tap-highlight-color', 'transparent')
+        .style('opacity', config.chartOpacity)
         .on(
           'touchmove',
           event => {
@@ -666,6 +684,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           { passive: false }
         );
 
+      let dot = svg.select('g.dot');
+
       if (!config.disableToolTips) {
         svg.on('pointerenter', pointerEntered)
           .on('pointermove', pointerMoved)
@@ -674,8 +694,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
       if (showGrid.includes('x')) {
-        svg.append('g')
-          .attr('class', 'grid')
+        let gridX = svg.select('g.grid.x');
+        if (gridX.empty()) {
+          gridX = svg.append('g').attr('class', 'grid x');
+        }
+        gridX
           .attr('transform', `translate(0,${config.height - config.marginBottom})`)
           .call(d3.axisBottom(xScale).ticks(xTicks)
             .tickSize(-config.height + config.marginBottom + config.marginTop)
@@ -683,8 +706,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           );
       }
       if (showGrid.includes('y')) {
-        svg.append('g')
-          .attr('class', 'grid')
+        let gridY = svg.select('g.grid.y');
+        if (gridY.empty()) {
+          gridY = svg.append('g').attr('class', 'grid y');
+        }
+        gridY
           .attr('transform', `translate(${config.marginLeft},0)`)
           .call(d3.axisLeft(yScale).ticks(yTicks)
             .tickSize(-config.width + config.marginRight + config.marginLeft)
@@ -695,14 +721,20 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const showXAxis = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
       const showYAxis = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
       if (showXAxis) {
-        svg
-          .append('g')
+        let xAxisElem = svg.select('g.axis.x');
+        if (xAxisElem.empty()) {
+          xAxisElem = svg.append('g').attr('class', 'axis x');
+        }
+        xAxisElem
           .attr('transform', `translate(0,${config.height - config.marginBottom})`)
           .call(xAxis);
       }
       if (showYAxis) {
-        svg
-          .append('g')
+        let yAxisElem = svg.select('g.axis.y');
+        if (yAxisElem.empty()) {
+          yAxisElem = svg.append('g').attr('class', 'axis y');
+        }
+        yAxisElem
           .attr('transform', `translate(${config.marginLeft},0)`)
           .call(yAxis)
           .call(g => g.select('.domain').remove())
@@ -718,10 +750,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       if (config.chartTitle) {
-        svg.append('text')
+        let titleElem = svg.select('text.chart-title');
+        if (titleElem.empty()) {
+          titleElem = svg.append('text').attr('class', 'chart-title');
+        }
+        titleElem
           .attr('x', (config.width / 2))
           .attr('y', config.marginTop)
-          .attr('class', 'chart-title')
           .text(config.chartTitle);
       }
 
@@ -791,14 +826,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
         }
 
-        linePath = svg
-          .append('g')
-          .attr('fill', 'none')
-          .attr('stroke', typeof config.color === 'string' ? config.color : null)
-          .attr('stroke-linecap', config.strokeLinecap)
-          .attr('stroke-linejoin', config.strokeLinejoin)
-          .attr('stroke-width', config.strokeWidth)
-          .attr('stroke-opacity', config.strokeOpacity)
+        linePath = svg.select('g.line');
+        if (linePath.empty()) {
+          linePath = svg.append('g')
+            .attr('class', 'line')
+            .attr('fill', 'none')
+            .attr('stroke', typeof config.color === 'string' ? config.color : null)
+            .attr('stroke-linecap', config.strokeLinecap)
+            .attr('stroke-linejoin', config.strokeLinejoin)
+            .attr('stroke-width', config.strokeWidth)
+            .attr('stroke-opacity', config.strokeOpacity);
+        }
+        linePath
           .selectAll('path')
           .data(lineGroups)
           .join('path')
@@ -843,10 +882,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
         }
 
-        svg
-          .append('g')
-          .attr('stroke', 'none')
-          .attr('fill', typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null)
+        let areaPath = svg.select('g.area');
+        if (areaPath.empty()) {
+          areaPath = svg.append('g')
+            .attr('class', 'area')
+            .attr('stroke', 'none')
+            .attr('fill', typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null);
+        }
+        areaPath
           .selectAll('path')
           .data(areaGroups)
           .join('path')
@@ -861,8 +904,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       if (barGroups.size > 0) {
         const xBarScale = d3.scaleBand().domain(X).range(config.xRange).padding(config.xPadding);
-        svg
-          .append('g')
+
+        let bars = svg.select('g.bars');
+        if (bars.empty()) {
+          bars = svg.append('g').attr('class', 'bars');
+        }
+        bars
           .selectAll('g')
           .data(barGroups)
           .join('g')
@@ -883,16 +930,21 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('width', xBarScale.bandwidth());
       }
 
-      const dot = svg.append('g').attr('display', 'none').attr('fill', 'currentColor');
+      if (!config.disableToolTips) {
+        if (dot.empty()) {
+          dot = svg.append('g')
+            .attr('class', 'dot')
+            .attr('display', 'none').attr('fill', 'currentColor')
+            .append('circle').attr('r', 2.5)
+            .append('text')
+            .attr('font-family', 'sans-serif')
+            .attr('font-size', 10)
+            .attr('text-anchor', 'middle')
+            .attr('y', -8);
 
-      dot.append('circle').attr('r', 2.5);
-
-      dot
-        .append('text')
-        .attr('font-family', 'sans-serif')
-        .attr('font-size', 10)
-        .attr('text-anchor', 'middle')
-        .attr('y', -8);
+          dot = svg.select('g.dot');
+        }
+      }
 
       return Object.assign(svg.node(), { value: null });
     },

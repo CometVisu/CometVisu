@@ -834,7 +834,7 @@ body {
         }
 
         > cv-button.fullscreen {
-            z-index: 10;
+            z-index: 100;
             background: none;
             border: none;
             box-shadow: none;
@@ -908,7 +908,7 @@ body {
                 padding: var(--spacing);
                 right: 0;
                 top: 0;
-                z: 100;
+                z-index: 100;
                 font-size: 28px;
                 line-height: 20px;
                 cursor: pointer;
@@ -916,14 +916,6 @@ body {
                 border: none;
                 color: var(--primaryText);
             }
-
-           /* > cv-chart {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }*/
         }
     }
 
@@ -1417,6 +1409,12 @@ body {
         }
 
         svg {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-tap-highlight-color: transparent;
+
             .grid {
                 color: var(--chart-grid-color);
             }
@@ -1489,6 +1487,7 @@ body {
         button.close {
             position: absolute;
             padding: calc(var(--spacing)*2);
+            z-index: 100;
             right: 0;
             top: 0;
             font-size: 28px;
