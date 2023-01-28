@@ -691,6 +691,36 @@ body {
             border-top-right-radius: inherit;
         }
 
+        > .btn-group {
+            position: absolute;
+            right: var(--spacing);
+            top: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            column-gap: var(--spacing);
+
+            > button, > cv-button, select {
+                appearance: none;
+                border: none;
+                box-shadow: none;
+                border-radius: 8px;
+                color: var(--primaryText);
+                background: transparent;
+                border: none;
+                width: 32px;
+                height: 32px;
+                font-size: 24px;
+                padding: 0;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 32px;
+                cursor: pointer;
+            }
+
+        }
+
         .row {
             height: var(--tileCellHeight);
             width: 100%;
@@ -774,6 +804,10 @@ body {
         &[size="2x4"] {
             width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
+        }
+        &[size="4x2"] {
+            width: min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing)));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing) * 3);
         }
         &.has-bg-image {
             label {
@@ -898,8 +932,8 @@ body {
             &.fullscreen {
                 @include fullscreen-popup;
 
-                > cv-button.fullscreen {
-                    display: none;
+                button.fullscreen {
+                    visibility: hidden;
                 }
             }
 
@@ -1387,6 +1421,7 @@ body {
         width: 100%;
         height: 100%;
         color: var(--primaryText);
+        position: relative;
 
         .tooltip {
             position: absolute;
@@ -1413,6 +1448,8 @@ body {
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             -webkit-tap-highlight-color: transparent;
 
             .grid {
