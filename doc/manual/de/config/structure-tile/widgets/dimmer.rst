@@ -1,4 +1,4 @@
-.. _tile-simmer:
+.. _tile-dimmer:
 
 Das Dimmer Widget
 =================

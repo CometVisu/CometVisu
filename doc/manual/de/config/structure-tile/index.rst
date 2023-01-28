@@ -186,8 +186,41 @@ Ein Widget ist eine Kachel mit einer oder mehreren Komponenten mit der eine best
 Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt werden, wie z.B. Lichtschalter (Switch)
 oder die Bedienung einer Rolllade (Shutter).
 
+.. table::
+    :widths: 30 70
+
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-switch-on.png              |  :ref:`tile-switch`                                       |
+    |   :width: 150                                            | Einfacher Schalter, Taster oder Trigger                   |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-dimmer.png                 |  :ref:`tile-dimmer`                                       |
+    |   :width: 150                                            | Schalter mit zusätzlichem Slider zur Einstellung eines    |
+    |                                                          | Prozentwerts.                                             |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-shutter.png                |  :ref:`tile-shutter`                                      |
+    |   :width: 150                                            | Taster für hoch/runter/stop zur Bedienung einer Jalousie  |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-info.png                   |  :ref:`tile-info`                                         |
+    |   :width: 150                                            | Darstellung eines Werts in verschiedenen Arten.           |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-status.png                 |  :ref:`tile-status`                                       |
+    |   :width: 150                                            | Status Anzeige in halber Kachel-Höhe                      |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-rtc.png                    |  :ref:`tile-rtc`                                          |
+    |   :width: 150                                            | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
+    |                                                          | einer Solltemperatur                                      |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-media-player.png           |  :ref:`tile-media-player`                                 |
+    |   :width: 150                                            | Steuerung eines Medien-Abspielers mit Start/Stop          |
+    |                                                          | vor & zurück und einer Lautstärkeregelsung                |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-tile-pair.png              |  :ref:`tile-pair`                                         |
+    |   :width: 150                                            | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+
 .. toctree::
     :maxdepth: 1
+    :hidden:
 
     Switch <widgets/switch>
     Dimmer <widgets/dimmer>

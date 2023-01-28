@@ -1,4 +1,4 @@
-.. _tile-tile-pair:
+.. _tile-pair:
 
 Das Tile-Pair Widget
 ====================
@@ -22,11 +22,11 @@ benutzen oder sich ein eigenes definieren innerhalb eines ``cv-tile``-Elements.
         </screenshot>
     </settings>
     <cv-tile-pair>
-        <cv-switch>
+        <cv-switch button-size="normal">
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="secondaryLabel">Wohnzimmer</span>
         </cv-switch>
-        <cv-switch>
+        <cv-switch button-size="normal">
             <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
             <span slot="secondaryLabel">Schlafzimmer</span>
         </cv-switch>
