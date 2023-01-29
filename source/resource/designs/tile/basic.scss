@@ -37,6 +37,7 @@ $tileColumns: 3;
 
     --primaryText: #b6b6b6;
     --secondaryText: #7e7d7d;
+    --disabledText: #5b5b5b;
 
     --rippleBackgroundColor: rgba(255, 255, 255, 0.1);
 
@@ -80,7 +81,7 @@ $tileColumns: 3;
 
 @mixin popup {
     position: fixed;
-    padding: calc(var(--spacing)*2);
+    padding: 0; //calc(var(--spacing)*2);
     background-color: var(--appBackground);
     border: 1px solid var(--borderColor);
     border-radius: $borderRadius;
@@ -621,7 +622,7 @@ body {
         }
     }
 
-    cv-tile {
+    @mixin tile-common {
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
         background-color: var(--tileBackground);
@@ -630,11 +631,123 @@ body {
         background-repeat: no-repeat;
         border-radius: $borderRadius;
         box-shadow: 2px 4px 4px var(--shadowColor);
+        position: relative;
+
+        &[size="1x0.5"] {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
+        }
+        &[size="2x1"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+        }
+        &[size="2x2"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+        }
+        &[size="1x2"] {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+        }
+        &[size="2x4"] {
+            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
+        }
+        &[size="4x2"] {
+            width: min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing)));
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing) * 3);
+        }
+    }
+
+    cv-widget {
+        @include tile-common;
+        display: flex;
+        flex-direction: column;
+
+        header {
+            height: 32px;
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-items: center;
+            justify-content: center;
+            align-items: center;
+
+            column-gap: var(--spacing);
+
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            background-color: var(--tileTitleBackground);
+
+            label.title {
+                padding: var(--spacing);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                line-height: 1em;
+                font-size: 14px;
+            }
+
+            button, cv-button, select {
+                appearance: none;
+                border: none;
+                box-shadow: none;
+                border-radius: 8px;
+                color: var(--primaryText);
+                background: transparent;
+                border: none;
+                width: 32px;
+                height: 32px;
+                font-size: 24px;
+                padding: 0;
+                text-align: center;
+                vertical-align: middle;
+                line-height: 32px;
+                cursor: pointer;
+
+                &:disabled {
+                    color: var(--disabledText);
+                    cursor: default;
+                }
+            }
+
+            > .left {
+                position: absolute;
+                left: var(--spacing);
+                top: 0;
+                display: flex;
+                flex-direction: row;
+                column-gap: var(--spacing);
+            }
+            > .right {
+                position: absolute;
+                right: var(--spacing);
+                top: 0;
+                display: flex;
+                flex-direction: row;
+                column-gap: var(--spacing);
+            }
+        }
+
+        cv-tile {
+            flex-basis: 100%;
+            width: 100%;
+            // reset own appearance that is handled by the cv-widget
+            background-color: transparent;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+
+        }
+
+        footer {
+            height: 24px;
+            width: 100%;
+        }
+    }
+
+    cv-tile {
+        @include tile-common;
         display: grid;
         grid-template-columns: repeat($tileColumns, 1fr);
         grid-template-rows: repeat($tileRows, 1fr);
         justify-items: center;
-        position: relative;
 
         .ripple-container {
             position: absolute;
@@ -673,52 +786,6 @@ body {
         &:has(> label.title) {
             padding-top: calc(14px + var(--spacing) + var(--spacing));
             box-sizing: border-box;
-        }
-
-        label.title {
-            display: block;
-            position: absolute;
-            width: calc(100% - 2*var(--spacing));
-            text-align: center;
-            background: var(--tileTitleBackground);
-            padding: var(--spacing);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            line-height: 1em;
-            font-size: 14px;
-            border-top-left-radius: inherit;
-            border-top-right-radius: inherit;
-        }
-
-        > .btn-group {
-            position: absolute;
-            right: var(--spacing);
-            top: 0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            column-gap: var(--spacing);
-
-            > button, > cv-button, select {
-                appearance: none;
-                border: none;
-                box-shadow: none;
-                border-radius: 8px;
-                color: var(--primaryText);
-                background: transparent;
-                border: none;
-                width: 32px;
-                height: 32px;
-                font-size: 24px;
-                padding: 0;
-                text-align: center;
-                vertical-align: middle;
-                line-height: 32px;
-                cursor: pointer;
-            }
-
         }
 
         .row {
@@ -788,27 +855,6 @@ body {
             margin-top: 4px;
         }
 
-        &[size="1x0.5"] {
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
-        }
-        &[size="2x1"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-        }
-        &[size="2x2"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
-        }
-        &[size="1x2"] {
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
-        }
-        &[size="2x4"] {
-            width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
-        }
-        &[size="4x2"] {
-            width: min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing)));
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing) * 3);
-        }
         &.has-bg-image {
             label {
                 mix-blend-mode: difference;
@@ -1444,7 +1490,6 @@ body {
         }
 
         svg {
-            display: inline-block;
             position: absolute;
             top: 0;
             left: 0;

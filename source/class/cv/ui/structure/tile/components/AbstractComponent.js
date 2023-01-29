@@ -73,13 +73,13 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _visibleDisplayMode: null,
 
     __checkIfWidget() {
-      const parent = this._element.parentElement;
+      const parent = this._element.parentElement ? this._element.parentElement.parentElement : null;
       let isWidget = false;
-      const name = parent ? parent.tagName.toLowerCase() : '';
-      if (name.startsWith('cv-')) {
-        let template = document.getElementById(name.substring(3));
-        // parent is a template and this is the only child
-        isWidget = !!template && parent.childElementCount === 1;
+      if (parent) {
+        const name = parent ? parent.tagName.toLowerCase() : '';
+        if (name.startsWith('cv-')) {
+          isWidget = name === 'cv-widget' || !!document.getElementById(name.substring(3));
+        }
       }
       this.setWidget(isWidget);
     },
@@ -114,6 +114,82 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           // cancel event here
           ev.stopPropagation();
         });
+      }
+    },
+
+    /**
+     * Append the given element to a header inside the widget this component is a direct child of.
+     * If the header does not exist yet, it will be created.
+     * Does nothing when this component is no direct child of a widget.
+     * @param element {HTMLElement}
+     * @param align {String} center (default), left or right
+     */
+    appendToHeader(element, align) {
+      if (this.isWidget()) {
+        let header = this._element.parentElement.parentElement.querySelector(':scope > header');
+        if (!header) {
+          header = document.createElement('header');
+          this._element.parentElement.parentElement.insertBefore(header, this._element.parentElement.parentElement.firstElementChild);
+        }
+        let targetParent = header;
+        if (align) {
+          targetParent = header.querySelector('.' + align);
+          if (!targetParent) {
+            targetParent = document.createElement('div');
+            targetParent.classList.add(align);
+          }
+          header.appendChild(targetParent);
+        }
+        targetParent.appendChild(element);
+      }
+    },
+
+    /**
+     * Gets the header or an element inside it, if the selector is not empty
+     * @param selector {String} css selector
+     * @return {Element|undefined}
+     */
+    getHeader(selector) {
+      if (!selector) {
+        return this._element.parentElement.parentElement.querySelector(':scope > header');
+      } else {
+        const header = this._element.parentElement.parentElement.querySelector(':scope > header');
+        if (header) {
+          return header.querySelector(selector);
+        }
+      }
+    },
+
+    /**
+     * Append the given element to a footer inside the widget this component is a direct child of.
+     * If the footer does not exist yet, it will be created.
+     * Does nothing when this component is no direct child of a widget.
+     * @param element {HTMLElement}
+     */
+    appendToFooter(element) {
+      if (this.isWidget()) {
+        let footer = this._element.parentElement.parentElement.querySelector(':scope > footer');
+        if (!footer) {
+          footer = document.createElement('footer');
+          this._element.parentElement.parentElement.appendChild(footer);
+        }
+        footer.appendChild(element);
+      }
+    },
+
+    /**
+     * Gets the footer or an element inside it, if the selector is not empty
+     * @param selector {String} css selector
+     * @return {Element|undefined}
+     */
+    getFooter(selector) {
+      if (!selector) {
+        return this._element.parentElement.parentElement.querySelector(':scope > footer');
+      } else {
+        const footer = this._element.parentElement.parentElement.querySelector(':scope > footer');
+        if (footer) {
+          return footer.querySelector(selector);
+        }
       }
     },
 

@@ -1275,3 +1275,48 @@ msgstr ""
 #: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
 msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "previous"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "next"
+msgstr ""
+
+#. NO LONGER USED
+msgid "h"
+msgstr ""
+
+#. NO LONGER USED
+msgid "d"
+msgstr ""
+
+#. NO LONGER USED
+msgid "w"
+msgstr ""
+
+#. NO LONGER USED
+msgid "m"
+msgstr ""
+
+#. NO LONGER USED
+msgid "y"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "today"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "yesterday"
+msgstr ""
+
+#. NO LONGER USED
+msgid "CW %s"
+msgstr ""
+
+#. CW = calendar week
+#: cv/ui/structure/tile/components/Chart.js
+msgid "CW %1"
+msgstr ""

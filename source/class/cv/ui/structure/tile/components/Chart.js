@@ -62,8 +62,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
         // localize
         d3.formatDefaultLocale({
-          decimal: ',',
-          thousands: '.',
+          decimal: qx.locale.Number.getDecimalSeparator().translate().toString(),
+          thousands: qx.locale.Number.getGroupSeparator().translate().toString(),
           grouping: [3],
           currency: ['€', '']
         });
@@ -72,26 +72,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           dateTime: '%A, der %e. %B %Y, %X',
           date: '%d.%m.%Y',
           time: '%H:%M:%S',
-          periods: ['AM', 'PM'],
-          days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+          periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
+          days: qx.locale.Date.getDayNames('wide', null, 'format').map(t => t.translate().toString()),
 
-          shortDays: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-          months: [
-            'Januar',
-            'Februar',
-            'März',
-            'April',
-            'Mai',
-            'Juni',
-            'Juli',
-            'August',
-            'September',
-            'Oktober',
-            'November',
-            'Dezember'
-          ],
-
-          shortMonths: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
+          shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(t => t.translate().toString()),
+          months: qx.locale.Date.getMonthNames('wide').map(t => t.translate().toString()),
+          shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
         });
       }
     }),
@@ -163,13 +149,24 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
       const chartId = 'chart-' + this._id;
       element.setAttribute('data-chart-id', this._id.toString());
-      let btnGroup = element.parentElement.querySelector(':scope > .btn-group');
-      let seriesSelection = ['hour', 'day', 'week', 'month', 'year'];
-      if (element.hasAttribute('selection')) {
+      const inBackground = this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true';
+
+      let title = this.getHeader('label.title');
+      if (!inBackground && element.hasAttribute('title') && !title) {
+        title = document.createElement('label');
+        title.classList.add('title');
+        title.textContent = element.getAttribute('title');
+        this.appendToHeader(title);
+      }
+
+      let seriesSelection = [];
+      if (!inBackground && element.hasAttribute('selection')) {
         const s = element.getAttribute('selection');
         if (s === 'none') {
           seriesSelection = [];
-        } else if (s !== 'all') {
+        } else if (s === 'all') {
+          seriesSelection = ['hour', 'day', 'week', 'month', 'year'];
+        } else {
           seriesSelection = s.split(',').map(n => n.trim().toLowerCase());
         }
       }
@@ -181,18 +178,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         seriesSelection.push(currentSeries);
       }
       if (seriesSelection.length > 0) {
-        if (!btnGroup) {
-          btnGroup = document.createElement('div');
-          btnGroup.classList.add('btn-group');
-          element.parentElement.insertBefore(btnGroup, element);
-        }
         // back button
         let button = this._buttonFactory('ri-arrow-left-s-line', ['prev']);
+        button.setAttribute('title', qx.locale.Manager.tr('previous'));
         button.addEventListener('click', () => this._onSeriesPrev());
-        btnGroup.appendChild(button);
+        if (title) {
+          title.parentElement.insertBefore(button, title)
+        } else {
+          this.appendToHeader(button);
+        }
 
         // current selection
-        const select = document.createElement('select');
+        /*const select = document.createElement('select');
         let option;
         for (const s of seriesSelection) {
           option = document.createElement('option');
@@ -204,14 +201,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           select.appendChild(option);
         }
         select.addEventListener('change', () => this._onSeriesChange(select));
-        btnGroup.appendChild(select);
+        btnGroup.appendChild(select);*/
 
         // forward button
         button = this._buttonFactory('ri-arrow-right-s-line', ['next']);
+        button.setAttribute('title', qx.locale.Manager.tr('next'));
+        // initially we cannot go into the future
+        button.disabled = true;
         button.addEventListener('click', () => this._onSeriesNext());
-        btnGroup.appendChild(button);
+        this.appendToHeader(button);
       }
-      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+      if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
         // add fullscreen button + address
         const button = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
         button.setAttribute('data-value', '0');
@@ -222,12 +222,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           cv.data.Model.getInstance().onUpdate(popupAddress, button.getAttribute('data-value') === '0' ? '1' : '0', 'system');
         });
 
-        if (!btnGroup) {
-          btnGroup = document.createElement('div');
-          btnGroup.classList.add('btn-group');
-          element.parentElement.insertBefore(btnGroup, element);
-        }
-        btnGroup.appendChild(button);
+        this.appendToHeader(button, 'right');
 
         // address
         const tileAddress = document.createElement('cv-address');
@@ -256,12 +251,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      if (element.hasAttribute('title')) {
-        const title = document.createElement('label');
-        title.classList.add('title');
-        title.textContent = element.getAttribute('title');
-        element.parentElement.insertBefore(title, element.parentElement.firstElementChild);
-      }
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
@@ -269,11 +258,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       // create needed elements
       const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('id', chartId);
+      /*svg.setAttributeNS('http://www.w3.org/2000/svg', 'preserveAspectRatio', 'none');
+      svg.setAttributeNS('http://www.w3.org/2000/svg', 'id', chartId);*/
       this._element.appendChild(svg);
 
       let noToolTips = false;
-      if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
+      if (inBackground) {
         noToolTips = true;
         svg.style.opacity = '0.4';
       }
@@ -370,10 +360,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         color: d => d && this._dataSetConfigs[d].color, // stroke color of line, as a constant or a function of *z*
         title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
         curve: d3.curveLinear, // method of interpolation between points
-        marginTop: (btnGroup && !element.hasAttribute('title') ? 52 : 24), // top margin, in pixels
-        marginRight: 24, // right margin, in pixels
-        marginBottom: 24, // bottom margin, in pixels
-        marginLeft: 30, // left margin, in pixels
+        marginTop: 12, // top margin, in pixels
+        marginRight: 12, // right margin, in pixels
+        marginBottom: 20, // bottom margin, in pixels
+        marginLeft: 24, // left margin, in pixels
         width: 392, // outer width, in pixels
         height: 192, // outer height, in pixels
         aspectRatio: 392/192,
@@ -393,24 +383,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         xPadding: 0.1, // amount of x-range to reserve to separate bars
       };
 
-      if (btnGroup) {
-        const currentBtn = btnGroup.querySelector('.series');
-        if (currentBtn) {
-          currentBtn.textContent = this._seriesToShort(this._element.getAttribute('series') || 'day');
-        }
-      }
-
       this.setResizeTarget(this._element);
       this.addListener('resized', () => {
         this.debug(this._getSize());
       });
 
       this._initializing = false;
+      this.__updateTitle();
     },
 
     _onSeriesPrev() {
-      // TODO: find a way to do this without reset
-      //this._chartConf = null;
       this.setCurrentPeriod(this.getCurrentPeriod()+1);
     },
 
@@ -427,8 +409,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _onSeriesNext() {
       const currentPeriod = this.getCurrentPeriod();
       if (currentPeriod > 0) {
-        // TODO: find a way to do this without reset
-        //this._chartConf = null;
         this.setCurrentPeriod(currentPeriod-1);
       }
     },
@@ -440,7 +420,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     // triggered after a change os series or period
     _refreshData() {
-      const nextButton = this._element.querySelector('.btn-group > .next');
+      const nextButton = this.getHeader('.next');
       if (nextButton) {
         if (this.getCurrentPeriod() === 0) {
           nextButton.setAttribute('disabled', 'disabled');
@@ -453,6 +433,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this._loaded = false;
         this._loadData();
       }
+      this.__updateTitle();
     },
 
     _loadData() {
@@ -555,9 +536,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           cv.io.Fetch.cachedFetch(url, {ttl: this.getRefresh()}, false, client)
             .then(data => {
               this.debug('successfully loaded', url);
-              if (url.indexOf('Meter_Water') >= 0) {
-                debugger;
-              }
               if (client.hasCustomChartsDataProcessor(data)) {
                 data = client.processChartsData(data, ts);
               }
@@ -604,7 +582,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
         // no margins
         this.__config = Object.assign(this.__config, {
-          marginTop: 0,
           marginRight: 0,
           marginBottom: 0,
           marginLeft: 0
@@ -924,13 +901,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       // apply domains to scales
-      if (this._chartConf.x) {
-        this._chartConf.x.domain(xDomain);
+      this._chartConf.x.domain(xDomain);
+      this._chartConf.y.domain(yDomain);
+
+      this._helpers = { X, Y, I, T, Z, O };
+
+      if (this._chartConf.xAxis) {
         this._getSvgElement(svg, 'g', ['axis', 'x'])
           .call(this._chartConf.xAxis);
       }
-      if (this._chartConf.y) {
-        this._chartConf.y.domain(yDomain);
+
+      if (this._chartConf.yAxis) {
         this._getSvgElement(svg, 'g', ['axis', 'y'])
           .call(this._chartConf.yAxis);
       }
@@ -940,19 +921,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       // update groups
-      for (const key in this._chartConf.lineGroups) {
-        const idx = I.filter(i => Z[i] === key)
+      for (const key of this._chartConf.lineGroups.keys()) {
+        const idx = I.filter(i => Z[i] === key);
         this._chartConf.lineGroups.set(key, idx);
+      }
+      for (const key of this._chartConf.areaGroups.keys()) {
+        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
+        this._chartConf.areaGroups.set(key, idx);
+      }
+      for (const key of this._chartConf.barGroups.keys()) {
+        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
+        this._chartConf.barGroups.set(key, idx);
+      }
+      for (const key of this._chartConf.stackedBarGroups.keys()) {
+        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
+        this._chartConf.stackedBarGroups.set(key, idx);
       }
 
       // Compute titles.
       const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
-      this._helpers = { X, Y, I, T, Z, O };
+
 
       this.__config = config;
       this._dot = svg.select('g.dot');
-
-      console.log(xDomain.map(t => new Date(t)));
 
       const t = d3.transition()
         .duration(500)
@@ -971,7 +962,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('d', d => {
             const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
             const func = this._chartConf.lineFunctions[curveName] || this._chartConf.lineFunctions.linear;
-            return func(d[1]);
+            const val = func(d[1]);
+            if (val.endsWith('NaN')) {
+              console.error(curveName, d[1]);
+            }
+            return val;
           });
       }
 
@@ -983,7 +978,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .join(
             enter => enter.append('path')
               .style('mix-blend-mode', config.mixBlendMode)
-              .attr('stroke', typeof config.color === 'function' ? p => this.__opacifyColor(config.color(p[0]), '30') : null)
+              .attr('fill', typeof config.color === 'function' ? p => this.__opacifyColor(config.color(p[0]), '30') : null)
           )
           .transition(t)
           .attr('d', d => {
@@ -1077,28 +1072,66 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       return button
     },
 
+    __updateTitle() {
+      let title = this.getHeader('label.title');
+      if (title) {
+        let chartTitle = this._element.getAttribute('title') || '';
+        title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._seriesToShort(this.getCurrentSeries());
+      }
+    },
+
     /**
      * Converts series to a shot string that is shown in a selectbox
      * @param series
      * @private
      */
     _seriesToShort(series) {
+      const currentPeriod = this.getCurrentPeriod();
+      const date = new Date();
+      let format = new qx.util.format.DateFormat();
       switch (series) {
         case 'hour':
-          return qx.locale.Manager.trc('abbreviations for "day"', 'h');
+          date.setHours(date.getHours() - currentPeriod, 0, 0);
+          format = new qx.util.format.DateFormat(qx.locale.Date.getDateTimeFormat('hmm', 'h:mm'));
+          return format.format(date);
 
         case 'day':
-          return qx.locale.Manager.trc('abbreviations for "day"', 'd');
+          if (currentPeriod === 0) {
+            return qx.locale.Manager.tr('today');
+          } else if (currentPeriod === 1) {
+            return qx.locale.Manager.tr('yesterday');
+          }
+          date.setDate(date.getDate() - currentPeriod);
+          format = new qx.util.format.DateFormat(qx.locale.Date.getDateTimeFormat('MMMd', 'd. MMM'));
+          return format.format(date);
 
         case 'week':
-          return qx.locale.Manager.trc('abbreviations for "day"', 'w');
+          date.setDate(date.getDate() - currentPeriod*7);
+          return qx.locale.Manager.trc('CW = calendar week', 'CW %1', this.getWeekNumber(date));
 
         case 'month':
-          return qx.locale.Manager.trc('abbreviations for "day"', 'm');
+          date.setMonth(date.getMonth() - currentPeriod);
+          if (date.getFullYear() === new Date().getFullYear()) {
+            // no year needed
+            format = new qx.util.format.DateFormat(qx.locale.Date.getDateTimeFormat('MMM', 'MMM'));
+          } else {
+            format = new qx.util.format.DateFormat(qx.locale.Date.getDateTimeFormat('yyMMM', 'MMM yy'));
+          }
+          return format.format(date);
 
         case 'year':
-          return qx.locale.Manager.trc('abbreviations for "day"', 'y');
+          return date.getFullYear() - currentPeriod;
       }
+    },
+
+   getWeekNumber(d) {
+      d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      // Set to the nearest Thursday: current date + 4 - current day number
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      // Get first day of year
+      const yearStart = new Date(d.getFullYear(),0,1);
+      // Calculate full weeks to the nearest Thursday
+      return Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
     },
 
     _onPointerLeft(ev) {

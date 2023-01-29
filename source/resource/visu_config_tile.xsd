@@ -527,6 +527,15 @@
     <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-widget">
+    <xsd:sequence>
+        <xsd:element name="header" minOccurs="0" />
+        <xsd:element name="cv-tile" type="cv-tile" minOccurs="1"/>
+      <xsd:element name="footer" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="size" type="tile-size" />
+  </xsd:complexType>
+
   <xsd:complexType name="cv-tile">
     <xsd:sequence>
       <xsd:choice minOccurs="0" maxOccurs="9">
@@ -562,6 +571,7 @@
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-dimmer" type="cv-dimmer" />
       <xsd:element name="cv-shutter" type="cv-shutter" />
+      <xsd:element name="cv-widget" type="cv-widget"/>
       <xsd:element name="cv-tile" type="cv-tile"/>
       <xsd:element name="cv-info" type="cv-info"/>
       <xsd:element name="cv-status" type="cv-status"/>
@@ -1842,6 +1852,7 @@
       <xsd:enumeration value="1x2" />
       <xsd:enumeration value="2x2" />
       <xsd:enumeration value="2x4" />
+      <xsd:enumeration value="4x2" />
     </xsd:restriction>
   </xsd:simpleType>
 
