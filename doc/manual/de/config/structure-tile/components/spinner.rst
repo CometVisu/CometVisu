@@ -16,7 +16,7 @@ erhöht oder reduziert werden kann.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-spinner" wrap-in="cv-tile" wrapped-position="row='2' colspan='3'">
+    <settings design="tile" selector="cv-spinner" wrap-in="cv-widget"  wrapped-position="row='2' colspan='3'">
         <screenshot name="cv-spinner" margin="0 0 0 0">
             <data address="1/4/1">21.5</data>
         </screenshot>

@@ -71,7 +71,7 @@
                 <tr key="Media player">Medien Abspieler</tr>
                 <tr key="Info">Info</tr>
                 <tr key="Room temperature controllers">Raumtemperaturregler</tr>
-                <tr key="Tile-pair">Tile-Paar</tr>
+                <tr key="Widget-pair">Widget-Paar</tr>
                 <tr key="Consumptions">Verbräuche</tr>
                 <tr key="Power consumption">Aktueller Stromverbrauch</tr>
                 <tr key="Power meter reading">Z&#228;hlerstand Strom</tr>
@@ -200,7 +200,7 @@
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
             <h2 visible-on="mobile">CometVisu - Tile demo</h2>
             <cv-group open="true">
-                <cv-tile-pair allow-column-layout="true">
+                <cv-widget-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: #f2495c">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
@@ -211,7 +211,7 @@
                         <span slot="title" tr="true">Power meter reading</span>
                         <span slot="unit">kWh</span>
                     </cv-info>
-                </cv-tile-pair>
+                </cv-widget-pair>
                 <cv-info format="%.1f W">
                     <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/27</cv-address>
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
@@ -222,13 +222,15 @@
                     <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
                     <span slot="label" tr="true">PV production today</span>
                 </cv-info>
-                <cv-tile size="2x1">
-                    <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                        <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
-                        <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
-                    </cv-chart>
-                </cv-tile>
-                <cv-tile-pair allow-column-layout="true">
+                <cv-widget size="2x1">
+                    <cv-tile>
+                        <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget-pair allow-column-layout="true">
                     <cv-info format="%d" style="color: rgb(255, 203, 125);">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
@@ -255,7 +257,7 @@
                             </cv-chart>
                         </cv-popup>
                     </cv-info>
-                </cv-tile-pair>
+                </cv-widget-pair>
             </cv-group>
             <cv-group name="tr('Others')">
                 <cv-switch>
@@ -414,8 +416,8 @@
                     <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/5/26</cv-address>
                 </cv-media-player>
             </cv-group>
-            <cv-group name="tr('Tile-pair')">
-                <cv-tile-pair>
+            <cv-group name="tr('Widget-pair')">
+                <cv-widget-pair>
                     <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 1</span>
@@ -424,7 +426,7 @@
                         <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 2</span>
                     </cv-switch>
-                </cv-tile-pair>
+                </cv-widget-pair>
             </cv-group>
         </cv-page>
     </main>

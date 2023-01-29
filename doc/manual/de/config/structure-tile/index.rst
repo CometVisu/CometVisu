@@ -214,7 +214,7 @@ oder die Bedienung einer Rolllade (Shutter).
     |   :width: 150                                            | Steuerung eines Medien-Abspielers mit Start/Stop          |
     |                                                          | vor & zurück und einer Lautstärkeregelsung                |
     +----------------------------------------------------------+-----------------------------------------------------------+
-    | .. image:: widgets/_static/cv-tile-pair.png              |  :ref:`tile-pair`                                         |
+    | .. image:: widgets/_static/cv-widget-pair.png            |  :ref:`tile-widget-pair`                                  |
     |   :width: 150                                            | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
     +----------------------------------------------------------+-----------------------------------------------------------+
 
@@ -229,33 +229,36 @@ oder die Bedienung einer Rolllade (Shutter).
     Status <widgets/status>
     RTC <widgets/rtc>
     Media Player <widgets/media-player>
-    Tile-pair <widgets/tile-pair>
+    Widget-pair <widgets/widget-pair>
 
 Eigene Widgets definieren
 =========================
 
 Sofern die vorhandenen Widgets nicht ausreichen, kann man sich auch eigenen Widgets definieren. Die Definition
-eines neuen Widgets erfolgt in einer Kachel ``<cv-tile>``.
+eines neuen Widgets erfolgt in einem ``<cv-widget>``-Element. Dieses besteht aus dem eigentlichen Inhalts-Element
+``<cv-tile>`` und jeweils einem optionalen ``<header>``- und ``<footer>``-Element.
 Die Inhalte in den Kacheln sind in maximal 3 Zeilen mit jeweils 3 Spalten angeordnet, wobei hier ähnlich
 wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kann.
 
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-tile">
+    <settings design="tile" selector="cv-widget">
         <screenshot name="tile-grid"/>
     </settings>
-    <cv-tile>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+        </cv-tile>
+    </cv-widget>
 
 Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten :ref:`Komponenten <tile-components>` frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein :ref:`Button <tile-component-button>`,
@@ -268,17 +271,19 @@ und ein Text angezeigt wird.
 
 .. code-block:: xml
 
-    <cv-tile>
-        <cv-row colspan="3" row="2">
-            <cv-value format="%d%%">
-                <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
-                <cv-round-progress class="value"/>
-            </cv-value>
-        </cv-row>
-        <cv-row colspan="3" row="last">
-            <label class="secondary">Circle Progress</label>
-        </cv-row>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <cv-row colspan="3" row="2">
+                <cv-value format="%d%%">
+                    <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                    <cv-round-progress class="value"/>
+                </cv-value>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="secondary">Circle Progress</label>
+            </cv-row>
+        </cv-tile>
+    </cv-widget>
 
 Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
 anlegen. Das geht am besten über den :ref:`Manager <Manager>` indem man im Order "media" eine Datei mit Namen "my-templates.xml"

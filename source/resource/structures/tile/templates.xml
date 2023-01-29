@@ -281,8 +281,6 @@
             <cv-chart background="true" show-grid="false" show-y-axis="false"
                       show-x-axis="false" slot-y-format="" slot-series="month" slot-refresh="300" colspan="3"
                       rowspan="3" slot-x-format="%d. %b">
-                <dataset src="Meter_Energy_Gas_Consumption_Today" color="rgb(255, 203, 125)"
-                         show-area="true" curve="step"/>
                 <slot name="dataset">NEEDS ADDRESS</slot>
             </cv-chart>
             <cv-popup slot="popup" modal="true" fullscreen="true">

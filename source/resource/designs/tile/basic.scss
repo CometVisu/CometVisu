@@ -602,7 +602,7 @@ body {
     }
 
     &[data-columns="2"] {
-        cv-tile-pair[allow-column-layout="true"] {
+        cv-widget-pair[allow-column-layout="true"] {
             flex-flow: row;
             column-gap: var(--spacing);
         }
@@ -989,7 +989,7 @@ body {
         }
     }
 
-    cv-tile-pair {
+    cv-widget-pair {
         display: flex;
         flex-flow: column;
         justify-content: flex-start;
@@ -998,7 +998,7 @@ body {
         > * {
             height: auto;
         }
-        cv-widget, cv-info, cv-switch, cv-dimmer, cv-shutter, cv-status, cv-rtc, cv-media-player, cv-tile {
+        cv-widget, .widget, cv-tile {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing) / 2);
         }
 

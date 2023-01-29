@@ -14,7 +14,7 @@ automatisiert neu geladen werden.
 
 .. widget-example::
 
-    <settings design="tile" selector="img" wrap-in="cv-tile" wrapper-class="screenshots" wrapped-position="">
+    <settings design="tile" selector="img" wrap-in="cv-widget"  wrapper-class="screenshots" wrapped-position="">
         <screenshot name="cv-image" margin="-60 0 -60 0">
         </screenshot>
     </settings>

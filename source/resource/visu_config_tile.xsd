@@ -534,6 +534,7 @@
       <xsd:element name="footer" minOccurs="0" />
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -575,7 +576,7 @@
       <xsd:element name="cv-status" type="cv-status"/>
       <xsd:element name="cv-status-chart" type="cv-status-chart"/>
       <xsd:element name="cv-rtc" type="cv-rtc"/>
-      <xsd:element name="cv-tile-pair" type="cv-tile-pair"/>
+      <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
     </xsd:choice>
   </xsd:group>
@@ -1586,7 +1587,7 @@
     <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
-  <xsd:complexType name="cv-tile-pair">
+  <xsd:complexType name="cv-widget-pair">
     <xsd:choice minOccurs="2" maxOccurs="2">
       <xsd:element name="cv-tile" type="cv-tile" />
       <xsd:element name="cv-switch" type="cv-switch" />
@@ -1645,7 +1646,7 @@
       </xsd:element>
       <xsd:element name="dataset" maxOccurs="unbounded">
         <xsd:complexType>
-          <xsd:simpleContent>
+          <xsd:complexContent>
             <xsd:extension base="dataset">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
@@ -1655,7 +1656,7 @@
                 </xsd:simpleType>
               </xsd:attribute>
             </xsd:extension>
-          </xsd:simpleContent>
+          </xsd:complexContent>
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
@@ -1679,7 +1680,6 @@
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="series" />
-    <xsd:attribute ref="chart-type" />
     <xsd:attribute name="popup-title" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Title of the popup.</xsd:documentation>

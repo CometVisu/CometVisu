@@ -495,7 +495,9 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                     'mapping[name="' + child.getAttribute('mapping') + '"] > entry > icon'
                   )
                 ) {
-                  clonedChild = target.ownerDocument.createElement('cv-tile');
+                  clonedChild = target.ownerDocument.createElement('cv-widget');
+                  let tile = target.ownerDocument.createElement('cv-tile');
+                  clonedChild.append(tile);
 
                   const sourceLabel = child.querySelector(':scope > label');
                   if (sourceLabel) {
@@ -507,7 +509,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                     label.setAttribute('class', 'primary');
                     label.textContent = sourceLabel.textContent.trim();
                     row.appendChild(label);
-                    clonedChild.appendChild(row);
+                    tile.appendChild(row);
                   }
 
                   const value = target.ownerDocument.createElement('cv-value');
@@ -526,7 +528,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
 
                   this._copyAddresses(child.querySelectorAll(':scope > address'), value);
 
-                  clonedChild.appendChild(value);
+                  tile.appendChild(value);
                 } else {
                   clonedChild = target.ownerDocument.createElement('cv-' + child.tagName);
 
@@ -544,7 +546,7 @@ qx.Class.define('cv.util.ConfigUpgrader', {
                 break;
 
               case 'infoaction':
-                clonedChild = target.ownerDocument.createElement('cv-tile-pair');
+                clonedChild = target.ownerDocument.createElement('cv-widget-pair');
                 target.appendChild(clonedChild);
                 if (child.querySelector('widgetinfo')) {
                   this._convertElement(clonedChild, child.querySelector('widgetinfo'), options);
