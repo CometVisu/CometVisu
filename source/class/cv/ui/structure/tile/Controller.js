@@ -600,6 +600,7 @@ class TemplatedElement extends HTMLElement {
       // clear content
       this.innerHTML = '';
       this.appendChild(content);
+      this.classList.add('cv-widget');
     } else {
       qx.log.Logger.error(controller, '[' + templateId + '] no template found for id', templateId);
     }

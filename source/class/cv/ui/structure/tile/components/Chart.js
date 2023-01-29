@@ -120,6 +120,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _loaded: null,
     _dataSetConfigs: null,
     _initializing: null,
+    _navigationEnabled: null,
 
     /**
     * @type {d3.Selection}
@@ -133,6 +134,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @type {HTMLElement}
      */
     _tooltip: null,
+    /**
+     * @type {String}
+     */
+    _titleString: null,
 
     __helpers: null,
     __config: null,
@@ -141,7 +146,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     async _init() {
       this._checkIfWidget();
-      
+
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
@@ -159,6 +164,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         title.classList.add('title');
         title.textContent = element.getAttribute('title');
         this.appendToHeader(title);
+      }
+
+      if (title) {
+        // save base title for updating
+        this._titleString = title.textContent.trim();
       }
 
       let seriesSelection = [];
@@ -179,6 +189,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (seriesSelection.length > 0 && !seriesSelection.includes(currentSeries)) {
         seriesSelection.push(currentSeries);
       }
+      this._navigationEnabled = seriesSelection.length > 0;
       if (seriesSelection.length > 0) {
         // back button
         let button = this._buttonFactory('ri-arrow-left-s-line', ['prev']);
@@ -191,7 +202,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
 
         // current selection
-        /*const select = document.createElement('select');
+/*        const select = document.createElement('cv-select');
         let option;
         for (const s of seriesSelection) {
           option = document.createElement('option');
@@ -1074,10 +1085,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     __updateTitle() {
-      let title = this.getHeader('label.title');
-      if (title) {
-        let chartTitle = this._element.getAttribute('title') || '';
-        title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._seriesToShort(this.getCurrentSeries());
+      if (this._navigationEnabled) {
+        let title = this.getHeader('label.title');
+        if (title) {
+          let chartTitle = this._titleString || '';
+          title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._seriesToShort(this.getCurrentSeries());
+        }
       }
     },
 

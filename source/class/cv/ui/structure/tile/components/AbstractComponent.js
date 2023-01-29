@@ -84,26 +84,32 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _checkIfWidget() {
       let isWidget = false;
       let isPopup = false;
-      let tile = this._element;
-      let i = 0;
-      // we are looking for cv-tile parent which is the direct child of a widget
-      while (tile.localName !== 'cv-tile') {
-        tile = tile.parentElement;
-        i++;
-        if (i > 2) {
-          tile = null;
-          break;
+      if (this._element.parentElement.localName === 'cv-popup') {
+        this._headerFooterParent = this._element.parentElement;
+        isPopup = true;
+      } else {
+        let tile = this._element;
+        let i = 0;
+        // we are looking for cv-tile parent which is the direct child of a widget
+        while (tile.localName !== 'cv-tile') {
+          tile = tile.parentElement;
+          i++;
+          if (i > 2) {
+            tile = null;
+            break;
+          }
+        }
+        if (tile) {
+          let parent = tile.parentElement;
+          this._headerFooterParent = parent;
+          if (parent.localName === 'cv-popup') {
+            isPopup = true;
+          } else if (parent.localName.startsWith('cv-')) {
+            isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
+          }
         }
       }
-      if (tile) {
-        let parent = tile.parentElement;
-        this._headerFooterParent = parent;
-        if (parent.localName === 'cv-popup') {
-          isPopup = true;
-        } else if (parent.localName.startsWith('cv-')) {
-          isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
-        }
-      }
+      this.setInPopup(true);
       this.setWidget(isWidget);
     },
 

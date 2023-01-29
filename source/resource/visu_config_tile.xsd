@@ -573,6 +573,7 @@
       <xsd:element name="cv-widget" type="cv-widget"/>
       <xsd:element name="cv-info" type="cv-info"/>
       <xsd:element name="cv-status" type="cv-status"/>
+      <xsd:element name="cv-status-chart" type="cv-status-chart"/>
       <xsd:element name="cv-rtc" type="cv-rtc"/>
       <xsd:element name="cv-tile-pair" type="cv-tile-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
@@ -715,60 +716,7 @@
   <xsd:complexType name="cv-chart">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
-        <xsd:element name="dataset" maxOccurs="unbounded">
-          <xsd:complexType>
-            <xsd:attribute name="src" type="xsd:string">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
-                <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="title" type="xsd:string">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="type">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="line" />
-                  <xsd:enumeration value="bar" />
-                  <xsd:enumeration value="stacked-bar" />
-                </xsd:restriction>
-              </xsd:simpleType>
-            </xsd:attribute>
-            <xsd:attribute name="curve">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
-              </xsd:annotation>
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="linear" />
-                  <xsd:enumeration value="step" />
-                  <xsd:enumeration value="natural" />
-                </xsd:restriction>
-              </xsd:simpleType>
-            </xsd:attribute>
-            <xsd:attribute name="color" type="color">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="show-area" type="xsd:boolean">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-          </xsd:complexType>
-        </xsd:element>
+        <xsd:element name="dataset" type="dataset"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="title" type="xsd:string">
@@ -791,21 +739,8 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute name="series">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="hour"/>
-          <xsd:enumeration value="day"/>
-          <xsd:enumeration value="week"/>
-          <xsd:enumeration value="month"/>
-          <xsd:enumeration value="year"/>
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+    <xsd:attribute ref="series" />
+    <xsd:attribute name="selection" type="series-selection" />
     <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
@@ -1656,6 +1591,8 @@
       <xsd:element name="cv-tile" type="cv-tile" />
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-info" type="cv-info" />
+      <xsd:element name="cv-status" type="cv-status" />
+      <xsd:element name="cv-status-chart" type="cv-status-chart" />
     </xsd:choice>
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
@@ -1669,6 +1606,88 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
+
+
+  <xsd:complexType name="cv-status-chart">
+    <xsd:sequence>
+      <xsd:element name="cv-address">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="title" />
+                    <xsd:enumeration value="popup-title" />
+                    <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+              <xsd:attribute ref="tr"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="dataset" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="dataset">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="dataset" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute name="selection" type="series-selection" />
+    <xsd:attribute name="y-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute ref="refresh" />
+    <xsd:attribute ref="series" />
+    <xsd:attribute ref="chart-type" />
+    <xsd:attribute name="popup-title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the popup.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Überschrift des Popups.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # END: template based type (of templates that the structure has build in)
@@ -1866,6 +1885,15 @@
     </xsd:restriction>
   </xsd:simpleType>
 
+  <xsd:simpleType name="series-selection">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+    </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+      </xsd:restriction>
+  </xsd:simpleType>
+
   <xsd:complexType name="cv-state-notification">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
@@ -1989,6 +2017,35 @@
     <xsd:attribute name="value-mapping" type="xsd:string" />
     <xsd:attribute name="address-mapping" type="xsd:string" />
   </xsd:complexType>
+
+  <xsd:complexType name="dataset">
+      <xsd:attribute name="src" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+          <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="title" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute ref="chart-type" />
+      <xsd:attribute ref="curve"/>
+      <xsd:attribute name="color" type="color">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="show-area" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:complexType>
 
   <!--
   #####################################################################################################################
@@ -2253,6 +2310,50 @@
       <xsd:documentation xml:lang="en">Augments the clickable area to the whole tile.</xsd:documentation>
       <xsd:documentation xml:lang="de">Erweitert den klickbaren Bereich auf die gesamte Kachel.</xsd:documentation>
     </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="series">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="hour"/>
+        <xsd:enumeration value="day"/>
+        <xsd:enumeration value="week"/>
+        <xsd:enumeration value="month"/>
+        <xsd:enumeration value="year"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="curve">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="linear" />
+        <xsd:enumeration value="step" />
+        <xsd:enumeration value="natural" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="chart-type">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="line" />
+        <xsd:enumeration value="bar" />
+        <xsd:enumeration value="stacked-bar" />
+      </xsd:restriction>
+    </xsd:simpleType>
   </xsd:attribute>
 
   <!--
