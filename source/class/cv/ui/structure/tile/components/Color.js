@@ -118,7 +118,8 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
           popup.innerHTML = `<div class="widget_container" style="margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center" id="${path}" data-type="colorchooser">${this.__colorChooser.getDomString()}</div>`;
           element.appendChild(popup);
           element.addEventListener('click', ev => {
-            if (ev.path.indexOf(popup) < 0) {
+            const path = ev.path || (ev.composedPath && ev.composedPath());
+            if (path && path.indexOf(popup) < 0) {
               popup.getInstance().open();
             }
           });
