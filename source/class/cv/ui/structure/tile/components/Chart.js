@@ -162,7 +162,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (!inBackground && element.hasAttribute('title') && !title) {
         title = document.createElement('label');
         title.classList.add('title');
-        title.textContent = element.getAttribute('title');
+        let span = document.createElement('span');
+        title.appendChild(span);
+        span.textContent = element.getAttribute('title');
         this.appendToHeader(title);
       }
 
@@ -195,26 +197,53 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let button = this._buttonFactory('ri-arrow-left-s-line', ['prev']);
         button.setAttribute('title', qx.locale.Manager.tr('previous'));
         button.addEventListener('click', () => this._onSeriesPrev());
-        if (title) {
-          title.parentElement.insertBefore(button, title)
-        } else {
-          this.appendToHeader(button);
+
+        if (!title) {
+          title = document.createElement('label');
+          title.classList.add('title');
+          let span = document.createElement('span');
+          title.appendChild(span);
+          this.appendToHeader(title);
         }
 
+        title.parentElement.insertBefore(button, title);
+        const i = document.createElement('i');
+        i.classList.add('ri-arrow-down-s-fill');
+        title.appendChild(i);
+
         // current selection
-/*        const select = document.createElement('cv-select');
+        const popup = document.createElement('div');
+        popup.classList.add('popup', 'series');
         let option;
         for (const s of seriesSelection) {
-          option = document.createElement('option');
-          option.setAttribute('value', s);
+          option = document.createElement('cv-option');
+          option.setAttribute('key', s);
           if (s === currentSeries) {
             option.setAttribute('selected', 'selected');
           }
           option.textContent = this._seriesToShort(s);
-          select.appendChild(option);
+          option.addEventListener('click', ev => {
+            popup.style.display = 'none';
+            this._onSeriesChange(ev.target.getAttribute('key'));
+            ev.stopPropagation();
+            ev.preventDefault();
+          });
+          popup.appendChild(option);
         }
-        select.addEventListener('change', () => this._onSeriesChange(select));
-        btnGroup.appendChild(select);*/
+        title.appendChild(popup);
+
+        // make title clickable
+        title.classList.add('clickable');
+        title.addEventListener('click', ev => {
+          const style = getComputedStyle(popup);
+          if (style.getPropertyValue('display') === 'none') {
+            popup.style.display = 'flex';
+          } else {
+            popup.style.display = 'none';
+          }
+          ev.stopPropagation();
+          ev.preventDefault();
+        })
 
         // forward button
         button = this._buttonFactory('ri-arrow-right-s-line', ['next']);
@@ -416,7 +445,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._initializing = false;
       // reset configuration, we need a new one
       this._chartConf = null;
-      this.setCurrentSeries(select.value);
+      this.setCurrentSeries(select);
     },
 
     _onSeriesNext() {
@@ -1086,20 +1115,44 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     __updateTitle() {
       if (this._navigationEnabled) {
-        let title = this.getHeader('label.title');
+        let title = this.getHeader('label.title span');
         if (title) {
           let chartTitle = this._titleString || '';
-          title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._seriesToShort(this.getCurrentSeries());
+          title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._shownDateRange();
         }
       }
     },
 
     /**
-     * Converts series to a shot string that is shown in a selectbox
+     * Converts series to a shot string that is shown in a select box
      * @param series
      * @private
      */
     _seriesToShort(series) {
+      switch (series) {
+        case 'hour':
+          return qx.locale.Manager.tr('Hour');
+
+        case 'day':
+          return qx.locale.Manager.tr('Day');
+
+        case 'week':
+          return qx.locale.Manager.tr('Week');
+
+        case 'month':
+          return qx.locale.Manager.tr('Month');
+
+        case 'year':
+          return qx.locale.Manager.tr('Year');
+      }
+    },
+
+    /**
+     * Convert the currently shown date range into a human-readable string
+     * @private
+     */
+    _shownDateRange() {
+      const series = this.getCurrentSeries();
       const currentPeriod = this.getCurrentPeriod();
       const date = new Date();
       let format = new qx.util.format.DateFormat();

@@ -130,6 +130,10 @@ body {
     padding: 0;
     margin: 0;
 
+    .clickable {
+        cursor: pointer;
+    }
+
     .show-on-mobile {
         display: none;
     }
@@ -663,6 +667,28 @@ body {
             white-space: nowrap;
             line-height: 1em;
             font-size: 14px;
+            position: relative;
+
+            > i {
+                vertical-align: text-top;
+            }
+
+            > .popup {
+                /* Click menu for header title */
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+
+                flex-direction: column;
+                background-color: var(--tileTitleBackground);
+                border-bottom-left-radius: var(--spacing);
+                border-bottom-right-radius: var(--spacing);
+                padding: var(--spacing);
+                row-gap: calc(var(--spacing)*2);
+                min-width: 100%;
+                text-align: left;
+            }
         }
 
         button, cv-button, select {
