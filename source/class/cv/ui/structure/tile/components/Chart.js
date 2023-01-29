@@ -904,6 +904,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._chartConf.x.domain(xDomain);
       this._chartConf.y.domain(yDomain);
 
+      // Compute titles.
+      const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
+
       this._helpers = { X, Y, I, T, Z, O };
 
       if (this._chartConf.xAxis) {
@@ -937,10 +940,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
         this._chartConf.stackedBarGroups.set(key, idx);
       }
-
-      // Compute titles.
-      const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
-
 
       this.__config = config;
       this._dot = svg.select('g.dot');
