@@ -998,7 +998,7 @@ body {
         > * {
             height: auto;
         }
-        cv-widget, .widget, cv-tile {
+        cv-widget, .cv-widget, cv-tile {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing) / 2);
         }
 
