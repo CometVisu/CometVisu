@@ -781,6 +781,12 @@
         <xsd:documentation xml:lang="de">Zeigt den Chart im Hintergrund einer Kachel.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="zero-based" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">

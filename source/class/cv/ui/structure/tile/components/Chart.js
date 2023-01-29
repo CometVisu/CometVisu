@@ -728,11 +728,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       // Compute default domains, and unique the z-domain.
       const xDomain = d3.extent(X);
-      let minVal = d3.min(Y);
-      if (minVal > 1.0) {
-        minVal = 0;
+      let minVal = 0;
+      if (this._element.hasAttribute('zero-based') && this._element.getAttribute('zero-based') === 'false') {
+        minVal = d3.min(Y) - 1;
       }
-      const yDomain = [minVal, d3.max(Y)];
+      const yDomain = [minVal, d3.max(Y) + 1];
       const zDomain = new d3.InternSet(Z);
       // Omit any data not present in the z-domain.
       const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
