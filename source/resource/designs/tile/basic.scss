@@ -688,6 +688,10 @@ body {
                 row-gap: calc(var(--spacing)*2);
                 min-width: 100%;
                 text-align: left;
+
+                cv-option[selected] {
+                    font-weight: bold;
+                }
             }
         }
 
