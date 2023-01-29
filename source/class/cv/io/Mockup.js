@@ -563,6 +563,13 @@ qx.Class.define('cv.io.Mockup', {
     stop() {},
 
     getResourcePath(name, map) {
+      if (cv.Config.testMode) {
+        // fallback to old behaviour just for screenshot generation / testing
+        if (name === 'charts' && map && map.src) {
+          return name + '/' + map.src;
+        }
+        return name;
+      }
       let basePath = '';
       if (Object.prototype.hasOwnProperty.call(this._resources, name)) {
         basePath = this._resources[name];
@@ -571,7 +578,7 @@ qx.Class.define('cv.io.Mockup', {
         }
       }
       if (name === 'charts' && map && map.src) {
-        return basePath + '/' + map.src;
+        return basePath + map.src;
       }
       return basePath;
     },
