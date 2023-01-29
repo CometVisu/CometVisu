@@ -601,20 +601,6 @@ body {
         height: calc(var(--tileCellHeight) * #{$tileRows});
     }
 
-    cv-tile-pair {
-        display: flex;
-        flex-flow: column;
-        justify-content: flex-start;
-        row-gap: var(--spacing);
-
-        > * {
-            height: auto;
-        }
-        cv-tile {
-            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing) / 2);
-        }
-    }
-
     &[data-columns="2"] {
         cv-tile-pair[allow-column-layout="true"] {
             flex-flow: row;
@@ -656,7 +642,7 @@ body {
         }
     }
 
-    cv-widget {
+    cv-widget, cv-info, cv-switch, cv-dimmer, cv-shutter, cv-status, cv-rtc, cv-media-player {
         @include tile-common;
         display: flex;
         flex-direction: column;
@@ -996,6 +982,24 @@ body {
                 border: none;
                 color: var(--primaryText);
             }
+        }
+    }
+
+    cv-tile-pair {
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-start;
+        row-gap: var(--spacing);
+
+        > * {
+            height: auto;
+        }
+        cv-widget, cv-info, cv-switch, cv-dimmer, cv-shutter, cv-status, cv-rtc, cv-media-player, cv-tile {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing) / 2);
+        }
+
+        cv-tile {
+            grid-template-rows: auto 1fr auto;
         }
     }
 

@@ -140,6 +140,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _chartConf: null,
 
     async _init() {
+      this._checkIfWidget();
+      
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;

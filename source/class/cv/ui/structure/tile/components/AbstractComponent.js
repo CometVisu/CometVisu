@@ -60,6 +60,14 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     widget: {
       check: 'Boolean',
       init: 'false'
+    },
+
+    /**
+     * True if this tile is the content of a popup
+     */
+    inPopup: {
+      check: 'Boolean',
+      init: 'false'
     }
   },
 
@@ -71,21 +79,36 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   members: {
     _writeAddresses: null,
     _visibleDisplayMode: null,
+    _headerFooterParent: null,
 
-    __checkIfWidget() {
-      const parent = this._element.parentElement ? this._element.parentElement.parentElement : null;
+    _checkIfWidget() {
       let isWidget = false;
-      if (parent) {
-        const name = parent ? parent.tagName.toLowerCase() : '';
-        if (name.startsWith('cv-')) {
-          isWidget = name === 'cv-widget' || !!document.getElementById(name.substring(3));
+      let isPopup = false;
+      let tile = this._element;
+      let i = 0;
+      // we are looking for cv-tile parent which is the direct child of a widget
+      while (tile.localName !== 'cv-tile') {
+        tile = tile.parentElement;
+        i++;
+        if (i > 2) {
+          tile = null;
+          break;
+        }
+      }
+      if (tile) {
+        let parent = tile.parentElement;
+        this._headerFooterParent = parent;
+        if (parent.localName === 'cv-popup') {
+          isPopup = true;
+        } else if (parent.localName.startsWith('cv-')) {
+          isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
         }
       }
       this.setWidget(isWidget);
     },
 
     _init() {
-      this.__checkIfWidget();
+      this._checkIfWidget();
 
       const element = this._element;
       let hasReadAddress = false;
@@ -125,11 +148,11 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @param align {String} center (default), left or right
      */
     appendToHeader(element, align) {
-      if (this.isWidget()) {
-        let header = this._element.parentElement.parentElement.querySelector(':scope > header');
+      if (this._headerFooterParent) {
+        let header = this._headerFooterParent.querySelector(':scope > header');
         if (!header) {
           header = document.createElement('header');
-          this._element.parentElement.parentElement.insertBefore(header, this._element.parentElement.parentElement.firstElementChild);
+          this._headerFooterParent.insertBefore(header, this._headerFooterParent.firstElementChild);
         }
         let targetParent = header;
         if (align) {
@@ -150,12 +173,14 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @return {Element|undefined}
      */
     getHeader(selector) {
-      if (!selector) {
-        return this._element.parentElement.parentElement.querySelector(':scope > header');
-      } else {
-        const header = this._element.parentElement.parentElement.querySelector(':scope > header');
-        if (header) {
-          return header.querySelector(selector);
+      if (this._headerFooterParent) {
+        if (!selector) {
+          return this._headerFooterParent.querySelector(':scope > header');
+        } else {
+          const header = this._headerFooterParent.querySelector(':scope > header');
+          if (header) {
+            return header.querySelector(selector);
+          }
         }
       }
     },
@@ -167,11 +192,11 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @param element {HTMLElement}
      */
     appendToFooter(element) {
-      if (this.isWidget()) {
-        let footer = this._element.parentElement.parentElement.querySelector(':scope > footer');
+      if (this._headerFooterParent) {
+        let footer = this._headerFooterParent.querySelector(':scope > footer');
         if (!footer) {
           footer = document.createElement('footer');
-          this._element.parentElement.parentElement.appendChild(footer);
+          this._headerFooterParent.appendChild(footer);
         }
         footer.appendChild(element);
       }
@@ -183,12 +208,14 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @return {Element|undefined}
      */
     getFooter(selector) {
-      if (!selector) {
-        return this._element.parentElement.parentElement.querySelector(':scope > footer');
-      } else {
-        const footer = this._element.parentElement.parentElement.querySelector(':scope > footer');
-        if (footer) {
-          return footer.querySelector(selector);
+      if (this._headerFooterParent) {
+        if (!selector) {
+          return this._headerFooterParent.querySelector(':scope > footer');
+        } else {
+          const footer = this._headerFooterParent.querySelector(':scope > footer');
+          if (footer) {
+            return footer.querySelector(selector);
+          }
         }
       }
     },

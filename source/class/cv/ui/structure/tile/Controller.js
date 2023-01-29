@@ -481,6 +481,14 @@ class TemplatedElement extends HTMLElement {
     if (template) {
       const slotAttributes = ['name', 'replaces', 'parent-scope'];
       const content = template.content.cloneNode(true);
+
+      // copy all attributes, except 'id' of the template itself to the widget
+      for (const name of template.getAttributeNames()) {
+        if (name !== 'id') {
+          this.setAttribute(name, template.getAttribute(name));
+        }
+      }
+
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
