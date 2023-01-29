@@ -726,6 +726,32 @@ body {
             height: 24px;
             width: 100%;
         }
+
+        &.popup {
+            @include popup;
+
+            &.fullscreen {
+                @include fullscreen-popup;
+
+                button.fullscreen {
+                    visibility: hidden;
+                }
+            }
+
+            > button.close {
+                position: absolute;
+                padding: var(--spacing);
+                right: 0;
+                top: 0;
+                z-index: 100;
+                font-size: 28px;
+                line-height: 20px;
+                cursor: pointer;
+                background: none;
+                border: none;
+                color: var(--primaryText);
+            }
+        }
     }
 
     cv-tile {
@@ -955,32 +981,6 @@ body {
                 text-align: center;
                 text-decoration: none;
                 font-size: 20px;
-            }
-        }
-
-        &.popup {
-            @include popup;
-
-            &.fullscreen {
-                @include fullscreen-popup;
-
-                button.fullscreen {
-                    visibility: hidden;
-                }
-            }
-
-            > button.close {
-                position: absolute;
-                padding: var(--spacing);
-                right: 0;
-                top: 0;
-                z-index: 100;
-                font-size: 28px;
-                line-height: 20px;
-                cursor: pointer;
-                background: none;
-                border: none;
-                color: var(--primaryText);
             }
         }
     }
