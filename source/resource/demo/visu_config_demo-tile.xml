@@ -87,12 +87,16 @@
                 <tr key="Others">Sonstige</tr>
                 <tr key="Rooms">Räume</tr>
                 <tr key="Light-Theme">Light Theme</tr>
+                <tr key="%d on">%d an</tr>
+                <tr key="%d open">%d offen</tr>
+                <tr key="Rooms">Räume</tr>
+                <tr key="Rooms">Räume</tr>
             </language>
         </cv-translations>
     </cv-meta>
     <header>
         <cv-group open="true" wrap="false">
-            <cv-status format="%d an">
+            <cv-status format="tr('%d on')">
                 <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
                 <span slot="label" tr="true">All lights</span>
@@ -125,7 +129,7 @@
                     </cv-list>
                 </cv-popup>
             </cv-status>
-            <cv-status format="%d offen">
+            <cv-status format="tr('%d open')">
                 <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
                     <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
                     <cv-address transform="DPT:5.001" mode="read">1/5/0</cv-address>
@@ -160,7 +164,7 @@
                     </cv-list>
                 </cv-popup>
             </cv-status>
-            <cv-status format="%d an">
+            <cv-status format="tr('%d an')">
                 <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
                 <span slot="label" tr="true">Speakers</span>

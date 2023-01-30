@@ -1,11 +1,9 @@
 {
   "selector": "body",
-  "baseDir": "doc/manual",
   "screenshots": [
     {
       "name": "tile-demo",
       "data": {},
-      "locales": ["de", "en"],
       "screenWidth": 412,
       "screenHeight": 915
     }
@@ -24,8 +22,9 @@
       "sourceFile": "source/test/fixtures/pv-chart.json"
     }
   ],
-  "screenshotDir": "config/_static",
+  "screenshotDir": "doc/manual/en/config/_static",
   "mode": "real",
   "config": "demo-tile",
+  "locale": "en",
   "pageLoaded": "main"
 }

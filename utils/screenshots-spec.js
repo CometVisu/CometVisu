@@ -61,8 +61,8 @@ const cropInFile = function(size, location, srcFile, width, height) {
   }).catch(errorHandler);
 };
 
-const changeBrowserWidth = function (width) {
-  browser.driver.manage().window().setSize(width, defaultHeight);
+const changeBrowserSize = function (width, height) {
+  browser.driver.manage().window().setSize(width, height || defaultHeight);
 };
 
 const createDir = function(dir) {
@@ -369,7 +369,8 @@ describe('generation screenshots from jsdoc examples', function () {
         mode: 'cv',
         data: settings.config,
         fixtures: settings.fixtures,
-        pageLoaded: settings.pageLoaded
+        pageLoaded: settings.pageLoaded,
+        locale: settings.locale
       };
 
       if (settings.mode) {
@@ -447,7 +448,9 @@ describe('generation screenshots from jsdoc examples', function () {
           for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
             currentScreenshot = setting;
             let shotWidget = widget;
-            changeBrowserWidth(setting.screenWidth > 0 ? setting.screenWidth : defaultWidth);
+            changeBrowserSize(
+              setting.screenWidth > 0 ? setting.screenWidth : defaultWidth,
+              settings.screenHeight > 0 ? settings.screenHeight : defaultHeight);
             if (setting.data && Array.isArray(setting.data)) {
               for (let data of setting.data) {
                 let value = data.value;
@@ -544,9 +547,11 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.sleep(sleepTime);
             }
             //console.log("  - creating screenshot '" + setting.name + "'");
-            const locales = setting.locales ? setting.locales : ['c'];
+            const locales = setting.locales ? setting.locales : [settings.locale || ''];
             for (const locale of locales) {
-              const screenshotDir = path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name));
+              const screenshotDir = settings.baseDir
+                ? path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name))
+                : settings.screenshotDir;
               if (skippedScreenshots.includes(screenshotDir + setting.name)) {
                 continue;
               }

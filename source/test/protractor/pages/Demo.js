@@ -27,13 +27,16 @@
 const BasePage = require('../pages/BasePage.js');
 
 class CometVisuDemo extends BasePage {
-  constructor(demoName, waitFor) {
+  constructor(demoName, waitFor, locale) {
     super();
     if (!demoName) {
       demoName = 'demo';
       waitFor = '#id_40_5_2';
     }
     this.url = `http://localhost:8000/source/index.html?config=${demoName}&forceReload=true&testMode=true&enableCache=false`;
+    if (locale) {
+      this.url += '&locale=' + locale;
+    }
 
     this.pageLoaded = this.and(
       this.isVisible($(waitFor))

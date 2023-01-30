@@ -57,6 +57,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') +
         (cv.Config.forceReload === true ? '?' + Date.now() : '')
     );
+    qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
   },
 
   /*
@@ -208,7 +209,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
       settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
-      this.translate(config);
+      this.translate(config, true);
 
       if (!cv.Config.cacheUsed) {
         const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
@@ -336,39 +337,54 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       }
     },
 
-    translate(doc) {
-      for (const attr of ['name', 'label', 'title']) {
+    translate(doc, rememberKeys, useKeys) {
+      let language = qx.locale.Manager.getInstance().getLanguage();
+      let match = /locale=([a-z]{2,3})/.exec(document.location.search)
+      if (match) {
+        language = match[1];
+      }
+      if (rememberKeys) {
+        this._trKeys = {};
+      }
+      for (const attr of ['name', 'label', 'title', 'format']) {
         for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
           const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
 
-          if (!match) {
+          if (!match && !useKeys) {
             this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
 
             continue;
           }
-          const key = match[1];
+          const key = useKeys ? this._trKeys[trNameElement.getAttribute(attr)] : match[1];
           const translation = doc.querySelector(
-            `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+            `cv-translations > language[name="${language}"] > tr[key='${key}']`
           );
 
           if (translation) {
+            if (rememberKeys) {
+              this._trKeys[translation.textContent.trim()] = key;
+            }
             trNameElement.setAttribute(attr, translation.textContent.trim());
           } else {
             trNameElement.setAttribute(attr, key);
-            this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+            this.warn(`[${language}] no translation found for: "${key}"`);
           }
         }
       }
       for (const trTextElement of doc.querySelectorAll('*[tr="true"]')) {
-        const key = trTextElement.textContent.trim();
+        const key = useKeys ? this._trKeys[trTextElement.textContent.trim()] : trTextElement.textContent.trim();
         const translation = doc.querySelector(
-          `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+          `cv-translations > language[name="${language}"] > tr[key='${key}']`
         );
 
         if (translation) {
+          if (rememberKeys) {
+            this._trKeys[translation.textContent.trim()] = key;
+          }
           trTextElement.textContent = translation.textContent.trim();
         } else {
-          this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+          trTextElement.textContent = key;
+          this.warn(`[${language}] no translation found for: "${key}"`);
         }
       }
     },
@@ -462,6 +478,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     // for compatibility with pure controller
     parseLabel() {
       return '';
+    },
+
+    _onChangeLocale() {
+      this.translate(document.body, false, true);
     }
   },
 
@@ -470,6 +490,15 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       // do not apply ourselves automatically in test mode
       cv.Application.structureController = statics.getInstance();
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct() {
+    qx.locale.Manager.getInstance().removeListener('changeLocale', this._onChangeLocale, this);
   }
 });
 
