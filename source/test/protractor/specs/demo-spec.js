@@ -24,10 +24,12 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-var cvDemo = require('../pages/Demo');
+const CometVisuDemo = require('../pages/Demo');
 
 describe('cometvisu demo config test:', function () {
   'use strict';
+
+  const cvDemo = new CometVisuDemo();
 
   beforeEach(function() {
     cvDemo.to();

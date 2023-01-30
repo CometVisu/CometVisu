@@ -12,6 +12,10 @@
   "screenshotDir": "config/_static",
   "fixtures": [
     {
+      "targetPath": "rest/manager/environment.php",
+      "sourceFile": "source/test/fixtures/environment.php.json"
+    },
+    {
       "targetPath": "rest/manager/index.php/fs?path=.",
       "data": [
         {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false}

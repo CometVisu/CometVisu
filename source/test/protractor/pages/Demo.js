@@ -27,14 +27,17 @@
 const BasePage = require('../pages/BasePage.js');
 
 class CometVisuDemo extends BasePage {
-  constructor() {
+  constructor(demoName, waitFor) {
     super();
-
-    this.url = 'http://localhost:8000/source/index.html?config=demo&forceReload=true&testMode=true&enableCache=false';
+    if (!demoName) {
+      demoName = 'demo';
+      waitFor = '#id_40_5_2';
+    }
+    this.url = `http://localhost:8000/source/index.html?config=${demoName}&forceReload=true&testMode=true&enableCache=false`;
 
     this.pageLoaded = this.and(
-      this.isVisible($('#id_40_5_2'))
+      this.isVisible($(waitFor))
     );
   }
 }
-module.exports = new CometVisuDemo();
+module.exports = CometVisuDemo;

@@ -1118,7 +1118,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let title = this.getHeader('label.title span');
         if (title) {
           let chartTitle = this._titleString || '';
-          title.textContent = (chartTitle ? chartTitle + ' ' : '') + this._shownDateRange();
+          title.textContent = (chartTitle ? chartTitle + ' - ' : '') + this._shownDateRange();
         }
       }
     },

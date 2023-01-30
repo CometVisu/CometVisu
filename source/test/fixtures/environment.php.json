@@ -1,0 +1,7 @@
+{
+  "phpversion": "8.1.7",
+  "PHP_VERSION_ID": 80107,
+  "SERVER_SIGNATURE": "<address>Apache\/2.4.54 (Ubuntu) Server at localhost Port 80<\/address>\n",
+  "SERVER_SOFTWARE": "Apache\/2.4.54 (Ubuntu)",
+  "required_php_version": ">=7.4"
+}

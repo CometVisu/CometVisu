@@ -1,0 +1,31 @@
+{
+  "selector": "body",
+  "baseDir": "doc/manual",
+  "screenshots": [
+    {
+      "name": "tile-demo",
+      "data": {},
+      "locales": ["de", "en"],
+      "screenWidth": 412,
+      "screenHeight": 915
+    }
+  ],
+  "fixtures": [
+    {
+      "targetPath": "rest/manager/environment.php",
+      "sourceFile": "source/test/fixtures/environment.php.json"
+    },
+    {
+      "targetPath": "charts/grid-import-chart.json",
+      "sourceFile": "source/test/fixtures/grid-import-chart.json"
+    },
+    {
+      "targetPath": "charts/pv-chart.json",
+      "sourceFile": "source/test/fixtures/pv-chart.json"
+    }
+  ],
+  "screenshotDir": "config/_static",
+  "mode": "real",
+  "config": "demo-tile",
+  "pageLoaded": "main"
+}
