@@ -121,6 +121,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _dataSetConfigs: null,
     _initializing: null,
     _navigationEnabled: null,
+    __toolTipTimer: null,
+    __showTooltip: false,
 
     /**
     * @type {d3.Selection}
@@ -1068,16 +1070,45 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     _onPointerEntered() {
       if (this._loaded) {
+        this.__toolTipTimer = setTimeout(() => {
+          this.__activateTooltip(true);
+          this.__toolTipTimer = null;
+        }, 500);
+      }
+    },
+
+    _onPointerLeft(ev) {
+      if (this.__toolTipTimer) {
+        clearTimeout(this.__toolTipTimer);
+      }
+
+      if (this._loaded) {
+        console.log(ev.relatedTarget, this._tooltip);
+        if (ev.relatedTarget !== this._tooltip) {
+          this.__activateTooltip(false);
+        }
+      }
+    },
+
+    __activateTooltip(val) {
+      this.debug('__activateTooltip', val);
+      this.__showTooltip = val;
+      if (val) {
         if (this._dot) {
           this._dot.attr('display', null);
           this._dot.raise();
         }
-        this._tooltip.style.opacity = '1';
+        this._tooltip.style.display = null;
+      } else {
+        if (this._dot) {
+          this._dot.attr('display', 'none');
+        }
+        this._tooltip.style.display = 'none';
       }
     },
 
     _onPointerMoved(event) {
-      if (this._loaded) {
+      if (this._loaded && this.__showTooltip) {
         const [xm, ym] = d3.pointer(event);
         const {X, Y, I, T, Z, O} = this._helpers;
         const {x, y, xz} = this._chartConf;
@@ -1199,18 +1230,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const yearStart = new Date(d.getFullYear(),0,1);
       // Calculate full weeks to the nearest Thursday
       return Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
-    },
-
-    _onPointerLeft(ev) {
-      if (this._loaded) {
-        if (ev.relatedTarget !== this._tooltip) {
-          this._dot.attr('display', 'none');
-          const svg = d3.select(this._element).select('svg');
-          svg.node().value = null;
-          svg.dispatch('input', {bubbles: true});
-          this._tooltip.style.opacity = '0';
-        }
-      }
     },
 
     /**
