@@ -317,37 +317,47 @@ class BasePage {
     }
 
     if (content !== undefined) {
-      let targetPath = fixture.targetPath;
+      let targetPaths = fixture.targetPath;
+      if (!Array.isArray(targetPaths)) {
+        targetPaths = [targetPaths];
+      }
+      for (let targetPath of targetPaths) {
+        if (!targetPath.startsWith('/')) {
+          // adding target only to relative paths
+          targetPath = '/' + this.target + '/' + targetPath;
+        }
+        request({
+          method: 'POST',
+          uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
+          body: content
+        }, function (error, response, body) {
+          if (!error && response.statusCode === 200) {
+            this.mockupReady = true;
+          } else {
+            console.log(error);
+            console.log(response);
+            console.log(body);
+          }
+        });
+      }
+    }
+  }
+
+  resetMockupFixture(fixture) {
+    let targetPaths = fixture.targetPath;
+    if (!Array.isArray(targetPaths)) {
+      targetPaths = [targetPaths];
+    }
+    for (let targetPath of targetPaths) {
       if (!targetPath.startsWith('/')) {
         // adding target only to relative paths
         targetPath = '/' + this.target + '/' + targetPath;
       }
       request({
-        method: 'POST',
-        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
-        body: content
-      }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-          this.mockupReady = true;
-        } else {
-          console.log(error);
-          console.log(response);
-          console.log(body);
-        }
+        method: 'DELETE',
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
       });
     }
-  }
-
-  resetMockupFixture(fixture) {
-    let targetPath = fixture.targetPath;
-    if (!targetPath.startsWith('/')) {
-      // adding target only to relative paths
-      targetPath = '/' + this.target + '/' + targetPath;
-    }
-    request({
-      method: 'DELETE',
-      uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
-    });
   }
 }
 module.exports = BasePage;
