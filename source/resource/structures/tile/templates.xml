@@ -280,7 +280,7 @@
             </cv-row>
             <cv-chart background="true" show-grid="false" show-y-axis="false"
                       show-x-axis="false" slot-y-format="" slot-series="month" slot-refresh="300" colspan="3"
-                      rowspan="3" slot-x-format="%d. %b">
+                      rowspan="3" slot-x-format="%d. %b" slot-zero-based="true">
                 <slot name="dataset">NEEDS ADDRESS</slot>
             </cv-chart>
             <cv-popup slot="popup" modal="true" fullscreen="true">
@@ -290,7 +290,7 @@
                     </label>
                 </header>
                 <cv-chart slot-y-format="%.2f m³" slot-series="month" slot-refresh="300"
-                          slot-x-format="%d. %b" slot-selection="all">
+                          slot-x-format="%d. %b" slot-selection="all" slot-zero-based="true">
                     <slot name="dataset">NEEDS ADDRESS</slot>
                 </cv-chart>
             </cv-popup>
