@@ -48,6 +48,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
 
   /*
   ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    fullscreenChanged: 'qx.event.type.Data'
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -102,6 +111,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         target.classList.add('popup');
         if (this._fullScreenMode) {
           target.classList.add('fullscreen');
+          this.fireDataEvent('fullscreenChanged', true);
         }
         this.registerModalPopup();
       }
@@ -117,6 +127,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         this._headerFooterParent.classList.remove('popup');
         if (this._fullScreenMode) {
           this._headerFooterParent.classList.remove('fullscreen');
+          this.fireDataEvent('fullscreenChanged', true);
         }
         let closeButton = this._headerFooterParent.querySelector(':scope > button.close');
         if (closeButton) {

@@ -123,6 +123,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _navigationEnabled: null,
     __toolTipTimer: null,
     __showTooltip: false,
+    __debouncedOnResize: null,
 
     /**
     * @type {d3.Selection}
@@ -292,6 +293,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             // cancel event here
             ev.stopPropagation();
           });
+
+          tileWidget.addListener('fullscreenChanged', () => {
+            this._onRendered();
+          });
         }
       }
 
@@ -301,28 +306,27 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       // create needed elements
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      /*svg.setAttributeNS('http://www.w3.org/2000/svg', 'preserveAspectRatio', 'none');
-      svg.setAttributeNS('http://www.w3.org/2000/svg', 'id', chartId);*/
-      this._element.appendChild(svg);
+
+      const svg = d3.select(this._element)
+        .append("svg");
 
       let noToolTips = false;
       if (inBackground) {
         noToolTips = true;
-        svg.style.opacity = '0.4';
+        svg.style('opacity', 0.4);
       }
 
       if (!noToolTips) {
         this._tooltip = document.createElement('div');
         this._tooltip.classList.add('tooltip');
-        this._tooltip.style.opacity = '0';
+        this._tooltip.style.display = 'none';
         this._element.appendChild(this._tooltip);
 
-        svg.addEventListener('pointerenter', this._onPointerEntered.bind(this));
-        svg.addEventListener('pointermove', this._onPointerMoved.bind(this));
-        svg.addEventListener('pointerleave', this._onPointerLeft.bind(this));
+        svg.on('pointerenter', this._onPointerEntered.bind(this));
+        svg.on('pointermove', this._onPointerMoved.bind(this));
+        svg.on('pointerleave', this._onPointerLeft.bind(this));
       }
-      svg.addEventListener(
+      svg.on(
         'touchmove',
         event => {
           if (this._loaded) {
@@ -405,7 +409,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
         curve: d3.curveLinear, // method of interpolation between points
         marginTop: 12, // top margin, in pixels
-        marginRight: 12, // right margin, in pixels
+        marginRight: 24, // right margin, in pixels
         marginBottom: 20, // bottom margin, in pixels
         marginLeft: 24, // left margin, in pixels
         width: 392, // outer width, in pixels
@@ -426,11 +430,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         showYAxis: !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true',
         xPadding: 0.1, // amount of x-range to reserve to separate bars
       };
-
-      this.setResizeTarget(this._element);
-      this.addListener('resized', () => {
-        this.debug(this._getSize());
-      });
 
       this._initializing = false;
       this.__updateTitle();
@@ -654,10 +653,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const [width, height] = this._getSize();
       this.__config.width = width;
       this.__config.height = height;
-      const svg = this._element.querySelector(':scope > svg');
-      svg.setAttributeNS('http://www.w3.org/2000/svg', 'viewBox', `0, 0, ${width}, ${height}`);
-      this._renderChart(chartData);
-      this._loaded = Date.now();
+      d3.select(this._element).select('svg')
+        .attr('viewBox', `0, 0, ${width}, ${height}`);
+      if (chartData) {
+        this._renderChart(chartData);
+        this._loaded = Date.now();
+      }
     },
 
     _getSize() {
@@ -667,22 +668,22 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       let containerHeight = this._element.offsetHeight - padding;
       let factor = 1;
 
-      if (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true') {
-        containerWidth = window.innerWidth - padding;
-        containerHeight = window.innerHeight - padding;
-        factor = 2;
-      }
       const landscape = containerWidth > containerHeight;
       let width = 0;
       let height = 0;
 
-      if (landscape) {
+      if (landscape && containerHeight > 0) {
         // obeying aspect ratio in landscape mode is not necessary
         width = Math.round(containerWidth / factor);
         height = Math.round(containerHeight / factor);
       } else {
         width = Math.round(containerWidth / factor);
         height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
+      }
+      if ((parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true')
+        || (this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
+        // the parent container has height: auto, so we need to have one
+        this._element.style.height = (height + padding*2) + 'px';
       }
       return [width, height];
     },
@@ -1083,7 +1084,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       if (this._loaded) {
-        console.log(ev.relatedTarget, this._tooltip);
         if (ev.relatedTarget !== this._tooltip) {
           this.__activateTooltip(false);
         }
@@ -1098,11 +1098,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           this._dot.attr('display', null);
           this._dot.raise();
         }
-        this._tooltip.style.display = null;
+        this._tooltip.style.display = 'block';
       } else {
         if (this._dot) {
           this._dot.attr('display', 'none');
         }
+        const svg = d3.select(this._element).select('svg');
+        svg.node().value = null;
+        svg.dispatch('input', {bubbles: true});
         this._tooltip.style.display = 'none';
       }
     },
@@ -1119,9 +1122,21 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const xOffset = xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0);
         this._dot.attr('transform', `translate(${x(X[i]) + xOffset},${y(Y[i])})`);
         if (T) {
+          const cursorOffset = event.pointerType === 'mouse' ? 16 : 40;
           const timeString = this.__config.xFormat(new Date(X[i]));
-          const top = ym * scaleFactorY - this._tooltip.offsetHeight - (event.pointerType === 'mouse' ? 16 : 40);
-          let left = (xm * scaleFactorX + this._tooltip.offsetWidth) > this._element.offsetWidth ? xm * scaleFactorX - this._tooltip.offsetWidth : xm * scaleFactorX;
+          let top = ym * scaleFactorY - this._tooltip.offsetHeight;
+          if (top < 0) {
+            top += cursorOffset + this._tooltip.offsetHeight;
+          } else {
+            top -= cursorOffset;
+          }
+
+          let left = xm * scaleFactorX;
+          if (left > this._element.offsetWidth / 2) {
+            left -= this._tooltip.offsetWidth + cursorOffset;
+          } else {
+            left += cursorOffset;
+          }
 
           const key = Z[i];
           const lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
