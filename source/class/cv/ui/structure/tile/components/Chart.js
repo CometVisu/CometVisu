@@ -294,9 +294,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             ev.stopPropagation();
           });
 
-          tileWidget.addListener('fullscreenChanged', () => {
-            this._onRendered();
-          });
+        // only on mobile we need this, because of height: auto
+          if (document.body.classList.contains('mobile')) {
+            tileWidget.addListener('fullscreenChanged', () => {
+              this._onRendered();
+            });
+          }
         }
       }
 
@@ -770,11 +773,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
 
       if (config.showYAxis) {
-        const maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed();
+        const maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed(1);
         // check if we need more space for the y-axis
-        if (maxValue.length >= 4) {
-          config.marginLeft = maxValue.length * 10;
+        if (maxValue.length >= 2) {
+          config.marginLeft = maxValue.length * 8;
         }
+        console.log(maxValue, maxValue.length)
       }
 
       const xTicks = config.width / 80;
