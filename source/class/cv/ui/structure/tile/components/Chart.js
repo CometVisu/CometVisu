@@ -124,6 +124,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __toolTipTimer: null,
     __showTooltip: false,
     __debouncedOnResize: null,
+    __resizeTimeout: null,
 
     /**
     * @type {d3.Selection}
@@ -651,9 +652,19 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       });
     },
 
-    _onRendered(chartData) {
+    _onRendered(chartData, retries) {
       this.debug('rendered');
+      if (this.__resizeTimeout) {
+        clearTimeout(this.__resizeTimeout);
+        this.__resizeTimeout = null;
+      }
       const [width, height] = this._getSize();
+      if ((width < 20 || height < 10) && !retries || retries <= 5) {
+        // this make no sense
+        this.__resizeTimeout = setTimeout(() => {
+          this._onRendered(chartData, retries ? retries++ : 1);
+        }, 50);
+      }
       this.__config.width = width;
       this.__config.height = height;
       d3.select(this._element).select('svg')
@@ -1011,9 +1022,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
             const func = this._chartConf.lineFunctions[curveName] || this._chartConf.lineFunctions.linear;
             const val = func(d[1]);
-            if (val.endsWith('NaN')) {
-              console.error(curveName, d[1]);
-            }
             return val;
           });
       }
