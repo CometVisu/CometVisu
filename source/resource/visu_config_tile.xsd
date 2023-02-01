@@ -781,12 +781,7 @@
         <xsd:documentation xml:lang="de">Zeigt den Chart im Hintergrund einer Kachel.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="zero-based" type="xsd:boolean" default="true">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="zero-based" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
@@ -1692,6 +1687,7 @@
         <xsd:documentation xml:lang="de">Überschrift des Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute ref="zero-based" />
   </xsd:complexType>
 
   <!--
@@ -1860,7 +1856,7 @@
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
+      <xsd:pattern value="#[\da-z]+?|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -2360,6 +2356,13 @@
         <xsd:enumeration value="stacked-bar" />
       </xsd:restriction>
     </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="zero-based" type="xsd:boolean" default="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
+    </xsd:annotation>
   </xsd:attribute>
 
   <!--
