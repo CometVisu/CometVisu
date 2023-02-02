@@ -1,13 +1,11 @@
 Grundsätzlicher Aufbau
 ======================
 
-Wie der Name schon suggeriert setzt sich eine Visualisierung in der Tile-Struktur aus einzelnen Kacheln (engl. Tile)
-zusammen.
-
-Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
-Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
-
-Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
+Auf der obersten Ebene enthält eine Tile-Datei zunächst einen Meta-Bereich (``<cv-meta>``) in dem nicht sichtbare Einstellungen
+enthalten sind die für diese Konfigurationsdatei benötigt werden (z.B. Verbindungen zu Backends, das Laden von
+zusätzliche Dateien usw.).
+Der sichtbare gliedert sich in einen ``<header>`` Bereich (Kopfzeile) einen ``<main>``-Bereich (der eigentliche Inhalt)
+und einen ``<footer>``-Bereich (Fußzeile). Die Kopf- und Fußzeile sind optional und können weggelassen werden.
 
 .. code-block:: xml
 
@@ -25,6 +23,11 @@ Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
             <!-- Optionaler Inhalt unten -->
         </footer>
     </config>
+
+Im ``<main>``-Bereich wird der Inhalt in Kacheln dargestellt (engl. Tile) die in verschiedenen Seiten (``<cv-page>``)
+angeordnet sind.
+Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
+Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
 
 Meta-Bereich
 ------------
@@ -297,7 +300,8 @@ hinzu.
     </cv-meta>
 
 
-Diese Datei sollte dann folgenden Inhalt enthalten:
+In diese Datei kopiert man nun alles was zwischen ``<cv-widget>`` und ``</cv-widget>`` steht.
+Sie sollte dann folgenden Inhalt enthalten:
 
 .. code-block:: xml
 

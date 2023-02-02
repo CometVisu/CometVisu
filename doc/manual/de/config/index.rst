@@ -298,7 +298,7 @@ nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
 * Automatisches Anpassen an alle Bildschirmgrößen (responsives Design). Spezielle Layout-Angaben in der Konfigurationsdatei sind nicht nötig.
 * Höhere Geschwindigkeit beim Laden, da die Konfigurationsdatei nicht mehr geparsed werden muss.
 * Navigationsmenüs werden automatisch erstellt.
-* Spezielle Widgets für Smarthome typische Aufgaben (Dimmer, Rollladen, Raumtemperaturregler).
+* Spezielle Widgets für Smarthome typische Aufgaben (Schalter, Dimmer, Rollladen, Raumtemperaturregler, Media-Player, Charts).
 * Einfaches Erstellen eigener, wiederverwendbarer Widgets ohne Programmierkenntnisse.
 
 .. toctree::
