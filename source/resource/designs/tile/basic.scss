@@ -156,6 +156,10 @@ body {
 
         > cv-group {
             padding: var(--spacing);
+
+            &:not([name]) {
+                margin-top: 0;
+            }
         }
     }
 
@@ -626,6 +630,24 @@ body {
         &[size="1x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
         }
+        &[size="0.5x0.5"] {
+            height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
+            width: calc(var(--tileCellWidth) * #{$tileRows} * 0.5 - var(--spacing)/2);
+            > cv-tile {
+                grid-template-rows: 0.5fr 1fr 0.5fr;
+                align-items: center;
+            }
+        }
+        &[size="button"] {
+            width: min(var(--tileCellWidth), var(--tileCellHeight));
+            height: min(var(--tileCellWidth), var(--tileCellHeight));
+            border-radius: 12px;
+
+            > cv-tile {
+                grid-template-rows: auto 1fr auto;
+                align-items: center;
+            }
+        }
         &[size="2x1"] {
             width: calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing));
         }
@@ -757,8 +779,12 @@ body {
         }
 
         > footer {
+            @include common-header;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: inherit;
+            border-bottom-right-radius: inherit;
             height: 24px;
-            width: 100%;
         }
 
         &.popup {

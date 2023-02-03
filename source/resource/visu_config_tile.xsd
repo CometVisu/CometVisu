@@ -529,11 +529,21 @@
 
   <xsd:complexType name="cv-widget">
     <xsd:sequence>
-        <xsd:element name="header" minOccurs="0" />
+        <xsd:element name="header" type="widget-header-footer" minOccurs="0" />
         <xsd:element name="cv-tile" type="cv-tile" />
-      <xsd:element name="footer" minOccurs="0" />
+      <xsd:element name="footer" type="widget-header-footer" minOccurs="0" />
     </xsd:sequence>
     <xsd:attribute name="size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+  </xsd:complexType>
+
+  <xsd:complexType name="widget-header-footer">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-value" type="cv-value" />
+        <xsd:group ref="HTMLTextElements"/>
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
@@ -1866,6 +1876,8 @@
       <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="button" />
+      <xsd:enumeration value="0.5x0.5" />
       <xsd:enumeration value="1x0.5" />
       <xsd:enumeration value="2x1" />
       <xsd:enumeration value="1x2" />
