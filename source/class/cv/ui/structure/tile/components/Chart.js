@@ -437,6 +437,34 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this._initializing = false;
       this.__updateTitle();
+
+      // check if we have a read address for live updates
+      const datasetSources = Array.from(this._element.querySelectorAll(':scope > dataset')).map(elem => elem.getAttribute('src'));
+      const readAddresses = Array.from(element.querySelectorAll(':scope > cv-address:not([mode="write"])')).filter(elem => datasetSources.includes(elem.getAttribute('target')));
+      if (readAddresses.length > 0) {
+        element.addEventListener('stateUpdate', ev => {
+          this.onStateUpdate(ev);
+          // cancel event here
+          ev.stopPropagation();
+        });
+      }
+    },
+
+    onStateUpdate(ev) {
+      const targetDataset = this._element.querySelector(':scope > dataset[src="'+ev.detail.target+'"]');
+      const config = this._dataSetConfigs[ev.detail.target];
+      if (targetDataset && config) {
+        let ts = Date.now();
+        if (config.aggregationInterval) {
+          const mins = config.aggregationInterval * 60 * 1000;
+          ts = Math.round(ts / mins) * mins;
+        }
+        this._renderChart({
+          src: ev.detail.target,
+          time: ts,
+          value: ev.detail.state
+        }, true);
+      }
     },
 
     _onSeriesPrev() {
@@ -614,12 +642,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       for (let entry of data) {
         let tsdata = entry.data;
         if (tsdata !== null) {
+          // TODO: stacked bar times (entry.ts.type === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
+          const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
           for (let [time, value] of tsdata) {
             chartData.push({
               src: entry.ts.src,
-              // stacked bar times must be aggregated, they have to be at the same time index for stacking
-              time: entry.ts.aggregationInterval > 0 && entry.ts.type === 'stacked-bar'
-                ? Math.round(time / entry.ts.aggregationInterval) * entry.ts.aggregationInterval : time,
+              time: mins > 0
+                ? Math.round(time / mins) * mins : time,
               value
             });
           }
@@ -659,11 +688,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.__resizeTimeout = null;
       }
       const [width, height] = this._getSize();
-      if ((width < 20 || height < 10) && !retries || retries <= 5) {
+      if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
         // this make no sense
         this.__resizeTimeout = setTimeout(() => {
-          this._onRendered(chartData, retries ? retries++ : 1);
-        }, 50);
+          this._onRendered(chartData, retries > 0 ? retries+1 : 1);
+        }, 150);
       }
       this.__config.width = width;
       this.__config.height = height;
@@ -762,15 +791,46 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @param data
      * @private
      */
-    _renderChart(data) {
+    _renderChart(data, single) {
       const config = this.__config;
       const svg = d3.select(this._element).select('svg');
 
       // Compute values.
-      const X = d3.map(data, config.x);
-      const Y = d3.map(data, config.y);
-      const Z = d3.map(data, config.z);
-      const O = d3.map(data, d => d);
+      let X, Y, Z, O, T;
+      if (single) {
+        if (!this._helpers) {
+          return;
+        }
+        X = this._helpers.X;
+        Y = this._helpers.Y;
+        Z = this._helpers.Z
+        O = this._helpers.O;
+        T = this._helpers.T;
+        if (X[X.length-1] === data.time) {
+          // replace last value instead of adding one
+          Y[Y.length-1] = data.value;
+        } else {
+          X.push(data.time);
+          Y.push(data.value);
+          Z.push(data.src);
+          O.push(data);
+          T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
+
+          // cleanup
+          X.shift();
+          Y.shift();
+          Z.shift();
+          O.shift();
+          T.shift();
+        }
+      } else {
+        X = d3.map(data, config.x);
+        Y = d3.map(data, config.y);
+        Z = d3.map(data, config.z);
+        O = d3.map(data, d => d);
+        // Compute titles.
+        T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
+      }
 
       // Compute default domains, and unique the z-domain.
       const xDomain = d3.extent(X);
@@ -789,7 +849,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (maxValue.length >= 2) {
           config.marginLeft = maxValue.length * 8;
         }
-        console.log(maxValue, maxValue.length)
       }
 
       const xTicks = config.width / 80;
@@ -964,9 +1023,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._chartConf.x.domain(xDomain);
       this._chartConf.y.domain(yDomain);
 
-      // Compute titles.
-      const T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
-
       this._helpers = { X, Y, I, T, Z, O };
 
       if (this._chartConf.xAxis) {
@@ -1005,7 +1061,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._dot = svg.select('g.dot');
 
       const t = d3.transition()
-        .duration(500)
+        .duration(single ? 0 : 500)
         .ease(d3.easeLinear);
 
       if (this._chartConf.lineContainer) {
@@ -1102,7 +1158,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
-    __activateTooltip(val) {
+    __activateTooltip(val, x, y) {
       this.debug('__activateTooltip', val);
       this.__showTooltip = val;
       if (val) {
