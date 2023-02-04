@@ -78,7 +78,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   members: {
     _writeAddresses: null,
-    _visibleDisplayMode: null,
     _headerFooterParent: null,
 
     _checkIfWidget() {
@@ -298,9 +297,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       }
       switch (value) {
         case 'visible':
-          if (this._visibleDisplayMode) {
-            target.style.display = this._visibleDisplayMode || 'initial';
-          }
+          target.style.display = null;
           break;
 
         case 'hidden':
@@ -308,7 +305,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           break;
 
         case 'excluded':
-          this._visibleDisplayMode = getComputedStyle(target).getPropertyValue('display');
           target.style.display = 'none';
           break;
       }
@@ -342,5 +338,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
       return false;
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct() {
+    this._writeAddresses = null;
+    this._headerFooterParent = null;
   }
 });

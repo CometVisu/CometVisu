@@ -682,25 +682,31 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _onRendered(chartData, retries) {
-      this.debug('rendered');
       if (this.__resizeTimeout) {
         clearTimeout(this.__resizeTimeout);
         this.__resizeTimeout = null;
       }
-      const [width, height] = this._getSize();
-      if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
-        // this make no sense
-        this.__resizeTimeout = setTimeout(() => {
-          this._onRendered(chartData, retries > 0 ? retries+1 : 1);
-        }, 150);
-      }
-      this.__config.width = width;
-      this.__config.height = height;
-      d3.select(this._element).select('svg')
-        .attr('viewBox', `0, 0, ${width}, ${height}`);
-      if (chartData) {
-        this._renderChart(chartData);
-        this._loaded = Date.now();
+      if (this.isVisible()) {
+        const [width, height] = this._getSize();
+        if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
+          // this make no sense
+          this.__resizeTimeout = setTimeout(() => {
+            this._onRendered(chartData, retries > 0 ? retries + 1 : 1);
+          }, 150);
+        }
+        if (width < 20 || height < 10) {
+          // dp nothing, these values are invalid
+          return;
+        }
+
+        this.__config.width = width;
+        this.__config.height = height;
+        d3.select(this._element).select('svg')
+          .attr('viewBox', `0, 0, ${width}, ${height}`);
+        if (chartData) {
+          this._renderChart(chartData);
+          this._loaded = Date.now();
+        }
       }
     },
 
