@@ -130,8 +130,7 @@ qx.Class.define('cv.ui.structure.tile.elements.StateNotification', {
   },
 
     _onStateUpdate(address, state, initial, changed) {
-      console.log(address, state, initial, changed);
-      const [topic, id, property] = address.split(":");
+      const [, id, property] = address.split(":");
       const router = cv.core.notifications.Router.getInstance();
       if (property === 'enabled') {
         router.enableStateUpdateHandler(id, state == 1);

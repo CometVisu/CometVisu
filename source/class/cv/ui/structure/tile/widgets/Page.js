@@ -18,7 +18,7 @@
  */
 
 /**
- * Creates a new sub page and adds a corresponding link to the current page.
+ * Creates a new sub-page and adds a corresponding link to the current page.
  *
  * @ignore(InstallTrigger)
  * @author Tobias Bräutigam
@@ -46,6 +46,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
    */
   members: {
     _supportsContentVisibility: null,
+    _visibleDisplayMode: null,
 
     _init() {
       if (typeof InstallTrigger !== 'undefined') {

@@ -555,8 +555,6 @@ class TemplatedElement extends HTMLElement {
             });
           }
         } else {
-          qx.log.Logger.debug(controller, '[' + templateId + '] no content for slot', slotName, ' removing');
-
           let parentNode = slot.parentNode;
           if (slotParentScope > 0) {
             // got slotParentScope elements up and remove that one
