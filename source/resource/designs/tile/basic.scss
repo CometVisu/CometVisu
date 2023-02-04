@@ -1019,6 +1019,7 @@ body {
                 background-color: var(--appBackground);
                 border: 1px solid var(--borderColor);
                 z-index: 10;
+                position: fixed;
 
                 li {
                     cursor: pointer;

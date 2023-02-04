@@ -92,9 +92,6 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const rootList = document.createElement('ul');
         this._element.appendChild(rootList);
 
-        // add some general listeners to close
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
-
         if (model === 'pages') {
           // add hamburger menu
           const ham = document.createElement('a');
@@ -196,6 +193,11 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
       this._element.classList.toggle(toggleClass);
       event.stopPropagation();
+      if (this._element.classList.contains(toggleClass)) {
+        // add some general listeners to close
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+      }
     },
 
     /**
@@ -258,6 +260,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
             detail.removeAttribute('open');
           }
         }
+      }
+      if (!except) {
+        qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
       }
     },
 
