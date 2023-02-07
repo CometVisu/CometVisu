@@ -2365,7 +2365,6 @@
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="line" />
         <xsd:enumeration value="bar" />
-        <xsd:enumeration value="stacked-bar" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -2396,6 +2395,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="tr"/>
     <xsd:attribute name="value-size">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the font size.</xsd:documentation>
@@ -2416,6 +2416,7 @@
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
         <xsd:attributeGroup ref="appearance-attributes" />
+        <xsd:attribute ref="tr"/>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
