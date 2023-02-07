@@ -290,7 +290,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           i.title = pageName;
           a.appendChild(i);
         }
-        if (this.isShowLabels()) {
+        if (this.isShowLabels() || currentLevel > 0) {
           const text = document.createTextNode(pageName);
           a.appendChild(text);
         }
@@ -340,7 +340,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           details.appendChild(summary);
           const subList = document.createElement('ul');
           details.appendChild(subList);
-          this.__generatePagesModel(subList, page, currentPage, currentLevel++);
+          this.__generatePagesModel(subList, page, currentPage, currentLevel+1);
           li.appendChild(details);
         } else {
           li.appendChild(a);
