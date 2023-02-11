@@ -503,7 +503,6 @@ qx.Class.define('cv.io.Mockup', {
         if (cv.Config.initialDemoData.simulations) {
           this._registerSimulations(cv.Config.initialDemoData.simulations);
         }
-        console.log(cv.Config.initialDemoData);
         cv.Config.initialDemoData = null;
       }
     },
