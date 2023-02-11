@@ -558,7 +558,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           let ts = {
             showArea: true,
             color: '#FF9900',
-            type: 'line',
+            chartType: 'line',
             title: '',
             curve: 'linear',
             aggregationInterval: 0
@@ -642,7 +642,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       for (let entry of data) {
         let tsdata = entry.data;
         if (tsdata !== null) {
-          // TODO: stacked bar times (entry.ts.type === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
+          // TODO: stacked bar times (entry.ts.chartType === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
           const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
           for (let [time, value] of tsdata) {
             chartData.push({
@@ -839,7 +839,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       // Compute default domains, and unique the z-domain.
-      const xDomain = d3.extent(X);
+      let xDomain = d3.extent(X);
       let minVal = 0;
       if (this._element.hasAttribute('zero-based') && this._element.getAttribute('zero-based') === 'false') {
         minVal = d3.min(Y) - 1;
@@ -860,16 +860,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const xTicks = config.width / 80;
       const yTicks = config.height / 60;
 
+      const xRange = [config.marginLeft + 2, config.width - config.marginRight - 2]; // [left, right]
       if (!this._chartConf) {
-        const xRange = [config.marginLeft, config.width - config.marginRight]; // [left, right]
         const yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
 
         // initialize everything once
         this._chartConf = {
           // x/y scales
           x: config.xType().range(xRange),
-          y: config.yType().range(yRange),
-          xz: () => 0
+          y: config.yType().range(yRange)
         }
         this._chartConf.xAxis = config.showXAxis
           ? d3.axisBottom(this._chartConf.x)
@@ -936,9 +935,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const lineFunctions = {};
         const areaFunctions = {};
         let xBar;
+        let xzScale;
 
         for (const key of zDomain) {
-          switch (this._dataSetConfigs[key].type) {
+          switch (this._dataSetConfigs[key].chartType) {
             case 'line':
               const idx = I.filter(i => Z[i] === key)
               lineGroups.set(key, idx);
@@ -968,7 +968,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
                     .y(i => this._chartConf.y(this._helpers.Y[i]));
                 }
 
-                if (this._dataSetConfigs[key].type === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
+                if (this._dataSetConfigs[key].chartType === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
                   areaGroups.set(key, idx);
                   if (curveFunction) {
                     // Construct a line generator.
@@ -986,7 +986,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
             case 'bar':
               barGroups.set(key, I.filter(i => Z[i] === key));
-              xBar = d3.scaleBand().range(this._chartConf.x.range()).padding(config.xPadding);
+              if (!xBar) {
+                xBar = d3.scaleBand().range(this._chartConf.x.range()).padding(config.xPadding);
+              }
+              if (!xzScale) {
+                xzScale = d3.scaleBand().padding(0.05);
+              }
               break;
 
             case 'stacked-bar':
@@ -1002,6 +1007,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this._chartConf.lineFunctions = lineFunctions;
         this._chartConf.areaFunctions = areaFunctions;
         this._chartConf.xBar = xBar;
+        if (xzScale) {
+          this._chartConf.xz = xzScale;
+        }
 
         // prepare elements for chart elements
         if (this._chartConf.lineGroups.size > 0) {
@@ -1041,8 +1049,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .call(this._chartConf.yAxis);
       }
       if (this._chartConf.xBar) {
-        // d3.scaleBand().domain(X).range(config.xRange).padding(config.xPadding) ???
-        this._chartConf.xBar.domain(xDomain);
+        this._chartConf.xBar.domain(new d3.InternSet(X));
+      }
+      if (this._chartConf.xz) {
+        this._chartConf.xz.domain(zDomain);
+        this._chartConf.x.range([xRange[0], xRange[1] - this._chartConf.xBar.bandwidth()]);
+        this._chartConf.xz.range([0, this._chartConf.xBar.bandwidth()]);
       }
 
       // update groups
@@ -1112,8 +1124,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .selectAll('g')
           .data(this._chartConf.barGroups)
           .join('g')
-          .transition(t)
-          .attr('fill', typeof config.color === 'function' ? d => this.__opacifyColor(config.color(d[0]), '30') : null)
+          .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) : null)
           .selectAll('rect')
           .data(d => {
             return d[1].map(val => {
@@ -1124,10 +1135,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             });
           })
           .join('rect')
-          .attr('x', d => this._chartConf.xBar(X[d.value]))
+          .attr('x', d => {
+            const x = this._chartConf.x(X[d.value]);
+            const xz =  this._chartConf.xz(d.key);
+            return x + xz;
+          })
           .attr('y', d => this._chartConf.y(Y[d.value]))
-          .attr('height', d => yMin - this._chartConf.y(Y[d.value]))
-          .attr('width', this._chartConf.xBar.bandwidth());
+          .attr('width', this._chartConf.xz.bandwidth())
+          .transition(t)
+          .attr('height', d => yMin - this._chartConf.y(Y[d.value]));
       }
 
       // dot must be added last
@@ -1193,7 +1209,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const scaleFactorX = this._element.offsetWidth / this.__config.width;
         const scaleFactorY = this._element.offsetHeight / this.__config.height;
         // closest point
-        const xOffset = xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0);
+        const xOffset = xz ? (xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0)) : 0;
         this._dot.attr('transform', `translate(${x(X[i]) + xOffset},${y(Y[i])})`);
         if (T) {
           const cursorOffset = event.pointerType === 'mouse' ? 16 : 40;

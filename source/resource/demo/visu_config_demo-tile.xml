@@ -235,32 +235,20 @@
                     </cv-tile>
                 </cv-widget>
                 <cv-widget-pair allow-column-layout="true">
-                    <cv-info format="%d" style="color: rgb(255, 203, 125);">
+                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" zero-based="false">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
+                        <span slot="popup-title" tr="true">Gas consumption</span>
                         <span slot="unit">m³</span>
-                        <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.2f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
-                        </cv-chart>
-                        <cv-popup slot="popup" modal="true" fullscreen="true">
-                            <cv-chart title="tr('Gas consumption')" y-format="%.2f m³" series="month" refresh="300" x-format="%d. %b" >
-                                <dataset src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
-                            </cv-chart>
-                        </cv-popup>
-                    </cv-info>
-                    <cv-info format="%d" style="color: #719aff">
+                        <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                    </cv-status-chart>
+                    <cv-status-chart format="%d" style="color: #719aff" y-format="%.1f m³" series="month" refresh="300">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/30</cv-address>
                         <span slot="title" tr="true">Water meter reading</span>
+                        <span slot="popup-title" tr="true">Water consumption</span>
                         <span slot="unit">m³</span>
-                        <cv-chart slot="chart" background="true" show-grid="false" show-y-axis="false" show-x-axis="false" y-format="%.1f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                            <dataset src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
-                        </cv-chart>
-                        <cv-popup slot="popup" fullscreen="true" modal="true">
-                            <cv-chart title="tr('Water consumption')" y-format="%.1f m³" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
-                                <dataset src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
-                            </cv-chart>
-                        </cv-popup>
-                    </cv-info>
+                        <dataset slot="dataset" src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
+                    </cv-status-chart>
                 </cv-widget-pair>
             </cv-group>
             <cv-group name="tr('Others')">
@@ -300,7 +288,7 @@
             </cv-group>
             <cv-group name="tr('Bedroom')" icon="knxuf-scene_sleeping"></cv-group>
         </cv-page>
-        <cv-page id="categories" name="tr('Categories')" icon="">
+        <cv-page id="categories" name="tr('Categories')" icon="knxuf-control_3dot_hor_f">
 
         </cv-page>
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
@@ -432,6 +420,68 @@
                     </cv-switch>
                 </cv-widget-pair>
             </cv-group>
+            <cv-group name="tr('Charts')">
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Line-Chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Line-Chart with area</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Bar-Chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="more-charts">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-line-chart-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">More charts</span>
+                </cv-switch>
+            </cv-group>
+            <cv-page id="more-charts" name="tr('More charts')">
+                <h1 tr="true">More chart examples</h1>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Multiple line-chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="pv-chart.json" title="tr('PV production')" color="#719aff" show-area="false" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Multiple bar-chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                            <dataset src="pv-chart.json" chart-type="bar" title="tr('PV production')" color="#719aff" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+            </cv-page>
         </cv-page>
     </main>
     <footer>
