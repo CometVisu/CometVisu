@@ -842,15 +842,25 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       let xDomain = d3.extent(X);
       let minVal = 0;
       if (this._element.hasAttribute('zero-based') && this._element.getAttribute('zero-based') === 'false') {
-        minVal = d3.min(Y) - 1;
+        minVal = d3.min(Y);
+        if (minVal > 1.0) {
+          minVal -= 1;
+        }
       }
-      const yDomain = [minVal, d3.max(Y) + 1];
+      let maxVal = d3.max(Y);
+      if (maxVal > 1.0) {
+        // add some inner chart padding
+        maxVal += 1;
+      } else {
+        maxVal += 0.1;
+      }
+      const yDomain = [minVal, maxVal];
       const zDomain = new d3.InternSet(Z);
       // Omit any data not present in the z-domain.
       const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
 
       if (config.showYAxis) {
-        const maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed(1);
+        const maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed(maxVal < 1 ? 2 : 1);
         // check if we need more space for the y-axis
         if (maxValue.length >= 2) {
           config.marginLeft = maxValue.length * 8;
