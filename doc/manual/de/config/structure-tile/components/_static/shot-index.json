@@ -39,6 +39,9 @@
     "cv-rsslogplugin-list": "50d4334df8669aabb127ed26fa120a97",
     "tile-context-menu-closed": "7d68d79aa3fba67e45466f53e11c7a2a",
     "tile-context-menu-open": "e4b36d0c2698d2c69dd505b0dcad5cce",
-    "cv-chart-pv-tooltip": "bdbffdebb37ce764a545ed605528a709",
-    "cv-value-progress-semi-round-color": "44c10f52dd8ed9ebb3460e240b512241"
+    "cv-chart-pv-tooltip": "16fe99541e158c2e9ce43bb76d474ea4",
+    "cv-value-progress-semi-round-color": "44c10f52dd8ed9ebb3460e240b512241",
+    "cv-chart-pv-bar": "0e880cc9eefb5180f78df68cdffac617",
+    "cv-chart-pv-nav": "d3db221349da8f77a221e05f92be3b0b",
+    "cv-chart-pv-nav-open": "93adc6928392a32e792f6b2a466439fe"
 }
