@@ -148,8 +148,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
       this._writeAddresses = writeAddresses;
 
+      const events = {};
       if (writeAddresses.length > 0) {
-        const events = {};
         let eventSource = element;
         if (element.getAttribute('whole-tile') === 'true') {
           // find parent tile and use it as event source
@@ -183,6 +183,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             events[eventName](ev);
           })
         );
+      }
+      if (element.hasAttribute('doc-link') && !Object.prototype.hasOwnProperty.call(events, 'click')) {
+        element.addEventListener('click', ev => {
+          this.onClicked(ev);
+        });
       }
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
@@ -384,34 +389,47 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
     onClicked(event) {
       this.createRipple(event);
-      if (!this._writeAddresses) {
-        this._writeAddresses = Array.prototype.filter.call(
-          this._element.querySelectorAll('addresses > cv-address'),
-          address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read'
-        );
-      }
-      const ev = new CustomEvent('sendState', {
-        detail: {
-          value: this.isOn() ? this.getOffValue() : this.getOnValue(),
-          source: this
+      if (this._element.hasAttribute('doc-link')) {
+        let relPath = this._element.getAttribute('doc-link');
+        // add locale and version
+        const baseVersion = cv.Version.VERSION.split('.').slice(0,2).join('.');
+        let language = qx.locale.Manager.getInstance().getLanguage();
+        if (language !== 'de') {
+          // documentation only exists in 'de' and 'en'
+          language = 'en';
         }
-      });
+        window.open(`https://www.cometvisu.org/CometVisu/${language}/${baseVersion}/manual/${relPath}`);
+        event.stopPropagation();
+      } else {
+        if (!this._writeAddresses) {
+          this._writeAddresses = Array.prototype.filter.call(
+            this._element.querySelectorAll('addresses > cv-address'),
+            address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read'
+          );
+        }
+        const ev = new CustomEvent('sendState', {
+          detail: {
+            value: this.isOn() ? this.getOffValue() : this.getOnValue(),
+            source: this
+          }
+        });
 
-      if (this.getType() === 'trigger') {
-        // simulate feedback
-        this.setOn(true);
-        qx.event.Timer.once(
-          () => {
-            this.setOn(false);
-          },
-          null,
-          250
-        );
+        if (this.getType() === 'trigger') {
+          // simulate feedback
+          this.setOn(true);
+          qx.event.Timer.once(
+            () => {
+              this.setOn(false);
+            },
+            null,
+            250
+          );
+        }
+        this._writeAddresses
+          .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
+          .forEach(address => address.dispatchEvent(ev));
+        event.stopPropagation();
       }
-      this._writeAddresses
-        .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click')
-        .forEach(address => address.dispatchEvent(ev));
-      event.stopPropagation();
     },
 
     onPointerDown() {

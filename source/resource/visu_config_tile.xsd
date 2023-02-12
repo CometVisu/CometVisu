@@ -667,6 +667,13 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="whole-tile" />
+    <xsd:attribute name="doc-link" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Link into the CometVisu documentation (used in the demo config)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Link in die CometVisu-Dokumentation (wird in der Demo-Config benutzt).</xsd:documentation>
+        <xsd:appinfo>level:expert</xsd:appinfo>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-slider">
@@ -2094,6 +2101,7 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines that the text content of this element should be translated.</xsd:documentation>
       <xsd:documentation xml:lang="de">Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</xsd:documentation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>
 

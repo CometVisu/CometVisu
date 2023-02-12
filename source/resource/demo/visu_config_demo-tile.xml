@@ -293,6 +293,11 @@
         </cv-page>
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
             <cv-group name="tr('Switches')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/switch.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                     <span slot="primaryLabel" tr="true">Switch</span>
@@ -317,6 +322,11 @@
                 </cv-switch>
             </cv-group>
             <cv-group name="tr('Dimmer')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/dimmer.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-dimmer>
                     <cv-address slot="switchAddress" transform="DPT:1.001">1/4/5</cv-address>
                     <cv-address slot="brightnessAddress" transform="DPT:5.001">1/4/6</cv-address>
@@ -325,6 +335,11 @@
                 </cv-dimmer>
             </cv-group>
             <cv-group name="tr('Shutters')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/shutter.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-shutter>
                     <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
                     <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="1">1/4/8</cv-address>
@@ -341,6 +356,11 @@
                 </cv-shutter>
             </cv-group>
             <cv-group name="tr('Info')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/info.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-info format="%.1f">
                     <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label" tr="true">Temperature</span>
@@ -367,6 +387,11 @@
                 </cv-info>
             </cv-group>
             <cv-group name="tr('States')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/status.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-status format="%d open">
                     <cv-icon slot="icon" size="x-large">knxuf-fts_window_1w</cv-icon>
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/14</cv-address>
@@ -382,6 +407,11 @@
                 </cv-status>
             </cv-group>
             <cv-group name="tr('Room temperature controllers')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/rtc.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-rtc>
                     <cv-address slot="hvacAddress" transform="DPT:20.102">1/4/16</cv-address>
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
@@ -395,6 +425,11 @@
                 </cv-rtc>
             </cv-group>
             <cv-group name="tr('Media player')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/media-player.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-media-player>
                     <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read">1/4/18</cv-address>
                     <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/19</cv-address>
@@ -409,6 +444,11 @@
                 </cv-media-player>
             </cv-group>
             <cv-group name="tr('Widget-pair')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/widget-pair.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-widget-pair>
                     <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
@@ -421,6 +461,11 @@
                 </cv-widget-pair>
             </cv-group>
             <cv-group name="tr('Charts')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/components/chart.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-widget size="2x1">
                     <header>
                         <label class="title" tr="true">Line-Chart</label>
