@@ -21,5 +21,7 @@
     "cv-pushbutton": "66059f5162052ff222614a50b3e2b912",
     "cv-progress": "6d099eb63bf318a478f06e8bc1788fb3",
     "cv-tile-pair": "8d211c70a263bd3f374e479932447745",
-    "cv-widget-pair": "430cb859b9a9497906e9fabe5117b846"
+    "cv-widget-pair": "430cb859b9a9497906e9fabe5117b846",
+    "cv-status-chart": "b8405ec9232504c96bbf3dead6cd02b7",
+    "cv-status-chart-popup": "128a531dc0e99d6bf6b094af95d7a7e1"
 }

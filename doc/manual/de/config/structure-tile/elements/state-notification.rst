@@ -3,6 +3,8 @@
 Status-Benachrichtigung
 =======================
 
+.. api-doc:: cv.ui.structure.tile.elements.StateNotification
+
 Die Benachrichtigungen im Meta-Bereich bieten die selbe Funktionalität wie in :ref:`Pure-Struktur<notifications>`.
 Der Einzige Unterschied in der Benutzung ist, dass das umschließende ``<notification>``-Element in der Tile-Struktur
 nicht benötigt wird, sie dafür aber den ``cv-``-Präfix im Elementnamen haben.

@@ -168,6 +168,19 @@ eine runden oder halb-runden Fortschrittsbalken.
         <cv-round-progress class="value" type="semiCircle"/>
     </cv-value>
 
+.. widget-example::
+
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget"  wrapped-position="row='middle' colspan='3'">
+        <screenshot name="cv-value-progress-semi-round-color" margin="10 10 10 10">
+            <data address="1/4/2">75</data>
+            <caption>halb-runder Fortschrittsbalken mit anderer Farbe</caption>
+        </screenshot>
+    </settings>
+    <cv-value format="%d%%">
+        <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
+        <cv-round-progress class="value" type="semiCircle" foreground-color="#FF0000"/>
+    </cv-value>
+
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^
 

@@ -210,6 +210,9 @@ oder die Bedienung einer Rolllade (Shutter).
     | .. image:: widgets/_static/cv-status.png                 |  :ref:`tile-status`                                       |
     |   :width: 150                                            | Status Anzeige in halber Kachel-Höhe                      |
     +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-status-chart.png           |  :ref:`tile-status-chart`                                 |
+    |   :width: 150                                            | Status-Widget mit Chart im Hintergrund                    |
+    +----------------------------------------------------------+-----------------------------------------------------------+
     | .. image:: widgets/_static/cv-rtc.png                    |  :ref:`tile-rtc`                                          |
     |   :width: 150                                            | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
     |                                                          | einer Solltemperatur                                      |
@@ -231,6 +234,7 @@ oder die Bedienung einer Rolllade (Shutter).
     Shutter <widgets/shutter>
     Info <widgets/info>
     Status <widgets/status>
+    Status-Chart <widgets/status-chart>
     RTC <widgets/rtc>
     Media Player <widgets/media-player>
     Widget-pair <widgets/widget-pair>
