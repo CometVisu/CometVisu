@@ -32,6 +32,10 @@ benutzen oder sich ein eigenes definieren innerhalb eines ``cv-widget``-Elements
         </cv-switch>
     </cv-widget-pair>
 
+Erlaubte Attribute im Widget-Pair-Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. parameter-information:: cv-widget-pair tile
 
 
 Erlaubte Kind-Elemente und deren Attribute

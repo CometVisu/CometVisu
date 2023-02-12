@@ -9,7 +9,7 @@ Beschreibung
 ------------
 
 Das ``state-notification`` Element im Meta-Bereich der Konfiguration erlaubt es Benachrichtigungen zu erstellen wenn
-ein neuer Wert für ein Widget vom Backend hochgemeldet wird. Diese Benachrichtigungen können als Popup oder
+ein neuer Wert für ein Widget vom Backend hoch gemeldet wird. Diese Benachrichtigungen können als Popup oder
 als Eintrag in der Benachrichtigungszentrale angezeigt werden.
 
 Sobald Nachrichten in der Benachrichtigungszentrale vorhanden sind, wird die Anzahl der Nachrichten am oberen rechten

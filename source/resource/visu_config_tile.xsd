@@ -1607,10 +1607,6 @@
       <xsd:element name="cv-status-chart" type="cv-status-chart" />
     </xsd:choice>
     <xsd:attributeGroup ref="appearance-attributes" />
-    <xsd:attribute ref="format" />
-    <xsd:attribute ref="min" />
-    <xsd:attribute ref="max" />
-    <xsd:attribute ref="step-width" />
     <xsd:attribute name="allow-column-layout" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Shows the two tiles side by side, when the screen size is only 2 columns wide.</xsd:documentation>
@@ -1630,6 +1626,7 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="address" />
+                    <xsd:enumeration value="live-update-address" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>

@@ -73,6 +73,7 @@ Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>
     Mapping <elements/mapping>
     Styling <elements/styling>
     Loader <elements/loader>
+    Status-Benachrichtigung <elements/state-notification>
 
 
 Navigation / Seitenstruktur
