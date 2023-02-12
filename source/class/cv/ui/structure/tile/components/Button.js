@@ -392,7 +392,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (this._element.hasAttribute('doc-link')) {
         let relPath = this._element.getAttribute('doc-link');
         // add locale and version
-        const baseVersion = cv.Version.VERSION.split('.').slice(0,2).join('.');
+        const baseVersion = cv.Version.VERSION.split('.').slice(0, 2).join('.');
         let language = qx.locale.Manager.getInstance().getLanguage();
         if (language !== 'de') {
           // documentation only exists in 'de' and 'en'

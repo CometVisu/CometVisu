@@ -55,12 +55,13 @@ qx.Class.define('cv.io.Mockup', {
     } else {
       this.addListener('resourcePathAdded', ev => {
         switch (ev.getData()) {
-          case 'simulation':
+          case 'simulation': {
             const file = this._resources['simulation'];
             if (file) {
               this.__loadTestData(file);
             }
             break;
+          }
         }
       });
     }
@@ -176,7 +177,7 @@ qx.Class.define('cv.io.Mockup', {
       };
 
       // configure server
-      qx.dev.FakeServer.getInstance().addFilter((args) => {
+      qx.dev.FakeServer.getInstance().addFilter(args => {
         const method = args[0];
         const url = args[1];
         if (url.startsWith('https://sentry.io')) {
@@ -454,7 +455,7 @@ qx.Class.define('cv.io.Mockup', {
           for (const addressElement of document.querySelectorAll('cv-address')) {
             this._addressConfigs[addressElement.textContent.trim()] = {
               transform: addressElement.getAttribute('transform')
-            }
+            };
           }
 
           for (let ga in cv.Config.initialDemoData.states) {
@@ -473,19 +474,16 @@ qx.Class.define('cv.io.Mockup', {
             if (ga in this._addressConfigs) {
               // startValues
               const sim = cv.Config.initialDemoData.simulations[ga];
-              const mapping = valueArray => {
-                return valueArray.map(val => {
+              const mapping = valueArray => valueArray.map(val => {
                   if (val.indexOf('|') >= 0) {
                     const [startAddress, startVal] = val.split('|');
                     if (startAddress in this._addressConfigs) {
                       return startAddress + '|' + cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], startVal).raw;
                     }
                     return val;
-                  } else {
+                  } 
                     return cv.Transform.encodeBusAndRaw(this._addressConfigs[ga], val).raw;
-                  }
                 });
-              }
               sim.startValues = mapping(sim.startValues);
               sim.stopValues = mapping(sim.stopValues);
             }

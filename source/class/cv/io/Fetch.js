@@ -55,7 +55,7 @@ qx.Class.define('cv.io.Fetch', {
         data: ps,
         time: 0,
         ttl: options.ttl || cv.io.Fetch.DEFAULT_CACHE_TTL
-      }
+      };
       cache[resource] = cacheEntry;
       ps.then(() => {
         cacheEntry.time = Date.now();
@@ -66,7 +66,7 @@ qx.Class.define('cv.io.Fetch', {
       if (!cv.io.Fetch.__gcInterval) {
         cv.io.Fetch.__gcInterval = setInterval(() => {
           cv.io.Fetch._gc();
-        }, cv.io.Fetch.DEFAULT_CACHE_TTL)
+        }, cv.io.Fetch.DEFAULT_CACHE_TTL);
       }
       return ps;
     },

@@ -108,7 +108,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           }
         }
       }
-      this.setInPopup(true);
+      this.setInPopup(isPopup);
       this.setWidget(isWidget);
     },
 
@@ -175,19 +175,19 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     /**
      * Gets the header or an element inside it, if the selector is not empty
      * @param selector {String} css selector
-     * @return {Element|undefined}
+     * @return {Element|null}
      */
     getHeader(selector) {
       if (this._headerFooterParent) {
         if (!selector) {
           return this._headerFooterParent.querySelector(':scope > header');
-        } else {
+        } 
           const header = this._headerFooterParent.querySelector(':scope > header');
           if (header) {
             return header.querySelector(selector);
           }
-        }
       }
+      return null;
     },
 
     /**
@@ -210,19 +210,19 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     /**
      * Gets the footer or an element inside it, if the selector is not empty
      * @param selector {String} css selector
-     * @return {Element|undefined}
+     * @return {Element|null}
      */
     getFooter(selector) {
       if (this._headerFooterParent) {
         if (!selector) {
           return this._headerFooterParent.querySelector(':scope > footer');
-        } else {
+        } 
           const footer = this._headerFooterParent.querySelector(':scope > footer');
           if (footer) {
             return footer.querySelector(selector);
           }
-        }
       }
+      return null;
     },
 
     // property apply

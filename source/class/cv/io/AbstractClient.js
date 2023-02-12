@@ -36,5 +36,5 @@ qx.Class.define('cv.io.AbstractClient', {
       this._resources[name] = path;
       this.fireDataEvent('resourcePathAdded', name);
     }
-  },
+  }
 });

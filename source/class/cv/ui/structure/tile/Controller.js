@@ -339,7 +339,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     translate(doc, rememberKeys, useKeys) {
       let language = qx.locale.Manager.getInstance().getLanguage();
-      let match = /locale=([a-z]{2,3})/.exec(document.location.search)
+      let match = /locale=([a-z]{2,3})/.exec(document.location.search);
       if (match) {
         language = match[1];
       }

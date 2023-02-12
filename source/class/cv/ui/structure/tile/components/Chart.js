@@ -247,7 +247,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
           ev.stopPropagation();
           ev.preventDefault();
-        })
+        });
 
         // forward button
         button = this._buttonFactory('ri-arrow-right-s-line', ['next']);
@@ -312,7 +312,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // create needed elements
 
       const svg = d3.select(this._element)
-        .append("svg");
+        .append('svg');
 
       let noToolTips = false;
       if (inBackground) {
@@ -432,7 +432,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         showArea: d => this._dataSetConfigs[d].showArea, // show area below the line,
         showXAxis: !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true',
         showYAxis: !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true',
-        xPadding: 0.1, // amount of x-range to reserve to separate bars
+        xPadding: 0.1 // amount of x-range to reserve to separate bars
       };
 
       this._initializing = false;
@@ -729,8 +729,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         width = Math.round(containerWidth / factor);
         height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
-      if ((parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true')
-        || (this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
+      if ((parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true') ||
+        (this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
         // the parent container has height: auto, so we need to have one
         this._element.style.height = (height + padding*2) + 'px';
       }
@@ -795,6 +795,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * https://observablehq.com/@d3/multi-line-chart
      *
      * @param data
+     * @param single
      * @private
      */
     _renderChart(data, single) {
@@ -802,14 +803,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const svg = d3.select(this._element).select('svg');
 
       // Compute values.
-      let X, Y, Z, O, T;
+      let X;
+      let Y;
+      let Z;
+      let O;
+      let T;
       if (single) {
         if (!this._helpers) {
           return;
         }
         X = this._helpers.X;
         Y = this._helpers.Y;
-        Z = this._helpers.Z
+        Z = this._helpers.Z;
         O = this._helpers.O;
         T = this._helpers.T;
         if (X[X.length-1] === data.time) {
@@ -880,7 +885,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           // x/y scales
           x: config.xType().range(xRange),
           y: config.yType().range(yRange)
-        }
+        };
         this._chartConf.xAxis = config.showXAxis
           ? d3.axisBottom(this._chartConf.x)
             .ticks(xTicks)
@@ -897,7 +902,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (showGrid.includes('x')) {
           this._chartConf.xGrid = d3.axisBottom(this._chartConf.x).ticks(xTicks)
             .tickSize(-config.height + config.marginBottom + config.marginTop)
-            .tickFormat('')
+            .tickFormat('');
           this._getSvgElement(svg, 'g', ['grid', 'x'], {
             transform: `translate(0,${config.height - config.marginBottom})`
           })
@@ -950,8 +955,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         for (const key of zDomain) {
           switch (this._dataSetConfigs[key].chartType) {
-            case 'line':
-              const idx = I.filter(i => Z[i] === key)
+            case 'line': {
+              const idx = I.filter(i => Z[i] === key);
               lineGroups.set(key, idx);
               const curveName = this._dataSetConfigs[key].curve || 'linear';
               if (!Object.prototype.hasOwnProperty.call(lineFunctions, curveName)) {
@@ -983,7 +988,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
                   areaGroups.set(key, idx);
                   if (curveFunction) {
                     // Construct a line generator.
-                    const minY = this._chartConf.y.range()[0]
+                    const minY = this._chartConf.y.range()[0];
                     areaFunctions[curveName] = d3
                       .area()
                       .curve(curveFunction)
@@ -994,6 +999,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
                 }
               }
               break;
+            }
 
             case 'bar':
               barGroups.set(key, I.filter(i => Z[i] === key));
@@ -1037,7 +1043,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           this._chartConf.areaContainer = this._getSvgElement(svg, 'g', ['area'], {
             stroke: 'none',
             fill: typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null
-          })
+          });
         }
         if (this._chartConf.barGroups.size > 0) {
           this._chartConf.barContainer = this._getSvgElement(svg, 'g', ['bars']);
@@ -1165,7 +1171,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('display', 'none')
           .attr('fill', 'currentColor')
           .append('circle')
-          .attr('r', 2.5)
+          .attr('r', 2.5);
       }
       this._dot = svg.select('g.dot');
     },
@@ -1267,7 +1273,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         i.classList.add(icon);
         button.appendChild(i);
       }
-      return button
+      return button;
     },
 
     __updateTitle() {
@@ -1302,6 +1308,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         case 'year':
           return qx.locale.Manager.tr('Year');
       }
+      return '';
     },
 
     /**
@@ -1346,6 +1353,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         case 'year':
           return date.getFullYear() - currentPeriod;
       }
+      return '';
     },
 
    getWeekNumber(d) {
@@ -1353,9 +1361,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Set to the nearest Thursday: current date + 4 - current day number
       d.setDate(d.getDate() + 4 - (d.getDay() || 7));
       // Get first day of year
-      const yearStart = new Date(d.getFullYear(),0,1);
+      const yearStart = new Date(d.getFullYear(), 0, 1);
       // Calculate full weeks to the nearest Thursday
-      return Math.ceil(( ( (d - yearStart) / 86400000) + 1) / 7);
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
     },
 
     /**
