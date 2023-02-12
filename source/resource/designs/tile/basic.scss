@@ -780,6 +780,10 @@ body {
             border: none;
             border-radius: 0;
 
+            &:last-child {
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
+            }
         }
 
         > footer {

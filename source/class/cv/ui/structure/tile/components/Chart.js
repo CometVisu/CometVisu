@@ -869,8 +869,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const xTicks = config.width / 80;
       const yTicks = config.height / 60;
+      const additionalXRangePadding = this._element.getAttribute('background') === 'true' ? 0 : 2;
 
-      const xRange = [config.marginLeft + 2, config.width - config.marginRight - 2]; // [left, right]
+      const xRange = [config.marginLeft + additionalXRangePadding, config.width - config.marginRight - additionalXRangePadding]; // [left, right]
       if (!this._chartConf) {
         const yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
 
