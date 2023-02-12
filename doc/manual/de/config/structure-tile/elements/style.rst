@@ -24,4 +24,4 @@ Bedürfnisse anzupassen.
 
 Das ``<style>``-Element ist ein Standard `HTML-Style Element <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style>`_.
 Um zu sehen welche Variablen das Tile-Design benutzt und welche Auswirkungen es hat, wenn man diese ändert, empfiehlt
-es sich die Entwicklertools des Browsers zu öffnen und dort mit den Werte zu soielen.
+es sich die Entwicklertools des Browsers zu öffnen und dort mit den Werte zu spielen.
