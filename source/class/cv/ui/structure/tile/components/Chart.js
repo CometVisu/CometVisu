@@ -1170,10 +1170,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._dot = svg.select('g.dot');
     },
 
-    _onPointerEntered() {
+    _onPointerEntered(ev) {
       if (this._loaded) {
         this.__toolTipTimer = setTimeout(() => {
-          this.__activateTooltip(true);
+          this.__activateTooltip(true, ev);
           this.__toolTipTimer = null;
         }, 500);
       }
@@ -1191,7 +1191,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
-    __activateTooltip(val, x, y) {
+    __activateTooltip(val, ev) {
       this.debug('__activateTooltip', val);
       this.__showTooltip = val;
       if (val) {
@@ -1200,6 +1200,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           this._dot.raise();
         }
         this._tooltip.style.display = 'block';
+        this._onPointerMoved(null, true);
       } else {
         if (this._dot) {
           this._dot.attr('display', 'none');
@@ -1211,9 +1212,18 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
-    _onPointerMoved(event) {
+    _onPointerMoved(event, center) {
       if (this._loaded && this.__showTooltip) {
-        const [xm, ym] = d3.pointer(event);
+        let xm = 0;
+        let ym = 0;
+        if (event) {
+          [xm, ym] = d3.pointer(event);
+        } else if (center) {
+          xm = this.__config.width/2;
+          ym = this.__config.height/2;
+        } else {
+          return;
+        }
         const {X, Y, I, T, Z, O} = this._helpers;
         const {x, y, xz} = this._chartConf;
         const i = d3.least(I, i => Math.hypot(x(X[i]) - xm, y(Y[i]) - ym));
@@ -1223,7 +1233,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const xOffset = xz ? (xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0)) : 0;
         this._dot.attr('transform', `translate(${x(X[i]) + xOffset},${y(Y[i])})`);
         if (T) {
-          const cursorOffset = event.pointerType === 'mouse' ? 16 : 40;
+          const cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
           const timeString = this.__config.xFormat(new Date(X[i]));
           let top = ym * scaleFactorY - this._tooltip.offsetHeight;
           if (top < 0) {
