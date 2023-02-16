@@ -4,7 +4,7 @@ Grundsätzlicher Aufbau
 Auf der obersten Ebene enthält eine Tile-Datei zunächst einen Meta-Bereich (``<cv-meta>``) in dem nicht sichtbare Einstellungen
 enthalten sind die für diese Konfigurationsdatei benötigt werden (z.B. Verbindungen zu Backends, das Laden von
 zusätzliche Dateien usw.).
-Der sichtbare gliedert sich in einen ``<header>`` Bereich (Kopfzeile) einen ``<main>``-Bereich (der eigentliche Inhalt)
+Der sichtbare Bereich gliedert sich in einen ``<header>``- (Kopfzeile) einen ``<main>``- (der eigentliche Inhalt)
 und einen ``<footer>``-Bereich (Fußzeile). Die Kopf- und Fußzeile sind optional und können weggelassen werden.
 
 .. code-block:: xml
