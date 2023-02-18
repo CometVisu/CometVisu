@@ -391,7 +391,7 @@ body {
                         display: inline-block;
                     }
                     > a, > p {
-                        margin: var(--spacing) calc(var(--spacing) * 2);
+                        padding: var(--spacing) calc(var(--spacing) * 2);
                     }
 
                     a {
