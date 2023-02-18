@@ -1198,7 +1198,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     __activateTooltip(val, ev) {
-      this.debug('__activateTooltip', val);
       this.__showTooltip = val;
       if (val) {
         if (this._dot) {
