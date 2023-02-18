@@ -90,7 +90,17 @@
                 <tr key="%d on">%d an</tr>
                 <tr key="%d open">%d offen</tr>
                 <tr key="Rooms">Räume</tr>
-                <tr key="Rooms">Räume</tr>
+                <tr key="Dining room">Esszimmer</tr>
+                <tr key="Bedroom">Schlafzimmer</tr>
+                <tr key="Categories">Kategorien</tr>
+                <tr key="More charts">Mehr Diagramme</tr>
+                <tr key="Charts">Diagramme</tr>
+                <tr key="Line-Chart">Liniendiagramm</tr>
+                <tr key="Bar-Chart">Balkendiagramm</tr>
+                <tr key="Line-Chart with area">Liniendiagramm ausgefüllt</tr>
+                <tr key="More chart examples">Mehr Diagramm-Beispiele</tr>
+                <tr key="Multiple line-chart">Mehrere Datensätze in einem Liniendiagramm</tr>
+                <tr key="Multiple bar-chart">Mehrere Datensätze in einen Balkendiagramm</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -164,7 +174,7 @@
                     </cv-list>
                 </cv-popup>
             </cv-status>
-            <cv-status format="tr('%d an')">
+            <cv-status format="tr('%d on')">
                 <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
                 <span slot="label" tr="true">Speakers</span>
