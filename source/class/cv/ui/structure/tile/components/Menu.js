@@ -215,7 +215,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         // clicked in hamburger menu, do nothing
       } else if (target.tagName.toLowerCase() !== '.summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
-        qx.event.Timer.once(this._closeAll, this, 100);
+        qx.event.Timer.once(this._closeAll, this, 500);
       } else {
         // close others
         this._closeAll(ev.getTarget().parentElement);
