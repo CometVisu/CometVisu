@@ -18,7 +18,7 @@ das Popup mit dem ColorChooser.
 .. widget-example::
 
     <settings design="tile">
-        <screenshot name="cv-color" selector="cv-tile" sleep="10">
+        <screenshot name="cv-color" selector="cv-widget" sleep="10">
             <data address="1/2/59">50</data>
             <data address="1/2/60">60</data>
             <data address="1/2/61">100</data>
@@ -31,19 +31,21 @@ das Popup mit dem ColorChooser.
             <caption>Farbauswahl im Popup</caption>
         </screenshot>
     </settings>
-    <cv-tile>
-      <cv-row colspan="3" row="2">
-        <cv-color controls="LCh-box;T:2500-15000;Y" title="Schranklicht">
-          <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-r">1/2/59</cv-address>
-          <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-g">1/2/60</cv-address>
-          <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-b">1/2/61</cv-address>
-          <cv-icon class="value">ri-lightbulb-line</cv-icon>
-        </cv-color>
-      </cv-row>
-      <cv-row colspan="3" row="last">
-        <label class="primary">Schranklicht</label>
-      </cv-row>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+          <cv-row colspan="3" row="2">
+            <cv-color controls="LCh-box;T:2500-15000;Y" title="Schranklicht">
+              <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-r">1/2/59</cv-address>
+              <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-g">1/2/60</cv-address>
+              <cv-address transform="DPT:5.001" mode="readwrite" variant="RGB-b">1/2/61</cv-address>
+              <cv-icon class="value">ri-lightbulb-line</cv-icon>
+            </cv-color>
+          </cv-row>
+          <cv-row colspan="3" row="last">
+            <label class="primary">Schranklicht</label>
+          </cv-row>
+        </cv-tile>
+    </cv-widget>
 
 
 

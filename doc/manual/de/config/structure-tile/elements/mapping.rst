@@ -163,17 +163,19 @@ durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
             <entry value="2">orange</entry>
         </cv-styling>
     </cv-meta>
-    <cv-tile>
-        <cv-row colspan="3" row="first">
-            <label class="secondary">Haustür</label>
-        </cv-row>
-        <cv-row colspan="3" row="2">
-            <cv-value mapping="AufZuTuerSymbol" styling="AufZuTuer">
-                <cv-address transform="DPT:4.001" mode="read">1/1/0</cv-address>
-                <cv-icon class="value" size="xxx-large"/>
-            </cv-value>
-        </cv-row>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <cv-row colspan="3" row="first">
+                <label class="secondary">Haustür</label>
+            </cv-row>
+            <cv-row colspan="3" row="2">
+                <cv-value mapping="AufZuTuerSymbol" styling="AufZuTuer">
+                    <cv-address transform="DPT:4.001" mode="read">1/1/0</cv-address>
+                    <cv-icon class="value" size="xxx-large"/>
+                </cv-value>
+            </cv-row>
+        </cv-tile>
+    </cv-widget>
 
 Wertebereiche
 -------------

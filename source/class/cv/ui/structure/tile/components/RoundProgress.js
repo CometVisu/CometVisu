@@ -30,6 +30,16 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(element) {
+    super(element);
+    this.addListener('changeVisible', this._applyVisible, this);
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -285,8 +295,8 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       }
     },
 
-    _applyVisible(visible) {
-      if (visible && this._queuedFitText) {
+    _applyVisible(ev) {
+      if (ev.getData() && this._queuedFitText) {
         this._fitText();
       }
     },

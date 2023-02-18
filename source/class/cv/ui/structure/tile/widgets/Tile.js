@@ -48,6 +48,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
 
   /*
   ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    fullscreenChanged: 'qx.event.type.Data'
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -86,21 +95,23 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     open() {
       if (this._childPopup) {
         this._openPopupChild();
-      } else {
-        let closeButton = this._element.querySelector(':scope > button.close');
+      } else if (this._headerFooterParent) {
+        const target = this._headerFooterParent;
+        let closeButton = target.querySelector(':scope > button.close');
         if (!closeButton) {
           closeButton = document.createElement('button');
           closeButton.classList.add('close');
           const icon = document.createElement('i');
           icon.classList.add('ri-close-line');
           closeButton.appendChild(icon);
-          this._element.appendChild(closeButton);
+          target.appendChild(closeButton);
           closeButton.addEventListener('click', () => this.setPopup(false));
         }
         closeButton.style.display = 'block';
-        this._element.classList.add('popup');
+        target.classList.add('popup');
         if (this._fullScreenMode) {
-          this._element.classList.add('fullscreen');
+          target.classList.add('fullscreen');
+          this.fireDataEvent('fullscreenChanged', true);
         }
         this.registerModalPopup();
       }
@@ -112,12 +123,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       }
       if (this._childPopup) {
         this._closePopupChild();
-      } else {
-        this._element.classList.remove('popup');
+      } else if (this._headerFooterParent) {
+        this._headerFooterParent.classList.remove('popup');
         if (this._fullScreenMode) {
-          this._element.classList.remove('fullscreen');
+          this._headerFooterParent.classList.remove('fullscreen');
+          this.fireDataEvent('fullscreenChanged', true);
         }
-        let closeButton = this._element.querySelector(':scope > button.close');
+        let closeButton = this._headerFooterParent.querySelector(':scope > button.close');
         if (closeButton) {
           closeButton.style.display = 'none';
         }

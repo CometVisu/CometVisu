@@ -302,6 +302,10 @@ qx.Class.define('cv.io.Client', {
         : null;
     },
 
+    setResourcePath(name, path) {
+      this.backend.resources[name] = path;
+    },
+
     hasCustomChartsDataProcessor() {
       return false;
     },

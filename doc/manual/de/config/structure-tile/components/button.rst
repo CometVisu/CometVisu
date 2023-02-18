@@ -19,7 +19,7 @@ Der Button zeigt den aktuellen Zustand an und wechselt beim Klicken zwischen den
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-button" wrap-in="cv-tile" wrapper-class="screenshots">
+    <settings design="tile" selector="cv-button" wrap-in="cv-widget"  wrapper-class="screenshots">
         <screenshot name="cv-button-off" margin="10 10 10 10">
             <data address="1/4/2">0</data>
             <caption>Ausgeschaltet</caption>
@@ -88,7 +88,7 @@ ein ``class="round-button"`` hinzugefügt werden.
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-button" wrap-in="cv-tile" wrapper-class="screenshots">
+    <settings design="tile" selector="cv-button" wrap-in="cv-widget"  wrapper-class="screenshots">
         <screenshot name="cv-button-round-off" margin="10 10 10 10">
             <data address="1/4/2">0</data>
             <caption>Ausgeschaltet</caption>
@@ -131,7 +131,7 @@ eines gerade spielenden Liedes, eine Lautstärke oder den Helligkeitswert eines 
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-button" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-button" wrap-in="cv-widget" >
         <screenshot name="cv-button-progress" margin="10 10 10 10">
             <data address="1/4/1">75</data>
             <data address="1/4/2">1</data>
@@ -167,7 +167,7 @@ Optional kann der Button über ein ``text``-Attribut eine zusätzliche Beschrift
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-button" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-button" wrap-in="cv-widget" >
         <screenshot name="cv-button-text" margin="10 10 24 10">
             <data address="1/4/1">75</data>
             <data address="1/4/2">1</data>

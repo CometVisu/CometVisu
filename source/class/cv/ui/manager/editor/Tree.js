@@ -174,7 +174,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         file = file.substring(3);
       }
       if (!Object.prototype.hasOwnProperty.call(this, file)) {
-        this._schemas[file] = cv.ui.manager.model.Schema.getInstance(file);
+        this._schemas[file] = await cv.ui.manager.model.Schema.getInstance(file);
       }
       return new Promise((resolve, reject) => {
         this._schemas[file].onLoaded(function () {

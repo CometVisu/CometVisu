@@ -121,17 +121,21 @@ class WidgetExampleParser:
             content = etree.tostring(elem, encoding='utf-8')
             display = content
             if wrapper is not None:
-                example_content += bytes("<%s%s>" % (wrapper, wrapper_attributes), 'utf-8')
-                if wrapper == 'cv-tile':
+                if wrapper == 'cv-widget':
+                    example_content += bytes("<%s%s><cv-tile>" % (wrapper, wrapper_attributes), 'utf-8')
                     # center the widget
                     code = content.decode('utf-8')
                     pos = re.search("[ >]", code).start()
                     if pos > 0:
                         code = code[0:pos] + ' ' + wrapped_position + code[pos:]
                         content = bytes(code, 'utf-8')
+                else:
+                    example_content += bytes("<%s%s>" % (wrapper, wrapper_attributes), 'utf-8')
             example_content += content
             display_content += display
             if wrapper is not None:
+                if wrapper == 'cv-widget':
+                    example_content += bytes("</cv-tile>", 'utf-8')
                 example_content += bytes("</%s>" % wrapper, 'utf-8')
 
         if meta_node is not None:

@@ -50,6 +50,7 @@
       <xsd:element name="cv-loader" type="cv-loader" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-translations" type="cv-translations" minOccurs="0" />
       <xsd:element name="style" type="html-style" minOccurs="0" />
+      <xsd:element name="cv-state-notification" type="cv-state-notification" minOccurs="0" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -127,7 +128,7 @@
   <xsd:complexType name="cv-icon">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute ref="class"/>
+        <xsd:attributeGroup ref="appearance-attributes" />
         <xsd:attribute name="size">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Defines the size of the icon.</xsd:documentation>
@@ -142,7 +143,7 @@
             </xsd:restriction>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute name="color" type="xsd:string">
+        <xsd:attribute name="color" type="color">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Icon color.</xsd:documentation>
             <xsd:documentation xml:lang="de">Farbe des Icons.</xsd:documentation>
@@ -165,7 +166,7 @@
           <xsd:documentation xml:lang="de">Randbreite des Kreises.</xsd:documentation>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
       <xsd:attribute name="type">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Visualization type.</xsd:documentation>
@@ -195,17 +196,17 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-backend">
-    <xsd:sequence>
-      <xsd:element name="cv-data" minOccurs="0" maxOccurs="unbounded">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="cv-resource" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="xsd:token">
-              <xsd:attribute name="address" type="addr"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:extension>
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
-    </xsd:sequence>
+    </xsd:choice>
     <xsd:attribute name="type" use="required">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Type of backend: ``knxd`` = KNXD, ``openhab`` = openHAB server, ``mqtt`` = MQTT-Broker, ``simulated`` = Simulated backend for testing</xsd:documentation>
@@ -265,10 +266,10 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="footer">
@@ -277,10 +278,10 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="nav">
@@ -290,6 +291,7 @@
         <xsd:element name="custom" type="custom"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
@@ -376,6 +378,7 @@
         <xsd:element name="cv-page" type="cv-page" />
         <xsd:group ref="Widgets"/>
         <xsd:group ref="CustomWidgets"/>
+        <xsd:group ref="HTMLTextElements"/>
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
@@ -391,11 +394,10 @@
         <xsd:element name="nav" type="nav" />
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-group" type="cv-group"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="mobile" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Controls the visibility on small screens.</xsd:documentation>
@@ -414,8 +416,7 @@
         <xsd:element name="cv-group" type="cv-group"/>
         <xsd:element name="cv-popup" type="cv-popup"/>
         <xsd:element name="custom" type="custom"/>
-        <xsd:element name="p" type="p"/>
-        <xsd:element name="h1" type="text"/>
+        <xsd:group ref="HTMLTextElements"/>
         <xsd:element name="iframe" type="iframe"/>
       </xsd:choice>
     </xsd:sequence>
@@ -437,8 +438,7 @@
         <xsd:documentation xml:lang="de">Icon der Seite in Navigationsmenüs</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="menu" type="xsd:boolean" default="true">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines if this page should be visible in the navigation menus.</xsd:documentation>
@@ -457,6 +457,7 @@
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address" minOccurs="0"/>
         <xsd:element name="iframe" type="iframe"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="modal" type="xsd:boolean">
@@ -465,14 +466,19 @@
         <xsd:documentation xml:lang="de">Deaktiviert den Hintergrund solange das Popup geöffnet ist.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Open the popup in fullscreen mode.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Das geöffnete Popup belegt den gesamten Bildschirm.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="title" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Headline of this popup.</xsd:documentation>
         <xsd:documentation xml:lang="de">Überschrift dieses Popups.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="auto-close-timeout" type="xsd:integer">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in seconds when the popup is automatically closed.</xsd:documentation>
@@ -491,6 +497,7 @@
         <xsd:element name="custom" type="custom"/>
         <xsd:element name="cv-address" type="address"/>
         <xsd:element name="iframe" type="iframe"/>
+        <xsd:group ref="HTMLTextElements"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="icon" type="xsd:string">
@@ -517,8 +524,27 @@
         <xsd:documentation xml:lang="de">Verhindert Zeilenumbrüche, wenn der Inhalt zu breit für die Bildschirmgröße ist. Stattdessen wird der Inhalt scrollbar.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-widget">
+    <xsd:sequence>
+        <xsd:element name="header" type="widget-header-footer" minOccurs="0" />
+        <xsd:element name="cv-tile" type="cv-tile" />
+      <xsd:element name="footer" type="widget-header-footer" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+  </xsd:complexType>
+
+  <xsd:complexType name="widget-header-footer">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-value" type="cv-value" />
+        <xsd:group ref="HTMLTextElements"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-tile">
@@ -530,23 +556,7 @@
         <xsd:element name="cv-popup" type="cv-popup" minOccurs="0"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="size">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Size of the tile in {columns}x{rows}, 1x1 is the default size.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="1x0.5" />
-          <xsd:enumeration value="2x1" />
-          <xsd:enumeration value="1x2" />
-          <xsd:enumeration value="2x2" />
-          <xsd:enumeration value="2x4" />
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="background-image" type="xsd:anyURI">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Background image for this tile.</xsd:documentation>
@@ -562,7 +572,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
@@ -571,11 +581,12 @@
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-dimmer" type="cv-dimmer" />
       <xsd:element name="cv-shutter" type="cv-shutter" />
-      <xsd:element name="cv-tile" type="cv-tile"/>
+      <xsd:element name="cv-widget" type="cv-widget"/>
       <xsd:element name="cv-info" type="cv-info"/>
       <xsd:element name="cv-status" type="cv-status"/>
+      <xsd:element name="cv-status-chart" type="cv-status-chart"/>
       <xsd:element name="cv-rtc" type="cv-rtc"/>
-      <xsd:element name="cv-tile-pair" type="cv-tile-pair"/>
+      <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
     </xsd:choice>
   </xsd:group>
@@ -599,6 +610,17 @@
     </xsd:choice>
   </xsd:group>
 
+  <xsd:group name="HTMLTextElements">
+    <xsd:choice>
+      <xsd:element name="h1" type="text" />
+      <xsd:element name="h2" type="text" />
+      <xsd:element name="h3" type="text" />
+      <xsd:element name="h4" type="text" />
+      <xsd:element name="label" type="label"/>
+      <xsd:element name="p" type="p"/>
+    </xsd:choice>
+  </xsd:group>
+
   <xsd:complexType name="cv-value">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
@@ -612,8 +634,7 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
@@ -635,11 +656,10 @@
         <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute ref="size"/>
+    <xsd:attribute name="size" type="button-size" />
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Additional label for the button.</xsd:documentation>
@@ -647,6 +667,13 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="whole-tile" />
+    <xsd:attribute name="doc-link" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Link into the CometVisu documentation (used in the demo config)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Link in die CometVisu-Dokumentation (wird in der Demo-Config benutzt).</xsd:documentation>
+        <xsd:appinfo>level:expert</xsd:appinfo>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-slider">
@@ -656,8 +683,7 @@
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
@@ -685,8 +711,7 @@
         <xsd:element name="label" type="label" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="min"/>
@@ -700,8 +725,7 @@
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:string"/>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
@@ -710,60 +734,7 @@
   <xsd:complexType name="cv-chart">
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
-        <xsd:element name="dataset" maxOccurs="unbounded">
-          <xsd:complexType>
-            <xsd:attribute name="src" type="xsd:string">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
-                <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="title" type="xsd:string">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="type">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="line" />
-                  <xsd:enumeration value="bar" />
-                  <xsd:enumeration value="stacked-bar" />
-                </xsd:restriction>
-              </xsd:simpleType>
-            </xsd:attribute>
-            <xsd:attribute name="curve">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
-              </xsd:annotation>
-              <xsd:simpleType>
-                <xsd:restriction base="xsd:string">
-                  <xsd:enumeration value="linear" />
-                  <xsd:enumeration value="step" />
-                  <xsd:enumeration value="natural" />
-                </xsd:restriction>
-              </xsd:simpleType>
-            </xsd:attribute>
-            <xsd:attribute name="color" type="color">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-            <xsd:attribute name="show-area" type="xsd:boolean">
-              <xsd:annotation>
-                <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
-                <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
-              </xsd:annotation>
-            </xsd:attribute>
-          </xsd:complexType>
-        </xsd:element>
+        <xsd:element name="dataset" type="dataset"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="title" type="xsd:string">
@@ -772,8 +743,7 @@
         <xsd:documentation xml:lang="de">Titel des Charts.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="y-format" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
@@ -787,21 +757,8 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attributeGroup ref="layout-attributes" />
-    <xsd:attribute name="series">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:restriction base="xsd:string">
-          <xsd:enumeration value="hour"/>
-          <xsd:enumeration value="day"/>
-          <xsd:enumeration value="week"/>
-          <xsd:enumeration value="month"/>
-          <xsd:enumeration value="year"/>
-        </xsd:restriction>
-      </xsd:simpleType>
-    </xsd:attribute>
+    <xsd:attribute ref="series" />
+    <xsd:attribute name="selection" type="series-selection" />
     <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Allows showing the chart in fullscreen size.</xsd:documentation>
@@ -835,6 +792,13 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="background" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show the chart in the background of a tile.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt den Chart im Hintergrund einer Kachel.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="zero-based" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
@@ -913,7 +877,7 @@
         <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="rowspan"/>
     <xsd:attribute ref="colspan"/>
@@ -935,10 +899,9 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
     <xsd:attribute ref="format" />
     <xsd:attributeGroup ref="layout-attributes" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-color">
@@ -983,8 +946,7 @@
         <xsd:element name="cv-icon" type="cv-icon" minOccurs="0" />
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute name="title" type="xsd:string">
       <xsd:annotation>
@@ -1155,12 +1117,15 @@
       <xsd:element name="openweathermap" type="plugin-openweathermap"/>
     </xsd:choice>
     <xsd:attribute name="name"  type="xsd:string"/>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attributeGroup ref="layout-attributes" />
   </xsd:complexType>
 
-  <!-- template based type (of templates that the structure has build in) -->
+  <!--
+  #####################################################################################################################
+  # START: template based type (of templates that the structure has build in)
+  #####################################################################################################################
+  # -->
   <xsd:complexType name="cv-switch">
     <xsd:sequence>
       <xsd:element name="cv-address" maxOccurs="unbounded">
@@ -1198,7 +1163,8 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="size" />
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute name="button-size" type="button-size" />
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="whole-tile" />
     <xsd:attribute name="on-value" type="xsd:string">
@@ -1213,8 +1179,7 @@
         <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-shutter">
@@ -1242,8 +1207,8 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-info">
@@ -1320,6 +1285,7 @@
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="label" />
                     <xsd:enumeration value="unit" />
+                    <xsd:enumeration value="title" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -1328,12 +1294,44 @@
           </xsd:simpleContent>
         </xsd:complexType>
       </xsd:element>
+      <xsd:choice maxOccurs="unbounded" minOccurs="2">
+        <xsd:element name="cv-chart" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-chart">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="chart" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-popup" minOccurs="0">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="cv-popup">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="popup" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
+    <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute name="value-size">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the font size of the value.</xsd:documentation>
@@ -1431,11 +1429,25 @@
           </xsd:complexContent>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="cv-chart" minOccurs="0">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="cv-chart">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="chart" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
     </xsd:sequence>
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
   </xsd:complexType>
 
@@ -1477,14 +1489,14 @@
         </xsd:complexType>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
     <xsd:attribute ref="step-width" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-media-player">
@@ -1546,8 +1558,8 @@
     </xsd:sequence>
     <xsd:attribute ref="progress-mapping" />
     <xsd:attribute ref="mapping" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-dimmer">
@@ -1589,24 +1601,117 @@
     </xsd:sequence>
     <xsd:attribute ref="mapping" />
     <xsd:attribute ref="styling" />
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="size" type="tile-size" />
   </xsd:complexType>
 
-
-  <xsd:complexType name="cv-tile-pair">
+  <xsd:complexType name="cv-widget-pair">
     <xsd:choice minOccurs="2" maxOccurs="2">
       <xsd:element name="cv-tile" type="cv-tile" />
       <xsd:element name="cv-switch" type="cv-switch" />
       <xsd:element name="cv-info" type="cv-info" />
+      <xsd:element name="cv-status" type="cv-status" />
+      <xsd:element name="cv-status-chart" type="cv-status-chart" />
     </xsd:choice>
-    <xsd:attribute ref="class" />
-    <xsd:attribute ref="style" />
-    <xsd:attribute ref="format" />
-    <xsd:attribute ref="min" />
-    <xsd:attribute ref="max" />
-    <xsd:attribute ref="step-width" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="allow-column-layout" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Shows the two tiles side by side, when the screen size is only 2 columns wide.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ordnet die beiden Kacheln nebeneinander, wenn der Bildschirm nur 2 Spalten breit ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
+
+
+  <xsd:complexType name="cv-status-chart">
+    <xsd:sequence>
+      <xsd:element name="cv-address">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                    <xsd:enumeration value="live-update-address" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="span" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="title" />
+                    <xsd:enumeration value="popup-title" />
+                    <xsd:enumeration value="unit" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+              <xsd:attribute ref="tr"/>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="dataset" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="dataset">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="dataset" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="format" />
+    <xsd:attribute name="selection" type="series-selection" />
+    <xsd:attribute name="y-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute ref="refresh" />
+    <xsd:attribute ref="series" />
+    <xsd:attribute name="popup-title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the popup.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Überschrift des Popups.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="zero-based" />
+  </xsd:complexType>
+
+  <!--
+  #####################################################################################################################
+  # END: template based type (of templates that the structure has build in)
+  #####################################################################################################################
+  # -->
+
+
+
   <!--
   #####################################################################################################################
   # START: simple types
@@ -1765,9 +1870,200 @@
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
-      <xsd:pattern value="#[\dA-F]{6}([\dA-F][\dA-F])?"/>
+      <xsd:pattern value="[a-z]+|#[\da-fA-F]{6}([\da-fA-F]{2})?|rgb\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5])\)?|rgba\(([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?([0-1]?[0-9]?[0-9]|2[0-5][0-5]),\s?(1|1.0|0\.[0-9]+)\)?"/>
     </xsd:restriction>
   </xsd:simpleType>
+
+  <xsd:simpleType name="tile-size">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Size of the tile in {columns}x{rows}, 1x1 is the default size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="button" />
+      <xsd:enumeration value="0.5x0.5" />
+      <xsd:enumeration value="1x0.5" />
+      <xsd:enumeration value="2x1" />
+      <xsd:enumeration value="1x2" />
+      <xsd:enumeration value="2x2" />
+      <xsd:enumeration value="2x4" />
+      <xsd:enumeration value="4x2" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="button-size">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="small" />
+      <xsd:enumeration value="normal" />
+      <xsd:enumeration value="large" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="series-selection">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+    </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+      </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="cv-state-notification">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-title-template" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="cv-addresses" type="cv-addresses" />
+        <xsd:element name="cv-message-template" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
+            <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element name="cv-condition" minOccurs="0" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID that can be used in addresses to manipulate this notification.</xsd:documentation>
+        <xsd:documentation xml:lang="de">ID die in Adressen benutzt werden kann, um diese Nachricht zu verändern</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name is required when unique=true</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name muss definiert werden, wenn unique=true ist</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="target">
+      <xsd:simpleType>
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Where to show the message</xsd:documentation>
+          <xsd:documentation xml:lang="de">Wo die Nachricht angezeigt werden soll</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="popup">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Show message as popup</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht als Popup anzeigen</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="notificationCenter">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Show message in notification center</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht im Notification-Center anzeigen</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+          <xsd:enumeration value="speech">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">Say message with text-to-speech</xsd:documentation>
+              <xsd:documentation xml:lang="de">Nachricht per Sprachausgabe ausgeben</xsd:documentation>
+            </xsd:annotation>
+          </xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="unique" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show only one message for this update (name is required)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="deletable" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzer kann diese Nachricht löschen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="enabled" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert diese Nachricht</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Ignore initial state update</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="severity" default="normal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Messages with higher priority are marked with different colors</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nachrichten mit höherer Priorität werden farblich gekennzeichnet</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="urgent" />
+          <xsd:enumeration value="high" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="low" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="icon" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show this icon with the message.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt dieses Icon zusammen mit der Nachricht.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="icon-classes" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Additional CSS-classes to customize the icon.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zusätzliche CSS-klassen mit denen das Aussehen des Icons angepasst werden kann.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-addresses">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="cv-address" type="address" />
+    </xsd:sequence>
+    <xsd:attribute name="value-mapping" type="xsd:string" />
+    <xsd:attribute name="address-mapping" type="xsd:string" />
+  </xsd:complexType>
+
+  <xsd:complexType name="dataset">
+      <xsd:attribute name="src" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+          <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="title" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute ref="chart-type" />
+      <xsd:attribute ref="curve"/>
+      <xsd:attribute name="color" type="color">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+      <xsd:attribute name="show-area" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:attribute>
+    </xsd:complexType>
 
   <!--
   #####################################################################################################################
@@ -1805,6 +2101,7 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Defines that the text content of this element should be translated.</xsd:documentation>
       <xsd:documentation xml:lang="de">Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</xsd:documentation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -1915,6 +2212,26 @@
     </xsd:simpleType>
   </xsd:attribute>
 
+
+  <xsd:attributeGroup name="appearance-attributes">
+    <xsd:attribute ref="visible-on"/>
+    <xsd:attribute ref="class"/>
+    <xsd:attribute ref="style"/>
+  </xsd:attributeGroup>
+
+  <xsd:attribute name="visible-on">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Controls this element's visibility by screen size.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="mobile" />
+        <xsd:enumeration value="desktop" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
   <xsd:attribute name="class" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formatted by a user provided style sheet.</xsd:documentation>
@@ -1949,13 +2266,6 @@
     </xsd:simpleType>
   </xsd:attribute>
   <xsd:attribute name="variant" type="xsd:string" />
-
-  <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widgetfläche als Schaltfläche genutzt</xsd:documentation>
-    </xsd:annotation>
-  </xsd:attribute>
 
   <xsd:attribute name="row" default="1">
     <xsd:annotation>
@@ -2014,24 +2324,60 @@
     </xsd:simpleType>
   </xsd:attribute>
 
-  <xsd:attribute name="size">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Defines the button size.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Legt die Größe des Buttons fest.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:simpleType>
-      <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="small" />
-        <xsd:enumeration value="normal" />
-        <xsd:enumeration value="large" />
-      </xsd:restriction>
-    </xsd:simpleType>
-  </xsd:attribute>
-
   <xsd:attribute name="whole-tile" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Augments the clickable area to the whole tile.</xsd:documentation>
       <xsd:documentation xml:lang="de">Erweitert den klickbaren Bereich auf die gesamte Kachel.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="series">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Time span of the data.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Zeitspanne der Daten.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="hour"/>
+        <xsd:enumeration value="day"/>
+        <xsd:enumeration value="week"/>
+        <xsd:enumeration value="month"/>
+        <xsd:enumeration value="year"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="curve">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of curve interpolation for line charts.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ der Kurven-Interpolation eines Linien-Charts.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="linear" />
+        <xsd:enumeration value="step" />
+        <xsd:enumeration value="natural" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="chart-type">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="line" />
+        <xsd:enumeration value="bar" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="zero-based" type="xsd:boolean" default="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -2053,7 +2399,8 @@
         <xsd:element name="cv-icon" type="cv-icon"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="tr"/>
     <xsd:attribute name="value-size">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the font size.</xsd:documentation>
@@ -2072,7 +2419,10 @@
 
   <xsd:complexType name="text">
     <xsd:simpleContent>
-      <xsd:extension base="xsd:string"/>
+      <xsd:extension base="xsd:string">
+        <xsd:attributeGroup ref="appearance-attributes" />
+        <xsd:attribute ref="tr"/>
+      </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
 
@@ -2082,7 +2432,7 @@
         <xsd:element name="label" type="label"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="summary">
@@ -2091,10 +2441,11 @@
         <xsd:group ref="Components"/>
       </xsd:choice>
     </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <xsd:complexType name="meter">
-    <xsd:attribute ref="class"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="min" type="xsd:integer"/>
     <xsd:attribute name="max" type="xsd:integer"/>
     <xsd:attribute name="value" type="xsd:integer"/>
@@ -2140,8 +2491,9 @@
       <xsd:documentation xml:lang="en">An iframe allows other websites to be embedded.</xsd:documentation>
       <xsd:documentation xml:lang="de">Ein iframe erlaubt die Einbettung anderer Webseiten.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute ref="style"/>
+    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:anyURI"/>
+    <xsd:attribute name="data-src" type="xsd:anyURI"/>
   </xsd:complexType>
 
   <!--

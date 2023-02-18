@@ -17,6 +17,7 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from lxml.etree import parse
+import re
 SCHEMA_SPACE = "{http://www.w3.org/2001/XMLSchema}"
 XML_SPACE = "{http://www.w3.org/XML/1998/namespace}"
 
@@ -64,10 +65,25 @@ class Schema:
                 # get all attributes from extension
                 for attr in self.get_widget_attributes(ext.get("base")):
                     res.append(attr)
+
+        # find and resolve attribute groups
+        res += self.get_attribute_groups("xs:complexType[@name='%s']/xs:attributeGroup" % widget_name)
+        res += self.get_attribute_groups("xs:complexType[@name='%s']/xs:simpleContent/xs:extension/xs:attributeGroup" % widget_name)
+
         return res
+
+    def get_attribute_groups(self, query):
+        for group in self.findall(query):
+            if "ref" in group.attrib:
+                name = group.get('ref')
+                return self.get_group_attributes(name)
+        return []
 
     def get_attribute(self, widget_name):
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
+
+    def get_group_attributes(self, widget_name):
+        return self.findall("xs:attributeGroup[@name='%s']/xs:attribute" % widget_name)
 
     def get_widget_elements(self, widget_name, locale='en', ctype=None, sub_type=False):
         if ctype is None:
@@ -100,17 +116,30 @@ class Schema:
     def get_node_documentation(self, node, locale):
         return node.find("%sannotation/%sdocumentation[@%slang='%s']" % (SCHEMA_SPACE, SCHEMA_SPACE, XML_SPACE, locale))
 
-    def get_attribute_type(self, node):
-        type = None
+    def get_attribute_type(self, node, locale):
+        a_type = None
         values = []
         enums = None
+        description = self.get_node_documentation(node, locale)
         if 'type' in node.attrib:
-            type = node.get('type')
+            a_type = node.get('type')
+            if a_type[0:4] != "xsd:":
+                # check if this is a type defined in the document
+                external_type = self.find("xs:simpleType[@name='"+a_type+"']".replace("xs:", SCHEMA_SPACE))
+                if external_type is not None:
+                    enums = external_type.findall("xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))
+                    values = [enum.get('value') for enum in enums]
+                    a_type = external_type.find("xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
+                    if description is None:
+                        description = self.get_node_documentation(external_type, locale)
         elif len(node.findall("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE))) > 0:
             enums = node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))
             values = [enum.get('value') for enum in enums]
-            type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
-        return type, values, enums
+            a_type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
+        if description is not None:
+            description = re.sub("\n\s+", " ", description.text).strip()
+            return a_type, values, enums, description
+        return a_type, values, enums, ''
 
     def get_element_attributes(self, name):
 

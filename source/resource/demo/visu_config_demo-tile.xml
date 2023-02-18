@@ -5,34 +5,15 @@
         version="1">
     <cv-meta>
         <cv-backend name="si" type="simulated" default="true">
-            <cv-data address="1/4/4">80</cv-data>
-            <cv-data address="1/4/6">80</cv-data>
-            <cv-data address="1/4/9">80</cv-data>
-            <cv-data address="1/4/10">0C1A</cv-data>
-            <cv-data address="1/4/11">80</cv-data>
-            <cv-data address="1/4/12">00</cv-data>
-            <cv-data address="1/4/13">01</cv-data>
-            <cv-data address="1/4/14">00</cv-data>
-            <cv-data address="1/4/15">02</cv-data>
-            <cv-data address="1/4/16">01</cv-data>
-            <cv-data address="1/4/17">0C20</cv-data>
-            <cv-data address="1/4/18">536f6e6720616c62756d</cv-data>
-            <cv-data address="1/4/19">536f6e67207469746c65</cv-data>
-            <cv-data address="1/4/22">80</cv-data>
-            <cv-data address="1/4/23">FF</cv-data>
-            <cv-data address="1/4/24">B0</cv-data>
+            <cv-resource name="charts">resource/demo/media/charts</cv-resource>
+            <cv-resource name="simulation">resource/demo/media/demo_tile_testmode_data.json</cv-resource>
         </cv-backend>
         <cv-mapping name="PlayStop">
             <entry value="0">ri-play-fill</entry>
             <entry value="1">ri-stop-fill</entry>
         </cv-mapping>
-        <cv-mapping name="WindowOpen">
-            <entry value="0">knxuf-fts_window_1w</entry>
-            <entry value="1">knxuf-fts_window_1w_open</entry>
-        </cv-mapping>
         <cv-styling name="WindowOpen">
-            <entry value="0">green</entry>
-            <entry value="1">red</entry>
+            <entry range-min="1">red</entry>
         </cv-styling>
         <cv-mapping name="WindowOpen">
             <entry value="0">knxuf-fts_window_1w</entry>
@@ -40,6 +21,14 @@
         </cv-mapping>
         <cv-styling name="OpenAlert">
             <entry range-min="1">red</entry>
+        </cv-styling>
+        <cv-mapping name="speaker">
+            <entry value="0">ri-speaker-line</entry>
+            <entry value="1">ri-speaker-fill</entry>
+        </cv-mapping>
+        <cv-styling name="LightTheme">
+            <entry value="light">active</entry>
+            <entry value="dark">inactive</entry>
         </cv-styling>
         <cv-translations>
             <language name="de">
@@ -51,6 +40,10 @@
                 <tr key="Kitchen">Küche</tr>
                 <tr key="All lights">Alle Lichter</tr>
                 <tr key="Currently no lights are switched on">Zur Zeit sind keine Lampen eingeschaltet</tr>
+                <tr key="All windows">Alle Fenster</tr>
+                <tr key="Currently there are no open windows">Zur Zeit sind keine Fenster offen</tr>
+                <tr key="All speakers">Alle Lautsprecher</tr>
+                <tr key="Currently no speakers are switched on">Zur Zeit sind keine Lautsprecher eingeschaltet</tr>
                 <tr key="Rooms">Räume</tr>
                 <tr key="Light">Licht</tr>
                 <tr key="Widgets">Widgets</tr>
@@ -74,81 +67,65 @@
                 <tr key="Shutter">Rollladen</tr>
                 <tr key="Shutters">Rollläden</tr>
                 <tr key="Windows">Fenster</tr>
+                <tr key="Speakers">Lautsprecher</tr>
                 <tr key="Media player">Medien Abspieler</tr>
                 <tr key="Info">Info</tr>
                 <tr key="Room temperature controllers">Raumtemperaturregler</tr>
-                <tr key="Tile-pair">Tile-Paar</tr>
+                <tr key="Widget-pair">Widget-Paar</tr>
+                <tr key="Consumptions">Verbräuche</tr>
+                <tr key="Power consumption">Aktueller Stromverbrauch</tr>
+                <tr key="Power meter reading">Z&#228;hlerstand Strom</tr>
+                <tr key="PV production today">PV Produktion heute</tr>
+                <tr key="PV production">PV Produktion</tr>
+                <tr key="Power">Strom</tr>
+                <tr key="From grid">Netzbezug</tr>
+                <tr key="Production">Produktion</tr>
+                <tr key="Gas meter reading">Z&#228;hlerstand Gas</tr>
+                <tr key="Water meter reading">Z&#228;hlerstand Wasser</tr>
+                <tr key="Water consumption">Wasserverbrauch</tr>
+                <tr key="Gas consumption">Gasverbrauch</tr>
+                <tr key="Others">Sonstige</tr>
+                <tr key="Rooms">Räume</tr>
+                <tr key="Light-Theme">Light Theme</tr>
+                <tr key="%d on">%d an</tr>
+                <tr key="%d open">%d offen</tr>
+                <tr key="Rooms">Räume</tr>
+                <tr key="Dining room">Esszimmer</tr>
+                <tr key="Bedroom">Schlafzimmer</tr>
+                <tr key="Categories">Kategorien</tr>
+                <tr key="More charts">Mehr Diagramme</tr>
+                <tr key="Charts">Diagramme</tr>
+                <tr key="Line-Chart">Liniendiagramm</tr>
+                <tr key="Bar-Chart">Balkendiagramm</tr>
+                <tr key="Line-Chart with area">Liniendiagramm ausgefüllt</tr>
+                <tr key="More chart examples">Mehr Diagramm-Beispiele</tr>
+                <tr key="Multiple line-chart">Mehrere Datensätze in einem Liniendiagramm</tr>
+                <tr key="Multiple bar-chart">Mehrere Datensätze in einen Balkendiagramm</tr>
             </language>
         </cv-translations>
     </cv-meta>
     <header>
-        <h1>CometVisu - Tile demo</h1>
-    </header>
-    <main>
-        <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
-            <cv-group open="true" name="tr('States')">
-                <cv-status format="%d an">
-                    <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
-                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                    <span slot="label" tr="true">All lights</span>
-                    <cv-popup slot="popup" modal="true">
-                        <cv-list rowspan="3" colspan="3">
-                            <model sort-by="label">
-                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
-                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
-                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
-                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
-                            </model>
-                            <header>
-                                <h4 tr="true">All lights</h4>
-                            </header>
-                            <template>
-                                <cv-listitem>
-                                    <cv-button class="round-button" mapping="tile-light" size="small">
-                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
-                                        <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
-                                        <cv-icon class="value" />
-                                    </cv-button>
-                                    <div class="content">
-                                        <label class="primary">${label}</label>
-                                    </div>
-                                </cv-listitem>
-                            </template>
-                            <template when="empty">
-                                <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
-                            </template>
-                        </cv-list>
-                    </cv-popup>
-                </cv-status>
-                <!--<cv-status format="%d offen">
-                    <cv-icon slot="icon" size="x-large">knxuf-fts_shutter_10</cv-icon>
-                    <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Shutters</cv-address>
-                    <span slot="label">Rollladen</span>
-                </cv-status>
-                <cv-status format="%d offen">
-                    <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
-                        <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                        <cv-address transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
-                    </cv-value>
-                    <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Windows</cv-address>
-                    <span slot="label">Fenster</span>
-                </cv-status>
-                <cv-status format="%d an">
-                <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
-                <cv-address slot="address" transform="OH:number" mode="read" backend="main">number:Speakers</cv-address>
-                <span slot="label">Lautsprecher</span>
+        <cv-group open="true" wrap="false">
+            <cv-status format="tr('%d on')">
+                <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <span slot="label" tr="true">All lights</span>
                 <cv-popup slot="popup" modal="true">
                     <cv-list rowspan="3" colspan="3">
-                        <model filter="item.active===true" sort-by="label">
-                            <cv-address transform="raw" mode="read" backend="main">members:Speakers</cv-address>
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
                         </model>
                         <header>
-                            <h4>Eingeschaltete Lautsprecher</h4>
+                            <h4 tr="true">All lights</h4>
                         </header>
                         <template>
                             <cv-listitem>
-                                <cv-button class="round-button" mapping="speaker" size="small">
-                                    <cv-address backend="main" mode="readwrite" transform="OH:switch">${name}</cv-address>
+                                <cv-button class="round-button" mapping="tile-light" size="small">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
                                     <cv-icon class="value" />
                                 </cv-button>
                                 <div class="content">
@@ -157,19 +134,156 @@
                             </cv-listitem>
                         </template>
                         <template when="empty">
-                            <li><label class="primary">Zur Zeit sind keine Lautsprecher eingeschaltet</label></li>
+                            <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
                         </template>
                     </cv-list>
                 </cv-popup>
-            </cv-status>-->
+            </cv-status>
+            <cv-status format="tr('%d open')">
+                <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
+                    <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
+                    <cv-address transform="DPT:5.001" mode="read">1/5/0</cv-address>
+                </cv-value>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/5/0</cv-address>
+                <span slot="label" tr="true">Windows</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" read-address="3/2/2"/>
+                        </model>
+                        <header>
+                            <h4 tr="true">All windows</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-value styling="WindowOpen" mapping="WindowOpen">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-icon class="value">knxuf-fts_window_1w_open</cv-icon>
+                                </cv-value>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary" tr="true">Currently no windows are open</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <cv-status format="tr('%d on')">
+                <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
+                <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                <span slot="label" tr="true">Speakers</span>
+                <cv-popup slot="popup" modal="true">
+                    <cv-list rowspan="3" colspan="3">
+                        <model sort-by="label">
+                            <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                            <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                            <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                            <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
+                        </model>
+                        <header>
+                            <h4 tr="true">All speakers</h4>
+                        </header>
+                        <template>
+                            <cv-listitem>
+                                <cv-button class="round-button" mapping="speaker" size="small">
+                                    <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                    <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
+                                    <cv-icon class="value"/>
+                                </cv-button>
+                                <div class="content">
+                                    <label class="primary">${label}</label>
+                                </div>
+                            </cv-listitem>
+                        </template>
+                        <template when="empty">
+                            <li><label class="primary" tr="true">Currently there are no speakers switched on.</label></li>
+                        </template>
+                    </cv-list>
+                </cv-popup>
+            </cv-status>
+            <h2 visible-on="desktop" style="align-self: center; margin-left: auto; margin-right: calc(var(--spacing)*2);">CometVisu - Tile demo</h2>
+        </cv-group>
+    </header>
+    <main>
+        <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
+            <h2 visible-on="mobile">CometVisu - Tile demo</h2>
+            <cv-group open="true">
+                <cv-widget-pair allow-column-layout="true">
+                    <cv-info format="%d" style="color: #f2495c">
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
+                        <span slot="title" tr="true">Power consumption</span>
+                        <span slot="unit">W</span>
+                    </cv-info>
+                    <cv-info format="%d" style="color: #f2495c">
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/26</cv-address>
+                        <span slot="title" tr="true">Power meter reading</span>
+                        <span slot="unit">kWh</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-info format="%.1f W">
+                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/27</cv-address>
+                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="3000"/>
+                    <span slot="label" tr="true">PV production</span>
+                </cv-info>
+                <cv-info format="%.1f kWh">
+                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/28</cv-address>
+                    <cv-round-progress slot="value-component" foreground-color="#FF9900" type="semiCircle" min="0" max="25"/>
+                    <span slot="label" tr="true">PV production today</span>
+                </cv-info>
+                <cv-widget size="2x1">
+                    <cv-tile>
+                        <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="pv-chart.json" color="#FF9900" title="tr('Production')" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget-pair allow-column-layout="true">
+                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" zero-based="false">
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
+                        <span slot="title" tr="true">Gas meter reading</span>
+                        <span slot="popup-title" tr="true">Gas consumption</span>
+                        <span slot="unit">m³</span>
+                        <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                    </cv-status-chart>
+                    <cv-status-chart format="%d" style="color: #719aff" y-format="%.1f m³" series="month" refresh="300">
+                        <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/30</cv-address>
+                        <span slot="title" tr="true">Water meter reading</span>
+                        <span slot="popup-title" tr="true">Water consumption</span>
+                        <span slot="unit">m³</span>
+                        <dataset slot="dataset" src="pv-chart.json" color="#719aff" show-area="true" curve="step"/>
+                    </cv-status-chart>
+                </cv-widget-pair>
+            </cv-group>
+            <cv-group name="tr('Others')">
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="floorplan">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-settings-3-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Rooms</span>
+                </cv-switch>
+                <cv-switch on-value="light" off-value="dark" mapping="" styling="LightTheme">
+                    <cv-address slot="address" backend="system">theme</cv-address>
+                    <cv-icon slot="icon">ri-sun-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Light-Theme</span>
+                </cv-switch>
             </cv-group>
         </cv-page>
         <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">
+            <cv-group name="tr('Dining room')" icon="knxuf-scene_dinner">
+            </cv-group>
+            <cv-group name="tr('Living room')" icon="knxuf-scene_livingroom"></cv-group>
+            <cv-group name="tr('Kitchen')" icon="knxuf-scene_baking_oven"></cv-group>
+            <cv-group name="tr('Bathroom')" icon="knxuf-scene_bath"></cv-group>
             <cv-group name="tr('Office')" icon="knxuf-it_pc">
                 <summary>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
-                        <cv-address mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                        <cv-address mode="read" transform="DPT:1.001">4/5/0</cv-address>
+                        <cv-address transform="DPT:1.001">4/5/0</cv-address>
                         <cv-icon class="value ri-question-mark"/>
                     </cv-button>
                     <cv-value format="%.1f °C">
@@ -178,14 +292,22 @@
                     </cv-value>
                 </summary>
                 <cv-switch>
-                    <cv-address slot="address" mode="write" transform="DPT:1.001">4/5/0</cv-address>
-                    <cv-address slot="address" mode="read" transform="DPT:1.001">4/5/0</cv-address>
+                    <cv-address slot="address" transform="DPT:1.001">4/5/0</cv-address>
                     <span slot="primaryLabel" tr="true">Light</span>
                 </cv-switch>
             </cv-group>
+            <cv-group name="tr('Bedroom')" icon="knxuf-scene_sleeping"></cv-group>
+        </cv-page>
+        <cv-page id="categories" name="tr('Categories')" icon="knxuf-control_3dot_hor_f">
+
         </cv-page>
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
             <cv-group name="tr('Switches')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/switch.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                     <span slot="primaryLabel" tr="true">Switch</span>
@@ -210,6 +332,11 @@
                 </cv-switch>
             </cv-group>
             <cv-group name="tr('Dimmer')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/dimmer.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-dimmer>
                     <cv-address slot="switchAddress" transform="DPT:1.001">1/4/5</cv-address>
                     <cv-address slot="brightnessAddress" transform="DPT:5.001">1/4/6</cv-address>
@@ -218,9 +345,14 @@
                 </cv-dimmer>
             </cv-group>
             <cv-group name="tr('Shutters')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/shutter.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-shutter>
                     <cv-address slot="downAddress" transform="DPT:1.008" mode="write" value="1">1/4/7</cv-address>
-                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="0">1/4/8</cv-address>
+                    <cv-address slot="stopAddress" transform="DPT:1.010" mode="write" value="1">1/4/8</cv-address>
                     <cv-address slot="upAddress" transform="DPT:1.008" mode="write" value="0">1/4/7</cv-address>
                     <cv-address slot="positionAddress" transform="DPT:5.001" mode="read">1/4/9</cv-address>
                     <span slot="primaryLabel" tr="true">Shutter</span>
@@ -234,6 +366,11 @@
                 </cv-shutter>
             </cv-group>
             <cv-group name="tr('Info')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/info.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-info format="%.1f">
                     <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/10</cv-address>
                     <span slot="label" tr="true">Temperature</span>
@@ -260,6 +397,11 @@
                 </cv-info>
             </cv-group>
             <cv-group name="tr('States')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/status.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-status format="%d open">
                     <cv-icon slot="icon" size="x-large">knxuf-fts_window_1w</cv-icon>
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/14</cv-address>
@@ -275,6 +417,11 @@
                 </cv-status>
             </cv-group>
             <cv-group name="tr('Room temperature controllers')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/rtc.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-rtc>
                     <cv-address slot="hvacAddress" transform="DPT:20.102">1/4/16</cv-address>
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">1/4/10</cv-address>
@@ -288,6 +435,11 @@
                 </cv-rtc>
             </cv-group>
             <cv-group name="tr('Media player')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/media-player.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
                 <cv-media-player>
                     <cv-address slot="subtitleAddress" transform="DPT:24.001" mode="read">1/4/18</cv-address>
                     <cv-address slot="titleAddress" transform="DPT:24.001" mode="read">1/4/19</cv-address>
@@ -297,22 +449,94 @@
                     <cv-address slot="durationAddress" transform="DPT:7.001" mode="read" target="store:duration">1/4/23</cv-address>
                     <cv-address slot="nextAddress" transform="DPT:1.001" value="1" mode="write">1/4/20</cv-address>
                     <cv-address slot="volumeAddress" transform="DPT:5.001">1/4/24</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/4/25</cv-address>
-                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/4/26</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:24.001" mode="read" target="background-image">1/5/25</cv-address>
+                    <cv-address slot="tileAddress" transform="DPT:1.001" mode="read" target="show-exclude">1/5/26</cv-address>
                 </cv-media-player>
             </cv-group>
-            <cv-group name="tr('Tile-pair')">
-                <cv-tile-pair>
-                    <cv-switch size="normal">
+            <cv-group name="tr('Widget-pair')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/widgets/widget-pair.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
+                <cv-widget-pair>
+                    <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 1</span>
                     </cv-switch>
-                    <cv-switch size="normal">
+                    <cv-switch button-size="normal">
                         <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
                         <span slot="secondaryLabel" tr="true">Light 2</span>
                     </cv-switch>
-                </cv-tile-pair>
+                </cv-widget-pair>
             </cv-group>
+            <cv-group name="tr('Charts')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/components/chart.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Line-Chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Line-Chart with area</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Bar-Chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="more-charts">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-line-chart-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">More charts</span>
+                </cv-switch>
+            </cv-group>
+            <cv-page id="more-charts" name="tr('More charts')">
+                <h1 tr="true">More chart examples</h1>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Multiple line-chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
+                            <dataset src="pv-chart.json" title="tr('PV production')" color="#719aff" show-area="false" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+                <cv-widget size="2x1">
+                    <header>
+                        <label class="title" tr="true">Multiple bar-chart</label>
+                    </header>
+                    <cv-tile>
+                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                            <dataset src="grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
+                            <dataset src="pv-chart.json" chart-type="bar" title="tr('PV production')" color="#719aff" />
+                        </cv-chart>
+                    </cv-tile>
+                </cv-widget>
+            </cv-page>
         </cv-page>
     </main>
     <footer>

@@ -1179,3 +1179,24 @@ msgstr "Fehler in der versteckten Konfiguration"
 #: cv/ui/manager/editor/Config.js
 msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
 msgstr "Die versteckte Konfiguration enthält einen Syntax-Fehler und konnte nicht geladen werden, Sie können versuchen das Problem im Texteditor zu beheben. Möchten Sie die Datei im Texteditor öffnen?"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "previous"
+msgstr "zurück"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "next"
+msgstr "vor"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "today"
+msgstr "heute"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "yesterday"
+msgstr "gestern"
+
+#. CW = calendar week
+#: cv/ui/structure/tile/components/Chart.js
+msgid "CW %1"
+msgstr "KW %1"

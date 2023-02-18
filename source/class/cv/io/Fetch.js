@@ -29,6 +29,48 @@ qx.Class.define('cv.io.Fetch', {
   ***********************************************
   */
   statics: {
+    __cache: {},
+    DEFAULT_CACHE_TTL: 5*60, // 5 minutes
+    __gcInterval: null,
+
+    async cachedFetch(resource, options = {}, proxy = false, client = undefined) {
+      const cache = cv.io.Fetch.__cache;
+      if (Object.prototype.hasOwnProperty.call(cache, resource)) {
+        const entry = cache[resource];
+        const ttl = options.ttl || cv.io.Fetch.DEFAULT_CACHE_TTL;
+        // check age
+        if (entry.time === 0) {
+          // request is still running, return the promise
+          return entry.data;
+        } else if (entry.time > Date.now() - ttl*1000) {
+          // request is not outdated yet
+          return entry.data;
+        }
+      }
+      if (options && Object.prototype.hasOwnProperty.call(options, 'ttl')) {
+        delete options.ttl;
+      }
+      const ps = cv.io.Fetch.fetch(resource, options, proxy, client);
+      const cacheEntry = {
+        data: ps,
+        time: 0,
+        ttl: options.ttl || cv.io.Fetch.DEFAULT_CACHE_TTL
+      };
+      cache[resource] = cacheEntry;
+      ps.then(() => {
+        cacheEntry.time = Date.now();
+      }).catch(e => {
+        qx.log.Logger.error(cv.io.Fetch, 'error loading ' + resource + ': ', e);
+        delete cache[resource];
+      });
+      if (!cv.io.Fetch.__gcInterval) {
+        cv.io.Fetch.__gcInterval = setInterval(() => {
+          cv.io.Fetch._gc();
+        }, cv.io.Fetch.DEFAULT_CACHE_TTL);
+      }
+      return ps;
+    },
+
     /**
      *
      * @param resource {URL|string}
@@ -37,7 +79,7 @@ qx.Class.define('cv.io.Fetch', {
      * @param client {cv.io.IClient}
      * @returns {Promise<Response>}
      */
-    fetch(resource, options = {}, proxy = false, client = undefined) {
+    async fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
         const url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
         if (resource) {
@@ -84,8 +126,25 @@ qx.Class.define('cv.io.Fetch', {
      * @param client {cv.io.IClient}
      * @returns {Promise<Response>}
      */
-    proxyFetch(resource, options, client) {
-      return this.fetch(resource, options, true, client);
+    async proxyFetch(resource, options, client) {
+      return cv.io.Fetch.fetch(resource, options, true, client);
+    },
+
+    /**
+     * Garbage collection for fetch cache
+     * @private
+     */
+    _gc() {
+      // go through cache and delete what's older than an hour (unless its ttl is bigger)
+      let entry;
+      let maxAge = 60*60*1000; // one hour
+      let eol = Date.now() - maxAge;
+      for (const resource in cv.io.Fetch.__cache) {
+        entry = cv.io.Fetch.__cache[resource];
+        if (entry.time <= eol && entry.ttl*1000 < maxAge) {
+          delete cv.io.Fetch.__cache[resource];
+        }
+      }
     }
   }
 });

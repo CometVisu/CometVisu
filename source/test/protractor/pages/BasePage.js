@@ -18,6 +18,11 @@
  */
 
 
+const path = require('path');
+const fs = require('fs');
+const request = require('request');
+const rootDir = path.join(__dirname, '..', '..', '..', '..');
+
 /**
  * Wrappers for expected conditions
  *
@@ -34,8 +39,9 @@ const EC = protractor.ExpectedConditions;
  * @since 2016
  */
 class BasePage {
-  constructor(structure) {
+  constructor(structure, target) {
     this.structure = structure || 'pure';
+    this.target = target || 'source';
     /**
      * wrap this.timeout. (ms) in t-shirt sizes
      */
@@ -285,6 +291,73 @@ class BasePage {
       }
       return null;
     });
+  }
+
+  mockupFixture(fixture) {
+    this.mockupReady = false;
+    let content;
+    if (fixture.hasOwnProperty('sourceFile')) {
+      let sourceFile = path.join(rootDir, fixture.sourceFile);
+      if (fs.existsSync(sourceFile)) {
+        content = fs.readFileSync(sourceFile);
+      } else {
+        console.error('fixture file', sourceFile, 'not found');
+      }
+    } else if (fixture.hasOwnProperty('data')) {
+      if (typeof fixture.data === 'object') {
+        content = JSON.stringify(fixture.data);
+      } else {
+        content = fixture.data;
+      }
+    }
+
+    let queryString = '';
+    if (fixture.mimeType) {
+      queryString = '?mimeType='+encodeURIComponent(fixture.mimeType);
+    }
+
+    if (content !== undefined) {
+      let targetPaths = fixture.targetPath;
+      if (!Array.isArray(targetPaths)) {
+        targetPaths = [targetPaths];
+      }
+      for (let targetPath of targetPaths) {
+        if (!targetPath.startsWith('/')) {
+          // adding target only to relative paths
+          targetPath = '/' + this.target + '/' + targetPath;
+        }
+        request({
+          method: 'POST',
+          uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath) + queryString,
+          body: content
+        }, function (error, response, body) {
+          if (!error && response.statusCode === 200) {
+            this.mockupReady = true;
+          } else {
+            console.log(error);
+            console.log(response);
+            console.log(body);
+          }
+        });
+      }
+    }
+  }
+
+  resetMockupFixture(fixture) {
+    let targetPaths = fixture.targetPath;
+    if (!Array.isArray(targetPaths)) {
+      targetPaths = [targetPaths];
+    }
+    for (let targetPath of targetPaths) {
+      if (!targetPath.startsWith('/')) {
+        // adding target only to relative paths
+        targetPath = '/' + this.target + '/' + targetPath;
+      }
+      request({
+        method: 'DELETE',
+        uri: 'http://localhost:8000/mock' + encodeURIComponent(targetPath)
+      });
+    }
   }
 }
 module.exports = BasePage;

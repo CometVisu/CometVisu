@@ -10,8 +10,9 @@ const easyimg = require('easyimage');
 const CometVisuMockup = require('../source/test/protractor/pages/Mock');
 const cvMockup = new CometVisuMockup(browser.target || 'source');
 const CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
-const cvDemo = require('../source/test/protractor/pages/Demo');
+const CometVisuDemo = require('../source/test/protractor/pages/Demo');
 const editorMockup = new CometVisuEditorMockup(browser.target || 'source');
+
 let devicePixelRatio = 1;
 const stats = {
   total: 0,
@@ -60,8 +61,8 @@ const cropInFile = function(size, location, srcFile, width, height) {
   }).catch(errorHandler);
 };
 
-const changeBrowserWidth = function (width) {
-  browser.driver.manage().window().setSize(width, defaultHeight);
+const changeBrowserSize = function (width, height) {
+  browser.driver.manage().window().setSize(width, height || defaultHeight);
 };
 
 const createDir = function(dir) {
@@ -93,6 +94,12 @@ const createDir = function(dir) {
   }
 };
 
+const hashCode = function(s) {
+  return s.split("").reduce(function(a, b) {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0);
+}
 describe('generation screenshots from jsdoc examples', function () {
   'use strict';
   let mockupConfig = [];
@@ -107,8 +114,13 @@ describe('generation screenshots from jsdoc examples', function () {
   let whiteList = browser.screenshots ? browser.screenshots.split(',') : [];
 
   beforeEach(function () {
-    var mockedConfigData = mockupConfig.shift();
-    mockup = (mockedConfigData.mode === 'cv') ? cvMockup : editorMockup;
+    const mockedConfigData = mockupConfig.shift();
+    if (mockedConfigData.mode === 'real') {
+      mockup = new CometVisuDemo(mockedConfigData.data, mockedConfigData.pageLoaded);
+    } else {
+      mockup = (mockedConfigData.mode === 'cv') ? cvMockup : editorMockup;
+      mockup.mockupConfig(mockedConfigData.data);
+    }
     if (mockedConfigData.hasOwnProperty('fixtures')) {
       mockedFixtures = mockedConfigData.fixtures;
       if (browser.verbose) {
@@ -119,7 +131,6 @@ describe('generation screenshots from jsdoc examples', function () {
     } else {
       mockedFixtures = [];
     }
-    mockup.mockupConfig(mockedConfigData.data);
     mockup.to();
     mockup.at();
     runResult = {};
@@ -141,11 +152,17 @@ describe('generation screenshots from jsdoc examples', function () {
         showLog = true;
       } else if (runResult.success) {
         // save shotIndex
-        fs.writeFileSync(runResult.shotIndexFile, JSON.stringify(shotIndex[runResult.screenshotDir], null, 4), function (err) {
-          if (err) {
-            console.log(err);
+        if (runResult.shotIndexFiles) {
+          for (let i = 0; i < runResult.shotIndexFiles.length; i++) {
+            const [file, dir] = runResult.shotIndexFiles[i];
+            fs.writeFileSync(file, JSON.stringify(shotIndex[dir], null, 4), function (err) {
+              if (err) {
+                console.log(err);
+              }
+            });
           }
-        });
+        }
+
       } else if (runResult.skipped) {
         return;
       }
@@ -244,6 +261,26 @@ describe('generation screenshots from jsdoc examples', function () {
     }
   });
 
+  function prepare(screenshotDir) {
+    createDir(screenshotDir);
+    const indexFile = path.join(screenshotDir, 'shot-index.json');
+    if (fs.existsSync(indexFile)) {
+      const indexData = fs.readFileSync(indexFile, 'utf-8');
+      try {
+        shotIndex[screenshotDir] = JSON.parse(indexData);
+        if (!shotIndexFiles.includes(indexFile)) {
+          shotIndexFiles.push(indexFile);
+        }
+      } catch (e) {
+        console.error('\n>>> error parsing screenshot index data', indexData, indexFile);
+        console.error(e.message);
+      }
+    } else {
+      shotIndex[screenshotDir] = {};
+    }
+    return indexFile;
+  }
+
   files.forEach(async function(filePath) {
     let stat = fs.statSync(filePath);
     if (stat.isFile()) {
@@ -261,46 +298,67 @@ describe('generation screenshots from jsdoc examples', function () {
         stats.total++;
         return;
       }
-      createDir(settings.screenshotDir);
-      const indexFile = path.join(settings.screenshotDir, 'shot-index.json');
-      if (fs.existsSync(indexFile)) {
-        const indexData = fs.readFileSync(indexFile, 'utf-8');
-        try {
-          shotIndex[settings.screenshotDir] = JSON.parse(indexData);
-          if (!shotIndexFiles.includes(indexFile)) {
-            shotIndexFiles.push(indexFile);
-          }
-        } catch (e) {
-          console.error('\n>>> error parsing screenshot index data', indexData, indexFile);
-          console.error(e.message);
-        }
+      const runIndexFiles = []
+
+      let settingsHash;
+      if (!settings.baseDir) {
+        // when we have a baseDir the screenshot dir is different for each screenshot, most likely because of different locales
+        runIndexFiles.push([prepare(settings.screenshotDir), settings.screenshotDir]);
       } else {
-        shotIndex[settings.screenshotDir] = {};
+        for (const setting of settings.screenshots) {
+          if (setting.locales) {
+            for (const locale of setting.locales) {
+              const dir = path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name));
+              runIndexFiles.push([prepare(dir), dir]);
+            }
+          }
+        }
       }
 
       // check if we have to renew any ob the screenshots
       const skippedScreenshots = [];
       const screenshots = [];
       let allSkipped = true;
-      settings.screenshots.forEach(setting => {
-        if (setting.hasOwnProperty('hash') && shotIndex[settings.screenshotDir].hasOwnProperty(setting.name) && setting.hash === shotIndex[settings.screenshotDir][setting.name] && !browser.forced) {
-          // also check if the file really exists
-          if (fs.existsSync(path.join(settings.screenshotDir, setting.name + '.png'))) {
+
+      const checkExists = (setting, screenshotDir) => {
+        if (!fs.existsSync(path.join(screenshotDir, setting.name + '.png'))) {
+          console.log('file not found, creating screenshot', path.join(screenshotDir, setting.name + '.png'));
+          screenshots.push(setting.name);
+          allSkipped = false;
+        } else if (setting.hasOwnProperty('hash')) {
+          if (shotIndex[screenshotDir].hasOwnProperty(setting.name) && setting.hash === shotIndex[screenshotDir][setting.name] && !browser.forced) {
             // skip this screenshot because is has not changed since last generation
             stats.skipped++;
             stats.total++;
-            skippedScreenshots.push(setting.name);
+            skippedScreenshots.push(screenshotDir + setting.name);
           } else {
-            console.log('file not found, creating screenshot', path.join(settings.screenshotDir, setting.name + '.png'));
+            console.log('hash mismatch, creating screenshot', path.join(screenshotDir, setting.name + '.png'), setting.hash, shotIndex[screenshotDir][setting.name]);
             screenshots.push(setting.name);
             allSkipped = false;
           }
         } else {
-          console.log('hash mismatch, creating screenshot', setting.name, setting.hash, shotIndex[settings.screenshotDir][setting.name]);
-          screenshots.push(setting.name);
-          allSkipped = false;
+          // skip this screenshot because it has no hash to check and the file exists
+          stats.skipped++;
+          stats.total++;
+          skippedScreenshots.push(screenshotDir + setting.name);
         }
-      });
+      }
+
+      for (const setting of settings.screenshots) {
+        if (!setting.hash) {
+          if (!settingsHash) {
+            settingsHash = hashCode(JSON.stringify(settings));
+          }
+          setting.hash = settingsHash;
+        }
+        if (setting.locales) {
+          for (const locale of setting.locales) {
+            checkExists(setting, path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name)));
+          }
+        } else {
+          checkExists(setting, settings.screenshotDir);
+        }
+      }
       if (allSkipped) {
         // nothing to do
         return;
@@ -310,7 +368,9 @@ describe('generation screenshots from jsdoc examples', function () {
       let mockedConfigData = {
         mode: 'cv',
         data: settings.config,
-        fixtures: settings.fixtures
+        fixtures: settings.fixtures,
+        pageLoaded: settings.pageLoaded,
+        locale: settings.locale
       };
 
       if (settings.mode) {
@@ -331,8 +391,7 @@ describe('generation screenshots from jsdoc examples', function () {
           console.log('>>> processing ' + filePath + '...');
         }
         let currentScreenshot = {};
-        runResult.shotIndexFile = indexFile;
-        runResult.screenshotDir = settings.screenshotDir;
+        runResult.shotIndexFiles = runIndexFiles;
         try {
           let widget;
           if (loadManager) {
@@ -389,7 +448,9 @@ describe('generation screenshots from jsdoc examples', function () {
           for (const setting of settings.screenshots.filter(setting => !skippedScreenshots.includes(setting.name))) {
             currentScreenshot = setting;
             let shotWidget = widget;
-            changeBrowserWidth(setting.screenWidth > 0 ? setting.screenWidth : defaultWidth);
+            changeBrowserSize(
+              setting.screenWidth > 0 ? setting.screenWidth : defaultWidth,
+              settings.screenHeight > 0 ? settings.screenHeight : defaultHeight);
             if (setting.data && Array.isArray(setting.data)) {
               for (let data of setting.data) {
                 let value = data.value;
@@ -407,12 +468,12 @@ describe('generation screenshots from jsdoc examples', function () {
                       const date = new Date();
                       const parts = value.split(':').map(v => parseInt(v, 10));
                       date.setHours(...parts);
-                      value = await cvDemo.encode({transform: data.transform}, date);
+                      value = await cvMockup.encode({transform: data.transform}, date);
                       break;
                     }
 
                     case 'date': {
-                      value = await cvDemo.encode({transform: data.transform}, new Date(value));
+                      value = await cvMockup.encode({transform: data.transform}, new Date(value));
                       break;
                     }
 
@@ -421,7 +482,7 @@ describe('generation screenshots from jsdoc examples', function () {
                       break;
                   }
                 } else if (data.transform && data.transform !== 'raw') {
-                  value = await cvDemo.encode({transform: data.transform}, value);
+                  value = await cvMockup.encode({transform: data.transform}, value);
                 }
                 cvMockup.sendUpdate(data.address, value);
               }
@@ -486,18 +547,21 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.sleep(sleepTime);
             }
             //console.log("  - creating screenshot '" + setting.name + "'");
-            const locales = setting.locales ? setting.locales : [''];
+            const locales = setting.locales ? setting.locales : [settings.locale || ''];
             for (const locale of locales) {
+              const screenshotDir = settings.baseDir
+                ? path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name))
+                : settings.screenshotDir;
+              if (skippedScreenshots.includes(screenshotDir + setting.name)) {
+                continue;
+              }
+              runResult.shotIndexFiles.push([path.join(screenshotDir, 'shot-index.json'), screenshotDir]);
               if (locale) {
-                if (mockedConfigData.mode === 'cv') {
-                  cvMockup.setLocale(locale);
-                } else {
-                  editorMockup.setLocale(locale);
-                }
+                mockup.setLocale(locale);
               }
               const data = await browser.takeScreenshot();
               let base64Data = data.replace(/^data:image\/png;base64,/, '');
-              const imgFile = path.join(...[settings.baseDir, locale, settings.screenshotDir, setting.name + '.png'].filter(name => !!name));
+              const imgFile = path.join(screenshotDir, setting.name + '.png');
               try {
                 fs.writeFileSync(imgFile, base64Data, 'base64');
                 if (settings.scale) {
@@ -512,7 +576,7 @@ describe('generation screenshots from jsdoc examples', function () {
                 stats.total++;
                 runResult.success = true;
                 if (setting.hash) {
-                  shotIndex[settings.screenshotDir][setting.name] = setting.hash;
+                  shotIndex[screenshotDir][setting.name] = setting.hash;
                 }
               } catch (err) {
                 runResult.failed = true;

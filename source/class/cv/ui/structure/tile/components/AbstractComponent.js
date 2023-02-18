@@ -60,6 +60,14 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     widget: {
       check: 'Boolean',
       init: 'false'
+    },
+
+    /**
+     * True if this tile is the content of a popup
+     */
+    inPopup: {
+      check: 'Boolean',
+      init: 'false'
     }
   },
 
@@ -70,22 +78,42 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   members: {
     _writeAddresses: null,
-    _visibleDisplayMode: null,
+    _headerFooterParent: null,
 
-    __checkIfWidget() {
-      const parent = this._element.parentElement;
+    _checkIfWidget() {
       let isWidget = false;
-      const name = parent ? parent.tagName.toLowerCase() : '';
-      if (name.startsWith('cv-')) {
-        let template = document.getElementById(name.substring(3));
-        // parent is a template and this is the only child
-        isWidget = !!template && parent.childElementCount === 1;
+      let isPopup = false;
+      if (this._element.parentElement.localName === 'cv-popup') {
+        this._headerFooterParent = this._element.parentElement;
+        isPopup = true;
+      } else {
+        let tile = this._element;
+        let i = 0;
+        // we are looking for cv-tile parent which is the direct child of a widget
+        while (tile.localName !== 'cv-tile') {
+          tile = tile.parentElement;
+          i++;
+          if (i > 2) {
+            tile = null;
+            break;
+          }
+        }
+        if (tile) {
+          let parent = tile.parentElement;
+          this._headerFooterParent = parent;
+          if (parent.localName === 'cv-popup') {
+            isPopup = true;
+          } else if (parent.localName.startsWith('cv-')) {
+            isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
+          }
+        }
       }
+      this.setInPopup(isPopup);
       this.setWidget(isWidget);
     },
 
     _init() {
-      this.__checkIfWidget();
+      this._checkIfWidget();
 
       const element = this._element;
       let hasReadAddress = false;
@@ -115,6 +143,86 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
         });
       }
+    },
+
+    /**
+     * Append the given element to a header inside the widget this component is a direct child of.
+     * If the header does not exist yet, it will be created.
+     * Does nothing when this component is no direct child of a widget.
+     * @param element {HTMLElement}
+     * @param align {String} center (default), left or right
+     */
+    appendToHeader(element, align) {
+      if (this._headerFooterParent) {
+        let header = this._headerFooterParent.querySelector(':scope > header');
+        if (!header) {
+          header = document.createElement('header');
+          this._headerFooterParent.insertBefore(header, this._headerFooterParent.firstElementChild);
+        }
+        let targetParent = header;
+        if (align) {
+          targetParent = header.querySelector('.' + align);
+          if (!targetParent) {
+            targetParent = document.createElement('div');
+            targetParent.classList.add(align);
+          }
+          header.appendChild(targetParent);
+        }
+        targetParent.appendChild(element);
+      }
+    },
+
+    /**
+     * Gets the header or an element inside it, if the selector is not empty
+     * @param selector {String} css selector
+     * @return {Element|null}
+     */
+    getHeader(selector) {
+      if (this._headerFooterParent) {
+        if (!selector) {
+          return this._headerFooterParent.querySelector(':scope > header');
+        } 
+          const header = this._headerFooterParent.querySelector(':scope > header');
+          if (header) {
+            return header.querySelector(selector);
+          }
+      }
+      return null;
+    },
+
+    /**
+     * Append the given element to a footer inside the widget this component is a direct child of.
+     * If the footer does not exist yet, it will be created.
+     * Does nothing when this component is no direct child of a widget.
+     * @param element {HTMLElement}
+     */
+    appendToFooter(element) {
+      if (this._headerFooterParent) {
+        let footer = this._headerFooterParent.querySelector(':scope > footer');
+        if (!footer) {
+          footer = document.createElement('footer');
+          this._headerFooterParent.appendChild(footer);
+        }
+        footer.appendChild(element);
+      }
+    },
+
+    /**
+     * Gets the footer or an element inside it, if the selector is not empty
+     * @param selector {String} css selector
+     * @return {Element|null}
+     */
+    getFooter(selector) {
+      if (this._headerFooterParent) {
+        if (!selector) {
+          return this._headerFooterParent.querySelector(':scope > footer');
+        } 
+          const footer = this._headerFooterParent.querySelector(':scope > footer');
+          if (footer) {
+            return footer.querySelector(selector);
+          }
+      }
+      return null;
     },
 
     // property apply
@@ -189,9 +297,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       }
       switch (value) {
         case 'visible':
-          if (this._visibleDisplayMode) {
-            target.style.display = this._visibleDisplayMode || 'initial';
-          }
+          target.style.display = null;
           break;
 
         case 'hidden':
@@ -199,7 +305,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           break;
 
         case 'excluded':
-          this._visibleDisplayMode = getComputedStyle(target).getPropertyValue('display');
           target.style.display = 'none';
           break;
       }
@@ -233,5 +338,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
       return false;
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct() {
+    this._writeAddresses = null;
+    this._headerFooterParent = null;
   }
 });

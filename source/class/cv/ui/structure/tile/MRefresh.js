@@ -21,6 +21,18 @@
  * Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.
  */
 qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
+
+  /*
+  ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct() {
+    if (qx.Class.hasMixin(this.constructor, cv.ui.structure.tile.MVisibility)) {
+      this.addListener('changeVisible', this.__onVisibilityChange, this);
+    }
+  },
+
   /*
   ***********************************************
     PROPERTIES
@@ -63,8 +75,8 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
       }
     },
 
-    _applyVisible(isVisible) {
-      if (isVisible) {
+    __onVisibilityChange(ev) {
+      if (ev.getData()) {
         if (this._refreshTimer) {
           this._refreshTimer.start();
           if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {

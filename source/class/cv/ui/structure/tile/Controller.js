@@ -27,17 +27,18 @@
  *
  * The basic structure is a set of pages that contain a list of tiles.
  * Each tile contains a grid of 3 rows and 3 columns. The components can be added to a cell of that grid
- * but also can spread over more then one cell by using row-/column spanning.
+ * but also can spread over more than one cell by using row-/column spanning.
  *
  * This structure provides some tiles with a pre-defined content, e.g. a <cv-switch> which
  * contains of a button in the middle of the tile and a primary- and secondary label in the third row.
  *
- * Those pre-defined tiles are provided by a <template> (@see https://developer.mozilla.org/de/docs/Web/HTML/Element/template}
+ * Those pre-defined tiles are provided by a <template> (@see https://developer.mozilla.org/de/docs/Web/HTML/Element/template)
  * User are able to define own templates for re-usable tiles if they need one that this structure does not provide.
  *
  * @asset(structures/tile/*)
  * @author Tobias Bräutigam
  * @since 2022
+ * @ignore(IntersectionObserver)
  */
 qx.Class.define('cv.ui.structure.tile.Controller', {
   extend: qx.core.Object,
@@ -56,6 +57,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') +
         (cv.Config.forceReload === true ? '?' + Date.now() : '')
     );
+    qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
   },
 
   /*
@@ -161,7 +163,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             oldPage.classList.remove('sub-active');
           }
           page.classList.add('active');
-          // mark parent pages that there is a active subpage
+          // mark parent pages that there is an active subpage
           let parentElement = page.parentElement;
           while (parentElement && parentElement.nodeName.toLowerCase() !== 'main') {
             if (parentElement.nodeName.toLowerCase() === 'cv-page') {
@@ -207,7 +209,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       const settings = cv.Config.configSettings;
       const configElement = config.documentElement;
       settings.bindClickToWidget = configElement.getAttribute('bind_click_to_widget') === 'true';
-      this.translate(config);
+      this.translate(config, true);
 
       if (!cv.Config.cacheUsed) {
         const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
@@ -242,6 +244,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           }
           document.body.classList.remove('loading-structure');
           this.debug('finalizing');
+          this.observeVisibility();
           qx.event.message.Bus.dispatchByName('setup.dom.append');
           this.debug('pages created');
           this.__gotoStartPage();
@@ -316,39 +319,72 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      */
     createUI(config) {},
 
-    translate(doc) {
-      for (const attr of ['name', 'label']) {
+    observeVisibility() {
+      // find all pages with an iframe with attribute "data-src" and observe its parent page
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.target.hasAttribute('data-src')) {
+            entry.target.setAttribute('src', entry.target.getAttribute('data-src'));
+            entry.target.removeAttribute('data-src');
+            observer.unobserve(entry.target);
+          }
+        }, {
+          root: document.querySelector('body > main')
+        });
+      });
+      for (const iframe of document.querySelectorAll('iframe[data-src], img[data-src]')) {
+        observer.observe(iframe);
+      }
+    },
+
+    translate(doc, rememberKeys, useKeys) {
+      let language = qx.locale.Manager.getInstance().getLanguage();
+      let match = /locale=([a-z]{2,3})/.exec(document.location.search);
+      if (match) {
+        language = match[1];
+      }
+      if (rememberKeys) {
+        this._trKeys = {};
+      }
+      for (const attr of ['name', 'label', 'title', 'format']) {
         for (const trNameElement of doc.querySelectorAll(`*[${attr}^="tr("]`)) {
           const match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
 
-          if (!match) {
+          if (!match && !useKeys) {
             this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
 
             continue;
           }
-          const key = match[1];
+          const key = useKeys ? this._trKeys[trNameElement.getAttribute(attr)] : match[1];
           const translation = doc.querySelector(
-            `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+            `cv-translations > language[name="${language}"] > tr[key='${key}']`
           );
 
           if (translation) {
+            if (rememberKeys) {
+              this._trKeys[translation.textContent.trim()] = key;
+            }
             trNameElement.setAttribute(attr, translation.textContent.trim());
           } else {
             trNameElement.setAttribute(attr, key);
-            this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+            this.warn(`[${language}] no translation found for: "${key}"`);
           }
         }
       }
       for (const trTextElement of doc.querySelectorAll('*[tr="true"]')) {
-        const key = trTextElement.textContent.trim();
+        const key = useKeys ? this._trKeys[trTextElement.textContent.trim()] : trTextElement.textContent.trim();
         const translation = doc.querySelector(
-          `cv-translations > language[name="${qx.locale.Manager.getInstance().getLanguage()}"] > tr[key='${key}']`
+          `cv-translations > language[name="${language}"] > tr[key='${key}']`
         );
 
         if (translation) {
+          if (rememberKeys) {
+            this._trKeys[translation.textContent.trim()] = key;
+          }
           trTextElement.textContent = translation.textContent.trim();
         } else {
-          this.warn(`[${qx.locale.Manager.getInstance().getLanguage()}] no translation found for: "${key}"`);
+          trTextElement.textContent = key;
+          this.warn(`[${language}] no translation found for: "${key}"`);
         }
       }
     },
@@ -442,6 +478,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     // for compatibility with pure controller
     parseLabel() {
       return '';
+    },
+
+    _onChangeLocale() {
+      this.translate(document.body, false, true);
     }
   },
 
@@ -450,6 +490,15 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       // do not apply ourselves automatically in test mode
       cv.Application.structureController = statics.getInstance();
     }
+  },
+
+  /*
+  ***********************************************
+    DESTRUCTOR
+  ***********************************************
+  */
+  destruct() {
+    qx.locale.Manager.getInstance().removeListener('changeLocale', this._onChangeLocale, this);
   }
 });
 
@@ -461,6 +510,14 @@ class TemplatedElement extends HTMLElement {
     if (template) {
       const slotAttributes = ['name', 'replaces', 'parent-scope'];
       const content = template.content.cloneNode(true);
+
+      // copy all attributes, except 'id' of the template itself to the widget
+      for (const name of template.getAttributeNames()) {
+        if (name !== 'id') {
+          this.setAttribute(name, template.getAttribute(name));
+        }
+      }
+
       // move slots into template
       for (let slot of content.querySelectorAll('slot')) {
         const slotName = slot.getAttribute('name');
@@ -498,8 +555,6 @@ class TemplatedElement extends HTMLElement {
             });
           }
         } else {
-          qx.log.Logger.debug(controller, '[' + templateId + '] no content for slot', slotName, ' removing');
-
           let parentNode = slot.parentNode;
           if (slotParentScope > 0) {
             // got slotParentScope elements up and remove that one
@@ -572,6 +627,7 @@ class TemplatedElement extends HTMLElement {
       // clear content
       this.innerHTML = '';
       this.appendChild(content);
+      this.classList.add('cv-widget');
     } else {
       qx.log.Logger.error(controller, '[' + templateId + '] no template found for id', templateId);
     }

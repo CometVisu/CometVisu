@@ -21,7 +21,7 @@
  * MQTT client
  */
 qx.Class.define('cv.io.mqtt.Client', {
-  extend: qx.core.Object,
+  extend: cv.io.AbstractClient,
   implement: cv.io.IClient,
 
   /*

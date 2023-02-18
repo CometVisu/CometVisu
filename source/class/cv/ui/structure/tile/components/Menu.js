@@ -92,9 +92,6 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const rootList = document.createElement('ul');
         this._element.appendChild(rootList);
 
-        // add some general listeners to close
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
-
         if (model === 'pages') {
           // add hamburger menu
           const ham = document.createElement('a');
@@ -190,12 +187,17 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       let toggleClass = 'open';
       if (this.getModel() === 'pages') {
         toggleClass = 'responsive';
-        for (let detail of this._element.querySelectorAll('details')) {
+        for (let detail of this._element.querySelectorAll('.details')) {
           detail.setAttribute('open', '');
         }
       }
       this._element.classList.toggle(toggleClass);
       event.stopPropagation();
+      if (this._element.classList.contains(toggleClass)) {
+        // add some general listeners to close
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+      }
     },
 
     /**
@@ -211,9 +213,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         (target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu')
       ) {
         // clicked in hamburger menu, do nothing
-      } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
+      } else if (target.tagName.toLowerCase() !== '.summary' && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
-        qx.event.Timer.once(this._closeAll, this, 100);
+        qx.event.Timer.once(this._closeAll, this, 500);
       } else {
         // close others
         this._closeAll(ev.getTarget().parentElement);
@@ -253,11 +255,33 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       } else if (this._element.classList.contains('responsive')) {
         this._element.classList.remove('responsive');
       } else {
-        for (let detail of this._element.querySelectorAll('details[open]')) {
+        for (let detail of this._element.querySelectorAll('.details[open]')) {
           if (!except || detail !== except) {
             detail.removeAttribute('open');
           }
         }
+      }
+      if (this._element.querySelectorAll('.details[open]').length === 0) {
+        qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+      }
+    },
+
+    _openDetail(item) {
+      const first = this._element.querySelectorAll('.details[open]').length === 0;
+      item.setAttribute('open', '');
+      if (first) {
+        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+      }
+    },
+
+    _closeDetail(item) {
+      item.removeAttribute('open');
+      if (this._element.querySelectorAll('.details[open]').length === 0) {
+        // remove listeners
+        qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+        qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
       }
     },
 
@@ -284,7 +308,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           i.title = pageName;
           a.appendChild(i);
         }
-        if (this.isShowLabels()) {
+        if (this.isShowLabels() || currentLevel > 0) {
           const text = document.createTextNode(pageName);
           a.appendChild(text);
         }
@@ -303,9 +327,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           summary.classList.add('summary');
           summary.addEventListener('click', ev => {
             if (details.hasAttribute('open')) {
-              details.removeAttribute('open');
+              this._closeDetail(details);
             } else {
-              details.setAttribute('open', '');
+              this._openDetail(details);
             }
           });
           a.addEventListener('click', ev => {
@@ -334,7 +358,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           details.appendChild(summary);
           const subList = document.createElement('ul');
           details.appendChild(subList);
-          this.__generatePagesModel(subList, page, currentPage, currentLevel++);
+          this.__generatePagesModel(subList, page, currentPage, currentLevel+1);
           li.appendChild(details);
         } else {
           li.appendChild(a);
