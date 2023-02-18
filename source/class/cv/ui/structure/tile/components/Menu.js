@@ -283,7 +283,6 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
         qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
       }
-
     },
 
     __generatePagesModel(parentList, parentElement, currentPage, currentLevel) {
