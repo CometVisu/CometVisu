@@ -479,7 +479,9 @@ body {
         overflow-x: hidden;
 
         &.no-content-visibility {
-            display: none; 
+            > * {
+                display: none;
+            }
         }
 
         &.screenshots {
@@ -503,7 +505,15 @@ body {
             padding: 8px;
             content-visibility: visible;
             &.no-content-visibility {
-                display: flex; 
+                > * {
+                    display: flex;
+                }
+            }
+        }
+
+        &.sub-active {
+            cv-page.no-content-visibility.active {
+                display: flex;
             }
         }
 
