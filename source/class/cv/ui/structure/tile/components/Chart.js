@@ -452,7 +452,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     onStateUpdate(ev) {
       const targetDataset = this._element.querySelector(':scope > dataset[src="'+ev.detail.target+'"]');
-      const config = this._dataSetConfigs[ev.detail.target];
+      const config = this._dataSetConfigs ? this._dataSetConfigs[ev.detail.target] : null;
       if (targetDataset && config) {
         let ts = Date.now();
         if (config.aggregationInterval) {
@@ -517,6 +517,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         return;
       }
       const client = cv.io.BackendConnections.getClient();
+      if (!client) {
+        return;
+      }
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
       const series = this.getCurrentSeries();

@@ -1625,7 +1625,7 @@
 
   <xsd:complexType name="cv-status-chart">
     <xsd:sequence>
-      <xsd:element name="cv-address">
+      <xsd:element name="cv-address" maxOccurs="2">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="address">

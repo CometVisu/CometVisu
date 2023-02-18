@@ -117,6 +117,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
         this._name = name;
         this.__applyValues = [];
         client.update = data => model.updateFrom(name, data); // override clients update function
+
+        for (const data of element.querySelectorAll(':scope > cv-resource')) {
+          client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
+        }
+
         client.login(true, credentials, () => {
           this.debug(name, 'connected');
           if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
@@ -146,10 +151,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
             );
           }
         });
-
-        for (const data of element.querySelectorAll(':scope > cv-resource')) {
-          client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
-        }
       } else {
         this.error('<cv-backend> must have a type attribute');
       }

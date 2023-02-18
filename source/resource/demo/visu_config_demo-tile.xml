@@ -4,7 +4,7 @@
         xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd"
         version="1">
     <cv-meta>
-        <cv-backend name="si" type="simulated" default="true">
+        <cv-backend type="simulated" default="true">
             <cv-resource name="charts">resource/demo/media/charts</cv-resource>
             <cv-resource name="simulation">resource/demo/media/demo_tile_testmode_data.json</cv-resource>
         </cv-backend>
@@ -215,11 +215,14 @@
             <h2 visible-on="mobile">CometVisu - Tile demo</h2>
             <cv-group open="true">
                 <cv-widget-pair allow-column-layout="true">
-                    <cv-info format="%d" style="color: #f2495c">
+                    <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M" zero-based="false" >
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
+                        <cv-address slot="live-update-address" transform="DPT:12.001" mode="read" target="generator:grid-current-import">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
                         <span slot="unit">W</span>
-                    </cv-info>
+                        <dataset slot="dataset" src="generator:grid-current-import" color="#f2495c"
+                                 show-area="true" curve="natural" title="tr('Power consumption')" />
+                    </cv-status-chart>
                     <cv-info format="%d" style="color: #f2495c">
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/26</cv-address>
                         <span slot="title" tr="true">Power meter reading</span>
