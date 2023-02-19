@@ -498,6 +498,10 @@ describe('generation screenshots from jsdoc examples', function () {
                 }, 1000);
               }
             }
+            if (setting.gotoPage) {
+              cvMockup.goToPage(setting.gotoPage, true);
+              browser.sleep(10);
+            }
             if (setting.hoverOn) {
               const ele = element.all(by.css(setting.hoverOn)).first();
               browser.actions().mouseMove(ele).mouseMove(ele).perform();

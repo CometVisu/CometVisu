@@ -68,7 +68,7 @@ qx.Class.define('cv.ui.structure.tile.components.Breadcrumbs', {
             }
             parent = parent.parentElement;
           }
-          if (!parent) {
+          if (!parent || currentPage === startPage) {
             break;
           }
         }
