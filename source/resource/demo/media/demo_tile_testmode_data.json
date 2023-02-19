@@ -24,7 +24,37 @@
     "1/4/29": 6781,
     "1/4/30": 681,
     "1/4/0": 0,
-    "1/5/0": 0
+    "1/5/0": 0,
+    "1/6/0": 1,
+    "1/6/1": 1,
+    "1/6/2": 1,
+    "1/6/3": 1,
+    "1/6/4": 0,
+    "1/6/5": 1,
+    "4/1/1": "comfort",
+    "4/1/2": 21.0,
+    "4/1/3": 22.5,
+    "4/1/4": 0,
+    "4/2/1": "comfort",
+    "4/2/2": 21.0,
+    "4/2/3": 21.5,
+    "4/2/4": 0,
+    "4/3/1": "comfort",
+    "4/3/2": 21.0,
+    "4/3/3": 21.0,
+    "4/3/4": 0,
+    "4/5/1": "comfort",
+    "4/5/2": 21.0,
+    "4/5/3": 21.5,
+    "4/5/4": 1,
+    "4/4/1": "comfort",
+    "4/4/2": 21.0,
+    "4/4/3": 20.5,
+    "4/4/4": 0,
+    "4/6/1": "comfort",
+    "4/6/2": 19.0,
+    "4/6/3": 18.0,
+    "4/6/4": 1
   },
   "xhr": {
     "rrd?rrd=13%2F0%2F14.rrd&ds=AVERAGE&start=end-1day&end=now&res=300&fill=linear": [{
@@ -104,7 +134,21 @@
           }
         ]
       }
-    ]
+    ],
+    "resource/plugins/tr064/soap.php?device=fritzbox&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList": [{
+      "status": 200,
+      "headers": {
+        "Content-type": "application/json"
+      },
+      "body": "https:\/\/192.168.178.1:49443\/calllist.lua?sid=fakesid1234"
+    }],
+    "resource/plugins/tr064/proxy.php?device=fritzbox&uri=https://192.168.178.1:49443/calllist.lua?sid=fakesid1234%26max=10": [{
+      "status": 200,
+      "headers": {
+        "Content-type": "text/xml"
+      },
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><timestamp>1356188400</timestamp><Call><Id>22970</Id><Type>1</Type><Caller>0123456789</Caller><Called>Main</Called><CalledNumber>1234</CalledNumber><Name>Jane Doe</Name><Numbertype>sip</Numbertype><Device>FritzFon</Device><Port>14</Port><Date>18.02.23 18:59</Date><Duration>0:14</Duration><Count></Count><Path /></Call>\n<Call><Id>22969</Id><Type>1</Type><Caller>0987654321</Caller><Called>Main</Called><CalledNumber>1234</CalledNumber><Name>Someone</Name><Numbertype>sip</Numbertype><Device>Phone1</Device><Port>40</Port><Date>18.02.23 12:47</Date><Duration>0:01</Duration><Count></Count><Path /></Call>\n<Call><Id>22968</Id><Type>1</Type><Caller>0567891234</Caller><Called>Main</Called><CalledNumber>1234</CalledNumber><Name>John Doe</Name><Numbertype>sip</Numbertype><Device>FritzFon</Device><Port>14</Port><Date>18.02.23 12:02</Date><Duration>0:18</Duration><Count></Count><Path /></Call>\n<Call><Id>22967</Id><Type>3</Type><Called>4321</Called><Caller>Main</Caller><CallerNumber>1234</CallerNumber><Name>Max Mustermann</Name><Numbertype>sip</Numbertype><Device>FritzFon</Device><Port>14</Port><Date>18.02.23 10:31</Date><Duration>0:04</Duration><Count></Count><Path /></Call></root>"
+    }]
   },
   "sequence": [{
     "delay": 5000,

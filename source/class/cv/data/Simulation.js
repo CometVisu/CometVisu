@@ -171,7 +171,11 @@ qx.Class.define('cv.data.Simulation', {
               // the response would fail if we do not override it here
               request.readyState = 1;
             }
-            request.respond(response.status, response.headers, JSON.stringify(response.body));
+            let body = response.body;
+            if (response.headers && response.headers['Content-type'] === 'application/json') {
+              body = JSON.stringify(response.body);
+            }
+            request.respond(response.status, response.headers, body);
           }
         }.bind(this)
       );
@@ -254,7 +258,6 @@ qx.Class.define('cv.data.Simulation', {
           return generator.targetValue + (Math.random() - 0.5) * generator.deviation * 2;
         }
       }
-      console.log(name, data);
       return data;
     },
 

@@ -603,7 +603,7 @@ body {
                 }
             }
         }
-        &:not([open]) > *:not(summary):not(.has-popup) {
+        &:not([open]) > *:not(summary) {
             display: none;
         }
 
@@ -807,6 +807,7 @@ body {
             box-shadow: none;
             border: none;
             border-radius: 0;
+            overflow-y: auto;
 
             &:last-child {
                 border-bottom-left-radius: inherit;
@@ -1839,6 +1840,37 @@ body {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+        }
+    }
+
+    cv-breadcrumbs {
+        ul {
+            padding: calc(var(--spacing)*2);
+            margin: 0;
+
+            list-style: none;
+            display: flex;
+            font-size: 16px;
+
+            li {
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                }
+
+                &:after {
+                    content: ">";
+                    margin: 0 var(--spacing);
+                }
+
+                &:first-child {
+                    display: inline-block;
+                }
+
+                &:last-child:after {
+                    content: ""
+                }
+            }
         }
     }
 }

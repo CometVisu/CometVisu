@@ -30,6 +30,12 @@
             <entry value="light">active</entry>
             <entry value="dark">inactive</entry>
         </cv-styling>
+        <cv-styling name="Temperature">
+            <entry range-min="0" range-max="18">blue</entry>
+            <entry range-min="22" range-max="25">orange</entry>
+            <entry range-min="25" range-max="28">purple</entry>
+            <entry range-min="28" range-max="100">red</entry>
+        </cv-styling>
         <cv-translations>
             <language name="de">
                 <tr key="Dashboard">Dashboard</tr>
@@ -84,7 +90,7 @@
                 <tr key="Water meter reading">Z&#228;hlerstand Wasser</tr>
                 <tr key="Water consumption">Wasserverbrauch</tr>
                 <tr key="Gas consumption">Gasverbrauch</tr>
-                <tr key="Others">Sonstige</tr>
+                <tr key="Others">Sonstiges</tr>
                 <tr key="Rooms">Räume</tr>
                 <tr key="Light-Theme">Light Theme</tr>
                 <tr key="%d on">%d an</tr>
@@ -101,6 +107,14 @@
                 <tr key="More chart examples">Mehr Diagramm-Beispiele</tr>
                 <tr key="Multiple line-chart">Mehrere Datensätze in einem Liniendiagramm</tr>
                 <tr key="Multiple bar-chart">Mehrere Datensätze in einen Balkendiagramm</tr>
+                <tr key="Status with chart">Status mit Diagramm</tr>
+                <tr key="Present">Präsenz</tr>
+                <tr key="Workday">Arbeitstag</tr>
+                <tr key="Alarm">Wecker</tr>
+                <tr key="Mom">Mutter</tr>
+                <tr key="Dad">Vater</tr>
+                <tr key="Kid">Kind</tr>
+                <tr key="Calls">Anrufe</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -209,6 +223,7 @@
             </cv-status>
             <h2 visible-on="desktop" style="align-self: center; margin-left: auto; margin-right: calc(var(--spacing)*2);">CometVisu - Tile demo</h2>
         </cv-group>
+        <cv-breadcrumbs />
     </header>
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
@@ -264,7 +279,7 @@
                     </cv-status-chart>
                 </cv-widget-pair>
             </cv-group>
-            <cv-group name="tr('Others')">
+            <cv-group name="tr('Others')" open="true">
                 <cv-switch>
                     <cv-address slot="address" backend="system" value="floorplan">nav:current-page</cv-address>
                     <cv-icon slot="icon">ri-settings-3-line</cv-icon>
@@ -275,35 +290,261 @@
                     <cv-icon slot="icon">ri-sun-line</cv-icon>
                     <span slot="primaryLabel" tr="true">Light-Theme</span>
                 </cv-switch>
+                <cv-widget-pair allow-column-layout="true">
+                    <cv-tile>
+                        <cv-row rowspan="3" colspan="3">
+                            <cv-button name="tr('Present')" class="round-button" styling="tile-button" size="small">
+                                <cv-address transform="DPT:1.001">1/6/0</cv-address>
+                                <cv-icon class="ri-user-line"/>
+                            </cv-button>
+                            <cv-button name="tr('Workday')" class="round-button" styling="tile-button" size="small"
+                                       column="2">
+                                <cv-address transform="DPT:1.001">1/6/1</cv-address>
+                                <cv-icon class="knxuf-scene_office"/>
+                            </cv-button>
+                            <cv-button name="tr('Alarm')" class="round-button" styling="tile-button" size="small" column="3">
+                                <cv-address transform="DPT:1.001">1/6/2</cv-address>
+                                <cv-icon class="knxuf-time_alarm_clock"/>
+                            </cv-button>
+                        </cv-row>
+                    </cv-tile>
+                    <cv-tile>
+                        <cv-row rowspan="3" colspan="3">
+                            <cv-value styling="tile-button" row="2">
+                                <cv-address transform="DPT:1.001" mode="read">1/6/3</cv-address>
+                                <cv-icon class="ri-key-2-line" size="large"/>
+                                <label class="secondary" value-size="small" tr="true">Mom</label>
+                            </cv-value>
+                            <cv-value styling="tile-button" row="2" column="2">
+                                <cv-address transform="DPT:1.001" mode="read">1/6/4</cv-address>
+                                <cv-icon class="ri-key-2-line" size="large"/>
+                                <label class="secondary" value-size="small" tr="true">Dad</label>
+                            </cv-value>
+                            <cv-value styling="tile-button" row="2" column="3">
+                                <cv-address transform="DPT:1.001" mode="read">1/6/5</cv-address>
+                                <cv-icon class="ri-key-2-line" size="large"/>
+                                <label class="secondary" value-size="small" tr="true">Kid</label>
+                            </cv-value>
+                        </cv-row>
+                    </cv-tile>
+                </cv-widget-pair>
+                <cv-widget>
+                    <header>
+                        <label class="title" tr="true">Calls</label>
+                    </header>
+                    <cv-tile>
+                        <cv-list rowspan="3" colspan="3" refresh="120">
+                            <model class="FritzCallList" parameters="device=fritzbox,max=10" />
+                            <template>
+                                <li>
+                                    <div style="float: left; font-size: 1.5em; padding-right: 8px">
+                                        <i class="knxuf-phone_call_in" style="color: #268DDA; vertical-align: middle;"
+                                           when="${Type}=1"/>
+                                        <i class="knxuf-phone_missed_in" style="color: #E45F3B; vertical-align: middle;"
+                                           when="${Type}=2"/>
+                                        <i class="knxuf-phone_call_out" style="color: #8BBF68; vertical-align: middle;"
+                                           when="${Type}=3"/>
+                                    </div>
+                                    <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                        ${Name || Caller}
+                                        <div style="font-size: 0.9em; color: #777;">${Date}</div>
+                                    </div>
+                                </li>
+                            </template>
+                        </cv-list>
+                    </cv-tile>
+                </cv-widget>
             </cv-group>
         </cv-page>
         <cv-page id="floorplan" name="tr('Rooms')" icon="knxuf-control_building_empty">
             <cv-group name="tr('Dining room')" icon="knxuf-scene_dinner">
+                <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/3/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/3/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
+                    <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
+                        <cv-address transform="DPT:1.001">4/3/0</cv-address>
+                        <cv-icon class="value ri-question-mark"/>
+                    </cv-button>
+                </summary>
+                <cv-switch>
+                    <cv-address slot="address" transform="DPT:1.001">4/3/0</cv-address>
+                    <span slot="primaryLabel" tr="true">Light</span>
+                </cv-switch>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/3/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/3/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
             </cv-group>
-            <cv-group name="tr('Living room')" icon="knxuf-scene_livingroom"></cv-group>
-            <cv-group name="tr('Kitchen')" icon="knxuf-scene_baking_oven"></cv-group>
-            <cv-group name="tr('Bathroom')" icon="knxuf-scene_bath"></cv-group>
+            <cv-group name="tr('Living room')" icon="knxuf-scene_livingroom">
+                <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/4/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/4/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
+                    <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
+                        <cv-address transform="DPT:1.001">4/4/0</cv-address>
+                        <cv-icon class="value ri-question-mark"/>
+                    </cv-button>
+                </summary>
+                <cv-switch>
+                    <cv-address slot="address" transform="DPT:1.001">4/4/0</cv-address>
+                    <span slot="primaryLabel" tr="true">Light</span>
+                </cv-switch>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/4/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/4/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
+                <cv-widget>
+                    <cv-tile style="grid-template-rows: 1fr 1fr auto;">
+                        <cv-button name="tr('TV')" class="round-button" styling="tile-button" row="1" column="1" size="small">
+                            <cv-address transform="DPT:1.001">4/4/9</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                        <cv-button name="tr('Receiver')" class="round-button" styling="tile-button" row="1" column="2"
+                                   size="small">
+                            <cv-address transform="DPT:1.001">4/4/10</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                        <cv-button name="tr('Playstation')" class="round-button" styling="tile-button" row="1" column="3"
+                                   size="small">
+                            <cv-address transform="DPT:1.001">4/4/11</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                        <cv-button name="tr('DVD')" class="round-button" styling="tile-button" row="2" column="1"
+                                   size="small">
+                            <cv-address transform="DPT:1.001">4/4/12</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                        <cv-button name="tr('CD')" class="round-button" styling="tile-button" row="2" column="2" size="small">
+                            <cv-address transform="DPT:1.001">4/4/13</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                        <cv-button name="tr('Wifi')" class="round-button" styling="tile-button" row="2" column="3"
+                                   size="small">
+                            <cv-address transform="DPT:1.001">4/4/14</cv-address>
+                            <cv-icon class="knxuf-message_socket"/>
+                        </cv-button>
+                    </cv-tile>
+                    <footer>
+                        <label class="title" tr="true">Sockets</label>
+                    </footer>
+                </cv-widget>
+            </cv-group>
+            <cv-group name="tr('Kitchen')" icon="knxuf-scene_baking_oven">
+                <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/2/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/2/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
+                    <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
+                        <cv-address transform="DPT:1.001">4/2/0</cv-address>
+                        <cv-icon class="value ri-question-mark"/>
+                    </cv-button>
+                </summary>
+                <cv-switch>
+                    <cv-address slot="address" transform="DPT:1.001">4/2/0</cv-address>
+                    <span slot="primaryLabel" tr="true">Light</span>
+                </cv-switch>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/2/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/2/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
+            </cv-group>
+            <cv-group name="tr('Bathroom')" icon="knxuf-scene_bath">
+                <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/1/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/1/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
+                    <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
+                        <cv-address transform="DPT:1.001">4/1/0</cv-address>
+                        <cv-icon class="value ri-question-mark"/>
+                    </cv-button>
+                </summary>
+                <cv-switch>
+                    <cv-address slot="address" transform="DPT:1.001">4/1/0</cv-address>
+                    <span slot="primaryLabel" tr="true">Light</span>
+                </cv-switch>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/1/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/1/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
+            </cv-group>
             <cv-group name="tr('Office')" icon="knxuf-it_pc">
                 <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/5/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/5/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
                     <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
                         <cv-address transform="DPT:1.001">4/5/0</cv-address>
                         <cv-icon class="value ri-question-mark"/>
                     </cv-button>
-                    <cv-value format="%.1f °C">
-                        <cv-address mode="read" transform="DPT:9.001">4/5/2</cv-address>
-                        <label class="value"/>
-                    </cv-value>
                 </summary>
                 <cv-switch>
                     <cv-address slot="address" transform="DPT:1.001">4/5/0</cv-address>
                     <span slot="primaryLabel" tr="true">Light</span>
                 </cv-switch>
-            </cv-group>
-            <cv-group name="tr('Bedroom')" icon="knxuf-scene_sleeping"></cv-group>
-        </cv-page>
-        <cv-page id="categories" name="tr('Categories')" icon="knxuf-control_3dot_hor_f">
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/5/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/5/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
 
+            </cv-group>
+            <cv-group name="tr('Bedroom')" icon="knxuf-scene_sleeping">
+                <summary>
+                    <cv-value format="%.1f °C" styling="Temperature">
+                        <cv-address mode="read" transform="DPT:9.001">4/6/3</cv-address>
+                        <label class="value"/>
+                    </cv-value>
+                    <cv-value mapping="WindowOpen" styling="WindowOpen">
+                        <cv-address mode="read" transform="DPT:1.001">4/6/4</cv-address>
+                        <cv-icon class="value" size="large"/>
+                    </cv-value>
+                    <cv-button class="round-button" mapping="tile-light" styling="tile-button" size="small">
+                        <cv-address transform="DPT:1.001">4/6/0</cv-address>
+                        <cv-icon class="value ri-question-mark"/>
+                    </cv-button>
+                </summary>
+                <cv-switch>
+                    <cv-address slot="address" transform="DPT:1.001">4/6/0</cv-address>
+                    <span slot="primaryLabel" tr="true">Light</span>
+                </cv-switch>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/6/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/6/2</cv-address>
+                    <span slot="label" tr="true">RTC</span>
+                </cv-rtc>
+            </cv-group>
         </cv-page>
+        <!--<cv-page id="categories" name="tr('Categories')" icon="knxuf-control_3dot_hor_f"></cv-page>-->
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
             <cv-group name="tr('Switches')">
                 <summary>
@@ -418,6 +659,13 @@
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/15</cv-address>
                     <span slot="label" tr="true">Windows</span>
                 </cv-status>
+                <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" zero-based="false">
+                    <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
+                    <span slot="title" tr="true">Status with chart</span>
+                    <span slot="popup-title" tr="true">Gas consumption</span>
+                    <span slot="unit">m³</span>
+                    <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
+                </cv-status-chart>
             </cv-group>
             <cv-group name="tr('Room temperature controllers')">
                 <summary>
