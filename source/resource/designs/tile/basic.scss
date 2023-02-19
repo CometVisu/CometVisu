@@ -338,7 +338,6 @@ body {
                 li {
                     display: inline-block;
                     position: relative;
-                    height: 40px;
 
                     .details:not([open]) > *:not(.summary) {
                         display: none
@@ -355,7 +354,7 @@ body {
                             .expander {
                                 display: inline-block;
                                 font-size: 24px;
-                                line-height: 20px;
+                                vertical-align: bottom;
                             }
                         }
 
