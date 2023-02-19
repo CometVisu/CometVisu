@@ -17,9 +17,9 @@
         "index": 921
       },
       "end": {
-        "line": 123,
+        "line": 134,
         "column": 3,
-        "index": 3992
+        "index": 4233
       }
     },
     "jsdoc": {
@@ -44,18 +44,33 @@
     }
   },
   "type": "class",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1247
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1356
+      }
+    },
+    "jsdoc": {}
+  },
   "members": {
     "_queuedOverflowDetection": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 45,
           "column": 4,
-          "index": 1257
+          "index": 1498
         },
         "end": {
-          "line": 34,
+          "line": 45,
           "column": 34,
-          "index": 1287
+          "index": 1528
         }
       },
       "type": "variable",
@@ -64,14 +79,14 @@
     "_debouncedDetectOverflow": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 46,
           "column": 4,
-          "index": 1293
+          "index": 1534
         },
         "end": {
-          "line": 35,
+          "line": 46,
           "column": 34,
-          "index": 1323
+          "index": 1564
         }
       },
       "type": "variable",
@@ -80,14 +95,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 48,
           "column": 4,
-          "index": 1330
+          "index": 1571
         },
         "end": {
-          "line": 47,
+          "line": 58,
           "column": 5,
-          "index": 1780
+          "index": 2021
         }
       },
       "type": "function",
@@ -101,14 +116,14 @@
     "_applyVisible": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 60,
           "column": 4,
-          "index": 1787
+          "index": 2028
         },
         "end": {
-          "line": 60,
+          "line": 71,
           "column": 5,
-          "index": 2137
+          "index": 2378
         }
       },
       "type": "function",
@@ -117,14 +132,14 @@
     "_detectOverflow": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 73,
           "column": 4,
-          "index": 2144
+          "index": 2385
         },
         "end": {
-          "line": 74,
+          "line": 85,
           "column": 5,
-          "index": 2558
+          "index": 2799
         }
       },
       "type": "function",
@@ -133,14 +148,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 87,
           "column": 4,
-          "index": 2565
+          "index": 2806
         },
         "end": {
-          "line": 110,
+          "line": 121,
           "column": 5,
-          "index": 3767
+          "index": 4008
         }
       },
       "type": "function",
@@ -863,19 +878,207 @@
           }
         ]
       }
+    },
+    "getWidget": {
+      "type": "function",
+      "name": "getWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "isWidget": {
+      "type": "function",
+      "name": "isWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "setWidget": {
+      "type": "function",
+      "name": "setWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for widget"
+          }
+        ]
+      }
+    },
+    "resetWidget": {
+      "type": "function",
+      "name": "resetWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ]
+      }
+    },
+    "getInPopup": {
+      "type": "function",
+      "name": "getInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "isInPopup": {
+      "type": "function",
+      "name": "isInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "setInPopup": {
+      "type": "function",
+      "name": "setInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for inPopup"
+          }
+        ]
+      }
+    },
+    "resetInPopup": {
+      "type": "function",
+      "name": "resetInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>inPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ]
+      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 113,
+        "line": 124,
         "column": 2,
-        "index": 3776
+        "index": 4017
       },
       "end": {
-        "line": 122,
+        "line": 133,
         "column": 3,
-        "index": 3988
+        "index": 4229
       }
     }
   },

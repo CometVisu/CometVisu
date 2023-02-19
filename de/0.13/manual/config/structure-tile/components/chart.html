@@ -58,7 +58,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l5"><a class="reference internal" href="value.html">Value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image.html">Image</a></li>
+<li class="toctree-l5"><a class="reference internal" href="select.html">Select</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spinner.html">Spinner</a></li>
+<li class="toctree-l5"><a class="reference internal" href="slider.html">Slider</a></li>
+<li class="toctree-l5"><a class="reference internal" href="list.html">List</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Chart</a></li>
+<li class="toctree-l5"><a class="reference internal" href="color.html">Color</a></li>
+<li class="toctree-l5"><a class="reference internal" href="icon.html">Icon</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../elements/address.html">Address</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -112,11 +125,13 @@ Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;data
 <figure class="align-default">
 <img alt="../../../_images/cv-chart-temp.png" src="../../../_images/cv-chart-temp.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/cv-chart&gt;</span>
-<span class="nt">&lt;/cv-tile&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
 <p>Das Beispiel zeigt den Temperaturverlauf der letzten 24 Stunden, der exakte, formatierte Temperaturwert für
@@ -131,20 +146,66 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 </figcaption>
 </figure>
 <figure class="align-default" id="id2">
-<img alt="Tooltip mit Einzelwert" src="../../../_images/cv-chart-pv-tooltip.png" />
+<img alt="Tooltip mit Einzelwert." src="../../../_images/cv-chart-pv-tooltip.png" />
 <figcaption>
-<p><span class="caption-text">Tooltip mit Einzelwert</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+<p><span class="caption-text">Tooltip mit Einzelwert.</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="nt">/&gt;</span>
-<span class="w">      </span><span class="nt">&lt;/cv-chart&gt;</span>
-<span class="nt">&lt;/cv-tile&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
 <p>Die rote Linie zeigt den täglichen Bezug aus dem Stromnetz in kWh und der orange Bereich stellt dem die täglich PV-Produktion in kWh gegenüber.</p>
+<p>Das Chart-Element bietet auch die Möglichkeit ein Balkendiagramm darzustellen:</p>
+<figure class="align-default" id="id3">
+<img alt="Zwei Balken in einem Chart." src="../../../_images/cv-chart-pv-bar.png" />
+<figcaption>
+<p><span class="caption-text">Zwei Balken in einem Chart.</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>Möchte man auf andere Zeitserien wechseln und innerhalb der gerade ausgewählten navigieren, so kann man diese mit
+dem <code class="docutils literal notranslate"><span class="pre">selection</span></code>-Attribut freischalten. Dieses kann man mit einer Komma-separierten Listen der erlaubten Zeitserien
+füllen, oder einfach mit <code class="docutils literal notranslate"><span class="pre">all</span></code> for alle.</p>
+<figure class="align-default" id="id4">
+<img alt="Zeitserienauswahl mit Navigation." src="../../../_images/cv-chart-pv-nav.png" />
+<figcaption>
+<p><span class="caption-text">Zeitserienauswahl mit Navigation.</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<img alt="Zeitserienauswahl geöffnet" src="../../../_images/cv-chart-pv-nav-open.png" />
+<figcaption>
+<p><span class="caption-text">Zeitserienauswahl geöffnet</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;week,month,year&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<section id="navigation">
+<h3>Navigation<a class="headerlink" href="#navigation" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
 <section id="erlaubte-attribute">
 <h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <table class="docutils align-default">
@@ -165,18 +226,10 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="10"><p>cv-chart</p></td>
+<tr class="row-odd"><td rowspan="15"><p>cv-chart</p></td>
 <td><p>title</p></td>
 <td><p>Text</p></td>
 <td><p>Titel des Charts.</p></td>
-</tr>
-<tr class="row-even"><td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
-</tr>
-<tr class="row-odd"><td><p>style</p></td>
-<td><p>Text</p></td>
-<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-even"><td><p>y-format</p></td>
 <td><p>Text</p></td>
@@ -190,21 +243,49 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 <td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> oder <em>year</em></p></td>
 <td><p>Zeitspanne der Daten.</p></td>
 </tr>
-<tr class="row-odd"><td><p>allow-fullscreen</p></td>
+<tr class="row-odd"><td><p>selection</p></td>
+<td><p>Text</p></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-even"><td><p>show-x-axis</p></td>
+<tr class="row-odd"><td><p>show-x-axis</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>X-Achsen Skala anzeigen (default = true).</p></td>
 </tr>
-<tr class="row-odd"><td><p>show-y-axis</p></td>
+<tr class="row-even"><td><p>show-y-axis</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Y-Achsen Skala anzeigen (default = true).</p></td>
 </tr>
-<tr class="row-even"><td><p>refresh</p></td>
+<tr class="row-odd"><td><p>refresh</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-grid</p></td>
+<td><p><em>xy</em>, <em>x</em>, <em>y</em> oder <em>false</em></p></td>
+<td><p>Zeige Gitterlinien.</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Zeigt den Chart im Hintergrund einer Kachel.</p></td>
+</tr>
+<tr class="row-even"><td><p>zero-based</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Die y-Achse immer bei 0 beginnen lassen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -229,7 +310,7 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>cv-chart</dt><dd><ul class="simple">
 <li><p>dataset</p></li>
 </ul>
@@ -244,15 +325,19 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 <td><p>Text</p></td>
 <td><p>Titel des Chart-Elements.</p></td>
 </tr>
-<tr class="row-odd"><td><p>type</p></td>
+<tr class="row-odd"><td><p>chart-type</p></td>
 <td><p><em>line</em> oder <em>bar</em></p></td>
 <td><p>Typ des Chart-Elements.</p></td>
 </tr>
-<tr class="row-even"><td><p>color</p></td>
-<td><p>color</p></td>
+<tr class="row-even"><td><p>curve</p></td>
+<td><p><em>linear</em>, <em>step</em> oder <em>natural</em></p></td>
+<td><p>Typ der Kurven-Interpolation eines Linien-Charts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>token</p></td>
 <td><p>Farbe des Chart-Elements.</p></td>
 </tr>
-<tr class="row-odd"><td><p>show-area</p></td>
+<tr class="row-even"><td><p>show-area</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Bereich unterhalb eines Liniendiagramms ausfüllen.</p></td>
 </tr>
@@ -299,7 +384,7 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

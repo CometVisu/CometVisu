@@ -16,7 +16,7 @@
       "end": {
         "line": 167,
         "column": 3,
-        "index": 4021
+        "index": 4017
       }
     },
     "jsdoc": {
@@ -195,12 +195,12 @@
         "start": {
           "line": 95,
           "column": 4,
-          "index": 2300
+          "index": 2298
         },
         "end": {
           "line": 115,
           "column": 5,
-          "index": 2789
+          "index": 2787
         }
       },
       "jsdoc": {
@@ -222,8 +222,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.command.Command | null} Corresponding command instance or null",
-            "type": "qx.ui.command.Command | null",
+            "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
+            "type": "qx.ui.command.Command|null",
             "description": " Corresponding command instance or null"
           }
         ]
@@ -241,12 +241,12 @@
         "start": {
           "line": 124,
           "column": 4,
-          "index": 3027
+          "index": 3025
         },
         "end": {
           "line": 130,
           "column": 5,
-          "index": 3200
+          "index": 3198
         }
       },
       "jsdoc": {
@@ -282,12 +282,12 @@
         "start": {
           "line": 139,
           "column": 4,
-          "index": 3446
+          "index": 3442
         },
         "end": {
           "line": 161,
           "column": 5,
-          "index": 3969
+          "index": 3965
         }
       },
       "jsdoc": {
@@ -309,8 +309,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.command.Command | null} Corresponding command instance or null",
-            "type": "qx.ui.command.Command | null",
+            "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
+            "type": "qx.ui.command.Command|null",
             "description": " Corresponding command instance or null"
           }
         ]
@@ -552,12 +552,12 @@
       "start": {
         "line": 164,
         "column": 2,
-        "index": 3978
+        "index": 3974
       },
       "end": {
         "line": 166,
         "column": 3,
-        "index": 4017
+        "index": 4013
       }
     }
   },

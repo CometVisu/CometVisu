@@ -64,7 +64,7 @@
       }
     },
     members: {
-      __P_193_0: null,
+      __P_194_0: null,
       /**
        * Whether If debugging code is enabled. (i.e. the setting
        * <code>qx.debug</code> has the value <code>on</code>.)
@@ -173,17 +173,17 @@
        * @param obj {qx.core.Object} Object to be automatically disposed.
        */
       addAutoDispose: function addAutoDispose(obj) {
-        if (!this.__P_193_0) {
-          this.__P_193_0 = [];
+        if (!this.__P_194_0) {
+          this.__P_194_0 = [];
         }
-        this.__P_193_0.push(obj);
+        this.__P_194_0.push(obj);
       },
       /**
        * Dispose all objects that got registered for auto disposal.
        */
       doAutoDispose: function doAutoDispose() {
-        if (this.__P_193_0) {
-          this.__P_193_0.forEach(function (obj) {
+        if (this.__P_194_0) {
+          this.__P_194_0.forEach(function (obj) {
             if (!obj.isDisposed()) {
               if (obj instanceof qx.ui.core.Widget) {
                 obj.destroy();
@@ -192,7 +192,7 @@
               }
             }
           });
-          this.__P_193_0 = null;
+          this.__P_194_0 = null;
         }
       }
     }
@@ -200,4 +200,4 @@
   qx.dev.unit.TestCase.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestCase.js.map?dt=1673093856973
+//# sourceMappingURL=TestCase.js.map?dt=1676809311711

@@ -192,19 +192,19 @@
     members: {
       _isTablet: false,
       _wrapContentByGroup: true,
-      __P_413_0: null,
-      __P_413_1: null,
-      __P_413_2: null,
-      __P_413_3: null,
-      __P_413_4: null,
-      __P_413_5: null,
-      __P_413_6: null,
+      __P_414_0: null,
+      __P_414_1: null,
+      __P_414_2: null,
+      __P_414_3: null,
+      __P_414_4: null,
+      __P_414_5: null,
+      __P_414_6: null,
       // interface implementation
       getTitleWidget: function getTitleWidget() {
-        if (!this.__P_413_4) {
-          this.__P_413_4 = this._createTitleWidget();
+        if (!this.__P_414_4) {
+          this.__P_414_4 = this._createTitleWidget();
         }
-        return this.__P_413_4;
+        return this.__P_414_4;
       },
       /**
        * Creates the navigation bar title.
@@ -216,23 +216,23 @@
       },
       // property apply
       _applyTitle: function _applyTitle(value, old) {
-        if (this.__P_413_4) {
-          this.__P_413_4.setValue(value);
+        if (this.__P_414_4) {
+          this.__P_414_4.setValue(value);
         }
       },
       // interface implementation
       getLeftContainer: function getLeftContainer() {
-        if (!this.__P_413_5) {
-          this.__P_413_5 = this._createLeftContainer();
+        if (!this.__P_414_5) {
+          this.__P_414_5 = this._createLeftContainer();
         }
-        return this.__P_413_5;
+        return this.__P_414_5;
       },
       // interface implementation
       getRightContainer: function getRightContainer() {
-        if (!this.__P_413_6) {
-          this.__P_413_6 = this._createRightContainer();
+        if (!this.__P_414_6) {
+          this.__P_414_6 = this._createRightContainer();
         }
-        return this.__P_413_6;
+        return this.__P_414_6;
       },
       /**
        * Creates the left container for the navigation bar.
@@ -243,10 +243,10 @@
         var layout = new qx.ui.mobile.layout.HBox();
         var container = new qx.ui.mobile.container.Composite(layout);
         container.addCssClass("left-container");
-        this.__P_413_0 = this._createBackButton();
-        this.__P_413_0.addListener("tap", this._onBackButtonTap, this);
+        this.__P_414_0 = this._createBackButton();
+        this.__P_414_0.addListener("tap", this._onBackButtonTap, this);
         this._showBackButton();
-        container.add(this.__P_413_0);
+        container.add(this.__P_414_0);
         return container;
       },
       /**
@@ -258,10 +258,10 @@
         var layout = new qx.ui.mobile.layout.HBox();
         var container = new qx.ui.mobile.container.Composite(layout);
         container.addCssClass("right-container");
-        this.__P_413_1 = this._createButton();
-        this.__P_413_1.addListener("tap", this._onButtonTap, this);
+        this.__P_414_1 = this._createButton();
+        this.__P_414_1.addListener("tap", this._onButtonTap, this);
         this._showButton();
-        container.add(this.__P_413_1);
+        container.add(this.__P_414_1);
         return container;
       },
       /**
@@ -288,7 +288,7 @@
        * @return {qx.ui.mobile.container.Composite} The content container
        */
       getContent: function getContent() {
-        return this.__P_413_2;
+        return this.__P_414_2;
       },
       /**
        * Returns the back button widget.
@@ -296,7 +296,7 @@
        * @return {qx.ui.mobile.navigationbar.BackButton} The back button widget
        */
       _getBackButton: function _getBackButton() {
-        return this.__P_413_0;
+        return this.__P_414_0;
       },
       /**
        * Returns the action button widget.
@@ -304,7 +304,7 @@
        * @return {qx.ui.mobile.navigationbar.Button} The action button widget
        */
       _getButton: function _getButton() {
-        return this.__P_413_1;
+        return this.__P_414_1;
       },
       /**
        * Sets the isTablet flag.
@@ -326,7 +326,7 @@
        * @return {qx.ui.mobile.container.Scroll} The scroll container
        */
       _getScrollContainer: function _getScrollContainer() {
-        return this.__P_413_3;
+        return this.__P_414_3;
       },
       /**
        * Adds a widget, below the NavigationBar.
@@ -334,26 +334,26 @@
        * @param widget {qx.ui.mobile.core.Widget} The widget to add, after NavigationBar.
        */
       addAfterNavigationBar: function addAfterNavigationBar(widget) {
-        if (widget && this.__P_413_3) {
-          this.addBefore(widget, this.__P_413_3);
+        if (widget && this.__P_414_3) {
+          this.addBefore(widget, this.__P_414_3);
         }
       },
       // property apply
       _applyBackButtonText: function _applyBackButtonText(value, old) {
-        if (this.__P_413_0) {
-          this.__P_413_0.setValue(value);
+        if (this.__P_414_0) {
+          this.__P_414_0.setValue(value);
         }
       },
       // property apply
       _applyActionButtonText: function _applyActionButtonText(value, old) {
-        if (this.__P_413_1) {
-          this.__P_413_1.setValue(value);
+        if (this.__P_414_1) {
+          this.__P_414_1.setValue(value);
         }
       },
       // property apply
       _applyActionButtonIcon: function _applyActionButtonIcon(value, old) {
-        if (this.__P_413_1) {
-          this.__P_413_1.setIcon(value);
+        if (this.__P_414_1) {
+          this.__P_414_1.setIcon(value);
         }
       },
       // property apply
@@ -366,19 +366,19 @@
       },
       // property apply
       _applyContentCssClass: function _applyContentCssClass(value, old) {
-        if (this.__P_413_2) {
-          this.__P_413_2.setDefaultCssClass(value);
+        if (this.__P_414_2) {
+          this.__P_414_2.setDefaultCssClass(value);
         }
       },
       /**
        * Helper method to show the back button.
        */
       _showBackButton: function _showBackButton() {
-        if (this.__P_413_0) {
+        if (this.__P_414_0) {
           if (this.getShowBackButton()) {
-            this.__P_413_0.show();
+            this.__P_414_0.show();
           } else {
-            this.__P_413_0.exclude();
+            this.__P_414_0.exclude();
           }
         }
       },
@@ -386,26 +386,26 @@
        * Helper method to show the button.
        */
       _showButton: function _showButton() {
-        if (this.__P_413_1) {
+        if (this.__P_414_1) {
           if (this.getShowButton()) {
-            this.__P_413_1.show();
+            this.__P_414_1.show();
           } else {
-            this.__P_413_1.exclude();
+            this.__P_414_1.exclude();
           }
         }
       },
       // overridden
       _initialize: function _initialize() {
         qx.ui.mobile.page.NavigationPage.superclass.prototype._initialize.call(this);
-        this.__P_413_3 = this._createScrollContainer();
-        this.__P_413_2 = this._createContent();
-        if (this.__P_413_2) {
-          this.__P_413_3.add(this.__P_413_2, {
+        this.__P_414_3 = this._createScrollContainer();
+        this.__P_414_2 = this._createContent();
+        if (this.__P_414_2) {
+          this.__P_414_3.add(this.__P_414_2, {
             flex: 1
           });
         }
-        if (this.__P_413_3) {
-          this.add(this.__P_413_3, {
+        if (this.__P_414_3) {
+          this.add(this.__P_414_3, {
             flex: 1
           });
         }
@@ -449,13 +449,13 @@
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_413_5", "__P_413_6", "__P_413_0", "__P_413_1", "__P_413_4");
-      this.__P_413_5 = this.__P_413_6 = this.__P_413_0 = this.__P_413_1 = null;
-      this.__P_413_4 = this.__P_413_2 = this.__P_413_3 = null;
+      this._disposeObjects("__P_414_5", "__P_414_6", "__P_414_0", "__P_414_1", "__P_414_4");
+      this.__P_414_5 = this.__P_414_6 = this.__P_414_0 = this.__P_414_1 = null;
+      this.__P_414_4 = this.__P_414_2 = this.__P_414_3 = null;
       this._isTablet = null;
     }
   });
   qx.ui.mobile.page.NavigationPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavigationPage.js.map?dt=1673093872953
+//# sourceMappingURL=NavigationPage.js.map?dt=1676809327104

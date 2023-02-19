@@ -90,14 +90,14 @@
       // overridden
       setColor: function setColor(index, color) {
         qx.ui.virtual.layer.Row.superclass.prototype.setColor.call(this, index, color);
-        if (this.__P_483_0(index)) {
+        if (this.__P_484_0(index)) {
           this.updateLayerData();
         }
       },
       // overridden
       setBackground: function setBackground(index, decorator) {
         qx.ui.virtual.layer.Row.superclass.prototype.setBackground.call(this, index, decorator);
-        if (this.__P_483_0(index)) {
+        if (this.__P_484_0(index)) {
           this.updateLayerData();
         }
       },
@@ -108,7 +108,7 @@
        * @param index {Integer} The row's index
        * @return {Boolean} Whether the row is rendered
        */
-      __P_483_0: function __P_483_0(index) {
+      __P_484_0: function __P_484_0(index) {
         var firstRow = this.getFirstRow();
         var lastRow = firstRow + this.getRowSizes().length - 1;
         return index >= firstRow && index <= lastRow;
@@ -118,4 +118,4 @@
   qx.ui.virtual.layer.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1673093877619
+//# sourceMappingURL=Row.js.map?dt=1676809331475

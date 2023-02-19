@@ -85,8 +85,8 @@
       qx.ui.basic.Atom.constructor.call(this, label, icon);
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
-      this.__P_348_0 = new qx.event.AcceleratingTimer();
-      this.__P_348_0.addListener("interval", this._onInterval, this);
+      this.__P_349_0 = new qx.event.AcceleratingTimer();
+      this.__P_349_0.addListener("interval", this._onInterval, this);
     },
     properties: {
       // overridden
@@ -123,7 +123,7 @@
       }
     },
     members: {
-      __P_348_0: null,
+      __P_349_0: null,
       /**
        * Start timer on pointer over
        *
@@ -133,7 +133,7 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-        this.__P_348_0.set({
+        this.__P_349_0.set({
           interval: this.getInterval(),
           firstInterval: this.getFirstInterval(),
           minimum: this.getMinTimer(),
@@ -147,7 +147,7 @@
        * @param e {qx.event.type.Pointer} The pointer event
        */
       _onPointerOut: function _onPointerOut(e) {
-        this.__P_348_0.stop();
+        this.__P_349_0.stop();
         this.removeState("hovered");
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
@@ -160,15 +160,15 @@
         if (this.isEnabled()) {
           this.execute();
         } else {
-          this.__P_348_0.stop();
+          this.__P_349_0.stop();
         }
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_348_0");
+      this._disposeObjects("__P_349_0");
     }
   });
   qx.ui.form.HoverButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HoverButton.js.map?dt=1673093868433
+//# sourceMappingURL=HoverButton.js.map?dt=1676809322827

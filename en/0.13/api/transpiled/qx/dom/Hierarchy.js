@@ -127,7 +127,7 @@
        * "nextSibling" is not good enough as it might return a text or comment element
        *
        * @param element {Element} Starting element node
-       * @return {Element | null} Next element node
+       * @return {Element|null} Next element node
        */
       getNextElementSibling: function getNextElementSibling(element) {
         while (element && (element = element.nextSibling) && !qx.dom.Node.isElement(element)) {
@@ -141,7 +141,7 @@
        * "previousSibling" is not good enough as it might return a text or comment element
        *
        * @param element {Element} Starting element node
-       * @return {Element | null} Previous element node
+       * @return {Element|null} Previous element node
        */
       getPreviousElementSibling: function getPreviousElementSibling(element) {
         while (element && (element = element.previousSibling) && !qx.dom.Node.isElement(element)) {
@@ -413,4 +413,4 @@
   qx.dom.Hierarchy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Hierarchy.js.map?dt=1673093857244
+//# sourceMappingURL=Hierarchy.js.map?dt=1676809311958

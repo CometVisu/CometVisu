@@ -57,7 +57,7 @@
      */
     construct: function construct(size) {
       qx.core.Object.constructor.call(this);
-      this.__P_506_0 = {};
+      this.__P_507_0 = {};
       if (size != null) {
         this.setSize(size);
       }
@@ -93,7 +93,7 @@
 
     members: {
       /** @type {Map} Stores arrays of instances for all managed classes */
-      __P_506_0: null,
+      __P_507_0: null,
       /*
       ---------------------------------------------------------------------------
         IMPL
@@ -117,7 +117,7 @@
           throw new Error("Class needs to be defined!");
         }
         var obj = null;
-        var pool = this.__P_506_0[clazz.classname];
+        var pool = this.__P_507_0[clazz.classname];
         if (pool) {
           obj = pool.pop();
         }
@@ -141,16 +141,16 @@
        */
       poolObject: function poolObject(obj) {
         // Dispose check
-        if (!this.__P_506_0) {
+        if (!this.__P_507_0) {
           return;
         }
         var classname = obj.classname;
-        var pool = this.__P_506_0[classname];
+        var pool = this.__P_507_0[classname];
         if (obj.$$pooled) {
           throw new Error("Object is already pooled: " + obj);
         }
         if (!pool) {
-          this.__P_506_0[classname] = pool = [];
+          this.__P_507_0[classname] = pool = [];
         }
 
         // Check to see whether the pool for this type is already full
@@ -174,7 +174,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      var pool = this.__P_506_0;
+      var pool = this.__P_507_0;
       var classname, list, i, l;
       for (classname in pool) {
         list = pool[classname];
@@ -182,10 +182,10 @@
           list[i].dispose();
         }
       }
-      delete this.__P_506_0;
+      delete this.__P_507_0;
     }
   });
   qx.util.ObjectPool.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectPool.js.map?dt=1673093879487
+//# sourceMappingURL=ObjectPool.js.map?dt=1676809333122

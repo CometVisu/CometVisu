@@ -3593,6 +3593,7 @@
     "cv.ui.structure.tile.elements.Address",
     "cv.ui.structure.tile.elements.Backend",
     "cv.ui.structure.tile.elements.Loader",
-    "cv.ui.structure.tile.elements.Mapping"
+    "cv.ui.structure.tile.elements.Mapping",
+    "cv.ui.structure.tile.elements.StateNotification"
   ]
 }

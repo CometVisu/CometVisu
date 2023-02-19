@@ -30,11 +30,11 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_299_0 = [];
+      this.__P_300_0 = [];
     },
     members: {
-      __P_299_0: null,
-      __P_299_1: null,
+      __P_300_0: null,
+      __P_300_1: null,
       /**
        * Add command group.
        *
@@ -43,10 +43,10 @@
        * @return {Boolean} <code>false</code> if group was already added before
        */
       add: function add(group) {
-        if (this.__P_299_0.includes(group)) {
+        if (this.__P_300_0.includes(group)) {
           return false;
         }
-        this.__P_299_0.push(group);
+        this.__P_300_0.push(group);
 
         // deactivate added group to prevent collusions
         group.setActive(false);
@@ -69,19 +69,19 @@
        *
        * @param group {qx.ui.command.Group} Command group
        *
-       * @return {qx.ui.command.Group | null} Command group or null if group was not added before
+       * @return {qx.ui.command.Group|null} Command group or null if group was not added before
        */
       remove: function remove(group) {
-        var index = this.__P_299_0.indexOf(group);
+        var index = this.__P_300_0.indexOf(group);
         if (index === -1) {}
 
         // reset active group
         if (this.getActive() === group) {
-          this.__P_299_1 = null;
+          this.__P_300_1 = null;
         }
 
         // remove group from internal array
-        this.__P_299_0.splice(index, 1);
+        this.__P_300_0.splice(index, 1);
         return group;
       },
       /**
@@ -97,11 +97,11 @@
         }
 
         // iterate through all groups and deactivate all expect the given one
-        for (var i = 0; i < this.__P_299_0.length; i++) {
-          var item = this.__P_299_0[i];
+        for (var i = 0; i < this.__P_300_0.length; i++) {
+          var item = this.__P_300_0[i];
           if (item == group) {
             item.setActive(true);
-            this.__P_299_1 = item;
+            this.__P_300_1 = item;
             continue;
           }
           item.setActive(false);
@@ -111,25 +111,25 @@
       /**
        * Returns active command group.
        *
-       * @return {qx.ui.command.Group | null} Active command group
+       * @return {qx.ui.command.Group|null} Active command group
        */
       getActive: function getActive() {
-        return this.__P_299_1;
+        return this.__P_300_1;
       },
       /**
        * Blocks the active command group.
        */
       block: function block() {
-        if (this.__P_299_1) {
-          this.__P_299_1.setActive(false);
+        if (this.__P_300_1) {
+          this.__P_300_1.setActive(false);
         }
       },
       /**
        * Unblocks the active command group.
        */
       unblock: function unblock() {
-        if (this.__P_299_1) {
-          this.__P_299_1.setActive(true);
+        if (this.__P_300_1) {
+          this.__P_300_1.setActive(true);
         }
       },
       /**
@@ -137,21 +137,21 @@
        *
        * @param group {qx.ui.command.Group} Command group
        *
-       * @return {qx.ui.command.Group | null} Command group or null
+       * @return {qx.ui.command.Group|null} Command group or null
        */
       _getGroup: function _getGroup(group) {
-        var index = this.__P_299_0.indexOf(group);
+        var index = this.__P_300_0.indexOf(group);
         if (index === -1) {
           return null;
         }
-        return this.__P_299_0[index];
+        return this.__P_300_0[index];
       }
     },
     destruct: function destruct() {
-      this.__P_299_0 = this.__P_299_1 = null;
+      this.__P_300_0 = this.__P_300_1 = null;
     }
   });
   qx.ui.command.GroupManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupManager.js.map?dt=1673093865509
+//# sourceMappingURL=GroupManager.js.map?dt=1676809320008

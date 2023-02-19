@@ -13,7 +13,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -119,9 +119,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (model) {
           var rootList = document.createElement('ul');
           this._element.appendChild(rootList);
-
-          // add some general listeners to close
-          qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
           if (model === 'pages') {
             // add hamburger menu
             var ham = document.createElement('a');
@@ -181,7 +178,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               var rootList = this._element.querySelector(':scope > ul');
               if (rootList) {
                 rootList.replaceChildren();
-                this.__P_77_0(rootList, parentElement, currentPage, 0);
+                this.__P_78_0(rootList, parentElement, currentPage, 0);
               }
               break;
             }
@@ -230,7 +227,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var toggleClass = 'open';
         if (this.getModel() === 'pages') {
           toggleClass = 'responsive';
-          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll('details')),
+          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll('.details')),
             _step2;
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -245,6 +242,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
         this._element.classList.toggle(toggleClass);
         event.stopPropagation();
+        if (this._element.classList.contains(toggleClass)) {
+          // add some general listeners to close
+          qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+          qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        }
       },
       /**
        * @param ev {qx.event.type.Event}
@@ -254,9 +256,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var target = ev.getTarget();
         if (target.classList.contains('menu') || target.parentElement && target.parentElement.classList.contains('menu') || target.nodeName.toLowerCase() === 'cv-menu' || target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu') {
           // clicked in hamburger menu, do nothing
-        } else if (target.tagName.toLowerCase() !== 'summary' && target.tagName.toLowerCase() !== 'p') {
+        } else if (target.tagName.toLowerCase() !== '.summary' && target.tagName.toLowerCase() !== 'p') {
           // defer closing because it would prevent the link clicks and page selection
-          qx.event.Timer.once(this._closeAll, this, 100);
+          qx.event.Timer.once(this._closeAll, this, 500);
         } else {
           // close others
           this._closeAll(ev.getTarget().parentElement);
@@ -290,7 +292,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } else if (this._element.classList.contains('responsive')) {
           this._element.classList.remove('responsive');
         } else {
-          var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('details[open]')),
+          var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('.details[open]')),
             _step3;
           try {
             for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
@@ -305,8 +307,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             _iterator3.f();
           }
         }
+        if (this._element.querySelectorAll('.details[open]').length === 0) {
+          qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+          qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        }
       },
-      __P_77_0: function __P_77_0(parentList, parentElement, currentPage, currentLevel) {
+      _openDetail: function _openDetail(item) {
+        var first = this._element.querySelectorAll('.details[open]').length === 0;
+        item.setAttribute('open', '');
+        if (first) {
+          qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+          qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        }
+      },
+      _closeDetail: function _closeDetail(item) {
+        item.removeAttribute('open');
+        if (this._element.querySelectorAll('.details[open]').length === 0) {
+          // remove listeners
+          qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+          qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        }
+      },
+      __P_78_0: function __P_78_0(parentList, parentElement, currentPage, currentLevel) {
         var _this3 = this;
         if (!parentElement) {
           return;
@@ -315,12 +337,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var _iterator4 = _createForOfIteratorHelper(pages.values()),
           _step4;
         try {
-          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var _loop2 = function _loop2() {
             var page = _step4.value;
             var pageId = page.getAttribute('id');
             if (!pageId) {
-              this.error('page has no id, skipping');
-              continue;
+              _this3.error('page has no id, skipping');
+              return "continue";
             }
             var pageName = page.getAttribute('name') || '';
             var pageIcon = page.getAttribute('icon') || '';
@@ -333,7 +355,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               i.title = pageName;
               a.appendChild(i);
             }
-            if (this.isShowLabels()) {
+            if (_this3.isShowLabels() || currentLevel > 0) {
               var text = document.createTextNode(pageName);
               a.appendChild(text);
             }
@@ -341,52 +363,54 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               li.classList.add('active');
             }
             parentList.appendChild(li);
-            var depth = this.getDepth();
+            var depth = _this3.getDepth();
             if ((depth < 0 || depth > currentLevel) && page.querySelectorAll(':scope > cv-page:not([menu="false"])').length > 0) {
-              (function () {
-                var details = document.createElement('div');
-                details.classList.add('details');
-                var summary = document.createElement('div');
-                summary.classList.add('summary');
-                summary.addEventListener('click', function (ev) {
-                  if (details.hasAttribute('open')) {
-                    details.removeAttribute('open');
-                  } else {
-                    details.setAttribute('open', '');
-                  }
-                });
-                a.addEventListener('click', function (ev) {
-                  // only stop propagation if we are not close to the right border
-                  if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
-                    ev.stopPropagation();
-                  }
-                });
-                var pageIcon = page.getAttribute('icon') || '';
-                if (page.querySelector(':scope > *:not(cv-page)')) {
-                  // only add this as link, when this page has real content
-                  summary.appendChild(a);
+              var details = document.createElement('div');
+              details.classList.add('details');
+              var summary = document.createElement('div');
+              summary.classList.add('summary');
+              summary.addEventListener('click', function (ev) {
+                if (details.hasAttribute('open')) {
+                  _this3._closeDetail(details);
                 } else {
-                  var p = document.createElement('p');
-                  if (pageIcon) {
-                    var _i = document.createElement('i');
-                    _i.classList.add(pageIcon);
-                    _i.title = pageName;
-                    p.appendChild(_i);
-                  }
-                  if (_this3.isShowLabels()) {
-                    p.appendChild(document.createTextNode(pageName));
-                  }
-                  summary.appendChild(p);
+                  _this3._openDetail(details);
                 }
-                details.appendChild(summary);
-                var subList = document.createElement('ul');
-                details.appendChild(subList);
-                _this3.__P_77_0(subList, page, currentPage, currentLevel++);
-                li.appendChild(details);
-              })();
+              });
+              a.addEventListener('click', function (ev) {
+                // only stop propagation if we are not close to the right border
+                if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
+                  ev.stopPropagation();
+                }
+              });
+              var _pageIcon = page.getAttribute('icon') || '';
+              if (page.querySelector(':scope > *:not(cv-page)')) {
+                // only add this as link, when this page has real content
+                summary.appendChild(a);
+              } else {
+                var p = document.createElement('p');
+                if (_pageIcon) {
+                  var _i = document.createElement('i');
+                  _i.classList.add(_pageIcon);
+                  _i.title = pageName;
+                  p.appendChild(_i);
+                }
+                if (_this3.isShowLabels()) {
+                  p.appendChild(document.createTextNode(pageName));
+                }
+                summary.appendChild(p);
+              }
+              details.appendChild(summary);
+              var subList = document.createElement('ul');
+              details.appendChild(subList);
+              _this3.__P_78_0(subList, page, currentPage, currentLevel + 1);
+              li.appendChild(details);
             } else {
               li.appendChild(a);
             }
+          };
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var _ret = _loop2();
+            if (_ret === "continue") continue;
           }
         } catch (err) {
           _iterator4.e(err);
@@ -467,4 +491,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1673093845320
+//# sourceMappingURL=Menu.js.map?dt=1676809300947

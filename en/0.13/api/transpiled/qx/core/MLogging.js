@@ -36,7 +36,7 @@
   qx.Mixin.define("qx.core.MLogging", {
     members: {
       /** @type {Class} Pointer to the regular logger class */
-      __P_163_0: qx.log.Logger,
+      __P_164_0: qx.log.Logger,
       /**
        * Logs a debug message.
        *
@@ -45,7 +45,7 @@
        * logged.
        */
       debug: function debug(varargs) {
-        this.__P_163_1("debug", arguments);
+        this.__P_164_1("debug", arguments);
       },
       /**
        * Logs an info message.
@@ -55,7 +55,7 @@
        * logged.
        */
       info: function info(varargs) {
-        this.__P_163_1("info", arguments);
+        this.__P_164_1("info", arguments);
       },
       /**
        * Logs a warning message.
@@ -65,7 +65,7 @@
        * logged.
        */
       warn: function warn(varargs) {
-        this.__P_163_1("warn", arguments);
+        this.__P_164_1("warn", arguments);
       },
       /**
        * Logs an error message.
@@ -75,7 +75,7 @@
        * logged.
        */
       error: function error(varargs) {
-        this.__P_163_1("error", arguments);
+        this.__P_164_1("error", arguments);
       },
       /**
        * Logs an error message with the current stack trace
@@ -85,7 +85,7 @@
        * logged.
        */
       trace: function trace(varargs) {
-        this.__P_163_1("trace", arguments);
+        this.__P_164_1("trace", arguments);
       },
       /**
        * Helper that calls the appropriate logger function with the current object
@@ -94,14 +94,14 @@
        * @param level {String} The log level of the message
        * @param varargs {arguments} Arguments list to be logged
        */
-      __P_163_1: function __P_163_1(level, varargs) {
+      __P_164_1: function __P_164_1(level, varargs) {
         var argumentsArray = qx.lang.Array.fromArguments(varargs);
         argumentsArray.unshift(this);
-        this.__P_163_0[level].apply(this.__P_163_0, argumentsArray);
+        this.__P_164_0[level].apply(this.__P_164_0, argumentsArray);
       }
     }
   });
   qx.core.MLogging.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLogging.js.map?dt=1673093851926
+//# sourceMappingURL=MLogging.js.map?dt=1676809307449

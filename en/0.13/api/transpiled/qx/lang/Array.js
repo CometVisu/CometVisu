@@ -386,7 +386,7 @@
        * numeric values only.
        *
        * @param arr {Number[]} Array to process
-       * @return {Number | null} The highest of all values or undefined if array is empty.
+       * @return {Number|null} The highest of all values or undefined if array is empty.
        */
       max: function max(arr) {
         var i,
@@ -404,7 +404,7 @@
        * numeric values only.
        *
        * @param arr {Number[]} Array to process
-       * @return {Number | null} The lowest of all values or undefined if array is empty.
+       * @return {Number|null} The lowest of all values or undefined if array is empty.
        */
       min: function min(arr) {
         var i,
@@ -605,4 +605,4 @@
   qx.lang.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1673093861791
+//# sourceMappingURL=Array.js.map?dt=1676809316215

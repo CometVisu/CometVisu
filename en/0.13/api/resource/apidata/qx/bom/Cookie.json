@@ -16,7 +16,7 @@
       "end": {
         "line": 152,
         "column": 3,
-        "index": 4298
+        "index": 4296
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1773
+          "index": 1771
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 2382
+          "index": 2380
         }
       },
       "jsdoc": {
@@ -62,8 +62,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{null | String} Returns the saved string value, if the cookie\n    contains a value for the key, <code>null</code> otherwise.",
-            "type": "null | String",
+            "body": "{null|String} Returns the saved string value, if the cookie\n    contains a value for the key, <code>null</code> otherwise.",
+            "type": "null|String",
             "description": " Returns the saved string value, if the cookie\n    contains a value for the key, <code>null</code> otherwise."
           }
         ]
@@ -76,12 +76,12 @@
         "start": {
           "line": 89,
           "column": 4,
-          "index": 2930
+          "index": 2928
         },
         "end": {
           "line": 121,
           "column": 5,
-          "index": 3656
+          "index": 3654
         }
       },
       "jsdoc": {
@@ -161,12 +161,12 @@
         "start": {
           "line": 130,
           "column": 4,
-          "index": 3882
+          "index": 3880
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 4290
+          "index": 4288
         }
       },
       "jsdoc": {

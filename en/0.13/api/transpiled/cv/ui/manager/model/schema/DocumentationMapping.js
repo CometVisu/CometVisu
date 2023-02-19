@@ -125,11 +125,14 @@
         'tile-component-spinner': '/develop/manual/config/structure-tile/components/spinner.html#tile-component-spinner',
         'tile-component-value': '/develop/manual/config/structure-tile/components/value.html#tile-component-value',
         'tile-components': '/develop/manual/config/structure-tile/index.html#tile-components',
+        'tile-dimmer': '/develop/manual/config/structure-tile/widgets/dimmer.html#tile-dimmer',
         'tile-element-address': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address',
         'tile-element-address-target': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address-target',
         'tile-element-backend': '/develop/manual/config/structure-tile/elements/backend.html#tile-element-backend',
         'tile-element-loader': '/develop/manual/config/structure-tile/elements/loader.html#tile-element-loader',
         'tile-element-mapping': '/develop/manual/config/structure-tile/elements/mapping.html#tile-element-mapping',
+        'tile-element-state-notification': '/develop/manual/config/structure-tile/elements/state-notification.html#tile-element-state-notification',
+        'tile-element-style': '/develop/manual/config/structure-tile/elements/style.html#tile-element-style',
         'tile-element-styling': '/develop/manual/config/structure-tile/elements/styling.html#tile-element-styling',
         'tile-info': '/develop/manual/config/structure-tile/widgets/info.html#tile-info',
         'tile-item-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-item-menu',
@@ -137,10 +140,10 @@
         'tile-nav-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-nav-menu',
         'tile-rtc': '/develop/manual/config/structure-tile/widgets/rtc.html#tile-rtc',
         'tile-shutter': '/develop/manual/config/structure-tile/widgets/shutter.html#tile-shutter',
-        'tile-simmer': '/develop/manual/config/structure-tile/widgets/dimmer.html#tile-simmer',
         'tile-status': '/develop/manual/config/structure-tile/widgets/status.html#tile-status',
+        'tile-status-chart': '/develop/manual/config/structure-tile/widgets/status-chart.html#tile-status-chart',
         'tile-switch': '/develop/manual/config/structure-tile/widgets/switch.html#tile-switch',
-        'tile-tile-pair': '/develop/manual/config/structure-tile/widgets/tile-pair.html#tile-tile-pair',
+        'tile-widget-pair': '/develop/manual/config/structure-tile/widgets/widget-pair.html#tile-widget-pair',
         'tile-widgets': '/develop/manual/config/structure-tile/index.html#tile-widgets',
         'timberwolf': '/develop/manual/install/timberwolf.html#timberwolf',
         'timberwolf-portainer': '/develop/manual/install/timberwolf.html#timberwolf-portainer',
@@ -172,4 +175,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1673093841893
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1676809297468

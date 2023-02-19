@@ -5,7 +5,9 @@
   "superClass": "cv.ui.structure.tile.components.AbstractComponent",
   "interfaces": [],
   "mixins": [
-    "cv.ui.structure.tile.MVisibility"
+    "cv.ui.structure.tile.MVisibility",
+    "cv.ui.structure.tile.MRefresh",
+    "cv.ui.structure.tile.MResize"
   ],
   "functionName": null,
   "clazz": {
@@ -16,9 +18,9 @@
         "index": 918
       },
       "end": {
-        "line": 767,
+        "line": 1405,
         "column": 3,
-        "index": 24352
+        "index": 46874
       }
     },
     "jsdoc": {
@@ -47,14 +49,30 @@
     "ChartCounter": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 40,
           "column": 4,
-          "index": 1223
+          "index": 1302
         },
         "end": {
-          "line": 36,
+          "line": 40,
           "column": 19,
-          "index": 1238
+          "index": 1317
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "DEFAULT_ASPECT_RATIO": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1323
+        },
+        "end": {
+          "line": 41,
+          "column": 33,
+          "index": 1352
         }
       },
       "type": "variable",
@@ -63,14 +81,14 @@
     "JS_LOADED": {
       "location": {
         "start": {
-          "line": 38,
+          "line": 43,
           "column": 4,
-          "index": 1245
+          "index": 1359
         },
         "end": {
-          "line": 92,
+          "line": 83,
           "column": 6,
-          "index": 2867
+          "index": 3048
         }
       },
       "type": "variable",
@@ -79,14 +97,14 @@
     "CONFIG": {
       "location": {
         "start": {
-          "line": 94,
+          "line": 85,
           "column": 4,
-          "index": 2874
+          "index": 3055
         },
         "end": {
-          "line": 94,
+          "line": 85,
           "column": 16,
-          "index": 2886
+          "index": 3067
         }
       },
       "type": "variable",
@@ -94,31 +112,51 @@
     }
   },
   "properties": {
-    "type": {
+    "currentSeries": {
       "location": {
         "start": {
-          "line": 103,
+          "line": 94,
           "column": 4,
-          "index": 3038
+          "index": 3219
         },
         "end": {
-          "line": 106,
+          "line": 98,
           "column": 5,
-          "index": 3146
+          "index": 3343
         }
       },
-      "name": "type",
+      "name": "currentSeries",
       "propertyType": "new",
-      "init": "line",
+      "apply": "_refreshData",
+      "init": "day",
       "possibleValues": [
-        "axis-mixed",
-        "bar",
-        "line",
-        "scatter",
-        "pie",
-        "percentage"
+        "hour",
+        "day",
+        "week",
+        "month",
+        "year"
       ],
-      "defaultValue": "line"
+      "defaultValue": "day"
+    },
+    "currentPeriod": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 3350
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3438
+        }
+      },
+      "name": "currentPeriod",
+      "propertyType": "new",
+      "apply": "_refreshData",
+      "init": 0,
+      "check": "Number",
+      "defaultValue": 0
     },
     "visible": {
       "type": "property",
@@ -126,21 +164,54 @@
       "abstract": false,
       "mixin": true,
       "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.MVisibility"
+      "overriddenFrom": "cv.ui.structure.tile.MVisibility",
+      "event": "changeVisible"
+    },
+    "refresh": {
+      "type": "property",
+      "name": "refresh",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh"
+    },
+    "resizeTarget": {
+      "type": "property",
+      "name": "resizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
     }
   },
   "members": {
+    "_id": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3584
+        },
+        "end": {
+          "line": 113,
+          "column": 13,
+          "index": 3593
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
     "_downloadedImage": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 114,
           "column": 4,
-          "index": 3292
+          "index": 3599
         },
         "end": {
-          "line": 115,
+          "line": 114,
           "column": 26,
-          "index": 3314
+          "index": 3621
         }
       },
       "type": "variable",
@@ -149,14 +220,14 @@
     "_url": {
       "location": {
         "start": {
-          "line": 116,
+          "line": 115,
           "column": 4,
-          "index": 3320
+          "index": 3627
         },
         "end": {
-          "line": 116,
+          "line": 115,
           "column": 14,
-          "index": 3330
+          "index": 3637
         }
       },
       "type": "variable",
@@ -165,14 +236,14 @@
     "_headers": {
       "location": {
         "start": {
-          "line": 117,
+          "line": 116,
           "column": 4,
-          "index": 3336
+          "index": 3643
         },
         "end": {
-          "line": 117,
+          "line": 116,
           "column": 18,
-          "index": 3350
+          "index": 3657
         }
       },
       "type": "variable",
@@ -181,30 +252,14 @@
     "_request": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 117,
           "column": 4,
-          "index": 3356
+          "index": 3663
         },
         "end": {
-          "line": 118,
+          "line": 117,
           "column": 18,
-          "index": 3370
-        }
-      },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_chart": {
-      "location": {
-        "start": {
-          "line": 119,
-          "column": 4,
-          "index": 3376
-        },
-        "end": {
-          "line": 119,
-          "column": 16,
-          "index": 3388
+          "index": 3677
         }
       },
       "type": "variable",
@@ -213,14 +268,14 @@
     "_width": {
       "location": {
         "start": {
-          "line": 120,
+          "line": 118,
           "column": 4,
-          "index": 3394
+          "index": 3683
         },
         "end": {
-          "line": 120,
+          "line": 118,
           "column": 16,
-          "index": 3406
+          "index": 3695
         }
       },
       "type": "variable",
@@ -229,14 +284,14 @@
     "_height": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 119,
           "column": 4,
-          "index": 3412
+          "index": 3701
         },
         "end": {
-          "line": 121,
+          "line": 119,
           "column": 17,
-          "index": 3425
+          "index": 3714
         }
       },
       "type": "variable",
@@ -245,14 +300,14 @@
     "_loaded": {
       "location": {
         "start": {
-          "line": 122,
+          "line": 120,
           "column": 4,
-          "index": 3431
+          "index": 3720
         },
         "end": {
-          "line": 122,
+          "line": 120,
           "column": 17,
-          "index": 3444
+          "index": 3733
         }
       },
       "type": "variable",
@@ -261,30 +316,295 @@
     "_dataSetConfigs": {
       "location": {
         "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3739
+        },
+        "end": {
+          "line": 121,
+          "column": 25,
+          "index": 3760
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_initializing": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3766
+        },
+        "end": {
+          "line": 122,
+          "column": 23,
+          "index": 3785
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_navigationEnabled": {
+      "location": {
+        "start": {
           "line": 123,
           "column": 4,
-          "index": 3450
+          "index": 3791
         },
         "end": {
           "line": 123,
-          "column": 25,
-          "index": 3471
+          "column": 28,
+          "index": 3815
         }
       },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__toolTipTimer": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3821
+        },
+        "end": {
+          "line": 124,
+          "column": 24,
+          "index": 3841
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__showTooltip": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3847
+        },
+        "end": {
+          "line": 125,
+          "column": 24,
+          "index": 3867
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__debouncedOnResize": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3873
+        },
+        "end": {
+          "line": 126,
+          "column": 29,
+          "index": 3898
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__resizeTimeout": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3904
+        },
+        "end": {
+          "line": 127,
+          "column": 25,
+          "index": 3925
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_dot": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3974
+        },
+        "end": {
+          "line": 132,
+          "column": 14,
+          "index": 3984
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{d3.Selection}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_svg": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4034
+        },
+        "end": {
+          "line": 136,
+          "column": 14,
+          "index": 4044
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{d3.Selection}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_tooltip": {
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4093
+        },
+        "end": {
+          "line": 140,
+          "column": 18,
+          "index": 4107
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{HTMLElement}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_titleString": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4151
+        },
+        "end": {
+          "line": 144,
+          "column": 22,
+          "index": 4169
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "__helpers": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4176
+        },
+        "end": {
+          "line": 146,
+          "column": 19,
+          "index": 4191
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__config": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4197
+        },
+        "end": {
+          "line": 147,
+          "column": 18,
+          "index": 4211
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "_chartConf": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4245
+        },
+        "end": {
+          "line": 149,
+          "column": 20,
+          "index": 4261
+        }
+      },
+      "jsdoc": {},
       "type": "variable",
       "access": "protected"
     },
     "_init": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 151,
           "column": 4,
-          "index": 3478
+          "index": 4268
         },
         "end": {
-          "line": 184,
+          "line": 451,
           "column": 5,
-          "index": 5916
+          "index": 15484
         }
       },
       "type": "function",
@@ -295,33 +615,141 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
-    "_applyVisible": {
+    "onStateUpdate": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 453,
           "column": 4,
-          "index": 5923
+          "index": 15491
         },
         "end": {
-          "line": 190,
+          "line": 468,
           "column": 5,
-          "index": 6037
+          "index": 16048
+        }
+      },
+      "type": "function",
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ],
+      "jsdoc": {
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
+            "paramName": "ev",
+            "description": " stateUpdate event fired from an cv-address component",
+            "type": "CustomEvent"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true of the update has been handled",
+            "type": "Boolean",
+            "description": " true of the update has been handled"
+          }
+        ]
+      }
+    },
+    "_onSeriesPrev": {
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4,
+          "index": 16055
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 16134
         }
       },
       "type": "function",
       "access": "protected"
     },
+    "_onSeriesChange": {
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 4,
+          "index": 16141
+        },
+        "end": {
+          "line": 482,
+          "column": 5,
+          "index": 16429
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onSeriesNext": {
+      "location": {
+        "start": {
+          "line": 484,
+          "column": 4,
+          "index": 16436
+        },
+        "end": {
+          "line": 489,
+          "column": 5,
+          "index": 16599
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 4,
+          "index": 16606
+        },
+        "end": {
+          "line": 494,
+          "column": 5,
+          "index": 16675
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "_refreshData": {
+      "location": {
+        "start": {
+          "line": 497,
+          "column": 4,
+          "index": 16734
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 17145
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "currentSeries",
+        "currentPeriod"
+      ]
+    },
     "_loadData": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 514,
           "column": 4,
-          "index": 6044
+          "index": 17152
         },
         "end": {
-          "line": 297,
+          "line": 637,
           "column": 5,
-          "index": 9219
+          "index": 20627
         }
       },
       "type": "function",
@@ -330,14 +758,46 @@
     "_onSuccess": {
       "location": {
         "start": {
-          "line": 299,
+          "line": 639,
           "column": 4,
-          "index": 9226
+          "index": 20634
         },
         "end": {
-          "line": 412,
+          "line": 682,
           "column": 5,
-          "index": 11925
+          "index": 22102
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onRendered": {
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4,
+          "index": 22109
+        },
+        "end": {
+          "line": 711,
+          "column": 5,
+          "index": 23028
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_getSize": {
+      "location": {
+        "start": {
+          "line": 713,
+          "column": 4,
+          "index": 23035
+        },
+        "end": {
+          "line": 738,
+          "column": 5,
+          "index": 24221
         }
       },
       "type": "function",
@@ -346,14 +806,14 @@
     "multiTimeFormat": {
       "location": {
         "start": {
-          "line": 414,
+          "line": 740,
           "column": 4,
-          "index": 11932
+          "index": 24228
         },
         "end": {
-          "line": 432,
+          "line": 758,
           "column": 5,
-          "index": 12398
+          "index": 24694
         }
       },
       "type": "function",
@@ -362,30 +822,88 @@
     "_onStatusError": {
       "location": {
         "start": {
-          "line": 434,
+          "line": 760,
           "column": 4,
-          "index": 12405
+          "index": 24701
         },
         "end": {
-          "line": 442,
+          "line": 768,
           "column": 5,
-          "index": 12769
+          "index": 25065
         }
       },
       "type": "function",
       "access": "protected"
     },
-    "_lineChart": {
+    "_getSvgElement": {
       "location": {
         "start": {
-          "line": 453,
+          "line": 779,
           "column": 4,
-          "index": 12981
+          "index": 25521
         },
         "end": {
-          "line": 745,
+          "line": 790,
           "column": 5,
-          "index": 23957
+          "index": 25914
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get svg element selection (create if not exists)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parent d3.selection of the parent this element should be a child of"
+          },
+          {
+            "name": "@param",
+            "body": "nodeName {String} Element name",
+            "paramName": "nodeName",
+            "description": " Element name",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "classes {Array<String>} array of css classes used to identify this element",
+            "paramName": "classes",
+            "description": " array of css classes used to identify this element",
+            "type": "Array<String>"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map<String, String>?} set these attributes if the element has to be created, when it already exists these are ignored",
+            "paramName": "attributes",
+            "description": " set these attributes if the element has to be created, when it already exists these are ignored",
+            "optional": true,
+            "type": "Map<String, String>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_renderChart": {
+      "location": {
+        "start": {
+          "line": 801,
+          "column": 4,
+          "index": 26131
+        },
+        "end": {
+          "line": 1177,
+          "column": 5,
+          "index": 39665
         }
       },
       "jsdoc": {
@@ -404,8 +922,8 @@
           },
           {
             "name": "@param",
-            "body": "c",
-            "paramName": "c",
+            "body": "single",
+            "paramName": "single",
             "type": ""
           }
         ],
@@ -418,6 +936,239 @@
       },
       "type": "function",
       "access": "protected"
+    },
+    "_onPointerEntered": {
+      "location": {
+        "start": {
+          "line": 1179,
+          "column": 4,
+          "index": 39672
+        },
+        "end": {
+          "line": 1186,
+          "column": 5,
+          "index": 39883
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_onPointerLeft": {
+      "location": {
+        "start": {
+          "line": 1188,
+          "column": 4,
+          "index": 39890
+        },
+        "end": {
+          "line": 1198,
+          "column": 5,
+          "index": 40136
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__activateTooltip": {
+      "location": {
+        "start": {
+          "line": 1200,
+          "column": 4,
+          "index": 40143
+        },
+        "end": {
+          "line": 1218,
+          "column": 5,
+          "index": 40712
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_onPointerMoved": {
+      "location": {
+        "start": {
+          "line": 1220,
+          "column": 4,
+          "index": 40719
+        },
+        "end": {
+          "line": 1265,
+          "column": 5,
+          "index": 42674
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_buttonFactory": {
+      "location": {
+        "start": {
+          "line": 1267,
+          "column": 4,
+          "index": 42681
+        },
+        "end": {
+          "line": 1276,
+          "column": 5,
+          "index": 42969
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "__updateTitle": {
+      "location": {
+        "start": {
+          "line": 1278,
+          "column": 4,
+          "index": 42976
+        },
+        "end": {
+          "line": 1286,
+          "column": 5,
+          "index": 43278
+        }
+      },
+      "type": "function",
+      "access": "private"
+    },
+    "_seriesToShort": {
+      "location": {
+        "start": {
+          "line": 1293,
+          "column": 4,
+          "index": 43408
+        },
+        "end": {
+          "line": 1311,
+          "column": 5,
+          "index": 43831
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts series to a shot string that is shown in a select box</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "series",
+            "paramName": "series",
+            "type": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "_shownDateRange": {
+      "location": {
+        "start": {
+          "line": 1317,
+          "column": 4,
+          "index": 43945
+        },
+        "end": {
+          "line": 1356,
+          "column": 5,
+          "index": 45539
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert the currently shown date range into a human-readable string</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
+    },
+    "getWeekNumber": {
+      "location": {
+        "start": {
+          "line": 1358,
+          "column": 3,
+          "index": 45545
+        },
+        "end": {
+          "line": 1366,
+          "column": 5,
+          "index": 45969
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "__opacifyColor": {
+      "location": {
+        "start": {
+          "line": 1375,
+          "column": 4,
+          "index": 46132
+        },
+        "end": {
+          "line": 1382,
+          "column": 5,
+          "index": 46449
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>add opacity to color</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color",
+            "paramName": "color",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "opacity {string} hex number 0 - 255",
+            "paramName": "opacity",
+            "description": " hex number 0 - 255",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string|*}",
+            "type": "string|*",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
     },
     "_observeVisibility": {
       "type": "function",
@@ -518,6 +1269,180 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
+          }
+        ]
+      }
+    },
+    "_applyRefresh": {
+      "type": "function",
+      "name": "_applyRefresh",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh"
+    },
+    "__onVisibilityChange": {
+      "type": "function",
+      "name": "__onVisibilityChange",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh"
+    },
+    "__doRefresh": {
+      "type": "function",
+      "name": "__doRefresh",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh"
+    },
+    "getRefresh": {
+      "type": "function",
+      "name": "getRefresh",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>refresh</code>.\n\nFor further details take a look at the property definition: {@link #refresh}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for refresh"
+          }
+        ]
+      }
+    },
+    "setRefresh": {
+      "type": "function",
+      "name": "setRefresh",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>refresh</code>.\n\nFor further details take a look at the property definition: {@link #refresh}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for refresh"
+          }
+        ]
+      }
+    },
+    "resetRefresh": {
+      "type": "function",
+      "name": "resetRefresh",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MRefresh",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>refresh</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #refresh}."
+          }
+        ]
+      }
+    },
+    "_applyResizeTarget": {
+      "type": "function",
+      "name": "_applyResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "protected",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
+    },
+    "getResizeTarget": {
+      "type": "function",
+      "name": "getResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Element",
+            "desc": "Returns the value for resizeTarget"
+          }
+        ]
+      }
+    },
+    "setResizeTarget": {
+      "type": "function",
+      "name": "setResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Element",
+            "paramName": "value",
+            "desc": "Value for resizeTarget"
+          }
+        ]
+      }
+    },
+    "resetResizeTarget": {
+      "type": "function",
+      "name": "resetResizeTarget",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>resizeTarget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
           }
         ]
       }
@@ -1055,9 +1980,197 @@
         ]
       }
     },
-    "getType": {
+    "getWidget": {
       "type": "function",
-      "name": "getType",
+      "name": "getWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "isWidget": {
+      "type": "function",
+      "name": "isWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "setWidget": {
+      "type": "function",
+      "name": "setWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for widget"
+          }
+        ]
+      }
+    },
+    "resetWidget": {
+      "type": "function",
+      "name": "resetWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ]
+      }
+    },
+    "getInPopup": {
+      "type": "function",
+      "name": "getInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "isInPopup": {
+      "type": "function",
+      "name": "isInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "setInPopup": {
+      "type": "function",
+      "name": "setInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for inPopup"
+          }
+        ]
+      }
+    },
+    "resetInPopup": {
+      "type": "function",
+      "name": "resetInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>inPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ]
+      }
+    },
+    "getCurrentSeries": {
+      "type": "function",
+      "name": "getCurrentSeries",
       "abstract": false,
       "mixin": false,
       "inherited": false,
@@ -1067,21 +2180,21 @@
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
+            "body": "Gets the (computed) value of the property <code>currentSeries</code>.\n\nFor further details take a look at the property definition: {@link #currentSeries}."
           }
         ],
         "@return": [
           {
             "name": "@return",
             "type": "any",
-            "desc": "Returns the value for type"
+            "desc": "Returns the value for currentSeries"
           }
         ]
       }
     },
-    "setType": {
+    "setCurrentSeries": {
       "type": "function",
-      "name": "setType",
+      "name": "setCurrentSeries",
       "abstract": false,
       "mixin": false,
       "inherited": false,
@@ -1091,7 +2204,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
+            "body": "Sets the user value of the property <code>currentSeries</code>.\n\nFor further details take a look at the property definition: {@link #currentSeries}."
           }
         ],
         "@param": [
@@ -1099,14 +2212,14 @@
             "name": "@param",
             "type": "any",
             "paramName": "value",
-            "desc": "Value for type"
+            "desc": "Value for currentSeries"
           }
         ]
       }
     },
-    "resetType": {
+    "resetCurrentSeries": {
       "type": "function",
-      "name": "resetType",
+      "name": "resetCurrentSeries",
       "abstract": false,
       "mixin": false,
       "inherited": false,
@@ -1116,7 +2229,73 @@
         "@description": [
           {
             "name": "@description",
-            "body": "Resets the user value of the property <code>type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #type}."
+            "body": "Resets the user value of the property <code>currentSeries</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentSeries}."
+          }
+        ]
+      }
+    },
+    "getCurrentPeriod": {
+      "type": "function",
+      "name": "getCurrentPeriod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>currentPeriod</code>.\n\nFor further details take a look at the property definition: {@link #currentPeriod}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Number",
+            "desc": "Returns the value for currentPeriod"
+          }
+        ]
+      }
+    },
+    "setCurrentPeriod": {
+      "type": "function",
+      "name": "setCurrentPeriod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>currentPeriod</code>.\n\nFor further details take a look at the property definition: {@link #currentPeriod}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Number",
+            "paramName": "value",
+            "desc": "Value for currentPeriod"
+          }
+        ]
+      }
+    },
+    "resetCurrentPeriod": {
+      "type": "function",
+      "name": "resetCurrentPeriod",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>currentPeriod</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentPeriod}."
           }
         ]
       }
@@ -1125,14 +2304,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 753,
+        "line": 1390,
         "column": 2,
-        "index": 24091
+        "index": 46583
       },
       "end": {
-        "line": 755,
+        "line": 1393,
         "column": 3,
-        "index": 24131
+        "index": 46653
       }
     },
     "jsdoc": {}
@@ -1140,15 +2319,25 @@
   "defer": {
     "location": {
       "start": {
-        "line": 757,
+        "line": 1395,
         "column": 2,
-        "index": 24136
+        "index": 46658
       },
       "end": {
-        "line": 766,
+        "line": 1404,
         "column": 3,
-        "index": 24348
+        "index": 46870
       }
+    }
+  },
+  "events": {
+    "resized": {
+      "type": "event",
+      "name": "resized",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.MResize"
     }
   },
   "descendants": []

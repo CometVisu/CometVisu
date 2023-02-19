@@ -13,7 +13,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -60,24 +60,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     members: {
-      __P_80_0: null,
-      __P_80_1: null,
-      __P_80_2: null,
+      __P_81_0: null,
+      __P_81_1: null,
+      __P_81_2: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Select.superclass.prototype._init.call(this);
         var element = this._element;
-        this.__P_80_0 = new Map();
-        var popup = this.__P_80_2 = document.createElement('div');
+        this.__P_81_0 = new Map();
+        var popup = this.__P_81_2 = document.createElement('div');
         popup.classList.add('popup');
         element.querySelectorAll(':scope > cv-option').forEach(function (option, i) {
           popup.appendChild(option);
           if (!option.hasAttribute('key')) {
             option.setAttribute('key', '' + i);
           }
-          _this.__P_80_0.set(option.getAttribute('key'), option);
+          _this.__P_81_0.set(option.getAttribute('key'), option);
         });
-        var value = this.__P_80_1 = document.createElement('span');
+        var value = this.__P_81_1 = document.createElement('span');
         value.classList.add('value');
         element.appendChild(value);
         element.appendChild(popup);
@@ -92,31 +92,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       onClicked: function onClicked(ev) {
-        var style = getComputedStyle(this.__P_80_2);
-        var _iterator = _createForOfIteratorHelper(ev.path),
-          _step;
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var target = _step.value;
-            if (target.tagName.toLowerCase() === 'cv-option') {
-              // select this option
-              this._sendSelection(target.getAttribute('key'), true);
-              break;
-            }
-            if (target === ev.currentTarget) {
-              break;
-            }
-          }
-          // open popup
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
+        var style = getComputedStyle(this.__P_81_2);
+        var target = ev.target;
+        // find out event target (either the cv-select of cv-option
+        while (target !== ev.currentTarget && target.tagName.toLowerCase() !== 'cv-option') {
+          target = target.parentElement;
         }
+        if (target.tagName.toLowerCase() === 'cv-option') {
+          // select this option
+          this._sendSelection(target.getAttribute('key'), true);
+        }
+        // open popup
         if (style.getPropertyValue('display') === 'none') {
-          this.__P_80_2.style.display = 'block';
+          this.__P_81_2.style.display = 'block';
         } else {
-          this.__P_80_2.style.display = 'none';
+          this.__P_81_2.style.display = 'none';
         }
       },
       _sendSelection: function _sendSelection(key, predictive) {
@@ -136,25 +126,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       _updateValue: function _updateValue(mappedValue, value) {
-        if (this.__P_80_0.has(mappedValue)) {
-          this.__P_80_1.innerHTML = '';
-          var current = this.__P_80_0.get(mappedValue);
+        if (this.__P_81_0.has(mappedValue)) {
+          this.__P_81_1.innerHTML = '';
+          var current = this.__P_81_0.get(mappedValue);
           if (current.children.length > 0) {
             // if we have non text children, we only use them (only icons no text)
-            var _iterator2 = _createForOfIteratorHelper(current.children),
-              _step2;
+            var _iterator = _createForOfIteratorHelper(current.children),
+              _step;
             try {
-              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                var child = _step2.value;
-                this.__P_80_1.appendChild(child.cloneNode());
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var child = _step.value;
+                this.__P_81_1.appendChild(child.cloneNode());
               }
             } catch (err) {
-              _iterator2.e(err);
+              _iterator.e(err);
             } finally {
-              _iterator2.f();
+              _iterator.f();
             }
           } else {
-            this.__P_80_1.innerHTML = current.innerHTML;
+            this.__P_81_1.innerHTML = current.innerHTML;
           }
         }
       }
@@ -176,4 +166,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Select.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Select.js.map?dt=1673093845592
+//# sourceMappingURL=Select.js.map?dt=1676809301228

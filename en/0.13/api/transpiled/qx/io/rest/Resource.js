@@ -161,13 +161,13 @@
      */
     construct: function construct(description) {
       qx.core.Object.constructor.call(this);
-      this.__P_261_0 = {};
-      this.__P_261_1 = {};
-      this.__P_261_2 = {};
+      this.__P_262_0 = {};
+      this.__P_262_1 = {};
+      this.__P_262_2 = {};
       this._resource = this._tailorResource(this._getResource());
       try {
         if (typeof description !== "undefined") {
-          this.__P_261_3(description);
+          this.__P_262_3(description);
         }
       } catch (e) {
         this.dispose();
@@ -233,9 +233,9 @@
     },
     members: {
       _resource: null,
-      __P_261_0: null,
-      __P_261_1: null,
-      __P_261_2: null,
+      __P_262_0: null,
+      __P_262_1: null,
+      __P_262_2: null,
       /**
        * Get resource.
        *
@@ -343,7 +343,7 @@
        */
       map: function map(action, method, url, check) {
         // add dynamic methods also on ourself to allow 'invoke()' delegation
-        this.__P_261_4(action, method, url, check);
+        this.__P_262_4(action, method, url, check);
         this._resource.map(action, method, url, check);
       },
       /**
@@ -359,8 +359,8 @@
        *   the URL parameter and the value a regular expression (to match string) or
        *   <code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).
        */
-      __P_261_4: function __P_261_4(action, method, url, check) {
-        this.__P_261_2[action] = [method, url, check];
+      __P_262_4: function __P_262_4(action, method, url, check) {
+        this.__P_262_2[action] = [method, url, check];
 
         // Undefine generic getter when action is named "get"
         if (action == "get") {
@@ -372,8 +372,8 @@
         if (typeof this[action] !== "undefined" && this[action] !== null && this[action].action !== true) {
           throw new Error("Method with name of action (" + action + ") already exists");
         }
-        this.__P_261_5(action + "Success");
-        this.__P_261_5(action + "Error");
+        this.__P_262_5(action + "Success");
+        this.__P_262_5(action + "Error");
         this[action] = qx.lang.Function.bind(function () {
           Array.prototype.unshift.call(arguments, action);
           return this.invoke.apply(this, arguments);
@@ -402,7 +402,7 @@
         var params = params == null ? {} : params;
 
         // Cache parameters
-        this.__P_261_2[action].params = params;
+        this.__P_262_2[action].params = params;
         return this._resource.invoke(action, params, data);
       },
       /**
@@ -476,13 +476,13 @@
        */
       poll: function poll(action, interval, params, immediately) {
         // Dispose timer previously created for action
-        if (this.__P_261_1[action]) {
-          this.__P_261_1[action].dispose();
+        if (this.__P_262_1[action]) {
+          this.__P_262_1[action].dispose();
         }
 
         // Fallback to previous params
         if (typeof params == "undefined") {
-          params = this.__P_261_2[action].params;
+          params = this.__P_262_2[action].params;
         }
 
         // Invoke immediately
@@ -500,7 +500,7 @@
             this.refresh(action);
           }
         };
-        var timer = this.__P_261_1[action] = new qx.event.Timer(interval);
+        var timer = this.__P_262_1[action] = new qx.event.Timer(interval);
         timer.addListener("interval", intervalListener, this._resource);
         timer.start();
         return timer;
@@ -549,7 +549,7 @@
           }
           return false;
         }
-        var handlerId = this.__P_261_0[action] = this.addListener(action + "Success", function longPollHandler() {
+        var handlerId = this.__P_262_0[action] = this.addListener(action + "Success", function longPollHandler() {
           if (res.isDisposed()) {
             return;
           }
@@ -595,7 +595,7 @@
        *
        * @param description {Map} Map that defines the routes.
        */
-      __P_261_3: function __P_261_3(description) {
+      __P_262_3: function __P_262_3(description) {
         Object.keys(description).forEach(function (action) {
           var route = description[action],
             method = route.method,
@@ -609,7 +609,7 @@
        *
        * @param type {String} Type of event.
        */
-      __P_261_5: function __P_261_5(type) {
+      __P_262_5: function __P_262_5(type) {
         if (!this.constructor.$$events) {
           this.constructor.$$events = {};
         }
@@ -625,24 +625,24 @@
      */
     destruct: function destruct() {
       var action;
-      if (this.__P_261_1) {
-        for (action in this.__P_261_1) {
-          var timer = this.__P_261_1[action];
+      if (this.__P_262_1) {
+        for (action in this.__P_262_1) {
+          var timer = this.__P_262_1[action];
           timer.stop();
           timer.dispose();
         }
       }
-      if (this.__P_261_0) {
-        for (action in this.__P_261_0) {
-          var id = this.__P_261_0[action];
+      if (this.__P_262_0) {
+        for (action in this.__P_262_0) {
+          var id = this.__P_262_0[action];
           this.removeListenerById(id);
         }
       }
       this._resource.destruct();
-      this._resource = this.__P_261_2 = this.__P_261_1 = this.__P_261_0 = null;
+      this._resource = this.__P_262_2 = this.__P_262_1 = this.__P_262_0 = null;
     }
   });
   qx.io.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1673093861308
+//# sourceMappingURL=Resource.js.map?dt=1676809315765

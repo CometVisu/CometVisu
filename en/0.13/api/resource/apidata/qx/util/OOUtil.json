@@ -16,7 +16,7 @@
       "end": {
         "line": 164,
         "column": 3,
-        "index": 4624
+        "index": 4622
       }
     },
     "jsdoc": {
@@ -268,12 +268,12 @@
         "start": {
           "line": 108,
           "column": 4,
-          "index": 3209
+          "index": 3207
         },
         "end": {
           "line": 126,
           "column": 5,
-          "index": 3583
+          "index": 3581
         }
       },
       "jsdoc": {
@@ -302,8 +302,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Class | null} the class which directly implements the given interface",
-            "type": "Class | null",
+            "body": "{Class|null} the class which directly implements the given interface",
+            "type": "Class|null",
             "description": " the class which directly implements the given interface"
           }
         ]
@@ -316,12 +316,12 @@
         "start": {
           "line": 140,
           "column": 4,
-          "index": 4083
+          "index": 4081
         },
         "end": {
           "line": 142,
           "column": 5,
-          "index": 4177
+          "index": 4175
         }
       },
       "jsdoc": {
@@ -364,12 +364,12 @@
         "start": {
           "line": 150,
           "column": 4,
-          "index": 4388
+          "index": 4386
         },
         "end": {
           "line": 162,
           "column": 5,
-          "index": 4616
+          "index": 4614
         }
       },
       "jsdoc": {

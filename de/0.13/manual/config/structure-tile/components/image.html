@@ -58,7 +58,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l5"><a class="reference internal" href="value.html">Value</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Image</a></li>
+<li class="toctree-l5"><a class="reference internal" href="select.html">Select</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spinner.html">Spinner</a></li>
+<li class="toctree-l5"><a class="reference internal" href="slider.html">Slider</a></li>
+<li class="toctree-l5"><a class="reference internal" href="list.html">List</a></li>
+<li class="toctree-l5"><a class="reference internal" href="chart.html">Chart</a></li>
+<li class="toctree-l5"><a class="reference internal" href="color.html">Color</a></li>
+<li class="toctree-l5"><a class="reference internal" href="icon.html">Icon</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../elements/address.html">Address</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -165,22 +178,26 @@ und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck einget
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="4"><p>cv-image</p></td>
-<td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
-</tr>
-<tr class="row-even"><td><p>style</p></td>
-<td><p>Text</p></td>
-<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
-</tr>
-<tr class="row-odd"><td><p>src</p></td>
+<tr class="row-odd"><td rowspan="5"><p>cv-image</p></td>
+<td><p>src</p></td>
 <td><p>Text</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>refresh</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -225,7 +242,7 @@ und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck einget
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

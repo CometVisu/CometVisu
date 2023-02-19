@@ -38,7 +38,7 @@
     type: "singleton",
     statics: {
       /** @type {Map} The libraries used by this application */
-      __P_505_0: qx.$$libraries || {}
+      __P_506_0: qx.$$libraries || {}
     },
     members: {
       /**
@@ -48,7 +48,7 @@
        * @return {Boolean} <code>true</code> if the given library is known
        */
       has: function has(namespace) {
-        return !!qx.util.LibraryManager.__P_505_0[namespace];
+        return !!qx.util.LibraryManager.__P_506_0[namespace];
       },
       /**
        * Returns the value of an attribute of the given library
@@ -57,7 +57,7 @@
        * @return {var|null} The attribute's value or <code>null</code> if it's not defined
        */
       get: function get(namespace, key) {
-        return qx.util.LibraryManager.__P_505_0[namespace][key] ? qx.util.LibraryManager.__P_505_0[namespace][key] : null;
+        return qx.util.LibraryManager.__P_506_0[namespace][key] ? qx.util.LibraryManager.__P_506_0[namespace][key] : null;
       },
       /**
        * Sets an attribute on the given library.
@@ -67,11 +67,11 @@
        * @param value {var} Value of the attribute
        */
       set: function set(namespace, key, value) {
-        qx.util.LibraryManager.__P_505_0[namespace][key] = value;
+        qx.util.LibraryManager.__P_506_0[namespace][key] = value;
       }
     }
   });
   qx.util.LibraryManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LibraryManager.js.map?dt=1673093879440
+//# sourceMappingURL=LibraryManager.js.map?dt=1676809333087

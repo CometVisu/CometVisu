@@ -1,13 +1,11 @@
 Grundsätzlicher Aufbau
 ======================
 
-Wie der Name schon suggeriert setzt sich eine Visualisierung in der Tile-Struktur aus einzelnen Kacheln (engl. Tile)
-zusammen.
-
-Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
-Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
-
-Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
+Auf der obersten Ebene enthält eine Tile-Datei zunächst einen Meta-Bereich (``<cv-meta>``) in dem nicht sichtbare Einstellungen
+enthalten sind die für diese Konfigurationsdatei benötigt werden (z.B. Verbindungen zu Backends, das Laden von
+zusätzliche Dateien usw.).
+Der sichtbare Bereich gliedert sich in einen ``<header>``- (Kopfzeile) einen ``<main>``- (der eigentliche Inhalt)
+und einen ``<footer>``-Bereich (Fußzeile). Die Kopf- und Fußzeile sind optional und können weggelassen werden.
 
 .. code-block:: xml
 
@@ -25,6 +23,11 @@ Eine Konfigurationsdatei folgt grundsätzlich folgendem Aufbau:
             <!-- Optionaler Inhalt unten -->
         </footer>
     </config>
+
+Im ``<main>``-Bereich wird der Inhalt in Kacheln dargestellt (engl. Tile) die in verschiedenen Seiten (``<cv-page>``)
+angeordnet sind.
+Für häufig benötigte Dinge liefert die Tile-Struktur bereits Kacheln mit vor-definiertem Inhalt mit (im folgenden
+Widgets genannt). So enthält das Switch-Widget z.B. einen Button in der mittleren Zelle und zentrierten Text in der Zeile darunter.
 
 Meta-Bereich
 ------------
@@ -70,6 +73,8 @@ Dazu gehören z.B. die Verbindungen zu den :ref:`Backends <tile-element-backend>
     Mapping <elements/mapping>
     Styling <elements/styling>
     Loader <elements/loader>
+    CSS-Style <elements/style>
+    Status-Benachrichtigung <elements/state-notification>
 
 
 Navigation / Seitenstruktur
@@ -186,43 +191,83 @@ Ein Widget ist eine Kachel mit einer oder mehreren Komponenten mit der eine best
 Damit können übliche Anwendungsfälle innerhalb eines Smart-Homes abgedeckt werden, wie z.B. Lichtschalter (Switch)
 oder die Bedienung einer Rolllade (Shutter).
 
+.. table::
+    :widths: 30 70
+
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-switch-on.png              |  :ref:`tile-switch`                                       |
+    |   :width: 150                                            | Einfacher Schalter, Taster oder Trigger                   |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-dimmer.png                 |  :ref:`tile-dimmer`                                       |
+    |   :width: 150                                            | Schalter mit zusätzlichem Slider zur Einstellung eines    |
+    |                                                          | Prozentwerts.                                             |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-shutter.png                |  :ref:`tile-shutter`                                      |
+    |   :width: 150                                            | Taster für hoch/runter/stop zur Bedienung einer Jalousie  |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-info.png                   |  :ref:`tile-info`                                         |
+    |   :width: 150                                            | Darstellung eines Werts in verschiedenen Arten.           |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-status.png                 |  :ref:`tile-status`                                       |
+    |   :width: 150                                            | Status Anzeige in halber Kachel-Höhe                      |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-status-chart.png           |  :ref:`tile-status-chart`                                 |
+    |   :width: 150                                            | Status-Widget mit Chart im Hintergrund                    |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-rtc.png                    |  :ref:`tile-rtc`                                          |
+    |   :width: 150                                            | Raumtemperatursteuerung mit Einstellungen für HVAC und    |
+    |                                                          | einer Solltemperatur                                      |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-media-player.png           |  :ref:`tile-media-player`                                 |
+    |   :width: 150                                            | Steuerung eines Medien-Abspielers mit Start/Stop          |
+    |                                                          | vor & zurück und einer Lautstärkeregelsung                |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-widget-pair.png            |  :ref:`tile-widget-pair`                                  |
+    |   :width: 150                                            | Ermöglicht es zwei Kacheln in halber Höhe darzustellen    |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+
 .. toctree::
     :maxdepth: 1
+    :hidden:
 
     Switch <widgets/switch>
     Dimmer <widgets/dimmer>
     Shutter <widgets/shutter>
     Info <widgets/info>
     Status <widgets/status>
+    Status-Chart <widgets/status-chart>
     RTC <widgets/rtc>
     Media Player <widgets/media-player>
-    Tile-pair <widgets/tile-pair>
+    Widget-pair <widgets/widget-pair>
 
 Eigene Widgets definieren
 =========================
 
 Sofern die vorhandenen Widgets nicht ausreichen, kann man sich auch eigenen Widgets definieren. Die Definition
-eines neuen Widgets erfolgt in einer Kachel ``<cv-tile>``.
+eines neuen Widgets erfolgt in einem ``<cv-widget>``-Element. Dieses besteht aus dem eigentlichen Inhalts-Element
+``<cv-tile>`` und jeweils einem optionalen ``<header>``- und ``<footer>``-Element.
 Die Inhalte in den Kacheln sind in maximal 3 Zeilen mit jeweils 3 Spalten angeordnet, wobei hier ähnlich
 wie in Tabellen ein Inhaltselement mehrere Zeilen und / oder Spalten belegen kann.
 
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-tile">
+    <settings design="tile" selector="cv-widget">
         <screenshot name="tile-grid"/>
     </settings>
-    <cv-tile>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-        <p class="grid"/>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+            <p class="grid"/>
+        </cv-tile>
+    </cv-widget>
 
 Innerhalb der Zellen einer Kachel können nun die von der Tile-Struktur bereitgestellten :ref:`Komponenten <tile-components>` frei platziert werden.
 Beispiele für diese Komponenten sind z.B. einfacher Text, ein :ref:`Button <tile-component-button>`,
@@ -235,17 +280,19 @@ und ein Text angezeigt wird.
 
 .. code-block:: xml
 
-    <cv-tile>
-        <cv-row colspan="3" row="2">
-            <cv-value format="%d%%">
-                <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
-                <cv-round-progress class="value"/>
-            </cv-value>
-        </cv-row>
-        <cv-row colspan="3" row="last">
-            <label class="secondary">Circle Progress</label>
-        </cv-row>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <cv-row colspan="3" row="2">
+                <cv-value format="%d%%">
+                    <cv-address transform="OH:number" mode="read" backend="si">Test_Value</cv-address>
+                    <cv-round-progress class="value"/>
+                </cv-value>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="secondary">Circle Progress</label>
+            </cv-row>
+        </cv-tile>
+    </cv-widget>
 
 Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
 anlegen. Das geht am besten über den :ref:`Manager <Manager>` indem man im Order "media" eine Datei mit Namen "my-templates.xml"
@@ -259,7 +306,8 @@ hinzu.
     </cv-meta>
 
 
-Diese Datei sollte dann folgenden Inhalt enthalten:
+In diese Datei kopiert man nun alles was zwischen ``<cv-widget>`` und ``</cv-widget>`` steht.
+Sie sollte dann folgenden Inhalt enthalten:
 
 .. code-block:: xml
 

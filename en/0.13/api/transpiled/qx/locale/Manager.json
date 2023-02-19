@@ -16,7 +16,7 @@
       "end": {
         "line": 440,
         "column": 3,
-        "index": 14732
+        "index": 14718
       }
     },
     "jsdoc": {
@@ -73,12 +73,12 @@
         "start": {
           "line": 70,
           "column": 4,
-          "index": 1984
+          "index": 1982
         },
         "end": {
           "line": 74,
           "column": 5,
-          "index": 2148
+          "index": 2146
         }
       },
       "jsdoc": {
@@ -107,8 +107,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ],
@@ -127,12 +127,12 @@
         "start": {
           "line": 88,
           "column": 4,
-          "index": 2783
+          "index": 2779
         },
         "end": {
           "line": 103,
           "column": 5,
-          "index": 3395
+          "index": 3391
         }
       },
       "jsdoc": {
@@ -175,8 +175,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ],
@@ -195,12 +195,12 @@
         "start": {
           "line": 114,
           "column": 4,
-          "index": 3899
+          "index": 3893
         },
         "end": {
           "line": 119,
           "column": 5,
-          "index": 4092
+          "index": 4086
         }
       },
       "jsdoc": {
@@ -236,8 +236,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ],
@@ -256,12 +256,12 @@
         "start": {
           "line": 134,
           "column": 4,
-          "index": 4893
+          "index": 4885
         },
         "end": {
           "line": 147,
           "column": 5,
-          "index": 5306
+          "index": 5298
         }
       },
       "jsdoc": {
@@ -311,8 +311,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ],
@@ -331,12 +331,12 @@
         "start": {
           "line": 155,
           "column": 4,
-          "index": 5491
+          "index": 5483
         },
         "end": {
           "line": 157,
           "column": 5,
-          "index": 5540
+          "index": 5532
         }
       },
       "jsdoc": {
@@ -374,12 +374,12 @@
         "start": {
           "line": 168,
           "column": 4,
-          "index": 5843
+          "index": 5835
         },
         "end": {
           "line": 183,
           "column": 5,
-          "index": 6306
+          "index": 6298
         }
       },
       "jsdoc": {
@@ -435,12 +435,12 @@
         "start": {
           "line": 193,
           "column": 4,
-          "index": 6514
+          "index": 6506
         },
         "end": {
           "line": 193,
           "column": 62,
-          "index": 6572
+          "index": 6564
         }
       },
       "type": "variable",
@@ -451,12 +451,12 @@
         "start": {
           "line": 194,
           "column": 4,
-          "index": 6578
+          "index": 6570
         },
         "end": {
           "line": 194,
           "column": 18,
-          "index": 6592
+          "index": 6584
         }
       },
       "type": "variable",
@@ -467,12 +467,12 @@
         "start": {
           "line": 195,
           "column": 4,
-          "index": 6598
+          "index": 6590
         },
         "end": {
           "line": 195,
           "column": 20,
-          "index": 6614
+          "index": 6606
         }
       },
       "type": "variable",
@@ -483,12 +483,12 @@
         "start": {
           "line": 196,
           "column": 4,
-          "index": 6620
+          "index": 6612
         },
         "end": {
           "line": 196,
           "column": 24,
-          "index": 6640
+          "index": 6632
         }
       },
       "type": "variable",
@@ -499,12 +499,12 @@
         "start": {
           "line": 197,
           "column": 4,
-          "index": 6646
+          "index": 6638
         },
         "end": {
           "line": 197,
           "column": 19,
-          "index": 6661
+          "index": 6653
         }
       },
       "type": "variable",
@@ -515,12 +515,12 @@
         "start": {
           "line": 198,
           "column": 4,
-          "index": 6667
+          "index": 6659
         },
         "end": {
           "line": 198,
           "column": 24,
-          "index": 6687
+          "index": 6679
         }
       },
       "type": "variable",
@@ -531,12 +531,12 @@
         "start": {
           "line": 207,
           "column": 4,
-          "index": 6906
+          "index": 6898
         },
         "end": {
           "line": 209,
           "column": 5,
-          "index": 6957
+          "index": 6949
         }
       },
       "jsdoc": {
@@ -563,12 +563,12 @@
         "start": {
           "line": 218,
           "column": 4,
-          "index": 7180
+          "index": 7172
         },
         "end": {
           "line": 220,
           "column": 5,
-          "index": 7253
+          "index": 7245
         }
       },
       "jsdoc": {
@@ -595,12 +595,12 @@
         "start": {
           "line": 234,
           "column": 4,
-          "index": 7827
+          "index": 7819
         },
         "end": {
           "line": 247,
           "column": 5,
-          "index": 8194
+          "index": 8186
         }
       },
       "jsdoc": {
@@ -638,12 +638,12 @@
         "start": {
           "line": 255,
           "column": 4,
-          "index": 8353
+          "index": 8345
         },
         "end": {
           "line": 269,
           "column": 5,
-          "index": 8643
+          "index": 8635
         }
       },
       "jsdoc": {
@@ -679,12 +679,12 @@
         "start": {
           "line": 272,
           "column": 4,
-          "index": 8672
+          "index": 8664
         },
         "end": {
           "line": 281,
           "column": 5,
-          "index": 9000
+          "index": 8992
         }
       },
       "jsdoc": {},
@@ -699,12 +699,12 @@
         "start": {
           "line": 295,
           "column": 4,
-          "index": 9638
+          "index": 9630
         },
         "end": {
           "line": 304,
           "column": 5,
-          "index": 9949
+          "index": 9941
         }
       },
       "jsdoc": {
@@ -739,12 +739,12 @@
         "start": {
           "line": 316,
           "column": 4,
-          "index": 10481
+          "index": 10473
         },
         "end": {
           "line": 325,
           "column": 5,
-          "index": 10754
+          "index": 10746
         }
       },
       "jsdoc": {
@@ -779,12 +779,12 @@
         "start": {
           "line": 340,
           "column": 4,
-          "index": 11498
+          "index": 11488
         },
         "end": {
           "line": 343,
           "column": 5,
-          "index": 11652
+          "index": 11642
         }
       },
       "jsdoc": {
@@ -822,8 +822,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " translated message or localized string"
           }
         ]
@@ -836,12 +836,12 @@
         "start": {
           "line": 358,
           "column": 4,
-          "index": 12343
+          "index": 12331
         },
         "end": {
           "line": 361,
           "column": 5,
-          "index": 12491
+          "index": 12479
         }
       },
       "jsdoc": {
@@ -879,8 +879,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " translated message or localized string"
           }
         ]
@@ -893,12 +893,12 @@
         "start": {
           "line": 377,
           "column": 4,
-          "index": 13270
+          "index": 13256
         },
         "end": {
           "line": 438,
           "column": 5,
-          "index": 14724
+          "index": 14710
         }
       },
       "jsdoc": {
@@ -943,8 +943,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " translated message or localized string"
           }
         ]

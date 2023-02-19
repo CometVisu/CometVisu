@@ -56,10 +56,10 @@
     construct: function construct(uploader) {
       qx.core.Object.constructor.call(this);
       qx.core.Assert.assertNotNull(uploader);
-      this.__P_572_0 = [];
-      this.__P_572_1 = [];
-      this.__P_572_2 = {};
-      this.__P_572_3 = uploader;
+      this.__P_575_0 = [];
+      this.__P_575_1 = [];
+      this.__P_575_2 = {};
+      this.__P_575_3 = uploader;
     },
     properties: {
       /**
@@ -74,15 +74,15 @@
     },
     members: {
       // Last unique ID used
-      __P_572_4: 0,
+      __P_575_4: 0,
       // Uploader instance
-      __P_572_3: null,
+      __P_575_3: null,
       // Queue of com.zenesis.qx.upload.File's to send
-      __P_572_0: null,
+      __P_575_0: null,
       // List of com.zenesis.qx.upload.File's currently being sent
-      __P_572_1: null,
+      __P_575_1: null,
       // Parameters to post with the file
-      __P_572_2: null,
+      __P_575_2: null,
       /**
        * Adds a file to the upload queue; this does not start uploading until
        * beginUploads is called.
@@ -120,16 +120,16 @@
        *          {com.zenesis.qx.upload.File} the file to add
        */
       _addFile: function _addFile(file) {
-        if (this.__P_572_3.fireDataEvent("addFile", file, null, true)) this.__P_572_0.push(file);
+        if (this.__P_575_3.fireDataEvent("addFile", file, null, true)) this.__P_575_0.push(file);
       },
       /**
        * Begins spooling uploads to the server, up to the maxConnections
        */
       beginUploads: function beginUploads() {
-        while (this.__P_572_0.length > 0 && this.__P_572_1.length < this.getMaxConnections()) {
-          var file = this.__P_572_0.shift();
-          this.__P_572_1.push(file);
-          this.__P_572_3.fireDataEvent("beginUpload", file);
+        while (this.__P_575_0.length > 0 && this.__P_575_1.length < this.getMaxConnections()) {
+          var file = this.__P_575_0.shift();
+          this.__P_575_1.push(file);
+          this.__P_575_3.fireDataEvent("beginUpload", file);
           file.setState("uploading");
           this._doUpload(file);
         }
@@ -141,21 +141,19 @@
        *          {com.zenesis.qx.upload.File} the file to cancel
        */
       cancel: function cancel(file) {
-        var wasUploading = this.__P_572_1.length > 0;
+        var wasUploading = this.__P_575_1.length > 0;
         // this.debug("cancelled: id=" + file.getId() + ", fileName=" +
         // file.getFilename());
         this._cancel(file);
-        if (wasUploading && this.__P_572_3.getAutoUpload()) this.beginUploads();
+        if (wasUploading && this.__P_575_3.getAutoUpload()) this.beginUploads();
       },
       /**
        * Cancels all uploads
        */
       cancelAll: function cancelAll() {
-        for (var current = this.__P_572_1, i = 0; i < current.length; i++) {
-          this._cancel(current[i]);
-        }
-        this.__P_572_1.splice(0, this.__P_572_1.length);
-        this.__P_572_0.splice(0, this.__P_572_0.length);
+        for (var current = this.__P_575_1, i = 0; i < current.length; i++) this._cancel(current[i]);
+        this.__P_575_1.splice(0, this.__P_575_1.length);
+        this.__P_575_0.splice(0, this.__P_575_0.length);
       },
       /**
        * Cancels a file
@@ -165,22 +163,18 @@
        */
       _cancel: function _cancel(file) {
         var inCurrent = false;
-        for (var current = this.__P_572_1, i = 0; i < current.length; i++) {
-          if (current[i] == file) {
-            current.splice(i, 1);
-            inCurrent = true;
-            break;
-          }
+        for (var current = this.__P_575_1, i = 0; i < current.length; i++) if (current[i] == file) {
+          current.splice(i, 1);
+          inCurrent = true;
+          break;
         }
-        for (var queue = this.__P_572_0, i = 0; i < queue.length; i++) {
-          if (queue[i] == file) {
-            queue.splice(i, 1);
-            break;
-          }
+        for (var queue = this.__P_575_0, i = 0; i < queue.length; i++) if (queue[i] == file) {
+          queue.splice(i, 1);
+          break;
         }
         file.setState("cancelled");
         if (inCurrent) this._doCancel(file);
-        this.__P_572_3.fireDataEvent("cancelUpload", file);
+        this.__P_575_3.fireDataEvent("cancelUpload", file);
       },
       /**
        * Called by derived classes when a file has completed
@@ -194,19 +188,17 @@
       _onCompleted: function _onCompleted(file, response) {
         // this.debug("completed: id=" + file.getId() + ", fileName=" +
         // file.getFilename() + ", response=" + response);
-        var current = this.__P_572_1;
-        for (var i = 0; i < current.length; i++) {
-          if (current[i] == file) {
-            current.splice(i, 1);
-            break;
-          }
+        var current = this.__P_575_1;
+        for (var i = 0; i < current.length; i++) if (current[i] == file) {
+          current.splice(i, 1);
+          break;
         }
         file.setResponse(response);
 
         // File state should be uploading or cancelled
         if (file.getState() == "uploading") {
           file.setState("uploaded");
-          this.__P_572_3.fireDataEvent("completeUpload", file);
+          this.__P_575_3.fireDataEvent("completeUpload", file);
         }
 
         // Start the next one
@@ -218,7 +210,7 @@
        * @returns {com.zenesis.qx.upload.UploadMgr}
        */
       _getUploader: function _getUploader() {
-        return this.__P_572_3;
+        return this.__P_575_3;
       },
       /**
        * Allocates a unique ID
@@ -226,7 +218,7 @@
        * @returns {Number}
        */
       _getUniqueFileId: function _getUniqueFileId() {
-        return ++this.__P_572_4;
+        return ++this.__P_575_4;
       },
       /**
        * Adds a parameter to send to the client
@@ -240,7 +232,7 @@
        */
       addParam: function addParam(key, value) {
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.setParam or com.zenesis.qx.upload.File.setParam");
-        this.__P_572_2[key] = value;
+        this.__P_575_2[key] = value;
       },
       /**
        * Returns the paramaters map
@@ -250,7 +242,7 @@
        */
       getParams: function getParams() {
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.getParam or com.zenesis.qx.upload.File.getParam");
-        return this.__P_572_2;
+        return this.__P_575_2;
       },
       /**
        * Helper method that produces a final list of parameter values, by merging
@@ -262,8 +254,8 @@
        */
       _getMergedParams: function _getMergedParams(file) {
         var result = {};
-        for (var name in this.__P_572_2) {
-          var value = this.__P_572_2[name];
+        for (var name in this.__P_575_2) {
+          var value = this.__P_575_2[name];
           if (value !== null) result[name] = value;
         }
         function merge(obj) {
@@ -274,7 +266,7 @@
             if (value !== null) result[name] = value;else delete result[name];
           }
         }
-        merge(this.__P_572_3);
+        merge(this.__P_575_3);
         var widget = file.getUploadWidget();
         if (widget && typeof widget.getParamNames == "function") merge(widget);
         if (typeof file.getParamNames == "function") merge(file);
@@ -314,4 +306,4 @@
   com.zenesis.qx.upload.AbstractHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractHandler.js.map?dt=1673093885264
+//# sourceMappingURL=AbstractHandler.js.map?dt=1676809338581

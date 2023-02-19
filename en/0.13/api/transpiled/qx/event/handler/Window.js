@@ -180,8 +180,8 @@
        */
       _onNative: function _onNative() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__P_227_0),
-          "false": this.__P_227_0
+          "true": qx.event.GlobalError.observeMethod(this.__P_228_0),
+          "false": this.__P_228_0
         });
         callback.apply(this, arguments);
       },
@@ -191,7 +191,7 @@
        * @param e {Event} Native event
        * @return {String|undefined}
        */
-      __P_227_0: function __P_227_0(e) {
+      __P_228_0: function __P_228_0(e) {
         if (this.isDisposed()) {
           return;
         }
@@ -245,4 +245,4 @@
   qx.event.handler.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1673093858882
+//# sourceMappingURL=Window.js.map?dt=1676809313471

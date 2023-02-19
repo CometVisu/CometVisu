@@ -371,7 +371,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /** Registers all defined mixins */
       $$registry: {},
       /** @type {Map} allowed keys in mixin definition */
-      __P_91_0: qx.core.Environment.select("qx.debug", {
+      __P_92_0: qx.core.Environment.select("qx.debug", {
         "true": {
           include: "object",
           // Mixin | Mixin[]
@@ -397,10 +397,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __P_91_1: qx.core.Environment.select("qx.debug", {
+      __P_92_1: qx.core.Environment.select("qx.debug", {
         "true": function _true(name, config) {
           // Validate keys
-          var allowed = this.__P_91_0;
+          var allowed = this.__P_92_0;
           for (var key in config) {
             if (!allowed[key]) {
               throw new Error('The configuration key "' + key + '" in mixin "' + name + '" is not allowed!');
@@ -442,4 +442,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Mixin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mixin.js.map?dt=1673093846610
+//# sourceMappingURL=Mixin.js.map?dt=1676809302261

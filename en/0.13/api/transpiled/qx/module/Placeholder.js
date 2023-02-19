@@ -98,7 +98,7 @@
        * Internal helper method to update the styles for a given input element.
        * @param item {qxWeb} The input element to update.
        */
-      __P_282_0: function __P_282_0(item) {
+      __P_283_0: function __P_283_0(item) {
         var placeholder = item.getAttribute("placeholder");
         var placeholderEl = item.getProperty(qx.module.Placeholder.PLACEHOLDER_NAME);
         var zIndex = item.getStyle("z-index");
@@ -128,7 +128,7 @@
        * @param item {qxWeb} The input element.
        * @return {qxWeb} The placeholder element.
        */
-      __P_282_1: function __P_282_1(item) {
+      __P_283_1: function __P_283_1(item) {
         // create the label with initial styles
         var placeholderEl = qxWeb.create("<label>").setStyles({
           position: "absolute",
@@ -181,7 +181,7 @@
             // create the element if necessary
             var placeholderEl = item.getProperty(qx.module.Placeholder.PLACEHOLDER_NAME);
             if (!placeholderEl) {
-              placeholderEl = qx.module.Placeholder.__P_282_1(item);
+              placeholderEl = qx.module.Placeholder.__P_283_1(item);
             }
 
             // remove and add handling
@@ -193,7 +193,7 @@
               placeholderEl.remove();
               return this;
             }
-            qx.module.Placeholder.__P_282_0(item);
+            qx.module.Placeholder.__P_283_0(item);
           }
         }
         return this;
@@ -206,4 +206,4 @@
   qx.module.Placeholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Placeholder.js.map?dt=1673093863171
+//# sourceMappingURL=Placeholder.js.map?dt=1676809317562

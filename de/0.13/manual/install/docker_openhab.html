@@ -208,8 +208,8 @@ services:
 <span class="w">        </span>volumes:
 <span class="w">            </span>-<span class="w"> </span>./resource/config:/var/www/html/resource/config
 <span class="w">        </span>environment:
-<span class="w">            </span>KNX_INTERFACE:<span class="w"> </span><span class="s2">&quot;&quot;</span>
-<span class="w">            </span>CGI_URL_PATH:<span class="w"> </span><span class="s2">&quot;/rest/cv/&quot;</span>
+<span class="w">            </span>BACKEND_NAME:<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
+<span class="w">            </span>BACKEND_OPENHAB:<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
 <span class="w">            </span>BACKEND_PROXY_SOURCE:<span class="w"> </span><span class="s2">&quot;/rest&quot;</span>
 <span class="w">            </span>BACKEND_PROXY_TARGET:<span class="w"> </span><span class="s2">&quot;http://&lt;IP-Openhab2&gt;:8080/rest&quot;</span>
 </pre></div>
@@ -269,7 +269,7 @@ services:
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

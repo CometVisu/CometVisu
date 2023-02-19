@@ -105,9 +105,9 @@
     */
 
     members: {
-      __P_437_0: 16,
-      __P_437_1: 16,
-      __P_437_2: null,
+      __P_438_0: 16,
+      __P_438_1: 16,
+      __P_438_2: null,
       /**
        * Identifies the Image to show. This is a template method, which must be
        * implemented by sub classes.
@@ -159,7 +159,7 @@
         // If sizes are not included in map given by subclass,
         // fall-back to calculated image size
         if (!imageData.imageWidth || !imageData.imageHeight) {
-          var sizes = this.__P_437_3(imageData.url);
+          var sizes = this.__P_438_3(imageData.url);
           imageData.imageWidth = sizes.width;
           imageData.imageHeight = sizes.height;
         }
@@ -178,7 +178,7 @@
        * @return {Map} A map containing the image's <code>width</code> and
        *    <code>height</code>
        */
-      __P_437_3: function __P_437_3(source) {
+      __P_438_3: function __P_438_3(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
         var width, height;
@@ -191,8 +191,8 @@
           width = ImageLoader.getWidth(source);
           height = ImageLoader.getHeight(source);
         } else {
-          width = this.__P_437_0;
-          height = this.__P_437_1;
+          width = this.__P_438_0;
+          height = this.__P_438_1;
         }
         return {
           width: width,
@@ -201,7 +201,7 @@
       },
       // overridden
       createDataCellHtml: function createDataCellHtml(cellInfo, htmlArr) {
-        this.__P_437_2 = this._getImageInfos(cellInfo);
+        this.__P_438_2 = this._getImageInfos(cellInfo);
         return qx.ui.table.cellrenderer.AbstractImage.superclass.prototype.createDataCellHtml.call(this, cellInfo, htmlArr);
       },
       // overridden
@@ -212,22 +212,22 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         var content = "<div></div>";
         // set image
-        if (this.__P_437_2.url) {
-          var srcUrl = this.__P_437_2.url;
-          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_437_2.url);
+        if (this.__P_438_2.url) {
+          var srcUrl = this.__P_438_2.url;
+          var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_438_2.url);
           if (highResolutionSource) {
             srcUrl = highResolutionSource;
           }
           var style = {
-            width: this.__P_437_2.width + "px",
-            height: this.__P_437_2.height + "px",
+            width: this.__P_438_2.width + "px",
+            height: this.__P_438_2.height + "px",
             display: qx.core.Environment.get("css.inlineblock"),
             verticalAlign: "middle",
             position: "static"
           };
-          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_437_2.url) === "") {
+          if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_438_2.url) === "") {
             // background size is critical for high-resolution images but breaks combined images
-            style["background-size"] = this.__P_437_2.width + "px " + this.__P_437_2.height + "px";
+            style["background-size"] = this.__P_438_2.width + "px " + this.__P_438_2.height + "px";
           }
           content = qx.bom.element.Decoration.create(srcUrl, this.getRepeat(), style);
         }
@@ -239,7 +239,7 @@
         if (!baseAttrs) {
           baseAttrs = "";
         }
-        var tooltip = this.__P_437_2.tooltip;
+        var tooltip = this.__P_438_2.tooltip;
         if (tooltip) {
           return baseAttrs + " title='" + tooltip + "'";
         } else {
@@ -253,10 +253,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_437_2 = null;
+      this.__P_438_2 = null;
     }
   });
   qx.ui.table.cellrenderer.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1673093874381
+//# sourceMappingURL=AbstractImage.js.map?dt=1676809328429

@@ -57,7 +57,13 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="menu.html">Menu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l5"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Popup</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
@@ -215,26 +221,34 @@ Wenn das Popup auch geschlossen werden soll, wenn der Wert „0“ empfangen wir
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="5"><p>cv-popup</p></td>
+<tr class="row-odd"><td rowspan="7"><p>cv-popup</p></td>
 <td><p>modal</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Deaktiviert den Hintergrund solange das Popup geöffnet ist.</p></td>
 </tr>
-<tr class="row-even"><td><p>title</p></td>
+<tr class="row-even"><td><p>fullscreen</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Das geöffnete Popup belegt den gesamten Bildschirm.</p></td>
+</tr>
+<tr class="row-odd"><td><p>title</p></td>
 <td><p>Text</p></td>
 <td><p>Überschrift dieses Popups.</p></td>
 </tr>
-<tr class="row-odd"><td><p>class</p></td>
+<tr class="row-even"><td><p>auto-close-timeout</p></td>
+<td><p>integer</p></td>
+<td><p>Zeit in Sekunden in der das Popup automatisch geschlossen wird.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-even"><td><p>style</p></td>
+<tr class="row-odd"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
-</tr>
-<tr class="row-odd"><td><p>auto-close-timeout</p></td>
-<td><p>integer</p></td>
-<td><p>Zeit in Sekunden in der das Popup automatisch geschlossen wird.</p></td>
 </tr>
 </tbody>
 </table>
@@ -278,7 +292,7 @@ Wenn das Popup auch geschlossen werden soll, wenn der Wert „0“ empfangen wir
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

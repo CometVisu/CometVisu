@@ -158,20 +158,20 @@
       }
     },
     members: {
-      __P_327_0: null,
-      __P_327_1: null,
-      __P_327_2: null,
-      __P_327_3: null,
+      __P_328_0: null,
+      __P_328_1: null,
+      __P_328_2: null,
+      __P_328_3: null,
       /**
        * Get the scroll pane html element.
        *
        * @return {qx.html.Element} The element
        */
       _getScrollPaneElement: function _getScrollPaneElement() {
-        if (!this.__P_327_1) {
-          this.__P_327_1 = new qx.html.Element();
+        if (!this.__P_328_1) {
+          this.__P_328_1 = new qx.html.Element();
         }
-        return this.__P_327_1;
+        return this.__P_328_1;
       },
       /*
       ---------------------------------------------------------------------------
@@ -188,12 +188,12 @@
       _getContentHint: function _getContentHint() {
         var scrollbarWidth = qx.bom.element.Scroll.getScrollbarWidth();
         return {
-          width: this.__P_327_0 ? 100 : scrollbarWidth,
-          maxWidth: this.__P_327_0 ? null : scrollbarWidth,
-          minWidth: this.__P_327_0 ? null : scrollbarWidth,
-          height: this.__P_327_0 ? scrollbarWidth : 100,
-          maxHeight: this.__P_327_0 ? scrollbarWidth : null,
-          minHeight: this.__P_327_0 ? scrollbarWidth : null
+          width: this.__P_328_0 ? 100 : scrollbarWidth,
+          maxWidth: this.__P_328_0 ? null : scrollbarWidth,
+          minWidth: this.__P_328_0 ? null : scrollbarWidth,
+          height: this.__P_328_0 ? scrollbarWidth : 100,
+          maxHeight: this.__P_328_0 ? scrollbarWidth : null,
+          minHeight: this.__P_328_0 ? scrollbarWidth : null
         };
       },
       // overridden
@@ -213,7 +213,7 @@
       // property apply
       _applyPosition: function _applyPosition(value) {
         var content = this.getContentElement();
-        if (this.__P_327_0) {
+        if (this.__P_328_0) {
           content.scrollToX(value);
         } else {
           content.scrollToY(value);
@@ -223,7 +223,7 @@
       _applyOrientation: function _applyOrientation(value, old) {
         // ARIA attrs
         this.getContentElement().setAttribute("aria-orientation", value);
-        var isHorizontal = this.__P_327_0 = value === "horizontal";
+        var isHorizontal = this.__P_328_0 = value === "horizontal";
         this.set({
           allowGrowX: isHorizontal,
           allowShrinkX: isHorizontal,
@@ -248,7 +248,7 @@
        * enabled state.
        */
       _updateScrollBar: function _updateScrollBar() {
-        var isHorizontal = this.__P_327_0;
+        var isHorizontal = this.__P_328_0;
         var bounds = this.getBounds();
         if (!bounds) {
           return;
@@ -286,17 +286,17 @@
         this.stopScrollAnimation();
         if (duration) {
           var from = this.getPosition();
-          this.__P_327_3 = new qx.bom.AnimationFrame();
-          this.__P_327_3.on("frame", function (timePassed) {
+          this.__P_328_3 = new qx.bom.AnimationFrame();
+          this.__P_328_3.on("frame", function (timePassed) {
             var newPos = parseInt(timePassed / duration * (position - from) + from);
             this.updatePosition(newPos);
           }, this);
-          this.__P_327_3.on("end", function () {
+          this.__P_328_3.on("end", function () {
             this.setPosition(Math.max(0, Math.min(this.getMaximum(), position)));
-            this.__P_327_3 = null;
+            this.__P_328_3 = null;
             this.fireEvent("scrollAnimationEnd");
           }, this);
-          this.__P_327_3.startSequence(duration);
+          this.__P_328_3.startSequence(duration);
         } else {
           this.updatePosition(position);
         }
@@ -321,9 +321,9 @@
        * If a scroll animation is running, it will be stopped.
        */
       stopScrollAnimation: function stopScrollAnimation() {
-        if (this.__P_327_3) {
-          this.__P_327_3.cancelSequence();
-          this.__P_327_3 = null;
+        if (this.__P_328_3) {
+          this.__P_328_3.cancelSequence();
+          this.__P_328_3 = null;
         }
       },
       /**
@@ -333,7 +333,7 @@
        */
       _onScroll: function _onScroll(e) {
         var container = this.getContentElement();
-        var position = this.__P_327_0 ? container.getScrollX() : container.getScrollY();
+        var position = this.__P_328_0 ? container.getScrollX() : container.getScrollY();
         this.setPosition(position);
       },
       /**
@@ -355,10 +355,10 @@
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_327_1");
+      this._disposeObjects("__P_328_1");
     }
   });
   qx.ui.core.scroll.NativeScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeScrollBar.js.map?dt=1673093867179
+//# sourceMappingURL=NativeScrollBar.js.map?dt=1676809321648

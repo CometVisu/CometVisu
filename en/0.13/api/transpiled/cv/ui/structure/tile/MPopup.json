@@ -14,9 +14,9 @@
         "index": 952
       },
       "end": {
-        "line": 123,
+        "line": 134,
         "column": 3,
-        "index": 3849
+        "index": 4161
       }
     },
     "jsdoc": {
@@ -29,18 +29,33 @@
     }
   },
   "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1130
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 1212
+      }
+    },
+    "jsdoc": {}
+  },
   "statics": {
     "openedPopups": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 39,
           "column": 4,
-          "index": 1140
+          "index": 1353
         },
         "end": {
-          "line": 30,
+          "line": 39,
           "column": 20,
-          "index": 1156
+          "index": 1369
         }
       },
       "type": "variable",
@@ -51,14 +66,14 @@
     "closed": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 43,
           "column": 4,
-          "index": 1179
+          "index": 1392
         },
         "end": {
-          "line": 34,
+          "line": 43,
           "column": 33,
-          "index": 1208
+          "index": 1421
         }
       },
       "name": "closed",
@@ -69,14 +84,30 @@
     "_childPopup": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 52,
           "column": 4,
-          "index": 1354
+          "index": 1567
         },
         "end": {
-          "line": 43,
+          "line": 52,
           "column": 21,
-          "index": 1371
+          "index": 1584
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "_onPointerDownBounded": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1590
+        },
+        "end": {
+          "line": 53,
+          "column": 31,
+          "index": 1617
         }
       },
       "type": "variable",
@@ -85,14 +116,14 @@
     "_initPopupChild": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 55,
           "column": 4,
-          "index": 1378
+          "index": 1624
         },
         "end": {
-          "line": 63,
+          "line": 73,
           "column": 5,
-          "index": 2075
+          "index": 2321
         }
       },
       "type": "function",
@@ -101,14 +132,14 @@
     "_openPopupChild": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 75,
           "column": 4,
-          "index": 2082
+          "index": 2328
         },
         "end": {
-          "line": 71,
+          "line": 81,
           "column": 5,
-          "index": 2253
+          "index": 2499
         }
       },
       "type": "function",
@@ -117,14 +148,14 @@
     "_closePopupChild": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 83,
           "column": 4,
-          "index": 2260
+          "index": 2506
         },
         "end": {
-          "line": 78,
+          "line": 88,
           "column": 5,
-          "index": 2426
+          "index": 2672
         }
       },
       "type": "function",
@@ -133,14 +164,14 @@
     "registerModalPopup": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 90,
           "column": 4,
-          "index": 2433
+          "index": 2679
         },
         "end": {
-          "line": 91,
+          "line": 101,
           "column": 5,
-          "index": 2903
+          "index": 3130
         }
       },
       "type": "function",
@@ -149,14 +180,14 @@
     "unregisterModalPopup": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 103,
           "column": 4,
-          "index": 2910
+          "index": 3137
         },
         "end": {
-          "line": 102,
+          "line": 112,
           "column": 5,
-          "index": 3377
+          "index": 3585
         }
       },
       "type": "function",
@@ -165,14 +196,14 @@
     "_onPointerDown": {
       "location": {
         "start": {
-          "line": 104,
+          "line": 114,
           "column": 4,
-          "index": 3384
+          "index": 3592
         },
         "end": {
-          "line": 110,
+          "line": 121,
           "column": 5,
-          "index": 3573
+          "index": 3885
         }
       },
       "type": "function",
@@ -182,14 +213,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 118,
+        "line": 129,
         "column": 2,
-        "index": 3707
+        "index": 4019
       },
       "end": {
-        "line": 122,
+        "line": 133,
         "column": 3,
-        "index": 3845
+        "index": 4157
       }
     },
     "jsdoc": {}

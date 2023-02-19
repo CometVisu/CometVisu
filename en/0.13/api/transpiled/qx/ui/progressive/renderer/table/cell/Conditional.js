@@ -52,22 +52,22 @@
      */
     construct: function construct(align, color, style, weight) {
       qx.ui.progressive.renderer.table.cell.Abstract.constructor.call(this);
-      this.__P_424_0 = ["==", "!=", ">", "<", ">=", "<="];
-      this.__P_424_1 = ["between", "!between"];
-      this.__P_424_2 = [];
-      this.__P_424_3 = align || "";
-      this.__P_424_4 = color || "";
-      this.__P_424_5 = style || "";
-      this.__P_424_6 = weight || "";
+      this.__P_425_0 = ["==", "!=", ">", "<", ">=", "<="];
+      this.__P_425_1 = ["between", "!between"];
+      this.__P_425_2 = [];
+      this.__P_425_3 = align || "";
+      this.__P_425_4 = color || "";
+      this.__P_425_5 = style || "";
+      this.__P_425_6 = weight || "";
     },
     members: {
-      __P_424_0: null,
-      __P_424_1: null,
-      __P_424_2: null,
-      __P_424_3: null,
-      __P_424_4: null,
-      __P_424_5: null,
-      __P_424_6: null,
+      __P_425_0: null,
+      __P_425_1: null,
+      __P_425_2: null,
+      __P_425_3: null,
+      __P_425_4: null,
+      __P_425_5: null,
+      __P_425_6: null,
       /**
        * Applies the cell styles to the style map.
        *
@@ -77,7 +77,7 @@
        * @param style {Map}
        *   map of already applied styles.
        */
-      __P_424_7: function __P_424_7(condition, style) {
+      __P_425_7: function __P_425_7(condition, style) {
         if (condition.align) {
           style["text-align"] = condition.align;
         }
@@ -129,10 +129,10 @@
        * is null.
        */
       addNumericCondition: function addNumericCondition(condition, value1, align, color, style, weight, target) {
-        if (!this.__P_424_0.includes(condition) || value1 == null) {
+        if (!this.__P_425_0.includes(condition) || value1 == null) {
           throw new Error("Condition not recognized or value is null!");
         }
-        this.__P_424_2.push({
+        this.__P_425_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -183,10 +183,10 @@
        * values is null.
        */
       addBetweenCondition: function addBetweenCondition(condition, value1, value2, align, color, style, weight, target) {
-        if (!this.__P_424_1.includes(condition) || value1 == null || value2 == null) {
+        if (!this.__P_425_1.includes(condition) || value1 == null || value2 == null) {
           throw new Error("Condition not recognized or value1/value2 is null!");
         }
-        this.__P_424_2.push({
+        this.__P_425_2.push({
           condition: condition,
           align: align,
           color: color,
@@ -233,7 +233,7 @@
         if (!regex) {
           throw new Error("regex cannot be null!");
         }
-        this.__P_424_2.push({
+        this.__P_425_2.push({
           condition: "regex",
           align: align,
           color: color,
@@ -257,22 +257,22 @@
        * @return {String}
        */
       _getCellStyle: function _getCellStyle(cellInfo) {
-        if (this.__P_424_2.length == 0) {
+        if (this.__P_425_2.length == 0) {
           return cellInfo.style || "";
         }
         var i;
         var bTestPassed;
         var compareValue;
         var style = {
-          "text-align": this.__P_424_3,
-          color: this.__P_424_4,
-          "font-style": this.__P_424_5,
-          "font-weight": this.__P_424_6
+          "text-align": this.__P_425_3,
+          color: this.__P_425_4,
+          "font-style": this.__P_425_5,
+          "font-weight": this.__P_425_6
         };
-        for (i = 0; i < this.__P_424_2.length; i++) {
-          var test = this.__P_424_2[i];
+        for (i = 0; i < this.__P_425_2.length; i++) {
+          var test = this.__P_425_2[i];
           bTestPassed = false;
-          if (this.__P_424_0.includes(test.condition)) {
+          if (this.__P_425_0.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
@@ -310,7 +310,7 @@
                 }
                 break;
             }
-          } else if (this.__P_424_1.includes(test.condition)) {
+          } else if (this.__P_425_1.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
@@ -340,7 +340,7 @@
 
           // Apply formatting, if any.
           if (bTestPassed) {
-            this.__P_424_7(test, style);
+            this.__P_425_7(test, style);
           }
           var styleString = [];
           for (var key in style) {
@@ -353,10 +353,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_424_0 = this.__P_424_1 = this.__P_424_2 = null;
+      this.__P_425_0 = this.__P_425_1 = this.__P_425_2 = null;
     }
   });
   qx.ui.progressive.renderer.table.cell.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1673093873458
+//# sourceMappingURL=Conditional.js.map?dt=1676809327574

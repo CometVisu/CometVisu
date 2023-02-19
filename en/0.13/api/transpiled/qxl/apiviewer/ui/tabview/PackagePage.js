@@ -47,4 +47,4 @@
   qxl.apiviewer.ui.tabview.PackagePage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackagePage.js.map?dt=1673093885316
+//# sourceMappingURL=PackagePage.js.map?dt=1676809338631

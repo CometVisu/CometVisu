@@ -67,7 +67,7 @@
       } else {
         this._storage = qx.bom.Storage.getLocal();
       }
-      this._storeModel = qx.util.Function.debounce(this.__P_181_0.bind(this), qx.data.store.Offline.STORE_MODEL_DELAY);
+      this._storeModel = qx.util.Function.debounce(this.__P_182_0.bind(this), qx.data.store.Offline.STORE_MODEL_DELAY);
       this._marshaler = new qx.data.marshal.Json(delegate);
       this._key = key;
       this._initializeModel();
@@ -91,11 +91,11 @@
     },
     members: {
       _storage: null,
-      __P_181_1: null,
+      __P_182_1: null,
       /**
        * The actual method that will called after a delay of STORE_MODEL_DELAY
        */
-      __P_181_0: function __P_181_0() {
+      __P_182_0: function __P_182_0() {
         var value = qx.util.Serializer.toNativeObject(this.getModel());
         this._storage.setItem(this._key, value);
       },
@@ -103,12 +103,12 @@
       _applyModel: function _applyModel(value, old) {
         // take care of the old stuff.
         if (old) {
-          old.removeListenerById(this.__P_181_1);
+          old.removeListenerById(this.__P_182_1);
           old.dispose();
-          this.__P_181_1 = null;
+          this.__P_182_1 = null;
         }
         if (value) {
-          this.__P_181_1 = value.addListener("changeBubble", this._storeModel, this);
+          this.__P_182_1 = value.addListener("changeBubble", this._storeModel, this);
           this._storeModel();
         } else {
           this._storage.removeItem(this._key);
@@ -163,4 +163,4 @@
   qx.data.store.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1673093853188
+//# sourceMappingURL=Offline.js.map?dt=1676809308642

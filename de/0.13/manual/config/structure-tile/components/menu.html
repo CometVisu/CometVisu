@@ -23,7 +23,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
     <link rel="next" title="Page" href="page.html" />
-    <link rel="prev" title="Loader" href="../elements/loader.html" /> 
+    <link rel="prev" title="Status-Benachrichtigung" href="../elements/state-notification.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,7 +57,13 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Menu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l5"><a class="reference internal" href="group.html">Group</a></li>
+<li class="toctree-l5"><a class="reference internal" href="popup.html">Popup</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
@@ -263,16 +269,18 @@ der zweite fungiert als Schalter.</p>
 <p><span class="caption-text">Menü geöffnet</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
 </figcaption>
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;menuItems&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Favoriten&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;popup&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-star-line&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-popup</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Favoriten&quot;</span><span class="w"> </span><span class="na">modal=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/cv-menu-item&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Stumm&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;toggleState&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-volume-mute-line&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/cv-menu-item&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/cv-menu&gt;</span>
-<span class="nt">&lt;/cv-tile&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;menuItems&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Favoriten&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;popup&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-star-line&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-popup</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Favoriten&quot;</span><span class="w"> </span><span class="na">modal=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Stumm&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;toggleState&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-volume-mute-line&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-menu&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -420,7 +428,7 @@ der zweite fungiert als Schalter.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../elements/loader.html" class="btn btn-neutral float-left" title="Loader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../elements/state-notification.html" class="btn btn-neutral float-left" title="Status-Benachrichtigung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="page.html" class="btn btn-neutral float-right" title="Page" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -453,7 +461,7 @@ der zweite fungiert als Schalter.</p>
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

@@ -119,10 +119,10 @@
      */
     construct: function construct(manager) {
       // Define shorthands
-      this.__P_222_0 = manager;
-      this.__P_222_1 = manager.getWindow();
-      this.__P_222_2 = this.__P_222_1.document;
-      qx.event.handler.TouchCore.apply(this, [this.__P_222_2]);
+      this.__P_223_0 = manager;
+      this.__P_223_1 = manager.getWindow();
+      this.__P_223_2 = this.__P_223_1.document;
+      qx.event.handler.TouchCore.apply(this, [this.__P_223_2]);
     },
     /*
     *****************************************************************************
@@ -162,11 +162,11 @@
     */
 
     members: {
-      __P_222_0: null,
-      __P_222_1: null,
-      __P_222_2: null,
+      __P_223_0: null,
+      __P_223_1: null,
+      __P_223_2: null,
       // Checks if the mouse movement is happening while simulating a touch event
-      __P_222_3: false,
+      __P_223_3: false,
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -205,7 +205,7 @@
         }
 
         // Fire user action event
-        qx.event.Registration.fireEvent(this.__P_222_1, "useraction", qx.event.type.Data, [type]);
+        qx.event.Registration.fireEvent(this.__P_223_1, "useraction", qx.event.type.Data, [type]);
       },
       /*
       ---------------------------------------------------------------------------
@@ -226,8 +226,8 @@
        * Dispose this object
        */
       dispose: function dispose() {
-        this.__P_222_4("dispose");
-        this.__P_222_0 = this.__P_222_1 = this.__P_222_2 = null;
+        this.__P_223_4("dispose");
+        this.__P_223_0 = this.__P_223_1 = this.__P_223_2 = null;
       },
       /**
        * Call overridden method.
@@ -235,7 +235,7 @@
        * @param method {String} Name of the overridden method.
        * @param args {Array} Arguments.
        */
-      __P_222_4: function __P_222_4(method, args) {
+      __P_223_4: function __P_223_4(method, args) {
         qx.event.handler.TouchCore.prototype[method].apply(this, args || []);
       }
     },
@@ -257,4 +257,4 @@
   qx.event.handler.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1673093858722
+//# sourceMappingURL=Touch.js.map?dt=1676809313320

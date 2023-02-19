@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.ui.structure.pure.AbstractWidget": {
-        "construct": true,
         "require": true
       },
       "cv.ui.common.Operate": {
@@ -14,12 +13,6 @@
       },
       "cv.ui.common.HasAnimatedButton": {
         "require": true
-      },
-      "qx.data.store.Json": {
-        "construct": true
-      },
-      "cv.io.rest.Client": {
-        "construct": true
       },
       "cv.Config": {},
       "cv.util.Location": {},
@@ -67,30 +60,6 @@
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
     /*
      ******************************************************
-     CONSTRUCTOR
-     ******************************************************
-     */
-    construct: function construct(props) {
-      var _this = this;
-      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-      var store = new qx.data.store.Json(cv.io.rest.Client.getBaseUrl() + '/data/designs');
-      store.addListener('loaded', function (ev) {
-        _this.setAvailableDesigns(ev.getData());
-      });
-    },
-    /*
-     ******************************************************
-     PROPERTIES
-     ******************************************************
-     */
-    properties: {
-      availableDesigns: {
-        check: 'Array',
-        init: []
-      }
-    },
-    /*
-     ******************************************************
      MEMBERS
      ******************************************************
      */
@@ -111,9 +80,9 @@
         if (isCanceled) {
           return;
         }
-        var designs = this.getAvailableDesigns();
+        var designs = cv.Config.designStructureMap.pure;
         var oldDesign = this.getDomElement().querySelector('.value').textContent;
-        var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
+        var newDesign = designs[(designs.indexOf(oldDesign) + 1) % designs.length];
         var URL = cv.util.Location.getHref();
         var regexp = new RegExp('design=' + oldDesign);
         if (URL.search(regexp) !== -1) {
@@ -138,4 +107,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1673093843102
+//# sourceMappingURL=DesignToggle.js.map?dt=1676809298667

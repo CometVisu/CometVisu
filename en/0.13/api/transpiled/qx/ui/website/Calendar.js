@@ -283,7 +283,7 @@
       rendered: ""
     },
     members: {
-      __P_487_0: null,
+      __P_488_0: null,
       _value: null,
       _shownValue: null,
       // overridden
@@ -291,7 +291,7 @@
         if (!qx.ui.website.Calendar.superclass.prototype.init.call(this)) {
           return false;
         }
-        this.__P_487_0 = [];
+        this.__P_488_0 = [];
         var today = new Date();
         today = this._getNormalizedDate(today);
         this.showValue(today);
@@ -349,8 +349,8 @@
             }
           }
         } else if (this.getConfig("selectionMode") == "range") {
-          if (!this.__P_487_0) {
-            this.__P_487_0 = value.map(function (val) {
+          if (!this.__P_488_0) {
+            this.__P_488_0 = value.map(function (val) {
               return val.toDateString();
             });
           }
@@ -432,12 +432,12 @@
         var newStr = day.getAttribute("value");
         var newValue = new Date(newStr);
         if (this.getConfig("selectionMode") == "range") {
-          var range = this.__P_487_0.slice(0);
+          var range = this.__P_488_0.slice(0);
           if (range.length == 2) {
             range = [];
           }
           range.push(newStr);
-          this.__P_487_0 = range;
+          this.__P_488_0 = range;
           range = range.map(function (item) {
             return new Date(item);
           });
@@ -567,7 +567,7 @@
                 cssClasses += " " + cssPrefix + "-selected";
               }
             } else {
-              var range = this.__P_487_0;
+              var range = this.__P_488_0;
               if (this._value) {
                 value = this.getConfig("selectionMode") == "range" ? new Date(range[range.length - 1]) : this._value;
                 cssClasses += helpDate.toDateString() === value.toDateString() ? " " + cssPrefix + "-selected" : "";
@@ -795,4 +795,4 @@
   qx.ui.website.Calendar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Calendar.js.map?dt=1673093878019
+//# sourceMappingURL=Calendar.js.map?dt=1676809331858

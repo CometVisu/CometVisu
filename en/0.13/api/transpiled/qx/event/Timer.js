@@ -71,7 +71,7 @@
       // may get called after "clearInterval" (i.e. after the timer is disposed)
       // and we must be able to handle this.
       var self = this;
-      this.__P_203_0 = function () {
+      this.__P_204_0 = function () {
         self._oninterval.call(self);
       };
     },
@@ -109,13 +109,13 @@
 
         // Bug #3481: append original function to timer instance so it can be
         // read by a debugger
-        timer.__P_203_1 = func;
+        timer.__P_204_1 = func;
 
         // Add event listener to interval
         timer.addListener("interval", function (e) {
           timer.stop();
           func.call(obj, e);
-          delete timer.__P_203_1;
+          delete timer.__P_204_1;
           timer.dispose();
           obj = null;
         }, obj);
@@ -160,8 +160,8 @@
     */
 
     members: {
-      __P_203_2: null,
-      __P_203_0: null,
+      __P_204_2: null,
+      __P_204_0: null,
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -186,10 +186,10 @@
        */
       _applyEnabled: function _applyEnabled(value, old) {
         if (old) {
-          window.clearInterval(this.__P_203_2);
-          this.__P_203_2 = null;
+          window.clearInterval(this.__P_204_2);
+          this.__P_204_2 = null;
         } else if (value) {
-          this.__P_203_2 = window.setInterval(this.__P_203_0, this.getInterval());
+          this.__P_204_2 = window.setInterval(this.__P_204_0, this.getInterval());
         }
       },
       /*
@@ -264,13 +264,13 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_203_2) {
-        window.clearInterval(this.__P_203_2);
+      if (this.__P_204_2) {
+        window.clearInterval(this.__P_204_2);
       }
-      this.__P_203_2 = this.__P_203_0 = null;
+      this.__P_204_2 = this.__P_204_0 = null;
     }
   });
   qx.event.Timer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timer.js.map?dt=1673093857621
+//# sourceMappingURL=Timer.js.map?dt=1676809312317

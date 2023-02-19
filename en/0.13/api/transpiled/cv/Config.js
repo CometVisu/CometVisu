@@ -211,7 +211,12 @@
        * Defines which structure is supported by which designs
        */
       designStructureMap: {
-        pure: ['alaska', 'alaska_slim', 'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', 'planet', 'pure'],
+        pure: [
+        // broken: 'alaska',
+        // broken: 'alaska_slim',
+        'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack',
+        // broken: 'planet',
+        'pure'],
         tile: ['tile']
       },
       /**
@@ -416,4 +421,4 @@
   cv.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1673093880616
+//# sourceMappingURL=Config.js.map?dt=1676809334191

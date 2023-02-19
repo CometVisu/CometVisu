@@ -115,35 +115,35 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
      */
     construct: function construct(fn, context) {
       qx.core.Object.constructor.call(this);
-      qx.Promise.__P_93_0();
+      qx.Promise.__P_94_0();
       if (fn instanceof qx.Promise.Bluebird) {
-        this.__P_93_1 = fn;
+        this.__P_94_1 = fn;
       } else if (fn) {
         if (context !== undefined && context !== null) {
           fn = fn.bind(context);
         }
-        this.__P_93_1 = new qx.Promise.Bluebird(fn);
+        this.__P_94_1 = new qx.Promise.Bluebird(fn);
       } else {
-        this.__P_93_1 = new qx.Promise.Bluebird(this.__P_93_2.bind(this));
+        this.__P_94_1 = new qx.Promise.Bluebird(this.__P_94_2.bind(this));
       }
-      qx.core.Assert.assertTrue(!this.__P_93_1.$$qxPromise);
-      this.__P_93_1.$$qxPromise = this;
+      qx.core.Assert.assertTrue(!this.__P_94_1.$$qxPromise);
+      this.__P_94_1.$$qxPromise = this;
       if (context !== undefined && context !== null) {
-        this.__P_93_1 = this.__P_93_1.bind(context);
+        this.__P_94_1 = this.__P_94_1.bind(context);
       }
     },
     /**
      * Destructor
      */
     destruct: function destruct() {
-      delete this.__P_93_1.$$qxPromise;
-      delete this.__P_93_1;
+      delete this.__P_94_1.$$qxPromise;
+      delete this.__P_94_1;
     },
     members: {
       /** The Promise */
-      __P_93_1: null,
+      __P_94_1: null,
       /** Stores data for completing the promise externally */
-      __P_93_3: null,
+      __P_94_3: null,
       /* *********************************************************************************
        *
        * Promise API methods
@@ -187,7 +187,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise} the new promise
        */
       bind: function bind(context) {
-        return qx.Promise.__P_93_4(this.__P_93_1.bind(context));
+        return qx.Promise.__P_94_4(this.__P_94_1.bind(context));
       },
       /**
        * Like calling <code>.then</code>, but the fulfillment value must be an array, which is flattened
@@ -375,8 +375,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /**
        * External promise handler
        */
-      __P_93_2: function __P_93_2(resolve, reject) {
-        this.__P_93_3 = {
+      __P_94_2: function __P_94_2(resolve, reject) {
+        this.__P_94_3 = {
           resolve: resolve,
           reject: reject,
           complete: false
@@ -385,27 +385,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /**
        * Returns the data stored by __externalPromise, throws an exception once processed
        */
-      __P_93_5: function __P_93_5() {
-        if (!this.__P_93_3) {
+      __P_94_5: function __P_94_5() {
+        if (!this.__P_94_3) {
           throw new Error("Promise cannot be resolved externally");
         }
-        if (this.__P_93_3.complete) {
+        if (this.__P_94_3.complete) {
           throw new Error("Promise has already been resolved or rejected");
         }
-        this.__P_93_3.complete = true;
-        return this.__P_93_3;
+        this.__P_94_3.complete = true;
+        return this.__P_94_3;
       },
       /**
        * Resolves an external promise
        */
       resolve: function resolve(value) {
-        this.__P_93_5().resolve(value);
+        this.__P_94_5().resolve(value);
       },
       /**
        * Rejects an external promise
        */
       reject: function reject(reason) {
-        this.__P_93_5().reject(reason);
+        this.__P_94_5().reject(reason);
       },
       /* *********************************************************************************
        *
@@ -416,18 +416,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Helper method used to call Promise methods which iterate over an array
        */
       _callIterableMethod: function _callIterableMethod(methodName, args) {
-        args = qx.Promise.__P_93_6(args);
-        return qx.Promise.__P_93_4(this.__P_93_1.then(function (value) {
+        args = qx.Promise.__P_94_6(args);
+        return qx.Promise.__P_94_4(this.__P_94_1.then(function (value) {
           var newP = qx.Promise.Bluebird.resolve(value instanceof qx.data.Array ? value.toArray() : value);
-          return qx.Promise.__P_93_4(newP[methodName].apply(newP, args));
+          return qx.Promise.__P_94_4(newP[methodName].apply(newP, args));
         }));
       },
       /**
        * Helper method used to call a Promise method
        */
       _callMethod: function _callMethod(methodName, args) {
-        args = qx.Promise.__P_93_6(args);
-        return qx.Promise.__P_93_4(this.__P_93_1[methodName].apply(this.__P_93_1, args));
+        args = qx.Promise.__P_94_6(args);
+        return qx.Promise.__P_94_4(this.__P_94_1[methodName].apply(this.__P_94_1, args));
       },
       /**
        * Returns the actual Promise implementation.
@@ -440,7 +440,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @deprecated {6.0} this API method is subject to change
        */
       toPromise: function toPromise() {
-        return this.__P_93_1;
+        return this.__P_94_1;
       }
     },
     statics: {
@@ -453,7 +453,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /** This is used to suppress warnings about rejections without an Error object, only used if
        * the reason is undefined
        */
-      __P_93_7: new Error("Default Error"),
+      __P_94_7: new Error("Default Error"),
       /* *********************************************************************************
        *
        * Promise API methods
@@ -495,7 +495,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (value instanceof qx.Promise) {
           promise = value;
         } else {
-          promise = qx.Promise.__P_93_4(qx.Promise.Bluebird.resolve(value));
+          promise = qx.Promise.__P_94_4(qx.Promise.Bluebird.resolve(value));
         }
         if (context !== undefined) {
           promise = promise.bind(context);
@@ -512,11 +512,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var args = qx.lang.Array.fromArguments(arguments);
         if (reason === undefined) {
           args.shift();
-          args.unshift(qx.Promise.__P_93_7);
+          args.unshift(qx.Promise.__P_94_7);
         } else if (!(reason instanceof Error)) {
           qx.log.Logger.warn("Rejecting a promise with a non-Error value");
         }
-        var promise = qx.Promise.__P_93_8("reject", args, 0);
+        var promise = qx.Promise.__P_94_8("reject", args, 0);
         if (context !== undefined) {
           promise = promise.bind(context);
         }
@@ -558,7 +558,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       all: function all(iterable) {
-        return qx.Promise.__P_93_8("all", arguments);
+        return qx.Promise.__P_94_8("all", arguments);
       },
       /**
        * Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves
@@ -567,7 +567,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       race: function race(iterable) {
-        return qx.Promise.__P_93_8("race", arguments);
+        return qx.Promise.__P_94_8("race", arguments);
       },
       /* *********************************************************************************
        *
@@ -582,7 +582,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       any: function any(iterable) {
-        return qx.Promise.__P_93_8("any", arguments);
+        return qx.Promise.__P_94_8("any", arguments);
       },
       /**
        * Given an Iterable (arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix
@@ -595,7 +595,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       some: function some(iterable, count) {
-        return qx.Promise.__P_93_8("some", arguments);
+        return qx.Promise.__P_94_8("some", arguments);
       },
       /**
        * Iterate over an array, or a promise of an array, which contains promises (or a mix of promises and values)
@@ -612,7 +612,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       forEach: function forEach(iterable, iterator) {
-        return qx.Promise.__P_93_8("each", arguments);
+        return qx.Promise.__P_94_8("each", arguments);
       },
       /**
        * Given an Iterable(arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix of
@@ -639,7 +639,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       filter: function filter(iterable, iterator, options) {
-        return qx.Promise.__P_93_8("filter", arguments);
+        return qx.Promise.__P_94_8("filter", arguments);
       },
       /**
        * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an
@@ -683,7 +683,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       map: function map(iterable, iterator, options) {
-        return qx.Promise.__P_93_8("map", arguments);
+        return qx.Promise.__P_94_8("map", arguments);
       },
       /**
        * Given an <code>Iterable</code>(arrays are <code>Iterable</code>), or a promise of an
@@ -721,7 +721,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       mapSeries: function mapSeries(iterable, iterator) {
-        return qx.Promise.__P_93_8("mapSeries", arguments);
+        return qx.Promise.__P_94_8("mapSeries", arguments);
       },
       /**
        * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an
@@ -760,7 +760,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       reduce: function reduce(iterable, reducer, initialValue) {
-        return qx.Promise.__P_93_8("reduce", arguments);
+        return qx.Promise.__P_94_8("reduce", arguments);
       },
       /**
        * Returns a new function that wraps the given function fn. The new function will always return a promise that is
@@ -771,7 +771,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       method: function method(cb) {
         var wrappedCb = qx.Promise.Bluebird.method(cb);
         return function () {
-          return qx.Promise.__P_93_4(wrappedCb.apply(this, arguments));
+          return qx.Promise.__P_94_4(wrappedCb.apply(this, arguments));
         };
       },
       /**
@@ -789,7 +789,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       props: function props(input) {
-        return qx.Promise.__P_93_8("props", arguments);
+        return qx.Promise.__P_94_8("props", arguments);
       },
       /**
        * Returns a new function that wraps a function that is in node.js
@@ -845,7 +845,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qx.Promise}
        */
       promisify: function promisify(f, options) {
-        return qx.Promise.__P_93_8("promisify", arguments);
+        return qx.Promise.__P_94_8("promisify", arguments);
       },
       /* *********************************************************************************
        *
@@ -856,7 +856,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Called when the Bluebird Promise class is loaded
        * @param Promise {Class} the Promise class
        */
-      __P_93_9: function __P_93_9(Promise) {
+      __P_94_9: function __P_94_9(Promise) {
         qx.Promise.Bluebird = Promise;
         Promise.config({
           warnings: true,
@@ -865,20 +865,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         });
       },
       /** Whether one-time initialisaton has happened */
-      __P_93_10: false,
+      __P_94_10: false,
       /**
        * One-time initializer
        */
-      __P_93_0: function __P_93_0() {
-        if (qx.Promise.__P_93_10) {
+      __P_94_0: function __P_94_0() {
+        if (qx.Promise.__P_94_10) {
           return;
         }
-        qx.Promise.__P_93_10 = true;
+        qx.Promise.__P_94_10 = true;
         var isNode = typeof process !== "undefined";
         if (isNode) {
-          process.on("unhandledRejection", qx.Promise.__P_93_11.bind(this));
+          process.on("unhandledRejection", qx.Promise.__P_94_11.bind(this));
         } else {
-          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_93_11.bind(this));
+          qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_94_11.bind(this));
         }
         if (!qx.core.Environment.get("qx.promise")) {
           qx.log.Logger.error(this, "Promises are installed and initialised but disabled from properties because qx.promise==false; this may cause unexpected behaviour");
@@ -888,7 +888,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Handles unhandled errors and passes them through to Qooxdoo's global error handler
        * @param e {NativeEvent}
        */
-      __P_93_11: function __P_93_11(e) {
+      __P_94_11: function __P_94_11(e) {
         if (qx.lang.Type.isFunction(e.preventDefault)) {
           e.preventDefault();
         }
@@ -908,7 +908,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param value {Object}
        * @return {Object}
        */
-      __P_93_4: function __P_93_4(value) {
+      __P_94_4: function __P_94_4(value) {
         if (value instanceof qx.Promise.Bluebird) {
           if (value.$$qxPromise) {
             value = value.$$qxPromise;
@@ -927,7 +927,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * 	this is used to determine whether the last value is for binding (default is 1)
        * @return {Array} array of new arguments with functions bound as necessary
        */
-      __P_93_6: function __P_93_6(args, minArgs) {
+      __P_94_6: function __P_94_6(args, minArgs) {
         args = qx.lang.Array.fromArguments(args);
         if (minArgs === undefined) {
           minArgs = 1;
@@ -952,15 +952,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param minArgs {Integer?} {@see __bindArgs}
        * @return {Object?}
        */
-      __P_93_8: function __P_93_8(methodName, args, minArgs) {
-        args = qx.Promise.__P_93_6(args, minArgs);
-        return qx.Promise.__P_93_4(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__P_93_12(args)));
+      __P_94_8: function __P_94_8(methodName, args, minArgs) {
+        args = qx.Promise.__P_94_6(args, minArgs);
+        return qx.Promise.__P_94_4(qx.Promise.Bluebird[methodName].apply(qx.Promise.Bluebird, qx.Promise.__P_94_12(args)));
       },
       /**
        * Maps all arguments ready for passing to a Bluebird function; qx.data.Array are
        * translated to native arrays and qx.Promise to Promise.  This is not recursive.
        */
-      __P_93_12: function __P_93_12(args) {
+      __P_94_12: function __P_94_12(args) {
         var dest = [];
         args.forEach(function (arg) {
           if (arg instanceof qx.data.Array) {
@@ -1057,7 +1057,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
      * Features enabled: core, race, call_get, generators, map, nodeify, promisify, props, reduce, settle, some, using, timers, filter, any, each
      */
     !function (e) {
-      qx.Promise.__P_93_9(e());
+      qx.Promise.__P_94_9(e());
     }(function () {
       var define, module, exports;
       return function e(t, n, r) {
@@ -1082,9 +1082,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return n[o].exports;
         }
         var i = typeof _dereq_ == "function" && _dereq_;
-        for (var o = 0; o < r.length; o++) {
-          s(r[o]);
-        }
+        for (var o = 0; o < r.length; o++) s(r[o]);
         return s;
       }({
         1: [function (_dereq_, module, exports) {
@@ -1985,10 +1983,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 }
                 if (trace !== undefined) {
                   trace.attachExtraTrace(error);
-                } else if (!error.__P_93_13) {
+                } else if (!error.__P_94_13) {
                   var parsed = parseStackAndMessage(error);
                   util.notEnumerableProp(error, "stack", parsed.message + "\n" + parsed.stack.join("\n"));
-                  util.notEnumerableProp(error, "__P_93_13", true);
+                  util.notEnumerableProp(error, "__P_94_13", true);
                 }
               }
             }
@@ -2301,7 +2299,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             };
             CapturedTrace.prototype.attachExtraTrace = function (error) {
-              if (error.__P_93_13) return;
+              if (error.__P_94_13) return;
               this.uncycle();
               var parsed = parseStackAndMessage(error);
               var message = parsed.message;
@@ -2314,7 +2312,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               removeCommonRoots(stacks);
               removeDuplicateOrEmptyJumps(stacks);
               util.notEnumerableProp(error, "stack", reconstructStack(message, stacks));
-              util.notEnumerableProp(error, "__P_93_13", true);
+              util.notEnumerableProp(error, "__P_94_13", true);
             };
             var captureStackTrace = function stackDetection() {
               var v8stackFramePattern = /^\s*at\s*/;
@@ -3731,9 +3729,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             };
             Promise.prototype._target = function () {
               var ret = this;
-              while (ret._isFollowing()) {
-                ret = ret._followee();
-              }
+              while (ret._isFollowing()) ret = ret._followee();
               return ret;
             };
             Promise.prototype._followee = function () {
@@ -4164,9 +4160,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             var TypeError = _dereq_("./errors").TypeError;
             var defaultSuffix = "Async";
             var defaultPromisified = {
-              __P_93_14: true
+              __P_94_14: true
             };
-            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_93_14"];
+            var noCopyProps = ["arity", "length", "name", "arguments", "caller", "callee", "prototype", "__P_94_14"];
             var noCopyPropsPattern = new RegExp("^(?:" + noCopyProps.join("|") + ")$");
             var defaultFilter = function defaultFilter(name) {
               return util.isIdentifier(name) && name.charAt(0) !== "_" && name !== "constructor";
@@ -4176,7 +4172,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             }
             function isPromisified(fn) {
               try {
-                return fn.__P_93_14 === true;
+                return fn.__P_94_14 === true;
               } catch (e) {
                 return false;
               }
@@ -4216,7 +4212,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               return str.replace(/([$])/, "\\$");
             };
             var makeNodePromisifiedEval;
-            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_93_15, multiArgs) {
+            function makeNodePromisifiedClosure(callback, receiver, _, fn, __P_94_15, multiArgs) {
               var defaultThis = function () {
                 return this;
               }();
@@ -4239,7 +4235,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 if (!promise._isFateSealed()) promise._setAsyncGuaranteed();
                 return promise;
               }
-              util.notEnumerableProp(promisified, "__P_93_14", true);
+              util.notEnumerableProp(promisified, "__P_94_14", true);
               return promisified;
             }
             var makeNodePromisified = canEvaluate ? makeNodePromisifiedEval : makeNodePromisifiedClosure;
@@ -4256,7 +4252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                   var promisified = promisifier(fn, function () {
                     return makeNodePromisified(key, THIS, key, fn, suffix, multiArgs);
                   });
-                  util.notEnumerableProp(promisified, "__P_93_14", true);
+                  util.notEnumerableProp(promisified, "__P_94_14", true);
                   obj[promisifiedKey] = promisified;
                 }
               }
@@ -4964,11 +4960,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             PromiseInspection.prototype.isCancelled = function () {
               return (this._bitField & 8454144) !== 0;
             };
-            Promise.prototype.__P_93_16 = function () {
+            Promise.prototype.__P_94_16 = function () {
               return (this._bitField & 65536) === 65536;
             };
             Promise.prototype._isCancelled = function () {
-              return this._target().__P_93_16();
+              return this._target().__P_94_16();
             };
             Promise.prototype.isCancelled = function () {
               return (this._target()._bitField & 8454144) !== 0;
@@ -5522,9 +5518,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             function FakeConstructor() {}
             FakeConstructor.prototype = obj;
             var l = 8;
-            while (l--) {
-              new FakeConstructor();
-            }
+            while (l--) new FakeConstructor();
             return obj;
           }
           var rident = /^[a-z$_][a-z$_0-9]*$/i;
@@ -5689,4 +5683,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Promise.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promise.js.map?dt=1673093847551
+//# sourceMappingURL=Promise.js.map?dt=1676809303096

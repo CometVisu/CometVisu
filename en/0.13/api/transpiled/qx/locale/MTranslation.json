@@ -16,7 +16,7 @@
       "end": {
         "line": 132,
         "column": 3,
-        "index": 4686
+        "index": 4678
       }
     },
     "jsdoc": {
@@ -41,12 +41,12 @@
         "start": {
           "line": 37,
           "column": 4,
-          "index": 1070
+          "index": 1068
         },
         "end": {
           "line": 46,
           "column": 5,
-          "index": 1349
+          "index": 1347
         }
       },
       "jsdoc": {
@@ -76,8 +76,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ]
@@ -90,12 +90,12 @@
         "start": {
           "line": 60,
           "column": 4,
-          "index": 2024
+          "index": 2020
         },
         "end": {
           "line": 69,
           "column": 5,
-          "index": 2337
+          "index": 2333
         }
       },
       "jsdoc": {
@@ -139,8 +139,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ]
@@ -153,12 +153,12 @@
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2808
+          "index": 2802
         },
         "end": {
           "line": 89,
           "column": 5,
-          "index": 3095
+          "index": 3089
         }
       },
       "jsdoc": {
@@ -195,8 +195,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ]
@@ -209,12 +209,12 @@
         "start": {
           "line": 104,
           "column": 4,
-          "index": 3894
+          "index": 3886
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 4215
+          "index": 4207
         }
       },
       "jsdoc": {
@@ -265,8 +265,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | LocalizedString} The translated message or localized string",
-            "type": "String | LocalizedString",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
             "description": " The translated message or localized string"
           }
         ]
@@ -279,12 +279,12 @@
         "start": {
           "line": 121,
           "column": 4,
-          "index": 4400
+          "index": 4392
         },
         "end": {
           "line": 130,
           "column": 5,
-          "index": 4678
+          "index": 4670
         }
       },
       "jsdoc": {

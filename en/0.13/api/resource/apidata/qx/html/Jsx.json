@@ -16,7 +16,7 @@
       "end": {
         "line": 204,
         "column": 3,
-        "index": 5774
+        "index": 5772
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 42,
           "column": 4,
-          "index": 1405
+          "index": 1403
         },
         "end": {
           "line": 139,
           "column": 5,
-          "index": 4420
+          "index": 4418
         }
       },
       "jsdoc": {
@@ -77,8 +77,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.html.Element | qx.data.Array}",
-            "type": "qx.html.Element | qx.data.Array",
+            "body": "{qx.html.Element|qx.data.Array}",
+            "type": "qx.html.Element|qx.data.Array",
             "description": ""
           }
         ]
@@ -91,12 +91,12 @@
         "start": {
           "line": 142,
           "column": 4,
-          "index": 4492
+          "index": 4490
         },
         "end": {
           "line": 142,
           "column": 25,
-          "index": 4513
+          "index": 4511
         }
       },
       "jsdoc": {
@@ -121,12 +121,12 @@
         "start": {
           "line": 145,
           "column": 4,
-          "index": 4568
+          "index": 4566
         },
         "end": {
           "line": 145,
           "column": 26,
-          "index": 4590
+          "index": 4588
         }
       },
       "jsdoc": {
@@ -152,12 +152,12 @@
       "start": {
         "line": 148,
         "column": 2,
-        "index": 4599
+        "index": 4597
       },
       "end": {
         "line": 203,
         "column": 3,
-        "index": 5770
+        "index": 5768
       }
     }
   },

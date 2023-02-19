@@ -2,8 +2,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 (function () {
   var $$dbClassInfo = {
@@ -164,9 +164,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var lastPart = 'start';
           var v = result; // use the fact that `v` is now a reference and not a copy
           while (selector !== '') {
-            var _this$__P_535_ = this.__P_535_0(selector),
-              firstPart = _this$__P_535_.firstPart,
-              remainingPart = _this$__P_535_.remainingPart;
+            var _this$__P_536_ = this.__P_536_0(selector),
+              firstPart = _this$__P_536_.firstPart,
+              remainingPart = _this$__P_536_.remainingPart;
             if (isFinite(firstPart)) {
               v[lastPart] = [];
             } else {
@@ -216,9 +216,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           try {
             var v = JSON.parse(value);
             while (selector !== '') {
-              var _this$__P_535_2 = this.__P_535_0(selector),
-                firstPart = _this$__P_535_2.firstPart,
-                remainingPart = _this$__P_535_2.remainingPart;
+              var _this$__P_536_2 = this.__P_536_0(selector),
+                firstPart = _this$__P_536_2.firstPart,
+                remainingPart = _this$__P_536_2.remainingPart;
               if (_typeof(v) === 'object' && firstPart in v) {
                 v = v[firstPart];
               } else {
@@ -252,7 +252,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @param {string} selector - the JSON (sub-)selector
        * @returns {{firstPart: string, remainingPart: string}}
        */
-      __P_535_0: function __P_535_0(selector) {
+      __P_536_0: function __P_536_0(selector) {
         if (selector[0] === '[') {
           var _selector$match = selector.match(/^\[([^\]]*)]\.?(.*)/),
             _selector$match2 = _slicedToArray(_selector$match, 3),
@@ -289,4 +289,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1673093881662
+//# sourceMappingURL=Transform.js.map?dt=1676809335167

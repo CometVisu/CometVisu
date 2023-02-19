@@ -13,7 +13,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -89,7 +89,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     members: {
-      __P_76_0: false,
+      __P_77_0: false,
       _idRegex: null,
       _transformId: function _transformId(value) {
         if (this._idRegex.test(value)) {
@@ -102,7 +102,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         cv.ui.structure.tile.components.Icon.superclass.prototype._init.call(this);
         var element = this._element;
         if (element.textContent.trim()) {
-          this.__P_76_0 = true;
+          this.__P_77_0 = true;
           this.setId(element.textContent.trim());
         } else {
           var it = element.classList.values();
@@ -122,11 +122,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             _iterator.f();
           }
         }
-        this.__P_76_0 = true;
+        this.__P_77_0 = true;
       },
       _applyId: function _applyId(value, oldValue) {
         var element = this._element;
-        if (this.__P_76_0) {
+        if (this.__P_77_0) {
           if (oldValue) {
             element.classList.remove(oldValue);
           }
@@ -172,4 +172,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1673093844922
+//# sourceMappingURL=Icon.js.map?dt=1676809300557

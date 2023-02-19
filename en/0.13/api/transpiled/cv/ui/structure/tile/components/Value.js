@@ -19,6 +19,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         "require": true
       },
       "cv.ui.structure.tile.components.AbstractComponent": {
+        "construct": true,
         "require": true
       },
       "cv.ui.structure.tile.MVisibility": {
@@ -64,6 +65,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],
     /*
     ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct(element) {
+      cv.ui.structure.tile.components.AbstractComponent.constructor.call(this, element);
+      this.addListener('changeVisible', this._applyVisible, this);
+    },
+    /*
+    ***********************************************
       MEMBERS
     ***********************************************
     */
@@ -80,8 +90,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           this.addListener('resized', this._debouncedDetectOverflow, this);
         }
       },
-      _applyVisible: function _applyVisible(visible) {
-        if (visible) {
+      _applyVisible: function _applyVisible(ev) {
+        if (ev.getData()) {
           if (this._queuedOverflowDetection) {
             this._debouncedDetectOverflow();
           }
@@ -114,7 +124,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             case 'cv-icon':
               target._instance.setId(mappedValue);
               if (this._element.hasAttribute('styling')) {
-                styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_83_0);
+                styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_84_0);
               }
               target._instance.setStyleClass(styleClass);
               break;
@@ -154,4 +164,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1673093845728
+//# sourceMappingURL=Value.js.map?dt=1676809301356

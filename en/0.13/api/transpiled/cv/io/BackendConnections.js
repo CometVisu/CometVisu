@@ -49,11 +49,11 @@
     ***********************************************
     */
     statics: {
-      __P_532_0: {},
-      __P_532_1: null,
-      __P_532_2: null,
-      __P_532_3: false,
-      __P_532_4: null,
+      __P_533_0: {},
+      __P_533_1: null,
+      __P_533_2: null,
+      __P_533_3: false,
+      __P_533_4: null,
       /**
        * Initialize the {@link cv.io.Client} for backend communication
        */
@@ -84,15 +84,15 @@
         if (name === 'system') {
           throw Error('"system" is not allowed as a backend name');
         }
-        if (this.__P_532_0[name]) {
-          this.__P_532_0[name].dispose();
-          delete this.__P_532_0[name];
+        if (this.__P_533_0[name]) {
+          this.__P_533_0[name].dispose();
+          delete this.__P_533_0[name];
         }
         var client = cv.Application.createClient(type, backendUrl);
         if (source) {
           client.configuredIn = source;
         }
-        this.__P_532_0[name] = client;
+        this.__P_533_0[name] = client;
         var model = cv.data.Model.getInstance();
         client.addListener('changeConnected', function (ev) {
           var data = {};
@@ -126,8 +126,11 @@
             return _this._updateClientScope(name);
           });
         }
-        if (!this.__P_532_4) {
-          this.__P_532_4 = qx.core.Init.getApplication().addListener('changeActive', this._onActiveChanged, this);
+        if (!this.__P_533_4) {
+          var app = qx.core.Init.getApplication();
+          if (app) {
+            this.__P_533_4 = app.addListener('changeActive', this._onActiveChanged, this);
+          }
         }
 
         // show connection state in NotificationCenter
@@ -137,9 +140,9 @@
         return client;
       },
       removeClient: function removeClient(client) {
-        for (var name in this.__P_532_0) {
-          if (this.__P_532_0[name] === client) {
-            delete this.__P_532_0[name];
+        for (var name in this.__P_533_0) {
+          if (this.__P_533_0[name] === client) {
+            delete this.__P_533_0[name];
             break;
           }
         }
@@ -150,7 +153,7 @@
        * @return {boolean}
        */
       hasClient: function hasClient(name) {
-        return Object.prototype.hasOwnProperty.call(this.__P_532_0, name);
+        return Object.prototype.hasOwnProperty.call(this.__P_533_0, name);
       },
       /**
        * Get the backend client by name, if the name is not set the default backend is used.
@@ -160,25 +163,36 @@
       getClient: function getClient(backendName) {
         if (backendName === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_532_0.system = new cv.io.System();
+            this.__P_533_0.system = new cv.io.System();
           }
-          return this.__P_532_0.system;
+          return this.__P_533_0.system;
         }
         if (!backendName) {
           backendName = cv.data.Model.getInstance().getDefaultBackendName();
         }
-        if (!this.__P_532_0[backendName] && cv.Config.testMode) {
+        if (!this.__P_533_0[backendName] && cv.Config.testMode) {
           // in testMode the client might not have been initialized yet
           return this.addBackendClient('main', 'simulated');
         }
-        return this.__P_532_0[backendName];
+        return this.__P_533_0[backendName];
+      },
+      initSystemBackend: function initSystemBackend() {
+        // make sure that we have a "system" backend
+        if (!this.hasClient('system')) {
+          this.__P_533_0.system = new cv.io.System();
+        }
+        var client = this.__P_533_0.system;
+        var addressesToSubscribe = cv.data.Model.getInstance().getAddresses('system');
+        if (addressesToSubscribe.length !== 0) {
+          client.subscribe(addressesToSubscribe);
+        }
       },
       /**
        * Start retrieving data from backend
        */
       startInitialRequest: function startInitialRequest() {
         var _this2 = this;
-        Object.getOwnPropertyNames(this.__P_532_0).forEach(function (name) {
+        Object.getOwnPropertyNames(this.__P_533_0).forEach(function (name) {
           var client = _this2.getClient(name);
           if (cv.Config.enableAddressQueue) {
             // identify addresses on startpage
@@ -194,13 +208,13 @@
         var _this3 = this;
         var app = qx.core.Init.getApplication();
         if (app.isActive()) {
-          if (this.__P_532_2) {
-            this.__P_532_2.dispose();
-            this.__P_532_2 = null;
+          if (this.__P_533_2) {
+            this.__P_533_2.dispose();
+            this.__P_533_2 = null;
           }
-          Object.getOwnPropertyNames(this.__P_532_0).forEach(function (backendName) {
-            var client = _this3.__P_532_0[backendName];
-            if (!client.isConnected() && _this3.__P_532_3) {
+          Object.getOwnPropertyNames(this.__P_533_0).forEach(function (backendName) {
+            var client = _this3.__P_533_0[backendName];
+            if (!client.isConnected() && _this3.__P_533_3) {
               // reconnect
               qx.log.Logger.debug(_this3, "restarting ".concat(backendName, " backend connection"));
               client.restart(true);
@@ -208,37 +222,37 @@
           });
 
           // wait for 3 seconds before checking the backend connection
-          if (!this.__P_532_1) {
-            this.__P_532_1 = new qx.event.Timer(3000);
-            this.__P_532_1.addListener('interval', function () {
+          if (!this.__P_533_1) {
+            this.__P_533_1 = new qx.event.Timer(3000);
+            this.__P_533_1.addListener('interval', function () {
               if (app.isActive()) {
-                Object.getOwnPropertyNames(_this3.__P_532_0).forEach(_this3._checkBackendConnection, _this3);
+                Object.getOwnPropertyNames(_this3.__P_533_0).forEach(_this3._checkBackendConnection, _this3);
               }
-              _this3.__P_532_1.dispose();
-              _this3.__P_532_1 = null;
+              _this3.__P_533_1.dispose();
+              _this3.__P_533_1 = null;
             });
           }
-          this.__P_532_1.restart();
+          this.__P_533_1.restart();
         } else {
-          if (this.__P_532_1) {
-            this.__P_532_1.dispose();
-            this.__P_532_1 = null;
+          if (this.__P_533_1) {
+            this.__P_533_1.dispose();
+            this.__P_533_1 = null;
           }
-          if (!this.__P_532_2) {
+          if (!this.__P_533_2) {
             // disconnect after 60 secs
-            this.__P_532_2 = new qx.event.Timer(60000);
-            this.__P_532_2.addListener('interval', function () {
-              Object.getOwnPropertyNames(_this3.__P_532_0).forEach(function (name) {
+            this.__P_533_2 = new qx.event.Timer(60000);
+            this.__P_533_2.addListener('interval', function () {
+              Object.getOwnPropertyNames(_this3.__P_533_0).forEach(function (name) {
                 var client = _this3.getClient(name);
                 if (client.isConnected()) {
                   client.terminate();
                 }
               });
-              _this3.__P_532_2.dispose();
-              _this3.__P_532_2 = null;
+              _this3.__P_533_2.dispose();
+              _this3.__P_533_2 = null;
             });
           }
-          this.__P_532_2.restart();
+          this.__P_533_2.restart();
         }
       },
       _checkBackendConnection: function _checkBackendConnection(name) {
@@ -250,7 +264,7 @@
           severity: 'urgent',
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_532_3 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_533_3 && qx.core.Init.getApplication().isActive()
         };
         var lastError = client.getLastError();
         if (!connected) {
@@ -268,7 +282,7 @@
             }]
           };
         } else {
-          this.__P_532_3 = true;
+          this.__P_533_3 = true;
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       },
@@ -320,4 +334,4 @@
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1673093881546
+//# sourceMappingURL=BackendConnections.js.map?dt=1676809335058

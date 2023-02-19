@@ -1,0 +1,33 @@
+{
+  "className": "qx.theme.indigo.ColorDark",
+  "packageName": "qx.theme.indigo",
+  "name": "ColorDark",
+  "superClass": null,
+  "interfaces": [],
+  "mixins": [],
+  "functionName": null,
+  "clazz": {
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 0,
+        "index": 433
+      },
+      "end": {
+        "line": 117,
+        "column": 3,
+        "index": 3156
+      }
+    },
+    "jsdoc": {
+      "@description": [
+        {
+          "name": "@description",
+          "body": "<p>Indigo dark color theme</p>"
+        }
+      ]
+    }
+  },
+  "type": "theme",
+  "descendants": []
+}

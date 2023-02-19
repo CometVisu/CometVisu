@@ -179,16 +179,16 @@
     */
 
     members: {
-      __P_328_0: 2,
-      __P_328_1: 0,
+      __P_329_0: 2,
+      __P_329_1: 0,
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var hint = qx.ui.core.scroll.ScrollBar.superclass.prototype._computeSizeHint.call(this);
         if (this.getOrientation() === "horizontal") {
-          this.__P_328_1 = hint.minWidth;
+          this.__P_329_1 = hint.minWidth;
           hint.minWidth = 0;
         } else {
-          this.__P_328_1 = hint.minHeight;
+          this.__P_329_1 = hint.minHeight;
           hint.minHeight = 0;
         }
         return hint;
@@ -197,7 +197,7 @@
       renderLayout: function renderLayout(left, top, width, height) {
         var changes = qx.ui.core.scroll.ScrollBar.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var horizontal = this.getOrientation() === "horizontal";
-        if (this.__P_328_1 >= (horizontal ? width : height)) {
+        if (this.__P_329_1 >= (horizontal ? width : height)) {
           this.getChildControl("button-begin").setVisibility("hidden");
           this.getChildControl("button-end").setVisibility("hidden");
         } else {
@@ -391,11 +391,11 @@
         var hideKnob = false;
         var sliderSize = this.getChildControl("slider").getInnerSize();
         if (this.getOrientation() == "vertical") {
-          if (sliderSize.height < knobHint.minHeight + this.__P_328_0) {
+          if (sliderSize.height < knobHint.minHeight + this.__P_329_0) {
             hideKnob = true;
           }
         } else {
-          if (sliderSize.width < knobHint.minWidth + this.__P_328_0) {
+          if (sliderSize.width < knobHint.minWidth + this.__P_329_0) {
             hideKnob = true;
           }
         }
@@ -410,4 +410,4 @@
   qx.ui.core.scroll.ScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollBar.js.map?dt=1673093867224
+//# sourceMappingURL=ScrollBar.js.map?dt=1676809321689

@@ -57,43 +57,43 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this.setName(machineName);
 
       // Initialize the states object
-      this.__P_515_0 = {};
+      this.__P_516_0 = {};
 
       // The first state added will become the start state
-      this.__P_515_1 = null;
+      this.__P_516_1 = null;
 
       // Initialize the saved-states stack
-      this.__P_515_2 = [];
+      this.__P_516_2 = [];
 
       // Initialize the pending event queue
-      this.__P_515_3 = [];
+      this.__P_516_3 = [];
 
       // Initialize the blocked events queue
-      this.__P_515_4 = [];
+      this.__P_516_4 = [];
 
       // Create the friendlyToObject" object.  Each object has as its property
       // name, the friendly name of the object; and as its property value, the
       // object itself.
-      this.__P_515_5 = {};
+      this.__P_516_5 = {};
 
       // Create the "friendlyToHash" object.  Each object has as its property
       // name, the friendly name of the object; and as its property value, the
       // hash code of the object.
-      this.__P_515_6 = {};
+      this.__P_516_6 = {};
 
       // Create the "hashToFriendly" object.  Each object has as its property
       // name, the hash code of the object; and as its property value, the
       // friendly name of the object.
-      this.__P_515_7 = {};
+      this.__P_516_7 = {};
 
       // Friendly names can be added to groups, for easy manipulation of
       // enabling and disabling groups of widgets.  Track which friendly names
       // are in which group.
-      this.__P_515_8 = {};
+      this.__P_516_8 = {};
 
       // We also need to be able to map back from friendly name to the groups it
       // is in.
-      this.__P_515_9 = {};
+      this.__P_516_9 = {};
     },
     statics: {
       /**
@@ -215,25 +215,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       }
     },
     members: {
-      __P_515_0: null,
-      __P_515_1: null,
-      __P_515_3: null,
-      __P_515_4: null,
-      __P_515_2: null,
-      __P_515_5: null,
-      __P_515_6: null,
-      __P_515_7: null,
-      __P_515_8: null,
-      __P_515_9: null,
-      __P_515_10: false,
-      __P_515_11: true,
+      __P_516_0: null,
+      __P_516_1: null,
+      __P_516_3: null,
+      __P_516_4: null,
+      __P_516_2: null,
+      __P_516_5: null,
+      __P_516_6: null,
+      __P_516_7: null,
+      __P_516_8: null,
+      __P_516_9: null,
+      __P_516_10: false,
+      __P_516_11: true,
       /**
        * Checks whether the finite state machine is terminated or not.
        *
        * @return {Boolean} If the finite state machine is terminated.
        */
       isTerminated: function isTerminated() {
-        return this.__P_515_11;
+        return this.__P_516_11;
       },
       /**
        * Add a state to the finite state machine.
@@ -257,18 +257,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var stateName = state.getName();
 
         // Ensure that the state name doesn't already exist
-        if (stateName in this.__P_515_0) {
+        if (stateName in this.__P_516_0) {
           throw new Error("State " + stateName + " already exists");
         }
 
         // Is this the first state being added?
-        if (this.__P_515_1 == null) {
+        if (this.__P_516_1 == null) {
           // Yup.  Save this state as the start state.
-          this.__P_515_1 = stateName;
+          this.__P_516_1 = stateName;
         }
 
         // Add the new state object to the finite state machine
-        this.__P_515_0[stateName] = state;
+        this.__P_516_0[stateName] = state;
       },
       /**
        * Replace a state in the finite state machine.  This is useful if
@@ -302,10 +302,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var stateName = state.getName();
 
         // Save the old state object, so we can return it to be disposed
-        var oldState = this.__P_515_0[stateName];
+        var oldState = this.__P_516_0[stateName];
 
         // Replace the old state with the new state object.
-        this.__P_515_0[stateName] = state;
+        this.__P_516_0[stateName] = state;
 
         // Did they request that the old state be disposed?
         if (bDispose) {
@@ -331,9 +331,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       addObject: function addObject(friendlyName, obj, groupNames) {
         var hash = qx.core.ObjectRegistry.toHashCode(obj);
-        this.__P_515_6[friendlyName] = hash;
-        this.__P_515_7[hash] = friendlyName;
-        this.__P_515_5[friendlyName] = obj;
+        this.__P_516_6[friendlyName] = hash;
+        this.__P_516_7[hash] = friendlyName;
+        this.__P_516_5[friendlyName] = obj;
 
         // If no groupNames are specified, we're done.
         if (!groupNames) {
@@ -352,23 +352,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           var groupName = groupNames[i];
 
           // If the group name doesn't yet exist...
-          if (!this.__P_515_8[groupName]) {
+          if (!this.__P_516_8[groupName]) {
             // ... then create it.
-            this.__P_515_8[groupName] = {};
+            this.__P_516_8[groupName] = {};
           }
 
           // Add the friendly name to the list of names in this group
-          this.__P_515_8[groupName][friendlyName] = true;
+          this.__P_516_8[groupName][friendlyName] = true;
 
           // If the friendly name group mapping doesn't yet exist...
-          if (!this.__P_515_9[friendlyName]) {
+          if (!this.__P_516_9[friendlyName]) {
             // ... then create it.
-            this.__P_515_9[friendlyName] = [];
+            this.__P_516_9[friendlyName] = [];
           }
 
           // Append this group name to the list of groups this friendly name is
           // in
-          this.__P_515_9[friendlyName].push(groupName);
+          this.__P_516_9[friendlyName].push(groupName);
         }
       },
       /**
@@ -385,17 +385,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var groupName;
         var objName;
         var bGroupEmpty;
-        hash = this.__P_515_6[friendlyName];
+        hash = this.__P_516_6[friendlyName];
 
         // Delete references to any groups this friendly name was in
-        if (this.__P_515_9[friendlyName]) {
-          for (var i = 0; i < this.__P_515_9[friendlyName].length; i++) {
-            groupName = this.__P_515_9[friendlyName][i];
-            delete this.__P_515_8[groupName][friendlyName];
+        if (this.__P_516_9[friendlyName]) {
+          for (var i = 0; i < this.__P_516_9[friendlyName].length; i++) {
+            groupName = this.__P_516_9[friendlyName][i];
+            delete this.__P_516_8[groupName][friendlyName];
 
             // Is the group empty now?
             bGroupEmpty = true;
-            for (objName in this.__P_515_8[groupName]) {
+            for (objName in this.__P_516_8[groupName]) {
               // The group is not empty. That's all we wanted to know.
               bGroupEmpty = false;
               break;
@@ -404,16 +404,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             // If the group is empty...
             if (bGroupEmpty) {
               // ... then we can delete the entire entry
-              delete this.__P_515_8[groupName];
+              delete this.__P_516_8[groupName];
             }
           }
-          delete this.__P_515_9[friendlyName];
+          delete this.__P_516_9[friendlyName];
         }
 
         // Delete the friendly name
-        delete this.__P_515_7[hash];
-        delete this.__P_515_6[friendlyName];
-        delete this.__P_515_5[friendlyName];
+        delete this.__P_516_7[hash];
+        delete this.__P_516_6[friendlyName];
+        delete this.__P_516_5[friendlyName];
       },
       /**
        * Retrieve an object previously saved via {@link #addObject}, using its
@@ -428,7 +428,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   object has been associated with that name.
        */
       getObject: function getObject(friendlyName) {
-        return this.__P_515_5[friendlyName];
+        return this.__P_516_5[friendlyName];
       },
       /**
        * Get the friendly name of an object.
@@ -443,7 +443,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       getFriendlyName: function getFriendlyName(obj) {
         var hash = obj ? qx.core.ObjectRegistry.toHashCode(obj) : null;
-        return hash ? this.__P_515_7[hash] : null;
+        return hash ? this.__P_516_7[hash] : null;
       },
       /**
        * Retrieve the list of objects which have registered, via {@link #addObject}
@@ -459,7 +459,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       getGroupObjects: function getGroupObjects(groupName) {
         var a = [];
-        for (var name in this.__P_515_8[groupName]) {
+        for (var name in this.__P_516_8[groupName]) {
           a.push(name);
         }
         return a;
@@ -469,11 +469,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        */
       displayAllObjects: function displayAllObjects() {
-        for (var friendlyName in this.__P_515_6) {
-          var hash = this.__P_515_6[friendlyName];
+        for (var friendlyName in this.__P_516_6) {
+          var hash = this.__P_516_6[friendlyName];
           var obj = this.getObject(friendlyName);
           this.debug(friendlyName + " => " + hash);
-          this.debug("  " + hash + " => " + this.__P_515_7[hash]);
+          this.debug("  " + hash + " => " + this.__P_516_7[hash]);
           this.debug("  " + friendlyName + " => " + this.getObject(friendlyName));
           this.debug("  " + this.getObject(friendlyName) + " => " + this.getFriendlyName(obj));
         }
@@ -497,16 +497,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       _getInternalData: function _getInternalData() {
         return {
-          states: this.__P_515_0,
-          startState: this.__P_515_1,
-          eventQueue: this.__P_515_3,
-          blockedEvents: this.__P_515_4,
-          savedStates: this.__P_515_2,
-          friendlyToObject: this.__P_515_5,
-          friendlyToHash: this.__P_515_6,
-          hashToFriendly: this.__P_515_7,
-          groupToFriendly: this.__P_515_8,
-          friendlyToGroups: this.__P_515_9
+          states: this.__P_516_0,
+          startState: this.__P_516_1,
+          eventQueue: this.__P_516_3,
+          blockedEvents: this.__P_516_4,
+          savedStates: this.__P_516_2,
+          friendlyToObject: this.__P_516_5,
+          friendlyToHash: this.__P_516_6,
+          hashToFriendly: this.__P_516_7,
+          groupToFriendly: this.__P_516_8,
+          friendlyToGroups: this.__P_516_9
         };
       },
       /**
@@ -517,8 +517,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @throws {Error} If the machine stared with not available state.
        */
       start: function start() {
-        this.__P_515_11 = false;
-        var stateName = this.__P_515_1;
+        this.__P_516_11 = false;
+        var stateName = this.__P_516_1;
         if (stateName == null) {
           throw new Error("Machine started with no available states");
         }
@@ -534,19 +534,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (debugFunctions) {
           this.debug(this.getName() + "#" + stateName + "#actionsBeforeOnentry");
         }
-        this.__P_515_0[stateName].getAutoActionsBeforeOnentry()(this);
+        this.__P_516_0[stateName].getAutoActionsBeforeOnentry()(this);
 
         // Run the entry function for the new state, if one is specified
         if (debugFunctions) {
           this.debug(this.getName() + "#" + stateName + "#entry");
         }
-        this.__P_515_0[stateName].getOnentry()(this, null);
+        this.__P_516_0[stateName].getOnentry()(this, null);
 
         // Run the actionsAfterOnentry actions for the initial state
         if (debugFunctions) {
           this.debug(this.getName() + "#" + stateName + "#actionsAfterOnentry");
         }
-        this.__P_515_0[stateName].getAutoActionsAfterOnentry()(this);
+        this.__P_516_0[stateName].getAutoActionsAfterOnentry()(this);
       },
       /**
        * Save the current or previous state on the saved-state stack.  A future
@@ -575,18 +575,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       pushState: function pushState(state) {
         // See if there's room on the state stack for a new state
-        if (this.__P_515_2.length >= this.getMaxSavedStates()) {
+        if (this.__P_516_2.length >= this.getMaxSavedStates()) {
           // Nope.  Programmer error.
           throw new Error("Saved-state stack is full");
         }
         if (state === true) {
           // Push the current state onto the saved-state stack
-          this.__P_515_2.push(this.getState());
+          this.__P_516_2.push(this.getState());
         } else if (state) {
-          this.__P_515_2.push(state);
+          this.__P_516_2.push(state);
         } else {
           // Push the previous state onto the saved-state stack
-          this.__P_515_2.push(this.getPreviousState());
+          this.__P_516_2.push(this.getPreviousState());
         }
       },
       /**
@@ -598,11 +598,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       popState: function popState() {
         // Is there anything on the saved-state stack?
-        if (this.__P_515_2.length == 0) {
+        if (this.__P_516_2.length == 0) {
           // Nope. Programmer error.
           throw new Error("Saved-state stack is empty");
         }
-        return this.__P_515_2.pop();
+        return this.__P_516_2.pop();
       },
       /**
        * Add the specified event to a list of events to be passed to the next
@@ -616,7 +616,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       postponeEvent: function postponeEvent(event) {
         // Add this event to the blocked event queue, so it will be passed to the
         // next state upon transition.
-        this.__P_515_4.unshift(event);
+        this.__P_516_4.unshift(event);
       },
       /**
        * Enqueue an event for processing
@@ -635,10 +635,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // Add the event to the event queue
         if (bAddAtHead) {
           // Put event at the head of the queue
-          this.__P_515_3.push(event);
+          this.__P_516_3.push(event);
         } else {
           // Put event at the tail of the queue
-          this.__P_515_3.unshift(event);
+          this.__P_516_3.unshift(event);
         }
         if (this.getDebugFlags() & qx.util.fsm.FiniteStateMachine.DebugFlags.EVENTS) {
           // Individual objects are listed.  Ensure target is a saved object
@@ -656,7 +656,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param event {qx.event.type.Event} The event that was dispatched.
        */
       eventListener: function eventListener(event) {
-        if (this.__P_515_11) {
+        if (this.__P_516_11) {
           this.debug(this.getName() + ": Cannot listen to event '" + event.getType() + "', because the finite state machine is not running.");
           return;
         }
@@ -672,7 +672,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.enqueueEvent(e, false);
 
         // Process events
-        this.__P_515_12();
+        this.__P_516_12();
       },
       /**
        * Create an event and send it immediately to the finite state machine.
@@ -691,7 +691,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *
        */
       fireImmediateEvent: function fireImmediateEvent(type, target, data) {
-        if (this.__P_515_11) {
+        if (this.__P_516_11) {
           this.debug(this.getName() + ": Cannot listen to event '" + type + "', because the finite state machine is not running.");
           return;
         }
@@ -732,24 +732,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Process all of the events on the event queue.
        *
        */
-      __P_515_12: function __P_515_12() {
+      __P_516_12: function __P_516_12() {
         // eventListener() can potentially be called while we're processing
         // events
-        if (this.__P_515_10) {
+        if (this.__P_516_10) {
           // We were processing already, so don't process concurrently.
           return;
         }
 
         // Track that we're processing events
-        this.__P_515_10 = true;
+        this.__P_516_10 = true;
 
         // Process each of the events on the event queue
-        while (this.__P_515_3.length > 0) {
+        while (this.__P_516_3.length > 0) {
           // Pull the next event from the pending event queue
-          var event = this.__P_515_3.pop();
+          var event = this.__P_516_3.pop();
 
           // Run the finite state machine with this event
-          var bDispose = this.__P_515_13(event);
+          var bDispose = this.__P_516_13(event);
 
           // If we didn't block (and re-queue) the event, dispose it.
           if (bDispose) {
@@ -758,7 +758,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         }
 
         // We're no longer processing events
-        this.__P_515_10 = false;
+        this.__P_516_10 = false;
       },
       /**
        * Run the finite state machine to process a single event.
@@ -780,7 +780,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @throws {Error} If the state stack is empty and the next state is POP_STATE_STACK
        * @throws {Error} If the next state is invalid.
        */
-      __P_515_13: function __P_515_13(event) {
+      __P_516_13: function __P_516_13(event) {
         // For use in generated functions...
         // State name variables
         var thisState;
@@ -818,7 +818,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         thisState = this.getState();
 
         // Get the current State object
-        currentState = this.__P_515_0[thisState];
+        currentState = this.__P_516_0[thisState];
 
         // Get a list of the transitions available from this state
         transitions = currentState.transitions;
@@ -869,7 +869,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             if (debugEvents) {
               this.debug(this.getName() + ": Event '" + event.getType() + "'" + " blocked.  Re-queuing.");
             }
-            this.__P_515_4.unshift(event);
+            this.__P_516_4.unshift(event);
             return false;
           default:
             // See if we've been given an explicit transition name
@@ -912,7 +912,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           nextState = trans.getNextState();
           if (typeof nextState == "string") {
             // We found a literal state name.  Ensure it exists.
-            if (!nextState in this.__P_515_0) {
+            if (!nextState in this.__P_516_0) {
               throw new Error("Attempt to transition to nonexistent state " + nextState);
             }
 
@@ -928,17 +928,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 break;
               case qx.util.fsm.FiniteStateMachine.StateChange.POP_STATE_STACK:
                 // Switch to the state at the top of the state stack.
-                if (this.__P_515_2.length == 0) {
+                if (this.__P_516_2.length == 0) {
                   throw new Error("Attempt to transition to POP_STATE_STACK while state stack is empty.");
                 }
 
                 // Pop the state stack to retrieve the state to transition to
-                nextState = this.__P_515_2.pop();
+                nextState = this.__P_516_2.pop();
                 this.setNextState(nextState);
                 break;
               case qx.util.fsm.FiniteStateMachine.StateChange.TERMINATE:
                 // Terminate fsm
-                this.__P_515_11 = true;
+                this.__P_516_11 = true;
                 this.setNextState(null);
                 break;
               default:
@@ -989,7 +989,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
 
           // It the fsm has terminated, stop right here
-          if (this.__P_515_11) {
+          if (this.__P_516_11) {
             if (debugFunctions) {
               this.debug(this.getName() + "#" + "TERMINATED");
             }
@@ -998,7 +998,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
 
           // Reset currentState to the new state object
-          currentState = this.__P_515_0[this.getNextState()];
+          currentState = this.__P_516_0[this.getNextState()];
 
           // set previousState and state, and clear nextState, for transition
           this.setPreviousState(thisState);
@@ -1027,9 +1027,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           currentState.getAutoActionsAfterOnentry()(this);
 
           // Add any blocked events back onto the pending event queue
-          for (var i = 0; i < this.__P_515_4.length; i++) {
-            e = this.__P_515_4.pop();
-            this.__P_515_3.unshift(e);
+          for (var i = 0; i < this.__P_516_4.length; i++) {
+            e = this.__P_516_4.pop();
+            this.__P_516_3.unshift(e);
           }
           if (debugTransitions) {
             this.debug(this.getName() + "#" + prevState + " => " + this.getName() + "#" + thisState);
@@ -1045,12 +1045,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       }
     },
     destruct: function destruct() {
-      this._disposeArray("__P_515_3");
-      this._disposeArray("__P_515_4");
-      this.__P_515_2 = this.__P_515_0 = null;
+      this._disposeArray("__P_516_3");
+      this._disposeArray("__P_516_4");
+      this.__P_516_2 = this.__P_516_0 = null;
     }
   });
   qx.util.fsm.FiniteStateMachine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FiniteStateMachine.js.map?dt=1673093880187
+//# sourceMappingURL=FiniteStateMachine.js.map?dt=1676809333807

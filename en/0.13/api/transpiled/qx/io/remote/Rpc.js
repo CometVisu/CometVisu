@@ -128,7 +128,7 @@
         this.setServiceName(serviceName);
       }
       if (qx.core.ServerSettings) {
-        this.__P_254_0 = qx.core.ServerSettings.serverPathSuffix;
+        this.__P_255_0 = qx.core.ServerSettings.serverPathSuffix;
       }
     },
     /*
@@ -345,8 +345,8 @@
     */
 
     members: {
-      __P_254_1: null,
-      __P_254_0: null,
+      __P_255_1: null,
+      __P_255_0: null,
       /**
        * Factory method to create a request object. By default, a POST request
        * will be made, and the expected response type will be
@@ -614,9 +614,9 @@
             if (refreshSession) {
               result = eval("(" + result + ")");
               var newSuffix = qx.core.ServerSettings.serverPathSuffix;
-              if (self.__P_254_0 != newSuffix) {
-                self.__P_254_1 = self.__P_254_0;
-                self.__P_254_0 = newSuffix;
+              if (self.__P_255_0 != newSuffix) {
+                self.__P_255_1 = self.__P_255_0;
+                self.__P_255_0 = newSuffix;
               }
               self.setUrl(self.fixUrl(self.getUrl()));
             }
@@ -670,14 +670,14 @@
        * @return {String} the (possibly re-written) URL.
        */
       fixUrl: function fixUrl(url) {
-        if (this.__P_254_1 == null || this.__P_254_0 == null || this.__P_254_1 == "" || this.__P_254_1 == this.__P_254_0) {
+        if (this.__P_255_1 == null || this.__P_255_0 == null || this.__P_255_1 == "" || this.__P_255_1 == this.__P_255_0) {
           return url;
         }
-        var index = url.indexOf(this.__P_254_1);
+        var index = url.indexOf(this.__P_255_1);
         if (index == -1) {
           return url;
         }
-        return url.substring(0, index) + this.__P_254_0 + url.substring(index + this.__P_254_1.length);
+        return url.substring(0, index) + this.__P_255_0 + url.substring(index + this.__P_255_1.length);
       },
       /**
        * Makes a synchronous server call. The method arguments (if any) follow
@@ -859,4 +859,4 @@
   qx.io.remote.Rpc.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rpc.js.map?dt=1673093860859
+//# sourceMappingURL=Rpc.js.map?dt=1676809315341

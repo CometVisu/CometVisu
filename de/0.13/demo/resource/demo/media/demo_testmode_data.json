@@ -4258,6 +4258,17 @@
           },
           {
             "type": "file",
+            "name": "demo_tile_testmode_data.json",
+            "hasChildren": false,
+            "parentFolder": "demo/media",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          },
+          {
+            "type": "file",
             "name": "rollo.svg",
             "hasChildren": false,
             "parentFolder": "demo/media",
@@ -4283,6 +4294,49 @@
             "name": "testmode.js",
             "hasChildren": false,
             "parentFolder": "demo/media",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          },
+          {
+            "type": "dir",
+            "name": "charts",
+            "hasChildren": true,
+            "parentFolder": "demo/media",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          }
+        ]
+      }
+    ],
+    "/rest/manager/index.php/fs?path=demo/media/charts": [
+      {
+        "status": 200,
+        "headers": {
+          "Content-type": "application/json"
+        },
+        "body": [
+          {
+            "type": "file",
+            "name": "grid-import-chart.json",
+            "hasChildren": false,
+            "parentFolder": "demo/media/charts",
+            "readable": true,
+            "writeable": false,
+            "trash": false,
+            "inTrash": false,
+            "mounted": true
+          },
+          {
+            "type": "file",
+            "name": "pv-chart.json",
+            "hasChildren": false,
+            "parentFolder": "demo/media/charts",
             "readable": true,
             "writeable": false,
             "trash": false,

@@ -166,4 +166,4 @@
   qx.ui.mobile.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1673093871009
+//# sourceMappingURL=Label.js.map?dt=1676809325316

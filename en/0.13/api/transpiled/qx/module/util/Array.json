@@ -16,7 +16,7 @@
       "end": {
         "line": 184,
         "column": 3,
-        "index": 5682
+        "index": 5678
       }
     },
     "jsdoc": {
@@ -426,12 +426,12 @@
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3616
+          "index": 3614
         },
         "end": {
           "line": 116,
           "column": 26,
-          "index": 3638
+          "index": 3636
         }
       },
       "jsdoc": {
@@ -465,8 +465,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Number | undefined} The highest of all values or undefined if array is empty.",
-            "type": "Number | undefined",
+            "body": "{Number|undefined} The highest of all values or undefined if array is empty.",
+            "type": "Number|undefined",
             "description": " The highest of all values or undefined if array is empty."
           }
         ]
@@ -479,12 +479,12 @@
         "start": {
           "line": 128,
           "column": 4,
-          "index": 3973
+          "index": 3969
         },
         "end": {
           "line": 128,
           "column": 26,
-          "index": 3995
+          "index": 3991
         }
       },
       "jsdoc": {
@@ -518,8 +518,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Number | undefined} The lowest of all values or undefined if array is empty.",
-            "type": "Number | undefined",
+            "body": "{Number|undefined} The lowest of all values or undefined if array is empty.",
+            "type": "Number|undefined",
             "description": " The lowest of all values or undefined if array is empty."
           }
         ]
@@ -532,12 +532,12 @@
         "start": {
           "line": 140,
           "column": 4,
-          "index": 4291
+          "index": 4287
         },
         "end": {
           "line": 140,
           "column": 32,
-          "index": 4319
+          "index": 4315
         }
       },
       "jsdoc": {
@@ -592,12 +592,12 @@
         "start": {
           "line": 151,
           "column": 4,
-          "index": 4547
+          "index": 4543
         },
         "end": {
           "line": 151,
           "column": 38,
-          "index": 4581
+          "index": 4577
         }
       },
       "jsdoc": {
@@ -645,12 +645,12 @@
         "start": {
           "line": 165,
           "column": 4,
-          "index": 5056
+          "index": 5052
         },
         "end": {
           "line": 165,
           "column": 32,
-          "index": 5084
+          "index": 5080
         }
       },
       "jsdoc": {
@@ -698,12 +698,12 @@
         "start": {
           "line": 178,
           "column": 4,
-          "index": 5586
+          "index": 5582
         },
         "end": {
           "line": 178,
           "column": 30,
-          "index": 5612
+          "index": 5608
         }
       },
       "jsdoc": {
@@ -766,12 +766,12 @@
       "start": {
         "line": 181,
         "column": 2,
-        "index": 5621
+        "index": 5617
       },
       "end": {
         "line": 183,
         "column": 3,
-        "index": 5678
+        "index": 5674
       }
     }
   },

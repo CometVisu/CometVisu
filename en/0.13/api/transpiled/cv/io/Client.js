@@ -246,14 +246,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
       loginSettings: null,
       headers: null,
-      __P_520_0: null,
+      __P_521_0: null,
       getType: function getType() {
         return this.backendName;
       },
       // property apply
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_520_0 = null;
+          this.__P_521_0 = null;
         }
       },
       setInitialAddresses: function setInitialAddresses(addresses) {
@@ -321,6 +321,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       },
       getResourcePath: function getResourcePath(name, map) {
         return Object.prototype.hasOwnProperty.call(this.backend.resources, name) ? this.backend.baseURL + this.backend.resources[name] : null;
+      },
+      setResourcePath: function setResourcePath(name, path) {
+        this.backend.resources[name] = path;
       },
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {
         return false;
@@ -529,7 +532,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return; // ignore error when already handled
         }
 
-        this.__P_520_0 = {
+        this.__P_521_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -545,7 +548,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_520_0;
+        return this.__P_521_0;
       },
       /**
        * Handles login response, applies backend configuration if send by
@@ -695,4 +698,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1673093880568
+//# sourceMappingURL=Client.js.map?dt=1676809334152

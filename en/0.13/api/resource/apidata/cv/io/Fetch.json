@@ -14,9 +14,9 @@
         "index": 912
       },
       "end": {
-        "line": 91,
+        "line": 150,
         "column": 3,
-        "index": 2967
+        "index": 4909
       }
     },
     "jsdoc": {
@@ -33,17 +33,82 @@
   "isStatic": true,
   "isSingleton": false,
   "statics": {
+    "__cache": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1103
+        },
+        "end": {
+          "line": 32,
+          "column": 15,
+          "index": 1114
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "DEFAULT_CACHE_TTL": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1120
+        },
+        "end": {
+          "line": 33,
+          "column": 27,
+          "index": 1143
+        }
+      },
+      "type": "variable",
+      "access": "public"
+    },
+    "__gcInterval": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1162
+        },
+        "end": {
+          "line": 34,
+          "column": 22,
+          "index": 1180
+        }
+      },
+      "jsdoc": {},
+      "type": "variable",
+      "access": "private"
+    },
+    "cachedFetch": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1187
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2513
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "fetch": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 82,
           "column": 4,
-          "index": 1296
+          "index": 2713
         },
         "end": {
-          "line": 78,
+          "line": 120,
           "column": 5,
-          "index": 2686
+          "index": 4109
         }
       },
       "jsdoc": {
@@ -86,14 +151,14 @@
     "proxyFetch": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 129,
           "column": 4,
-          "index": 2856
+          "index": 4279
         },
         "end": {
-          "line": 89,
+          "line": 131,
           "column": 5,
-          "index": 2959
+          "index": 4395
         }
       },
       "jsdoc": {
@@ -128,6 +193,36 @@
       },
       "type": "function",
       "access": "public"
+    },
+    "_gc": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 4476
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4901
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Garbage collection for fetch cache</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "protected"
     }
   },
   "descendants": []

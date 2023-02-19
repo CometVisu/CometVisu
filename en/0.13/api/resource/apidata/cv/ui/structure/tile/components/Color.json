@@ -16,9 +16,9 @@
         "index": 891
       },
       "end": {
-        "line": 191,
+        "line": 192,
         "column": 3,
-        "index": 6397
+        "index": 6478
       }
     },
     "jsdoc": {
@@ -116,9 +116,9 @@
           "index": 1633
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5,
-          "index": 4847
+          "index": 4928
         }
       },
       "type": "function",
@@ -132,14 +132,14 @@
     "_onColorChanged": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 138,
           "column": 4,
-          "index": 4854
+          "index": 4935
         },
         "end": {
-          "line": 144,
+          "line": 145,
           "column": 5,
-          "index": 5171
+          "index": 5252
         }
       },
       "type": "function",
@@ -148,14 +148,14 @@
     "__convertToHex": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 147,
           "column": 4,
-          "index": 5178
+          "index": 5259
         },
         "end": {
-          "line": 150,
+          "line": 151,
           "column": 5,
-          "index": 5285
+          "index": 5366
         }
       },
       "type": "function",
@@ -164,14 +164,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 153,
           "column": 4,
-          "index": 5292
+          "index": 5373
         },
         "end": {
-          "line": 169,
+          "line": 170,
           "column": 5,
-          "index": 5971
+          "index": 6052
         }
       },
       "type": "function",
@@ -792,6 +792,194 @@
         ]
       }
     },
+    "getWidget": {
+      "type": "function",
+      "name": "getWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "isWidget": {
+      "type": "function",
+      "name": "isWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for widget"
+          }
+        ]
+      }
+    },
+    "setWidget": {
+      "type": "function",
+      "name": "setWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for widget"
+          }
+        ]
+      }
+    },
+    "resetWidget": {
+      "type": "function",
+      "name": "resetWidget",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>widget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widget}."
+          }
+        ]
+      }
+    },
+    "getInPopup": {
+      "type": "function",
+      "name": "getInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "isInPopup": {
+      "type": "function",
+      "name": "isInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for inPopup"
+          }
+        ]
+      }
+    },
+    "setInPopup": {
+      "type": "function",
+      "name": "setInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for inPopup"
+          }
+        ]
+      }
+    },
+    "resetInPopup": {
+      "type": "function",
+      "name": "resetInPopup",
+      "abstract": false,
+      "mixin": false,
+      "inherited": true,
+      "access": "public",
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>inPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inPopup}."
+          }
+        ]
+      }
+    },
     "getThrottleInterval": {
       "type": "function",
       "name": "getThrottleInterval",
@@ -862,14 +1050,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 177,
+        "line": 178,
         "column": 12,
-        "index": 6115
+        "index": 6196
       },
       "end": {
-        "line": 179,
+        "line": 180,
         "column": 3,
-        "index": 6176
+        "index": 6257
       }
     },
     "jsdoc": {}
@@ -877,14 +1065,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 181,
+        "line": 182,
         "column": 2,
-        "index": 6181
+        "index": 6262
       },
       "end": {
-        "line": 190,
+        "line": 191,
         "column": 3,
-        "index": 6393
+        "index": 6474
       }
     }
   },

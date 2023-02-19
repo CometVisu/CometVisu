@@ -84,27 +84,27 @@
       var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer;
 
       // Begin preloading of the tree images, if not already requested.
-      if (STDCR.__P_467_0) {
-        STDCR.__P_467_1();
-        STDCR.__P_467_0 = false;
+      if (STDCR.__P_468_0) {
+        STDCR.__P_468_1();
+        STDCR.__P_468_0 = false;
       }
       qx.ui.table.cellrenderer.Abstract.constructor.call(this);
-      this.__P_467_2 = qx.util.AliasManager.getInstance();
-      this.__P_467_3 = qx.util.ResourceManager.getInstance();
-      this.__P_467_4 = qx.theme.manager.Appearance.getInstance();
+      this.__P_468_2 = qx.util.AliasManager.getInstance();
+      this.__P_468_3 = qx.util.ResourceManager.getInstance();
+      this.__P_468_4 = qx.theme.manager.Appearance.getInstance();
 
       // Base URL used for indentation
-      this.BLANK = this.__P_467_3.toUri(this.__P_467_2.resolve("static/blank.png"));
+      this.BLANK = this.__P_468_3.toUri(this.__P_468_2.resolve("static/blank.png"));
     },
     statics: {
       /** File names of each of the tree icons */
-      __P_467_5: {},
+      __P_468_5: {},
       /** Whether we have not yet requested pre-loading of images */
-      __P_467_0: true,
+      __P_468_0: true,
       /**
        * Request preloading of images so they appear immediately upon rendering
        */
-      __P_467_1: function __P_467_1() {
+      __P_468_1: function __P_468_1() {
         var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer;
         var ImageLoader = qx.io.ImageLoader;
         var am = qx.util.AliasManager.getInstance();
@@ -113,32 +113,32 @@
         var loadImage = function loadImage(f) {
           ImageLoader.load(rm.toUri(am.resolve(f)));
         };
-        STDCR.__P_467_5.line = tm.styleFrom("treevirtual-line");
-        loadImage(STDCR.__P_467_5.line.icon);
-        STDCR.__P_467_5.contract = tm.styleFrom("treevirtual-contract");
-        loadImage(STDCR.__P_467_5.contract.icon);
-        STDCR.__P_467_5.expand = tm.styleFrom("treevirtual-expand");
-        loadImage(STDCR.__P_467_5.expand.icon);
-        STDCR.__P_467_5.onlyContract = tm.styleFrom("treevirtual-only-contract");
-        loadImage(STDCR.__P_467_5.onlyContract.icon);
-        STDCR.__P_467_5.onlyExpand = tm.styleFrom("treevirtual-only-expand");
-        loadImage(STDCR.__P_467_5.onlyExpand.icon);
-        STDCR.__P_467_5.startContract = tm.styleFrom("treevirtual-start-contract");
-        loadImage(STDCR.__P_467_5.startContract.icon);
-        STDCR.__P_467_5.startExpand = tm.styleFrom("treevirtual-start-expand");
-        loadImage(STDCR.__P_467_5.startExpand.icon);
-        STDCR.__P_467_5.endContract = tm.styleFrom("treevirtual-end-contract");
-        loadImage(STDCR.__P_467_5.endContract.icon);
-        STDCR.__P_467_5.endExpand = tm.styleFrom("treevirtual-end-expand");
-        loadImage(STDCR.__P_467_5.endExpand.icon);
-        STDCR.__P_467_5.crossContract = tm.styleFrom("treevirtual-cross-contract");
-        loadImage(STDCR.__P_467_5.crossContract.icon);
-        STDCR.__P_467_5.crossExpand = tm.styleFrom("treevirtual-cross-expand");
-        loadImage(STDCR.__P_467_5.crossExpand.icon);
-        STDCR.__P_467_5.end = tm.styleFrom("treevirtual-end");
-        loadImage(STDCR.__P_467_5.end.icon);
-        STDCR.__P_467_5.cross = tm.styleFrom("treevirtual-cross");
-        loadImage(STDCR.__P_467_5.cross.icon);
+        STDCR.__P_468_5.line = tm.styleFrom("treevirtual-line");
+        loadImage(STDCR.__P_468_5.line.icon);
+        STDCR.__P_468_5.contract = tm.styleFrom("treevirtual-contract");
+        loadImage(STDCR.__P_468_5.contract.icon);
+        STDCR.__P_468_5.expand = tm.styleFrom("treevirtual-expand");
+        loadImage(STDCR.__P_468_5.expand.icon);
+        STDCR.__P_468_5.onlyContract = tm.styleFrom("treevirtual-only-contract");
+        loadImage(STDCR.__P_468_5.onlyContract.icon);
+        STDCR.__P_468_5.onlyExpand = tm.styleFrom("treevirtual-only-expand");
+        loadImage(STDCR.__P_468_5.onlyExpand.icon);
+        STDCR.__P_468_5.startContract = tm.styleFrom("treevirtual-start-contract");
+        loadImage(STDCR.__P_468_5.startContract.icon);
+        STDCR.__P_468_5.startExpand = tm.styleFrom("treevirtual-start-expand");
+        loadImage(STDCR.__P_468_5.startExpand.icon);
+        STDCR.__P_468_5.endContract = tm.styleFrom("treevirtual-end-contract");
+        loadImage(STDCR.__P_468_5.endContract.icon);
+        STDCR.__P_468_5.endExpand = tm.styleFrom("treevirtual-end-expand");
+        loadImage(STDCR.__P_468_5.endExpand.icon);
+        STDCR.__P_468_5.crossContract = tm.styleFrom("treevirtual-cross-contract");
+        loadImage(STDCR.__P_468_5.crossContract.icon);
+        STDCR.__P_468_5.crossExpand = tm.styleFrom("treevirtual-cross-expand");
+        loadImage(STDCR.__P_468_5.crossExpand.icon);
+        STDCR.__P_468_5.end = tm.styleFrom("treevirtual-end");
+        loadImage(STDCR.__P_468_5.end.icon);
+        STDCR.__P_468_5.cross = tm.styleFrom("treevirtual-cross");
+        loadImage(STDCR.__P_468_5.cross.icon);
       }
     },
     properties: {
@@ -174,13 +174,13 @@
     */
 
     members: {
-      __P_467_2: null,
-      __P_467_4: null,
-      __P_467_3: null,
+      __P_468_2: null,
+      __P_468_4: null,
+      __P_468_3: null,
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.treevirtual.SimpleTreeDataCellRenderer.superclass.prototype._onChangeTheme.call(this);
-        qx.ui.treevirtual.SimpleTreeDataCellRenderer.__P_467_1();
+        qx.ui.treevirtual.SimpleTreeDataCellRenderer.__P_468_1();
       },
       // overridden
       _getCellStyle: function _getCellStyle(cellInfo) {
@@ -258,7 +258,7 @@
         var html = [];
 
         // Resolve the URI
-        var source = this.__P_467_3.toUri(this.__P_467_2.resolve(imageInfo.url));
+        var source = this.__P_468_3.toUri(this.__P_468_2.resolve(imageInfo.url));
 
         // If we've been given positioning attributes, enclose image in a div
         if (imageInfo.position) {
@@ -384,12 +384,12 @@
         var imageUrl = node.bSelected ? node.iconSelected : node.icon;
         if (!imageUrl) {
           if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
-            var o = this.__P_467_4.styleFrom("treevirtual-file");
+            var o = this.__P_468_4.styleFrom("treevirtual-file");
           } else {
             var states = {
               opened: node.bOpened
             };
-            var o = this.__P_467_4.styleFrom("treevirtual-folder", states);
+            var o = this.__P_468_4.styleFrom("treevirtual-folder", states);
           }
           imageUrl = o.icon;
         }
@@ -548,7 +548,7 @@
         if (column < node.level - 1) {
           // then return either a line or a blank icon, depending on
           // bUseTreeLines
-          return bUseTreeLines && !node.lastChild[column] ? STDCR.__P_467_5.line : {
+          return bUseTreeLines && !node.lastChild[column] ? STDCR.__P_468_5.line : {
             icon: this.BLANK
           };
         }
@@ -562,7 +562,7 @@
             // If we're not showing tree lines...
             if (!bUseTreeLines) {
               // ... then just use an expand or contract
-              return node.bOpened ? STDCR.__P_467_5.contract : STDCR.__P_467_5.expand;
+              return node.bOpened ? STDCR.__P_468_5.contract : STDCR.__P_468_5.expand;
             }
 
             // Are we looking at a top-level, first child of its parent?
@@ -570,10 +570,10 @@
               // Yup.  If it's also a last child...
               if (bLastChild) {
                 // ... then use no tree lines.
-                return node.bOpened ? STDCR.__P_467_5.onlyContract : STDCR.__P_467_5.onlyExpand;
+                return node.bOpened ? STDCR.__P_468_5.onlyContract : STDCR.__P_468_5.onlyExpand;
               } else {
                 // otherwise, use descender lines but no ascender.
-                return node.bOpened ? STDCR.__P_467_5.startContract : STDCR.__P_467_5.startExpand;
+                return node.bOpened ? STDCR.__P_468_5.startContract : STDCR.__P_468_5.startExpand;
               }
             }
 
@@ -581,11 +581,11 @@
             // parent?
             if (bLastChild) {
               // Yup.  Return an ending expand or contract.
-              return node.bOpened ? STDCR.__P_467_5.endContract : STDCR.__P_467_5.endExpand;
+              return node.bOpened ? STDCR.__P_468_5.endContract : STDCR.__P_468_5.endExpand;
             }
 
             // Otherwise, return a crossing expand or contract.
-            return node.bOpened ? STDCR.__P_467_5.crossContract : STDCR.__P_467_5.crossExpand;
+            return node.bOpened ? STDCR.__P_468_5.crossContract : STDCR.__P_468_5.crossExpand;
           }
         }
 
@@ -605,18 +605,18 @@
             // Otherwise, if this is the last child...
             if (bLastChild) {
               // ... then return an end line.
-              return STDCR.__P_467_5.end;
+              return STDCR.__P_468_5.end;
             }
 
             // Otherwise if this is the first child and is a branch...
             if (node.bFirstChild && node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH) {
               // ... then return a start line.
-              return node.bOpened ? STDCR.__P_467_5.startContract : STDCR.__P_467_5.startExpand;
+              return node.bOpened ? STDCR.__P_468_5.startContract : STDCR.__P_468_5.startExpand;
             }
           }
 
           // If this is a last child, return and ending line; otherwise cross.
-          return bLastChild ? STDCR.__P_467_5.end : STDCR.__P_467_5.cross;
+          return bLastChild ? STDCR.__P_468_5.end : STDCR.__P_468_5.cross;
         }
         return {
           icon: this.BLANK
@@ -646,10 +646,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_467_2 = this.__P_467_3 = this.__P_467_4 = null;
+      this.__P_468_2 = this.__P_468_3 = this.__P_468_4 = null;
     }
   });
   qx.ui.treevirtual.SimpleTreeDataCellRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataCellRenderer.js.map?dt=1673093876669
+//# sourceMappingURL=SimpleTreeDataCellRenderer.js.map?dt=1676809330574

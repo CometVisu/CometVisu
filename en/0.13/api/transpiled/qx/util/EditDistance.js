@@ -46,7 +46,7 @@
        * @param dataB {Array} incoming target data
        * @return {Integer[][]} outgoing matrix
        */
-      __P_504_0: function __P_504_0(dataA, dataB) {
+      __P_505_0: function __P_505_0(dataA, dataB) {
         // distance is dataA table with dataA.length+1 rows and dataB.length+1 columns
         var distance = [];
 
@@ -84,7 +84,7 @@
        * @param dataB {Array} incoming target data
        * @return {Map[]} Array of maps describing the operations needed
        */
-      __P_504_1: function __P_504_1(distance, dataA, dataB) {
+      __P_505_1: function __P_505_1(distance, dataA, dataB) {
         var operations = [];
         var posA = dataA.length;
         var posB = dataB.length;
@@ -153,8 +153,8 @@
        * @return {Map[]} Array of maps describing the operations needed
        */
       getEditOperations: function getEditOperations(dataA, dataB) {
-        var distance = this.__P_504_0(dataA, dataB);
-        var operations = this.__P_504_1(distance, dataA, dataB);
+        var distance = this.__P_505_0(dataA, dataB);
+        var operations = this.__P_505_1(distance, dataA, dataB);
         return operations;
       }
     }
@@ -162,4 +162,4 @@
   qx.util.EditDistance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EditDistance.js.map?dt=1673093879076
+//# sourceMappingURL=EditDistance.js.map?dt=1676809333027

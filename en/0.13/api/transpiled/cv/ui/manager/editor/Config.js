@@ -16,6 +16,8 @@
         "require": true
       },
       "cv.io.rest.Client": {},
+      "qxl.dialog.Dialog": {},
+      "qx.event.message.Bus": {},
       "cv.ui.manager.model.config.Section": {},
       "cv.ui.manager.snackbar.Controller": {},
       "qx.ui.form.List": {},
@@ -107,7 +109,25 @@
       },
       _onModelValueChange: function _onModelValueChange(ev) {
         if (this.getFile()) {
-          this.setContent(ev.getData());
+          var content = ev.getData();
+          if (Object.prototype.hasOwnProperty.call(content, 'error')) {
+            // loading error
+            qxl.dialog.Dialog.confirm(this.tr('Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?'), function (confirmed) {
+              var file = this.getFile();
+              qx.event.message.Bus.dispatchByName('cv.manager.action.close', file);
+              if (confirmed) {
+                qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                  file: file.getFullPath(),
+                  handler: 'cv.ui.manager.editor.Source',
+                  handlerOptions: {
+                    jumpToError: true
+                  }
+                });
+              }
+            }, this, qx.locale.Manager.tr('Hidden configuration error'));
+          } else {
+            this.setContent(content);
+          }
         }
       },
       // overridden
@@ -261,4 +281,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1673093839034
+//# sourceMappingURL=Config.js.map?dt=1676809294891

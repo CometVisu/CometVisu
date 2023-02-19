@@ -106,17 +106,17 @@
      */
     construct: function construct(format, locale) {
       qx.core.Object.constructor.call(this);
-      this.__P_514_0 = this.__P_514_1 = locale;
+      this.__P_515_0 = this.__P_515_1 = locale;
       if (format != null) {
-        this.__P_514_2 = format.toString();
-        if (this.__P_514_2 in qx.util.format.DateFormat.ISO_MASKS) {
-          if (this.__P_514_2 === "isoUtcDateTime") {
-            this.__P_514_3 = true;
+        this.__P_515_2 = format.toString();
+        if (this.__P_515_2 in qx.util.format.DateFormat.ISO_MASKS) {
+          if (this.__P_515_2 === "isoUtcDateTime") {
+            this.__P_515_3 = true;
           }
-          this.__P_514_2 = qx.util.format.DateFormat.ISO_MASKS[this.__P_514_2];
+          this.__P_515_2 = qx.util.format.DateFormat.ISO_MASKS[this.__P_515_2];
         }
       } else {
-        this.__P_514_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
+        this.__P_515_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
       }
     },
     /*
@@ -141,7 +141,7 @@
         var format = qx.locale.Date.getDateFormat("short") + "";
 
         // Memoizing the instance, so caller doesn't have to dispose it.
-        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__P_514_2 != format) {
+        if (DateFormat._dateInstance == null || DateFormat._dateInstance.__P_515_2 != format) {
           DateFormat._dateInstance = new DateFormat(format);
         }
         return DateFormat._dateInstance;
@@ -161,7 +161,7 @@
         var format = qx.locale.Date.getDateFormat("long") + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss");
 
         // Memoizing the instance, so caller doesn't have to dispose it.
-        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__P_514_2 != format) {
+        if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__P_515_2 != format) {
           DateFormat._dateTimeInstance = new DateFormat(format);
         }
         return DateFormat._dateTimeInstance;
@@ -193,13 +193,13 @@
     */
 
     members: {
-      __P_514_1: null,
-      __P_514_0: null,
-      __P_514_2: null,
-      __P_514_4: null,
-      __P_514_5: null,
-      __P_514_6: null,
-      __P_514_3: null,
+      __P_515_1: null,
+      __P_515_0: null,
+      __P_515_2: null,
+      __P_515_4: null,
+      __P_515_5: null,
+      __P_515_6: null,
+      __P_515_3: null,
       /**
        * Fills a number with leading zeros ("25" -> "0025").
        *
@@ -207,7 +207,7 @@
        * @param minSize {Integer} the minimum size the returned string should have.
        * @return {String} the filled number as string.
        */
-      __P_514_7: function __P_514_7(number, minSize) {
+      __P_515_7: function __P_515_7(number, minSize) {
         var str = "" + (number < 0 ? -1 * number : number);
         while (str.length < minSize) {
           str = "0" + str;
@@ -220,7 +220,7 @@
        * @param date {Date} the date.
        * @return {Integer} the day in year.
        */
-      __P_514_8: function __P_514_8(date) {
+      __P_515_8: function __P_515_8(date) {
         var helpDate = new Date(date.getTime());
         var day = helpDate.getDate();
         while (helpDate.getMonth() != 0) {
@@ -236,7 +236,7 @@
        * @param date {Date} the date to get the thursday of.
        * @return {Date} the thursday in the same week as the date.
        */
-      __P_514_9: function __P_514_9(date) {
+      __P_515_9: function __P_515_9(date) {
         return new Date(date.getTime() + (3 - (date.getDay() + 6) % 7) * 86400000);
       },
       /**
@@ -245,17 +245,17 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in year.
        */
-      __P_514_10: function __P_514_10(date) {
+      __P_515_10: function __P_515_10(date) {
         // The following algorithm comes from http://www.salesianer.de/util/kalwoch.html
         // Get the thursday of the week the date belongs to
-        var thursdayDate = this.__P_514_9(date);
+        var thursdayDate = this.__P_515_9(date);
 
         // Get the year the thursday (and therefore the week) belongs to
         var weekYear = thursdayDate.getFullYear();
 
         // Get the thursday of the week january 4th belongs to
         // (which defines week 1 of a year)
-        var thursdayWeek1 = this.__P_514_9(new Date(weekYear, 0, 4));
+        var thursdayWeek1 = this.__P_515_9(new Date(weekYear, 0, 4));
 
         // Calculate the calendar week
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
@@ -266,9 +266,9 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week in month.
        */
-      __P_514_11: function __P_514_11(date) {
-        var thursdayDate = this.__P_514_9(date);
-        var thursdayWeek1 = this.__P_514_9(new Date(date.getFullYear(), date.getMonth(), 4));
+      __P_515_11: function __P_515_11(date) {
+        var thursdayDate = this.__P_515_9(date);
+        var thursdayWeek1 = this.__P_515_9(new Date(date.getFullYear(), date.getMonth(), 4));
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
       },
       /**
@@ -280,8 +280,8 @@
        * @param date {Date} the date to get the week in year of.
        * @return {Integer} the week year.
        */
-      __P_514_12: function __P_514_12(date) {
-        var thursdayDate = this.__P_514_9(date);
+      __P_515_12: function __P_515_12(date) {
+        var thursdayDate = this.__P_515_9(date);
         return thursdayDate.getFullYear();
       },
       /**
@@ -290,7 +290,7 @@
        * @param year {Integer} the year to check.
        * @return {Boolean} true if it is a leap year.
        */
-      __P_514_13: function __P_514_13(year) {
+      __P_515_13: function __P_515_13(year) {
         var februaryDate = new Date(year, 2, 1);
         februaryDate.setDate(-1);
         return februaryDate.getDate() + 1 === 29;
@@ -302,7 +302,7 @@
        * @param year {Integer} the year to check.
        * @return {Object} a json object {month: M, day: D}.
        */
-      __P_514_14: function __P_514_14(dayOfYear, year) {
+      __P_515_14: function __P_515_14(dayOfYear, year) {
         var month = 0;
         var day = 0;
         // if we don't know the year, we take a non-leap year'
@@ -336,18 +336,18 @@
        * @param dayOfMonth {Integer} the day in month
        * @return {Integer} the year.
        */
-      __P_514_15: function __P_514_15(weekYear, month, dayOfMonth) {
+      __P_515_15: function __P_515_15(weekYear, month, dayOfMonth) {
         var year;
         switch (month) {
           case 11:
             year = weekYear - 1;
-            if (weekYear != this.__P_514_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__P_515_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
             break;
           case 0:
             year = weekYear + 1;
-            if (weekYear != this.__P_514_12(new Date(year, month, dayOfMonth))) {
+            if (weekYear != this.__P_515_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
             break;
@@ -365,7 +365,7 @@
         if (value !== null && typeof value != "string") {
           throw new Error("Cannot set locale to " + value + " - please provide a string");
         }
-        this.__P_514_1 = value === null ? this.__P_514_0 : value;
+        this.__P_515_1 = value === null ? this.__P_515_0 : value;
       },
       /**
        * Resets the Locale
@@ -377,7 +377,7 @@
        * Returns the locale
        */
       getLocale: function getLocale() {
-        var locale = this.__P_514_1;
+        var locale = this.__P_515_1;
         if (locale === undefined) {
           locale = qx.locale.Manager.getInstance().getLocale();
         }
@@ -389,7 +389,7 @@
        * @return {String}
        */
       getFormatString: function getFormatString() {
-        return this.__P_514_2;
+        return this.__P_515_2;
       },
       /**
        * Formats a date.
@@ -405,7 +405,7 @@
         if (isNaN(date.getTime())) {
           return null;
         }
-        if (this.__P_514_3) {
+        if (this.__P_515_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
         var locale = this.getLocale();
@@ -423,10 +423,10 @@
         var timezoneMinutes = Math.abs(timezoneOffset) % 60;
 
         // Create the output
-        this.__P_514_16();
+        this.__P_515_16();
         var output = "";
-        for (var i = 0; i < this.__P_514_6.length; i++) {
-          var currAtom = this.__P_514_6[i];
+        for (var i = 0; i < this.__P_515_6.length; i++) {
+          var currAtom = this.__P_515_6[i];
           if (currAtom.type == "literal") {
             output += currAtom.text;
           } else {
@@ -440,7 +440,7 @@
               case "y":
                 // Year
                 if (wildcardSize == 2) {
-                  replacement = this.__P_514_7(fullYear % 100, 2);
+                  replacement = this.__P_515_7(fullYear % 100, 2);
                 } else {
                   var year = Math.abs(fullYear);
                   replacement = year + "";
@@ -456,7 +456,7 @@
                 break;
               case "Y":
                 // Year
-                replacement = this.__P_514_12(date) + "";
+                replacement = this.__P_515_12(date) + "";
                 var year = replacement.replace("-", "");
                 if (wildcardSize > replacement.length) {
                   for (var j = year.length; j < wildcardSize; j++) {
@@ -478,7 +478,7 @@
               case "Q":
                 // quarter
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__P_514_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__P_515_7(parseInt(month / 4) + 1, wildcardSize);
                 }
                 if (wildcardSize == 3) {
                   replacement = "Q" + (parseInt(month / 4) + 1);
@@ -487,7 +487,7 @@
               case "q":
                 // quarter stand alone
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__P_514_7(parseInt(month / 4) + 1, wildcardSize);
+                  replacement = this.__P_515_7(parseInt(month / 4) + 1, wildcardSize);
                 }
                 if (wildcardSize == 3) {
                   replacement = "Q" + (parseInt(month / 4) + 1);
@@ -495,19 +495,19 @@
                 break;
               case "D":
                 // Day in year (e.g. 189)
-                replacement = this.__P_514_7(this.__P_514_8(date), wildcardSize);
+                replacement = this.__P_515_7(this.__P_515_8(date), wildcardSize);
                 break;
               case "d":
                 // Day in month
-                replacement = this.__P_514_7(dayOfMonth, wildcardSize);
+                replacement = this.__P_515_7(dayOfMonth, wildcardSize);
                 break;
               case "w":
                 // Week in year (e.g. 27)
-                replacement = this.__P_514_7(this.__P_514_10(date), wildcardSize);
+                replacement = this.__P_515_7(this.__P_515_10(date), wildcardSize);
                 break;
               case "W":
                 // Week in year (e.g. 27)
-                replacement = this.__P_514_11(date);
+                replacement = this.__P_515_11(date);
                 break;
               case "E":
                 // Day in week
@@ -525,7 +525,7 @@
                 // the index is 1 based
                 var localeDayOfWeek = 1 + (dayOfWeek - startOfWeek >= 0 ? dayOfWeek - startOfWeek : 7 + (dayOfWeek - startOfWeek));
                 if (wildcardSize >= 1 && wildcardSize <= 2) {
-                  replacement = this.__P_514_7(localeDayOfWeek, wildcardSize);
+                  replacement = this.__P_515_7(localeDayOfWeek, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getDayName("abbreviated", dayOfWeek, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -552,7 +552,7 @@
               case "M":
                 // Month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__P_514_7(month + 1, wildcardSize);
+                  replacement = this.__P_515_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "format", true);
                 } else if (wildcardSize == 4) {
@@ -564,7 +564,7 @@
               case "L":
                 // Stand-alone month
                 if (wildcardSize == 1 || wildcardSize == 2) {
-                  replacement = this.__P_514_7(month + 1, wildcardSize);
+                  replacement = this.__P_515_7(month + 1, wildcardSize);
                 } else if (wildcardSize == 3) {
                   replacement = qx.locale.Date.getMonthName("abbreviated", month, locale, "stand-alone", true);
                 } else if (wildcardSize == 4) {
@@ -580,31 +580,31 @@
                 break;
               case "H":
                 // Hour in day (0-23)
-                replacement = this.__P_514_7(hours, wildcardSize);
+                replacement = this.__P_515_7(hours, wildcardSize);
                 break;
               case "k":
                 // Hour in day (1-24)
-                replacement = this.__P_514_7(hours == 0 ? 24 : hours, wildcardSize);
+                replacement = this.__P_515_7(hours == 0 ? 24 : hours, wildcardSize);
                 break;
               case "K":
                 // Hour in am/pm (0-11)
-                replacement = this.__P_514_7(hours % 12, wildcardSize);
+                replacement = this.__P_515_7(hours % 12, wildcardSize);
                 break;
               case "h":
                 // Hour in am/pm (1-12)
-                replacement = this.__P_514_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
+                replacement = this.__P_515_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
                 break;
               case "m":
                 // Minute in hour
-                replacement = this.__P_514_7(minutes, wildcardSize);
+                replacement = this.__P_515_7(minutes, wildcardSize);
                 break;
               case "s":
                 // Second in minute
-                replacement = this.__P_514_7(seconds, wildcardSize);
+                replacement = this.__P_515_7(seconds, wildcardSize);
                 break;
               case "S":
                 // Fractional second
-                replacement = this.__P_514_7(ms, 3);
+                replacement = this.__P_515_7(ms, 3);
                 if (wildcardSize < replacement.length) {
                   replacement = replacement.substr(0, wildcardSize);
                 } else {
@@ -617,15 +617,15 @@
               case "z":
                 // Time zone
                 if (wildcardSize >= 1 && wildcardSize <= 4) {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_514_7(Math.abs(timezoneHours), 2) + ":" + this.__P_514_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_515_7(Math.abs(timezoneHours), 2) + ":" + this.__P_515_7(timezoneMinutes, 2);
                 }
                 break;
               case "Z":
                 // RFC 822 time zone
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
-                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__P_514_7(Math.abs(timezoneHours), 2) + this.__P_514_7(timezoneMinutes, 2);
+                  replacement = (timezoneSign > 0 ? "-" : "+") + this.__P_515_7(Math.abs(timezoneHours), 2) + this.__P_515_7(timezoneMinutes, 2);
                 } else {
-                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_514_7(Math.abs(timezoneHours), 2) + ":" + this.__P_514_7(timezoneMinutes, 2);
+                  replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_515_7(Math.abs(timezoneHours), 2) + ":" + this.__P_515_7(timezoneMinutes, 2);
                 }
                 break;
             }
@@ -643,12 +643,12 @@
        *       match to the format.
        */
       parse: function parse(dateStr) {
-        this.__P_514_17();
+        this.__P_515_17();
 
         // Apply the regex
-        var hit = this.__P_514_4.regex.exec(dateStr);
+        var hit = this.__P_515_4.regex.exec(dateStr);
         if (hit == null) {
-          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__P_514_2);
+          throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__P_515_2);
         }
 
         // Apply the rules
@@ -673,8 +673,8 @@
         var currGroup = 1;
         var applyWeekYearAfterRule = false;
         var applyDayOfYearAfterRule = false;
-        for (var i = 0; i < this.__P_514_4.usedRules.length; i++) {
-          var rule = this.__P_514_4.usedRules[i];
+        for (var i = 0; i < this.__P_515_4.usedRules.length; i++) {
+          var rule = this.__P_515_4.usedRules[i];
           var value = hit[currGroup];
           if (rule.field != null) {
             dateValues[rule.field] = parseInt(value, 10);
@@ -683,8 +683,8 @@
           }
           if (rule.pattern == "Y+") {
             var yearRuleApplied = false;
-            for (var k = 0; k < this.__P_514_4.usedRules.length; k++) {
-              if (this.__P_514_4.usedRules[k].pattern == "y+") {
+            for (var k = 0; k < this.__P_515_4.usedRules.length; k++) {
+              if (this.__P_515_4.usedRules[k].pattern == "y+") {
                 yearRuleApplied = true;
                 break;
               }
@@ -695,8 +695,8 @@
           }
           if (rule.pattern.indexOf("D") != -1) {
             var dayRuleApplied = false;
-            for (var k = 0; k < this.__P_514_4.usedRules.length; k++) {
-              if (this.__P_514_4.usedRules[k].pattern.indexOf("d") != -1) {
+            for (var k = 0; k < this.__P_515_4.usedRules.length; k++) {
+              if (this.__P_515_4.usedRules[k].pattern.indexOf("d") != -1) {
                 dayRuleApplied = true;
                 break;
               }
@@ -708,10 +708,10 @@
           currGroup += rule.groups == null ? 1 : rule.groups;
         }
         if (applyWeekYearAfterRule) {
-          dateValues.year = this.__P_514_15(dateValues.weekYear, dateValues.month, dateValues.day);
+          dateValues.year = this.__P_515_15(dateValues.weekYear, dateValues.month, dateValues.day);
         }
         if (applyDayOfYearAfterRule) {
-          var dayAndMonth = this.__P_514_14(dateValues.dayOfYear, dateValues.year);
+          var dayAndMonth = this.__P_515_14(dateValues.dayOfYear, dateValues.year);
           dateValues.month = dayAndMonth.month;
           dateValues.day = dayAndMonth.day;
         }
@@ -719,13 +719,13 @@
           dateValues.year = dateValues.year * dateValues.era;
         }
         var date;
-        if (this.__P_514_3 || dateValues.tzOffsetMins !== null) {
+        if (this.__P_515_3 || dateValues.tzOffsetMins !== null) {
           var utcMs = Date.UTC(dateValues.year, dateValues.month, dateValues.day, dateValues.ispm ? dateValues.hour + 12 : dateValues.hour, dateValues.min, dateValues.sec, dateValues.ms);
           if (dateValues.tzOffsetMins !== 0) {
             utcMs += dateValues.tzOffsetMins * 60000;
           }
           date = new Date(utcMs);
-          if (this.__P_514_3 && (dateValues.month !== date.getUTCMonth() || dateValues.year !== date.getUTCFullYear())) {
+          if (this.__P_515_3 && (dateValues.month !== date.getUTCMonth() || dateValues.year !== date.getUTCFullYear())) {
             throw new Error("Error parsing date '" + dateStr + "': the value for day or month is too large");
           }
         } else {
@@ -741,15 +741,15 @@
        * Parses the date format.
        *
        */
-      __P_514_16: function __P_514_16() {
-        if (this.__P_514_6 != null) {
+      __P_515_16: function __P_515_16() {
+        if (this.__P_515_6 != null) {
           return;
         }
-        this.__P_514_6 = [];
+        this.__P_515_6 = [];
         var currWildcardChar;
         var currWildcardSize = 0;
         var currLiteral = "";
-        var format = this.__P_514_2;
+        var format = this.__P_515_2;
         var state = "default";
         var i = 0;
         while (i < format.length) {
@@ -786,7 +786,7 @@
                 i++;
               } else {
                 // It does not -> The current wildcard is done
-                this.__P_514_6.push({
+                this.__P_515_6.push({
                   type: "wildcard",
                   character: currWildcardChar,
                   size: currWildcardSize
@@ -823,7 +823,7 @@
               if (state != "default") {
                 // Add the literal
                 if (currLiteral.length > 0) {
-                  this.__P_514_6.push({
+                  this.__P_515_6.push({
                     type: "literal",
                     text: currLiteral
                   });
@@ -840,13 +840,13 @@
 
         // Add the last wildcard or literal
         if (currWildcardChar != null) {
-          this.__P_514_6.push({
+          this.__P_515_6.push({
             type: "wildcard",
             character: currWildcardChar,
             size: currWildcardSize
           });
         } else if (currLiteral.length > 0) {
-          this.__P_514_6.push({
+          this.__P_515_6.push({
             type: "literal",
             text: currLiteral
           });
@@ -860,22 +860,22 @@
        *
        * @throws {Error} If the date format is malformed.
        */
-      __P_514_17: function __P_514_17() {
-        if (this.__P_514_4 != null) {
+      __P_515_17: function __P_515_17() {
+        if (this.__P_515_4 != null) {
           // We already have the parse feed
           return;
         }
-        var format = this.__P_514_2;
+        var format = this.__P_515_2;
 
         // Initialize the rules
-        this.__P_514_18();
-        this.__P_514_16();
+        this.__P_515_18();
+        this.__P_515_16();
 
         // Get the used rules and construct the regex pattern
         var usedRules = [];
         var pattern = "^";
-        for (var atomIdx = 0; atomIdx < this.__P_514_6.length; atomIdx++) {
-          var currAtom = this.__P_514_6[atomIdx];
+        for (var atomIdx = 0; atomIdx < this.__P_515_6.length; atomIdx++) {
+          var currAtom = this.__P_515_6[atomIdx];
           if (currAtom.type == "literal") {
             pattern += qx.lang.String.escapeRegexpChars(currAtom.text);
           } else {
@@ -885,9 +885,9 @@
 
             // Get the rule for this wildcard
             var wildcardRule;
-            for (var ruleIdx = 0; ruleIdx < this.__P_514_5.length; ruleIdx++) {
-              var rule = this.__P_514_5[ruleIdx];
-              if (this.__P_514_19(rule, wildcardChar, wildcardSize)) {
+            for (var ruleIdx = 0; ruleIdx < this.__P_515_5.length; ruleIdx++) {
+              var rule = this.__P_515_5[ruleIdx];
+              if (this.__P_515_19(rule, wildcardChar, wildcardSize)) {
                 // We found the right rule for the wildcard
                 wildcardRule = rule;
                 break;
@@ -920,7 +920,7 @@
         }
 
         // Create the this.__parseFeed
-        this.__P_514_4 = {
+        this.__P_515_4 = {
           regex: regex,
           usedRules: usedRules,
           pattern: pattern
@@ -933,7 +933,7 @@
        * @param wildcardSize {Integer} the number of  wildcardChar characters in the wildcard
        * @return {Boolean} if the rule matches or not
        */
-      __P_514_19: function __P_514_19(rule, wildcardChar, wildcardSize) {
+      __P_515_19: function __P_515_19(rule, wildcardChar, wildcardSize) {
         if (wildcardChar === "y" && rule.pattern === "y+") {
           rule.regex = rule.regexFunc(wildcardSize);
           return true;
@@ -948,14 +948,14 @@
        * Initializes the static parse rules.
        *
        */
-      __P_514_18: function __P_514_18() {
+      __P_515_18: function __P_515_18() {
         var DateFormat = qx.util.format.DateFormat;
         var LString = qx.lang.String;
-        if (this.__P_514_5 != null) {
+        if (this.__P_515_5 != null) {
           // The parse rules are already initialized
           return;
         }
-        var rules = this.__P_514_5 = [];
+        var rules = this.__P_515_5 = [];
         var amMarker = qx.locale.Date.getAmMarker(this.getLocale()).toString() || DateFormat.AM_MARKER;
         var pmMarker = qx.locale.Date.getPmMarker(this.getLocale()).toString() || DateFormat.PM_MARKER;
         var locale = this.getLocale();
@@ -1434,4 +1434,4 @@
   qx.util.format.DateFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateFormat.js.map?dt=1673093880053
+//# sourceMappingURL=DateFormat.js.map?dt=1676809333672

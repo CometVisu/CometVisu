@@ -4,11 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Das Tile-Pair Widget &mdash; CometVisu</title>
+  <title>Das Widget-Pair &mdash; CometVisu</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
-    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/widgets/tile-pair.html"/>
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/widgets/widget-pair.html"/>
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -62,9 +62,13 @@
 <li class="toctree-l4"><a class="reference internal" href="shutter.html">Shutter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="info.html">Info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status.html">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status-chart.html">Status-Chart</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rtc.html">RTC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Tile-pair</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Widget-pair</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#beschreibung">Beschreibung</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -94,7 +98,7 @@
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
           <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
-      <li>Das Tile-Pair Widget</li>
+      <li>Das Widget-Pair</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -109,8 +113,8 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<section id="das-tile-pair-widget">
-<span id="tile-tile-pair"></span><h1>Das Tile-Pair Widget<a class="headerlink" href="#das-tile-pair-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<section id="das-widget-pair">
+<span id="tile-widget-pair"></span><h1>Das Widget-Pair<a class="headerlink" href="#das-widget-pair" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="line"><div class="line-block">
 <div class="line"><strong>Autor</strong>: Tobias Bräutigam</div>
 <div class="line"><strong>Verfügbar seit Version</strong>: 2022</div>
@@ -119,26 +123,66 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <section id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Tile-Pair Widget erlaubt es zwei einfache Widgets mit halber Höhe untereinander darzustellen.
+<p>Das Widget-Pair erlaubt es zwei einfache Widgets mit halber Höhe untereinander darzustellen.
 Die Gesamthöhe beider Widgets entspricht dabei genau der Höhe eines normalen Widgets und passt somit ins Layout.
-Es macht natürlich nur Sinn Widgets innerhalb des Tile-Pairs zu benutzen die wenig Inhalte haben und somit
+Es macht natürlich nur Sinn Widgets innerhalb des Widget-Pairs zu benutzen die wenig Inhalte haben und somit
 mit dem reduzierten Platz noch benutzbar sind. Momentan kann man hier nur das <a class="reference internal" href="switch.html#tile-switch"><span class="std std-ref">Switch</span></a> Widget
-benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils literal notranslate"><span class="pre">cv-tile</span></code>-Elements.</p>
+benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils literal notranslate"><span class="pre">cv-widget</span></code>-Elements.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-tile-pair.png" src="../../../_images/cv-tile-pair.png" />
+<img alt="../../../_images/cv-widget-pair.png" src="../../../_images/cv-widget-pair.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-tile-pair&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget-pair&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">button-size=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>Wohnzimmer<span class="nt">&lt;/span&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-switch&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">button-size=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="nt">&gt;</span>1/4/1<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>Schlafzimmer<span class="nt">&lt;/span&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-switch&gt;</span>
-<span class="nt">&lt;/cv-tile-pair&gt;</span>
+<span class="nt">&lt;/cv-widget-pair&gt;</span>
 </pre></div>
 </div>
+<section id="erlaubte-attribute-im-widget-pair-element">
+<h3>Erlaubte Attribute im Widget-Pair-Element<a class="headerlink" href="#erlaubte-attribute-im-widget-pair-element" title="Link zu dieser Überschrift">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p>cv-widget-pair</p></td>
+<td><p>allow-column-layout</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Ordnet die beiden Kacheln nebeneinander, wenn der Bildschirm nur 2 Spalten breit ist.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
 <h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
 <table class="schema-table docutils align-default">
@@ -160,27 +204,27 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </thead>
 <tbody>
 <tr class="row-odd"><td rowspan="4"><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-tile</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>size</p></td>
-<td><p><em>1x0.5</em>, <em>2x1</em>, <em>1x2</em>, <em>2x2</em> oder <em>2x4</em></p></td>
-<td><p>Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</p></td>
+<td><p>background-image</p></td>
+<td><p>anyURI</p></td>
+<td><p>Hintergrundbild für diese Kachel.</p></td>
 </tr>
-<tr class="row-even"><td><p>class</p></td>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><p>style</p></td>
+<tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
-</tr>
-<tr class="row-even"><td><p>background-image</p></td>
-<td><p>anyURI</p></td>
-<td><p>Hintergrundbild für diese Kachel.</p></td>
 </tr>
 </tbody>
 </table>
@@ -202,8 +246,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="9"><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
+<tr class="row-odd"><td rowspan="11"><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-switch</p></li>
 </ul>
 </dd>
@@ -217,7 +261,7 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>size</p></td>
+<tr class="row-odd"><td><p>button-size</p></td>
 <td><p><em>small</em>, <em>normal</em> oder <em>large</em></p></td>
 <td><p>Legt die Größe des Buttons fest.</p></td>
 </tr>
@@ -237,16 +281,20 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td><p>Wert für den Aus-Zustand. Default ist „0“.</p></td>
 </tr>
-<tr class="row-even"><td><p>class</p></td>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-odd"><td><p>style</p></td>
+<tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-switch</p>
 <ul>
 <li><p>#text</p></li>
@@ -260,9 +308,109 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-switch</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-info</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>value-size</p></td>
+<td><p><em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
+<td><p>Legt die Schriftgröße des Werts fest.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-info</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-info</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-info</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -296,8 +444,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </thead>
 <tbody>
 <tr class="row-odd"><td rowspan="6"><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p></li>
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status</p></li>
 </ul>
 </dd>
 </dl>
@@ -310,6 +458,14 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
 <tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
@@ -318,17 +474,9 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p>format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
-</tr>
-<tr class="row-even"><td><p>value-size</p></td>
-<td><p><em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
-<td><p>Legt die Schriftgröße des Werts fest.</p></td>
-</tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -342,8 +490,8 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td></td>
 </tr>
 <tr class="row-even"><td><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -357,8 +505,147 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td></td>
 </tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-tile-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>mapping</p></td>
+<td><p>Text</p></td>
+<td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>styling</p></td>
+<td><p>Text</p></td>
+<td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">Styling</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>selection</p></td>
+<td><p>Text</p></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>y-format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung der y-Achse.</p></td>
+</tr>
+<tr class="row-even"><td><p>x-format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung der x-Achse.</p></td>
+</tr>
+<tr class="row-odd"><td><p>refresh</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>series</p></td>
+<td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> oder <em>year</em></p></td>
+<td><p>Zeitspanne der Daten.</p></td>
+</tr>
+<tr class="row-odd"><td><p>popup-title</p></td>
+<td><p>Text</p></td>
+<td><p>Überschrift des Popups.</p></td>
+</tr>
+<tr class="row-even"><td><p>zero-based</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Die y-Achse immer bei 0 beginnen lassen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-status-chart</p>
 <ul>
 <li><p>#text</p></li>
 </ul>
@@ -414,7 +701,7 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

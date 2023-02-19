@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS-Style &mdash; CometVisu</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_override.css" type="text/css" />
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/elements/style.html"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/versions.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../search.html" />
+    <link rel="next" title="Status-Benachrichtigung" href="state-notification.html" />
+    <link rel="prev" title="Loader" href="loader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> CometVisu
+            <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.13.0-dev
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-struktur">Pure-Struktur</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-struktur">Tile-Struktur</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#meta-bereich">Meta-Bereich</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l5"><a class="reference internal" href="mapping.html">Mapping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="styling.html">Styling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="loader.html">Loader</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">CSS-Style</a></li>
+<li class="toctree-l5"><a class="reference internal" href="state-notification.html">Status-Benachrichtigung</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#navigation-seitenstruktur">Navigation / Seitenstruktur</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Konfiguration der CometVisu</a> &raquo;</li>
+          <li><a href="../index.html">Grundsätzlicher Aufbau</a> &raquo;</li>
+      <li>CSS-Style</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="css-style">
+<span id="tile-element-style"></span><h1>CSS-Style<a class="headerlink" href="#css-style" title="Link zu dieser Überschrift">¶</a></h1>
+<section id="beschreibung">
+<h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das Style-Element ermöglicht die direkte Einbettung von CSS-Regeln.
+So lassen sich auf einfache Weise z.B. die über CSS-Variable definierten
+Farben manipulieren und die UI mit nur wenigen Zeilen auf die persönlichen
+Bedürfnisse anzupassen.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;style&gt;</span>
+<span class="w">        </span>:root<span class="w"> </span>{
+<span class="w">            </span>--primaryColor:<span class="w"> </span>#4869aa;
+<span class="w">        </span>}
+<span class="w">    </span><span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+</pre></div>
+</div>
+<p>Das <code class="docutils literal notranslate"><span class="pre">&lt;style&gt;</span></code>-Element ist ein Standard <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style">HTML-Style Element</a>.
+Um zu sehen welche Variablen das Tile-Design benutzt und welche Auswirkungen es hat, wenn man diese ändert, empfiehlt
+es sich die Entwicklertools des Browsers zu öffnen und dort mit den Werte zu spielen.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="loader.html" class="btn btn-neutral float-left" title="Loader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="state-notification.html" class="btn btn-neutral float-right" title="Status-Benachrichtigung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2023 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../0.11/manual">0.11.2</a></dd>
+        
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
+        
+          <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
+        
+      </dl>
+    </div>
+  </div>
+<script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -55,7 +55,7 @@
        * Returns the string value of a cookie.
        *
        * @param key {String} The key for the saved string value.
-       * @return {null | String} Returns the saved string value, if the cookie
+       * @return {null|String} Returns the saved string value, if the cookie
        *    contains a value for the key, <code>null</code> otherwise.
        */
       get: function get(key) {
@@ -142,4 +142,4 @@
   qx.bom.Cookie.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cookie.js.map?dt=1673093847863
+//# sourceMappingURL=Cookie.js.map?dt=1676809303415

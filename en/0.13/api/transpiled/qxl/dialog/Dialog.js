@@ -76,7 +76,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * for backwards-compability
        * @type {Boolean}
        */
-      __P_542_0: false,
+      __P_543_0: false,
       /**
        * Enforce the use of a coloured blocker.
        * Added for backwards-compability with pre-1.2 versions
@@ -84,7 +84,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {void}
        */
       useBlocker: function useBlocker(value) {
-        qxl.dialog.Dialog.__P_542_0 = value;
+        qxl.dialog.Dialog.__P_543_0 = value;
       },
       /**
        * Returns a dialog instance by type
@@ -284,9 +284,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       var root = qx.core.Init.getApplication().getRoot();
       root.add(this);
       // use blocker (for backwards-compability)
-      this.__P_542_1 = new qx.ui.core.Blocker(root);
-      this.__P_542_1.setOpacity(this.getBlockerOpacity());
-      this.__P_542_1.setColor(this.getBlockerColor());
+      this.__P_543_1 = new qx.ui.core.Blocker(root);
+      this.__P_543_1.setOpacity(this.getBlockerOpacity());
+      this.__P_543_1.setColor(this.getBlockerColor());
       // handle focus
       qx.ui.core.FocusHandler.getInstance().addRoot(this);
       // resize the window when viewport size changes
@@ -339,14 +339,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /**
        * A reference to the widget that previously had the focus
        */
-      __P_542_2: null,
+      __P_543_2: null,
       /**
        * Show the widget. Overriding methods must call this parent method.
        * Returns the widget instance for chaining.
        * @return {this} The widget instance
        */
       show: function show() {
-        if (this.isUseBlocker() || qxl.dialog.Dialog.__P_542_0) {
+        if (this.isUseBlocker() || qxl.dialog.Dialog.__P_543_0) {
           // make sure the dialog is above any opened window
           var root = qx.core.Init.getApplication().getRoot();
           var maxWindowZIndex = root.getZIndex();
@@ -356,13 +356,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
           }
           this.setZIndex(maxWindowZIndex + 1);
-          this.__P_542_1.blockContent(maxWindowZIndex);
+          this.__P_543_1.blockContent(maxWindowZIndex);
         }
         this.setVisibility("visible");
-        this.__P_542_2 = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
-        if (this.__P_542_2) {
+        this.__P_543_2 = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
+        if (this.__P_543_2) {
           try {
-            this.__P_542_2.blur();
+            this.__P_543_2.blur();
           } catch (e) {}
           //this.__previousFocus.setFocusable(false);
         }
@@ -375,13 +375,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {qxl.dialog.Dialog} The widget instance
        */
       hide: function hide() {
-        if (this.isUseBlocker() || qxl.dialog.Dialog.__P_542_0) {
-          this.__P_542_1.unblock();
+        if (this.isUseBlocker() || qxl.dialog.Dialog.__P_543_0) {
+          this.__P_543_1.unblock();
         }
-        if (this.__P_542_2) {
+        if (this.__P_543_2) {
           try {
             //this.__previousFocus.setFocusable(true);
-            this.__P_542_2.focus();
+            this.__P_543_2.focus();
           } catch (e) {}
         }
         this.setVisibility("hidden");
@@ -402,4 +402,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qxl.dialog.Dialog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dialog.js.map?dt=1673093882412
+//# sourceMappingURL=Dialog.js.map?dt=1676809335839

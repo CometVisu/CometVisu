@@ -2179,8 +2179,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{String | null} One of <code>tap</code>, <code>quick</code>,\n    <code>drag</code> or <code>key</code> or <code>null</code>.",
-            "type": "String | null",
+            "body": "{String|null} One of <code>tap</code>, <code>quick</code>,\n    <code>drag</code> or <code>key</code> or <code>null</code>.",
+            "type": "String|null",
             "description": " One of <code>tap</code>, <code>quick</code>,\n    <code>drag</code> or <code>key</code> or <code>null</code>."
           }
         ]

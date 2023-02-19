@@ -103,7 +103,7 @@
        *
        * @param clazz {Class} class to look for the interface
        * @param iface {Interface} interface to look for
-       * @return {Class | null} the class which directly implements the given interface
+       * @return {Class|null} the class which directly implements the given interface
        */
       getByInterface: function getByInterface(clazz, iface) {
         var list, i, l;
@@ -156,4 +156,4 @@
   qx.util.OOUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OOUtil.js.map?dt=1673093879468
+//# sourceMappingURL=OOUtil.js.map?dt=1676809333105

@@ -170,7 +170,7 @@
       },
       "name": "plainMarkers",
       "propertyType": "new",
-      "apply": "__P_362_5",
+      "apply": "__P_363_5",
       "init": [
         "|",
         "|"
@@ -204,7 +204,7 @@
       },
       "name": "htmlMarkers",
       "propertyType": "new",
-      "apply": "__P_362_5",
+      "apply": "__P_363_5",
       "check": "Array"
     },
     "rich": {

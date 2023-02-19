@@ -16,7 +16,7 @@
       "end": {
         "line": 278,
         "column": 3,
-        "index": 7656
+        "index": 7654
       }
     },
     "jsdoc": {
@@ -116,7 +116,7 @@
       },
       "name": "allowEmptySelection",
       "propertyType": "new",
-      "apply": "__P_319_1",
+      "apply": "__P_320_1",
       "init": true,
       "check": "Boolean",
       "defaultValue": true
@@ -220,12 +220,12 @@
         "start": {
           "line": 111,
           "column": 4,
-          "index": 3094
+          "index": 3092
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3145
+          "index": 3143
         }
       },
       "jsdoc": {
@@ -238,8 +238,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.core.Widget | null} The current selected widget or\n    <code>null</code> if the selection is empty.",
-            "type": "qx.ui.core.Widget | null",
+            "body": "{qx.ui.core.Widget|null} The current selected widget or\n    <code>null</code> if the selection is empty.",
+            "type": "qx.ui.core.Widget|null",
             "description": " The current selected widget or\n    <code>null</code> if the selection is empty."
           }
         ]
@@ -252,12 +252,12 @@
         "start": {
           "line": 121,
           "column": 4,
-          "index": 3330
+          "index": 3328
         },
         "end": {
           "line": 129,
           "column": 5,
-          "index": 3552
+          "index": 3550
         }
       },
       "jsdoc": {
@@ -293,12 +293,12 @@
         "start": {
           "line": 135,
           "column": 4,
-          "index": 3714
+          "index": 3712
         },
         "end": {
           "line": 137,
           "column": 5,
-          "index": 3769
+          "index": 3767
         }
       },
       "jsdoc": {
@@ -317,12 +317,12 @@
         "start": {
           "line": 147,
           "column": 4,
-          "index": 4111
+          "index": 4109
         },
         "end": {
           "line": 157,
           "column": 5,
-          "index": 4393
+          "index": 4391
         }
       },
       "jsdoc": {
@@ -366,12 +366,12 @@
         "start": {
           "line": 165,
           "column": 4,
-          "index": 4585
+          "index": 4583
         },
         "end": {
           "line": 167,
           "column": 5,
-          "index": 4649
+          "index": 4647
         }
       },
       "jsdoc": {
@@ -398,12 +398,12 @@
         "start": {
           "line": 176,
           "column": 4,
-          "index": 4910
+          "index": 4908
         },
         "end": {
           "line": 196,
           "column": 5,
-          "index": 5451
+          "index": 5449
         }
       },
       "jsdoc": {
@@ -439,12 +439,12 @@
         "start": {
           "line": 205,
           "column": 4,
-          "index": 5674
+          "index": 5672
         },
         "end": {
           "line": 209,
           "column": 5,
-          "index": 5793
+          "index": 5791
         }
       },
       "jsdoc": {},
@@ -456,12 +456,12 @@
         "start": {
           "line": 225,
           "column": 4,
-          "index": 6241
+          "index": 6239
         },
         "end": {
           "line": 243,
           "column": 5,
-          "index": 6745
+          "index": 6743
         }
       },
       "jsdoc": {
@@ -492,12 +492,12 @@
         "start": {
           "line": 252,
           "column": 4,
-          "index": 7013
+          "index": 7011
         },
         "end": {
           "line": 261,
           "column": 5,
-          "index": 7240
+          "index": 7238
         }
       },
       "jsdoc": {
@@ -762,12 +762,12 @@
       "start": {
         "line": 269,
         "column": 2,
-        "index": 7439
+        "index": 7437
       },
       "end": {
         "line": 277,
         "column": 3,
-        "index": 7652
+        "index": 7650
       }
     },
     "jsdoc": {}

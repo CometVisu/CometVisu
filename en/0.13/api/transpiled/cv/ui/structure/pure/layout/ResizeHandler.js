@@ -224,9 +224,12 @@
               if (this.__P_70_1 <= 5) {
                 qx.bom.AnimationFrame.request(this.__P_70_3, this);
                 this.__P_70_1++;
+              } else {
+                qx.log.Logger.error(this, e);
               }
+            } else {
+              qx.log.Logger.error(this, e);
             }
-            qx.log.Logger.error(this, e);
           }
         }
         this.states.setBackdropInvalid(false);
@@ -346,4 +349,4 @@
   cv.ui.structure.pure.layout.ResizeHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResizeHandler.js.map?dt=1673093843968
+//# sourceMappingURL=ResizeHandler.js.map?dt=1676809299473

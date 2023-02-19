@@ -49,12 +49,12 @@
     construct: function construct(width, height) {
       qx.ui.table.cellrenderer.AbstractImage.constructor.call(this);
       if (width) {
-        this.__P_440_0 = width;
+        this.__P_441_0 = width;
       }
       if (height) {
-        this.__P_440_1 = height;
+        this.__P_441_1 = height;
       }
-      this.__P_440_2 = qx.util.AliasManager.getInstance();
+      this.__P_441_2 = qx.util.AliasManager.getInstance();
     },
     /*
     *****************************************************************************
@@ -63,19 +63,19 @@
     */
 
     members: {
-      __P_440_2: null,
-      __P_440_1: 16,
-      __P_440_0: 16,
+      __P_441_2: null,
+      __P_441_1: 16,
+      __P_441_0: 16,
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
         var imageHints = {
-          imageWidth: this.__P_440_0,
-          imageHeight: this.__P_440_1
+          imageWidth: this.__P_441_0,
+          imageHeight: this.__P_441_1
         };
         if (cellInfo.value == "") {
           imageHints.url = null;
         } else {
-          imageHints.url = this.__P_440_2.resolve(cellInfo.value);
+          imageHints.url = this.__P_441_2.resolve(cellInfo.value);
         }
         imageHints.tooltip = cellInfo.tooltip;
         return imageHints;
@@ -87,10 +87,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_440_2 = null;
+      this.__P_441_2 = null;
     }
   });
   qx.ui.table.cellrenderer.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1673093874529
+//# sourceMappingURL=Image.js.map?dt=1676809328576

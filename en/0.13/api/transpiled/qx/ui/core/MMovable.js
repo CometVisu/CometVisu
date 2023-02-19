@@ -64,16 +64,16 @@
     */
 
     members: {
-      __P_313_0: null,
-      __P_313_1: null,
-      __P_313_2: null,
-      __P_313_3: null,
-      __P_313_4: null,
-      __P_313_5: null,
-      __P_313_6: null,
-      __P_313_7: false,
-      __P_313_8: null,
-      __P_313_9: 0,
+      __P_314_0: null,
+      __P_314_1: null,
+      __P_314_2: null,
+      __P_314_3: null,
+      __P_314_4: null,
+      __P_314_5: null,
+      __P_314_6: null,
+      __P_314_7: false,
+      __P_314_8: null,
+      __P_314_9: 0,
       /*
       ---------------------------------------------------------------------------
         CORE FEATURES
@@ -85,24 +85,24 @@
        * @param widget {qx.ui.core.Widget} Widget to activate as move handle
        */
       _activateMoveHandle: function _activateMoveHandle(widget) {
-        if (this.__P_313_0) {
+        if (this.__P_314_0) {
           throw new Error("The move handle could not be redefined!");
         }
-        this.__P_313_0 = widget;
+        this.__P_314_0 = widget;
         widget.addListener("pointerdown", this._onMovePointerDown, this);
         widget.addListener("pointerup", this._onMovePointerUp, this);
         widget.addListener("pointermove", this._onMovePointerMove, this);
-        widget.addListener("losecapture", this.__P_313_10, this);
+        widget.addListener("losecapture", this.__P_314_10, this);
       },
       /**
        * Get the widget, which draws the resize/move frame.
        *
        * @return {qx.ui.core.Widget} The resize frame
        */
-      __P_313_11: function __P_313_11() {
-        var frame = this.__P_313_1;
+      __P_314_11: function __P_314_11() {
+        var frame = this.__P_314_1;
         if (!frame) {
-          frame = this.__P_313_1 = new qx.ui.core.Widget();
+          frame = this.__P_314_1 = new qx.ui.core.Widget();
           frame.setAppearance("move-frame");
           frame.exclude();
           qx.core.Init.getApplication().getRoot().add(frame);
@@ -112,10 +112,10 @@
       /**
        * Creates, shows and syncs the frame with the widget.
        */
-      __P_313_12: function __P_313_12() {
+      __P_314_12: function __P_314_12() {
         var location = this.getContentLocation();
         var bounds = this.getBounds();
-        var frame = this.__P_313_11();
+        var frame = this.__P_314_11();
         frame.setUserBounds(location.left, location.top, bounds.width, bounds.height);
         frame.show();
         frame.setZIndex(this.getZIndex() + 1);
@@ -131,17 +131,17 @@
        * @param e {qx.event.type.Pointer} Pointer event
        * @return {Map} A map with the computed drag coordinates
        */
-      __P_313_13: function __P_313_13(e) {
-        var range = this.__P_313_2;
+      __P_314_13: function __P_314_13(e) {
+        var range = this.__P_314_2;
         var pointerLeft = Math.max(range.left, Math.min(range.right, e.getDocumentLeft()));
         var pointerTop = Math.max(range.top, Math.min(range.bottom, e.getDocumentTop()));
-        var viewportLeft = this.__P_313_3 + pointerLeft;
-        var viewportTop = this.__P_313_4 + pointerTop;
+        var viewportLeft = this.__P_314_3 + pointerLeft;
+        var viewportTop = this.__P_314_4 + pointerTop;
         return {
           viewportLeft: parseInt(viewportLeft, 10),
           viewportTop: parseInt(viewportTop, 10),
-          parentLeft: parseInt(viewportLeft - this.__P_313_5, 10),
-          parentTop: parseInt(viewportTop - this.__P_313_6, 10)
+          parentLeft: parseInt(viewportLeft - this.__P_314_5, 10),
+          parentTop: parseInt(viewportTop - this.__P_314_6, 10)
         };
       },
       /*
@@ -177,15 +177,15 @@
         // Added a blocker, this solves the issue described in [BUG #1462]
         if (qx.Class.implementsInterface(parent, qx.ui.window.IDesktop)) {
           if (!parent.isBlocked()) {
-            this.__P_313_8 = parent.getBlockerColor();
-            this.__P_313_9 = parent.getBlockerOpacity();
+            this.__P_314_8 = parent.getBlockerColor();
+            this.__P_314_9 = parent.getBlockerOpacity();
             parent.setBlockerColor(null);
             parent.setBlockerOpacity(1);
             parent.blockContent(this.getZIndex() - 1);
-            this.__P_313_7 = true;
+            this.__P_314_7 = true;
           }
         }
-        this.__P_313_2 = {
+        this.__P_314_2 = {
           left: parentLocation.left,
           top: parentLocation.top,
           right: parentLocation.left + parentBounds.width,
@@ -194,20 +194,20 @@
 
         // Compute drag positions
         var widgetLocation = this.getContentLocation();
-        this.__P_313_5 = parentLocation.left;
-        this.__P_313_6 = parentLocation.top;
-        this.__P_313_3 = widgetLocation.left - e.getDocumentLeft();
-        this.__P_313_4 = widgetLocation.top - e.getDocumentTop();
+        this.__P_314_5 = parentLocation.left;
+        this.__P_314_6 = parentLocation.top;
+        this.__P_314_3 = widgetLocation.left - e.getDocumentLeft();
+        this.__P_314_4 = widgetLocation.top - e.getDocumentTop();
 
         // Add state
         this.addState("move");
 
         // Enable capturing
-        this.__P_313_0.capture();
+        this.__P_314_0.capture();
 
         // Enable drag frame
         if (this.getUseMoveFrame()) {
-          this.__P_313_12();
+          this.__P_314_12();
         }
 
         // Stop event
@@ -226,9 +226,9 @@
         }
 
         // Apply new coordinates using DOM
-        var coords = this.__P_313_13(e);
+        var coords = this.__P_314_13(e);
         if (this.getUseMoveFrame()) {
-          this.__P_313_11().setDomPosition(coords.viewportLeft, coords.viewportTop);
+          this.__P_314_11().setDomPosition(coords.viewportLeft, coords.viewportTop);
         } else {
           var insets = this.getLayoutParent().getInsets();
           this.setDomPosition(coords.parentLeft - (insets.left || 0), coords.parentTop - (insets.top || 0));
@@ -258,21 +258,21 @@
         // Removed blocker, this solves the issue described in [BUG #1462]
         var parent = this.getLayoutParent();
         if (qx.Class.implementsInterface(parent, qx.ui.window.IDesktop)) {
-          if (this.__P_313_7) {
+          if (this.__P_314_7) {
             parent.unblock();
-            parent.setBlockerColor(this.__P_313_8);
-            parent.setBlockerOpacity(this.__P_313_9);
-            this.__P_313_8 = null;
-            this.__P_313_9 = 0;
-            this.__P_313_7 = false;
+            parent.setBlockerColor(this.__P_314_8);
+            parent.setBlockerOpacity(this.__P_314_9);
+            this.__P_314_8 = null;
+            this.__P_314_9 = 0;
+            this.__P_314_7 = false;
           }
         }
 
         // Disable capturing
-        this.__P_313_0.releaseCapture();
+        this.__P_314_0.releaseCapture();
 
         // Apply them to the layout
-        var coords = this.__P_313_13(e);
+        var coords = this.__P_314_13(e);
         var insets = this.getLayoutParent().getInsets();
         this.setLayoutProperties({
           left: coords.parentLeft - (insets.left || 0),
@@ -281,7 +281,7 @@
 
         // Hide frame afterwards
         if (this.getUseMoveFrame()) {
-          this.__P_313_11().exclude();
+          this.__P_314_11().exclude();
         }
         e.stopPropagation();
       },
@@ -290,7 +290,7 @@
        *
        * @param e {qx.event.type.Event} Lose capture event
        */
-      __P_313_10: function __P_313_10(e) {
+      __P_314_10: function __P_314_10(e) {
         // Check for active move
         if (!this.hasState("move")) {
           return;
@@ -301,7 +301,7 @@
 
         // Hide frame afterwards
         if (this.getUseMoveFrame()) {
-          this.__P_313_11().exclude();
+          this.__P_314_11().exclude();
         }
       }
     },
@@ -311,11 +311,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_313_1", "__P_313_0");
-      this.__P_313_2 = null;
+      this._disposeObjects("__P_314_1", "__P_314_0");
+      this.__P_314_2 = null;
     }
   });
   qx.ui.core.MMovable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMovable.js.map?dt=1673093866347
+//# sourceMappingURL=MMovable.js.map?dt=1676809320831

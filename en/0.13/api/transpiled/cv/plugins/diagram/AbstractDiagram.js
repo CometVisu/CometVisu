@@ -361,7 +361,8 @@
         var tsdata = ev.getTarget().getResponse();
         if (tsdata !== null) {
           var client = cv.io.BackendConnections.getClient();
-          if (client.hasCustomChartsDataProcessor(tsdata)) {
+          // never convert influx data
+          if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
             tsdata = client.processChartsData(tsdata);
           } else {
             // calculate timestamp offset and scaling
@@ -378,19 +379,19 @@
             }
             tsdata = newRrd;
           }
+          var now = Date.now();
+          if (forceNowDatapoint && tsdata.length > 0) {
+            var last = Array.from(tsdata[tsdata.length - 1]); // force copy
+            last[0] = now;
+            tsdata.push(last);
+          }
+          this.cache[key].data = tsdata;
+          this.cache[key].timestamp = now;
+          this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+            waitingCallback[0](tsdata, waitingCallback[1]);
+          }, this);
+          this.cache[key].waitingCallbacks.length = 0; // empty array)
         }
-        var now = Date.now();
-        if (forceNowDatapoint && tsdata.length > 0) {
-          var last = Array.from(tsdata[tsdata.length - 1]); // force copy
-          last[0] = now;
-          tsdata.push(last);
-        }
-        this.cache[key].data = tsdata;
-        this.cache[key].timestamp = now;
-        this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-          waitingCallback[0](tsdata, waitingCallback[1]);
-        }, this);
-        this.cache[key].waitingCallbacks.length = 0; // empty array)
       },
       _onStatusError: function _onStatusError(ts, key, ev) {
         cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
@@ -906,4 +907,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1673093837189
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1676809293167

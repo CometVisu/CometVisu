@@ -62,9 +62,9 @@
       qx.core.Object.constructor.call(this);
 
       // storage for all form items
-      this.__P_366_0 = [];
+      this.__P_367_0 = [];
       // storage for all results of async validation calls
-      this.__P_366_1 = {};
+      this.__P_367_1 = {};
       // set the default required field message
       this.setRequiredFieldMessage(qx.locale.Manager.tr("This field is required"));
     },
@@ -122,10 +122,10 @@
       }
     },
     members: {
-      __P_366_0: null,
-      __P_366_2: null,
-      __P_366_1: null,
-      __P_366_3: null,
+      __P_367_0: null,
+      __P_367_2: null,
+      __P_367_1: null,
+      __P_367_3: null,
       /**
        * Add a form item to the validation manager.
        *
@@ -156,11 +156,11 @@
        */
       add: function add(formItem, validator, context) {
         // check for the form API
-        if (!this.__P_366_4(formItem)) {
+        if (!this.__P_367_4(formItem)) {
           throw new Error("Added widget not supported.");
         }
         // check for the data type
-        if (this.__P_366_5(formItem) && !formItem.getValue) {
+        if (this.__P_367_5(formItem) && !formItem.getValue) {
           // check for a validator
           if (validator != null) {
             throw new Error("Widgets supporting selection can only be validated in the form validator");
@@ -172,7 +172,7 @@
           valid: null,
           context: context
         };
-        this.__P_366_0.push(dataEntry);
+        this.__P_367_0.push(dataEntry);
       },
       /**
        * Remove a form item from the validation manager.
@@ -182,7 +182,7 @@
        *  <code>null</code> if the item could not be found.
        */
       remove: function remove(formItem) {
-        var items = this.__P_366_0;
+        var items = this.__P_367_0;
         for (var i = 0, len = items.length; i < len; i++) {
           if (formItem === items[i].item) {
             items.splice(i, 1);
@@ -198,8 +198,8 @@
        */
       getItems: function getItems() {
         var items = [];
-        for (var i = 0; i < this.__P_366_0.length; i++) {
-          items.push(this.__P_366_0[i].item);
+        for (var i = 0; i < this.__P_367_0.length; i++) {
+          items.push(this.__P_367_0[i].item);
         }
         return items;
       },
@@ -216,13 +216,13 @@
        */
       validate: function validate() {
         var valid = true;
-        this.__P_366_3 = true; // collaboration of all synchronous validations
+        this.__P_367_3 = true; // collaboration of all synchronous validations
         var items = [];
 
         // check all validators for the added form items
-        for (var i = 0; i < this.__P_366_0.length; i++) {
-          var formItem = this.__P_366_0[i].item;
-          var validator = this.__P_366_0[i].validator;
+        for (var i = 0; i < this.__P_367_0.length; i++) {
+          var formItem = this.__P_367_0[i].item;
+          var validator = this.__P_367_0[i].validator;
 
           // store the items in case of form validation
           items.push(formItem);
@@ -232,27 +232,27 @@
             // check for the required property
             var validatorResult = this._validateRequired(formItem);
             valid = valid && validatorResult;
-            this.__P_366_3 = validatorResult && this.__P_366_3;
+            this.__P_367_3 = validatorResult && this.__P_367_3;
             continue;
           }
-          var validatorResult = this._validateItem(this.__P_366_0[i], formItem.getValue());
+          var validatorResult = this._validateItem(this.__P_367_0[i], formItem.getValue());
 
           // keep that order to ensure that null is returned on async cases
           valid = validatorResult && valid;
           if (validatorResult != null) {
-            this.__P_366_3 = validatorResult && this.__P_366_3;
+            this.__P_367_3 = validatorResult && this.__P_367_3;
           }
         }
 
         // check the form validator (be sure to invoke it even if the form
         // items are already false, so keep the order!)
-        var formValid = this.__P_366_6(items);
+        var formValid = this.__P_367_6(items);
         if (qx.lang.Type.isBoolean(formValid)) {
-          this.__P_366_3 = formValid && this.__P_366_3;
+          this.__P_367_3 = formValid && this.__P_367_3;
         }
         valid = formValid && valid;
         this._setValid(valid);
-        if (qx.lang.Object.isEmpty(this.__P_366_1)) {
+        if (qx.lang.Object.isEmpty(this.__P_367_1)) {
           this.fireEvent("complete");
         }
         return valid;
@@ -269,9 +269,9 @@
         if (formItem.getRequired()) {
           var validatorResult;
           // if its a widget supporting the selection
-          if (this.__P_366_5(formItem)) {
+          if (this.__P_367_5(formItem)) {
             validatorResult = !!formItem.getSelection()[0];
-          } else if (this.__P_366_7(formItem)) {
+          } else if (this.__P_367_7(formItem)) {
             validatorResult = formItem.getSelection().getLength() > 0;
           } else {
             var value = formItem.getValue();
@@ -302,9 +302,9 @@
         var validator = dataEntry.validator;
 
         // check for asynchronous validation
-        if (this.__P_366_8(validator)) {
+        if (this.__P_367_8(validator)) {
           // used to check if all async validations are done
-          this.__P_366_1[formItem.toHashCode()] = null;
+          this.__P_367_1[formItem.toHashCode()] = null;
           validator.validate(formItem, formItem.getValue(), this, context);
           return null;
         }
@@ -341,7 +341,7 @@
        * @param items {qx.ui.core.Widget[]} An array of all form items.
        * @return {Boolean|null} description
        */
-      __P_366_6: function __P_366_6(items) {
+      __P_367_6: function __P_367_6(items) {
         var formValidator = this.getValidator();
         var context = this.getContext() || this;
         if (formValidator == null) {
@@ -350,8 +350,8 @@
 
         // reset the invalidMessage
         this.setInvalidMessage("");
-        if (this.__P_366_8(formValidator)) {
-          this.__P_366_1[this.toHashCode()] = null;
+        if (this.__P_367_8(formValidator)) {
+          this.__P_367_1[this.toHashCode()] = null;
           formValidator.validateForm(items, this, context);
           return null;
         }
@@ -383,7 +383,7 @@
        *   The validator to check.
        * @return {Boolean} True, if the given validator is asynchronous.
        */
-      __P_366_8: function __P_366_8(validator) {
+      __P_367_8: function __P_367_8(validator) {
         var async = false;
         if (!qx.lang.Type.isFunction(validator)) {
           async = qx.Class.isSubClassOf(validator.constructor, qx.ui.form.validation.AsyncValidator);
@@ -398,7 +398,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_366_4: function __P_366_4(formItem) {
+      __P_367_4: function __P_367_4(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.ui.form.IForm);
       },
@@ -410,7 +410,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_366_5: function __P_366_5(formItem) {
+      __P_367_5: function __P_367_5(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.ui.core.ISingleSelection);
       },
@@ -422,7 +422,7 @@
        * @return {Boolean} true, if the given item implements the
        *   necessary interface.
        */
-      __P_366_7: function __P_366_7(formItem) {
+      __P_367_7: function __P_367_7(formItem) {
         var clazz = formItem.constructor;
         return qx.Class.hasInterface(clazz, qx.data.controller.ISelection);
       },
@@ -434,8 +434,8 @@
        */
       _setValid: function _setValid(value) {
         this._showToolTip(value);
-        var oldValue = this.__P_366_2;
-        this.__P_366_2 = value;
+        var oldValue = this.__P_367_2;
+        this.__P_367_2 = value;
         // check for the change event
         if (oldValue != value) {
           this.fireDataEvent("changeValid", value, oldValue);
@@ -454,8 +454,8 @@
         var tooltip = qx.ui.tooltip.Manager.getInstance().getSharedErrorTooltip();
         if (!valid) {
           var firstInvalid;
-          for (var i = 0; i < this.__P_366_0.length; i++) {
-            var item = this.__P_366_0[i].item;
+          for (var i = 0; i < this.__P_367_0.length; i++) {
+            var item = this.__P_367_0[i].item;
             if (!item.isValid()) {
               firstInvalid = item;
               // only for desktop widgets
@@ -495,7 +495,7 @@
        * @return {Boolean|null} The valid state of the manager.
        */
       getValid: function getValid() {
-        return this.__P_366_2;
+        return this.__P_367_2;
       },
       /**
        * Returns the valid state of the manager.
@@ -514,8 +514,8 @@
       getInvalidMessages: function getInvalidMessages() {
         var messages = [];
         // combine the messages of all form items
-        for (var i = 0; i < this.__P_366_0.length; i++) {
-          var formItem = this.__P_366_0[i].item;
+        for (var i = 0; i < this.__P_367_0.length; i++) {
+          var formItem = this.__P_367_0[i].item;
           if (!formItem.getValid()) {
             var msg = formItem.getInvalidMessage();
             if (!msg && qx.core.Environment.get("qx.ui.form.validation.Manager.allowDefaultInvalidMessage")) {
@@ -541,8 +541,8 @@
        */
       getInvalidFormItems: function getInvalidFormItems() {
         var res = [];
-        for (var i = 0; i < this.__P_366_0.length; i++) {
-          var formItem = this.__P_366_0[i].item;
+        for (var i = 0; i < this.__P_367_0.length; i++) {
+          var formItem = this.__P_367_0[i].item;
           if (!formItem.getValid()) {
             res.push(formItem);
           }
@@ -554,13 +554,13 @@
        */
       reset: function reset() {
         // reset all form items
-        for (var i = 0; i < this.__P_366_0.length; i++) {
-          var dataEntry = this.__P_366_0[i];
+        for (var i = 0; i < this.__P_367_0.length; i++) {
+          var dataEntry = this.__P_367_0[i];
           // set the field to valid
           dataEntry.item.setValid(true);
         }
         // set the manager to its initial valid value
-        this.__P_366_2 = null;
+        this.__P_367_2 = null;
         this._showToolTip(true);
       },
       /**
@@ -577,9 +577,9 @@
        */
       setItemValid: function setItemValid(formItem, valid) {
         // store the result
-        this.__P_366_1[formItem.toHashCode()] = valid;
+        this.__P_367_1[formItem.toHashCode()] = valid;
         formItem.setValid(valid);
-        this.__P_366_9();
+        this.__P_367_9();
       },
       /**
        * Internal helper method to set the form manager to valid for asynchronous
@@ -593,20 +593,20 @@
        * @internal
        */
       setFormValid: function setFormValid(valid) {
-        this.__P_366_1[this.toHashCode()] = valid;
-        this.__P_366_9();
+        this.__P_367_1[this.toHashCode()] = valid;
+        this.__P_367_9();
       },
       /**
        * Checks if all asynchronous validators have validated so the result
        * is final and the {@link #complete} event can be fired. If that's not
        * the case, nothing will happen in the method.
        */
-      __P_366_9: function __P_366_9() {
-        var valid = this.__P_366_3;
+      __P_367_9: function __P_367_9() {
+        var valid = this.__P_367_3;
 
         // check if all async validators are done
-        for (var hash in this.__P_366_1) {
-          var currentResult = this.__P_366_1[hash];
+        for (var hash in this.__P_367_1) {
+          var currentResult = this.__P_367_1[hash];
           valid = currentResult && valid;
           // the validation is not done so just do nothing
           if (currentResult == null) {
@@ -616,7 +616,7 @@
         // set the actual valid state of the manager
         this._setValid(valid);
         // reset the results
-        this.__P_366_1 = {};
+        this.__P_367_1 = {};
         // fire the complete event (no entry in the results with null)
         this.fireEvent("complete");
       }
@@ -628,7 +628,7 @@
     */
     destruct: function destruct() {
       this._showToolTip(true);
-      this.__P_366_0 = null;
+      this.__P_367_0 = null;
     },
     environment: {
       // Whether to assume a default "Invalid Field" message for invalid fields; if false, an
@@ -639,4 +639,4 @@
   qx.ui.form.validation.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1673093869731
+//# sourceMappingURL=Manager.js.map?dt=1676809324063

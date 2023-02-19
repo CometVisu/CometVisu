@@ -63,6 +63,20 @@
         init: 'visible',
         apply: '_applyVisibility',
         event: 'changeVisibility'
+      },
+      /**
+       * True if this tile is the content of a template based widget
+       */
+      widget: {
+        check: 'Boolean',
+        init: 'false'
+      },
+      /**
+       * True if this tile is the content of a popup
+       */
+      inPopup: {
+        check: 'Boolean',
+        init: 'false'
       }
     },
     /*
@@ -72,9 +86,41 @@
     */
     members: {
       _writeAddresses: null,
-      _visibleDisplayMode: null,
+      _headerFooterParent: null,
+      _checkIfWidget: function _checkIfWidget() {
+        var isWidget = false;
+        var isPopup = false;
+        if (this._element.parentElement.localName === 'cv-popup') {
+          this._headerFooterParent = this._element.parentElement;
+          isPopup = true;
+        } else {
+          var tile = this._element;
+          var i = 0;
+          // we are looking for cv-tile parent which is the direct child of a widget
+          while (tile.localName !== 'cv-tile') {
+            tile = tile.parentElement;
+            i++;
+            if (i > 2) {
+              tile = null;
+              break;
+            }
+          }
+          if (tile) {
+            var parent = tile.parentElement;
+            this._headerFooterParent = parent;
+            if (parent.localName === 'cv-popup') {
+              isPopup = true;
+            } else if (parent.localName.startsWith('cv-')) {
+              isWidget = parent.localName === 'cv-widget' || !!document.getElementById(parent.localName.substring(3));
+            }
+          }
+        }
+        this.setInPopup(isPopup);
+        this.setWidget(isWidget);
+      },
       _init: function _init() {
         var _this = this;
+        this._checkIfWidget();
         var element = this._element;
         var hasReadAddress = false;
         var writeAddresses = [];
@@ -101,6 +147,82 @@
             ev.stopPropagation();
           });
         }
+      },
+      /**
+       * Append the given element to a header inside the widget this component is a direct child of.
+       * If the header does not exist yet, it will be created.
+       * Does nothing when this component is no direct child of a widget.
+       * @param element {HTMLElement}
+       * @param align {String} center (default), left or right
+       */
+      appendToHeader: function appendToHeader(element, align) {
+        if (this._headerFooterParent) {
+          var header = this._headerFooterParent.querySelector(':scope > header');
+          if (!header) {
+            header = document.createElement('header');
+            this._headerFooterParent.insertBefore(header, this._headerFooterParent.firstElementChild);
+          }
+          var targetParent = header;
+          if (align) {
+            targetParent = header.querySelector('.' + align);
+            if (!targetParent) {
+              targetParent = document.createElement('div');
+              targetParent.classList.add(align);
+            }
+            header.appendChild(targetParent);
+          }
+          targetParent.appendChild(element);
+        }
+      },
+      /**
+       * Gets the header or an element inside it, if the selector is not empty
+       * @param selector {String} css selector
+       * @return {Element|null}
+       */
+      getHeader: function getHeader(selector) {
+        if (this._headerFooterParent) {
+          if (!selector) {
+            return this._headerFooterParent.querySelector(':scope > header');
+          }
+          var header = this._headerFooterParent.querySelector(':scope > header');
+          if (header) {
+            return header.querySelector(selector);
+          }
+        }
+        return null;
+      },
+      /**
+       * Append the given element to a footer inside the widget this component is a direct child of.
+       * If the footer does not exist yet, it will be created.
+       * Does nothing when this component is no direct child of a widget.
+       * @param element {HTMLElement}
+       */
+      appendToFooter: function appendToFooter(element) {
+        if (this._headerFooterParent) {
+          var footer = this._headerFooterParent.querySelector(':scope > footer');
+          if (!footer) {
+            footer = document.createElement('footer');
+            this._headerFooterParent.appendChild(footer);
+          }
+          footer.appendChild(element);
+        }
+      },
+      /**
+       * Gets the footer or an element inside it, if the selector is not empty
+       * @param selector {String} css selector
+       * @return {Element|null}
+       */
+      getFooter: function getFooter(selector) {
+        if (this._headerFooterParent) {
+          if (!selector) {
+            return this._headerFooterParent.querySelector(':scope > footer');
+          }
+          var footer = this._headerFooterParent.querySelector(':scope > footer');
+          if (footer) {
+            return footer.querySelector(selector);
+          }
+        }
+        return null;
       },
       // property apply
       _applyValue: function _applyValue(value) {
@@ -159,21 +281,19 @@
         blocker.style.display = value === true ? 'none' : 'block';
       },
       _applyVisibility: function _applyVisibility(value, oldValue) {
+        var target = this.isWidget() ? this._element.parentElement : this._element;
         if (oldValue === 'hidden') {
-          this._element.style.opacity = '1.0';
+          target.style.opacity = '1.0';
         }
         switch (value) {
           case 'visible':
-            if (this._visibleDisplayMode) {
-              this._element.style.display = this._visibleDisplayMode || 'initial';
-            }
+            target.style.display = null;
             break;
           case 'hidden':
-            this._element.style.opacity = '0';
+            target.style.opacity = '0';
             break;
           case 'excluded':
-            this._visibleDisplayMode = getComputedStyle(this._element).getPropertyValue('display');
-            this._element.style.display = 'none';
+            target.style.display = 'none';
             break;
         }
       },
@@ -204,9 +324,18 @@
         }
         return false;
       }
+    },
+    /*
+    ***********************************************
+      DESTRUCTOR
+    ***********************************************
+    */
+    destruct: function destruct() {
+      this._writeAddresses = null;
+      this._headerFooterParent = null;
     }
   });
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1673093844457
+//# sourceMappingURL=AbstractComponent.js.map?dt=1676809299941

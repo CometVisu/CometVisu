@@ -119,7 +119,7 @@
       "name": "predicate",
       "propertyType": "new",
       "init": "[[ ObjectMethod Function ]]",
-      "transform": "__P_517_1",
+      "transform": "__P_518_1",
       "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "nextState": {
@@ -146,7 +146,7 @@
       "name": "nextState",
       "propertyType": "new",
       "init": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE",
-      "transform": "__P_517_2",
+      "transform": "__P_518_2",
       "defaultValue": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE"
     },
     "autoActionsBeforeOntransition": {
@@ -173,7 +173,7 @@
       "name": "autoActionsBeforeOntransition",
       "propertyType": "new",
       "init": "[[ ObjectMethod Function ]]",
-      "transform": "__P_517_3",
+      "transform": "__P_518_3",
       "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "autoActionsAfterOntransition": {
@@ -200,7 +200,7 @@
       "name": "autoActionsAfterOntransition",
       "propertyType": "new",
       "init": "[[ ObjectMethod Function ]]",
-      "transform": "__P_517_4",
+      "transform": "__P_518_4",
       "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "ontransition": {
@@ -227,7 +227,7 @@
       "name": "ontransition",
       "propertyType": "new",
       "init": "[[ ObjectMethod Function ]]",
-      "transform": "__P_517_5",
+      "transform": "__P_518_5",
       "defaultValue": "[[ ObjectMethod Function ]]"
     },
     "qxOwner": {

@@ -49,8 +49,10 @@
       observer: new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
           if (entry.target._instance) {
-            entry.target._instance.setVisible(entry.intersectionRatio > 0);
+            entry.target._instance.setVisible(entry.isIntersecting);
           }
+        }, {
+          root: document.querySelector('body > main')
         });
       })
     },
@@ -63,7 +65,7 @@
       visible: {
         check: 'Boolean',
         init: false,
-        apply: '_applyVisible'
+        event: 'changeVisible'
       }
     },
     /*
@@ -84,4 +86,4 @@
   cv.ui.structure.tile.MVisibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MVisibility.js.map?dt=1673093844418
+//# sourceMappingURL=MVisibility.js.map?dt=1676809299901

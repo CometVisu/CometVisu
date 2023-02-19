@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "construct",
+    "_resources",
+    "events",
+    "resourcePathAdded",
+    "members",
+    "setResourcePath",
+    "name",
+    "path",
+    "fireDataEvent",
+    "cv",
+    "io",
+    "AbstractClient"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/io/AbstractClient.js"
+  ],
+  "sourcesContent": [
+    "/**\n *\n */\nqx.Class.define('cv.io.AbstractClient', {\n  extend: qx.core.Object,\n  type: 'abstract',\n\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct() {\n    super();\n    this._resources= {};\n  },\n\n  /*\n  ***********************************************\n    EVENTS\n  ***********************************************\n  */\n  events: {\n    resourcePathAdded: 'qx.event.type.Data'\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _resources: null,\n\n    setResourcePath(name, path) {\n      this._resources[name] = path;\n      this.fireDataEvent('resourcePathAdded', name);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,IAAI,EAAE,UAAU;IAEhB;AACF;AACA;AACA;AACA;IACEC,SAAS,uBAAG;MACV;MACA,IAAI,CAACC,UAAU,GAAE,CAAC,CAAC;IACrB,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,MAAM,EAAE;MACNC,iBAAiB,EAAE;IACrB,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPH,UAAU,EAAE,IAAI;MAEhBI,eAAe,2BAACC,IAAI,EAAEC,IAAI,EAAE;QAC1B,IAAI,CAACN,UAAU,CAACK,IAAI,CAAC,GAAGC,IAAI;QAC5B,IAAI,CAACC,aAAa,CAAC,mBAAmB,EAAEF,IAAI,CAAC;MAC/C;IACF;EACF,CAAC,CAAC;EAvCFG,EAAE,CAACC,EAAE,CAACC,cAAc,CAAClB,aAAa,GAAGA,aAAa;AAAC"
+}

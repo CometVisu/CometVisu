@@ -60,11 +60,15 @@
 <li class="toctree-l4"><a class="reference internal" href="switch.html">Switch</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dimmer.html">Dimmer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="shutter.html">Shutter</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Info</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Info</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#beschreibung">Beschreibung</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="status.html">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status-chart.html">Status-Chart</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rtc.html">RTC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tile-pair.html">Tile-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widget-pair.html">Widget-pair</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -221,7 +225,7 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><p>cv-info</p></td>
+<tr class="row-odd"><td rowspan="8"><p>cv-info</p></td>
 <td><p>styling</p></td>
 <td><p>Text</p></td>
 <td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">Styling</span></a></p></td>
@@ -230,6 +234,22 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>size</p></td>
+<td><p><em>button</em>, <em>0.5x0.5</em>, <em>1x0.5</em>, <em>2x1</em>, <em>1x2</em>, <em>2x2</em>, <em>2x4</em> oder <em>4x2</em></p></td>
+<td><p>Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>value-size</p></td>
+<td><p><em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
+<td><p>Legt die Schriftgröße des Werts fest.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
 <tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
@@ -237,14 +257,6 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 <tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
-</tr>
-<tr class="row-odd"><td><p>format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Wertes (printf-Syntax).</p></td>
-</tr>
-<tr class="row-even"><td><p>value-size</p></td>
-<td><p><em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
-<td><p>Legt die Schriftgröße des Werts fest.</p></td>
 </tr>
 </tbody>
 </table>
@@ -352,7 +364,7 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<tr class="row-odd"><td rowspan="10"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-round-progress</p></li>
 </ul>
@@ -367,21 +379,37 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 <td><p>integer</p></td>
 <td><p>Randbreite des Kreises.</p></td>
 </tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p><em>circle</em> oder <em>semiCircle</em></p></td>
+<td><p>Darstellungsart (Kreis: <code class="docutils literal notranslate"><span class="pre">circle</span></code> (default) oder Halbkreis: <code class="docutils literal notranslate"><span class="pre">semiCircle</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>foreground-color</p></td>
+<td><p>token</p></td>
+<td><p>Farbe des Wertbalkens.</p></td>
+</tr>
+<tr class="row-odd"><td><p>background-color</p></td>
+<td><p>token</p></td>
+<td><p>Farbe des Hintergrundbalkens.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
 <tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-even"><td><p>type</p></td>
-<td><p><em>circle</em> oder <em>semiCircle</em></p></td>
-<td><p>Darstellungsart (Kreis: <code class="docutils literal notranslate"><span class="pre">circle</span></code> (default) oder Halbkreis: <code class="docutils literal notranslate"><span class="pre">semiCircle</span></code>).</p></td>
-</tr>
-<tr class="row-odd"><td><p>min</p></td>
-<td><p>Zahl</p></td>
-<td><p>Minimaler Wert.</p></td>
-</tr>
-<tr class="row-even"><td><p>max</p></td>
-<td><p>Zahl</p></td>
-<td><p>Maximaler Wert.</p></td>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -403,24 +431,32 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
-</tr>
-<tr class="row-even"><td><p>size</p></td>
+<td><p>size</p></td>
 <td><p><em>large</em>, <em>x-large</em>, <em>xx-large</em> oder <em>xxx-large</em></p></td>
 <td><p>Legt die Größe des Icons fest.</p></td>
 </tr>
-<tr class="row-odd"><td><p>color</p></td>
-<td><p>Text</p></td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>token</p></td>
 <td><p>Farbe des Icons.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-even"><td><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
@@ -457,28 +493,36 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>meter</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>class</p></td>
+<td><p>min</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>integer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-even"><td><p>min</p></td>
-<td><p>integer</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>max</p></td>
-<td><p>integer</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>value</p></td>
-<td><p>integer</p></td>
-<td></td>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -508,12 +552,226 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 </dl>
 </td>
 <td><p><abbr title="Pflichtangabe">slot</abbr></p></td>
-<td><p><em>label</em> oder <em>unit</em></p></td>
+<td><p><em>label</em>, <em>unit</em> oder <em>title</em></p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>tr</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
+<dt>cv-info</dt><dd><ul class="simple">
+<li><p>cv-chart</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>title</p></td>
+<td><p>Text</p></td>
+<td><p>Titel des Charts.</p></td>
+</tr>
+<tr class="row-even"><td><p>y-format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung der y-Achse.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x-format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung der x-Achse.</p></td>
+</tr>
+<tr class="row-even"><td><p>series</p></td>
+<td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> oder <em>year</em></p></td>
+<td><p>Zeitspanne der Daten.</p></td>
+</tr>
+<tr class="row-odd"><td><p>selection</p></td>
+<td><p>Text</p></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-x-axis</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>X-Achsen Skala anzeigen (default = true).</p></td>
+</tr>
+<tr class="row-even"><td><p>show-y-axis</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Y-Achsen Skala anzeigen (default = true).</p></td>
+</tr>
+<tr class="row-odd"><td><p>refresh</p></td>
+<td><p>Zahl</p></td>
+<td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-grid</p></td>
+<td><p><em>xy</em>, <em>x</em>, <em>y</em> oder <em>false</em></p></td>
+<td><p>Zeige Gitterlinien.</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Zeigt den Chart im Hintergrund einer Kachel.</p></td>
+</tr>
+<tr class="row-even"><td><p>zero-based</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Die y-Achse immer bei 0 beginnen lassen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="7"><dl class="simple">
+<dt>cv-info</dt><dd><ul class="simple">
+<li><p>cv-popup</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>modal</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Deaktiviert den Hintergrund solange das Popup geöffnet ist.</p></td>
+</tr>
+<tr class="row-even"><td><p>fullscreen</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Das geöffnete Popup belegt den gesamten Bildschirm.</p></td>
+</tr>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>Text</p></td>
+<td><p>Überschrift dieses Popups.</p></td>
+</tr>
+<tr class="row-even"><td><p>auto-close-timeout</p></td>
+<td><p>integer</p></td>
+<td><p>Zeit in Sekunden in der das Popup automatisch geschlossen wird.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-info</dt><dd><ul class="simple">
+<li><p>cv-popup</p></li>
+<li><p>custom</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
+<dt>cv-info</dt><dd><ul class="simple">
+<li><p>cv-popup</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="Pflichtangabe">transform</abbr></p></td>
+<td><p>Text</p></td>
+<td><p>Umwandlung des Bus-System Wertes um angezeigt werden zu können.</p></td>
+</tr>
+<tr class="row-even"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> oder <em>readwrite</em></p></td>
+<td><p>„disable“ deaktiviert die Kommunikation, bei „read“ wird nur vom Backend gelesen, bei „write“ wird nur geschrieben und „readwrite“ wird die Adresse zum Lesen und zum Schreiben verwendet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>variant</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>format-pos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Position für Format-String wenn mehrere Adressen gleichzeitig genutzt werden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>Zahl</p></td>
+<td><p>Nur MQTT: QoS</p></td>
+</tr>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: retain Flag</p></td>
+</tr>
+<tr class="row-even"><td><p>ignore-error</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Nur MQTT: ignoriere Dekodierfehler.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-info</dt><dd><ul class="simple">
+<li><p>cv-popup</p></li>
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td><p>Die Gruppenadresse (z.B: 12/0/7) bei KNX-Backends, der Item-Name beim openHAB-Backend oder das Topic bei MQTT.</p></td>
 </tr>
 </tbody>
 </table>
@@ -558,7 +816,7 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

@@ -89,8 +89,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     members: {
-      __P_81_0: null,
-      __P_81_1: null,
+      __P_82_0: null,
+      __P_82_1: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Slider.superclass.prototype._init.call(this);
@@ -109,10 +109,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           input.setAttribute('type', 'range');
           element.insertBefore(input, element.querySelector(':scope > .up'));
           input.oninput = function () {
-            return _this.__P_81_0.call();
+            return _this.__P_82_0.call();
           };
         }
-        this.__P_81_1 = input;
+        this.__P_82_1 = input;
         if (element.hasAttribute('step-width')) {
           this.setStepWidth(parseInt(element.getAttribute('step-width')));
         }
@@ -143,12 +143,12 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _applyThrottleInterval: function _applyThrottleInterval(value) {
         var _this2 = this;
         if (value > 0) {
-          this.__P_81_0 = cv.util.Function.throttle(this.onInput, value, {
+          this.__P_82_0 = cv.util.Function.throttle(this.onInput, value, {
             trailing: true
           }, this);
         } else {
           // no throttling, direct call
-          this.__P_81_0 = {
+          this.__P_82_0 = {
             call: function call() {
               return _this2.onInput();
             },
@@ -188,17 +188,17 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         }
       },
       onInput: function onInput() {
-        this.__P_81_2(this.__P_81_1.value);
+        this.__P_82_2(this.__P_82_1.value);
       },
       onDecrease: function onDecrease() {
         var value = this.getValue() - this.getStepWidth();
-        this.__P_81_2(value, 'decrease');
+        this.__P_82_2(value, 'decrease');
       },
       onIncrease: function onIncrease() {
         var value = this.getValue() + this.getStepWidth();
-        this.__P_81_2(value, 'increase');
+        this.__P_82_2(value, 'increase');
       },
-      __P_81_2: function __P_81_2(value, on) {
+      __P_82_2: function __P_82_2(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -229,4 +229,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1673093845648
+//# sourceMappingURL=Slider.js.map?dt=1676809301278

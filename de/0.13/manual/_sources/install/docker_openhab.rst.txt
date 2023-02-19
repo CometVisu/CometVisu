@@ -120,8 +120,8 @@ Jetzt den Container installieren
             volumes:
                 - ./resource/config:/var/www/html/resource/config
             environment:
-                KNX_INTERFACE: ""
-                CGI_URL_PATH: "/rest/cv/"
+                BACKEND_NAME: "openhab"
+                BACKEND_OPENHAB: "/rest/"
                 BACKEND_PROXY_SOURCE: "/rest"
                 BACKEND_PROXY_TARGET: "http://<IP-Openhab2>:8080/rest"
 

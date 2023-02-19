@@ -14,9 +14,9 @@
         "index": 894
       },
       "end": {
-        "line": 76,
+        "line": 78,
         "column": 3,
-        "index": 2095
+        "index": 2151
       }
     },
     "jsdoc": {
@@ -59,9 +59,9 @@
           "index": 1266
         },
         "end": {
-          "line": 46,
+          "line": 48,
           "column": 6,
-          "index": 1497
+          "index": 1553
         }
       },
       "type": "variable",
@@ -72,19 +72,19 @@
     "visible": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 57,
           "column": 4,
-          "index": 1649
+          "index": 1705
         },
         "end": {
-          "line": 59,
+          "line": 61,
           "column": 5,
-          "index": 1737
+          "index": 1793
         }
       },
       "name": "visible",
       "propertyType": "new",
-      "apply": "_applyVisible",
+      "event": "changeVisible",
       "init": false,
       "check": "Boolean",
       "defaultValue": false
@@ -94,14 +94,14 @@
     "_observeVisibility": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 70,
           "column": 4,
-          "index": 1883
+          "index": 1939
         },
         "end": {
-          "line": 74,
+          "line": 76,
           "column": 5,
-          "index": 2087
+          "index": 2143
         }
       },
       "type": "function",

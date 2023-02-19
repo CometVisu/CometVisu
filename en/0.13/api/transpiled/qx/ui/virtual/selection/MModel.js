@@ -60,9 +60,9 @@
   qx.Mixin.define("qx.ui.virtual.selection.MModel", {
     construct: function construct() {
       this._initSelectionManager();
-      this.__P_486_0 = new qx.data.Array();
-      this.__P_486_0.addListener("change", this._onChangeSelection, this);
-      this._applySelection(this.__P_486_0, null);
+      this.__P_487_0 = new qx.data.Array();
+      this.__P_487_0.addListener("change", this._onChangeSelection, this);
+      this._applySelection(this.__P_487_0, null);
     },
     properties: {
       /** Current selected items */
@@ -127,10 +127,10 @@
       /** @type {qx.ui.virtual.selection.Row} selection manager */
       _manager: null,
       /** @type {Boolean} flag to ignore the selection change from {@link #selection} */
-      __P_486_1: false,
+      __P_487_1: false,
       /** @type {Boolean} flag to ignore the selection change from <code>_manager</code> */
-      __P_486_2: false,
-      __P_486_0: null,
+      __P_487_2: false,
+      __P_487_0: null,
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -224,9 +224,9 @@
        */
       setSelection: function setSelection(value) {
         if (value) {
-          this.__P_486_0.replace(value);
+          this.__P_487_0.replace(value);
         } else {
-          this.__P_486_0.removeAll();
+          this.__P_487_0.removeAll();
         }
       },
       /**
@@ -235,13 +235,13 @@
        * @return {qx.data.Array}
        */
       getSelection: function getSelection() {
-        return this.__P_486_0;
+        return this.__P_487_0;
       },
       /**
        * Reset for selection property
        */
       resetSelection: function resetSelection() {
-        this.__P_486_0.removeAll();
+        this.__P_487_0.removeAll();
       },
       /**
        * Init for selection property; takes the selection on, and does not change the
@@ -285,10 +285,10 @@
        * @param e {qx.event.type.Data} the change event.
        */
       _onChangeSelection: function _onChangeSelection(e) {
-        if (this.__P_486_2 == true) {
+        if (this.__P_487_2 == true) {
           return;
         }
-        this.__P_486_1 = true;
+        this.__P_487_1 = true;
         var selection = this.getSelection();
         var newSelection = [];
         for (var i = 0; i < selection.getLength(); i++) {
@@ -313,11 +313,11 @@
         } catch (ex) {
           this._manager.selectItem(newSelection[newSelection.length - 1]);
         }
-        this.__P_486_3();
+        this.__P_487_3();
         if (this._afterApplySelection != null && qx.lang.Type.isFunction(this._afterApplySelection)) {
           this._afterApplySelection();
         }
-        this.__P_486_1 = false;
+        this.__P_487_1 = false;
       },
       /**
        * Event handler for the selection change from the <code>_manager</code>.
@@ -325,19 +325,19 @@
        * @param e {qx.event.type.Data} the change event.
        */
       _onManagerChangeSelection: function _onManagerChangeSelection(e) {
-        if (this.__P_486_1 == true) {
+        if (this.__P_487_1 == true) {
           return;
         }
-        this.__P_486_2 = true;
-        this.__P_486_3();
-        this.__P_486_2 = false;
+        this.__P_487_2 = true;
+        this.__P_487_3();
+        this.__P_487_2 = false;
         this.fireDataEvent("changeValue", e.getData(), e.getOldData());
       },
       /**
        * Synchronized the selection form the manager with the local one.
        */
-      __P_486_3: function __P_486_3() {
-        if (this.__P_486_4()) {
+      __P_487_3: function __P_487_3() {
+        if (this.__P_487_4()) {
           return;
         }
         var managerSelection = this._manager.getSelection();
@@ -348,14 +348,14 @@
             newSelection.push(item);
           }
         }
-        this.__P_486_5(newSelection);
+        this.__P_487_5(newSelection);
       },
       /**
        * Replace the current selection with the passed selection Array.
        *
        * @param newSelection {qx.data.Array} The new selection.
        */
-      __P_486_5: function __P_486_5(newSelection) {
+      __P_487_5: function __P_487_5(newSelection) {
         var selection = this.getSelection();
         if (newSelection.length > 0) {
           var args = [0, selection.getLength()];
@@ -373,7 +373,7 @@
        * @return {Boolean} <code>true</code> if the selections are equal,
        *   <code>false</code> otherwise.
        */
-      __P_486_4: function __P_486_4() {
+      __P_487_4: function __P_487_4() {
         var selection = this.getSelection();
         var managerSelection = this._manager.getSelection();
         if (selection.getLength() !== managerSelection.length) {
@@ -405,12 +405,12 @@
     destruct: function destruct() {
       this._manager.dispose();
       this._manager = null;
-      if (this.__P_486_0) {
-        this.__P_486_0.dispose();
+      if (this.__P_487_0) {
+        this.__P_487_0.dispose();
       }
     }
   });
   qx.ui.virtual.selection.MModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MModel.js.map?dt=1673093877858
+//# sourceMappingURL=MModel.js.map?dt=1676809331698

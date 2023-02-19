@@ -5,6 +5,12 @@
         "usage": "dynamic",
         "require": true
       },
+      "qx.Class": {
+        "construct": true
+      },
+      "cv.ui.structure.tile.MVisibility": {
+        "construct": true
+      },
       "qx.event.Timer": {}
     }
   };
@@ -34,6 +40,16 @@
   qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
     /*
     ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct() {
+      if (qx.Class.hasMixin(this.constructor, cv.ui.structure.tile.MVisibility)) {
+        this.addListener('changeVisible', this.__P_73_0, this);
+      }
+    },
+    /*
+    ***********************************************
       PROPERTIES
     ***********************************************
     */
@@ -59,7 +75,7 @@
           }
         } else if (!this._refreshTimer) {
           this._refreshTimer = new qx.event.Timer(value * 1000);
-          this._refreshTimer.addListener('interval', this.__P_73_0, this);
+          this._refreshTimer.addListener('interval', this.__P_73_1, this);
           if (typeof this.isVisible === 'function') {
             if (this.isVisible()) {
               this._refreshTimer.start();
@@ -71,23 +87,23 @@
           this._refreshTimer.restartWith(value * 1000);
         }
       },
-      _applyVisible: function _applyVisible(isVisible) {
-        if (isVisible) {
+      __P_73_0: function __P_73_0(ev) {
+        if (ev.getData()) {
           if (this._refreshTimer) {
             this._refreshTimer.start();
             if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
               // last execution time too old, refresh now
-              this.__P_73_0();
+              this.__P_73_1();
             }
           } else if (!this._lastRefresh) {
             // refresh once when the item becomes visible
-            this.__P_73_0();
+            this.__P_73_1();
           }
         } else if (this._refreshTimer) {
           this._refreshTimer.stop();
         }
       },
-      __P_73_0: function __P_73_0() {
+      __P_73_1: function __P_73_1() {
         if (typeof this.refresh === 'function') {
           this.refresh();
           this._lastRefresh = Date.now();
@@ -108,4 +124,4 @@
   cv.ui.structure.tile.MRefresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRefresh.js.map?dt=1673093844388
+//# sourceMappingURL=MRefresh.js.map?dt=1676809299869

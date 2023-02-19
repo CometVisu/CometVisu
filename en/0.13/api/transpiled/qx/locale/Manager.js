@@ -87,10 +87,10 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_270_0 = qx.$$translations || {};
-      this.__P_270_1 = qx.$$locales || {};
+      this.__P_271_0 = qx.$$translations || {};
+      this.__P_271_1 = qx.$$locales || {};
       this.initLocale();
-      this.__P_270_2 = this.getLocale();
+      this.__P_271_2 = this.getLocale();
     },
     /*
     *****************************************************************************
@@ -104,7 +104,7 @@
        *
        * @param messageId {String} message id (may contain format strings)
        * @param varargs {Object} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        * @see qx.lang.String.format
        */
       tr: function tr(messageId, varargs) {
@@ -120,7 +120,7 @@
        * @param pluralMessageId {String} message id of the plural form (may contain format strings)
        * @param count {Integer} singular form if equals 1, otherwise plural
        * @param varargs {Object} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        * @see qx.lang.String.format
        */
       trn: function trn(singularMessageId, pluralMessageId, count, varargs) {
@@ -142,7 +142,7 @@
        * @param hint {String} hint for the translator of the message. Will be included in the .po file.
        * @param messageId {String} message id (may contain format strings)
        * @param varargs {Object} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        * @see qx.lang.String.format
        */
       trc: function trc(hint, messageId, varargs) {
@@ -160,7 +160,7 @@
        * @param pluralMessageId {String} message id of the plural form (may contain format strings)
        * @param count {Integer} singular form if equals 1, otherwise plural
        * @param varargs {Object} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        * @see qx.lang.String.format
        */
       trnc: function trnc(hint, singularMessageId, pluralMessageId, count, varargs) {
@@ -216,12 +216,12 @@
     */
 
     members: {
-      __P_270_3: qx.core.Environment.get("locale.default"),
-      __P_270_4: null,
-      __P_270_5: null,
-      __P_270_0: null,
-      __P_270_1: null,
-      __P_270_2: null,
+      __P_271_3: qx.core.Environment.get("locale.default"),
+      __P_271_4: null,
+      __P_271_5: null,
+      __P_271_0: null,
+      __P_271_1: null,
+      __P_271_2: null,
       /**
        * Get the language code of the current locale
        *
@@ -230,7 +230,7 @@
        * @return {String} language code
        */
       getLanguage: function getLanguage() {
-        return this.__P_270_5;
+        return this.__P_271_5;
       },
       /**
        * Get the territory code of the current locale
@@ -256,9 +256,9 @@
        */
       getAvailableLocales: function getAvailableLocales(includeNonloaded) {
         var locales = [];
-        for (var locale in this.__P_270_1) {
-          if (locale != this.__P_270_3) {
-            if (this.__P_270_1[locale] === null && !includeNonloaded) {
+        for (var locale in this.__P_271_1) {
+          if (locale != this.__P_271_3) {
+            if (this.__P_271_1[locale] === null && !includeNonloaded) {
               continue; // skip not yet loaded locales
             }
 
@@ -273,7 +273,7 @@
        * @param locale {String} locale to be used
        * @return {String} language
        */
-      __P_270_6: function __P_270_6(locale) {
+      __P_271_6: function __P_271_6(locale) {
         var language;
         if (locale == null) {
           return null;
@@ -288,8 +288,8 @@
       },
       // property apply
       _applyLocale: function _applyLocale(value, old) {
-        this.__P_270_4 = value;
-        this.__P_270_5 = this.__P_270_6(value);
+        this.__P_271_4 = value;
+        this.__P_271_5 = this.__P_271_6(value);
       },
       /**
        * Add a translation to the translation manager.
@@ -304,7 +304,7 @@
        *                             are separate keys.
        */
       addTranslation: function addTranslation(languageCode, translationMap) {
-        var catalog = this.__P_270_0;
+        var catalog = this.__P_271_0;
         if (catalog[languageCode]) {
           for (var key in translationMap) {
             catalog[languageCode][key] = translationMap[key];
@@ -324,7 +324,7 @@
        *                        <i>{"cldr_date_format_short" : "M/d/yy"}</i>.
        */
       addLocale: function addLocale(localeCode, localeMap) {
-        var catalog = this.__P_270_1;
+        var catalog = this.__P_271_1;
         if (catalog[localeCode]) {
           for (var key in localeMap) {
             catalog[localeCode][key] = localeMap[key];
@@ -344,11 +344,11 @@
        * @param messageId {String} message id (may contain format strings)
        * @param args {Object[]} array of objects, which are inserted into the format string
        * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}
-       * @return {String | LocalizedString} translated message or localized string
+       * @return {String|LocalizedString} translated message or localized string
        */
       translate: function translate(messageId, args, locale) {
-        var catalog = this.__P_270_0;
-        return this.__P_270_7(catalog, messageId, args, locale);
+        var catalog = this.__P_271_0;
+        return this.__P_271_7(catalog, messageId, args, locale);
       },
       /**
        * Provide localization (CLDR) data.
@@ -361,11 +361,11 @@
        * @param messageId {String} message id (may contain format strings)
        * @param args {Object[]} array of objects, which are inserted into the format string
        * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}
-       * @return {String | LocalizedString} translated message or localized string
+       * @return {String|LocalizedString} translated message or localized string
        */
       localize: function localize(messageId, args, locale) {
-        var catalog = this.__P_270_1;
-        return this.__P_270_7(catalog, messageId, args, locale);
+        var catalog = this.__P_271_1;
+        return this.__P_271_7(catalog, messageId, args, locale);
       },
       /**
        * Look up an I18N key in a catalog and expand format strings.
@@ -379,18 +379,18 @@
        * @param messageId {String} message id (may contain format strings)
        * @param args {Object[]} array of objects, which are inserted into the format string
        * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}
-       * @return {String | LocalizedString} translated message or localized string
+       * @return {String|LocalizedString} translated message or localized string
        */
-      __P_270_7: function __P_270_7(catalog, messageId, args, locale) {
+      __P_271_7: function __P_271_7(catalog, messageId, args, locale) {
         var txt;
         if (!catalog) {
           return messageId;
         }
         if (locale) {
-          var language = this.__P_270_6(locale);
+          var language = this.__P_271_6(locale);
         } else {
-          locale = this.__P_270_4;
-          language = this.__P_270_5;
+          locale = this.__P_271_4;
+          language = this.__P_271_5;
         }
 
         // e.g. DE_at
@@ -404,8 +404,8 @@
         }
 
         // C
-        if (!txt && catalog[this.__P_270_3]) {
-          txt = catalog[this.__P_270_3][messageId];
+        if (!txt && catalog[this.__P_271_3]) {
+          txt = catalog[this.__P_271_3][messageId];
         }
         if (!txt) {
           txt = messageId;
@@ -423,7 +423,7 @@
           txt = qx.lang.String.format(txt, translatedArgs);
         }
         {
-          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__P_270_1);
+          txt = new qx.locale.LocalizedString(txt, messageId, args, catalog === this.__P_271_1);
         }
         return txt;
       }
@@ -432,4 +432,4 @@
   qx.locale.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1673093862429
+//# sourceMappingURL=Manager.js.map?dt=1676809316826

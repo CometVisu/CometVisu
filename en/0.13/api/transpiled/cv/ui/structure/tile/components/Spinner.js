@@ -114,11 +114,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       onDecrease: function onDecrease() {
         var value = this.getMode() === 'absolute' ? this.getValue() - this.getStepWidth() : this.getStepWidth() * -1;
-        this.__P_82_0(value, 'decrease');
+        this.__P_83_0(value, 'decrease');
       },
       onIncrease: function onIncrease() {
         var value = this.getMode() === 'absolute' ? this.getValue() + this.getStepWidth() : this.getStepWidth();
-        this.__P_82_0(value, 'increase');
+        this.__P_83_0(value, 'increase');
       },
       _updateValue: function _updateValue(mappedValue) {
         var target = this._element.querySelector('.value');
@@ -126,7 +126,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           target.innerHTML = mappedValue;
         }
       },
-      __P_82_0: function __P_82_0(value, on) {
+      __P_83_0: function __P_83_0(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -157,4 +157,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1673093845692
+//# sourceMappingURL=Spinner.js.map?dt=1676809301315

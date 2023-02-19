@@ -124,9 +124,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           "User-Agent": navigator.userAgent
         };
         if (document.location.origin) DEFAULT_HEADERS.Origin = document.location.origin;
-        for (var key in DEFAULT_HEADERS) {
-          headerLength += DEFAULT_HEADERS[key].length + 1;
-        }
+        for (var key in DEFAULT_HEADERS) headerLength += DEFAULT_HEADERS[key].length + 1;
         var xhr = new XMLHttpRequest();
         if (com.zenesis.qx.upload.XhrHandler.isWithCredentials()) xhr.withCredentials = true;
         var self = this;
@@ -154,9 +152,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // build query string
           var action = this._getUploader().getUploadUrl();
           var params = this._getMergedParams(file);
-          for (var name in params) {
-            fd.append(name, encodeURIComponent(params[name]));
-          }
+          for (var name in params) fd.append(name, encodeURIComponent(params[name]));
           fd.append("file", file.getBrowserObject());
           xhr.open("POST", action, true);
           setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -199,7 +195,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       }
     },
     statics: {
-      __P_561_0: false,
+      __P_564_0: false,
       /**
        * Detects whether this handler is support on the current browser
        *
@@ -216,18 +212,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * cookies)
        */
       setWithCredentials: function setWithCredentials(value) {
-        this.__P_561_0 = true;
+        this.__P_564_0 = true;
       },
       /**
        * Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth
        * cookies)
        */
       isWithCredentials: function isWithCredentials() {
-        return this.__P_561_0;
+        return this.__P_564_0;
       }
     }
   });
   com.zenesis.qx.upload.XhrHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrHandler.js.map?dt=1673093884616
+//# sourceMappingURL=XhrHandler.js.map?dt=1676809337976

@@ -16,7 +16,7 @@
       "end": {
         "line": 668,
         "column": 3,
-        "index": 18074
+        "index": 18070
       }
     },
     "jsdoc": {
@@ -842,12 +842,12 @@
         "start": {
           "line": 425,
           "column": 4,
-          "index": 11364
+          "index": 11362
         },
         "end": {
           "line": 442,
           "column": 5,
-          "index": 11765
+          "index": 11763
         }
       },
       "jsdoc": {
@@ -869,8 +869,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Number | null} The highest of all values or undefined if array is empty.",
-            "type": "Number | null",
+            "body": "{Number|null} The highest of all values or undefined if array is empty.",
+            "type": "Number|null",
             "description": " The highest of all values or undefined if array is empty."
           }
         ]
@@ -883,12 +883,12 @@
         "start": {
           "line": 451,
           "column": 4,
-          "index": 12018
+          "index": 12014
         },
         "end": {
           "line": 468,
           "column": 5,
-          "index": 12419
+          "index": 12415
         }
       },
       "jsdoc": {
@@ -910,8 +910,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Number | null} The lowest of all values or undefined if array is empty.",
-            "type": "Number | null",
+            "body": "{Number|null} The lowest of all values or undefined if array is empty.",
+            "type": "Number|null",
             "description": " The lowest of all values or undefined if array is empty."
           }
         ]
@@ -924,12 +924,12 @@
         "start": {
           "line": 480,
           "column": 4,
-          "index": 12766
+          "index": 12762
         },
         "end": {
           "line": 554,
           "column": 5,
-          "index": 14669
+          "index": 14665
         }
       },
       "jsdoc": {
@@ -965,12 +965,12 @@
         "start": {
           "line": 564,
           "column": 4,
-          "index": 15076
+          "index": 15072
         },
         "end": {
           "line": 581,
           "column": 5,
-          "index": 15460
+          "index": 15456
         }
       },
       "jsdoc": {
@@ -1020,12 +1020,12 @@
         "start": {
           "line": 590,
           "column": 4,
-          "index": 15784
+          "index": 15780
         },
         "end": {
           "line": 614,
           "column": 5,
-          "index": 16328
+          "index": 16324
         }
       },
       "jsdoc": {
@@ -1074,12 +1074,12 @@
         "start": {
           "line": 625,
           "column": 4,
-          "index": 16840
+          "index": 16836
         },
         "end": {
           "line": 642,
           "column": 5,
-          "index": 17249
+          "index": 17245
         }
       },
       "jsdoc": {
@@ -1122,12 +1122,12 @@
         "start": {
           "line": 652,
           "column": 4,
-          "index": 17683
+          "index": 17679
         },
         "end": {
           "line": 666,
           "column": 5,
-          "index": 18066
+          "index": 18062
         }
       },
       "jsdoc": {

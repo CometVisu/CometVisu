@@ -130,23 +130,25 @@ der zweite fungiert als Schalter.
 .. widget-example::
 
         <settings design="tile">
-            <screenshot name="tile-context-menu-closed" selector="cv-tile">
+            <screenshot name="tile-context-menu-closed" selector="cv-widget">
                 <caption>Kachel mit Menü-Button</caption>
             </screenshot>
-            <screenshot name="tile-context-menu-open" selector="cv-tile" margin="0 50 0 0" clickpath="cv-menu" waitfor="cv-menu.open > ul.context-menu">
+            <screenshot name="tile-context-menu-open" selector="cv-widget" margin="0 50 0 0" clickpath="cv-menu" waitfor="cv-menu.open > ul.context-menu">
                 <caption>Menü geöffnet</caption>
             </screenshot>
         </settings>
-        <cv-tile>
-            <cv-menu model="menuItems">
-                <cv-menu-item name="Favoriten" action="popup" icon="ri-star-line">
-                    <cv-popup title="Favoriten" modal="true"></cv-popup>
-                </cv-menu-item>
-                <cv-menu-item name="Stumm" action="toggleState" icon="ri-volume-mute-line">
-                    <cv-address transform="DPT:1.001" mode="readwrite">1/4/0</cv-address>
-                </cv-menu-item>
-            </cv-menu>
-        </cv-tile>
+        <cv-widget>
+            <cv-tile>
+                <cv-menu model="menuItems">
+                    <cv-menu-item name="Favoriten" action="popup" icon="ri-star-line">
+                        <cv-popup title="Favoriten" modal="true"></cv-popup>
+                    </cv-menu-item>
+                    <cv-menu-item name="Stumm" action="toggleState" icon="ri-volume-mute-line">
+                        <cv-address transform="DPT:1.001" mode="readwrite">1/4/0</cv-address>
+                    </cv-menu-item>
+                </cv-menu>
+            </cv-tile>
+        </cv-widget>
 
 
 Erlaubte Attribute

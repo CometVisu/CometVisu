@@ -38,4 +38,4 @@
   qx.theme.icon.Tango.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tango.js.map?dt=1673093864055
+//# sourceMappingURL=Tango.js.map?dt=1676809318421

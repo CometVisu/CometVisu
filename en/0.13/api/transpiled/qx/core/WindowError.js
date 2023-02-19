@@ -53,11 +53,11 @@
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
-      this.__P_168_0 = failMessage;
-      this.__P_168_1 = uri || "";
-      this.__P_168_2 = lineNumber === undefined ? -1 : lineNumber;
-      this.__P_168_3 = columnNumber === undefined ? -1 : columnNumber;
-      this.__P_168_4 = sourceException;
+      this.__P_169_0 = failMessage;
+      this.__P_169_1 = uri || "";
+      this.__P_169_2 = lineNumber === undefined ? -1 : lineNumber;
+      this.__P_169_3 = columnNumber === undefined ? -1 : columnNumber;
+      this.__P_169_4 = sourceException;
     },
     /*
     *****************************************************************************
@@ -66,18 +66,18 @@
     */
 
     members: {
-      __P_168_0: null,
-      __P_168_1: null,
-      __P_168_2: null,
-      __P_168_3: null,
-      __P_168_4: null,
+      __P_169_0: null,
+      __P_169_1: null,
+      __P_169_2: null,
+      __P_169_3: null,
+      __P_169_4: null,
       /**
        * Returns the error message.
        *
        * @return {String} error message
        */
       toString: function toString() {
-        return this.__P_168_0;
+        return this.__P_169_0;
       },
       /**
        * Get the URI where error was raised
@@ -85,7 +85,7 @@
        * @return {String} URI where error was raised
        */
       getUri: function getUri() {
-        return this.__P_168_1;
+        return this.__P_169_1;
       },
       /**
        * Get the line number where the error was raised
@@ -93,7 +93,7 @@
        * @return {Integer} The line number where the error was raised
        */
       getLineNumber: function getLineNumber() {
-        return this.__P_168_2;
+        return this.__P_169_2;
       },
       /**
        * Get the column number where the error was raised
@@ -101,7 +101,7 @@
        * @return {Integer} The line number where the error was raised
        */
       getColumnNumber: function getColumnNumber() {
-        return this.__P_168_3;
+        return this.__P_169_3;
       },
       /**
        * Get the source exception
@@ -109,11 +109,11 @@
        * @return {Error} The source error
        */
       getSourceException: function getSourceException() {
-        return this.__P_168_4;
+        return this.__P_169_4;
       }
     }
   });
   qx.core.WindowError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WindowError.js.map?dt=1673093852260
+//# sourceMappingURL=WindowError.js.map?dt=1676809307768

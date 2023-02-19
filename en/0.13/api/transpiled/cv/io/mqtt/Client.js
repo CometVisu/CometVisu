@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.core.Object": {
+      "cv.io.AbstractClient": {
         "construct": true,
         "require": true
       },
@@ -40,7 +40,7 @@
    * MQTT client
    */
   qx.Class.define('cv.io.mqtt.Client', {
-    extend: qx.core.Object,
+    extend: cv.io.AbstractClient,
     implement: cv.io.IClient,
     /*
     ***********************************************
@@ -48,12 +48,12 @@
     ***********************************************
     */
     construct: function construct(type, backendUrl) {
-      qx.core.Object.constructor.call(this);
+      cv.io.AbstractClient.constructor.call(this);
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_523_0 = {};
-      this.__P_523_1 = {};
+      this.__P_524_0 = {};
+      this.__P_524_1 = {};
     },
     /*
     ***********************************************
@@ -307,4 +307,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1673093880807
+//# sourceMappingURL=Client.js.map?dt=1676809334396

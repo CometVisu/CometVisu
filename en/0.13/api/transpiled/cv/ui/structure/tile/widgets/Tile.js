@@ -78,6 +78,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     },
     /*
     ***********************************************
+      EVENTS
+    ***********************************************
+    */
+    events: {
+      fullscreenChanged: 'qx.event.type.Data'
+    },
+    /*
+    ***********************************************
       MEMBERS
     ***********************************************
     */
@@ -115,23 +123,25 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         var _this2 = this;
         if (this._childPopup) {
           this._openPopupChild();
-        } else {
-          var closeButton = this._element.querySelector(':scope > button.close');
+        } else if (this._headerFooterParent) {
+          var target = this._headerFooterParent;
+          var closeButton = target.querySelector(':scope > button.close');
           if (!closeButton) {
             closeButton = document.createElement('button');
             closeButton.classList.add('close');
             var icon = document.createElement('i');
             icon.classList.add('ri-close-line');
             closeButton.appendChild(icon);
-            this._element.appendChild(closeButton);
+            target.appendChild(closeButton);
             closeButton.addEventListener('click', function () {
               return _this2.setPopup(false);
             });
           }
           closeButton.style.display = 'block';
-          this._element.classList.add('popup');
+          target.classList.add('popup');
           if (this._fullScreenMode) {
-            this._element.classList.add('fullscreen');
+            target.classList.add('fullscreen');
+            this.fireDataEvent('fullscreenChanged', true);
           }
           this.registerModalPopup();
         }
@@ -142,12 +152,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         }
         if (this._childPopup) {
           this._closePopupChild();
-        } else {
-          this._element.classList.remove('popup');
+        } else if (this._headerFooterParent) {
+          this._headerFooterParent.classList.remove('popup');
           if (this._fullScreenMode) {
-            this._element.classList.remove('fullscreen');
+            this._headerFooterParent.classList.remove('fullscreen');
+            this.fireDataEvent('fullscreenChanged', true);
           }
-          var closeButton = this._element.querySelector(':scope > button.close');
+          var closeButton = this._headerFooterParent.querySelector(':scope > button.close');
           if (closeButton) {
             closeButton.style.display = 'none';
           }
@@ -220,4 +231,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1673093846191
+//# sourceMappingURL=Tile.js.map?dt=1676809301847

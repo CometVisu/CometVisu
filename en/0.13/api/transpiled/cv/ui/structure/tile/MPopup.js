@@ -6,7 +6,8 @@
         "require": true
       },
       "qx.event.Registration": {},
-      "cv.util.Tree": {}
+      "cv.util.Tree": {},
+      "qx.event.Timer": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -35,6 +36,14 @@
   qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     /*
     ***********************************************
+      CONSTRUCTOR
+    ***********************************************
+    */
+    construct: function construct() {
+      this._onPointerDownBounded = this._onPointerDown.bind(this);
+    },
+    /*
+    ***********************************************
       STATICS
     ***********************************************
     */
@@ -51,6 +60,7 @@
     */
     members: {
       _childPopup: null,
+      _onPointerDownBounded: null,
       _initPopupChild: function _initPopupChild() {
         var popup = this._childPopup = this._element.querySelector(':scope > cv-popup');
         if (popup) {
@@ -83,7 +93,7 @@
         }
       },
       registerModalPopup: function registerModalPopup() {
-        qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
+        document.addEventListener('pointerup', this._onPointerDownBounded);
         var blocker = document.body.querySelector('.modal-popup-blocker');
         if (!blocker) {
           blocker = document.createElement('div');
@@ -94,7 +104,7 @@
         cv.ui.structure.tile.MPopup.openedPopups.push(this);
       },
       unregisterModalPopup: function unregisterModalPopup() {
-        qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
+        document.removeEventListener('pointerup', this._onPointerDownBounded);
         var index = cv.ui.structure.tile.MPopup.openedPopups.indexOf(this);
         cv.ui.structure.tile.MPopup.openedPopups.splice(index, 1);
         var blocker = document.body.querySelector('.modal-popup-blocker');
@@ -103,10 +113,11 @@
         }
       },
       _onPointerDown: function _onPointerDown(ev) {
-        if (!cv.util.Tree.isChildOf(ev.getTarget(), this._element)) {
-          // clicked outside -> close
-          this.close();
+        if (!cv.util.Tree.isChildOf(ev.target, this._element)) {
           ev.preventDefault();
+          ev.stopImmediatePropagation();
+          // clicked outside -> close (with delay to capture composed events)
+          qx.event.Timer.once(this.close, this, 100);
         }
       }
     },
@@ -123,4 +134,4 @@
   cv.ui.structure.tile.MPopup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MPopup.js.map?dt=1673093844359
+//# sourceMappingURL=MPopup.js.map?dt=1676809299850

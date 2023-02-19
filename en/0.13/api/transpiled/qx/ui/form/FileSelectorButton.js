@@ -134,7 +134,7 @@
       }
     },
     members: {
-      __P_346_0: null,
+      __P_347_0: null,
       _applyAttribute: function _applyAttribute(value, old, attr) {
         if (attr === "directoriesOnly") {
           // while the name of the attribute indicates that this only
@@ -143,12 +143,12 @@
           // [everyone](https://caniuse.com/?search=webkitdirectory).
           attr = "webkitdirectory";
         }
-        this.__P_346_0.setAttribute(attr, value);
+        this.__P_347_0.setAttribute(attr, value);
       },
       _createContentElement: function _createContentElement() {
         var _this = this;
         var id = "qxFileSelector_" + ++qx.ui.form.FileSelectorButton._fileInputElementIdCounter;
-        var input = this.__P_346_0 = new qx.html.Input("file", null, {
+        var input = this.__P_347_0 = new qx.html.Input("file", null, {
           id: id
         });
         var label = new qx.html.Element("label", {}, {
@@ -175,4 +175,4 @@
   qx.ui.form.FileSelectorButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSelectorButton.js.map?dt=1673093868369
+//# sourceMappingURL=FileSelectorButton.js.map?dt=1676809322768

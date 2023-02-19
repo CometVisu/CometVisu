@@ -146,7 +146,7 @@
         };
       },
       /** @type {Map} Contains all overflow values where scrollbars are invisible */
-      __P_138_0: {
+      __P_139_0: {
         visible: true,
         hidden: true
       },
@@ -169,7 +169,7 @@
         var overflowX = qx.bom.element.Style.get(element, "overflowX");
         var paddingLeft = parseInt(Style.get(element, "paddingLeft") || "0px", 10);
         var paddingRight = parseInt(Style.get(element, "paddingRight") || "0px", 10);
-        if (this.__P_138_0[overflowX]) {
+        if (this.__P_139_0[overflowX]) {
           var contentWidth = element.clientWidth;
           if (qx.core.Environment.get("engine.name") == "opera" || qx.dom.Node.isBlockNode(element)) {
             contentWidth = contentWidth - paddingLeft - paddingRight;
@@ -219,7 +219,7 @@
         var overflowY = qx.bom.element.Style.get(element, "overflowY");
         var paddingTop = parseInt(Style.get(element, "paddingTop") || "0px", 10);
         var paddingBottom = parseInt(Style.get(element, "paddingBottom") || "0px", 10);
-        if (this.__P_138_0[overflowY]) {
+        if (this.__P_139_0[overflowY]) {
           return element.clientHeight - paddingTop - paddingBottom;
         } else {
           if (element.clientHeight >= element.scrollHeight) {
@@ -249,4 +249,4 @@
   qx.bom.element.Dimension.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dimension.js.map?dt=1673093850600
+//# sourceMappingURL=Dimension.js.map?dt=1676809306015

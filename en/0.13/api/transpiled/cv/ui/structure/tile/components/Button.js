@@ -25,6 +25,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       "qx.event.Timer": {},
       "cv.Application": {},
       "cv.ui.structure.tile.elements.Address": {},
+      "cv.Version": {},
+      "qx.locale.Manager": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -167,8 +169,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           }
         });
         this._writeAddresses = writeAddresses;
+        var events = {};
         if (writeAddresses.length > 0) {
-          var events = {};
           var eventSource = element;
           if (element.getAttribute('whole-tile') === 'true') {
             // find parent tile and use it as event source
@@ -201,6 +203,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             return eventSource.addEventListener(eventName, function (ev) {
               events[eventName](ev);
             });
+          });
+        }
+        if (element.hasAttribute('doc-link') && !Object.prototype.hasOwnProperty.call(events, 'click')) {
+          element.addEventListener('click', function (ev) {
+            _this.onClicked(ev);
           });
         }
         if (hasReadAddress) {
@@ -374,30 +381,43 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       onClicked: function onClicked(event) {
         var _this2 = this;
         this.createRipple(event);
-        if (!this._writeAddresses) {
-          this._writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'), function (address) {
-            return !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read';
-          });
-        }
-        var ev = new CustomEvent('sendState', {
-          detail: {
-            value: this.isOn() ? this.getOffValue() : this.getOnValue(),
-            source: this
+        if (this._element.hasAttribute('doc-link')) {
+          var relPath = this._element.getAttribute('doc-link');
+          // add locale and version
+          var baseVersion = cv.Version.VERSION.split('.').slice(0, 2).join('.');
+          var language = qx.locale.Manager.getInstance().getLanguage();
+          if (language !== 'de') {
+            // documentation only exists in 'de' and 'en'
+            language = 'en';
           }
-        });
-        if (this.getType() === 'trigger') {
-          // simulate feedback
-          this.setOn(true);
-          qx.event.Timer.once(function () {
-            _this2.setOn(false);
-          }, null, 250);
+          window.open("https://www.cometvisu.org/CometVisu/".concat(language, "/").concat(baseVersion, "/manual/").concat(relPath));
+          event.stopPropagation();
+        } else {
+          if (!this._writeAddresses) {
+            this._writeAddresses = Array.prototype.filter.call(this._element.querySelectorAll('addresses > cv-address'), function (address) {
+              return !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read';
+            });
+          }
+          var ev = new CustomEvent('sendState', {
+            detail: {
+              value: this.isOn() ? this.getOffValue() : this.getOnValue(),
+              source: this
+            }
+          });
+          if (this.getType() === 'trigger') {
+            // simulate feedback
+            this.setOn(true);
+            qx.event.Timer.once(function () {
+              _this2.setOn(false);
+            }, null, 250);
+          }
+          this._writeAddresses.filter(function (addr) {
+            return !addr.hasAttribute('on') || addr.getAttribute('on') === 'click';
+          }).forEach(function (address) {
+            return address.dispatchEvent(ev);
+          });
+          event.stopPropagation();
         }
-        this._writeAddresses.filter(function (addr) {
-          return !addr.hasAttribute('on') || addr.getAttribute('on') === 'click';
-        }).forEach(function (address) {
-          return address.dispatchEvent(ev);
-        });
-        event.stopPropagation();
       },
       onPointerDown: function onPointerDown() {
         var _this3 = this;
@@ -470,4 +490,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1673093844543
+//# sourceMappingURL=Button.js.map?dt=1676809300030

@@ -63,7 +63,7 @@
 
     members: {
       /** @type {qx.ui.core.SingleSelectionManager} the single selection manager */
-      __P_318_0: null,
+      __P_319_0: null,
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
@@ -81,7 +81,7 @@
           return null;
         }
         if (item instanceof qx.ui.core.Widget) {
-          this.__P_318_1().setSelected(item);
+          this.__P_319_1().setSelected(item);
           return null;
         } else {
           return new TypeError("Given argument is not null or a {qx.ui.core.Widget}.");
@@ -93,13 +93,13 @@
        * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.
        */
       getValue: function getValue() {
-        return this.__P_318_1().getSelected() || null;
+        return this.__P_319_1().getSelected() || null;
       },
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
-        this.__P_318_1().resetSelected();
+        this.__P_319_1().resetSelected();
       },
       /**
        * Returns an array of currently selected items.
@@ -110,7 +110,7 @@
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        var selected = this.__P_318_1().getSelected();
+        var selected = this.__P_319_1().getSelected();
         if (selected) {
           return [selected];
         } else {
@@ -130,7 +130,7 @@
             this.resetSelection();
             break;
           case 1:
-            this.__P_318_1().setSelected(items[0]);
+            this.__P_319_1().setSelected(items[0]);
             break;
           default:
             throw new Error("Could only select one item, but the selection array contains " + items.length + " items!");
@@ -140,7 +140,7 @@
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
-        this.__P_318_1().resetSelected();
+        this.__P_319_1().resetSelected();
       },
       /**
        * Detects whether the given item is currently selected.
@@ -150,7 +150,7 @@
        * @throws {Error} if one of the items is not a child element.
        */
       isSelected: function isSelected(item) {
-        return this.__P_318_1().isSelected(item);
+        return this.__P_319_1().isSelected(item);
       },
       /**
        * Whether the selection is empty.
@@ -158,7 +158,7 @@
        * @return {Boolean} Whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_318_1().isSelectionEmpty();
+        return this.__P_319_1().isSelectionEmpty();
       },
       /**
        * Returns all elements which are selectable.
@@ -168,7 +168,7 @@
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__P_318_1().getSelectables(all);
+        return this.__P_319_1().getSelectables(all);
       },
       /*
       ---------------------------------------------------------------------------
@@ -195,10 +195,10 @@
        *
        * @return {qx.ui.core.SingleSelectionManager} Single selection manager.
        */
-      __P_318_1: function __P_318_1() {
-        if (this.__P_318_0 == null) {
+      __P_319_1: function __P_319_1() {
+        if (this.__P_319_0 == null) {
           var that = this;
-          this.__P_318_0 = new qx.ui.core.SingleSelectionManager({
+          this.__P_319_0 = new qx.ui.core.SingleSelectionManager({
             getItems: function getItems() {
               return that._getItems();
             },
@@ -210,10 +210,10 @@
               }
             }
           });
-          this.__P_318_0.addListener("changeSelected", this._onChangeSelected, this);
+          this.__P_319_0.addListener("changeSelected", this._onChangeSelected, this);
         }
-        this.__P_318_0.setAllowEmptySelection(this._isAllowEmptySelection());
-        return this.__P_318_0;
+        this.__P_319_0.setAllowEmptySelection(this._isAllowEmptySelection());
+        return this.__P_319_0;
       }
     },
     /*
@@ -222,10 +222,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_318_0");
+      this._disposeObjects("__P_319_0");
     }
   });
   qx.ui.core.MSingleSelectionHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1673093866553
+//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1676809321030

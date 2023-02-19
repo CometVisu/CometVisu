@@ -290,9 +290,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // if there was a {{#tag}} on it and otherwise only space.
         function stripSpace() {
           if (hasTag && !nonSpace) {
-            while (spaces.length) {
-              delete tokens[spaces.pop()];
-            }
+            while (spaces.length) delete tokens[spaces.pop()];
           } else {
             spaces = [];
           }
@@ -734,4 +732,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.Template.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Template.js.map?dt=1673093849099
+//# sourceMappingURL=Template.js.map?dt=1676809304621

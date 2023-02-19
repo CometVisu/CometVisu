@@ -50,13 +50,13 @@
       /**
        * The maximal time a frame should take.
        */
-      __P_131_0: 30,
+      __P_132_0: 30,
       /**
        * The supported CSS units.
        */
-      __P_131_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
+      __P_132_1: ["%", "in", "cm", "mm", "em", "ex", "pt", "pc", "px"],
       /** The used keys for transforms. */
-      __P_131_2: {
+      __P_132_2: {
         scale: true,
         rotate: true,
         skew: true,
@@ -109,11 +109,11 @@
           duration = desc.duration;
         }
         var keyFrames = desc.keyFrames;
-        var keys = this.__P_131_3(keyFrames);
-        var stepTime = this.__P_131_4(duration, keys);
+        var keys = this.__P_132_3(keyFrames);
+        var stepTime = this.__P_132_4(duration, keys);
         var steps = parseInt(duration / stepTime, 10);
-        this.__P_131_5(keyFrames, el);
-        var delta = this.__P_131_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
+        this.__P_132_5(keyFrames, el);
+        var delta = this.__P_132_6(steps, stepTime, keys, keyFrames, duration, desc.timing);
         var handle = new qx.bom.element.AnimationHandle();
         handle.jsAnimation = true;
         if (reverse) {
@@ -128,7 +128,7 @@
         el.$$animation = handle;
         handle.i = 0;
         handle.initValues = {};
-        handle.repeatSteps = this.__P_131_7(steps, desc.repeat);
+        handle.repeatSteps = this.__P_132_7(steps, desc.repeat);
         var delay = desc.delay || 0;
         var self = this;
         handle.delayId = window.setTimeout(function () {
@@ -143,7 +143,7 @@
        * @param keyFrames {Map} The map of key frames.
        * @param el {Element} The element to animate.
        */
-      __P_131_5: function __P_131_5(keyFrames, el) {
+      __P_132_5: function __P_132_5(keyFrames, el) {
         // collect all possible keys and its units
         var units = {};
         for (var percent in keyFrames) {
@@ -160,7 +160,7 @@
             if (units[name] == undefined) {
               var item = keyFrames[percent][name];
               if (typeof item == "string") {
-                units[name] = this.__P_131_8(item);
+                units[name] = this.__P_132_8(item);
               } else {
                 units[name] = "";
               }
@@ -183,7 +183,7 @@
                 frame[name] = el[name];
               }
               // if its a unit we know, set 0 as fallback
-              if (frame[name] === "" && this.__P_131_1.indexOf(units[name]) != -1) {
+              if (frame[name] === "" && this.__P_132_1.indexOf(units[name]) != -1) {
                 frame[name] = "0" + units[name];
               }
             }
@@ -196,11 +196,11 @@
        * @param frame {Map} A single key frame of the description.
        * @return {Map} A modified clone of the given frame.
        */
-      __P_131_9: function __P_131_9(frame) {
+      __P_132_9: function __P_132_9(frame) {
         frame = qx.lang.Object.clone(frame);
         var transforms;
         for (var name in frame) {
-          if (name in this.__P_131_2) {
+          if (name in this.__P_132_2) {
             if (!transforms) {
               transforms = {};
             }
@@ -230,10 +230,10 @@
        * @param timing {String} The given timing function.
        * @return {Array} An array containing the animation deltas.
        */
-      __P_131_6: function __P_131_6(steps, stepTime, keys, keyFrames, duration, timing) {
+      __P_132_6: function __P_132_6(steps, stepTime, keys, keyFrames, duration, timing) {
         var delta = new Array(steps);
         var keyIndex = 1;
-        delta[0] = this.__P_131_9(keyFrames[0]);
+        delta[0] = this.__P_132_9(keyFrames[0]);
         var last = keyFrames[0];
         var next = keyFrames[keys[keyIndex]];
         var stepsToNext = Math.floor(keys[keyIndex] / (stepTime / duration * 100));
@@ -255,7 +255,7 @@
             var nItem = next[name] + "";
 
             // transform values
-            if (name in this.__P_131_2) {
+            if (name in this.__P_132_2) {
               if (!transforms) {
                 transforms = {};
               }
@@ -267,11 +267,11 @@
                 for (var j = 0; j < next[name].length; j++) {
                   var item = next[name][j] + "";
                   var x = calculationIndex / stepsToNext;
-                  transforms[name][j] = this.__P_131_10(item, last[name], timing, x);
+                  transforms[name][j] = this.__P_132_10(item, last[name], timing, x);
                 }
               } else {
                 var x = calculationIndex / stepsToNext;
-                transforms[name] = this.__P_131_10(nItem, last[name], timing, x);
+                transforms[name] = this.__P_132_10(nItem, last[name], timing, x);
               }
 
               // color values
@@ -290,7 +290,7 @@
               delta[i][name] = qx.util.ColorUtil.rgbToHexString(stepValue);
             } else if (!isNaN(parseFloat(nItem))) {
               var x = calculationIndex / stepsToNext;
-              delta[i][name] = this.__P_131_10(nItem, last[name], timing, x);
+              delta[i][name] = this.__P_132_10(nItem, last[name], timing, x);
             } else {
               delta[i][name] = last[name] + "";
             }
@@ -305,7 +305,7 @@
           calculationIndex++;
         }
         // make sure the last key frame is right
-        delta[delta.length - 1] = this.__P_131_9(keyFrames[100]);
+        delta[delta.length - 1] = this.__P_132_9(keyFrames[100]);
         return delta;
       },
       /**
@@ -314,7 +314,7 @@
        * @param item {String} A CSS value including its unit.
        * @return {String} The unit of the given value.
        */
-      __P_131_8: function __P_131_8(item) {
+      __P_132_8: function __P_132_8(item) {
         return item.substring((parseFloat(item) + "").length, item.length);
       },
       /**
@@ -326,9 +326,9 @@
        * @param x {Number} The x position of the animation on the time axis
        * @return {String} The calculated value including its unit.
        */
-      __P_131_10: function __P_131_10(nextItem, lastItem, timing, x) {
+      __P_132_10: function __P_132_10(nextItem, lastItem, timing, x) {
         var range = parseFloat(nextItem) - parseFloat(lastItem);
-        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__P_131_8(nextItem);
+        return parseFloat(lastItem) + range * qx.bom.AnimationFrame.calculateTiming(timing, x) + this.__P_132_8(nextItem);
       },
       /**
        * Internal helper for the {@link qx.bom.element.AnimationHandle} to play
@@ -360,7 +360,7 @@
               }
             }
           }
-          qx.bom.element.AnimationJs.__P_131_11(handle.el, values);
+          qx.bom.element.AnimationJs.__P_132_11(handle.el, values);
           handle.i++;
           // iteration condition
           if (handle.i % handle.steps == 0) {
@@ -423,9 +423,9 @@
           if (handle.reverse || desc.alternate && desc.repeat && desc.repeat % 2 == 0) {
             keep = 100 - keep;
           }
-          this.__P_131_11(el, this.__P_131_9(desc.keyFrames[keep]));
+          this.__P_132_11(el, this.__P_132_9(desc.keyFrames[keep]));
         } else {
-          this.__P_131_11(el, initValues);
+          this.__P_132_11(el, initValues);
         }
         el.$$animation = null;
         handle.el = null;
@@ -441,7 +441,7 @@
        * animation should be repeated or the string 'infinite'.
        * @return {Integer} The number of steps to animate.
        */
-      __P_131_7: function __P_131_7(steps, repeat) {
+      __P_132_7: function __P_132_7(steps, repeat) {
         if (repeat == undefined) {
           return steps;
         }
@@ -455,7 +455,7 @@
        * @param el {Element} The DOM element to apply the styles.
        * @param styles {Map} A map containing styles and values.
        */
-      __P_131_11: function __P_131_11(el, styles) {
+      __P_132_11: function __P_132_11(el, styles) {
         for (var key in styles) {
           // ignore undefined values (might be a bad detection)
           if (styles[key] === undefined) {
@@ -482,14 +482,14 @@
        * @param keys {Array} An array containing the ordered set of key frame keys.
        * @return {Integer} The best suited step time.
        */
-      __P_131_4: function __P_131_4(duration, keys) {
+      __P_132_4: function __P_132_4(duration, keys) {
         // get min difference
         var minDiff = 100;
         for (var i = 0; i < keys.length - 1; i++) {
           minDiff = Math.min(minDiff, keys[i + 1] - keys[i]);
         }
         var stepTime = duration * minDiff / 100;
-        while (stepTime > this.__P_131_0) {
+        while (stepTime > this.__P_132_0) {
           stepTime = stepTime / 2;
         }
         return Math.round(stepTime);
@@ -499,7 +499,7 @@
        * @param keyFrames {Map} The map of key frames.
        * @return {Array} An ordered list of keys.
        */
-      __P_131_3: function __P_131_3(keyFrames) {
+      __P_132_3: function __P_132_3(keyFrames) {
         var keys = Object.keys(keyFrames);
         for (var i = 0; i < keys.length; i++) {
           keys[i] = parseInt(keys[i], 10);
@@ -514,4 +514,4 @@
   qx.bom.element.AnimationJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationJs.js.map?dt=1673093850285
+//# sourceMappingURL=AnimationJs.js.map?dt=1676809305729

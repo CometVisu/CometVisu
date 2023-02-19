@@ -16,7 +16,7 @@ Wert einzustellen.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-slider" wrap-in="cv-tile" wrapped-position="row='2' colspan='3'">
+    <settings design="tile" selector="cv-slider" wrap-in="cv-widget"  wrapped-position="row='2' colspan='3'">
         <screenshot name="cv-slider-volume" margin="0 0 0 0">
             <data address="1/4/1">60</data>
         </screenshot>

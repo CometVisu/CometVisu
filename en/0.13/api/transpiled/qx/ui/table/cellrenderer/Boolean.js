@@ -63,7 +63,7 @@
     */
     construct: function construct() {
       qx.ui.table.cellrenderer.AbstractImage.constructor.call(this);
-      this.__P_438_0 = qx.util.AliasManager.getInstance();
+      this.__P_439_0 = qx.util.AliasManager.getInstance();
       this.initIconTrue();
       this.initIconFalse();
 
@@ -103,9 +103,9 @@
     */
 
     members: {
-      __P_438_1: null,
-      __P_438_2: false,
-      __P_438_0: null,
+      __P_439_1: null,
+      __P_439_2: false,
+      __P_439_0: null,
       /**
        * Handler for theme changes.
        * @signature function()
@@ -119,11 +119,11 @@
       }),
       // property apply
       _applyIconTrue: function _applyIconTrue(value) {
-        this.__P_438_1 = this.__P_438_0.resolve(value);
+        this.__P_439_1 = this.__P_439_0.resolve(value);
       },
       // property apply
       _applyIconFalse: function _applyIconFalse(value) {
-        this.__P_438_2 = this.__P_438_0.resolve(value);
+        this.__P_439_2 = this.__P_439_0.resolve(value);
       },
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
@@ -136,10 +136,10 @@
 
         // Retrieve the ID
         rm = qx.util.ResourceManager.getInstance();
-        if (rm.has(this.__P_438_1)) {
-          id = this.__P_438_1;
+        if (rm.has(this.__P_439_1)) {
+          id = this.__P_439_1;
         } else {
-          ids = rm.getIds(this.__P_438_1);
+          ids = rm.getIds(this.__P_439_1);
           // If ID was found, we'll use its first (likely only) element here.
           if (ids) {
             id = ids[0];
@@ -164,10 +164,10 @@
         // Add the URL portion of the hint
         switch (cellInfo.value) {
           case true:
-            imageHints.url = this.__P_438_1;
+            imageHints.url = this.__P_439_1;
             break;
           case false:
-            imageHints.url = this.__P_438_2;
+            imageHints.url = this.__P_439_2;
             break;
           default:
             imageHints.url = null;
@@ -182,7 +182,7 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_438_0 = null;
+      this.__P_439_0 = null;
       // remove dynamic theme listener
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
@@ -192,4 +192,4 @@
   qx.ui.table.cellrenderer.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1673093874402
+//# sourceMappingURL=Boolean.js.map?dt=1676809328449

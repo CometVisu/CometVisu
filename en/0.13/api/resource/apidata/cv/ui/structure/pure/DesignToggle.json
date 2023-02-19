@@ -17,9 +17,9 @@
         "index": 1059
       },
       "end": {
-        "line": 110,
+        "line": 87,
         "column": 3,
-        "index": 3364
+        "index": 2775
       }
     },
     "jsdoc": {
@@ -50,54 +50,18 @@
     }
   },
   "type": "class",
-  "construct": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 2,
-        "index": 1373
-      },
-      "end": {
-        "line": 49,
-        "column": 3,
-        "index": 1600
-      }
-    },
-    "jsdoc": {}
-  },
-  "properties": {
-    "availableDesigns": {
-      "location": {
-        "start": {
-          "line": 57,
-          "column": 4,
-          "index": 1764
-        },
-        "end": {
-          "line": 57,
-          "column": 50,
-          "index": 1810
-        }
-      },
-      "name": "availableDesigns",
-      "propertyType": "new",
-      "init": [],
-      "check": "Array",
-      "defaultValue": []
-    }
-  },
   "members": {
     "_getInnerDomString": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 44,
           "column": 4,
-          "index": 1990
+          "index": 1402
         },
         "end": {
-          "line": 69,
+          "line": 46,
           "column": 5,
-          "index": 2130
+          "index": 1542
         }
       },
       "jsdoc": {},
@@ -111,14 +75,14 @@
     "_action": {
       "location": {
         "start": {
-          "line": 78,
+          "line": 55,
           "column": 4,
-          "index": 2388
+          "index": 1800
         },
         "end": {
-          "line": 104,
+          "line": 81,
           "column": 5,
-          "index": 3257
+          "index": 2668
         }
       },
       "jsdoc": {
@@ -1949,85 +1913,19 @@
           }
         ]
       }
-    },
-    "getAvailableDesigns": {
-      "type": "function",
-      "name": "getAvailableDesigns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>availableDesigns</code>.\n\nFor further details take a look at the property definition: {@link #availableDesigns}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Array",
-            "desc": "Returns the value for availableDesigns"
-          }
-        ]
-      }
-    },
-    "setAvailableDesigns": {
-      "type": "function",
-      "name": "setAvailableDesigns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>availableDesigns</code>.\n\nFor further details take a look at the property definition: {@link #availableDesigns}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Array",
-            "paramName": "value",
-            "desc": "Value for availableDesigns"
-          }
-        ]
-      }
-    },
-    "resetAvailableDesigns": {
-      "type": "function",
-      "name": "resetAvailableDesigns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>availableDesigns</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #availableDesigns}."
-          }
-        ]
-      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 107,
+        "line": 84,
         "column": 2,
-        "index": 3266
+        "index": 2677
       },
       "end": {
-        "line": 109,
+        "line": 86,
         "column": 3,
-        "index": 3360
+        "index": 2771
       }
     }
   },

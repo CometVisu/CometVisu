@@ -18,7 +18,7 @@
       "end": {
         "line": 491,
         "column": 3,
-        "index": 14685
+        "index": 14683
       }
     },
     "jsdoc": {
@@ -826,12 +826,12 @@
         "start": {
           "line": 428,
           "column": 4,
-          "index": 12992
+          "index": 12990
         },
         "end": {
           "line": 455,
           "column": 5,
-          "index": 13860
+          "index": 13858
         }
       },
       "jsdoc": {
@@ -853,8 +853,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Element | null} Event target",
-            "type": "Element | null",
+            "body": "{Element|null} Event target",
+            "type": "Element|null",
             "description": " Event target"
           }
         ]
@@ -867,12 +867,12 @@
         "start": {
           "line": 464,
           "column": 4,
-          "index": 14087
+          "index": 14085
         },
         "end": {
           "line": 474,
           "column": 5,
-          "index": 14354
+          "index": 14352
         }
       },
       "jsdoc": {
@@ -918,12 +918,12 @@
         "start": {
           "line": 479,
           "column": 4,
-          "index": 14404
+          "index": 14402
         },
         "end": {
           "line": 489,
           "column": 5,
-          "index": 14677
+          "index": 14675
         }
       },
       "jsdoc": {

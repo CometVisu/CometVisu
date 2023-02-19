@@ -1,41 +1,46 @@
-.. _tile-tile-pair:
+.. _tile-widget-pair:
 
-Das Tile-Pair Widget
-====================
+Das Widget-Pair
+===============
 
 .. api-doc:: cv.ui.structure.tile.Controller
 
 Beschreibung
 ------------
 
-Das Tile-Pair Widget erlaubt es zwei einfache Widgets mit halber Höhe untereinander darzustellen.
+Das Widget-Pair erlaubt es zwei einfache Widgets mit halber Höhe untereinander darzustellen.
 Die Gesamthöhe beider Widgets entspricht dabei genau der Höhe eines normalen Widgets und passt somit ins Layout.
-Es macht natürlich nur Sinn Widgets innerhalb des Tile-Pairs zu benutzen die wenig Inhalte haben und somit
+Es macht natürlich nur Sinn Widgets innerhalb des Widget-Pairs zu benutzen die wenig Inhalte haben und somit
 mit dem reduzierten Platz noch benutzbar sind. Momentan kann man hier nur das :ref:`Switch <tile-switch>` Widget
-benutzen oder sich ein eigenes definieren innerhalb eines ``cv-tile``-Elements.
+benutzen oder sich ein eigenes definieren innerhalb eines ``cv-widget``-Elements.
 
 
 .. widget-example::
 
     <settings design="tile">
-        <screenshot name="cv-tile-pair" margin="0 10 10 0">
+        <screenshot name="cv-widget-pair" margin="0 10 10 0">
         </screenshot>
     </settings>
-    <cv-tile-pair>
-        <cv-switch size="normal">
+    <cv-widget-pair>
+        <cv-switch button-size="normal">
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="secondaryLabel">Wohnzimmer</span>
         </cv-switch>
-        <cv-switch size="normal">
+        <cv-switch button-size="normal">
             <cv-address slot="address" transform="DPT:1.001">1/4/1</cv-address>
             <span slot="secondaryLabel">Schlafzimmer</span>
         </cv-switch>
-    </cv-tile-pair>
+    </cv-widget-pair>
 
+Erlaubte Attribute im Widget-Pair-Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. parameter-information:: cv-widget-pair tile
 
 
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements-information:: cv-tile-pair tile
+.. elements-information:: cv-widget-pair tile
     :depth: 1
+    :exclude-attributes: size

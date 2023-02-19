@@ -16,7 +16,7 @@
       "end": {
         "line": 166,
         "column": 3,
-        "index": 4624
+        "index": 4620
       }
     },
     "jsdoc": {
@@ -131,12 +131,12 @@
         "start": {
           "line": 77,
           "column": 4,
-          "index": 1957
+          "index": 1955
         },
         "end": {
           "line": 108,
           "column": 5,
-          "index": 2811
+          "index": 2809
         }
       },
       "jsdoc": {
@@ -155,8 +155,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean | null} The validation result.",
-            "type": "Boolean | null",
+            "body": "{Boolean|null} The validation result.",
+            "type": "Boolean|null",
             "description": " The validation result."
           }
         ]
@@ -173,12 +173,12 @@
         "start": {
           "line": 115,
           "column": 4,
-          "index": 3065
+          "index": 3063
         },
         "end": {
           "line": 120,
           "column": 5,
-          "index": 3229
+          "index": 3227
         }
       },
       "jsdoc": {
@@ -213,12 +213,12 @@
         "start": {
           "line": 127,
           "column": 4,
-          "index": 3485
+          "index": 3483
         },
         "end": {
           "line": 132,
           "column": 5,
-          "index": 3649
+          "index": 3647
         }
       },
       "jsdoc": {
@@ -253,12 +253,12 @@
         "start": {
           "line": 140,
           "column": 4,
-          "index": 3956
+          "index": 3952
         },
         "end": {
           "line": 149,
           "column": 5,
-          "index": 4186
+          "index": 4182
         }
       },
       "jsdoc": {
@@ -287,8 +287,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.form.IForm | null} The validation result.",
-            "type": "qx.ui.form.IForm | null",
+            "body": "{qx.ui.form.IForm|null} The validation result.",
+            "type": "qx.ui.form.IForm|null",
             "description": " The validation result."
           }
         ]
@@ -301,12 +301,12 @@
         "start": {
           "line": 152,
           "column": 4,
-          "index": 4211
+          "index": 4207
         },
         "end": {
           "line": 155,
           "column": 5,
-          "index": 4282
+          "index": 4278
         }
       },
       "jsdoc": {},
@@ -324,12 +324,12 @@
         "start": {
           "line": 162,
           "column": 4,
-          "index": 4557
+          "index": 4553
         },
         "end": {
           "line": 164,
           "column": 5,
-          "index": 4616
+          "index": 4612
         }
       },
       "jsdoc": {

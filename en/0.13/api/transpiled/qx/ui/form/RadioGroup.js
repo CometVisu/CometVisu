@@ -1,6 +1,6 @@
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -86,10 +86,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       qx.core.Object.constructor.call(this);
 
       // create item array
-      this.__P_353_0 = [];
+      this.__P_354_0 = [];
 
       // add listener before call add!!!
-      this.addListener("changeSelection", this.__P_353_1, this);
+      this.addListener("changeSelection", this.__P_354_1, this);
       if (varargs != null) {
         this.add.apply(this, arguments);
       }
@@ -190,7 +190,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     members: {
       /** @type {qx.ui.form.IRadioItem[]} The items of the radio group */
-      __P_353_0: null,
+      __P_354_0: null,
       /*
       ---------------------------------------------------------------------------
         UTILITIES
@@ -202,7 +202,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @return {qx.ui.form.IRadioItem[]} All managed items.
        */
       getItems: function getItems() {
-        return this.__P_353_0;
+        return this.__P_354_0;
       },
       /*
       ---------------------------------------------------------------------------
@@ -215,7 +215,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param varargs {qx.ui.form.IRadioItem} A variable number of items to add.
        */
       add: function add(varargs) {
-        var items = this.__P_353_0;
+        var items = this.__P_354_0;
         var item;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
@@ -251,7 +251,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param item {qx.ui.form.IRadioItem} The item to remove.
        */
       remove: function remove(item) {
-        var items = this.__P_353_0;
+        var items = this.__P_354_0;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
         if (items.includes(item)) {
@@ -278,7 +278,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @return {qx.ui.form.IRadioItem[]} The item array
        */
       getChildren: function getChildren() {
-        return this.__P_353_0;
+        return this.__P_354_0;
       },
       /*
       ---------------------------------------------------------------------------
@@ -309,8 +309,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var item;
         var oldFirstUp = qx.lang.String.firstUp(old);
         var newFirstUp = qx.lang.String.firstUp(value);
-        for (var i = 0; i < this.__P_353_0.length; i++) {
-          item = this.__P_353_0[i];
+        for (var i = 0; i < this.__P_354_0.length; i++) {
+          item = this.__P_354_0[i];
 
           // remove the listener for the old change event
           item.removeListener("change" + oldFirstUp, this._onItemChangeChecked, this);
@@ -321,19 +321,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       // property apply
       _applyInvalidMessage: function _applyInvalidMessage(value, old) {
-        for (var i = 0; i < this.__P_353_0.length; i++) {
-          this.__P_353_0[i].setInvalidMessage(value);
+        for (var i = 0; i < this.__P_354_0.length; i++) {
+          this.__P_354_0[i].setInvalidMessage(value);
         }
       },
       // property apply
       _applyValid: function _applyValid(value, old) {
-        for (var i = 0; i < this.__P_353_0.length; i++) {
-          this.__P_353_0[i].setValid(value);
+        for (var i = 0; i < this.__P_354_0.length; i++) {
+          this.__P_354_0[i].setValid(value);
         }
       },
       // property apply
       _applyEnabled: function _applyEnabled(value, old) {
-        var items = this.__P_353_0;
+        var items = this.__P_354_0;
         if (value == null) {
           for (var i = 0, l = items.length; i < l; i++) {
             items[i].resetEnabled();
@@ -360,7 +360,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       selectNext: function selectNext() {
         var item = this.getSelection()[0];
-        var items = this.__P_353_0;
+        var items = this.__P_354_0;
         var index = items.indexOf(item);
         if (index == -1) {
           return;
@@ -385,7 +385,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       selectPrevious: function selectPrevious() {
         var item = this.getSelection()[0];
-        var items = this.__P_353_0;
+        var items = this.__P_354_0;
         var index = items.indexOf(item);
         if (index == -1) {
           return;
@@ -437,14 +437,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        *    <code>false</code> otherwise.
        */
       _isItemSelectable: function _isItemSelectable(item) {
-        return this.__P_353_0.indexOf(item) != -1;
+        return this.__P_354_0.indexOf(item) != -1;
       },
       /**
        * Event handler for <code>changeSelection</code>.
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_353_1: function __P_353_1(e) {
+      __P_354_1: function __P_354_1(e) {
         var value = e.getData()[0];
         var old = e.getOldData()[0];
         var groupedProperty = this.getGroupedProperty();
@@ -455,7 +455,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           value.set(groupedProperty, true);
 
           // If Group is focused, the selection was changed by keyboard. Switch focus to new value
-          if (this.__P_353_2() && value.isFocusable()) {
+          if (this.__P_354_2() && value.isFocusable()) {
             value.focus();
           }
         }
@@ -464,7 +464,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * Checks if this group is focused by checking focused state of each item
        * @returns {Boolean} result
        */
-      __P_353_2: function __P_353_2() {
+      __P_354_2: function __P_354_2() {
         var focusHandler = qx.ui.core.FocusHandler.getInstance();
         var _iterator = _createForOfIteratorHelper(this._getItems()),
           _step;
@@ -489,10 +489,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeArray("__P_353_0");
+      this._disposeArray("__P_354_0");
     }
   });
   qx.ui.form.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1673093868890
+//# sourceMappingURL=RadioGroup.js.map?dt=1676809323261

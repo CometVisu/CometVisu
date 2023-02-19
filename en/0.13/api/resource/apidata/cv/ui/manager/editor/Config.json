@@ -14,9 +14,9 @@
         "index": 863
       },
       "end": {
-        "line": 264,
+        "line": 290,
         "column": 3,
-        "index": 8028
+        "index": 9053
       }
     },
     "jsdoc": {
@@ -184,9 +184,9 @@
           "index": 2266
         },
         "end": {
-          "line": 86,
+          "line": 112,
           "column": 5,
-          "index": 2372
+          "index": 3397
         }
       },
       "type": "function",
@@ -195,14 +195,14 @@
     "_applyContent": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 115,
           "column": 4,
-          "index": 2397
+          "index": 3422
         },
         "end": {
-          "line": 104,
+          "line": 130,
           "column": 5,
-          "index": 2945
+          "index": 3970
         }
       },
       "jsdoc": {},
@@ -216,14 +216,14 @@
     "getCurrentContent": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 133,
           "column": 4,
-          "index": 2970
+          "index": 3995
         },
         "end": {
-          "line": 109,
+          "line": 135,
           "column": 5,
-          "index": 3029
+          "index": 4054
         }
       },
       "jsdoc": {},
@@ -238,14 +238,14 @@
     "_onDeleteSection": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 137,
           "column": 4,
-          "index": 3036
+          "index": 4061
         },
         "end": {
-          "line": 118,
+          "line": 144,
           "column": 5,
-          "index": 3295
+          "index": 4320
         }
       },
       "type": "function",
@@ -254,14 +254,14 @@
     "__checkForModification": {
       "location": {
         "start": {
-          "line": 121,
+          "line": 147,
           "column": 4,
-          "index": 3373
+          "index": 4398
         },
         "end": {
-          "line": 133,
+          "line": 159,
           "column": 5,
-          "index": 3796
+          "index": 4821
         }
       },
       "jsdoc": {},
@@ -271,14 +271,14 @@
     "save": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 161,
           "column": 4,
-          "index": 3803
+          "index": 4828
         },
         "end": {
-          "line": 196,
+          "line": 222,
           "column": 5,
-          "index": 5979
+          "index": 7004
         }
       },
       "type": "function",
@@ -292,14 +292,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 225,
           "column": 4,
-          "index": 6004
+          "index": 7029
         },
         "end": {
-          "line": 253,
+          "line": 279,
           "column": 5,
-          "index": 7819
+          "index": 8844
         }
       },
       "jsdoc": {},
@@ -4503,14 +4503,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 261,
+        "line": 287,
         "column": 2,
-        "index": 7953
+        "index": 8978
       },
       "end": {
-        "line": 263,
+        "line": 289,
         "column": 3,
-        "index": 8024
+        "index": 9049
       }
     },
     "jsdoc": {}

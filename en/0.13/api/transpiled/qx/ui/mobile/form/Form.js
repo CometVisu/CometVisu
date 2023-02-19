@@ -57,36 +57,36 @@
     */
     construct: function construct() {
       qx.ui.form.Form.constructor.call(this);
-      this.__P_397_0 = [];
+      this.__P_398_0 = [];
     },
     members: {
       /**
        * the renderer this form uses to be displayed
        */
-      __P_397_1: null,
+      __P_398_1: null,
       /**
        * Contains all invalid items.
        */
-      __P_397_0: null,
+      __P_398_0: null,
       /**
        * Setter for the renderer private variable
        * @param renderer {qx.ui.mobile.form.renderer.AbstractRenderer} the renderer
        */
       setRenderer: function setRenderer(renderer) {
-        this.__P_397_1 = renderer;
+        this.__P_398_1 = renderer;
       },
       /**
        * Validates the form using the
        * {@link qx.ui.form.validation.Manager#validate} method.
        * @lint ignoreDeprecated(alert)
        *
-       * @return {Boolean | null} The validation result.
+       * @return {Boolean|null} The validation result.
        */
       validate: function validate() {
         var validateResult = qx.ui.mobile.form.Form.superclass.prototype.validate.call(this);
-        this.__P_397_0 = [];
-        if (this.__P_397_1 != null) {
-          this.__P_397_1.resetForm();
+        this.__P_398_0 = [];
+        if (this.__P_398_1 != null) {
+          this.__P_398_1.resetForm();
         }
         var groups = this.getGroups();
         for (var i = 0; i < groups.length; i++) {
@@ -94,9 +94,9 @@
           for (var j = 0; j < group.items.length; j++) {
             var item = group.items[j];
             if (!item.isValid()) {
-              this.__P_397_0.push(item);
-              if (this.__P_397_1 != null) {
-                this.__P_397_1.showErrorForItem(item);
+              this.__P_398_0.push(item);
+              if (this.__P_398_1 != null) {
+                this.__P_398_1.showErrorForItem(item);
               } else {
                 /* eslint-disable-next-line no-alert */
                 alert("error " + item.getInvalidMessage());
@@ -104,8 +104,8 @@
             }
           }
         }
-        if (this.__P_397_1 != null) {
-          this.__P_397_1._domUpdated();
+        if (this.__P_398_1 != null) {
+          this.__P_398_1._domUpdated();
         }
         return validateResult;
       },
@@ -117,7 +117,7 @@
       showRow: function showRow(groupIndex, rowIndex) {
         var item = this._getItemByIndex(groupIndex, rowIndex);
         if (item) {
-          this.__P_397_1.showItem(item);
+          this.__P_398_1.showItem(item);
         }
       },
       /**
@@ -128,14 +128,14 @@
       hideRow: function hideRow(groupIndex, rowIndex) {
         var item = this._getItemByIndex(groupIndex, rowIndex);
         if (item) {
-          this.__P_397_1.hideItem(item);
+          this.__P_398_1.hideItem(item);
         }
       },
       /**
        * Gets the item with the given group and rowIndex.
        * @param groupIndex {Integer} the index of the group to which the row belongs to
        * @param rowIndex {Integer} the index of the row inside the target group
-       * @return {qx.ui.form.IForm | null} The validation result.
+       * @return {qx.ui.form.IForm|null} The validation result.
        */
       _getItemByIndex: function _getItemByIndex(groupIndex, rowIndex) {
         var groups = this.getGroups();
@@ -149,7 +149,7 @@
       // overridden
       reset: function reset() {
         qx.ui.mobile.form.Form.superclass.prototype.reset.call(this);
-        this.__P_397_1.resetForm();
+        this.__P_398_1.resetForm();
       },
       /**
        * Returns the invalid items of the form, which were determined by {@link qx.ui.mobile.form.Form#validate} before.
@@ -157,11 +157,11 @@
        * @return {qx.ui.mobile.core.Widget[]} The invalid items of the form.
        */
       getInvalidItems: function getInvalidItems() {
-        return this.__P_397_0;
+        return this.__P_398_0;
       }
     }
   });
   qx.ui.mobile.form.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1673093872005
+//# sourceMappingURL=Form.js.map?dt=1676809326234

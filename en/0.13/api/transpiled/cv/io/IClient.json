@@ -14,9 +14,9 @@
         "index": 58
       },
       "end": {
-        "line": 180,
+        "line": 187,
         "column": 3,
-        "index": 5238
+        "index": 5506
       }
     },
     "jsdoc": {
@@ -465,12 +465,12 @@
         "start": {
           "line": 118,
           "column": 4,
-          "index": 3505
+          "index": 3507
         },
         "end": {
           "line": 118,
           "column": 36,
-          "index": 3537
+          "index": 3539
         }
       },
       "jsdoc": {
@@ -483,9 +483,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} Name of the resource (e.g. login, read, write, rrd)",
+            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
             "paramName": "name",
-            "description": " Name of the resource (e.g. login, read, write, rrd)",
+            "description": " Name of the resource (e.g. login, read, write, chart)",
             "type": "String"
           },
           {
@@ -509,17 +509,57 @@
       "type": "function",
       "access": "public"
     },
+    "setResourcePath": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3775
+        },
+        "end": {
+          "line": 125,
+          "column": 34,
+          "index": 3805
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the relative path to a resource on the currently used backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
+            "paramName": "name",
+            "description": " Name of the resource (e.g. login, read, write, chart)",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} relative path to the resource",
+            "paramName": "path",
+            "description": " relative path to the resource",
+            "type": "String"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 131,
           "column": 4,
-          "index": 3646
+          "index": 3914
         },
         "end": {
-          "line": 124,
+          "line": 131,
           "column": 37,
-          "index": 3679
+          "index": 3947
         }
       },
       "jsdoc": {
@@ -544,14 +584,14 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 130,
+          "line": 137,
           "column": 4,
-          "index": 3846
+          "index": 4114
         },
         "end": {
-          "line": 130,
+          "line": 137,
           "column": 30,
-          "index": 3872
+          "index": 4140
         }
       },
       "jsdoc": {
@@ -574,14 +614,14 @@
     "write": {
       "location": {
         "start": {
-          "line": 139,
+          "line": 146,
           "column": 4,
-          "index": 4110
+          "index": 4378
         },
         "end": {
-          "line": 139,
+          "line": 146,
           "column": 37,
-          "index": 4143
+          "index": 4411
         }
       },
       "jsdoc": {
@@ -621,14 +661,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 153,
           "column": 4,
-          "index": 4323
+          "index": 4591
         },
         "end": {
-          "line": 146,
+          "line": 153,
           "column": 21,
-          "index": 4340
+          "index": 4608
         }
       },
       "jsdoc": {
@@ -653,14 +693,14 @@
     "restart": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 159,
           "column": 4,
-          "index": 4412
+          "index": 4680
         },
         "end": {
-          "line": 152,
+          "line": 159,
           "column": 20,
-          "index": 4428
+          "index": 4696
         }
       },
       "jsdoc": {
@@ -685,14 +725,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 157,
+          "line": 164,
           "column": 4,
-          "index": 4542
+          "index": 4810
         },
         "end": {
-          "line": 157,
+          "line": 164,
           "column": 18,
-          "index": 4556
+          "index": 4824
         }
       },
       "jsdoc": {
@@ -709,14 +749,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 170,
           "column": 4,
-          "index": 4747
+          "index": 5015
         },
         "end": {
-          "line": 163,
+          "line": 170,
           "column": 19,
-          "index": 4762
+          "index": 5030
         }
       },
       "jsdoc": {
@@ -741,14 +781,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 170,
+          "line": 177,
           "column": 4,
-          "index": 4949
+          "index": 5217
         },
         "end": {
-          "line": 170,
+          "line": 177,
           "column": 25,
-          "index": 4970
+          "index": 5238
         }
       },
       "jsdoc": {
@@ -781,14 +821,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 185,
           "column": 4,
-          "index": 5197
+          "index": 5465
         },
         "end": {
-          "line": 178,
+          "line": 185,
           "column": 37,
-          "index": 5230
+          "index": 5498
         }
       },
       "jsdoc": {

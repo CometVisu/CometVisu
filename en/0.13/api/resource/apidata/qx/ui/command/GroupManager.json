@@ -16,7 +16,7 @@
       "end": {
         "line": 202,
         "column": 3,
-        "index": 4887
+        "index": 4881
       }
     },
     "jsdoc": {
@@ -163,12 +163,12 @@
         "start": {
           "line": 86,
           "column": 4,
-          "index": 2112
+          "index": 2110
         },
         "end": {
           "line": 114,
           "column": 5,
-          "index": 2837
+          "index": 2835
         }
       },
       "jsdoc": {
@@ -190,8 +190,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.command.Group | null} Command group or null if group was not added before",
-            "type": "qx.ui.command.Group | null",
+            "body": "{qx.ui.command.Group|null} Command group or null if group was not added before",
+            "type": "qx.ui.command.Group|null",
             "description": " Command group or null if group was not added before"
           }
         ]
@@ -204,12 +204,12 @@
         "start": {
           "line": 123,
           "column": 4,
-          "index": 3077
+          "index": 3075
         },
         "end": {
           "line": 153,
           "column": 5,
-          "index": 3924
+          "index": 3922
         }
       },
       "jsdoc": {
@@ -245,12 +245,12 @@
         "start": {
           "line": 160,
           "column": 4,
-          "index": 4056
+          "index": 4052
         },
         "end": {
           "line": 162,
           "column": 5,
-          "index": 4108
+          "index": 4104
         }
       },
       "jsdoc": {
@@ -263,8 +263,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.command.Group | null} Active command group",
-            "type": "qx.ui.command.Group | null",
+            "body": "{qx.ui.command.Group|null} Active command group",
+            "type": "qx.ui.command.Group|null",
             "description": " Active command group"
           }
         ]
@@ -277,12 +277,12 @@
         "start": {
           "line": 167,
           "column": 4,
-          "index": 4171
+          "index": 4167
         },
         "end": {
           "line": 171,
           "column": 5,
-          "index": 4271
+          "index": 4267
         }
       },
       "jsdoc": {
@@ -301,12 +301,12 @@
         "start": {
           "line": 176,
           "column": 4,
-          "index": 4336
+          "index": 4332
         },
         "end": {
           "line": 180,
           "column": 5,
-          "index": 4437
+          "index": 4433
         }
       },
       "jsdoc": {
@@ -325,12 +325,12 @@
         "start": {
           "line": 189,
           "column": 4,
-          "index": 4648
+          "index": 4642
         },
         "end": {
           "line": 196,
           "column": 5,
-          "index": 4811
+          "index": 4805
         }
       },
       "jsdoc": {
@@ -352,8 +352,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.ui.command.Group | null} Command group or null",
-            "type": "qx.ui.command.Group | null",
+            "body": "{qx.ui.command.Group|null} Command group or null",
+            "type": "qx.ui.command.Group|null",
             "description": " Command group or null"
           }
         ]
@@ -505,12 +505,12 @@
       "start": {
         "line": 199,
         "column": 2,
-        "index": 4820
+        "index": 4814
       },
       "end": {
         "line": 201,
         "column": 3,
-        "index": 4883
+        "index": 4877
       }
     }
   },

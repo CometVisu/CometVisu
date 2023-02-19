@@ -81,11 +81,11 @@
        * @param tag {String} Tag name
        * @return {String} XHTML corrected tag
        */
-      __P_103_0: function __P_103_0(all, front, tag) {
+      __P_104_0: function __P_104_0(all, front, tag) {
         return tag.match(/^(abbr|br|col|img|input|link|meta|param|hr|area|embed)$/i) ? all : front + "></" + tag + ">";
       },
       /** @type {Map} Contains wrap fragments for specific HTML matches */
-      __P_103_1: {
+      __P_104_1: {
         opt: [1, "<select multiple='multiple'>", "</select>"],
         // option or optgroup
         leg: [1, "<fieldset>", "</fieldset>"],
@@ -108,7 +108,7 @@
        * @return {String} Fixed HTML
        */
       fixEmptyTags: function fixEmptyTags(html) {
-        return html.replace(/(<(\w+)[^>]*?)\/>/g, this.__P_103_0);
+        return html.replace(/(<(\w+)[^>]*?)\/>/g, this.__P_104_0);
       },
       /**
        * Translates a HTML string into an array of elements.
@@ -117,7 +117,7 @@
        * @param context {Document} Context document in which (helper) elements should be created
        * @return {Array} List of resulting elements
        */
-      __P_103_2: function __P_103_2(html, context) {
+      __P_104_2: function __P_104_2(html, context) {
         var div = context.createElement("div");
         html = qx.bom.Html.fixEmptyTags(html);
 
@@ -126,7 +126,7 @@
 
         // Auto-wrap content into required DOM structure
         var wrap,
-          map = this.__P_103_1;
+          map = this.__P_104_1;
         if (!tags.indexOf("<opt")) {
           wrap = map.opt;
         } else if (!tags.indexOf("<leg")) {
@@ -223,7 +223,7 @@
 
           // Convert HTML string into DOM nodes
           if (typeof obj === "string") {
-            obj = this.__P_103_2(obj, context);
+            obj = this.__P_104_2(obj, context);
           }
 
           // Append or merge depending on type
@@ -287,4 +287,4 @@
   qx.bom.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1673093848197
+//# sourceMappingURL=Html.js.map?dt=1676809303741

@@ -42,7 +42,7 @@
        *
        * @param messageId {String} message id (may contain format strings)
        * @param varargs {Object?} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        */
       tr: function tr(messageId, varargs) {
         var nlsManager = qx.locale.Manager;
@@ -61,7 +61,7 @@
        * @param pluralMessageId {String} message id of the plural form (may contain format strings)
        * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.
        * @param varargs {Object?} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        */
       trn: function trn(singularMessageId, pluralMessageId, count, varargs) {
         var nlsManager = qx.locale.Manager;
@@ -77,7 +77,7 @@
        * @param hint {String} hint for the translator of the message. Will be included in the .po file.
        * @param messageId {String} message id (may contain format strings)
        * @param varargs {Object?} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        */
       trc: function trc(hint, messageId, varargs) {
         var nlsManager = qx.locale.Manager;
@@ -97,7 +97,7 @@
        * @param pluralMessageId {String} message id of the plural form (may contain format strings)
        * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.
        * @param varargs {Object?} variable number of arguments applied to the format string
-       * @return {String | LocalizedString} The translated message or localized string
+       * @return {String|LocalizedString} The translated message or localized string
        */
       trnc: function trnc(hint, singularMessageId, pluralMessageId, count, varargs) {
         var nlsManager = qx.locale.Manager;
@@ -124,4 +124,4 @@
   qx.locale.MTranslation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTranslation.js.map?dt=1673093862380
+//# sourceMappingURL=MTranslation.js.map?dt=1676809316787

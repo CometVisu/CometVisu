@@ -1,11 +1,15 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
       },
-      "qx.core.Object": {
+      "cv.io.AbstractClient": {
         "construct": true,
         "require": true
       },
@@ -16,10 +20,21 @@
         "construct": true
       },
       "cv.data.Model": {},
+      "qx.bom.client.Html": {
+        "require": true
+      },
       "cv.io.BackendConnections": {},
       "cv.Application": {},
       "cv.io.rest.Client": {},
       "qx.io.request.Xhr": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "html.storage.local": {
+          "className": "qx.bom.client.Html"
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -52,7 +67,7 @@
    * - trigger HTTP requests
    */
   qx.Class.define('cv.io.System', {
-    extend: qx.core.Object,
+    extend: cv.io.AbstractClient,
     implement: cv.io.IClient,
     /*
     ***********************************************
@@ -60,8 +75,11 @@
     ***********************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this);
+      cv.io.AbstractClient.constructor.call(this);
       this.addresses = [];
+      this.__P_560_0 = {
+        theme: '_applyTheme'
+      };
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
     },
     /*
@@ -93,6 +111,7 @@
       backendName: 'system',
       addresses: null,
       implementedAddresses: null,
+      __P_560_0: null,
       _onPageChange: function _onPageChange(ev) {
         var page = ev.getData();
         var data = {};
@@ -110,6 +129,20 @@
       },
       subscribe: function subscribe(addresses, filters) {
         this.addresses = addresses ? addresses : [];
+        if (qx.core.Environment.get('html.storage.local')) {
+          var value;
+          for (var name in this.__P_560_0) {
+            value = localStorage.getItem('system:' + name);
+            if (value) {
+              var func = this[this.__P_560_0[name]];
+              if (typeof func === 'function') {
+                func(value);
+              } else {
+                this.error(name + 'is no function');
+              }
+            }
+          }
+        }
       },
       write: function write(address, value, options) {
         if (address) {
@@ -149,10 +182,7 @@
                 break;
             }
           } else if (target === 'theme') {
-            var theme = value;
-            document.documentElement.setAttribute('data-theme', theme);
-            var model = cv.data.Model.getInstance();
-            model.onUpdate('theme', theme, 'system');
+            this._applyTheme(value);
           } else if (target === 'http' || target === 'https') {
             // send HTTP request, ignore the answer
             if (parts.length >= 2 && parts[0] === 'proxy') {
@@ -162,11 +192,18 @@
             }
             var xhr = new qx.io.request.Xhr(address);
             xhr.send();
-          } else if (target === 'state') {
+          } else if (target === 'state' || target === 'notification') {
             // just write the value to the states to update Listeners
             cv.data.Model.getInstance().onUpdate(address, value, 'system');
           }
+          if (qx.core.Environment.get('html.storage.local') && target in this.__P_560_0) {
+            localStorage.setItem('system:' + target, value);
+          }
         }
+      },
+      _applyTheme: function _applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        cv.data.Model.getInstance().onUpdate('theme', theme, 'system');
       },
       restart: function restart() {},
       stop: function stop() {},
@@ -232,4 +269,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1673093884345
+//# sourceMappingURL=System.js.map?dt=1676809337734

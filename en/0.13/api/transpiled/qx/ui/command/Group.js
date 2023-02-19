@@ -75,7 +75,7 @@
        *
        * @param key {String} Key which addresses the command
        *
-       * @return {qx.ui.command.Command | null} Corresponding command instance or null
+       * @return {qx.ui.command.Command|null} Corresponding command instance or null
        */
       get: function get(key) {
         var cmd = this._cmds[key];
@@ -99,7 +99,7 @@
        *
        * @param key {String} Key which addresses the command
        *
-       * @return {qx.ui.command.Command | null} Corresponding command instance or null
+       * @return {qx.ui.command.Command|null} Corresponding command instance or null
        */
       remove: function remove(key) {
         var cmd = this._cmds[key];
@@ -117,4 +117,4 @@
   qx.ui.command.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1673093865487
+//# sourceMappingURL=Group.js.map?dt=1676809319983

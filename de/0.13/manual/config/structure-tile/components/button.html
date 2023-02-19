@@ -23,7 +23,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
     <link rel="next" title="Value" href="value.html" />
-    <link rel="prev" title="Das Tile-Pair Widget" href="../widgets/tile-pair.html" /> 
+    <link rel="prev" title="Das Widget-Pair" href="../widgets/widget-pair.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,7 +58,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html">Grundsätzlicher Aufbau</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#komponenten">Komponenten</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Button</a></li>
+<li class="toctree-l5"><a class="reference internal" href="value.html">Value</a></li>
+<li class="toctree-l5"><a class="reference internal" href="image.html">Image</a></li>
+<li class="toctree-l5"><a class="reference internal" href="select.html">Select</a></li>
+<li class="toctree-l5"><a class="reference internal" href="spinner.html">Spinner</a></li>
+<li class="toctree-l5"><a class="reference internal" href="slider.html">Slider</a></li>
+<li class="toctree-l5"><a class="reference internal" href="list.html">List</a></li>
+<li class="toctree-l5"><a class="reference internal" href="chart.html">Chart</a></li>
+<li class="toctree-l5"><a class="reference internal" href="color.html">Color</a></li>
+<li class="toctree-l5"><a class="reference internal" href="icon.html">Icon</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../elements/address.html">Address</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -259,7 +272,7 @@ Button verwendet werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="9"><p>cv-button</p></td>
+<tr class="row-odd"><td rowspan="11"><p>cv-button</p></td>
 <td><p>styling</p></td>
 <td><p>Text</p></td>
 <td><p>Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">Styling</span></a></p></td>
@@ -271,14 +284,6 @@ Button verwendet werden.</p>
 <tr class="row-odd"><td><p>progress-mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a></p></td>
-</tr>
-<tr class="row-even"><td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
-</tr>
-<tr class="row-odd"><td><p>style</p></td>
-<td><p>Text</p></td>
-<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-even"><td><p>format</p></td>
 <td><p>Text</p></td>
@@ -295,6 +300,22 @@ Button verwendet werden.</p>
 <tr class="row-odd"><td><p>whole-tile</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Erweitert den klickbaren Bereich auf die gesamte Kachel.</p></td>
+</tr>
+<tr class="row-even"><td><p>doc-link</p></td>
+<td><p>Text</p></td>
+<td><p>Link in die CometVisu-Dokumentation (wird in der Demo-Config benutzt).</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 </tbody>
 </table>
@@ -413,24 +434,32 @@ Button verwendet werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
 <li><p>cv-icon</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
-</tr>
-<tr class="row-even"><td><p>size</p></td>
+<td><p>size</p></td>
 <td><p><em>large</em>, <em>x-large</em>, <em>xx-large</em> oder <em>xxx-large</em></p></td>
 <td><p>Legt die Größe des Icons fest.</p></td>
 </tr>
-<tr class="row-odd"><td><p>color</p></td>
-<td><p>Text</p></td>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>token</p></td>
 <td><p>Farbe des Icons.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-even"><td><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
@@ -467,16 +496,24 @@ Button verwendet werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td><dl class="simple">
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
 <li><p>p</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>class</p></td>
+<td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-even"><td rowspan="6"><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
@@ -562,22 +599,34 @@ Button verwendet werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="2"><dl class="simple">
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
 <li><p>label</p></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td><p>class</p></td>
-<td><p>Text</p></td>
-<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+<td><p>tr</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Legt fest, dass der Text-Inhalt dieses Elements übersetzt werden soll.</p></td>
 </tr>
 <tr class="row-even"><td><p>value-size</p></td>
 <td><p><em>small</em>, <em>medium</em>, <em>normal</em> oder <em>large</em></p></td>
 <td><p>Legt die Schriftgröße fest.</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
 <dt>cv-button</dt><dd><ul class="simple">
 <li><p>label</p>
 <ul>
@@ -602,7 +651,7 @@ Button verwendet werden.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../widgets/tile-pair.html" class="btn btn-neutral float-left" title="Das Tile-Pair Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../widgets/widget-pair.html" class="btn btn-neutral float-left" title="Das Widget-Pair" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="value.html" class="btn btn-neutral float-right" title="Value" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -635,7 +684,7 @@ Button verwendet werden.</p>
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

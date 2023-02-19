@@ -95,7 +95,7 @@
       this.addListener("pointerout", this._onPointerOut, this);
       this.addListener("tap", this._onTap, this);
       this.addListener("keyinput", this._onKeyInput, this);
-      this.addListener("changeSelection", this.__P_356_0, this);
+      this.addListener("changeSelection", this.__P_357_0, this);
     },
     /*
     *****************************************************************************
@@ -123,7 +123,7 @@
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /** @type {qx.ui.basic.Atom} instance */
-      __P_356_1: null,
+      __P_357_1: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -202,7 +202,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_356_0: function __P_356_0(e) {
+      __P_357_0: function __P_357_0(e) {
         var listItem = e.getData()[0];
         var list = this.getChildControl("list");
         if (list.getSelection()[0] != listItem) {
@@ -212,8 +212,8 @@
             list.resetSelection();
           }
         }
-        this.__P_356_2();
-        this.__P_356_3();
+        this.__P_357_2();
+        this.__P_357_3();
 
         // ARIA attrs
         var old = e.getOldData() ? e.getOldData()[0] : null;
@@ -228,7 +228,7 @@
       /**
        * Sets the icon inside the list to match the selected ListItem.
        */
-      __P_356_2: function __P_356_2() {
+      __P_357_2: function __P_357_2() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var icon = listItem ? listItem.getIcon() : "";
@@ -237,7 +237,7 @@
       /**
        * Sets the label inside the list to match the selected ListItem.
        */
-      __P_356_3: function __P_356_3() {
+      __P_357_3: function __P_357_3() {
         var listItem = this.getChildControl("list").getSelection()[0];
         var atom = this.getChildControl("atom");
         var label = listItem ? listItem.getLabel() : "";
@@ -311,9 +311,9 @@
           e.stop();
         } else if (iden == "Enter" || iden == "Space") {
           // Apply pre-selected item (translate quick selection to real selection)
-          if (this.__P_356_1) {
-            this.setSelection([this.__P_356_1]);
-            this.__P_356_1 = null;
+          if (this.__P_357_1) {
+            this.setSelection([this.__P_357_1]);
+            this.__P_357_1 = null;
           }
           this.toggle();
           e.stop();
@@ -338,9 +338,9 @@
       // overridden
       _onListPointerDown: function _onListPointerDown(e) {
         // Apply pre-selected item (translate quick selection to real selection)
-        if (this.__P_356_1) {
-          this.setSelection([this.__P_356_1]);
-          this.__P_356_1 = null;
+        if (this.__P_357_1) {
+          this.setSelection([this.__P_357_1]);
+          this.__P_357_1 = null;
         }
       },
       // overridden
@@ -350,8 +350,8 @@
 
         // Remove old listeners for icon and label changes.
         if (old && old.length > 0) {
-          old[0].removeListener("changeIcon", this.__P_356_2, this);
-          old[0].removeListener("changeLabel", this.__P_356_3, this);
+          old[0].removeListener("changeIcon", this.__P_357_2, this);
+          old[0].removeListener("changeLabel", this.__P_357_3, this);
         }
         if (current.length > 0) {
           // Ignore quick context (e.g. pointerover)
@@ -360,15 +360,15 @@
           var list = this.getChildControl("list");
           var context = list.getSelectionContext();
           if (popup.isVisible() && (context == "quick" || context == "key")) {
-            this.__P_356_1 = current[0];
+            this.__P_357_1 = current[0];
           } else {
             this.setSelection([current[0]]);
-            this.__P_356_1 = null;
+            this.__P_357_1 = null;
           }
 
           // Add listeners for icon and label changes
-          current[0].addListener("changeIcon", this.__P_356_2, this);
-          current[0].addListener("changeLabel", this.__P_356_3, this);
+          current[0].addListener("changeIcon", this.__P_357_2, this);
+          current[0].addListener("changeLabel", this.__P_357_3, this);
         } else {
           this.resetSelection();
         }
@@ -426,10 +426,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_356_1 = null;
+      this.__P_357_1 = null;
     }
   });
   qx.ui.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1673093868990
+//# sourceMappingURL=SelectBox.js.map?dt=1676809323358

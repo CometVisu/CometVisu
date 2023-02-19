@@ -67,8 +67,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     ***********************************************
     */
     members: {
-      __P_84_0: null,
-      __P_84_1: null,
+      __P_85_0: null,
+      __P_85_1: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -135,7 +135,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
        * @param state {variant} state to send
        */
       fireStateUpdate: function fireStateUpdate(address, state) {
-        if (this.__P_84_0 !== state || this._element.getAttribute('send-mode') === 'always') {
+        if (this.__P_85_0 !== state || this._element.getAttribute('send-mode') === 'always') {
           var transform = this._element.getAttribute('transform') || 'raw';
           var transformedState = cv.Transform.decode({
             transform: transform
@@ -162,10 +162,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
             }
           });
-          this.__P_84_1 = transformedState;
+          this.__P_85_1 = transformedState;
           //console.log(ev.detail);
           this._element.dispatchEvent(ev);
-          this.__P_84_0 = state;
+          this.__P_85_0 = state;
           // reset lastSentValue
           if (state !== this._element.lastSentValue) {
             this._element.lastSentValue = null;
@@ -187,7 +187,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         return this._element.getAttribute('mode') !== 'read';
       },
       getValue: function getValue() {
-        return this.__P_84_1;
+        return this.__P_85_1;
       }
     },
     defer: function defer(Clazz) {
@@ -207,4 +207,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1673093845831
+//# sourceMappingURL=Address.js.map?dt=1676809301444

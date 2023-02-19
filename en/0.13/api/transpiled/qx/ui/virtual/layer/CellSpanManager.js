@@ -182,7 +182,7 @@
           qx.lang.Object.mergeWith(horizontalInWindow, this._findCellsInRange("firstColumn", firstColumn, lastColumn));
           qx.lang.Object.mergeWith(horizontalInWindow, this._findCellsInRange("lastColumn", firstColumn, lastColumn));
         }
-        return this.__P_480_0(horizontalInWindow, verticalInWindow);
+        return this.__P_481_0(horizontalInWindow, verticalInWindow);
       },
       /**
        * Return the intersection of two maps as an array. The objects intersect if
@@ -192,7 +192,7 @@
        * @param setB {Object} The second map
        * @return {String[]} An array keys found in both maps
        */
-      __P_480_0: function __P_480_0(setA, setB) {
+      __P_481_0: function __P_481_0(setA, setB) {
         var intersection = [];
         for (var key in setA) {
           if (setB[key]) {
@@ -342,4 +342,4 @@
   qx.ui.virtual.layer.CellSpanManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellSpanManager.js.map?dt=1673093877493
+//# sourceMappingURL=CellSpanManager.js.map?dt=1676809331357

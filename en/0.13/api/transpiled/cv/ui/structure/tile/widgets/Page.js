@@ -50,7 +50,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
    */
 
   /**
-   * Creates a new sub page and adds a corresponding link to the current page.
+   * Creates a new sub-page and adds a corresponding link to the current page.
    *
    * @ignore(InstallTrigger)
    * @author Tobias Bräutigam
@@ -76,6 +76,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
      */
     members: {
       _supportsContentVisibility: null,
+      _visibleDisplayMode: null,
       _init: function _init() {
         if (typeof InstallTrigger !== 'undefined') {
           // firefox does not support content-visibility CSS property
@@ -143,4 +144,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1673093846094
+//# sourceMappingURL=Page.js.map?dt=1676809301759

@@ -121,7 +121,7 @@
        * @attachStatic {qxWeb, array.max}
        *
        * @param arr {Array} Array to process.
-       * @return {Number | undefined} The highest of all values or undefined if array is empty.
+       * @return {Number|undefined} The highest of all values or undefined if array is empty.
        */
       max: qx.lang.Array.max,
       /**
@@ -132,7 +132,7 @@
        * @attachStatic {qxWeb, array.min}
        *
        * @param arr {Array} Array to process.
-       * @return {Number | undefined} The lowest of all values or undefined if array is empty.
+       * @return {Number|undefined} The lowest of all values or undefined if array is empty.
        */
       min: qx.lang.Array.min,
       /**
@@ -189,4 +189,4 @@
   qx.module.util.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1673093863703
+//# sourceMappingURL=Array.js.map?dt=1676809318073

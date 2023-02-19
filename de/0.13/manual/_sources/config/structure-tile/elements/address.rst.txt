@@ -75,9 +75,11 @@ der Adresse sendet. Wenn eine 1 gesendet wird, wird die Kachel wieder hinzugefü
 
 .. code:: xml
 
-    <cv-tile>
-        <cv-address transform="DPT:1.001" mode="read" target="show-exclude">1/0/0</cv-address>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <cv-address transform="DPT:1.001" mode="read" target="show-exclude">1/0/0</cv-address>
+        </cv-tile>
+    <cv-widget>
 
 Widgets deaktivieren
 ....................
@@ -87,9 +89,11 @@ nicht mehr auf Interaktionen des Benutzers wie z.B. Mausklicks.
 
 .. code:: xml
 
-    <cv-tile>
-        <cv-address transform="DPT:1.001" mode="read" target="enabled">1/0/0</cv-address>
-    </cv-tile>
+    <cv-widget>
+        <cv-tile>
+            <cv-address transform="DPT:1.001" mode="read" target="enabled">1/0/0</cv-address>
+        </cv-tile>
+    </cv-widget>
 
 
 Transform

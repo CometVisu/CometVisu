@@ -102,11 +102,11 @@
 
       // Define shorthands
       this._window = manager.getWindow();
-      this.__P_208_0 = false;
-      this.__P_208_1 = false;
-      this.__P_208_2 = false;
-      this.__P_208_3 = false;
-      this.__P_208_4 = false;
+      this.__P_209_0 = false;
+      this.__P_209_1 = false;
+      this.__P_209_2 = false;
+      this.__P_209_3 = false;
+      this.__P_209_4 = false;
 
       // Initialize observers
       this._initObserver();
@@ -142,7 +142,7 @@
       onScriptLoaded: function onScriptLoaded() {
         var inst = qx.event.handler.Application.$$instance;
         if (inst) {
-          inst.__P_208_5();
+          inst.__P_209_5();
         }
       },
       /**
@@ -153,7 +153,7 @@
       onAppInstanceInitialized: function onAppInstanceInitialized() {
         var inst = qx.event.handler.Application.$$instance;
         if (inst) {
-          inst.__P_208_6();
+          inst.__P_209_6();
         }
       }
     },
@@ -179,11 +179,11 @@
       unregisterEvent: function unregisterEvent(target, type, capture) {
         // Nothing needs to be done here
       },
-      __P_208_2: null,
-      __P_208_3: null,
-      __P_208_0: null,
-      __P_208_1: null,
-      __P_208_4: null,
+      __P_209_2: null,
+      __P_209_3: null,
+      __P_209_0: null,
+      __P_209_1: null,
+      __P_209_4: null,
       /*
       ---------------------------------------------------------------------------
         USER ACCESS
@@ -193,22 +193,22 @@
        * Fires a global ready event.
        *
        */
-      __P_208_5: function __P_208_5() {
+      __P_209_5: function __P_209_5() {
         // Wrapper qxloader needed to be compatible with old generator
-        if (!this.__P_208_2 && this.__P_208_0 && qx.$$loader.scriptLoaded) {
+        if (!this.__P_209_2 && this.__P_209_0 && qx.$$loader.scriptLoaded) {
           // If qooxdoo is loaded within a frame in IE, the document is ready before
           // the "ready" listener can be added. To avoid any startup issue check
           // for the availability of the "ready" listener before firing the event.
           // So at last the native "load" will trigger the "ready" event.
           if (qx.core.Environment.get("engine.name") == "mshtml") {
             if (qx.event.Registration.hasListener(this._window, "ready")) {
-              this.__P_208_2 = true;
+              this.__P_209_2 = true;
 
               // Fire user event
               qx.event.Registration.fireEvent(this._window, "ready");
             }
           } else {
-            this.__P_208_2 = true;
+            this.__P_209_2 = true;
 
             // Fire user event
             qx.event.Registration.fireEvent(this._window, "ready");
@@ -219,8 +219,8 @@
        * Fires a global "appinitialized" event.
        *
        */
-      __P_208_6: function __P_208_6() {
-        this.__P_208_3 = true;
+      __P_209_6: function __P_209_6() {
+        this.__P_209_3 = true;
 
         // Fire user event
         qx.event.Registration.fireEvent(this._window, "appinitialized");
@@ -231,7 +231,7 @@
        * @return {Boolean} ready status
        */
       isApplicationReady: function isApplicationReady() {
-        return this.__P_208_2;
+        return this.__P_209_2;
       },
       /**
        * Whether the application is initialized
@@ -239,7 +239,7 @@
        * @return {Boolean} initialization status
        */
       isApplicationInitialized: function isApplicationInitialized() {
-        return this.__P_208_3;
+        return this.__P_209_3;
       },
       /*
       ---------------------------------------------------------------------------
@@ -253,8 +253,8 @@
       _initObserver: function _initObserver() {
         // in Firefox the loader script sets the ready state
         if (qx.$$domReady || document.readyState == "complete" || document.readyState == "ready") {
-          this.__P_208_0 = true;
-          this.__P_208_5();
+          this.__P_209_0 = true;
+          this.__P_209_5();
         } else {
           this._onNativeLoadWrapped = qx.lang.Function.bind(this._onNativeLoad, this);
           if (qx.core.Environment.get("engine.name") == "gecko" || qx.core.Environment.get("engine.name") == "opera" || qx.core.Environment.get("engine.name") == "webkit" || qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") > 8) {
@@ -310,34 +310,34 @@
        */
       _onNativeLoad: function _onNativeLoad() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__P_208_7),
-          "false": this.__P_208_7
+          "true": qx.event.GlobalError.observeMethod(this.__P_209_7),
+          "false": this.__P_209_7
         });
         callback.apply(this, arguments);
       },
       /**
        * Event listener for native load event
        */
-      __P_208_7: function __P_208_7() {
-        this.__P_208_0 = true;
-        this.__P_208_5();
+      __P_209_7: function __P_209_7() {
+        this.__P_209_0 = true;
+        this.__P_209_5();
       },
       /**
        * When qx.globalErrorHandling is enabled the callback will observed
        */
       _onNativeUnload: function _onNativeUnload() {
         var callback = qx.core.Environment.select("qx.globalErrorHandling", {
-          "true": qx.event.GlobalError.observeMethod(this.__P_208_8),
-          "false": this.__P_208_8
+          "true": qx.event.GlobalError.observeMethod(this.__P_209_8),
+          "false": this.__P_209_8
         });
         callback.apply(this, arguments);
       },
       /**
        * Event listener for native unload event
        */
-      __P_208_8: function __P_208_8() {
-        if (!this.__P_208_4) {
-          this.__P_208_4 = true;
+      __P_209_8: function __P_209_8() {
+        if (!this.__P_209_4) {
+          this.__P_209_4 = true;
           try {
             // Fire user event
             qx.event.Registration.fireEvent(this._window, "shutdown");
@@ -369,4 +369,4 @@
   qx.event.handler.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1673093857836
+//# sourceMappingURL=Application.js.map?dt=1676809312518

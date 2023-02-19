@@ -2,7 +2,7 @@
   "className": "cv.io.System",
   "packageName": "cv.io",
   "name": "System",
-  "superClass": "qx.core.Object",
+  "superClass": "cv.io.AbstractClient",
   "interfaces": [
     "cv.io.IClient"
   ],
@@ -16,9 +16,9 @@
         "index": 1129
       },
       "end": {
-        "line": 228,
+        "line": 252,
         "column": 3,
-        "index": 6175
+        "index": 6936
       }
     },
     "jsdoc": {
@@ -36,12 +36,12 @@
       "start": {
         "line": 38,
         "column": 2,
-        "index": 1346
+        "index": 1352
       },
       "end": {
-        "line": 42,
+        "line": 45,
         "column": 3,
-        "index": 1499
+        "index": 1571
       }
     },
     "jsdoc": {}
@@ -50,14 +50,14 @@
     "connected": {
       "location": {
         "start": {
-          "line": 50,
+          "line": 53,
           "column": 4,
-          "index": 1646
+          "index": 1718
         },
         "end": {
-          "line": 54,
+          "line": 57,
           "column": 5,
-          "index": 1737
+          "index": 1809
         }
       },
       "name": "connected",
@@ -70,14 +70,14 @@
     "server": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 62,
           "column": 4,
-          "index": 1814
+          "index": 1886
         },
         "end": {
-          "line": 63,
+          "line": 66,
           "column": 5,
-          "index": 1903
+          "index": 1975
         }
       },
       "jsdoc": {
@@ -132,14 +132,14 @@
     "backendName": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 75,
           "column": 4,
-          "index": 2049
+          "index": 2121
         },
         "end": {
-          "line": 72,
+          "line": 75,
           "column": 25,
-          "index": 2070
+          "index": 2142
         }
       },
       "type": "variable",
@@ -148,14 +148,14 @@
     "addresses": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 76,
           "column": 4,
-          "index": 2076
+          "index": 2148
         },
         "end": {
-          "line": 73,
+          "line": 76,
           "column": 19,
-          "index": 2091
+          "index": 2163
         }
       },
       "type": "variable",
@@ -164,30 +164,46 @@
     "implementedAddresses": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 77,
           "column": 4,
-          "index": 2097
+          "index": 2169
         },
         "end": {
-          "line": 74,
+          "line": 77,
           "column": 30,
-          "index": 2123
+          "index": 2195
         }
       },
       "type": "variable",
       "access": "public"
     },
+    "__persistedTargets": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2201
+        },
+        "end": {
+          "line": 78,
+          "column": 28,
+          "index": 2225
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
     "_onPageChange": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 80,
           "column": 4,
-          "index": 2130
+          "index": 2232
         },
         "end": {
-          "line": 81,
+          "line": 85,
           "column": 5,
-          "index": 2331
+          "index": 2433
         }
       },
       "type": "function",
@@ -196,14 +212,14 @@
     "getType": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 87,
           "column": 4,
-          "index": 2338
+          "index": 2440
         },
         "end": {
-          "line": 85,
+          "line": 89,
           "column": 5,
-          "index": 2386
+          "index": 2488
         }
       },
       "type": "function",
@@ -226,14 +242,14 @@
     "receive": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 91,
           "column": 4,
-          "index": 2393
+          "index": 2495
         },
         "end": {
-          "line": 87,
+          "line": 91,
           "column": 20,
-          "index": 2409
+          "index": 2511
         }
       },
       "type": "function",
@@ -242,14 +258,14 @@
     "login": {
       "location": {
         "start": {
-          "line": 89,
+          "line": 93,
           "column": 4,
-          "index": 2416
+          "index": 2518
         },
         "end": {
-          "line": 93,
+          "line": 97,
           "column": 5,
-          "index": 2534
+          "index": 2636
         }
       },
       "type": "function",
@@ -294,14 +310,14 @@
     "subscribe": {
       "location": {
         "start": {
-          "line": 95,
+          "line": 99,
           "column": 4,
-          "index": 2541
+          "index": 2643
         },
         "end": {
-          "line": 97,
+          "line": 115,
           "column": 5,
-          "index": 2629
+          "index": 3195
         }
       },
       "type": "function",
@@ -334,14 +350,14 @@
     "write": {
       "location": {
         "start": {
-          "line": 99,
+          "line": 117,
           "column": 4,
-          "index": 2636
+          "index": 3202
         },
         "end": {
-          "line": 159,
+          "line": 178,
           "column": 5,
-          "index": 4851
+          "index": 5443
         }
       },
       "type": "function",
@@ -376,17 +392,33 @@
         ]
       }
     },
+    "_applyTheme": {
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5450
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 5612
+        }
+      },
+      "type": "function",
+      "access": "protected"
+    },
     "restart": {
       "location": {
         "start": {
-          "line": 161,
+          "line": 185,
           "column": 4,
-          "index": 4858
+          "index": 5619
         },
         "end": {
-          "line": 161,
+          "line": 185,
           "column": 16,
-          "index": 4870
+          "index": 5631
         }
       },
       "type": "function",
@@ -409,14 +441,14 @@
     "stop": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 187,
           "column": 4,
-          "index": 4877
+          "index": 5638
         },
         "end": {
-          "line": 163,
+          "line": 187,
           "column": 13,
-          "index": 4886
+          "index": 5647
         }
       },
       "type": "function",
@@ -425,14 +457,14 @@
     "getResourcePath": {
       "location": {
         "start": {
-          "line": 165,
+          "line": 189,
           "column": 4,
-          "index": 4893
+          "index": 5654
         },
         "end": {
-          "line": 170,
+          "line": 194,
           "column": 5,
-          "index": 5009
+          "index": 5770
         }
       },
       "type": "function",
@@ -445,9 +477,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} Name of the resource (e.g. login, read, write, rrd)",
+            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
             "paramName": "name",
-            "description": " Name of the resource (e.g. login, read, write, rrd)",
+            "description": " Name of the resource (e.g. login, read, write, chart)",
             "type": "String"
           },
           {
@@ -472,14 +504,14 @@
     "getLastError": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 196,
           "column": 4,
-          "index": 5016
+          "index": 5777
         },
         "end": {
-          "line": 174,
+          "line": 198,
           "column": 5,
-          "index": 5057
+          "index": 5818
         }
       },
       "type": "function",
@@ -502,14 +534,14 @@
     "getBackend": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 200,
           "column": 4,
-          "index": 5064
+          "index": 5825
         },
         "end": {
-          "line": 178,
+          "line": 202,
           "column": 5,
-          "index": 5108
+          "index": 5869
         }
       },
       "type": "function",
@@ -532,14 +564,14 @@
     "authorize": {
       "location": {
         "start": {
-          "line": 180,
+          "line": 204,
           "column": 4,
-          "index": 5115
+          "index": 5876
         },
         "end": {
-          "line": 180,
+          "line": 204,
           "column": 21,
-          "index": 5132
+          "index": 5893
         }
       },
       "type": "function",
@@ -560,14 +592,14 @@
     "terminate": {
       "location": {
         "start": {
-          "line": 182,
+          "line": 206,
           "column": 4,
-          "index": 5139
+          "index": 5900
         },
         "end": {
-          "line": 182,
+          "line": 206,
           "column": 18,
-          "index": 5153
+          "index": 5914
         }
       },
       "type": "function",
@@ -580,14 +612,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 184,
+          "line": 208,
           "column": 4,
-          "index": 5160
+          "index": 5921
         },
         "end": {
-          "line": 184,
+          "line": 208,
           "column": 19,
-          "index": 5175
+          "index": 5936
         }
       },
       "type": "function",
@@ -610,14 +642,14 @@
     "record": {
       "location": {
         "start": {
-          "line": 185,
+          "line": 209,
           "column": 4,
-          "index": 5181
+          "index": 5942
         },
         "end": {
-          "line": 185,
+          "line": 209,
           "column": 25,
-          "index": 5202
+          "index": 5963
         }
       },
       "type": "function",
@@ -648,14 +680,14 @@
     "showError": {
       "location": {
         "start": {
-          "line": 186,
+          "line": 210,
           "column": 4,
-          "index": 5208
+          "index": 5969
         },
         "end": {
-          "line": 186,
+          "line": 210,
           "column": 37,
-          "index": 5241
+          "index": 6002
         }
       },
       "type": "function",
@@ -692,14 +724,14 @@
     "setInitialAddresses": {
       "location": {
         "start": {
-          "line": 189,
+          "line": 213,
           "column": 4,
-          "index": 5288
+          "index": 6049
         },
         "end": {
-          "line": 189,
+          "line": 213,
           "column": 37,
-          "index": 5321
+          "index": 6082
         }
       },
       "jsdoc": {},
@@ -713,14 +745,14 @@
     "hasCustomChartsDataProcessor": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 215,
           "column": 4,
-          "index": 5328
+          "index": 6089
         },
         "end": {
-          "line": 193,
+          "line": 217,
           "column": 5,
-          "index": 5386
+          "index": 6147
         }
       },
       "type": "function",
@@ -743,14 +775,14 @@
     "processChartsData": {
       "location": {
         "start": {
-          "line": 194,
+          "line": 218,
           "column": 4,
-          "index": 5392
+          "index": 6153
         },
         "end": {
-          "line": 196,
+          "line": 220,
           "column": 5,
-          "index": 5442
+          "index": 6203
         }
       },
       "type": "function",
@@ -771,14 +803,14 @@
     "hasProvider": {
       "location": {
         "start": {
-          "line": 197,
+          "line": 221,
           "column": 4,
-          "index": 5448
+          "index": 6209
         },
         "end": {
-          "line": 199,
+          "line": 223,
           "column": 5,
-          "index": 5493
+          "index": 6254
         }
       },
       "type": "function",
@@ -807,14 +839,14 @@
     "getProviderUrl": {
       "location": {
         "start": {
-          "line": 200,
+          "line": 224,
           "column": 4,
-          "index": 5499
+          "index": 6260
         },
         "end": {
-          "line": 202,
+          "line": 226,
           "column": 5,
-          "index": 5546
+          "index": 6307
         }
       },
       "type": "function",
@@ -845,14 +877,14 @@
     "getProviderData": {
       "location": {
         "start": {
-          "line": 204,
+          "line": 228,
           "column": 4,
-          "index": 5553
+          "index": 6314
         },
         "end": {
-          "line": 222,
+          "line": 246,
           "column": 5,
-          "index": 6093
+          "index": 6854
         }
       },
       "type": "function",
@@ -888,14 +920,14 @@
     "getProviderConvertFunction": {
       "location": {
         "start": {
-          "line": 224,
+          "line": 248,
           "column": 4,
-          "index": 6100
+          "index": 6861
         },
         "end": {
-          "line": 226,
+          "line": 250,
           "column": 5,
-          "index": 6167
+          "index": 6928
         }
       },
       "type": "function",
@@ -1083,7 +1115,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1108,7 +1140,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1134,7 +1166,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1152,7 +1184,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "get",
       "jsdoc": {
         "@description": [
@@ -1177,7 +1209,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "set",
       "jsdoc": {
         "@description": [
@@ -1203,7 +1235,7 @@
       "mixin": false,
       "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
+      "overriddenFrom": "cv.io.AbstractClient",
       "property": "reset",
       "jsdoc": {
         "@description": [
@@ -1215,5 +1247,6 @@
       }
     }
   },
+  "events": {},
   "descendants": []
 }

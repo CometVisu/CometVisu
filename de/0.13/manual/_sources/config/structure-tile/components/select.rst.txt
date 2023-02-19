@@ -17,7 +17,7 @@ mit möglichen Werten aus der dann einer ausgewählt werden kann.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-select" wrap-in="cv-tile" wrapped-position="colspan='3' row='middle' column='middle'">
+    <settings design="tile" selector="cv-select" wrap-in="cv-widget"  wrapped-position="colspan='3' row='middle' column='middle'">
         <screenshot name="cv-select-auto">
             <data address="1/4/2">0</data>
             <caption>Normalansicht</caption>

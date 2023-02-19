@@ -56,7 +56,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param tagname {String} the name of the tag
        * @param attributes {Map?} map of attribute values
        * @param children {qx.html.Node[]} array of children
-       * @return {qx.html.Element | qx.data.Array}
+       * @return {qx.html.Element|qx.data.Array}
        */
       createElement: function createElement(tagname, attributes) {
         var children = qx.lang.Array.fromArguments(arguments, 2);
@@ -102,7 +102,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             } else if (prop === "dangerouslySetInnerHTML") {
               // eslint-disable-next-line no-underscore-dangle
-              innerHtml = attributes[prop].__P_240_0;
+              innerHtml = attributes[prop].__P_241_0;
             } else if (qx.html.Jsx.SYNTETIC_EVENTS[prop]) {
               var eventName = prop.replace(/^on/, "").toLowerCase();
               eventHandlers[eventName] = attributes[prop];
@@ -167,4 +167,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1673093859814
+//# sourceMappingURL=Jsx.js.map?dt=1676809314374

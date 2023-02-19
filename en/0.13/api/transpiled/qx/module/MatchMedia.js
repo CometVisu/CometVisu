@@ -79,7 +79,7 @@
        * @param query {String} the media query to evaluate
        * @param className {String} css class name that gets bind to an element
        */
-      __P_281_0: function __P_281_0(query, className) {
+      __P_282_0: function __P_282_0(query, className) {
         if (query.isMatching()) {
           this.addClass(className);
         } else {
@@ -99,7 +99,7 @@
        */
       mediaQueryToClass: function mediaQueryToClass(queryString, className) {
         var query = qx.module.MatchMedia.matchMedia(queryString);
-        var callback = qx.module.MatchMedia.__P_281_0.bind(this, query, className);
+        var callback = qx.module.MatchMedia.__P_282_0.bind(this, query, className);
 
         // apply classes initially
         callback(query, className);
@@ -114,4 +114,4 @@
   qx.module.MatchMedia.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MatchMedia.js.map?dt=1673093863133
+//# sourceMappingURL=MatchMedia.js.map?dt=1676809317519

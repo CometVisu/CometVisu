@@ -174,7 +174,7 @@
       _propertyJobs: null,
       _properties: null,
       /** @type {Map} map of event handlers */
-      __P_242_0: null,
+      __P_243_0: null,
       /**
        * Connects a widget to this element, and to the DOM element in this Element.  They
        * remain associated until disposed or disconnectObject is called
@@ -682,7 +682,7 @@
         var elem = this._domNode;
 
         // Attach events
-        var data = this.__P_242_0;
+        var data = this.__P_243_0;
         if (data) {
           // Import listeners
           var domEvents = {};
@@ -699,7 +699,7 @@
           // after initial creation. This differs from the
           // handling of styles and attributes where queuing happens
           // through the complete runtime of the application.
-          delete this.__P_242_0;
+          delete this.__P_243_0;
         }
 
         // Copy properties
@@ -751,7 +751,7 @@
         if (child._parent === this) {
           throw new Error("Child is already in: " + child);
         }
-        if (child.__P_242_1) {
+        if (child.__P_243_1) {
           throw new Error("Root elements could not be inserted into other ones.");
         }
 
@@ -1343,15 +1343,15 @@
           if (_this._domNode) {
             return qx.event.Registration.addListener(_this._domNode, type, listener, self, capture);
           }
-          if (!_this.__P_242_0) {
-            _this.__P_242_0 = {};
+          if (!_this.__P_243_0) {
+            _this.__P_243_0 = {};
           }
           if (capture == null) {
             capture = false;
           }
           var unique = qx.event.Manager.getNextUniqueId();
           var id = type + (capture ? "|capture|" : "|bubble|") + unique;
-          _this.__P_242_0[id] = {
+          _this.__P_243_0[id] = {
             type: type,
             listener: listener,
             self: self,
@@ -1391,7 +1391,7 @@
           }
           qx.event.Registration.removeListener(this._domNode, type, listener, self, capture);
         } else {
-          var values = this.__P_242_0;
+          var values = this.__P_243_0;
           var entry;
           if (capture == null) {
             capture = false;
@@ -1429,7 +1429,7 @@
           if (this._domNode) {
             qx.event.Registration.removeListenerById(this._domNode, id);
           } else {
-            delete this.__P_242_0[id];
+            delete this.__P_243_0[id];
           }
         }
         return this;
@@ -1457,7 +1457,7 @@
             return true;
           }
         } else {
-          var values = this.__P_242_0;
+          var values = this.__P_243_0;
           var entry;
           if (capture == null) {
             capture = false;
@@ -1494,8 +1494,8 @@
         if (this._domNode) {
           qx.lang.Array.append(listeners, qx.event.Registration.serializeListeners(this._domNode) || []);
         }
-        for (var id in this.__P_242_0) {
-          var listenerData = this.__P_242_0[id];
+        for (var id in this.__P_243_0) {
+          var listenerData = this.__P_243_0[id];
           listeners.push({
             type: listenerData.type,
             handler: listenerData.listener,
@@ -1527,10 +1527,10 @@
         }
       }
       this._disposeArray("_children");
-      this._properties = this._propertyJobs = this._domNode = this._parent = this.__P_242_0 = null;
+      this._properties = this._propertyJobs = this._domNode = this._parent = this.__P_243_0 = null;
     }
   });
   qx.html.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1673093859999
+//# sourceMappingURL=Node.js.map?dt=1676809314547

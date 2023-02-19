@@ -94,8 +94,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!config) {
           var config = {};
         }
-        config.include = this.__P_94_0(config.include);
-        config.patch = this.__P_94_0(config.patch);
+        config.include = this.__P_95_0(config.include);
+        config.patch = this.__P_95_0(config.patch);
 
         // Validate incoming data
 
@@ -117,8 +117,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         theme.basename = qx.Bootstrap.createNamespace(name, theme);
 
         // Convert theme entry from Object to Function (for prototype inheritance)
-        this.__P_94_1(theme, config);
-        this.__P_94_2(theme, config);
+        this.__P_95_1(theme, config);
+        this.__P_95_2(theme, config);
 
         // Store class reference in global class registry
         this.$$registry[name] = theme;
@@ -145,7 +145,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Array} Either an array that has the original object as its
        *   single item, or the original array itself
        */
-      __P_94_0: function __P_94_0(objectOrArray) {
+      __P_95_0: function __P_95_0(objectOrArray) {
         if (!objectOrArray) {
           return [];
         }
@@ -161,7 +161,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param theme {Map} The theme
        * @param config {Map} config structure
        */
-      __P_94_2: function __P_94_2(theme, config) {
+      __P_95_2: function __P_95_2(theme, config) {
         var aliases = config.aliases || {};
         if (config.extend && config.extend.aliases) {
           qx.Bootstrap.objectMergeWith(aliases, config.extend.aliases, false);
@@ -223,8 +223,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param config {Map} The map from where to extract the key
        * @return {String} the key which was found
        */
-      __P_94_3: function __P_94_3(config) {
-        for (var i = 0, keys = this.__P_94_4, l = keys.length; i < l; i++) {
+      __P_95_3: function __P_95_3(config) {
+        for (var i = 0, keys = this.__P_95_4, l = keys.length; i < l; i++) {
           if (config[keys[i]]) {
             return keys[i];
           }
@@ -236,8 +236,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param theme {Theme} newly created theme object
        * @param config {Map} incoming theme configuration
        */
-      __P_94_1: function __P_94_1(theme, config) {
-        var type = this.__P_94_3(config);
+      __P_95_1: function __P_95_1(theme, config) {
+        var type = this.__P_95_3(config);
 
         // Use theme key from extended theme if own one is not available
         if (config.extend && !type) {
@@ -277,9 +277,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       /** @type {Map} Internal theme registry */
       $$registry: {},
       /** @type {Array} Keys which support inheritance */
-      __P_94_4: ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"],
+      __P_95_4: ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"],
       /** @type {Map} allowed keys in theme definition */
-      __P_94_5: qx.core.Environment.select("qx.debug", {
+      __P_95_5: qx.core.Environment.select("qx.debug", {
         "true": {
           title: "string",
           // String
@@ -315,7 +315,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         "default": null
       }),
       /** @type {Map} allowed keys inside a meta theme block */
-      __P_94_6: qx.core.Environment.select("qx.debug", {
+      __P_95_6: qx.core.Environment.select("qx.debug", {
         "true": {
           color: "object",
           border: "object",
@@ -335,9 +335,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param config {Map} Configuration map
        * @throws {Error} if the given config is not valid (e.g. wrong key or wrong key value)
        */
-      __P_94_7: qx.core.Environment.select("qx.debug", {
+      __P_95_7: qx.core.Environment.select("qx.debug", {
         "true": function _true(name, config) {
-          var allowed = this.__P_94_5;
+          var allowed = this.__P_95_5;
           for (var key in config) {
             if (allowed[key] === undefined) {
               throw new Error('The configuration key "' + key + '" in theme "' + name + '" is not allowed!');
@@ -376,10 +376,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             var value;
             for (var key in config.meta) {
               value = config.meta[key];
-              if (this.__P_94_6[key] === undefined) {
+              if (this.__P_95_6[key] === undefined) {
                 throw new Error('The key "' + key + '" is not allowed inside a meta theme block.');
               }
-              if (_typeof(value) !== this.__P_94_6[key]) {
+              if (_typeof(value) !== this.__P_95_6[key]) {
                 throw new Error('The type of the key "' + key + '" inside the meta block is wrong.');
               }
               if (!(_typeof(value) === "object" && value !== null && value.$$type === "Theme")) {
@@ -422,9 +422,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixinTheme {Theme} The theme to be included.
        */
       patch: function patch(theme, mixinTheme) {
-        this.__P_94_8(mixinTheme);
-        var type = this.__P_94_3(mixinTheme);
-        if (type !== this.__P_94_3(theme)) {
+        this.__P_95_8(mixinTheme);
+        var type = this.__P_95_3(mixinTheme);
+        if (type !== this.__P_95_3(theme)) {
           throw new Error("The mixins '" + theme.name + "' are not compatible '" + mixinTheme.name + "'!");
         }
         var source = mixinTheme[type];
@@ -443,7 +443,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixinTheme {Theme} The theme to be included.
        */
       include: function include(theme, mixinTheme) {
-        this.__P_94_8(mixinTheme);
+        this.__P_95_8(mixinTheme);
         var type = mixinTheme.type;
         if (type !== theme.type) {
           throw new Error("The mixins '" + theme.name + "' are not compatible '" + mixinTheme.name + "'!");
@@ -464,7 +464,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param mixinTheme {qx.Theme?null} theme to check
        * @throws {Error} if the theme is not valid
        */
-      __P_94_8: function __P_94_8(mixinTheme) {
+      __P_95_8: function __P_95_8(mixinTheme) {
         if (typeof mixinTheme === "undefined" || mixinTheme == null) {
           var errorObj = new Error("Mixin theme is not a valid theme!");
           throw errorObj;
@@ -475,4 +475,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Theme.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Theme.js.map?dt=1673093847613
+//# sourceMappingURL=Theme.js.map?dt=1676809303156

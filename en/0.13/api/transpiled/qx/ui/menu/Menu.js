@@ -244,8 +244,8 @@
     */
 
     members: {
-      __P_380_0: null,
-      __P_380_1: null,
+      __P_381_0: null,
+      __P_381_1: null,
       /** @type {qx.ui.core.Blocker} blocker for background blocking */
       _blocker: null,
       /*
@@ -260,7 +260,7 @@
         if (this.getOpener() != null) {
           var isPlaced = this.placeToWidget(this.getOpener(), true);
           if (isPlaced) {
-            this.__P_380_2();
+            this.__P_381_2();
             this.show();
             this._placementTarget = this.getOpener();
           } else {
@@ -277,7 +277,7 @@
        */
       openAtPointer: function openAtPointer(e) {
         this.placeToPointer(e);
-        this.__P_380_2();
+        this.__P_381_2();
         this.show();
         this._placementTarget = {
           left: e.getDocumentLeft(),
@@ -292,7 +292,7 @@
        */
       openAtPoint: function openAtPoint(point) {
         this.placeToPoint(point);
-        this.__P_380_2();
+        this.__P_381_2();
         this.show();
         this._placementTarget = point;
       },
@@ -373,12 +373,12 @@
           this.resetOpenedButton();
           this.resetSelectedButton();
         }
-        this.__P_380_3();
+        this.__P_381_3();
       },
       /**
        * Updates the blocker's visibility
        */
-      __P_380_3: function __P_380_3() {
+      __P_381_3: function __P_381_3() {
         if (this.isVisible()) {
           if (this.getBlockBackground()) {
             var zIndex = this.getZIndex();
@@ -419,7 +419,7 @@
         }
 
         // ARIA attrs
-        var opener = this.__P_380_4();
+        var opener = this.__P_381_4();
         var contentEl = opener ? opener.getContentElement() : this.getContentElement();
         if (!contentEl) {
           return;
@@ -529,10 +529,10 @@
        * Updates the visibility of the slidebar based on the menu's current size
        * and position.
        */
-      __P_380_2: function __P_380_2() {
+      __P_381_2: function __P_381_2() {
         var menuBounds = this._getMenuBounds();
         if (!menuBounds) {
-          this.addListenerOnce("resize", this.__P_380_2, this);
+          this.addListenerOnce("resize", this.__P_381_2, this);
           return;
         }
         var rootHeight = this.getLayoutParent().getBounds().height;
@@ -567,15 +567,15 @@
         if (this.hasChildControl("slidebar")) {
           return callback.call(this);
         }
-        this.__P_380_1 = callback;
+        this.__P_381_1 = callback;
         qx.ui.core.queue.Widget.add(this);
       },
       // overridden
       syncWidget: function syncWidget(jobs) {
         this.getChildControl("slidebar");
-        if (this.__P_380_1) {
-          this.__P_380_1.call(this);
-          delete this.__P_380_1;
+        if (this.__P_381_1) {
+          this.__P_381_1.call(this);
+          delete this.__P_381_1;
         }
       },
       /*
@@ -610,7 +610,7 @@
           } else {
             throw new Error("Unknown target: " + target);
           }
-          this.__P_380_2();
+          this.__P_381_2();
         }
       },
       /**
@@ -638,15 +638,15 @@
             mgr.scheduleOpen(subMenu);
 
             // Remember scheduled menu for opening
-            this.__P_380_0 = subMenu;
+            this.__P_381_0 = subMenu;
           } else {
             var opened = this.getOpenedButton();
             if (opened) {
               mgr.scheduleClose(opened.getMenu());
             }
-            if (this.__P_380_0) {
-              mgr.cancelOpen(this.__P_380_0);
-              this.__P_380_0 = null;
+            if (this.__P_381_0) {
+              mgr.cancelOpen(this.__P_381_0);
+              this.__P_381_0 = null;
             }
           }
         } else if (!this.getOpenedButton()) {
@@ -681,8 +681,8 @@
 
           // When leaving this menu to the outside, stop
           // all pending requests to open any other sub menu
-          if (this.__P_380_0) {
-            mgr.cancelOpen(this.__P_380_0);
+          if (this.__P_381_0) {
+            mgr.cancelOpen(this.__P_381_0);
           }
         }
       },
@@ -697,7 +697,7 @@
        *
        * @return {qx.ui.core.Widget|null} The opener.
        */
-      __P_380_4: function __P_380_4() {
+      __P_381_4: function __P_381_4() {
         var parentMenu = this.getParentMenu();
         if (!parentMenu) {
           return this.getOpener();
@@ -727,4 +727,4 @@
   qx.ui.menu.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1673093870840
+//# sourceMappingURL=Menu.js.map?dt=1676809325161

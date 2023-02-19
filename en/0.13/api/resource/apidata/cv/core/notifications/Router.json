@@ -14,9 +14,9 @@
         "index": 1093
       },
       "end": {
-        "line": 338,
+        "line": 372,
         "column": 3,
-        "index": 11568
+        "index": 12533
       }
     },
     "jsdoc": {
@@ -273,9 +273,9 @@
           "index": 4937
         },
         "end": {
-          "line": 153,
+          "line": 157,
           "column": 5,
-          "index": 5218
+          "index": 5309
         }
       },
       "jsdoc": {
@@ -295,17 +295,94 @@
       "type": "function",
       "access": "public"
     },
+    "enableStateUpdateHandler": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 5456
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 5725
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggle state update handler enabled state</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {number} ID of the handler",
+            "paramName": "id",
+            "description": " ID of the handler",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "enable {boolean}"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "changeStateUpdateHandlerSeverity": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5873
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 6155
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Change state update severity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {number} ID of the handler",
+            "paramName": "id",
+            "description": " ID of the handler",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "severity {string} new severity",
+            "paramName": "severity",
+            "description": " new severity",
+            "type": "string"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "unregisterStateUpdatehandler": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 193,
           "column": 4,
-          "index": 5338
+          "index": 6275
         },
         "end": {
-          "line": 167,
+          "line": 201,
           "column": 5,
-          "index": 5655
+          "index": 6592
         }
       },
       "jsdoc": {
@@ -328,14 +405,14 @@
     "registerMessageHandler": {
       "location": {
         "start": {
-          "line": 174,
+          "line": 208,
           "column": 4,
-          "index": 5861
+          "index": 6798
         },
         "end": {
-          "line": 195,
+          "line": 229,
           "column": 5,
-          "index": 6645
+          "index": 7582
         }
       },
       "jsdoc": {
@@ -365,14 +442,14 @@
     "_onIncomingData": {
       "location": {
         "start": {
-          "line": 205,
+          "line": 239,
           "column": 4,
-          "index": 7023
+          "index": 7960
         },
         "end": {
-          "line": 263,
+          "line": 297,
           "column": 5,
-          "index": 9244
+          "index": 10209
         }
       },
       "jsdoc": {
@@ -425,14 +502,14 @@
     "__collectHandlers": {
       "location": {
         "start": {
-          "line": 265,
+          "line": 299,
           "column": 4,
-          "index": 9251
+          "index": 10216
         },
         "end": {
-          "line": 295,
+          "line": 329,
           "column": 5,
-          "index": 10289
+          "index": 11254
         }
       },
       "type": "function",
@@ -441,14 +518,14 @@
     "__collectAllFromSegment": {
       "location": {
         "start": {
-          "line": 297,
+          "line": 331,
           "column": 4,
-          "index": 10296
+          "index": 11261
         },
         "end": {
-          "line": 305,
+          "line": 339,
           "column": 5,
-          "index": 10633
+          "index": 11598
         }
       },
       "type": "function",
@@ -457,14 +534,14 @@
     "dispatchMessage": {
       "location": {
         "start": {
-          "line": 307,
+          "line": 341,
           "column": 4,
-          "index": 10640
+          "index": 11605
         },
         "end": {
-          "line": 321,
+          "line": 355,
           "column": 5,
-          "index": 11238
+          "index": 12203
         }
       },
       "type": "function",
@@ -473,14 +550,14 @@
     "clear": {
       "location": {
         "start": {
-          "line": 323,
+          "line": 357,
           "column": 4,
-          "index": 11245
+          "index": 12210
         },
         "end": {
-          "line": 326,
+          "line": 360,
           "column": 5,
-          "index": 11324
+          "index": 12289
         }
       },
       "type": "function",
@@ -3754,14 +3831,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 334,
+        "line": 368,
         "column": 2,
-        "index": 11472
+        "index": 12437
       },
       "end": {
-        "line": 337,
+        "line": 371,
         "column": 3,
-        "index": 11564
+        "index": 12529
       }
     },
     "jsdoc": {}

@@ -542,9 +542,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 }
               }
               // Manually invoke the callback for each non-enumerable property.
-              for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property)) {
-                ;
-              }
+              for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
             };
           } else if (size == 2) {
             // Safari <= 2.0.4 enumerates shadowed properties twice.
@@ -685,12 +683,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                     // seconds, and milliseconds if the `getUTC*` methods are
                     // buggy. Adapted from @Yaffle's `date-shim` project.
                     date = floor(value / 864e5);
-                    for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++) {
-                      ;
-                    }
-                    for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++) {
-                      ;
-                    }
+                    for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
+                    for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
                     date = 1 + date - getDay(year, month);
                     // The `time` value specifies the time within the day (see ES
                     // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
@@ -807,9 +801,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               } else if (getClass.call(filter) == arrayClass) {
                 // Convert the property names array into a makeshift set.
                 properties = {};
-                for (var index = 0, length = filter.length, value; index < length; value = filter[index++], (getClass.call(value) == stringClass || getClass.call(value) == numberClass) && (properties[value] = 1)) {
-                  ;
-                }
+                for (var index = 0, length = filter.length, value; index < length; value = filter[index++], (getClass.call(value) == stringClass || getClass.call(value) == numberClass) && (properties[value] = 1));
               }
             }
             if (width) {
@@ -817,9 +809,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                 // Convert the `width` to an integer and create a string containing
                 // `width` number of space characters.
                 if ((width -= width % 1) > 0) {
-                  for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ") {
-                    ;
-                  }
+                  for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
                 }
               } else if (getClass.call(width) == stringClass) {
                 whitespace = width.length <= 10 ? width : width.slice(0, 10);
@@ -981,17 +971,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                     }
                     isSigned = false;
                     // Parse the integer component.
-                    for (; Index < length && (charCode = source.charCodeAt(Index), charCode >= 48 && charCode <= 57); Index++) {
-                      ;
-                    }
+                    for (; Index < length && (charCode = source.charCodeAt(Index), charCode >= 48 && charCode <= 57); Index++);
                     // Floats cannot contain a leading decimal point; however, this
                     // case is already accounted for by the parser.
                     if (source.charCodeAt(Index) == 46) {
                       position = ++Index;
                       // Parse the decimal component.
-                      for (; position < length && (charCode = source.charCodeAt(position), charCode >= 48 && charCode <= 57); position++) {
-                        ;
-                      }
+                      for (; position < length && (charCode = source.charCodeAt(position), charCode >= 48 && charCode <= 57); position++);
                       if (position == Index) {
                         // Illegal trailing decimal.
                         abort();
@@ -1009,9 +995,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                         Index++;
                       }
                       // Parse the exponential component.
-                      for (position = Index; position < length && (charCode = source.charCodeAt(position), charCode >= 48 && charCode <= 57); position++) {
-                        ;
-                      }
+                      for (position = Index; position < length && (charCode = source.charCodeAt(position), charCode >= 48 && charCode <= 57); position++);
                       if (position == Index) {
                         // Illegal empty exponent.
                         abort();
@@ -1194,4 +1178,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.lang.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1673093861935
+//# sourceMappingURL=Json.js.map?dt=1676809316353

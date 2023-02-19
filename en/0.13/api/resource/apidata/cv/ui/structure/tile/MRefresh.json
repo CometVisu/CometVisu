@@ -14,9 +14,9 @@
         "index": 943
       },
       "end": {
-        "line": 101,
+        "line": 113,
         "column": 3,
-        "index": 2989
+        "index": 3302
       }
     },
     "jsdoc": {
@@ -29,18 +29,33 @@
     }
   },
   "type": "mixin",
+  "construct": {
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1123
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 1301
+      }
+    },
+    "jsdoc": {}
+  },
   "properties": {
     "refresh": {
       "location": {
         "start": {
-          "line": 30,
+          "line": 42,
           "column": 4,
-          "index": 1139
+          "index": 1449
         },
         "end": {
-          "line": 34,
+          "line": 46,
           "column": 5,
-          "index": 1222
+          "index": 1532
         }
       },
       "name": "refresh",
@@ -55,14 +70,14 @@
     "_refreshTimer": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 55,
           "column": 4,
-          "index": 1368
+          "index": 1678
         },
         "end": {
-          "line": 43,
+          "line": 55,
           "column": 23,
-          "index": 1387
+          "index": 1697
         }
       },
       "type": "variable",
@@ -71,14 +86,14 @@
     "_lastRefresh": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 56,
           "column": 4,
-          "index": 1393
+          "index": 1703
         },
         "end": {
-          "line": 44,
+          "line": 56,
           "column": 22,
-          "index": 1411
+          "index": 1721
         }
       },
       "type": "variable",
@@ -87,14 +102,14 @@
     "_applyRefresh": {
       "location": {
         "start": {
-          "line": 46,
+          "line": 58,
           "column": 4,
-          "index": 1418
+          "index": 1728
         },
         "end": {
-          "line": 64,
+          "line": 76,
           "column": 5,
-          "index": 2011
+          "index": 2321
         }
       },
       "type": "function",
@@ -103,33 +118,33 @@
         "refresh"
       ]
     },
-    "_applyVisible": {
+    "__onVisibilityChange": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 78,
           "column": 4,
-          "index": 2018
+          "index": 2328
         },
         "end": {
-          "line": 81,
+          "line": 93,
           "column": 5,
-          "index": 2570
+          "index": 2883
         }
       },
       "type": "function",
-      "access": "protected"
+      "access": "private"
     },
     "__doRefresh": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 95,
           "column": 4,
-          "index": 2577
+          "index": 2890
         },
         "end": {
-          "line": 90,
+          "line": 102,
           "column": 5,
-          "index": 2792
+          "index": 3105
         }
       },
       "type": "function",
@@ -205,14 +220,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 98,
+        "line": 110,
         "column": 2,
-        "index": 2926
+        "index": 3239
       },
       "end": {
-        "line": 100,
+        "line": 112,
         "column": 3,
-        "index": 2985
+        "index": 3298
       }
     },
     "jsdoc": {}

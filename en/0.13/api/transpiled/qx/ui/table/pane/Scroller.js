@@ -113,7 +113,7 @@
      */
     construct: function construct(table) {
       qx.ui.core.Widget.constructor.call(this);
-      this.__P_452_0 = table;
+      this.__P_453_0 = table;
 
       // init layout
       var grid = new qx.ui.layout.Grid();
@@ -122,14 +122,14 @@
       this._setLayout(grid);
 
       // init child controls
-      this.__P_452_1 = this._showChildControl("header");
-      this.__P_452_2 = this._showChildControl("pane");
+      this.__P_453_1 = this._showChildControl("header");
+      this.__P_453_2 = this._showChildControl("pane");
 
       // the top line containing the header clipper and the top right widget
-      this.__P_452_3 = new qx.ui.container.Composite(new qx.ui.layout.HBox()).set({
+      this.__P_453_3 = new qx.ui.container.Composite(new qx.ui.layout.HBox()).set({
         minWidth: 0
       });
-      this._add(this.__P_452_3, {
+      this._add(this.__P_453_3, {
         row: 0,
         column: 0,
         colSpan: 2
@@ -137,19 +137,19 @@
 
       // embed header into a scrollable container
       this._headerClipper = this._createHeaderClipper();
-      this._headerClipper.add(this.__P_452_1);
+      this._headerClipper.add(this.__P_453_1);
       this._headerClipper.addListener("losecapture", this._onChangeCaptureHeader, this);
       this._headerClipper.addListener("pointermove", this._onPointermoveHeader, this);
       this._headerClipper.addListener("pointerdown", this._onPointerdownHeader, this);
       this._headerClipper.addListener("pointerup", this._onPointerupHeader, this);
       this._headerClipper.addListener("tap", this._onTapHeader, this);
-      this.__P_452_3.add(this._headerClipper, {
+      this.__P_453_3.add(this._headerClipper, {
         flex: 1
       });
 
       // embed pane into a scrollable container
       this._paneClipper = this._createPaneClipper();
-      this._paneClipper.add(this.__P_452_2);
+      this._paneClipper.add(this.__P_453_2);
       this._paneClipper.addListener("roll", this._onRoll, this);
       this._paneClipper.addListener("pointermove", this._onPointermovePane, this);
       this._paneClipper.addListener("pointerdown", this._onPointerdownPane, this);
@@ -165,12 +165,12 @@
 
       // if we have overlayed scroll bars, we should use a separate container
       if (qx.core.Environment.get("os.scrollBarOverlayed")) {
-        this.__P_452_4 = new qx.ui.container.Composite();
-        this.__P_452_4.setLayout(new qx.ui.layout.Canvas());
-        this.__P_452_4.add(this._paneClipper, {
+        this.__P_453_4 = new qx.ui.container.Composite();
+        this.__P_453_4.setLayout(new qx.ui.layout.Canvas());
+        this.__P_453_4.add(this._paneClipper, {
           edge: 0
         });
-        this._add(this.__P_452_4, {
+        this._add(this.__P_453_4, {
           row: 1,
           column: 0
         });
@@ -182,11 +182,11 @@
       }
 
       // init scroll bars
-      this.__P_452_5 = this._showChildControl("scrollbar-x");
-      this.__P_452_6 = this._showChildControl("scrollbar-y");
+      this.__P_453_5 = this._showChildControl("scrollbar-x");
+      this.__P_453_6 = this._showChildControl("scrollbar-y");
 
       // init focus indicator
-      this.__P_452_7 = this.getChildControl("focus-indicator");
+      this.__P_453_7 = this.getChildControl("focus-indicator");
       // need to run the apply method at least once [BUG #4057]
       this.initShowCellFocusIndicator();
 
@@ -195,8 +195,8 @@
       this.addListener("pointerout", this._onPointerout, this);
       this.addListener("appear", this._onAppear, this);
       this.addListener("disappear", this._onDisappear, this);
-      this.__P_452_8 = new qx.event.Timer();
-      this.__P_452_8.addListener("interval", this._oninterval, this);
+      this.__P_453_8 = new qx.event.Timer();
+      this.__P_453_8.addListener("interval", this._oninterval, this);
       this.initScrollTimeout();
     },
     /*
@@ -378,40 +378,40 @@
     */
 
     members: {
-      __P_452_9: null,
-      __P_452_0: null,
-      __P_452_10: null,
-      __P_452_11: null,
-      __P_452_12: null,
+      __P_453_9: null,
+      __P_453_0: null,
+      __P_453_10: null,
+      __P_453_11: null,
+      __P_453_12: null,
       _moveColumn: null,
-      __P_452_13: null,
+      __P_453_13: null,
       _lastMoveTargetX: null,
       _lastMoveTargetScroller: null,
-      __P_452_14: null,
-      __P_452_15: null,
-      __P_452_16: null,
-      __P_452_17: null,
-      __P_452_18: null,
-      __P_452_19: false,
-      __P_452_20: null,
-      __P_452_21: null,
-      __P_452_22: null,
-      __P_452_23: null,
-      __P_452_24: null,
+      __P_453_14: null,
+      __P_453_15: null,
+      __P_453_16: null,
+      __P_453_17: null,
+      __P_453_18: null,
+      __P_453_19: false,
+      __P_453_20: null,
+      __P_453_21: null,
+      __P_453_22: null,
+      __P_453_23: null,
+      __P_453_24: null,
       _cellEditor: null,
-      __P_452_25: null,
-      __P_452_26: null,
-      __P_452_5: null,
-      __P_452_6: null,
-      __P_452_1: null,
+      __P_453_25: null,
+      __P_453_26: null,
+      __P_453_5: null,
+      __P_453_6: null,
+      __P_453_1: null,
       _headerClipper: null,
-      __P_452_2: null,
+      __P_453_2: null,
       _paneClipper: null,
-      __P_452_4: null,
-      __P_452_7: null,
-      __P_452_3: null,
-      __P_452_8: null,
-      __P_452_27: null,
+      __P_453_4: null,
+      __P_453_7: null,
+      __P_453_3: null,
+      __P_453_8: null,
+      __P_453_27: null,
       /**
        * The right inset of the pane. The right inset is the maximum of the
        * top right widget width and the scrollbar width (if visible).
@@ -421,7 +421,7 @@
       getPaneInsetRight: function getPaneInsetRight() {
         var topRight = this.getTopRightWidget();
         var topRightWidth = topRight && topRight.isVisible() && topRight.getBounds() ? topRight.getBounds().width + topRight.getMarginLeft() + topRight.getMarginRight() : 0;
-        var scrollBar = this.__P_452_6;
+        var scrollBar = this.__P_453_6;
         var scrollBarWidth = this.getVerticalScrollBarVisible() ? this.getVerticalScrollBarWidth() + scrollBar.getMarginLeft() + scrollBar.getMarginRight() : 0;
         return Math.max(topRightWidth, scrollBarWidth);
       },
@@ -466,9 +466,9 @@
               alignY: "bottom"
             });
             control.addListener("scroll", this._onScrollX, this);
-            if (this.__P_452_4 != null) {
+            if (this.__P_453_4 != null) {
               control.setMinHeight(qx.ui.core.scroll.AbstractScrollArea.DEFAULT_SCROLLBAR_WIDTH);
-              this.__P_452_4.add(control, {
+              this.__P_453_4.add(control, {
                 bottom: 0,
                 right: 0,
                 left: 0
@@ -483,8 +483,8 @@
           case "scrollbar-y":
             control = this._createScrollBar("vertical");
             control.addListener("scroll", this._onScrollY, this);
-            if (this.__P_452_4 != null) {
-              this.__P_452_4.add(control, {
+            if (this.__P_453_4 != null) {
+              this.__P_453_4.add(control, {
                 right: 0,
                 bottom: 0,
                 top: 0
@@ -502,14 +502,14 @@
       // property modifier
       _applyHorizontalScrollBarVisible: function _applyHorizontalScrollBarVisible(value, old) {
         if (value === null) {
-          this.__P_452_5.setVisibility("hidden");
+          this.__P_453_5.setVisibility("hidden");
         } else {
-          this.__P_452_5.setVisibility(value ? "visible" : "excluded");
+          this.__P_453_5.setVisibility(value ? "visible" : "excluded");
         }
       },
       // property modifier
       _applyVerticalScrollBarVisible: function _applyVerticalScrollBarVisible(value, old) {
-        this.__P_452_6.setVisibility(value ? "visible" : "excluded");
+        this.__P_453_6.setVisibility(value ? "visible" : "excluded");
       },
       // property modifier
       _applyTablePaneModel: function _applyTablePaneModel(value, old) {
@@ -521,11 +521,11 @@
       // property modifier
       _applyShowCellFocusIndicator: function _applyShowCellFocusIndicator(value, old) {
         if (value) {
-          this.__P_452_7.setDecorator("table-scroller-focus-indicator");
+          this.__P_453_7.setDecorator("table-scroller-focus-indicator");
           this._updateFocusIndicator();
         } else {
-          if (this.__P_452_7) {
-            this.__P_452_7.setDecorator(null);
+          if (this.__P_453_7) {
+            this.__P_453_7.setDecorator(null);
           }
         }
       },
@@ -535,7 +535,7 @@
        * @return {Integer} The current scroll position.
        */
       getScrollY: function getScrollY() {
-        return this.__P_452_6.getPosition();
+        return this.__P_453_6.getPosition();
       },
       /**
        * Set the current position of the vertical scroll bar.
@@ -545,7 +545,7 @@
        *     performed synchronously.
        */
       setScrollY: function setScrollY(scrollY, renderSync) {
-        this.__P_452_6.scrollTo(scrollY);
+        this.__P_453_6.scrollTo(scrollY);
         if (renderSync) {
           this._updateContent();
         }
@@ -556,7 +556,7 @@
        * @return {Integer} The current scroll position.
        */
       getScrollX: function getScrollX() {
-        return this.__P_452_5.getPosition();
+        return this.__P_453_5.getPosition();
       },
       /**
        * Set the current position of the vertical scroll bar.
@@ -564,7 +564,7 @@
        * @param scrollX {Integer} The new scroll position.
        */
       setScrollX: function setScrollX(scrollX) {
-        this.__P_452_5.scrollTo(scrollX);
+        this.__P_453_5.scrollTo(scrollX);
       },
       /**
        * Returns the table this scroller belongs to.
@@ -572,7 +572,7 @@
        * @return {qx.ui.table.Table} the table.
        */
       getTable: function getTable() {
-        return this.__P_452_0;
+        return this.__P_453_0;
       },
       /**
        * Creates and returns an instance of pane clipper.
@@ -604,8 +604,8 @@
        * @param width {Integer} the new width.
        */
       setColumnWidth: function setColumnWidth(col, width) {
-        this.__P_452_1.setColumnWidth(col, width);
-        this.__P_452_2.setColumnWidth(col, width);
+        this.__P_453_1.setColumnWidth(col, width);
+        this.__P_453_2.setColumnWidth(col, width);
         var paneModel = this.getTablePaneModel();
         var x = paneModel.getX(col);
         if (x != -1) {
@@ -619,8 +619,8 @@
        *
        */
       onColOrderChanged: function onColOrderChanged() {
-        this.__P_452_1.onColOrderChanged();
-        this.__P_452_2.onColOrderChanged();
+        this.__P_453_1.onColOrderChanged();
+        this.__P_453_2.onColOrderChanged();
         this.updateHorScrollBarMaximum();
       },
       /**
@@ -632,9 +632,9 @@
        * @param lastColumn {Integer} The model index of the last column that has changed.
        */
       onTableModelDataChanged: function onTableModelDataChanged(firstRow, lastRow, firstColumn, lastColumn) {
-        this.__P_452_2.onTableModelDataChanged(firstRow, lastRow, firstColumn, lastColumn);
+        this.__P_453_2.onTableModelDataChanged(firstRow, lastRow, firstColumn, lastColumn);
         var rowCount = this.getTable().getTableModel().getRowCount();
-        if (rowCount != this.__P_452_9) {
+        if (rowCount != this.__P_453_9) {
           this.updateVerScrollBarMaximum();
           var focusedRow = this.getFocusedRow();
           if (focusedRow !== null && focusedRow >= rowCount) {
@@ -644,35 +644,35 @@
               this.setFocusedCell(this.getFocusedColumn(), rowCount - 1);
             }
           }
-          this.__P_452_9 = rowCount;
+          this.__P_453_9 = rowCount;
         }
       },
       /**
        * Event handler. Called when the selection has changed.
        */
       onSelectionChanged: function onSelectionChanged() {
-        this.__P_452_2.onSelectionChanged();
+        this.__P_453_2.onSelectionChanged();
       },
       /**
        * Event handler. Called when the table gets or looses the focus.
        */
       onFocusChanged: function onFocusChanged() {
-        this.__P_452_2.onFocusChanged();
+        this.__P_453_2.onFocusChanged();
       },
       /**
        * Event handler. Called when the table model meta data has changed.
        *
        */
       onTableModelMetaDataChanged: function onTableModelMetaDataChanged() {
-        this.__P_452_1.onTableModelMetaDataChanged();
-        this.__P_452_2.onTableModelMetaDataChanged();
+        this.__P_453_1.onTableModelMetaDataChanged();
+        this.__P_453_2.onTableModelMetaDataChanged();
       },
       /**
        * Event handler. Called when the pane model has changed.
        */
       _onPaneModelChanged: function _onPaneModelChanged() {
-        this.__P_452_1.onPaneModelChanged();
-        this.__P_452_2.onPaneModelChanged();
+        this.__P_453_1.onPaneModelChanged();
+        this.__P_453_2.onPaneModelChanged();
       },
       /**
        * Event listener for the pane clipper's resize event
@@ -683,8 +683,8 @@
 
         // The height has changed -> Update content
         this._updateContent();
-        this.__P_452_1._updateContent();
-        this.__P_452_0._updateScrollBarVisibility();
+        this.__P_453_1._updateContent();
+        this.__P_453_0._updateScrollBarVisibility();
       },
       /**
        * Updates the maximum of the horizontal scroll bar, so it corresponds to the
@@ -697,7 +697,7 @@
           return;
         }
         var scrollSize = this.getTablePaneModel().getTotalWidth();
-        var scrollBar = this.__P_452_5;
+        var scrollBar = this.__P_453_5;
         if (paneSize.width < scrollSize) {
           var max = Math.max(0, scrollSize - paneSize.width);
           scrollBar.setMaximum(max);
@@ -727,7 +727,7 @@
         }
         var rowHeight = this.getTable().getRowHeight();
         var scrollSize = rowCount * rowHeight;
-        var scrollBar = this.__P_452_6;
+        var scrollBar = this.__P_453_6;
         if (paneSize.height < scrollSize) {
           var max = Math.max(0, scrollSize - paneSize.height);
           scrollBar.setMaximum(max);
@@ -778,13 +778,13 @@
        *
        * @param e {Map} the event.
        */
-      __P_452_28: false,
+      __P_453_28: false,
       _onScrollY: function _onScrollY(e) {
-        if (this.__P_452_28) {
+        if (this.__P_453_28) {
           return;
         }
-        var scrollbar = this.__P_452_6;
-        this.__P_452_28 = true;
+        var scrollbar = this.__P_453_6;
+        this.__P_453_28 = true;
         // calculate delta so that one row is scrolled at an minimum
         var rowHeight = this.getTable().getRowHeight();
         var delta = e.getData() - e.getOldData();
@@ -794,7 +794,7 @@
             scrollbar.setPosition(delta);
           }
         }
-        this.__P_452_28 = false;
+        this.__P_453_28 = false;
         this.fireDataEvent("changeScrollY", scrollbar.getPosition(), e.getOldData());
         this._postponedUpdateContent();
       },
@@ -817,8 +817,8 @@
         } else if (delta.y < 0 && delta.y > -1) {
           delta.y = -1;
         }
-        this.__P_452_6.scrollBy(parseInt(delta.y, 10));
-        var scrolled = delta.y != 0 && !this.__P_452_29(this.__P_452_6, delta.y);
+        this.__P_453_6.scrollBy(parseInt(delta.y, 10));
+        var scrolled = delta.y != 0 && !this.__P_453_29(this.__P_453_6, delta.y);
 
         // horizontal scrolling
         // normalize that at least one step is scrolled at a time
@@ -827,13 +827,13 @@
         } else if (delta.x < 0 && delta.x > -1) {
           delta.x = -1;
         }
-        this.__P_452_5.scrollBy(parseInt(delta.x, 10));
+        this.__P_453_5.scrollBy(parseInt(delta.x, 10));
 
         // Update the focus
-        if (this.__P_452_21 && this.getFocusCellOnPointerMove()) {
-          this._focusCellAtPagePos(this.__P_452_21, this.__P_452_22);
+        if (this.__P_453_21 && this.getFocusCellOnPointerMove()) {
+          this._focusCellAtPagePos(this.__P_453_21, this.__P_453_22);
         }
-        scrolled = scrolled || delta.x != 0 && !this.__P_452_29(this.__P_452_5, delta.x);
+        scrolled = scrolled || delta.x != 0 && !this.__P_453_29(this.__P_453_5, delta.x);
 
         // pass the event to the parent if the scrollbar is at an edge
         if (scrolled) {
@@ -848,7 +848,7 @@
        * @param delta {Number} The scroll delta.
        * @return {Boolean} <code>true</code>, if the scrolling is a the edge
        */
-      __P_452_29: function __P_452_29(scrollBar, delta) {
+      __P_453_29: function __P_453_29(scrollBar, delta) {
         var position = scrollBar.getPosition();
         return delta < 0 && position <= 0 || delta > 0 && position >= scrollBar.getMaximum();
       },
@@ -857,21 +857,21 @@
        *
        * @param pageX {Integer} the current pointer x position.
        */
-      __P_452_30: function __P_452_30(pageX) {
+      __P_453_30: function __P_453_30(pageX) {
         var table = this.getTable();
         // We are currently resizing -> Update the position
-        var headerCell = this.__P_452_1.getHeaderWidgetAtColumn(this.__P_452_15);
+        var headerCell = this.__P_453_1.getHeaderWidgetAtColumn(this.__P_453_15);
         var minColumnWidth = headerCell.getSizeHint().minWidth;
-        var newWidth = Math.max(minColumnWidth, this.__P_452_17 + pageX - this.__P_452_16);
+        var newWidth = Math.max(minColumnWidth, this.__P_453_17 + pageX - this.__P_453_16);
         if (this.getLiveResize()) {
           var columnModel = table.getTableColumnModel();
-          columnModel.setColumnWidth(this.__P_452_15, newWidth, true);
+          columnModel.setColumnWidth(this.__P_453_15, newWidth, true);
         } else {
           var paneModel = this.getTablePaneModel();
-          this._showResizeLine(paneModel.getColumnLeft(this.__P_452_15) + newWidth);
+          this._showResizeLine(paneModel.getColumnLeft(this.__P_453_15) + newWidth);
         }
-        this.__P_452_16 += newWidth - this.__P_452_17;
-        this.__P_452_17 = newWidth;
+        this.__P_453_16 += newWidth - this.__P_453_17;
+        this.__P_453_17 = newWidth;
       },
       /**
        * Common column move logic.
@@ -879,19 +879,19 @@
        * @param pageX {Integer} the current pointer x position.
        *
        */
-      __P_452_31: function __P_452_31(pageX) {
+      __P_453_31: function __P_453_31(pageX) {
         // We are moving a column
 
         // Check whether we moved outside the tap tolerance so we can start
         // showing the column move feedback
         // (showing the column move feedback prevents the ontap event)
         var tapTolerance = qx.ui.table.pane.Scroller.TAP_TOLERANCE;
-        if (this.__P_452_1.isShowingColumnMoveFeedback() || pageX > this.__P_452_14 + tapTolerance || pageX < this.__P_452_14 - tapTolerance) {
-          this.__P_452_13 += pageX - this.__P_452_14;
-          this.__P_452_1.showColumnMoveFeedback(this._moveColumn, this.__P_452_13);
+        if (this.__P_453_1.isShowingColumnMoveFeedback() || pageX > this.__P_453_14 + tapTolerance || pageX < this.__P_453_14 - tapTolerance) {
+          this.__P_453_13 += pageX - this.__P_453_14;
+          this.__P_453_1.showColumnMoveFeedback(this._moveColumn, this.__P_453_13);
 
           // Get the responsible scroller
-          var targetScroller = this.__P_452_0.getTablePaneScrollerAtPageX(pageX);
+          var targetScroller = this.__P_453_0.getTablePaneScrollerAtPageX(pageX);
           if (this._lastMoveTargetScroller && this._lastMoveTargetScroller != targetScroller) {
             this._lastMoveTargetScroller.hideColumnMoveFeedback();
           }
@@ -901,7 +901,7 @@
             this._lastMoveTargetX = null;
           }
           this._lastMoveTargetScroller = targetScroller;
-          this.__P_452_14 = pageX;
+          this.__P_453_14 = pageX;
         }
       },
       /**
@@ -921,16 +921,16 @@
 
         // Workaround: In onmousewheel the event has wrong coordinates for pageX
         //       and pageY. So we remember the last move event.
-        this.__P_452_21 = pageX;
-        this.__P_452_22 = pageY;
-        if (this.__P_452_15 != null) {
+        this.__P_453_21 = pageX;
+        this.__P_453_22 = pageY;
+        if (this.__P_453_15 != null) {
           // We are currently resizing -> Update the position
-          this.__P_452_30(pageX);
+          this.__P_453_30(pageX);
           useResizeCursor = true;
           e.stopPropagation();
         } else if (this._moveColumn != null) {
           // We are moving a column
-          this.__P_452_31(pageX);
+          this.__P_453_31(pageX);
           e.stopPropagation();
         } else {
           var resizeCol = this._getResizeColumnForPageX(pageX);
@@ -948,7 +948,7 @@
         var cursor = useResizeCursor ? "col-resize" : null;
         this.getApplicationRoot().setGlobalCursor(cursor);
         this.setCursor(cursor);
-        this.__P_452_1.setPointerOverColumn(pointerOverColumn);
+        this.__P_453_1.setPointerOverColumn(pointerOverColumn);
       },
       /**
        * Event handler. Called when the user moved the pointer over the pane.
@@ -968,8 +968,8 @@
 
         // Workaround: In onpointerwheel the event has wrong coordinates for pageX
         //       and pageY. So we remember the last move event.
-        this.__P_452_21 = pageX;
-        this.__P_452_22 = pageY;
+        this.__P_453_21 = pageX;
+        this.__P_453_22 = pageY;
         var useResizeCursor = false;
         var resizeCol = this._getResizeColumnForPageX(pageX);
         if (resizeCol != -1) {
@@ -986,7 +986,7 @@
             this._focusCellAtPagePos(pageX, pageY);
           }
         }
-        this.__P_452_1.setPointerOverColumn(null);
+        this.__P_453_1.setPointerOverColumn(null);
       },
       /**
        * Event handler. Called when the user pressed a pointer button over the header.
@@ -1024,9 +1024,9 @@
         var columnModel = this.getTable().getTableColumnModel();
 
         // The pointer is over a resize region -> Start resizing
-        this.__P_452_15 = resizeCol;
-        this.__P_452_16 = pageX;
-        this.__P_452_17 = columnModel.getColumnWidth(this.__P_452_15);
+        this.__P_453_15 = resizeCol;
+        this.__P_453_16 = pageX;
+        this.__P_453_17 = columnModel.getColumnWidth(this.__P_453_15);
         this._headerClipper.capture();
       },
       /**
@@ -1038,8 +1038,8 @@
       _startMoveHeader: function _startMoveHeader(moveCol, pageX) {
         // Prepare column moving
         this._moveColumn = moveCol;
-        this.__P_452_14 = pageX;
-        this.__P_452_13 = this.getTablePaneModel().getColumnLeft(moveCol);
+        this.__P_453_14 = pageX;
+        this.__P_453_13 = this.getTablePaneModel().getColumnLeft(moveCol);
         this._headerClipper.capture();
       },
       /**
@@ -1082,7 +1082,7 @@
           //  early or late (Firefox on Linux issues it early; Firefox on
           //  Windows issues it late) so no one may clear these values.
           //
-          this.__P_452_18 = {
+          this.__P_453_18 = {
             row: row,
             col: col
           };
@@ -1091,7 +1091,7 @@
           // so we don't issue it twice, both from pointer-up on the focus
           // indicator, and from the tap even on the pane. Both possibilities
           // are necessary, however, to maintain the qooxdoo order of events.
-          this.__P_452_19 = false;
+          this.__P_453_19 = false;
         }
       },
       /**
@@ -1100,9 +1100,9 @@
        * @param e {qx.event.type.Pointer} The pointer event
        */
       _onPointerupFocusIndicator: function _onPointerupFocusIndicator(e) {
-        if (this.__P_452_18 && !this.__P_452_19 && !this.isEditing() && this.__P_452_7.getRow() == this.__P_452_18.row && this.__P_452_7.getColumn() == this.__P_452_18.col) {
-          this.fireEvent("cellTap", qx.ui.table.pane.CellEvent, [this, e, this.__P_452_18.row, this.__P_452_18.col], true);
-          this.__P_452_19 = true;
+        if (this.__P_453_18 && !this.__P_453_19 && !this.isEditing() && this.__P_453_7.getRow() == this.__P_453_18.row && this.__P_453_7.getColumn() == this.__P_453_18.col) {
+          this.fireEvent("cellTap", qx.ui.table.pane.CellEvent, [this, e, this.__P_453_18.row, this.__P_453_18.col], true);
+          this.__P_453_19 = true;
         } else if (!this.isEditing()) {
           // if no cellTap event should be fired, act like a pointerdown which
           // invokes the change of the selection e.g. [BUG #1632]
@@ -1117,7 +1117,7 @@
        * @param e {qx.event.type.Data} The data event
        */
       _onChangeCaptureHeader: function _onChangeCaptureHeader(e) {
-        if (this.__P_452_15 != null) {
+        if (this.__P_453_15 != null) {
           this._stopResizeHeader();
         }
         if (this._moveColumn != null) {
@@ -1134,9 +1134,9 @@
         // We are currently resizing -> Finish resizing
         if (!this.getLiveResize()) {
           this._hideResizeLine();
-          columnModel.setColumnWidth(this.__P_452_15, this.__P_452_17, true);
+          columnModel.setColumnWidth(this.__P_453_15, this.__P_453_17, true);
         }
-        this.__P_452_15 = null;
+        this.__P_453_15 = null;
         this._headerClipper.releaseCapture();
         this.getApplicationRoot().setGlobalCursor(null);
         this.setCursor(null);
@@ -1150,7 +1150,7 @@
         var paneModel = this.getTablePaneModel();
 
         // We are moving a column -> Drop the column
-        this.__P_452_1.hideColumnMoveFeedback();
+        this.__P_453_1.hideColumnMoveFeedback();
         if (this._lastMoveTargetScroller) {
           this._lastMoveTargetScroller.hideColumnMoveFeedback();
         }
@@ -1192,9 +1192,9 @@
         if (!table.getEnabled()) {
           return;
         }
-        if (this.__P_452_15 != null) {
+        if (this.__P_453_15 != null) {
           this._stopResizeHeader();
-          this.__P_452_20 = true;
+          this.__P_453_20 = true;
           e.stop();
         } else if (this._moveColumn != null) {
           this._stopMoveHeader();
@@ -1207,8 +1207,8 @@
        * @param e {Map} the event.
        */
       _onTapHeader: function _onTapHeader(e) {
-        if (this.__P_452_20) {
-          this.__P_452_20 = false;
+        if (this.__P_453_20) {
+          this.__P_453_20 = false;
           return;
         }
         var table = this.getTable();
@@ -1271,9 +1271,9 @@
           if (!selectBeforeFocus) {
             table.getSelectionManager().handleTap(row, e);
           }
-          if (this.__P_452_7.isHidden() || this.__P_452_18 && !this.__P_452_19 && !this.isEditing() && row == this.__P_452_18.row && col == this.__P_452_18.col) {
+          if (this.__P_453_7.isHidden() || this.__P_453_18 && !this.__P_453_19 && !this.isEditing() && row == this.__P_453_18.row && col == this.__P_453_18.col) {
             this.fireEvent("cellTap", qx.ui.table.pane.CellEvent, [this, e, row, col], true);
-            this.__P_452_19 = true;
+            this.__P_453_19 = true;
           }
         } else {
           if (row == null && this.getResetSelectionOnTapBelowRows()) {
@@ -1301,7 +1301,7 @@
         if (row === null && this.getContextMenuFromDataCellsOnly()) {
           return;
         }
-        if (!this.getShowCellFocusIndicator() || row === null || this.__P_452_18 && row == this.__P_452_18.row && col == this.__P_452_18.col) {
+        if (!this.getShowCellFocusIndicator() || row === null || this.__P_453_18 && row == this.__P_453_18.row && col == this.__P_453_18.col) {
           this.fireEvent("cellContextmenu", qx.ui.table.pane.CellEvent, [this, e, row, col], true);
 
           // Now that the cellContextmenu handler has had a chance to build
@@ -1363,15 +1363,15 @@
         // Reset the resize cursor when the pointer leaves the header
         // If currently a column is resized then do nothing
         // (the cursor will be reset on pointerup)
-        if (this.__P_452_15 == null) {
+        if (this.__P_453_15 == null) {
           this.setCursor(null);
           this.getApplicationRoot().setGlobalCursor(null);
         }
-        this.__P_452_1.setPointerOverColumn(null);
+        this.__P_453_1.setPointerOverColumn(null);
 
         // in case the focus follows the pointer, it should be remove on pointerout
         if (this.getFocusCellOnPointerMove()) {
-          this.__P_452_0.setFocusedCell();
+          this.__P_453_0.setFocusedCell();
         }
       },
       /**
@@ -1401,7 +1401,7 @@
       showColumnMoveFeedback: function showColumnMoveFeedback(pageX) {
         var paneModel = this.getTablePaneModel();
         var columnModel = this.getTable().getTableColumnModel();
-        var paneLeft = this.__P_452_2.getContentLocation().left;
+        var paneLeft = this.__P_453_2.getContentLocation().left;
         var colCount = paneModel.getColumnCount();
         var targetXPos = 0;
         var targetX = 0;
@@ -1448,7 +1448,7 @@
         if (row != -1 && row != null) {
           // The pointer is over the data -> update the focus
           var col = this._getColumnForPageX(pageX);
-          this.__P_452_0.setFocusedCell(col, row);
+          this.__P_453_0.setFocusedCell(col, row);
         }
       },
       /**
@@ -1459,9 +1459,9 @@
        */
       setFocusedCell: function setFocusedCell(col, row) {
         if (!this.isEditing()) {
-          this.__P_452_2.setFocusedCell(col, row, this.__P_452_11);
-          this.__P_452_23 = col;
-          this.__P_452_24 = row;
+          this.__P_453_2.setFocusedCell(col, row, this.__P_453_11);
+          this.__P_453_23 = col;
+          this.__P_453_24 = row;
           this._updateFocusIndicator();
         }
       },
@@ -1471,7 +1471,7 @@
        * @return {Integer} the model index of the focused cell's column.
        */
       getFocusedColumn: function getFocusedColumn() {
-        return this.__P_452_23;
+        return this.__P_453_23;
       },
       /**
        * Returns the row of currently focused cell.
@@ -1479,7 +1479,7 @@
        * @return {Integer} the model index of the focused cell's column.
        */
       getFocusedRow: function getFocusedRow() {
-        return this.__P_452_24;
+        return this.__P_453_24;
       },
       /**
        * Scrolls a cell visible.
@@ -1534,15 +1534,15 @@
         var _this = this;
         var table = this.getTable();
         var tableModel = table.getTableModel();
-        var col = this.__P_452_23;
+        var col = this.__P_453_23;
         if (!this.isEditing() && col != null && tableModel.isColumnEditable(col)) {
-          var row = this.__P_452_24;
+          var row = this.__P_453_24;
           var xPos = this.getTablePaneModel().getX(col);
           var value = tableModel.getValue(col, row);
 
           // scroll cell into view
           this.scrollCellVisible(col, row);
-          this.__P_452_25 = table.getTableColumnModel().getCellEditorFactory(col);
+          this.__P_453_25 = table.getTableColumnModel().getCellEditorFactory(col);
           var cellInfo = {
             col: col,
             row: row,
@@ -1552,7 +1552,7 @@
           };
 
           // Get a cell editor
-          this._cellEditor = this.__P_452_25.createCellEditor(cellInfo);
+          this._cellEditor = this.__P_453_25.createCellEditor(cellInfo);
 
           // We handle two types of cell editors: the traditional in-place
           // editor, where the cell editor returned by the factory must fit in
@@ -1587,20 +1587,20 @@
             this._cellEditor.open();
           } else {
             // prevent tap event from bubbling up to the table
-            this.__P_452_27 = this.__P_452_7.addListener("pointerdown", function (e) {
-              _this.__P_452_18 = {
-                row: _this.__P_452_24,
-                col: _this.__P_452_23
+            this.__P_453_27 = this.__P_453_7.addListener("pointerdown", function (e) {
+              _this.__P_453_18 = {
+                row: _this.__P_453_24,
+                col: _this.__P_453_23
               };
               e.stopPropagation();
             });
             this._updateFocusIndicator(true);
-            this.__P_452_7.add(this._cellEditor);
-            this.__P_452_7.addState("editing");
-            this.__P_452_7.setKeepActive(false);
+            this.__P_453_7.add(this._cellEditor);
+            this.__P_453_7.addState("editing");
+            this.__P_453_7.setKeepActive(false);
 
             // Make the focus indicator visible during editing
-            this.__P_452_7.setDecorator("table-scroller-focus-indicator");
+            this.__P_453_7.setDecorator("table-scroller-focus-indicator");
             this._cellEditor.focus();
             this._cellEditor.activate();
           }
@@ -1615,7 +1615,7 @@
         // If the focus indicator is not being shown normally...
         if (!this.getShowCellFocusIndicator()) {
           // ... then hide it again
-          this.__P_452_7.setDecorator(null);
+          this.__P_453_7.setDecorator(null);
         }
         this.flushEditor(true);
       },
@@ -1627,18 +1627,18 @@
        */
       flushEditor: function flushEditor(cancel) {
         if (this.isEditing()) {
-          var value = this.__P_452_25.getCellEditorValue(this._cellEditor);
-          var oldValue = this.getTable().getTableModel().getValue(this.__P_452_23, this.__P_452_24);
-          this.getTable().getTableModel().setValue(this.__P_452_23, this.__P_452_24, value);
-          this.__P_452_0.focus();
+          var value = this.__P_453_25.getCellEditorValue(this._cellEditor);
+          var oldValue = this.getTable().getTableModel().getValue(this.__P_453_23, this.__P_453_24);
+          this.getTable().getTableModel().setValue(this.__P_453_23, this.__P_453_24, value);
+          this.__P_453_0.focus();
           if (cancel) {
             this.cancelEditing();
           }
 
           // Fire an event containing the value change.
-          this.__P_452_0.fireDataEvent("dataEdited", {
-            row: this.__P_452_24,
-            col: this.__P_452_23,
+          this.__P_453_0.fireDataEvent("dataEdited", {
+            row: this.__P_453_24,
+            col: this.__P_453_23,
             oldValue: oldValue,
             value: value
           });
@@ -1650,17 +1650,17 @@
       cancelEditing: function cancelEditing() {
         if (this.isEditing()) {
           if (!(this._cellEditor instanceof qx.ui.window.Window)) {
-            this.__P_452_7.removeState("editing");
-            this.__P_452_7.setKeepActive(true);
-            if (this.__P_452_27 !== null) {
-              this.__P_452_7.removeListenerById(this.__P_452_27);
-              this.__P_452_27 = null;
+            this.__P_453_7.removeState("editing");
+            this.__P_453_7.setKeepActive(true);
+            if (this.__P_453_27 !== null) {
+              this.__P_453_7.removeListenerById(this.__P_453_27);
+              this.__P_453_27 = null;
             }
             this._updateFocusIndicator();
           }
           this._cellEditor.destroy();
           this._cellEditor = null;
-          this.__P_452_25 = null;
+          this.__P_453_25 = null;
         }
       },
       /**
@@ -1682,7 +1682,7 @@
         var columnModel = this.getTable().getTableColumnModel();
         var paneModel = this.getTablePaneModel();
         var colCount = paneModel.getColumnCount();
-        var currX = this.__P_452_2.getContentLocation().left;
+        var currX = this.__P_453_2.getContentLocation().left;
         for (var x = 0; x < colCount; x++) {
           var col = paneModel.getColumnAtX(x);
           var colWidth = columnModel.getColumnWidth(col);
@@ -1701,7 +1701,7 @@
        * @return {Integer} the column index.
        */
       _getResizeColumnForPageX: function _getResizeColumnForPageX(pageX) {
-        var contentLocation = this.__P_452_1.getContentLocation() || this.__P_452_2.getContentLocation();
+        var contentLocation = this.__P_453_1.getContentLocation() || this.__P_453_2.getContentLocation();
         if (contentLocation) {
           var currX = contentLocation.left;
           var columnModel = this.getTable().getTableColumnModel();
@@ -1729,7 +1729,7 @@
        * @return {Integer} the model index of the row the pointer is currently over.
        */
       _getRowForPagePos: function _getRowForPagePos(pageX, pageY) {
-        var panePos = this.__P_452_2.getContentLocation();
+        var panePos = this.__P_453_2.getContentLocation();
         if (panePos === null || pageX < panePos.left || pageX > panePos.right) {
           // There was no cell or header cell hit
           return null;
@@ -1737,7 +1737,7 @@
         if (pageY >= panePos.top && pageY <= panePos.bottom) {
           // This event is in the pane -> Get the row
           var rowHeight = this.getTable().getRowHeight();
-          var scrollY = this.__P_452_6.getPosition();
+          var scrollY = this.__P_453_6.getPosition();
           if (this.getTable().getKeepFirstVisibleRowComplete()) {
             scrollY = Math.floor(scrollY / rowHeight) * rowHeight;
           }
@@ -1747,7 +1747,7 @@
           var rowCount = tableModel.getRowCount();
           return row < rowCount ? row : null;
         }
-        var headerPos = this.__P_452_1.getContentLocation();
+        var headerPos = this.__P_453_1.getContentLocation();
         if (headerPos !== null && pageY >= headerPos.top && pageY <= headerPos.bottom && pageX <= headerPos.right) {
           // This event is in the pane -> Return -1 for the header
           return -1;
@@ -1763,14 +1763,14 @@
        * @param widget {qx.ui.core.Widget} The widget to set. May be null.
        */
       setTopRightWidget: function setTopRightWidget(widget) {
-        var oldWidget = this.__P_452_26;
+        var oldWidget = this.__P_453_26;
         if (oldWidget != null) {
-          this.__P_452_3.remove(oldWidget);
+          this.__P_453_3.remove(oldWidget);
         }
         if (widget != null) {
-          this.__P_452_3.add(widget);
+          this.__P_453_3.add(widget);
         }
-        this.__P_452_26 = widget;
+        this.__P_453_26 = widget;
       },
       /**
        * Get the top right widget
@@ -1778,7 +1778,7 @@
        * @return {qx.ui.core.Widget} The top right widget.
        */
       getTopRightWidget: function getTopRightWidget() {
-        return this.__P_452_26;
+        return this.__P_453_26;
       },
       /**
        * Returns the header.
@@ -1786,7 +1786,7 @@
        * @return {qx.ui.table.pane.Header} the header.
        */
       getHeader: function getHeader() {
-        return this.__P_452_1;
+        return this.__P_453_1;
       },
       /**
        * Returns the table pane.
@@ -1794,7 +1794,7 @@
        * @return {qx.ui.table.pane.Pane} the table pane.
        */
       getTablePane: function getTablePane() {
-        return this.__P_452_2;
+        return this.__P_453_2;
       },
       /**
        * Get the rendered width of the vertical scroll bar. The return value is
@@ -1804,7 +1804,7 @@
        * @return {Integer} The width of the vertical scroll bar
        */
       getVerticalScrollBarWidth: function getVerticalScrollBarWidth() {
-        var scrollBar = this.__P_452_6;
+        var scrollBar = this.__P_453_6;
         return scrollBar.isVisible() ? scrollBar.getSizeHint().width || 0 : 0;
       },
       /**
@@ -1819,9 +1819,9 @@
        *      (combined by OR).
        */
       getNeededScrollBars: function getNeededScrollBars(forceHorizontal, preventVertical) {
-        var verScrollBar = this.__P_452_6;
+        var verScrollBar = this.__P_453_6;
         var verBarWidth = verScrollBar.getSizeHint().width + verScrollBar.getMarginLeft() + verScrollBar.getMarginRight();
-        var horScrollBar = this.__P_452_5;
+        var horScrollBar = this.__P_453_5;
         var horBarHeight = horScrollBar.getSizeHint().height + horScrollBar.getMarginTop() + horScrollBar.getMarginBottom();
 
         // Get the width and height of the view (without scroll bars)
@@ -1892,14 +1892,14 @@
        * @param timeout {Integer} The timeout between two table updates
        */
       _startInterval: function _startInterval(timeout) {
-        this.__P_452_8.setInterval(timeout);
-        this.__P_452_8.start();
+        this.__P_453_8.setInterval(timeout);
+        this.__P_453_8.start();
       },
       /**
        * stops the current running interval
        */
       _stopInterval: function _stopInterval() {
-        this.__P_452_8.stop();
+        this.__P_453_8.stop();
       },
       /**
        * Does a postponed update of the content.
@@ -1918,8 +1918,8 @@
        * @signature function()
        */
       _oninterval: qx.event.GlobalError.observeMethod(function () {
-        if (this.__P_452_11 && !this.__P_452_2._layoutPending) {
-          this.__P_452_11 = false;
+        if (this.__P_453_11 && !this.__P_453_2._layoutPending) {
+          this.__P_453_11 = false;
           this._updateContent();
         }
       }),
@@ -1933,12 +1933,12 @@
           return;
         }
         var paneHeight = paneSize.height;
-        var scrollX = this.__P_452_5.getPosition();
-        var scrollY = this.__P_452_6.getPosition();
+        var scrollX = this.__P_453_5.getPosition();
+        var scrollY = this.__P_453_6.getPosition();
         var rowHeight = this.getTable().getRowHeight();
         var firstRow = Math.floor(scrollY / rowHeight);
-        var oldFirstRow = this.__P_452_2.getFirstVisibleRow();
-        this.__P_452_2.setFirstVisibleRow(firstRow);
+        var oldFirstRow = this.__P_453_2.getFirstVisibleRow();
+        this.__P_453_2.setFirstVisibleRow(firstRow);
         var visibleRowCount = Math.ceil(paneHeight / rowHeight);
         var paneOffset = 0;
         var firstVisibleRowComplete = this.getTable().getKeepFirstVisibleRowComplete();
@@ -1949,7 +1949,7 @@
           visibleRowCount++;
           paneOffset = scrollY % rowHeight;
         }
-        this.__P_452_2.setVisibleRowCount(visibleRowCount);
+        this.__P_453_2.setVisibleRowCount(visibleRowCount);
         if (firstRow != oldFirstRow) {
           this._updateFocusIndicator();
         }
@@ -1971,7 +1971,7 @@
         if (!table.getEnabled()) {
           return;
         }
-        this.__P_452_7.moveToCell(this.__P_452_23, this.__P_452_24, editing);
+        this.__P_453_7.moveToCell(this.__P_453_23, this.__P_453_24, editing);
       }
     },
     /*
@@ -1987,11 +1987,11 @@
       if (tablePaneModel) {
         tablePaneModel.dispose();
       }
-      this.__P_452_18 = this.__P_452_26 = this.__P_452_0 = null;
-      this._disposeObjects("__P_452_5", "__P_452_6", "_headerClipper", "_paneClipper", "__P_452_7", "__P_452_1", "__P_452_2", "__P_452_3", "__P_452_8", "__P_452_4");
+      this.__P_453_18 = this.__P_453_26 = this.__P_453_0 = null;
+      this._disposeObjects("__P_453_5", "__P_453_6", "_headerClipper", "_paneClipper", "__P_453_7", "__P_453_1", "__P_453_2", "__P_453_3", "__P_453_8", "__P_453_4");
     }
   });
   qx.ui.table.pane.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1673093875461
+//# sourceMappingURL=Scroller.js.map?dt=1676809329463

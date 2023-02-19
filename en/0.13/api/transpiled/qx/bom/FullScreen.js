@@ -83,11 +83,11 @@
      * @param element {Element?} Optional element to show fullscreen.
      */
     construct: function construct(element) {
-      this.__P_101_0 = element || window.document;
-      this.__P_101_1();
+      this.__P_102_0 = element || window.document;
+      this.__P_102_1();
       var self = this;
       // forward the event
-      qx.bom.Event.addNativeListener(this.__P_101_0, this.__P_101_2, function (e) {
+      qx.bom.Event.addNativeListener(this.__P_102_0, this.__P_102_2, function (e) {
         self.emit("change", e);
       });
     },
@@ -98,46 +98,46 @@
       change: "Event"
     },
     members: {
-      __P_101_0: null,
-      __P_101_3: "fullscreenElement",
-      __P_101_4: "requestFullscreen",
-      __P_101_5: "cancelFullscreen",
-      __P_101_2: "fullscreenchange",
+      __P_102_0: null,
+      __P_102_3: "fullscreenElement",
+      __P_102_4: "requestFullscreen",
+      __P_102_5: "cancelFullscreen",
+      __P_102_2: "fullscreenchange",
       /**
        * Internal helper to feature check the attribute names and the event name.
        * As the event can not be detected using the on<name> attribute, we need
        * to guess the event name by checking for the hidden attribute.
        */
-      __P_101_1: function __P_101_1() {
+      __P_102_1: function __P_102_1() {
         var prefix = qx.bom.Style.VENDOR_PREFIXES;
 
         // check for the hidden attribute name
         for (var i = 0; i < prefix.length; i++) {
           var pfix = prefix[i].toLowerCase();
-          if (this.__P_101_0[pfix + "FullScreenElement"] !== undefined || this.__P_101_0[pfix + "FullscreenElement"] !== undefined) {
-            this.__P_101_2 = pfix + "fullscreenchange";
+          if (this.__P_102_0[pfix + "FullScreenElement"] !== undefined || this.__P_102_0[pfix + "FullscreenElement"] !== undefined) {
+            this.__P_102_2 = pfix + "fullscreenchange";
             if (pfix == "moz") {
-              this.__P_101_3 = pfix + "FullScreenElement";
-              this.__P_101_4 = pfix + "RequestFullScreen";
+              this.__P_102_3 = pfix + "FullScreenElement";
+              this.__P_102_4 = pfix + "RequestFullScreen";
             } else {
-              this.__P_101_3 = pfix + "FullscreenElement";
-              this.__P_101_4 = pfix + "RequestFullscreen";
+              this.__P_102_3 = pfix + "FullscreenElement";
+              this.__P_102_4 = pfix + "RequestFullscreen";
             }
             break;
           }
         }
 
         // Doh. This needs some upstream consistency though...
-        if (this.__P_101_0[pfix + "CancelFullScreen"]) {
-          this.__P_101_5 = pfix + "CancelFullScreen";
-        } else if (this.__P_101_0[pfix + "CancelFullscreen"]) {
-          this.__P_101_5 = pfix + "CancelFullscreen";
-        } else if (this.__P_101_0[pfix + "ExitFullScreen"]) {
-          this.__P_101_5 = pfix + "ExitFullScreen";
-        } else if (this.__P_101_0[pfix + "ExitFullscreen"]) {
-          this.__P_101_5 = pfix + "ExitFullscreen";
-        } else if (this.__P_101_0["exitFullscreen"]) {
-          this.__P_101_5 = "exitFullscreen";
+        if (this.__P_102_0[pfix + "CancelFullScreen"]) {
+          this.__P_102_5 = pfix + "CancelFullScreen";
+        } else if (this.__P_102_0[pfix + "CancelFullscreen"]) {
+          this.__P_102_5 = pfix + "CancelFullscreen";
+        } else if (this.__P_102_0[pfix + "ExitFullScreen"]) {
+          this.__P_102_5 = pfix + "ExitFullScreen";
+        } else if (this.__P_102_0[pfix + "ExitFullscreen"]) {
+          this.__P_102_5 = pfix + "ExitFullscreen";
+        } else if (this.__P_102_0["exitFullscreen"]) {
+          this.__P_102_5 = "exitFullscreen";
         }
       },
       /**
@@ -147,7 +147,7 @@
        * @return {Boolean} <code>true</code>, if the page is shown fullscreen
        */
       isFullScreen: function isFullScreen() {
-        return this.__P_101_0[this.__P_101_3] !== undefined ? !!this.__P_101_0[this.__P_101_3] : false;
+        return this.__P_102_0[this.__P_102_3] !== undefined ? !!this.__P_102_0[this.__P_102_3] : false;
       },
       /**
        * Request the page to be shown in fullscreen mode. Note that this
@@ -158,16 +158,16 @@
        * so there is no guarantee that it really worked.
        */
       request: function request() {
-        if (this.__P_101_0.documentElement[this.__P_101_4]) {
-          this.__P_101_0.documentElement[this.__P_101_4]();
+        if (this.__P_102_0.documentElement[this.__P_102_4]) {
+          this.__P_102_0.documentElement[this.__P_102_4]();
         }
       },
       /**
        * End the fullscreen mode.
        */
       cancel: function cancel() {
-        if (this.__P_101_0[this.__P_101_5]) {
-          this.__P_101_0[this.__P_101_5]();
+        if (this.__P_102_0[this.__P_102_5]) {
+          this.__P_102_0[this.__P_102_5]();
         }
       }
     }
@@ -175,4 +175,4 @@
   qx.bom.FullScreen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FullScreen.js.map?dt=1673093848064
+//# sourceMappingURL=FullScreen.js.map?dt=1676809303603

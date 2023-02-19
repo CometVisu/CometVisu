@@ -64,6 +64,7 @@
   },
   "type": "theme",
   "descendants": [
+    "qx.theme.indigo.AppearanceDark",
     "qxl.apiviewer.Appearance"
   ]
 }

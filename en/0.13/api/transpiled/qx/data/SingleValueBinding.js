@@ -42,9 +42,9 @@
   qx.Class.define("qx.data.SingleValueBinding", {
     statics: {
       /** internal reference for all bindings indexed by source object */
-      __P_170_0: {},
+      __P_171_0: {},
       /** internal reference for all bindings indexed by target object */
-      __P_170_1: {},
+      __P_171_1: {},
       /**
        * The function is responsible for binding a source objects property to
        * a target objects property. Both properties have to have the usual qooxdoo
@@ -133,13 +133,13 @@
         // check for the arguments
 
         // set up the target binding
-        var targetListenerMap = this.__P_170_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options);
+        var targetListenerMap = this.__P_171_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options);
 
         // get the property names
         var propertyNames = sourcePropertyChain.split(".");
 
         // stuff that's needed to store for the listener function
-        var arrayIndexValues = this.__P_170_3(propertyNames);
+        var arrayIndexValues = this.__P_171_3(propertyNames);
         var sources = [];
         var listeners = [];
         var listenerIds = [];
@@ -159,7 +159,7 @@
               // push the array change event
               eventNames.push("change");
             } else {
-              var eventName = this.__P_170_4(source, propertyName);
+              var eventName = this.__P_171_4(source, propertyName);
               if (!eventName) {
                 if (i == 0) {
                   // the root property can not change --> error
@@ -170,7 +170,7 @@
                 }
 
                 // call the converter if no event could be found on binding creation
-                initialPromise = this.__P_170_5(undefined, targetObject, targetPropertyChain, options, sourceObject);
+                initialPromise = this.__P_171_5(undefined, targetObject, targetPropertyChain, options, sourceObject);
                 break;
               }
               eventNames.push(eventName);
@@ -188,18 +188,18 @@
                 var currentValue = source.getItem(itemIndex);
 
                 // set the initial value
-                initialPromise = this.__P_170_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
+                initialPromise = this.__P_171_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
 
                 // bind the event
-                listenerIds[i] = this.__P_170_6(source, eventNames[i], targetObject, targetPropertyChain, options, arrayIndexValues[i]);
+                listenerIds[i] = this.__P_171_6(source, eventNames[i], targetObject, targetPropertyChain, options, arrayIndexValues[i]);
               } else {
                 // try to set the initial value
                 if (propertyNames[i] != null && source["get" + qx.lang.String.firstUp(propertyNames[i])] != null) {
                   var currentValue = source["get" + qx.lang.String.firstUp(propertyNames[i])]();
-                  initialPromise = this.__P_170_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
+                  initialPromise = this.__P_171_5(currentValue, targetObject, targetPropertyChain, options, sourceObject);
                 }
                 // bind the property
-                listenerIds[i] = this.__P_170_6(source, eventNames[i], targetObject, targetPropertyChain, options);
+                listenerIds[i] = this.__P_171_6(source, eventNames[i], targetObject, targetPropertyChain, options);
               }
 
               // if its not the last property
@@ -218,7 +218,7 @@
               };
 
               // create a listener
-              var listener = qx.lang.Function.bind(this.__P_170_7, this, context);
+              var listener = qx.lang.Function.bind(this.__P_171_7, this, context);
 
               // store the listener for further processing
               listeners.push(listener);
@@ -242,7 +242,7 @@
             }
             if (!source) {
               // call the converter if no source could be found on binding creation
-              this.__P_170_5(source, targetObject, targetPropertyChain, options, sourceObject);
+              this.__P_171_5(source, targetObject, targetPropertyChain, options, sourceObject);
               break;
             }
           }
@@ -279,7 +279,7 @@
         };
 
         // store the bindings
-        this.__P_170_8(id, sourceObject, sourcePropertyChain, targetObject, targetPropertyChain);
+        this.__P_171_8(id, sourceObject, sourcePropertyChain, targetObject, targetPropertyChain);
         return id;
       },
       /**
@@ -287,7 +287,7 @@
        *
        * @param context {Map} The current context for the listener.
        */
-      __P_170_7: function __P_170_7(context) {
+      __P_171_7: function __P_171_7(context) {
         // invoke the onUpdate method
         if (context.options && context.options.onUpdate) {
           context.options.onUpdate(context.sources[context.index], context.targetObject);
@@ -331,12 +331,12 @@
                 ignoreConverter = match ? match.length > 0 : false;
               }
               if (!ignoreConverter) {
-                this.__P_170_9(context.targetObject, context.targetPropertyChain, context.options.converter());
+                this.__P_171_9(context.targetObject, context.targetPropertyChain, context.options.converter());
               } else {
-                this.__P_170_10(context.targetObject, context.targetPropertyChain);
+                this.__P_171_10(context.targetObject, context.targetPropertyChain);
               }
             } else {
-              this.__P_170_10(context.targetObject, context.targetPropertyChain);
+              this.__P_171_10(context.targetObject, context.targetPropertyChain);
             }
             break;
           }
@@ -348,28 +348,28 @@
               // set the initial value
               var itemIndex = context.arrayIndexValues[j] === "last" ? source.length - 1 : context.arrayIndexValues[j];
               var currentValue = source.getItem(itemIndex);
-              this.__P_170_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
+              this.__P_171_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
 
               // bind the item event to the new target
-              context.listenerIds[j] = this.__P_170_6(source, "change", context.targetObject, context.targetPropertyChain, context.options, context.arrayIndexValues[j]);
+              context.listenerIds[j] = this.__P_171_6(source, "change", context.targetObject, context.targetPropertyChain, context.options, context.arrayIndexValues[j]);
             } else {
               if (context.propertyNames[j] != null && source["get" + qx.lang.String.firstUp(context.propertyNames[j])] != null) {
                 var currentValue = source["get" + qx.lang.String.firstUp(context.propertyNames[j])]();
-                this.__P_170_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
+                this.__P_171_5(currentValue, context.targetObject, context.targetPropertyChain, context.options, context.sources[context.index]);
               }
-              var eventName = this.__P_170_4(source, context.propertyNames[j]);
+              var eventName = this.__P_171_4(source, context.propertyNames[j]);
               if (!eventName) {
                 context.sources[j] = null;
-                this.__P_170_10(context.targetObject, context.targetPropertyChain);
+                this.__P_171_10(context.targetObject, context.targetPropertyChain);
                 return;
               }
               // bind the last property to the new target
-              context.listenerIds[j] = this.__P_170_6(source, eventName, context.targetObject, context.targetPropertyChain, context.options);
+              context.listenerIds[j] = this.__P_171_6(source, eventName, context.targetObject, context.targetPropertyChain, context.options);
             }
           } else {
             // check if a listener already created
             if (context.listeners[j] == null) {
-              var listener = qx.lang.Function.bind(this.__P_170_7, this, context);
+              var listener = qx.lang.Function.bind(this.__P_171_7, this, context);
 
               // store the listener for further processing
               context.listeners.push(listener);
@@ -378,11 +378,11 @@
             if (qx.Class.implementsInterface(source, qx.data.IListData)) {
               var eventName = "change";
             } else {
-              var eventName = this.__P_170_4(source, context.propertyNames[j]);
+              var eventName = this.__P_171_4(source, context.propertyNames[j]);
             }
             if (!eventName) {
               context.sources[j] = null;
-              this.__P_170_10(context.targetObject, context.targetPropertyChain);
+              this.__P_171_10(context.targetObject, context.targetPropertyChain);
               return;
             }
             context.listenerIds[j] = source.addListener(eventName, context.listeners[j]);
@@ -405,10 +405,10 @@
        *   converter.
        * @return {var} A map containing the listener ids and the targets.
        */
-      __P_170_2: function __P_170_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options) {
+      __P_171_2: function __P_171_2(sourceObject, sourcePropertyChain, targetObject, targetPropertyChain, options) {
         // get the property names
         var propertyNames = targetPropertyChain.split(".");
-        var arrayIndexValues = this.__P_170_3(propertyNames);
+        var arrayIndexValues = this.__P_171_3(propertyNames);
         var targets = [];
         var listeners = [];
         var listenerIds = [];
@@ -422,7 +422,7 @@
             // push the array change event
             eventNames.push("change");
           } else {
-            var eventName = this.__P_170_4(target, propertyNames[i]);
+            var eventName = this.__P_171_4(target, propertyNames[i]);
             if (!eventName) {
               // if the event names could not be terminated,
               // just ignore the target chain listening
@@ -476,7 +476,7 @@
               if (qx.Class.implementsInterface(target, qx.data.IListData)) {
                 var eventName = "change";
               } else {
-                var eventName = qx.data.SingleValueBinding.__P_170_4(target, propertyNames[j]);
+                var eventName = qx.data.SingleValueBinding.__P_171_4(target, propertyNames[j]);
                 if (!eventName) {
                   // if the event name could not be terminated,
                   // ignore the rest
@@ -531,8 +531,8 @@
         var value = this.resolvePropertyChain(sourceObject, sourcePropertyChain);
 
         // convert the data before setting
-        value = qx.data.SingleValueBinding.__P_170_11(value, targetObject, targetPropertyChain, options, sourceObject);
-        this.__P_170_9(targetObject, targetPropertyChain, value);
+        value = qx.data.SingleValueBinding.__P_171_11(value, targetObject, targetPropertyChain, options, sourceObject);
+        this.__P_171_9(targetObject, targetPropertyChain, value);
       },
       /**
        * Internal helper for getting the current set value at the property chain.
@@ -543,8 +543,8 @@
        * @return {var?undefined} Returns the set value if defined.
        */
       resolvePropertyChain: function resolvePropertyChain(o, propertyChain) {
-        var properties = this.__P_170_12(propertyChain);
-        return this.__P_170_13(o, properties, properties.length);
+        var properties = this.__P_171_12(propertyChain);
+        return this.__P_171_13(o, properties, properties.length);
       },
       /**
        * Tries to return a fitting event name to the given source object and
@@ -559,9 +559,9 @@
        * @param propertyName {String} The name of the property.
        * @return {String|null} The name of the corresponding event or null.
        */
-      __P_170_4: function __P_170_4(source, propertyName) {
+      __P_171_4: function __P_171_4(source, propertyName) {
         // get the current event name from the property definition
-        var eventName = this.__P_170_14(source, propertyName);
+        var eventName = this.__P_171_14(source, propertyName);
         // if no event name could be found
         if (eventName == null) {
           // check if the propertyName is the event name
@@ -585,17 +585,17 @@
        * @param targetPropertyChain {String} The names of the properties,
        *   separated with a dot.
        */
-      __P_170_10: function __P_170_10(targetObject, targetPropertyChain) {
+      __P_171_10: function __P_171_10(targetObject, targetPropertyChain) {
         // get the last target object of the chain
-        var properties = this.__P_170_12(targetPropertyChain);
-        var target = this.__P_170_13(targetObject, properties);
+        var properties = this.__P_171_12(targetPropertyChain);
+        var target = this.__P_171_13(targetObject, properties);
         if (target != null) {
           // get the name of the last property
           var lastProperty = properties[properties.length - 1];
           // check for an array and set the value to null
-          var index = this.__P_170_15(lastProperty);
+          var index = this.__P_171_15(lastProperty);
           if (index) {
-            this.__P_170_9(targetObject, targetPropertyChain, null);
+            this.__P_171_9(targetObject, targetPropertyChain, null);
             return;
           }
 
@@ -621,16 +621,16 @@
        *   separated with a dot.
        * @param value {var} The value to set.
        */
-      __P_170_9: function __P_170_9(targetObject, targetPropertyChain, value) {
+      __P_171_9: function __P_171_9(targetObject, targetPropertyChain, value) {
         // get the last target object of the chain
-        var properties = this.__P_170_12(targetPropertyChain);
-        var target = this.__P_170_13(targetObject, properties);
+        var properties = this.__P_171_12(targetPropertyChain);
+        var target = this.__P_171_13(targetObject, properties);
         if (target) {
           // get the name of the last property
           var lastProperty = properties[properties.length - 1];
 
           // check for array notation
-          var index = this.__P_170_15(lastProperty);
+          var index = this.__P_171_15(lastProperty);
           if (index) {
             if (index === "last") {
               // check for the 'last' notation
@@ -653,7 +653,7 @@
        * @return {String|null} Array index or null if the property name does
        * not use bracket notation
        */
-      __P_170_15: function __P_170_15(propertyName) {
+      __P_171_15: function __P_171_15(propertyName) {
         var arrayExp = /^\[(\d+|last)\]$/;
         var arrayMatch = propertyName.match(arrayExp);
         if (arrayMatch) {
@@ -667,7 +667,7 @@
        * @param targetPropertyChain {String} property chain
        * @return {String[]} Array of property names
        */
-      __P_170_12: function __P_170_12(targetPropertyChain) {
+      __P_171_12: function __P_171_12(targetPropertyChain) {
         // split properties (dot notation) and array indexes (bracket notation)
         return targetPropertyChain.replace(/\[/g, ".[").split(".").filter(function (prop) {
           return prop !== "";
@@ -682,10 +682,10 @@
        * @param targetProperties {String[]} Array containing the names of the properties
        * @param index {Number?} The array index of the last property to be considered.
        * Default: The last item's index
-       * @return {qx.core.Object | null} The object on which the last property
+       * @return {qx.core.Object|null} The object on which the last property
        *   should be set.
        */
-      __P_170_13: function __P_170_13(targetObject, targetProperties, index) {
+      __P_171_13: function __P_171_13(targetObject, targetProperties, index) {
         index = index || targetProperties.length - 1;
         var target = targetObject;
         for (var i = 0; target !== null && i < index; i++) {
@@ -693,7 +693,7 @@
             var property = targetProperties[i];
 
             // array notation
-            var arrIndex = this.__P_170_15(property);
+            var arrIndex = this.__P_171_15(property);
             if (arrIndex) {
               if (arrIndex === "last") {
                 // check for the 'last' notation
@@ -723,18 +723,18 @@
        * @param sourceObject {qx.core.Object} The source object of the binding (
        *   used for the onUpdate callback).
        */
-      __P_170_5: function __P_170_5(value, targetObject, targetPropertyChain, options, sourceObject) {
+      __P_171_5: function __P_171_5(value, targetObject, targetPropertyChain, options, sourceObject) {
         // first convert the initial value
-        value = this.__P_170_11(value, targetObject, targetPropertyChain, options, sourceObject);
+        value = this.__P_171_11(value, targetObject, targetPropertyChain, options, sourceObject);
 
         // check if the converted value is undefined
         if (value === undefined) {
-          this.__P_170_10(targetObject, targetPropertyChain);
+          this.__P_171_10(targetObject, targetPropertyChain);
         }
         // only set the initial value if one is given (may be null)
         if (value !== undefined) {
           try {
-            var result = this.__P_170_9(targetObject, targetPropertyChain, value);
+            var result = this.__P_171_9(targetObject, targetPropertyChain, value);
 
             // tell the user that the setter was invoked probably
             if (options && options.onUpdate) {
@@ -762,7 +762,7 @@
        * @return {Array} An array containing the values of the array properties
        *   corresponding to the property names.
        */
-      __P_170_3: function __P_170_3(propertyNames) {
+      __P_171_3: function __P_171_3(propertyNames) {
         // array for the values of the array properties
         var arrayIndexValues = [];
 
@@ -836,7 +836,7 @@
        *   there is no property definition for the target object and target
        *   property.
        */
-      __P_170_6: function __P_170_6(sourceObject, sourceEvent, targetObject, targetProperty, options, arrayIndex) {
+      __P_171_6: function __P_171_6(sourceObject, sourceEvent, targetObject, targetProperty, options, arrayIndex) {
         // checks
 
         var bindListener = function bindListener(arrayIndex, e) {
@@ -852,7 +852,7 @@
 
             // reset the target if the data is not set
             if (data === undefined) {
-              qx.data.SingleValueBinding.__P_170_10(targetObject, targetProperty);
+              qx.data.SingleValueBinding.__P_171_10(targetObject, targetProperty);
             }
 
             // only do something if the current array has been changed
@@ -869,7 +869,7 @@
           // debug message
 
           // convert the data
-          data = qx.data.SingleValueBinding.__P_170_11(data, targetObject, targetProperty, options, sourceObject);
+          data = qx.data.SingleValueBinding.__P_171_11(data, targetObject, targetProperty, options, sourceObject);
 
           // debug message
 
@@ -877,9 +877,9 @@
           var result;
           try {
             if (data !== undefined) {
-              result = qx.data.SingleValueBinding.__P_170_9(targetObject, targetProperty, data);
+              result = qx.data.SingleValueBinding.__P_171_9(targetObject, targetProperty, data);
             } else {
-              result = qx.data.SingleValueBinding.__P_170_10(targetObject, targetProperty);
+              result = qx.data.SingleValueBinding.__P_171_10(targetObject, targetProperty);
             }
 
             // tell the user that the setter was invoked probably
@@ -922,23 +922,23 @@
        * @param targetProperty {String} The name of the property on the target
        *   object.
        */
-      __P_170_8: function __P_170_8(id, sourceObject, sourceEvent, targetObject, targetProperty) {
+      __P_171_8: function __P_171_8(id, sourceObject, sourceEvent, targetObject, targetProperty) {
         var hash;
 
         // add the listener id to the internal registry
         hash = sourceObject.toHashCode();
-        if (this.__P_170_0[hash] === undefined) {
-          this.__P_170_0[hash] = [];
+        if (this.__P_171_0[hash] === undefined) {
+          this.__P_171_0[hash] = [];
         }
         var binding = [id, sourceObject, sourceEvent, targetObject, targetProperty];
-        this.__P_170_0[hash].push(binding);
+        this.__P_171_0[hash].push(binding);
 
         // add same binding data indexed by target object
         hash = targetObject.toHashCode();
-        if (this.__P_170_1[hash] === undefined) {
-          this.__P_170_1[hash] = [];
+        if (this.__P_171_1[hash] === undefined) {
+          this.__P_171_1[hash] = [];
         }
-        this.__P_170_1[hash].push(binding);
+        this.__P_171_1[hash].push(binding);
       },
       /**
        * This method takes the given value, checks if the user has given a
@@ -959,7 +959,7 @@
        * @throws {qx.core.AssertionError} If there is no property definition
        *   of the given target object and target property.
        */
-      __P_170_11: function __P_170_11(value, targetObject, targetPropertyChain, options, sourceObject) {
+      __P_171_11: function __P_171_11(value, targetObject, targetPropertyChain, options, sourceObject) {
         // do the conversion given by the user
         if (options && options.converter) {
           var model;
@@ -969,8 +969,8 @@
           return options.converter(value, model, sourceObject, targetObject);
           // try default conversion
         } else {
-          var properties = this.__P_170_12(targetPropertyChain);
-          var target = this.__P_170_13(targetObject, properties);
+          var properties = this.__P_171_12(targetPropertyChain);
+          var target = this.__P_171_13(targetObject, properties);
           var lastProperty = targetPropertyChain.substring(targetPropertyChain.lastIndexOf(".") + 1, targetPropertyChain.length);
 
           // if no target is currently available, return the original value
@@ -979,7 +979,7 @@
           }
           var propertieDefinition = qx.Class.getPropertyDefinition(target.constructor, lastProperty);
           var check = propertieDefinition == null ? "" : propertieDefinition.check;
-          return this.__P_170_16(value, check);
+          return this.__P_171_16(value, check);
         }
       },
       /**
@@ -993,7 +993,7 @@
        * @throws {qx.core.AssertionError} If there is no property definition of
        *   the given object property pair.
        */
-      __P_170_14: function __P_170_14(sourceObject, sourceProperty) {
+      __P_171_14: function __P_171_14(sourceObject, sourceProperty) {
         // get the event name
         var propertieDefinition = qx.Class.getPropertyDefinition(sourceObject.constructor, sourceProperty);
         if (propertieDefinition == null) {
@@ -1009,7 +1009,7 @@
        *   contains the target type.
        * @return {Integer|String|Float} The converted data
        */
-      __P_170_16: function __P_170_16(data, targetCheck) {
+      __P_171_16: function __P_171_16(data, targetCheck) {
         var dataType = qx.lang.Type.getClass(data);
 
         // to integer
@@ -1082,14 +1082,14 @@
             if (bindings[i][0] == id) {
               // remove binding data from internal reference indexed by target object
               var target = bindings[i][3];
-              if (this.__P_170_1[target.toHashCode()]) {
-                qx.lang.Array.remove(this.__P_170_1[target.toHashCode()], bindings[i]);
+              if (this.__P_171_1[target.toHashCode()]) {
+                qx.lang.Array.remove(this.__P_171_1[target.toHashCode()], bindings[i]);
               }
 
               // remove binding data from internal reference indexed by source object
               var source = bindings[i][1];
-              if (this.__P_170_0[source.toHashCode()]) {
-                qx.lang.Array.remove(this.__P_170_0[source.toHashCode()], bindings[i]);
+              if (this.__P_171_0[source.toHashCode()]) {
+                qx.lang.Array.remove(this.__P_171_0[source.toHashCode()], bindings[i]);
               }
               return;
             }
@@ -1119,8 +1119,8 @@
           }
         }
         var hash = object.toHashCode();
-        delete this.__P_170_0[hash];
-        delete this.__P_170_1[hash];
+        delete this.__P_171_0[hash];
+        delete this.__P_171_1[hash];
       },
       /**
        * Removes all bindings between given objects.
@@ -1164,10 +1164,10 @@
         var hash = object.toHashCode();
 
         // get all bindings of object as source
-        var sourceBindings = this.__P_170_0[hash];
+        var sourceBindings = this.__P_171_0[hash];
 
         // get all bindings of object as target
-        var targetBindings = this.__P_170_1[hash];
+        var targetBindings = this.__P_171_1[hash];
         if (!sourceBindings && !targetBindings) {
           return [];
         }
@@ -1187,17 +1187,17 @@
        */
       removeAllBindings: function removeAllBindings() {
         // go through all registered objects
-        for (var hash in this.__P_170_0) {
+        for (var hash in this.__P_171_0) {
           var object = qx.core.ObjectRegistry.fromHashCode(hash);
           // check for the object, perhaps its already deleted
           if (object == null) {
-            delete this.__P_170_0[hash];
+            delete this.__P_171_0[hash];
             continue;
           }
           this.removeAllBindingsForObject(object);
         }
         // reset the bindings map
-        this.__P_170_0 = {};
+        this.__P_171_0 = {};
       },
       /**
        * Returns a map containing for every bound object an array of data binding
@@ -1208,7 +1208,7 @@
        * @return {Map} Map containing all bindings.
        */
       getAllBindings: function getAllBindings() {
-        return this.__P_170_0;
+        return this.__P_171_0;
       },
       /**
        * Debug function which shows some valuable information about the given
@@ -1220,10 +1220,10 @@
       showBindingInLog: function showBindingInLog(object, id) {
         var binding;
         // go through all bindings of the given object
-        for (var i = 0; i < this.__P_170_0[object.toHashCode()].length; i++) {
+        for (var i = 0; i < this.__P_171_0[object.toHashCode()].length; i++) {
           // the first array item is the id
-          if (this.__P_170_0[object.toHashCode()][i][0] == id) {
-            binding = this.__P_170_0[object.toHashCode()][i];
+          if (this.__P_171_0[object.toHashCode()][i][0] == id) {
+            binding = this.__P_171_0[object.toHashCode()][i];
             break;
           }
         }
@@ -1241,11 +1241,11 @@
        */
       showAllBindingsInLog: function showAllBindingsInLog() {
         // go through all objects in the registry
-        for (var hash in this.__P_170_0) {
+        for (var hash in this.__P_171_0) {
           var object = qx.core.ObjectRegistry.fromHashCode(hash);
           if (object) {
-            for (var i = 0; i < this.__P_170_0[hash].length; i++) {
-              this.showBindingInLog(object, this.__P_170_0[hash][i][0]);
+            for (var i = 0; i < this.__P_171_0[hash].length; i++) {
+              this.showBindingInLog(object, this.__P_171_0[hash][i][0]);
             }
           }
         }
@@ -1255,4 +1255,4 @@
   qx.data.SingleValueBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleValueBinding.js.map?dt=1673093852567
+//# sourceMappingURL=SingleValueBinding.js.map?dt=1676809308066

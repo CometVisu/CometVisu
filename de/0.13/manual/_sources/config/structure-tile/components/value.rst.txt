@@ -20,7 +20,7 @@ Die einfachste Variante ist es den Wert einfach als Text anzuzeigen.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget" >
         <screenshot name="cv-value-label" margin="10 10 -30 10">
             <data address="1/4/2">75</data>
         </screenshot>
@@ -50,7 +50,7 @@ Um die Primärfarbe zu nutzen muss das ``<label>`` folgendermaßen aussehen.
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget" >
         <screenshot name="cv-value-label-primary" margin="10 10 -30 10">
             <data address="1/4/2">75</data>
         </screenshot>
@@ -72,7 +72,7 @@ und large größer.
 .. widget-example::
     :hide-source: true
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget" >
         <screenshot name="cv-value-label-large" margin="10 10 0 10">
             <data address="1/4/2">75</data>
         </screenshot>
@@ -96,7 +96,7 @@ Wert-abhängig beeinflusst werden.
 .. widget-example::
     :shots-per-row: 2
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget" >
         <screenshot name="cv-value-icon-off" margin="10 10 -30 10">
             <data address="1/4/2">0</data>
         </screenshot>
@@ -127,7 +127,7 @@ eine runden oder halb-runden Fortschrittsbalken.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile" wrapped-position="row='middle' colspan='3'">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget"  wrapped-position="row='middle' colspan='3'">
         <screenshot name="cv-value-progress" margin="10 10 -30 10">
             <data address="1/4/2">75</data>
             <caption>horizontaler Fortschrittsbalken</caption>
@@ -142,7 +142,7 @@ eine runden oder halb-runden Fortschrittsbalken.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile" wrapped-position="row='middle' colspan='3'">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget"  wrapped-position="row='middle' colspan='3'">
         <screenshot name="cv-value-progress-round" margin="10 10 10 10">
             <data address="1/4/2">75</data>
             <caption>runder Fortschrittsbalken</caption>
@@ -157,7 +157,7 @@ eine runden oder halb-runden Fortschrittsbalken.
 
 .. widget-example::
 
-    <settings design="tile" selector="cv-value" wrap-in="cv-tile" wrapped-position="row='middle' colspan='3'">
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget"  wrapped-position="row='middle' colspan='3'">
         <screenshot name="cv-value-progress-semi-round" margin="10 10 10 10">
             <data address="1/4/2">75</data>
             <caption>halb-runder Fortschrittsbalken</caption>
@@ -166,6 +166,19 @@ eine runden oder halb-runden Fortschrittsbalken.
     <cv-value format="%d%%">
         <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
         <cv-round-progress class="value" type="semiCircle"/>
+    </cv-value>
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-value" wrap-in="cv-widget"  wrapped-position="row='middle' colspan='3'">
+        <screenshot name="cv-value-progress-semi-round-color" margin="10 10 10 10">
+            <data address="1/4/2">75</data>
+            <caption>halb-runder Fortschrittsbalken mit anderer Farbe</caption>
+        </screenshot>
+    </settings>
+    <cv-value format="%d%%">
+        <cv-address transform="DPT:5.001" mode="read">1/4/2</cv-address>
+        <cv-round-progress class="value" type="semiCircle" foreground-color="#FF0000"/>
     </cv-value>
 
 Erlaubte Attribute

@@ -13,7 +13,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -89,7 +89,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     members: {
-      __P_75_0: null,
+      __P_76_0: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -156,33 +156,34 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               throttleInterval: this.getThrottleInterval()
             };
             cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
-            this.__P_75_0 = new cv.ui.structure.pure.ColorChooser(props);
-            this.__P_75_0.addListener('colorChanged', this._onColorChanged, this);
+            this.__P_76_0 = new cv.ui.structure.pure.ColorChooser(props);
+            this.__P_76_0.addListener('colorChanged', this._onColorChanged, this);
             this._onColorChanged();
-            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_75_0.getDomString(), "</div>");
+            popup.innerHTML = "<div class=\"widget_container\" style=\"margin-top: 24px; max-width: 100vw; width: 320px; max-height: 100vh; min-height: 320px; align-self: center\" id=\"".concat(path, "\" data-type=\"colorchooser\">").concat(this.__P_76_0.getDomString(), "</div>");
             element.appendChild(popup);
             element.addEventListener('click', function (ev) {
-              if (ev.path.indexOf(popup) < 0) {
+              var path = ev.path || ev.composedPath && ev.composedPath();
+              if (path && path.indexOf(popup) < 0) {
                 popup.getInstance().open();
               }
             });
             qx.event.Timer.once(function () {
-              _this.__P_75_0._onDomReady();
+              _this.__P_76_0._onDomReady();
             }, this, 0);
             this.setResizeTarget(popup);
             this.addListener('resized', function () {
-              _this.__P_75_0.invalidateScreensize();
+              _this.__P_76_0.invalidateScreensize();
             });
           }
         }
       },
       _onColorChanged: function _onColorChanged() {
-        var color = this.__P_75_0.getColor();
+        var color = this.__P_76_0.getColor();
         var rgb = color.getComponent('rgb');
         var v = color.getComponent('v');
-        this.setValue("#".concat(this.__P_75_1(rgb.r)).concat(this.__P_75_1(rgb.g)).concat(this.__P_75_1(rgb.b)).concat(this.__P_75_1(v)));
+        this.setValue("#".concat(this.__P_76_1(rgb.r)).concat(this.__P_76_1(rgb.g)).concat(this.__P_76_1(rgb.b)).concat(this.__P_76_1(v)));
       },
-      __P_75_1: function __P_75_1(v) {
+      __P_76_1: function __P_76_1(v) {
         return Math.round(v * 255).toString(16).padStart(2, '0');
       },
       _updateValue: function _updateValue(mappedValue, value) {
@@ -209,7 +210,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_75_0");
+      this._disposeObjects("__P_76_0");
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'color', /*#__PURE__*/function (_QxConnector) {
@@ -228,4 +229,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1673093844874
+//# sourceMappingURL=Color.js.map?dt=1676809300511

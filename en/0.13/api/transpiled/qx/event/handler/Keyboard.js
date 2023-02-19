@@ -116,18 +116,18 @@
       qx.core.Object.constructor.call(this);
 
       // Define shorthands
-      this.__P_215_0 = manager;
-      this.__P_215_1 = manager.getWindow();
+      this.__P_216_0 = manager;
+      this.__P_216_1 = manager.getWindow();
 
       // Gecko ignores key events when not explicitly clicked in the document.
       if (qx.core.Environment.get("engine.name") == "gecko") {
-        this.__P_215_2 = this.__P_215_1;
+        this.__P_216_2 = this.__P_216_1;
       } else {
-        this.__P_215_2 = this.__P_215_1.document.documentElement;
+        this.__P_216_2 = this.__P_216_1.document.documentElement;
       }
 
       // Internal sequence cache
-      this.__P_215_3 = {};
+      this.__P_216_3 = {};
 
       // Initialize observer
       this._initKeyObserver();
@@ -160,14 +160,14 @@
     */
 
     members: {
-      __P_215_4: null,
-      __P_215_0: null,
-      __P_215_1: null,
-      __P_215_2: null,
-      __P_215_3: null,
-      __P_215_5: null,
-      __P_215_6: null,
-      __P_215_7: null,
+      __P_216_4: null,
+      __P_216_0: null,
+      __P_216_1: null,
+      __P_216_2: null,
+      __P_216_3: null,
+      __P_216_5: null,
+      __P_216_6: null,
+      __P_216_7: null,
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -196,7 +196,7 @@
        * @return {qx.Promise?} a promise if the event handlers created one
        */
       _fireInputEvent: function _fireInputEvent(domEvent, charCode) {
-        var target = this.__P_215_8();
+        var target = this.__P_216_8();
         var tracker = {};
         var self = this;
 
@@ -204,16 +204,16 @@
         if (target && target.offsetWidth != 0) {
           var event = qx.event.Registration.createEvent("keyinput", qx.event.type.KeyInput, [domEvent, target, charCode]);
           qx.event.Utils.then(tracker, function () {
-            self.__P_215_0.dispatchEvent(target, event);
+            self.__P_216_0.dispatchEvent(target, event);
           });
         }
 
         // Fire user action event
         // Needs to check if still alive first
-        if (this.__P_215_1) {
+        if (this.__P_216_1) {
           var self = this;
           qx.event.Utils.then(tracker, function () {
-            return qx.event.Registration.fireEvent(self.__P_215_1, "useraction", qx.event.type.Data, ["keyinput"]);
+            return qx.event.Registration.fireEvent(self.__P_216_1, "useraction", qx.event.type.Data, ["keyinput"]);
           });
         }
         return tracker.promise;
@@ -227,7 +227,7 @@
        * @return {qx.Promise?} a promise, if any of the event handlers returned a promise
        */
       _fireSequenceEvent: function _fireSequenceEvent(domEvent, type, keyIdentifier) {
-        var target = this.__P_215_8();
+        var target = this.__P_216_8();
         var keyCode = domEvent.keyCode;
         var tracker = {};
         var self = this;
@@ -235,7 +235,7 @@
         // Fire key event
         var event = qx.event.Registration.createEvent(type, qx.event.type.KeySequence, [domEvent, target, keyIdentifier]);
         qx.event.Utils.then(tracker, function () {
-          return self.__P_215_0.dispatchEvent(target, event);
+          return self.__P_216_0.dispatchEvent(target, event);
         });
 
         // IE and Safari suppress a "keypress" event if the "keydown" event's
@@ -256,9 +256,9 @@
 
         // Fire user action event
         // Needs to check if still alive first
-        if (this.__P_215_1) {
+        if (this.__P_216_1) {
           qx.event.Utils.then(tracker, function () {
-            return qx.event.Registration.fireEvent(self.__P_215_1, "useraction", qx.event.type.Data, [type]);
+            return qx.event.Registration.fireEvent(self.__P_216_1, "useraction", qx.event.type.Data, [type]);
           });
         }
         return tracker.promise;
@@ -268,8 +268,8 @@
        *
        * @return {Element} the event target element
        */
-      __P_215_8: function __P_215_8() {
-        var focusHandler = this.__P_215_0.getHandler(qx.event.handler.Focus);
+      __P_216_8: function __P_216_8() {
+        var focusHandler = this.__P_216_0.getHandler(qx.event.handler.Focus);
         var target = focusHandler.getActive();
 
         // Fallback to focused element when active is null or invisible
@@ -279,7 +279,7 @@
 
         // Fallback to body when focused is null or invisible
         if (!target || target.offsetWidth == 0) {
-          target = this.__P_215_0.getWindow().document.body;
+          target = this.__P_216_0.getWindow().document.body;
         }
         return target;
       },
@@ -294,12 +294,12 @@
        * @signature function()
        */
       _initKeyObserver: function _initKeyObserver() {
-        this.__P_215_4 = qx.lang.Function.listener(this.__P_215_9, this);
-        this.__P_215_7 = qx.lang.Function.listener(this.__P_215_10, this);
+        this.__P_216_4 = qx.lang.Function.listener(this.__P_216_9, this);
+        this.__P_216_7 = qx.lang.Function.listener(this.__P_216_10, this);
         var Event = qx.bom.Event;
-        Event.addNativeListener(this.__P_215_2, "keyup", this.__P_215_4);
-        Event.addNativeListener(this.__P_215_2, "keydown", this.__P_215_4);
-        Event.addNativeListener(this.__P_215_2, "keypress", this.__P_215_7);
+        Event.addNativeListener(this.__P_216_2, "keyup", this.__P_216_4);
+        Event.addNativeListener(this.__P_216_2, "keydown", this.__P_216_4);
+        Event.addNativeListener(this.__P_216_2, "keypress", this.__P_216_7);
       },
       /**
        * Stops the native key event listeners.
@@ -308,14 +308,14 @@
        */
       _stopKeyObserver: function _stopKeyObserver() {
         var Event = qx.bom.Event;
-        Event.removeNativeListener(this.__P_215_2, "keyup", this.__P_215_4);
-        Event.removeNativeListener(this.__P_215_2, "keydown", this.__P_215_4);
-        Event.removeNativeListener(this.__P_215_2, "keypress", this.__P_215_7);
-        for (var key in this.__P_215_6 || {}) {
-          var listener = this.__P_215_6[key];
+        Event.removeNativeListener(this.__P_216_2, "keyup", this.__P_216_4);
+        Event.removeNativeListener(this.__P_216_2, "keydown", this.__P_216_4);
+        Event.removeNativeListener(this.__P_216_2, "keypress", this.__P_216_7);
+        for (var key in this.__P_216_6 || {}) {
+          var listener = this.__P_216_6[key];
           Event.removeNativeListener(listener.target, "keypress", listener.callback);
         }
-        delete this.__P_215_6;
+        delete this.__P_216_6;
       },
       /*
       ---------------------------------------------------------------------------
@@ -330,7 +330,7 @@
        * @signature function(domEvent)
        * @param domEvent {Event} DOM event object
        */
-      __P_215_9: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __P_216_9: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         "gecko|webkit|mshtml": function geckoWebkitMshtml(domEvent) {
           var keyCode = 0;
           var charCode = 0;
@@ -359,11 +359,11 @@
           }
 
           // Store last type
-          this.__P_215_3[keyCode] = type;
+          this.__P_216_3[keyCode] = type;
           return tracker.promise;
         },
         opera: function opera(domEvent) {
-          this.__P_215_5 = domEvent.keyCode;
+          this.__P_216_5 = domEvent.keyCode;
           return this._idealKeyHandler(domEvent.keyCode, 0, domEvent.type, domEvent);
         }
       })),
@@ -379,25 +379,25 @@
        * @param type {String} The event type
        * @param keyCode {Integer} the key code
        */
-      __P_215_11: qx.core.Environment.select("engine.name", {
+      __P_216_11: qx.core.Environment.select("engine.name", {
         gecko: function gecko(target, type, keyCode) {
           if (type === "keydown" && (keyCode == 33 || keyCode == 34 || keyCode == 38 || keyCode == 40) && target.type == "text" && target.tagName.toLowerCase() === "input" && target.getAttribute("autoComplete") !== "off") {
-            if (!this.__P_215_6) {
-              this.__P_215_6 = {};
+            if (!this.__P_216_6) {
+              this.__P_216_6 = {};
             }
             var hash = qx.core.ObjectRegistry.toHashCode(target);
-            if (this.__P_215_6[hash]) {
+            if (this.__P_216_6[hash]) {
               return;
             }
             var self = this;
-            this.__P_215_6[hash] = {
+            this.__P_216_6[hash] = {
               target: target,
               callback: function callback(domEvent) {
                 qx.bom.Event.stopPropagation(domEvent);
-                self.__P_215_10(domEvent);
+                self.__P_216_10(domEvent);
               }
             };
-            var listener = qx.event.GlobalError.observeMethod(this.__P_215_6[hash].callback);
+            var listener = qx.event.GlobalError.observeMethod(this.__P_216_6[hash].callback);
             qx.bom.Event.addNativeListener(target, "keypress", listener);
           }
         },
@@ -409,7 +409,7 @@
        * @signature function(domEvent)
        * @param domEvent {Event} DOM event object
        */
-      __P_215_10: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
+      __P_216_10: qx.event.GlobalError.observeMethod(qx.core.Environment.select("engine.name", {
         mshtml: function mshtml(domEvent) {
           domEvent = window.event || domEvent;
           if (this._charCode2KeyCode[domEvent.keyCode]) {
@@ -447,8 +447,8 @@
           // So we store the last key up/down keycode and compare it to the
           // current keycode.
           // See http://bugzilla.qooxdoo.org/show_bug.cgi?id=603
-          if (keyCode != this.__P_215_5) {
-            return this._idealKeyHandler(0, this.__P_215_5, type, domEvent);
+          if (keyCode != this.__P_216_5) {
+            return this._idealKeyHandler(0, this.__P_216_5, type, domEvent);
           } else {
             if (qx.event.util.Keyboard.keyCodeToIdentifierMap[domEvent.keyCode]) {
               return this._idealKeyHandler(domEvent.keyCode, 0, domEvent.type, domEvent);
@@ -543,7 +543,7 @@
     */
     destruct: function destruct() {
       this._stopKeyObserver();
-      this.__P_215_5 = this.__P_215_0 = this.__P_215_1 = this.__P_215_2 = this.__P_215_3 = null;
+      this.__P_216_5 = this.__P_216_0 = this.__P_216_1 = this.__P_216_2 = this.__P_216_3 = null;
     },
     /*
     *****************************************************************************
@@ -564,4 +564,4 @@
   qx.event.handler.Keyboard.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Keyboard.js.map?dt=1673093858455
+//# sourceMappingURL=Keyboard.js.map?dt=1676809313074

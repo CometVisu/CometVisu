@@ -63,10 +63,10 @@
       this.numericAllowed = ["==", "!=", ">", "<", ">=", "<="];
       this.betweenAllowed = ["between", "!between"];
       this.conditions = [];
-      this.__P_439_0 = align || "";
-      this.__P_439_1 = color || "";
-      this.__P_439_2 = style || "";
-      this.__P_439_3 = weight || "";
+      this.__P_440_0 = align || "";
+      this.__P_440_1 = color || "";
+      this.__P_440_2 = style || "";
+      this.__P_440_3 = weight || "";
     },
     /*
     *****************************************************************************
@@ -75,16 +75,16 @@
     */
 
     members: {
-      __P_439_0: null,
-      __P_439_1: null,
-      __P_439_2: null,
-      __P_439_3: null,
+      __P_440_0: null,
+      __P_440_1: null,
+      __P_440_2: null,
+      __P_440_3: null,
       /**
        * Applies the cell styles to the style map.
        * @param condition {Array} The matched condition
        * @param style {Map} map of already applied styles.
        */
-      __P_439_4: function __P_439_4(condition, style) {
+      __P_440_4: function __P_440_4(condition, style) {
         if (condition[1] != null) {
           style["text-align"] = condition[1];
         }
@@ -211,10 +211,10 @@
         var cond_test;
         var compareValue;
         var style = {
-          "text-align": this.__P_439_0,
-          color: this.__P_439_1,
-          "font-style": this.__P_439_2,
-          "font-weight": this.__P_439_3
+          "text-align": this.__P_440_0,
+          color: this.__P_440_1,
+          "font-style": this.__P_440_2,
+          "font-weight": this.__P_440_3
         };
         for (i in this.conditions) {
           cond_test = false;
@@ -286,7 +286,7 @@
 
           // Apply formatting, if any.
           if (cond_test == true) {
-            this.__P_439_4(this.conditions[i], style);
+            this.__P_440_4(this.conditions[i], style);
           }
         }
         var styleString = [];
@@ -310,4 +310,4 @@
   qx.ui.table.cellrenderer.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1673093874441
+//# sourceMappingURL=Conditional.js.map?dt=1676809328486

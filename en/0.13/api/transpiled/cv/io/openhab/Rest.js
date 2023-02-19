@@ -5,7 +5,7 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.core.Object": {
+      "cv.io.AbstractClient": {
         "construct": true,
         "require": true
       },
@@ -41,7 +41,7 @@
    * need the openHAB-cometvisu binding to be installed
    */
   qx.Class.define('cv.io.openhab.Rest', {
-    extend: qx.core.Object,
+    extend: cv.io.AbstractClient,
     implement: cv.io.IClient,
     /*
     ***********************************************
@@ -49,12 +49,12 @@
     ***********************************************
     */
     construct: function construct(type, backendUrl) {
-      qx.core.Object.constructor.call(this);
+      cv.io.AbstractClient.constructor.call(this);
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = backendUrl || '/rest/';
-      this.__P_522_0 = {};
-      this.__P_522_1 = {};
+      this.__P_523_0 = {};
+      this.__P_523_1 = {};
     },
     /*
     ***********************************************
@@ -79,13 +79,13 @@
     ***********************************************
     */
     members: {
-      __P_522_2: null,
+      __P_523_2: null,
       _type: null,
       _backendUrl: null,
-      __P_522_3: null,
-      __P_522_0: null,
-      __P_522_1: null,
-      __P_522_4: null,
+      __P_523_3: null,
+      __P_523_0: null,
+      __P_523_1: null,
+      __P_523_4: null,
       getBackend: function getBackend() {
         return {};
       },
@@ -96,10 +96,15 @@
       setInitialAddresses: function setInitialAddresses(addresses) {},
       getResourcePath: function getResourcePath(name, map) {
         if (name === 'charts' && map && map.src) {
-          var url = this._backendUrl + 'persistence/items/' + map.src;
+          var parts = map.src.split(':');
+          var item = parts.pop();
+          var url = this._backendUrl + 'persistence/items/' + item;
           var params = [];
+          if (parts.length > 0) {
+            params.push('serviceId=' + parts[0]);
+          }
           if (map.start) {
-            var endTime = map.end ? this.__P_522_5(map.end) : new Date();
+            var endTime = map.end ? this.__P_523_5(map.end) : new Date();
             var startTime = new Date();
             var match = /^end-([\d]*)([\w]+)$/.exec(map.start);
             if (match) {
@@ -132,15 +137,15 @@
             } else if (/^[\d]+$/.test(map.start)) {
               startTime.setTime(parseInt(map.start) * 1000);
             }
-            params.push('starttime=' + startTime.toISOString());
-            params.push('endtime=' + endTime.toISOString());
+            params.push('starttime=' + startTime.toISOString().split('.')[0] + 'Z');
+            params.push('endtime=' + endTime.toISOString().split('.')[0] + 'Z');
           }
           url += '?' + params.join('&');
           return url;
         }
         return null;
       },
-      __P_522_5: function __P_522_5(time) {
+      __P_523_5: function __P_523_5(time) {
         if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -154,18 +159,22 @@
         return true;
       },
       processChartsData: function processChartsData(response) {
-        var data = response.data;
-        var newRrd = [];
-        var lastValue;
-        var value;
-        for (var j = 0, l = data.length; j < l; j++) {
-          value = parseFloat(data[j].state);
-          if (value !== lastValue) {
-            newRrd.push([data[j].time, value]);
+        if (response && response.data) {
+          var data = response.data;
+          var newRrd = [];
+          var lastValue;
+          var value;
+          for (var j = 0, l = data.length; j < l; j++) {
+            value = parseFloat(data[j].state);
+            if (value !== lastValue) {
+              newRrd.push([data[j].time, value]);
+            }
+            lastValue = value;
           }
-          lastValue = value;
+          return newRrd;
         }
-        return newRrd;
+        this.error('invalid chart data response');
+        return [];
       },
       /**
        * Auth basic authentication header to request
@@ -173,8 +182,8 @@
        * @private
        */
       authorize: function authorize(req) {
-        if (this.__P_522_3) {
-          req.setRequestHeader('Authorization', this.__P_522_3);
+        if (this.__P_523_3) {
+          req.setRequestHeader('Authorization', this.__P_523_3);
         }
       },
       /**
@@ -188,7 +197,7 @@
         this.authorize(req);
         return req;
       },
-      __P_522_6: function __P_522_6(type, state) {
+      __P_523_6: function __P_523_6(type, state) {
         switch (type.toLowerCase()) {
           case 'decimal':
           case 'percent':
@@ -230,18 +239,18 @@
                   name: obj.name,
                   active: false
                 };
-                if (_this.__P_522_6(obj.type, obj.state)) {
+                if (_this.__P_523_6(obj.type, obj.state)) {
                   active++;
                   map[obj.name].active = true;
                 }
-                if (!Object.prototype.hasOwnProperty.call(_this.__P_522_1, obj.name)) {
-                  _this.__P_522_1[obj.name] = [entry.name];
+                if (!Object.prototype.hasOwnProperty.call(_this.__P_523_1, obj.name)) {
+                  _this.__P_523_1[obj.name] = [entry.name];
                 } else {
-                  _this.__P_522_1[obj.name].push(entry.name);
+                  _this.__P_523_1[obj.name].push(entry.name);
                 }
                 return map;
               });
-              _this.__P_522_0[entry.name] = {
+              _this.__P_523_0[entry.name] = {
                 members: map,
                 active: active
               };
@@ -254,7 +263,7 @@
             }
           }, _this);
           _this.update(update);
-          _this.__P_522_4 = addresses;
+          _this.__P_523_4 = addresses;
         });
         // Send request
         req.send();
@@ -325,15 +334,15 @@
             var change = JSON.parse(data.payload);
             update[item] = change.value;
             // check if this Item is part of any group
-            if (Object.prototype.hasOwnProperty.call(this.__P_522_1, item)) {
-              var groupNames = this.__P_522_1[item];
+            if (Object.prototype.hasOwnProperty.call(this.__P_523_1, item)) {
+              var groupNames = this.__P_523_1[item];
               groupNames.forEach(function (groupName) {
-                var group = _this2.__P_522_0[groupName];
+                var group = _this2.__P_523_0[groupName];
                 var active = 0;
                 group.members[item].state = change.value;
                 Object.keys(group.members).forEach(function (memberName) {
                   var member = group.members[memberName];
-                  if (_this2.__P_522_6(member.type, member.state)) {
+                  if (_this2.__P_523_6(member.type, member.state)) {
                     active++;
                     member.active = true;
                   } else {
@@ -373,7 +382,7 @@
         var _this3 = this;
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_522_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
+          this.__P_523_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
         }
         // no login needed we just do a request to the if the backend is reachable
         var req = this.createAuthorizedRequest();
@@ -388,13 +397,13 @@
         req.send();
       },
       getLastError: function getLastError() {
-        return this.__P_522_2;
+        return this.__P_523_2;
       },
       restart: function restart(fullRestart) {
         if (fullRestart) {
           // re-read all states
-          if (this.__P_522_4) {
-            this.subscribe(this.__P_522_4);
+          if (this.__P_523_4) {
+            this.subscribe(this.__P_523_4);
           } else {
             this.debug('no subscribed addresses, skip reading all states.');
           }
@@ -480,4 +489,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1673093880766
+//# sourceMappingURL=Rest.js.map?dt=1676809334359

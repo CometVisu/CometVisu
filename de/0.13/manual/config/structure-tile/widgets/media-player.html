@@ -22,7 +22,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
-    <link rel="next" title="Das Tile-Pair Widget" href="tile-pair.html" />
+    <link rel="next" title="Das Widget-Pair" href="widget-pair.html" />
     <link rel="prev" title="Das RTC Widget" href="rtc.html" /> 
 </head>
 
@@ -62,9 +62,13 @@
 <li class="toctree-l4"><a class="reference internal" href="shutter.html">Shutter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="info.html">Info</a></li>
 <li class="toctree-l4"><a class="reference internal" href="status.html">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="status-chart.html">Status-Chart</a></li>
 <li class="toctree-l4"><a class="reference internal" href="rtc.html">RTC</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Media Player</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tile-pair.html">Tile-pair</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Media Player</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#beschreibung">Beschreibung</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="widget-pair.html">Widget-pair</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -238,7 +242,7 @@ openHAB-Backend kann solche Daten ausliefern.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="4"><p>cv-media-player</p></td>
+<tr class="row-odd"><td rowspan="6"><p>cv-media-player</p></td>
 <td><p>progress-mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus einen Wert zwischen 0 und 100 zu, um einen Fortschritt anzeigen zu können. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
@@ -246,6 +250,14 @@ openHAB-Backend kann solche Daten ausliefern.</p>
 <tr class="row-even"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p><em>button</em>, <em>0.5x0.5</em>, <em>1x0.5</em>, <em>2x1</em>, <em>1x2</em>, <em>2x2</em>, <em>2x4</em> oder <em>4x2</em></p></td>
+<td><p>Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
 </tr>
 <tr class="row-odd"><td><p>class</p></td>
 <td><p>Text</p></td>
@@ -482,7 +494,7 @@ openHAB-Backend kann solche Daten ausliefern.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="rtc.html" class="btn btn-neutral float-left" title="Das RTC Widget" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tile-pair.html" class="btn btn-neutral float-right" title="Das Tile-Pair Widget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="widget-pair.html" class="btn btn-neutral float-right" title="Das Widget-Pair" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -514,7 +526,7 @@ openHAB-Backend kann solche Daten ausliefern.</p>
         
           <dd><a href="../../0.11/manual">0.11.2</a></dd>
         
-          <dd><a href="../../0.12/manual">0.12.0</a></dd>
+          <dd><a href="../../0.12/manual">0.12.2</a></dd>
         
           <dd><a href="../../0.13/manual">0.13.0-dev</a></dd>
         

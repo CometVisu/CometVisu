@@ -115,7 +115,7 @@
         // the theme and are not updating the cache
         var theme = this.getTheme();
         if (theme !== null && theme.fonts[value]) {
-          var font = this.__P_292_0(theme.fonts[value]);
+          var font = this.__P_293_0(theme.fonts[value]);
           var fo = new font();
 
           // Inject information about custom charcter set tests before we apply the
@@ -145,7 +145,7 @@
         // the theme and are not updating the cache
         var theme = this.getTheme();
         if (theme !== null && value && theme.fonts[value]) {
-          var font = this.__P_292_0(theme.fonts[value]);
+          var font = this.__P_293_0(theme.fonts[value]);
           var fo = new font();
 
           // Inject information about custom charcter set tests before we apply the
@@ -164,7 +164,7 @@
        * @param fonts {Map} all fonts of the theme
        * @param fontName {String} font name to include
        */
-      __P_292_1: function __P_292_1(fonts, fontName) {
+      __P_293_1: function __P_293_1(fonts, fontName) {
         if (fonts[fontName].include) {
           // get font infos out of the font theme
           var fontToInclude = fonts[fonts[fontName].include];
@@ -173,7 +173,7 @@
           fonts[fontName].include = null;
           delete fonts[fontName].include;
           fonts[fontName] = qx.lang.Object.mergeWith(fonts[fontName], fontToInclude, false);
-          this.__P_292_1(fonts, fontName);
+          this.__P_293_1(fonts, fontName);
         }
       },
       // apply method
@@ -189,9 +189,9 @@
           var source = this._manifestFonts ? Object.assign(value.fonts, this._manifestFonts) : value.fonts;
           for (var key in source) {
             if (source[key].include && source[source[key].include]) {
-              this.__P_292_1(source, key);
+              this.__P_293_1(source, key);
             }
-            var font = this.__P_292_0(source[key]);
+            var font = this.__P_293_0(source[key]);
             var fo = new font();
 
             // Inject information about custom charcter set tests before we apply the
@@ -211,7 +211,7 @@
        * @param config {Map} The font's configuration map
        * @return {Class}
        */
-      __P_292_0: function __P_292_0(config) {
+      __P_293_0: function __P_293_0(config) {
         if (config.sources) {
           return qx.bom.webfonts.WebFont;
         }
@@ -230,4 +230,4 @@
   qx.theme.manager.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1673093864287
+//# sourceMappingURL=Font.js.map?dt=1676809318842
