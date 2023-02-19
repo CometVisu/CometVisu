@@ -807,11 +807,14 @@ body {
             box-shadow: none;
             border: none;
             border-radius: 0;
-            overflow-y: auto;
 
             &:last-child {
                 border-bottom-left-radius: inherit;
                 border-bottom-right-radius: inherit;
+            }
+
+            &:has(cv-list) {
+                overflow-y: auto;
             }
         }
 
