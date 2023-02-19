@@ -173,7 +173,6 @@ body {
         border-radius: 44px;
         left: 50%;
         transform: translate(-50%, -90px);
-        /*padding: calc(var(--spacing) * 0.5) var(--spacing);*/
         white-space: nowrap;
         max-width: calc(100vw - calc(var(--spacing) * 2));
         box-shadow: 5px 5px 8px 0px rgb(0 0 0 / 50%);
@@ -314,9 +313,9 @@ body {
 
         cv-menu {
             /* expand icons in sub levels */
-            > ul > li > .details > ul .details > .summary:after {
+           /* > ul > li > .details > ul .details > .summary:after {
                 content: "\ea54";
-            }
+            }*/
 
             > ul ul ul {
                 margin-left: calc(100% - 1.2em);
@@ -351,19 +350,13 @@ body {
                         .summary {
                             display: inline-block;
                             white-space: nowrap;
-                            padding: var(--spacing) calc(var(--spacing) * 3) var(--spacing) var(--spacing);
-                        }
+                            padding: 0 var(--spacing);
 
-                        .summary:after {
-                            display: inline-block;
-                            content: "\ea50";
-                            font-family: 'remixicon' !important;
-                            font-style: normal;
-                            -webkit-font-smoothing: antialiased;
-                            -moz-osx-font-smoothing: grayscale;
-                            vertical-align: text-bottom;
-                            font-size: 28px;
-                            line-height: 20px;
+                            .expander {
+                                display: inline-block;
+                                font-size: 24px;
+                                line-height: 20px;
+                            }
                         }
 
                         &[open] > .summary {
@@ -372,7 +365,7 @@ body {
                             border-top-right-radius: var(--spacing);
                         }
 
-                        &[open] > .summary:after {
+                        &[open] > .summary > .expander {
                             transform: rotate(180deg);
                         }
 
@@ -418,7 +411,7 @@ body {
                     }
 
                     &.sub-active {
-                        > .details > .summary:after {
+                        > .details > .summary > .expander {
                             color: var(--primaryColor);
                         }
                     }
@@ -453,12 +446,19 @@ body {
                 }
                 > ul > li > .details > .summary {
                     position: relative;
-                    &:after {
-                        position: absolute;
+                    display: inline-flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    > .expander {
                         height: 100%;
                         line-height: 60px;
                         top: 0;
                     }
+                }
+
+                > ul > li:first-child > .details > .summary > a {
+                    padding-left: var(--spacing);
                 }
 
                 > ul > li {
