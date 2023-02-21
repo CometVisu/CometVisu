@@ -116,7 +116,7 @@ jobs:
         uses: ./.github/actions/update-webdriver
       - name: Run tests
         run: |
-          npx webdriver-manager update --gecko=false
+          ls -la node_modules/webdriver-manager/selenium 
           grunt e2e-chrome
         env:
           CHROME_BIN: ./chrome/google-chrome
