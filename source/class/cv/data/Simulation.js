@@ -53,7 +53,7 @@ qx.Class.define('cv.data.Simulation', {
         this.debug('simulator data has been loaded');
       });
       r.addListener('fail', () => {
-        console.error('failed parsing demo data');
+        this.error('failed parsing demo data');
       });
       r.send();
     },
@@ -145,7 +145,7 @@ qx.Class.define('cv.data.Simulation', {
           let url = request.url;
           if (url.startsWith(this._client.getResourcePath('charts') + 'generator:')) {
             const generatorName = parsed.path.split('generator:').pop();
-            request.respond(200, {"Content-type": "application/json"}, JSON.stringify(this.generate(generatorName, parsed.queryKey)));
+            request.respond(200, {'Content-type': 'application/json'}, JSON.stringify(this.generate(generatorName, parsed.queryKey)));
             return;
           }
           if (!parsed.host || parsed.host === window.location.host) {
