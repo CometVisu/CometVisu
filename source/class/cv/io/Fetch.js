@@ -77,7 +77,7 @@ qx.Class.define('cv.io.Fetch', {
      * @param options {object}
      * @param proxy {boolean}
      * @param client {cv.io.IClient}
-     * @returns {Promise<Response>}
+     * @returns {Promise<String>}
      */
     async fetch(resource, options = {}, proxy = false, client = undefined) {
       if (proxy) {
@@ -113,7 +113,19 @@ qx.Class.define('cv.io.Fetch', {
         });
         xhr.addListener('statusError', ev => {
           const request = ev.getTarget();
-          reject(request.getResponse());
+          reject({
+            url: resource,
+            statusText: request.getStatusText(),
+            status: request.getStatus()
+          });
+        });
+        xhr.addListener('fail', ev => {
+          const request = ev.getTarget();
+          reject({
+            url: resource,
+            status: request.getStatus(),
+            statusText: 'response parsing failure'
+          });
         });
         xhr.send();
       });

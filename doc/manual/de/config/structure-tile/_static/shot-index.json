@@ -1,5 +1,6 @@
 {
     "tile-ui-structure": "9a0d52b8b9bcc36b32f2e544ffdca916",
     "tile-grid": "6125c06b9afccabf6a666818ebd5e34d",
-    "tile-nav-menu": "5685ef8a0ac81c27e1b8f218ab5230a6"
+    "tile-nav-menu": "5685ef8a0ac81c27e1b8f218ab5230a6",
+    "tile-nav-breadcrumb": "d6bb6acabb391494aa8e6dd0d34e7150"
 }

@@ -302,6 +302,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.setAttribute('href', '#' + pageId);
+        a.setAttribute('data-page-id', pageId);
         if (pageIcon) {
           const i = document.createElement('i');
           i.classList.add(pageIcon);
@@ -325,19 +326,14 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           details.classList.add('details');
           const summary = document.createElement('div');
           summary.classList.add('summary');
-          summary.addEventListener('click', ev => {
-            if (details.hasAttribute('open')) {
-              this._closeDetail(details);
-            } else {
-              this._openDetail(details);
-            }
-          });
+          a.setAttribute('href', '#');
+
           a.addEventListener('click', ev => {
-            // only stop propagation if we are not close to the right border
-            if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
-              ev.stopPropagation();
-            }
+            cv.Application.structureController.scrollToPage(pageId);
+            ev.stopPropagation();
+            ev.preventDefault();
           });
+
           const pageIcon = page.getAttribute('icon') || '';
           if (page.querySelector(':scope > *:not(cv-page)')) {
             // only add this as link, when this page has real content
@@ -355,6 +351,18 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
             }
             summary.appendChild(p);
           }
+          const expander = document.createElement('i');
+          expander.classList.add('expander');
+          expander.classList.add('ri-arrow-down-s-line');
+          summary.appendChild(expander);
+          expander.addEventListener('click', ev => {
+            if (details.hasAttribute('open')) {
+              this._closeDetail(details);
+            } else {
+              this._openDetail(details);
+            }
+          });
+
           details.appendChild(summary);
           const subList = document.createElement('ul');
           details.appendChild(subList);
@@ -374,7 +382,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         link.classList.remove('sub-active');
       }
       // find link to current page
-      for (let link of this._element.querySelectorAll(`a[href="#${pageElement.id}"]`)) {
+      for (let link of this._element.querySelectorAll(`a[data-page-id="${pageElement.id}"]`)) {
         // activate all parents
         let parent = link.parentElement;
         let activeName = 'active';

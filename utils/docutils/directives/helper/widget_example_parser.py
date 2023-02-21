@@ -179,6 +179,8 @@ class WidgetExampleParser:
                     shot['sleep'] = screenshot.get("sleep")
                 if screenshot.get("clickpath", None):
                     shot['clickPath'] = screenshot.get('clickpath')
+                if screenshot.get("goto-page", None):
+                    shot['gotoPage'] = screenshot.get('goto-page')
                 if screenshot.get("waitfor", None):
                     shot['waitFor'] = screenshot.get('waitfor')
                 if screenshot.get("hover-on", None):

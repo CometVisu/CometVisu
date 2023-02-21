@@ -121,10 +121,9 @@ fi
 
 if [[ "$GENERATE_DEMO" -eq 1 ]]; then
   echo "generating test mode build"
-  CV_TAG_RUNTIME=demo CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
-  grunt update-demo-config --base-dir=out/de/$VERSION_PATH/demo
+  qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
   # Copy demo-mode to default config
-  cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
+  cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo-tile.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 fi
 
 echo "copying JSON schema for hidden configuration"

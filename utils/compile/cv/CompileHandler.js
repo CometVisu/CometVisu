@@ -61,7 +61,7 @@ class CvCompileHandler extends AbstractCompileHandler {
         return false;
       });
     }
-    command.addListener('made', () => this._onMade());
+    command.addListener('writtenApplications', async () => this._onMade());
     if (command instanceof qx.tool.cli.commands.Deploy) {
       command.addListener('afterDeploy', this._onAfterDeploy, this);
     }

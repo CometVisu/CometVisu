@@ -24,7 +24,7 @@ body {
     }
 
     ul ul li {
-      padding-left: calc(var(--spacing) * 2) !important;
+      padding-left: calc(var(--spacing) * 4) !important;
     }
 
     &.responsive {
@@ -37,7 +37,17 @@ body {
       }
 
       ul {
-        position: relative;
+        position: relative !important;
+        background: none;
+        box-shadow: none;
+
+        li a i:first-child {
+          margin-left: 0;
+        }
+      }
+
+      > ul {
+        margin: var(--spacing);
       }
 
       li {
@@ -45,8 +55,27 @@ body {
         text-align: left;
         width: 100%;
         height: fit-content;
+
+        > a {
+          padding-left: 0;
+
+          i {
+            margin-right: var(--spacing);
+          }
+        }
+
+        > .details > .summary {
+          padding-left: 0;
+          .expander {
+            display: none;
+          }
+        }
       }
     }
+  }
+
+  footer > nav > cv-menu ul li:last-child .details ul {
+      right: 0
   }
 
   cv-popup, cv-tile.popup {
