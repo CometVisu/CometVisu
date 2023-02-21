@@ -124,7 +124,9 @@ jobs:
       - name: Prepare tests
         uses: ./.github/actions/update-webdriver
       - name: Run tests
-        run: grunt e2e-chrome
+        run: |
+          npx webdriver-manager update --gecko=false
+          grunt e2e-chrome
         env:
           CHROME_BIN: ./chrome/google-chrome
 
