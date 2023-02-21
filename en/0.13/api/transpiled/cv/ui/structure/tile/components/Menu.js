@@ -27,6 +27,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "qx.event.message.Bus": {},
       "qx.event.Registration": {},
       "qx.event.Timer": {},
+      "cv.Application": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -349,6 +350,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var li = document.createElement('li');
             var a = document.createElement('a');
             a.setAttribute('href', '#' + pageId);
+            a.setAttribute('data-page-id', pageId);
             if (pageIcon) {
               var i = document.createElement('i');
               i.classList.add(pageIcon);
@@ -369,18 +371,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               details.classList.add('details');
               var summary = document.createElement('div');
               summary.classList.add('summary');
-              summary.addEventListener('click', function (ev) {
-                if (details.hasAttribute('open')) {
-                  _this3._closeDetail(details);
-                } else {
-                  _this3._openDetail(details);
-                }
-              });
+              a.setAttribute('href', '#');
               a.addEventListener('click', function (ev) {
-                // only stop propagation if we are not close to the right border
-                if (ev.pointerType !== 'touch' || ev.currentTarget.clientWidth - ev.offsetX >= 8) {
-                  ev.stopPropagation();
-                }
+                cv.Application.structureController.scrollToPage(pageId);
+                ev.stopPropagation();
+                ev.preventDefault();
               });
               var _pageIcon = page.getAttribute('icon') || '';
               if (page.querySelector(':scope > *:not(cv-page)')) {
@@ -399,6 +394,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 }
                 summary.appendChild(p);
               }
+              var expander = document.createElement('i');
+              expander.classList.add('expander');
+              expander.classList.add('ri-arrow-down-s-line');
+              summary.appendChild(expander);
+              expander.addEventListener('click', function (ev) {
+                if (details.hasAttribute('open')) {
+                  _this3._closeDetail(details);
+                } else {
+                  _this3._openDetail(details);
+                }
+              });
               details.appendChild(summary);
               var subList = document.createElement('ul');
               details.appendChild(subList);
@@ -435,7 +441,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } finally {
           _iterator5.f();
         }
-        var _iterator6 = _createForOfIteratorHelper(this._element.querySelectorAll("a[href=\"#".concat(pageElement.id, "\"]"))),
+        var _iterator6 = _createForOfIteratorHelper(this._element.querySelectorAll("a[data-page-id=\"".concat(pageElement.id, "\"]"))),
           _step6;
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
@@ -491,4 +497,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1676809300947
+//# sourceMappingURL=Menu.js.map?dt=1677017683880

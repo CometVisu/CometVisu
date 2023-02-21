@@ -16,9 +16,9 @@
         "index": 117
       },
       "end": {
-        "line": 163,
+        "line": 168,
         "column": 3,
-        "index": 4319
+        "index": 4424
       }
     },
     "jsdoc": {
@@ -215,9 +215,9 @@
           "index": 1405
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 5,
-          "index": 2683
+          "index": 2715
         }
       },
       "type": "function",
@@ -226,14 +226,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 110,
           "column": 4,
-          "index": 2690
+          "index": 2722
         },
         "end": {
-          "line": 157,
+          "line": 162,
           "column": 5,
-          "index": 4242
+          "index": 4347
         }
       },
       "type": "function",
@@ -500,6 +500,29 @@
         ]
       }
     },
+    "__Logger": {
+      "type": "function",
+      "name": "__Logger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the regular logger class"
+          }
+        ]
+      }
+    },
     "debug": {
       "type": "function",
       "name": "debug",
@@ -659,6 +682,29 @@
             "paramName": "varargs",
             "description": " Arguments list to be logged",
             "type": "arguments"
+          }
+        ]
+      }
+    },
+    "__Registration": {
+      "type": "function",
+      "name": "__Registration",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the regular event registration class"
           }
         ]
       }
@@ -3709,14 +3755,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 160,
+        "line": 165,
         "column": 2,
-        "index": 4251
+        "index": 4356
       },
       "end": {
-        "line": 162,
+        "line": 167,
         "column": 3,
-        "index": 4315
+        "index": 4420
       }
     }
   },

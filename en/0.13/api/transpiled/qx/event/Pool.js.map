@@ -12,6 +12,8 @@
     "ObjectPool",
     "type",
     "construct",
+    "constructor",
+    "call",
     "event",
     "Pool"
   ],
@@ -21,5 +23,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Central instance pool for event objects. All event objects dispatched by the\n * event loader are pooled using this class.\n */\nqx.Class.define(\"qx.event.Pool\", {\n  extend: qx.util.ObjectPool,\n  type: \"singleton\",\n\n  // Even though this class contains almost no code it is required because the\n  // legacy code needs a place to patch the event pooling behavior.\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct() {\n    super(30);\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,eAAe,EAAE;IAC/BC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,UAAU;IAC1BC,IAAI,EAAE,WAAW;IAEjB;IACA;IAEA;AACF;AACA;AACA;AACA;IAEEC,SAAS,uBAAG;MACV,0CAAM,EAAE;IACV;EACF,CAAC,CAAC;EAvCFV,EAAE,CAACW,KAAK,CAACC,IAAI,CAACT,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,eAAe,EAAE;IAC/BC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,UAAU;IAC1BC,IAAI,EAAE,WAAW;IAEjB;IACA;IAEA;AACF;AACA;AACA;AACA;IAEEC,SAAS,WAAAA,UAAA,EAAG;MACVV,EAAA,CAAAO,IAAA,CAAAC,UAAA,CAAAG,WAAA,CAAAC,IAAA,OAAM,EAAE;IACV;EACF,CAAC,CAAC;EAvCFZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACX,aAAa,GAAGA,aAAa;AAAC"
 }

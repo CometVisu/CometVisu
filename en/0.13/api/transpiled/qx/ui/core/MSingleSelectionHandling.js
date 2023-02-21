@@ -228,4 +228,4 @@
   qx.ui.core.MSingleSelectionHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1676809321030
+//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1677017711453

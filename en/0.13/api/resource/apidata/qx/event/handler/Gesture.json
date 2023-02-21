@@ -66,7 +66,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "SUPPORTED_TYPES": {

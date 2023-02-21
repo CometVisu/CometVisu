@@ -13,6 +13,8 @@
     "container",
     "Composite",
     "construct",
+    "constructor",
+    "call",
     "layout",
     "HBox",
     "members",
@@ -29,5 +31,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * The abstract class for a header or footer for use with Progressive's Table\n * renderer.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Abstract\", {\n  type: \"abstract\",\n  extend: qx.ui.container.Composite,\n\n  construct() {\n    super(new qx.ui.layout.HBox());\n  },\n\n  members: {\n    __progressive: null,\n\n    /**\n     * Join this header/footer to a Progressive.  This makes the Progressive\n     * object available to the header/footer through the _progressive member.\n     *\n     * @param progressive {qx.ui.progressive.Progressive}\n     *   Progressive object to which we're being joined.\n     *\n     */\n    join(progressive) {\n      this.__progressive = progressive;\n    }\n  },\n\n  destruct() {\n    this.__progressive = null;\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE;IACrDC,IAAI,EAAE,UAAU;IAChBC,MAAM,EAAEP,EAAE,CAACQ,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjCC,SAAS,uBAAG;MACV,iDAAM,IAAIX,EAAE,CAACQ,EAAE,CAACI,MAAM,CAACC,IAAI,EAAE;IAC/B,CAAC;IAEDC,OAAO,EAAE;MACPC,SAAa,EAAE,IAAI;MAEnB;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACIC,IAAI,gBAACC,WAAW,EAAE;QAChB,IAAI,CAACF,SAAa,GAAGE,WAAW;MAClC;IACF,CAAC;IAEDC,QAAQ,sBAAG;MACT,IAAI,CAACH,SAAa,GAAG,IAAI;IAC3B;EACF,CAAC,CAAC;EAjDFf,EAAE,CAACQ,EAAE,CAACS,WAAW,CAACE,QAAQ,CAACC,QAAQ,CAACjB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE;IACrDC,IAAI,EAAE,UAAU;IAChBC,MAAM,EAAEP,EAAE,CAACQ,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjCC,SAAS,WAAAA,UAAA,EAAG;MACVX,EAAA,CAAAQ,EAAA,CAAAC,SAAA,CAAAC,SAAA,CAAAE,WAAA,CAAAC,IAAA,OAAM,IAAIb,EAAE,CAACQ,EAAE,CAACM,MAAM,CAACC,IAAI,EAAE;IAC/B,CAAC;IAEDC,OAAO,EAAE;MACPC,SAAa,EAAE,IAAI;MAEnB;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACIC,IAAI,WAAAA,KAACC,WAAW,EAAE;QAChB,IAAI,CAACF,SAAa,GAAGE,WAAW;MAClC;IACF,CAAC;IAEDC,QAAQ,WAAAA,SAAA,EAAG;MACT,IAAI,CAACH,SAAa,GAAG,IAAI;IAC3B;EACF,CAAC,CAAC;EAjDFjB,EAAE,CAACQ,EAAE,CAACW,WAAW,CAACE,QAAQ,CAACC,QAAQ,CAACnB,aAAa,GAAGA,aAAa;AAAC"
 }

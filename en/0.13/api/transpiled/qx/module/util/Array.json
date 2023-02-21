@@ -102,7 +102,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "equals": {
@@ -162,7 +162,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "exclude": {
@@ -222,7 +222,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "fromArguments": {
@@ -284,7 +284,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "insertAfter": {
@@ -351,7 +351,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "insertBefore": {
@@ -418,7 +418,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "max": {
@@ -471,7 +471,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "min": {
@@ -524,7 +524,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "remove": {
@@ -584,7 +584,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "removeAll": {
@@ -637,7 +637,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "unique": {
@@ -690,7 +690,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "range": {
@@ -757,7 +757,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

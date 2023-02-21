@@ -583,7 +583,8 @@
             }
 
             // Don't transfer background image when switching from image to icon font
-            if (this.__P_298_9() === "font") {
+            var mode = this.__P_298_9();
+            if (mode === "font" || mode === "scaled") {
               delete styles.backgroundImage;
             }
 
@@ -993,4 +994,4 @@
   qx.ui.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1676809319896
+//# sourceMappingURL=Image.js.map?dt=1677017709813

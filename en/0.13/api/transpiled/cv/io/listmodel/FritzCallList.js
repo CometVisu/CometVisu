@@ -22,6 +22,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       "qx.data.Array": {
         "construct": true
       },
+      "cv.io.Fetch": {},
       "cv.core.notifications.Router": {},
       "qx.locale.Manager": {},
       "cv.io.listmodel.Registry": {
@@ -94,54 +95,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _init: function _init() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-          var url, response, data;
+          var url, response;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
                 url = 'resource/plugins/tr064/soap.php?device=' + _this.getDevice() + '&location=upnp/control/x_contact&uri=urn:dslforum-org:service:X_AVM-DE_OnTel:1&fn=GetCallList';
-                _context.next = 3;
-                return window.fetch(url);
-              case 3:
+                _this.debug('requesting soap url');
+                _context.prev = 2;
+                _context.next = 5;
+                return cv.io.Fetch.fetch(url);
+              case 5:
                 response = _context.sent;
-                if (!response.ok) {
-                  _context.next = 11;
-                  break;
-                }
-                _context.next = 7;
-                return response.json();
-              case 7:
-                data = _context.sent;
-                if (typeof data === 'string') {
-                  _this.__P_6_0 = data;
-                } else {
-                  cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
-                    title: qx.locale.Manager.tr('TR-064 communication response error'),
-                    severity: 'urgent',
-                    message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(data))
-                  });
-                  _this.__P_6_0 = '<fail>';
+                if (response) {
+                  if (typeof response === 'string') {
+                    _this.__P_6_0 = response;
+                  } else {
+                    cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
+                      title: qx.locale.Manager.tr('TR-064 communication response error'),
+                      severity: 'urgent',
+                      message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(response))
+                    });
+                    _this.__P_6_0 = '<fail>';
+                  }
                 }
                 _context.next = 13;
                 break;
-              case 11:
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](2);
                 // else:
                 cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
                   title: qx.locale.Manager.tr('TR-064 communication error'),
                   severity: 'urgent',
-                  message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+                  message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', _context.t0.url, _context.t0.status, _context.t0.statusText)
                 });
                 _this.__P_6_0 = '<fail>';
               case 13:
               case "end":
                 return _context.stop();
             }
-          }, _callee);
+          }, _callee, null, [[2, 9]]);
         }))();
       },
       refresh: function refresh() {
         var _this2 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-          var model, url, response, str, data, itemList, _iterator, _step, item, childrenList, entry, _iterator2, _step2, child;
+          var model, url, response, data, itemList, _iterator, _step, item, childrenList, entry, _iterator2, _step2, child;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -161,71 +160,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context2.abrupt("return");
               case 7:
                 url = 'resource/plugins/tr064/proxy.php?device=' + _this2.getDevice() + '&uri=' + _this2.__P_6_0 + '%26max=' + _this2.getMax();
-                _context2.next = 10;
-                return window.fetch(url);
-              case 10:
+                _context2.prev = 8;
+                _context2.next = 11;
+                return cv.io.Fetch.fetch(url);
+              case 11:
                 response = _context2.sent;
-                if (!response.ok) {
-                  _context2.next = 21;
-                  break;
-                }
-                _context2.next = 14;
-                return response.text();
-              case 14:
-                str = _context2.sent;
-                data = new window.DOMParser().parseFromString(str, 'text/xml');
-                itemList = data.getElementsByTagName('Call');
-                _iterator = _createForOfIteratorHelper(itemList);
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                    item = _step.value;
-                    childrenList = item.children;
-                    entry = {};
-                    _iterator2 = _createForOfIteratorHelper(childrenList);
-                    try {
-                      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                        child = _step2.value;
-                        entry[child.nodeName] = child.textContent;
+                if (response) {
+                  data = new window.DOMParser().parseFromString(response, 'text/xml');
+                  itemList = data.getElementsByTagName('Call');
+                  _iterator = _createForOfIteratorHelper(itemList);
+                  try {
+                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                      item = _step.value;
+                      childrenList = item.children;
+                      entry = {};
+                      _iterator2 = _createForOfIteratorHelper(childrenList);
+                      try {
+                        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                          child = _step2.value;
+                          entry[child.nodeName] = child.textContent;
+                        }
+                      } catch (err) {
+                        _iterator2.e(err);
+                      } finally {
+                        _iterator2.f();
                       }
-                    } catch (err) {
-                      _iterator2.e(err);
-                    } finally {
-                      _iterator2.f();
+                      model.push(entry);
                     }
-                    model.push(entry);
+                  } catch (err) {
+                    _iterator.e(err);
+                  } finally {
+                    _iterator.f();
                   }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
                 }
-                _context2.next = 30;
+                _context2.next = 26;
                 break;
-              case 21:
-                if (!(response.status === 404)) {
-                  _context2.next = 28;
+              case 15:
+                _context2.prev = 15;
+                _context2.t0 = _context2["catch"](8);
+                if (!(_context2.t0.status === 404)) {
+                  _context2.next = 24;
                   break;
                 }
-                _context2.next = 24;
+                _context2.next = 20;
                 return _this2._init();
-              case 24:
-                _context2.next = 26;
+              case 20:
+                _context2.next = 22;
                 return _this2.refresh();
-              case 26:
-                _context2.next = 30;
+              case 22:
+                _context2.next = 26;
                 break;
-              case 28:
+              case 24:
                 cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
                   title: qx.locale.Manager.tr('TR-064 communication error'),
                   severity: 'urgent',
-                  message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
+                  message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', _context2.t0.url, _context2.t0.status, _context2.t0.statusText)
                 });
                 model.removeAll();
-              case 30:
+              case 26:
               case "end":
                 return _context2.stop();
             }
-          }, _callee2);
+          }, _callee2, null, [[8, 15]]);
         }))();
       }
     },
@@ -236,4 +232,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.io.listmodel.FritzCallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FritzCallList.js.map?dt=1676809291121
+//# sourceMappingURL=FritzCallList.js.map?dt=1677017671860

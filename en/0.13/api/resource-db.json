@@ -46,13 +46,13 @@
       "demo/visu_config_demo-tile.xml": {
         "resourcePath": "resourcePath"
       },
-      "demo/visu_config_demo.xml": {
-        "resourcePath": "resourcePath"
-      },
       "demo/visu_config_demo_flat.xml": {
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_demo_testmode.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "demo/visu_config_demo.xml": {
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_demorss.xml": {
@@ -62,9 +62,6 @@
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_metal.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "demo/visu_config_gauge.xml": {
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_responsive.xml": {
@@ -77,60 +74,6 @@
         "resourcePath": "resourcePath"
       },
       "designs/tile-globals.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/EventRecorder.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/Three.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/d3.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/favico.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.edl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.epl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.about.html": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/sprintf.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/strftime.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/svg4everybody.js": {
         "resourcePath": "resourcePath"
       },
       "icons/COPYING": {
@@ -234,12 +177,12 @@
         "width": 16,
         "height": 16
       },
-      "icons/comet_16x16_ff8000.png": {
+      "icons/comet_16x16_ff0000.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "icons/comet_16x16_ff0000.png": {
+      "icons/comet_16x16_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -299,15 +242,15 @@
         "width": 50,
         "height": 18
       },
-      "icons/comet_64_000000.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 23
-      },
       "icons/comet_512_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 512,
         "height": 183
+      },
+      "icons/comet_64_000000.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 23
       },
       "icons/comet_64_00ddff.png": {
         "resourcePath": "resourcePath",
@@ -324,12 +267,12 @@
         "width": 64,
         "height": 23
       },
-      "icons/comet_64_ff8000.png": {
+      "icons/comet_64_ff0000.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 23
       },
-      "icons/comet_64_ff0000.png": {
+      "icons/comet_64_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 23
@@ -339,25 +282,25 @@
         "width": 64,
         "height": 23
       },
-      "icons/comet_icon_128x128_ff8000.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "icons/comet_chrome_app_icon_128x128.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "icons/comet_icon_512_ff8000.png": {
+      "icons/comet_icon_128x128_ff8000.png": {
         "resourcePath": "resourcePath",
-        "width": 444,
-        "height": 512
+        "width": 128,
+        "height": 128
       },
       "icons/comet_icon_256x256_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 256,
         "height": 256
+      },
+      "icons/comet_icon_512_ff8000.png": {
+        "resourcePath": "resourcePath",
+        "width": 444,
+        "height": 512
       },
       "icons/comet_icon_512x512_ff8000.png": {
         "resourcePath": "resourcePath",
@@ -374,40 +317,40 @@
         "width": 450,
         "height": 450
       },
-      "icons/comet_webapp_icon_114.png": {
-        "resourcePath": "resourcePath",
-        "width": 114,
-        "height": 114
-      },
       "icons/comet_webapp_icon.png": {
         "resourcePath": "resourcePath",
         "width": 72,
         "height": 72
+      },
+      "icons/comet_webapp_icon_114.png": {
+        "resourcePath": "resourcePath",
+        "width": 114,
+        "height": 114
       },
       "icons/comet_webapp_icon_120.png": {
         "resourcePath": "resourcePath",
         "width": 120,
         "height": 120
       },
-      "icons/comet_webapp_icon_152.png": {
-        "resourcePath": "resourcePath",
-        "width": 152,
-        "height": 152
-      },
       "icons/comet_webapp_icon_144.png": {
         "resourcePath": "resourcePath",
         "width": 144,
         "height": 144
       },
-      "icons/comet_webapp_icon_180.png": {
+      "icons/comet_webapp_icon_152.png": {
         "resourcePath": "resourcePath",
-        "width": 180,
-        "height": 180
+        "width": 152,
+        "height": 152
       },
       "icons/comet_webapp_icon_167.png": {
         "resourcePath": "resourcePath",
         "width": 167,
         "height": 167
+      },
+      "icons/comet_webapp_icon_180.png": {
+        "resourcePath": "resourcePath",
+        "width": 180,
+        "height": 180
       },
       "icons/comet_webapp_icon_76.png": {
         "resourcePath": "resourcePath",
@@ -424,15 +367,15 @@
         "width": 120,
         "height": 120
       },
-      "icons/comet_webapp_icon_android_144.png": {
-        "resourcePath": "resourcePath",
-        "width": 144,
-        "height": 144
-      },
       "icons/comet_webapp_icon_android_128.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
+      },
+      "icons/comet_webapp_icon_android_144.png": {
+        "resourcePath": "resourcePath",
+        "width": 144,
+        "height": 144
       },
       "icons/comet_webapp_icon_android_152.png": {
         "resourcePath": "resourcePath",
@@ -459,15 +402,15 @@
         "width": 36,
         "height": 36
       },
-      "icons/comet_webapp_icon_android_512.png": {
-        "resourcePath": "resourcePath",
-        "width": 512,
-        "height": 512
-      },
       "icons/comet_webapp_icon_android_48.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
+      },
+      "icons/comet_webapp_icon_android_512.png": {
+        "resourcePath": "resourcePath",
+        "width": 512,
+        "height": 512
       },
       "icons/comet_webapp_icon_android_57.png": {
         "resourcePath": "resourcePath",
@@ -484,15 +427,15 @@
         "width": 78,
         "height": 78
       },
-      "icons/cometvisu_icon_opt.svg": {
-        "resourcePath": "resourcePath",
-        "width": 488,
-        "height": 561
-      },
       "icons/comet_webapp_icon_android_96.png": {
         "resourcePath": "resourcePath",
         "width": 96,
         "height": 96
+      },
+      "icons/cometvisu_icon_opt.svg": {
+        "resourcePath": "resourcePath",
+        "width": 488,
+        "height": 561
       },
       "icons/cometvisu_icon_raw.svg": {
         "resourcePath": "resourcePath",
@@ -500,6 +443,60 @@
         "height": 756
       },
       "icons/iconlist.html": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/EventRecorder.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/Three.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/d3.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/favico.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.edl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.epl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.about.html": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/sprintf.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/strftime.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/svg4everybody.js": {
         "resourcePath": "resourcePath"
       },
       "manager/crc32.js": {
@@ -527,6 +524,9 @@
         "resourcePath": "resourcePath"
       },
       "test/l": {
+        "resourcePath": "resourcePath"
+      },
+      "demo/visu_config_gauge.xml": {
         "resourcePath": "resourcePath"
       },
       "config/backup/.gitignore": {
@@ -673,10 +673,10 @@
       "designs/discreet_slim/basic.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_slim/design_setup.js": {
+      "designs/discreet_slim/custom.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/discreet_slim/custom.css": {
+      "designs/discreet_slim/design_setup.js": {
         "resourcePath": "resourcePath"
       },
       "designs/discreet_slim/mobile.css": {
@@ -712,10 +712,10 @@
       "designs/pitchblack/mobile.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/custom.css": {
+      "designs/planet/basic.css": {
         "resourcePath": "resourcePath"
       },
-      "designs/planet/basic.css": {
+      "designs/planet/custom.css": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/design_setup.js": {
@@ -1210,18 +1210,6 @@
       "designs/tile/fonts/remixicon.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qxl/apiviewer/css/sunlight.default.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.xml-min.js": {
-        "resourcePath": "resourcePath"
-      },
       "plugins/gauge/dep/ChangeLog.txt": {
         "resourcePath": "resourcePath"
       },
@@ -1261,19 +1249,31 @@
       "plugins/openweathermap/font/weathericons-regular-webfont.woff2": {
         "resourcePath": "resourcePath"
       },
+      "qxl/apiviewer/css/sunlight.default.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.xml-min.js": {
+        "resourcePath": "resourcePath"
+      },
       "designs/planet/fonts/OSP/OSP-DIN.ttf": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/fonts/ubuntu-font-family/UbuntuMono-B.ttf": {
         "resourcePath": "resourcePath"
       },
+      "designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/diagram/dep/flot/API.md": {
         "resourcePath": "resourcePath"
       },
       "plugins/diagram/dep/flot/CONTRIBUTING.md": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/planet/fonts/ubuntu-font-family/UbuntuMono-R.ttf": {
         "resourcePath": "resourcePath"
       },
       "plugins/diagram/dep/flot/FAQ.md": {
@@ -1291,10 +1291,10 @@
       "plugins/diagram/dep/flot/PLUGINS.md": {
         "resourcePath": "resourcePath"
       },
-      "plugins/diagram/dep/flot/excanvas.js": {
+      "plugins/diagram/dep/flot/README.md": {
         "resourcePath": "resourcePath"
       },
-      "plugins/diagram/dep/flot/README.md": {
+      "plugins/diagram/dep/flot/excanvas.js": {
         "resourcePath": "resourcePath"
       },
       "plugins/diagram/dep/flot/excanvas.min.js": {
@@ -1351,10 +1351,10 @@
       "plugins/diagram/dep/flot/jquery.flot.min.js": {
         "resourcePath": "resourcePath"
       },
-      "plugins/diagram/dep/flot/jquery.flot.navigate.min.js": {
+      "plugins/diagram/dep/flot/jquery.flot.navigate.js": {
         "resourcePath": "resourcePath"
       },
-      "plugins/diagram/dep/flot/jquery.flot.navigate.js": {
+      "plugins/diagram/dep/flot/jquery.flot.navigate.min.js": {
         "resourcePath": "resourcePath"
       },
       "plugins/diagram/dep/flot/jquery.flot.pie.js": {
@@ -1417,6 +1417,11 @@
         "resourcePath": "resourcePath"
       }
     },
+    "qxl.versionlabel": {
+      "dummy.txt": {
+        "resourcePath": "resourcePath"
+      }
+    },
     "com.zenesis.qx.upload": {
       "FileSaver.js": {
         "resourcePath": "resourcePath"
@@ -1458,6 +1463,246 @@
       },
       "qxl/apiviewer/css/apiviewer.css": {
         "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/image/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qxl/apiviewer/image/childcontrol18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_abstract_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_singleton_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_static_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/class_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/close.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/constant18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/cross.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/event18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/includes.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/information18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 22
+      },
+      "qxl/apiviewer/image/interface18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/interface_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/loading66.gif": {
+        "resourcePath": "resourcePath",
+        "width": 66,
+        "height": 66
+      },
+      "qxl/apiviewer/image/method_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/method_public_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/mixin_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/nextlevel.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/open.gif": {
+        "resourcePath": "resourcePath",
+        "width": 17,
+        "height": 13
+      },
+      "qxl/apiviewer/image/overlay_abstract18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_constructor18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_error18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_inherited18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_mixin18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_overridden18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_static18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/overlay_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/package_warning18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_internal18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_private18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_protected18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/property_themeable18.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/search18.png": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
+      },
+      "qxl/apiviewer/image/vline.gif": {
+        "resourcePath": "resourcePath",
+        "width": 18,
+        "height": 18
       },
       "qxl/apiviewer/imagesCombined/symbols.gif": {
         "resourcePath": "resourcePath",
@@ -1748,246 +1993,6 @@
             -396
           ]
         }
-      },
-      "qxl/apiviewer/image/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qxl/apiviewer/image/childcontrol18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_abstract_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_singleton_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_static_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/class_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/close.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/constant18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/cross.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/event18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/includes.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/information18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/inherited_and_mixins_included.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 22
-      },
-      "qxl/apiviewer/image/interface18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/interface_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/loading66.gif": {
-        "resourcePath": "resourcePath",
-        "width": 66,
-        "height": 66
-      },
-      "qxl/apiviewer/image/method_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/method_public_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/mixin_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/nextlevel.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/open.gif": {
-        "resourcePath": "resourcePath",
-        "width": 17,
-        "height": 13
-      },
-      "qxl/apiviewer/image/overlay_abstract18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_constructor18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_error18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_inherited18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_mixin18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_overridden18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_static18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/overlay_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/package_warning18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_internal18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_private18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_protected18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/property_themeable18.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/search18.png": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
-      },
-      "qxl/apiviewer/image/vline.gif": {
-        "resourcePath": "resourcePath",
-        "width": 18,
-        "height": 18
       }
     },
     "qxl.dialog": {
@@ -2027,112 +2032,8 @@
         "resourcePath": "resourcePath"
       }
     },
-    "qxl.versionlabel": {
-      "dummy.txt": {
-        "resourcePath": "resourcePath"
-      }
-    },
     "qx": {
       "source/readme.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/icon/LICENSE": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/scss/_gradients.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/scss/_layout.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/scss/_mixins.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/scss/_shared.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/blank.gif": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qx/static/blank.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/blank.png": {
-        "resourcePath": "resourcePath",
-        "width": 1,
-        "height": 1
-      },
-      "qx/static/drawer.png": {
-        "resourcePath": "resourcePath",
-        "width": 23,
-        "height": 23
-      },
-      "qx/static/drawer@2x.png": {
-        "resourcePath": "resourcePath",
-        "width": 45,
-        "height": 45
-      },
-      "qx/static/ellipsis.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/static/empty.pdf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/UnitTestFlash.mxml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/UnitTestFlash.swf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/array.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/bluebar.svg": {
-        "resourcePath": "resourcePath",
-        "width": 192,
-        "height": 10
-      },
-      "qx/test/build.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/cached-script.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/delayedImage.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/colorstrip.gif": {
-        "resourcePath": "resourcePath",
-        "width": 192,
-        "height": 10
-      },
-      "qx/test/failing.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/hello.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/jsonp_primitive.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/object.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/script.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/primitive.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/style.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webworker.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/loadsass.js": {
         "resourcePath": "resourcePath"
       },
       "source/Modern/Assets.psd": {
@@ -2176,12 +2077,12 @@
         "width": 80,
         "height": 60
       },
-      "source/Modern/button.png": {
+      "source/Modern/button-pressed.png": {
         "resourcePath": "resourcePath",
         "width": 80,
         "height": 60
       },
-      "source/Modern/button-pressed.png": {
+      "source/Modern/button.png": {
         "resourcePath": "resourcePath",
         "width": 80,
         "height": 60
@@ -2271,22 +2172,22 @@
         "width": 14,
         "height": 14
       },
-      "source/Modern/checkbox-undetermined-focused-invalid.png": {
-        "resourcePath": "resourcePath",
-        "width": 14,
-        "height": 14
-      },
       "source/Modern/checkbox-undetermined-disabled.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
-      "source/Modern/checkbox-undetermined-hovered-invalid.png": {
+      "source/Modern/checkbox-undetermined-focused-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
       "source/Modern/checkbox-undetermined-focused.png": {
+        "resourcePath": "resourcePath",
+        "width": 14,
+        "height": 14
+      },
+      "source/Modern/checkbox-undetermined-hovered-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
@@ -2309,15 +2210,15 @@
       "source/Modern/checkbox-undetermined.xcf": {
         "resourcePath": "resourcePath"
       },
-      "source/Modern/combobox-pfeil.png": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 5
-      },
       "source/Modern/checkbox.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
+      },
+      "source/Modern/combobox-pfeil.png": {
+        "resourcePath": "resourcePath",
+        "width": 8,
+        "height": 5
       },
       "source/Modern/draftj.psd": {
         "resourcePath": "resourcePath"
@@ -2362,15 +2263,15 @@
         "width": 45,
         "height": 2
       },
-      "source/Modern/menubar-gradient.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 20
-      },
       "source/Modern/menu-gradient.png": {
         "resourcePath": "resourcePath",
         "width": 49,
         "height": 49
+      },
+      "source/Modern/menubar-gradient.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 20
       },
       "source/Modern/pane.png": {
         "resourcePath": "resourcePath",
@@ -2437,12 +2338,12 @@
         "width": 14,
         "height": 14
       },
-      "source/Modern/radio-pressed-invalid.png": {
+      "source/Modern/radio-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
-      "source/Modern/radio-invalid.png": {
+      "source/Modern/radio-pressed-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
@@ -2457,6 +2358,11 @@
         "width": 14,
         "height": 14
       },
+      "source/Modern/scrollbar-bg.png": {
+        "resourcePath": "resourcePath",
+        "width": 15,
+        "height": 76
+      },
       "source/Modern/scrollbar-pfeil-down.png": {
         "resourcePath": "resourcePath",
         "width": 6,
@@ -2466,11 +2372,6 @@
         "resourcePath": "resourcePath",
         "width": 6,
         "height": 4
-      },
-      "source/Modern/scrollbar-bg.png": {
-        "resourcePath": "resourcePath",
-        "width": 15,
-        "height": 76
       },
       "source/Modern/selection.png": {
         "resourcePath": "resourcePath",
@@ -2651,6 +2552,105 @@
         "resourcePath": "resourcePath",
         "width": 369,
         "height": 15
+      },
+      "qx/icon/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/scss/_gradients.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/scss/_layout.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/scss/_mixins.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/scss/_shared.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/blank.gif": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qx/static/blank.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/blank.png": {
+        "resourcePath": "resourcePath",
+        "width": 1,
+        "height": 1
+      },
+      "qx/static/drawer.png": {
+        "resourcePath": "resourcePath",
+        "width": 23,
+        "height": 23
+      },
+      "qx/static/drawer@2x.png": {
+        "resourcePath": "resourcePath",
+        "width": 45,
+        "height": 45
+      },
+      "qx/static/ellipsis.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/static/empty.pdf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/UnitTestFlash.mxml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/UnitTestFlash.swf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/array.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/bluebar.svg": {
+        "resourcePath": "resourcePath",
+        "width": 192,
+        "height": 10
+      },
+      "qx/test/build.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/cached-script.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/colorstrip.gif": {
+        "resourcePath": "resourcePath",
+        "width": 192,
+        "height": 10
+      },
+      "qx/test/delayedImage.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/failing.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/hello.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/jsonp_primitive.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/object.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/primitive.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/script.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/style.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webworker.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/loadsass.js": {
+        "resourcePath": "resourcePath"
       },
       "qx/decoration/Classic/arrows-combined.gif": {
         "resourcePath": "resourcePath",
@@ -6853,14 +6853,14 @@
         "width": 8,
         "height": 7
       },
-      "qx/decoration/Classic/arrows/forward.gif": {
-        "resourcePath": "resourcePath",
-        "width": 8,
-        "height": 7
-      },
       "qx/decoration/Classic/arrows/left-invert.gif": {
         "resourcePath": "resourcePath",
         "width": 4,
+        "height": 7
+      },
+      "qx/decoration/Classic/arrows/forward.gif": {
+        "resourcePath": "resourcePath",
+        "width": 8,
         "height": 7
       },
       "qx/decoration/Classic/arrows/left-small-invert.gif": {
@@ -7008,12 +7008,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/decoration/Classic/datechooser/next-month.png": {
+      "qx/decoration/Classic/datechooser/next-month-invert.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/decoration/Classic/datechooser/next-month-invert.png": {
+      "qx/decoration/Classic/datechooser/next-month.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -7143,12 +7143,12 @@
         "width": 14,
         "height": 14
       },
-      "qx/decoration/Classic/form/checkbox.png": {
+      "qx/decoration/Classic/form/checkbox-undetermined.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
-      "qx/decoration/Classic/form/checkbox-undetermined.png": {
+      "qx/decoration/Classic/form/checkbox.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
@@ -7223,12 +7223,12 @@
         "width": 14,
         "height": 14
       },
-      "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": {
+      "qx/decoration/Classic/form/radiobutton-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
       },
-      "qx/decoration/Classic/form/radiobutton-invalid.png": {
+      "qx/decoration/Classic/form/radiobutton-pressed-invalid.png": {
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 14
@@ -9892,17 +9892,17 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/actions/appointment-new.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/actions/bookmark-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
       "qx/icon/Oxygen/128/actions/check-spelling.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/actions/appointment-new.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10092,12 +10092,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-bottom.png": {
+      "qx/icon/Oxygen/128/actions/go-down.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/actions/go-down.png": {
+      "qx/icon/Oxygen/128/actions/go-bottom.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10787,6 +10787,11 @@
         "width": 128,
         "height": 128
       },
+      "qx/icon/Oxygen/128/emotes/face-angel.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
       "qx/icon/Oxygen/128/emotes/face-embarrassed.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10832,11 +10837,6 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Oxygen/128/emotes/face-angel.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
       "qx/icon/Oxygen/128/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 128,
@@ -10848,6 +10848,11 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/mimetypes/media-audio.png": {
+        "resourcePath": "resourcePath",
+        "width": 128,
+        "height": 128
+      },
+      "qx/icon/Oxygen/128/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -10878,11 +10883,6 @@
         "height": 128
       },
       "qx/icon/Oxygen/128/mimetypes/office-presentation.png": {
-        "resourcePath": "resourcePath",
-        "width": 128,
-        "height": 128
-      },
-      "qx/icon/Oxygen/128/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -14472,11 +14472,6 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Oxygen/48/actions/document-save.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
       "qx/icon/Oxygen/48/actions/document-send.png": {
         "resourcePath": "resourcePath",
         "width": 48,
@@ -14503,6 +14498,11 @@
         "height": 48
       },
       "qx/icon/Oxygen/48/actions/edit-find.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
+      "qx/icon/Oxygen/48/actions/document-save.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -20617,12 +20617,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/preferences-font.png": {
+      "qx/icon/Tango/32/apps/preferences-display.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/apps/preferences-display.png": {
+      "qx/icon/Tango/32/apps/preferences-font.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -20997,12 +20997,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/office-presentation.png": {
+      "qx/icon/Tango/32/mimetypes/office-illustration.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/office-illustration.png": {
+      "qx/icon/Tango/32/mimetypes/office-presentation.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -21202,12 +21202,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/actions/document-revert.png": {
+      "qx/icon/Tango/48/actions/document-properties.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/actions/document-properties.png": {
+      "qx/icon/Tango/48/actions/document-revert.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -21732,12 +21732,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/apps/preferences-clock.png": {
+      "qx/icon/Tango/48/apps/preferences-accessibility.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/apps/preferences-accessibility.png": {
+      "qx/icon/Tango/48/apps/preferences-clock.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -21947,12 +21947,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/devices/display.png": {
+      "qx/icon/Tango/48/devices/computer.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/devices/computer.png": {
+      "qx/icon/Tango/48/devices/display.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22052,12 +22052,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/emotes/face-raspberry.png": {
+      "qx/icon/Tango/48/emotes/face-plain.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/emotes/face-plain.png": {
+      "qx/icon/Tango/48/emotes/face-raspberry.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22092,12 +22092,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/mimetypes/media-image.png": {
+      "qx/icon/Tango/48/mimetypes/media-audio.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/mimetypes/media-audio.png": {
+      "qx/icon/Tango/48/mimetypes/media-image.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22177,12 +22177,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/places/user-trash-full.png": {
+      "qx/icon/Tango/48/places/user-home.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/places/user-home.png": {
+      "qx/icon/Tango/48/places/user-trash-full.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -22817,12 +22817,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-graphics.png": {
+      "qx/icon/Tango/64/apps/office-draw.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/office-draw.png": {
+      "qx/icon/Tango/64/apps/office-graphics.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22892,12 +22892,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/preferences-sound.png": {
+      "qx/icon/Tango/64/apps/preferences-security.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/preferences-security.png": {
+      "qx/icon/Tango/64/apps/preferences-sound.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22922,12 +22922,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-character-map.png": {
+      "qx/icon/Tango/64/apps/utilities-calculator.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-calculator.png": {
+      "qx/icon/Tango/64/apps/utilities-character-map.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -22947,12 +22947,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-keyring.png": {
+      "qx/icon/Tango/64/apps/utilities-help.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/apps/utilities-help.png": {
+      "qx/icon/Tango/64/apps/utilities-keyring.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23017,12 +23017,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/categories/multimedia.png": {
+      "qx/icon/Tango/64/categories/internet.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/categories/internet.png": {
+      "qx/icon/Tango/64/categories/multimedia.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23262,12 +23262,12 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/text-plain.png": {
+      "qx/icon/Tango/64/mimetypes/text-html.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
       },
-      "qx/icon/Tango/64/mimetypes/text-html.png": {
+      "qx/icon/Tango/64/mimetypes/text-plain.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23416,10 +23416,10 @@
       "qx/tool/website/build/assets/bootstrap.css": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/build/assets/bootstrap.min.css.map": {
+      "qx/tool/website/build/assets/bootstrap.min.css": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/build/assets/bootstrap.min.css": {
+      "qx/tool/website/build/assets/bootstrap.min.css.map": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/website/build/assets/buttons.js": {
@@ -23436,15 +23436,15 @@
       "qx/tool/website/build/assets/jquery.js": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/build/assets/qx-api.png": {
-        "resourcePath": "resourcePath",
-        "width": 1144,
-        "height": 640
-      },
       "qx/tool/website/build/assets/logo.svg": {
         "resourcePath": "resourcePath",
         "width": 512,
         "height": 145
+      },
+      "qx/tool/website/build/assets/qx-api.png": {
+        "resourcePath": "resourcePath",
+        "width": 1144,
+        "height": 640
       },
       "qx/tool/website/build/assets/qx-ide.png": {
         "resourcePath": "resourcePath",
@@ -23482,10 +23482,10 @@
       "qx/tool/website/src/assets/bluebird.min.js": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/src/assets/bootstrap.min.css": {
+      "qx/tool/website/src/assets/bootstrap.css": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/src/assets/bootstrap.css": {
+      "qx/tool/website/src/assets/bootstrap.min.css": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/website/src/assets/bootstrap.min.css.map": {
@@ -23502,13 +23502,13 @@
       "qx/tool/website/src/assets/fontawesome-all.js": {
         "resourcePath": "resourcePath"
       },
+      "qx/tool/website/src/assets/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
       "qx/tool/website/src/assets/logo.svg": {
         "resourcePath": "resourcePath",
         "width": 512,
         "height": 145
-      },
-      "qx/tool/website/src/assets/jquery.js": {
-        "resourcePath": "resourcePath"
       },
       "qx/tool/website/src/assets/qx-api.png": {
         "resourcePath": "resourcePath",
@@ -23545,18 +23545,6 @@
       "qx/tool/website/src/scripts/serve.js": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/cli/templates/skeleton/mobile/.gitignore.tmpl": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/Manifest.tmpl.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/compile.tmpl.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/readme.tmpl.md": {
-        "resourcePath": "resourcePath"
-      },
       "qx/tool/cli/templates/skeleton/desktop/.gitignore.tmpl": {
         "resourcePath": "resourcePath"
       },
@@ -23567,6 +23555,18 @@
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/skeleton/desktop/readme.tmpl.md": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/.gitignore.tmpl": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/Manifest.tmpl.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/compile.tmpl.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/readme.tmpl.md": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/skeleton/package/.gitignore.tmpl": {
@@ -23593,15 +23593,6 @@
       "qx/tool/cli/templates/skeleton/server/readme.tmpl.txt": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/cli/templates/skeleton/mobile/source/boot/index.tmpl.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/boot/nojs.tmpl.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/translation/readme.txt": {
-        "resourcePath": "resourcePath"
-      },
       "qx/tool/cli/templates/skeleton/desktop/source/boot/index.tmpl.html": {
         "resourcePath": "resourcePath"
       },
@@ -23611,32 +23602,20 @@
       "qx/tool/cli/templates/skeleton/desktop/source/translation/readme.txt": {
         "resourcePath": "resourcePath"
       },
+      "qx/tool/cli/templates/skeleton/mobile/source/boot/index.tmpl.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/boot/nojs.tmpl.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/translation/readme.txt": {
+        "resourcePath": "resourcePath"
+      },
       "qx/tool/cli/templates/skeleton/package/source/translation/readme.txt": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/skeleton/server/source/translation/readme.txt": {
         "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/Application.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/__init__.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/app.png": {
-        "resourcePath": "resourcePath",
-        "width": 180,
-        "height": 180
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/favicon.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/js_256x256.png": {
-        "resourcePath": "resourcePath",
-        "width": 256,
-        "height": 256
       },
       "qx/tool/cli/templates/skeleton/desktop/source/class/custom/Application.tmpl.js": {
         "resourcePath": "resourcePath"
@@ -23664,6 +23643,27 @@
         "width": 32,
         "height": 32
       },
+      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/Application.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/__init__.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/app.png": {
+        "resourcePath": "resourcePath",
+        "width": 180,
+        "height": 180
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/favicon.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/js_256x256.png": {
+        "resourcePath": "resourcePath",
+        "width": 256,
+        "height": 256
+      },
       "qx/tool/cli/templates/skeleton/package/source/class/custom/Button.tmpl.js": {
         "resourcePath": "resourcePath"
       },
@@ -23684,24 +23684,6 @@
       "qx/tool/cli/templates/skeleton/server/source/resource/custom/.gitignore.tmpl": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/Login.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/Overview.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/__init__.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/css/.gitignore.tmpl": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/theme/custom/scss/_styles.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/skeleton/mobile/source/theme/custom/scss/custom.scss": {
-        "resourcePath": "resourcePath"
-      },
       "qx/tool/cli/templates/skeleton/desktop/source/class/custom/test/DemoTest.tmpl.js": {
         "resourcePath": "resourcePath"
       },
@@ -23718,6 +23700,24 @@
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/skeleton/desktop/source/class/custom/theme/Theme.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/Login.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/Overview.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/class/custom/page/__init__.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/resource/custom/css/.gitignore.tmpl": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/theme/custom/scss/_styles.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/skeleton/mobile/source/theme/custom/scss/custom.scss": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/skeleton/package/source/class/custom/demo/Application.tmpl.js": {

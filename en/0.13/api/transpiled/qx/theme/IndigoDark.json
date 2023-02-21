@@ -16,7 +16,7 @@
       "end": {
         "line": 28,
         "column": 3,
-        "index": 699
+        "index": 703
       }
     },
     "jsdoc": {
@@ -39,12 +39,12 @@
       "end": {
         "line": 27,
         "column": 3,
-        "index": 695
+        "index": 699
       }
     },
     "themeMetaMap": {
       "color": "qx.theme.indigo.ColorDark",
-      "decoration": "qx.theme.indigo.Decoration",
+      "decoration": "qx.theme.indigo.DecorationDark",
       "font": "qx.theme.indigo.Font",
       "appearance": "qx.theme.indigo.AppearanceDark",
       "icon": "qx.theme.icon.Tango"

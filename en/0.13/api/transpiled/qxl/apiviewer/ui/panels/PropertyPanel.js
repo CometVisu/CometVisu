@@ -62,7 +62,7 @@
         }
         return arr;
       },
-      __P_581_0: function __P_581_0(node, currentClassDocNode) {
+      __P_582_0: function __P_582_0(node, currentClassDocNode) {
         if (node.isRefined()) {
           return "";
         }
@@ -96,7 +96,7 @@
         textHtml.add("</div>");
         return qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(textHtml.get(), currentClassDocNode);
       },
-      __P_581_1: function __P_581_1(node) {
+      __P_582_1: function __P_582_1(node) {
         var attributes = [];
         if (node.isNullable()) {
           attributes.push("This property allows 'null' values");
@@ -130,7 +130,7 @@
        * @param node {qxl.apiviewer.dao.ClassItem} item to get the the information from
        * @return {String} HTML fragment
        */
-      __P_581_2: function __P_581_2(node) {
+      __P_582_2: function __P_582_2(node) {
         if (node.isRefined()) {
           var html = new qx.util.StringBuilder('<div class="item-detail-headline">', "Refined property:", "</div>", '<div class="item-detail-text">', qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml(node.getOverriddenFrom().getFullName() + "#" + node.getName()), "</div>");
           return html.get();
@@ -194,10 +194,10 @@
           if (node.getApplyMethod() && !node.isRefined()) {
             textHtml.add('<div class="item-detail-headline">', "Apply method:", "</div>", '<div class="item-detail-text">', qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml("#" + node.getApplyMethod(), node.getClass(), true, true), "</div>");
           }
-          textHtml.add(this.__P_581_1(node));
-          textHtml.add(this.__P_581_0(node, currentClassDocNode));
+          textHtml.add(this.__P_582_1(node));
+          textHtml.add(this.__P_582_0(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createIncludedFromHtml(node, currentClassDocNode));
-          textHtml.add(this.__P_581_2(node));
+          textHtml.add(this.__P_582_2(node));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createInheritedFromHtml(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createInfoRequiredByHtml(node));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node));
@@ -211,4 +211,4 @@
   qxl.apiviewer.ui.panels.PropertyPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyPanel.js.map?dt=1676809339316
+//# sourceMappingURL=PropertyPanel.js.map?dt=1677017737868

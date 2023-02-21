@@ -74,7 +74,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isString": {
@@ -121,7 +121,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isArray": {
@@ -168,7 +168,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isObject": {
@@ -215,7 +215,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isFunction": {
@@ -262,7 +262,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isFunctionOrAsyncFunction": {
@@ -309,7 +309,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "isRegExp": {

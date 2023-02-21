@@ -133,7 +133,7 @@
         ]]></status>
       <status type="html" hrefextend="action"><![CDATA[
           - <a cv-action="validate">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: 0.13.0-dev</div>
+          <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
     </statusbar>
   </meta>

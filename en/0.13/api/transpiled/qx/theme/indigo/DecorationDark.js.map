@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "indigo",
+    "Decoration",
+    "decorations",
+    "style",
+    "backgroundColor",
+    "DecorationDark"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/DecorationDark.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Scott Knick (sknick)\n     * Dmitrii Zolotov (goldim)\n\n************************************************************************ */\n\n/**\n * The indigo dark qooxdoo decoration theme.\n */\nqx.Theme.define(\"qx.theme.indigo.DecorationDark\", {\n  extend: qx.theme.indigo.Decoration,\n\n  decorations: {\n    \"menubar-button-hovered\": {\n      style: {\n        backgroundColor: \"background\"\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,gCAAgC,EAAE;IAChDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,MAAM,CAACC,UAAU;IAElCC,WAAW,EAAE;MACX,wBAAwB,EAAE;QACxBC,KAAK,EAAE;UACLC,eAAe,EAAE;QACnB;MACF;IACF;EACF,CAAC,CAAC;EA7BFZ,EAAE,CAACO,KAAK,CAACC,MAAM,CAACK,cAAc,CAACV,aAAa,GAAGA,aAAa;AAAC"
+}

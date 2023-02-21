@@ -15,6 +15,8 @@
     "cell",
     "Abstract",
     "construct",
+    "constructor",
+    "call",
     "members",
     "_getContentHtml",
     "cellInfo",
@@ -29,5 +31,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Renderer for Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.String\", {\n  extend: qx.ui.progressive.renderer.table.cell.Abstract,\n\n  /**\n   */\n  construct() {\n    super();\n  },\n\n  members: {\n    // overridden\n    _getContentHtml(cellInfo) {\n      return qx.bom.String.escape(cellInfo.cellData);\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8CAA8C,EAAE;IAC9DC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACC,QAAQ;IAEtD;AACF;IACEC,SAAS,uBAAG;MACV;IACF,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,eAAe,2BAACC,QAAQ,EAAE;QACxB,OAAOhB,EAAE,CAACiB,GAAG,CAACC,MAAM,CAACC,MAAM,CAACH,QAAQ,CAACI,QAAQ,CAAC;MAChD;IACF;EACF,CAAC,CAAC;EApCFpB,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACO,MAAM,CAACf,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8CAA8C,EAAE;IAC9DC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACC,QAAQ;IAEtD;AACF;IACEC,SAAS,WAAAA,UAAA,EAAG;MACVb,EAAA,CAAAO,EAAA,CAAAC,WAAA,CAAAC,QAAA,CAAAC,KAAA,CAAAC,IAAA,CAAAC,QAAA,CAAAE,WAAA,CAAAC,IAAA;IACF,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,eAAe,WAAAA,gBAACC,QAAQ,EAAE;QACxB,OAAOlB,EAAE,CAACmB,GAAG,CAACC,MAAM,CAACC,MAAM,CAACH,QAAQ,CAACI,QAAQ,CAAC;MAChD;IACF;EACF,CAAC,CAAC;EApCFtB,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACS,MAAM,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

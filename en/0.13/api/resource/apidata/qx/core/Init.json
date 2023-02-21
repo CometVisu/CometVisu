@@ -73,7 +73,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "ready": {
@@ -97,7 +97,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "__close": {

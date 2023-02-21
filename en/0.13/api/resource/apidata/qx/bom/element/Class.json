@@ -141,7 +141,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "addClasses": {
@@ -195,7 +195,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "get": {
@@ -290,7 +290,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "remove": {
@@ -344,7 +344,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "removeClasses": {
@@ -398,7 +398,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "replace": {
@@ -516,7 +516,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

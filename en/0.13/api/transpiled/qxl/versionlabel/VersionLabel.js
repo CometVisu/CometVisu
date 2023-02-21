@@ -87,4 +87,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1676809338164
+//# sourceMappingURL=VersionLabel.js.map?dt=1677017736243

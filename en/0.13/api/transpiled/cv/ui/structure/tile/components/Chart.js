@@ -542,7 +542,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       onStateUpdate: function onStateUpdate(ev) {
         var targetDataset = this._element.querySelector(':scope > dataset[src="' + ev.detail.target + '"]');
-        var config = this._dataSetConfigs[ev.detail.target];
+        var config = this._dataSetConfigs ? this._dataSetConfigs[ev.detail.target] : null;
         if (targetDataset && config) {
           var ts = Date.now();
           if (config.aggregationInterval) {
@@ -601,6 +601,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           return;
         }
         var client = cv.io.BackendConnections.getClient();
+        if (!client) {
+          return;
+        }
         var url;
         var dataSets = this._element.querySelectorAll(':scope > dataset');
         var series = this.getCurrentSeries();
@@ -1514,4 +1517,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1676809300450
+//# sourceMappingURL=Chart.js.map?dt=1677017683074

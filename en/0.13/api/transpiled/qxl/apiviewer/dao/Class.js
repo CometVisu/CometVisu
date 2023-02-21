@@ -77,12 +77,12 @@
       _mixins: null,
       _loadingPromise: null,
       _loaded: false,
-      __P_570_0: null,
+      __P_571_0: null,
       /**
        * retrieves the meta file name + path
        */
       getMetaFile: function getMetaFile() {
-        return this.__P_570_0;
+        return this.__P_571_0;
       },
       /**
        * Loads the class
@@ -94,7 +94,7 @@
         if (this._loadingPromise) {
           return this._loadingPromise;
         }
-        var url = this.__P_570_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
+        var url = this.__P_571_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
         return this._loadingPromise = qxl.apiviewer.RequestUtil.get(url).then(function (content) {
           /* eslint-disable-next-line no-eval */
           var meta = eval("(" + content + ")");
@@ -778,4 +778,4 @@
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1676809338285
+//# sourceMappingURL=Class.js.map?dt=1677017736414

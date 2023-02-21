@@ -36,18 +36,18 @@
     ******************************************************
     */
     statics: {
-      __P_541_0: null,
+      __P_542_0: null,
       /**
        * Decode HTML entities like &amp; to &
        * @param str {String} string to decode
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__P_541_0) {
-          this.__P_541_0 = document.createElement('span');
+        if (!this.__P_542_0) {
+          this.__P_542_0 = document.createElement('span');
         }
-        this.__P_541_0.innerHTML = str;
-        return this.__P_541_0.innerText;
+        this.__P_542_0.innerHTML = str;
+        return this.__P_542_0.innerText;
       },
       /**
        * Clean the string that contains HTML code and convert it to a DOM element
@@ -91,4 +91,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1676809335562
+//# sourceMappingURL=String.js.map?dt=1677017732681

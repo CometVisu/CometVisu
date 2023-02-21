@@ -40,7 +40,7 @@
       qx.core.Object.constructor.call(this);
       qxl.apiviewer.TabViewController.instance = this;
       this._tabView = widgetRegistry.getWidgetById("tabView");
-      this._tabView.addListener("changeSelection", this.__P_569_0, this);
+      this._tabView.addListener("changeSelection", this.__P_570_0, this);
     },
     events: {
       /** This event if dispatched if one of the internal links is tapped */
@@ -76,12 +76,12 @@
         return child.showItem(itemName);
       },
       openPackage: function openPackage(classNode, newTab) {
-        return this.__P_569_1(classNode, qxl.apiviewer.ui.tabview.PackagePage, newTab);
+        return this.__P_570_1(classNode, qxl.apiviewer.ui.tabview.PackagePage, newTab);
       },
       openClass: function openClass(classNode, newTab) {
-        return this.__P_569_1(classNode, qxl.apiviewer.ui.tabview.ClassPage, newTab);
+        return this.__P_570_1(classNode, qxl.apiviewer.ui.tabview.ClassPage, newTab);
       },
-      __P_569_1: function __P_569_1(classNode, clazz, newTab) {
+      __P_570_1: function __P_570_1(classNode, clazz, newTab) {
         var currentPage = this._tabView.getSelection()[0] || null;
         if (currentPage && (!(currentPage instanceof clazz) || newTab)) {
           this._tabView.remove(currentPage);
@@ -97,7 +97,7 @@
         currentPage.setUserData("itemName", null);
         return currentPage.setClassNodeAsync(classNode);
       },
-      __P_569_0: function __P_569_0(event) {
+      __P_570_0: function __P_570_0(event) {
         var oldData = event.getOldData();
         var data = event.getData();
         this.fireDataEvent("changeSelection", data, oldData);
@@ -111,4 +111,4 @@
   qxl.apiviewer.TabViewController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabViewController.js.map?dt=1676809338203
+//# sourceMappingURL=TabViewController.js.map?dt=1677017736297

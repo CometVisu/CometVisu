@@ -97,7 +97,7 @@
           "index": 785
         }
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

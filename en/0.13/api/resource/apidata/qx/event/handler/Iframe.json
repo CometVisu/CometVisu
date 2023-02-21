@@ -59,7 +59,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "SUPPORTED_TYPES": {
@@ -119,7 +119,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "IGNORE_CAN_HANDLE": {

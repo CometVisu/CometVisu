@@ -14,9 +14,9 @@
         "index": 912
       },
       "end": {
-        "line": 150,
+        "line": 162,
         "column": 3,
-        "index": 4909
+        "index": 5261
       }
     },
     "jsdoc": {
@@ -103,12 +103,12 @@
         "start": {
           "line": 82,
           "column": 4,
-          "index": 2713
+          "index": 2711
         },
         "end": {
-          "line": 120,
+          "line": 132,
           "column": 5,
-          "index": 4109
+          "index": 4461
         }
       },
       "jsdoc": {
@@ -139,8 +139,8 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Promise<Response>}",
-            "type": "Promise<Response>",
+            "body": "{Promise<String>}",
+            "type": "Promise<String>",
             "description": ""
           }
         ]
@@ -151,14 +151,14 @@
     "proxyFetch": {
       "location": {
         "start": {
-          "line": 129,
+          "line": 141,
           "column": 4,
-          "index": 4279
+          "index": 4631
         },
         "end": {
-          "line": 131,
+          "line": 143,
           "column": 5,
-          "index": 4395
+          "index": 4747
         }
       },
       "jsdoc": {
@@ -197,14 +197,14 @@
     "_gc": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 149,
           "column": 4,
-          "index": 4476
+          "index": 4828
         },
         "end": {
-          "line": 148,
+          "line": 160,
           "column": 5,
-          "index": 4901
+          "index": 5253
         }
       },
       "jsdoc": {

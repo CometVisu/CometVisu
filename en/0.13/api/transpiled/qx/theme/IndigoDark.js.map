@@ -14,7 +14,7 @@
     "indigo",
     "ColorDark",
     "decoration",
-    "Decoration",
+    "DecorationDark",
     "font",
     "Font",
     "appearance",
@@ -27,7 +27,7 @@
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/IndigoDark.js"
   ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Scott Knick (sknick)\n\n************************************************************************ */\n/**\n * IndigoDark Theme\n */\nqx.Theme.define(\"qx.theme.IndigoDark\", {\n  title: \"IndigoDark\",\n\n  meta: {\n    color: qx.theme.indigo.ColorDark,\n    decoration: qx.theme.indigo.Decoration,\n    font: qx.theme.indigo.Font,\n    appearance: qx.theme.indigo.AppearanceDark,\n    icon: qx.theme.icon.Tango\n  }\n});\n"
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Scott Knick (sknick)\n\n************************************************************************ */\n/**\n * IndigoDark Theme\n */\nqx.Theme.define(\"qx.theme.IndigoDark\", {\n  title: \"IndigoDark\",\n\n  meta: {\n    color: qx.theme.indigo.ColorDark,\n    decoration: qx.theme.indigo.DecorationDark,\n    font: qx.theme.indigo.Font,\n    appearance: qx.theme.indigo.AppearanceDark,\n    icon: qx.theme.icon.Tango\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,KAAK,EAAE,YAAY;IAEnBC,IAAI,EAAE;MACJC,KAAK,EAAER,EAAE,CAACS,KAAK,CAACC,MAAM,CAACC,SAAS;MAChCC,UAAU,EAAEZ,EAAE,CAACS,KAAK,CAACC,MAAM,CAACG,UAAU;MACtCC,IAAI,EAAEd,EAAE,CAACS,KAAK,CAACC,MAAM,CAACK,IAAI;MAC1BC,UAAU,EAAEhB,EAAE,CAACS,KAAK,CAACC,MAAM,CAACO,cAAc;MAC1CC,IAAI,EAAElB,EAAE,CAACS,KAAK,CAACS,IAAI,CAACC;IACtB;EACF,CAAC,CAAC;EA3BFnB,EAAE,CAACS,KAAK,CAACW,UAAU,CAACjB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,KAAK,EAAE,YAAY;IAEnBC,IAAI,EAAE;MACJC,KAAK,EAAER,EAAE,CAACS,KAAK,CAACC,MAAM,CAACC,SAAS;MAChCC,UAAU,EAAEZ,EAAE,CAACS,KAAK,CAACC,MAAM,CAACG,cAAc;MAC1CC,IAAI,EAAEd,EAAE,CAACS,KAAK,CAACC,MAAM,CAACK,IAAI;MAC1BC,UAAU,EAAEhB,EAAE,CAACS,KAAK,CAACC,MAAM,CAACO,cAAc;MAC1CC,IAAI,EAAElB,EAAE,CAACS,KAAK,CAACS,IAAI,CAACC;IACtB;EACF,CAAC,CAAC;EA3BFnB,EAAE,CAACS,KAAK,CAACW,UAAU,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

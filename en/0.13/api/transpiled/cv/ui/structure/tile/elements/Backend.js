@@ -152,26 +152,38 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           client.update = function (data) {
             return model.updateFrom(name, data);
           }; // override clients update function
+          var _iterator = _createForOfIteratorHelper(element.querySelectorAll(':scope > cv-resource')),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var data = _step.value;
+              client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
           client.login(true, credentials, function () {
             _this.debug(name, 'connected');
             if (element.hasAttribute('default') && element.getAttribute('default') === 'true') {
               model.setDefaultBackendName(name);
             }
             var doSubscribe = function doSubscribe() {
-              var _iterator = _createForOfIteratorHelper(_this.__P_86_0),
-                _step;
+              var _iterator2 = _createForOfIteratorHelper(_this.__P_86_0),
+                _step2;
               try {
-                for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  var _step$value = _slicedToArray(_step.value, 2),
-                    address = _step$value[0],
-                    value = _step$value[1];
+                for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                  var _step2$value = _slicedToArray(_step2.value, 2),
+                    address = _step2$value[0],
+                    value = _step2$value[1];
                   _this.debug(name, 'apply update', address, value);
                   model.onUpdate(address, value, name);
                 }
               } catch (err) {
-                _iterator.e(err);
+                _iterator2.e(err);
               } finally {
-                _iterator.f();
+                _iterator2.f();
               }
               var addressesToSubscribe = model.getAddresses(name);
               _this.debug(name, 'subscribing to', addressesToSubscribe.length, 'addresses');
@@ -187,18 +199,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }, _this);
             }
           });
-          var _iterator2 = _createForOfIteratorHelper(element.querySelectorAll(':scope > cv-resource')),
-            _step2;
-          try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var data = _step2.value;
-              client.setResourcePath(data.getAttribute('name'), data.textContent.trim());
-            }
-          } catch (err) {
-            _iterator2.e(err);
-          } finally {
-            _iterator2.f();
-          }
         } else {
           this.error('<cv-backend> must have a type attribute');
         }
@@ -233,4 +233,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.elements.Backend.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Backend.js.map?dt=1676809301508
+//# sourceMappingURL=Backend.js.map?dt=1677017684568

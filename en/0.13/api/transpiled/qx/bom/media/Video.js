@@ -119,4 +119,4 @@
   qx.bom.media.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1676809306301
+//# sourceMappingURL=Video.js.map?dt=1677017690753

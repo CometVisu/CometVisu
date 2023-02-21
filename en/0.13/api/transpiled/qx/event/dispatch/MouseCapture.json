@@ -109,7 +109,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

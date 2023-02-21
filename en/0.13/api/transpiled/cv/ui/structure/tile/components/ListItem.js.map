@@ -16,6 +16,11 @@
     "AbstractComponent",
     "members",
     "_init",
+    "_this",
+    "ListItem",
+    "superclass",
+    "prototype",
+    "call",
     "_element",
     "fireEvent",
     "name",
@@ -32,8 +37,14 @@
     "customElements",
     "Controller",
     "PREFIX",
-    "QxConnector",
-    "ListItem"
+    "_QxConnector",
+    "_inherits",
+    "_class",
+    "_super",
+    "_createSuper",
+    "_classCallCheck",
+    "_createClass",
+    "QxConnector"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/ListItem.js"
@@ -41,5 +52,5 @@
   "sourcesContent": [
     "/* ListItem.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Shows an item in a list.\n */\nqx.Class.define('cv.ui.structure.tile.components.ListItem', {\n  extend: cv.ui.structure.tile.components.AbstractComponent,\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _init() {\n      super._init();\n      // install fireEvent function\n      this._element.fireEvent = (name, value) => {\n        const ev = new CustomEvent(name, {\n          bubbles: true,\n          cancelable: true,\n          detail: {\n            value: value,\n            source: this\n          }\n        });\n        this._element.dispatchEvent(ev);\n      };\n    }\n  },\n\n  defer(QxClass) {\n    customElements.define(\n      cv.ui.structure.tile.Controller.PREFIX + 'listitem',\n      class extends QxConnector {\n        constructor() {\n          super(QxClass);\n        }\n      }\n    );\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0CAA0C,EAAE;IAC1DC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACC,iBAAiB;IAEzD;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,KAAK,mBAAG;QAAA;QACN;QACA;QACA,IAAI,CAACC,QAAQ,CAACC,SAAS,GAAG,UAACC,IAAI,EAAEC,KAAK,EAAK;UACzC,IAAMC,EAAE,GAAG,IAAIC,WAAW,CAACH,IAAI,EAAE;YAC/BI,OAAO,EAAE,IAAI;YACbC,UAAU,EAAE,IAAI;YAChBC,MAAM,EAAE;cACNL,KAAK,EAAEA,KAAK;cACZM,MAAM,EAAE;YACV;UACF,CAAC,CAAC;UACF,KAAI,CAACT,QAAQ,CAACU,aAAa,CAACN,EAAE,CAAC;QACjC,CAAC;MACH;IACF,CAAC;IAEDO,KAAK,iBAACC,OAAO,EAAE;MACbC,cAAc,CAACvB,MAAM,CACnBE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACmB,UAAU,CAACC,MAAM,GAAG,UAAU;QAAA;;QAAA;QAAA;QAEjD,kBAAc;UAAA;UAAA,yBACNH,OAAO;QACf;QAAC;MAAA,EAHWI,WAAW,EAK1B;IACH;EACF,CAAC,CAAC;EA1DFxB,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACqB,QAAQ,CAAC7B,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0CAA0C,EAAE;IAC1DC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACC,iBAAiB;IAEzD;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,KAAK,WAAAA,MAAA,EAAG;QAAA,IAAAC,KAAA;QACNR,EAAA,CAAAC,EAAA,CAAAC,SAAA,CAAAC,IAAA,CAAAC,UAAA,CAAAK,QAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAJ,KAAA,CAAAK,IAAA;QACA;QACA,IAAI,CAACC,QAAQ,CAACC,SAAS,GAAG,UAACC,IAAI,EAAEC,KAAK,EAAK;UACzC,IAAMC,EAAE,GAAG,IAAIC,WAAW,CAACH,IAAI,EAAE;YAC/BI,OAAO,EAAE,IAAI;YACbC,UAAU,EAAE,IAAI;YAChBC,MAAM,EAAE;cACNL,KAAK,EAAEA,KAAK;cACZM,MAAM,EAAEd;YACV;UACF,CAAC,CAAC;UACFA,KAAI,CAACK,QAAQ,CAACU,aAAa,CAACN,EAAE,CAAC;QACjC,CAAC;MACH;IACF,CAAC;IAEDO,KAAK,WAAAA,MAACC,OAAO,EAAE;MACbC,cAAc,CAAC5B,MAAM,CACnBE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACwB,UAAU,CAACC,MAAM,GAAG,UAAU,yBAAAC,YAAA;QAAA;;QAAAC,SAAA,CAAAC,MAAA,EAAAF,YAAA;QAAA,IAAAG,MAAA,GAAAC,YAAA,CAAAF,MAAA;QAEjD,SAAAA,OAAA,EAAc;UAAAG,eAAA,OAAAH,MAAA;UAAA,OAAAC,MAAA,CAAApB,IAAA,OACNa,OAAO;QACf;QAAC,OAAAU,YAAA,CAAAJ,MAAA;MAAA,EAHWK,WAAW,EAK1B;IACH;EACF,CAAC,CAAC;EA1DFpC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACK,QAAQ,CAACb,aAAa,GAAGA,aAAa;AAAC"
 }

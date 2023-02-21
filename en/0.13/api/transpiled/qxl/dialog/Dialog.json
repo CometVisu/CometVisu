@@ -172,7 +172,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "alert": {
@@ -672,7 +672,7 @@
         }
       },
       "jsdoc": {},
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

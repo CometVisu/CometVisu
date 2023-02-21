@@ -229,7 +229,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "DEFAULT_DATA_RENDERER": {
@@ -259,7 +259,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "DEFAULT_EDITOR_FACTORY": {
@@ -289,7 +289,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

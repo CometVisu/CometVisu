@@ -146,7 +146,6 @@ jedoch der Header oder Footer Bereich an).
         </nav>
     </header>
 
-
 .. widget-example::
     :hide-source: true
 
@@ -157,6 +156,42 @@ jedoch der Header oder Footer Bereich an).
             <nav>
                 <cv-menu model="pages"/>
             </nav>
+        </header>
+        <main>
+            <cv-page id="eg" name="Erdgeschoss">
+                <cv-page id="ez" name="Esszimmer" />
+                <cv-page id="wz" name="Wohnzimmer" />
+                <cv-page id="ku" name="Küche" />
+                <cv-page id="bad" name="Badezimmer" />
+            </cv-page>
+             <cv-page id="og" name="Obergeschoss">
+                <cv-page id="sz" name="Schlafzimmer" />
+                <cv-page id="kz1" name="Kinderzimmer 1" />
+                <cv-page id="kz2" name="Kinderzimmer 2" />
+                <cv-page id="badOg" name="Badezimmer" />
+            </cv-page>
+        </main>
+
+In den ``<header>/<footer>``-Bereichen kann zusätzlich noch ein Breadcrumb-Menü hinzugefügt werden mit ``<cv-breadcrumbs/>``.
+Damit kann man schnell zurück zu übergeordneten Seiten springen.
+
+.. code-block:: xml
+
+    <header>
+        <cv-breadcrumbs/>
+    </header>
+
+.. widget-example::
+    :hide-source: true
+
+        <settings design="tile" selector="cv-breadcrumbs">
+            <screenshot name="tile-nav-breadcrumb" goto-page="ku" margin="0 -800 0 0"/>
+        </settings>
+        <header>
+            <nav>
+                <cv-menu model="pages"/>
+            </nav>
+            <cv-breadcrumbs/>
         </header>
         <main>
             <cv-page id="eg" name="Erdgeschoss">

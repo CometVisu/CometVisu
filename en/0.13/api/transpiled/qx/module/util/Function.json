@@ -101,7 +101,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     },
     "throttle": {
@@ -168,7 +168,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "public"
     }
   },

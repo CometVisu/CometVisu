@@ -57,7 +57,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "private"
     },
     "debug": {

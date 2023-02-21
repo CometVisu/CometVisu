@@ -12,6 +12,8 @@
     "toolbar",
     "ToolBar",
     "construct",
+    "constructor",
+    "call",
     "getContentElement",
     "setAttribute",
     "properties",
@@ -27,5 +29,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Container for menubar buttons to display a classic application menu.\n */\nqx.Class.define(\"qx.ui.menubar.MenuBar\", {\n  extend: qx.ui.toolbar.ToolBar,\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct() {\n    super();\n\n    // ARIA attrs\n    this.getContentElement().setAttribute(\"role\", \"menubar\");\n  },\n\n  /*\n  *****************************************************************************\n     PROPERTIES\n  *****************************************************************************\n  */\n\n  properties: {\n    /** Appearance of the widget */\n    appearance: {\n      refine: true,\n      init: \"menubar\"\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uBAAuB,EAAE;IACvCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,OAAO;IAE7B;AACF;AACA;AACA;AACA;IAEEC,SAAS,uBAAG;MACV;;MAEA;MACA,IAAI,CAACC,iBAAiB,EAAE,CAACC,YAAY,CAAC,MAAM,EAAE,SAAS,CAAC;IAC1D,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACV;MACAC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF;EACF,CAAC,CAAC;EAlDFhB,EAAE,CAACO,EAAE,CAACU,OAAO,CAACC,OAAO,CAACf,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uBAAuB,EAAE;IACvCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,OAAO;IAE7B;AACF;AACA;AACA;AACA;IAEEC,SAAS,WAAAA,UAAA,EAAG;MACVV,EAAA,CAAAO,EAAA,CAAAC,OAAA,CAAAC,OAAA,CAAAE,WAAA,CAAAC,IAAA;;MAEA;MACA,IAAI,CAACC,iBAAiB,EAAE,CAACC,YAAY,CAAC,MAAM,EAAE,SAAS,CAAC;IAC1D,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,UAAU,EAAE;MACV;MACAC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF;EACF,CAAC,CAAC;EAlDFlB,EAAE,CAACO,EAAE,CAACY,OAAO,CAACC,OAAO,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

@@ -16,6 +16,8 @@
     "meta",
     "clazz",
     "name",
+    "constructor",
+    "call",
     "_value",
     "value",
     "members",
@@ -29,5 +31,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.Constant\", {\n  extend: qxl.apiviewer.dao.ClassItem,\n\n  construct(meta, clazz, name) {\n    this.base(arguments, meta, clazz, name);\n    this._value = meta.value;\n  },\n\n  members: {\n    _value: undefined,\n\n    getValue() {\n      return this._value;\n    },\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEC,GAAG,CAACC,SAAS,CAACC,GAAG,CAACC,SAAS;IAEnCC,SAAS,qBAACC,IAAI,EAAEC,KAAK,EAAEC,IAAI,EAAE;MAC3B,mDAAqBF,IAAI,EAAEC,KAAK,EAAEC,IAAI;MACtC,IAAI,CAACC,MAAM,GAAGH,IAAI,CAACI,KAAK;IAC1B,CAAC;IAEDC,OAAO,EAAE;MACPF,MAAM,EAAEG,SAAS;MAEjBC,QAAQ,sBAAG;QACT,OAAO,IAAI,CAACJ,MAAM;MACpB;IACF;EACF,CAAC,CAAC;EAnCFR,GAAG,CAACC,SAAS,CAACC,GAAG,CAACW,QAAQ,CAACjB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEC,GAAG,CAACC,SAAS,CAACC,GAAG,CAACC,SAAS;IAEnCC,SAAS,WAAAA,UAACC,IAAI,EAAEC,KAAK,EAAEC,IAAI,EAAE;MAC3BP,GAAA,CAAAC,SAAA,CAAAC,GAAA,CAAAC,SAAA,CAAAK,WAAA,CAAAC,IAAA,OAAqBJ,IAAI,EAAEC,KAAK,EAAEC,IAAI;MACtC,IAAI,CAACG,MAAM,GAAGL,IAAI,CAACM,KAAK;IAC1B,CAAC;IAEDC,OAAO,EAAE;MACPF,MAAM,EAAEG,SAAS;MAEjBC,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAI,CAACJ,MAAM;MACpB;IACF;EACF,CAAC,CAAC;EAnCFV,GAAG,CAACC,SAAS,CAACC,GAAG,CAACa,QAAQ,CAACnB,aAAa,GAAGA,aAAa;AAAC"
 }

@@ -15,10 +15,13 @@
     "_cloneNativeEvent",
     "nativeEvent",
     "clone",
+    "Track",
+    "superclass",
+    "prototype",
+    "call",
     "delta",
     "getDelta",
-    "_native",
-    "Track"
+    "_native"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/event/type/Track.js"
@@ -26,5 +29,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\n/**\n * Track is a single pointer gesture and contains of a three vent types:\n * <code>trackstart</code>, <code>track</code> and <code>trackend</code>. These\n * events will be fired when a pointer grabs an item and moves the pointer on it.\n */\nqx.Class.define(\"qx.event.type.Track\", {\n  extend: qx.event.type.Pointer,\n\n  members: {\n    // overridden\n    _cloneNativeEvent(nativeEvent, clone) {\n      var clone = super._cloneNativeEvent(nativeEvent, clone);\n\n      clone.delta = nativeEvent.delta;\n\n      return clone;\n    },\n\n    /**\n     * Returns a map with the calculated delta coordinates and axis,\n     * relative to the position on <code>trackstart</code> event.\n     *\n     * @return {Map} a map with contains the delta as <code>x</code> and\n     * <code>y</code> and the movement axis as <code>axis</code>.\n     */\n    getDelta() {\n      return this._native.delta;\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,OAAO;IAE7BC,OAAO,EAAE;MACP;MACAC,iBAAiB,6BAACC,WAAW,EAAEC,KAAK,EAAE;QACpC,IAAIA,KAAK,yEAA2BD,WAAW,EAAEC,KAAK,CAAC;QAEvDA,KAAK,CAACC,KAAK,GAAGF,WAAW,CAACE,KAAK;QAE/B,OAAOD,KAAK;MACd,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;AACA;MACIE,QAAQ,sBAAG;QACT,OAAO,IAAI,CAACC,OAAO,CAACF,KAAK;MAC3B;IACF;EACF,CAAC,CAAC;EA/CFd,EAAE,CAACO,KAAK,CAACC,IAAI,CAACS,KAAK,CAACd,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,OAAO;IAE7BC,OAAO,EAAE;MACP;MACAC,iBAAiB,WAAAA,kBAACC,WAAW,EAAEC,KAAK,EAAE;QACpC,IAAIA,KAAK,GAAAb,EAAA,CAAAO,KAAA,CAAAC,IAAA,CAAAM,KAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAL,iBAAA,CAAAM,IAAA,OAA2BL,WAAW,EAAEC,KAAK,CAAC;QAEvDA,KAAK,CAACK,KAAK,GAAGN,WAAW,CAACM,KAAK;QAE/B,OAAOL,KAAK;MACd,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;AACA;MACIM,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAI,CAACC,OAAO,CAACF,KAAK;MAC3B;IACF;EACF,CAAC,CAAC;EA/CFlB,EAAE,CAACO,KAAK,CAACC,IAAI,CAACM,KAAK,CAACX,aAAa,GAAGA,aAAa;AAAC"
 }

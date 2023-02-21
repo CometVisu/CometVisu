@@ -89,7 +89,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "protected"
     },
     "computeStart": {

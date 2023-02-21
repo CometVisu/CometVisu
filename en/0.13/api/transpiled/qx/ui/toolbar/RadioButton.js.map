@@ -20,6 +20,8 @@
     "construct",
     "label",
     "icon",
+    "constructor",
+    "call",
     "contentEl",
     "getContentElement",
     "setAttribute",
@@ -28,6 +30,9 @@
     "_applyValue",
     "value",
     "old",
+    "RadioButton",
+    "superclass",
+    "prototype",
     "Boolean",
     "grp",
     "getGroup",
@@ -36,8 +41,7 @@
     "e",
     "getAllowEmptySelection",
     "toggleValue",
-    "setValue",
-    "RadioButton"
+    "setValue"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/RadioButton.js"
@@ -45,5 +49,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\n/**\n * Radio buttons are used to manage a single selection. Radio buttons only\n * make sense used in a group of two or more of them. They are managed (connected)\n * to a {@link qx.ui.form.RadioGroup} to handle the selection.\n */\nqx.Class.define(\"qx.ui.toolbar.RadioButton\", {\n  extend: qx.ui.toolbar.CheckBox,\n  include: [qx.ui.form.MModelProperty],\n  implement: [qx.ui.form.IModel, qx.ui.form.IRadioItem],\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct(label, icon) {\n    super(label, icon);\n\n    // ARIA attrs\n    // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'\n    const contentEl = this.getContentElement();\n    contentEl.setAttribute(\"role\", \"radio\");\n    contentEl.setAttribute(\"aria-checked\", false);\n    contentEl.removeAttribute(\"aria-pressed\");\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /*\n    ---------------------------------------------------------------------------\n      PROPERTY APPLY ROUTINES\n    ---------------------------------------------------------------------------\n    */\n\n    // overridden\n    _applyValue(value, old) {\n      super._applyValue(value, old);\n\n      // ARIA attrs\n      const contentEl = this.getContentElement();\n      contentEl.removeAttribute(\"aria-pressed\");\n      contentEl.setAttribute(\"aria-checked\", Boolean(value));\n\n      if (value) {\n        var grp = this.getGroup();\n        if (grp) {\n          grp.setSelection([this]);\n        }\n      }\n    },\n\n    // overridden\n    _onExecute(e) {\n      var grp = this.getGroup();\n      if (grp && grp.getAllowEmptySelection()) {\n        this.toggleValue();\n      } else {\n        this.setValue(true);\n      }\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ;IAC9BC,OAAO,EAAE,CAACV,EAAE,CAACO,EAAE,CAACI,IAAI,CAACC,cAAc,CAAC;IACpCC,SAAS,EAAE,CAACb,EAAE,CAACO,EAAE,CAACI,IAAI,CAACG,MAAM,EAAEd,EAAE,CAACO,EAAE,CAACI,IAAI,CAACI,UAAU,CAAC;IAErD;AACF;AACA;AACA;AACA;IAEEC,SAAS,qBAACC,KAAK,EAAEC,IAAI,EAAE;MACrB,8CAAMD,KAAK,EAAEC,IAAI;;MAEjB;MACA;MACA,IAAMC,SAAS,GAAG,IAAI,CAACC,iBAAiB,EAAE;MAC1CD,SAAS,CAACE,YAAY,CAAC,MAAM,EAAE,OAAO,CAAC;MACvCF,SAAS,CAACE,YAAY,CAAC,cAAc,EAAE,KAAK,CAAC;MAC7CF,SAAS,CAACG,eAAe,CAAC,cAAc,CAAC;IAC3C,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MAEI;MACAC,WAAW,uBAACC,KAAK,EAAEC,GAAG,EAAE;QACtB,sEAAkBD,KAAK,EAAEC,GAAG;;QAE5B;QACA,IAAMP,SAAS,GAAG,IAAI,CAACC,iBAAiB,EAAE;QAC1CD,SAAS,CAACG,eAAe,CAAC,cAAc,CAAC;QACzCH,SAAS,CAACE,YAAY,CAAC,cAAc,EAAEM,OAAO,CAACF,KAAK,CAAC,CAAC;QAEtD,IAAIA,KAAK,EAAE;UACT,IAAIG,GAAG,GAAG,IAAI,CAACC,QAAQ,EAAE;UACzB,IAAID,GAAG,EAAE;YACPA,GAAG,CAACE,YAAY,CAAC,CAAC,IAAI,CAAC,CAAC;UAC1B;QACF;MACF,CAAC;MAED;MACAC,UAAU,sBAACC,CAAC,EAAE;QACZ,IAAIJ,GAAG,GAAG,IAAI,CAACC,QAAQ,EAAE;QACzB,IAAID,GAAG,IAAIA,GAAG,CAACK,sBAAsB,EAAE,EAAE;UACvC,IAAI,CAACC,WAAW,EAAE;QACpB,CAAC,MAAM;UACL,IAAI,CAACC,QAAQ,CAAC,IAAI,CAAC;QACrB;MACF;IACF;EACF,CAAC,CAAC;EAvFFnC,EAAE,CAACO,EAAE,CAACC,OAAO,CAAC4B,WAAW,CAACjC,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ;IAC9BC,OAAO,EAAE,CAACV,EAAE,CAACO,EAAE,CAACI,IAAI,CAACC,cAAc,CAAC;IACpCC,SAAS,EAAE,CAACb,EAAE,CAACO,EAAE,CAACI,IAAI,CAACG,MAAM,EAAEd,EAAE,CAACO,EAAE,CAACI,IAAI,CAACI,UAAU,CAAC;IAErD;AACF;AACA;AACA;AACA;IAEEC,SAAS,WAAAA,UAACC,KAAK,EAAEC,IAAI,EAAE;MACrBlB,EAAA,CAAAO,EAAA,CAAAC,OAAA,CAAAC,QAAA,CAAAU,WAAA,CAAAC,IAAA,OAAMH,KAAK,EAAEC,IAAI;;MAEjB;MACA;MACA,IAAMG,SAAS,GAAG,IAAI,CAACC,iBAAiB,EAAE;MAC1CD,SAAS,CAACE,YAAY,CAAC,MAAM,EAAE,OAAO,CAAC;MACvCF,SAAS,CAACE,YAAY,CAAC,cAAc,EAAE,KAAK,CAAC;MAC7CF,SAAS,CAACG,eAAe,CAAC,cAAc,CAAC;IAC3C,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MAEI;MACAC,WAAW,WAAAA,YAACC,KAAK,EAAEC,GAAG,EAAE;QACtB5B,EAAA,CAAAO,EAAA,CAAAC,OAAA,CAAAqB,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAL,WAAA,CAAAN,IAAA,OAAkBO,KAAK,EAAEC,GAAG;;QAE5B;QACA,IAAMP,SAAS,GAAG,IAAI,CAACC,iBAAiB,EAAE;QAC1CD,SAAS,CAACG,eAAe,CAAC,cAAc,CAAC;QACzCH,SAAS,CAACE,YAAY,CAAC,cAAc,EAAES,OAAO,CAACL,KAAK,CAAC,CAAC;QAEtD,IAAIA,KAAK,EAAE;UACT,IAAIM,GAAG,GAAG,IAAI,CAACC,QAAQ,EAAE;UACzB,IAAID,GAAG,EAAE;YACPA,GAAG,CAACE,YAAY,CAAC,CAAC,IAAI,CAAC,CAAC;UAC1B;QACF;MACF,CAAC;MAED;MACAC,UAAU,WAAAA,WAACC,CAAC,EAAE;QACZ,IAAIJ,GAAG,GAAG,IAAI,CAACC,QAAQ,EAAE;QACzB,IAAID,GAAG,IAAIA,GAAG,CAACK,sBAAsB,EAAE,EAAE;UACvC,IAAI,CAACC,WAAW,EAAE;QACpB,CAAC,MAAM;UACL,IAAI,CAACC,QAAQ,CAAC,IAAI,CAAC;QACrB;MACF;IACF;EACF,CAAC,CAAC;EAvFFxC,EAAE,CAACO,EAAE,CAACC,OAAO,CAACqB,WAAW,CAAC1B,aAAa,GAAGA,aAAa;AAAC"
 }

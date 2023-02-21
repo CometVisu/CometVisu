@@ -1015,4 +1015,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1676809293561
+//# sourceMappingURL=Knx.js.map?dt=1677017675001

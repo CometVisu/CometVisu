@@ -1107,6 +1107,29 @@
         ]
       }
     },
+    "__Logger": {
+      "type": "function",
+      "name": "__Logger",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MLogging",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the regular logger class"
+          }
+        ]
+      }
+    },
     "debug": {
       "type": "function",
       "name": "debug",
@@ -1266,6 +1289,29 @@
             "paramName": "varargs",
             "description": " Arguments list to be logged",
             "type": "arguments"
+          }
+        ]
+      }
+    },
+    "__Registration": {
+      "type": "function",
+      "name": "__Registration",
+      "abstract": false,
+      "mixin": true,
+      "inherited": true,
+      "access": "private",
+      "overriddenFrom": "qx.core.MEvent",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the regular event registration class"
           }
         ]
       }

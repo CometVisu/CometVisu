@@ -8,7 +8,7 @@
       "qx.theme.indigo.ColorDark": {
         "require": true
       },
-      "qx.theme.indigo.Decoration": {
+      "qx.theme.indigo.DecorationDark": {
         "require": true
       },
       "qx.theme.indigo.Font": {
@@ -44,7 +44,7 @@
     title: "IndigoDark",
     meta: {
       color: qx.theme.indigo.ColorDark,
-      decoration: qx.theme.indigo.Decoration,
+      decoration: qx.theme.indigo.DecorationDark,
       font: qx.theme.indigo.Font,
       appearance: qx.theme.indigo.AppearanceDark,
       icon: qx.theme.icon.Tango
@@ -53,4 +53,4 @@
   qx.theme.IndigoDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IndigoDark.js.map?dt=1676809318164
+//# sourceMappingURL=IndigoDark.js.map?dt=1677017707560

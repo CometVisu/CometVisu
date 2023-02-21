@@ -1847,9 +1847,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           content.show();
         } else {
           content.hide();
-        }
-
-        // only force a layout update if visibility change from/to "exclude"
+        } // only force a layout update if visibility change from/to "exclude"
         var parent = this.$$parent;
         if (parent && (old == null || value == null || old === "excluded" || value === "excluded")) {
           parent.invalidateLayoutChildren();
@@ -1883,27 +1881,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _applyFont: function _applyFont(value, old) {
         // empty template
       },
-      /*
-      ---------------------------------------------------------------------------
-        DYNAMIC THEME SWITCH SUPPORT
-      ---------------------------------------------------------------------------
-      */
+      // ---------------------------------------------------------------------------
+      // DYNAMIC THEME SWITCH SUPPORT
+      // ---------------------------------------------------------------------------
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         if (this.isDisposed()) {
           return;
         }
-        qx.ui.core.Widget.superclass.prototype._onChangeTheme.call(this);
-
-        // update the appearance
-        this.updateAppearance();
-
-        // DECORATOR //
+        qx.ui.core.Widget.superclass.prototype._onChangeTheme.call(this); // update the appearance
+        this.updateAppearance(); // DECORATOR //
         var value = this.getDecorator();
         this._applyDecorator(null, value);
-        this._applyDecorator(value);
-
-        // FONT //
+        this._applyDecorator(value); // FONT //
         value = this.getFont();
         if (qx.lang.Type.isString(value)) {
           this._applyFont(value, value);
@@ -2201,16 +2191,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       /*
       ---------------------------------------------------------------------------
-        EVENT SUPPORT
+      EVENT SUPPORT
       ---------------------------------------------------------------------------
       */
       /**
-       * Returns the next event target in the parent chain. May
-       * also return the widget itself if it is not anonymous.
-       *
-       * @return {qx.ui.core.Widget} A working event target of this widget.
-       *    May be <code>null</code> as well.
-       */
+      * Returns the next event target in the parent chain. May
+      * also return the widget itself if it is not anonymous.
+      *
+      * @return {qx.ui.core.Widget} A working event target of this widget.
+      *    May be <code>null</code> as well.
+      */
       getEventTarget: function getEventTarget() {
         var target = this;
         while (target.getAnonymous()) {
@@ -3192,4 +3182,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1676809321346
+//# sourceMappingURL=Widget.js.map?dt=1677017711912

@@ -12,12 +12,16 @@
     "Element",
     "construct",
     "elem",
+    "constructor",
+    "call",
     "useNode",
     "members",
+    "Root",
+    "superclass",
+    "prototype",
     "setRoot",
     "_modified",
-    "toHashCode",
-    "Root"
+    "toHashCode"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/html/Root.js"
@@ -25,5 +29,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * This is the root element for a set of {@link qx.html.Element}s.\n *\n * To make other elements visible these elements must be inserted\n * into an root element at any level.\n *\n * A root element uses an existing DOM element where is assumed that\n * this element is always visible. In the easiest case, the root element\n * is identical to the document's body.\n */\nqx.Class.define(\"qx.html.Root\", {\n  extend: qx.html.Element,\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  /**\n   * Creates a root element\n   *\n   * @param elem {Element?null} DOM element to use\n   */\n  construct(elem) {\n    super();\n\n    if (elem != null) {\n      this.useNode(elem);\n    }\n  },\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /**\n     * Sets the element to an already existing node. It will be\n     * assumed that this DOM element is already visible e.g.\n     * like a normal displayed element in the document's body.\n     *\n     * @param elem {Element} the dom element to set\n     * @throws {Error} if the element is assigned again\n     */\n    useNode(elem) {\n      // Base call\n      super.useNode(elem);\n\n      // Mark as root\n      this.setRoot(true);\n\n      // Register for synchronization\n      qx.html.Element._modified[this.toHashCode()] = this;\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,cAAc,EAAE;IAC9BC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,OAAO;IAEvB;AACF;AACA;AACA;AACA;IAEE;AACF;AACA;AACA;AACA;IACEC,SAAS,qBAACC,IAAI,EAAE;MACd;MAEA,IAAIA,IAAI,IAAI,IAAI,EAAE;QAChB,IAAI,CAACC,OAAO,CAACD,IAAI,CAAC;MACpB;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEE,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACID,OAAO,mBAACD,IAAI,EAAE;QACZ;QACA,qDAAcA,IAAI;;QAElB;QACA,IAAI,CAACG,OAAO,CAAC,IAAI,CAAC;;QAElB;QACAb,EAAE,CAACO,IAAI,CAACC,OAAO,CAACM,SAAS,CAAC,IAAI,CAACC,UAAU,EAAE,CAAC,GAAG,IAAI;MACrD;IACF;EACF,CAAC,CAAC;EA5EFf,EAAE,CAACO,IAAI,CAACS,IAAI,CAACb,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,cAAc,EAAE;IAC9BC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,OAAO;IAEvB;AACF;AACA;AACA;AACA;IAEE;AACF;AACA;AACA;AACA;IACEC,SAAS,WAAAA,UAACC,IAAI,EAAE;MACdV,EAAA,CAAAO,IAAA,CAAAC,OAAA,CAAAG,WAAA,CAAAC,IAAA;MAEA,IAAIF,IAAI,IAAI,IAAI,EAAE;QAChB,IAAI,CAACG,OAAO,CAACH,IAAI,CAAC;MACpB;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;;IAEEI,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACID,OAAO,WAAAA,QAACH,IAAI,EAAE;QACZ;QACAV,EAAA,CAAAO,IAAA,CAAAQ,IAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAJ,OAAA,CAAAD,IAAA,OAAcF,IAAI;;QAElB;QACA,IAAI,CAACQ,OAAO,CAAC,IAAI,CAAC;;QAElB;QACAlB,EAAE,CAACO,IAAI,CAACC,OAAO,CAACW,SAAS,CAAC,IAAI,CAACC,UAAU,EAAE,CAAC,GAAG,IAAI;MACrD;IACF;EACF,CAAC,CAAC;EA5EFpB,EAAE,CAACO,IAAI,CAACQ,IAAI,CAACZ,aAAa,GAAGA,aAAa;AAAC"
 }

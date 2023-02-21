@@ -608,7 +608,7 @@
           }
         ]
       },
-      "type": "variable",
+      "type": "function",
       "access": "private"
     },
     "__partListners": {
