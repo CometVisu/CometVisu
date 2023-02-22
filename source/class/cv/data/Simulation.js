@@ -11,6 +11,8 @@ qx.Class.define('cv.data.Simulation', {
   construct(configFile, client) {
     super();
     this._client = client;
+    // override PHP support check, because the responses are faked
+    qx.core.Init.getApplication().setServerHasPhpSupport(true);
     this.init(configFile);
   },
 
