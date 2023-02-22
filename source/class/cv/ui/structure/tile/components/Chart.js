@@ -520,6 +520,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (!client) {
         return;
       }
+      if (!client.isConnected()) {
+        client.addListenerOnce('changeConnected', () => {
+          this._loadData();
+        });
+        return;
+      }
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
       const series = this.getCurrentSeries();
