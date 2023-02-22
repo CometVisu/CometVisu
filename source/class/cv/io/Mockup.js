@@ -45,12 +45,14 @@ qx.Class.define('cv.io.Mockup', {
 
     const testMode = qx.core.Environment.get('cv.testMode');
     if (typeof testMode === 'string' && testMode !== 'true') {
+      this.setConnected(false);
       this.__simulation = new cv.data.Simulation(testMode, this);
     }
     this.addresses = [];
 
     let file = this._resources['simulation'];
     if (file) {
+      this.setConnected(false);
       this.__simulation = new cv.data.Simulation(file, this);
     } else {
       this.addListener('resourcePathAdded', ev => {
@@ -58,6 +60,7 @@ qx.Class.define('cv.io.Mockup', {
           case 'simulation': {
             const file = this._resources['simulation'];
             if (file) {
+              this.setConnected(false);
               this.__simulation = new cv.data.Simulation(file, this);
             }
             break;
@@ -122,10 +125,12 @@ qx.Class.define('cv.io.Mockup', {
       if (callback) {
         if (this.__simulation && !this.__simulation.isInitialized()) {
           this.__simulation.addListenerOnce('changeInitialized', () => {
+            this.setConnected(true);
             this.debug('(delayed) logged in to mockup client');
             callback.call(context);
           });
         } else {
+          this.setConnected(true);
           this.debug('logged in to mockup client');
           callback.call(context);
         }
