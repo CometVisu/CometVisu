@@ -45,7 +45,8 @@
             "cv.core.notifications.actions.*",
             "cv.ui.structure.pure.AbstractBasicWidget",
             "cv.ui.structure.pure.AbstractWidget",
-            "cv.ui.structure.pure.ColorChooser"
+            "cv.ui.structure.pure.ColorChooser",
+            "cv.io.listmodel.*"
           ]
         },
         "structure-pure": {
