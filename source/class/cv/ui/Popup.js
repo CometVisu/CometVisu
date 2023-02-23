@@ -177,11 +177,9 @@ qx.Class.define('cv.ui.Popup', {
 
             qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
           } else {
-            const use = this.__elementMap.icon.querySelector('use');
-            const currentIconPath = use.getAttribute('xlink:href');
-            if (!currentIconPath.endsWith('#kuf-' + attributes.icon)) {
-              const parts = currentIconPath.split('#');
-              use.setAttribute('xlink:href', parts[0] + '#kuf-' + attributes.icon);
+            const i = this.__elementMap.icon.querySelector('i');
+            if (!i.classList.contains('knxuf-' + attributes.icon)) {
+              i.classList.add('knxuf-' + attributes.icon);
             }
           }
         } else {

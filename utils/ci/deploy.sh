@@ -121,6 +121,7 @@ fi
 
 if [[ "$GENERATE_DEMO" -eq 1 ]]; then
   echo "generating test mode build"
+  sed -i 's/"qx.globalErrorHandling": true,/"qx.globalErrorHandling": false,/g' compile.json
   qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
   # Copy demo-mode to default config
   cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo-tile.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
