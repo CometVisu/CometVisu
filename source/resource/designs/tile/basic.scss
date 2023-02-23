@@ -813,7 +813,7 @@ body {
                 border-bottom-right-radius: inherit;
             }
 
-            &:has(cv-list) {
+            &.has-list {
                 overflow-y: auto;
             }
         }
@@ -895,7 +895,7 @@ body {
             cursor: pointer;
         }
 
-        &:has(> label.title) {
+        &.has-title {
             padding-top: calc(14px + var(--spacing) + var(--spacing));
             box-sizing: border-box;
         }
@@ -1327,7 +1327,7 @@ body {
             }
 
             &[value-size="large"] {
-                font-size: xxx-large;
+                font-size: 48px;
                 line-height: 0.8em;
             }
 

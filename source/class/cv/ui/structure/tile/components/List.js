@@ -88,6 +88,9 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
       this._model = [];
       let refreshOnUpdate = false;
       const model = element.querySelector('model');
+      if (element.parentElement) {
+        element.parentElement.classList.add('has-list');
+      }
       if (!model) {
         this.error('cv-list needs a model');
         return;

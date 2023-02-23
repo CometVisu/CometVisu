@@ -74,6 +74,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
           this.resetPopup();
         });
       }
+      if (this._element.querySelector(':scope > label.title')) {
+        this._element.classList.add('has-title');
+      }
     },
 
     _applyBackgroundImage(value) {
