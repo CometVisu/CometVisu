@@ -441,7 +441,6 @@ qx.Class.define('cv.data.Simulation', {
       [
         'open',
         'setRequestHeader',
-        'send',
         'abort',
         'getResponseHeader',
         'getAllResponseHeaders',
@@ -450,9 +449,19 @@ qx.Class.define('cv.data.Simulation', {
         'removeEventListener'
       ].forEach(function (method) {
         fakeXhr[method] = function () {
+          if (method === 'send') {
+            console.log(arguments);
+          }
           return xhr[method].apply(xhr, arguments);
         };
       });
+      fakeXhr.send = function() {
+        // Ref: https://xhr.spec.whatwg.org/#the-responsetype-attribute
+        if (xhr.responseType !== fakeXhr.responseType) {
+          xhr.responseType = fakeXhr.responseType;
+        }
+        return xhr.send.apply(xhr, arguments);
+      };
 
       const copyAttrs = function (args) {
         args.forEach(function (attr) {
@@ -466,7 +475,7 @@ qx.Class.define('cv.data.Simulation', {
         });
       };
 
-      const stateChange = function () {
+      const stateChangeStart = function () {
         fakeXhr.readyState = xhr.readyState;
         if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
           copyAttrs(['status', 'statusText']);
@@ -474,23 +483,40 @@ qx.Class.define('cv.data.Simulation', {
         if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
           copyAttrs(['responseText']);
         }
-        if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+        if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE &&
+          (xhr.responseType === "" || xhr.responseType === "document")) {
           copyAttrs(['responseXML']);
         }
+      };
+      const stateChangeEnd = function() {
         if (fakeXhr.onreadystatechange) {
-          fakeXhr.onreadystatechange({ target: fakeXhr });
+          // eslint-disable-next-line no-useless-call
+          fakeXhr.onreadystatechange.call(fakeXhr, {
+            target: fakeXhr,
+            currentTarget: fakeXhr
+          });
         }
       };
+
+      const stateChange = function stateChange() {
+        stateChangeStart();
+        stateChangeEnd();
+      };
       if (xhr.addEventListener) {
+        xhr.addEventListener("readystatechange", stateChangeStart);
+
         for (let event in fakeXhr.eventListeners) {
           // eslint-disable-next-line no-prototype-builtins
           if (fakeXhr.eventListeners.hasOwnProperty(event)) {
             fakeXhr.eventListeners[event].forEach(function (handler) {
-              xhr.addEventListener(event, handler);
+              xhr.addEventListener(event, handler.listener, {
+                capture: handler.capture,
+                once: handler.once
+              });
             });
           }
         }
-        xhr.addEventListener('readystatechange', stateChange);
+        xhr.addEventListener('readystatechange', stateChangeEnd);
       } else {
         xhr.onreadystatechange = stateChange;
       }
