@@ -802,6 +802,7 @@ body {
         > cv-tile {
             flex-basis: 100%;
             width: 100%;
+            overflow: hidden;
             // reset own appearance that is handled by the cv-widget
             background-color: transparent;
             box-shadow: none;
