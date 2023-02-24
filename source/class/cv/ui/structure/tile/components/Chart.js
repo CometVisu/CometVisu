@@ -335,11 +335,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         event => {
           if (this._loaded) {
             let y = event.targetTouches[0].clientY;
-            if (this._helpers.linePath) {
-              const pathRect = this._helpers.linePath.node().getBoundingClientRect();
-              if (y > pathRect.y && y < pathRect.y + pathRect.height) {
-                event.preventDefault();
-              }
+            const pathRect = this._element.querySelector(':scope > svg').getBoundingClientRect();
+            if (y > pathRect.y && y < pathRect.y + pathRect.height) {
+              event.preventDefault();
             }
           }
         },
