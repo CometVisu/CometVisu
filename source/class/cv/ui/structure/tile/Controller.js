@@ -646,7 +646,7 @@ class TemplatedElement extends HTMLElement {
             } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
             }
-            if (attr.value) {
+            if (attr.value && !attr.value.startsWith(':')) {
               elem.setAttribute(targetName, attr.value);
             }
             elem.removeAttribute(attr.name);
