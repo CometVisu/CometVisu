@@ -51,4 +51,4 @@
   qx.ui.mobile.navigationbar.BackButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackButton.js.map?dt=1677345949410
+//# sourceMappingURL=BackButton.js.map?dt=1677362763556

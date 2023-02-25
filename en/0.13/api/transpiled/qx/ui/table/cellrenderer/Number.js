@@ -87,4 +87,4 @@
   qx.ui.table.cellrenderer.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1677345951600
+//# sourceMappingURL=Number.js.map?dt=1677362766108

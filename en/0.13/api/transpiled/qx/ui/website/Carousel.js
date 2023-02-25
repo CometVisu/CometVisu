@@ -607,4 +607,4 @@
   qx.ui.website.Carousel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Carousel.js.map?dt=1677345956038
+//# sourceMappingURL=Carousel.js.map?dt=1677362771344

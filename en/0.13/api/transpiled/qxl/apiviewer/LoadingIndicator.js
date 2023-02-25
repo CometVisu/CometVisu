@@ -67,4 +67,4 @@
   qxl.apiviewer.LoadingIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadingIndicator.js.map?dt=1677345964245
+//# sourceMappingURL=LoadingIndicator.js.map?dt=1677362780813

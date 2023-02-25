@@ -424,4 +424,4 @@
   qx.ui.control.ColorPopup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorPopup.js.map?dt=1677345940397
+//# sourceMappingURL=ColorPopup.js.map?dt=1677362751059

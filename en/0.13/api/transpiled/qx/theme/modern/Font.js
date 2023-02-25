@@ -79,4 +79,4 @@
   qx.theme.modern.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1677345939110
+//# sourceMappingURL=Font.js.map?dt=1677362749096

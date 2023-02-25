@@ -362,4 +362,4 @@
   qx.ui.mobile.core.EventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventHandler.js.map?dt=1677345947817
+//# sourceMappingURL=EventHandler.js.map?dt=1677362761688

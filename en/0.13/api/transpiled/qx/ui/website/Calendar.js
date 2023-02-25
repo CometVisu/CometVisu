@@ -795,4 +795,4 @@
   qx.ui.website.Calendar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Calendar.js.map?dt=1677345955936
+//# sourceMappingURL=Calendar.js.map?dt=1677362771191

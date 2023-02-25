@@ -74,4 +74,4 @@
   qxl.dialog.formElement.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1677345964466
+//# sourceMappingURL=Spinner.js.map?dt=1677362781094

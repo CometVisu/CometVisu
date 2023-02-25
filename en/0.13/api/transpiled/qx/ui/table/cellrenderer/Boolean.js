@@ -192,4 +192,4 @@
   qx.ui.table.cellrenderer.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1677345951424
+//# sourceMappingURL=Boolean.js.map?dt=1677362765901

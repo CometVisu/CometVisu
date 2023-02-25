@@ -302,7 +302,7 @@
     </template>
     <template id="small-status" size="button">
         <cv-tile style="grid-template-rows: auto 1fr auto;">
-            <cv-value slot-styling="tile-button" slot-mapping="" slot-value-format="" row="2" colspan="3" style="align-self: end">
+            <cv-value slot-styling="tile-button" slot-mapping="" slot-value-format=":target=format" row="2" colspan="3" style="align-self: end">
                 <slot name="value" class="value">NEEDS VALUE</slot>
                 <slot name="icon">NEEDS ICON</slot>
                 <slot name="address">NEEDS ADDRESS</slot>

@@ -213,4 +213,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.io.listmodel.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1677345906572
+//# sourceMappingURL=RssLog.js.map?dt=1677362707345

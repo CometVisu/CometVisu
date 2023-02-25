@@ -791,4 +791,4 @@
   qx.ui.layout.Dock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dock.js.map?dt=1677345945918
+//# sourceMappingURL=Dock.js.map?dt=1677362759479

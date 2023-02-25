@@ -223,4 +223,4 @@
   qx.ui.virtual.selection.CellRectangle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellRectangle.js.map?dt=1677345955642
+//# sourceMappingURL=CellRectangle.js.map?dt=1677362770845

@@ -126,4 +126,4 @@
   cv.ui.structure.pure.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1677345914956
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1677362717857

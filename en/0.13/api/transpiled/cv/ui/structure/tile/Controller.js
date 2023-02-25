@@ -3,6 +3,10 @@ function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableTo
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
 function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct.bind(); } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
 function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
@@ -21,7 +25,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
@@ -726,15 +730,51 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else if (name.endsWith('-format')) {
             targetName = 'format';
           }
-          targets.forEach(function (target) {
-            if (targetName !== name && target.hasAttribute('slot-' + name)) {
-              target.setAttribute(name, value);
-              target.removeAttribute('slot-' + name);
-            } else {
-              target.setAttribute(targetName, value);
-              target.removeAttribute('slot-' + targetName);
+          var _iterator10 = _createForOfIteratorHelper(targets),
+            _step10;
+          try {
+            for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+              var target = _step10.value;
+              if (targetName !== name && target.hasAttribute('slot-' + name)) {
+                var targetValue = target.getAttribute('slot-' + name);
+                if (targetValue.startsWith(':')) {
+                  // this template slot-attribute contains some configuration
+                  var _iterator11 = _createForOfIteratorHelper(targetValue.substring(1).split(',')),
+                    _step11;
+                  try {
+                    for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+                      var entry = _step11.value;
+                      var _entry$split = entry.split('='),
+                        _entry$split2 = _slicedToArray(_entry$split, 2),
+                        key = _entry$split2[0],
+                        _value = _entry$split2[1];
+                      switch (key) {
+                        case 'target':
+                          name = _value;
+                          break;
+                        default:
+                          qx.log.Logger.error(_assertThisInitialized(_this4), 'unhandled slot-attribute configuration key', key);
+                          break;
+                      }
+                    }
+                  } catch (err) {
+                    _iterator11.e(err);
+                  } finally {
+                    _iterator11.f();
+                  }
+                }
+                target.setAttribute(name, value);
+                target.removeAttribute('slot-' + name);
+              } else {
+                target.setAttribute(targetName, value);
+                target.removeAttribute('slot-' + targetName);
+              }
             }
-          });
+          } catch (err) {
+            _iterator10.e(err);
+          } finally {
+            _iterator10.f();
+          }
           if (targets.length > 0) {
             _this4.removeAttribute(name);
           }
@@ -751,7 +791,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
                 targetName = 'format';
               }
-              if (attr.value) {
+              if (attr.value && !attr.value.startsWith(':')) {
                 elem.setAttribute(targetName, attr.value);
               }
               elem.removeAttribute(attr.name);
@@ -773,4 +813,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1677345915473
+//# sourceMappingURL=Controller.js.map?dt=1677362718586

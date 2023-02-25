@@ -148,4 +148,4 @@
   qx.ui.table.headerrenderer.HeaderCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HeaderCell.js.map?dt=1677345951937
+//# sourceMappingURL=HeaderCell.js.map?dt=1677362766502

@@ -55,4 +55,4 @@
   qx.event.type.Pinch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pinch.js.map?dt=1677345932568
+//# sourceMappingURL=Pinch.js.map?dt=1677362740239

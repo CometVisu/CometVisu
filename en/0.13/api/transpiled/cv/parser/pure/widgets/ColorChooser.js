@@ -251,4 +251,4 @@
   cv.parser.pure.widgets.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1677345907148
+//# sourceMappingURL=ColorChooser.js.map?dt=1677362707909

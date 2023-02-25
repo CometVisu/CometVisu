@@ -138,4 +138,4 @@
   qx.ui.mobile.embed.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1677345948322
+//# sourceMappingURL=Canvas.js.map?dt=1677362762264
