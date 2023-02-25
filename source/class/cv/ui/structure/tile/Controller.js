@@ -251,6 +251,21 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           this.debug('setup.dom.finished');
           qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           cv.TemplateEngine.getInstance().setDomFinished(true);
+
+          const main = document.body.querySelector(':scope > main');
+          if (main) {
+            main.addEventListener('scroll', () => {
+              if (main.scrollTop > 20) {
+                for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+                  elem.classList.add('scrolled');
+                }
+              } else {
+                for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+                  elem.classList.remove('scrolled');
+                }
+              }
+            });
+          }
         });
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;

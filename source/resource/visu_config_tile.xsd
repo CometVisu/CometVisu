@@ -294,6 +294,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
@@ -494,6 +495,7 @@
       <xsd:documentation xml:lang="en">Breadcrumb menu.</xsd:documentation>
       <xsd:documentation xml:lang="de">Breadcrumb Menü.</xsd:documentation>
     </xsd:annotation>
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-group">
@@ -534,6 +536,7 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-widget">
@@ -2473,6 +2476,13 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
       <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="hide-on-scroll" type="xsd:boolean" default="false">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Fades out this content, if the page content has been scrolled.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Blendet dieses Element aus, wenn der Seiteninhalt gescrollt wurde.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
