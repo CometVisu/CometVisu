@@ -230,17 +230,17 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       if (this.isConnected()) {
         this._element.setAttribute('value', value || '');
         let mappedValue = value;
-        if (this._element.hasAttribute('mapping')) {
+        if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
           mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
         }
-        if (this._element.hasAttribute('format')) {
+        if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
           mappedValue = cv.util.String.sprintf(
             this._element.getAttribute('format'),
             mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
           );
         }
         this._updateValue(mappedValue, value);
-        if (this._element.hasAttribute('styling')) {
+        if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
           let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
 
           this.setStyleClass(styleClass);
