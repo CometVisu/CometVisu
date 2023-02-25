@@ -9,9 +9,9 @@ Beschreibung
 ------------
 
 Das kleine Status-Widget kombiniert ein Icon/Wert mit einem Text. Es erfüllt den selben Zweck die das :ref:`Status-Widget <tile-status>`, benötigt
-dafür aber weniger Fläche. Da dieses Widget nicht den Standartmaßen entspricht wird empfohlen, es nur im Header / Footer
-einzusetzen und es nicht mit anderen Widgets zu vermischen. Dies ist zwar technisch kein Problem jedoch bekommt
-man dadurch optische Brüche im Layout keinen harmonischen Eindruck hinterlassen.
+dafür aber weniger Fläche. Da dieses Widget nicht den Standardmaßen entspricht wird empfohlen, es nur im Header / Footer
+einzusetzen und nicht mit anderen Widgets zu vermischen. Dies ist zwar technisch kein Problem jedoch bekommt
+man dadurch optische Brüche im Layout die keinen harmonischen Eindruck hinterlassen.
 
 In diesem Widget kann oben ein Icon oder Wert angezeigt werden und unten ein Text. Das Icon kann entweder fest, oder
 Status-Abhängig sein, ebenso kann der untere Text entweder einen festen Wert oder aber den Status beinhalten.
@@ -19,7 +19,7 @@ Status-Abhängig sein, ebenso kann der untere Text entweder einen festen Wert od
 .. widget-example::
     :shots-per-row: 2
 
-    <settings design="tile">
+    <settings design="tile">impro
         <screenshot name="cv-small-status">
             <data address="1/4/0">0</data>
         </screenshot>
