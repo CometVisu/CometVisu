@@ -591,11 +591,11 @@ class TemplatedElement extends HTMLElement {
         }
         targets.forEach(target => {
           if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            target.setAttribute(name, value || target.getAttribute('slot-' + name));
+            target.setAttribute(name, value);
 
             target.removeAttribute('slot-' + name);
           } else {
-            target.setAttribute(targetName, value || target.getAttribute('slot-' + targetName));
+            target.setAttribute(targetName, value);
 
             target.removeAttribute('slot-' + targetName);
           }
