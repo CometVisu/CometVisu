@@ -140,6 +140,7 @@
         'tile-nav-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-nav-menu',
         'tile-rtc': '/develop/manual/config/structure-tile/widgets/rtc.html#tile-rtc',
         'tile-shutter': '/develop/manual/config/structure-tile/widgets/shutter.html#tile-shutter',
+        'tile-small-status': '/develop/manual/config/structure-tile/widgets/small-status.html#tile-small-status',
         'tile-status': '/develop/manual/config/structure-tile/widgets/status.html#tile-status',
         'tile-status-chart': '/develop/manual/config/structure-tile/widgets/status-chart.html#tile-status-chart',
         'tile-switch': '/develop/manual/config/structure-tile/widgets/switch.html#tile-switch',
@@ -175,4 +176,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1677017679137
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1677345912908

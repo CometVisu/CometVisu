@@ -103,6 +103,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             _this.resetPopup();
           });
         }
+        if (this._element.querySelector(':scope > label.title')) {
+          this._element.classList.add('has-title');
+        }
       },
       _applyBackgroundImage: function _applyBackgroundImage(value) {
         if (value) {
@@ -231,4 +234,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1677017684999
+//# sourceMappingURL=Tile.js.map?dt=1677345917718

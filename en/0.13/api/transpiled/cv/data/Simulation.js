@@ -16,6 +16,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         "construct": true,
         "require": true
       },
+      "qx.core.Init": {
+        "construct": true
+      },
       "qx.io.request.Xhr": {},
       "cv.Config": {},
       "qx.dev.unit.Sinon": {},
@@ -42,6 +45,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     construct: function construct(configFile, client) {
       qx.core.Object.constructor.call(this);
       this._client = client;
+      // override PHP support check, because the responses are faked
+      qx.core.Init.getApplication().setServerHasPhpSupport(true);
       this.init(configFile);
     },
     /*
@@ -472,11 +477,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       deFake: function deFake(fakeXhr, xhrArgs) {
         // eslint-disable-next-line new-cap
         var xhr = new sinon.xhr.workingXHR();
-        ['open', 'setRequestHeader', 'send', 'abort', 'getResponseHeader', 'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function (method) {
+        ['open', 'setRequestHeader', 'abort', 'getResponseHeader', 'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function (method) {
           fakeXhr[method] = function () {
             return xhr[method].apply(xhr, arguments);
           };
         });
+        fakeXhr.send = function () {
+          // Ref: https://xhr.spec.whatwg.org/#the-responsetype-attribute
+          if (xhr.responseType !== fakeXhr.responseType) {
+            xhr.responseType = fakeXhr.responseType;
+          }
+          return xhr.send.apply(xhr, arguments);
+        };
         var copyAttrs = function copyAttrs(args) {
           args.forEach(function (attr) {
             try {
@@ -488,7 +500,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           });
         };
-        var stateChange = function stateChange() {
+        var stateChangeStart = function stateChangeStart() {
           fakeXhr.readyState = xhr.readyState;
           if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
             copyAttrs(['status', 'statusText']);
@@ -496,28 +508,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
             copyAttrs(['responseText']);
           }
-          if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+          if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE && (xhr.responseType === '' || xhr.responseType === 'document')) {
             copyAttrs(['responseXML']);
           }
+        };
+        var stateChangeEnd = function stateChangeEnd() {
           if (fakeXhr.onreadystatechange) {
-            fakeXhr.onreadystatechange({
-              target: fakeXhr
+            // eslint-disable-next-line no-useless-call
+            fakeXhr.onreadystatechange.call(fakeXhr, {
+              target: fakeXhr,
+              currentTarget: fakeXhr
             });
           }
         };
+        var stateChange = function stateChange() {
+          stateChangeStart();
+          stateChangeEnd();
+        };
         if (xhr.addEventListener) {
+          xhr.addEventListener('readystatechange', stateChangeStart);
           var _loop3 = function _loop3(event) {
             // eslint-disable-next-line no-prototype-builtins
             if (fakeXhr.eventListeners.hasOwnProperty(event)) {
               fakeXhr.eventListeners[event].forEach(function (handler) {
-                xhr.addEventListener(event, handler);
+                xhr.addEventListener(event, handler.listener, {
+                  capture: handler.capture,
+                  once: handler.once
+                });
               });
             }
           };
           for (var event in fakeXhr.eventListeners) {
             _loop3(event);
           }
-          xhr.addEventListener('readystatechange', stateChange);
+          xhr.addEventListener('readystatechange', stateChangeEnd);
         } else {
           xhr.onreadystatechange = stateChange;
         }
@@ -539,4 +563,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.data.Simulation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simulation.js.map?dt=1677017735376
+//# sourceMappingURL=Simulation.js.map?dt=1677345963258

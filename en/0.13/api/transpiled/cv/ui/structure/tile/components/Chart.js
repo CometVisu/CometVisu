@@ -414,11 +414,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 svg.on('touchmove', function (event) {
                   if (_this._loaded) {
                     var y = event.targetTouches[0].clientY;
-                    if (_this._helpers.linePath) {
-                      var pathRect = _this._helpers.linePath.node().getBoundingClientRect();
-                      if (y > pathRect.y && y < pathRect.y + pathRect.height) {
-                        event.preventDefault();
-                      }
+                    var pathRect = _this._element.querySelector(':scope > svg').getBoundingClientRect();
+                    if (y > pathRect.y && y < pathRect.y + pathRect.height) {
+                      event.preventDefault();
                     }
                   }
                 }, {
@@ -602,6 +600,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
         var client = cv.io.BackendConnections.getClient();
         if (!client) {
+          return;
+        }
+        if (!client.isConnected()) {
+          client.addListenerOnce('changeConnected', function () {
+            _this2._loadData();
+          });
           return;
         }
         var url;
@@ -792,13 +796,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             width = _this$_getSize2[0],
             height = _this$_getSize2[1];
           if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
-            // this make no sense
+            // this makes no sense
             this.__P_75_3 = setTimeout(function () {
               _this4._onRendered(chartData, retries > 0 ? retries + 1 : 1);
             }, 150);
           }
           if (width < 20 || height < 10) {
-            // dp nothing, these values are invalid
+            // do nothing, these values are invalid
             return;
           }
           this.__P_75_5.width = width;
@@ -827,9 +831,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           width = Math.round(containerWidth / factor);
           height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
         }
-        if (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen')) {
+        if (!this._element.style.height && (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
           // the parent container has height: auto, so we need to have one
-          this._element.style.height = height + padding * 2 + 'px';
+          this._element.style.height = height + this.__P_75_5.marginTop + this.__P_75_5.marginBottom + 'px';
         }
         return [width, height];
       },
@@ -858,7 +862,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
           title: qx.locale.Manager.tr('Communication error'),
           severity: 'urgent',
-          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), err)
+          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), JSON.stringify(err))
         });
         this.error('Chart _onStatusError', ts, key, err);
       },
@@ -1517,4 +1521,4 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1677017683074
+//# sourceMappingURL=Chart.js.map?dt=1677345916191

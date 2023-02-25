@@ -134,6 +134,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this._model = [];
         var refreshOnUpdate = false;
         var model = element.querySelector('model');
+        if (element.parentElement) {
+          element.parentElement.classList.add('has-list');
+        }
         if (!model) {
           this.error('cv-list needs a model');
           return;
@@ -578,4 +581,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.components.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1677017683517
+//# sourceMappingURL=List.js.map?dt=1677345916546

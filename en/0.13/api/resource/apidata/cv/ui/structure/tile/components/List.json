@@ -17,9 +17,9 @@
         "index": 2001
       },
       "end": {
-        "line": 421,
+        "line": 424,
         "column": 3,
-        "index": 14811
+        "index": 14911
       }
     },
     "jsdoc": {
@@ -217,9 +217,9 @@
           "index": 2706
         },
         "end": {
-          "line": 230,
+          "line": 233,
           "column": 5,
-          "index": 8358
+          "index": 8458
         }
       },
       "type": "function",
@@ -233,14 +233,14 @@
     "onStateUpdate": {
       "location": {
         "start": {
-          "line": 232,
+          "line": 235,
           "column": 4,
-          "index": 8365
+          "index": 8465
         },
         "end": {
-          "line": 246,
+          "line": 249,
           "column": 5,
-          "index": 8792
+          "index": 8892
         }
       },
       "type": "function",
@@ -272,14 +272,14 @@
     "_applyValue": {
       "location": {
         "start": {
-          "line": 248,
+          "line": 251,
           "column": 4,
-          "index": 8799
+          "index": 8899
         },
         "end": {
-          "line": 252,
+          "line": 255,
           "column": 5,
-          "index": 8935
+          "index": 9035
         }
       },
       "type": "function",
@@ -292,14 +292,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 254,
+          "line": 257,
           "column": 4,
-          "index": 8942
+          "index": 9042
         },
         "end": {
-          "line": 395,
+          "line": 398,
           "column": 5,
-          "index": 14280
+          "index": 14380
         }
       },
       "type": "function",
@@ -1229,14 +1229,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 403,
+        "line": 406,
         "column": 2,
-        "index": 14414
+        "index": 14514
       },
       "end": {
-        "line": 409,
+        "line": 412,
         "column": 3,
-        "index": 14591
+        "index": 14691
       }
     },
     "jsdoc": {}
@@ -1244,14 +1244,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 411,
+        "line": 414,
         "column": 2,
-        "index": 14596
+        "index": 14696
       },
       "end": {
-        "line": 420,
+        "line": 423,
         "column": 3,
-        "index": 14807
+        "index": 14907
       }
     }
   },

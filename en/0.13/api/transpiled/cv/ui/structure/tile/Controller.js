@@ -315,6 +315,38 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             _this2.debug('setup.dom.finished');
             qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
             cv.TemplateEngine.getInstance().setDomFinished(true);
+            var main = document.body.querySelector(':scope > main');
+            if (main) {
+              main.addEventListener('scroll', function () {
+                if (main.scrollTop > 20) {
+                  var _iterator3 = _createForOfIteratorHelper(document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')),
+                    _step3;
+                  try {
+                    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                      var elem = _step3.value;
+                      elem.classList.add('scrolled');
+                    }
+                  } catch (err) {
+                    _iterator3.e(err);
+                  } finally {
+                    _iterator3.f();
+                  }
+                } else {
+                  var _iterator4 = _createForOfIteratorHelper(document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')),
+                    _step4;
+                  try {
+                    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                      var _elem = _step4.value;
+                      _elem.classList.remove('scrolled');
+                    }
+                  } catch (err) {
+                    _iterator4.e(err);
+                  } finally {
+                    _iterator4.f();
+                  }
+                }
+              });
+            }
           });
           ajaxRequest.addListener('statusError', function (e) {
             var status = e.getTarget().getTransport().status;
@@ -405,17 +437,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             root: document.querySelector('body > main')
           });
         });
-        var _iterator3 = _createForOfIteratorHelper(document.querySelectorAll('iframe[data-src], img[data-src]')),
-          _step3;
+        var _iterator5 = _createForOfIteratorHelper(document.querySelectorAll('iframe[data-src], img[data-src]')),
+          _step5;
         try {
-          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-            var iframe = _step3.value;
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var iframe = _step5.value;
             observer.observe(iframe);
           }
         } catch (err) {
-          _iterator3.e(err);
+          _iterator5.e(err);
         } finally {
-          _iterator3.f();
+          _iterator5.f();
         }
       },
       translate: function translate(doc, rememberKeys, useKeys) {
@@ -429,11 +461,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
         for (var _i = 0, _arr = ['name', 'label', 'title', 'format']; _i < _arr.length; _i++) {
           var attr = _arr[_i];
-          var _iterator4 = _createForOfIteratorHelper(doc.querySelectorAll("*[".concat(attr, "^=\"tr(\"]"))),
-            _step4;
+          var _iterator6 = _createForOfIteratorHelper(doc.querySelectorAll("*[".concat(attr, "^=\"tr(\"]"))),
+            _step6;
           try {
-            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-              var trNameElement = _step4.value;
+            for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+              var trNameElement = _step6.value;
               var _match = /^tr\('([^']+)'\)$/.exec(trNameElement.getAttribute(attr));
               if (!_match && !useKeys) {
                 this.warn('attribute content no valid translation string', trNameElement.getAttribute(attr));
@@ -452,16 +484,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
             }
           } catch (err) {
-            _iterator4.e(err);
+            _iterator6.e(err);
           } finally {
-            _iterator4.f();
+            _iterator6.f();
           }
         }
-        var _iterator5 = _createForOfIteratorHelper(doc.querySelectorAll('*[tr="true"]')),
-          _step5;
+        var _iterator7 = _createForOfIteratorHelper(doc.querySelectorAll('*[tr="true"]')),
+          _step7;
         try {
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            var trTextElement = _step5.value;
+          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+            var trTextElement = _step7.value;
             var _key = useKeys ? this._trKeys[trTextElement.textContent.trim()] : trTextElement.textContent.trim();
             var _translation = doc.querySelector("cv-translations > language[name=\"".concat(language, "\"] > tr[key='").concat(_key, "']"));
             if (_translation) {
@@ -475,9 +507,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         } catch (err) {
-          _iterator5.e(err);
+          _iterator7.e(err);
         } finally {
-          _iterator5.f();
+          _iterator7.f();
         }
       },
       /**
@@ -596,11 +628,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var content = template.content.cloneNode(true);
 
         // copy all attributes, except 'id' of the template itself to the widget
-        var _iterator6 = _createForOfIteratorHelper(template.getAttributeNames()),
-          _step6;
+        var _iterator8 = _createForOfIteratorHelper(template.getAttributeNames()),
+          _step8;
         try {
-          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-            var name = _step6.value;
+          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+            var name = _step8.value;
             if (name !== 'id') {
               _this4.setAttribute(name, template.getAttribute(name));
             }
@@ -608,15 +640,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
           // move slots into template
         } catch (err) {
-          _iterator6.e(err);
+          _iterator8.e(err);
         } finally {
-          _iterator6.f();
+          _iterator8.f();
         }
-        var _iterator7 = _createForOfIteratorHelper(content.querySelectorAll('slot')),
-          _step7;
+        var _iterator9 = _createForOfIteratorHelper(content.querySelectorAll('slot')),
+          _step9;
         try {
           var _loop = function _loop() {
-            var slot = _step7.value;
+            var slot = _step9.value;
             var slotName = slot.getAttribute('name');
             var replacementSelector = slot.hasAttribute('replaces') ? slot.getAttribute('replaces') : '';
             var slotParentScope = slot.hasAttribute('parent-scope') ? parseInt(slot.getAttribute('parent-scope')) : 0;
@@ -672,14 +704,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               }
             }
           };
-          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+          for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
             _loop();
           }
           // transfer attribute slots
         } catch (err) {
-          _iterator7.e(err);
+          _iterator9.e(err);
         } finally {
-          _iterator7.f();
+          _iterator9.f();
         }
         var attributes = _this4.getAttributeNames();
         attributes.forEach(function (name) {
@@ -696,10 +728,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
           targets.forEach(function (target) {
             if (targetName !== name && target.hasAttribute('slot-' + name)) {
-              target.setAttribute(name, value || target.getAttribute('slot-' + name));
+              target.setAttribute(name, value);
               target.removeAttribute('slot-' + name);
             } else {
-              target.setAttribute(targetName, value || target.getAttribute('slot-' + targetName));
+              target.setAttribute(targetName, value);
               target.removeAttribute('slot-' + targetName);
             }
           });
@@ -741,4 +773,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1677017682147
+//# sourceMappingURL=Controller.js.map?dt=1677345915473

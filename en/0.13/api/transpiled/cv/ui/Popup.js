@@ -175,11 +175,9 @@
               });
               qx.dom.Element.insertBegin(this.__P_559_1.icon, this.__P_559_1.content);
             } else {
-              var use = this.__P_559_1.icon.querySelector('use');
-              var currentIconPath = use.getAttribute('xlink:href');
-              if (!currentIconPath.endsWith('#kuf-' + attributes.icon)) {
-                var parts = currentIconPath.split('#');
-                use.setAttribute('xlink:href', parts[0] + '#kuf-' + attributes.icon);
+              var i = this.__P_559_1.icon.querySelector('i');
+              if (!i.classList.contains('knxuf-' + attributes.icon)) {
+                i.classList.add('knxuf-' + attributes.icon);
               }
             }
           } else {
@@ -347,4 +345,4 @@
   cv.ui.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1677017735503
+//# sourceMappingURL=Popup.js.map?dt=1677345963363

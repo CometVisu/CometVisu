@@ -294,6 +294,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-menu">
@@ -494,6 +495,7 @@
       <xsd:documentation xml:lang="en">Breadcrumb menu.</xsd:documentation>
       <xsd:documentation xml:lang="de">Breadcrumb Menü.</xsd:documentation>
     </xsd:annotation>
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-group">
@@ -534,6 +536,7 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute ref="hide-on-scroll"/>
   </xsd:complexType>
 
   <xsd:complexType name="cv-widget">
@@ -594,6 +597,7 @@
       <xsd:element name="cv-info" type="cv-info"/>
       <xsd:element name="cv-status" type="cv-status"/>
       <xsd:element name="cv-status-chart" type="cv-status-chart"/>
+      <xsd:element name="cv-small-status" type="cv-small-status"/>
       <xsd:element name="cv-rtc" type="cv-rtc"/>
       <xsd:element name="cv-widget-pair" type="cv-widget-pair"/>
       <xsd:element name="cv-media-player" type="cv-media-player"/>
@@ -1458,6 +1462,91 @@
     <xsd:attribute ref="mapping" />
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute ref="format" />
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-small-status">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="cv-icon" maxOccurs="unbounded" minOccurs="0">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="cv-icon">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="icon" />
+                      <xsd:enumeration value="value" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="label" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:complexContent>
+              <xsd:extension base="label">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="value" />
+                      <xsd:enumeration value="label" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:complexContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="cv-address" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="address" />
+                    <xsd:enumeration value="tileAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cv-popup" minOccurs="0">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="cv-popup">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="popup" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute ref="styling" />
+    <xsd:attribute ref="mapping" />
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Formatting of the lower value (printf syntax).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung des unteren Wertes (printf-Syntax).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value-format" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Formatting of the upper value (printf syntax).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Formatierung des oberen Wertes (printf-Syntax).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-rtc">
@@ -2387,6 +2476,13 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Always start the x-axis at 0.</xsd:documentation>
       <xsd:documentation xml:lang="de">Die y-Achse immer bei 0 beginnen lassen.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="hide-on-scroll" type="xsd:boolean" default="false">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Fades out this content, if the page content has been scrolled.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Blendet dieses Element aus, wenn der Seiteninhalt gescrollt wurde.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 

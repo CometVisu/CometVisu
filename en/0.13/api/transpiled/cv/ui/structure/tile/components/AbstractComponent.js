@@ -229,14 +229,14 @@
         if (this.isConnected()) {
           this._element.setAttribute('value', value || '');
           var mappedValue = value;
-          if (this._element.hasAttribute('mapping')) {
+          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
             mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value);
           }
-          if (this._element.hasAttribute('format')) {
+          if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
             mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
           }
           this._updateValue(mappedValue, value);
-          if (this._element.hasAttribute('styling')) {
+          if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
             var styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
             this.setStyleClass(styleClass);
           }
@@ -338,4 +338,4 @@
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1677017682325
+//# sourceMappingURL=AbstractComponent.js.map?dt=1677345915611

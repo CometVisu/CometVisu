@@ -123,33 +123,6 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Datenmodell, welches einen Eintrag mit Daten für jedes Element in der Liste enthält und ein Template, welches
 den HTML-Code für die jeweiligen Listen-Elemente definiert. Die List-Komponente erzeugt nun ein HTML-Element, basierend
 auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmodells.</p>
-<figure class="align-default">
-<img alt="../../../_images/cv-js-list.png" src="../../../_images/cv-js-list.png" />
-</figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;model&gt;</span>
-<span class="w">                </span><span class="nt">&lt;script&gt;</span>
-<span class="w">                    </span>for<span class="w"> </span>(let<span class="w"> </span>i<span class="w"> </span>=<span class="w"> </span>0;<span class="w"> </span>i<span class="w"> </span><span class="ni">&amp;lt;</span><span class="w"> </span>4;<span class="w"> </span>i++)<span class="w"> </span>{
-<span class="w">                        </span>model.push({
-<span class="w">                            </span>label:<span class="w"> </span>&#39;Listeneintrag<span class="w"> </span>&#39;<span class="w"> </span>+<span class="w"> </span>i,
-<span class="w">                            </span>subLabel:<span class="w"> </span>&#39;Zusatztext<span class="w"> </span>Nummer<span class="w"> </span>&#39;<span class="w"> </span>+<span class="w"> </span>i
-<span class="w">                        </span>})
-<span class="w">                    </span>}
-<span class="w">                </span><span class="nt">&lt;/script&gt;</span>
-<span class="w">            </span><span class="nt">&lt;/model&gt;</span>
-<span class="w">            </span><span class="nt">&lt;template&gt;</span>
-<span class="w">                </span><span class="nt">&lt;li&gt;</span>
-<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
-<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>${subLabel}<span class="nt">&lt;/label&gt;</span>
-<span class="w">                </span><span class="nt">&lt;/li&gt;</span>
-<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/cv-list&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
-<span class="nt">&lt;/cv-widget&gt;</span>
-</pre></div>
-</div>
 <p>Das Datenmodell wird in diesem Fall aus einfachen JavaScript-Code erzeugt und hat folgenden Inhalt.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 <span class="w">     </span><span class="p">{</span>

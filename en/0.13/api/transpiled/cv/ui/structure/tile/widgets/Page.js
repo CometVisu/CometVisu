@@ -17,6 +17,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -24,8 +28,19 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       "cv.ui.structure.tile.components.AbstractComponent": {
         "require": true
       },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
+      }
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "browser.name": {
+          "className": "qx.bom.client.Browser"
+        }
       }
     }
   };
@@ -78,9 +93,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _supportsContentVisibility: null,
       _visibleDisplayMode: null,
       _init: function _init() {
-        if (typeof InstallTrigger !== 'undefined') {
-          // firefox does not support content-visibility CSS property
-          // see: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
+        var browserEngine = qx.core.Environment.get('browser.name');
+        if (browserEngine.includes('firefox') || browserEngine.includes('safari')) {
+          // firefox/safari do not support content-visibility CSS property
+          // see: https://caniuse.com/css-content-visibility
           this._element.classList.add('no-content-visibility');
           this._supportsContentVisibility = false;
         } else {
@@ -144,4 +160,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1677017684889
+//# sourceMappingURL=Page.js.map?dt=1677345917617

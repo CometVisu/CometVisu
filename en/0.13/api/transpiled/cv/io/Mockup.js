@@ -72,11 +72,13 @@
       window.writeHistory = [];
       var testMode = false;
       if (typeof testMode === 'string' && testMode !== 'true') {
+        this.setConnected(false);
         this.__P_522_0 = new cv.data.Simulation(testMode, this);
       }
       this.addresses = [];
       var file = this._resources['simulation'];
       if (file) {
+        this.setConnected(false);
         this.__P_522_0 = new cv.data.Simulation(file, this);
       } else {
         this.addListener('resourcePathAdded', function (ev) {
@@ -85,6 +87,7 @@
               {
                 var _file = _this._resources['simulation'];
                 if (_file) {
+                  _this.setConnected(false);
                   _this.__P_522_0 = new cv.data.Simulation(_file, _this);
                 }
                 break;
@@ -142,10 +145,12 @@
         if (callback) {
           if (this.__P_522_0 && !this.__P_522_0.isInitialized()) {
             this.__P_522_0.addListenerOnce('changeInitialized', function () {
+              _this2.setConnected(true);
               _this2.debug('(delayed) logged in to mockup client');
               callback.call(context);
             });
           } else {
+            this.setConnected(true);
             this.debug('logged in to mockup client');
             callback.call(context);
           }
@@ -267,4 +272,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1677017730778
+//# sourceMappingURL=Mockup.js.map?dt=1677345959183

@@ -54,4 +54,4 @@
   qx.util.format.IFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IFormat.js.map?dt=1677017729986
+//# sourceMappingURL=IFormat.js.map?dt=1677345958476
