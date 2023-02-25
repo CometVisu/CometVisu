@@ -19,7 +19,7 @@ Status-Abhängig sein, ebenso kann der untere Text entweder einen festen Wert od
 .. widget-example::
     :shots-per-row: 2
 
-    <settings design="tile">impro
+    <settings design="tile">
         <screenshot name="cv-small-status">
             <data address="1/4/0">0</data>
         </screenshot>
