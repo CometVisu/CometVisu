@@ -604,8 +604,23 @@ class TemplatedElement extends HTMLElement {
         } else if (name.endsWith('-format')) {
           targetName = 'format';
         }
-        targets.forEach(target => {
+        for (const target of targets) {
           if (targetName !== name && target.hasAttribute('slot-' + name)) {
+            const targetValue = target.getAttribute('slot-' + name);
+            if (targetValue.startsWith(':')) {
+              // this template slot-attribute contains some configuration
+              for (const entry of targetValue.substring(1).split(',')) {
+                const [key, value] = entry.split('=');
+                switch (key) {
+                  case 'target':
+                    name = value;
+                    break;
+                  default:
+                    qx.log.Logger.error(this, 'unhandled slot-attribute configuration key', key);
+                    break;
+                }
+              }
+            }
             target.setAttribute(name, value);
 
             target.removeAttribute('slot-' + name);
@@ -614,7 +629,7 @@ class TemplatedElement extends HTMLElement {
 
             target.removeAttribute('slot-' + targetName);
           }
-        });
+        }
         if (targets.length > 0) {
           this.removeAttribute(name);
         }
@@ -631,7 +646,7 @@ class TemplatedElement extends HTMLElement {
             } else if (attr.name.endsWith('-format') && elem.hasAttribute('slot-format')) {
               targetName = 'format';
             }
-            if (attr.value) {
+            if (attr.value && !attr.value.startsWith(':')) {
               elem.setAttribute(targetName, attr.value);
             }
             elem.removeAttribute(attr.name);
