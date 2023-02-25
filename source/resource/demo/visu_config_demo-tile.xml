@@ -115,15 +115,15 @@
                 <tr key="Dad">Vater</tr>
                 <tr key="Kid">Kind</tr>
                 <tr key="Calls">Anrufe</tr>
+                <tr key="Outside">Außen</tr>
             </language>
         </cv-translations>
     </cv-meta>
     <header>
         <cv-group open="true" wrap="false">
-            <cv-status format="tr('%d on')">
-                <cv-icon slot="icon" size="x-large">ri-lightbulb-line</cv-icon>
+            <cv-small-status format="tr('%d on')">
+                <cv-icon slot="icon">ri-lightbulb-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                <span slot="label" tr="true">All lights</span>
                 <cv-popup slot="popup" modal="true">
                     <cv-list rowspan="3" colspan="3">
                         <model sort-by="label">
@@ -152,14 +152,20 @@
                         </template>
                     </cv-list>
                 </cv-popup>
-            </cv-status>
-            <cv-status format="tr('%d open')">
-                <cv-value slot="icon" mapping="WindowOpen" styling="WindowOpen">
-                    <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
-                    <cv-address transform="DPT:5.001" mode="read">1/5/0</cv-address>
-                </cv-value>
+            </cv-small-status>
+            <cv-small-status value-format="%d°" styling="">
+                <label slot="value" style="font-size: 32px"/>
+                <cv-address slot="address" transform="DPT:9.001" mode="read">1/1/0</cv-address>
+                <label slot="label" class="secondary" tr="true">Outside</label>
+                <cv-popup slot="popup" modal="true">
+                    <cv-plugin>
+                        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
+                    </cv-plugin>
+                </cv-popup>
+            </cv-small-status>
+            <cv-small-status format="tr('%d open')" mapping="WindowOpen" styling="WindowOpen">
+                <cv-icon slot="value">knxuf-fts_window_1w_open</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/5/0</cv-address>
-                <span slot="label" tr="true">Windows</span>
                 <cv-popup slot="popup" modal="true">
                     <cv-list rowspan="3" colspan="3">
                         <model sort-by="label">
@@ -187,11 +193,10 @@
                         </template>
                     </cv-list>
                 </cv-popup>
-            </cv-status>
-            <cv-status format="tr('%d on')">
-                <cv-icon slot="icon" size="x-large">ri-speaker-line</cv-icon>
+            </cv-small-status>
+            <cv-small-status format="tr('%d on')">
+                <cv-icon slot="icon">ri-speaker-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
-                <span slot="label" tr="true">Speakers</span>
                 <cv-popup slot="popup" modal="true">
                     <cv-list rowspan="3" colspan="3">
                         <model sort-by="label">
@@ -220,14 +225,13 @@
                         </template>
                     </cv-list>
                 </cv-popup>
-            </cv-status>
+            </cv-small-status>
             <h2 visible-on="desktop" style="align-self: center; margin-left: auto; margin-right: calc(var(--spacing)*2);">CometVisu - Tile demo</h2>
         </cv-group>
         <cv-breadcrumbs />
     </header>
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
-            <h2 visible-on="mobile">CometVisu - Tile demo</h2>
             <cv-group open="true">
                 <cv-widget-pair allow-column-layout="true">
                     <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M" zero-based="false" >
@@ -646,12 +650,12 @@
                         <cv-icon>ri-question-line</cv-icon>
                     </cv-button>
                 </summary>
-                <cv-status format="%d open">
+                <cv-status format="tr('%d open')">
                     <cv-icon slot="icon" size="x-large">knxuf-fts_window_1w</cv-icon>
                     <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/14</cv-address>
                     <span slot="label" tr="true">Windows</span>
                 </cv-status>
-                <cv-status format="%d open">
+                <cv-status format="tr('%d open')">
                     <cv-value slot="icon" mapping="WindowOpen" styling="OpenAlert">
                         <cv-icon size="x-large" class="value">knxuf-fts_window_1w_open</cv-icon>
                         <cv-address transform="DPT:5.010" mode="read">1/4/15</cv-address>
@@ -666,6 +670,38 @@
                     <span slot="unit">m³</span>
                     <dataset slot="dataset" src="grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
                 </cv-status-chart>
+                <cv-small-status format="tr('%d on')">
+                    <cv-icon slot="icon">ri-lightbulb-line</cv-icon>
+                    <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
+                    <cv-popup slot="popup" modal="true">
+                        <cv-list rowspan="3" colspan="3">
+                            <model sort-by="label">
+                                <cv-data label="tr('Office')" write-address="4/5/0" read-address="4/5/0"/>
+                                <cv-data label="tr('Bathroom')" write-address="4/6/0" read-address="4/6/0"/>
+                                <cv-data label="tr('Living room')" write-address="3/1/0" read-address="3/1/0"/>
+                                <cv-data label="tr('Kitchen')" write-address="3/2/2" read-address="3/2/2"/>
+                            </model>
+                            <header>
+                                <h4 tr="true">All lights</h4>
+                            </header>
+                            <template>
+                                <cv-listitem>
+                                    <cv-button class="round-button" mapping="tile-light" size="small">
+                                        <cv-address mode="read" transform="DPT:1.001">${read-address}</cv-address>
+                                        <cv-address mode="write" transform="DPT:1.001">${write-address}</cv-address>
+                                        <cv-icon class="value" />
+                                    </cv-button>
+                                    <div class="content">
+                                        <label class="primary">${label}</label>
+                                    </div>
+                                </cv-listitem>
+                            </template>
+                            <template when="empty">
+                                <li><label class="primary" tr="true">Currently no lights are switched on</label></li>
+                            </template>
+                        </cv-list>
+                    </cv-popup>
+                </cv-small-status>
             </cv-group>
             <cv-group name="tr('Room temperature controllers')">
                 <summary>
