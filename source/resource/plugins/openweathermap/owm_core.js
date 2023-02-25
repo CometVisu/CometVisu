@@ -396,7 +396,8 @@ var jOWM = jOWM || {};
            callback(data);
        }, this);
        req.addListener("error", function (ev) {
-           console.log('error requesting', url, ev.getData());
+           var req = ev.getTarget();
+           console.error('error requesting', url, req.getStatus(), req.getStatusText());
        }, this);
        req.send();
     };
