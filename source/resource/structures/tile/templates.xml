@@ -300,4 +300,21 @@
             <slot name="footer"/>
         </footer>
     </template>
+    <template id="small-status" size="button">
+        <cv-tile style="grid-template-rows: auto 1fr auto;">
+            <cv-value slot-styling="tile-button" slot-mapping="" slot-value-format="" row="2" colspan="3" style="align-self: end">
+                <slot name="value" class="value">NEEDS VALUE</slot>
+                <slot name="icon">NEEDS ICON</slot>
+                <slot name="address">NEEDS ADDRESS</slot>
+            </cv-value>
+            <slot name="popup" modal="true" />
+        </cv-tile>
+        <footer>
+            <slot name="label" replaces="footer > cv-value"/>
+            <cv-value slot-format="">
+                <slot name="address">NEEDS ADDRESS</slot>
+                <label class="value secondary" style="font-size: 14px"/>
+            </cv-value>
+        </footer>
+    </template>
 </templates>

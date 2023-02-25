@@ -22,7 +22,8 @@ from io import open
 import json
 import re
 import hashlib
-from xml.sax.saxutils import escape
+from xml.sax.saxutils import escape, unescape
+import html
 from settings import config, root_dir
 
 pure_xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("DEFAULT", "schema-file"))))
@@ -118,7 +119,7 @@ class WidgetExampleParser:
         wrapper_attributes = ' class="%s"' % settings_node.get("wrapper-class") if settings_node is not None else ""
         wrapped_position = settings_node.get("wrapped-position").replace("'", "\"") if settings_node is not None and "wrapped-position" in settings_node.attrib else 'row="middle" column="middle"'
         for elem in config_example:
-            content = etree.tostring(elem, encoding='utf-8')
+            content = html.unescape(etree.tostring(elem, encoding='utf-8').decode('utf-8')).encode('utf-8')
             display = content
             if wrapper is not None:
                 if wrapper == 'cv-widget':

@@ -251,6 +251,21 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           this.debug('setup.dom.finished');
           qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
           cv.TemplateEngine.getInstance().setDomFinished(true);
+
+          const main = document.body.querySelector(':scope > main');
+          if (main) {
+            main.addEventListener('scroll', () => {
+              if (main.scrollTop > 20) {
+                for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+                  elem.classList.add('scrolled');
+                }
+              } else {
+                for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+                  elem.classList.remove('scrolled');
+                }
+              }
+            });
+          }
         });
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;
@@ -591,11 +606,11 @@ class TemplatedElement extends HTMLElement {
         }
         targets.forEach(target => {
           if (targetName !== name && target.hasAttribute('slot-' + name)) {
-            target.setAttribute(name, value || target.getAttribute('slot-' + name));
+            target.setAttribute(name, value);
 
             target.removeAttribute('slot-' + name);
           } else {
-            target.setAttribute(targetName, value || target.getAttribute('slot-' + targetName));
+            target.setAttribute(targetName, value);
 
             target.removeAttribute('slot-' + targetName);
           }

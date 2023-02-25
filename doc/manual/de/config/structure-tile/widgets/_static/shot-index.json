@@ -1,7 +1,7 @@
 {
     "cv-dimmer": "f76bc5dc8043a878d0680575f82fd5d4",
     "cv-info": "fa6f7832094cefc922772ac4090d8e69",
-    "cv-info-format": "547f3df39cdeab2df1c1443319ca03b5",
+    "cv-info-format": "eb53a5e37e7515fc0aaeb8f92e32862e",
     "cv-info-progress": "0e716cc961f0e14033b74640dcff9a33",
     "cv-info-icon-closed": "651b9a860f7ec773e594ba38054cb737",
     "cv-info-icon-opened": "65565d5229f226aa60f4085e24eebe1c",
@@ -22,5 +22,9 @@
     "cv-progress": "6d099eb63bf318a478f06e8bc1788fb3",
     "cv-tile-pair": "8d211c70a263bd3f374e479932447745",
     "cv-widget-pair": "430cb859b9a9497906e9fabe5117b846",
-    "cv-status-chart": "b8405ec9232504c96bbf3dead6cd02b7"
+    "cv-status-chart": "b8405ec9232504c96bbf3dead6cd02b7",
+    "cv-small-status": "92689663bdbd994f616265953a34a62c",
+    "cv-small-status-open": "e422f9972428d53331ad9a31066ce24b",
+    "cv-small-status-mapping": "9e17dd381867346672a1d6a41f7a2d81",
+    "cv-small-status-label": "210344785361012280e26675e1e03b1d"
 }
