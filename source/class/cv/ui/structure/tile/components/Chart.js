@@ -737,8 +737,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
       if (!this._element.style.height && (parent.localName === 'cv-popup' && (parent.getAttribute('fullscreen') === 'true') ||
-        (this._element.getAttribute('allow-fullscreen') === 'true'
-          && parent.parentElement.classList.contains('fullscreen')))) {
+        (this._element.getAttribute('allow-fullscreen') === 'true' &&
+          parent.parentElement.classList.contains('fullscreen')))) {
         // the parent container has height: auto, so we need to have one
         this._element.style.height = (height + this.__config.marginTop + this.__config.marginBottom) + 'px';
       }

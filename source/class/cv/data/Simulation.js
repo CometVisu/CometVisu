@@ -449,9 +449,6 @@ qx.Class.define('cv.data.Simulation', {
         'removeEventListener'
       ].forEach(function (method) {
         fakeXhr[method] = function () {
-          if (method === 'send') {
-            console.log(arguments);
-          }
           return xhr[method].apply(xhr, arguments);
         };
       });
@@ -484,7 +481,7 @@ qx.Class.define('cv.data.Simulation', {
           copyAttrs(['responseText']);
         }
         if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE &&
-          (xhr.responseType === "" || xhr.responseType === "document")) {
+          (xhr.responseType === '' || xhr.responseType === 'document')) {
           copyAttrs(['responseXML']);
         }
       };
@@ -503,7 +500,7 @@ qx.Class.define('cv.data.Simulation', {
         stateChangeEnd();
       };
       if (xhr.addEventListener) {
-        xhr.addEventListener("readystatechange", stateChangeStart);
+        xhr.addEventListener('readystatechange', stateChangeStart);
 
         for (let event in fakeXhr.eventListeners) {
           // eslint-disable-next-line no-prototype-builtins

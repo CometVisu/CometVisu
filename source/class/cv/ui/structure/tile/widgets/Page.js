@@ -49,7 +49,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
     _visibleDisplayMode: null,
 
     _init() {
-      const browserEngine = qx.core.Environment.get("browser.name");
+      const browserEngine = qx.core.Environment.get('browser.name');
       if (browserEngine.includes('firefox') || browserEngine.includes('safari')) {
         // firefox/safari do not support content-visibility CSS property
         // see: https://caniuse.com/css-content-visibility
