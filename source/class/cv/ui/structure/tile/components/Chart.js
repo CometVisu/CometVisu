@@ -695,7 +695,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       if (this.isVisible()) {
         const [width, height] = this._getSize();
-        console.log(width, height)
         if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
           // this makes no sense
           this.__resizeTimeout = setTimeout(() => {
