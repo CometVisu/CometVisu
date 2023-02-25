@@ -335,11 +335,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         event => {
           if (this._loaded) {
             let y = event.targetTouches[0].clientY;
-            if (this._helpers.linePath) {
-              const pathRect = this._helpers.linePath.node().getBoundingClientRect();
-              if (y > pathRect.y && y < pathRect.y + pathRect.height) {
-                event.preventDefault();
-              }
+            const pathRect = this._element.querySelector(':scope > svg').getBoundingClientRect();
+            if (y > pathRect.y && y < pathRect.y + pathRect.height) {
+              event.preventDefault();
             }
           }
         },
@@ -697,14 +695,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       if (this.isVisible()) {
         const [width, height] = this._getSize();
+        console.log(width, height)
         if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
-          // this make no sense
+          // this makes no sense
           this.__resizeTimeout = setTimeout(() => {
             this._onRendered(chartData, retries > 0 ? retries + 1 : 1);
           }, 150);
         }
         if (width < 20 || height < 10) {
-          // dp nothing, these values are invalid
+          // do nothing, these values are invalid
           return;
         }
 
@@ -738,10 +737,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         width = Math.round(containerWidth / factor);
         height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
-      if ((parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true') ||
-        (this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
+      if (!this._element.style.height && (parent.localName === 'cv-popup' && (parent.getAttribute('fullscreen') === 'true') ||
+        (this._element.getAttribute('allow-fullscreen') === 'true'
+          && parent.parentElement.classList.contains('fullscreen')))) {
         // the parent container has height: auto, so we need to have one
-        this._element.style.height = (height + padding*2) + 'px';
+        this._element.style.height = (height + this.__config.marginTop + this.__config.marginBottom) + 'px';
       }
       return [width, height];
     },
