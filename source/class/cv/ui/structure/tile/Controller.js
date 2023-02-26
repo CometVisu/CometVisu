@@ -111,6 +111,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     namespace: {
       check: 'String',
       init: ''
+    },
+
+    scrolled: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyScrolled'
     }
   },
 
@@ -254,15 +260,26 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
           const main = document.body.querySelector(':scope > main');
           if (main) {
+            let shrinkHeight = -1;
             main.addEventListener('scroll', () => {
-              if (main.scrollTop > 20) {
+              // we need to know the space that we gain in height, when the shrinked elements are not shown
+              // and must not start the effect before we reach that threshold, otherwise
+              // main.scrollTop would go back to 0 because we have more height available and do not have to scroll+
+              // anymore, that would lead to an endless toggling this effect
+              // so long story short: avoid that applying this effect would lead to: main.scrollTop === 0
+              if (shrinkHeight < 0) {
+                shrinkHeight = 1;
+                let style
                 for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
-                  elem.classList.add('scrolled');
+                  style = getComputedStyle(elem)
+                  shrinkHeight += parseInt(style.height);
                 }
-              } else {
-                for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
-                  elem.classList.remove('scrolled');
-                }
+              }
+              if (!this.isScrolled() && main.scrollTop > shrinkHeight) {
+                this.setScrolled(true);
+              } else if (this.isScrolled() && main.scrollTop === 0) {
+                this.setScrolled(false);
+                shrinkHeight = -1;
               }
             });
           }
@@ -276,6 +293,18 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         });
 
         ajaxRequest.send();
+      }
+    },
+
+    _applyScrolled(value) {
+      if (value) {
+        for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+          elem.classList.add('scrolled');
+        }
+      } else {
+        for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
+          elem.classList.remove('scrolled');
+        }
       }
     },
 
