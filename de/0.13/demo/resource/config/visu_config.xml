@@ -120,7 +120,7 @@
         </cv-translations>
     </cv-meta>
     <header>
-        <cv-group open="true" wrap="false" hide-on-scroll="true" style="height: var(--tileCellHeight); padding-bottom: 0">
+        <cv-group open="true" wrap="false" hide-on-scroll="true" style="height: min(var(--tileCellWidth), var(--tileCellHeight)); padding-bottom: 0">
             <cv-small-status format="tr('%d on')">
                 <cv-icon slot="icon">ri-lightbulb-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>

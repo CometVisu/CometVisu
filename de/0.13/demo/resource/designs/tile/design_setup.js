@@ -42,18 +42,8 @@ function resizeTiles() {
     const minWidth = availableWidth > 1000 ? 192 : 168;
     const columns = Math.max(1, Math.floor(availableWidth / minWidth));
     let tileWidth = minWidth;
-    if (columns === 1) {
-      availableWidth -= spacing;
-      style.setProperty('--spacing', spacing + 'px');
-      tileWidth = availableWidth;
-    } else {
-      if (spacing > 8) {
-        spacing = 8;
-        availableWidth = page.offsetWidth - spacing * 2;
-        style.setProperty('--spacing', spacing + 'px');
-      }
-      tileWidth = Math.floor(availableWidth / columns) - spacing;
-    }
+    availableWidth -= (columns-1) * spacing;
+    tileWidth = Math.floor(availableWidth / columns);
     const cellWidth = Math.floor(tileWidth / 3);
     //console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
     style.setProperty('--tileCellWidth', cellWidth + 'px');
