@@ -270,7 +270,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
               // so long story short: avoid that applying this effect would lead to: main.scrollTop === 0
               if (shrinkHeight < 0) {
                 shrinkHeight = 1;
-                let style
+                let style;
                 for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
                   style = getComputedStyle(elem);
                   if (!canAnimate) {
