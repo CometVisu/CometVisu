@@ -261,6 +261,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           const main = document.body.querySelector(':scope > main');
           if (main) {
             let shrinkHeight = -1;
+            let canAnimate = false;
             main.addEventListener('scroll', () => {
               // we need to know the space that we gain in height, when the shrinked elements are not shown
               // and must not start the effect before we reach that threshold, otherwise
@@ -271,12 +272,23 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
                 shrinkHeight = 1;
                 let style
                 for (const elem of document.body.querySelectorAll(':scope > header [hide-on-scroll="true"]')) {
-                  style = getComputedStyle(elem)
-                  shrinkHeight += parseInt(style.height);
+                  style = getComputedStyle(elem);
+                  if (!canAnimate) {
+                    // we need at least one element that has a defined height, to get a working animation
+                    canAnimate = !!elem.style.height;
+                  }
+                  shrinkHeight += parseInt(style.height) +
+                    parseInt(style.paddingTop) +
+                    parseInt(style.paddingBottom) +
+                    parseInt(style.marginTop) +
+                    parseInt(style.marginBottom);
                 }
               }
               if (!this.isScrolled() && main.scrollTop > shrinkHeight) {
                 this.setScrolled(true);
+                if (!canAnimate) {
+                  main.scrollTop -= shrinkHeight;
+                }
               } else if (this.isScrolled() && main.scrollTop === 0) {
                 this.setScrolled(false);
                 shrinkHeight = -1;
