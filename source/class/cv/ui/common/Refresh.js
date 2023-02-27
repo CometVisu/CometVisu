@@ -128,11 +128,11 @@ qx.Mixin.define('cv.ui.common.Refresh', {
     },
 
     setupRefreshAction() {
-      if (this.__setup === true) {
-        return;
-      }
-      this.__setup = true;
       if (this.getRefresh() && this.getRefresh() > 0) {
+        if (this.__setup === true) {
+          return;
+        }
+        this.__setup = true;
         if (this._setupRefreshAction) {
           // overridden by inheriting class
           this._setupRefreshAction();
@@ -162,9 +162,6 @@ qx.Mixin.define('cv.ui.common.Refresh', {
           this.__lastRun = Date.now();
           this.setRestartOnVisible(true);
         }
-      } else {
-        // no refresh interval set, call the refresh action once
-        this.refreshAction();
       }
     },
 

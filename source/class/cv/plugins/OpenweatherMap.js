@@ -48,6 +48,10 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         this.__options[key] = props[key];
       }
     }, this);
+    if (props.refresh === 0) {
+      // call once
+      this._refreshAction();
+    }
   },
 
   /*
