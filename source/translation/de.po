@@ -1200,3 +1200,27 @@ msgstr "gestern"
 #: cv/ui/structure/tile/components/Chart.js
 msgid "CW %1"
 msgstr "KW %1"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Hour"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Day"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Week"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Month"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Year"
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: %1"
+msgstr "Letzte Aktualisierung: %1"

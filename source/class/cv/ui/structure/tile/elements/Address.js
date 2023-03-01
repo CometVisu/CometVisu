@@ -131,13 +131,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             transformedState instanceof Date ? transformedState.toLocaleString() : transformedState
           );
         }
+        let targetConfig = this._element.hasAttribute('target') ? this._element.getAttribute('target').split(':') : [];
+        const target = targetConfig.length > 0 ? targetConfig.shift() : '';
         const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
           cancelable: true,
           detail: {
             address: this._element.textContent.trim(),
             state: transformedState,
-            target: this._element.getAttribute('target') || '',
+            target: target,
+            targetConfig: targetConfig,
             raw: state,
             mapping: mapping,
             addressValue: this._element.hasAttribute('value') ? this._element.getAttribute('value') : null,
