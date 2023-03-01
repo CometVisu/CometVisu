@@ -1731,7 +1731,8 @@
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
                     <xsd:enumeration value="address" />
-                    <xsd:enumeration value="live-update-address" />
+                    <xsd:enumeration value="tileAddress" />
+                    <xsd:enumeration value="liveUpdateAddress" />
                   </xsd:restriction>
                 </xsd:simpleType>
               </xsd:attribute>
@@ -2583,12 +2584,16 @@
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="html-style">
+  <xsd:complexType name="html-style" >
     <xsd:annotation>
       <xsd:documentation xml:lang="en">The style element contains style information for a document, or part of a document.</xsd:documentation>
       <xsd:documentation xml:lang="de">Das style-Element enthält Stylesheet-Angaben, die für das gesamte Dokument gelten.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute name="media" default="all" type="xsd:string"/>
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="media" default="all" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:simpleContent>
   </xsd:complexType>
 
   <xsd:complexType name="iframe">
