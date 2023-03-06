@@ -87,9 +87,9 @@ qx.Class.define('cv.plugins.Speech', {
 
       return cv.data.Model.getInstance().setWidgetData(path, {
         path: path,
-        language: element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : null,
+        language: element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : '',
         address: address,
-        mapping: element.getAttribute('mapping'),
+        mapping: element.getAttribute('mapping') || '',
         repeatTimeout: element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
         $$type: 'speech',
         // this widget needs to be initialized when the cache is used, otherwise it wont be available

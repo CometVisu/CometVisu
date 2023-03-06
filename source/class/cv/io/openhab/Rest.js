@@ -225,7 +225,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     subscribe(addresses, filters) {
       // send first request to get all states once
       const req = this.createAuthorizedRequest('items?fields=name,state,stateDescription,members,type,label&recursive=true');
-
+      this.setDataReceived(false);
       req.addListener('success', e => {
         const req = e.getTarget();
 
@@ -272,6 +272,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         }, this);
         this.update(update);
         this.__subscribedAddresses = addresses;
+        this.setDataReceived(true);
       });
       // Send request
       req.send();
@@ -391,6 +392,7 @@ qx.Class.define('cv.io.openhab.Rest', {
         // just saving the credentials for later use as we are using basic authentication
         this.__token = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
       }
+      this.setDataReceived(false);
       // no login needed we just do a request to the if the backend is reachable
       const req = this.createAuthorizedRequest();
       req.addListener('success', e => {
