@@ -159,7 +159,7 @@
                 <label slot="label" class="secondary" tr="true">Outside</label>
                 <cv-popup slot="popup" modal="true">
                     <cv-plugin>
-                        <openweathermap detailItems="1" forecast24hItems="8" forecastDailyItems="4" showSunrise="true" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
+                        <openweathermap detailItems="1" forecast24hItems="6" forecastDailyItems="3" showSunrise="false" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
                     </cv-plugin>
                 </cv-popup>
             </cv-small-status>

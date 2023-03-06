@@ -1725,6 +1725,10 @@ body {
                 width: 100%;
             }
         }
+
+        .widget.openweathermap {
+            margin: var(--spacing);
+        }
     }
 
     cv-listitem {

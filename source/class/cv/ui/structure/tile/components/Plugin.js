@@ -45,7 +45,10 @@ qx.Class.define('cv.ui.structure.tile.components.Plugin', {
           if (Clazz) {
             cv.ui.structure.tile.components.Plugin.PL_COUNTER++;
             const id = 'id_9_' + cv.ui.structure.tile.components.Plugin.PL_COUNTER;
-            const props = Clazz.parse(this._element.firstElementChild, id, '', 'text');
+            // must be converted to real XML document, otherwise attributes cannot be accessed
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(this._element.innerHTML, 'application/xml');
+            const props = Clazz.parse(doc.firstElementChild, id, '', 'text');
             cv.TemplateEngine.getInstance().setDomFinished(false);
             this.__widget = new Clazz(props);
             this._element.innerHTML = `<div class="widget_container" id="${id}" data-type="${props.$$type}">${this.__widget.getDomString()}</div>`;
