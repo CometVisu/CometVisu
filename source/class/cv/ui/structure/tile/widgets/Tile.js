@@ -49,6 +49,12 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       check: 'Boolean',
       init: false,
       apply: '_applyOutdated'
+    },
+
+    checkOutdated: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyCheckOutdated'
     }
   },
 
@@ -69,6 +75,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   members: {
     _fullScreenMode: null,
     _dateFormat: null,
+    _checkOutdatedTimerId: null,
+    _lastUpdate: null,
+    _maxAge: null,
 
     _init() {
       super._init();
@@ -119,6 +128,29 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         if (elem) {
           elem.style.display = 'none';
         }
+      }
+    },
+
+    _applyCheckOutdated(value) {
+      const timer = qx.util.TimerManager.getInstance();
+      if (value) {
+        this._checkOutdatedTimerId = timer.start(this.checkOutdated, 5000, this);
+      } else if (this._checkOutdatedTimerId) {
+        timer.stop(this._checkOutdatedTimerId);
+        this._checkOutdatedTimerId = null;
+      }
+    },
+
+    checkOutdated() {
+      if (this._lastUpdate instanceof Date) {
+        const age = Math.floor((Date.now() - this._lastUpdate.getTime()) / 1000);
+        this.setOutdated(age > this._maxAge);
+        this._element.setAttribute('title', qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(this._lastUpdate)));
+      } else if (this._lastUpdate === '-') {
+        this.setOutdated(true);
+        this._element.setAttribute('title', qx.locale.Manager.tr('Last update: unknown'));
+      } else {
+        this.error('last-update value must be a Date object, but is of type:', typeof this._lastUpdate, this._lastUpdate);
       }
     },
 
@@ -214,16 +246,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
             break;
 
           case 'last-update':
-            const maxAge = ev.detail.targetConfig && ev.detail.targetConfig.length > 0 ? parseInt(ev.detail.targetConfig.shift()) : Number.POSITIVE_INFINITY;
-            if (ev.detail.state instanceof Date) {
-              const age = Math.floor((Date.now() - ev.detail.state.getTime()) / 1000);
-              this.setOutdated(age > maxAge);
-              this._element.setAttribute('title', qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(ev.detail.state)));
-            } else if (ev.detail.state === '-') {
-              this.setOutdated(true);
-            } else {
-              this.error('last-update value must be a Date object, but is of type:', typeof ev.detail.state, ev.detail.state);
-            }
+            this._maxAge = ev.detail.targetConfig && ev.detail.targetConfig.length > 0 ? parseInt(ev.detail.targetConfig.shift()) : Number.POSITIVE_INFINITY;
+            this._lastUpdate = ev.detail.state;
+            this.checkOutdated();
             break;
 
           default:
@@ -239,6 +264,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     */
     destruct() {
       this._disposeObjects('_dateFormat');
+      if (this._checkOutdatedTimerId) {
+        qx.util.TimerManager.getInstance().stop(this._checkOutdatedTimerId);
+        this._checkOutdatedTimerId = null;
+      }
     }
   },
 

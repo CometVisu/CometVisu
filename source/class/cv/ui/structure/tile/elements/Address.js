@@ -52,6 +52,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           }
           //add listener
           model.addUpdateListener(address, this.fireStateUpdate, this, backendName);
+
+          if (element.hasAttribute('target') && element.getAttribute('target').startsWith('last-update')) {
+            if (state === undefined) {
+              // notify tile that we have no value, so its outdated
+              this.fireStateUpdate(address, '-');
+            }
+          }
         }
         if (mode !== 'read') {
           // listen for sendState events
