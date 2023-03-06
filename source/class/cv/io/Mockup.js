@@ -76,11 +76,6 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   properties: {
-    dataReceived: {
-      check: 'Boolean',
-      init: true
-    },
-
     server: {
       check: 'String',
       init: 'Mockup'
