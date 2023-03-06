@@ -50,7 +50,17 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     }, this);
     if (props.refresh === 0) {
       // call once
-      this._refreshAction();
+      if (cv.TemplateEngine.getInstance().isDomFinished()) {
+        this._refreshAction();
+      } else {
+        qx.event.message.Bus.subscribe(
+          'setup.dom.finished',
+          function () {
+            this._refreshAction();
+          },
+          this
+        );
+      }
     }
   },
 
