@@ -73,6 +73,9 @@ qx.Class.define('cv.ui.structure.pure.Web', {
     // overridden
     _getInnerDomString: function () {
       let webStyle = this.getStyle();
+      if (webStyle !== '' && webStyle.startsWith('style="')) {
+        webStyle = webStyle.substring(7, webStyle.length-1);
+      }
       if (this.getWidth()) {
         webStyle += 'width:' + this.getWidth() + ';';
       } else { // default width is 100% of widget space (fix bug #3175343 part 1)
@@ -82,7 +85,7 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         webStyle += 'height:' + this.getHeight() + ';';
       }
       if (this.getFrameborder() === false) {
-        webStyle += 'border: 0px ;';
+        webStyle += 'border: 0px;';
       }
       if (this.getBackground()) {
         webStyle += 'background-color:' + this.getBackground() + ';';
