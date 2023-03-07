@@ -629,7 +629,7 @@ qx.Class.define('cv.TemplateEngine', {
         }, this).schedule();
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        document.querySelectorAll('embed').forEach((elem) => {
+        document.querySelectorAll('embed').forEach(elem => {
           this._runTrickOMatic(elem, 0);
         });
 
