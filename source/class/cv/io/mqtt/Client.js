@@ -55,6 +55,10 @@ qx.Class.define('cv.io.mqtt.Client', {
       check: 'String',
       nullable: true,
       event: 'changedServer'
+    },
+    dataReceived: {
+      check: 'Boolean',
+      init: false
     }
   },
 
