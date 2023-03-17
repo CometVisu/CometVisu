@@ -86,6 +86,7 @@ qx.Class.define('cv.io.BackendConnections', {
         client.configuredIn = source;
       }
       this.__clients[name] = client;
+      client.setName(name);
       const model = cv.data.Model.getInstance();
       client.addListener('changeConnected', ev => {
         const data = {};
