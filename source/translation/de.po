@@ -1203,23 +1203,23 @@ msgstr "KW %1"
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "Hour"
-msgstr ""
+msgstr "Stunde"
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "Day"
-msgstr ""
+msgstr "Tag"
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "Week"
-msgstr ""
+msgstr "Woche"
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "Month"
-msgstr ""
+msgstr "Monat"
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "Year"
-msgstr ""
+msgstr "Jahr"
 
 #: cv/ui/structure/tile/widgets/Tile.js
 msgid "Last update: %1"
