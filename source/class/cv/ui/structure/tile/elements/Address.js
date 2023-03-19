@@ -91,7 +91,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                   qx.event.Timer.once(
                     () => {
                       cv.io.BackendConnections.getClient(backendName).write(
-                        element.textContent,
+                        address,
                         encodedValue.bus,
                         element
                       );
@@ -104,7 +104,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                     delay
                   );
                 } else {
-                  cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+                  cv.io.BackendConnections.getClient(backendName).write(address, encodedValue.bus, element);
 
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;
