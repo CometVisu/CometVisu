@@ -119,7 +119,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         if (!elem) {
           elem = document.createElement('div');
           elem.classList.add('outdated');
-          elem.textContent = "!";
+          elem.textContent = '!';
           this._element.insertBefore(elem, this._element.firstElementChild);
         }
         elem.style.display = 'block';
