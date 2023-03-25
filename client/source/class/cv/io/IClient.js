@@ -29,6 +29,14 @@ qx.Interface.define('cv.io.IClient', {
     dataReceived: {
       check: 'Boolean',
       init: false
+    },
+
+    /**
+     * The name this client is registered for
+     */
+    name: {
+      check: 'String',
+      nullable: true
     }
   },
 

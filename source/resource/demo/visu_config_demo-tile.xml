@@ -236,7 +236,7 @@
                 <cv-widget-pair allow-column-layout="true">
                     <cv-status-chart format="%d" style="color: #f2495c" y-format="%d W" series="hour" x-format="%H:%M" zero-based="false" >
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/25</cv-address>
-                        <cv-address slot="live-update-address" transform="DPT:12.001" mode="read" target="generator:grid-current-import">1/4/25</cv-address>
+                        <cv-address slot="liveUpdateAddress" transform="DPT:12.001" mode="read" target="generator:grid-current-import">1/4/25</cv-address>
                         <span slot="title" tr="true">Power consumption</span>
                         <span slot="unit">W</span>
                         <dataset slot="dataset" src="generator:grid-current-import" color="#f2495c"

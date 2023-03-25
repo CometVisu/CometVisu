@@ -94,13 +94,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     currentSeries: {
       check: ['hour', 'day', 'week', 'month', 'year'],
       init: 'day',
-      apply: '_refreshData'
+      apply: '__updateTimeRange'
     },
 
     currentPeriod: {
       check: 'Number',
       init: 0,
-      apply: '_refreshData'
+      apply: '__updateTimeRange'
+    },
+
+    startTime: {
+      check: 'Number',
+      init: 0
+    },
+
+    endTime: {
+      check: 'Number',
+      init: 0
     }
   },
 
@@ -125,6 +135,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __showTooltip: false,
     __debouncedOnResize: null,
     __resizeTimeout: null,
+    __startTs: null,
+    __endTs: null,
 
     /**
     * @type {d3.Selection}
@@ -154,9 +166,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._initializing = true;
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
-      if (this.isVisible()) {
-        this._loadData();
-      }
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
       const chartId = 'chart-' + this._id;
       element.setAttribute('data-chart-id', this._id.toString());
@@ -502,11 +511,81 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      if (!this._initializing) {
+      if (!this._initializing && this.getStartTime() > 0 && this.getEndTime() > 0) {
         this._loaded = false;
         this._loadData();
       }
       this.__updateTitle();
+    },
+
+    __updateTimeRange() {
+      const series = this.getCurrentSeries();
+
+      const currentPeriod = this.getCurrentPeriod();
+      let end = new Date();
+      let periodStart = new Date();
+      let interval = 0;
+      switch (series) {
+        case 'hour':
+          interval = 60 * 60;
+          periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
+          if (currentPeriod > 0) {
+            end.setHours(periodStart.getHours() + 1, 0, 0, 0);
+          }
+          break;
+
+        case 'day':
+          interval = 24 * 60 * 60;
+          periodStart.setDate(periodStart.getDate() - currentPeriod);
+          periodStart.setHours(0, 0, 0, 0);
+          if (currentPeriod > 0) {
+            end.setDate(periodStart.getDate() + 1);
+            end.setHours(0, 0, 0, 0);
+          }
+          break;
+
+        case 'week':
+          interval = 7 * 24 * 60 * 60;
+          periodStart.setDate(-periodStart.getDay() - 7 * currentPeriod);
+          periodStart.setHours(0, 0, 0, 0);
+          if (currentPeriod > 0) {
+            end.setDate(periodStart.getDate() + 7);
+            end.setHours(0, 0, 0, 0);
+          }
+          break;
+
+        case 'month':
+          interval = 30 * 24 * 60 * 60;
+          periodStart.setMonth(periodStart.getMonth() - currentPeriod);
+          periodStart.setDate(1);
+          periodStart.setHours(0, 0, 0, 0);
+          if (currentPeriod > 0) {
+            end.setMonth(periodStart.getMonth() + 1, 1);
+            end.setHours(0, 0, 0, 0);
+          }
+          break;
+
+        case 'year':
+          interval = 365 * 24 * 60 * 60;
+          periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
+          periodStart.setMonth(0, 1);
+          periodStart.setHours(0, 0, 0, 0);
+          if (currentPeriod > 0) {
+            end.setFullYear(periodStart.getFullYear() + 1);
+            end.setMonth(periodStart.getMonth() + 1, 1);
+            end.setHours(0, 0, 0, 0);
+          }
+          break;
+      }
+      let startTs = Math.round(periodStart.getTime()/1000);
+      let endTs = Math.round(end.getTime()/1000);
+      if (this._element.getAttribute('background') === 'true' || !this._element.hasAttribute('selection')) {
+        // when have no nagivation, we can just use the old relative time range now - interval
+        startTs = endTs -  interval;
+      }
+      this.setStartTime(startTs);
+      this.setEndTime(endTs);
+      this._refreshData();
     },
 
     _loadData() {
@@ -526,37 +605,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       let url;
       const dataSets = this._element.querySelectorAll(':scope > dataset');
-      const series = this.getCurrentSeries();
-
-      const currentPeriod = this.getCurrentPeriod();
-      let start = 'end-1' + series;
-      let end = 'now';
-
-      let interval = 0;
-      switch (series) {
-        case 'hour':
-          interval = 60 * 60 * 1000;
-          break;
-
-        case 'day':
-          interval = 24 * 60 * 60 * 1000;
-          break;
-
-        case 'week':
-          interval = 7 * 24 * 60 * 60 * 1000;
-          break;
-
-        case 'month':
-          interval = 30 * 24 * 60 * 60 * 1000;
-          break;
-
-        case 'year':
-          interval = 365 * 24 * 60 * 60 * 1000;
-          break;
-      }
-      if (currentPeriod > 0 && interval > 0) {
-        end = Math.round((Date.now() - currentPeriod * interval) / 1000);
-      }
 
       const promises = [];
       if (!this._dataSetConfigs) {
@@ -603,8 +651,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       for (const src in this._dataSetConfigs) {
         url = client.getResourcePath('charts', {
           src: src,
-          start: start,
-          end: end
+          start: this.getStartTime(),
+          end: this.getEndTime()
         });
 
         const ts = this._dataSetConfigs[src];
@@ -774,7 +822,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this.error('Chart _onStatusError', ts, key, err);
     },
-
 
     /**
      * Get svg element selection (create if not exists)

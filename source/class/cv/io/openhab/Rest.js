@@ -231,6 +231,7 @@ qx.Class.define('cv.io.openhab.Rest', {
 
         const res = req.getResponse();
         const update = {};
+        const model = cv.data.Model.getInstance();
         res.forEach(entry => {
           if (entry.members && Array.isArray(entry.members)) {
             // this is a group
@@ -245,6 +246,8 @@ qx.Class.define('cv.io.openhab.Rest', {
                 name: obj.name,
                 active: false
               };
+              // register member addresses in model
+              model.addAddress(obj.name, null, this.getName());
 
               if (this.__isActive(obj.type, obj.state)) {
                 active++;

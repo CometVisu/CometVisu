@@ -443,6 +443,11 @@ function loadSchema(schemaFile) {
   if (!configSchemas.hasOwnProperty(schemaFile)) {
     // load scheme file
     let content = getFileContent(schemaFile);
+    if (content === null) {
+      // schema file not found
+      configSchemas[schemaFile] = content;
+      return;
+    }
     let file;
     let includedContent;
     const matches = content.matchAll(/<xsd:include schemaLocation="([^"]+)"\s?\/>/g);

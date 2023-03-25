@@ -52,6 +52,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
           }
           //add listener
           model.addUpdateListener(address, this.fireStateUpdate, this, backendName);
+
+          if (element.hasAttribute('target') && element.getAttribute('target').startsWith('last-update')) {
+            if (state === undefined) {
+              // notify tile that we have no value, so its outdated
+              this.fireStateUpdate(address, '-');
+            }
+          }
         }
         if (mode !== 'read') {
           // listen for sendState events
@@ -84,7 +91,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                   qx.event.Timer.once(
                     () => {
                       cv.io.BackendConnections.getClient(backendName).write(
-                        element.textContent,
+                        address,
                         encodedValue.bus,
                         element
                       );
@@ -97,7 +104,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                     delay
                   );
                 } else {
-                  cv.io.BackendConnections.getClient(backendName).write(element.textContent, encodedValue.bus, element);
+                  cv.io.BackendConnections.getClient(backendName).write(address, encodedValue.bus, element);
 
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;
@@ -131,13 +138,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             transformedState instanceof Date ? transformedState.toLocaleString() : transformedState
           );
         }
+        let targetConfig = this._element.hasAttribute('target') ? this._element.getAttribute('target').split(':') : [];
+        const target = targetConfig.length > 0 ? targetConfig.shift() : '';
         const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
           cancelable: true,
           detail: {
             address: this._element.textContent.trim(),
             state: transformedState,
-            target: this._element.getAttribute('target') || '',
+            target: target,
+            targetConfig: targetConfig,
             raw: state,
             mapping: mapping,
             addressValue: this._element.hasAttribute('value') ? this._element.getAttribute('value') : null,

@@ -95,6 +95,42 @@ nicht mehr auf Interaktionen des Benutzers wie z.B. Mausklicks.
         </cv-tile>
     </cv-widget>
 
+Widget als veraltet markieren
+.............................
+
+Besonders bei Widgets die einen Wert anzeigen ist es wichtig zu wissen, dass dieser Wert aktuell ist.
+Sofern man die Möglichkeit hat den Zeitpunkt der letzten Aktualisierung vom Backend zu bekommen, kann man diesen
+nutzen um das Widget als veraltet zu markieren, wenn die letzte Aktualisierung zu lange zurückliegt.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-info">
+        <screenshot name="cv-info-outdated">
+            <data address="1/4/2">21.5</data>
+            <data address="1/4/3" type="time">00:00:00</data>
+        </screenshot>
+    </settings>
+    <cv-info format="%.2f">
+        <cv-address slot="address" mode="read" transform="DPT:9.001">1/4/2</cv-address>
+        <cv-address slot="tileAddress" transform="DPT:10.001" mode="read" target="last-update:120">1/4/3</cv-address>
+        <span slot="label">Wohnzimmer</span>
+        <span slot="unit">°C</span>
+    </cv-info>
+
+Das ``target="last-update:120"`` gibt an, dass die Zeit nicht länger als 120 Sekunden zurückliegen darf, ansonsten
+wird das Widget als veraltet markiert.
+
+Dieses Feature steht in allen vordefinierten Widgets zur Verfügung. In eigenen Widgets kann man es ebenfalls nutzen,
+mann muss lediglich das slot-Attribut aus dem Beispiel weglassen.
+
+.. code:: xml
+
+    <cv-widget>
+        <cv-tile>
+            <cv-address transform="DPT:10.001" mode="read" target="last-update:120">1/4/3</cv-address>
+        </cv-tile>
+    </cv-widget>
+
 
 Transform
 ---------
