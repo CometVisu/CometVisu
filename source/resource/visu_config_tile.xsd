@@ -1712,7 +1712,7 @@
         <xsd:element name="cv-status" type="cv-status" />
         <xsd:element name="cv-status-chart" type="cv-status-chart" />
       </xsd:choice>
-      <xsd:element name="cv-address" maxOccurs="unbounded">
+      <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="address">
