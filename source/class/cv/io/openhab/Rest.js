@@ -57,6 +57,11 @@ qx.Class.define('cv.io.openhab.Rest', {
       check: 'String',
       nullable: true,
       event: 'changedServer'
+    },
+
+    dataReceived: {
+      check: 'Boolean',
+      init: false
     }
   },
   /*
@@ -208,6 +213,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     subscribe : function (addresses, filters) {
       // send first request to get all states once
       const req = this.createAuthorizedRequest('items?fields=name,state,members,type&recursive=true');
+      this.setDataReceived(false);
       req.addListener('success', function(e) {
         const req = e.getTarget();
 
@@ -239,6 +245,7 @@ qx.Class.define('cv.io.openhab.Rest', {
           update[entry.name] = entry.state;
         }, this);
         this.update(update);
+        this.setDataReceived(true);
       }, this);
       // Send request
       req.send();

@@ -22,6 +22,14 @@ qx.Interface.define('cv.io.IClient', {
       check: 'String',
       nullable: true,
       event: 'changedServer'
+    },
+
+    /**
+     * needed to be able to check if the incoming update is the initial answer or a successing update
+     */
+    dataReceived: {
+      check: 'Boolean',
+      init: false
     }
   },
   /*
