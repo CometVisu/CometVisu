@@ -55,6 +55,12 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       check: 'Boolean',
       init: false,
       apply: '_applyCheckOutdated'
+    },
+
+    outdatedMessage: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyOutdatedMessage'
     }
   },
 
@@ -78,6 +84,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     _checkOutdatedTimerId: null,
     _lastUpdate: null,
     _maxAge: null,
+    _hideTimer: null,
 
     _init() {
       super._init();
@@ -94,6 +101,15 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       if (this._element.querySelector(':scope > label.title')) {
         this._element.classList.add('has-title');
       }
+
+      this._hideTimer = new qx.event.Timer(5000);
+      this._hideTimer.addListener('interval', () => {
+        const elem = this._element.querySelector(':scope > .outdated-value');
+        if (elem.style.display !== 'none') {
+          elem.style.display = 'none';
+        }
+        this._hideTimer.stop();
+      })
     },
 
     _applyBackgroundImage(value) {
@@ -121,6 +137,29 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
           elem.classList.add('outdated');
           elem.textContent = '!';
           this._element.insertBefore(elem, this._element.firstElementChild);
+          // capture all clicks by stealing the initial event
+          elem.addEventListener('pointerdown', ev => {
+            ev.stopImmediatePropagation();
+          });
+          elem.addEventListener('click', ev => {
+            // show last updated value for 5 seconds
+            let valueElem = this._element.querySelector(':scope > .outdated-value');
+            if (!valueElem) {
+              valueElem = document.createElement('div');
+              valueElem.classList.add('outdated-value');
+              valueElem.textContent = this.getOutdatedMessage();
+              this._element.appendChild(valueElem);
+              this._element.insertBefore(valueElem, elem.nextElementSibling);
+              // capture all clicks by stealing the initial event
+              valueElem.addEventListener('pointerdown', ev => {
+                ev.stopImmediatePropagation();
+                valueElem.style.display = 'none';
+              });
+            } else {
+              valueElem.style.display = 'block';
+            }
+            this._hideTimer.start();
+          });
         }
         elem.style.display = 'block';
       } else {
@@ -128,6 +167,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         if (elem) {
           elem.style.display = 'none';
         }
+      }
+    },
+
+    _applyOutdatedMessage(value) {
+      this._element.setAttribute('title', value);
+      let valueElem = this._element.querySelector(':scope > .outdated-value');
+      if (valueElem) {
+        valueElem.textContent = value;
       }
     },
 
@@ -145,12 +192,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       if (this._lastUpdate instanceof Date) {
         const age = Math.floor((Date.now() - this._lastUpdate.getTime()) / 1000);
         this.setOutdated(age > this._maxAge);
-        this._element.setAttribute('title', qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(this._lastUpdate)));
+        this.setOutdatedMessage(qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(this._lastUpdate)));
       } else if (this._lastUpdate === '-') {
         this.setOutdated(true);
-        this._element.setAttribute('title', qx.locale.Manager.tr('Last update: unknown'));
+        this.setOutdatedMessage(qx.locale.Manager.tr('Last update: unknown'));
       } else {
         this.error('last-update value must be a Date object, but is of type:', typeof this._lastUpdate, this._lastUpdate);
+        this.resetOutdatedMessage();
       }
     },
 
