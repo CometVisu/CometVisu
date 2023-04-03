@@ -33,6 +33,33 @@ qx.Class.define('cv.io.BackendConnections', {
     __disconnectTimer: null,
     __hasBeenConnected: false,
     __activeChangeListenerId: null,
+    __classListeners: {},
+    __clientClasses: {},
+
+    addClassLoadedListener(className, callback) {
+      if (!this.__classListeners[className]) {
+        this.__classListeners[className] = [];
+      }
+      if (!this.__classListeners[className].includes(callback)) {
+        this.__classListeners[className].push(callback);
+      }
+    },
+
+
+    registerClientClass(name, Clazz) {
+      if (!this.__clientClasses[name]) {
+        this.__clientClasses[name] = Clazz;
+        if (this.__classListeners[name]) {
+          for (const cb of this.__classListeners[name]) {
+            cb();
+          }
+        }
+      }
+    },
+
+    isRegistered(name) {
+      return !!this.__clientClasses[name];
+    },
 
     /**
      * Initialize the {@link cv.io.Client} for backend communication
@@ -81,7 +108,8 @@ qx.Class.define('cv.io.BackendConnections', {
         this.__clients[name].dispose();
         delete this.__clients[name];
       }
-      const client = cv.Application.createClient(type, backendUrl);
+      const Clazz = this.__clientClasses[type];
+      const client = Clazz ? new Clazz(type, backendUrl) : cv.Application.createClient(type, backendUrl);
       if (source) {
         client.configuredIn = source;
       }
