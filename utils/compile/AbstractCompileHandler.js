@@ -10,6 +10,13 @@ class AbstractCompileHandler {
     this._compilerApi = compilerApi;
     this._config = compilerApi.getConfiguration();
     this._customSettings = customSettings;
+    this._customCompileSettings = {};
+
+    // check for local override settings
+    const customCompileConfig = path.join(process.cwd(), 'cv-compile.json');
+    if (fs.existsSync(customCompileConfig)) {
+      this._customCompileSettings = require(customCompileConfig);
+    }
   }
 
   async onLoad() {

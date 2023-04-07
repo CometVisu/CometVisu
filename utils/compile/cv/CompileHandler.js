@@ -69,7 +69,9 @@ class CvCompileHandler extends AbstractCompileHandler {
 
     const currentDir = process.cwd();
     const targetDir = this._getTargetDir();
-    this._excludes = excludeFromCopy.hasOwnProperty(targetType) ? excludeFromCopy[targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
+    const exclude = this._customCompileSettings.hasOwnProperty('excludeFromCopy')
+      ? Object.assign(this._customCompileSettings.excludeFromCopy, excludeFromCopy) : excludeFromCopy;
+    this._excludes = exclude.hasOwnProperty(targetType) ? exclude[targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
   }
 
   /**
@@ -106,7 +108,10 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (data.classFile.getClassName() === 'cv.Application') {
       const currentDir = process.cwd();
       const resourceDir = path.join(currentDir, 'source', 'resource');
-      additionalResources.forEach(res => {
+      const resources = this._customCompileSettings.hasOwnProperty('additionalResources')
+      ? Object.assign(this._customCompileSettings.additionalResources, additionalResources)
+        : additionalResources;
+      resources.forEach(res => {
         fg.sync(path.join(resourceDir, res)).forEach(file => data.dbClassInfo.assets.push(file.substr(resourceDir.length + 1)));
       });
     }
@@ -121,7 +126,10 @@ class CvCompileHandler extends AbstractCompileHandler {
     this._watchList = {};
     const promises = [];
     if (targetDir) {
-      filesToCopy.forEach(file => {
+      const fileList = this._customCompileSettings.hasOwnProperty('filesToCopy')
+        ? filesToCopy.concat(this._customCompileSettings.filesToCopy)
+        : filesToCopy;
+      fileList.forEach(file => {
         const source = path.join(currentDir, 'source', file);
         let target = '';
         if (targetDir.startsWith('/')) {
