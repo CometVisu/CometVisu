@@ -1992,7 +1992,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         return false;
       });
       if (!file) {
-        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', this.getFile().getParent());
+        file = new cv.ui.manager.model.FileItem('visu_config_previewtemp.xml', '/', cv.ui.manager.model.FileItem.ROOT);
         file.setTemporary(true);
       }
       return file;
