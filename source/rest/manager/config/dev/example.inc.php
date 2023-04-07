@@ -47,13 +47,11 @@ return [
          * Default: true
          */
         // 'secure' => true,
-
         /**
          * Alternatively you can list your development host to have relaxed security.
          * Default: ['localhost', '127.0.0.1']
          */
         // 'relaxed' => ['localhost', '127.0.0.1'],
-
         /**
          * By default on occurred a fail on authentication, is sent a response on json format with a
          * message (`Invalid Token` or `Not found Token`) and with the token (if found), with status
@@ -65,7 +63,6 @@ return [
 
     'mockerOptions' => [
         // 'dataMocker' => $mocker,
-
         // 'getMockStatusCodeCallback' => function (ServerRequestInterface $request, array $responses) {
         //     // check if client clearly asks for mocked response
         //     $pingHeader = 'X-OpenAPIServer-Mock';
@@ -79,15 +76,12 @@ return [
         //         if (array_key_exists($requestedResponseCode, $responses)) {
         //             return $requestedResponseCode;
         //         }
-
         //         // return first response key
         //         reset($responses);
         //         return key($responses);
         //     }
-
         //     return false;
         // },
-
         // 'afterCallback' => function (ServerRequestInterface $request, ResponseInterface $response) {
         //     // mark mocked response to distinguish real and fake responses
         //     return $response->withHeader('X-OpenAPIServer-Mock', 'pong');

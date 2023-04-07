@@ -50,97 +50,97 @@ class SlimRouter
     /** @var array[] list of all api operations */
     private $operations = [
         [
-            "httpMethod" => "PUT",
-            "basePathWithoutHost" => "",
-            "path" => "/config/hidden",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractConfigApi",
-            "userClassname" => "ConfigApi",
-            "operationId" => "saveHiddenConfig",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
+            'path' => '/config/hidden',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractConfigApi',
+            'userClassname' => 'ConfigApi',
+            'operationId' => 'saveHiddenConfig',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Config option does not exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "POST",
-            "basePathWithoutHost" => "",
-            "path" => "/config/hidden/{section}/{key}",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractConfigApi",
-            "userClassname" => "ConfigApi",
-            "operationId" => "createHiddenConfig",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/config/hidden/{section}/{key}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractConfigApi',
+            'userClassname' => 'ConfigApi',
+            'operationId' => 'createHiddenConfig',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Config option does exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "DELETE",
-            "basePathWithoutHost" => "",
-            "path" => "/config/hidden/{section}/{key}",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractConfigApi",
-            "userClassname" => "ConfigApi",
-            "operationId" => "deleteHiddenConfig",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'DELETE',
+            'basePathWithoutHost' => '',
+            'path' => '/config/hidden/{section}/{key}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractConfigApi',
+            'userClassname' => 'ConfigApi',
+            'operationId' => 'deleteHiddenConfig',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Config option does not exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/config/hidden/{section}/{key}",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractConfigApi",
-            "userClassname" => "ConfigApi",
-            "operationId" => "getHiddenConfig",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/config/hidden/{section}/{key}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractConfigApi',
+            'userClassname' => 'ConfigApi',
+            'operationId' => 'getHiddenConfig',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -157,57 +157,57 @@ class SlimRouter
   }
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Config option does not exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "PUT",
-            "basePathWithoutHost" => "",
-            "path" => "/config/hidden/{section}/{key}",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractConfigApi",
-            "userClassname" => "ConfigApi",
-            "operationId" => "updateHiddenConfig",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
+            'path' => '/config/hidden/{section}/{key}',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractConfigApi',
+            'userClassname' => 'ConfigApi',
+            'operationId' => 'updateHiddenConfig',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Config option does not exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/addresses",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getAddresses",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/addresses',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getAddresses',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -219,19 +219,19 @@ class SlimRouter
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/designs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getDesigns",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/designs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getDesigns',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -246,19 +246,19 @@ class SlimRouter
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/influxdbfields",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getInfluxDBFields",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/influxdbfields',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getInfluxDBFields',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -269,25 +269,25 @@ class SlimRouter
   }
 }',
                 ],
-                "406" => [
-                    "jsonSchema" => '{
+                '406' => [
+                    'jsonSchema' => '{
   "description" : "wrong measurement parameter"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/influxdbtags",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getInfluxDBTags",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/influxdbtags',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getInfluxDBTags',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -298,25 +298,25 @@ class SlimRouter
   }
 }',
                 ],
-                "406" => [
-                    "jsonSchema" => '{
+                '406' => [
+                    'jsonSchema' => '{
   "description" : "wrong measurement parameter"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/influxdbs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getInfluxDBs",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/influxdbs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getInfluxDBs',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -328,19 +328,19 @@ class SlimRouter
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/data/rrds",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractDataproviderApi",
-            "userClassname" => "DataproviderApi",
-            "operationId" => "getRRDs",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/data/rrds',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractDataproviderApi',
+            'userClassname' => 'DataproviderApi',
+            'operationId' => 'getRRDs',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -352,19 +352,19 @@ class SlimRouter
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/fs/check",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "checkEnvironment",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/fs/check',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'checkEnvironment',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -376,115 +376,115 @@ class SlimRouter
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "POST",
-            "basePathWithoutHost" => "",
-            "path" => "/fs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "create",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/fs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'create',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "406" => [
-                    "jsonSchema" => '{
+                '406' => [
+                    'jsonSchema' => '{
   "description" : "File exists"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "DELETE",
-            "basePathWithoutHost" => "",
-            "path" => "/fs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "delete",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'DELETE',
+            'basePathWithoutHost' => '',
+            'path' => '/fs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'delete',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "File/Folder not found"
 }',
                 ],
-                "406" => [
-                    "jsonSchema" => '{
+                '406' => [
+                    'jsonSchema' => '{
   "description" : "Folder not empty"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "PUT",
-            "basePathWithoutHost" => "",
-            "path" => "/fs/move",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "move",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
+            'path' => '/fs/move',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'move',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Source does not exist"
 }',
                 ],
-                "405" => [
-                    "jsonSchema" => '{
+                '405' => [
+                    'jsonSchema' => '{
   "description" : "Error occurred"
 }',
                 ],
-                "406" => [
-                    "jsonSchema" => '{
+                '406' => [
+                    'jsonSchema' => '{
   "description" : "Target does exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "GET",
-            "basePathWithoutHost" => "",
-            "path" => "/fs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "read",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'GET',
+            'basePathWithoutHost' => '',
+            'path' => '/fs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'read',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation",
   "content" : {
     "application/json" : {
@@ -500,45 +500,91 @@ class SlimRouter
   }
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "Path not found"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
         ],
         [
-            "httpMethod" => "PUT",
-            "basePathWithoutHost" => "",
-            "path" => "/fs",
-            "apiPackage" => "OpenAPIServer\Api",
-            "classname" => "AbstractFsApi",
-            "userClassname" => "FsApi",
-            "operationId" => "update",
-            "responses" => [
-                "200" => [
-                    "jsonSchema" => '{
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
+            'path' => '/fs',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'update',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
   "description" : "successful operation"
 }',
                 ],
-                "403" => [
-                    "jsonSchema" => '{
+                '403' => [
+                    'jsonSchema' => '{
   "description" : "Not allowed"
 }',
                 ],
-                "404" => [
-                    "jsonSchema" => '{
+                '404' => [
+                    'jsonSchema' => '{
   "description" : "File does not exist"
 }',
                 ],
             ],
-            "authMethods" => [],
+            'authMethods' => [],
+        ],
+        [
+            'httpMethod' => 'DELETE',
+            'basePathWithoutHost' => '',
+            'path' => '/proxy',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractRequestproxyApi',
+            'userClassname' => 'RequestproxyApi',
+            'operationId' => 'deleteProxied',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    },
+    "image/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+}',
+                ],
+                '401' => [
+                    'jsonSchema' => '{
+  "description" : "Unauthorized"
+}',
+                ],
+                '403' => [
+                    'jsonSchema' => '{
+  "description" : "Forbidden"
+}',
+                ],
+                '404' => [
+                    'jsonSchema' => '{
+  "description" : "Not found"
+}',
+                ],
+            ],
+            'authMethods' => [],
         ],
         [
             'httpMethod' => 'GET',
@@ -548,8 +594,135 @@ class SlimRouter
             'classname' => 'AbstractRequestproxyApi',
             'userClassname' => 'RequestproxyApi',
             'operationId' => 'getProxied',
-            'authMethods' => [
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    },
+    "image/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+}',
+                ],
+                '401' => [
+                    'jsonSchema' => '{
+  "description" : "Unauthorized"
+}',
+                ],
+                '403' => [
+                    'jsonSchema' => '{
+  "description" : "Forbidden"
+}',
+                ],
+                '404' => [
+                    'jsonSchema' => '{
+  "description" : "Not found"
+}',
+                ],
             ],
+            'authMethods' => [],
+        ],
+        [
+            'httpMethod' => 'POST',
+            'basePathWithoutHost' => '',
+            'path' => '/proxy',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractRequestproxyApi',
+            'userClassname' => 'RequestproxyApi',
+            'operationId' => 'postProxied',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    },
+    "image/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+}',
+                ],
+                '401' => [
+                    'jsonSchema' => '{
+  "description" : "Unauthorized"
+}',
+                ],
+                '403' => [
+                    'jsonSchema' => '{
+  "description" : "Forbidden"
+}',
+                ],
+                '404' => [
+                    'jsonSchema' => '{
+  "description" : "Not found"
+}',
+                ],
+            ],
+            'authMethods' => [],
+        ],
+        [
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
+            'path' => '/proxy',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractRequestproxyApi',
+            'userClassname' => 'RequestproxyApi',
+            'operationId' => 'putProxied',
+            'responses' => [
+                '200' => [
+                    'jsonSchema' => '{
+  "description" : "successful operation",
+  "content" : {
+    "application/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    },
+    "image/*" : {
+      "schema" : {
+        "type" : "string",
+        "format" : "binary"
+      }
+    }
+  }
+}',
+                ],
+                '401' => [
+                    'jsonSchema' => '{
+  "description" : "Unauthorized"
+}',
+                ],
+                '403' => [
+                    'jsonSchema' => '{
+  "description" : "Forbidden"
+}',
+                ],
+                '404' => [
+                    'jsonSchema' => '{
+  "description" : "Not found"
+}',
+                ],
+            ],
+            'authMethods' => [],
         ],
     ];
 
@@ -570,28 +743,22 @@ class SlimRouter
         $this->slimApp = AppFactory::create();
 
         foreach ($this->operations as $operation) {
-            $callback = function ($request, $response, $arguments) use (
-                $operation
-            ) {
-                $message = "How about extending {$operation["classname"]} by {$operation["apiPackage"]}\\{$operation["userClassname"]} class implementing {$operation["operationId"]} as a {$operation["httpMethod"]} method?";
+            $callback = function ($request, $response, $arguments) use ($operation) {
+                $message = "How about extending {$operation['classname']} by {$operation['apiPackage']}\\{$operation['userClassname']} class implementing {$operation['operationId']} as a {$operation['httpMethod']} method?";
                 throw new HttpNotImplementedException($request, $message);
             };
             $middlewares = [];
 
-            if (
-                class_exists(
-                    "\\{$operation["apiPackage"]}\\{$operation["userClassname"]}"
-                )
-            ) {
-                $callback = "\\{$operation["apiPackage"]}\\{$operation["userClassname"]}:{$operation["operationId"]}";
+            if (class_exists("\\{$operation['apiPackage']}\\{$operation['userClassname']}")) {
+                $callback = "\\{$operation['apiPackage']}\\{$operation['userClassname']}:{$operation['operationId']}";
             }
 
             $this->addRoute(
-                [$operation["httpMethod"]],
-                "{$operation["basePathWithoutHost"]}{$operation["path"]}",
+                [$operation['httpMethod']],
+                "{$operation['basePathWithoutHost']}{$operation['path']}",
                 $callback,
                 $middlewares
-            )->setName($operation["operationId"]);
+            )->setName($operation['operationId']);
         }
     }
 
@@ -603,10 +770,8 @@ class SlimRouter
      *
      * @return array Merged array
      */
-    private function getTokenAuthenticationOptions(
-        array $staticOptions,
-        array $userOptions = null
-    ) {
+    private function getTokenAuthenticationOptions(array $staticOptions, array $userOptions = null)
+    {
         if (is_array($userOptions) === false) {
             return $staticOptions;
         }
@@ -625,15 +790,9 @@ class SlimRouter
      */
     private function getSetting($settings, $settingName, $default = null)
     {
-        if (
-            $settings instanceof ContainerInterface &&
-            $settings->has($settingName)
-        ) {
+        if ($settings instanceof ContainerInterface && $settings->has($settingName)) {
             return $settings->get($settingName);
-        } elseif (
-            is_array($settings) &&
-            array_key_exists($settingName, $settings)
-        ) {
+        } elseif (is_array($settings) && array_key_exists($settingName, $settings)) {
             return $settings[$settingName];
         }
 
@@ -652,12 +811,8 @@ class SlimRouter
      *
      * @throws InvalidArgumentException If the route pattern isn't a string
      */
-    public function addRoute(
-        array $methods,
-        string $pattern,
-        $callable,
-        $middlewares = []
-    ) {
+    public function addRoute(array $methods, string $pattern, $callable, $middlewares = [])
+    {
         $route = $this->slimApp->map($methods, $pattern, $callable);
         foreach ($middlewares as $middleware) {
             $route->add($middleware);
