@@ -9,6 +9,8 @@ class CvClientBaseClass {
   #type = null;
   #backendUrl = null;
   #initialAddresses = [];
+  #dataEvent = null;
+  #event = null;
 
   constructor(type, backendUrl) {
     this.#type = type;
@@ -276,14 +278,28 @@ class CvClientBaseClass {
     }
   }
 
-  emit(eventName, data) {
+  emit(eventName, data, oldData) {
     let cbs = this.#listeners[eventName];
     if (cbs) {
+      let event;
+      if (typeof data === 'undefined' && typeof oldData === 'undefined') {
+        if (!this.#event) {
+          this.#event = new qx.event.type.Event();
+        }
+        this.#event.init(false, false);
+        event = this.#event;
+      } else {
+        if (!this.#dataEvent) {
+          this.#dataEvent = new qx.event.type.Data();
+        }
+        this.#dataEvent.init(data, oldData, false);
+        event = this.#dataEvent;
+      }
       for (const [callback, context] of cbs) {
         if (context) {
-          callback.call(context, data);
+          callback.call(context, event);
         } else {
-          callback(data);
+          callback(event);
         }
       }
     }
