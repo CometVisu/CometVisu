@@ -50,14 +50,16 @@ qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
       switch (ev.getData()) {
         case 'opened':
           this.info('delaying response for ' + url + ' by ' + response.delay);
-          const server = qx.dev.FakeServer.getInstance().getFakeServer();
           this.__responseTimout = setTimeout(() => {
             this.info('responding ' + url);
-            for (const queuedRequest of server.requests) {
-               if (queuedRequest === request) {
-                 request.respond(response.status, response.headers, response.body);
-                 break;
-               }
+            const server = qx.dev.FakeServer.getInstance().getFakeServer();
+            if (server) {
+              for (const queuedRequest of server.requests) {
+                if (queuedRequest === request) {
+                  request.respond(response.status, response.headers, response.body);
+                  break;
+                }
+              }
             }
           }, response.delay || 10);
           break;

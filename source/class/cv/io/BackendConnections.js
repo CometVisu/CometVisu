@@ -214,6 +214,7 @@ qx.Class.define('cv.io.BackendConnections', {
           return client;
         }
       }
+      return null;
     },
 
     getClients() {
