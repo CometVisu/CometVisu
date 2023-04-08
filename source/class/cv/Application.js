@@ -820,7 +820,7 @@ qx.Class.define('cv.Application', {
           cv.report.Record.logCache();
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
-          cv.io.BackendConnections.initBackendClient();
+          cv.io.BackendConnections.initBackendClients();
 
           // load part for structure
           const structure = cv.Config.getStructure();
@@ -1146,9 +1146,9 @@ qx.Class.define('cv.Application', {
 
     close() {
       this.setActive(false);
-      const client = cv.io.BackendConnections.getClient();
-      if (client) {
-        client.terminate();
+      const clients = cv.io.BackendConnections.getClients();
+      for (const name in clients) {
+        clients[name].terminate();
       }
     },
 

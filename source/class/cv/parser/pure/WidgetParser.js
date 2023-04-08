@@ -425,6 +425,25 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
         let addressInfo = {};
         let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
         let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+        let backendType = cv.data.Model.getInstance().getDefaultBackendName();
+        if (transform) {
+          switch (transform.split(':')[0].toLowerCase()) {
+            case 'dpt':
+              backendType = 'knxd';
+              break;
+
+            case 'oh':
+              backendType = 'openhab';
+              break;
+
+            case 'mqtt':
+              backendType = 'mqtt';
+              break;
+          }
+        } else {
+          backendType = 'system';
+        }
+        addressInfo.backendType = backendType;
 
         addressInfo.selector = elem.getAttribute('selector');
         addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
@@ -452,7 +471,7 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
             break;
         }
 
-        let backendName;
+        let backendName = backendType;
         if (elem.hasAttribute('backend')) {
           backendName = elem.getAttribute('backend');
         }

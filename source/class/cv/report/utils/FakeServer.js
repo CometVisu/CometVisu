@@ -60,6 +60,7 @@ qx.Class.define('cv.report.utils.FakeServer', {
       const sinon = qx.dev.unit.Sinon.getSinon();
       sinon.sandbox = sinon;
       const server = qx.dev.FakeServer.getInstance().getFakeServer();
+      server.autoRespond = false;
       server.respondWith(this.__respond.bind(this));
       this._responseDelays.unshift(10);
     },
@@ -98,10 +99,19 @@ qx.Class.define('cv.report.utils.FakeServer', {
     },
 
     getResponse(url) {
+      const xhrData = cv.report.utils.FakeServer._xhr;
       url = cv.report.Record.normalizeUrl(url);
+      if (url.indexOf('nocache=') >= 0) {
+        url = url.replace(/[\?|&]nocache=[0-9]+/, '');
+      }
+      if (!xhrData[url]) {
+        if (!url.startsWith('/') && qx.core.Environment.get('cv.build') === 'source') {
+          url = '../source/' + url;
+        }
+      }
 
-      if (cv.report.utils.FakeServer._xhr[url]) {
-        return cv.report.utils.FakeServer._xhr[url][0];
+      if (xhrData[url]) {
+        return xhrData[url][0];
       }
       return null;
     },

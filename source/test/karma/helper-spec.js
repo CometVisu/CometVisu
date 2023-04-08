@@ -307,7 +307,7 @@ beforeAll(function (done) {
       cv.Config.enableCache = false;
       // always test in 'en' locale
       qx.locale.Manager.getInstance().setLocale('en');
-      const client = cv.io.BackendConnections.initBackendClient();
+      const client = cv.io.BackendConnections.initBackendClients();
       const templateEngine = cv.TemplateEngine.getInstance();
       templateEngine.loadParts(['structure-tile', 'structure-pure']);
       templateEngine.addListenerOnce('changePartsLoaded', () => {

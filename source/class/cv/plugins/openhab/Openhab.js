@@ -45,12 +45,14 @@ qx.Class.define('cv.plugins.openhab.Openhab', {
       this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
       // listen to notifications
-      const client = cv.io.BackendConnections.getClient();
-      const sse = client.getCurrentTransport && client.getCurrentTransport();
-      if (sse) {
-        sse.subscribe('notifications', this._onNotification, this);
+      const client = cv.io.BackendConnections.getClientByType('openhab');
+      if (client) {
+        const sse = client.getCurrentTransport && client.getCurrentTransport();
+        if (sse) {
+          sse.subscribe('notifications', this._onNotification, this);
+        }
+        cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
       }
-      cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
     }
   },
 

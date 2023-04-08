@@ -147,6 +147,8 @@ qx.Class.define('cv.report.Replay', {
         return window;
       } else if (path === 'document') {
         return document;
+      } else if (path instanceof HTMLElement || path instanceof Document) {
+        return path;
       } else if (path.includes(':eq(')) {
         const re = /:eq\(([\d]+)\)/;
         let match = re.exec(path);
@@ -285,7 +287,10 @@ qx.Class.define('cv.report.Replay', {
     },
 
     __dispatchBackendRecord(record) {
-      const client = this.__getClient();
+      let client = this.__getDefaultClient();
+      if (record.o && record.o.name) {
+        client = cv.io.BackendConnections.getClient(record.o.name);
+      }
       switch (record.i) {
         case 'read':
           if (client instanceof cv.io.openhab.Rest) {
@@ -310,7 +315,7 @@ qx.Class.define('cv.report.Replay', {
       }
     },
 
-    __getClient() {
+    __getDefaultClient() {
       if (!this.__client) {
         this.__client = cv.io.BackendConnections.getClient();
       }

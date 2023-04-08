@@ -308,11 +308,13 @@ qx.Class.define('cv.plugins.RssLog', {
               100
             );
 
+            let adddressSettings;
             for (let addr in this.getAddress()) {
-              if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) {
+              adddressSettings = this.getAddress()[addr];
+              if (!cv.data.Model.isWriteAddress(adddressSettings)) {
                 continue;
               } // skip when write flag not set
-              cv.io.BackendConnections.getClient().write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+              cv.io.BackendConnections.getClient(adddressSettings.backendType).write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
             }
           }
         },

@@ -54,7 +54,9 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
     },
 
     _action() {
-      cv.io.BackendConnections.getClient().restart(true);
+      const clients = cv.io.BackendConnections.getClients();
+      for (const name in clients)
+        clients[name].restart(true);
     }
   }
 });
