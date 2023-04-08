@@ -426,7 +426,10 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
         let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
         let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
         let backendType = cv.data.Model.getInstance().getDefaultBackendName();
-        if (transform) {
+        if (cv.Config.testMode === true || window.cvTestMode === true) {
+          // do not rely on transforms in test-mode
+          backendType = 'simulated';
+        } else if (transform) {
           switch (transform.split(':')[0].toLowerCase()) {
             case 'dpt':
               backendType = 'knxd';

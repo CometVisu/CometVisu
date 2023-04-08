@@ -40,7 +40,8 @@ qx.Class.define('cv.io.BackendConnections', {
      */
     initBackendClients() {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
-        return this.addBackendClient('main', 'simulated');
+        cv.data.Model.getInstance().setDefaultBackendName('simulated')
+        return this.addBackendClient('simulated', 'simulated');
       }
       let backendName = (
         cv.Config.URL.backend ||
