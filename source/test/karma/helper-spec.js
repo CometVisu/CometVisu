@@ -152,7 +152,7 @@ const resetApplication = function() {
 
     case 'structure-pure':
       cv.Config.loadedStructure = 'pure';
-      if (cv.ui.structure.pure) {
+      if (cv.ui.structure.pure && cv.ui.structure.pure.layout) {
         cv.ui.structure.pure.layout.ResizeHandler.reset();
       }
       break;

@@ -40,8 +40,10 @@ qx.Class.define('cv.io.BackendConnections', {
      */
     initBackendClients() {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
-        cv.data.Model.getInstance().setDefaultBackendName('simulated');
-        return this.addBackendClient('simulated', 'simulated');
+        if (cv.Config.testMode === true) {
+          cv.data.Model.getInstance().setDefaultBackendName('simulated');
+        }
+        return this.addBackendClient(cv.data.Model.getInstance().getDefaultBackendName(), 'simulated');
       }
       let backendName = (
         cv.Config.URL.backend ||
@@ -196,7 +198,7 @@ qx.Class.define('cv.io.BackendConnections', {
       }
       if (!this.__clients[backendName] && cv.Config.testMode) {
         // in testMode the client might not have been initialized yet
-        return this.addBackendClient('main', 'simulated');
+        return this.addBackendClient('simulated', 'simulated');
       }
       return this.__clients[backendName];
     },

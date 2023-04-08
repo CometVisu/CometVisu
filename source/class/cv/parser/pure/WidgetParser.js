@@ -426,25 +426,25 @@ qx.Class.define('cv.parser.pure.WidgetParser', {
         let formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
         let mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
         let backendType = cv.data.Model.getInstance().getDefaultBackendName();
-        if (cv.Config.testMode === true || window.cvTestMode === true) {
-          // do not rely on transforms in test-mode
-          backendType = 'simulated';
-        } else if (transform) {
-          switch (transform.split(':')[0].toLowerCase()) {
-            case 'dpt':
-              backendType = 'knxd';
-              break;
+        if (!cv.Config.testMode && !window.cvTestMode) {
+          if (transform) {
+            // only check transform when not in testMode
+            switch (transform.split(':')[0].toLowerCase()) {
+              case 'dpt':
+                backendType = 'knxd';
+                break;
 
-            case 'oh':
-              backendType = 'openhab';
-              break;
+              case 'oh':
+                backendType = 'openhab';
+                break;
 
-            case 'mqtt':
-              backendType = 'mqtt';
-              break;
+              case 'mqtt':
+                backendType = 'mqtt';
+                break;
+            }
+          } else {
+            backendType = 'system';
           }
-        } else {
-          backendType = 'system';
         }
         addressInfo.backendType = backendType;
 
