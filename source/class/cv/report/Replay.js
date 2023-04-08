@@ -26,6 +26,7 @@
  *
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
+ * @ignore(Document)
  */
 qx.Class.define('cv.report.Replay', {
   extend: qx.core.Object,
