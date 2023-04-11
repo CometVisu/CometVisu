@@ -144,9 +144,9 @@ qx.Class.define('cv.report.Record', {
       return runtime;
     },
 
-    record(category, path, data) {
+    record(category, path, data, options) {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.getInstance().record(category, path, data);
+        cv.report.Record.getInstance().record(category, path, data, options);
       }
     },
 

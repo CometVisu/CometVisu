@@ -37,21 +37,42 @@ qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
   ******************************************************
   */
   members: {
-    _onPhaseChange(ev) {
-      const response = cv.report.utils.FakeServer.getResponse(this._getConfiguredUrl());
+    __responseTimout: null,
 
+    _onPhaseChange(ev) {
+      const request = this.getTransport().getRequest();
+      let url = request.url;
+      const response = cv.report.utils.FakeServer.getResponse(url);
       if (!response) {
         // no logged response found might be an 404
         return;
       }
-      if (ev.getData() === 'opened') {
-        this.info('delaying response for ' + this._getConfiguredUrl() + ' by ' + response.delay);
+      switch (ev.getData()) {
+        case 'opened':
+          this.info('delaying response for ' + url + ' by ' + response.delay);
+          this.__responseTimout = setTimeout(() => {
+            this.info('responding ' + url);
+            const server = qx.dev.FakeServer.getInstance().getFakeServer();
+            if (server) {
+              for (const queuedRequest of server.requests) {
+                if (queuedRequest === request) {
+                  request.respond(response.status, response.headers, response.body);
+                  break;
+                }
+              }
+            }
+          }, response.delay || 10);
+          break;
 
-        qx.dev.FakeServer.getInstance().getFakeServer().autoRespondAfter = response ? response.delay : 10;
-      } else if (ev.getData() === 'abort') {
-        if (response.phase === 'abort') {
-          cv.report.utils.FakeServer.unqueueResponse(this._getConfiguredUrl());
-        }
+        case 'abort':
+          if (response.phase === 'abort') {
+            cv.report.utils.FakeServer.unqueueResponse(url);
+          }
+          if (this.__responseTimout) {
+            clearTimeout(this.__responseTimout);
+            this.__responseTimout = null;
+          }
+          break;
       }
     }
   }

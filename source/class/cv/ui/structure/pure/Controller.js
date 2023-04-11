@@ -87,8 +87,10 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
     parseBackendSettings(xml) {
       const settings = cv.Config.configSettings;
       const pagesElement = xml.documentElement;
+      let defaultBackendName = '';
       if (pagesElement.getAttribute('backend') !== null) {
         settings.backend = pagesElement.getAttribute('backend');
+        defaultBackendName = settings.backend;
       }
       if (pagesElement.getAttribute('backend-url') !== null) {
         settings.backendUrl = pagesElement.getAttribute('backend-url');
@@ -96,14 +98,24 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
           'The useage of "backend-url" is deprecated. Please use "backend-knxd-url", "backend-mqtt-url" or "backend-openhab-url" instead.'
         );
       }
+
       if (pagesElement.getAttribute('backend-knxd-url') !== null) {
         settings.backendKnxdUrl = pagesElement.getAttribute('backend-knxd-url');
+        if (!defaultBackendName) {
+          defaultBackendName = 'knxd';
+        }
       }
       if (pagesElement.getAttribute('backend-mqtt-url') !== null) {
         settings.backendMQTTUrl = pagesElement.getAttribute('backend-mqtt-url');
+        if (!defaultBackendName) {
+          defaultBackendName = 'mqtt';
+        }
       }
       if (pagesElement.getAttribute('backend-openhab-url') !== null) {
         settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
+        if (!defaultBackendName) {
+          defaultBackendName = 'openhab';
+        }
       }
       if (pagesElement.getAttribute('token') !== null) {
         settings.credentials.token = pagesElement.getAttribute('token');
@@ -114,15 +126,22 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (pagesElement.getAttribute('password') !== null) {
         settings.credentials.password = pagesElement.getAttribute('password');
       }
+      if (defaultBackendName) {
+        cv.data.Model.getInstance().setDefaultBackendName(defaultBackendName);
+      }
       return true;
     },
 
     login() {
-      const client = cv.io.BackendConnections.getClient('main');
-      client.login(true, cv.Config.configSettings.credentials, () => {
-        this.debug('logged in');
-        cv.io.BackendConnections.startInitialRequest();
-      });
+      const clients = cv.io.BackendConnections.getClients();
+      let client;
+      for (const name in clients) {
+        client = clients[name];
+        client.login(true, cv.Config.configSettings.credentials, () => {
+          this.debug('logged in');
+          cv.io.BackendConnections.startInitialRequest(name);
+        });
+      }
     },
 
     parseSettings(xml, done) {
@@ -271,14 +290,14 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       return false;
     },
 
-    getInitialAddresses() {
+    getInitialAddresses(backendName) {
       const startPageAddresses = {};
       const pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
 
       pageWidget.getChildWidgets().forEach(function (child) {
         const address = child.getAddress ? child.getAddress() : {};
         for (let addr in address) {
-          if (Object.prototype.hasOwnProperty.call(address, addr)) {
+          if (Object.prototype.hasOwnProperty.call(address, addr) && addr.backendType === backendName) {
             startPageAddresses[addr] = 1;
           }
         }

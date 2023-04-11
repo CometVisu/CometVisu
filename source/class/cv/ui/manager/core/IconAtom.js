@@ -61,8 +61,10 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
     _iconChildControlName: null,
 
     _onTap() {
-      navigator.clipboard.writeText(this.getLabel());
-      cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Icon name has been copied to clipboard'));
+      if (typeof navigator.clipboard === 'object') {
+        navigator.clipboard.writeText(this.getLabel());
+        cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Icon name has been copied to clipboard'));
+      }
     },
 
     // property apply
