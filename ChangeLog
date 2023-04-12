@@ -1,5 +1,16 @@
 ## Change Log
 
+0.12.3
+======
+
+- [#1344](https://github.com/CometVisu/CometVisu/pull/1344) use root here, because it always exists. Possible fix for sentry erroh… (@peuter)
+
+0.12.2
+======
+
+- [#1339](https://github.com/CometVisu/CometVisu/pull/1339) Cherry picking fixes for web-widget and speech plugin (@peuter)
+- [#1313](https://github.com/CometVisu/CometVisu/pull/1313) Do not process influx data by backend processors, because it is alreal… (@peuter)
+
 0.12.1
 ======
 
