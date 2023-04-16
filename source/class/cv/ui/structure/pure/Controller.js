@@ -91,6 +91,12 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (pagesElement.getAttribute('backend') !== null) {
         settings.backend = pagesElement.getAttribute('backend');
         defaultBackendName = settings.backend;
+      } else {
+        defaultBackendName = (
+          cv.Config.URL.backend ||
+          cv.Config.server.backend ||
+          'knxd'
+        ).split(',')[0];
       }
       if (pagesElement.getAttribute('backend-url') !== null) {
         settings.backendUrl = pagesElement.getAttribute('backend-url');
@@ -126,6 +132,11 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       if (pagesElement.getAttribute('password') !== null) {
         settings.credentials.password = pagesElement.getAttribute('password');
       }
+
+      // make sure that the default name is the actual type
+      if (defaultBackendName === 'default') {
+        defaultBackendName = 'knxd';
+      }
       if (defaultBackendName) {
         cv.data.Model.getInstance().setDefaultBackendName(defaultBackendName);
       }
@@ -138,7 +149,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       for (const name in clients) {
         client = clients[name];
         client.login(true, cv.Config.configSettings.credentials, () => {
-          this.debug('logged in');
+          this.debug(name + ' logged in');
           cv.io.BackendConnections.startInitialRequest(name);
         });
       }
