@@ -49,8 +49,11 @@ qx.Mixin.define('cv.ui.common.Update', {
 
     __initUpdater() {
       const model = cv.data.Model.getInstance();
-      Object.getOwnPropertyNames(this.getAddress()).forEach(function (address) {
-        if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
+      const addresses = this.getAddress();
+      let addressSettings;
+      Object.getOwnPropertyNames(addresses).forEach(function (address) {
+        addressSettings = addresses[address];
+        if (!cv.data.Model.isReadAddress(addressSettings)) {
           // no read address
           return;
         }
@@ -59,7 +62,7 @@ qx.Mixin.define('cv.ui.common.Update', {
           this.update(address, state);
         }
         //add listener
-        model.addUpdateListener(address, this.update, this);
+        model.addUpdateListener(address, this.update, this, addressSettings.backendType);
       }, this);
     },
 

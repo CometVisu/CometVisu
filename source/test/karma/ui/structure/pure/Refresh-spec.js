@@ -35,7 +35,7 @@ describe('testing a refresh widget', function() {
   it('should test the refresh actor', function() {
     const res = this.createTestElement('refresh');
     const client = jasmine.createSpyObj('client', ['restart']);
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
+    spyOn(cv.io.BackendConnections, 'getClients').and.callFake(() => ({main: client}));
 
     spyOn(res, 'defaultUpdate');
     this.initWidget(res);

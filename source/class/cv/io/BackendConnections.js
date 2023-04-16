@@ -35,18 +35,22 @@ qx.Class.define('cv.io.BackendConnections', {
     __activeChangeListenerId: null,
 
     /**
-     * Initialize the {@link cv.io.Client} for backend communication
+     * Initialize all {@link cv.io.IClient} clients for backend communication,
+     * return the default one (for backwards compability)
      */
-    initBackendClient() {
+    initBackendClients() {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
-        return this.addBackendClient('main', 'simulated');
+        if (cv.Config.testMode === true) {
+          cv.data.Model.getInstance().setDefaultBackendName('simulated');
+        }
+        return this.addBackendClient(cv.data.Model.getInstance().getDefaultBackendName(), 'simulated');
       }
-      let backendName = (
+      let backendNames = (
         cv.Config.URL.backend ||
         cv.Config.configSettings.backend ||
         cv.Config.server.backend ||
         'default'
-      ).split(',')[0];
+      ).split(',');
       const backendKnxdUrl =
         cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl =
@@ -56,21 +60,55 @@ qx.Class.define('cv.io.BackendConnections', {
         cv.Config.configSettings.backendOpenHABUrl ||
         cv.Config.server.backendOpenHABUrl;
 
-      switch (backendName) {
+      const defaultName = cv.data.Model.getInstance().getDefaultBackendName() || 'main';
+      let defaultClient;
+      let defaultType;
+      switch (backendNames[0]) {
         case 'knxd':
         case 'default':
         default:
-          return this.addBackendClient('main', 'knxd', backendKnxdUrl, 'server');
+          defaultType = 'knxd';
+          defaultClient = this.addBackendClient(defaultName, defaultType, backendKnxdUrl, 'server');
+          break;
 
         case 'mqtt':
-          return this.addBackendClient('main', 'mqtt', backendMQTTUrl, 'server');
+          defaultType = 'mqtt';
+          defaultClient = this.addBackendClient(defaultName, defaultType, backendMQTTUrl, 'server');
+          break;
 
         case 'openhab':
         case 'openhab2':
         case 'oh':
         case 'oh2':
-          return this.addBackendClient('main', 'openhab', backendOpenHABUrl, 'server');
+          defaultType = 'openhab';
+          defaultClient = this.addBackendClient(defaultName, defaultType, backendOpenHABUrl, 'server');
+          break;
       }
+
+      // check if we need to create more clients
+      for (let i = 1; i < backendNames.length; i++) {
+        switch (backendNames[i]) {
+          case 'knxd':
+          case 'default':
+            if (backendKnxdUrl && defaultType !== 'knxd') {
+              this.addBackendClient('knxd', 'knxd', backendKnxdUrl, 'server');
+            }
+            break;
+
+          case 'mqtt':
+            if (defaultType !== 'mqtt') {
+              this.addBackendClient('mqtt', 'mqtt', backendMQTTUrl, 'server');
+            }
+            break;
+
+          case 'openhab':
+            if (backendKnxdUrl && defaultType !== 'openhab') {
+              this.addBackendClient('openhab', 'openhab', backendOpenHABUrl, 'server');
+            }
+            break;
+        }
+      }
+      return defaultClient;
     },
 
     addBackendClient(name, type, backendUrl, source) {
@@ -99,7 +137,10 @@ qx.Class.define('cv.io.BackendConnections', {
       if (cv.Config.reporting) {
         const recordInstance = cv.report.Record.getInstance();
         client.record = function (p, d) {
-          recordInstance.record(cv.report.Record.BACKEND, p, d);
+          recordInstance.record(cv.report.Record.BACKEND, p, d, {
+            name: name,
+            type: type
+          });
         };
       }
       client.showError = this._handleClientError.bind(this);
@@ -154,7 +195,7 @@ qx.Class.define('cv.io.BackendConnections', {
 
     /**
      * Get the backend client by name, if the name is not set the default backend is used.
-     * Usually that is the backend client created by initBackendClient().
+     * Usually that is the backend client created by initBackendClients().
      * @param backendName {String?} name of the backend
      */
     getClient(backendName) {
@@ -167,11 +208,36 @@ qx.Class.define('cv.io.BackendConnections', {
       if (!backendName) {
         backendName = cv.data.Model.getInstance().getDefaultBackendName();
       }
-      if (!this.__clients[backendName] && cv.Config.testMode) {
-        // in testMode the client might not have been initialized yet
-        return this.addBackendClient('main', 'simulated');
+      if (!this.__clients[backendName]) {
+        if (cv.Config.testMode) {
+          // in testMode the client might not have been initialized yet
+          return this.addBackendClient('simulated', 'simulated');
+        }
+        // backendName might be a type
+        return this.getClientByType(backendName);
       }
       return this.__clients[backendName];
+    },
+
+    getClientByType(type) {
+      if (type === 'system') {
+        if (!this.hasClient('system')) {
+          this.__clients.system = new cv.io.System();
+        }
+        return this.__clients.system;
+      }
+      let client;
+      for (const name in this.__clients) {
+        client = this.__clients[name];
+        if (client.getType() === type) {
+          return client;
+        }
+      }
+      return null;
+    },
+
+    getClients() {
+      return this.__clients;
     },
 
     initSystemBackend() {
@@ -189,21 +255,25 @@ qx.Class.define('cv.io.BackendConnections', {
     /**
      * Start retrieving data from backend
      */
-    startInitialRequest() {
+    startInitialRequests() {
+      Object.getOwnPropertyNames(this.__clients).forEach(name => {
+        this.startInitialRequest(name);
+      });
+    },
+
+    startInitialRequest(name) {
       if (qx.core.Environment.get('qx.debug')) {
         cv.report.Replay.start();
       }
-      Object.getOwnPropertyNames(this.__clients).forEach(name => {
-        const client = this.getClient(name);
-        if (cv.Config.enableAddressQueue) {
-          // identify addresses on startpage
-          client.setInitialAddresses(cv.Application.structureController.getInitialAddresses(name));
-        }
-        const addressesToSubscribe = cv.data.Model.getInstance().getAddresses(name);
-        if (addressesToSubscribe.length !== 0) {
-          client.subscribe(addressesToSubscribe);
-        }
-      });
+      const client = this.getClient(name);
+      if (cv.Config.enableAddressQueue) {
+        // identify addresses on startpage
+        client.setInitialAddresses(cv.Application.structureController.getInitialAddresses(name));
+      }
+      const addressesToSubscribe = cv.data.Model.getInstance().getAddresses(name);
+      if (addressesToSubscribe.length !== 0) {
+        client.subscribe(addressesToSubscribe);
+      }
     },
 
     _onActiveChanged() {
