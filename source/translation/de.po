@@ -474,7 +474,7 @@ msgstr "Das Speichern der versteckten Konfiguration ist fehlgeschlagen: %1 (%2)"
 
 #: cv/ui/manager/editor/Source.js
 msgid "Hidden config has been saved"
-msgstr "Die Verstackte Konfiguration wurde gespeichert"
+msgstr "Die versteckte Konfiguration wurde gespeichert"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Section is invalid and has not been saved."
