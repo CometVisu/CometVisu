@@ -45,12 +45,12 @@ qx.Class.define('cv.io.BackendConnections', {
         }
         return this.addBackendClient(cv.data.Model.getInstance().getDefaultBackendName(), 'simulated');
       }
-      let backendName = (
+      let backendNames = (
         cv.Config.URL.backend ||
         cv.Config.configSettings.backend ||
         cv.Config.server.backend ||
         'default'
-      ).split(',')[0];
+      ).split(',');
       const backendKnxdUrl =
         cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl =
@@ -63,7 +63,7 @@ qx.Class.define('cv.io.BackendConnections', {
       const defaultName = cv.data.Model.getInstance().getDefaultBackendName() || 'main';
       let defaultClient;
       let defaultType;
-      switch (backendName) {
+      switch (backendNames[0]) {
         case 'knxd':
         case 'default':
         default:
@@ -86,16 +86,28 @@ qx.Class.define('cv.io.BackendConnections', {
       }
 
       // check if we need to create more clients
-      if (backendKnxdUrl && defaultType !== 'knxd') {
-        this.addBackendClient('knxd', 'knxd', backendKnxdUrl, 'server');
-      }
-      if (backendMQTTUrl && defaultType !== 'mqtt') {
-        this.addBackendClient('mqtt', 'mqtt', backendMQTTUrl, 'server');
-      }
-      if (backendKnxdUrl && defaultType !== 'openhab') {
-        this.addBackendClient('openhab', 'openhab', backendOpenHABUrl, 'server');
-      }
+      for (let i = 1; i < backendNames.length; i++) {
+        switch (backendNames[i]) {
+          case 'knxd':
+          case 'default':
+            if (backendKnxdUrl && defaultType !== 'knxd') {
+              this.addBackendClient('knxd', 'knxd', backendKnxdUrl, 'server');
+            }
+            break;
 
+          case 'mqtt':
+            if (defaultType !== 'mqtt') {
+              this.addBackendClient('mqtt', 'mqtt', backendMQTTUrl, 'server');
+            }
+            break;
+
+          case 'openhab':
+            if (backendKnxdUrl && defaultType !== 'openhab') {
+              this.addBackendClient('openhab', 'openhab', backendOpenHABUrl, 'server');
+            }
+            break;
+        }
+      }
       return defaultClient;
     },
 
