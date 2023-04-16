@@ -196,9 +196,13 @@ qx.Class.define('cv.io.BackendConnections', {
       if (!backendName) {
         backendName = cv.data.Model.getInstance().getDefaultBackendName();
       }
-      if (!this.__clients[backendName] && cv.Config.testMode) {
-        // in testMode the client might not have been initialized yet
-        return this.addBackendClient('simulated', 'simulated');
+      if (!this.__clients[backendName]) {
+        if (cv.Config.testMode) {
+          // in testMode the client might not have been initialized yet
+          return this.addBackendClient('simulated', 'simulated');
+        }
+        // backendName might be a type
+        return this.getClientByType(backendName);
       }
       return this.__clients[backendName];
     },
