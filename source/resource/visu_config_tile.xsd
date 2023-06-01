@@ -1900,6 +1900,12 @@
             <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="selector" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: JSON selector</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: JSON Selektor</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="backend" type="xsd:string">
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Optional name of the backend this address belongs to.</xsd:documentation>

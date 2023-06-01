@@ -77,7 +77,13 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
               (ev.detail.source.getType() === 'trigger' || ev.detail.source.getType() === 'push');
             if (value !== null) {
               const encoding = element.getAttribute('transform') || 'raw';
-              const encodedValue = cv.Transform.encodeBusAndRaw({ transform: encoding }, value);
+              const encodedValue = cv.Transform.encodeBusAndRaw({
+                transform: encoding,
+                selector: this._element.getAttribute('selector'),
+                ignoreError: this._element.getAttribute('ignore-error') === 'true',
+                variantInfo: this._element.getAttribute('variant'),
+                qos: (this._element.getAttribute('qos') || 0) | 0
+              }, value);
 
               // noinspection EqualityComparisonWithCoercionJS
               if (
@@ -125,7 +131,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     fireStateUpdate(address, state) {
       if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
-        let transformedState = cv.Transform.decode({ transform: transform }, state);
+        if (this._element.getAttribute('selector')) {
+          console.log(state, this._element.getAttribute('selector'))
+        }
+        let transformedState = cv.Transform.decode({
+          transform: transform,
+          selector: this._element.getAttribute('selector'),
+          ignoreError: this._element.getAttribute('ignore-error') === 'true',
+          variantInfo: this._element.getAttribute('variant'),
+          qos: (this._element.getAttribute('qos') || 0) | 0
+        }, state);
 
         let mapping = '';
         if (this._element.hasAttribute('mapping')) {
