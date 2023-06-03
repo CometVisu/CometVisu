@@ -131,9 +131,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     fireStateUpdate(address, state) {
       if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
-        if (this._element.getAttribute('selector')) {
-          console.log(state, this._element.getAttribute('selector'))
-        }
         let transformedState = cv.Transform.decode({
           transform: transform,
           selector: this._element.getAttribute('selector'),

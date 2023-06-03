@@ -1227,7 +1227,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (src) {
           if (this._chartConf.lineGroups.get(src)) {
             targetContainer = this._chartConf.lineContainer;
-            data = this._chartConf.lineGroups.get(src)
+            data = this._chartConf.lineGroups.get(src);
           } else if (this._chartConf.areaGroups.get(src)) {
             targetContainer = this._chartConf.areaContainer;
             data = this._chartConf.areaGroups.get(src);
@@ -1240,13 +1240,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             continue;
           }
           switch (line.getAttribute('value')) {
-            case 'avg':
+            case 'avg': {
               let sum = 0.0;
               for (const di of data) {
                 sum += Y[di];
               }
               yValue = sum / data.length;
               break;
+            }
 
             case 'max':
               yValue = d3.max(Y.filter((v, i) => data.includes(i), d => d));
@@ -1279,7 +1280,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         } else if (!isNaN(yValue)) {
           const color = line.getAttribute('color') || 'currentColor';
           if (lineElem.empty()) {
-            lineElem = targetContainer.append("line")
+            lineElem = targetContainer.append('line')
               .attr('class', 'line-' + i)
               .attr('stroke', color);
           }
@@ -1287,21 +1288,21 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const x2 = this._chartConf.x(X[X.length -1]); // always draw until end of chart (not until end of src dataset)
           const y = this._chartConf.y(yValue);
           lineElem
-            .attr("x1", x1)
-            .attr("x2", x2)
-            .attr("y1", y)
-            .attr("y2", y);
+            .attr('x1', x1)
+            .attr('x2', x2)
+            .attr('y1', y)
+            .attr('y2', y);
 
           if (line.getAttribute('show-value') === 'true') {
-            const format = line.hasAttribute('format') ? line.getAttribute('format') :
-              (this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s');
+            const format = line.hasAttribute('format') ? line.getAttribute('format')
+              : (this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s');
             let valueElem = targetContainer.select('.line-value-' + i);
             if (valueElem.empty()) {
               valueElem = targetContainer.append('text')
                 .attr('class', 'line-value-' + i)
                 .attr('fill', line.getAttribute('value-color') || color)
                 .attr('font-size', '10')
-                .attr('text-anchor', 'start')
+                .attr('text-anchor', 'start');
             }
             // show value on right side of the chart
             valueElem

@@ -109,7 +109,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
           elem.style.display = 'none';
         }
         this._hideTimer.stop();
-      })
+      });
     },
 
     _applyBackgroundImage(value) {

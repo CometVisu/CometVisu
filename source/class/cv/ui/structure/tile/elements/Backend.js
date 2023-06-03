@@ -41,7 +41,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           // wait until client class has been loaded
           cv.io.BackendConnections.addClassLoadedListener(className, () => {
             this._init();
-          })
+          });
           return;
         }
         type = className;
