@@ -35,7 +35,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
     _init() {
       const element = this._element;
       let type = element.getAttribute('type');
-      if (type.startsWith('class:')) {
+      if (type && type.startsWith('class:')) {
         const className = type.split(':').pop();
         if (!cv.io.BackendConnections.isRegistered(className)) {
           // wait until client class has been loaded
