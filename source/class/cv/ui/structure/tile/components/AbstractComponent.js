@@ -319,7 +319,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     onStateUpdate(ev) {
       switch (ev.detail.target) {
         case 'enabled':
-          this.setEnabled(ev.detail.state);
+          this.setEnabled(ev.detail.state === 1);
           ev.stopPropagation();
           return true;
         case 'show-exclude':

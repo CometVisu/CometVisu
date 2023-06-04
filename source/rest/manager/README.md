@@ -8,7 +8,7 @@ This server has been generated with [Slim PSR-7](https://github.com/slimphp/Slim
 ## Requirements
 
 * Web server with URL rewriting
-* PHP 8.0 or newer
+* PHP 7.4 or newer
 
 This package contains `.htaccess` for Apache configuration.
 If you use another server(Nginx, HHVM, IIS, lighttpd) check out [Web Servers](https://www.slimframework.com/docs/v3/start/web-servers.html) doc.
@@ -48,7 +48,6 @@ How to write tests read at [2. Writing Tests for PHPUnit - PHPUnit 8.5 Manual](h
 Command | Target
 ---- | ----
 `$ composer test` | All tests
-`$ composer test-apis` | Apis tests
 `$ composer test-models` | Models tests
 
 #### Config
@@ -150,15 +149,13 @@ Class | Method | HTTP request | Description
 *AbstractFsApi* | **move** | **PUT** /fs/move | Move folder or file to a new place
 *AbstractFsApi* | **read** | **GET** /fs | Return directory listing or file content
 *AbstractFsApi* | **update** | **PUT** /fs | Update an existing file
-*AbstractRequestproxyApi* | **getProxied** | **GET** /proxy | Can be used as a proxy to avoid CORS errors e.g. when loading images that need authorization requests
+*AbstractRequestproxyApi* | **deleteProxied** | **DELETE** /proxy | 
+*AbstractRequestproxyApi* | **getProxied** | **GET** /proxy | 
+*AbstractRequestproxyApi* | **postProxied** | **POST** /proxy | 
+*AbstractRequestproxyApi* | **putProxied** | **PUT** /proxy | 
 
 
 ## Models
 
-* OpenAPIServer\Model\DataProviderEntry
-* OpenAPIServer\Model\EnvironmentState
-* OpenAPIServer\Model\FsEntry
-* OpenAPIServer\Model\InlineObject
-* OpenAPIServer\Model\ReadResponse
 
 

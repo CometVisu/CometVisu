@@ -337,6 +337,7 @@ qx.Class.define('cv.TemplateEngine', {
             cv.util.ScriptLoader.getInstance().addScripts(baseUri + '/design_setup.js');
           }
         });
+        loader.addListenerOnce('stylesLoaded', this.generateManifest, this);
       }
       // load structure-part
       await this.loadParts([cv.Config.getStructure()]);
@@ -345,6 +346,40 @@ qx.Class.define('cv.TemplateEngine', {
       }
       cv.Application.structureController.parseSettings(xml);
       await cv.Application.structureController.preParse(xml);
+    },
+
+    generateManifest() {
+      const color = getComputedStyle(document.body).getPropertyValue('background-color');
+      let baseUrl = window.location.pathname;
+      if (baseUrl.endsWith('/index.html')) {
+        const parts = baseUrl.split('/');
+        parts.pop();
+        baseUrl = parts.join('/') + '/';
+      }
+      baseUrl = window.location.origin + baseUrl;
+
+      const startUrl = window.location.origin + window.location.pathname + window.location.search;
+      const manifest = Object.assign(cv.Config.defaultManifest, {
+        start_url: startUrl,
+        scope: startUrl,
+        theme_color: color,
+        background_color: color
+      });
+      for (const icon of manifest.icons) {
+        icon.src = baseUrl + icon.src;
+      }
+      const stringManifest = JSON.stringify(manifest);
+      const blob = new Blob([stringManifest], { type: 'application/json' });
+      const manifestURL = URL.createObjectURL(blob);
+      document.querySelector('#app-manifest').setAttribute('href', manifestURL);
+      let themeColorElement = document.querySelector('#app-theme-color');
+      if (!themeColorElement) {
+        themeColorElement = document.createElement('meta');
+        themeColorElement.setAttribute('id', 'app-theme-color');
+        themeColorElement.setAttribute('name', 'theme-color');
+        document.querySelector('html > head').appendChild(themeColorElement);
+      }
+      document.querySelector('#app-theme-color').setAttribute('content', color);
     },
 
     /**

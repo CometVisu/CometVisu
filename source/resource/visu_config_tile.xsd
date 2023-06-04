@@ -748,6 +748,7 @@
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" type="dataset"/>
+        <xsd:element name="h-line" type="line"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="title" type="xsd:string">
@@ -1740,7 +1741,7 @@
 
   <xsd:complexType name="cv-status-chart">
     <xsd:sequence>
-      <xsd:element name="cv-address" maxOccurs="2">
+      <xsd:element name="cv-address" maxOccurs="3">
         <xsd:complexType>
           <xsd:simpleContent>
             <xsd:extension base="address">
@@ -1897,6 +1898,12 @@
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Only MQTT: retain flag</xsd:documentation>
             <xsd:documentation xml:lang="de">Nur MQTT: retain Flag</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="selector" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Only MQTT: JSON selector</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nur MQTT: JSON Selektor</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="backend" type="xsd:string">
@@ -2153,33 +2160,81 @@
   </xsd:complexType>
 
   <xsd:complexType name="dataset">
-      <xsd:attribute name="src" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
-          <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="title" type="xsd:string">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
-          <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute ref="chart-type" />
-      <xsd:attribute ref="curve"/>
-      <xsd:attribute name="color" type="color">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
-          <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="show-area" type="xsd:boolean">
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
-          <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:attribute>
-    </xsd:complexType>
+    <xsd:attribute name="src" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
+        <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the chart element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel des Chart-Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="chart-type" />
+    <xsd:attribute ref="curve"/>
+    <xsd:attribute name="color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the chart element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Chart-Elements.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-area" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Fill the area below a line diagram.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Bereich unterhalb eines Liniendiagramms ausfüllen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="line">
+    <xsd:attribute name="src" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Data source for this line</xsd:documentation>
+        <xsd:documentation xml:lang="de">Datenquelle für diese Linie</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:union>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:float"/>
+          </xsd:simpleType>
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="avg" />
+              <xsd:enumeration value="min" />
+              <xsd:enumeration value="max" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:union>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute ref="format"/>
+    <xsd:attribute name="color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the line.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Linie.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="show-value" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert anzeigen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value-color" type="color">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the value.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe des Werts.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
 
   <!--
   #####################################################################################################################

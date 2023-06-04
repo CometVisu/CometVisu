@@ -13,7 +13,27 @@ class RequestproxyApi extends AbstractRequestproxyApi {
     parent::__construct($container);
   }
 
+  public function postProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    return $this->handleProxied($request, $response, $args, "POST");
+  }
+
+  public function putProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
+  {
+    return $this->handleProxied($request, $response, $args, "PUT");
+  }
+
   public function getProxied(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    return $this->handleProxied($request, $response, $args, "GET");
+  }
+
+  public function deleteProxied(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+  {
+    return $this->handleProxied($request, $response, $args, "DELETE");
+  }
+
+  private function handleProxied(ServerRequestInterface $request, ResponseInterface $response, array $args, $method): ResponseInterface
   {
     include(dirname(__DIR__).'/../../../resource/config/hidden.php');
 
@@ -71,6 +91,11 @@ class RequestproxyApi extends AbstractRequestproxyApi {
     if ($selfSigned) {
       curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($curl_session, CURLOPT_SSL_VERIFYHOST, false);
+    }
+    curl_setopt($curl_session, CURLOPT_CUSTOMREQUEST, $method);
+    $body = $request->getBody();
+    if ($body) {
+      curl_setopt($curl_session, CURLOPT_POSTFIELDS, $body);
     }
     $result = curl_exec($curl_session);
     if (!curl_errno($curl_session)) {

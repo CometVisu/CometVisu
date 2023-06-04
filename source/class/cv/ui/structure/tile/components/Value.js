@@ -85,9 +85,8 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
     },
 
     _updateValue(mappedValue, value) {
-      const target = this._element.querySelector('.value');
       let styleClass = '';
-      if (target) {
+      for (const target of this._element.querySelectorAll('.value')) {
         const tagName = target.tagName.toLowerCase();
         switch (tagName) {
           case 'cv-icon':
@@ -102,8 +101,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             target._instance.setStyleClass(styleClass);
             break;
           case 'meter':
-            target.setAttribute('value', mappedValue);
-            target.innerHTML = '' + mappedValue;
+            target.setAttribute('value', value);
             break;
           case 'cv-round-progress':
             if (typeof value === 'string') {
