@@ -31,7 +31,7 @@ Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:
 
 .. code:: xml
 
-    <cv-backend type="default" uri="/cgi-bin/l" />
+    <cv-backend type="knxd" uri="/cgi-bin/l" />
     <cv-backend type="mqtt" uri="ws://mqtt:9001/" />
 
 In diesem Fall nutzen alle ``cv-address``-Elemente ohne ``name``-Attribut (oder mit ``name="main"`` das default-Backend
@@ -43,7 +43,7 @@ Verbindung zum KNXD / EIBD
 
 .. code:: xml
 
-    <cv-backend type="default" />
+    <cv-backend type="knxd" />
 
 Der KNXD/EIBD benötigt bisher keine Zugangsdaten, daher werden die Attribute ``username`` und ``password`` hier nicht
 benötigt. Sofern man die CometVisu in dem offiziellen Docker Container benutzt muss man auch das ``uri``-Attribut
