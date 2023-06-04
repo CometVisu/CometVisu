@@ -85,8 +85,9 @@ qx.Class.define('cv.parser.MetaParser', {
 
     parseIcons: function(elem) {
       let icon = this.__parseIconDefinition(elem);
-      cv.Config.configSettings.iconsFromConfig.push(icon);
-      cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source);
+      if (cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic, icon.source)) {
+        cv.Config.configSettings.iconsFromConfig.push(icon);
+      }
     },
 
     parseMappings: function(elem) {
