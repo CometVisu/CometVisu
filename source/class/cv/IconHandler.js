@@ -81,8 +81,10 @@ qx.Class.define('cv.IconHandler', {
      * @param {string?} source
      */
     insert: function (name, uri, type= '*', flavour='*', color='*', styling=undefined, dynamic='', source = undefined) {
+      let added = false;
       if (!this.__db[name]) {
         this.__db[name] = {};
+        added = true;
       }
       if (source) {
         this.__db[name].source = source;
@@ -104,6 +106,8 @@ qx.Class.define('cv.IconHandler', {
           styling: styling
         };
       }
+
+      return added;
     },
 
     /**

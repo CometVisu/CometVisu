@@ -289,12 +289,14 @@ qx.Class.define('cv.util.IconTools', {
       const parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
       if (parameters.length === 2) {
         const cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]];
-        const coloredIcon = cacheEntry.colors['#' + parameters[1]];
+        if (cacheEntry) {
+          const coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
-        if (undefined === coloredIcon) {
-          cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
-        } else {
-          cv.util.IconTools.fillCanvas(icon, coloredIcon);
+          if (undefined === coloredIcon) {
+            cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
+          } else {
+            cv.util.IconTools.fillCanvas(icon, coloredIcon);
+          }
         }
       }
     },
