@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,28 +36,29 @@
    */
   qx.Interface.define("qx.ui.form.IModelForm", {
     extend: qx.ui.form.IField,
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fired when the value was modified */
       changeValue: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         VALUE PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the element's value.
        *
@@ -65,10 +67,12 @@
       setValue: function setValue(value) {
         return arguments.length == 1;
       },
+
       /**
        * Resets the element's value to its initial value.
        */
       resetValue: function resetValue() {},
+
       /**
        * The element's user set value.
        *
@@ -80,4 +84,4 @@
   qx.ui.form.IModelForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IModelForm.js.map?dt=1677362757268
+//# sourceMappingURL=IModelForm.js.map?dt=1685978138135

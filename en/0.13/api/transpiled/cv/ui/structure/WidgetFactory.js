@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* WidgetFactory.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -29,9 +30,9 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.ui.structure.WidgetFactory', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -39,6 +40,7 @@
     */
     statics: {
       c: 0,
+
       /**
        * Map $$type to Classname
        */
@@ -51,6 +53,7 @@
         if (!this.registry[data.path]) {
           if (!cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)]) {
             var Clazz = this.__P_534_0[type];
+
             if (Clazz) {
               this.registry[data.path] = new Clazz(data);
             } else {
@@ -60,28 +63,36 @@
           } else {
             this.registry[data.path] = new cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)](data);
           }
+
           this.c++;
         }
+
         return this.registry[data.path];
       },
       getInstanceById: function getInstanceById(id, skipCreation) {
         var widget = this.registry[id];
+
         if (!widget && !skipCreation && cv.Config.lazyLoading === true) {
           var data = cv.data.Model.getInstance().getWidgetData(id);
+
           if (data.$$type) {
             widget = this.createInstance(data.$$type, data);
           }
         }
+
         return widget;
       },
       getInstanceByElement: function getInstanceByElement(element) {
         var instance = this.getInstanceById(element.getAttribute('id'));
+
         if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
           // apply listeners and update initial value
-          instance._onDomReady();
-          // make sure that this is not triggered twice
+          instance._onDomReady(); // make sure that this is not triggered twice
+
+
           instance.$$domReady = true;
         }
+
         return instance;
       },
       clear: function clear() {
@@ -92,4 +103,4 @@
   cv.ui.structure.WidgetFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetFactory.js.map?dt=1677362775654
+//# sourceMappingURL=WidgetFactory.js.map?dt=1685978157710

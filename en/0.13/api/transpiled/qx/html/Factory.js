@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,6 +66,7 @@
     },
     members: {
       __P_237_0: null,
+
       /**
        * Registers a factory; a factory is either a class, or a function which is
        * called with the parameters (tagName {String}, styles{Map?}, attributes {Map?}), and
@@ -75,11 +77,14 @@
        */
       registerFactory: function registerFactory(tagName, factory) {
         tagName = tagName.toLowerCase();
+
         if (this.__P_237_0[tagName] === undefined) {
           this.__P_237_0[tagName] = [];
         }
+
         this.__P_237_0[tagName].push(factory);
       },
+
       /**
        * Called to create an {Element}
        *
@@ -89,44 +94,58 @@
        */
       createElement: function createElement(tagName, attributes) {
         tagName = tagName.toLowerCase();
+
         if (attributes) {
           if (window.NamedNodeMap && attributes instanceof window.NamedNodeMap) {
             var newAttrs = {};
+
             for (var i = attributes.length - 1; i >= 0; i--) {
               newAttrs[attributes[i].name] = attributes[i].value;
             }
+
             attributes = newAttrs;
           }
+
           var styles = {};
+
           if (attributes.style) {
             attributes.style.split(/;/).forEach(function (seg) {
               var pos = seg.indexOf(":");
               var key = seg.substring(0, pos);
               var value = seg.substring(pos + 1).trim();
+
               if (key) {
                 styles[key] = value;
               }
             });
             delete attributes.style;
           }
+
           var classname = attributes["data-qx-classname"];
+
           if (classname) {
             var clazz = qx.Class.getByName(classname);
           }
         }
+
         var factories = this.__P_237_0[tagName];
+
         if (factories) {
           for (var i = factories.length - 1; i > -1; i--) {
             var factory = factories[i];
+
             if (factory.classname && qx.Class.getByName(factory.classname) === factory) {
               return new factory(tagName, styles, attributes);
             }
+
             var element = factory(tagName, styles, attributes);
+
             if (element) {
               return element;
             }
           }
         }
+
         return new qx.html.Element(tagName, styles, attributes);
       }
     }
@@ -134,4 +153,4 @@
   qx.html.Factory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Factory.js.map?dt=1677362740997
+//# sourceMappingURL=Factory.js.map?dt=1685978124013

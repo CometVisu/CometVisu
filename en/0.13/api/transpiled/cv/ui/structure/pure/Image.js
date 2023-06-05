@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Image.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -57,6 +58,7 @@
   qx.Class.define('cv.ui.structure.pure.Image', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh, cv.ui.common.Update],
+
     /*
     ******************************************************
       PROPERTIES
@@ -90,6 +92,7 @@
         init: 'none'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -101,43 +104,56 @@
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var imgStyle = '';
+
         if (this.getWidth()) {
           imgStyle += 'width:' + this.getWidth() + ';';
         }
+
         if (this.getWidthFit() === true) {
           imgStyle += 'max-width:100%;';
         }
+
         if (this.getHeight()) {
           imgStyle += 'height:' + this.getHeight() + ';';
         }
+
         if (this.getCropTop() !== '' || this.getCropBottom() !== '') {
           var top = '0%';
           var bottom = '';
+
           if (this.getCropTop() !== '') {
             top = '-' + this.getCropTop();
             bottom = 'margin-bottom:' + top;
           }
+
           if (this.getCropBottom() !== '') {
             bottom = 'margin-bottom:calc(' + top + ' - ' + this.getCropBottom() + ');';
           }
+
           imgStyle += 'object-position:0% ' + top + ';' + bottom;
         }
+
         var src = this.__P_60_1();
+
         if (!src) {
           switch (this.getPlaceholder()) {
             case 'hide':
               src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
               break;
+
             case 'exclude':
               imgStyle += 'display:none;';
               break;
+
             case 'src':
               this.error('no src placeholder defined');
               break;
           }
         }
+
         return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
       },
+
       /**
        * Return the real src value
        */
@@ -145,26 +161,32 @@
         if (!this.__P_60_0) {
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
+
           if (!parsedUri.protocol && !src.startsWith('/')) {
             // is relative URI, use the ResourceManager
             src = qx.util.ResourceManager.getInstance().toUri(src);
           }
+
           this.__P_60_0 = src || '';
         }
+
         return this.__P_60_0;
       },
       handleUpdate: function handleUpdate(text, address) {
         var valueElem = this.getValueElement();
+
         if (!text) {
           switch (this.getPlaceholder()) {
             case 'src':
               text = this.__P_60_1();
               valueElem.style.display = 'inline';
               break;
+
             case 'hide':
               text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
               valueElem.style.display = 'inline';
               break;
+
             case 'exclude':
               valueElem.style.display = 'none';
               break;
@@ -172,6 +194,7 @@
         } else {
           valueElem.style.display = 'inline';
         }
+
         valueElem.setAttribute('src', text);
       },
       // overridden
@@ -181,9 +204,11 @@
       // overridden
       _applyVisible: function _applyVisible(value) {
         var valueElem = this.getValueElement();
+
         if (!valueElem || this.getRefresh() > 0) {
           return;
         }
+
         if (value === true) {
           valueElem.setAttribute('src', this.__P_60_1());
         } else {
@@ -198,4 +223,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1677362716893
+//# sourceMappingURL=Image.js.map?dt=1685978099663

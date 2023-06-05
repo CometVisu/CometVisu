@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -19,6 +20,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,27 +68,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     extend: qx.ui.mobile.form.Input,
     include: [qx.ui.mobile.form.MValue],
     implement: [qx.ui.form.IField],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param value {Boolean?false} The value of the checkbox.
      */
     construct: function construct(value) {
       qx.ui.mobile.form.Input.constructor.call(this);
+
       if (_typeof(value) != undefined) {
         this._state = value;
       }
+
       this.addListener("tap", this._onTap, this);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       defaultCssClass: {
@@ -104,6 +110,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       _getType: function _getType() {
         return null;
       },
+
       /**
        * Handler for tap events.
        */
@@ -111,6 +118,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // Toggle State.
         this.setValue(!this.getValue());
       },
+
       /**
        * Sets the value [true/false] of this checkbox.
        * It is called by setValue method of qx.ui.mobile.form.MValue mixin
@@ -122,9 +130,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           this.removeCssClass("checked");
         }
+
         this._setAttribute("checked", value);
+
         this._state = value;
       },
+
       /**
        * Gets the value [true/false] of this checkbox.
        * It is called by getValue method of qx.ui.mobile.form.MValue mixin
@@ -134,6 +145,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         return this._state;
       }
     },
+
     /*
     *****************************************************************************
         DESTRUCTOR
@@ -146,4 +158,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.mobile.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1677362762338
+//# sourceMappingURL=CheckBox.js.map?dt=1685978143458

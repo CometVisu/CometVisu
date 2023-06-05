@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,6 +47,7 @@
    */
   qx.Class.define("qx.data.store.Jsonp", {
     extend: qx.data.store.Json,
+
     /**
      * @param url {String?} URL of the JSONP service.
      * @param delegate {Object?null} The delegate containing one of the methods
@@ -57,6 +59,7 @@
       if (callbackParam != undefined) {
         this.setCallbackParam(callbackParam);
       }
+
       qx.data.store.Json.constructor.call(this, url, delegate);
     },
     properties: {
@@ -69,6 +72,7 @@
         init: "callback",
         nullable: true
       },
+
       /**
        * The name of the callback function. See
        * {@link qx.bom.request.Jsonp#setCallbackName} for more details.
@@ -87,30 +91,29 @@
         if (this._getRequest()) {
           this._getRequest().dispose();
         }
+
         var req = new qx.io.request.Jsonp();
-        this._setRequest(req);
 
-        // default when null
+        this._setRequest(req); // default when null
+
+
         req.setCallbackParam(this.getCallbackParam());
-        req.setCallbackName(this.getCallbackName());
+        req.setCallbackName(this.getCallbackName()); // send
 
-        // send
-        req.setUrl(url);
-
-        // register the internal event before the user has the change to
+        req.setUrl(url); // register the internal event before the user has the change to
         // register its own event in the delegate
-        req.addListener("success", this._onSuccess, this);
 
-        // check for the request configuration hook
+        req.addListener("success", this._onSuccess, this); // check for the request configuration hook
+
         var del = this._delegate;
+
         if (del && qx.lang.Type.isFunction(del.configureRequest)) {
           this._delegate.configureRequest(req);
-        }
+        } // map request phase to it’s own phase
 
-        // map request phase to it’s own phase
-        req.addListener("changePhase", this._onChangePhase, this);
 
-        // add failed, aborted and timeout listeners
+        req.addListener("changePhase", this._onChangePhase, this); // add failed, aborted and timeout listeners
+
         req.addListener("fail", this._onFail, this);
         req.send();
       }
@@ -119,4 +122,4 @@
   qx.data.store.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1677362732444
+//# sourceMappingURL=Jsonp.js.map?dt=1685978115251

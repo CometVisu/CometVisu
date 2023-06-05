@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -148,12 +149,12 @@
           };
         }
       },
+
       /*
       --------------------
       VIRTUAL SELECTBOX 
       --------------------
       */
-
       "list-search-highlight": {
         style: function style(states) {
           return {
@@ -168,4 +169,4 @@
   qx.theme.indigo.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1677362748161
+//# sourceMappingURL=Appearance.js.map?dt=1685978130753

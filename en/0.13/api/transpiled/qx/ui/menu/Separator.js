@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,12 +42,12 @@
    */
   qx.Class.define("qx.ui.menu.Separator", {
     extend: qx.ui.core.Widget,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
@@ -63,4 +64,4 @@
   qx.ui.menu.Separator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Separator.js.map?dt=1677362760762
+//# sourceMappingURL=Separator.js.map?dt=1685978141767

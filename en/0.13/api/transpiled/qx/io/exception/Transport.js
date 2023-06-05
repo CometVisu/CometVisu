@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,9 +51,10 @@
       DUPLICATE_ID: 10,
       // JSON-RPC
       UNKNOWN_ID: 11 // JSON-RPC
+
     }
   });
   qx.io.exception.Transport.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transport.js.map?dt=1677362741663
+//# sourceMappingURL=Transport.js.map?dt=1685978124704

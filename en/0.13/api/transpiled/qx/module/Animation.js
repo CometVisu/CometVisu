@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,8 +56,10 @@
     events: {
       /** Fired when an animation starts. */
       animationStart: undefined,
+
       /** Fired when an animation has ended one iteration. */
       animationIteration: undefined,
+
       /** Fired when an animation has ended. */
       animationEnd: undefined
     },
@@ -78,6 +81,7 @@
           }
         }
       },
+
       /**
        * Animation description used in {@link #fadeIn}.
        */
@@ -94,6 +98,7 @@
           }
         }
       },
+
       /**
        * Animation execute either regular or reversed direction.
        * @param desc {Map} The animation"s description.
@@ -107,14 +112,17 @@
           if (el.$$animation) {
             el.$$animation.stop();
           }
+
           var handle;
+
           if (reverse) {
             handle = qx.bom.element.Animation.animateReverse(el, desc, duration);
           } else {
             handle = qx.bom.element.Animation.animate(el, desc, duration);
           }
-          var self = this;
-          // only register for the first element
+
+          var self = this; // only register for the first element
+
           if (i == 0) {
             handle.on("start", function () {
               self.emit("animationStart");
@@ -123,12 +131,14 @@
               self.emit("animationIteration");
             }, handle);
           }
+
           handle.on("end", function () {
             for (var i = 0; i < self.length; i++) {
               if (self[i].$$animation) {
                 return;
               }
             }
+
             self.emit("animationEnd");
           }, el);
         });
@@ -144,11 +154,14 @@
        */
       getAnimationHandles: function getAnimationHandles() {
         var animationHandles = [];
+
         for (var i = 0; i < this.length; i++) {
           animationHandles[i] = this[i].$$animation;
         }
+
         return animationHandles;
       },
+
       /**
        * Starts the animation with the given description.
        *
@@ -185,8 +198,10 @@
        */
       animate: function animate(desc, duration) {
         qx.module.Animation._animate.bind(this)(desc, duration, false);
+
         return this;
       },
+
       /**
        * Starts an animation in reversed order. For further details, take a look at
        * the {@link #animate} method.
@@ -198,8 +213,10 @@
        */
       animateReverse: function animateReverse(desc, duration) {
         qx.module.Animation._animate.bind(this)(desc, duration, true);
+
         return this;
       },
+
       /**
        * Manipulates the play state of the animation.
        * This can be used to continue an animation when paused.
@@ -209,12 +226,15 @@
       play: function play() {
         for (var i = 0; i < this.length; i++) {
           var handle = this[i].$$animation;
+
           if (handle) {
             handle.play();
           }
         }
+
         return this;
       },
+
       /**
        * Manipulates the play state of the animation.
        * This can be used to pause an animation when running.
@@ -224,12 +244,15 @@
       pause: function pause() {
         for (var i = 0; i < this.length; i++) {
           var handle = this[i].$$animation;
+
           if (handle) {
             handle.pause();
           }
         }
+
         return this;
       },
+
       /**
        * Stops a running animation.
        * @attach {qxWeb}
@@ -238,12 +261,15 @@
       stop: function stop() {
         for (var i = 0; i < this.length; i++) {
           var handle = this[i].$$animation;
+
           if (handle) {
             handle.stop();
           }
         }
+
         return this;
       },
+
       /**
        * Returns whether an animation is running or not.
        * @attach {qxWeb}
@@ -252,12 +278,15 @@
       isPlaying: function isPlaying() {
         for (var i = 0; i < this.length; i++) {
           var handle = this[i].$$animation;
+
           if (handle && handle.isPlaying()) {
             return true;
           }
         }
+
         return false;
       },
+
       /**
        * Returns whether an animation has ended or not.
        * @attach {qxWeb}
@@ -266,12 +295,15 @@
       isEnded: function isEnded() {
         for (var i = 0; i < this.length; i++) {
           var handle = this[i].$$animation;
+
           if (handle && !handle.isEnded()) {
             return false;
           }
         }
+
         return true;
       },
+
       /**
        * Fades in all elements in the collection.
        * @attach {qxWeb}
@@ -283,6 +315,7 @@
         this.setStyle("display", "");
         return this.animate(qx.module.Animation._fadeIn, duration);
       },
+
       /**
        * Fades out all elements in the collection.
        * @attach {qxWeb}
@@ -295,12 +328,12 @@
     },
     defer: function defer(statics) {
       qxWeb.$attachAll(this);
-
       /**
        * End value for opacity style. This value is modified for all browsers which are
        * 'optimizing' this style value by not setting it (like IE9). This leads to a wrong
        * end state for the 'fadeIn' animation if a opacity value is set by CSS.
        */
+
       if (qxWeb.env.get("browser.name") === "ie" && qxWeb.env.get("browser.version") <= 9) {
         // has to be fixed using direct access since we cannot store the value as static member.
         // The 'fadeIn' description is evaluated during class definition
@@ -311,4 +344,4 @@
   qx.module.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1677362745639
+//# sourceMappingURL=Animation.js.map?dt=1685978128561

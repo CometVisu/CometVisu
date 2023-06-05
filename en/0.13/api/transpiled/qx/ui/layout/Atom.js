@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -72,12 +73,12 @@
    */
   qx.Class.define("qx.ui.layout.Atom", {
     extend: qx.ui.layout.Abstract,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** The gap between the icon and the text */
       gap: {
@@ -85,12 +86,14 @@
         init: 4,
         apply: "_applyLayoutChange"
       },
+
       /** The position of the icon in relation to the text */
       iconPosition: {
         check: ["left", "top", "right", "bottom", "top-left", "bottom-left", "top-right", "bottom-right"],
         init: "left",
         apply: "_applyLayoutChange"
       },
+
       /**
        * Whether the content should be rendered centrally when to much space
        * is available. Enabling this property centers in both axis. The behavior
@@ -106,19 +109,18 @@
         apply: "_applyLayoutChange"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
       ---------------------------------------------------------------------------
       */
-
       // overridden
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
         "true": function _true(item, name, value) {
@@ -132,15 +134,17 @@
         var top = padding.top;
         var Util = qx.ui.layout.Util;
         var iconPosition = this.getIconPosition();
+
         var children = this._getLayoutChildren();
+
         var length = children.length;
         var width, height;
         var child, hint;
         var gap = this.getGap();
-        var center = this.getCenter();
+        var center = this.getCenter(); // reverse ordering
 
-        // reverse ordering
         var allowedPositions = ["bottom", "right", "top-right", "bottom-right"];
+
         if (allowedPositions.indexOf(iconPosition) != -1) {
           var start = length - 1;
           var end = -1;
@@ -149,89 +153,102 @@
           var start = 0;
           var end = length;
           var increment = 1;
-        }
+        } // vertical
 
-        // vertical
+
         if (iconPosition == "top" || iconPosition == "bottom") {
           if (center) {
             var allocatedHeight = 0;
+
             for (var i = start; i != end; i += increment) {
               height = children[i].getSizeHint().height;
+
               if (height > 0) {
                 allocatedHeight += height;
+
                 if (i != start) {
                   allocatedHeight += gap;
                 }
               }
             }
+
             top += Math.round((availHeight - allocatedHeight) / 2);
           }
+
           var childTop = top;
+
           for (var i = start; i != end; i += increment) {
             child = children[i];
             hint = child.getSizeHint();
             width = Math.min(hint.maxWidth, Math.max(availWidth, hint.minWidth));
             height = hint.height;
             left = Util.computeHorizontalAlignOffset("center", width, availWidth) + padding.left;
-            child.renderLayout(left, childTop, width, height);
+            child.renderLayout(left, childTop, width, height); // Ignore pseudo invisible elements
 
-            // Ignore pseudo invisible elements
             if (height > 0) {
               childTop = top + height + gap;
             }
           }
-        }
-
-        // horizontal
+        } // horizontal
         // in this way it also supports shrinking of the first label
         else {
           var remainingWidth = availWidth;
           var shrinkTarget = null;
           var count = 0;
+
           for (var i = start; i != end; i += increment) {
             child = children[i];
             width = child.getSizeHint().width;
+
             if (width > 0) {
               if (!shrinkTarget && child instanceof qx.ui.basic.Label) {
                 shrinkTarget = child;
               } else {
                 remainingWidth -= width;
               }
+
               count++;
             }
           }
+
           if (count > 1) {
             var gapSum = (count - 1) * gap;
             remainingWidth -= gapSum;
           }
+
           if (shrinkTarget) {
             var hint = shrinkTarget.getSizeHint();
             var shrinkTargetWidth = Math.max(hint.minWidth, Math.min(remainingWidth, hint.maxWidth));
             remainingWidth -= shrinkTargetWidth;
           }
+
           if (center && remainingWidth > 0) {
             left += Math.round(remainingWidth / 2);
           }
+
           for (var i = start; i != end; i += increment) {
             child = children[i];
             hint = child.getSizeHint();
             height = Math.min(hint.maxHeight, Math.max(availHeight, hint.minHeight));
+
             if (child === shrinkTarget) {
               width = shrinkTargetWidth;
             } else {
               width = hint.width;
             }
+
             var align = "middle";
+
             if (iconPosition == "top-left" || iconPosition == "top-right") {
               align = "top";
             } else if (iconPosition == "bottom-left" || iconPosition == "bottom-right") {
               align = "bottom";
             }
-            var childTop = top + Util.computeVerticalAlignOffset(align, hint.height, availHeight);
-            child.renderLayout(left, childTop, width, height);
 
-            // Ignore pseudo invisible childs for gap e.g.
+            var childTop = top + Util.computeVerticalAlignOffset(align, hint.height, availHeight);
+            child.renderLayout(left, childTop, width, height); // Ignore pseudo invisible childs for gap e.g.
             // empty text or unavailable images
+
             if (width > 0) {
               left += width + gap;
             }
@@ -241,16 +258,15 @@
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var children = this._getLayoutChildren();
+
         var length = children.length;
-        var hint, result;
+        var hint, result; // Fast path for only one child
 
-        // Fast path for only one child
         if (length === 1) {
-          var hint = children[0].getSizeHint();
-
-          // Work on a copy, but do not respect max
+          var hint = children[0].getSizeHint(); // Work on a copy, but do not respect max
           // values as a Atom can be rendered bigger
           // than its content.
+
           result = {
             width: hint.width,
             height: hint.height,
@@ -259,27 +275,28 @@
           };
         } else {
           var minWidth = 0,
-            width = 0;
+              width = 0;
           var minHeight = 0,
-            height = 0;
+              height = 0;
           var iconPosition = this.getIconPosition();
           var gap = this.getGap();
+
           if (iconPosition === "top" || iconPosition === "bottom") {
             var count = 0;
+
             for (var i = 0; i < length; i++) {
-              hint = children[i].getSizeHint();
+              hint = children[i].getSizeHint(); // Max of widths
 
-              // Max of widths
               width = Math.max(width, hint.width);
-              minWidth = Math.max(minWidth, hint.minWidth);
+              minWidth = Math.max(minWidth, hint.minWidth); // Sum of heights
 
-              // Sum of heights
               if (hint.height > 0) {
                 height += hint.height;
                 minHeight += hint.minHeight;
                 count++;
               }
             }
+
             if (count > 1) {
               var gapSum = (count - 1) * gap;
               height += gapSum;
@@ -287,28 +304,28 @@
             }
           } else {
             var count = 0;
+
             for (var i = 0; i < length; i++) {
-              hint = children[i].getSizeHint();
+              hint = children[i].getSizeHint(); // Max of heights
 
-              // Max of heights
               height = Math.max(height, hint.height);
-              minHeight = Math.max(minHeight, hint.minHeight);
+              minHeight = Math.max(minHeight, hint.minHeight); // Sum of widths
 
-              // Sum of widths
               if (hint.width > 0) {
                 width += hint.width;
                 minWidth += hint.minWidth;
                 count++;
               }
             }
+
             if (count > 1) {
               var gapSum = (count - 1) * gap;
               width += gapSum;
               minWidth += gapSum;
             }
-          }
+          } // Build hint
 
-          // Build hint
+
           result = {
             minWidth: minWidth,
             width: width,
@@ -316,6 +333,7 @@
             height: height
           };
         }
+
         return result;
       }
     }
@@ -323,4 +341,4 @@
   qx.ui.layout.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1677362759254
+//# sourceMappingURL=Atom.js.map?dt=1685978140212

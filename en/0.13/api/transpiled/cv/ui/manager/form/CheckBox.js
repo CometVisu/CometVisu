@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* CheckBox.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.ui.manager.form.CheckBox', {
     extend: qx.ui.form.CheckBox,
+
     /*
     ***********************************************
       MEMBERS
@@ -57,6 +59,7 @@
       },
       _applyValue: function _applyValue(value, old) {
         cv.ui.manager.form.CheckBox.superclass.prototype._applyValue.call(this, value, old);
+
         if (value === null) {
           this.setLabel(' - ' + this.tr('not set') + ' - ');
         } else {
@@ -68,4 +71,4 @@
   cv.ui.manager.form.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1677362713598
+//# sourceMappingURL=CheckBox.js.map?dt=1685978096357

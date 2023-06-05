@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +42,6 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the children list
@@ -52,6 +52,7 @@
       getChildren: function getChildren() {
         return this._getChildren();
       },
+
       /**
        * Whether the widget contains children.
        *
@@ -60,6 +61,7 @@
       hasChildren: function hasChildren() {
         return this._hasChildren();
       },
+
       /**
        * Returns the index position of the given widget if it is
        * a child widget. Otherwise it returns <code>-1</code>.
@@ -76,6 +78,7 @@
       indexOf: function indexOf(child) {
         return this._indexOf(child);
       },
+
       /**
        * Adds a new child widget.
        *
@@ -89,6 +92,7 @@
       add: function add(child, options) {
         this._add(child, options);
       },
+
       /**
        * Add a child widget at the specified index
        *
@@ -104,6 +108,7 @@
       addAt: function addAt(child, index, options) {
         this._addAt(child, index, options);
       },
+
       /**
        * Add a widget before another already inserted widget
        *
@@ -119,6 +124,7 @@
       addBefore: function addBefore(child, before, options) {
         this._addBefore(child, before, options);
       },
+
       /**
        * Add a widget after another already inserted widget
        *
@@ -134,6 +140,7 @@
       addAfter: function addAfter(child, after, options) {
         this._addAfter(child, after, options);
       },
+
       /**
        * Remove the given child widget.
        *
@@ -142,6 +149,7 @@
       remove: function remove(child) {
         this._remove(child);
       },
+
       /**
        * Remove the widget at the specified index.
        *
@@ -156,6 +164,7 @@
       removeAt: function removeAt(index) {
         return this._removeAt(index);
       },
+
       /**
        * Remove all children.
        *
@@ -165,12 +174,12 @@
         return this._removeAll();
       }
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Mapping of protected methods to public.
@@ -197,4 +206,4 @@
   qx.ui.core.MChildrenHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MChildrenHandling.js.map?dt=1677362752078
+//# sourceMappingURL=MChildrenHandling.js.map?dt=1685978134459

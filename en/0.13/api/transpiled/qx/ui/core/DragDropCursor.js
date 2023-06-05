@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,38 +42,37 @@
     extend: qx.ui.basic.Image,
     include: qx.ui.core.MPlacement,
     type: "singleton",
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.basic.Image.constructor.call(this);
+      qx.ui.basic.Image.constructor.call(this); // Put above other stuff
 
-      // Put above other stuff
-      this.setZIndex(1e8);
+      this.setZIndex(1e8); // Move using DOM
 
-      // Move using DOM
-      this.setDomMove(true);
+      this.setDomMove(true); // Automatically add to root
 
-      // Automatically add to root
       var root = this.getApplicationRoot();
       root.add(this, {
         left: -1000,
         top: -1000
       });
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
         init: "dragdrop-cursor"
       },
+
       /** The current drag&drop action */
       action: {
         check: ["alias", "copy", "move"],
@@ -80,18 +80,19 @@
         nullable: true
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     members: {
       // property apply
       _applyAction: function _applyAction(value, old) {
         if (old) {
           this.removeState(old);
         }
+
         if (value) {
           this.addState(value);
         }
@@ -101,4 +102,4 @@
   qx.ui.core.DragDropCursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDropCursor.js.map?dt=1677362751592
+//# sourceMappingURL=DragDropCursor.js.map?dt=1685978134047

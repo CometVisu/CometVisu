@@ -1,6 +1,9 @@
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -65,6 +68,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -110,54 +114,58 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     extend: qx.ui.core.LayoutItem,
     include: [qx.locale.MTranslation],
     implement: [qx.core.IDisposable],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.core.LayoutItem.constructor.call(this);
+      qx.ui.core.LayoutItem.constructor.call(this); // Create basic element
 
-      // Create basic element
-      this.__P_321_0 = this.__P_321_1();
+      this.__P_321_0 = this.__P_321_1(); // Initialize properties
 
-      // Initialize properties
       this.initFocusable();
       this.initSelectable();
       this.initNativeContextMenu();
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * Fired after the widget appears on the screen.
        */
       appear: "qx.event.type.Event",
+
       /**
        * Fired after the widget disappears from the screen.
        */
       disappear: "qx.event.type.Event",
+
       /**
        * Fired after the creation of a child control. The passed data is the
        * newly created child widget.
        */
       createChildControl: "qx.event.type.Data",
+
       /**
        * Fired on resize (after layout) of the widget.
        * The data property of the event contains the widget's computed location
        * and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
        */
       resize: "qx.event.type.Data",
+
       /**
        * Fired on move (after layout) of the widget.
        * The data property of the event contains the widget's computed location
        * and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
        */
       move: "qx.event.type.Data",
+
       /**
        * Fired after the appearance has been applied. This happens before the
        * widget becomes visible, on state and appearance changes. The data field
@@ -165,97 +173,130 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * read properties set by the appearance.
        */
       syncAppearance: "qx.event.type.Data",
+
       /** Fired if the mouse cursor moves over the widget.
        *  The data property of the event contains the widget's computed location
        *  and dimension as returned by {@link qx.ui.core.LayoutItem#getBounds}
        */
       mousemove: "qx.event.type.Mouse",
+
       /**
        * Fired if the mouse cursor enters the widget.
        *
        * Note: This event is also dispatched if the widget is disabled!
        */
       mouseover: "qx.event.type.Mouse",
+
       /**
        * Fired if the mouse cursor leaves widget.
        *
        * Note: This event is also dispatched if the widget is disabled!
        */
       mouseout: "qx.event.type.Mouse",
+
       /** Mouse button is pressed on the widget. */
       mousedown: "qx.event.type.Mouse",
+
       /** Mouse button is released on the widget. */
       mouseup: "qx.event.type.Mouse",
+
       /** Widget is clicked using left or middle button.
           {@link qx.event.type.Mouse#getButton} for more details.*/
       click: "qx.event.type.Mouse",
+
       /** Widget is clicked using a non primary button.
           {@link qx.event.type.Mouse#getButton} for more details.*/
       auxclick: "qx.event.type.Mouse",
+
       /** Widget is double clicked using left or middle button.
           {@link qx.event.type.Mouse#getButton} for more details.*/
       dblclick: "qx.event.type.Mouse",
+
       /** Widget is clicked using the right mouse button. */
       contextmenu: "qx.event.type.Mouse",
+
       /** Fired before the context menu is opened. */
       beforeContextmenuOpen: "qx.event.type.Data",
+
       /** Fired if the mouse wheel is used over the widget. */
       mousewheel: "qx.event.type.MouseWheel",
+
       /** Fired if a touch at the screen is started. */
       touchstart: "qx.event.type.Touch",
+
       /** Fired if a touch at the screen has ended. */
       touchend: "qx.event.type.Touch",
+
       /** Fired during a touch at the screen. */
       touchmove: "qx.event.type.Touch",
+
       /** Fired if a touch at the screen is canceled. */
       touchcancel: "qx.event.type.Touch",
+
       /** Fired when a pointer taps on the screen. */
       tap: "qx.event.type.Tap",
+
       /** Fired when a pointer holds on the screen. */
       longtap: "qx.event.type.Tap",
+
       /** Fired when a pointer taps twice on the screen. */
       dbltap: "qx.event.type.Tap",
+
       /** Fired when a pointer swipes over the screen. */
       swipe: "qx.event.type.Touch",
+
       /** Fired when two pointers performing a rotate gesture on the screen. */
       rotate: "qx.event.type.Rotate",
+
       /** Fired when two pointers performing a pinch in/out gesture on the screen. */
       pinch: "qx.event.type.Pinch",
+
       /** Fired when an active pointer moves on the screen (after pointerdown till pointerup). */
       track: "qx.event.type.Track",
+
       /** Fired when an active pointer moves on the screen or the mouse wheel is used. */
       roll: "qx.event.type.Roll",
+
       /** Fired if a pointer (mouse/touch/pen) moves or changes any of it's values. */
       pointermove: "qx.event.type.Pointer",
+
       /** Fired if a pointer (mouse/touch/pen) hovers the widget. */
       pointerover: "qx.event.type.Pointer",
+
       /** Fired if a pointer (mouse/touch/pen) leaves this widget. */
       pointerout: "qx.event.type.Pointer",
+
       /**
        * Fired if a pointer (mouse/touch/pen) button is pressed or
        * a finger touches the widget.
        */
       pointerdown: "qx.event.type.Pointer",
+
       /**
        * Fired if all pointer (mouse/touch/pen) buttons are released or
        * the finger is lifted from the widget.
        */
       pointerup: "qx.event.type.Pointer",
+
       /** Fired if a pointer (mouse/touch/pen) action is canceled. */
       pointercancel: "qx.event.type.Pointer",
+
       /** This event if fired if a keyboard key is released. */
       keyup: "qx.event.type.KeySequence",
+
       /**
        * This event if fired if a keyboard key is pressed down. This event is
        * only fired once if the user keeps the key pressed for a while.
        */
       keydown: "qx.event.type.KeySequence",
+
       /**
        * This event is fired any time a key is pressed. It will be repeated if
        * the user keeps the key pressed. The pressed key can be determined using
        * {@link qx.event.type.KeySequence#getKeyIdentifier}.
        */
       keypress: "qx.event.type.KeySequence",
+
       /**
        * This event is fired if the pressed key or keys result in a printable
        * character. Since the character is not necessarily associated with a
@@ -266,41 +307,50 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * {@link qx.event.type.KeyInput#getCharCode}.
        */
       keyinput: "qx.event.type.KeyInput",
+
       /**
        * The event is fired when the widget gets focused. Only widgets which are
        * {@link #focusable} receive this event.
        */
       focus: "qx.event.type.Focus",
+
       /**
        * The event is fired when the widget gets blurred. Only widgets which are
        * {@link #focusable} receive this event.
        */
       blur: "qx.event.type.Focus",
+
       /**
        * When the widget itself or any child of the widget receive the focus.
        */
       focusin: "qx.event.type.Focus",
+
       /**
        * When the widget itself or any child of the widget lost the focus.
        */
       focusout: "qx.event.type.Focus",
+
       /**
        * When the widget gets active (receives keyboard events etc.)
        */
       activate: "qx.event.type.Focus",
+
       /**
        * When the widget gets inactive
        */
       deactivate: "qx.event.type.Focus",
+
       /**
        * Fired if the widget becomes the capturing widget by a call to {@link #capture}.
        */
       capture: "qx.event.type.Event",
+
       /**
        * Fired if the widget looses the capturing mode by a call to
        * {@link #releaseCapture} or a mouse click.
        */
       losecapture: "qx.event.type.Event",
+
       /**
        * Fired on the drop target when the drag&drop action is finished
        * successfully. This event is normally used to transfer the data
@@ -310,6 +360,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * http://www.whatwg.org/specs/web-apps/current-work/#dnd
        */
       drop: "qx.event.type.Drag",
+
       /**
        * Fired on a potential drop target when leaving it.
        *
@@ -317,6 +368,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * http://www.whatwg.org/specs/web-apps/current-work/#dnd
        */
       dragleave: "qx.event.type.Drag",
+
       /**
        * Fired on a potential drop target when reaching it via the pointer.
        * This event can be canceled if none of the incoming data types
@@ -326,6 +378,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * http://www.whatwg.org/specs/web-apps/current-work/#dnd
        */
       dragover: "qx.event.type.Drag",
+
       /**
        * Fired during the drag. Contains the current pointer coordinates
        * using {@link qx.event.type.Drag#getDocumentLeft} and
@@ -335,6 +388,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * http://www.whatwg.org/specs/web-apps/current-work/#dnd
        */
       drag: "qx.event.type.Drag",
+
       /**
        * Initiate the drag-and-drop operation. This event is cancelable
        * when the drag operation is currently not allowed/possible.
@@ -343,10 +397,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * http://www.whatwg.org/specs/web-apps/current-work/#dnd
        */
       dragstart: "qx.event.type.Drag",
+
       /**
        * Fired on the source (drag) target every time a drag session was ended.
        */
       dragend: "qx.event.type.Drag",
+
       /**
        * Fired when the drag configuration has been modified e.g. the user
        * pressed a key which changed the selected action. This event will be
@@ -355,6 +411,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * e.g. the current action.
        */
       dragchange: "qx.event.type.Drag",
+
       /**
        * Fired when the drop was successfully done and the target widget
        * is now asking for data. The listener should transfer the data,
@@ -363,12 +420,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       droprequest: "qx.event.type.Drag"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -383,6 +440,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyPadding",
         themeable: true
       },
+
       /** Padding of the widget (right) */
       paddingRight: {
         check: "Integer",
@@ -390,6 +448,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyPadding",
         themeable: true
       },
+
       /** Padding of the widget (bottom) */
       paddingBottom: {
         check: "Integer",
@@ -397,6 +456,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyPadding",
         themeable: true
       },
+
       /** Padding of the widget (left) */
       paddingLeft: {
         check: "Integer",
@@ -404,6 +464,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyPadding",
         themeable: true
       },
+
       /**
        * The 'padding' property is a shorthand property for setting 'paddingTop',
        * 'paddingRight', 'paddingBottom' and 'paddingLeft' at the same time.
@@ -417,6 +478,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         mode: "shorthand",
         themeable: true
       },
+
       /*
       ---------------------------------------------------------------------------
         STYLING PROPERTIES
@@ -435,6 +497,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Integer",
         themeable: true
       },
+
       /**
        * The decorator property points to an object, which is responsible
        * for drawing the widget's decoration, e.g. border, background or shadow.
@@ -450,6 +513,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Decorator",
         themeable: true
       },
+
       /**
        * The background color the rendered widget.
        */
@@ -460,6 +524,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeBackgroundColor",
         themeable: true
       },
+
       /**
        * The text color the rendered widget.
        */
@@ -471,6 +536,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         themeable: true,
         inheritable: true
       },
+
       /**
        * The widget's font. The value is either a font name defined in the font
        * theme or an instance of {@link qx.bom.Font}.
@@ -484,6 +550,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         inheritable: true,
         dereference: true
       },
+
       /**
        * Mapping to native style property opacity.
        *
@@ -499,6 +566,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
+
       /**
        * Mapping to native style property cursor.
        *
@@ -533,6 +601,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         init: null
       },
+
       /**
        * Sets the tooltip instance to use for this widget. If only the tooltip
        * text and icon have to be set its better to use the {@link #toolTipText}
@@ -546,6 +615,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "qx.ui.tooltip.ToolTip",
         nullable: true
       },
+
       /**
        * The text of the widget's tooltip. This text can contain HTML markup.
        * The text is displayed using a shared tooltip instance. If the tooltip
@@ -558,6 +628,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeToolTipText",
         apply: "_applyToolTipText"
       },
+
       /**
        * The icon URI of the widget's tooltip. This icon is displayed using a shared
        * tooltip instance. If the tooltip must be customized beyond the tooltip text
@@ -569,6 +640,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         event: "changeToolTipText"
       },
+
       /**
        * Controls if a tooltip should shown or not.
        */
@@ -576,6 +648,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Boolean",
         init: false
       },
+
       /**
        * Forces to show tooltip when widget is disabled.
        */
@@ -583,6 +656,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Boolean",
         init: false
       },
+
       /*
       ---------------------------------------------------------------------------
         MANAGEMENT PROPERTIES
@@ -605,6 +679,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyVisibility",
         event: "changeVisibility"
       },
+
       /**
        * Whether the widget is enabled. Disabled widgets are usually grayed out
        * and do not process user created events. While in the disabled state most
@@ -618,6 +693,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyEnabled",
         event: "changeEnabled"
       },
+
       /**
        * Whether the widget is anonymous.
        *
@@ -632,6 +708,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Boolean",
         apply: "_applyAnonymous"
       },
+
       /**
        * Defines the tab index of an widget. If widgets with tab indexes are part
        * of the current focus root these elements are sorted in first priority. Afterwards
@@ -644,6 +721,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         apply: "_applyTabIndex"
       },
+
       /**
        * Whether the widget is focusable e.g. rendering a focus border and visualize
        * as active element.
@@ -657,6 +735,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: false,
         apply: "_applyFocusable"
       },
+
       /**
        * If this property is enabled, the widget and all of its child widgets
        * will never get focused. The focus keeps at the currently
@@ -671,6 +750,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: false,
         apply: "_applyKeepFocus"
       },
+
       /**
        * If this property if enabled, the widget and all of its child widgets
        * will never get activated. The activation keeps at the currently
@@ -683,18 +763,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: false,
         apply: "_applyKeepActive"
       },
+
       /** Whether the widget acts as a source for drag&drop operations */
       draggable: {
         check: "Boolean",
         init: false,
         apply: "_applyDraggable"
       },
+
       /** Whether the widget acts as a target for drag&drop operations */
       droppable: {
         check: "Boolean",
         init: false,
         apply: "_applyDroppable"
       },
+
       /**
        * Whether the widget contains content which may be selected by the user.
        *
@@ -708,6 +791,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeSelectable",
         apply: "_applySelectable"
       },
+
       /**
        * Whether to show a context menu and which one
        */
@@ -717,6 +801,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         nullable: true,
         event: "changeContextMenu"
       },
+
       /**
        * Whether the native context menu should be enabled for this widget. To
        * globally enable the native context menu set the {@link #nativeContextMenu}
@@ -730,6 +815,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeNativeContextMenu",
         apply: "_applyNativeContextMenu"
       },
+
       /**
        * The appearance ID. This ID is used to identify the appearance theme
        * entry to use for this widget. This controls the styling of the element.
@@ -741,17 +827,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeAppearance"
       }
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** Whether the widget should print out hints and debug messages */
       DEBUG: false,
+
       /** Whether to throw an error on focus/blur if the widget is unfocusable */
       UNFOCUSABLE_WIDGET_FOCUS_BLUR_ERROR: true,
+
       /**
        * Returns the widget, which contains the given DOM element.
        *
@@ -762,24 +850,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       getWidgetByElement: function getWidgetByElement(element, considerAnonymousState) {
         while (element) {
-          var widget = element.$$qxObject;
+          var widget = element.$$qxObject; // check for anonymous widgets
 
-          // check for anonymous widgets
           if (widget) {
             if (!considerAnonymousState || !widget.getAnonymous()) {
               return widget;
             }
-          }
+          } // Fix for FF, which occasionally breaks (BUG#3525)
 
-          // Fix for FF, which occasionally breaks (BUG#3525)
+
           try {
             element = element.parentNode;
           } catch (e) {
             return null;
           }
         }
+
         return null;
       },
+
       /**
        * Whether the "parent" widget contains the "child" widget.
        *
@@ -790,25 +879,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       contains: function contains(parent, child) {
         while (child) {
           child = child.getLayoutParent();
+
           if (parent == child) {
             return true;
           }
         }
+
         return false;
       },
+
       /** @type {Map} Contains all pooled separators for reuse */
       __P_321_2: new qx.util.ObjectPool()
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_321_0: null,
       __P_321_3: null,
       __P_321_4: null,
+
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
@@ -823,6 +916,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _getLayout: function _getLayout() {
         return this.__P_321_5;
       },
+
       /**
        * Set a layout manager for the widget. A a layout manager can only be connected
        * with one widget. Reset the connection with a previous widget first, if you
@@ -835,9 +929,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (this.__P_321_5) {
           this.__P_321_5.connectToWidget(null);
         }
+
         if (layout) {
           layout.connectToWidget(this);
         }
+
         this.__P_321_5 = layout;
         qx.ui.core.queue.Layout.add(this);
       },
@@ -846,51 +942,59 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (this.$$parent === parent) {
           return;
         }
+
         var content = this.getContentElement();
+
         if (this.$$parent && !this.$$parent.$$disposed) {
           this.$$parent.getContentElement().remove(content);
         }
+
         this.$$parent = parent || null;
+
         if (parent && !parent.$$disposed) {
           this.$$parent.getContentElement().add(content);
-        }
+        } // Update inheritable properties
 
-        // Update inheritable properties
-        this.$$refreshInheritables();
 
-        // Update visibility cache
+        this.$$refreshInheritables(); // Update visibility cache
+
         qx.ui.core.queue.Visibility.add(this);
       },
+
       /** @type {Boolean} Whether insets have changed and must be updated */
       _updateInsets: null,
       // overridden
       renderLayout: function renderLayout(left, top, width, height) {
-        var changes = qx.ui.core.Widget.superclass.prototype.renderLayout.call(this, left, top, width, height);
-
-        // Directly return if superclass has detected that no
+        var changes = qx.ui.core.Widget.superclass.prototype.renderLayout.call(this, left, top, width, height); // Directly return if superclass has detected that no
         // changes needs to be applied
+
         if (!changes) {
           return null;
         }
+
         if (qx.lang.Object.isEmpty(changes) && !this._updateInsets) {
           return null;
         }
+
         var content = this.getContentElement();
         var inner = changes.size || this._updateInsets;
         var pixel = "px";
-        var contentStyles = {};
-        // Move content to new position
+        var contentStyles = {}; // Move content to new position
+
         if (changes.position) {
           contentStyles.left = left + pixel;
           contentStyles.top = top + pixel;
         }
+
         if (inner || changes.margin) {
           contentStyles.width = width + pixel;
           contentStyles.height = height + pixel;
         }
+
         if (Object.keys(contentStyles).length > 0) {
           content.setStyles(contentStyles);
         }
+
         if (inner || changes.local || changes.margin) {
           if (this.__P_321_5 && this.hasLayoutChildren()) {
             var inset = this.getInsets();
@@ -903,73 +1007,80 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               top: 0,
               bottom: 0
             };
+
             if (decorator) {
               decorator = qx.theme.manager.Decoration.getInstance().resolve(decorator);
               decoratorPadding = decorator.getPadding();
             }
+
             var padding = {
               top: this.getPaddingTop() + decoratorPadding.top,
               right: this.getPaddingRight() + decoratorPadding.right,
               bottom: this.getPaddingBottom() + decoratorPadding.bottom,
               left: this.getPaddingLeft() + decoratorPadding.left
             };
+
             this.__P_321_5.renderLayout(innerWidth, innerHeight, padding);
           } else if (this.hasLayoutChildren()) {
             throw new Error("At least one child in control " + this._findTopControl() + " requires a layout, but no one was defined!");
           }
-        }
+        } // Fire events
 
-        // Fire events
+
         if (changes.position && this.hasListener("move")) {
           this.fireDataEvent("move", this.getBounds());
         }
+
         if (changes.size && this.hasListener("resize")) {
           this.fireDataEvent("resize", this.getBounds());
-        }
+        } // Cleanup flags
 
-        // Cleanup flags
+
         delete this._updateInsets;
         return changes;
       },
+
       /*
       ---------------------------------------------------------------------------
         SEPARATOR SUPPORT
       ---------------------------------------------------------------------------
       */
-
       __P_321_6: null,
       // overridden
       clearSeparators: function clearSeparators() {
         var reg = this.__P_321_6;
+
         if (!reg) {
           return;
         }
+
         var pool = qx.ui.core.Widget.__P_321_2;
         var content = this.getContentElement();
         var widget;
+
         for (var i = 0, l = reg.length; i < l; i++) {
           widget = reg[i];
           pool.poolObject(widget);
           content.remove(widget.getContentElement());
-        }
+        } // Clear registry
 
-        // Clear registry
+
         reg.length = 0;
       },
       // overridden
       renderSeparator: function renderSeparator(separator, bounds) {
         // Insert
         var widget = qx.ui.core.Widget.__P_321_2.getObject(qx.ui.core.Widget);
+
         widget.set({
           decorator: separator
         });
         var elem = widget.getContentElement();
-        this.getContentElement().add(elem);
+        this.getContentElement().add(elem); // Move
 
-        // Move
-        var domEl = elem.getDomElement();
-        // use the DOM element because the cache of the qx.html.Element could be
+        var domEl = elem.getDomElement(); // use the DOM element because the cache of the qx.html.Element could be
         // wrong due to changes made by the decorators which work on the DOM element too
+
         if (domEl) {
           domEl.style.top = bounds.top + "px";
           domEl.style.left = bounds.left + "px";
@@ -982,14 +1093,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             width: bounds.width + "px",
             height: bounds.height + "px"
           });
-        }
+        } // Remember element
 
-        // Remember element
+
         if (!this.__P_321_6) {
           this.__P_321_6 = [];
         }
+
         this.__P_321_6.push(widget);
       },
+
       /*
       ---------------------------------------------------------------------------
         SIZE HINTS
@@ -1004,61 +1117,71 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var height = this.getHeight();
         var minHeight = this.getMinHeight();
         var maxHeight = this.getMaxHeight();
+
         // Ask content
         var contentHint = this._getContentHint();
+
         var insets = this.getInsets();
         var insetX = insets.left + insets.right;
         var insetY = insets.top + insets.bottom;
+
         if (width == null) {
           width = contentHint.width + insetX;
         }
+
         if (height == null) {
           height = contentHint.height + insetY;
         }
+
         if (minWidth == null) {
           minWidth = insetX;
+
           if (contentHint.minWidth != null) {
-            minWidth += contentHint.minWidth;
-            // do not apply bigger min width than max width [BUG #5008]
+            minWidth += contentHint.minWidth; // do not apply bigger min width than max width [BUG #5008]
+
             if (minWidth > maxWidth && maxWidth != null) {
               minWidth = maxWidth;
             }
           }
         }
+
         if (minHeight == null) {
           minHeight = insetY;
+
           if (contentHint.minHeight != null) {
-            minHeight += contentHint.minHeight;
-            // do not apply bigger min height than max height [BUG #5008]
+            minHeight += contentHint.minHeight; // do not apply bigger min height than max height [BUG #5008]
+
             if (minHeight > maxHeight && maxHeight != null) {
               minHeight = maxHeight;
             }
           }
         }
+
         if (maxWidth == null) {
           if (contentHint.maxWidth == null) {
             maxWidth = Infinity;
           } else {
-            maxWidth = contentHint.maxWidth + insetX;
-            // do not apply bigger min width than max width [BUG #5008]
+            maxWidth = contentHint.maxWidth + insetX; // do not apply bigger min width than max width [BUG #5008]
+
             if (maxWidth < minWidth && minWidth != null) {
               maxWidth = minWidth;
             }
           }
         }
+
         if (maxHeight == null) {
           if (contentHint.maxHeight == null) {
             maxHeight = Infinity;
           } else {
-            maxHeight = contentHint.maxHeight + insetY;
-            // do not apply bigger min width than max width [BUG #5008]
+            maxHeight = contentHint.maxHeight + insetY; // do not apply bigger min width than max width [BUG #5008]
+
             if (maxHeight < minHeight && minHeight != null) {
               maxHeight = minHeight;
             }
           }
-        }
+        } // Build size hint and return
 
-        // Build size hint and return
+
         return {
           width: width,
           minWidth: minWidth,
@@ -1071,10 +1194,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // overridden
       invalidateLayoutCache: function invalidateLayoutCache() {
         qx.ui.core.Widget.superclass.prototype.invalidateLayoutCache.call(this);
+
         if (this.__P_321_5) {
           this.__P_321_5.invalidateLayoutCache();
         }
       },
+
       /**
        * Returns the recommended/natural dimensions of the widget's content.
        *
@@ -1089,6 +1214,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _getContentHint: function _getContentHint() {
         var layout = this.__P_321_5;
+
         if (layout) {
           if (this.hasLayoutChildren()) {
             var hint = layout.getSizeHint();
@@ -1111,24 +1237,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         // Prepare insets
         var insets = this.getInsets();
         var insetX = insets.left + insets.right;
-        var insetY = insets.top + insets.bottom;
+        var insetY = insets.top + insets.bottom; // Compute content width
 
-        // Compute content width
-        var contentWidth = width - insetX;
+        var contentWidth = width - insetX; // Compute height
 
-        // Compute height
         var contentHeight = 0;
+
         var layout = this._getLayout();
+
         if (layout && layout.hasHeightForWidth()) {
           contentHeight = layout.getHeightForWidth(contentWidth);
         } else {
           contentHeight = this._getContentHeightForWidth(contentWidth);
-        }
+        } // Computed box height
 
-        // Computed box height
+
         var height = contentHeight + insetY;
         return height;
       },
+
       /**
        * Returns the computed height for the given width.
        *
@@ -1139,11 +1266,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _getContentHeightForWidth: function _getContentHeightForWidth(width) {
         throw new Error("Abstract method call: _getContentHeightForWidth()!");
       },
+
       /*
       ---------------------------------------------------------------------------
         INSET CALCULATION SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Returns the sum of the widget's padding and border width.
        *
@@ -1155,6 +1284,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var right = this.getPaddingRight();
         var bottom = this.getPaddingBottom();
         var left = this.getPaddingLeft();
+
         if (this.getDecorator()) {
           var decorator = qx.theme.manager.Decoration.getInstance().resolve(this.getDecorator());
           var inset = decorator.getInsets();
@@ -1163,6 +1293,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           bottom += inset.bottom;
           left += inset.left;
         }
+
         return {
           top: top,
           right: right,
@@ -1170,11 +1301,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           left: left
         };
       },
+
       /*
       ---------------------------------------------------------------------------
         COMPUTED LAYOUT SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Returns the widget's computed inner size as available
        * through the layout process.
@@ -1187,22 +1320,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       getInnerSize: function getInnerSize() {
         var computed = this.getBounds();
+
         if (!computed) {
           return null;
-        }
+        } // Return map data
 
-        // Return map data
+
         var insets = this.getInsets();
         return {
           width: computed.width - insets.left - insets.right,
           height: computed.height - insets.top - insets.bottom
         };
       },
+
       /*
       ---------------------------------------------------------------------------
         ANIMATION SUPPORT: USER API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Fade out this widget.
        * @param duration {Number} Time in ms.
@@ -1212,6 +1348,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       fadeOut: function fadeOut(duration) {
         return this.getContentElement().fadeOut(duration);
       },
+
       /**
        * Fade in the widget.
        * @param duration {Number} Time in ms.
@@ -1221,6 +1358,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       fadeIn: function fadeIn(duration) {
         return this.getContentElement().fadeIn(duration);
       },
+
       /*
       ---------------------------------------------------------------------------
         VISIBILITY SUPPORT: USER API
@@ -1234,6 +1372,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.getContentElement().removeAttribute("qxanonymous");
         }
       },
+
       /**
        * Make this widget visible.
        *
@@ -1241,6 +1380,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       show: function show() {
         this.setVisibility("visible");
       },
+
       /**
        * Hide this widget.
        *
@@ -1248,6 +1388,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       hide: function hide() {
         this.setVisibility("hidden");
       },
+
       /**
        * Hide this widget and exclude it from the underlying layout.
        *
@@ -1255,6 +1396,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       exclude: function exclude() {
         this.setVisibility("excluded");
       },
+
       /**
        * Whether the widget is locally visible.
        *
@@ -1265,6 +1407,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       isVisible: function isVisible() {
         return this.getVisibility() === "visible";
       },
+
       /**
        * Whether the widget is locally hidden.
        *
@@ -1275,6 +1418,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       isHidden: function isHidden() {
         return this.getVisibility() !== "visible";
       },
+
       /**
        * Whether the widget is locally excluded.
        *
@@ -1285,6 +1429,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       isExcluded: function isExcluded() {
         return this.getVisibility() === "excluded";
       },
+
       /**
        * Detects if the widget and all its parents are visible.
        *
@@ -1296,21 +1441,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       isSeeable: function isSeeable() {
         // Flush the queues because to detect if the widget ins visible, the
         // queues need to be flushed (see bug #5254)
-        qx.ui.core.queue.Manager.flush();
-        // if the element is already rendered, a check for the offsetWidth is enough
+        qx.ui.core.queue.Manager.flush(); // if the element is already rendered, a check for the offsetWidth is enough
+
         var element = this.getContentElement().getDomElement();
+
         if (element) {
           // will also be 0 if the parents are not visible
           return element.offsetWidth > 0;
-        }
-        // if no element is available, it can not be visible
+        } // if no element is available, it can not be visible
+
+
         return false;
       },
+
       /*
       ---------------------------------------------------------------------------
         CREATION OF HTML ELEMENTS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Create the widget's content HTML element.
        *
@@ -1318,9 +1467,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       __P_321_1: function __P_321_1() {
         var el = this._createContentElement();
-        el.connectObject(this);
 
-        // make sure to allow all pointer events
+        el.connectObject(this); // make sure to allow all pointer events
+
         el.setStyles({
           "touch-action": "none",
           "-ms-touch-action": "none"
@@ -1329,12 +1478,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           zIndex: 10,
           boxSizing: "border-box"
         };
+
         if (!qx.ui.root.Inline || !(this instanceof qx.ui.root.Inline)) {
           styles.position = "absolute";
         }
+
         el.setStyles(styles);
         return el;
       },
+
       /**
        * Creates the content element. The style properties
        * position and zIndex are modified from the Widget
@@ -1351,6 +1503,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           overflowY: "hidden"
         });
       },
+
       /**
        * Returns the element wrapper of the widget's content element.
        * This method exposes widget internal and must be used with caution!
@@ -1360,6 +1513,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getContentElement: function getContentElement() {
         return this.__P_321_0;
       },
+
       /*
       ---------------------------------------------------------------------------
         CHILDREN HANDLING
@@ -1368,6 +1522,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       /** @type {qx.ui.core.LayoutItem[]} List of all child widgets */
       __P_321_7: null,
+
       /**
        * Returns all children, which are layout relevant. This excludes all widgets,
        * which have a {@link qx.ui.core.Widget#visibility} value of <code>exclude</code>.
@@ -1377,21 +1532,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       getLayoutChildren: function getLayoutChildren() {
         var children = this.__P_321_7;
+
         if (!children) {
           return this.__P_321_8;
         }
+
         var layoutChildren;
+
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
+
           if (child.hasUserBounds() || child.isExcluded()) {
             if (layoutChildren == null) {
               layoutChildren = children.concat();
             }
+
             qx.lang.Array.remove(layoutChildren, child);
           }
         }
+
         return layoutChildren || children;
       },
+
       /**
        * Marks the layout of this widget as invalid and triggers a layout update.
        * This is a shortcut for <code>qx.ui.core.queue.Layout.add(this);</code>.
@@ -1399,16 +1561,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       scheduleLayoutUpdate: function scheduleLayoutUpdate() {
         qx.ui.core.queue.Layout.add(this);
       },
+
       /**
        * Resets the cache for children which should be laid out.
        */
       invalidateLayoutChildren: function invalidateLayoutChildren() {
         var layout = this.__P_321_5;
+
         if (layout) {
           layout.invalidateChildrenCache();
         }
+
         qx.ui.core.queue.Layout.add(this);
       },
+
       /**
        * Returns whether the layout has children, which are layout relevant. This
        * excludes all widgets, which have a {@link qx.ui.core.Widget#visibility}
@@ -1418,18 +1584,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       hasLayoutChildren: function hasLayoutChildren() {
         var children = this.__P_321_7;
+
         if (!children) {
           return false;
         }
+
         var child;
+
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
+
           if (!child.hasUserBounds() && !child.isExcluded()) {
             return true;
           }
         }
+
         return false;
       },
+
       /**
        * Returns the widget which contains the children and
        * is relevant for laying them out. This is from the user point of
@@ -1440,6 +1612,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getChildrenContainer: function getChildrenContainer() {
         return this;
       },
+
       /**
        * @type {Array} Placeholder for children list in empty widgets.
        *     Mainly to keep instance number low.
@@ -1447,6 +1620,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @lint ignoreReferenceField(__emptyChildren)
        */
       __P_321_8: [],
+
       /**
        * Returns the children list
        *
@@ -1456,6 +1630,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _getChildren: function _getChildren() {
         return this.__P_321_7 || this.__P_321_8;
       },
+
       /**
        * Returns the index position of the given widget if it is
        * a child widget. Otherwise it returns <code>-1</code>.
@@ -1466,11 +1641,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _indexOf: function _indexOf(child) {
         var children = this.__P_321_7;
+
         if (!children) {
           return -1;
         }
+
         return children.indexOf(child);
       },
+
       /**
        * Whether the widget contains children.
        *
@@ -1480,6 +1658,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var children = this.__P_321_7;
         return children != null && !!children[0];
       },
+
       /**
        * Recursively adds all children to the given queue
        *
@@ -1487,16 +1666,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       addChildrenToQueue: function addChildrenToQueue(queue) {
         var children = this.__P_321_7;
+
         if (!children) {
           return;
         }
+
         var child;
+
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
           queue.push(child);
           child.addChildrenToQueue(queue);
         }
       },
+
       /**
        * Adds a new child widget.
        *
@@ -1512,13 +1695,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (child.getLayoutParent() == this) {
           qx.lang.Array.remove(this.__P_321_7, child);
         }
+
         if (this.__P_321_7) {
           this.__P_321_7.push(child);
         } else {
           this.__P_321_7 = [child];
         }
+
         this.__P_321_9(child, options);
       },
+
       /**
        * Add a child widget at the specified index
        *
@@ -1531,23 +1717,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _addAt: function _addAt(child, index, options) {
         if (!this.__P_321_7) {
           this.__P_321_7 = [];
-        }
+        } // When moving in the same widget, remove widget first
 
-        // When moving in the same widget, remove widget first
+
         if (child.getLayoutParent() == this) {
           qx.lang.Array.remove(this.__P_321_7, child);
         }
+
         var ref = this.__P_321_7[index];
+
         if (ref === child) {
           child.setLayoutProperties(options);
         }
+
         if (ref) {
           qx.lang.Array.insertBefore(this.__P_321_7, child, ref);
         } else {
           this.__P_321_7.push(child);
         }
+
         this.__P_321_9(child, options);
       },
+
       /**
        * Add a widget before another already inserted widget
        *
@@ -1559,17 +1750,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (child == before) {
           return;
         }
+
         if (!this.__P_321_7) {
           this.__P_321_7 = [];
-        }
+        } // When moving in the same widget, remove widget first
 
-        // When moving in the same widget, remove widget first
+
         if (child.getLayoutParent() == this) {
           qx.lang.Array.remove(this.__P_321_7, child);
         }
+
         qx.lang.Array.insertBefore(this.__P_321_7, child, before);
+
         this.__P_321_9(child, options);
       },
+
       /**
        * Add a widget after another already inserted widget
        *
@@ -1582,17 +1777,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (child == after) {
           return;
         }
+
         if (!this.__P_321_7) {
           this.__P_321_7 = [];
-        }
+        } // When moving in the same widget, remove widget first
 
-        // When moving in the same widget, remove widget first
+
         if (child.getLayoutParent() == this) {
           qx.lang.Array.remove(this.__P_321_7, child);
         }
+
         qx.lang.Array.insertAfter(this.__P_321_7, child, after);
+
         this.__P_321_9(child, options);
       },
+
       /**
        * Remove the given child widget.
        *
@@ -1602,9 +1801,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.__P_321_7) {
           throw new Error("This widget has no children!");
         }
+
         qx.lang.Array.remove(this.__P_321_7, child);
+
         this.__P_321_10(child);
       },
+
       /**
        * Remove the widget at the specified index.
        *
@@ -1615,11 +1817,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.__P_321_7) {
           throw new Error("This widget has no children!");
         }
+
         var child = this.__P_321_7[index];
         qx.lang.Array.removeAt(this.__P_321_7, index);
+
         this.__P_321_10(child);
+
         return child;
       },
+
       /**
        * Remove all children.
        *
@@ -1628,18 +1834,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _removeAll: function _removeAll() {
         if (!this.__P_321_7) {
           return [];
-        }
-
-        // Working on a copy to make it possible to clear the
+        } // Working on a copy to make it possible to clear the
         // internal array before calling setLayoutParent()
+
+
         var children = this.__P_321_7.concat();
+
         this.__P_321_7.length = 0;
+
         for (var i = children.length - 1; i >= 0; i--) {
           this.__P_321_10(children[i]);
         }
+
         qx.ui.core.queue.Layout.add(this);
         return children;
       },
+
       /*
       ---------------------------------------------------------------------------
         CHILDREN HANDLING - TEMPLATE METHODS
@@ -1654,6 +1864,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param child {qx.ui.core.LayoutItem} The added child.
        */
       _afterAddChild: null,
+
       /**
        * This method gets called each time after a child widget was removed and
        * can be overridden to get notified about child removes.
@@ -1662,11 +1873,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @param child {qx.ui.core.LayoutItem} The removed child.
        */
       _afterRemoveChild: null,
+
       /*
       ---------------------------------------------------------------------------
         CHILDREN HANDLING - IMPLEMENTATION
       ---------------------------------------------------------------------------
       */
+
       /**
        * Convenience function to add a child widget. It will insert the child to
        * the parent widget and schedule a layout update.
@@ -1677,27 +1890,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       __P_321_9: function __P_321_9(child, options) {
         // Remove from old parent
         var parent = child.getLayoutParent();
+
         if (parent && parent != this) {
           parent._remove(child);
-        }
+        } // Remember parent
 
-        // Remember parent
-        child.setLayoutParent(this);
 
-        // Import options: This call will
+        child.setLayoutParent(this); // Import options: This call will
         //  - clear the layout's children cache as well and
         //  - add its parent (this widget) to the layout queue
+
         if (options) {
           child.setLayoutProperties(options);
         } else {
           this.updateLayoutProperties();
-        }
+        } // call the template method
 
-        // call the template method
+
         if (this._afterAddChild) {
           this._afterAddChild(child);
         }
       },
+
       /**
        * Convenience function to remove a child widget. It will remove it
        * from the parent widget and schedule a layout update.
@@ -1707,29 +1921,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       __P_321_10: function __P_321_10(child) {
         if (child.getLayoutParent() !== this) {
           throw new Error("Remove Error: " + child + " is not a child of this widget!");
-        }
+        } // Clear parent connection
 
-        // Clear parent connection
-        child.setLayoutParent(null);
 
-        // clear the layout's children cache
+        child.setLayoutParent(null); // clear the layout's children cache
+
         if (this.__P_321_5) {
           this.__P_321_5.invalidateChildrenCache();
-        }
+        } // Add to layout queue
 
-        // Add to layout queue
-        qx.ui.core.queue.Layout.add(this);
 
-        // call the template method
+        qx.ui.core.queue.Layout.add(this); // call the template method
+
         if (this._afterRemoveChild) {
           this._afterRemoveChild(child);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENTS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Enables pointer event capturing. All pointer events will dispatched on this
        * widget until capturing is disabled using {@link #releaseCapture} or a
@@ -1744,12 +1958,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       capture: function capture(_capture) {
         this.getContentElement().capture(_capture);
       },
+
       /**
        * Disables pointer capture mode enabled by {@link #capture}.
        */
       releaseCapture: function releaseCapture() {
         this.getContentElement().releaseCapture();
       },
+
       /**
        * Checks if pointer event capturing is enabled for this widget.
        *
@@ -1757,13 +1973,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       isCapturing: function isCapturing() {
         var el = this.getContentElement().getDomElement();
+
         if (!el) {
           return false;
         }
+
         var manager = qx.event.Registration.getManager(el);
         var dispatcher = manager.getDispatcher(qx.event.dispatch.MouseCapture);
         return el == dispatcher.getCaptureElement();
       },
+
       /*
       ---------------------------------------------------------------------------
         PADDING SUPPORT
@@ -1773,8 +1992,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _applyPadding: function _applyPadding(value, old, name) {
         this._updateInsets = true;
         qx.ui.core.queue.Layout.add(this);
+
         this.__P_321_11(name, value);
       },
+
       /**
        * Helper to updated the css padding of the content element considering the
        * padding of the decorator.
@@ -1785,12 +2006,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var content = this.getContentElement();
         var decorator = this.getDecorator();
         decorator = qx.theme.manager.Decoration.getInstance().resolve(decorator);
+
         if (decorator) {
           var direction = qx.Bootstrap.firstLow(style.replace("padding", ""));
           value += decorator.getPadding()[direction] || 0;
         }
+
         content.setStyle(style, value + "px");
       },
+
       /*
       ---------------------------------------------------------------------------
         DECORATION SUPPORT
@@ -1799,18 +2023,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // property apply
       _applyDecorator: function _applyDecorator(value, old) {
         var content = this.getContentElement();
+
         if (old) {
           old = qx.theme.manager.Decoration.getInstance().getCssClassName(old);
           content.removeClass(old);
         }
+
         if (value) {
           value = qx.theme.manager.Decoration.getInstance().addCssClass(value);
           content.addClass(value);
         }
+
         if (value || old) {
           qx.ui.core.queue.Layout.add(this);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         OTHER PROPERTIES
@@ -1819,13 +2047,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // property apply
       _applyToolTipText: function _applyToolTipText(value, old) {
         var _this = this;
+
         {
           if (this.__P_321_4) {
             return;
           }
+
           var manager = qx.locale.Manager.getInstance();
           this.__P_321_4 = manager.addListener("changeLocale", function () {
             var toolTipText = _this.getToolTipText();
+
             if (toolTipText && toolTipText.translate) {
               _this.setToolTipText(toolTipText.translate());
             }
@@ -1833,8 +2064,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       // property apply
-      _applyTextColor: function _applyTextColor(value, old) {
-        // empty template
+      _applyTextColor: function _applyTextColor(value, old) {// empty template
       },
       // property apply
       _applyZIndex: function _applyZIndex(value, old) {
@@ -1843,17 +2073,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // property apply
       _applyVisibility: function _applyVisibility(value, old) {
         var content = this.getContentElement();
+
         if (value === "visible") {
           content.show();
         } else {
           content.hide();
         } // only force a layout update if visibility change from/to "exclude"
+
+
         var parent = this.$$parent;
+
         if (parent && (old == null || value == null || old === "excluded" || value === "excluded")) {
           parent.invalidateLayoutChildren();
-        }
+        } // Update visibility cache
 
-        // Update visibility cache
+
         qx.ui.core.queue.Visibility.add(this);
       },
       // property apply
@@ -1864,10 +2098,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _applyCursor: function _applyCursor(value, old) {
         if (value == null && !this.isSelectable()) {
           value = "default";
-        }
-
-        // In Opera the cursor must be set directly.
+        } // In Opera the cursor must be set directly.
         // http://bugzilla.qooxdoo.org/show_bug.cgi?id=1729
+
+
         this.getContentElement().setStyle("cursor", value, qx.core.Environment.get("engine.name") == "opera");
       },
       // property apply
@@ -1878,8 +2112,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         content.setStyle("backgroundColor", resolved);
       },
       // property apply
-      _applyFont: function _applyFont(value, old) {
-        // empty template
+      _applyFont: function _applyFont(value, old) {// empty template
       },
       // ---------------------------------------------------------------------------
       // DYNAMIC THEME SWITCH SUPPORT
@@ -1889,28 +2122,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (this.isDisposed()) {
           return;
         }
+
         qx.ui.core.Widget.superclass.prototype._onChangeTheme.call(this); // update the appearance
+
+
         this.updateAppearance(); // DECORATOR //
+
         var value = this.getDecorator();
+
         this._applyDecorator(null, value);
+
         this._applyDecorator(value); // FONT //
+
+
         value = this.getFont();
+
         if (qx.lang.Type.isString(value)) {
           this._applyFont(value, value);
-        }
+        } // TEXT COLOR //
 
-        // TEXT COLOR //
+
         value = this.getTextColor();
+
         if (qx.lang.Type.isString(value)) {
           this._applyTextColor(value, value);
-        }
+        } // BACKGROUND COLOR //
 
-        // BACKGROUND COLOR //
+
         value = this.getBackgroundColor();
+
         if (qx.lang.Type.isString(value)) {
           this._applyBackgroundColor(value, value);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         STATE HANDLING
@@ -1919,10 +2164,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       /** @type {Map} The current widget states */
       __P_321_12: null,
+
       /** @type {Boolean} Whether the widget has state changes which are not yet queued */
       $$stateChanges: null,
+
       /** @type {Map} Can be overridden to forward states to the child controls. */
       _forwardStates: null,
+
       /**
        * Returns whether a state is set.
        *
@@ -1933,6 +2181,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var states = this.__P_321_12;
         return !!states && !!states[state];
       },
+
       /**
        * Sets a state.
        *
@@ -1941,38 +2190,43 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       addState: function addState(state) {
         // Dynamically create state map
         var states = this.__P_321_12;
+
         if (!states) {
           states = this.__P_321_12 = {};
         }
+
         if (states[state]) {
           return;
-        }
+        } // Add state and queue
 
-        // Add state and queue
-        this.__P_321_12[state] = true;
 
-        // Fast path for hovered state
+        this.__P_321_12[state] = true; // Fast path for hovered state
+
         if (state === "hovered") {
           this.syncAppearance();
         } else if (!qx.ui.core.queue.Visibility.isVisible(this)) {
           this.$$stateChanges = true;
         } else {
           qx.ui.core.queue.Appearance.add(this);
-        }
+        } // Forward state change to child controls
 
-        // Forward state change to child controls
+
         var forward = this._forwardStates;
         var controls = this.__P_321_13;
+
         if (forward && forward[state] && controls) {
           var control;
+
           for (var id in controls) {
             control = controls[id];
+
             if (control instanceof qx.ui.core.Widget) {
               controls[id].addState(state);
             }
           }
         }
       },
+
       /**
        * Clears a state.
        *
@@ -1981,34 +2235,37 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       removeState: function removeState(state) {
         // Check for existing state
         var states = this.__P_321_12;
+
         if (!states || !states[state]) {
           return;
-        }
+        } // Clear state and queue
 
-        // Clear state and queue
-        delete this.__P_321_12[state];
 
-        // Fast path for hovered state
+        delete this.__P_321_12[state]; // Fast path for hovered state
+
         if (state === "hovered") {
           this.syncAppearance();
         } else if (!qx.ui.core.queue.Visibility.isVisible(this)) {
           this.$$stateChanges = true;
         } else {
           qx.ui.core.queue.Appearance.add(this);
-        }
+        } // Forward state change to child controls
 
-        // Forward state change to child controls
+
         var forward = this._forwardStates;
         var controls = this.__P_321_13;
+
         if (forward && forward[state] && controls) {
           for (var id in controls) {
             var control = controls[id];
+
             if (control instanceof qx.ui.core.Widget) {
               control.removeState(state);
             }
           }
         }
       },
+
       /**
        * Replaces the first state with the second one.
        *
@@ -2019,33 +2276,40 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       replaceState: function replaceState(old, value) {
         var states = this.__P_321_12;
+
         if (!states) {
           states = this.__P_321_12 = {};
         }
+
         if (!states[value]) {
           states[value] = true;
         }
+
         if (states[old]) {
           delete states[old];
         }
+
         if (!qx.ui.core.queue.Visibility.isVisible(this)) {
           this.$$stateChanges = true;
         } else {
           qx.ui.core.queue.Appearance.add(this);
-        }
+        } // Forward state change to child controls
 
-        // Forward state change to child controls
+
         var forward = this._forwardStates;
         var controls = this.__P_321_13;
+
         if (forward && forward[value] && controls) {
           for (var id in controls) {
             var control = controls[id];
+
             if (control instanceof qx.ui.core.Widget) {
               control.replaceState(old, value);
             }
           }
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         APPEARANCE SUPPORT
@@ -2054,8 +2318,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       /** @type {String} The currently compiled selector to lookup the matching appearance */
       __P_321_14: null,
+
       /** @type {Boolean} Whether the selectors needs to be recomputed before updating appearance */
       __P_321_15: null,
+
       /**
        * Renders the appearance using the current widget states.
        *
@@ -2064,43 +2330,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       syncAppearance: function syncAppearance() {
         var states = this.__P_321_12;
         var selector = this.__P_321_14;
-        var manager = qx.theme.manager.Appearance.getInstance();
+        var manager = qx.theme.manager.Appearance.getInstance(); // Cache deep accessor
 
-        // Cache deep accessor
         var styler = qx.core.Property.$$method.setThemed;
-        var unstyler = qx.core.Property.$$method.resetThemed;
+        var unstyler = qx.core.Property.$$method.resetThemed; // Check for requested selector update
 
-        // Check for requested selector update
         if (this.__P_321_15) {
           // Clear flag
-          delete this.__P_321_15;
+          delete this.__P_321_15; // Check if the selector was created previously
 
-          // Check if the selector was created previously
           if (selector) {
             // Query old selector
-            var oldData = manager.styleFrom(selector, states, null, this.getAppearance());
+            var oldData = manager.styleFrom(selector, states, null, this.getAppearance()); // Clear current selector (to force recompute)
 
-            // Clear current selector (to force recompute)
             selector = null;
           }
-        }
+        } // Build selector
 
-        // Build selector
+
         if (!selector) {
           var obj = this;
           var id = [];
+
           do {
             id.push(obj.$$subcontrol || obj.getAppearance());
-          } while (obj = obj.$$subparent);
-
-          // Combine parent control IDs, add top level appearance, filter result
+          } while (obj = obj.$$subparent); // Combine parent control IDs, add top level appearance, filter result
           // to not include positioning information anymore (e.g. #3)
+
+
           selector = id.reverse().join("/").replace(/#[0-9]+/g, "");
           this.__P_321_14 = selector;
-        }
+        } // Query current selector
 
-        // Query current selector
+
         var newData = manager.styleFrom(selector, states, null, this.getAppearance());
+
         if (newData) {
           if (oldData) {
             for (var prop in oldData) {
@@ -2108,9 +2372,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 this[unstyler[prop]]();
               }
             }
-          }
+          } // Check property availability of new data
 
-          // Check property availability of new data
 
           // Apply new data
           for (var prop in newData) {
@@ -2122,12 +2385,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             this[unstyler[prop]]();
           }
         }
+
         this.fireDataEvent("syncAppearance", this.__P_321_12);
       },
       // property apply
       _applyAppearance: function _applyAppearance(value, old) {
         this.updateAppearance();
       },
+
       /**
        * Helper method called from the visibility queue to detect outstanding changes
        * to the appearance.
@@ -2140,9 +2405,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.__P_321_3) {
           qx.ui.core.queue.Appearance.add(this);
           this.__P_321_3 = true;
-        }
-
-        // CASE 2: Widget has got an appearance before, but was hidden for some time
+        } // CASE 2: Widget has got an appearance before, but was hidden for some time
         // which results into maybe omitted state changes have not been applied.
         // In this case the widget is already queued in the appearance. This is basically
         // what all addState/removeState do, but the queue itself may not have been registered
@@ -2152,48 +2415,53 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           delete this.$$stateChanges;
         }
       },
+
       /**
        * Refreshes the appearance of this widget and all
        * registered child controls.
        */
       updateAppearance: function updateAppearance() {
         // Clear selector
-        this.__P_321_15 = true;
+        this.__P_321_15 = true; // Add to appearance queue
 
-        // Add to appearance queue
-        qx.ui.core.queue.Appearance.add(this);
+        qx.ui.core.queue.Appearance.add(this); // Update child controls
 
-        // Update child controls
         var controls = this.__P_321_13;
+
         if (controls) {
           var obj;
+
           for (var id in controls) {
             obj = controls[id];
+
             if (obj instanceof qx.ui.core.Widget) {
               obj.updateAppearance();
             }
           }
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         WIDGET QUEUE
       ---------------------------------------------------------------------------
       */
+
       /**
        * This method is called during the flush of the
        * {@link qx.ui.core.queue.Widget widget queue}.
        *
        * @param jobs {Map} A map of jobs.
        */
-      syncWidget: function syncWidget(jobs) {
-        // empty implementation
+      syncWidget: function syncWidget(jobs) {// empty implementation
       },
+
       /*
       ---------------------------------------------------------------------------
       EVENT SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
       * Returns the next event target in the parent chain. May
       * also return the widget itself if it is not anonymous.
@@ -2203,14 +2471,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       */
       getEventTarget: function getEventTarget() {
         var target = this;
+
         while (target.getAnonymous()) {
           target = target.getLayoutParent();
+
           if (!target) {
             return null;
           }
         }
+
         return target;
       },
+
       /**
        * Returns the next focus target in the parent chain. May
        * also return the widget itself if it is not anonymous and focusable.
@@ -2220,17 +2492,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       getFocusTarget: function getFocusTarget() {
         var target = this;
+
         if (!target.getEnabled()) {
           return null;
         }
+
         while (target.getAnonymous() || !target.getFocusable()) {
           target = target.getLayoutParent();
+
           if (!target || !target.getEnabled()) {
             return null;
           }
         }
+
         return target;
       },
+
       /**
        * Returns the element which should be focused.
        *
@@ -2239,6 +2516,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getFocusElement: function getFocusElement() {
         return this.getContentElement();
       },
+
       /**
        * Whether the widget is reachable by pressing the TAB key.
        *
@@ -2253,17 +2531,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       },
       // property apply
       _applyFocusable: function _applyFocusable(value, old) {
-        var target = this.getFocusElement();
+        var target = this.getFocusElement(); // Apply native tabIndex attribute
 
-        // Apply native tabIndex attribute
         if (value) {
           var tabIndex = this.getTabIndex();
+
           if (tabIndex == null) {
             tabIndex = 1;
           }
-          target.setAttribute("tabIndex", tabIndex);
 
-          // Omit native dotted outline border
+          target.setAttribute("tabIndex", tabIndex); // Omit native dotted outline border
+
           target.setStyle("outline", "none");
         } else {
           if (target.isNativelyFocusable()) {
@@ -2290,6 +2568,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } else if (value < 1 || value > 32000) {
           throw new Error("TabIndex property must be between 1 and 32000");
         }
+
         if (this.getFocusable() && value != null) {
           this.getFocusElement().setAttribute("tabIndex", value);
         }
@@ -2299,83 +2578,83 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         // Re-apply cursor if not in "initSelectable"
         if (old !== null) {
           this._applyCursor(this.getCursor());
-        }
+        } // Apply qooxdoo attribute
 
-        // Apply qooxdoo attribute
+
         this.getContentElement().setSelectable(value);
       },
       // property apply
       _applyEnabled: function _applyEnabled(value, old) {
         if (value === false) {
-          this.addState("disabled");
-
-          // hovered not configured in widget, but as this is a
+          this.addState("disabled"); // hovered not configured in widget, but as this is a
           // standardized name in qooxdoo and we never want a hover
           // state for disabled widgets, remove this state every time
-          this.removeState("hovered");
 
-          // Blur when focused
+          this.removeState("hovered"); // Blur when focused
+
           if (this.isFocusable()) {
             // Remove focused state
-            this.removeState("focused");
+            this.removeState("focused"); // Remove tabIndex
 
-            // Remove tabIndex
             this._applyFocusable(false, true);
-          }
+          } // Remove draggable
 
-          // Remove draggable
+
           if (this.isDraggable()) {
             this._applyDraggable(false, true);
-          }
+          } // Remove droppable
 
-          // Remove droppable
+
           if (this.isDroppable()) {
             this._applyDroppable(false, true);
           }
         } else {
-          this.removeState("disabled");
+          this.removeState("disabled"); // Re-add tabIndex
 
-          // Re-add tabIndex
           if (this.isFocusable()) {
             this._applyFocusable(true, false);
-          }
+          } // Re-add draggable
 
-          // Re-add draggable
+
           if (this.isDraggable()) {
             this._applyDraggable(true, false);
-          }
+          } // Re-add droppable
 
-          // Re-add droppable
+
           if (this.isDroppable()) {
             this._applyDroppable(true, false);
           }
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         CONTEXT MENU
       ---------------------------------------------------------------------------
       */
       // property apply
-      _applyNativeContextMenu: function _applyNativeContextMenu(value, old, name) {
-        // empty body to allow overriding
+      _applyNativeContextMenu: function _applyNativeContextMenu(value, old, name) {// empty body to allow overriding
       },
       // property apply
       _applyContextMenu: function _applyContextMenu(value, old) {
         if (old) {
           old.removeState("contextmenu");
+
           if (old.getOpener() == this) {
             old.resetOpener();
           }
+
           if (!value) {
             this.removeListener("contextmenu", this._onContextMenuOpen);
             this.removeListener("longtap", this._onContextMenuOpen);
             old.removeListener("changeVisibility", this._onBeforeContextMenuOpen, this);
           }
         }
+
         if (value) {
           value.setOpener(this);
           value.addState("contextmenu");
+
           if (!old) {
             this.addListener("contextmenu", this._onContextMenuOpen);
             this.addListener("longtap", this._onContextMenuOpen);
@@ -2383,6 +2662,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
       },
+
       /**
        * Event listener for <code>contextmenu</code> event
        *
@@ -2395,12 +2675,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             return;
           }
         }
-        this.getContextMenu().openAtPointer(e);
 
-        // Do not show native menu
+        this.getContextMenu().openAtPointer(e); // Do not show native menu
         // don't open any other contextmenus
+
         e.stop();
       },
+
       /**
        * Event listener for <code>beforeContextmenuOpen</code> event
        *
@@ -2411,11 +2692,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.fireDataEvent("beforeContextmenuOpen", e);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         USEFUL COMMON EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Event listener which stops a bubbling event from
        * propagates further.
@@ -2425,11 +2708,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _onStopEvent: function _onStopEvent(e) {
         e.stopPropagation();
       },
+
       /*
       ---------------------------------------------------------------------------
         DRAG & DROP SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Helper to return a instance of a {@link qx.ui.core.DragDropCursor}.
        * If you want to use your own DragDropCursor, override this method
@@ -2443,12 +2728,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _applyDraggable: function _applyDraggable(value, old) {
         if (!this.isEnabled() && value === true) {
           value = false;
-        }
+        } // Force cursor creation
 
-        // Force cursor creation
-        this._getDragDropCursor();
 
-        // Process listeners
+        this._getDragDropCursor(); // Process listeners
+
+
         if (value) {
           this.addListener("dragstart", this._onDragStart);
           this.addListener("drag", this._onDrag);
@@ -2459,20 +2744,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.removeListener("drag", this._onDrag);
           this.removeListener("dragend", this._onDragEnd);
           this.removeListener("dragchange", this._onDragChange);
-        }
+        } // Sync DOM attribute
 
-        // Sync DOM attribute
+
         this.getContentElement().setAttribute("qxDraggable", value ? "on" : null);
       },
       // property apply
       _applyDroppable: function _applyDroppable(value, old) {
         if (!this.isEnabled() && value === true) {
           value = false;
-        }
+        } // Sync DOM attribute
 
-        // Sync DOM attribute
+
         this.getContentElement().setAttribute("qxDroppable", value ? "on" : null);
       },
+
       /**
        * Event listener for own <code>dragstart</code> event.
        *
@@ -2480,8 +2766,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _onDragStart: function _onDragStart(e) {
         this._getDragDropCursor().placeToPointer(e);
+
         this.getApplicationRoot().setGlobalCursor("default");
       },
+
       /**
        * Event listener for own <code>drag</code> event.
        *
@@ -2490,6 +2778,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _onDrag: function _onDrag(e) {
         this._getDragDropCursor().placeToPointer(e);
       },
+
       /**
        * Event listener for own <code>dragend</code> event.
        *
@@ -2497,8 +2786,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _onDragEnd: function _onDragEnd(e) {
         this._getDragDropCursor().moveTo(-1000, -1000);
+
         this.getApplicationRoot().resetGlobalCursor();
       },
+
       /**
        * Event listener for own <code>dragchange</code> event.
        *
@@ -2506,14 +2797,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _onDragChange: function _onDragChange(e) {
         var cursor = this._getDragDropCursor();
+
         var action = e.getCurrentAction();
         action ? cursor.setAction(action) : cursor.resetAction();
       },
+
       /*
       ---------------------------------------------------------------------------
         VISUALIZE FOCUS STATES
       ---------------------------------------------------------------------------
       */
+
       /**
        * Event handler which is executed when the widget receives the focus.
        *
@@ -2525,6 +2819,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       visualizeFocus: function visualizeFocus() {
         this.addState("focused");
       },
+
       /**
        * Event handler which is executed when the widget lost the focus.
        *
@@ -2536,11 +2831,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       visualizeBlur: function visualizeBlur() {
         this.removeState("focused");
       },
+
       /*
       ---------------------------------------------------------------------------
         SCROLL CHILD INTO VIEW
       ---------------------------------------------------------------------------
       */
+
       /**
        * The method scrolls the given item into view.
        *
@@ -2558,9 +2855,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       scrollChildIntoView: function scrollChildIntoView(child, alignX, alignY, direct) {
         // Scroll directly on default
-        direct = typeof direct == "undefined" ? true : direct;
-
-        // Always lazy scroll when either
+        direct = typeof direct == "undefined" ? true : direct; // Always lazy scroll when either
         // - the child
         // - its layout parent
         // - its siblings
@@ -2570,19 +2865,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         // after layout changes have been applied to the DOM. Note that changes
         // scheduled for the grand parent (and up) are not tracked and need to
         // be signaled manually.
-        var Layout = qx.ui.core.queue.Layout;
-        var parent;
 
-        // Child
+        var Layout = qx.ui.core.queue.Layout;
+        var parent; // Child
+
         if (direct) {
           direct = !Layout.isScheduled(child);
-          parent = child.getLayoutParent();
+          parent = child.getLayoutParent(); // Parent
 
-          // Parent
           if (direct && parent) {
-            direct = !Layout.isScheduled(parent);
+            direct = !Layout.isScheduled(parent); // Siblings
 
-            // Siblings
             if (direct) {
               parent.getChildren().forEach(function (sibling) {
                 direct = direct && !Layout.isScheduled(sibling);
@@ -2590,9 +2883,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         }
+
         this.scrollChildIntoViewX(child, alignX, direct);
         this.scrollChildIntoViewY(child, alignY, direct);
       },
+
       /**
        * The method scrolls the given item into view (x-axis only).
        *
@@ -2607,6 +2902,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       scrollChildIntoViewX: function scrollChildIntoViewX(child, align, direct) {
         this.getContentElement().scrollChildIntoViewX(child.getContentElement(), align, direct);
       },
+
       /**
        * The method scrolls the given item into view (y-axis only).
        *
@@ -2621,11 +2917,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       scrollChildIntoViewY: function scrollChildIntoViewY(child, align, direct) {
         this.getContentElement().scrollChildIntoViewY(child.getContentElement(), align, direct);
       },
+
       /*
       ---------------------------------------------------------------------------
         FOCUS SYSTEM USER ACCESS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Focus this widget.
        *
@@ -2637,6 +2935,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           throw new Error("Widget is not focusable!");
         }
       },
+
       /**
        * Remove focus from this widget.
        *
@@ -2648,6 +2947,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           throw new Error("Widget is not focusable!");
         }
       },
+
       /**
        * Activate this widget e.g. for keyboard events.
        *
@@ -2655,6 +2955,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       activate: function activate() {
         this.getContentElement().activate();
       },
+
       /**
        * Deactivate this widget e.g. for keyboard events.
        *
@@ -2662,6 +2963,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       deactivate: function deactivate() {
         this.getContentElement().deactivate();
       },
+
       /**
        * Focus this widget when using the keyboard. This is
        * mainly thought for the advanced qooxdoo keyboard handling
@@ -2672,11 +2974,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       tabFocus: function tabFocus() {
         this.getFocusElement().focus();
       },
+
       /*
       ---------------------------------------------------------------------------
         CHILD CONTROL SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Whether the given ID is assigned to a child control.
        *
@@ -2687,10 +2991,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.__P_321_13) {
           return false;
         }
+
         return !!this.__P_321_13[id];
       },
+
       /** @type {Map} Map of instantiated child controls */
       __P_321_13: null,
+
       /**
        * Returns a map of all already created child controls
        *
@@ -2699,6 +3006,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _getCreatedChildControls: function _getCreatedChildControls() {
         return this.__P_321_13;
       },
+
       /**
        * Returns the child control from the given ID. Returns
        * <code>null</code> when the child control is unknown.
@@ -2722,17 +3030,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (notcreate) {
             return null;
           }
+
           this.__P_321_13 = {};
         }
+
         var control = this.__P_321_13[id];
+
         if (control) {
           return control;
         }
+
         if (notcreate === true) {
           return null;
         }
+
         return this._createChildControl(id);
       },
+
       /**
        * Shows the given child control by ID
        *
@@ -2744,6 +3058,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         control.show();
         return control;
       },
+
       /**
        * Excludes the given child control by ID
        *
@@ -2751,10 +3066,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _excludeChildControl: function _excludeChildControl(id) {
         var control = this.getChildControl(id, true);
+
         if (control) {
           control.exclude();
         }
       },
+
       /**
        * Whether the given child control is visible.
        *
@@ -2763,11 +3080,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _isChildControlVisible: function _isChildControlVisible(id) {
         var control = this.getChildControl(id, true);
+
         if (control) {
           return control.isVisible();
         }
+
         return false;
       },
+
       /**
        * Release the child control by ID and decouple the
        * child from the parent. This method does not dispose the child control.
@@ -2777,17 +3097,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _releaseChildControl: function _releaseChildControl(id) {
         var control = this.getChildControl(id, false);
+
         if (!control) {
           throw new Error("Unsupported control: " + id);
-        }
+        } // remove connection to parent
 
-        // remove connection to parent
+
         delete control.$$subcontrol;
-        delete control.$$subparent;
+        delete control.$$subparent; // remove state forwarding
 
-        // remove state forwarding
         var states = this.__P_321_12;
         var forward = this._forwardStates;
+
         if (states && forward && control instanceof qx.ui.core.Widget) {
           for (var state in states) {
             if (forward[state]) {
@@ -2795,9 +3116,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           }
         }
+
         delete this.__P_321_13[id];
         return control;
       },
+
       /**
        * Force the creation of the given child control by ID.
        *
@@ -2814,7 +3137,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } else if (this.__P_321_13[id]) {
           throw new Error("Child control '" + id + "' already created!");
         }
+
         var pos = id.indexOf("#");
+
         try {
           if (pos == -1) {
             var control = this._createChildControlImpl(id);
@@ -2825,37 +3150,39 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           exc.message = "Exception while creating child control '" + id + "' of widget " + this.toString() + ": " + exc.message;
           throw exc;
         }
+
         if (!control) {
           throw new Error("Unsupported control: " + id);
-        }
+        } // Establish connection to parent
 
-        // Establish connection to parent
+
         control.$$subcontrol = id;
-        control.$$subparent = this;
+        control.$$subparent = this; // Support for state forwarding
 
-        // Support for state forwarding
         var states = this.__P_321_12;
         var forward = this._forwardStates;
+
         if (states && forward && control instanceof qx.ui.core.Widget) {
           for (var state in states) {
             if (forward[state]) {
               control.addState(state);
             }
           }
-        }
-
-        // If the appearance is already synced after the child control
+        } // If the appearance is already synced after the child control
         // we need to update the appearance now, because the selector
         // might be not correct in certain cases.
+
+
         if (control.$$resyncNeeded) {
           delete control.$$resyncNeeded;
           control.updateAppearance();
         }
-        this.fireDataEvent("createChildControl", control);
 
-        // Register control and return
+        this.fireDataEvent("createChildControl", control); // Register control and return
+
         return this.__P_321_13[id] = control;
       },
+
       /**
        * Internal method to create child controls. This method
        * should be overwritten by classes which extends this one
@@ -2870,6 +3197,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         return null;
       },
+
       /**
        * Dispose all registered controls. This is automatically
        * executed by the widget.
@@ -2877,20 +3205,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _disposeChildControls: function _disposeChildControls() {
         var controls = this.__P_321_13;
+
         if (!controls) {
           return;
         }
+
         var Widget = qx.ui.core.Widget;
+
         for (var id in controls) {
           var control = controls[id];
+
           if (!Widget.contains(this, control)) {
             control.destroy();
           } else {
             control.dispose();
           }
         }
+
         delete this.__P_321_13;
       },
+
       /**
        * Finds and returns the top level control. This is the first
        * widget which is not a child control of any other widget.
@@ -2899,14 +3233,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       _findTopControl: function _findTopControl() {
         var obj = this;
+
         while (obj) {
           if (!obj.$$subparent) {
             return obj;
           }
+
           obj = obj.$$subparent;
         }
+
         return null;
       },
+
       /**
        * Return the ID (name) if this instance was a created as a child control of another widget.
        *
@@ -2917,11 +3255,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getSubcontrolId: function getSubcontrolId() {
         return this.$$subcontrol || null;
       },
+
       /*
       ---------------------------------------------------------------------------
         LOWER LEVEL ACCESS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Computes the location of the content element in context of the document
        * dimensions.
@@ -2948,6 +3288,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var domEl = this.getContentElement().getDomElement();
         return domEl ? qx.bom.element.Location.get(domEl, mode) : null;
       },
+
       /**
        * Directly modifies the relative left position in relation
        * to the parent element.
@@ -2960,12 +3301,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       setDomLeft: function setDomLeft(value) {
         var domEl = this.getContentElement().getDomElement();
+
         if (domEl) {
           domEl.style.left = value + "px";
         } else {
           throw new Error("DOM element is not yet created!");
         }
       },
+
       /**
        * Directly modifies the relative top position in relation
        * to the parent element.
@@ -2978,12 +3321,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       setDomTop: function setDomTop(value) {
         var domEl = this.getContentElement().getDomElement();
+
         if (domEl) {
           domEl.style.top = value + "px";
         } else {
           throw new Error("DOM element is not yet created!");
         }
       },
+
       /**
        * Directly modifies the relative left and top position in relation
        * to the parent element.
@@ -2997,6 +3342,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       setDomPosition: function setDomPosition(left, top) {
         var domEl = this.getContentElement().getDomElement();
+
         if (domEl) {
           domEl.style.left = left + "px";
           domEl.style.top = top + "px";
@@ -3004,11 +3350,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           throw new Error("DOM element is not yet created!");
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         ARIA attrs support
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the string which labels this widget. This will be read out by screenreaders. Needed if there is no
        * readable text/label in this widget which would automatically act as aria-label.
@@ -3017,6 +3365,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       setAriaLabel: function setAriaLabel(label) {
         this.getContentElement().setAttribute("aria-label", label);
       },
+
       /**
        * Marks that this widget gets labelled by another widget. This will be read out by screenreaders as first
        * information.
@@ -3028,8 +3377,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         for (var _len = arguments.length, labelWidgets = new Array(_len), _key = 0; _key < _len; _key++) {
           labelWidgets[_key] = arguments[_key];
         }
+
         this.__P_321_16(labelWidgets, "aria-labelledby");
       },
+
       /**
        * Marks that this widget gets described by another widget. This will be read out by screenreaders as last
        * information. Multiple Widgets possible.
@@ -3039,8 +3390,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         for (var _len2 = arguments.length, describingWidgets = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
           describingWidgets[_key2] = arguments[_key2];
         }
+
         this.__P_321_16(describingWidgets, "aria-describedby");
       },
+
       /**
        * Sets either aria-labelledby or aria-describedby
        * @param widgets {qx.ui.core.Widget[]} Indefinite Number of widgets
@@ -3050,21 +3403,30 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!["aria-labelledby", "aria-describedby"].includes(ariaAttr)) {
           throw new Error("Only aria-labelledby or aria-describedby allowed!");
         }
+
         var idArr = [];
+
         var _iterator = _createForOfIteratorHelper(widgets),
-          _step;
+            _step;
+
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var widget = _step.value;
+
             if (!(widget instanceof qx.ui.core.Widget)) {
               throw new Error("Given widget " + widget + " is not an instance of qx.ui.core.Widget!");
             }
+
             var _contentEl = widget.getContentElement();
+
             var widgetId = _contentEl.getAttribute("id");
+
             if (!widgetId) {
               widgetId = "label-".concat(widget.toHashCode());
+
               _contentEl.setAttribute("id", widgetId);
             }
+
             if (!idArr.includes(widgetId)) {
               idArr.push(widgetId);
             }
@@ -3074,20 +3436,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } finally {
           _iterator.f();
         }
+
         if (idArr.length === 0) {
           return;
         }
+
         var idStr = idArr.join(" ");
         var contentEl = this.getContentElement();
         var res = contentEl.getAttribute(ariaAttr);
         res = res ? "".concat(res, " ").concat(idStr) : idStr;
         contentEl.setAttribute(ariaAttr, res);
       },
+
       /*
       ---------------------------------------------------------------------------
         ENHANCED DISPOSE SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Removes this widget from its parent and disposes it.
        *
@@ -3098,18 +3464,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       destroy: function destroy() {
         if (this.$$disposed) {
           return;
-        }
-
-        // We may be deferring disposing, but we can at least prevent
+        } // We may be deferring disposing, but we can at least prevent
         // listener handlers from being called. We don't know exactly
         // what listeners have already been disposed at this point.
+
+
         qx.event.Registration.removeAllListeners(this);
         var parent = this.$$parent;
+
         if (parent) {
           parent._remove(this);
         }
+
         qx.ui.core.queue.Dispose.add(this);
       },
+
       /*
       ---------------------------------------------------------------------------
         CLONE SUPPORT
@@ -3118,15 +3487,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // overridden
       clone: function clone() {
         var clone = qx.ui.core.Widget.superclass.prototype.clone.call(this);
+
         if (this.getChildren) {
           var children = this.getChildren();
+
           for (var i = 0, l = children.length; i < l; i++) {
             clone.add(children[i].clone());
           }
         }
+
         return clone;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -3140,46 +3513,46 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (this.__P_321_4) {
             qx.locale.Manager.getInstance().removeListenerById(this.__P_321_4);
           }
-        }
+        } // Remove widget pointer from DOM
 
-        // Remove widget pointer from DOM
         var contentEl = this.getContentElement();
+
         if (contentEl) {
           contentEl.disconnectWidget(this);
-        }
+        } // Clean up all child controls
 
-        // Clean up all child controls
-        this._disposeChildControls();
 
-        // Remove from ui queues
+        this._disposeChildControls(); // Remove from ui queues
+
+
         qx.ui.core.queue.Appearance.remove(this);
         qx.ui.core.queue.Layout.remove(this);
         qx.ui.core.queue.Visibility.remove(this);
         qx.ui.core.queue.Widget.remove(this);
       }
+
       if (this.getContextMenu()) {
         this.setContextMenu(null);
-      }
+      } // pool decorators if not in global shutdown
 
-      // pool decorators if not in global shutdown
+
       if (!qx.core.ObjectRegistry.inShutDown) {
         this.clearSeparators();
         this.__P_321_6 = null;
       } else {
         this._disposeArray("__P_321_6");
-      }
+      } // Clear children array
 
-      // Clear children array
-      this._disposeArray("__P_321_7");
 
-      // Cleanup map of appearance states
-      this.__P_321_12 = this.__P_321_13 = null;
+      this._disposeArray("__P_321_7"); // Cleanup map of appearance states
 
-      // Dispose layout manager and HTML elements
+
+      this.__P_321_12 = this.__P_321_13 = null; // Dispose layout manager and HTML elements
+
       this._disposeObjects("__P_321_5", "__P_321_0");
     }
   });
   qx.ui.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1677362753365
+//# sourceMappingURL=Widget.js.map?dt=1685978135530

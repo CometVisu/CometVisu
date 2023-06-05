@@ -64,6 +64,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -105,13 +106,13 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /*
       ---------------------------------------------------------------------------
         EVENTS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Add an event listener to a DOM element. The event listener is passed an
        * instance of {@link Event} containing all relevant information
@@ -134,6 +135,7 @@
       addListener: function addListener(element, type, listener, self, capture) {
         return qx.event.Registration.addListener(element, type, listener, self, capture);
       },
+
       /**
        * Remove an event listener from a from DOM node.
        *
@@ -152,6 +154,7 @@
       removeListener: function removeListener(element, type, listener, self, capture) {
         return qx.event.Registration.removeListener(element, type, listener, self, capture);
       },
+
       /**
        * Removes an event listener from an event target by an id returned by
        * {@link #addListener}
@@ -163,6 +166,7 @@
       removeListenerById: function removeListenerById(target, id) {
         return qx.event.Registration.removeListenerById(target, id);
       },
+
       /**
        * Check whether there are one or more listeners for an event type
        * registered at the element.
@@ -176,6 +180,7 @@
       hasListener: function hasListener(element, type, capture) {
         return qx.event.Registration.hasListener(element, type, capture);
       },
+
       /**
        * Focuses the given element. The element needs to have a positive <code>tabIndex</code> value.
        *
@@ -184,6 +189,7 @@
       focus: function focus(element) {
         qx.event.Registration.getManager(element).getHandler(qx.event.handler.Focus).focus(element);
       },
+
       /**
        * Blurs the given element
        *
@@ -192,6 +198,7 @@
       blur: function blur(element) {
         qx.event.Registration.getManager(element).getHandler(qx.event.handler.Focus).blur(element);
       },
+
       /**
        * Activates the given element. The active element receives all key board events.
        *
@@ -200,6 +207,7 @@
       activate: function activate(element) {
         qx.event.Registration.getManager(element).getHandler(qx.event.handler.Focus).activate(element);
       },
+
       /**
        * Deactivates the given element. The active element receives all key board events.
        *
@@ -208,6 +216,7 @@
       deactivate: function deactivate(element) {
         qx.event.Registration.getManager(element).getHandler(qx.event.handler.Focus).deactivate(element);
       },
+
       /**
        * Captures the given element
        *
@@ -219,6 +228,7 @@
       capture: function capture(element, containerCapture) {
         qx.event.Registration.getManager(element).getDispatcher(qx.event.dispatch.MouseCapture).activateCapture(element, containerCapture);
       },
+
       /**
        * Releases the given element (from a previous {@link #capture} call)
        *
@@ -227,11 +237,13 @@
       releaseCapture: function releaseCapture(element) {
         qx.event.Registration.getManager(element).getDispatcher(qx.event.dispatch.MouseCapture).releaseCapture(element);
       },
+
       /*
       ---------------------------------------------------------------------------
         UTILS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Clone given DOM element. May optionally clone all attached
        * events (recursively) as well.
@@ -242,57 +254,59 @@
        */
       clone: function clone(element, events) {
         var clone;
+
         if (events || qx.core.Environment.get("engine.name") == "mshtml" && !qx.xml.Document.isXmlDocument(element)) {
           var mgr = qx.event.Registration.getManager(element);
           var all = qx.dom.Hierarchy.getDescendants(element);
           all.push(element);
-        }
-
-        // IE copies events bound via attachEvent() when
+        } // IE copies events bound via attachEvent() when
         // using cloneNode(). Calling detachEvent() on the
         // clone will also remove the events from the original.
         //
         // In order to get around this, we detach all locally
         // attached events first, do the cloning and recover
         // them afterwards again.
+
+
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           for (var i = 0, l = all.length; i < l; i++) {
             mgr.toggleAttachedEvents(all[i], false);
           }
-        }
+        } // Do the native cloning
 
-        // Do the native cloning
-        var clone = element.cloneNode(true);
 
-        // Recover events on original elements
+        var clone = element.cloneNode(true); // Recover events on original elements
+
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           for (var i = 0, l = all.length; i < l; i++) {
             mgr.toggleAttachedEvents(all[i], true);
           }
-        }
+        } // Attach events from original element
 
-        // Attach events from original element
+
         if (events === true) {
           // Produce recursive list of elements in the clone
           var cloneAll = qx.dom.Hierarchy.getDescendants(clone);
-          cloneAll.push(clone);
+          cloneAll.push(clone); // Process all elements and copy over listeners
 
-          // Process all elements and copy over listeners
           var eventList, cloneElem, origElem, eventEntry;
+
           for (var i = 0, il = all.length; i < il; i++) {
             origElem = all[i];
             eventList = mgr.serializeListeners(origElem);
+
             if (eventList.length > 0) {
               cloneElem = cloneAll[i];
+
               for (var j = 0, jl = eventList.length; j < jl; j++) {
                 eventEntry = eventList[j];
                 mgr.addListener(cloneElem, eventEntry.type, eventEntry.handler, eventEntry.self, eventEntry.capture);
               }
             }
           }
-        }
+        } // Finally return the clone
 
-        // Finally return the clone
+
         return clone;
       }
     }
@@ -300,4 +314,4 @@
   qx.bom.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362724396
+//# sourceMappingURL=Element.js.map?dt=1685978106712

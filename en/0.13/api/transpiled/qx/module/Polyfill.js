@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,4 +66,4 @@
   qx.module.Polyfill.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Polyfill.js.map?dt=1677362746353
+//# sourceMappingURL=Polyfill.js.map?dt=1685978129203

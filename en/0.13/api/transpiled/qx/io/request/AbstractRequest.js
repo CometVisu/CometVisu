@@ -46,6 +46,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,17 +85,23 @@
     type: "abstract",
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
+
     /**
      * @param url {String?} The URL of the resource to request.
      */
     construct: function construct(url) {
       qx.core.Object.constructor.call(this);
+
       if (url !== undefined) {
         this.setUrl(url);
       }
+
       this.__P_259_0 = {};
+
       var transport = this._transport = this._createTransport();
+
       this._setPhase("unsent");
+
       this.__P_259_1 = qx.lang.Function.bind(this._onReadyStateChange, this);
       this.__P_259_2 = qx.lang.Function.bind(this._onLoad, this);
       this.__P_259_3 = qx.lang.Function.bind(this._onLoadEnd, this);
@@ -113,39 +120,48 @@
        * Fired on every change of the transport’s readyState.
        */
       readyStateChange: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error and transport’s status
        * indicates success.
        */
       success: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error.
        */
       load: "qx.event.type.Event",
+
       /**
        * Fired when request completes with or without error.
        */
       loadEnd: "qx.event.type.Event",
+
       /**
        * Fired when request is aborted.
        */
       abort: "qx.event.type.Event",
+
       /**
        * Fired when request reaches timeout limit.
        */
       timeout: "qx.event.type.Event",
+
       /**
        * Fired when request completes with error.
        */
       error: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error but erroneous HTTP status.
        */
       statusError: "qx.event.type.Event",
+
       /**
        * Fired when the configured parser runs into an unrecoverable error.
        */
       parseError: "qx.event.type.Data",
+
       /**
        * Fired on timeout, error or remote error.
        *
@@ -153,6 +169,7 @@
        * to handle error related events in a more fine-grained approach.
        */
       fail: "qx.event.type.Event",
+
       /**
        * Fired on change of the parsed response.
        *
@@ -174,6 +191,7 @@
        *
        */
       changeResponse: "qx.event.type.Data",
+
       /**
        * Fired on change of the phase.
        */
@@ -190,6 +208,7 @@
       url: {
         check: "String"
       },
+
       /**
        * Timeout limit in milliseconds. Default (0) means no limit.
        */
@@ -198,6 +217,7 @@
         nullable: true,
         init: 0
       },
+
       /**
        * Data to be sent as part of the request.
        *
@@ -228,6 +248,7 @@
         },
         nullable: true
       },
+
       /**
        * Authentication delegate.
        *
@@ -248,39 +269,48 @@
       __P_259_4: null,
       __P_259_5: null,
       __P_259_6: null,
+
       /**
        * Parsed response.
        */
       __P_259_7: null,
+
       /**
        * Abort flag.
        */
       __P_259_8: null,
+
       /**
        * Current phase.
        */
       __P_259_9: null,
+
       /**
        * Request headers.
        */
       __P_259_0: null,
+
       /**
        * Request headers (deprecated).
        */
       __P_259_10: null,
+
       /**
        * Holds transport.
        */
       _transport: null,
+
       /**
        * Holds information about the parser status for the last request.
        */
       _parserFailed: false,
+
       /*
       ---------------------------------------------------------------------------
         CONFIGURE TRANSPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Create and return transport.
        *
@@ -293,6 +323,7 @@
       _createTransport: function _createTransport() {
         throw new Error("Abstract method call");
       },
+
       /**
        * Get configured URL.
        *
@@ -306,6 +337,7 @@
        * @return {String} The configured URL.
        */
       _getConfiguredUrl: function _getConfiguredUrl() {},
+
       /**
        * Get configuration related request headers.
        *
@@ -315,6 +347,7 @@
        * @return {Map} Map of request headers.
        */
       _getConfiguredRequestHeaders: function _getConfiguredRequestHeaders() {},
+
       /**
        * Get parsed response.
        *
@@ -328,6 +361,7 @@
       _getParsedResponse: function _getParsedResponse() {
         throw new Error("Abstract method call");
       },
+
       /**
        * Get method.
        *
@@ -339,6 +373,7 @@
       _getMethod: function _getMethod() {
         return "GET";
       },
+
       /**
        * Whether async.
        *
@@ -350,62 +385,66 @@
       _isAsync: function _isAsync() {
         return true;
       },
+
       /*
       ---------------------------------------------------------------------------
         INTERACT WITH TRANSPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Send request.
        */
       send: function send() {
         var transport = this._transport,
-          url,
-          method,
-          async,
-          requestData;
-
-        //
+            url,
+            method,
+            async,
+            requestData; //
         // Open request
         //
 
-        url = this._getConfiguredUrl();
-
-        // Drop fragment (anchor) from URL as per
+        url = this._getConfiguredUrl(); // Drop fragment (anchor) from URL as per
         // http://www.w3.org/TR/XMLHttpRequest/#the-open-method
+
         if (/\#/.test(url)) {
           url = url.replace(/\#.*/, "");
         }
-        transport.timeout = this.getTimeout();
 
-        // Support transports with enhanced feature set
+        transport.timeout = this.getTimeout(); // Support transports with enhanced feature set
+
         method = this._getMethod();
-        async = this._isAsync();
+        async = this._isAsync(); // Open
 
-        // Open
         if (qx.core.Environment.get("qx.debug.io")) {
           this.debug("Open low-level request with method: " + method + ", url: " + url + ", async: " + async);
         }
-        transport.open(method, url, async);
-        this._setPhase("opened");
 
-        //
+        transport.open(method, url, async);
+
+        this._setPhase("opened"); //
         // Send request
         //
 
+
         requestData = this.getRequestData();
+
         if (["ArrayBuffer", "Blob", "FormData"].indexOf(qx.Bootstrap.getClass(requestData)) == -1) {
           requestData = this._serializeData(requestData);
         }
-        this._setRequestHeaders();
 
-        // Send
+        this._setRequestHeaders(); // Send
+
+
         if (qx.core.Environment.get("qx.debug.io")) {
           this.debug("Send low-level request");
         }
+
         method == "GET" ? transport.send() : transport.send(requestData);
+
         this._setPhase("sent");
       },
+
       /**
        * The same as send() but also return a `qx.Promise` object. The promise
        * is resolved to this object if the request is successful.
@@ -423,9 +462,8 @@
        */
       sendWithPromise: function sendWithPromise(context) {
         if (qx.core.Environment.get("qx.promise")) {
-          context = context || this;
+          context = context || this; // save this object's context
 
-          // save this object's context
           var req = this;
           var promise = new qx.Promise(function (resolve, reject) {
             var listeners = [];
@@ -475,13 +513,13 @@
               req.abort();
             }
           });
-          return promise;
-          // eslint-disable-next-line no-else-return
+          return promise; // eslint-disable-next-line no-else-return
         } else {
           // fail loudly
           throw new qx.type.BaseError("Error", "Environment setting qx.promise is set to false.");
         }
       },
+
       /**
        * Abort request.
        */
@@ -489,17 +527,20 @@
         if (qx.core.Environment.get("qx.debug.io")) {
           this.debug("Abort request");
         }
-        this.__P_259_8 = true;
 
-        // Update phase to "abort" before user handler are invoked [BUG #5485]
+        this.__P_259_8 = true; // Update phase to "abort" before user handler are invoked [BUG #5485]
+
         this.__P_259_9 = "abort";
+
         this._transport.abort();
       },
+
       /*
       ---------------------------------------------------------------------------
        REQUEST HEADERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Apply configured request headers to transport.
        *
@@ -508,29 +549,31 @@
        */
       _setRequestHeaders: function _setRequestHeaders() {
         var transport = this._transport,
-          requestHeaders = this._getAllRequestHeaders();
+            requestHeaders = this._getAllRequestHeaders();
+
         for (var key in requestHeaders) {
           transport.setRequestHeader(key, requestHeaders[key]);
         }
       },
+
       /**
        * Get all request headers.
        *
        * @return {Map} All request headers.
        */
       _getAllRequestHeaders: function _getAllRequestHeaders() {
-        var requestHeaders = {};
-        // Transport specific headers
-        qx.lang.Object.mergeWith(requestHeaders, this._getConfiguredRequestHeaders());
+        var requestHeaders = {}; // Transport specific headers
 
-        // Authentication delegate
-        qx.lang.Object.mergeWith(requestHeaders, this.__P_259_11());
-        // User-defined, requestHeaders property (deprecated)
-        qx.lang.Object.mergeWith(requestHeaders, this.__P_259_10);
-        // User-defined
+        qx.lang.Object.mergeWith(requestHeaders, this._getConfiguredRequestHeaders()); // Authentication delegate
+
+        qx.lang.Object.mergeWith(requestHeaders, this.__P_259_11()); // User-defined, requestHeaders property (deprecated)
+
+        qx.lang.Object.mergeWith(requestHeaders, this.__P_259_10); // User-defined
+
         qx.lang.Object.mergeWith(requestHeaders, this.__P_259_0);
         return requestHeaders;
       },
+
       /**
        * Retrieve authentication headers from auth delegate.
        *
@@ -538,7 +581,8 @@
        */
       __P_259_11: function __P_259_11() {
         var auth = this.getAuthentication(),
-          headers = {};
+            headers = {};
+
         if (auth) {
           auth.getAuthHeaders().forEach(function (header) {
             headers[header.key] = header.value;
@@ -546,6 +590,7 @@
           return headers;
         }
       },
+
       /**
        * Set a request header.
        *
@@ -557,6 +602,7 @@
       setRequestHeader: function setRequestHeader(key, value) {
         this.__P_259_0[key] = value;
       },
+
       /**
        * Get a request header.
        *
@@ -566,6 +612,7 @@
       getRequestHeader: function getRequestHeader(key) {
         return this.__P_259_0[key];
       },
+
       /**
        * Remove a request header.
        *
@@ -578,11 +625,13 @@
           delete this.__P_259_0[key];
         }
       },
+
       /*
       ---------------------------------------------------------------------------
        QUERY TRANSPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Get low-level transport.
        *
@@ -607,6 +656,7 @@
       getTransport: function getTransport() {
         return this._transport;
       },
+
       /**
        * Get current ready state.
        *
@@ -622,6 +672,7 @@
       getReadyState: function getReadyState() {
         return this._transport.readyState;
       },
+
       /**
        * Get current phase.
        *
@@ -644,6 +695,7 @@
       getPhase: function getPhase() {
         return this.__P_259_9;
       },
+
       /**
        * Get status code.
        *
@@ -652,6 +704,7 @@
       getStatus: function getStatus() {
         return this._transport.status;
       },
+
       /**
        * Get status text.
        *
@@ -660,6 +713,7 @@
       getStatusText: function getStatusText() {
         return this._transport.statusText;
       },
+
       /**
        * Get raw (unprocessed) response.
        *
@@ -668,6 +722,7 @@
       getResponseText: function getResponseText() {
         return this._transport.responseText;
       },
+
       /**
        * Get all response headers from response.
        *
@@ -676,6 +731,7 @@
       getAllResponseHeaders: function getAllResponseHeaders() {
         return this._transport.getAllResponseHeaders();
       },
+
       /**
        * Get a single response header from response.
        *
@@ -687,6 +743,7 @@
       getResponseHeader: function getResponseHeader(key) {
         return this._transport.getResponseHeader(key);
       },
+
       /**
        * Override the content type response header from response.
        *
@@ -697,6 +754,7 @@
       overrideResponseContentType: function overrideResponseContentType(contentType) {
         return this._transport.overrideMimeType(contentType);
       },
+
       /**
        * Get the content type response header from response.
        *
@@ -706,17 +764,20 @@
       getResponseContentType: function getResponseContentType() {
         return this.getResponseHeader("Content-Type");
       },
+
       /**
        * Whether request completed (is done).
        */
       isDone: function isDone() {
         return this.getReadyState() === 4;
       },
+
       /*
       ---------------------------------------------------------------------------
         RESPONSE
       ---------------------------------------------------------------------------
       */
+
       /**
        * Get parsed response.
        *
@@ -725,6 +786,7 @@
       getResponse: function getResponse() {
         return this.__P_259_7;
       },
+
       /**
        * Set response.
        *
@@ -732,120 +794,134 @@
        */
       _setResponse: function _setResponse(response) {
         var oldResponse = response;
+
         if (this.__P_259_7 !== response) {
           this.__P_259_7 = response;
           this.fireEvent("changeResponse", qx.event.type.Data, [this.__P_259_7, oldResponse]);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLING
       ---------------------------------------------------------------------------
       */
+
       /**
        * Handle "readyStateChange" event.
        */
       _onReadyStateChange: function _onReadyStateChange() {
         var readyState = this.getReadyState();
+
         if (qx.core.Environment.get("qx.debug.io")) {
           this.debug("Fire readyState: " + readyState);
         }
-        this.fireEvent("readyStateChange");
 
-        // Transport switches to readyState DONE on abort and may already
+        this.fireEvent("readyStateChange"); // Transport switches to readyState DONE on abort and may already
         // have successful HTTP status when response is served from cache.
         //
         // Not fire custom event "loading" (or "success", when cached).
+
         if (this.__P_259_8) {
           return;
         }
+
         if (readyState === 3) {
           this._setPhase("loading");
         }
+
         if (this.isDone()) {
           this.__P_259_12();
         }
       },
+
       /**
        * Called internally when readyState is DONE.
        */
       __P_259_12: function __P_259_12() {
         if (qx.core.Environment.get("qx.debug.io")) {
           this.debug("Request completed with HTTP status: " + this.getStatus());
-        }
+        } // Event "load" fired in onLoad
 
-        // Event "load" fired in onLoad
-        this._setPhase("load");
 
-        // Successful HTTP status
+        this._setPhase("load"); // Successful HTTP status
+
+
         if (qx.util.Request.isSuccessful(this.getStatus())) {
           // Parse response
           if (qx.core.Environment.get("qx.debug.io")) {
             this.debug("Response is of type: '" + this.getResponseContentType() + "'");
           }
+
           this._setResponse(this._getParsedResponse());
+
           if (this._parserFailed) {
             this.fireEvent("fail");
           } else {
             this._fireStatefulEvent("success");
-          }
+          } // Erroneous HTTP status
 
-          // Erroneous HTTP status
         } else {
           try {
             this._setResponse(this._getParsedResponse());
-          } catch (e) {
-            // ignore if it does not work
-          }
+          } catch (e) {// ignore if it does not work
+          } // A remote error failure
 
-          // A remote error failure
+
           if (this.getStatus() !== 0) {
             this._fireStatefulEvent("statusError");
+
             this.fireEvent("fail");
           }
         }
       },
+
       /**
        * Handle "load" event.
        */
       _onLoad: function _onLoad() {
         this.fireEvent("load");
       },
+
       /**
        * Handle "loadEnd" event.
        */
       _onLoadEnd: function _onLoadEnd() {
         this.fireEvent("loadEnd");
       },
+
       /**
        * Handle "abort" event.
        */
       _onAbort: function _onAbort() {
         this._fireStatefulEvent("abort");
       },
+
       /**
        * Handle "timeout" event.
        */
       _onTimeout: function _onTimeout() {
-        this._fireStatefulEvent("timeout");
+        this._fireStatefulEvent("timeout"); // A network error failure
 
-        // A network error failure
+
         this.fireEvent("fail");
       },
+
       /**
        * Handle "error" event.
        */
       _onError: function _onError() {
-        this.fireEvent("error");
+        this.fireEvent("error"); // A network error failure
 
-        // A network error failure
         this.fireEvent("fail");
       },
+
       /*
       ---------------------------------------------------------------------------
         INTERNAL / HELPERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Fire stateful event.
        *
@@ -855,8 +931,10 @@
        */
       _fireStatefulEvent: function _fireStatefulEvent(evt) {
         this._setPhase(evt);
+
         this.fireEvent(evt);
       },
+
       /**
        * Set phase.
        *
@@ -867,6 +945,7 @@
         this.__P_259_9 = phase;
         this.fireDataEvent("changePhase", phase, previousPhase);
       },
+
       /**
        * Serialize data.
        *
@@ -875,22 +954,28 @@
        */
       _serializeData: function _serializeData(data) {
         var isPost = typeof this.getMethod !== "undefined" && this.getMethod() == "POST",
-          isJson = /application\/.*\+?json/.test(this.getRequestHeader("Content-Type"));
+            isJson = /application\/.*\+?json/.test(this.getRequestHeader("Content-Type"));
+
         if (!data) {
           return null;
         }
+
         if (qx.lang.Type.isString(data)) {
           return data;
         }
+
         if (qx.Class.isSubClassOf(data.constructor, qx.core.Object)) {
           return qx.util.Serializer.toUriParameter(data);
         }
+
         if (isJson && (qx.lang.Type.isObject(data) || qx.lang.Type.isArray(data))) {
           return qx.lang.Json.stringify(data);
         }
+
         if (qx.lang.Type.isObject(data)) {
           return qx.util.Uri.toParameter(data, isPost);
         }
+
         return null;
       }
     },
@@ -899,19 +984,20 @@
     },
     destruct: function destruct() {
       var transport = this._transport,
-        noop = function noop() {};
-      if (this._transport) {
-        transport.onreadystatechange = transport.onload = transport.onloadend = transport.onabort = transport.ontimeout = transport.onerror = noop;
+          noop = function noop() {};
 
-        // [BUG #8315] dispose asynchronously to work with Sinon.js fake server
+      if (this._transport) {
+        transport.onreadystatechange = transport.onload = transport.onloadend = transport.onabort = transport.ontimeout = transport.onerror = noop; // [BUG #8315] dispose asynchronously to work with Sinon.js fake server
+
         window.setTimeout(function () {
           transport.dispose();
         }, 0);
       }
+
       this.__P_259_7 = null;
     }
   });
   qx.io.request.AbstractRequest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRequest.js.map?dt=1677362743201
+//# sourceMappingURL=AbstractRequest.js.map?dt=1685978126214

@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ProgressBar.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -40,6 +41,7 @@
    */
   qx.Class.define('cv.ui.util.ProgressBar', {
     extend: qx.core.Object,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -47,8 +49,10 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
+
       this._createDomElement();
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -61,6 +65,7 @@
         apply: '_applyValue'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -71,6 +76,7 @@
       __P_575_1: null,
       _applyValue: function _applyValue(value) {
         var rect = this.__P_575_0.getBoundingClientRect();
+
         var totalWidth = Math.round(rect.right - rect.left);
         this.__P_575_1.style.width = Math.round(totalWidth * value / 100) + 'px';
       },
@@ -93,4 +99,4 @@
   cv.ui.util.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1677362780864
+//# sourceMappingURL=ProgressBar.js.map?dt=1685978163275

@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -29,6 +30,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * This mixin offers the selection of the model properties.
    * It can only be included if the object including it implements the
@@ -38,10 +40,10 @@
   qx.Mixin.define("qx.ui.form.MModelSelection", {
     construct: function construct() {
       // create the selection array
-      this.__P_352_0 = new qx.data.Array();
+      this.__P_352_0 = new qx.data.Array(); // listen to the changes
 
-      // listen to the changes
       this.__P_352_0.addListener("change", this.__P_352_1, this);
+
       this.addListener("changeSelection", this.__P_352_2, this);
     },
     events: {
@@ -54,6 +56,7 @@
     members: {
       __P_352_0: null,
       __P_352_3: false,
+
       /**
        * Handler for the selection change of the including class e.g. SelectBox,
        * List, ...
@@ -63,24 +66,28 @@
         if (this.__P_352_3) {
           return;
         }
-        var data = this.getSelection();
 
-        // create the array with the modes inside
+        var data = this.getSelection(); // create the array with the modes inside
+
         var modelSelection = [];
+
         for (var i = 0; i < data.length; i++) {
-          var item = data[i];
-          // fallback if getModel is not implemented
+          var item = data[i]; // fallback if getModel is not implemented
+
           var model = item.getModel ? item.getModel() : null;
+
           if (model !== null) {
             modelSelection.push(model);
           }
         }
+
         try {
           this.setModelSelection(modelSelection);
         } catch (e) {
           throw new Error("Could not set the model selection. Maybe your models are not unique? " + e);
         }
       },
+
       /**
        * Listener for the change of the internal model selection data array.
        */
@@ -88,29 +95,35 @@
         this.__P_352_3 = true;
         var selectables = this.getSelectables(true);
         var itemSelection = [];
+
         var modelSelection = this.__P_352_0.toArray();
+
         for (var i = 0; i < modelSelection.length; i++) {
           var model = modelSelection[i];
+
           for (var j = 0; j < selectables.length; j++) {
-            var selectable = selectables[j];
-            // fallback if getModel is not implemented
+            var selectable = selectables[j]; // fallback if getModel is not implemented
+
             var selectableModel = selectable.getModel ? selectable.getModel() : null;
+
             if (model === selectableModel) {
               itemSelection.push(selectable);
               break;
             }
           }
         }
-        this.setSelection(itemSelection);
-        this.__P_352_3 = false;
 
-        // check if the setting has worked
+        this.setSelection(itemSelection);
+        this.__P_352_3 = false; // check if the setting has worked
+
         var currentSelection = this.getSelection();
+
         if (!qx.lang.Array.equals(currentSelection, itemSelection)) {
           // if not, set the actual selection
           this.__P_352_2();
         }
       },
+
       /**
        * Returns always an array of the models of the selected items. If no
        * item is selected or no model is given, the array will be empty.
@@ -123,6 +136,7 @@
       getModelSelection: function getModelSelection() {
         return this.__P_352_0;
       },
+
       /**
        * Takes the given models in the array and searches for the corresponding
        * selectables. If an selectable does have that model attached, it will be
@@ -140,13 +154,17 @@
         // check for null values
         if (!modelSelection) {
           this.__P_352_0.removeAll();
+
           return;
         }
+
         // add the first two parameter
         modelSelection.unshift(this.__P_352_0.getLength()); // remove index
+
         modelSelection.unshift(0); // start index
 
         var returnArray = this.__P_352_0.splice.apply(this.__P_352_0, modelSelection);
+
         returnArray.dispose();
       }
     },
@@ -157,4 +175,4 @@
   qx.ui.form.MModelSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MModelSelection.js.map?dt=1677362757547
+//# sourceMappingURL=MModelSelection.js.map?dt=1685978138421

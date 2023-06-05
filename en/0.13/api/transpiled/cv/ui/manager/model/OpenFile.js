@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* OpenFile.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,6 +40,7 @@
    */
   qx.Class.define('cv.ui.manager.model.OpenFile', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -46,13 +48,16 @@
     */
     construct: function construct(file, handlerId) {
       qx.core.Object.constructor.call(this);
+
       if (file) {
         this.setFile(file);
       }
+
       if (handlerId) {
         this.setHandlerId(handlerId);
       }
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -74,6 +79,7 @@
         check: 'Map',
         nullable: true
       },
+
       /**
        * The opening state: permanent false behaves like a quick preview, where
        * the current file content is replaces by the next selected file on single click.
@@ -84,6 +90,7 @@
         init: false,
         event: 'changePermanent'
       },
+
       /**
        * Icon to show in e.g. the File-Tab
        */
@@ -98,6 +105,7 @@
         event: 'changeCloseable'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -111,18 +119,23 @@
           old.removeRelatedBindings(this);
           this.__P_44_0 = null;
         }
+
         if (value) {
           value.addListener('changeModified', this._maintainPermanent, this);
         }
+
         this._maintainIcon();
       },
       _maintainIcon: function _maintainIcon() {
         // use the handlers icon is there is one, otherwise the file items icon
         var file = this.getFile();
+
         if (this.getHandlerId() && file) {
           var handlerClass = qx.Class.getByName(this.getHandlerId());
+
           if (handlerClass && handlerClass.ICON) {
             this.setIcon(handlerClass.ICON);
+
             if (this.__P_44_0) {
               file.removeBinding(this.__P_44_0);
               this.__P_44_0 = null;
@@ -144,11 +157,13 @@
         var file = this.getFile();
         var handlerId = this.getHandlerId();
         var fileHandler;
+
         if (handlerId) {
           fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
         } else {
           fileHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
         }
+
         if (file.isModified()) {
           if (fileHandler && fileHandler.instance && qx.Interface.objectImplements(fileHandler.instance, cv.ui.manager.editor.IEditor)) {
             fileHandler.instance.save(callback, overrideHash);
@@ -160,4 +175,4 @@
   cv.ui.manager.model.OpenFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenFile.js.map?dt=1677362714480
+//# sourceMappingURL=OpenFile.js.map?dt=1685978097245

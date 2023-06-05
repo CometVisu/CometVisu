@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -31,7 +32,6 @@
        * Daniel Wagner (d_wagner)
   
   ************************************************************************ */
-
   qx.Class.define("qxl.apiviewer.dao.ChildControl", {
     extend: qxl.apiviewer.dao.ClassItem,
     construct: function construct(meta, parentClass) {
@@ -46,4 +46,4 @@
   qxl.apiviewer.dao.ChildControl.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ChildControl.js.map?dt=1677362781510
+//# sourceMappingURL=ChildControl.js.map?dt=1685978163998

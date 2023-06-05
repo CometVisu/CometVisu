@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* SvgIcon.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,6 +39,7 @@
    */
   qx.Class.define('cv.ui.manager.viewer.SvgIcon', {
     extend: qx.ui.core.Widget,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -45,10 +47,12 @@
     */
     construct: function construct(name) {
       qx.ui.core.Widget.constructor.call(this);
+
       if (name) {
         this.setName(name);
       }
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -65,6 +69,7 @@
         init: 'cv-svg-icon'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -75,17 +80,21 @@
       __P_55_1: null,
       _applyName: function _applyName(value) {
         var _this = this;
+
         if (value) {
           if (!this.__P_55_0) {
             this.__P_55_0 = qx.util.ResourceManager.getInstance().toUri('icons/knx-uf-iconset.svg');
           }
+
           if (!this.__P_55_1.getDomElement()) {
             this.__P_55_1.addListenerOnce('appear', function () {
               _this._applyName(value);
             });
+
             return;
-          }
-          // qx.xml.Element.setAttributeNS(document, this.__useElement.getDomElement(), 'http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
+          } // qx.xml.Element.setAttributeNS(document, this.__useElement.getDomElement(), 'http://www.w3.org/1999/xlink', 'xlink:href', this.__spriteUrl + '#kuf-' + value);
+
+
           this.__P_55_1.getDomElement().setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.__P_55_0 + '#kuf-' + value);
         } else {
           this.__P_55_1.removeAttribute('xlink:href');
@@ -100,6 +109,7 @@
         return svgElem;
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -112,4 +122,4 @@
   cv.ui.manager.viewer.SvgIcon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SvgIcon.js.map?dt=1677362716199
+//# sourceMappingURL=SvgIcon.js.map?dt=1685978098965

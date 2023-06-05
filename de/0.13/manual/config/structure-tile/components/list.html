@@ -123,6 +123,33 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Datenmodell, welches einen Eintrag mit Daten für jedes Element in der Liste enthält und ein Template, welches
 den HTML-Code für die jeweiligen Listen-Elemente definiert. Die List-Komponente erzeugt nun ein HTML-Element, basierend
 auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmodells.</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-js-list.png" src="../../../_images/cv-js-list.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-list</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;model&gt;</span>
+<span class="w">                </span><span class="nt">&lt;script&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">                    for (let i = 0; i &lt; 4; i++) {</span>
+<span class="cp">                        model.push({</span>
+<span class="cp">                            label: &#39;Listeneintrag &#39; + i,</span>
+<span class="cp">                            subLabel: &#39;Zusatztext Nummer &#39; + i</span>
+<span class="cp">                        })</span>
+<span class="cp">                    }]]&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/script&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/model&gt;</span>
+<span class="w">            </span><span class="nt">&lt;template&gt;</span>
+<span class="w">                </span><span class="nt">&lt;li&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>${label}<span class="nt">&lt;/label&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>${subLabel}<span class="nt">&lt;/label&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/li&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/template&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-list&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
 <p>Das Datenmodell wird in diesem Fall aus einfachen JavaScript-Code erzeugt und hat folgenden Inhalt.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
 <span class="w">     </span><span class="p">{</span>
@@ -561,7 +588,7 @@ nicht benutzt werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="13"><dl class="simple">
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p></li>
 </ul>
@@ -600,27 +627,31 @@ nicht benutzt werden.</p>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend</p></td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
 <td><p>Text</p></td>
 <td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
 </tr>
-<tr class="row-even"><td><p>mapping</p></td>
+<tr class="row-odd"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>format</p></td>
+<tr class="row-even"><td><p>format</p></td>
 <td><p>Text</p></td>
 <td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-even"><td><p>delay</p></td>
+<tr class="row-odd"><td><p>delay</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
 </tr>
-<tr class="row-odd"><td><p>send-mode</p></td>
+<tr class="row-even"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
+<tr class="row-odd"><td><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p>
 <ul>
@@ -655,7 +686,7 @@ nicht benutzt werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="13"><dl class="simple">
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p></li>
 </ul>
@@ -694,27 +725,31 @@ nicht benutzt werden.</p>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend</p></td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
 <td><p>Text</p></td>
 <td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
 </tr>
-<tr class="row-even"><td><p>mapping</p></td>
+<tr class="row-odd"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>format</p></td>
+<tr class="row-even"><td><p>format</p></td>
 <td><p>Text</p></td>
 <td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-even"><td><p>delay</p></td>
+<tr class="row-odd"><td><p>delay</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
 </tr>
-<tr class="row-odd"><td><p>send-mode</p></td>
+<tr class="row-even"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
+<tr class="row-odd"><td><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p>
 <ul>
@@ -749,7 +784,7 @@ nicht benutzt werden.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="13"><dl class="simple">
+<tr class="row-odd"><td rowspan="14"><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p></li>
 </ul>
@@ -788,27 +823,31 @@ nicht benutzt werden.</p>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend</p></td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
 <td><p>Text</p></td>
 <td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
 </tr>
-<tr class="row-even"><td><p>mapping</p></td>
+<tr class="row-odd"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>format</p></td>
+<tr class="row-even"><td><p>format</p></td>
 <td><p>Text</p></td>
 <td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-even"><td><p>delay</p></td>
+<tr class="row-odd"><td><p>delay</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
 </tr>
-<tr class="row-odd"><td><p>send-mode</p></td>
+<tr class="row-even"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
+<tr class="row-odd"><td><dl class="simple">
 <dt>cv-list</dt><dd><ul class="simple">
 <li><p>cv-address</p>
 <ul>

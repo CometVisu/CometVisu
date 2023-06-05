@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,11 +40,13 @@
        * @return {Map} Map of decoration styles
        */
       getStyles: function getStyles() {},
+
       /**
        * Returns the configured padding minus the border width.
        * @return {Map} Map of top, right, bottom and left padding values
        */
       getPadding: function getPadding() {},
+
       /**
        * Get the amount of space the decoration needs for its border and padding
        * on each side.
@@ -57,4 +60,4 @@
   qx.ui.decoration.IDecorator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IDecorator.js.map?dt=1677362755561
+//# sourceMappingURL=IDecorator.js.map?dt=1685978136588

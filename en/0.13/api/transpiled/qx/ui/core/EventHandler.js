@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,6 +50,7 @@
   qx.Class.define("qx.ui.core.EventHandler", {
     extend: qx.core.Object,
     implement: qx.event.IEventHandler,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -58,15 +60,16 @@
       qx.core.Object.constructor.call(this);
       this.__P_307_0 = qx.event.Registration.getManager(window);
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_FIRST,
+
       /** @type {Map} Supported event types. Identical to events map of qx.ui.core.Widget */
       SUPPORTED_TYPES: {
         // mouse events
@@ -131,17 +134,21 @@
         pointerup: 1,
         pointercancel: 1
       },
+
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       __P_307_0: null,
+
       /**
        * @type {Map} Supported focus event types
        *
@@ -153,6 +160,7 @@
         focus: 1,
         blur: 1
       },
+
       /**
        * @type {Map} Map of events which should be fired independently from being disabled
        *
@@ -170,6 +178,7 @@
       canHandleEvent: function canHandleEvent(target, type) {
         return target instanceof qx.ui.core.Widget;
       },
+
       /**
        * Dispatches a DOM event on a widget.
        *
@@ -180,115 +189,125 @@
         var domTarget = domEvent.getTarget();
         var widgetTarget = qx.ui.core.Widget.getWidgetByElement(domTarget);
         var targetChanged = false;
+
         while (widgetTarget && widgetTarget.isAnonymous()) {
           var targetChanged = true;
           widgetTarget = widgetTarget.getLayoutParent();
-        }
+        } // don't activate anonymous widgets!
 
-        // don't activate anonymous widgets!
+
         if (widgetTarget && targetChanged && domEvent.getType() == "activate") {
           widgetTarget.getContentElement().activate();
-        }
+        } // Correcting target for focus events
 
-        // Correcting target for focus events
+
         if (this.__P_307_1[domEvent.getType()]) {
-          widgetTarget = widgetTarget && widgetTarget.getFocusTarget();
+          widgetTarget = widgetTarget && widgetTarget.getFocusTarget(); // Whether nothing is returned
 
-          // Whether nothing is returned
           if (!widgetTarget) {
             return;
           }
-        }
+        } // EVENT RELATED TARGET
 
-        // EVENT RELATED TARGET
+
         if (domEvent.getRelatedTarget) {
           var domRelatedTarget = domEvent.getRelatedTarget();
           var widgetRelatedTarget = qx.ui.core.Widget.getWidgetByElement(domRelatedTarget);
+
           while (widgetRelatedTarget && widgetRelatedTarget.isAnonymous()) {
             widgetRelatedTarget = widgetRelatedTarget.getLayoutParent();
           }
+
           if (widgetRelatedTarget) {
             // Correcting target for focus events
             if (this.__P_307_1[domEvent.getType()]) {
               widgetRelatedTarget = widgetRelatedTarget.getFocusTarget();
-            }
+            } // If target and related target are identical ignore the event
 
-            // If target and related target are identical ignore the event
+
             if (widgetRelatedTarget === widgetTarget) {
               return;
             }
           }
-        }
+        } // EVENT CURRENT TARGET
 
-        // EVENT CURRENT TARGET
+
         var currentTarget = domEvent.getCurrentTarget();
         var currentWidget = qx.ui.core.Widget.getWidgetByElement(currentTarget);
+
         if (!currentWidget || currentWidget.isAnonymous()) {
           return;
-        }
+        } // Correcting target for focus events
 
-        // Correcting target for focus events
+
         if (this.__P_307_1[domEvent.getType()]) {
           currentWidget = currentWidget.getFocusTarget();
-        }
+        } // Ignore most events in the disabled state.
 
-        // Ignore most events in the disabled state.
+
         var type = domEvent.getType();
+
         if (!currentWidget || !(currentWidget.isEnabled() || this.__P_307_2[type])) {
           return;
-        }
-
-        // PROCESS LISTENERS
-
+        } // PROCESS LISTENERS
         // Load listeners
+
+
         var capture = domEvent.getEventPhase() == qx.event.type.Event.CAPTURING_PHASE;
+
         var listeners = this.__P_307_0.getListeners(currentWidget, type, capture);
+
         if (domEvent.getEventPhase() == qx.event.type.Event.AT_TARGET) {
           if (!listeners) {
             listeners = [];
           }
+
           var otherListeners = this.__P_307_0.getListeners(currentWidget, type, !capture);
+
           if (otherListeners) {
             listeners = listeners.concat(otherListeners);
           }
         }
+
         if (!listeners || listeners.length === 0) {
           return;
-        }
+        } // Create cloned event with correct target
 
-        // Create cloned event with correct target
+
         var widgetEvent = qx.event.Pool.getInstance().getObject(domEvent.constructor);
         domEvent.clone(widgetEvent);
         widgetEvent.setTarget(widgetTarget);
         widgetEvent.setRelatedTarget(widgetRelatedTarget || null);
-        widgetEvent.setCurrentTarget(currentWidget);
+        widgetEvent.setCurrentTarget(currentWidget); // Keep original target of DOM event, otherwise map it to the original
 
-        // Keep original target of DOM event, otherwise map it to the original
         var orig = domEvent.getOriginalTarget();
+
         if (orig) {
           var widgetOriginalTarget = qx.ui.core.Widget.getWidgetByElement(orig);
+
           while (widgetOriginalTarget && widgetOriginalTarget.isAnonymous()) {
             widgetOriginalTarget = widgetOriginalTarget.getLayoutParent();
           }
+
           widgetEvent.setOriginalTarget(widgetOriginalTarget);
         } else {
           widgetEvent.setOriginalTarget(domTarget);
-        }
+        } // Dispatch it on all listeners
 
-        // Dispatch it on all listeners
+
         var tracker = {};
         qx.event.Utils.then(tracker, function () {
           return qx.event.Utils.series(listeners, function (listener) {
             var context = listener.context || currentWidget;
             return listener.handler.call(context, widgetEvent);
           });
-        });
+        }); // Synchronize propagation stopped/prevent default property
 
-        // Synchronize propagation stopped/prevent default property
         qx.event.Utils.then(tracker, function () {
           if (widgetEvent.getPropagationStopped()) {
             domEvent.stopPropagation();
           }
+
           if (widgetEvent.getDefaultPrevented()) {
             domEvent.preventDefault();
           }
@@ -300,11 +319,13 @@
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         var elem;
+
         if (type === "focus" || type === "blur") {
           elem = target.getFocusElement();
         } else {
           elem = target.getContentElement();
         }
+
         if (elem) {
           elem.addListener(type, this._dispatchEvent, this, capture);
         }
@@ -312,16 +333,19 @@
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var elem;
+
         if (type === "focus" || type === "blur") {
           elem = target.getFocusElement();
         } else {
           elem = target.getContentElement();
         }
+
         if (elem) {
           elem.removeListener(type, this._dispatchEvent, this, capture);
         }
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -330,6 +354,7 @@
     destruct: function destruct() {
       this.__P_307_0 = null;
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -342,4 +367,4 @@
   qx.ui.core.EventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventHandler.js.map?dt=1677362751695
+//# sourceMappingURL=EventHandler.js.map?dt=1685978134134

@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,32 +44,33 @@
    */
   qx.Class.define("qx.log.appender.Element", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param element {Element} DOM element to use for log output.
      */
     construct: function construct(element) {
       qx.core.Object.constructor.call(this);
-      var style = [".qxappender .level-debug{background:white}", ".qxappender .level-info{background:#DEEDFA}", ".qxappender .level-warn{background:#FFF7D5}", ".qxappender .level-error{background:#FFE2D5}", ".qxappender .level-user{background:#E3EFE9}", ".qxappender .type-string{color:black;font-weight:normal;}", ".qxappender .type-number{color:#155791;font-weight:normal;}", ".qxappender .type-boolean{color:#15BC91;font-weight:normal;}", ".qxappender .type-array{color:#CC3E8A;font-weight:bold;}", ".qxappender .type-map{color:#CC3E8A;font-weight:bold;}", ".qxappender .type-key{color:#565656;font-style:italic}", ".qxappender .type-class{color:#5F3E8A;font-weight:bold}", ".qxappender .type-instance{color:#565656;font-weight:bold}", ".qxappender .type-stringify{color:#565656;font-weight:bold}"];
+      var style = [".qxappender .level-debug{background:white}", ".qxappender .level-info{background:#DEEDFA}", ".qxappender .level-warn{background:#FFF7D5}", ".qxappender .level-error{background:#FFE2D5}", ".qxappender .level-user{background:#E3EFE9}", ".qxappender .type-string{color:black;font-weight:normal;}", ".qxappender .type-number{color:#155791;font-weight:normal;}", ".qxappender .type-boolean{color:#15BC91;font-weight:normal;}", ".qxappender .type-array{color:#CC3E8A;font-weight:bold;}", ".qxappender .type-map{color:#CC3E8A;font-weight:bold;}", ".qxappender .type-key{color:#565656;font-style:italic}", ".qxappender .type-class{color:#5F3E8A;font-weight:bold}", ".qxappender .type-instance{color:#565656;font-weight:bold}", ".qxappender .type-stringify{color:#565656;font-weight:bold}"]; // Include stylesheet
 
-      // Include stylesheet
-      qx.bom.Stylesheet.createElement(style.join(""));
+      qx.bom.Stylesheet.createElement(style.join("")); // Finally register to log engine
 
-      // Finally register to log engine
       qx.log.Logger.register(this);
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_274_0: null,
+
       /**
        * Configures the DOM element to use.
        *
@@ -76,28 +78,28 @@
        */
       setElement: function setElement(element) {
         // Clear old element
-        this.clear();
+        this.clear(); // Add classname
 
-        // Add classname
         if (element) {
           qx.bom.element.Class.add(element, "qxappender");
-        }
+        } // Link to element
 
-        // Link to element
+
         this.__P_274_0 = element;
       },
+
       /**
        * Clears the current output.
        *
        */
       clear: function clear() {
-        var elem = this.__P_274_0;
+        var elem = this.__P_274_0; // Remove all messages
 
-        // Remove all messages
         if (elem) {
           elem.innerHTML = "";
         }
       },
+
       /**
        * Processes a single log entry
        *
@@ -106,15 +108,15 @@
        */
       process: function process(entry) {
         var elem = this.__P_274_0;
+
         if (!elem) {
           return;
-        }
+        } // Append new content
 
-        // Append new content
+
         var formatter = qx.log.appender.Formatter.getFormatter();
-        elem.appendChild(formatter.toHtml(entry));
+        elem.appendChild(formatter.toHtml(entry)); // Scroll down
 
-        // Scroll down
         elem.scrollTop = elem.scrollHeight;
       }
     }
@@ -122,4 +124,4 @@
   qx.log.appender.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362745291
+//# sourceMappingURL=Element.js.map?dt=1685978128237

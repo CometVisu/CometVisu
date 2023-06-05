@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* HasChildren.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -47,14 +48,16 @@
     ******************************************************
     */
     construct: function construct(props) {
-      var children = [];
-      // create children
+      var children = []; // create children
+
       var model = cv.data.Model.getInstance();
+
       if (cv.Config.lazyLoading === false || cv.Config.treePath.indexOf(props.path) >= 0) {
         // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
         props.children.forEach(function (path) {
           var data = model.getWidgetData(path);
           var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
+
           if (widget) {
             children.push(widget);
             widget.setParentWidget(this);
@@ -63,6 +66,7 @@
         this.setChildWidgets(children);
       }
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -76,6 +80,7 @@
         check: 'Array',
         init: []
       },
+
       /**
        * Array with child widget objects
        */
@@ -84,6 +89,7 @@
         init: []
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -101,19 +107,21 @@
         var container = '';
         this.getChildWidgets().forEach(function (widget) {
           var subelement = widget.getDomString();
+
           if (undefined === subelement) {
             return;
           }
+
           if (noWidgetContainer === true) {
             container += subelement;
           } else {
-            container += '<div class="widget_container' + (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') + (widget.getContainerClass && widget.getContainerClass() ? ' ' + widget.getContainerClass() : '') + (widget.get$$type() === 'break' ? ' break_container' : '') +
-            // special case for break widget
+            container += '<div class="widget_container' + (widget.getRowspanClass ? ' ' + widget.getRowspanClass() : '') + (widget.getContainerClass && widget.getContainerClass() ? ' ' + widget.getContainerClass() : '') + (widget.get$$type() === 'break' ? ' break_container' : '') + // special case for break widget
             '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
           }
         }, this);
         return container;
       },
+
       /**
        * Create a collection of html elements of the children
        * @returns {DocumentFragment}
@@ -124,6 +132,7 @@
           var subelement = widget.getDom();
           subelement.setAttribute('id', widget.getPath());
           subelement.setAttribute('data-type', widget.get$$type());
+
           if (subelement) {
             fragment.appendChild(subelement);
           }
@@ -135,4 +144,4 @@
   cv.ui.common.HasChildren.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasChildren.js.map?dt=1677362776425
+//# sourceMappingURL=HasChildren.js.map?dt=1685978158548

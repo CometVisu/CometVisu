@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +36,12 @@
    */
   qx.Class.define("qx.ui.virtual.selection.CellRectangle", {
     extend: qx.ui.virtual.selection.Abstract,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the number of all items in the pane. This number may contain
@@ -51,6 +52,7 @@
       _getItemCount: function _getItemCount() {
         return this._pane.getRowConfig().getItemCount() * this._pane.getColumnConfig().getItemCount();
       },
+
       /*
       ---------------------------------------------------------------------------
         IMPLEMENT ABSTRACT METHODS
@@ -59,27 +61,34 @@
       // overridden
       _getSelectableFromPointerEvent: function _getSelectableFromPointerEvent(event) {
         var cell = this._pane.getCellAtPosition(event.getDocumentLeft(), event.getDocumentTop());
+
         if (!cell) {
           return null;
         }
+
         return this._isSelectable(cell) ? cell : null;
       },
       // overridden
       getSelectables: function getSelectables(all) {
         var selectables = [];
+
         var rowCount = this._pane.getRowConfig().getItemCount();
+
         var columnCount = this._pane.getColumnConfig().getItemCount();
+
         for (var row = 0; row < rowCount; row++) {
           for (var column = 0; column < columnCount; column++) {
             var cell = {
               row: row,
               column: column
             };
+
             if (this._isSelectable(cell)) {
               selectables.push(cell);
             }
           }
         }
+
         return selectables;
       },
       // overridden
@@ -89,51 +98,62 @@
         var maxRow = Math.max(item1.row, item2.row);
         var minColumn = Math.min(item1.column, item2.column);
         var maxColumn = Math.max(item1.column, item2.column);
+
         for (var row = minRow; row <= maxRow; row++) {
           for (var column = minColumn; column <= maxColumn; column++) {
             var cell = {
               row: row,
               column: column
             };
+
             if (this._isSelectable(cell)) {
               selectables.push(cell);
             }
           }
         }
+
         return selectables;
       },
       // overridden
       _getFirstSelectable: function _getFirstSelectable() {
         var rowCount = this._pane.getRowConfig().getItemCount();
+
         var columnCount = this._pane.getColumnConfig().getItemCount();
+
         for (var row = 0; row < rowCount; row++) {
           for (var column = 0; column < columnCount; column++) {
             var cell = {
               row: row,
               column: column
             };
+
             if (this._isSelectable(cell)) {
               return cell;
             }
           }
         }
+
         return null;
       },
       // overridden
       _getLastSelectable: function _getLastSelectable() {
         var rowCount = this._pane.getRowConfig().getItemCount();
+
         var columnCount = this._pane.getColumnConfig().getItemCount();
+
         for (var column = columnCount - 1; column >= 0; column--) {
           for (var row = rowCount - 1; row >= 0; row--) {
             var cell = {
               row: row,
               column: column
             };
+
             if (this._isSelectable(cell)) {
               return cell;
             }
           }
         }
+
         return null;
       },
       // overridden
@@ -142,42 +162,57 @@
           row: item.row,
           column: item.column
         };
+
         switch (relation) {
           case "above":
             for (var row = item.row - 1; row >= 0; row--) {
               cell.row = row;
+
               if (this._isSelectable(cell)) {
                 return cell;
               }
             }
+
             break;
+
           case "under":
             var rowCount = this._pane.getRowConfig().getItemCount();
+
             for (var row = item.row + 1; row < rowCount; row++) {
               cell.row = row;
+
               if (this._isSelectable(cell)) {
                 return cell;
               }
             }
+
             break;
+
           case "left":
             for (var column = item.column - 1; column >= 0; column--) {
               cell.column = column;
+
               if (this._isSelectable(cell)) {
                 return cell;
               }
             }
+
             break;
+
           case "right":
             var columnCount = this._pane.getColumnConfig().getItemCount();
+
             for (var column = item.column + 1; column < columnCount; column++) {
               cell.column = column;
+
               if (this._isSelectable(cell)) {
                 return cell;
               }
             }
+
             break;
         }
+
         return null;
       },
       // overridden
@@ -201,6 +236,7 @@
       // overridden
       _getSelectableLocationX: function _getSelectableLocationX(item) {
         var columnConfig = this._pane.getColumnConfig();
+
         var itemLeft = columnConfig.getItemPosition(item.column);
         var itemRight = itemLeft + columnConfig.getItemSize(item.column) - 1;
         return {
@@ -211,6 +247,7 @@
       // overridden
       _getSelectableLocationY: function _getSelectableLocationY(item) {
         var rowConfig = this._pane.getRowConfig();
+
         var itemTop = rowConfig.getItemPosition(item.row);
         var itemBottom = itemTop + rowConfig.getItemSize(item.row) - 1;
         return {
@@ -223,4 +260,4 @@
   qx.ui.virtual.selection.CellRectangle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellRectangle.js.map?dt=1677362770845
+//# sourceMappingURL=CellRectangle.js.map?dt=1685978152216

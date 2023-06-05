@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MultiTrigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.MultiTrigger', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -56,27 +58,33 @@
         cv.parser.pure.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
         var buttonRegex = /^button([\d]+)(label|value)$/;
         var buttonConfig = {};
+
         for (var i = 0; i < xml.attributes.length; i++) {
           var attrib = xml.attributes[i];
           var match = buttonRegex.exec(attrib.name);
+
           if (match) {
             if (!Object.prototype.hasOwnProperty.call(buttonConfig, match[1])) {
               buttonConfig[match[1]] = {};
             }
+
             buttonConfig[match[1]][match[2]] = attrib.value;
           }
-        }
+        } // parse buttons
 
-        // parse buttons
+
         var buttons = xml.querySelectorAll('buttons > button');
+
         for (i = 0; i < buttons.length; i++) {
           buttonConfig[i + 1] = {
             value: buttons[i].textContent
           };
+
           if (buttons[i].hasAttribute('label')) {
             buttonConfig[i + 1].label = buttons[i].getAttribute('label');
           }
         }
+
         data.buttonConfiguration = buttonConfig;
         return data;
       },
@@ -105,4 +113,4 @@
   cv.parser.pure.widgets.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1677362708193
+//# sourceMappingURL=MultiTrigger.js.map?dt=1685978091121

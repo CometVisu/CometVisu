@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +36,12 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Number", {
     extend: qx.ui.table.cellrenderer.Conditional,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * NumberFormat used to format data. If the numberFormat contains a
@@ -54,15 +55,16 @@
         nullable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       _getContentHtml: function _getContentHtml(cellInfo) {
         var nf = this.getNumberFormat();
+
         if (nf) {
           if (cellInfo.value || cellInfo.value == 0) {
             // I don't think we need to escape the resulting string, as I
@@ -87,4 +89,4 @@
   qx.ui.table.cellrenderer.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1677362766108
+//# sourceMappingURL=Number.js.map?dt=1685978147297

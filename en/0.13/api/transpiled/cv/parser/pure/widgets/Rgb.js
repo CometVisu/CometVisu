@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Rgb.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Rgb', {
     type: 'static',
+
     /*
      ******************************************************
      STATICS
@@ -68,4 +70,4 @@
   cv.parser.pure.widgets.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1677362708449
+//# sourceMappingURL=Rgb.js.map?dt=1685978091365

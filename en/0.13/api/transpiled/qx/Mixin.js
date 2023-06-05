@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -26,6 +27,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,6 +64,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
          PUBLIC API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Define a new mixin.
        *
@@ -112,66 +115,69 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // Normalize include
           if (config.include && !(qx.Bootstrap.getClass(config.include) === "Array")) {
             config.include = [config.include];
-          }
+          } // Validate incoming data
 
-          // Validate incoming data
 
           // Create Interface from statics
           var mixin = config.statics ? config.statics : {};
           qx.Bootstrap.setDisplayNames(mixin, name);
+
           for (var key in mixin) {
             if (mixin[key] instanceof Function) {
               mixin[key].$$mixin = mixin;
             }
-          }
+          } // Attach configuration
 
-          // Attach configuration
+
           if (config.construct) {
             mixin.$$constructor = config.construct;
             qx.Bootstrap.setDisplayName(config.construct, name, "constructor");
           }
+
           if (config.include) {
             mixin.$$includes = config.include;
           }
+
           if (config.properties) {
             mixin.$$properties = config.properties;
           }
+
           if (config.members) {
             mixin.$$members = config.members;
             qx.Bootstrap.setDisplayNames(config.members, name + ".prototype");
           }
+
           for (var key in mixin.$$members) {
             if (mixin.$$members[key] instanceof Function) {
               mixin.$$members[key].$$mixin = mixin;
             }
           }
+
           if (config.events) {
             mixin.$$events = config.events;
           }
+
           if (config.destruct) {
             mixin.$$destructor = config.destruct;
             qx.Bootstrap.setDisplayName(config.destruct, name, "destruct");
           }
         } else {
           var mixin = {};
-        }
+        } // Add basics
 
-        // Add basics
+
         mixin.$$type = "Mixin";
-        mixin.name = name;
+        mixin.name = name; // Attach toString
 
-        // Attach toString
-        mixin.toString = this.genericToString;
+        mixin.toString = this.genericToString; // Assign to namespace
 
-        // Assign to namespace
-        mixin.basename = qx.Bootstrap.createNamespace(name, mixin);
+        mixin.basename = qx.Bootstrap.createNamespace(name, mixin); // Store class reference in global mixin registry
 
-        // Store class reference in global mixin registry
-        this.$$registry[name] = mixin;
+        this.$$registry[name] = mixin; // Return final mixin
 
-        // Return final mixin
         return mixin;
       },
+
       /**
        * Check compatibility between mixins (including their includes)
        *
@@ -182,36 +188,47 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       checkCompatibility: function checkCompatibility(mixins) {
         var list = this.flatten(mixins);
         var len = list.length;
+
         if (len < 2) {
           return true;
         }
+
         var properties = {};
         var members = {};
         var events = {};
         var mixin;
+
         for (var i = 0; i < len; i++) {
           mixin = list[i];
+
           for (var key in mixin.events) {
             if (events[key]) {
               throw new Error('Conflict between mixin "' + mixin.name + '" and "' + events[key] + '" in member "' + key + '"!');
             }
+
             events[key] = mixin.name;
           }
+
           for (var key in mixin.properties) {
             if (properties[key]) {
               throw new Error('Conflict between mixin "' + mixin.name + '" and "' + properties[key] + '" in property "' + key + '"!');
             }
+
             properties[key] = mixin.name;
           }
+
           for (var key in mixin.members) {
             if (members[key]) {
               throw new Error('Conflict between mixin "' + mixin.name + '" and "' + members[key] + '" in member "' + key + '"!');
             }
+
             members[key] = mixin.name;
           }
         }
+
         return true;
       },
+
       /**
        * Checks if a class is compatible to the given mixin (no conflicts)
        *
@@ -225,6 +242,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         list.push(mixin);
         return qx.Mixin.checkCompatibility(list);
       },
+
       /**
        * Returns a mixin by name
        *
@@ -234,6 +252,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getByName: function getByName(name) {
         return this.$$registry[name];
       },
+
       /**
        * Determine if mixin exists
        *
@@ -243,6 +262,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isDefined: function isDefined(name) {
         return this.getByName(name) !== undefined;
       },
+
       /**
        * Determine the number of mixins which are defined
        *
@@ -251,6 +271,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getTotalNumber: function getTotalNumber() {
         return qx.Bootstrap.objectGetLength(this.$$registry);
       },
+
       /**
        * Generates a list of all mixins given plus all the
        * mixins these includes plus... (deep)
@@ -261,17 +282,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       flatten: function flatten(mixins) {
         if (!mixins) {
           return [];
-        }
+        } // we need to create a copy and not to modify the existing array
 
-        // we need to create a copy and not to modify the existing array
+
         var list = mixins.concat();
+
         for (var i = 0, l = mixins.length; i < l; i++) {
           if (mixins[i].$$includes) {
             list.push.apply(list, this.flatten(mixins[i].$$includes));
           }
         }
+
         return list;
       },
+
       /**
        * This method is used to determine the base method to call at runtime, and is used
        * by Mixins where the mixin method calls `this.base()`.  It is only required by the
@@ -299,65 +323,77 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         {
           if (clazz.$$mixinBaseClassMethods && clazz.$$mixinBaseClassMethods[mixin.name] !== undefined && clazz.$$mixinBaseClassMethods[mixin.name][methodName] !== undefined) {
             return clazz.$$mixinBaseClassMethods[mixin.name][methodName];
-          }
+          } // Find the class which added the mixin; if it is mixed in twice, we pick the super-most class
 
-          // Find the class which added the mixin; if it is mixed in twice, we pick the super-most class
+
           var mixedInAt = null;
           var mixedInIndex = -1;
+
           for (var searchClass = clazz; searchClass; searchClass = searchClass.superclass) {
             if (searchClass.$$flatIncludes) {
               var pos = searchClass.$$flatIncludes.indexOf(mixin);
+
               if (pos > -1) {
                 mixedInAt = searchClass;
                 mixedInIndex = pos;
               }
             }
           }
+
           var fn = null;
+
           if (mixedInAt) {
             // Multiple mixins can provide an implementation, in which case the mixin which was
             //  added second's "base" implementation is the first mixin's method
             for (var i = mixedInIndex - 1; i > -1; i--) {
               var peerMixin = mixedInAt.$$flatIncludes[i];
+
               if (peerMixin.$$members[methodName]) {
                 fn = peerMixin.$$members[methodName];
                 break;
               }
-            }
-            // Try looking in the class itself
+            } // Try looking in the class itself
+
+
             if (!fn && mixedInAt.prototype[methodName]) {
-              fn = mixedInAt.prototype[methodName].base;
-              // if fn.self is set fn is an overloaded mixin method from
+              fn = mixedInAt.prototype[methodName].base; // if fn.self is set fn is an overloaded mixin method from
               // another mixin. In this case fn.base contains the original
               // class method.
+
               if (fn && fn.self) {
                 fn = fn.base;
               }
-            }
-            // Try looking in the superclass
+            } // Try looking in the superclass
+
+
             if (!fn && mixedInAt.superclass) {
               fn = mixedInAt.superclass.prototype[methodName];
             }
-          }
+          } // Cache the result
 
-          // Cache the result
+
           if (fn) {
             if (!clazz.$$mixinBaseClassMethods) {
               clazz.$$mixinBaseClassMethods = {};
             }
+
             if (!clazz.$$mixinBaseClassMethods[mixin.name]) {
               clazz.$$mixinBaseClassMethods[mixin.name] = {};
             }
+
             clazz.$$mixinBaseClassMethods[mixin.name][methodName] = fn;
-          }
+          } else {}
+
           return fn;
         }
       },
+
       /*
       ---------------------------------------------------------------------------
          PRIVATE/INTERNAL API
       ---------------------------------------------------------------------------
       */
+
       /**
        * This method will be attached to all mixins to return
        * a nice identifier for them.
@@ -368,8 +404,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       genericToString: function genericToString() {
         return "[Mixin " + this.name + "]";
       },
+
       /** Registers all defined mixins */
       $$registry: {},
+
       /** @type {Map} allowed keys in mixin definition */
       __P_92_0: qx.core.Environment.select("qx.debug", {
         "true": {
@@ -386,10 +424,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           destruct: "function",
           // Function
           construct: "function" // Function
-        },
 
+        },
         "default": null
       }),
+
       /**
        * Validates incoming configuration and checks keys and values
        *
@@ -401,37 +440,44 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         "true": function _true(name, config) {
           // Validate keys
           var allowed = this.__P_92_0;
+
           for (var key in config) {
             if (!allowed[key]) {
               throw new Error('The configuration key "' + key + '" in mixin "' + name + '" is not allowed!');
             }
+
             if (config[key] == null) {
               throw new Error('Invalid key "' + key + '" in mixin "' + name + '"! The value is undefined/null!');
             }
+
             if (allowed[key] !== null && _typeof(config[key]) !== allowed[key]) {
               throw new Error('Invalid type of key "' + key + '" in mixin "' + name + '"! The type of the key must be "' + allowed[key] + '"!');
             }
-          }
+          } // Validate maps
 
-          // Validate maps
+
           var maps = ["statics", "members", "properties", "events"];
+
           for (var i = 0, l = maps.length; i < l; i++) {
             var key = maps[i];
+
             if (config[key] !== undefined && (["Array", "RegExp", "Date"].indexOf(qx.Bootstrap.getClass(config[key])) != -1 || config[key].classname !== undefined)) {
               throw new Error('Invalid key "' + key + '" in mixin "' + name + '"! The value needs to be a map!');
             }
-          }
+          } // Validate includes
 
-          // Validate includes
+
           if (config.include) {
             for (var i = 0, a = config.include, l = a.length; i < l; i++) {
               if (a[i] == null) {
                 throw new Error("Includes of mixins must be mixins. The include number '" + (i + 1) + "' in mixin '" + name + "'is undefined/null!");
               }
+
               if (a[i].$$type !== "Mixin") {
                 throw new Error("Includes of mixins must be mixins. The include number '" + (i + 1) + "' in mixin '" + name + "'is not a mixin!");
               }
             }
+
             this.checkCompatibility(config.include);
           }
         },
@@ -442,4 +488,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Mixin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mixin.js.map?dt=1677362722438
+//# sourceMappingURL=Mixin.js.map?dt=1685978104951

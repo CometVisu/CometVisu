@@ -14,9 +14,9 @@
         "index": 11
       },
       "end": {
-        "line": 40,
+        "line": 56,
         "column": 3,
-        "index": 763
+        "index": 1041
       }
     },
     "jsdoc": {
@@ -65,18 +65,90 @@
       "type": "qx.event.type.Data"
     }
   },
-  "members": {
-    "_resources": {
+  "properties": {
+    "dataReceived": {
       "location": {
         "start": {
           "line": 33,
           "column": 4,
-          "index": 608
+          "index": 614
         },
         "end": {
-          "line": 33,
+          "line": 36,
+          "column": 5,
+          "index": 677
+        }
+      },
+      "name": "dataReceived",
+      "propertyType": "new",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 683
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 740
+        }
+      },
+      "name": "name",
+      "propertyType": "new",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
+    "qxOwner": {
+      "type": "property",
+      "name": "qxOwner",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The owning object</p>"
+          }
+        ]
+      }
+    },
+    "qxObjectId": {
+      "type": "property",
+      "name": "qxObjectId",
+      "abstract": false,
+      "mixin": true,
+      "access": "public",
+      "overriddenFrom": "qx.core.MObjectId",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} The ID of the object.</p>"
+          }
+        ]
+      }
+    }
+  },
+  "members": {
+    "_resources": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 886
+        },
+        "end": {
+          "line": 49,
           "column": 20,
-          "index": 624
+          "index": 902
         }
       },
       "type": "variable",
@@ -85,14 +157,14 @@
     "setResourcePath": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 51,
           "column": 4,
-          "index": 631
+          "index": 909
         },
         "end": {
-          "line": 38,
+          "line": 54,
           "column": 5,
-          "index": 755
+          "index": 1033
         }
       },
       "type": "function",
@@ -232,6 +304,162 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
+          }
+        ]
+      }
+    },
+    "getDataReceived": {
+      "type": "function",
+      "name": "getDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dataReceived"
+          }
+        ]
+      }
+    },
+    "isDataReceived": {
+      "type": "function",
+      "name": "isDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for dataReceived"
+          }
+        ]
+      }
+    },
+    "setDataReceived": {
+      "type": "function",
+      "name": "setDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for dataReceived"
+          }
+        ]
+      }
+    },
+    "resetDataReceived": {
+      "type": "function",
+      "name": "resetDataReceived",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>dataReceived</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
+          }
+        ]
+      }
+    },
+    "getName": {
+      "type": "function",
+      "name": "getName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for name"
+          }
+        ]
+      }
+    },
+    "setName": {
+      "type": "function",
+      "name": "setName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for name"
+          }
+        ]
+      }
+    },
+    "resetName": {
+      "type": "function",
+      "name": "resetName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
           }
         ]
       }

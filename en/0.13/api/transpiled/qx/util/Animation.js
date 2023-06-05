@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,6 +47,7 @@
           }
         }
       },
+
       /** Target slides out from right.*/
       SLIDE_LEFT_OUT: {
         duration: 350,
@@ -60,6 +62,7 @@
           }
         }
       },
+
       /** Target slides in from left.*/
       SLIDE_RIGHT_IN: {
         duration: 350,
@@ -74,6 +77,7 @@
           }
         }
       },
+
       /** Target slides out from left.*/
       SLIDE_RIGHT_OUT: {
         duration: 350,
@@ -88,6 +92,7 @@
           }
         }
       },
+
       /** Target fades in. */
       FADE_IN: {
         duration: 350,
@@ -102,6 +107,7 @@
           }
         }
       },
+
       /** Target fades out. */
       FADE_OUT: {
         duration: 350,
@@ -116,6 +122,7 @@
           }
         }
       },
+
       /** Target pops in from center. */
       POP_IN: {
         duration: 350,
@@ -130,6 +137,7 @@
           }
         }
       },
+
       /** Target pops out from center. */
       POP_OUT: {
         duration: 350,
@@ -144,6 +152,7 @@
           }
         }
       },
+
       /** Target shrinks its height. */
       SHRINK_HEIGHT: {
         duration: 400,
@@ -161,6 +170,7 @@
           }
         }
       },
+
       /** Target grows its height. */
       GROW_HEIGHT: {
         duration: 400,
@@ -178,6 +188,7 @@
           }
         }
       },
+
       /** Target shrinks its width. */
       SHRINK_WIDTH: {
         duration: 400,
@@ -195,6 +206,7 @@
           }
         }
       },
+
       /** Target grows its width. */
       GROW_WIDTH: {
         duration: 400,
@@ -212,6 +224,7 @@
           }
         }
       },
+
       /** Target shrinks in both width and height. */
       SHRINK: {
         duration: 400,
@@ -229,6 +242,7 @@
           }
         }
       },
+
       /** Target grows in both width and height. */
       GROW: {
         duration: 400,
@@ -246,6 +260,7 @@
           }
         }
       },
+
       /** Target slides in to top. */
       SLIDE_UP_IN: {
         duration: 350,
@@ -260,6 +275,7 @@
           }
         }
       },
+
       /** Target slides out to top.*/
       SLIDE_UP_OUT: {
         duration: 350,
@@ -274,6 +290,7 @@
           }
         }
       },
+
       /** Target slides out to bottom.*/
       SLIDE_DOWN_IN: {
         duration: 350,
@@ -288,6 +305,7 @@
           }
         }
       },
+
       /** Target slides down to bottom.*/
       SLIDE_DOWN_OUT: {
         duration: 350,
@@ -302,6 +320,7 @@
           }
         }
       },
+
       /** Target flips (turns) left from back side to front side. */
       FLIP_LEFT_IN: {
         duration: 350,
@@ -326,6 +345,7 @@
           }
         }
       },
+
       /** Target flips (turns) left from front side to back side. */
       FLIP_LEFT_OUT: {
         duration: 350,
@@ -342,6 +362,7 @@
           }
         }
       },
+
       /** Target flips (turns) right from back side to front side. */
       FLIP_RIGHT_IN: {
         duration: 350,
@@ -366,6 +387,7 @@
           }
         }
       },
+
       /** Target flips (turns) right from front side to back side. */
       FLIP_RIGHT_OUT: {
         duration: 350,
@@ -382,6 +404,7 @@
           }
         }
       },
+
       /** Target moves in to left. */
       SWAP_LEFT_IN: {
         duration: 700,
@@ -405,6 +428,7 @@
           }
         }
       },
+
       /** Target moves out to left.  */
       SWAP_LEFT_OUT: {
         duration: 700,
@@ -428,6 +452,7 @@
           }
         }
       },
+
       /** Target moves in to right. */
       SWAP_RIGHT_IN: {
         duration: 700,
@@ -451,6 +476,7 @@
           }
         }
       },
+
       /** Target moves out to right. */
       SWAP_RIGHT_OUT: {
         duration: 700,
@@ -474,6 +500,7 @@
           }
         }
       },
+
       /** Target moves in with cube animation from right to left.  */
       CUBE_LEFT_IN: {
         duration: 550,
@@ -494,6 +521,7 @@
           }
         }
       },
+
       /** Target moves out with cube animation from right to left.  */
       CUBE_LEFT_OUT: {
         duration: 550,
@@ -514,6 +542,7 @@
           }
         }
       },
+
       /** Target moves in with cube animation from left to right.  */
       CUBE_RIGHT_IN: {
         duration: 550,
@@ -534,6 +563,7 @@
           }
         }
       },
+
       /** Target moves out with cube animation from left to right.  */
       CUBE_RIGHT_OUT: {
         duration: 550,
@@ -559,4 +589,4 @@
   qx.util.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1677362772336
+//# sourceMappingURL=Animation.js.map?dt=1685978153748

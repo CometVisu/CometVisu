@@ -41,6 +41,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -81,26 +82,28 @@
   qx.Class.define("qx.ui.treevirtual.SimpleTreeDataCellRenderer", {
     extend: qx.ui.table.cellrenderer.Abstract,
     construct: function construct() {
-      var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer;
+      var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer; // Begin preloading of the tree images, if not already requested.
 
-      // Begin preloading of the tree images, if not already requested.
       if (STDCR.__P_468_0) {
         STDCR.__P_468_1();
+
         STDCR.__P_468_0 = false;
       }
+
       qx.ui.table.cellrenderer.Abstract.constructor.call(this);
       this.__P_468_2 = qx.util.AliasManager.getInstance();
       this.__P_468_3 = qx.util.ResourceManager.getInstance();
-      this.__P_468_4 = qx.theme.manager.Appearance.getInstance();
+      this.__P_468_4 = qx.theme.manager.Appearance.getInstance(); // Base URL used for indentation
 
-      // Base URL used for indentation
       this.BLANK = this.__P_468_3.toUri(this.__P_468_2.resolve("static/blank.png"));
     },
     statics: {
       /** File names of each of the tree icons */
       __P_468_5: {},
+
       /** Whether we have not yet requested pre-loading of images */
       __P_468_0: true,
+
       /**
        * Request preloading of images so they appear immediately upon rendering
        */
@@ -110,9 +113,11 @@
         var am = qx.util.AliasManager.getInstance();
         var rm = qx.util.ResourceManager.getInstance();
         var tm = qx.theme.manager.Appearance.getInstance();
+
         var loadImage = function loadImage(f) {
           ImageLoader.load(rm.toUri(am.resolve(f)));
         };
+
         STDCR.__P_468_5.line = tm.styleFrom("treevirtual-line");
         loadImage(STDCR.__P_468_5.line.icon);
         STDCR.__P_468_5.contract = tm.styleFrom("treevirtual-contract");
@@ -150,6 +155,7 @@
         check: "Boolean",
         init: true
       },
+
       /**
        * When true, exclude only the first-level tree lines, creating,
        * effectively, multiple unrelated root nodes.
@@ -158,6 +164,7 @@
         check: "Boolean",
         init: false
       },
+
       /**
        * Set whether the open/close button should be displayed on a branch, even
        * if the branch has no children.
@@ -167,12 +174,12 @@
         init: false
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_468_2: null,
       __P_468_4: null,
@@ -180,55 +187,52 @@
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.treevirtual.SimpleTreeDataCellRenderer.superclass.prototype._onChangeTheme.call(this);
+
         qx.ui.treevirtual.SimpleTreeDataCellRenderer.__P_468_1();
       },
       // overridden
       _getCellStyle: function _getCellStyle(cellInfo) {
-        var node = cellInfo.value;
-
-        // Return the style for the div for the cell.  If there's cell-specific
+        var node = cellInfo.value; // Return the style for the div for the cell.  If there's cell-specific
         // style information provided, append it.
+
         var html = qx.ui.treevirtual.SimpleTreeDataCellRenderer.superclass.prototype._getCellStyle.call(this, cellInfo) + (node.cellStyle ? node.cellStyle + ";" : "");
         return html;
       },
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
-        var html = "";
+        var html = ""; // Horizontal position
 
-        // Horizontal position
-        var pos = 0;
+        var pos = 0; // If needed, add extra content before indentation
 
-        // If needed, add extra content before indentation
         var extra = this._addExtraContentBeforeIndentation(cellInfo, pos);
+
         html += extra.html;
-        pos = extra.pos;
+        pos = extra.pos; // Add the indentation (optionally with tree lines)
 
-        // Add the indentation (optionally with tree lines)
         var indentation = this._addIndentation(cellInfo, pos);
-        html += indentation.html;
-        pos = indentation.pos;
 
-        // If needed, add extra content before icon
+        html += indentation.html;
+        pos = indentation.pos; // If needed, add extra content before icon
+
         extra = this._addExtraContentBeforeIcon(cellInfo, pos);
         html += extra.html;
-        pos = extra.pos;
+        pos = extra.pos; // Add the node icon
 
-        // Add the node icon
         var icon = this._addIcon(cellInfo, pos);
-        html += icon.html;
-        pos = icon.pos;
 
-        // If needed, add extra content before label
+        html += icon.html;
+        pos = icon.pos; // If needed, add extra content before label
+
         extra = this._addExtraContentBeforeLabel(cellInfo, pos);
         html += extra.html;
-        pos = extra.pos;
+        pos = extra.pos; // store this position on the node so we can use it for the NodeEditor without recalculation
 
-        // store this position on the node so we can use it for the NodeEditor without recalculation
-        cellInfo.value.labelPos = pos;
-        // Add the node's label
+        cellInfo.value.labelPos = pos; // Add the node's label
+
         html += this._addLabel(cellInfo, pos);
         return html;
       },
+
       /**
        * Add an image to the tree.  This might be a visible icon or it may be
        * part of the indentation.
@@ -255,38 +259,46 @@
        *   'position', above).
        */
       _addImage: function _addImage(imageInfo) {
-        var html = [];
+        var html = []; // Resolve the URI
 
-        // Resolve the URI
-        var source = this.__P_468_3.toUri(this.__P_468_2.resolve(imageInfo.url));
+        var source = this.__P_468_3.toUri(this.__P_468_2.resolve(imageInfo.url)); // If we've been given positioning attributes, enclose image in a div
 
-        // If we've been given positioning attributes, enclose image in a div
+
         if (imageInfo.position) {
           var pos = imageInfo.position;
           html.push('<div style="position:absolute;');
+
           if (qx.core.Environment.get("css.boxsizing")) {
             html.push(qx.bom.element.BoxSizing.compile("content-box"));
           }
+
           if (pos.top !== undefined) {
             html.push("top:" + pos.top + "px;");
           }
+
           if (pos.right !== undefined) {
             html.push("right:" + pos.right + "px;");
           }
+
           if (pos.bottom !== undefined) {
             html.push("bottom:" + pos.bottom + "px;");
           }
+
           if (pos.left !== undefined) {
             html.push("left:" + pos.left + "px;");
           }
+
           if (pos.width !== undefined) {
             html.push("width:" + pos.width + "px;");
           }
+
           if (pos.height !== undefined) {
             html.push("height:" + pos.height + "px;");
           }
+
           html.push('">');
         }
+
         if (qx.lang.String.startsWith(source, "@")) {
           var content = qx.bom.element.Decoration.create(source, "no-repeat", {});
           html.push(content);
@@ -297,20 +309,27 @@
           html.push('<div style="');
           html.push("background-image:url(" + source + ");");
           html.push("background-repeat:no-repeat;");
+
           if (imageInfo.imageWidth && imageInfo.imageHeight) {
             html.push(";width:" + imageInfo.imageWidth + "px" + ";height:" + imageInfo.imageHeight + "px");
           }
+
           var tooltip = imageInfo.tooltip;
+
           if (tooltip != null) {
             html.push('" title="' + tooltip);
           }
+
           html.push('">&nbsp;</div>');
         }
+
         if (imageInfo.position) {
           html.push("</div>");
         }
+
         return html.join("");
       },
+
       /**
        * Add the indentation for this node of the tree.
        *
@@ -334,13 +353,13 @@
       _addIndentation: function _addIndentation(cellInfo, pos) {
         var node = cellInfo.value;
         var imageData;
-        var html = "";
-
-        // Generate the indentation.  Obtain icon determination values once
+        var html = ""; // Generate the indentation.  Obtain icon determination values once
         // rather than each time through the loop.
+
         var bUseTreeLines = this.getUseTreeLines();
         var bExcludeFirstLevelTreeLines = this.getExcludeFirstLevelTreeLines();
         var bAlwaysShowOpenCloseSymbol = this.getAlwaysShowOpenCloseSymbol();
+
         for (var i = 0; i < node.level; i++) {
           imageData = this._getIndentSymbol(i, node, bUseTreeLines, bAlwaysShowOpenCloseSymbol, bExcludeFirstLevelTreeLines);
           var rowHeight = cellInfo.table.getRowHeight();
@@ -357,11 +376,13 @@
           });
           pos += rowHeight + 3;
         }
+
         return {
           html: html,
           pos: pos
         };
       },
+
       /**
        * Add the icon for this node of the tree.
        *
@@ -378,10 +399,10 @@
        *   width of the icon.
        */
       _addIcon: function _addIcon(cellInfo, pos) {
-        var node = cellInfo.value;
+        var node = cellInfo.value; // Add the node's icon
 
-        // Add the node's icon
         var imageUrl = node.bSelected ? node.iconSelected : node.icon;
+
         if (!imageUrl) {
           if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
             var o = this.__P_468_4.styleFrom("treevirtual-file");
@@ -389,11 +410,15 @@
             var states = {
               opened: node.bOpened
             };
+
             var o = this.__P_468_4.styleFrom("treevirtual-folder", states);
           }
+
           imageUrl = o.icon;
         }
+
         var rowHeight = cellInfo.table.getRowHeight();
+
         var html = this._addImage({
           url: imageUrl,
           position: {
@@ -405,11 +430,13 @@
           imageWidth: rowHeight,
           imageHeight: rowHeight
         });
+
         return {
           html: html,
           pos: pos + rowHeight + 3
         };
       },
+
       /**
        * Add the label for this node of the tree.
        *
@@ -433,15 +460,15 @@
           if (label && label.translate) {
             label = label.translate();
           }
-        }
-
-        // Add the node's label.  We calculate the "left" property with: each
+        } // Add the node's label.  We calculate the "left" property with: each
         // tree line (indentation) icon is 19 pixels wide; the folder icon is 16
         // pixels wide, there are two pixels of padding at the left, and we want
         // 2 pixels between the folder icon and the label
+
         var html = "<div style=\"position:absolute;left:" + pos + "px;" + "top:0;" + (node.labelStyle ? node.labelStyle + ";" : "") + '">' + "<span" + (cellInfo.labelSpanStyle ? 'style="' + cellInfo.labelSpanStyle + ';"' : "") + ">" + label + "</span>" + "</div>";
         return html;
       },
+
       /**
        * Adds extra content just before the indentation.
        *
@@ -463,6 +490,7 @@
           pos: pos
         };
       },
+
       /**
        * Adds extra content just before the icon.
        *
@@ -484,6 +512,7 @@
           pos: pos
         };
       },
+
       /**
        * Adds extra content just before the label.
        *
@@ -505,6 +534,7 @@
           pos: pos
         };
       },
+
       /**
        * Determine the symbol to use for indentation of a tree row, at a
        * particular column.  The indentation to use may be just white space or
@@ -536,15 +566,14 @@
        * @return {Map} map of image properties.
        */
       _getIndentSymbol: function _getIndentSymbol(column, node, bUseTreeLines, bAlwaysShowOpenCloseSymbol, bExcludeFirstLevelTreeLines) {
-        var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer;
-
-        // If we're in column 0 and excludeFirstLevelTreeLines is enabled, then
+        var STDCR = qx.ui.treevirtual.SimpleTreeDataCellRenderer; // If we're in column 0 and excludeFirstLevelTreeLines is enabled, then
         // we treat this as if no tree lines were requested.
+
         if (column == 0 && bExcludeFirstLevelTreeLines) {
           bUseTreeLines = false;
-        }
+        } // If we're not on the final column...
 
-        // If we're not on the final column...
+
         if (column < node.level - 1) {
           // then return either a line or a blank icon, depending on
           // bUseTreeLines
@@ -552,9 +581,9 @@
             icon: this.BLANK
           };
         }
-        var bLastChild = node.lastChild[node.lastChild.length - 1];
 
-        // Is this a branch node that does not have the open/close button hidden?
+        var bLastChild = node.lastChild[node.lastChild.length - 1]; // Is this a branch node that does not have the open/close button hidden?
+
         if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH && !node.bHideOpenClose) {
           // Does this node have any children, or do we always want the
           // open/close symbol to be shown?
@@ -563,9 +592,9 @@
             if (!bUseTreeLines) {
               // ... then just use an expand or contract
               return node.bOpened ? STDCR.__P_468_5.contract : STDCR.__P_468_5.expand;
-            }
+            } // Are we looking at a top-level, first child of its parent?
 
-            // Are we looking at a top-level, first child of its parent?
+
             if (column == 0 && node.bFirstChild) {
               // Yup.  If it's also a last child...
               if (bLastChild) {
@@ -575,22 +604,22 @@
                 // otherwise, use descender lines but no ascender.
                 return node.bOpened ? STDCR.__P_468_5.startContract : STDCR.__P_468_5.startExpand;
               }
-            }
-
-            // It's not a top-level, first child.  Is this the last child of its
+            } // It's not a top-level, first child.  Is this the last child of its
             // parent?
+
+
             if (bLastChild) {
               // Yup.  Return an ending expand or contract.
               return node.bOpened ? STDCR.__P_468_5.endContract : STDCR.__P_468_5.endExpand;
-            }
+            } // Otherwise, return a crossing expand or contract.
 
-            // Otherwise, return a crossing expand or contract.
+
             return node.bOpened ? STDCR.__P_468_5.crossContract : STDCR.__P_468_5.crossExpand;
           }
-        }
-
-        // This node does not have any children.  Return an end or cross, if
+        } // This node does not have any children.  Return an end or cross, if
         // we're using tree lines.
+
+
         if (bUseTreeLines) {
           // If this is a child of the root node...
           if (node.parentNodeId == 0) {
@@ -600,28 +629,30 @@
               return {
                 icon: this.BLANK
               };
-            }
+            } // Otherwise, if this is the last child...
 
-            // Otherwise, if this is the last child...
+
             if (bLastChild) {
               // ... then return an end line.
               return STDCR.__P_468_5.end;
-            }
+            } // Otherwise if this is the first child and is a branch...
 
-            // Otherwise if this is the first child and is a branch...
+
             if (node.bFirstChild && node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH) {
               // ... then return a start line.
               return node.bOpened ? STDCR.__P_468_5.startContract : STDCR.__P_468_5.startExpand;
             }
-          }
+          } // If this is a last child, return and ending line; otherwise cross.
 
-          // If this is a last child, return and ending line; otherwise cross.
+
           return bLastChild ? STDCR.__P_468_5.end : STDCR.__P_468_5.cross;
         }
+
         return {
           icon: this.BLANK
         };
       },
+
       /**
        * Determine the position in the cell of the open/close button image
        *
@@ -652,4 +683,4 @@
   qx.ui.treevirtual.SimpleTreeDataCellRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataCellRenderer.js.map?dt=1677362769257
+//# sourceMappingURL=SimpleTreeDataCellRenderer.js.map?dt=1685978150541

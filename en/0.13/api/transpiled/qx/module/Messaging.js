@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,6 +60,7 @@
        * @signature function(channel, type, handler, scope)
        */
       on: null,
+
       /**
        * Adds a handler for the "any" channel. The "any" channel is called
        * before all other channels.
@@ -71,6 +73,7 @@
        * @signature function(type, handler, scope)
        */
       onAny: null,
+
       /**
        * Removes a registered listener by the given id.
        *
@@ -79,6 +82,7 @@
        * @signature function(id)
        */
       remove: null,
+
       /**
        * Sends a message on the given channel and informs all matching route handlers.
        *
@@ -100,4 +104,4 @@
   qx.module.Messaging.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Messaging.js.map?dt=1677362746281
+//# sourceMappingURL=Messaging.js.map?dt=1685978129137

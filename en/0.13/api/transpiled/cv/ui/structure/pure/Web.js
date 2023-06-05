@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Web.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -47,6 +48,7 @@
   qx.Class.define('cv.ui.structure.pure.Web', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Refresh],
+
     /*
     ******************************************************
       PROPERTIES
@@ -78,6 +80,7 @@
         nullable: true
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -87,30 +90,44 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var webStyle = this.getStyle();
+
+        if (webStyle !== '' && webStyle.startsWith('style="')) {
+          webStyle = webStyle.substring(7, webStyle.length - 1);
+        }
+
         if (this.getWidth()) {
           webStyle += 'width:' + this.getWidth() + ';';
         } else {
           // default width is 100% of widget space (fix bug #3175343 part 1)
           webStyle += 'width: 100%;';
         }
+
         if (this.getHeight()) {
           webStyle += 'height:' + this.getHeight() + ';';
         }
+
         if (this.getFrameborder() === false) {
-          webStyle += 'border: 0px ;';
+          webStyle += 'border: 0px;';
         }
+
         if (this.getBackground()) {
           webStyle += 'background-color:' + this.getBackground() + ';';
         }
+
         if (webStyle !== '') {
           webStyle = 'style="' + webStyle + '"';
         }
+
         var scrolling = '';
+
         if (this.getScrolling()) {
           scrolling = 'scrolling="' + this.getScrolling() + '"';
         } // add scrolling parameter to iframe
+
+
         return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
       },
+
       /**
        * Handles the incoming data from the backend for this widget
        *
@@ -119,14 +136,16 @@
        */
       _update: function _update(address, data) {
         var addr = this.getAddress()[address];
+
         if (!addr) {
           return;
         }
+
         if (data === 1) {
           var iframe = this.getDomElement().querySelector('iframe');
-          this.refreshAction(iframe, iframe.getAttribute('src'));
-          // reset the value
-          cv.io.BackendConnections.getClient().write(address, cv.Transform.encode(addr, 0));
+          this.refreshAction(iframe, iframe.getAttribute('src')); // reset the value
+
+          cv.io.BackendConnections.getClient(addr.backendType).write(address, cv.Transform.encode(addr, 0));
         }
       }
     }
@@ -134,4 +153,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1677362717816
+//# sourceMappingURL=Web.js.map?dt=1685978100610

@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -76,6 +77,7 @@
     statics: {
       /** List of valid positions to check against */
       __P_490_0: null,
+
       /**
        * *format*
        *
@@ -141,6 +143,7 @@
         mode: "input",
         position: "bottom-left"
       },
+
       /**
        * Factory method which converts the current collection into a collection of
        * Date Picker widgets. Therefore, an initialization process needs to be done which
@@ -163,6 +166,7 @@
       _calendarId: null,
       _iconId: null,
       _uniqueId: null,
+
       /**
        * Get the associated calendar widget
        * @return {qx.ui.website.Calendar} calendar widget instance
@@ -173,6 +177,7 @@
         return calendarCollection;
       },
       // overridden
+
       /**
        * Initializes the date picker widget
        *
@@ -183,37 +188,45 @@
         if (!qx.ui.website.DatePicker.superclass.prototype.init.call(this)) {
           return false;
         }
+
         var uniqueId = Math.round(Math.random() * 10000);
         this._uniqueId = uniqueId;
+
         this.__P_490_1(this);
+
         this.__P_490_2(this);
+
         this.__P_490_3(this);
+
         var calendarId = "datepicker-calendar-" + uniqueId;
         var calendar = qxWeb.create('<div id="' + calendarId + '"></div>').calendar();
         calendar.on("tap", this._onCalendarTap);
-        calendar.appendTo(document.body).hide();
+        calendar.appendTo(document.body).hide(); // create the connection between the date picker and the corresponding calendar widget
 
-        // create the connection between the date picker and the corresponding calendar widget
-        this._calendarId = calendarId;
-
-        // grab tap events at the body element to be able to hide the calender popup
+        this._calendarId = calendarId; // grab tap events at the body element to be able to hide the calender popup
         // if the user taps outside
-        var bodyElement = qxWeb.getDocument(this).body;
-        qxWeb(bodyElement).on("tap", this._onBodyTap, this);
 
-        // react on date selection
+        var bodyElement = qxWeb.getDocument(this).body;
+        qxWeb(bodyElement).on("tap", this._onBodyTap, this); // react on date selection
+
         calendar.on("changeValue", this._calendarChangeValue, this);
+
         if (date !== undefined) {
           calendar.setValue(date);
         }
+
         return true;
       },
       // overridden
       render: function render() {
         this.getCalendar().render();
+
         this.__P_490_1(this);
+
         this.__P_490_2(this);
+
         this.__P_490_3(this);
+
         this.setEnabled(this.getEnabled());
         return this;
       },
@@ -221,13 +234,16 @@
       setConfig: function setConfig(name, config) {
         if (name === "position") {
           var validPositions = qx.ui.website.DatePicker.__P_490_0;
+
           if (validPositions.indexOf(config) === -1) {
             throw new Error("Wrong config value for \"position\"! Only the values \"" + validPositions.join('", "') + '" are supported!');
           }
         }
+
         qx.ui.website.DatePicker.superclass.prototype.setConfig.call(this, name, config);
         return this;
       },
+
       /**
        * Listener which handles clicks/taps on the associated input element and
        * opens / hides the calendar.
@@ -238,7 +254,9 @@
         if (!this.getEnabled()) {
           return;
         }
+
         var calendar = this.getCalendar();
+
         if (calendar.getStyle("display") == "none") {
           // set position to make sure the width of the DOM element is correct - otherwise the DOM
           // element would be as wide as the parent (e.g. the body element). This would mess up the
@@ -248,6 +266,7 @@
           calendar.hide();
         }
       },
+
       /**
        * Stop tap events from reaching the body so the calendar won't close
        * @param e {Event} Tap event
@@ -255,6 +274,7 @@
       _onCalendarTap: function _onCalendarTap(e) {
         e.stopPropagation();
       },
+
       /**
        * Listener to the body element to be able to hide the calendar if the user clicks
        * or taps outside the calendar.
@@ -262,29 +282,31 @@
        * @param e {Event} tap event
        */
       _onBodyTap: function _onBodyTap(e) {
-        var target = qxWeb(e.getTarget());
+        var target = qxWeb(e.getTarget()); // fast check for tap on the connected input field
 
-        // fast check for tap on the connected input field
         if (this.length > 0 && target.length > 0 && this[0] == target[0]) {
           return;
-        }
+        } // fast check for tap on the configured icon
 
-        // fast check for tap on the configured icon
+
         if (this.getConfig("icon") !== null) {
           var icon = qxWeb("#" + this._iconId);
+
           if (icon.length > 0 && target.length > 0 && icon[0] == target[0]) {
             return;
           }
-        }
+        } // otherwise check if the target is a child of the (rendered) calendar
 
-        // otherwise check if the target is a child of the (rendered) calendar
+
         if (this.getCalendar().isRendered()) {
           var tappedCol = qxWeb(e.getTarget());
+
           if (tappedCol.isChildOf(this.getCalendar()) === false) {
             this.getCalendar().hide();
           }
         }
       },
+
       /**
        * Listens to value selection of the calendar, Whenever the user selected a day
        * we write it back to the input element and hide the calendar.
@@ -298,6 +320,7 @@
         this.setValue(formattedValue);
         this.getCalendar().hide();
       },
+
       /**
        * Helper method to set the readonly status on the input element
        *
@@ -310,6 +333,7 @@
           collection.removeAttribute("readonly");
         }
       },
+
       /**
        * Helper method to add / remove an icon next to the input element
        *
@@ -317,16 +341,17 @@
        */
       __P_490_2: function __P_490_2(collection) {
         var icon;
+
         if (collection.getConfig("icon") === null) {
           icon = collection.getNext("img#" + collection._iconId);
+
           if (icon.length === 1) {
             icon.off("tap", this._onTap, collection);
             icon.remove();
           }
         } else {
-          var iconId = "datepicker-icon-" + collection._uniqueId;
+          var iconId = "datepicker-icon-" + collection._uniqueId; // check if there is already an icon
 
-          // check if there is already an icon
           if (collection._iconId == undefined) {
             collection._iconId = iconId;
             icon = qxWeb.create("<img>");
@@ -336,15 +361,18 @@
             });
             icon.addClass(this.getCssPrefix() + "-icon");
             var openingMode = collection.getConfig("mode");
+
             if (openingMode === "icon" || openingMode === "both") {
               if (!icon.hasListener("tap", this._onTap, collection)) {
                 icon.on("tap", this._onTap, collection);
               }
             }
+
             icon.insertAfter(collection);
           }
         }
       },
+
       /**
        * Helper method to add a listener to the connected input element
        * if the configured mode is set.
@@ -384,4 +412,4 @@
   qx.ui.website.DatePicker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DatePicker.js.map?dt=1677362771416
+//# sourceMappingURL=DatePicker.js.map?dt=1685978152765

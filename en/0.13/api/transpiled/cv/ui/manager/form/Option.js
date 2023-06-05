@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Option.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,6 +37,7 @@
    */
   qx.Class.define('cv.ui.manager.form.Option', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -43,19 +45,24 @@
     */
     construct: function construct(label, icon, value, hints) {
       qx.core.Object.constructor.call(this);
+
       if (label) {
         this.setLabel(label);
       }
+
       if (icon) {
         this.setIcon(icon);
       }
+
       if (value) {
         this.setValue(value);
       }
+
       if (hints) {
         this.setHints(hints);
       }
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -89,4 +96,4 @@
   cv.ui.manager.form.Option.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Option.js.map?dt=1677362714039
+//# sourceMappingURL=Option.js.map?dt=1685978096803

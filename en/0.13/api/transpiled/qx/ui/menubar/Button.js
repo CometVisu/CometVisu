@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,12 +38,12 @@
    */
   qx.Class.define("qx.ui.menubar.Button", {
     extend: qx.ui.form.MenuButton,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
@@ -53,18 +54,19 @@
         init: "inherit"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Inspects the parent chain to find the MenuBar
        *
@@ -72,29 +74,35 @@
        */
       getMenuBar: function getMenuBar() {
         var parent = this;
+
         while (parent) {
           /* this method is also used by toolbar.MenuButton, so we need to check
              for a ToolBar instance. */
           if (parent instanceof qx.ui.toolbar.ToolBar) {
             return parent;
           }
+
           parent = parent.getLayoutParent();
         }
+
         return null;
       },
       // overridden
       open: function open(selectFirst) {
         qx.ui.menubar.Button.superclass.prototype.open.call(this, selectFirst);
         var menubar = this.getMenuBar();
+
         if (menubar) {
           menubar._setAllowMenuOpenHover(true);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Listener for visibility property changes of the attached menu
        *
@@ -103,33 +111,35 @@
       _onMenuChange: function _onMenuChange(e) {
         var menu = this.getMenu();
         var menubar = this.getMenuBar();
-        if (menu.isVisible()) {
-          this.addState("pressed");
 
-          // Sync with open menu property
+        if (menu.isVisible()) {
+          this.addState("pressed"); // Sync with open menu property
+
           if (menubar) {
             menubar.setOpenMenu(menu);
           }
         } else {
-          this.removeState("pressed");
+          this.removeState("pressed"); // Sync with open menu property
 
-          // Sync with open menu property
           if (menubar && menubar.getOpenMenu() == menu) {
             menubar.resetOpenMenu();
+
             menubar._setAllowMenuOpenHover(false);
           }
         }
       },
       // overridden
       _onPointerUp: function _onPointerUp(e) {
-        qx.ui.menubar.Button.superclass.prototype._onPointerUp.call(this, e);
+        qx.ui.menubar.Button.superclass.prototype._onPointerUp.call(this, e); // Set state 'pressed' to visualize that the menu is open.
 
-        // Set state 'pressed' to visualize that the menu is open.
+
         var menu = this.getMenu();
+
         if (menu && menu.isVisible() && !this.hasState("pressed")) {
           this.addState("pressed");
         }
       },
+
       /**
        * Event listener for pointerover event
        *
@@ -137,19 +147,18 @@
        */
       _onPointerOver: function _onPointerOver(e) {
         // Add hovered state
-        this.addState("hovered");
+        this.addState("hovered"); // Open submenu
 
-        // Open submenu
         if (this.getMenu() && e.getPointerType() == "mouse") {
           var menubar = this.getMenuBar();
+
           if (menubar && menubar._isAllowMenuOpenHover()) {
             // Hide all open menus
-            qx.ui.menu.Manager.getInstance().hideAll();
+            qx.ui.menu.Manager.getInstance().hideAll(); // Set it again, because hideAll remove it.
 
-            // Set it again, because hideAll remove it.
-            menubar._setAllowMenuOpenHover(true);
+            menubar._setAllowMenuOpenHover(true); // Then show the attached menu
 
-            // Then show the attached menu
+
             if (this.isEnabled()) {
               this.open();
             }
@@ -161,4 +170,4 @@
   qx.ui.menubar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1677362760789
+//# sourceMappingURL=Button.js.map?dt=1685978141802

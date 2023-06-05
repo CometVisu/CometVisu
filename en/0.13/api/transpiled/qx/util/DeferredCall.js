@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,11 +49,13 @@
    */
   qx.Class.define("qx.util.DeferredCall", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param callback {Function} The callback
      * @param context {Object?window} the context in which the function will be called.
@@ -63,28 +66,31 @@
       this.__P_501_1 = context || null;
       this.__P_501_2 = qx.util.DeferredCallManager.getInstance();
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_501_0: null,
       __P_501_1: null,
       __P_501_2: null,
+
       /**
        * Prevent the callback from being called.
        */
       cancel: function cancel() {
         this.__P_501_2.cancel(this);
       },
+
       /**
        * Issue a deferred call of the callback.
        */
       schedule: function schedule() {
         this.__P_501_2.schedule(this);
       },
+
       /**
        * Calls the callback directly.
        */
@@ -92,6 +98,7 @@
         this.__P_501_1 ? this.__P_501_0.apply(this.__P_501_1) : this.__P_501_0();
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -105,4 +112,4 @@
   qx.util.DeferredCall.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DeferredCall.js.map?dt=1677362772550
+//# sourceMappingURL=DeferredCall.js.map?dt=1685978153977

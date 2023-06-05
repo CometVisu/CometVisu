@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -22,6 +23,7 @@
        See the LICENSE file in the project's top-level directory for details.
   
   ************************************************************************ */
+
   /**
    * Generic wrapper instance which wrapps a set of objects and forwards the API of
    * the first object to all objects in the array.
@@ -32,11 +34,14 @@
       for (var i = 0, l = arguments.length; i < l; i++) {
         this.push(arguments[i]);
       }
+
       var firstItem = arguments[0];
+
       for (var name in firstItem) {
         if (this[name] !== undefined) {
           continue;
         }
+
         if (firstItem[name] instanceof Function) {
           this[name] = function (name) {
             var firstReturnValue;
@@ -44,15 +49,16 @@
             args.shift();
             this.forEach(function (item) {
               var returnValue = item[name].apply(item, args);
+
               if (firstReturnValue === undefined) {
                 firstReturnValue = returnValue;
               }
-            });
+            }); // return the collection if the return value was the collection
 
-            // return the collection if the return value was the collection
             if (firstReturnValue === this[0]) {
               return this;
             }
+
             return firstReturnValue;
           }.bind(this, name);
         } else {
@@ -74,4 +80,4 @@
   qx.core.Wrapper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Wrapper.js.map?dt=1677362731059
+//# sourceMappingURL=Wrapper.js.map?dt=1685978113548

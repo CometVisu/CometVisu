@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
 
   /**
    * The modern font theme.
+   *
    */
   qx.Theme.define("qx.theme.modern.Font", {
     fonts: {
@@ -79,4 +81,4 @@
   qx.theme.modern.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1677362749096
+//# sourceMappingURL=Font.js.map?dt=1685978131571

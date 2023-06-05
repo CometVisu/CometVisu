@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* UpnpController.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,8 +46,8 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   //noinspection JSUnusedGlobalSymbols
+
   /**
    * @author Mark K. [mr dot remy at gmx dot de]
    * @since 2012
@@ -56,6 +57,7 @@
   qx.Class.define('cv.plugins.UpnpController', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh],
+
     /*
     ******************************************************
       STATICS
@@ -102,6 +104,7 @@
         return newDate.getTime();
       }
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -121,6 +124,7 @@
         init: 1440
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -149,8 +153,10 @@
       },
       _onDomReady: function _onDomReady() {
         cv.plugins.UpnpController.superclass.prototype._onDomReady.call(this);
+
         this.refreshUpnpcontroller();
       },
+
       /**
        * Initialize the event listeners
        */
@@ -166,11 +172,14 @@
       },
       _setupRefreshAction: function _setupRefreshAction() {
         var _this = this;
+
         if (this.getRefresh() && this.getRefresh() > 0) {
           this._timer = new qx.event.Timer(this.getRefresh());
+
           this._timer.addListener('interval', function () {
             _this.refreshUpnpcontroller();
           });
+
           this._timer.start();
         }
       },
@@ -180,16 +189,20 @@
         this.traceLog('debug     : ' + this.isTraceFlag());
         this.traceLog('playerIp  : ' + playerIp);
         this.traceLog('playerPort: ' + playerPort);
+
         this.__P_19_0('status', {}, function (ev) {
           var data = ev.getTarget().getResponse();
+
           try {
             if (typeof data === 'string') {
               data = JSON.parse(data);
             }
+
             this.traceLog('volume          : ' + data.volume);
             this.traceLog('reltime         : ' + data.reltimeResponse);
             this.traceLog('durationResponse: ' + data.durationResponse);
             this.traceLog('title           : ' + data.title);
+
             this.__P_19_1(data.volume, data.muteState, data.transportState, data.title, data.reltimeResponse, data.durationResponse, data.artist, data.album);
           } catch (e) {
             this.error(e);
@@ -198,16 +211,19 @@
       },
       __P_19_1: function __P_19_1(volume, mute, playMode, title, reltime, duration, artist, album) {
         var id = this.upnpcontroller_uid;
+
         if (mute === 0) {
           document.querySelector('#' + id + '_muteButton').classList.replace('switchPressed', 'switchUnpressed');
         } else {
           document.querySelector('#' + id + '_muteButton').classList.replace('switchUnpressed', 'switchPressed');
         }
+
         if (playMode === 'Play') {
           document.querySelector('#' + id + '_playButton').classList.replace('switchPressed', 'switchUnpressed');
         } else {
           document.querySelector('#' + id + '_playButton').classList.replace('switchUnpressed', 'switchPressed');
         }
+
         document.querySelector('#' + id + '_muteButton div.value').innerText = mute;
         document.querySelector('#' + id + '_playButton div.value').innerText = playMode;
         document.querySelector('#' + id + '_volume div.value').innerText = volume;
@@ -219,6 +235,7 @@
         this.traceLog('song_process_rel: ' + this.upnpcontroller_song_process_rel);
         document.querySelector('#' + id + '_progress').setAttribute('value', this.upnpcontroller_song_process_rel);
       },
+
       /**
        * Internal helper method for remote calls to backend UPNP controller scripts
        * @param type {String} type of backend controller
@@ -227,9 +244,11 @@
        */
       __P_19_0: function __P_19_0(type, data, callback) {
         var req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/upnpcontroller/' + type + '.php'));
+
         if (!data) {
           data = {};
         }
+
         data = Object.assign(data, {
           player_ip_addr: this.getPlayerIp(),
           port: this.getPlayerPort()
@@ -246,6 +265,7 @@
         if (reltime === undefined || duration === undefined) {
           return 0;
         }
+
         this.traceLog('calculateSongProcessed');
         var durationParts = duration.split(':');
         var secondsTotal = Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60;
@@ -263,8 +283,10 @@
         var playerPort = this.getPlayerPort();
         this.traceLog('currentValue: ' + currentValue);
         this.traceLog('playerPort  : ' + playerPort);
+
         this.__P_19_0('playlists', {}, function (ev) {
           var data = ev.getTarget().getResponse();
+
           try {
             if (typeof data === 'string') {
               data = JSON.parse(data);
@@ -273,15 +295,19 @@
             this.error(e);
             return;
           }
+
           var playlists = '';
           this.traceLog('totalMatches: ' + data.totalMatches);
+
           for (var i = 0; i < data.playLists.length; i++) {
             playlists += "<a href='plugins/upnpcontroller/selectplaylist.php?player_ip_addr=" + playerIp + '&listurl=' + data.playLists[i].urlenc + '&port=' + playerPort + '\'>' + data.playLists[i].name + '</a></br>';
+
             if (this.isTraceFlag() === 'true') {
               this.debug('name: ' + data.playLists[i].name);
               this.debug('url: ' + data.playLists[i].url);
             }
           }
+
           if (currentValue !== 'pressed') {
             document.querySelector('#' + this.upnpcontroller_uid + '_playlistsresult div.value').innerHTML = playlists;
             playlists.setAttribute('value', 'pressed');
@@ -298,6 +324,7 @@
         var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
         this.traceLog('currentVolume: ' + currentVolume);
         var volume = Number(currentVolume) - 5;
+
         this.__P_19_0('volume', {
           volume: volume
         }, function (data) {
@@ -309,6 +336,7 @@
         var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
         this.traceLog('currentVolume: ' + currentVolume);
         var volume = Number(currentVolume) + 5;
+
         this.__P_19_0('volume', {
           volume: volume
         }, function (data) {
@@ -317,12 +345,14 @@
       },
       callNext: function callNext() {
         this.traceLog('click next');
+
         this.__P_19_0('next', {}, function (data) {
           this.traceLog('data: ' + data);
         });
       },
       callPrev: function callPrev() {
         this.traceLog('click prev');
+
         this.__P_19_0('prev', {}, function (data) {
           this.traceLog('data: ' + data);
         });
@@ -332,6 +362,7 @@
         var muteButton = document.querySelector('#' + this.upnpcontroller_uid + '_muteButton');
         var muteValue = muteButton.querySelector('div.value').innerText;
         this.traceLog('current muteValue: ' + muteValue);
+
         if (muteValue === 0) {
           muteValue = 1;
           muteButton.classList.replace('switchUnpressed', 'switchPressed');
@@ -339,11 +370,13 @@
           muteValue = 0;
           muteButton.classList.replace('switchPressed', 'switchUnpressed');
         }
+
         this.__P_19_0('mute', {
           mute: muteValue
         }, function (data) {
           this.traceLog('data: ' + data);
         });
+
         this.refreshUpnpcontroller();
       },
       togglePlay: function togglePlay() {
@@ -352,6 +385,7 @@
         var cmd;
         this.traceLog('current playValue: ' + playValue);
         var playButton = document.querySelector('#' + this.upnpcontroller_uid + '_playButton');
+
         if (playValue === 'Play') {
           cmd = 'pause';
           playButton.classList.replace('switchUnpressed', 'switchPressed');
@@ -359,9 +393,11 @@
           cmd = 'play';
           playButton.classList.replace('switchPressed', 'switchUnpressed');
         }
+
         this.__P_19_0(cmd, {}, function (ev) {
           this.traceLog('data: ' + ev.getTarget().getResponse());
         });
+
         this.refreshUpnpcontroller();
       },
       traceLog: function traceLog(msg) {
@@ -380,4 +416,4 @@
   cv.plugins.UpnpController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UpnpController.js.map?dt=1677362709738
+//# sourceMappingURL=UpnpController.js.map?dt=1685978092642

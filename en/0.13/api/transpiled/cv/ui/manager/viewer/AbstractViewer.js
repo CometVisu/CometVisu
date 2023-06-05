@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* AbstractViewer.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,6 +51,7 @@
     extend: qx.ui.core.Widget,
     implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
     type: 'abstract',
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -57,8 +59,10 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.Grow());
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -71,6 +75,7 @@
         apply: '_applyFile',
         event: 'changeFile'
       },
+
       /**
        * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
        */
@@ -84,6 +89,7 @@
         event: 'changeReady'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -98,23 +104,27 @@
       unConfigureButton: function unConfigureButton(button) {},
       save: function save() {},
       getCurrentContent: function getCurrentContent() {},
-      _applyFile: function _applyFile(file, old) {
-        // show icon for file type
+      _applyFile: function _applyFile(file, old) {// show icon for file type
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
+
         switch (id) {
           case 'scroll':
             control = new qx.ui.container.Scroll();
+
             this._add(control);
+
             break;
+
           case 'image':
             control = new qx.ui.basic.Atom();
             this.getChildControl('scroll').add(control);
             control.getChildControl('icon').addListener('resize', this._scaleImage, this);
             break;
         }
+
         return control || cv.ui.manager.viewer.AbstractViewer.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -122,4 +132,4 @@
   cv.ui.manager.viewer.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1677362715979
+//# sourceMappingURL=AbstractViewer.js.map?dt=1685978098715

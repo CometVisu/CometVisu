@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,6 +63,7 @@
     },
     members: {
       __P_509_0: null,
+
       /**
        * Returns given response parsed with parser
        * determined by {@link #_getParser}.
@@ -72,13 +74,16 @@
        */
       parse: function parse(response, contentType) {
         var parser = this._getParser(contentType);
+
         if (typeof parser === "function") {
           if (response !== "") {
             return parser.call(this, response);
           }
         }
+
         return response;
       },
+
       /**
        * Set parser used to parse response once request has
        * completed successfully.
@@ -110,12 +115,12 @@
         // Symbolically given known parser
         if (typeof qx.util.ResponseParser.PARSER[parser] === "function") {
           return this.__P_509_0 = qx.util.ResponseParser.PARSER[parser];
-        }
+        } // If parser is not a symbol, it must be a function
 
-        // If parser is not a symbol, it must be a function
 
         return this.__P_509_0 = parser;
       },
+
       /**
        * Gets the parser.
        *
@@ -132,31 +137,31 @@
        */
       _getParser: function _getParser(contentType) {
         var parser = this.__P_509_0,
-          contentTypeOrig = "",
-          contentTypeNormalized = "";
+            contentTypeOrig = "",
+            contentTypeNormalized = ""; // Use user-provided parser, if any
 
-        // Use user-provided parser, if any
         if (parser) {
           return parser;
-        }
+        } // See http://restpatterns.org/Glossary/MIME_Type
 
-        // See http://restpatterns.org/Glossary/MIME_Type
 
-        contentTypeOrig = contentType || "";
+        contentTypeOrig = contentType || ""; // Ignore parameters (e.g. the character set)
 
-        // Ignore parameters (e.g. the character set)
         contentTypeNormalized = contentTypeOrig.replace(/;.*$/, "");
+
         if (/^application\/(\w|\.)*\+?json$/.test(contentTypeNormalized)) {
           parser = qx.util.ResponseParser.PARSER.json;
         }
+
         if (/^application\/xml$/.test(contentTypeNormalized)) {
           parser = qx.util.ResponseParser.PARSER.xml;
-        }
+        } // Deprecated
 
-        // Deprecated
+
         if (/[^\/]+\/[^\+]+\+xml$/.test(contentTypeOrig)) {
           parser = qx.util.ResponseParser.PARSER.xml;
         }
+
         return parser;
       }
     }
@@ -164,4 +169,4 @@
   qx.util.ResponseParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResponseParser.js.map?dt=1677362773069
+//# sourceMappingURL=ResponseParser.js.map?dt=1685978154553

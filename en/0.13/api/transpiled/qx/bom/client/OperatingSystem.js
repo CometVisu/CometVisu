@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +34,7 @@
        * Sebastian Fastner (fastner)
   
   ************************************************************************ */
+
   /**
    * This class is responsible for checking the operating systems name.
    *
@@ -65,11 +67,14 @@
           };
           return MAP[process.platform] || "";
         }
+
         if (!navigator) {
           return "";
         }
+
         var input = navigator.platform || "";
         var agent = navigator.userAgent || "";
+
         if (input.indexOf("Windows") != -1 || input.indexOf("Win32") != -1 || input.indexOf("Win64") != -1 || agent.indexOf("Windows Phone") != -1) {
           return "win";
         } else if (input.indexOf("Macintosh") != -1 || input.indexOf("MacPPC") != -1 || input.indexOf("MacIntel") != -1 || input.indexOf("Mac OS X") != -1) {
@@ -90,11 +95,12 @@
           return "symbian";
         } else if (input.indexOf("BlackBerry") != -1) {
           return "blackberry";
-        }
+        } // don't know
 
-        // don't know
+
         return "";
       },
+
       /** Maps user agent names to system IDs */
       __P_125_0: {
         // Windows
@@ -146,6 +152,7 @@
         "Mac OS X 10_0": "10.0",
         "Mac OS X 10.0": "10.0"
       },
+
       /**
        * Checks for the version of the operating system using the internal map.
        *
@@ -155,15 +162,18 @@
        */
       getVersion: function getVersion() {
         var version = qx.bom.client.OperatingSystem.__P_125_1(navigator.userAgent);
+
         if (version == null) {
           version = qx.bom.client.OperatingSystem.__P_125_2(navigator.userAgent);
         }
+
         if (version != null) {
           return version;
         } else {
           return "";
         }
       },
+
       /**
        * Detect OS version for desktop devices
        * @param userAgent {String} userAgent parameter, needed for detection.
@@ -171,16 +181,21 @@
        */
       __P_125_1: function __P_125_1(userAgent) {
         var str = [];
+
         for (var key in qx.bom.client.OperatingSystem.__P_125_0) {
           str.push(key);
         }
+
         var reg = new RegExp("(" + str.join("|").replace(/\./g, ".") + ")", "g");
         var match = reg.exec(userAgent);
+
         if (match && match[1]) {
           return qx.bom.client.OperatingSystem.__P_125_0[match[1]];
         }
+
         return null;
       },
+
       /**
        * Detect OS version for mobile devices
        * @param userAgent {String} userAgent parameter, needed for detection.
@@ -190,21 +205,25 @@
         var windows = userAgent.indexOf("Windows Phone") != -1;
         var android = userAgent.indexOf("Android") != -1;
         var iOs = userAgent.match(/(iPad|iPhone|iPod)/i) ? true : false;
+
         if (windows) {
           var windowsVersionRegExp = new RegExp(/Windows Phone (\d+(?:\.\d+)+)/i);
           var windowsMatch = windowsVersionRegExp.exec(userAgent);
+
           if (windowsMatch && windowsMatch[1]) {
             return windowsMatch[1];
           }
         } else if (android) {
           var androidVersionRegExp = new RegExp(/ Android (\d+(?:\.\d+)+)/i);
           var androidMatch = androidVersionRegExp.exec(userAgent);
+
           if (androidMatch && androidMatch[1]) {
             return androidMatch[1];
           }
         } else if (iOs) {
           var iOsVersionRegExp = new RegExp(/(CPU|iPhone|iPod) OS (\d+)_(\d+)(?:_(\d+))*\s+/);
           var iOsMatch = iOsVersionRegExp.exec(userAgent);
+
           if (iOsMatch && iOsMatch[2] && iOsMatch[3]) {
             if (iOsMatch[4]) {
               return iOsMatch[2] + "." + iOsMatch[3] + "." + iOsMatch[4];
@@ -213,6 +232,7 @@
             }
           }
         }
+
         return null;
       }
     },
@@ -224,4 +244,4 @@
   qx.bom.client.OperatingSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OperatingSystem.js.map?dt=1677362727110
+//# sourceMappingURL=OperatingSystem.js.map?dt=1685978109372

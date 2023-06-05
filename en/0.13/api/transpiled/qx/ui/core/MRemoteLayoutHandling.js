@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,14 +36,12 @@
    * The including class must implement the method <code>getChildrenContainer</code>,
    * which has to return the widget, to which the layout should be set.
    */
-
   qx.Mixin.define("qx.ui.core.MRemoteLayoutHandling", {
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Set a layout manager for the widget. A a layout manager can only be connected
@@ -54,12 +53,14 @@
        */
       setLayout: function setLayout(layout) {
         var container = this.getChildrenContainer();
+
         if (container === this) {
           container._setLayout(layout);
         } else {
           container.setLayout(layout);
         }
       },
+
       /**
        * Get the widget's layout manager.
        *
@@ -67,9 +68,11 @@
        */
       getLayout: function getLayout() {
         var container = this.getChildrenContainer();
+
         if (container === this) {
           return container._getLayout();
         }
+
         return container.getLayout();
       }
     }
@@ -77,4 +80,4 @@
   qx.ui.core.MRemoteLayoutHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRemoteLayoutHandling.js.map?dt=1677362752588
+//# sourceMappingURL=MRemoteLayoutHandling.js.map?dt=1685978134886

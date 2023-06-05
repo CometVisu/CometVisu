@@ -10,6 +10,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -40,15 +41,18 @@
       _registration: {
         initElement: function initElement(fieldType, fieldData, key) {
           var formElement = new qx.ui.form.DateField();
+
           if (fieldData.dateFormat) {
             formElement.setDateFormat(fieldData.dateFormat);
           }
+
           return formElement;
         },
         addToFormController: function addToFormController(fieldType, fieldData, key, formElement) {
           this._formController.addTarget(formElement, "value", key, true, null, {
             converter: function (value) {
               this._form.getValidationManager().validate();
+
               return value;
             }.bind(this)
           });
@@ -59,4 +63,4 @@
   qxl.dialog.formElement.DateField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateField.js.map?dt=1677362780920
+//# sourceMappingURL=DateField.js.map?dt=1685978163349

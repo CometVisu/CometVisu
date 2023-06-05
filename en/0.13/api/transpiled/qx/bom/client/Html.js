@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -16,6 +17,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +35,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * Internal class which contains the checks used by {@link qx.core.Environment}.
    * All checks in here are marked as internal which means you should never use
@@ -53,6 +56,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getWebWorker: function getWebWorker() {
         return window.Worker != null;
       },
+
       /**
        * Whether the client supports File Readers
        *
@@ -62,6 +66,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getFileReader: function getFileReader() {
         return window.FileReader != null;
       },
+
       /**
        * Whether the client supports Geo Location.
        *
@@ -71,6 +76,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getGeoLocation: function getGeoLocation() {
         return "geolocation" in navigator;
       },
+
       /**
        * Whether the client supports audio.
        *
@@ -80,6 +86,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getAudio: function getAudio() {
         return !!document.createElement("audio").canPlayType;
       },
+
       /**
        * Whether the client can play ogg audio format.
        *
@@ -90,9 +97,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getAudio()) {
           return "";
         }
+
         var a = document.createElement("audio");
         return a.canPlayType("audio/ogg");
       },
+
       /**
        * Whether the client can play mp3 audio format.
        *
@@ -103,9 +112,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getAudio()) {
           return "";
         }
+
         var a = document.createElement("audio");
         return a.canPlayType("audio/mpeg");
       },
+
       /**
        * Whether the client can play wave audio wave format.
        *
@@ -116,9 +127,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getAudio()) {
           return "";
         }
+
         var a = document.createElement("audio");
         return a.canPlayType("audio/x-wav");
       },
+
       /**
        * Whether the client can play au audio format.
        *
@@ -129,9 +142,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getAudio()) {
           return "";
         }
+
         var a = document.createElement("audio");
         return a.canPlayType("audio/basic");
       },
+
       /**
        * Whether the client can play aif audio format.
        *
@@ -142,9 +157,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getAudio()) {
           return "";
         }
+
         var a = document.createElement("audio");
         return a.canPlayType("audio/x-aiff");
       },
+
       /**
        * Whether the client supports video.
        *
@@ -154,6 +171,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getVideo: function getVideo() {
         return !!document.createElement("video").canPlayType;
       },
+
       /**
        * Whether the client supports ogg video.
        *
@@ -164,9 +182,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getVideo()) {
           return "";
         }
+
         var v = document.createElement("video");
         return v.canPlayType('video/ogg; codecs="theora, vorbis"');
       },
+
       /**
        * Whether the client supports mp4 video.
        *
@@ -177,9 +197,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getVideo()) {
           return "";
         }
+
         var v = document.createElement("video");
         return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
       },
+
       /**
        * Whether the client supports webm video.
        *
@@ -190,9 +212,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Html.getVideo()) {
           return "";
         }
+
         var v = document.createElement("video");
         return v.canPlayType('video/webm; codecs="vp8, vorbis"');
       },
+
       /**
        * Whether the client supports local storage.
        *
@@ -211,6 +235,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return false;
         }
       },
+
       /**
        * Whether the client supports session storage.
        *
@@ -229,6 +254,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return false;
         }
       },
+
       /**
        * Whether the client supports user data to persist data. This is only
        * relevant for IE < 8.
@@ -241,14 +267,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         el.style["display"] = "none";
         document.getElementsByTagName("head")[0].appendChild(el);
         var supported = false;
+
         try {
           el.addBehavior("#default#userdata");
           el.load("qxtest");
           supported = true;
         } catch (e) {}
+
         document.getElementsByTagName("head")[0].removeChild(el);
         return supported;
       },
+
       /**
        * Whether the browser supports CSS class lists.
        * https://developer.mozilla.org/en-US/docs/DOM/element.classList
@@ -259,6 +288,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getClassList: function getClassList() {
         return !!(document.documentElement.classList && qx.Bootstrap.getClass(document.documentElement.classList) === "DOMTokenList");
       },
+
       /**
        * Checks if XPath could be used.
        *
@@ -268,6 +298,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getXPath: function getXPath() {
         return !!document.evaluate;
       },
+
       /**
        * Checks if XUL could be used.
        *
@@ -282,6 +313,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return false;
         }
       },
+
       /**
        * Checks if SVG could be used
        *
@@ -291,6 +323,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getSvg: function getSvg() {
         return document.implementation && document.implementation.hasFeature && (document.implementation.hasFeature("org.w3c.dom.svg", "1.0") || document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1"));
       },
+
       /**
        * Checks if VML is supported
        *
@@ -306,6 +339,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         document.body.removeChild(el);
         return hasVml;
       },
+
       /**
        * Checks if canvas could be used
        *
@@ -315,6 +349,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getCanvas: function getCanvas() {
         return !!window.CanvasRenderingContext2D;
       },
+
       /**
        * Asynchronous check for using data urls.
        *
@@ -326,14 +361,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       getDataUrl: function getDataUrl(callback) {
         var data = new Image();
+
         data.onload = data.onerror = function () {
           // wrap that into a timeout because IE might execute it synchronously
           window.setTimeout(function () {
             callback.call(null, data.width == 1 && data.height == 1);
           }, 0);
         };
+
         data.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
       },
+
       /**
        * Checks if dataset could be used
        *
@@ -343,6 +381,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getDataset: function getDataset() {
         return !!document.documentElement.dataset;
       },
+
       /**
        * Check for element.contains
        *
@@ -353,6 +392,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // "object" in IE6/7/8, "function" in IE9
         return typeof document.documentElement.contains !== "undefined";
       },
+
       /**
        * Check for element.compareDocumentPosition
        *
@@ -362,6 +402,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getCompareDocumentPosition: function getCompareDocumentPosition() {
         return typeof document.documentElement.compareDocumentPosition === "function";
       },
+
       /**
        * Check for element.textContent. Legacy IEs do not support this, use
        * innerText instead.
@@ -373,6 +414,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var el = document.createElement("span");
         return typeof el.textContent !== "undefined";
       },
+
       /**
        * Whether the client supports the fullscreen API.
        *
@@ -382,6 +424,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getFullScreen: function getFullScreen() {
         return document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || false;
       },
+
       /**
        * Check for a console object.
        *
@@ -391,6 +434,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getConsole: function getConsole() {
         return typeof window.console !== "undefined";
       },
+
       /**
        * Check for the <code>naturalHeight</code> and <code>naturalWidth</code>
        * image element attributes.
@@ -402,6 +446,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var img = document.createElement("img");
         return typeof img.naturalHeight === "number" && typeof img.naturalWidth === "number";
       },
+
       /**
        * Check for HTML5 history manipulation support.
        * @internal
@@ -410,6 +455,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getHistoryState: function getHistoryState() {
         return typeof window.onpopstate !== "undefined" && typeof window.history.replaceState !== "undefined" && typeof window.history.pushState !== "undefined";
       },
+
       /**
        * Returns the name of the native object/function used to access the
        * document's text selection.
@@ -423,11 +469,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (typeof window.getSelection === "function") {
           return "getSelection";
         }
+
         if (_typeof(document.selection) === "object") {
           return "selection";
         }
+
         return null;
       },
+
       /**
        * Check for the isEqualNode DOM method.
        *
@@ -476,4 +525,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1677362727008
+//# sourceMappingURL=Html.js.map?dt=1685978109270

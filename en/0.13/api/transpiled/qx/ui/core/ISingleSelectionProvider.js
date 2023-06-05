@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -25,6 +26,7 @@
        * Christian Hagendorn (chris_schmidt)
   
   ************************************************************************ */
+
   /**
    * Defines the callback for the single selection manager.
    *
@@ -36,7 +38,6 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the elements which are part of the selection.
@@ -44,6 +45,7 @@
        * @return {qx.ui.core.Widget[]} The widgets for the selection.
        */
       getItems: function getItems() {},
+
       /**
        * Returns whether the given item is selectable.
        *
@@ -56,4 +58,4 @@
   qx.ui.core.ISingleSelectionProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISingleSelectionProvider.js.map?dt=1677362751875
+//# sourceMappingURL=ISingleSelectionProvider.js.map?dt=1685978134289

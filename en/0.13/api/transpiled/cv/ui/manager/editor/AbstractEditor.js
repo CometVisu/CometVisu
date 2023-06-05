@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* AbstractEditor.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -48,6 +49,7 @@
     extend: qx.ui.core.Widget,
     implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
     type: 'abstract',
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -55,9 +57,12 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
+
       this._initClient();
+
       this._nativePasteSupported = document.queryCommandSupported('paste');
     },
+
     /*
     ***********************************************
      PROPERTIES
@@ -80,6 +85,7 @@
         nullable: true,
         apply: '_applyHandlerOptions'
       },
+
       /**
        * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
        */
@@ -93,6 +99,7 @@
         event: 'changeReady'
       }
     },
+
     /*
     ***********************************************
       STATICS
@@ -102,6 +109,7 @@
       // fake clipboard data when native clipboard is not supported
       CLIPBOARD: null
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -114,6 +122,7 @@
         if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
           return false;
         }
+
         return this._handledActions && this._handledActions.includes(actionName);
       },
       handleAction: function handleAction(actionName) {
@@ -135,12 +144,14 @@
         if (old) {
           qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
         }
+
         if (file && file.getType() === 'file') {
           if (file.getContent() !== null) {
             this.setContent(file.getContent());
           } else {
             this._loadFromFs();
           }
+
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
         } else {
           this.resetContent();
@@ -156,12 +167,14 @@
             if (res instanceof XMLDocument) {
               res = new XMLSerializer().serializeToString(res);
             }
+
             this.setContent(res);
           }
         }, this);
       },
       _onChange: function _onChange(ev) {
         var data = ev.getData();
+
         if (data.type === 'fsContentChanged' && data.source !== this) {
           this.setContent(data.data);
         }
@@ -176,8 +189,11 @@
         } else {
           var message = type === 'created' ? this.tr('File has been created') : this.tr('File has been saved');
           cv.ui.manager.snackbar.Controller.info(message);
+
           this._onSaved();
+
           var file = this.getFile();
+
           if (file) {
             // file content loaded from FS is outdated now
             file.resetContent();
@@ -192,6 +208,7 @@
       },
       save: function save(callback, overrideHash) {
         var file = this.getFile();
+
         if (file.isModified()) {
           if (file.isTemporary()) {
             this._client.createSync({
@@ -209,6 +226,7 @@
       },
       _onSaved: function _onSaved() {
         var file = this.getFile();
+
         if (file) {
           file.resetModified();
           file.resetTemporary();
@@ -217,6 +235,7 @@
       showErrors: function showErrors(path, errorList) {},
       showDecorations: function showDecorations(path, decorators) {}
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -231,4 +250,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1677362712217
+//# sourceMappingURL=AbstractEditor.js.map?dt=1685978094841

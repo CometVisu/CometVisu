@@ -21,6 +21,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,6 +78,7 @@
     extend: qx.ui.basic.Atom,
     include: [qx.ui.core.MExecutable],
     implement: [qx.ui.form.IExecutable],
+
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
@@ -86,6 +88,7 @@
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
       this.__P_349_0 = new qx.event.AcceleratingTimer();
+
       this.__P_349_0.addListener("interval", this._onInterval, this);
     },
     properties: {
@@ -94,6 +97,7 @@
         refine: true,
         init: "hover-button"
       },
+
       /**
        * Interval used after the first run of the timer. Usually a smaller value
        * than the "firstInterval" property value to get a faster reaction.
@@ -102,6 +106,7 @@
         check: "Integer",
         init: 80
       },
+
       /**
        * Interval used for the first run of the timer. Usually a greater value
        * than the "interval" property value to a little delayed reaction at the first
@@ -111,11 +116,13 @@
         check: "Integer",
         init: 200
       },
+
       /** This configures the minimum value for the timer interval. */
       minTimer: {
         check: "Integer",
         init: 20
       },
+
       /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */
       timerDecrease: {
         check: "Integer",
@@ -124,6 +131,7 @@
     },
     members: {
       __P_349_0: null,
+
       /**
        * Start timer on pointer over
        *
@@ -133,14 +141,17 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
+
         this.__P_349_0.set({
           interval: this.getInterval(),
           firstInterval: this.getFirstInterval(),
           minimum: this.getMinTimer(),
           decrease: this.getTimerDecrease()
         }).start();
+
         this.addState("hovered");
       },
+
       /**
        * Stop timer on pointer out
        *
@@ -148,11 +159,14 @@
        */
       _onPointerOut: function _onPointerOut(e) {
         this.__P_349_0.stop();
+
         this.removeState("hovered");
+
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
       },
+
       /**
        * Fire execute event on timer interval event
        */
@@ -171,4 +185,4 @@
   qx.ui.form.HoverButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HoverButton.js.map?dt=1677362757063
+//# sourceMappingURL=HoverButton.js.map?dt=1685978137916

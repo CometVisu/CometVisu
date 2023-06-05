@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -90,6 +91,7 @@
     statics: {
       ROOT: null
     },
+
     /**
      * @param widget {qx.ui.mobile.core.Widget} the widget that will be shown in the popup
      * @param anchor {qx.ui.mobile.core.Widget?} optional parameter, a widget to attach this popup to
@@ -97,11 +99,14 @@
     construct: function construct(widget, anchor) {
       qx.ui.mobile.core.Widget.constructor.call(this);
       this.exclude();
+
       if (qx.ui.mobile.dialog.Popup.ROOT == null) {
         qx.ui.mobile.dialog.Popup.ROOT = qx.core.Init.getApplication().getRoot();
       }
+
       qx.ui.mobile.dialog.Popup.ROOT.add(this);
       this.__P_397_0 = anchor;
+
       if (widget) {
         this._initializeChild(widget);
       }
@@ -112,6 +117,7 @@
         refine: true,
         init: "popup"
       },
+
       /**
        * The label/caption/text of the qx.ui.mobile.basic.Atom instance
        */
@@ -121,6 +127,7 @@
         check: "String",
         event: "changeTitle"
       },
+
       /**
        * Any URI String supported by qx.ui.mobile.basic.Image to display an icon
        */
@@ -130,6 +137,7 @@
         nullable: true,
         event: "changeIcon"
       },
+
       /**
        * Whether the popup should be displayed modal.
        */
@@ -138,6 +146,7 @@
         check: "Boolean",
         nullable: false
       },
+
       /**
        * Indicates whether the a modal popup should disappear when user taps/clicks on Blocker.
        */
@@ -154,15 +163,18 @@
       __P_397_4: null,
       __P_397_5: null,
       __P_397_6: null,
+
       /**
        * Event handler. Called whenever the position of the popup should be updated.
        */
       _updatePosition: function _updatePosition() {
         // Traverse single anchor classes for removal, for preventing 'domupdated' event if no CSS classes changed.
         var anchorClasses = ["top", "bottom", "left", "right", "anchor"];
+
         for (var i = 0; i < anchorClasses.length; i++) {
           this.removeCssClass(anchorClasses[i]);
         }
+
         if (this.__P_397_0) {
           this.addCssClass("anchor");
           var rootHeight = qx.ui.mobile.dialog.Popup.ROOT.getHeight();
@@ -179,15 +191,16 @@
             right: 0,
             top: 0,
             bottom: 0
-          }, "bottom-left", "keep-align", "keep-align");
+          }, "bottom-left", "keep-align", "keep-align"); // Reset Anchor.
 
-          // Reset Anchor.
           this._resetPosition();
+
           var isTop = anchorPosition.top > computedPopupPosition.top;
           var isLeft = anchorPosition.left > computedPopupPosition.left;
           computedPopupPosition.top = computedPopupPosition.top - rootPosition.top;
           computedPopupPosition.left = computedPopupPosition.left - rootPosition.left;
           var isOutsideViewPort = computedPopupPosition.top < 0 || computedPopupPosition.left < 0 || computedPopupPosition.left + popupDimension.width > rootWidth || computedPopupPosition.top + popupDimension.height > rootHeight;
+
           if (isOutsideViewPort) {
             this._positionToCenter();
           } else {
@@ -196,11 +209,13 @@
             } else {
               this.addCssClass("top");
             }
+
             if (isLeft) {
               this.addCssClass("right");
             } else {
               this.addCssClass("left");
             }
+
             this.placeTo(computedPopupPosition.left, computedPopupPosition.top);
           }
         } else if (this.__P_397_2) {
@@ -208,6 +223,7 @@
           this._positionToCenter();
         }
       },
+
       /**
        * This method shows the popup.
        * First it updates the position, then registers the event handlers, and shows it.
@@ -215,40 +231,48 @@
       show: function show() {
         if (!this.__P_397_1) {
           qx.core.Init.getApplication().fireEvent("popup");
-          this.__P_397_7();
 
-          // Move outside of viewport
-          this.placeTo(-1000, -1000);
+          this.__P_397_7(); // Move outside of viewport
 
-          // Needs to be added to screen, before rendering position, for calculating
+
+          this.placeTo(-1000, -1000); // Needs to be added to screen, before rendering position, for calculating
           // objects height.
-          qx.ui.mobile.dialog.Popup.superclass.prototype.show.call(this);
 
-          // Now render position.
+          qx.ui.mobile.dialog.Popup.superclass.prototype.show.call(this); // Now render position.
+
           this._updatePosition();
         }
+
         this.__P_397_1 = true;
+
         if (this.getModal() === true) {
           qx.ui.mobile.core.Blocker.getInstance().show();
+
           if (this.getHideOnBlockerTap()) {
             qx.ui.mobile.core.Blocker.getInstance().addListener("tap", this.hide, this);
           }
         }
       },
+
       /**
        * Hides the popup.
        */
       hide: function hide() {
         if (this.__P_397_1) {
           this.__P_397_8();
+
           this.exclude();
         }
+
         this.__P_397_1 = false;
+
         if (this.getModal()) {
           qx.ui.mobile.core.Blocker.getInstance().hide();
         }
+
         qx.ui.mobile.core.Blocker.getInstance().removeListener("tap", this.hide, this);
       },
+
       /**
        * Hides the popup after a given time delay.
        * @param delay {Integer} time delay in ms.
@@ -260,6 +284,7 @@
           this.hide();
         }
       },
+
       /**
        * Returns the shown state of this popup.
        * @return {Boolean} whether the popup is shown or not.
@@ -267,6 +292,7 @@
       isShown: function isShown() {
         return this.__P_397_1;
       },
+
       /**
        * Toggles the visibility of this popup.
        */
@@ -277,6 +303,7 @@
           this.show();
         }
       },
+
       /**
        * This method positions the popup widget at the coordinates specified.
        * @param left {Integer} - the value the will be set to container's left style property
@@ -284,8 +311,10 @@
        */
       placeTo: function placeTo(left, top) {
         this._setStyle("left", left + "px");
+
         this._setStyle("top", top + "px");
       },
+
       /**
        * Tracks the user tap on root and hides the widget if <code>pointerdown</code> event
        * occurs outside of the widgets bounds.
@@ -296,10 +325,12 @@
         var clientY = evt.getViewportTop();
         var popupLocation = qx.bom.element.Location.get(this.getContainerElement());
         var isOutsideWidget = clientX < popupLocation.left || clientX > popupLocation.left + this.__P_397_6.width || clientY > popupLocation.top + this.__P_397_6.height || clientY < popupLocation.top;
+
         if (isOutsideWidget) {
           this.hide();
         }
       },
+
       /**
        * Centers this widget to window's center position.
        */
@@ -311,6 +342,7 @@
         container.style.left = "50%";
         container.style.top = "50%";
       },
+
       /**
        * Resets the position of this element (left, top, margins...)
        */
@@ -321,6 +353,7 @@
         container.style.marginLeft = null;
         container.style.marginTop = null;
       },
+
       /**
        * Registers all needed event listeners
        */
@@ -328,11 +361,14 @@
         qx.core.Init.getApplication().addListener("stop", this.hide, this);
         qx.core.Init.getApplication().addListener("popup", this.hide, this);
         qx.event.Registration.addListener(window, "resize", this._updatePosition, this);
+
         if (this.__P_397_0) {
           this.__P_397_0.addCssClass("anchor-target");
+
           qx.ui.mobile.dialog.Popup.ROOT.addListener("pointerdown", this._trackUserTap, this);
         }
       },
+
       /**
        * Unregisters all needed event listeners
        */
@@ -340,11 +376,14 @@
         qx.core.Init.getApplication().removeListener("stop", this.hide, this);
         qx.core.Init.getApplication().removeListener("popup", this.hide, this);
         qx.event.Registration.removeListener(window, "resize", this._updatePosition, this);
+
         if (this.__P_397_0) {
           this.__P_397_0.removeCssClass("anchor-target");
+
           qx.ui.mobile.dialog.Popup.ROOT.removeListener("pointerdown", this._trackUserTap, this);
         }
       },
+
       /**
        * This method creates the container where the popup's widget will be placed
        * and adds it to the popup.
@@ -354,19 +393,26 @@
       _initializeChild: function _initializeChild(widget) {
         if (this.__P_397_2 == null) {
           this.__P_397_2 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
+
           this.__P_397_2.setDefaultCssClass("popup-content");
+
           this._add(this.__P_397_2);
         }
+
         if (this._createTitleWidget()) {
           this.__P_397_2.remove(this._createTitleWidget());
+
           this.__P_397_2.add(this._createTitleWidget());
         }
+
         this.__P_397_2.add(widget, {
           flex: 1
         });
+
         widget.addListener("domupdated", this._updatePosition, this);
         this.__P_397_4 = widget;
       },
+
       /**
        * Creates the title atom widget.
        *
@@ -376,9 +422,12 @@
         if (this.__P_397_5) {
           return this.__P_397_5;
         }
+
         if (this.getTitle() || this.getIcon()) {
           this.__P_397_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), this.getIcon());
+
           this.__P_397_5.addCssClass("popup-title");
+
           return this.__P_397_5;
         } else {
           return null;
@@ -391,7 +440,9 @@
             this.__P_397_5.setLabel(value);
           } else {
             this.__P_397_5 = new qx.ui.mobile.basic.Atom(value, this.getIcon());
+
             this.__P_397_5.addCssClass("popup-title");
+
             if (this.__P_397_4) {
               this.__P_397_2.addBefore(this._createTitleWidget(), this.__P_397_4);
             } else {
@@ -409,7 +460,9 @@
             this.__P_397_5.setIcon(value);
           } else {
             this.__P_397_5 = new qx.ui.mobile.basic.Atom(this.getTitle(), value);
+
             this.__P_397_5.addCssClass("popup-title");
+
             if (this.__P_397_4) {
               this.__P_397_2.addBefore(this._createTitleWidget(), this.__P_397_4);
             } else {
@@ -420,6 +473,7 @@
           }
         }
       },
+
       /**
        * Adds the widget that will be shown in this popup. This method can be used in the case when you have removed the widget from the popup
        * or you haven't passed it in the constructor.
@@ -427,8 +481,10 @@
        */
       add: function add(widget) {
         this.removeWidget();
+
         this._initializeChild(widget);
       },
+
       /**
        * A widget to attach this popup to.
        *
@@ -436,8 +492,10 @@
        */
       setAnchor: function setAnchor(widget) {
         this.__P_397_0 = widget;
+
         this._updatePosition();
       },
+
       /**
        * Returns the title widget.
        *
@@ -446,6 +504,7 @@
       getTitleWidget: function getTitleWidget() {
         return this.__P_397_5;
       },
+
       /**
        * This method removes the widget shown in the popup.
        * @return {qx.ui.mobile.core.Widget|null} The removed widget or <code>null</code>
@@ -454,7 +513,9 @@
       removeWidget: function removeWidget() {
         if (this.__P_397_4) {
           this.__P_397_4.removeListener("domupdated", this._updatePosition, this);
+
           this.__P_397_2.remove(this.__P_397_4);
+
           return this.__P_397_4;
         } else {
           return null;
@@ -463,11 +524,13 @@
     },
     destruct: function destruct() {
       this.__P_397_8();
+
       this._disposeObjects("__P_397_2");
+
       this.__P_397_1 = this.__P_397_3 = this._anchor = this.__P_397_4 = this.__P_397_6 = null;
     }
   });
   qx.ui.mobile.dialog.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1677362762237
+//# sourceMappingURL=Popup.js.map?dt=1685978143357

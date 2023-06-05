@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MFileEventHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,6 +46,7 @@
         qx.event.message.Bus.subscribe('cv.manager.file', this._handleFileEvent, this);
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -53,6 +55,7 @@
     members: {
       _disableFileEvents: false
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -65,4 +68,4 @@
   cv.ui.manager.control.MFileEventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFileEventHandler.js.map?dt=1677362711967
+//# sourceMappingURL=MFileEventHandler.js.map?dt=1685978094591

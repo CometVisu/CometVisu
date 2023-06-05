@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* AbstractActionHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,6 +40,7 @@
   qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
     extend: qx.core.Object,
     type: 'abstract',
+
     /*
     ******************************************************
       PROPERTIES
@@ -58,6 +60,7 @@
         init: ''
       }
     },
+
     /*
     ***********************************************
       EVENTS
@@ -70,4 +73,4 @@
   cv.core.notifications.actions.AbstractActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractActionHandler.js.map?dt=1677362706465
+//# sourceMappingURL=AbstractActionHandler.js.map?dt=1685978089451

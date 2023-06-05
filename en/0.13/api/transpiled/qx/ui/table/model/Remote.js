@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,6 +46,7 @@
   qx.Class.define("qx.ui.table.model.Remote", {
     type: "abstract",
     extend: qx.ui.table.model.Abstract,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -55,44 +57,42 @@
       this._sortColumnIndex = -1;
       this._sortAscending = true;
       this._rowCount = -1;
-      this._lruCounter = 0;
-
-      // Holds the index of the first block that is currently loading.
+      this._lruCounter = 0; // Holds the index of the first block that is currently loading.
       // Is -1 if there is currently no request on its way.
-      this._firstLoadingBlock = -1;
 
-      // Holds the index of the first row that should be loaded when the response of
+      this._firstLoadingBlock = -1; // Holds the index of the first row that should be loaded when the response of
       // the current request arrives. Is -1 we need no following request.
-      this._firstRowToLoad = -1;
 
-      // Counterpart to _firstRowToLoad
-      this._lastRowToLoad = -1;
+      this._firstRowToLoad = -1; // Counterpart to _firstRowToLoad
 
-      // Holds whether the current request will bring obsolete data. When true the
+      this._lastRowToLoad = -1; // Holds whether the current request will bring obsolete data. When true the
       // response of the current request will be ignored.
+
       this._ignoreCurrentRequest = false;
       this._rowBlockCache = {};
       this._rowBlockCount = 0;
       this._sortableColArr = null;
       this._editableColArr = null;
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** The number of rows that are stored in one cache block. */
       blockSize: {
         check: "Integer",
         init: 50
       },
+
       /** The maximum number of row blocks kept in the cache. */
       maxCachedBlockCount: {
         check: "Integer",
         init: 15
       },
+
       /**
        * Whether to clear the cache when some rows are removed.
        * If true the rows are removed locally in the cache.
@@ -101,6 +101,7 @@
         check: "Boolean",
         init: false
       },
+
       /**
        * Whether to block remote requests for the row count while a request for
        * the row count is pending. Row counts are requested at various times and
@@ -120,12 +121,12 @@
         init: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       _rowCount: null,
       _ignoreCurrentRequest: null,
@@ -141,6 +142,7 @@
       _sortableColArr: null,
       _loadRowCountRequestRunning: false,
       _clearCache: false,
+
       /**
        * Returns whether the current request is ignored by the model.
        *
@@ -154,15 +156,17 @@
         if (this._rowCount == -1) {
           if (!this._loadRowCountRequestRunning || !this.getBlockConcurrentLoadRowCount()) {
             this._loadRowCountRequestRunning = true;
-            this._loadRowCount();
-          }
 
-          // NOTE: _loadRowCount may set this._rowCount
+            this._loadRowCount();
+          } // NOTE: _loadRowCount may set this._rowCount
+
+
           return this._rowCount == -1 ? 0 : this._rowCount;
         } else {
           return this._rowCount;
         }
       },
+
       /**
        * Implementing classes have to call {@link #_onRowCountLoaded} when the
        * server response arrived. That method has to be called! Even when there
@@ -174,6 +178,7 @@
       _loadRowCount: function _loadRowCount() {
         throw new Error("_loadRowCount is abstract");
       },
+
       /**
        * Sets the row count.
        *
@@ -185,15 +190,15 @@
         if (this.getBlockConcurrentLoadRowCount()) {
           // There's no longer a loadRowCount() in progress
           this._loadRowCountRequestRunning = false;
-        }
+        } // this.debug("row count loaded: " + rowCount);
 
-        // this.debug("row count loaded: " + rowCount);
+
         if (rowCount == null || rowCount < 0) {
           rowCount = 0;
         }
-        this._rowCount = Number(rowCount);
 
-        // Inform the listeners
+        this._rowCount = Number(rowCount); // Inform the listeners
+
         var data = {
           firstRow: 0,
           lastRow: rowCount - 1,
@@ -202,6 +207,7 @@
         };
         this.fireDataEvent("dataChanged", data);
       },
+
       /**
        * Reloads the model and clears the local cache.
        *
@@ -211,6 +217,7 @@
         // obsolete data -> Ignore it
         if (this._firstLoadingBlock != -1) {
           var cancelingSucceed = this._cancelCurrentRequest();
+
           if (cancelingSucceed) {
             // The request was canceled -> We're not loading any blocks any more
             this._firstLoadingBlock = -1;
@@ -219,22 +226,23 @@
             // The request was not canceled -> Ignore it
             this._ignoreCurrentRequest = true;
           }
-        }
+        } // Force clearing row cache, because of reloading data.
 
-        // Force clearing row cache, because of reloading data.
-        this._clearCache = true;
 
-        // Forget a possibly outstanding request
+        this._clearCache = true; // Forget a possibly outstanding request
         // (_loadRowCount will tell the listeners anyway, that the whole table
         // changed)
         //
         // NOTE: This will inform the listeners as soon as the new row count is
         // known
+
         this._firstRowToLoad = -1;
         this._lastRowToLoad = -1;
         this._loadRowCountRequestRunning = true;
+
         this._loadRowCount();
       },
+
       /**
        * Clears the cache.
        *
@@ -243,6 +251,7 @@
         this._rowBlockCache = {};
         this._rowBlockCount = 0;
       },
+
       /**
        * Returns the current state of the cache.
        * <p>
@@ -262,6 +271,7 @@
           rowBlockCount: this._rowBlockCount
         };
       },
+
       /**
        * Restores a cache state created by {@link #getCacheContent}.
        *
@@ -273,6 +283,7 @@
         if (this._firstLoadingBlock != -1) {
           // Try to cancel the current request
           var cancelingSucceed = this._cancelCurrentRequest();
+
           if (cancelingSucceed) {
             // The request was canceled -> We're not loading any blocks any more
             this._firstLoadingBlock = -1;
@@ -281,17 +292,16 @@
             // The request was not canceled -> Ignore it
             this._ignoreCurrentRequest = true;
           }
-        }
+        } // Restore the cache content
 
-        // Restore the cache content
+
         this._sortColumnIndex = cacheContent.sortColumnIndex;
         this._sortAscending = cacheContent.sortAscending;
         this._rowCount = cacheContent.rowCount;
         this._lruCounter = cacheContent.lruCounter;
         this._rowBlockCache = cacheContent.rowBlockCache;
-        this._rowBlockCount = cacheContent.rowBlockCount;
+        this._rowBlockCount = cacheContent.rowBlockCount; // Inform the listeners
 
-        // Inform the listeners
         var data = {
           firstRow: 0,
           lastRow: this._rowCount - 1,
@@ -300,6 +310,7 @@
         };
         this.fireDataEvent("dataChanged", data);
       },
+
       /**
        * Cancels the current request if possible.
        *
@@ -311,6 +322,7 @@
       _cancelCurrentRequest: function _cancelCurrentRequest() {
         return false;
       },
+
       /**
        * Iterates through all cached rows.
        *
@@ -326,18 +338,20 @@
        */
       iterateCachedRows: function iterateCachedRows(iterator, object) {
         var blockSize = this.getBlockSize();
-        var blockCount = Math.ceil(this.getRowCount() / blockSize);
+        var blockCount = Math.ceil(this.getRowCount() / blockSize); // Remove the row and move the rows of all following blocks
 
-        // Remove the row and move the rows of all following blocks
         for (var block = 0; block <= blockCount; block++) {
           var blockData = this._rowBlockCache[block];
+
           if (blockData != null) {
             var rowOffset = block * blockSize;
             var rowDataArr = blockData.rowDataArr;
+
             for (var relRow = 0; relRow < rowDataArr.length; relRow++) {
               // Call the iterator for this row
               var rowData = rowDataArr[relRow];
               var newRowData = iterator.call(object, rowOffset + relRow, rowData);
+
               if (newRowData != null) {
                 rowDataArr[relRow] = newRowData;
               }
@@ -350,40 +364,43 @@
         // this.debug("Prefetch wanted: " + firstRowIndex + ".." + lastRowIndex);
         if (this._firstLoadingBlock == -1) {
           var blockSize = this.getBlockSize();
-          var totalBlockCount = Math.ceil(this._rowCount / blockSize);
-
-          // There is currently no request running -> Start a new one
+          var totalBlockCount = Math.ceil(this._rowCount / blockSize); // There is currently no request running -> Start a new one
           // NOTE: We load one more block above and below to have a smooth
           //       scrolling into the next block without blank cells
+
           var firstBlock = parseInt(firstRowIndex / blockSize, 10) - 1;
+
           if (firstBlock < 0) {
             firstBlock = 0;
           }
+
           var lastBlock = parseInt(lastRowIndex / blockSize, 10) + 1;
+
           if (lastBlock >= totalBlockCount) {
             lastBlock = totalBlockCount - 1;
-          }
+          } // Check which blocks we have to load
 
-          // Check which blocks we have to load
+
           var firstBlockToLoad = -1;
           var lastBlockToLoad = -1;
+
           for (var block = firstBlock; block <= lastBlock; block++) {
             if (this._clearCache && !this._loadRowCountRequestRunning || this._rowBlockCache[block] == null || this._rowBlockCache[block].isDirty) {
               // We don't have this block
               if (firstBlockToLoad == -1) {
                 firstBlockToLoad = block;
               }
+
               lastBlockToLoad = block;
             }
-          }
+          } // Load the blocks
 
-          // Load the blocks
+
           if (firstBlockToLoad != -1) {
             this._firstRowToLoad = -1;
             this._lastRowToLoad = -1;
-            this._firstLoadingBlock = firstBlockToLoad;
+            this._firstLoadingBlock = firstBlockToLoad; // this.debug("Starting server request. rows: " + firstRowIndex + ".." + lastRowIndex + ", blocks: " + firstBlockToLoad + ".." + lastBlockToLoad);
 
-            // this.debug("Starting server request. rows: " + firstRowIndex + ".." + lastRowIndex + ", blocks: " + firstBlockToLoad + ".." + lastBlockToLoad);
             this._loadRowData(firstBlockToLoad * blockSize, (lastBlockToLoad + 1) * blockSize - 1);
           }
         } else {
@@ -393,6 +410,7 @@
           this._lastRowToLoad = lastRowIndex;
         }
       },
+
       /**
        * Loads some row data from the server.
        *
@@ -407,6 +425,7 @@
       _loadRowData: function _loadRowData(firstRow, lastRow) {
         throw new Error("_loadRowData is abstract");
       },
+
       /**
        * Sets row data.
        *
@@ -420,9 +439,11 @@
           this.clearCache();
           this._clearCache = false;
         }
+
         if (rowDataArr != null && !this._ignoreCurrentRequest) {
           var blockSize = this.getBlockSize();
           var blockCount = Math.ceil(rowDataArr.length / blockSize);
+
           if (blockCount == 1) {
             // We got one block -> Use the rowData directly
             this._setRowBlockData(this._firstLoadingBlock, rowDataArr);
@@ -432,15 +453,17 @@
               var rowOffset = i * blockSize;
               var blockRowData = [];
               var mailCount = Math.min(blockSize, rowDataArr.length - rowOffset);
+
               for (var row = 0; row < mailCount; row++) {
                 blockRowData.push(rowDataArr[rowOffset + row]);
               }
+
               this._setRowBlockData(this._firstLoadingBlock + i, blockRowData);
             }
-          }
-
-          // this.debug("Got server answer. blocks: " + this._firstLoadingBlock + ".." + (this._firstLoadingBlock + blockCount - 1) + ". mail count: " + rowDataArr.length + " block count:" + blockCount);
+          } // this.debug("Got server answer. blocks: " + this._firstLoadingBlock + ".." + (this._firstLoadingBlock + blockCount - 1) + ". mail count: " + rowDataArr.length + " block count:" + blockCount);
           // Inform the listeners
+
+
           var data = {
             firstRow: this._firstLoadingBlock * blockSize,
             lastRow: (this._firstLoadingBlock + blockCount + 1) * blockSize - 1,
@@ -448,17 +471,17 @@
             lastColumn: this.getColumnCount() - 1
           };
           this.fireDataEvent("dataChanged", data);
-        }
+        } // We're not loading any blocks any more
 
-        // We're not loading any blocks any more
+
         this._firstLoadingBlock = -1;
-        this._ignoreCurrentRequest = false;
+        this._ignoreCurrentRequest = false; // Check whether we have to start a new request
 
-        // Check whether we have to start a new request
         if (this._firstRowToLoad != -1) {
           this.prefetchRows(this._firstRowToLoad, this._lastRowToLoad);
         }
       },
+
       /**
        * Sets the data of one block.
        *
@@ -469,30 +492,35 @@
         if (this._rowBlockCache[block] == null) {
           // This is a new block -> Check whether we have to remove another block first
           this._rowBlockCount++;
+
           while (this._rowBlockCount > this.getMaxCachedBlockCount()) {
             // Find the last recently used block
             // NOTE: We never remove block 0 and 1
             var lruBlock;
             var minLru = this._lruCounter;
+
             for (var currBlock in this._rowBlockCache) {
               var currLru = this._rowBlockCache[currBlock].lru;
+
               if (currLru < minLru && currBlock > 1) {
                 minLru = currLru;
                 lruBlock = currBlock;
               }
-            }
-
-            // Remove that block
+            } // Remove that block
             // this.debug("Removing block: " + lruBlock + ". current LRU: " + this._lruCounter);
+
+
             delete this._rowBlockCache[lruBlock];
             this._rowBlockCount--;
           }
         }
+
         this._rowBlockCache[block] = {
           lru: ++this._lruCounter,
           rowDataArr: rowDataArr
         };
       },
+
       /**
        * Removes a row from the model.
        *
@@ -500,10 +528,10 @@
        */
       removeRow: function removeRow(rowIndex) {
         this._checkEditing();
-        if (this.getClearCacheOnRemove()) {
-          this.clearCache();
 
-          // Inform the listeners
+        if (this.getClearCacheOnRemove()) {
+          this.clearCache(); // Inform the listeners
+
           var data = {
             firstRow: 0,
             lastRow: this.getRowCount() - 1,
@@ -514,20 +542,23 @@
         } else {
           var blockSize = this.getBlockSize();
           var blockCount = Math.ceil(this.getRowCount() / blockSize);
-          var startBlock = parseInt(rowIndex / blockSize, 10);
+          var startBlock = parseInt(rowIndex / blockSize, 10); // Remove the row and move the rows of all following blocks
 
-          // Remove the row and move the rows of all following blocks
           for (var block = startBlock; block <= blockCount; block++) {
             var blockData = this._rowBlockCache[block];
+
             if (blockData != null) {
               // Remove the row in the start block
               // NOTE: In the other blocks the first row is removed
               //       (This is the row that was)
               var removeIndex = 0;
+
               if (block == startBlock) {
                 removeIndex = rowIndex - block * blockSize;
               }
+
               blockData.rowDataArr.splice(removeIndex, 1);
+
               if (block == blockCount - 1) {
                 // This is the last block
                 if (blockData.rowDataArr.length == 0) {
@@ -538,6 +569,7 @@
                 // Try to copy the first row of the next block to the end of this block
                 // so this block can stays clean
                 var nextBlockData = this._rowBlockCache[block + 1];
+
                 if (nextBlockData != null) {
                   blockData.rowDataArr.push(nextBlockData.rowDataArr[0]);
                 } else {
@@ -547,11 +579,12 @@
               }
             }
           }
+
           if (this._rowCount != -1) {
             this._rowCount--;
-          }
+          } // Inform the listeners
 
-          // Inform the listeners
+
           if (this.hasListener("dataChanged")) {
             var data = {
               firstRow: rowIndex,
@@ -563,6 +596,7 @@
           }
         }
       },
+
       /**
        *
        * See overridden method for details.
@@ -574,22 +608,24 @@
         var blockSize = this.getBlockSize();
         var block = parseInt(rowIndex / blockSize, 10);
         var blockData = this._rowBlockCache[block];
+
         if (blockData == null) {
           // This block is not (yet) loaded
           return null;
         } else {
-          var rowData = blockData.rowDataArr[rowIndex - block * blockSize];
+          var rowData = blockData.rowDataArr[rowIndex - block * blockSize]; // Update the last recently used counter
 
-          // Update the last recently used counter
           if (blockData.lru != this._lruCounter) {
             blockData.lru = ++this._lruCounter;
           }
+
           return rowData;
         }
       },
       // overridden
       getValue: function getValue(columnIndex, rowIndex) {
         var rowData = this.getRowData(rowIndex);
+
         if (rowData == null) {
           return null;
         } else {
@@ -600,14 +636,14 @@
       // overridden
       setValue: function setValue(columnIndex, rowIndex, value) {
         var rowData = this.getRowData(rowIndex);
+
         if (rowData == null) {
           // row has not yet been loaded or does not exist
           return;
         } else {
           var columnId = this.getColumnId(columnIndex);
-          rowData[columnId] = value;
+          rowData[columnId] = value; // Inform the listeners
 
-          // Inform the listeners
           if (this.hasListener("dataChanged")) {
             var data = {
               firstRow: rowIndex,
@@ -619,6 +655,7 @@
           }
         }
       },
+
       /**
        * Sets all columns editable or not editable.
        *
@@ -626,11 +663,14 @@
        */
       setEditable: function setEditable(editable) {
         this._editableColArr = [];
+
         for (var col = 0; col < this.getColumnCount(); col++) {
           this._editableColArr[col] = editable;
         }
+
         this.fireEvent("metaDataChanged");
       },
+
       /**
        * Sets whether a column is editable.
        *
@@ -642,6 +682,7 @@
           if (this._editableColArr == null) {
             this._editableColArr = [];
           }
+
           this._editableColArr[columnIndex] = editable;
           this.fireEvent("metaDataChanged");
         }
@@ -650,6 +691,7 @@
       isColumnEditable: function isColumnEditable(columnIndex) {
         return this._editableColArr ? this._editableColArr[columnIndex] == true : false;
       },
+
       /**
        * Sets whether a column is sortable.
        *
@@ -661,6 +703,7 @@
           if (this._sortableColArr == null) {
             this._sortableColArr = [];
           }
+
           this._sortableColArr[columnIndex] = sortable;
           this.fireEvent("metaDataChanged");
         }
@@ -674,9 +717,8 @@
         if (this._sortColumnIndex != columnIndex || this._sortAscending != ascending) {
           this._sortColumnIndex = columnIndex;
           this._sortAscending = ascending;
-          this.clearCache();
+          this.clearCache(); // Inform the listeners
 
-          // Inform the listeners
           this.fireEvent("metaDataChanged");
         }
       },
@@ -688,6 +730,7 @@
       isSortAscending: function isSortAscending() {
         return this._sortAscending;
       },
+
       /**
        * Sets the sorted column without sorting the data.
        * Use this method, if you want to mark the column as the sorted column,
@@ -699,6 +742,7 @@
       setSortColumnIndexWithoutSortingData: function setSortColumnIndexWithoutSortingData(sortColumnIndex) {
         this._sortColumnIndex = sortColumnIndex;
       },
+
       /**
        * Sets the direction of the sorting without sorting the data.
        * Use this method, if you want to set the direction of sorting, (e.g
@@ -719,4 +763,4 @@
   qx.ui.table.model.Remote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Remote.js.map?dt=1677362766742
+//# sourceMappingURL=Remote.js.map?dt=1685978147955

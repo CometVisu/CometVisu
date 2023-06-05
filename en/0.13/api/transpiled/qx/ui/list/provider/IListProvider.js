@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,30 +40,35 @@
        * @return {qx.ui.virtual.layer.Abstract} new layer.
        */
       createLayer: function createLayer() {},
+
       /**
        * Creates a renderer for item rendering.
        *
        * @return {var} new item renderer.
        */
       createItemRenderer: function createItemRenderer() {},
+
       /**
        * Creates a renderer for group rendering.
        *
        * @return {var} new group renderer.
        */
       createGroupRenderer: function createGroupRenderer() {},
+
       /**
        * Styles a selected item.
        *
        * @param row {Integer} row to style.
        */
       styleSelectabled: function styleSelectabled(row) {},
+
       /**
        * Styles a not selected item.
        *
        * @param row {Integer} row to style.
        */
       styleUnselectabled: function styleUnselectabled(row) {},
+
       /**
        * Returns if the passed row can be selected or not.
        *
@@ -71,6 +77,7 @@
        *    <code>false</code> otherwise.
        */
       isSelectable: function isSelectable(row) {},
+
       /**
        * The path to the property which holds the information that should be
        * shown as a label. This is only needed if objects are stored in the model.
@@ -78,6 +85,7 @@
        * @param path {String} path to the property.
        */
       setLabelPath: function setLabelPath(path) {},
+
       /**
        * The path to the property which holds the information that should be
        * shown as an icon. This is only needed if objects are stored in the model
@@ -86,6 +94,7 @@
        * @param path {String} path to the property.
        */
       setIconPath: function setIconPath(path) {},
+
       /**
        * A map containing the options for the label binding. The possible keys
        * can be found in the {@link qx.data.SingleValueBinding} documentation.
@@ -93,6 +102,7 @@
        * @param options {Map} options for the label binding.
        */
       setLabelOptions: function setLabelOptions(options) {},
+
       /**
        * A map containing the options for the icon binding. The possible keys
        * can be found in the {@link qx.data.SingleValueBinding} documentation.
@@ -100,6 +110,7 @@
        * @param options {Map} options for the icon binding.
        */
       setIconOptions: function setIconOptions(options) {},
+
       /**
        * Delegation object, which can have one or more functions defined by the
        * {@link qx.ui.list.core.IListDelegate} interface.
@@ -107,6 +118,7 @@
        * @param delegate {Object} delegation object.
        */
       setDelegate: function setDelegate(delegate) {},
+
       /**
        * Remove all bindings from all bounded items.
        */
@@ -116,4 +128,4 @@
   qx.ui.list.provider.IListProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListProvider.js.map?dt=1677362760258
+//# sourceMappingURL=IListProvider.js.map?dt=1685978141231

@@ -146,7 +146,7 @@ Adresse einstellen:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="13"><p>address</p></td>
+<tr class="row-odd"><td rowspan="14"><p>address</p></td>
 <td><p>transform</p></td>
 <td><p>Text</p></td>
 <td><p>Legt den Datentyp im Backend fest, z.B. DPT:1.001 für den KNX Datenpunkttyp 1.001.</p></td>
@@ -179,23 +179,27 @@ Adresse einstellen:</p>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-odd"><td><p>backend</p></td>
+<tr class="row-odd"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-even"><td><p>backend</p></td>
 <td><p>Text</p></td>
 <td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
 </tr>
-<tr class="row-even"><td><p>mapping</p></td>
+<tr class="row-odd"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>format</p></td>
+<tr class="row-even"><td><p>format</p></td>
 <td><p>Text</p></td>
 <td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-even"><td><p>delay</p></td>
+<tr class="row-odd"><td><p>delay</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
 </tr>
-<tr class="row-odd"><td><p>send-mode</p></td>
+<tr class="row-even"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
 </tr>
@@ -264,6 +268,34 @@ nicht mehr auf Interaktionen des Benutzers wie z.B. Mausklicks.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;enabled&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="widget-als-veraltet-markieren">
+<h3>Widget als veraltet markieren<a class="headerlink" href="#widget-als-veraltet-markieren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Besonders bei Widgets die einen Wert anzeigen ist es wichtig zu wissen, dass dieser Wert aktuell ist.
+Sofern man die Möglichkeit hat den Zeitpunkt der letzten Aktualisierung vom Backend zu bekommen, kann man diesen
+nutzen um das Widget als veraltet zu markieren, wenn die letzte Aktualisierung zu lange zurückliegt.</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-info-outdated.png" src="../../../_images/cv-info-outdated.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.2f&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;tileAddress&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:10.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;last-update:120&quot;</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Wohnzimmer<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;unit&quot;</span><span class="nt">&gt;</span>°C<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/cv-info&gt;</span>
+</pre></div>
+</div>
+<p>Das <code class="docutils literal notranslate"><span class="pre">target=&quot;last-update:120&quot;</span></code> gibt an, dass die Zeit nicht länger als 120 Sekunden zurückliegen darf, ansonsten
+wird das Widget als veraltet markiert.</p>
+<p>Dieses Feature steht in allen vordefinierten Widgets zur Verfügung. In eigenen Widgets kann man es ebenfalls nutzen,
+mann muss lediglich das slot-Attribut aus dem Beispiel weglassen.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:10.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;last-update:120&quot;</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>

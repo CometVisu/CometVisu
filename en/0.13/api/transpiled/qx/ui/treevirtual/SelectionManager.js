@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
    */
   qx.Class.define("qx.ui.treevirtual.SelectionManager", {
     extend: qx.ui.table.selection.Manager,
+
     /**
      * @param table {qx.ui.table.Table}
      *    The table whose selections are being managed
@@ -52,6 +54,7 @@
     },
     members: {
       __P_467_0: null,
+
       /**
        * Getter for the table being managed
        *
@@ -61,6 +64,7 @@
       getTable: function getTable() {
         return this.__P_467_0;
       },
+
       /**
        * Handles a select event.  First we determine if the click was on the
        * open/close button and toggle the opened/closed state as necessary.
@@ -73,46 +77,47 @@
        */
       _handleSelectEvent: function _handleSelectEvent(index, evt) {
         var _this = this;
+
         function handleButtonClick(tree, index, evt) {
           // Get the data model
-          var dataModel = tree.getDataModel();
+          var dataModel = tree.getDataModel(); // Determine the column containing the tree
 
-          // Determine the column containing the tree
-          var treeCol = dataModel.getTreeColumn();
+          var treeCol = dataModel.getTreeColumn(); // Get the focused column
 
-          // Get the focused column
-          var focusedCol = tree.getFocusedColumn();
+          var focusedCol = tree.getFocusedColumn(); // If the click is not in the tree column, ...
 
-          // If the click is not in the tree column, ...
           if (focusedCol != treeCol) {
             // ... then let the Table selection manager deal with it
             return false;
-          }
+          } // If the cell hasn't been focused automatically...
 
-          // If the cell hasn't been focused automatically...
+
           if (evt instanceof qx.event.type.Mouse) {
             if (!tree.getFocusCellOnPointerMove()) {
               // ... then focus it now so we can determine the node to open/close
               var scrollers = tree._getPaneScrollerArr();
+
               for (var i = 0; i < scrollers.length; i++) {
                 scrollers[i]._focusCellAtPagePos(evt.getViewportLeft(), evt.getViewportTop());
               }
             }
-          }
+          } // Get the node to which this event applies
 
-          // Get the node to which this event applies
+
           var node = dataModel.getNode(tree.getFocusedRow());
+
           if (!node) {
             return false;
-          }
+          } // Was this a mouse event?
 
-          // Was this a mouse event?
+
           if (evt instanceof qx.event.type.Mouse) {
             // Was the click on the open/close button? We get the position and add a bit of
             // latitude to that
             var x = evt.getViewportLeft();
             var latitude = 2;
             var buttonPos = tree.getOpenCloseButtonPosition(node);
+
             if (x >= buttonPos.left - latitude && x <= buttonPos.left + buttonPos.width + latitude) {
               // Yup.  Toggle the opened state for this node if open/close is allowed
               if (!node.bHideOpenClose && node.type !== qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
@@ -120,26 +125,32 @@
                   bOpened: !node.bOpened
                 });
               }
+
               return tree.getOpenCloseClickSelectsRow() ? false : true;
             } else {
               // Yup.  Get the order of the columns
               var tcm = tree.getTableColumnModel();
-              var columnPositions = tcm._getColToXPosMap();
 
-              // Calculate the position of the beginning of the tree column
+              var columnPositions = tcm._getColToXPosMap(); // Calculate the position of the beginning of the tree column
+
+
               var left = qx.bom.element.Location.getLeft(tree.getContentElement().getDomElement());
+
               for (var i = 0; i < columnPositions[treeCol].visX; i++) {
                 left += tcm.getColumnWidth(columnPositions[i].visX);
               }
+
               return _this._handleExtendedClick(tree, evt, node, left);
             }
           } else {
             // See which key generated the event
             var identifier = evt.getKeyIdentifier();
+
             switch (identifier) {
               case "Space":
                 // This should only select the row, not toggle the opened state
                 return false;
+
               case "Enter":
                 // Toggle the open state if open/close is allowed
                 if (!node.bHideOpenClose && node.type != qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
@@ -147,23 +158,25 @@
                     bOpened: !node.bOpened
                   });
                 }
+
                 return tree.getOpenCloseClickSelectsRow() ? false : true;
+
               default:
                 // Unrecognized key.  Ignore it.
                 return true;
             }
           }
-        }
+        } // Call our local method to toggle the open/close state, if necessary
 
-        // Call our local method to toggle the open/close state, if necessary
-        var bNoSelect = handleButtonClick(this.__P_467_0, index, evt);
 
-        // If we haven't been told not to do the selection...
+        var bNoSelect = handleButtonClick(this.__P_467_0, index, evt); // If we haven't been told not to do the selection...
+
         if (!bNoSelect) {
           // then call the superclass to handle it.
           qx.ui.treevirtual.SelectionManager.superclass.prototype._handleSelectEvent.call(this, index, evt);
         }
       },
+
       /**
        * Handle a mouse click event that is not normally handled by the simple
        * tree.  This is intended for more sophisticated trees where clicks in
@@ -198,4 +211,4 @@
   qx.ui.treevirtual.SelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectionManager.js.map?dt=1677362769170
+//# sourceMappingURL=SelectionManager.js.map?dt=1685978150441

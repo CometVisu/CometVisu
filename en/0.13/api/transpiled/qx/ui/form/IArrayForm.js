@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,28 +35,29 @@
    */
   qx.Interface.define("qx.ui.form.IArrayForm", {
     extend: qx.ui.form.IField,
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fired when the value was modified */
       changeValue: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         VALUE PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the element's value.
        *
@@ -64,10 +66,12 @@
       setValue: function setValue(value) {
         return arguments.length == 1;
       },
+
       /**
        * Resets the element's value to its initial value.
        */
       resetValue: function resetValue() {},
+
       /**
        * The element's user set value.
        *
@@ -79,4 +83,4 @@
   qx.ui.form.IArrayForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IArrayForm.js.map?dt=1677362757087
+//# sourceMappingURL=IArrayForm.js.map?dt=1685978137935

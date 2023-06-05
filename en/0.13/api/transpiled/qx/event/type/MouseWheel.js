@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
         this.stopPropagation();
         this.preventDefault();
       },
+
       /**
        * Get the amount the wheel has been scrolled
        *
@@ -58,4 +60,4 @@
   qx.event.type.MouseWheel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MouseWheel.js.map?dt=1677362740150
+//# sourceMappingURL=MouseWheel.js.map?dt=1685978123127

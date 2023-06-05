@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,6 +53,7 @@
    */
   qx.Class.define("qx.ui.virtual.layer.HtmlCell", {
     extend: qx.ui.virtual.layer.Abstract,
+
     /**
      * @param htmlCellProvider {qx.ui.virtual.core.IHtmlCellProvider} This class
      *    provides the HTML markup for each cell.
@@ -61,12 +63,12 @@
       this.setZIndex(12);
       this._cellProvider = htmlCellProvider;
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Get the cell size taking the box model into account
@@ -81,10 +83,12 @@
        */
       _getCellSizeStyle: function _getCellSizeStyle(width, height, insetX, insetY) {
         var style = "";
+
         if (qx.core.Environment.get("css.boxmodel") == "content") {
           width -= insetX;
           height -= insetY;
         }
+
         style += "width:" + width + "px;";
         style += "height:" + height + "px;";
         return style;
@@ -96,24 +100,31 @@
         var top = 0;
         var row = firstRow;
         var column = firstColumn;
+
         for (var y = 0; y < rowSizes.length; y++) {
           var left = 0;
           var column = firstColumn;
           var height = rowSizes[y];
+
           for (var x = 0; x < columnSizes.length; x++) {
             var width = columnSizes[x];
+
             var cellProperties = this._cellProvider.getCellProperties(row, column);
+
             var insets = cellProperties.insets || [0, 0];
             html.push("<div ", "style='", "left:", left, "px;", "top:", top, "px;", this._getCellSizeStyle(width, height, insets[0], insets[1]), cellProperties.style || "", "' ", "class='", cellProperties.classes || "", "' ", cellProperties.attributes || "", ">", cellProperties.content || "", "</div>");
             column++;
             left += width;
           }
+
           top += height;
           row++;
         }
+
         this.getContentElement().setAttribute("html", html.join(""));
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -126,4 +137,4 @@
   qx.ui.virtual.layer.HtmlCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCell.js.map?dt=1677362770551
+//# sourceMappingURL=HtmlCell.js.map?dt=1685978151898

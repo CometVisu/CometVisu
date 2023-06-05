@@ -221,6 +221,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "protected"
     },
     "refresh": {
@@ -237,6 +238,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public",
       "overriddenFrom": "cv.io.listmodel.IListModel",
       "appearsIn": [

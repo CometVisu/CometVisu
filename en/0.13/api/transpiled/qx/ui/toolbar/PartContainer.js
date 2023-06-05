@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,6 +45,7 @@
     extend: qx.ui.container.Composite,
     construct: function construct() {
       qx.ui.container.Composite.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.HBox());
     },
     events: {
@@ -55,6 +57,7 @@
         refine: true,
         init: "toolbar/part/container"
       },
+
       /** Whether icons, labels, both or none should be shown. */
       show: {
         init: "both",
@@ -77,4 +80,4 @@
   qx.ui.toolbar.PartContainer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PartContainer.js.map?dt=1677362767986
+//# sourceMappingURL=PartContainer.js.map?dt=1685978149214

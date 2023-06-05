@@ -32,6 +32,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,31 +64,37 @@
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MRemoteChildrenHandling, qx.ui.core.MRemoteLayoutHandling, qx.ui.core.MContentPadding, qx.ui.form.MForm],
     implement: [qx.ui.form.IForm],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param legend {String?""} The group boxes legend
      * @param icon {String?""} The icon of the legend
      */
     construct: function construct(legend, icon) {
       qx.ui.core.Widget.constructor.call(this);
-      this._setLayout(new qx.ui.layout.Canvas());
 
-      // Sub widgets
+      this._setLayout(new qx.ui.layout.Canvas()); // Sub widgets
+
+
       this._createChildControl("frame");
-      this._createChildControl("legend");
 
-      // Processing parameters
+      this._createChildControl("legend"); // Processing parameters
+
+
       if (legend != null) {
         this.setLegend(legend);
       }
+
       if (icon != null) {
         this.setIcon(icon);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
@@ -99,6 +106,7 @@
         refine: true,
         init: "groupbox"
       },
+
       /**
        * Label of the legend sub widget. Set if the given string is
        * valid. Otherwise the legend sub widget is not being displayed.
@@ -109,6 +117,7 @@
         event: "changeLegend",
         nullable: true
       },
+
       /**
        * Property for setting the position of the legend.
        */
@@ -119,14 +128,17 @@
         themeable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -136,27 +148,35 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "frame":
             control = new qx.ui.container.Composite();
+
             this._add(control, {
               left: 0,
               top: 6,
               right: 0,
               bottom: 0
             });
+
             break;
+
           case "legend":
             control = new qx.ui.basic.Atom();
             control.addListener("resize", this._repositionFrame, this);
+
             this._add(control, {
               left: 0,
               right: 0
             });
+
             break;
         }
+
         return control || qx.ui.groupbox.GroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
+
       /**
        * Returns the element, to which the content padding should be applied.
        *
@@ -165,6 +185,7 @@
       _getContentPaddingTarget: function _getContentPaddingTarget() {
         return this.getChildControl("frame");
       },
+
       /*
       ---------------------------------------------------------------------------
         LEGEND HANDLING
@@ -173,6 +194,7 @@
       // property apply
       _applyLegend: function _applyLegend(value, old) {
         var control = this.getChildControl("legend");
+
         if (value !== null) {
           control.setLabel(value);
           control.show();
@@ -180,6 +202,7 @@
           control.exclude();
         }
       },
+
       /**
        * Apply method for applying the legend position. It calls the
        * {@link #_repositionFrame} method.
@@ -189,18 +212,17 @@
           this._repositionFrame();
         }
       },
+
       /**
        * Repositions the frame of the group box dependent on the
        * {@link #legendPosition} property.
        */
       _repositionFrame: function _repositionFrame() {
         var legend = this.getChildControl("legend");
-        var frame = this.getChildControl("frame");
+        var frame = this.getChildControl("frame"); // get the current height of the legend
 
-        // get the current height of the legend
-        var height = legend.getBounds().height;
+        var height = legend.getBounds().height; // check for the property legend position
 
-        // check for the property legend position
         if (this.getLegendPosition() == "middle") {
           frame.setLayoutProperties({
             top: Math.round(height / 2)
@@ -211,11 +233,13 @@
           });
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         GETTER FOR SUB WIDGETS
       ---------------------------------------------------------------------------
       */
+
       /**
        * The children container needed by the {@link qx.ui.core.MRemoteChildrenHandling}
        * mixin
@@ -225,11 +249,13 @@
       getChildrenContainer: function getChildrenContainer() {
         return this.getChildControl("frame");
       },
+
       /*
       ---------------------------------------------------------------------------
         SETTER/GETTER
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the icon of the legend sub widget.
        *
@@ -238,6 +264,7 @@
       setIcon: function setIcon(icon) {
         this.getChildControl("legend").setIcon(icon);
       },
+
       /**
        * Accessor method for the icon of the legend sub widget
        *
@@ -251,4 +278,4 @@
   qx.ui.groupbox.GroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupBox.js.map?dt=1677362759080
+//# sourceMappingURL=GroupBox.js.map?dt=1685978140026

@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* IFileEventHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -43,4 +44,4 @@
   cv.ui.manager.control.IFileEventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IFileEventHandler.js.map?dt=1677362711948
+//# sourceMappingURL=IFileEventHandler.js.map?dt=1685978094570

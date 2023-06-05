@@ -16,8 +16,6 @@
     "AbstractComponent",
     "construct",
     "element",
-    "constructor",
-    "call",
     "_idRegex",
     "properties",
     "id",
@@ -33,9 +31,6 @@
     "test",
     "error",
     "_init",
-    "Icon",
-    "superclass",
-    "prototype",
     "_element",
     "textContent",
     "trim",
@@ -43,17 +38,8 @@
     "it",
     "classList",
     "values",
-    "_iterator",
-    "_createForOfIteratorHelper",
-    "_step",
-    "s",
-    "n",
-    "done",
     "name",
     "startsWith",
-    "err",
-    "e",
-    "f",
     "_applyId",
     "oldValue",
     "remove",
@@ -64,16 +50,8 @@
     "customElements",
     "Controller",
     "PREFIX",
-    "_QxConnector",
-    "_inherits",
-    "_class",
-    "_super",
-    "_createSuper",
-    "_classCallCheck",
-    "_createClass",
-    "key",
-    "get",
-    "QxConnector"
+    "QxConnector",
+    "Icon"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Icon.js"
@@ -81,5 +59,5 @@
   "sourcesContent": [
     "/* Icon.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n *\n */\nqx.Class.define('cv.ui.structure.tile.components.Icon', {\n  extend: cv.ui.structure.tile.components.AbstractComponent,\n\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct(element) {\n    super(element);\n    this._idRegex = /^[^\\s]+$/;\n  },\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    id: {\n      check: 'String',\n      nullable: true,\n      apply: '_applyId',\n      // the id is used as 'class' property and therefore must not have spaces\n      transform: '_transformId'\n    },\n\n    color: {\n      check: 'String',\n      nullable: true,\n      apply: '_applyColor'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    __initialized: false,\n    _idRegex: null,\n\n    _transformId(value) {\n      if (this._idRegex.test(value)) {\n        return value;\n      }\n      this.error('invalid icon id:', value);\n      return null;\n    },\n\n    _init() {\n      super._init();\n      const element = this._element;\n      if (element.textContent.trim()) {\n        this.__initialized = true;\n        this.setId(element.textContent.trim());\n      } else {\n        const it = element.classList.values();\n        for (let name of it) {\n          if (name.startsWith('ri-') || name.startsWith('knxuf-')) {\n            this.setId(name);\n            break;\n          }\n        }\n      }\n      this.__initialized = true;\n    },\n\n    _applyId(value, oldValue) {\n      const element = this._element;\n      if (this.__initialized) {\n        if (oldValue) {\n          element.classList.remove(oldValue);\n        }\n        if (value) {\n          // default is an icon font that uses CSS classes\n          element.classList.add(value);\n          if (element.textContent) {\n            element.textContent = '';\n          }\n        }\n      }\n    },\n\n    _applyColor(value, oldValue) {\n      const element = this._element;\n      if (oldValue) {\n        element.classList.remove(oldValue);\n      }\n      if (value) {\n        element.classList.add(value);\n      }\n    }\n  },\n\n  defer(Clazz) {\n    customElements.define(\n      cv.ui.structure.tile.Controller.PREFIX + 'icon',\n      class extends QxConnector {\n        constructor() {\n          super(Clazz);\n        }\n\n        static get observedAttributes() {\n          return ['color'];\n        }\n      }\n    );\n  }\n});\n"
   ],
-  "mappings": "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"
+  "mappings": "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"
 }

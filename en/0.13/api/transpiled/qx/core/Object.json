@@ -24,7 +24,7 @@
       "end": {
         "line": 510,
         "column": 3,
-        "index": 14560
+        "index": 14627
       }
     },
     "jsdoc": {
@@ -536,7 +536,7 @@
         "end": {
           "line": 393,
           "column": 5,
-          "index": 11027
+          "index": 11094
         }
       },
       "jsdoc": {
@@ -555,12 +555,12 @@
         "start": {
           "line": 407,
           "column": 4,
-          "index": 11467
+          "index": 11534
         },
         "end": {
           "line": 409,
           "column": 5,
-          "index": 11558
+          "index": 11625
         }
       },
       "jsdoc": {
@@ -588,12 +588,12 @@
         "start": {
           "line": 417,
           "column": 4,
-          "index": 11808
+          "index": 11875
         },
         "end": {
           "line": 419,
           "column": 5,
-          "index": 11914
+          "index": 11981
         }
       },
       "jsdoc": {
@@ -621,12 +621,12 @@
         "start": {
           "line": 427,
           "column": 4,
-          "index": 12131
+          "index": 12198
         },
         "end": {
           "line": 429,
           "column": 5,
-          "index": 12212
+          "index": 12279
         }
       },
       "jsdoc": {
@@ -654,12 +654,12 @@
         "start": {
           "line": 437,
           "column": 4,
-          "index": 12423
+          "index": 12490
         },
         "end": {
           "line": 439,
           "column": 5,
-          "index": 12500
+          "index": 12567
         }
       },
       "jsdoc": {
@@ -4004,12 +4004,12 @@
       "start": {
         "line": 462,
         "column": 2,
-        "index": 13166
+        "index": 13233
       },
       "end": {
         "line": 509,
         "column": 3,
-        "index": 14556
+        "index": 14623
       }
     },
     "jsdoc": {}
@@ -4067,8 +4067,8 @@
     "qx.bom.Shortcut",
     "qx.bom.WebWorker",
     "qx.bom.media.Abstract",
-    "qx.bom.webfonts.Manager",
     "qx.bom.webfonts.Validator",
+    "qx.bom.webfonts.WebFontLoader",
     "qx.core.Id",
     "qx.data.Array",
     "qx.data.controller.Form",

@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,6 +45,7 @@
    */
   qx.Bootstrap.define("qx.log.appender.RingBuffer", {
     extend: qx.util.RingBuffer,
+
     /**
      * @param maxMessages {Integer?50} Maximum number of messages in the buffer
      */
@@ -62,6 +64,7 @@
       setMaxMessages: function setMaxMessages(maxMessages) {
         this.setMaxEntries(maxMessages);
       },
+
       /**
        * Get the maximum number of messages to hold
        *
@@ -70,6 +73,7 @@
       getMaxMessages: function getMaxMessages() {
         return this.getMaxEntries();
       },
+
       /**
        * Processes a single log entry
        *
@@ -78,6 +82,7 @@
       process: function process(entry) {
         this.addEntry(entry);
       },
+
       /**
        * Returns all stored log events
        *
@@ -86,6 +91,7 @@
       getAllLogEvents: function getAllLogEvents() {
         return this.getAllEntries();
       },
+
       /**
        * Returns log events which have been logged previously.
        *
@@ -99,6 +105,7 @@
       retrieveLogEvents: function retrieveLogEvents(count, startingFromMark) {
         return this.getEntries(count, startingFromMark);
       },
+
       /**
        * Clears the log history
        */
@@ -110,4 +117,4 @@
   qx.log.appender.RingBuffer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RingBuffer.js.map?dt=1677362745565
+//# sourceMappingURL=RingBuffer.js.map?dt=1685978128493

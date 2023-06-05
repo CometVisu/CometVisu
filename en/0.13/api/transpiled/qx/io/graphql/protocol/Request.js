@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,6 +52,7 @@
         nullable: true,
         event: "changeOperationName"
       },
+
       /**
        * The query as a string which will be parsed and executed on the server
        */
@@ -60,6 +62,7 @@
         init: "",
         event: "changeQuery"
       },
+
       /**
        * A qooxdoo object that maps variable names to variable values
        */
@@ -79,19 +82,23 @@
       _jsonReplacer: function _jsonReplacer(key, value) {
         if (key === "variables" || key === "operationName") {
           return value !== null ? value : undefined;
-        }
-        // everything else is returned as it is
+        } // everything else is returned as it is
+
+
         return value;
       },
+
       /**
        * Transforms the variables object to a qooxdoo model. Called automaticaly
        * when the variables property is set.
        */
       _transformVariables: function _transformVariables(val) {
         var model = null;
+
         if (![null, undefined].includes(val)) {
           model = qx.data.marshal.Json.createModel(val);
         }
+
         return model;
       },
       _validateVariables: function _validateVariables(val) {
@@ -104,4 +111,4 @@
   qx.io.graphql.protocol.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1677362741811
+//# sourceMappingURL=Request.js.map?dt=1685978124858

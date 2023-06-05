@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
       matchMedia: function matchMedia(query) {
         return new qx.bom.MediaQuery(query);
       },
+
       /**
        * Adds screen size classes (e.g. small-only or medium-up) by pre-defined media queries using em.
        * The range goes from small to medium, large and xlarge up to xxlarge:
@@ -73,6 +75,7 @@
         qxWeb("html").mediaQueryToClass("only screen and (min-width: 90.063em) and (max-width: 120em)", "xlarge-only");
         qxWeb("html").mediaQueryToClass("only screen and (min-width: 120.063em)", "xxlarge-up");
       },
+
       /**
        * Adds or removes a class depending on matching a given media query
        *
@@ -99,9 +102,10 @@
        */
       mediaQueryToClass: function mediaQueryToClass(queryString, className) {
         var query = qx.module.MatchMedia.matchMedia(queryString);
-        var callback = qx.module.MatchMedia.__P_282_0.bind(this, query, className);
 
-        // apply classes initially
+        var callback = qx.module.MatchMedia.__P_282_0.bind(this, query, className); // apply classes initially
+
+
         callback(query, className);
         query.on("change", callback);
         return this;
@@ -114,4 +118,4 @@
   qx.module.MatchMedia.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MatchMedia.js.map?dt=1677362746256
+//# sourceMappingURL=MatchMedia.js.map?dt=1685978129116

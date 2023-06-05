@@ -16,8 +16,6 @@
     "_audio",
     "window",
     "Audio",
-    "constructor",
-    "call",
     "members"
   ],
   "sources": [
@@ -26,5 +24,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n     * Adrian Olaru (adrianolaru)\n\n************************************************************************ */\n\n/**\n *\n * Media object for playing sounds.\n *\n * NOTE: Instances of this class must be disposed of to free resources\n */\nqx.Class.define(\"qx.bom.media.Audio\", {\n  extend: qx.bom.media.Abstract,\n\n  /**\n   * @param source {String} the source url to the sound file.\n   */\n  construct(source) {\n    this._audio = new window.Audio(source ? source : \"\");\n    super(this._audio);\n  },\n\n  members: {\n    _audio: null\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oBAAoB,EAAE;IACpCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,KAAK,CAACC,QAAQ;IAE7B;AACF;AACA;IACEC,SAAS,WAAAA,UAACC,MAAM,EAAE;MAChB,IAAI,CAACC,MAAM,GAAG,IAAIC,MAAM,CAACC,KAAK,CAACH,MAAM,GAAGA,MAAM,GAAG,EAAE,CAAC;MACpDX,EAAA,CAAAO,GAAA,CAAAC,KAAA,CAAAC,QAAA,CAAAM,WAAA,CAAAC,IAAA,OAAM,IAAI,CAACJ,MAAM;IACnB,CAAC;IAEDK,OAAO,EAAE;MACPL,MAAM,EAAE;IACV;EACF,CAAC,CAAC;EAvCFZ,EAAE,CAACO,GAAG,CAACC,KAAK,CAACM,KAAK,CAACX,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EAAsC;IACpCC,MAAM,EAAEN,EAAE,CAACO,GAAH,CAAOC,KAAP,CAAaC,QADe;;IAGpC;AACF;AACA;IACEC,SANoC,qBAM1BC,MAN0B,EAMlB;MAChB,KAAKC,MAAL,GAAc,IAAIC,MAAM,CAACC,KAAX,CAAiBH,MAAM,GAAGA,MAAH,GAAY,EAAnC,CAAd;MACA,6CAAM,KAAKC,MAAX;IACD,CATmC;IAWpCG,OAAO,EAAE;MACPH,MAAM,EAAE;IADD;EAX2B,CAAtC;EAzBAZ,EAAE,CAACO,GAAH,CAAOC,KAAP,CAAaM,KAAb,CAAmBX,aAAnB,GAAmCA,aAAnC"
 }

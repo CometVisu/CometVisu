@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +34,7 @@
     events: {
       /** Fired if the user scroll */
       scroll: "qx.event.type.Data",
+
       /** Fired as soon as the scroll animation ended. */
       scrollAnimationEnd: "qx.event.type.Event"
     },
@@ -41,11 +43,13 @@
        * The scroll bar orientation
        */
       orientation: {},
+
       /**
        * The maximum value (difference between available size and
        * content size).
        */
       maximum: {},
+
       /**
        * Position of the scrollbar (which means the scroll left/top of the
        * attached area's pane)
@@ -55,6 +59,7 @@
        * on this, please use {@link #scrollTo} instead.
        */
       position: {},
+
       /**
        * Factor to apply to the width/height of the knob in relation
        * to the dimension of the underlying area.
@@ -74,6 +79,7 @@
       scrollTo: function scrollTo(position, duration) {
         this.assertNumber(position);
       },
+
       /**
        * Scrolls by the given offset.
        *
@@ -86,6 +92,7 @@
       scrollBy: function scrollBy(offset, duration) {
         this.assertNumber(offset);
       },
+
       /**
        * Scrolls by the given number of steps.
        *
@@ -103,4 +110,4 @@
   qx.ui.core.scroll.IScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IScrollBar.js.map?dt=1677362754641
+//# sourceMappingURL=IScrollBar.js.map?dt=1685978135876

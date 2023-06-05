@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,11 +55,13 @@
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MExecutable],
     implement: [qx.ui.form.IExecutable],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
@@ -66,43 +69,44 @@
      * @param command {qx.ui.command.Command} Command instance to connect with
      */
     construct: function construct(label, icon, menu, command) {
-      qx.ui.core.Widget.constructor.call(this);
+      qx.ui.core.Widget.constructor.call(this); // ARIA attrs
 
-      // ARIA attrs
       this.getContentElement().setAttribute("role", "button");
-      this._setLayout(new qx.ui.layout.HBox());
 
-      // Force arrow creation
-      this._createChildControl("arrow");
+      this._setLayout(new qx.ui.layout.HBox()); // Force arrow creation
 
-      // Add pointer listeners
+
+      this._createChildControl("arrow"); // Add pointer listeners
+
+
       this.addListener("pointerover", this._onPointerOver, this, true);
-      this.addListener("pointerout", this._onPointerOut, this, true);
+      this.addListener("pointerout", this._onPointerOut, this, true); // Add key listeners
 
-      // Add key listeners
       this.addListener("keydown", this._onKeyDown);
-      this.addListener("keyup", this._onKeyUp);
+      this.addListener("keyup", this._onKeyUp); // Process incoming arguments
 
-      // Process incoming arguments
       if (label != null) {
         this.setLabel(label);
       }
+
       if (icon != null) {
         this.setIcon(icon);
       }
+
       if (menu != null) {
         this.setMenu(menu);
       }
+
       if (command != null) {
         this.setCommand(command);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
@@ -114,12 +118,14 @@
         refine: true,
         init: true
       },
+
       /** The label/caption/text of the qx.ui.basic.Atom instance */
       label: {
         apply: "_applyLabel",
         nullable: true,
         check: "String"
       },
+
       /** Any URI String supported by qx.ui.basic.Image to display an icon */
       icon: {
         check: "String",
@@ -127,6 +133,7 @@
         nullable: true,
         themeable: true
       },
+
       /**
        * Configure the visibility of the sub elements/widgets.
        * Possible values: both, text, icon
@@ -139,6 +146,7 @@
         apply: "_applyShow",
         event: "changeShow"
       },
+
       /** The menu instance to show when tapping on the button */
       menu: {
         check: "qx.ui.menu.Menu",
@@ -147,14 +155,15 @@
         event: "changeMenu"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_360_0: null,
+
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -163,25 +172,33 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "button":
             control = new qx.ui.form.Button();
             control.addListener("execute", this._onButtonExecute, this);
             control.setFocusable(false);
+
             this._addAt(control, 0, {
               flex: 1
             });
+
             break;
+
           case "arrow":
             control = new qx.ui.form.MenuButton();
             control.setFocusable(false);
             control.setShow("both");
+
             this._addAt(control, 1);
+
             break;
         }
+
         return control || qx.ui.form.SplitButton.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -189,6 +206,7 @@
         hovered: 1,
         focused: 1
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -207,6 +225,7 @@
       // property apply
       _applyMenu: function _applyMenu(value, old) {
         var arrow = this.getChildControl("arrow");
+
         if (value) {
           arrow.resetEnabled();
           arrow.setMenu(value);
@@ -216,20 +235,22 @@
           arrow.setEnabled(false);
           arrow.resetMenu();
         }
+
         if (old) {
           old.removeListener("changeVisibility", this._onChangeMenuVisibility, this);
           old.resetOpener();
         }
       },
       // property apply
-      _applyShow: function _applyShow(value, old) {
-        // pass: is already inherited to the button
+      _applyShow: function _applyShow(value, old) {// pass: is already inherited to the button
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Listener for <code>pointerover</code> event
        *
@@ -239,14 +260,13 @@
         // Captured listener
         // Whole stop for event, do not let the
         // inner buttons know about this event.
-        e.stopPropagation();
+        e.stopPropagation(); // Add hover state, is forwarded to the buttons
 
-        // Add hover state, is forwarded to the buttons
-        this.addState("hovered");
+        this.addState("hovered"); // Delete cursor out flag
 
-        // Delete cursor out flag
         delete this.__P_360_0;
       },
+
       /**
        * Listener for <code>pointerout</code> event
        *
@@ -256,30 +276,32 @@
         // Captured listener
         // Whole stop for event, do not let the
         // inner buttons know about this event.
-        e.stopPropagation();
+        e.stopPropagation(); // First simple state check
 
-        // First simple state check
         if (!this.hasState("hovered")) {
           return;
-        }
+        } // Only when the related target is not part of the button
 
-        // Only when the related target is not part of the button
+
         var related = e.getRelatedTarget();
+
         if (qx.ui.core.Widget.contains(this, related)) {
           return;
-        }
-
-        // When the menu is visible (cursor moved to the menu)
+        } // When the menu is visible (cursor moved to the menu)
         // keep the hover state on the whole button
+
+
         var menu = this.getMenu();
+
         if (menu && menu.isVisible()) {
           this.__P_360_0 = true;
           return;
-        }
+        } // Finally remove state
 
-        // Finally remove state
+
         this.removeState("hovered");
       },
+
       /**
        * Event listener for all keyboard events
        *
@@ -287,6 +309,7 @@
        */
       _onKeyDown: function _onKeyDown(e) {
         var button = this.getChildControl("button");
+
         switch (e.getKeyIdentifier()) {
           case "Enter":
           case "Space":
@@ -294,6 +317,7 @@
             button.addState("pressed");
         }
       },
+
       /**
        * Event listener for all keyboard events
        *
@@ -301,6 +325,7 @@
        */
       _onKeyUp: function _onKeyUp(e) {
         var button = this.getChildControl("button");
+
         switch (e.getKeyIdentifier()) {
           case "Enter":
           case "Space":
@@ -309,8 +334,10 @@
               button.removeState("pressed");
               button.execute();
             }
+
         }
       },
+
       /**
        * Event listener for button's execute event.
        *
@@ -320,6 +347,7 @@
         // forward execute event
         this.execute();
       },
+
       /**
        * Event listener for visibility changes of the menu
        *
@@ -335,4 +363,4 @@
   qx.ui.form.SplitButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SplitButton.js.map?dt=1677362758233
+//# sourceMappingURL=SplitButton.js.map?dt=1685978139128

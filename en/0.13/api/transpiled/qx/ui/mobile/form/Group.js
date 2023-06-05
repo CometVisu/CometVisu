@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,11 +52,13 @@
    */
   qx.Class.define("qx.ui.mobile.form.Group", {
     extend: qx.ui.mobile.container.Composite,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param widgets {qx.ui.mobile.core.Widget[]}
      * @param showBorder {Boolean?} initial value of the property showBorder.
@@ -63,29 +66,31 @@
     construct: function construct(widgets, showBorder) {
       qx.ui.mobile.container.Composite.constructor.call(this);
       this.addCssClass("bordered");
+
       if (showBorder != null) {
         this.setShowBorder(showBorder);
-      }
+      } // Convenience: Add all widgets of array to group.
 
-      // Convenience: Add all widgets of array to group.
+
       if (widgets) {
         for (var i = 0; i < widgets.length; i++) {
           this.add(widgets[i]);
         }
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "group"
       },
+
       /**
        * Defines whether a border should drawn around the group.
        */
@@ -95,12 +100,12 @@
         apply: "_onChangeShowBorder"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Reacts on change of showBorder property.
@@ -117,4 +122,4 @@
   qx.ui.mobile.form.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1677362762392
+//# sourceMappingURL=Group.js.map?dt=1685978143515

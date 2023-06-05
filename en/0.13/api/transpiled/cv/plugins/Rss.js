@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Rss.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -60,6 +61,7 @@
   qx.Class.define('cv.plugins.Rss', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh],
+
     /*
     ******************************************************
       STATICS
@@ -123,6 +125,7 @@
         };
       }
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -170,6 +173,7 @@
         init: true
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -183,91 +187,120 @@
       },
       _onDomReady: function _onDomReady() {
         cv.plugins.Rss.superclass.prototype._onDomReady.call(this);
+
         this._parser = new RSSParser();
         this.refreshRSS();
       },
       _setupRefreshAction: function _setupRefreshAction() {
         var _this = this;
+
         this._timer = new qx.event.Timer(this.getRefresh());
+
         this._timer.addListener('interval', function () {
           _this.refreshRSS();
         });
+
         this._timer.start();
       },
       refreshRSS: function refreshRSS() {
         var _this2 = this;
+
         this._parser.parseURL(this.getSrc(), function (err, feed) {
           var actor = _this2.getActor();
+
           var target = actor.querySelector('.rss_inline');
+
           if (err) {
             _this2.error(err);
+
             if (_this2.getShowerror()) {
               target.textContent = 'ERROR: ' + err;
             }
+
             return;
           }
+
           if (_this2.getHeader()) {
             var headline = actor.querySelector(':scope > h3');
+
             if (!headline) {
               headline = document.createElement('h3');
               actor.insertBefore(headline, actor.firstElementChild);
             }
+
             headline.textContent = feed.title;
           }
+
           var elements = target.querySelectorAll(':scope > li');
+
           for (var i = elements.length; i >= feed.items.length; i--) {
             elements[i].remove();
           }
+
           var useLink = _this2.getLink();
+
           var showContent = _this2.getContent();
+
           var showDate = _this2.getDate();
+
           feed.items.some(function (entry, i) {
             var elem = target.querySelector(':scope > li[data-row="' + i + '"]');
             var a;
             var content;
             var date;
+
             if (!elem) {
               elem = document.createElement('li');
+
               if (useLink) {
                 a = document.createElement('a');
                 a.setAttribute('target', _this2.getLinktarget());
                 elem.appendChild(a);
               }
+
               if (showContent) {
                 content = document.createElement('p');
                 content.classList.add('content');
                 elem.appendChild(content);
               }
+
               if (showDate) {
                 date = document.createElement('p');
                 date.classList.add('date');
                 elem.appendChild(date);
               }
+
               elem.setAttribute('data-row', '' + i);
               target.appendChild(elem);
             } else {
               if (useLink) {
                 a = elem.querySelector(':scope > a');
               }
+
               if (showContent) {
                 content = elem.querySelector(':scope > p.content');
               }
+
               if (showDate) {
                 date = elem.querySelector(':scope > p.date');
               }
             }
+
             if (useLink) {
               a.textContent = entry.title;
               a.setAttribute('href', entry.link);
             } else {
               elem.textContent = entry.title;
             }
+
             if (showContent) {
               content.innerHTML = _this2.getSnippet() ? entry.contentSnippet : entry.content;
             }
+
             if (showDate) {
               date.innerText = new Date(entry.isoDate).toLocaleString();
             }
+
             return i >= _this2.getLimit();
           });
         });
@@ -286,4 +319,4 @@
   cv.plugins.Rss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rss.js.map?dt=1677362709368
+//# sourceMappingURL=Rss.js.map?dt=1685978092231

@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,6 +54,7 @@
    */
   qx.Class.define("qxl.apiviewer.ui.PackageViewer", {
     extend: qxl.apiviewer.ui.AbstractViewer,
+
     /*
     *****************************************************************************
      CONSTRUCTOR
@@ -71,14 +73,15 @@
       }));
       this.addInfoPanel(new qxl.apiviewer.ui.panels.PackagePanel("packages"));
       this.getContentElement().setAttribute("class", "ClassViewer");
+
       this._init(qxl.apiviewer.dao.Package.getPackage(null));
     },
+
     /*
     *****************************************************************************
      MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the HTML fragment for the title
@@ -87,9 +90,8 @@
        * @return {String} HTML fragment of the title
        */
       _getTitleHtml: function _getTitleHtml(classNode) {
-        var vHtml = "";
+        var vHtml = ""; // Title
 
-        // Title
         vHtml += "<small>package</small>";
         vHtml += classNode.getFullName();
         return vHtml;
@@ -100,9 +102,11 @@
       _getDescriptionHtml: function _getDescriptionHtml(classNode) {
         var descHtml = new qx.util.StringBuilder();
         var desc = classNode.getDescription();
+
         if (desc != "") {
           descHtml.add('<div class="class-description">', qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(desc, classNode), "</div>");
         }
+
         return qx.Promise.resolve(descHtml.get());
       }
     }
@@ -110,4 +114,4 @@
   qxl.apiviewer.ui.PackageViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageViewer.js.map?dt=1677362781575
+//# sourceMappingURL=PackageViewer.js.map?dt=1685978164057

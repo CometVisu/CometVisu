@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,6 +47,7 @@
     },
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -62,9 +64,11 @@
       // overridden
       _shouldShowOpenSymbol: function _shouldShowOpenSymbol() {
         var open = this.getChildControl("open", true);
+
         if (open == null) {
           return false;
         }
+
         return this.isOpenable();
       },
       // overridden
@@ -82,35 +86,41 @@
       _applyModel: function _applyModel(value, old) {
         var childProperty = this.getUserData("cell.childProperty");
         var showLeafs = this.getUserData("cell.showLeafs");
+
         if (value != null && qx.ui.tree.core.Util.isNode(value, childProperty)) {
-          var eventType = "change" + qx.lang.String.firstUp(childProperty);
-          // listen to children property changes
+          var eventType = "change" + qx.lang.String.firstUp(childProperty); // listen to children property changes
+
           if (qx.Class.hasProperty(value.constructor, childProperty)) {
             value.addListener(eventType, this._onChangeChildProperty, this);
-          }
-
-          // children property has been set already, immediately add
+          } // children property has been set already, immediately add
           // listener for indent updating
+
+
           if (qx.ui.tree.core.Util.hasChildren(value, childProperty, !showLeafs)) {
             value.get(childProperty).addListener("changeLength", this._onChangeLength, this);
+
             this._updateIndent();
           }
         }
+
         if (old != null && qx.ui.tree.core.Util.isNode(old, childProperty)) {
           var eventType = "change" + qx.lang.String.firstUp(childProperty);
           old.removeListener(eventType, this._onChangeChildProperty, this);
           var oldChildren = old.get(childProperty);
+
           if (oldChildren) {
             oldChildren.removeListener("changeLength", this._onChangeLength, this);
           }
         }
       },
+
       /**
        * Handler to update open/close icon when model length changed.
        */
       _onChangeLength: function _onChangeLength() {
         this._updateIndent();
       },
+
       /**
        * Handler to add listener to array of children property.
        *
@@ -119,10 +129,13 @@
       _onChangeChildProperty: function _onChangeChildProperty(e) {
         var children = e.getData();
         var old = e.getOldData();
+
         if (children) {
           this._updateIndent();
+
           children.addListener("changeLength", this._onChangeLength, this);
         }
+
         if (old) {
           old.removeListener("changeLength", this._onChangeLength, this);
         }
@@ -132,4 +145,4 @@
   qx.ui.tree.VirtualTreeItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualTreeItem.js.map?dt=1677362768537
+//# sourceMappingURL=VirtualTreeItem.js.map?dt=1685978149778

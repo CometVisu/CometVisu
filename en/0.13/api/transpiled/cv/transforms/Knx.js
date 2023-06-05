@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Knx.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -56,6 +57,7 @@
           unit: '-',
           encode: function encode(phy) {
             phy = +phy; // cast to number
+
             return {
               bus: phy ? '81' : '80',
               raw: phy ? '01' : '00'
@@ -141,6 +143,7 @@
           unit: '-',
           encode: function encode(phy) {
             phy = +phy; // enforce number
+
             if (phy < -100 || phy > -1 && phy <= 0) {
               return {
                 bus: '80',
@@ -408,13 +411,16 @@
             if (undefined === phy || isNaN(phy)) {
               return '7fff';
             }
+
             var sign = +phy < 0 ? 0x8000 : 0;
             var mant = Math.round(+phy * 100.0);
             var exp = 0;
+
             while (Math.abs(mant) > 2047) {
               mant >>= 1;
               exp++;
             }
+
             var val = (sign | exp << 11 | mant & 0x07ff).toString(16).padStart(4, '0');
             return {
               bus: '80' + val,
@@ -425,14 +431,17 @@
             if (parseInt(hex, 16) === 0x7fff) {
               return NaN;
             }
+
             var bin1 = parseInt(hex.substr(0, 2), 16);
             var bin2 = parseInt(hex.substr(2, 2), 16);
             var sign = parseInt(bin1 & 0x80);
             var exp = parseInt(bin1 & 0x78) >> 3;
             var mant = parseInt((bin1 & 0x7) << 8 | bin2);
+
             if (sign !== 0) {
               mant = -(~(mant - 1) & 0x7ff);
             }
+
             return (1 << exp) * 0.01 * mant;
           }
         },
@@ -508,16 +517,19 @@
           },
           decode: function decode(hex) {
             var date = new Date(); // assume today
+
             date.setHours(parseInt(hex.substr(0, 2), 16) & 0x1f);
             date.setMinutes(parseInt(hex.substr(2, 2), 16));
-            date.setSeconds(parseInt(hex.substr(4, 2), 16));
-            // as KNX thinks the day of the week belongs to the time, but JavaScript
+            date.setSeconds(parseInt(hex.substr(4, 2), 16)); // as KNX thinks the day of the week belongs to the time, but JavaScript
             // doesn't, tweak the date till it fits...
+
             var day = (parseInt(hex.substr(0, 2), 16) & 0xe0) >> 5;
+
             if (day > 0) {
               var dayShift = (day - date.getDay()) % 7;
               date.setDate(date.getDate() + dayShift);
             }
+
             return date;
           }
         },
@@ -528,13 +540,11 @@
             en: 'date'
           },
           unit: '-',
-          encode: function encode() {
-            // FIXME
+          encode: function encode() {// FIXME
           },
           decode: function decode(hex) {
             var year = parseInt(hex.substr(4, 2), 16) & 0x7f;
-            return new Date(year < 90 ? year + 2000 : year + 1900,
-            //1990 - 2089
+            return new Date(year < 90 ? year + 2000 : year + 1900, //1990 - 2089
             (parseInt(hex.substr(2, 2), 16) & 0x0f) - 1, parseInt(hex.substr(0, 2), 16) & 0x1f);
           }
         },
@@ -600,8 +610,7 @@
             en: '4 byte float IEEE 754 (only decode)'
           },
           unit: '-',
-          encode: function encode() {
-            //FIXME: unimplemented (jspack?)
+          encode: function encode() {//FIXME: unimplemented (jspack?)
           },
           decode: function decode(hex) {
             var val = parseInt(hex, 16);
@@ -625,10 +634,12 @@
           encode: function encode(phy) {
             var val = '';
             phy += ''; // force datatype String
+
             for (var i = 0; i < 14; i++) {
               var c = phy.charCodeAt(i);
               val += c ? (c < 16 ? '0' : '') + c.toString(16) : '00';
             }
+
             return {
               bus: '80' + val,
               raw: val.toUpperCase()
@@ -637,12 +648,15 @@
           decode: function decode(hex) {
             var val = '';
             var chars;
+
             for (var i = 0; i < 28; i += 2) {
               chars = parseInt(hex.substr(i, 2), 16);
+
               if (chars > 0) {
                 val += String.fromCharCode(chars);
               }
             }
+
             return val;
           }
         },
@@ -710,27 +724,33 @@
           unit: '-',
           encode: function encode(phy) {
             var val;
+
             switch (phy) {
               case 1:
               case 'comfort':
                 val = 1;
                 break;
+
               case 2:
               case 'standby':
                 val = 2;
                 break;
+
               case 3:
               case 'economy':
                 val = 3;
                 break;
+
               case 4:
               case 'building_protection':
                 val = 4;
                 break;
+
               default:
                 // actually "case 0:" / "auto"
                 val = 0;
             }
+
             val = val.toString(16).padStart(2, '0');
             return {
               bus: '80' + val,
@@ -741,18 +761,23 @@
             switch (parseInt(hex, 16)) {
               case 1:
                 return 'comfort';
+
               case 2:
                 return 'standby';
+
               case 3:
                 return 'economy';
+
               case 4:
                 return 'building_protection';
+
               default:
                 // actually "case 0:"
                 return 'auto';
             }
           }
         },
+
         /* DPT24.001 is probably not fully correct as it can also hold
          multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07
          but there is no other reference, even not in ETS4
@@ -769,11 +794,14 @@
           unit: '-',
           encode: function encode(phy) {
             var val = '';
+
             for (var i = 0; i < phy.length; i++) {
               var c = phy.charCodeAt(i);
               val += c ? (c < 16 ? '0' : '') + c.toString(16) : '00';
             }
             /* terminating \x00 */
+
+
             val += '00';
             return {
               bus: '80' + val,
@@ -783,12 +811,15 @@
           decode: function decode(hex) {
             var val = '';
             var chars;
+
             for (var i = 0; i < hex.length; i += 2) {
               chars = parseInt(hex.substr(i, 2), 16);
+
               if (chars > 0) {
                 val += String.fromCharCode(chars);
               }
             }
+
             return val;
           }
         },
@@ -899,6 +930,7 @@
                 raw: '000000'
               };
             }
+
             var r = phy.get('r') || 0;
             var g = phy.get('g') || 0;
             var b = phy.get('b') || 0;
@@ -926,6 +958,7 @@
                 raw: '000000'
               };
             }
+
             var h = phy.get('h') || 0;
             var s = phy.get('s') || 0;
             var v = phy.get('v') || 0;
@@ -954,8 +987,10 @@
                   raw: '000000000000'
                 };
               }
+
               phy = new Map([['Y', +phy]]);
             }
+
             var cValid = phy.has('x') && phy.has('y') && (phy.has('cValid') ? phy.get('cValid') : Number.isFinite(phy.get('x')) && Number.isFinite(phy.get('y')));
             var YValid = phy.has('Y') && (phy.has('YValid') ? phy.get('YValid') : Number.isFinite(phy.get('Y')));
             var x = phy.get('x') || 0;
@@ -990,6 +1025,7 @@
                 raw: '000000000000'
               };
             }
+
             var rValid = phy.has('r') && Number.isFinite(phy.get('r')) && (phy.has('rValid') ? phy.get('rValid') : true);
             var gValid = phy.has('g') && Number.isFinite(phy.get('g')) && (phy.has('gValid') ? phy.get('gValid') : true);
             var bValid = phy.has('b') && Number.isFinite(phy.get('b')) && (phy.has('bValid') ? phy.get('bValid') : true);
@@ -1015,4 +1051,4 @@
   cv.transforms.Knx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Knx.js.map?dt=1677362710635
+//# sourceMappingURL=Knx.js.map?dt=1685978093311

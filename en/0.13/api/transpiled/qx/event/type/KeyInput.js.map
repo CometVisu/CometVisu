@@ -16,17 +16,14 @@
     "domEvent",
     "target",
     "charCode",
-    "KeyInput",
-    "superclass",
-    "prototype",
-    "call",
     "_charCode",
     "clone",
     "embryo",
     "getCharCode",
     "getChar",
     "String",
-    "fromCharCode"
+    "fromCharCode",
+    "KeyInput"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/event/type/KeyInput.js"
@@ -34,5 +31,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Keyboard input event object.\n *\n * the interface of this class is based on the DOM Level 3 keyboard event\n * interface: http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboardevents\n */\nqx.Class.define(\"qx.event.type.KeyInput\", {\n  extend: qx.event.type.Dom,\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    /**\n     * Initialize the fields of the event.\n     *\n     * @param domEvent {Event} DOM event\n     * @param target {Object} The event target\n     * @param charCode {Integer} the character code\n     * @return {qx.event.type.KeyInput} The initialized key event instance\n     */\n    init(domEvent, target, charCode) {\n      super.init(domEvent, target, null, true, true);\n\n      this._charCode = charCode;\n\n      return this;\n    },\n\n    // overridden\n    clone(embryo) {\n      var clone = super.clone(embryo);\n\n      clone._charCode = this._charCode;\n\n      return clone;\n    },\n\n    /**\n     * Unicode number of the pressed character.\n     *\n     * @return {Integer} Unicode number of the pressed character\n     */\n    getCharCode() {\n      return this._charCode;\n    },\n\n    /**\n     * Returns the pressed character\n     *\n     * @return {String} The character\n     */\n    getChar() {\n      return String.fromCharCode(this._charCode);\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,GAAG;IAEzB;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACIC,IAAI,WAAAA,KAACC,QAAQ,EAAEC,MAAM,EAAEC,QAAQ,EAAE;QAC/Bd,EAAA,CAAAO,KAAA,CAAAC,IAAA,CAAAO,QAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAN,IAAA,CAAAO,IAAA,OAAWN,QAAQ,EAAEC,MAAM,EAAE,IAAI,EAAE,IAAI,EAAE,IAAI;QAE7C,IAAI,CAACM,SAAS,GAAGL,QAAQ;QAEzB,OAAO,IAAI;MACb,CAAC;MAED;MACAM,KAAK,WAAAA,MAACC,MAAM,EAAE;QACZ,IAAID,KAAK,GAAApB,EAAA,CAAAO,KAAA,CAAAC,IAAA,CAAAO,QAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAG,KAAA,CAAAF,IAAA,OAAeG,MAAM,CAAC;QAE/BD,KAAK,CAACD,SAAS,GAAG,IAAI,CAACA,SAAS;QAEhC,OAAOC,KAAK;MACd,CAAC;MAED;AACJ;AACA;AACA;AACA;MACIE,WAAW,WAAAA,YAAA,EAAG;QACZ,OAAO,IAAI,CAACH,SAAS;MACvB,CAAC;MAED;AACJ;AACA;AACA;AACA;MACII,OAAO,WAAAA,QAAA,EAAG;QACR,OAAOC,MAAM,CAACC,YAAY,CAAC,IAAI,CAACN,SAAS,CAAC;MAC5C;IACF;EACF,CAAC,CAAC;EA/EFnB,EAAE,CAACO,KAAK,CAACC,IAAI,CAACO,QAAQ,CAACZ,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EAA0C;IACxCC,MAAM,EAAEN,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcC,GADkB;;IAGxC;AACF;AACA;AACA;AACA;IAEEC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;MACIC,IATO,gBASFC,QATE,EASQC,MATR,EASgBC,QAThB,EAS0B;QAC/B,4DAAWF,QAAX,EAAqBC,MAArB,EAA6B,IAA7B,EAAmC,IAAnC,EAAyC,IAAzC;QAEA,KAAKE,SAAL,GAAiBD,QAAjB;QAEA,OAAO,IAAP;MACD,CAfM;MAiBP;MACAE,KAlBO,iBAkBDC,MAlBC,EAkBO;QACZ,IAAID,KAAK,gEAAeC,MAAf,CAAT;QAEAD,KAAK,CAACD,SAAN,GAAkB,KAAKA,SAAvB;QAEA,OAAOC,KAAP;MACD,CAxBM;;MA0BP;AACJ;AACA;AACA;AACA;MACIE,WA/BO,yBA+BO;QACZ,OAAO,KAAKH,SAAZ;MACD,CAjCM;;MAmCP;AACJ;AACA;AACA;AACA;MACII,OAxCO,qBAwCG;QACR,OAAOC,MAAM,CAACC,YAAP,CAAoB,KAAKN,SAAzB,CAAP;MACD;IA1CM;EAT+B,CAA1C;EA1BAf,EAAE,CAACO,KAAH,CAASC,IAAT,CAAcc,QAAd,CAAuBnB,aAAvB,GAAuCA,aAAvC"
 }

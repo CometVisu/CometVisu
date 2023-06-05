@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,6 +68,7 @@
       render: function render(state, element) {
         throw new Error("render() is abstract");
       },
+
       /**
        * Join this renderer to its {@link qx.ui.progressive.Progressive}.
        *
@@ -81,12 +83,11 @@
        *   state.getRendererData()[element.renderer] where element.renderer will
        *   be the name provided here.
        */
-      join: function join(progressive, name) {
-        // nothing to do in the default case
+      join: function join(progressive, name) {// nothing to do in the default case
       }
     }
   });
   qx.ui.progressive.renderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1677362764275
+//# sourceMappingURL=Abstract.js.map?dt=1685978145425

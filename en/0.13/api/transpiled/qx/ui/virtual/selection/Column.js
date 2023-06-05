@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,12 +35,12 @@
    */
   qx.Class.define("qx.ui.virtual.selection.Column", {
     extend: qx.ui.virtual.selection.Row,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the number of all items in the pane. This number may contain
@@ -50,6 +51,7 @@
       _getItemCount: function _getItemCount() {
         return this._pane.getColumnConfig().getItemCount();
       },
+
       /*
       ---------------------------------------------------------------------------
         IMPLEMENT ABSTRACT METHODS
@@ -58,9 +60,11 @@
       // overridden
       _getSelectableFromPointerEvent: function _getSelectableFromPointerEvent(event) {
         var cell = this._pane.getCellAtPosition(event.getDocumentLeft(), event.getDocumentTop());
+
         if (!cell) {
           return null;
         }
+
         return this._isSelectable(cell.column) ? cell.column : null;
       },
       // overridden
@@ -76,11 +80,13 @@
         } else {
           return null;
         }
+
         for (var i = startIndex; i !== endIndex + increment; i += increment) {
           if (this._isSelectable(i)) {
             return i;
           }
         }
+
         return null;
       },
       // overridden
@@ -92,6 +98,7 @@
       // overridden
       _getSelectableLocationX: function _getSelectableLocationX(item) {
         var columnConfig = this._pane.getColumnConfig();
+
         var itemLeft = columnConfig.getItemPosition(item);
         var itemRight = itemLeft + columnConfig.getItemSize(item) - 1;
         return {
@@ -111,4 +118,4 @@
   qx.ui.virtual.selection.Column.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Column.js.map?dt=1677362770870
+//# sourceMappingURL=Column.js.map?dt=1685978152243

@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,9 +42,10 @@
     extend: qx.core.Object,
     construct: function construct() {
       this.__P_573_0 = new qx.ui.core.Blocker(qxl.apiviewer.MWidgetRegistry.getWidgetById("tabView"));
-      this.__P_573_0.setColor("#D5D5D5");
-      this.__P_573_0.setOpacity(0.5);
 
+      this.__P_573_0.setColor("#D5D5D5");
+
+      this.__P_573_0.setOpacity(0.5);
       /*
       this.__blocker.getBlockerElement().setStyle("padding-top", "100px");
       this.__blocker.getBlockerElement().setStyle("padding-left", "10px");
@@ -52,8 +54,8 @@
       loadingImage.setAttribute("src", qx.util.ResourceManager.getInstance().toUri("qxl/apiviewer/image/loading66.gif"));
       this.__blocker.getBlockerElement().add(loadingImage);
       */
-    },
 
+    },
     members: {
       __P_573_0: null,
       show: function show() {
@@ -67,4 +69,4 @@
   qxl.apiviewer.LoadingIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadingIndicator.js.map?dt=1677362780813
+//# sourceMappingURL=LoadingIndicator.js.map?dt=1685978163222

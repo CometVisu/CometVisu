@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,12 +57,14 @@
        * List of event types to be normalized
        */
       TYPES: ["keydown", "keypress", "keyup"],
+
       /**
        * List qx.module.event.Keyboard methods to be attached to native mouse event
        * objects
        * @internal
        */
       BIND_METHODS: ["getKeyIdentifier"],
+
       /**
        * Identifier of the pressed key. This property is modeled after the <em>KeyboardEvent.keyIdentifier</em> property
        * of the W3C DOM 3 event specification
@@ -117,8 +120,10 @@
         if (this.type == "keypress" && (qxWeb.env.get("engine.name") != "gecko" || this.charCode !== 0)) {
           return qx.event.util.Keyboard.charCodeToIdentifier(this.charCode || this.keyCode);
         }
+
         return qx.event.util.Keyboard.keyCodeToIdentifier(this.keyCode);
       },
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -132,14 +137,18 @@
         if (!event) {
           return event;
         }
+
         var bindMethods = qx.module.event.Keyboard.BIND_METHODS;
+
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Keyboard[bindMethods[i]].bind(event);
           }
         }
+
         return event;
       },
+
       /**
        * IE9 will not fire an "input" event on text input elements if the user changes
        * the field's value by pressing the Backspace key. We fix this by listening
@@ -155,6 +164,7 @@
           }
         }
       },
+
       /**
        * Removes the IE9 input event fix
        *
@@ -167,6 +177,7 @@
           element.__P_287_0 = null;
         }
       },
+
       /**
        * IE9 fix: Emits an "input" event if a text input element's value was changed
        * using the Backspace key
@@ -176,8 +187,10 @@
         if (ev.getKeyIdentifier() !== "Backspace") {
           return;
         }
+
         var target = ev.getTarget();
         var newValue = qxWeb(target).getValue();
+
         if (!target.__P_287_1 || target.__P_287_1 !== newValue) {
           target.__P_287_1 = newValue;
           ev.type = ev._type = "input";
@@ -187,6 +200,7 @@
     },
     defer: function defer(statics) {
       qxWeb.$registerEventNormalization(qx.module.event.Keyboard.TYPES, statics.normalize);
+
       if (qxWeb.env.get("engine.name") === "mshtml" && qxWeb.env.get("browser.documentmode") === 9) {
         qxWeb.$registerEventHook("input", statics.registerInputFix, statics.unregisterInputFix);
       }
@@ -195,4 +209,4 @@
   qx.module.event.Keyboard.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Keyboard.js.map?dt=1677362746844
+//# sourceMappingURL=Keyboard.js.map?dt=1685978129632

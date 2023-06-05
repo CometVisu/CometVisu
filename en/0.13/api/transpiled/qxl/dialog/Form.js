@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -54,4 +55,4 @@
   qxl.dialog.Form.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Form.js.map?dt=1677362777969
+//# sourceMappingURL=Form.js.map?dt=1685978160368

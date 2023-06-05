@@ -15,14 +15,11 @@
     "endpoint",
     "check",
     "v",
-    "_typeof",
     "nullable",
     "event",
     "events",
     "message",
     "construct",
-    "constructor",
-    "call",
     "setEndpoint",
     "io",
     "transport",
@@ -34,5 +31,5 @@
   "sourcesContent": [
     "/**\n * Abstract class for JSON-RPC transports\n *\n * For the moment, any special configuration of the transport, such as\n * authentication, must be done on the level of the underlying implementation,\n * an abstract API will be added later.\n */\nqx.Class.define(\"qx.io.transport.AbstractTransport\", {\n  extend: qx.core.Object,\n  type: \"abstract\",\n\n  properties: {\n    /**\n     *  A representation of the the endpoint, which is either a uri (a String)\n     *  or an object (such as in the case of the PostMessage transport)\n     */\n    endpoint: {\n      check: v => typeof v == \"string\" || typeof v == \"object\",\n      nullable: true,\n      event: \"changeEndpoint\"\n    }\n  },\n\n  events: {\n    /**\n     * Event fired when a message is received from the endpoint. Event data\n     * is an UTF-8 encoded string\n     */\n    message: \"qx.event.type.Data\"\n  },\n\n  /**\n   * Constructor\n   * @param {String|Object} endpoint\n   */\n  construct(endpoint) {\n    super();\n    this.setEndpoint(endpoint);\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mCAAmC,EAAE;IACnDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,IAAI,EAAE,UAAU;IAEhBC,UAAU,EAAE;MACV;AACJ;AACA;AACA;MACIC,QAAQ,EAAE;QACRC,KAAK,EAAE,SAAAA,MAAAC,CAAC;UAAA,OAAI,OAAOA,CAAC,IAAI,QAAQ,IAAIC,OAAA,CAAOD,CAAC,KAAI,QAAQ;QAAA;QACxDE,QAAQ,EAAE,IAAI;QACdC,KAAK,EAAE;MACT;IACF,CAAC;IAEDC,MAAM,EAAE;MACN;AACJ;AACA;AACA;MACIC,OAAO,EAAE;IACX,CAAC;IAED;AACF;AACA;AACA;IACEC,SAAS,WAAAA,UAACR,QAAQ,EAAE;MAClBX,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAY,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,WAAW,CAACX,QAAQ,CAAC;IAC5B;EACF,CAAC,CAAC;EAvCFX,EAAE,CAACuB,EAAE,CAACC,SAAS,CAACC,iBAAiB,CAACtB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mCAAhB,EAAqD;IACnDC,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,MADmC;IAEnDC,IAAI,EAAE,UAF6C;IAInDC,UAAU,EAAE;MACV;AACJ;AACA;AACA;MACIC,QAAQ,EAAE;QACRC,KAAK,EAAE,eAAAC,CAAC;UAAA,OAAI,OAAOA,CAAP,IAAY,QAAZ,IAAwB,QAAOA,CAAP,KAAY,QAAxC;QAAA,CADA;QAERC,QAAQ,EAAE,IAFF;QAGRC,KAAK,EAAE;MAHC;IALA,CAJuC;IAgBnDC,MAAM,EAAE;MACN;AACJ;AACA;AACA;MACIC,OAAO,EAAE;IALH,CAhB2C;;IAwBnD;AACF;AACA;AACA;IACEC,SA5BmD,qBA4BzCP,QA5ByC,EA4B/B;MAClB;MACA,KAAKQ,WAAL,CAAiBR,QAAjB;IACD;EA/BkD,CAArD;EAPAX,EAAE,CAACoB,EAAH,CAAMC,SAAN,CAAgBC,iBAAhB,CAAkCnB,aAAlC,GAAkDA,aAAlD"
 }

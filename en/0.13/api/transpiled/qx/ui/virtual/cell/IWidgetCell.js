@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,6 +44,7 @@
        * @return {qx.ui.core.LayoutItem} The cell widget
        */
       getCellWidget: function getCellWidget(data, states) {},
+
       /**
        * Release the given widget instance.
        *
@@ -51,6 +53,7 @@
        * @param widget {qx.ui.core.LayoutItem} The cell widget to pool
        */
       pool: function pool(widget) {},
+
       /**
        * Update the states of the given widget.
        *
@@ -58,6 +61,7 @@
        * @param states {Map} The cell widget's states
        */
       updateStates: function updateStates(widget, states) {},
+
       /**
        * Update the data the cell widget should display
        *
@@ -70,4 +74,4 @@
   qx.ui.virtual.cell.IWidgetCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IWidgetCell.js.map?dt=1677362769911
+//# sourceMappingURL=IWidgetCell.js.map?dt=1685978151216

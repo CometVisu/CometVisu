@@ -15,8 +15,6 @@
     "label",
     "icon",
     "command",
-    "constructor",
-    "call",
     "removeListener",
     "_onKeyDown",
     "_onKeyUp",
@@ -30,11 +28,9 @@
     "_applyVisibility",
     "value",
     "old",
-    "toolbar",
-    "superclass",
-    "prototype",
     "parent",
     "getLayoutParent",
+    "toolbar",
     "PartContainer",
     "core",
     "queue",
@@ -47,5 +43,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo\n\n   https://qooxdoo.org\n\n   Copyright:\n     2022 OETIKER+PARTNER AG\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tobias Oetiker (oetiker)\n\n************************************************************************ */\n\n/**\n * A toolbar-aware version of the {@link qx.ui.form.FileSelectorButton}.\n */\n\nqx.Class.define(\"qx.ui.toolbar.FileSelectorButton\", {\n  extend: qx.ui.form.FileSelectorButton,\n  construct(label, icon, command) {\n    super(label, icon, command);\n    // Toolbar buttons should not support the keyboard events\n    this.removeListener(\"keydown\", this._onKeyDown);\n    this.removeListener(\"keyup\", this._onKeyUp);\n  },\n  properties: {\n    appearance: {\n      refine: true,\n      init: \"toolbar-button\"\n    },\n\n    show: {\n      refine: true,\n      init: \"inherit\"\n    },\n\n    focusable: {\n      refine: true,\n      init: false\n    }\n  },\n\n  members: {\n    // overridden\n    _applyVisibility(value, old) {\n      super._applyVisibility(value, old);\n      // trigger a appearance recalculation of the parent\n      let parent = this.getLayoutParent();\n      if (parent && parent instanceof qx.ui.toolbar.PartContainer) {\n        qx.ui.core.queue.Appearance.add(parent);\n      }\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,kCAAkC,EAAE;IAClDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,IAAI,CAACC,kBAAkB;IACrCC,SAAS,WAAAA,UAACC,KAAK,EAAEC,IAAI,EAAEC,OAAO,EAAE;MAC9Bb,EAAA,CAAAO,EAAA,CAAAC,IAAA,CAAAC,kBAAA,CAAAK,WAAA,CAAAC,IAAA,OAAMJ,KAAK,EAAEC,IAAI,EAAEC,OAAO;MAC1B;MACA,IAAI,CAACG,cAAc,CAAC,SAAS,EAAE,IAAI,CAACC,UAAU,CAAC;MAC/C,IAAI,CAACD,cAAc,CAAC,OAAO,EAAE,IAAI,CAACE,QAAQ,CAAC;IAC7C,CAAC;IACDC,UAAU,EAAE;MACVC,UAAU,EAAE;QACVC,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR,CAAC;MAEDC,IAAI,EAAE;QACJF,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR,CAAC;MAEDE,SAAS,EAAE;QACTH,MAAM,EAAE,IAAI;QACZC,IAAI,EAAE;MACR;IACF,CAAC;IAEDG,OAAO,EAAE;MACP;MACAC,gBAAgB,WAAAA,iBAACC,KAAK,EAAEC,GAAG,EAAE;QAC3B5B,EAAA,CAAAO,EAAA,CAAAsB,OAAA,CAAApB,kBAAA,CAAAqB,UAAA,CAAAC,SAAA,CAAAL,gBAAA,CAAAX,IAAA,OAAuBY,KAAK,EAAEC,GAAG;QACjC;QACA,IAAII,MAAM,GAAG,IAAI,CAACC,eAAe,EAAE;QACnC,IAAID,MAAM,IAAIA,MAAM,YAAYhC,EAAE,CAACO,EAAE,CAACsB,OAAO,CAACK,aAAa,EAAE;UAC3DlC,EAAE,CAACO,EAAE,CAAC4B,IAAI,CAACC,KAAK,CAACC,UAAU,CAACC,GAAG,CAACN,MAAM,CAAC;QACzC;MACF;IACF;EACF,CAAC,CAAC;EA1DFhC,EAAE,CAACO,EAAE,CAACsB,OAAO,CAACpB,kBAAkB,CAACN,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EAEAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EAAoD;IAClDC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,IAAN,CAAWC,kBAD+B;IAElDC,SAFkD,qBAExCC,KAFwC,EAEjCC,IAFiC,EAE3BC,OAF2B,EAElB;MAC9B,qDAAMF,KAAN,EAAaC,IAAb,EAAmBC,OAAnB,EAD8B,CAE9B;;MACA,KAAKC,cAAL,CAAoB,SAApB,EAA+B,KAAKC,UAApC;MACA,KAAKD,cAAL,CAAoB,OAApB,EAA6B,KAAKE,QAAlC;IACD,CAPiD;IAQlDC,UAAU,EAAE;MACVC,UAAU,EAAE;QACVC,MAAM,EAAE,IADE;QAEVC,IAAI,EAAE;MAFI,CADF;MAMVC,IAAI,EAAE;QACJF,MAAM,EAAE,IADJ;QAEJC,IAAI,EAAE;MAFF,CANI;MAWVE,SAAS,EAAE;QACTH,MAAM,EAAE,IADC;QAETC,IAAI,EAAE;MAFG;IAXD,CARsC;IAyBlDG,OAAO,EAAE;MACP;MACAC,gBAFO,4BAEUC,KAFV,EAEiBC,GAFjB,EAEsB;QAC3B,kFAAuBD,KAAvB,EAA8BC,GAA9B,EAD2B,CAE3B;;;QACA,IAAIC,MAAM,GAAG,KAAKC,eAAL,EAAb;;QACA,IAAID,MAAM,IAAIA,MAAM,YAAY3B,EAAE,CAACO,EAAH,CAAMsB,OAAN,CAAcC,aAA9C,EAA6D;UAC3D9B,EAAE,CAACO,EAAH,CAAMwB,IAAN,CAAWC,KAAX,CAAiBC,UAAjB,CAA4BC,GAA5B,CAAgCP,MAAhC;QACD;MACF;IATM;EAzByC,CAApD;EAtBA3B,EAAE,CAACO,EAAH,CAAMsB,OAAN,CAAcpB,kBAAd,CAAiCN,aAAjC,GAAiDA,aAAjD"
 }

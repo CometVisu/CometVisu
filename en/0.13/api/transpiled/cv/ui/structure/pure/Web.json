@@ -17,9 +17,9 @@
         "index": 934
       },
       "end": {
-        "line": 121,
+        "line": 124,
         "column": 3,
-        "index": 3410
+        "index": 3557
       }
     },
     "jsdoc": {
@@ -274,9 +274,9 @@
           "index": 1829
         },
         "end": {
-          "line": 100,
+          "line": 103,
           "column": 5,
-          "index": 2776
+          "index": 2907
         }
       },
       "jsdoc": {},
@@ -290,14 +290,14 @@
     "_update": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 111,
           "column": 4,
-          "index": 3001
+          "index": 3132
         },
         "end": {
-          "line": 119,
+          "line": 122,
           "column": 5,
-          "index": 3402
+          "index": 3549
         }
       },
       "jsdoc": {

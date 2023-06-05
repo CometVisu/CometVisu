@@ -1,16 +1,25 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -32,6 +41,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* RoundProgress.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -61,6 +71,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
     include: cv.ui.structure.tile.MVisibility,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -70,6 +81,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       cv.ui.structure.tile.components.AbstractComponent.constructor.call(this, element);
       this.addListener('changeVisible', this._applyVisible, this);
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -97,6 +109,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         init: 100
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -115,7 +128,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _queuedFitText: null,
       _init: function _init() {
         var _this = this;
+
         cv.ui.structure.tile.components.RoundProgress.superclass.prototype._init.call(this);
+
         var element = this._element;
         var style = document.querySelector(':root').style;
         var hasFixedRadius = element.hasAttribute('radius');
@@ -123,21 +138,27 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         var strokeWidth = element.getAttribute('stroke') || 8;
         var normalizedRadius = this.__P_80_3 = radius - strokeWidth / 2;
         this.__P_80_1 = normalizedRadius * 2 * Math.PI;
+
         if (element.hasAttribute('min')) {
           var min = parseInt(element.getAttribute('min'));
+
           if (!isNaN(min)) {
             this.setMin(min);
           }
         }
+
         if (element.hasAttribute('max')) {
           var max = parseInt(element.getAttribute('max'));
+
           if (!isNaN(max)) {
             this.setMax(max);
           }
         }
+
         if (element.hasAttribute('type')) {
           this.setType(element.getAttribute('type'));
         }
+
         var type = this.getType();
         var height = type === 'semiCircle' ? radius : radius * 2;
         var ns = 'http://www.w3.org/2000/svg';
@@ -145,6 +166,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         svg.setAttribute('height', height);
         svg.setAttribute('width', '' + radius * 2);
         svg.setAttribute('type', type);
+
         if (type === 'circle') {
           if (!element.hasAttribute('no-background')) {
             var bg = document.createElementNS(ns, 'circle');
@@ -154,11 +176,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             bg.setAttribute('cy', '50%');
             bg.setAttribute('fill', 'transparent');
             bg.setAttribute('stroke-width', strokeWidth);
+
             if (element.hasAttribute('background-color')) {
               bg.style.stroke = element.getAttribute('background-color');
             }
+
             svg.appendChild(bg);
           }
+
           var bar = document.createElementNS(ns, 'circle');
           bar.classList.add('bar');
           bar.setAttribute('r', '' + normalizedRadius);
@@ -167,38 +192,56 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           bar.setAttribute('stroke-width', strokeWidth);
           bar.setAttribute('stroke-dasharray', "".concat(this.__P_80_1, " ").concat(this.__P_80_1));
           bar.setAttribute('stroke-dashoffset', this.__P_80_1);
+
           if (element.hasAttribute('foreground-color')) {
             bar.style.stroke = element.getAttribute('foreground-color');
           }
+
           svg.appendChild(bar);
         } else if (type === 'semiCircle') {
           if (!element.hasAttribute('no-background')) {
             var _bg = document.createElementNS(ns, 'path');
+
             _bg.classList.add('bg');
+
             _bg.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(radius, " A ").concat(normalizedRadius, " ").concat(normalizedRadius, " 0 0 1 ").concat(radius * 2 - strokeWidth / 2, " ").concat(radius));
+
             _bg.setAttribute('fill', 'transparent');
+
             _bg.setAttribute('stroke-width', strokeWidth);
+
             if (element.hasAttribute('background-color')) {
               _bg.style.stroke = element.getAttribute('background-color');
             }
+
             svg.appendChild(_bg);
           }
+
           this.__P_80_2 = {
             x: strokeWidth / 2,
             y: radius
           };
+
           var _bar = document.createElementNS(ns, 'path');
+
           _bar.classList.add('bar');
+
           _bar.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(radius, " A ").concat(normalizedRadius, " ").concat(normalizedRadius, " 0 0 0 ").concat(strokeWidth / 2, " ").concat(radius));
+
           _bar.setAttribute('fill', 'transparent');
+
           _bar.setAttribute('stroke-width', strokeWidth);
+
           if (element.hasAttribute('foreground-color')) {
             _bar.style.stroke = element.getAttribute('foreground-color');
           }
+
           svg.appendChild(_bar);
         }
+
         element.replaceChildren(svg, document.createElement('label'));
         this.__P_80_7 = radius * 2 - strokeWidth * 2 - 24;
+
         if (!hasFixedRadius) {
           qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', function (ev) {
             _this.__P_80_4 = ev.getData();
@@ -208,9 +251,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             var svg = element.querySelector(':scope > svg');
             svg.setAttribute('height', '' + height);
             svg.setAttribute('width', '' + _this.__P_80_4 * 2);
+
             if (type === 'circle') {
               _this._element.querySelectorAll(':scope > svg > circle').forEach(function (circle) {
                 circle.setAttribute('r', '' + _this.__P_80_3);
+
                 if (circle.classList.contains('bar')) {
                   circle.setAttribute('stroke-dasharray', _this.__P_80_1 + ' ' + _this.__P_80_1);
                   circle.setAttribute('stroke-dashoffset', '' + _this.__P_80_1);
@@ -218,11 +263,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               });
             } else if (type === 'semiCircle') {
               _this.__P_80_2.y = _this.__P_80_4;
+
               var _bg2 = _this._element.querySelector(':scope > svg > path.bg');
+
               if (_bg2) {
                 _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_80_4, " A ").concat(_this.__P_80_3, " ").concat(_this.__P_80_3, " 0 0 1 ").concat(_this.__P_80_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_80_4));
               }
             }
+
             _this._applyProgress(_this.isPropertyInitialized('progress') ? _this.getProgress() : 0);
           });
         }
@@ -240,11 +288,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           var end;
           var valueInRange = value - this.getMin();
           var percent = Math.max(0, Math.min(100, 100 / (this.getMax() - this.getMin()) * valueInRange));
+
           switch (this.getType()) {
             case 'circle':
               valueElement = this._element.querySelector(':scope > svg > circle.bar');
               valueElement.setAttribute('stroke-dashoffset', '' + this.__P_80_1 - percent / 100 * this.__P_80_1);
               break;
+
             case 'semiCircle':
               valueElement = this._element.querySelector(':scope > svg > path.bar');
               end = this.__P_80_9(1.8 * percent);
@@ -263,7 +313,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               this.__P_80_10.font = compStyle.getPropertyValue('font');
               this.__P_80_8 = compStyle.getPropertyValue('font-size');
             }
+
             var metrics = this.__P_80_10.measureText(this.__P_80_5.textContent);
+
             if (metrics.width > this.__P_80_7) {
               // adjust font-size
               var factor = this.__P_80_7 / metrics.width;
@@ -271,6 +323,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             } else {
               this.__P_80_5.style.fontSize = this.__P_80_8;
             }
+
             this._queuedFitText = false;
           } else {
             this._queuedFitText = true;
@@ -287,7 +340,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           if (!this.__P_80_5) {
             this.__P_80_5 = this._element.querySelector(':scope > label');
           }
+
           this.__P_80_5.textContent = value;
+
           if (!value) {
             // empty text, just reset to default font size
             if (this.__P_80_8) {
@@ -299,6 +354,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         }
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -312,11 +368,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         "use strict";
 
         _inherits(_class, _QxConnector);
+
         var _super = _createSuper(_class);
+
         function _class() {
           _classCallCheck(this, _class);
+
           return _super.call(this, QxClass);
         }
+
         return _createClass(_class);
       }(QxConnector));
     }
@@ -324,4 +384,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1677362720411
+//# sourceMappingURL=RoundProgress.js.map?dt=1685978103277

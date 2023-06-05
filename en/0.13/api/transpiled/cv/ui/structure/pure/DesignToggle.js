@@ -23,6 +23,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* DesignToggle.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -58,6 +59,7 @@
   qx.Class.define('cv.ui.structure.pure.DesignToggle', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
+
     /*
      ******************************************************
      MEMBERS
@@ -68,6 +70,7 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
       },
+
       /**
        * Action performed when the widget got clicked
        *
@@ -80,11 +83,13 @@
         if (isCanceled) {
           return;
         }
+
         var designs = cv.Config.designStructureMap.pure;
         var oldDesign = this.getDomElement().querySelector('.value').textContent;
         var newDesign = designs[(designs.indexOf(oldDesign) + 1) % designs.length];
         var URL = cv.util.Location.getHref();
         var regexp = new RegExp('design=' + oldDesign);
+
         if (URL.search(regexp) !== -1) {
           // has URL-parameter design
           cv.util.Location.setHref(URL.replace(regexp, 'design=' + newDesign));
@@ -93,9 +98,11 @@
           var req = qx.util.Uri.appendParamsToUrl(parts[0], {
             design: newDesign
           });
+
           if (parts.length > 1) {
             req += '#' + parts[1];
           }
+
           cv.util.Location.setHref(req);
         }
       }
@@ -107,4 +114,4 @@
   cv.ui.structure.pure.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1677362716817
+//# sourceMappingURL=DesignToggle.js.map?dt=1685978099584

@@ -7,6 +7,7 @@ config/prod/example.inc.php
 lib/Api/AbstractConfigApi.php
 lib/Api/AbstractDataproviderApi.php
 lib/Api/AbstractFsApi.php
+lib/Api/AbstractRequestproxyApi.php
 lib/SlimRouter.php
 phpcs.xml.dist
 phpunit.xml.dist

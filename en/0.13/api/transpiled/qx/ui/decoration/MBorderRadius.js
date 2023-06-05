@@ -23,6 +23,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,6 +41,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * Mixin for the border radius CSS property.
    * This mixin is usually used by {@link qx.ui.decoration.Decorator}.
@@ -60,24 +62,28 @@
         check: "Integer",
         apply: "_applyBorderRadius"
       },
+
       /** top right corner radius */
       radiusTopRight: {
         nullable: true,
         check: "Integer",
         apply: "_applyBorderRadius"
       },
+
       /** bottom left corner radius */
       radiusBottomLeft: {
         nullable: true,
         check: "Integer",
         apply: "_applyBorderRadius"
       },
+
       /** bottom right corner radius */
       radiusBottomRight: {
         nullable: true,
         check: "Integer",
         apply: "_applyBorderRadius"
       },
+
       /** Property group to set the corner radius of all sides */
       radius: {
         group: ["radiusTopLeft", "radiusTopRight", "radiusBottomRight", "radiusBottomLeft"],
@@ -96,41 +102,47 @@
         // Fixing the background bleed in Webkits
         // http://tumble.sneak.co.nz/post/928998513/fixing-the-background-bleed
         styles["-webkit-background-clip"] = "padding-box";
-        styles["background-clip"] = "padding-box";
+        styles["background-clip"] = "padding-box"; // radius handling
 
-        // radius handling
         var hasRadius = false;
         var radius = this.getRadiusTopLeft();
+
         if (radius > 0) {
           hasRadius = true;
           styles["-moz-border-radius-topleft"] = radius + "px";
           styles["-webkit-border-top-left-radius"] = radius + "px";
           styles["border-top-left-radius"] = radius + "px";
         }
+
         radius = this.getRadiusTopRight();
+
         if (radius > 0) {
           hasRadius = true;
           styles["-moz-border-radius-topright"] = radius + "px";
           styles["-webkit-border-top-right-radius"] = radius + "px";
           styles["border-top-right-radius"] = radius + "px";
         }
+
         radius = this.getRadiusBottomLeft();
+
         if (radius > 0) {
           hasRadius = true;
           styles["-moz-border-radius-bottomleft"] = radius + "px";
           styles["-webkit-border-bottom-left-radius"] = radius + "px";
           styles["border-bottom-left-radius"] = radius + "px";
         }
+
         radius = this.getRadiusBottomRight();
+
         if (radius > 0) {
           hasRadius = true;
           styles["-moz-border-radius-bottomright"] = radius + "px";
           styles["-webkit-border-bottom-right-radius"] = radius + "px";
           styles["border-bottom-right-radius"] = radius + "px";
-        }
-
-        // Fixing the background bleed in Webkits
+        } // Fixing the background bleed in Webkits
         // http://tumble.sneak.co.nz/post/928998513/fixing-the-background-bleed
+
+
         if (hasRadius && qx.core.Environment.get("engine.name") == "webkit") {
           styles["-webkit-background-clip"] = "padding-box";
         } else {
@@ -144,4 +156,4 @@
   qx.ui.decoration.MBorderRadius.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderRadius.js.map?dt=1677362755728
+//# sourceMappingURL=MBorderRadius.js.map?dt=1685978136720

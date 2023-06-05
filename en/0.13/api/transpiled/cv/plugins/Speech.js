@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Speech.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -85,6 +86,7 @@
   qx.Class.define('cv.plugins.Speech', {
     extend: qx.core.Object,
     include: cv.ui.common.Update,
+
     /*
      ******************************************************
      CONSTRUCTOR
@@ -96,6 +98,7 @@
       this.set(props);
       this.__P_16_0 = {};
     },
+
     /*
      ******************************************************
      STATICS
@@ -107,12 +110,13 @@
           qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
           return null;
         }
+
         var address = cv.parser.pure.WidgetParser.makeAddressList(element, path);
         return cv.data.Model.getInstance().setWidgetData(path, {
           path: path,
-          language: element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : null,
+          language: element.getAttribute('lang') ? element.getAttribute('lang').toLowerCase() : '',
           address: address,
-          mapping: element.getAttribute('mapping'),
+          mapping: element.getAttribute('mapping') || '',
           repeatTimeout: element.getAttribute('repeat-timeout') ? parseInt(element.getAttribute('repeat-timeout')) : -1,
           $$type: 'speech',
           // this widget needs to be initialized when the cache is used, otherwise it wont be available
@@ -120,6 +124,7 @@
         });
       }
     },
+
     /*
      ******************************************************
      PROPERTIES
@@ -151,6 +156,7 @@
         init: null
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -163,9 +169,8 @@
       },
       _processIncomingValue: function _processIncomingValue(address, data) {
         // #1: transform the raw value to a JavaScript type
-        var value = this.applyTransform(address, data);
+        var value = this.applyTransform(address, data); // #2: map it to a value the user wants to see
 
-        // #2: map it to a value the user wants to see
         return this.applyMapping(value);
       },
       handleUpdate: function handleUpdate(text, address) {
@@ -178,11 +183,13 @@
           this.debug('skipping initial TTS for ' + text);
           return;
         }
+
         if (!text || text.length === 0) {
           // nothing to say
           this.debug('no text to speech given');
           return;
         }
+
         if (typeof text === 'string' && text.substring(0, 1) === '!') {
           // override repeatTimeout, force saying this
           text = text.substring(1);
@@ -190,12 +197,13 @@
           // do not repeat (within timeout when this.repeatTimeout > 0)
           if (this.__P_16_0[address] && this.__P_16_0[address].text === text && (this.getRepeatTimeout() === 0 || this.getRepeatTimeout() >= Math.round((Date.now() - this.__P_16_0[address].time) / 1000))) {
             // update time
-            this.__P_16_0[address].time = Date.now();
-            // do not repeat
+            this.__P_16_0[address].time = Date.now(); // do not repeat
+
             this.debug('skipping TTS because of repetition ' + text);
             return;
           }
         }
+
         this.debug('changing lastSpeech from \'%s\' to \'%s\'', this.__P_16_0[address] ? this.__P_16_0[address].text : '', text);
         this.__P_16_0[address] = {
           text: text,
@@ -213,4 +221,4 @@
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1677362709537
+//# sourceMappingURL=Speech.js.map?dt=1685978092419

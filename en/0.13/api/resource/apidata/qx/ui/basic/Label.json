@@ -16,9 +16,9 @@
         "index": 2013
       },
       "end": {
-        "line": 564,
+        "line": 546,
         "column": 3,
-        "index": 15816
+        "index": 15236
       }
     },
     "jsdoc": {
@@ -648,9 +648,9 @@
           "index": 8641
         },
         "end": {
-          "line": 349,
+          "line": 357,
           "column": 5,
-          "index": 9764
+          "index": 9972
         }
       },
       "jsdoc": {},
@@ -664,14 +664,14 @@
     "__computeContentSize": {
       "location": {
         "start": {
-          "line": 357,
+          "line": 365,
           "column": 4,
-          "index": 9992
+          "index": 10200
         },
         "end": {
-          "line": 378,
+          "line": 386,
           "column": 5,
-          "index": 10607
+          "index": 10815
         }
       },
       "jsdoc": {
@@ -707,14 +707,14 @@
     "__fixEllipsis": {
       "location": {
         "start": {
-          "line": 385,
+          "line": 393,
           "column": 4,
-          "index": 10856
+          "index": 11064
         },
         "end": {
-          "line": 401,
+          "line": 409,
           "column": 5,
-          "index": 11421
+          "index": 11629
         }
       },
       "jsdoc": {
@@ -731,14 +731,14 @@
     "_applyBuddy": {
       "location": {
         "start": {
-          "line": 410,
+          "line": 418,
           "column": 4,
-          "index": 11648
+          "index": 11856
         },
         "end": {
-          "line": 433,
+          "line": 441,
           "column": 5,
-          "index": 12366
+          "index": 12574
         }
       },
       "jsdoc": {},
@@ -751,14 +751,14 @@
     "_applyRich": {
       "location": {
         "start": {
-          "line": 436,
+          "line": 444,
           "column": 4,
-          "index": 12395
+          "index": 12603
         },
         "end": {
-          "line": 445,
+          "line": 453,
           "column": 5,
-          "index": 12649
+          "index": 12857
         }
       },
       "jsdoc": {},
@@ -771,14 +771,14 @@
     "_applyWrap": {
       "location": {
         "start": {
-          "line": 448,
+          "line": 456,
           "column": 4,
-          "index": 12678
+          "index": 12886
         },
         "end": {
-          "line": 461,
+          "line": 469,
           "column": 5,
-          "index": 13151
+          "index": 13359
         }
       },
       "jsdoc": {},
@@ -791,14 +791,14 @@
     "_applyBreakWithinWords": {
       "location": {
         "start": {
-          "line": 464,
+          "line": 472,
           "column": 4,
-          "index": 13180
+          "index": 13388
         },
         "end": {
-          "line": 469,
+          "line": 477,
           "column": 5,
-          "index": 13355
+          "index": 13557
         }
       },
       "jsdoc": {},
@@ -811,14 +811,14 @@
     "_onChangeLocale": {
       "location": {
         "start": {
-          "line": 477,
+          "line": 485,
           "column": 4,
-          "index": 13491
+          "index": 13693
         },
         "end": {
-          "line": 486,
+          "line": 494,
           "column": 6,
-          "index": 13742
+          "index": 13944
         }
       },
       "jsdoc": {
@@ -847,50 +847,17 @@
       "type": "variable",
       "access": "protected"
     },
-    "_onWebFontStatusChange": {
-      "location": {
-        "start": {
-          "line": 493,
-          "column": 4,
-          "index": 13896
-        },
-        "end": {
-          "line": 512,
-          "column": 5,
-          "index": 14524
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Triggers layout recalculation after a web font was loaded</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "ev {qx.event.type.Data} \"changeStatus\" event",
-            "paramName": "ev",
-            "description": " \"changeStatus\" event",
-            "type": "qx.event.type.Data"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "protected"
-    },
     "_applyValue": {
       "location": {
         "start": {
-          "line": 515,
+          "line": 497,
           "column": 4,
-          "index": 14553
+          "index": 13973
         },
         "end": {
-          "line": 540,
+          "line": 522,
           "column": 6,
-          "index": 15266
+          "index": 14686
         }
       },
       "jsdoc": {},
@@ -5252,14 +5219,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 549,
+        "line": 531,
         "column": 2,
-        "index": 15462
+        "index": 14882
       },
       "end": {
-        "line": 563,
+        "line": 545,
         "column": 3,
-        "index": 15812
+        "index": 15232
       }
     },
     "jsdoc": {}

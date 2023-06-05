@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -80,6 +81,7 @@
       // overridden
       _createWidget: function _createWidget() {
         var delegate = this.getDelegate();
+
         if (delegate != null && delegate.createWidget != null) {
           return delegate.createWidget();
         } else {
@@ -101,4 +103,4 @@
   qx.ui.virtual.cell.WidgetCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCell.js.map?dt=1677362770005
+//# sourceMappingURL=WidgetCell.js.map?dt=1685978151326

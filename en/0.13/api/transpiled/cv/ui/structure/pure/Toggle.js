@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Toggle.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,6 +51,7 @@
   qx.Class.define('cv.ui.structure.pure.Toggle', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
+
     /*
     ******************************************************
       MEMBERS
@@ -60,6 +62,7 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
+
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @return {var}
@@ -72,4 +75,4 @@
   cv.ui.structure.pure.Toggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Toggle.js.map?dt=1677362717672
+//# sourceMappingURL=Toggle.js.map?dt=1685978100467

@@ -1,9 +1,15 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -32,6 +38,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Provider.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -58,6 +65,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   qx.Class.define('cv.ui.manager.editor.data.Provider', {
     extend: qx.core.Object,
     type: 'singleton',
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -68,6 +76,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this.__P_37_0 = {};
       this._client = cv.io.rest.Client.getDataProviderClient();
     },
+
     /*
     ***********************************************
       STATICS
@@ -163,33 +172,42 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       get: function get(id) {
         var instance = cv.ui.manager.editor.data.Provider.getInstance();
         var format = 'dp';
+
         var _id$split = id.split('@'),
-          _id$split2 = _slicedToArray(_id$split, 2),
-          element = _id$split2[0],
-          attribute = _id$split2[1];
+            _id$split2 = _slicedToArray(_id$split, 2),
+            element = _id$split2[0],
+            attribute = _id$split2[1];
+
         var config = null;
+
         if (this.Config[element] && this.Config[element][attribute]) {
           config = this.Config[element][attribute];
         } else if (this.Config['*'][attribute]) {
           config = this.Config['*'][attribute];
         }
+
         if (config) {
           var conf = {};
+
           if (config.live) {
             conf.getLive = qx.lang.Function.curry(instance[config.method], format, config).bind(instance);
           } else {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
               args[_key - 1] = arguments[_key];
             }
+
             args.unshift(config);
             args.unshift(format);
             conf.data = instance[config.method].apply(instance, args);
           }
+
           return Object.assign(conf, config);
         }
+
         return null;
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -210,6 +228,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       _addToCache: function _addToCache(cacheId, data) {
         this.__P_37_0[cacheId] = data;
       },
+
       /**
        * Returns the available design names as array of suggestions.
        * @param format
@@ -221,7 +240,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (!structure) {
           structure = 'pure';
         }
+
         var designs = cv.Config.designStructureMap[structure] || [];
+
         if (format === 'dp') {
           return designs.map(function (designName) {
             return {
@@ -230,6 +251,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             };
           });
         }
+
         return designs.map(function (designName) {
           return {
             label: designName,
@@ -238,6 +260,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           };
         });
       },
+
       /**
        * @param cacheId {String}
        * @param rpc {String|Function} rpcname to use with this._client or function to call
@@ -251,9 +274,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       __P_37_2: function __P_37_2(cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
         var cached = cache ? this._getFromCache(cacheId) : null;
+
         if (cached) {
           return Promise.resolve(converter.call(converterContext || this, cached));
         }
+
         return new Promise(function (resolve, reject) {
           var handleResponse = function handleResponse(err, res) {
             if (err) {
@@ -266,15 +291,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 // cache the raw values not the converted ones
                 this._addToCache(cacheId, res);
               }
+
               resolve(converter.call(converterContext || this, res));
             }
           };
+
           if (!args) {
             args = [handleResponse, this];
           } else {
             args.push(handleResponse);
             args.push(this);
           }
+
           if (qx.lang.Type.isString(rpc)) {
             this._client[rpc].apply(rpcContext || this._client, args);
           } else if (qx.lang.Type.isFunction(rpc)) {
@@ -284,30 +312,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       __P_37_3: function __P_37_3(url, converter, converterContext, cache) {
         var cached = cache ? this._getFromCache(url) : null;
+
         if (cached) {
           if (converter) {
             cached = converter.call(converterContext || this, cached);
           }
+
           return Promise.resolve(cached);
         }
+
         return new Promise(function (resolve, reject) {
           var _this = this;
+
           var xhr = new qx.io.request.Xhr(url);
           var client = cv.io.BackendConnections.getClient();
+
           if (client) {
             client.authorize(xhr);
           }
+
           xhr.set({
             accept: 'application/json'
           });
           xhr.addListener('success', function (ev) {
             var data = ev.getTarget().getResponse();
+
             if (cache) {
               _this._addToCache(url, data);
             }
+
             if (converter) {
               data = converter.call(converterContext || _this, data);
             }
+
             resolve(data);
           });
           xhr.addListener('statusError', reject, this);
@@ -316,62 +353,77 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       getAddresses: function getAddresses(format, config, backend) {
         var client = cv.io.BackendConnections.getClient(backend);
+
         if (!config) {
           config = {
             cache: true
           };
         }
+
         if (client && client.hasProvider('addresses')) {
           var url = client.getProviderUrl('addresses');
+
           if (url) {
             return this.__P_37_3(url, client.getProviderConvertFunction('addresses', format), client, config.cache);
           }
+
           return client.getProviderData('addresses', format);
         }
+
         return this.__P_37_2('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       getRrds: function getRrds(format, config) {
         var client = cv.io.BackendConnections.getClient();
+
         if (!config) {
           config = {
             cache: true
           };
         }
+
         if (client && client.hasProvider('rrd')) {
           return this.__P_37_3(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
         }
+
         return this.__P_37_2('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       getInfluxDBs: function getInfluxDBs(format, config, element) {
         var args = this.__P_37_4(element, false);
+
         return this.__P_37_2('influxdbs', 'influxdbsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       __P_37_4: function __P_37_4(element, withMeasurement) {
         var args = [];
+
         if (element.hasAttribute('authentication')) {
           args.push({
             auth: element.getAttribute('authentication')
           });
         }
+
         if (withMeasurement) {
-          var influx = element;
-          // walk the tree to get the selected data source in the influx element
+          var influx = element; // walk the tree to get the selected data source in the influx element
+
           while (influx.nodeName !== 'influx') {
             influx = influx.parentElement;
+
             if (undefined === influx) {
               // this safety measure can not happen without a bug somewhere!
               throw new Error();
             }
           }
+
           args.push({
             measurement: element.getAttribute('measurement')
           });
         }
+
         return args;
       },
       getInfluxDBFields: function getInfluxDBFields(format, config, element) {
         try {
           var args = this.__P_37_4(element, true);
+
           return this.__P_37_2('influxdbfields|' + args.measurement + '|' + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
         } catch (e) {
           return [];
@@ -380,6 +432,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       __P_37_5: function __P_37_5(format, config, element, converter) {
         try {
           var args = this.__P_37_4(element, true);
+
           return this.__P_37_2('influxdbtags|' + args.measurement + '|' + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
         } catch (e) {
           return [];
@@ -396,6 +449,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               };
             });
           }
+
           return Object.keys(res).map(function (x) {
             return {
               value: x,
@@ -409,6 +463,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           if (res === null || !(element.attributes.key in res)) {
             return [];
           }
+
           if (format === 'monaco') {
             return res[tag].map(function (x) {
               return {
@@ -418,6 +473,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               };
             });
           }
+
           return res[tag].map(function (x) {
             return {
               label: x,
@@ -434,6 +490,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       __P_37_6: function __P_37_6(data, format) {
         var target = [];
+
         if (!format || format === 'monaco') {
           data.forEach(function (entry) {
             target.push({
@@ -445,6 +502,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         } else if (format === 'dp') {
           return data || [];
         }
+
         return target;
       },
       getMediaFiles: function getMediaFiles(format, config, typeFilter) {
@@ -465,6 +523,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           });
         }, this, config.cache);
       },
+
       /**
        * Returns the list of available transformations as suggestion entry array.
        * @param format
@@ -475,16 +534,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (!format) {
           format = 'monaco';
         }
+
         var cacheId = 'transforms|' + format;
         var useCache = !config || config.cache === true;
         var cached = useCache ? this._getFromCache(cacheId) : null;
+
         if (cached) {
           return cached;
         }
+
         var transforms = [];
         Object.keys(cv.Transform.registry).forEach(function (key) {
           var entry = cv.Transform.registry[key];
           var suggestion;
+
           if (format === 'dp') {
             suggestion = {
               label: entry.name + ' [' + key + ']',
@@ -496,17 +559,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               insertText: key,
               kind: window.monaco.languages.CompletionItemKind.EnumMember
             };
+
             if (entry.lname && Object.prototype.hasOwnProperty.call(entry.lname, qx.locale.Manager.getInstance().getLanguage())) {
               suggestion.detail = entry.lname[qx.locale.Manager.getInstance().getLanguage()];
             }
           }
+
           transforms.push(suggestion);
         }, this);
+
         if (useCache) {
           this._addToCache(cacheId, transforms);
         }
+
         return transforms;
       },
+
       /**
        * Returns the plugin names (all defined parts staring with 'plugin-')
        * @param format
@@ -517,17 +585,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (!format) {
           format = 'monaco';
         }
+
         var useCache = !config || config.cache === true;
         var cacheId = 'plugins|' + format;
         var cached = useCache ? this._getFromCache(cacheId) : null;
+
         if (cached) {
           return cached;
         }
+
         var plugins = [];
         var qxParts = qx.io.PartLoader.getInstance().getParts();
         Object.keys(qxParts).forEach(function (partName) {
           if (partName.startsWith('plugin-')) {
             var pluginName = partName.substring(7);
+
             if (format === 'dp') {
               plugins.push({
                 label: pluginName,
@@ -542,11 +614,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             }
           }
         }, this);
+
         if (useCache) {
           this._addToCache(cacheId, plugins);
         }
+
         return plugins;
       },
+
       /**
        *
        * @param {String} format
@@ -558,14 +633,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (!format) {
           format = 'monaco';
         }
+
         var useCache = !config || config.cache === true;
         var cacheId = 'icons|' + format;
         var cached = useCache ? this._getFromCache(cacheId) : null;
+
         if (cached) {
           return cached;
         }
+
         var icons;
         var iconHandler = cv.IconHandler.getInstance();
+
         if (format === 'monaco') {
           // do not use icons from config when we can query them ourselves
           icons = Object.keys(cv.IconConfig.DB).filter(function (name) {
@@ -590,10 +669,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             };
           });
         }
+
         if (element) {
           if (element instanceof Element) {
             element.ownerDocument.querySelectorAll('pages > meta > icons > icon-definition').forEach(function (icon) {
               var iconName = icon.getAttribute('name');
+
               if (format === 'monaco') {
                 icons.push({
                   label: iconName,
@@ -615,6 +696,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               template.innerHTML = match;
               var icon = template.content.firstElementChild;
               var iconName = icon.getAttribute('name');
+
               if (format === 'monaco') {
                 icons.push({
                   label: iconName,
@@ -631,12 +713,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             });
           }
         }
+
         if (useCache) {
           this._addToCache(cacheId, icons);
         }
+
         return icons;
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -649,4 +734,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1677362713568
+//# sourceMappingURL=Provider.js.map?dt=1685978096335

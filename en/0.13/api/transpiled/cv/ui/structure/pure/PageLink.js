@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -17,6 +18,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* PageLink.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,6 +47,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    */
   qx.Class.define('cv.ui.structure.pure.PageLink', {
     extend: cv.ui.structure.pure.AbstractWidget,
+
     /*
      ******************************************************
      PROPERTIES
@@ -69,6 +72,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: true
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -96,4 +100,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.ui.structure.pure.PageLink.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageLink.js.map?dt=1677362717285
+//# sourceMappingURL=PageLink.js.map?dt=1685978100062

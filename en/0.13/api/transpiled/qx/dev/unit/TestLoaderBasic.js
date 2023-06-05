@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,10 +36,10 @@
   /**
    * Test loader for server-side/"headless" environments
    */
-
   qx.Class.define("qx.dev.unit.TestLoaderBasic", {
     extend: qx.core.Object,
     include: [qx.dev.unit.MTestLoader],
+
     /**
      *
      * @param nameSpace {String} Test namespace, e.g. myapplication.test.*
@@ -52,4 +53,4 @@
   qx.dev.unit.TestLoaderBasic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestLoaderBasic.js.map?dt=1677362737040
+//# sourceMappingURL=TestLoaderBasic.js.map?dt=1685978119889

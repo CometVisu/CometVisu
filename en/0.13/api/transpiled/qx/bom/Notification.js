@@ -37,6 +37,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -93,12 +94,12 @@
   qx.Class.define("qx.bom.Notification", {
     extend: qx.core.Object,
     type: "singleton",
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Whether the client supports the desktop notification API.
@@ -110,11 +111,13 @@
         return window.Notification !== undefined;
       }
     },
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * This is a singleton. Use <code>getInstance()</code> to get an instance.
      */
@@ -122,22 +125,24 @@
       qx.core.Object.constructor.call(this);
       this.__P_111_0 = {};
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * Event fired when a notification with data <code>tag</code> appeared.
        */
       appear: "Data",
+
       /**
        * Event fired when a notification with data <code>tag</code> has been
        * clicked by the user.
        */
       click: "Data",
+
       /**
        * Event fired when a notification with data <code>tag</code> has been
        * closed. This may happen either interactively or due to a timeout
@@ -145,15 +150,16 @@
        */
       close: "Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_111_0: null,
       __P_111_1: 0,
+
       /**
        * Display a desktop notification using a _title_, _message_ and _icon_.
        *
@@ -175,27 +181,29 @@
           // notification later on.
           if (tag !== undefined) {
             tag = "id" + this.__P_111_1++;
-          }
+          } // If we've the permission already, just send it
 
-          // If we've the permission already, just send it
+
           if (Notification.permission == "granted") {
-            this._show(tag, title, message, icon, expire);
+            this._show(tag, title, message, icon, expire); // We've not asked for permission yet. Lets do it.
 
-            // We've not asked for permission yet. Lets do it.
           } else if (Notification.permission != "denied") {
             var that = this;
             Notification.requestPermission(function (permission) {
               if (Notification.permission === undefined) {
                 Notification.permission = permission;
               }
+
               if (permission == "granted") {
                 that._show(tag, title, message, icon, expire);
               }
             });
           }
         }
+
         return tag === undefined ? null : tag;
       },
+
       /**
        * Display a desktop notification using a _title_, _message_ and _icon_.
        *
@@ -211,23 +219,24 @@
        *                     time.
        */
       _show: function _show(tag, title, message, icon, expire) {
-        var lang = qx.locale.Manager.getInstance().getLocale().replace(/_.*$/, "");
+        var lang = qx.locale.Manager.getInstance().getLocale().replace(/_.*$/, ""); // Resolve icon path if needed and possible
 
-        // Resolve icon path if needed and possible
         if (icon) {
           var rm = qx.util.ResourceManager.getInstance();
           var source = qx.util.AliasManager.getInstance().resolve(icon);
+
           if (rm.has(source)) {
             icon = rm.toUri(source);
-          }
-
-          // old versions of firefox did not display the notification if
+          } // old versions of firefox did not display the notification if
           // an icon was specified, so we disable the icon for firefox
           // < version 46
+
+
           if (qx.core.Environment.get("engine.name") == "gecko" && qx.core.Environment.get("browser.version") < 46) {
             icon = undefined;
           }
         }
+
         var notification = new Notification(title, {
           body: message,
           tag: tag,
@@ -235,39 +244,47 @@
           lang: lang
         });
         var that = this;
+
         notification.onshow = function () {
           that.__P_111_0[tag] = notification;
           that.fireDataEvent("appear", tag);
         };
+
         notification.onclose = function () {
           that.fireDataEvent("close", tag);
-          if (that.__P_111_0[tag]) {
-            that.__P_111_0[tag] = null;
-            delete that.__P_111_0[tag];
-          }
-        };
-        notification.onclick = function () {
-          that.fireDataEvent("click", tag);
-          if (that.__P_111_0[tag]) {
-            that.__P_111_0[tag] = null;
-            delete that.__P_111_0[tag];
-          }
-        };
-        notification.onerror = function () {
-          that.fireDataEvent("error", tag);
+
           if (that.__P_111_0[tag]) {
             that.__P_111_0[tag] = null;
             delete that.__P_111_0[tag];
           }
         };
 
-        // Install expire timer if exists
+        notification.onclick = function () {
+          that.fireDataEvent("click", tag);
+
+          if (that.__P_111_0[tag]) {
+            that.__P_111_0[tag] = null;
+            delete that.__P_111_0[tag];
+          }
+        };
+
+        notification.onerror = function () {
+          that.fireDataEvent("error", tag);
+
+          if (that.__P_111_0[tag]) {
+            that.__P_111_0[tag] = null;
+            delete that.__P_111_0[tag];
+          }
+        }; // Install expire timer if exists
+
+
         if (expire) {
           qx.event.Timer.once(function () {
             notification.close();
           }, this, expire);
         }
       },
+
       /**
        * Actively close an active notification.
        *
@@ -278,6 +295,7 @@
           this.__P_111_0[tag].close();
         }
       },
+
       /**
        * Tell the browser to request permission to display notifications.
        *
@@ -294,6 +312,7 @@
           });
         }
       },
+
       /**
        * Check if we've the permission to send notifications.
        *
@@ -312,4 +331,4 @@
   qx.bom.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1677362725347
+//# sourceMappingURL=Notification.js.map?dt=1685978107609

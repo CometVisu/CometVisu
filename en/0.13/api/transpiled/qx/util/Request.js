@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,21 +43,25 @@
        */
       isCrossDomain: function isCrossDomain(url) {
         var result = qx.util.Uri.parseUri(url),
-          location = window.location;
+            location = window.location;
+
         if (!location) {
           return false;
         }
-        var protocol = location.protocol;
 
-        // URL is relative in the sense that it points to origin host
+        var protocol = location.protocol; // URL is relative in the sense that it points to origin host
+
         if (!(url.indexOf("//") !== -1)) {
           return false;
         }
+
         if (protocol.substr(0, protocol.length - 1) == result.protocol && location.host === result.authority && location.port === result.port) {
           return false;
         }
+
         return true;
       },
+
       /**
        * Determine if given HTTP status is considered successful.
        *
@@ -66,6 +71,7 @@
       isSuccessful: function isSuccessful(status) {
         return status >= 200 && status < 300 || status === 304;
       },
+
       /**
        * Determine if given HTTP method is valid.
        *
@@ -76,6 +82,7 @@
         var knownMethods = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT", "PATCH"];
         return knownMethods.indexOf(method) !== -1 ? true : false;
       },
+
       /**
        * Request body is ignored for HTTP method GET and HEAD.
        *
@@ -92,4 +99,4 @@
   qx.util.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1677362772968
+//# sourceMappingURL=Request.js.map?dt=1685978154450

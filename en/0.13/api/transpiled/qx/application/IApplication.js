@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +37,14 @@
        *
        */
       main: function main() {},
+
       /**
        * Called when the application's main method was executed to handle
        * "final" tasks like rendering or retrieving data.
        *
        */
       finalize: function finalize() {},
+
       /**
        * Called in the document.beforeunload event of the browser. If the method
        * returns a string value, the user will be asked by the browser, whether
@@ -51,6 +54,7 @@
        * @return {String?null} message text on unloading the page
        */
       close: function close() {},
+
       /**
        * This method contains the last code which is run inside the page and may contain cleanup code.
        *
@@ -61,4 +65,4 @@
   qx.application.IApplication.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IApplication.js.map?dt=1677362723913
+//# sourceMappingURL=IApplication.js.map?dt=1685978106283

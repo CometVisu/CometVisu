@@ -303,6 +303,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "_observeVisibility": {

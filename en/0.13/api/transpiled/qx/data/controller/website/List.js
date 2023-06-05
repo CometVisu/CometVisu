@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -16,6 +17,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +35,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * <h2>website List Controller</h2>
    *
@@ -54,6 +57,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    */
   qx.Class.define("qx.data.controller.website.List", {
     extend: qx.core.Object,
+
     /**
      * @param model {qx.data.IListData|Array?} The mode which can either be a
      *   native array or a qooxdoo data list. Maps to the model property.
@@ -63,12 +67,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
      */
     construct: function construct(model, target, templateId) {
       qx.core.Object.constructor.call(this);
+
       if (templateId != null) {
         this.setTemplateId(templateId);
       }
+
       if (model != null) {
         this.setModel(model);
       }
+
       if (target != null) {
         this.setTarget(target);
       }
@@ -82,6 +89,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         nullable: true,
         dereference: true
       },
+
       /** The target DOM node which should show the data. */
       target: {
         check: "Element",
@@ -91,6 +99,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: null,
         dereference: true
       },
+
       /**
        * The id of the template which should be use. Check out
        * {@link qx.bom.Template} for details on templating.
@@ -101,6 +110,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         nullable: true,
         init: null
       },
+
       /**
        * The delegate for the list controller which supports almost all methods
        * documented in {@link qx.data.controller.IControllerDelegate} except
@@ -123,12 +133,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (this.__P_178_0 != undefined) {
             old.removeListenerById(this.__P_178_0);
           }
+
           if (this.__P_178_1 != undefined) {
             old.removeListenerById(this.__P_178_1);
           }
-        }
+        } // if a model is set
 
-        // if a model is set
+
         if (value != null) {
           // only for qooxdoo models
           if (value instanceof qx.core.Object) {
@@ -137,12 +148,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             this.__P_178_1 = value.addListener("changeBubble", this.update, this);
           }
         } else {
-          var target = this.getTarget();
-          // if the model is set to null, we should remove all items in the target
+          var target = this.getTarget(); // if the model is set to null, we should remove all items in the target
+
           if (target != null) {
             this.__P_178_2();
           }
         }
+
         this.update();
       },
       // property apply
@@ -157,18 +169,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       _applyDelegate: function _applyDelegate(value, old) {
         this.update();
       },
+
       /**
        * Responsible for removing all items from the target element.
        */
       __P_178_2: function __P_178_2() {
         var target = this.getTarget();
+
         for (var i = target.children.length - 1; i >= 0; i--) {
           var el = target.children[i];
           el.$$model = null;
           qx.dom.Element.remove(el);
         }
+
         target.innerHTML = "";
       },
+
       /**
        * This is the main method which will take the data from the model and
        * push it to the target view. If you are using a plain Array as model,
@@ -179,59 +195,58 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * which was used to create it at <code>.$$model</code>.
        */
       update: function update() {
-        var target = this.getTarget();
+        var target = this.getTarget(); // get the plain data
 
-        // get the plain data
         var data = this.getModel();
+
         if (data instanceof qx.core.Object) {
           data = qx.util.Serializer.toNativeObject(this.getModel());
         }
-        var templateId = this.getTemplateId();
 
-        // only do something if everything is given
+        var templateId = this.getTemplateId(); // only do something if everything is given
+
         if (target == null || data == null || templateId == null) {
           return;
-        }
+        } // empty the target
 
-        // empty the target
-        this.__P_178_2();
 
-        // delegate methods
+        this.__P_178_2(); // delegate methods
+
+
         var configureItem = this.getDelegate() && this.getDelegate().configureItem;
         var filter = this.getDelegate() && this.getDelegate().filter;
-        var createItem = this.getDelegate() && this.getDelegate().createItem;
+        var createItem = this.getDelegate() && this.getDelegate().createItem; // get all items in the model
 
-        // get all items in the model
         for (var i = 0; i < data.length; i++) {
-          var entry = data[i];
-          // filter delegate
+          var entry = data[i]; // filter delegate
+
           if (filter && !filter(entry)) {
             continue;
-          }
+          } // special case for printing the content of the array
 
-          // special case for printing the content of the array
+
           if (_typeof(entry) != "object") {
             entry = {
               ".": data[i]
             };
-          }
+          } // create the DOM object
 
-          // create the DOM object
+
           var template;
+
           if (createItem) {
             template = createItem(data[i]);
           } else {
             template = qx.bom.Template.get(templateId, entry);
-          }
+          } // handling for wrong template IDs
 
-          // handling for wrong template IDs
 
           // configure item
           if (configureItem) {
             configureItem(template);
-          }
+          } // append the model to the dom item
 
-          // append the model to the dom item
+
           var model = this.getModel();
           var item = model.getItem ? model.getItem(i) : model[i];
           template.$$model = item;
@@ -243,4 +258,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.data.controller.website.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1677362732181
+//# sourceMappingURL=List.js.map?dt=1685978114976

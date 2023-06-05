@@ -521,6 +521,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "fireEvent": {

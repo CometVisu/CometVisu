@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * A basic decorator featuring simple borders based on CSS styles.
    * This mixin is usually used by {@link qx.ui.decoration.Decorator}.
@@ -54,24 +56,28 @@
         init: 0,
         apply: "_applyWidth"
       },
+
       /** right width of border */
       widthRight: {
         check: "Number",
         init: 0,
         apply: "_applyWidth"
       },
+
       /** bottom width of border */
       widthBottom: {
         check: "Number",
         init: 0,
         apply: "_applyWidth"
       },
+
       /** left width of border */
       widthLeft: {
         check: "Number",
         init: 0,
         apply: "_applyWidth"
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY: STYLE
@@ -85,6 +91,7 @@
         init: "solid",
         apply: "_applyStyle"
       },
+
       /** right style of border */
       styleRight: {
         nullable: true,
@@ -92,6 +99,7 @@
         init: "solid",
         apply: "_applyStyle"
       },
+
       /** bottom style of border */
       styleBottom: {
         nullable: true,
@@ -99,6 +107,7 @@
         init: "solid",
         apply: "_applyStyle"
       },
+
       /** left style of border */
       styleLeft: {
         nullable: true,
@@ -106,6 +115,7 @@
         init: "solid",
         apply: "_applyStyle"
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY: COLOR
@@ -118,24 +128,28 @@
         check: "Color",
         apply: "_applyStyle"
       },
+
       /** right color of border */
       colorRight: {
         nullable: true,
         check: "Color",
         apply: "_applyStyle"
       },
+
       /** bottom color of border */
       colorBottom: {
         nullable: true,
         check: "Color",
         apply: "_applyStyle"
       },
+
       /** left color of border */
       colorLeft: {
         nullable: true,
         check: "Color",
         apply: "_applyStyle"
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY GROUP: EDGE
@@ -146,18 +160,22 @@
       left: {
         group: ["widthLeft", "styleLeft", "colorLeft"]
       },
+
       /** Property group to configure the right border */
       right: {
         group: ["widthRight", "styleRight", "colorRight"]
       },
+
       /** Property group to configure the top border */
       top: {
         group: ["widthTop", "styleTop", "colorTop"]
       },
+
       /** Property group to configure the bottom border */
       bottom: {
         group: ["widthBottom", "styleBottom", "colorBottom"]
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY GROUP: TYPE
@@ -169,11 +187,13 @@
         group: ["widthTop", "widthRight", "widthBottom", "widthLeft"],
         mode: "shorthand"
       },
+
       /** Property group to set the border style of all sides */
       style: {
         group: ["styleTop", "styleRight", "styleBottom", "styleLeft"],
         mode: "shorthand"
       },
+
       /** Property group to set the border color of all sides */
       color: {
         group: ["colorTop", "colorRight", "colorBottom", "colorLeft"],
@@ -200,31 +220,38 @@
           var colorRight = this.getColorRight();
           var colorBottom = this.getColorBottom();
           var colorLeft = this.getColorLeft();
-        }
+        } // Add borders
 
-        // Add borders
+
         var width = this.getWidthTop();
+
         if (width > 0) {
           styles["border-top"] = width + "px " + this.getStyleTop() + " " + (colorTop || "");
         }
+
         var width = this.getWidthRight();
+
         if (width > 0) {
           styles["border-right"] = width + "px " + this.getStyleRight() + " " + (colorRight || "");
         }
+
         var width = this.getWidthBottom();
+
         if (width > 0) {
           styles["border-bottom"] = width + "px " + this.getStyleBottom() + " " + (colorBottom || "");
         }
+
         var width = this.getWidthLeft();
+
         if (width > 0) {
           styles["border-left"] = width + "px " + this.getStyleLeft() + " " + (colorLeft || "");
-        }
+        } // Check if valid
 
-        // Check if valid
 
         // Add basic styles
         styles.position = "absolute";
       },
+
       /**
        * Implementation of the interface for the single border.
        *
@@ -239,6 +266,7 @@
           left: this.getWidthLeft()
         };
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -247,6 +275,7 @@
       // property apply
       _applyWidth: function _applyWidth() {
         this._applyStyle();
+
         this._resetInsets();
       },
       // property apply
@@ -256,4 +285,4 @@
   qx.ui.decoration.MSingleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSingleBorder.js.map?dt=1677362755987
+//# sourceMappingURL=MSingleBorder.js.map?dt=1685978136937

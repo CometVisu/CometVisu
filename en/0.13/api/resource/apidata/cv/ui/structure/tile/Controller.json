@@ -16,9 +16,9 @@
         "index": 1989
       },
       "end": {
-        "line": 518,
+        "line": 559,
         "column": 3,
-        "index": 17521
+        "index": 19288
       }
     },
     "jsdoc": {
@@ -227,6 +227,26 @@
       "check": "String",
       "defaultValue": ""
     },
+    "scrolled": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3898
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3988
+        }
+      },
+      "name": "scrolled",
+      "propertyType": "new",
+      "apply": "_applyScrolled",
+      "init": false,
+      "check": "Boolean",
+      "defaultValue": false
+    },
     "qxOwner": {
       "type": "property",
       "name": "qxOwner",
@@ -264,14 +284,14 @@
     "__HTML_STRUCT": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 129,
           "column": 4,
-          "index": 4037
+          "index": 4134
         },
         "end": {
-          "line": 123,
+          "line": 129,
           "column": 23,
-          "index": 4056
+          "index": 4153
         }
       },
       "type": "variable",
@@ -280,14 +300,14 @@
     "__mappings": {
       "location": {
         "start": {
-          "line": 124,
+          "line": 130,
           "column": 4,
-          "index": 4062
+          "index": 4159
         },
         "end": {
-          "line": 124,
+          "line": 130,
           "column": 20,
-          "index": 4078
+          "index": 4175
         }
       },
       "type": "variable",
@@ -296,14 +316,14 @@
     "__stylings": {
       "location": {
         "start": {
-          "line": 125,
+          "line": 131,
           "column": 4,
-          "index": 4084
+          "index": 4181
         },
         "end": {
-          "line": 125,
+          "line": 131,
           "column": 20,
-          "index": 4100
+          "index": 4197
         }
       },
       "type": "variable",
@@ -312,14 +332,14 @@
     "getHtmlStructure": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 133,
           "column": 4,
-          "index": 4107
+          "index": 4204
         },
         "end": {
-          "line": 129,
+          "line": 135,
           "column": 5,
-          "index": 4166
+          "index": 4263
         }
       },
       "type": "function",
@@ -342,14 +362,14 @@
     "supports": {
       "location": {
         "start": {
-          "line": 131,
+          "line": 137,
           "column": 4,
-          "index": 4173
+          "index": 4270
         },
         "end": {
-          "line": 133,
+          "line": 139,
           "column": 5,
-          "index": 4230
+          "index": 4327
         }
       },
       "type": "function",
@@ -381,14 +401,14 @@
     "initLayout": {
       "location": {
         "start": {
-          "line": 135,
+          "line": 141,
           "column": 4,
-          "index": 4237
+          "index": 4334
         },
         "end": {
-          "line": 135,
+          "line": 141,
           "column": 19,
-          "index": 4252
+          "index": 4349
         }
       },
       "type": "function",
@@ -397,14 +417,14 @@
     "__gotoStartPage": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 143,
           "column": 4,
-          "index": 4259
+          "index": 4356
         },
         "end": {
-          "line": 144,
+          "line": 150,
           "column": 5,
-          "index": 4485
+          "index": 4582
         }
       },
       "type": "function",
@@ -413,14 +433,14 @@
     "onHistoryRequest": {
       "location": {
         "start": {
-          "line": 146,
+          "line": 152,
           "column": 4,
-          "index": 4492
+          "index": 4589
         },
         "end": {
-          "line": 150,
+          "line": 156,
           "column": 5,
-          "index": 4587
+          "index": 4684
         }
       },
       "type": "function",
@@ -441,14 +461,14 @@
     "scrollToPage": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 158,
           "column": 4,
-          "index": 4594
+          "index": 4691
         },
         "end": {
-          "line": 188,
+          "line": 194,
           "column": 5,
-          "index": 6037
+          "index": 6134
         }
       },
       "type": "function",
@@ -457,14 +477,14 @@
     "parseBackendSettings": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 197,
           "column": 4,
-          "index": 6093
+          "index": 6190
         },
         "end": {
-          "line": 201,
+          "line": 207,
           "column": 5,
-          "index": 6515
+          "index": 6617
         }
       },
       "jsdoc": {},
@@ -478,14 +498,14 @@
     "parseSettings": {
       "location": {
         "start": {
-          "line": 207,
+          "line": 213,
           "column": 4,
-          "index": 6629
+          "index": 6731
         },
         "end": {
-          "line": 280,
+          "line": 309,
           "column": 5,
-          "index": 9647
+          "index": 11021
         }
       },
       "jsdoc": {
@@ -512,17 +532,36 @@
         "cv.ui.structure.IController"
       ]
     },
+    "_applyScrolled": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4,
+          "index": 11028
+        },
+        "end": {
+          "line": 321,
+          "column": 5,
+          "index": 11414
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "scrolled"
+      ]
+    },
     "registerTemplates": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 327,
           "column": 4,
-          "index": 9836
+          "index": 11603
         },
         "end": {
-          "line": 297,
+          "line": 338,
           "column": 5,
-          "index": 10238
+          "index": 12005
         }
       },
       "jsdoc": {
@@ -545,14 +584,14 @@
     "preParse": {
       "location": {
         "start": {
-          "line": 303,
+          "line": 344,
           "column": 4,
-          "index": 10394
+          "index": 12161
         },
         "end": {
-          "line": 329,
+          "line": 370,
           "column": 5,
-          "index": 11579
+          "index": 13346
         }
       },
       "jsdoc": {
@@ -570,6 +609,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public",
       "overriddenFrom": "cv.ui.structure.IController",
       "appearsIn": [
@@ -579,14 +619,14 @@
     "createUI": {
       "location": {
         "start": {
-          "line": 335,
+          "line": 376,
           "column": 4,
-          "index": 11772
+          "index": 13539
         },
         "end": {
-          "line": 335,
+          "line": 376,
           "column": 23,
-          "index": 11791
+          "index": 13558
         }
       },
       "jsdoc": {
@@ -616,14 +656,14 @@
     "observeVisibility": {
       "location": {
         "start": {
-          "line": 337,
+          "line": 378,
           "column": 4,
-          "index": 11798
+          "index": 13565
         },
         "end": {
-          "line": 353,
+          "line": 394,
           "column": 5,
-          "index": 12524
+          "index": 14291
         }
       },
       "type": "function",
@@ -632,14 +672,14 @@
     "translate": {
       "location": {
         "start": {
-          "line": 355,
+          "line": 396,
           "column": 4,
-          "index": 12531
+          "index": 14298
         },
         "end": {
-          "line": 405,
+          "line": 446,
           "column": 5,
-          "index": 14547
+          "index": 16314
         }
       },
       "type": "function",
@@ -648,14 +688,14 @@
     "doScreenSave": {
       "location": {
         "start": {
-          "line": 411,
+          "line": 452,
           "column": 4,
-          "index": 14665
+          "index": 16432
         },
         "end": {
-          "line": 415,
+          "line": 456,
           "column": 5,
-          "index": 14818
+          "index": 16585
         }
       },
       "jsdoc": {
@@ -684,14 +724,14 @@
     "getInitialAddresses": {
       "location": {
         "start": {
-          "line": 420,
+          "line": 461,
           "column": 4,
-          "index": 14926
+          "index": 16693
         },
         "end": {
-          "line": 422,
+          "line": 463,
           "column": 5,
-          "index": 14972
+          "index": 16739
         }
       },
       "jsdoc": {
@@ -712,14 +752,14 @@
     "getInitialPageId": {
       "location": {
         "start": {
-          "line": 428,
+          "line": 469,
           "column": 4,
-          "index": 15109
+          "index": 16876
         },
         "end": {
-          "line": 431,
+          "line": 472,
           "column": 5,
-          "index": 15238
+          "index": 17005
         }
       },
       "jsdoc": {
@@ -748,14 +788,14 @@
     "addMapping": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 479,
           "column": 4,
-          "index": 15371
+          "index": 17138
         },
         "end": {
-          "line": 443,
+          "line": 484,
           "column": 5,
-          "index": 15511
+          "index": 17278
         }
       },
       "jsdoc": {
@@ -785,14 +825,14 @@
     "removeMapping": {
       "location": {
         "start": {
-          "line": 445,
+          "line": 486,
           "column": 4,
-          "index": 15518
+          "index": 17285
         },
         "end": {
-          "line": 449,
+          "line": 490,
           "column": 5,
-          "index": 15620
+          "index": 17387
         }
       },
       "type": "function",
@@ -801,14 +841,14 @@
     "mapValue": {
       "location": {
         "start": {
-          "line": 451,
+          "line": 492,
           "column": 4,
-          "index": 15627
+          "index": 17394
         },
         "end": {
-          "line": 467,
+          "line": 508,
           "column": 5,
-          "index": 16291
+          "index": 18058
         }
       },
       "type": "function",
@@ -817,14 +857,14 @@
     "addStyling": {
       "location": {
         "start": {
-          "line": 473,
+          "line": 514,
           "column": 4,
-          "index": 16417
+          "index": 18184
         },
         "end": {
-          "line": 478,
+          "line": 519,
           "column": 5,
-          "index": 16557
+          "index": 18324
         }
       },
       "jsdoc": {
@@ -854,14 +894,14 @@
     "removeStyling": {
       "location": {
         "start": {
-          "line": 480,
+          "line": 521,
           "column": 4,
-          "index": 16564
+          "index": 18331
         },
         "end": {
-          "line": 484,
+          "line": 525,
           "column": 5,
-          "index": 16666
+          "index": 18433
         }
       },
       "type": "function",
@@ -870,14 +910,14 @@
     "styleValue": {
       "location": {
         "start": {
-          "line": 486,
+          "line": 527,
           "column": 4,
-          "index": 16673
+          "index": 18440
         },
         "end": {
-          "line": 491,
+          "line": 532,
           "column": 5,
-          "index": 16913
+          "index": 18680
         }
       },
       "type": "function",
@@ -886,14 +926,14 @@
     "parseLabel": {
       "location": {
         "start": {
-          "line": 494,
+          "line": 535,
           "column": 4,
-          "index": 16966
+          "index": 18733
         },
         "end": {
-          "line": 496,
+          "line": 537,
           "column": 5,
-          "index": 17003
+          "index": 18770
         }
       },
       "jsdoc": {},
@@ -903,14 +943,14 @@
     "_onChangeLocale": {
       "location": {
         "start": {
-          "line": 498,
+          "line": 539,
           "column": 4,
-          "index": 17010
+          "index": 18777
         },
         "end": {
-          "line": 500,
+          "line": 541,
           "column": 5,
-          "index": 17085
+          "index": 18852
         }
       },
       "type": "function",
@@ -4357,33 +4397,123 @@
           }
         ]
       }
+    },
+    "getScrolled": {
+      "type": "function",
+      "name": "getScrolled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scrolled</code>.\n\nFor further details take a look at the property definition: {@link #scrolled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for scrolled"
+          }
+        ]
+      }
+    },
+    "isScrolled": {
+      "type": "function",
+      "name": "isScrolled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "is",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>scrolled</code>.\n\nFor further details take a look at the property definition: {@link #scrolled}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "Boolean",
+            "desc": "Returns the value for scrolled"
+          }
+        ]
+      }
+    },
+    "setScrolled": {
+      "type": "function",
+      "name": "setScrolled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>scrolled</code>.\n\nFor further details take a look at the property definition: {@link #scrolled}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "Boolean",
+            "paramName": "value",
+            "desc": "Value for scrolled"
+          }
+        ]
+      }
+    },
+    "resetScrolled": {
+      "type": "function",
+      "name": "resetScrolled",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>scrolled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scrolled}."
+          }
+        ]
+      }
     }
   },
   "defer": {
     "location": {
       "start": {
-        "line": 503,
+        "line": 544,
         "column": 2,
-        "index": 17094
+        "index": 18861
       },
       "end": {
-        "line": 508,
+        "line": 549,
         "column": 3,
-        "index": 17275
+        "index": 19042
       }
     }
   },
   "destruct": {
     "location": {
       "start": {
-        "line": 515,
+        "line": 556,
         "column": 2,
-        "index": 17405
+        "index": 19172
       },
       "end": {
-        "line": 517,
+        "line": 558,
         "column": 3,
-        "index": 17517
+        "index": 19284
       }
     },
     "jsdoc": {}

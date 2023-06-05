@@ -153,6 +153,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "_handleErrors": {

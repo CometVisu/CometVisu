@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,16 +62,21 @@
     type: "abstract",
     include: [qx.ui.form.MModelProperty],
     implement: [qx.ui.form.IModel],
+
     /**
      * @param label {String?null} The tree item's caption text
      */
     construct: function construct(label) {
       qx.ui.core.Widget.constructor.call(this);
+
       if (label != null) {
         this.setLabel(label);
       }
+
       this._setLayout(new qx.ui.layout.HBox());
+
       this._addWidgets();
+
       this.initOpen();
     },
     properties: {
@@ -83,6 +89,7 @@
         event: "changeOpen",
         apply: "_applyOpen"
       },
+
       /**
        * Controls, when to show the open symbol. If the mode is "auto" , the open
        * symbol is shown only if the item has child items.
@@ -93,6 +100,7 @@
         event: "changeOpenSymbolMode",
         apply: "_applyOpenSymbolMode"
       },
+
       /**
        * The number of pixel to indent the tree item for each level.
        */
@@ -103,6 +111,7 @@
         event: "changeIndent",
         themeable: true
       },
+
       /**
        * URI of "closed" icon. Can be any URI String supported by qx.ui.basic.Image.
        **/
@@ -113,6 +122,7 @@
         nullable: true,
         themeable: true
       },
+
       /**
        * URI of "opened" icon. Can be any URI String supported by qx.ui.basic.Image.
        **/
@@ -123,6 +133,7 @@
         nullable: true,
         themeable: true
       },
+
       /**
        * The label/caption/text
        */
@@ -137,6 +148,7 @@
       __P_463_0: null,
       __P_463_1: null,
       __P_463_2: null,
+
       /**
        * This method configures the tree item by adding its sub widgets like
        * label, icon, open symbol, ...
@@ -149,6 +161,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "label":
             control = new qx.ui.basic.Label().set({
@@ -157,6 +170,7 @@
               value: this.getLabel()
             });
             break;
+
           case "icon":
             control = new qx.ui.basic.Image().set({
               alignY: "middle",
@@ -164,6 +178,7 @@
               source: this.getIcon()
             });
             break;
+
           case "open":
             control = new qx.ui.tree.core.FolderOpenButton().set({
               alignY: "middle"
@@ -172,13 +187,16 @@
             control.addListener("resize", this._updateIndent, this);
             break;
         }
+
         return control || qx.ui.tree.core.AbstractItem.superclass.prototype._createChildControlImpl.call(this, id);
       },
+
       /*
       ---------------------------------------------------------------------------
         TREE ITEM CONFIGURATION
       ---------------------------------------------------------------------------
       */
+
       /**
        * Adds a sub widget to the tree item's horizontal box layout.
        *
@@ -188,6 +206,7 @@
       addWidget: function addWidget(widget, options) {
         this._add(widget, options);
       },
+
       /**
        * Adds the spacer used to render the indentation to the item's horizontal
        * box layout. If the spacer has been added before, it is removed from its
@@ -199,8 +218,10 @@
         } else {
           this._remove(this.__P_463_2);
         }
+
         this._add(this.__P_463_2);
       },
+
       /**
        * Adds the open button to the item's horizontal box layout. If the open
        * button has been added before, it is removed from its old position and
@@ -209,6 +230,7 @@
       addOpenButton: function addOpenButton() {
         this._add(this.getChildControl("open"));
       },
+
       /**
        * Event handler, which listens to open state changes of the open button
        *
@@ -219,6 +241,7 @@
           this.setOpen(e.getData());
         }
       },
+
       /**
        * Adds the icon widget to the item's horizontal box layout. If the icon
        * widget has been added before, it is removed from its old position and
@@ -226,12 +249,16 @@
        */
       addIcon: function addIcon() {
         var icon = this.getChildControl("icon");
+
         if (this.__P_463_1) {
           this._remove(icon);
         }
+
         this._add(icon);
+
         this.__P_463_1 = true;
       },
+
       /**
        * Adds the label to the item's horizontal box layout. If the label
        * has been added before, it is removed from its old position and
@@ -241,17 +268,22 @@
        */
       addLabel: function addLabel(text) {
         var label = this.getChildControl("label");
+
         if (this.__P_463_0) {
           this._remove(label);
         }
+
         if (text) {
           this.setLabel(text);
         } else {
           label.setValue(this.getLabel());
         }
+
         this._add(label);
+
         this.__P_463_0 = true;
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY
@@ -273,9 +305,7 @@
           // ... both "closed" and "opened" icon were user-defined
           if (this.__P_463_5() && this.__P_463_3()) {
             this.__P_463_4(value);
-          }
-
-          // .. only "opened" icon was user-defined
+          } // .. only "opened" icon was user-defined
           else if (!this.__P_463_5() && this.__P_463_3()) {
             this.__P_463_4(value);
           }
@@ -284,6 +314,7 @@
       // property apply
       _applyLabel: function _applyLabel(value, old) {
         var label = this.getChildControl("label", true);
+
         if (label) {
           label.setValue(value);
         }
@@ -291,30 +322,31 @@
       // property apply
       _applyOpen: function _applyOpen(value, old) {
         var open = this.getChildControl("open", true);
+
         if (open) {
           open.setOpen(value);
-        }
-
-        //
+        } //
         // Determine source of icon for "opened" or "closed" state
         //
-        var source;
 
-        // Opened
+
+        var source; // Opened
+
         if (value) {
           // Never overwrite user-defined icon with themed "opened" icon
           source = this.__P_463_3() ? this.getIconOpened() : null;
-        }
-
-        // Closed
+        } // Closed
         else {
           source = this.getIcon();
         }
+
         if (source) {
           this.__P_463_4(source);
         }
+
         value ? this.addState("opened") : this.removeState("opened");
       },
+
       /**
        * Get user-defined value of "icon" property
        *
@@ -323,6 +355,7 @@
       __P_463_5: function __P_463_5() {
         return qx.util.PropertyUtil.getUserValue(this, "icon");
       },
+
       /**
        * Get user-defined value of "iconOpened" property
        *
@@ -331,6 +364,7 @@
       __P_463_3: function __P_463_3() {
         return qx.util.PropertyUtil.getUserValue(this, "iconOpened");
       },
+
       /**
        * Set source of icon child control
        *
@@ -338,15 +372,18 @@
        */
       __P_463_4: function __P_463_4(url) {
         var icon = this.getChildControl("icon", true);
+
         if (icon) {
           icon.setSource(url);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         INDENT HANDLING
       ---------------------------------------------------------------------------
       */
+
       /**
        * Whether the tree item can be opened.
        *
@@ -356,6 +393,7 @@
         var openMode = this.getOpenSymbolMode();
         return openMode === "always" || openMode === "auto" && this.hasChildren();
       },
+
       /**
        * Whether the open symbol should be shown
        *
@@ -368,16 +406,19 @@
       _applyOpenSymbolMode: function _applyOpenSymbolMode(value, old) {
         this._updateIndent();
       },
+
       /**
        * Update the indentation of the tree item.
        */
       _updateIndent: function _updateIndent() {
         var openWidth = 0;
         var open = this.getChildControl("open", true);
+
         if (open) {
           if (this._shouldShowOpenSymbol()) {
             open.show();
             var openBounds = open.getBounds();
+
             if (openBounds) {
               openWidth = openBounds.width;
             } else {
@@ -387,6 +428,7 @@
             open.exclude();
           }
         }
+
         if (this.__P_463_2) {
           this.__P_463_2.setWidth((this.getLevel() + 1) * this.getIndent() - openWidth);
         }
@@ -395,6 +437,7 @@
       _applyIndent: function _applyIndent(value, old) {
         this._updateIndent();
       },
+
       /**
        * Computes the item's nesting level. If the item is not part of a tree
        * this function will return <code>null</code>.
@@ -408,6 +451,7 @@
       syncWidget: function syncWidget(jobs) {
         this._updateIndent();
       },
+
       /**
        * Whether the item has any children
        *
@@ -424,4 +468,4 @@
   qx.ui.tree.core.AbstractItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractItem.js.map?dt=1677362768602
+//# sourceMappingURL=AbstractItem.js.map?dt=1685978149845

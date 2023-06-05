@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * Mixin responsible for setting the background color of a widget.
    * This mixin is usually used by {@link qx.ui.decoration.Decorator}.
@@ -56,9 +58,11 @@
        */
       _styleBackgroundColor: function _styleBackgroundColor(styles) {
         var bgcolor = this.getBackgroundColor();
+
         if (bgcolor && qx.core.Environment.get("qx.theme")) {
           bgcolor = qx.theme.manager.Color.getInstance().resolve(bgcolor);
         }
+
         if (bgcolor) {
           styles["background-color"] = bgcolor;
         }
@@ -70,4 +74,4 @@
   qx.ui.decoration.MBackgroundColor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBackgroundColor.js.map?dt=1677362755585
+//# sourceMappingURL=MBackgroundColor.js.map?dt=1685978136608

@@ -315,6 +315,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public",
       "overriddenFrom": "cv.io.listmodel.IListModel",
       "appearsIn": [
@@ -335,6 +336,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "protected"
     },
     "getModel": {

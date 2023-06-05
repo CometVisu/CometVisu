@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,4 +59,4 @@
   qx.ui.mobile.form.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1677362762642
+//# sourceMappingURL=RadioGroup.js.map?dt=1685978143773

@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,7 +60,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** @type {Map} Internal data structure for __usesNativeBorderBox() */
       __P_135_0: {
@@ -76,6 +76,7 @@
           radio: true
         }
       },
+
       /**
        * Whether the given elements defaults to the "border-box" Microsoft model in all cases.
        *
@@ -86,6 +87,7 @@
         var map = this.__P_135_0;
         return map.tags[element.tagName.toLowerCase()] || map.types[element.type];
       },
+
       /**
        * Compiles the given box sizing into a CSS compatible string.
        *
@@ -98,6 +100,7 @@
           return prop + ":" + value + ";";
         } else {}
       },
+
       /**
        * Returns the box sizing for the given element.
        *
@@ -108,13 +111,16 @@
         if (qx.core.Environment.get("css.boxsizing")) {
           return qx.bom.element.Style.get(element, "boxSizing", null, false) || "";
         }
+
         if (qx.bom.Document.isStandardMode(qx.dom.Node.getWindow(element))) {
           if (!this.__P_135_1(element)) {
             return "content-box";
           }
         }
+
         return "border-box";
       },
+
       /**
        * Applies a new box sizing to the given element
        *
@@ -129,6 +135,7 @@
           } catch (ex) {}
         } else {}
       },
+
       /**
        * Removes the local box sizing applied to the element
        *
@@ -142,4 +149,4 @@
   qx.bom.element.BoxSizing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BoxSizing.js.map?dt=1677362728004
+//# sourceMappingURL=BoxSizing.js.map?dt=1685978110372

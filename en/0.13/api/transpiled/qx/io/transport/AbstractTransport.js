@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -13,6 +14,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /**
    * Abstract class for JSON-RPC transports
    *
@@ -43,6 +45,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       message: "qx.event.type.Data"
     },
+
     /**
      * Constructor
      * @param {String|Object} endpoint
@@ -55,4 +58,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.io.transport.AbstractTransport.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTransport.js.map?dt=1677362743495
+//# sourceMappingURL=AbstractTransport.js.map?dt=1685978126514

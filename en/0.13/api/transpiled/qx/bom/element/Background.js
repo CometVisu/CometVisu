@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,12 +57,14 @@
     statics: {
       /** @type {Array} Internal helper to improve compile performance */
       __P_134_0: ["background-image:url(", null, ");", "background-position:", null, ";", "background-repeat:", null, ";"],
+
       /** @type {Map} Empty styles when no image is given */
       __P_134_1: {
         backgroundImage: null,
         backgroundPosition: null,
         backgroundRepeat: null
       },
+
       /**
        * Computes the background position CSS value
        *
@@ -76,21 +79,26 @@
         // Have problems with identical values
         var engine = qx.core.Environment.get("engine.name");
         var version = qx.core.Environment.get("engine.version");
+
         if (engine == "gecko" && version < 1.9 && left == top && typeof left == "number") {
           top += 0.01;
         }
+
         if (left) {
           var leftCss = typeof left == "number" ? left + "px" : left;
         } else {
           leftCss = "0";
         }
+
         if (top) {
           var topCss = typeof top == "number" ? top + "px" : top;
         } else {
           topCss = "0";
         }
+
         return leftCss + " " + topCss;
       },
+
       /**
        * Compiles the background into a CSS compatible string.
        *
@@ -110,15 +118,17 @@
        */
       compile: function compile(source, repeat, left, top) {
         var position = this.__P_134_2(left, top);
-        var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
 
-        // Updating template
+        var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source); // Updating template
+
         var tmpl = this.__P_134_0;
         tmpl[1] = "'" + backgroundImageUrl + "'"; // Put in quotes so spaces work
+
         tmpl[4] = position;
         tmpl[7] = repeat;
         return tmpl.join("");
       },
+
       /**
        * Get standard css background styles
        *
@@ -140,18 +150,24 @@
         if (!source) {
           return this.__P_134_1;
         }
+
         var position = this.__P_134_2(left, top);
+
         var backgroundImageUrl = qx.util.ResourceManager.getInstance().toUri(source);
         var backgroundImageCssString = "url('" + backgroundImageUrl + "')"; // Put in quotes so spaces work
+
         var map = {
           backgroundPosition: position,
           backgroundImage: backgroundImageCssString
         };
+
         if (repeat != null) {
           map.backgroundRepeat = repeat;
         }
+
         return map;
       },
+
       /**
        * Set the background on the given DOM element
        *
@@ -167,6 +183,7 @@
        */
       set: function set(element, source, repeat, left, top) {
         var styles = this.getStyles(source, repeat, left, top);
+
         for (var prop in styles) {
           element.style[prop] = styles[prop];
         }
@@ -176,4 +193,4 @@
   qx.bom.element.Background.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Background.js.map?dt=1677362727968
+//# sourceMappingURL=Background.js.map?dt=1685978110330

@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
    */
   qx.Class.define("qx.ui.mobile.dialog.BusyIndicator", {
     extend: qx.ui.mobile.basic.Atom,
+
     /**
      * @param label {String} Label to use
      */
@@ -75,12 +77,14 @@
     },
     members: {
       __P_394_0: null,
+
       /**
        * Listener for appear event.
        */
       _onAppear: function _onAppear() {
         this.__P_394_0 = qx.bom.element.Animation.animate(this.getIconWidget().getContainerElement(), qx.ui.mobile.dialog.BusyIndicator.SPINNER_ANIMATION);
       },
+
       /**
        * Handler for disappear event.
        */
@@ -90,6 +94,7 @@
       // overridden
       _createIconWidget: function _createIconWidget(iconUrl) {
         var iconWidget = qx.ui.mobile.dialog.BusyIndicator.superclass.prototype._createIconWidget.call(this, iconUrl);
+
         iconWidget.addCssClass(this.getSpinnerClass());
         return iconWidget;
       },
@@ -98,6 +103,7 @@
         if (old) {
           this.getIconWidget().removeCssClass(old);
         }
+
         if (value) {
           this.getIconWidget().addCssClass(value);
         }
@@ -106,9 +112,11 @@
     destruct: function destruct() {
       this.removeListener("appear", this._onAppear, this);
       this.removeListener("disappear", this._onDisappear, this);
+
       if (this.__P_394_0) {
         this.__P_394_0.stop();
       }
+
       this.__P_394_0 = null;
     },
     defer: function defer() {
@@ -131,4 +139,4 @@
   qx.ui.mobile.dialog.BusyIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BusyIndicator.js.map?dt=1677362762024
+//# sourceMappingURL=BusyIndicator.js.map?dt=1685978143129

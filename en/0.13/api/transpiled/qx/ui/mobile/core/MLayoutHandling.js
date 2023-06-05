@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +41,6 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Set a layout manager for the widget. A a layout manager can only be connected
@@ -53,6 +53,7 @@
       setLayout: function setLayout(layout) {
         this._setLayout(layout);
       },
+
       /**
        * Get the widget's layout manager.
        *
@@ -62,12 +63,12 @@
         return this._getLayout();
       }
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Mapping of protected methods to public.
@@ -85,4 +86,4 @@
   qx.ui.mobile.core.MLayoutHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLayoutHandling.js.map?dt=1677362761743
+//# sourceMappingURL=MLayoutHandling.js.map?dt=1685978142816

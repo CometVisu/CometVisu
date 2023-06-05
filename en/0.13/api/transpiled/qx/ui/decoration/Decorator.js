@@ -37,6 +37,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,13 +75,16 @@
     include: [qx.ui.decoration.MBackgroundColor, qx.ui.decoration.MBorderRadius, qx.ui.decoration.MBoxShadow, qx.ui.decoration.MDoubleBorder, qx.ui.decoration.MLinearBackgroundGradient, qx.ui.decoration.MBorderImage, qx.ui.decoration.MTransition],
     members: {
       __P_334_0: false,
+
       /**
        * Returns the configured padding minus the border width.
        * @return {Map} Map of top, right, bottom and left padding values
        */
       getPadding: function getPadding() {
         var insets = this.getInset();
+
         var slices = this._getDefaultInsetsForBorderImage();
+
         var borderTop = insets.top - (slices.top ? slices.top : this.getWidthTop());
         var borderRight = insets.right - (slices.right ? slices.right : this.getWidthRight());
         var borderBottom = insets.bottom - (slices.bottom ? slices.bottom : this.getWidthBottom());
@@ -92,6 +96,7 @@
           left: insets.left ? borderLeft : this.getInnerWidthLeft()
         };
       },
+
       /**
        * Returns the styles of the decorator as a map with property names written
        * in javascript style (e.g. <code>fontWeight</code> instead of <code>font-weight</code>).
@@ -103,13 +108,18 @@
         if (css) {
           return this._getStyles();
         }
+
         var jsStyles = {};
+
         var cssStyles = this._getStyles();
+
         for (var property in cssStyles) {
           jsStyles[qx.lang.String.camelCase(property)] = cssStyles[property];
         }
+
         return jsStyles;
       },
+
       /**
        * Collects all the style information from the decorators.
        *
@@ -117,16 +127,19 @@
        */
       _getStyles: function _getStyles() {
         var styles = {};
+
         for (var name in this) {
           if (name.indexOf("_style") == 0 && this[name] instanceof Function) {
             this[name](styles);
           }
         }
+
         for (var name in styles) {
           if (qx.lang.Type.isArray(styles[name])) {
             styles[name] = styles[name].join(", ");
           }
         }
+
         this.__P_334_0 = true;
         return styles;
       },
@@ -134,28 +147,32 @@
       _getDefaultInsets: function _getDefaultInsets() {
         var directions = ["top", "right", "bottom", "left"];
         var defaultInsets = {};
+
         for (var name in this) {
           if (name.indexOf("_getDefaultInsetsFor") == 0 && this[name] instanceof Function) {
             var currentInsets = this[name]();
+
             for (var i = 0; i < directions.length; i++) {
-              var direction = directions[i];
-              // initialize with the first insets found
+              var direction = directions[i]; // initialize with the first insets found
+
               if (defaultInsets[direction] == undefined) {
                 defaultInsets[direction] = currentInsets[direction];
-              }
-              // take the largest inset
+              } // take the largest inset
+
+
               if (currentInsets[direction] > defaultInsets[direction]) {
                 defaultInsets[direction] = currentInsets[direction];
               }
             }
           }
-        }
+        } // check if the mixins have created a default insets
 
-        // check if the mixins have created a default insets
+
         if (defaultInsets["top"] != undefined) {
           return defaultInsets;
-        }
-        // return a fallback which is 0 for all insets
+        } // return a fallback which is 0 for all insets
+
+
         return {
           top: 0,
           right: 0,
@@ -167,6 +184,7 @@
       _isInitialized: function _isInitialized() {
         return this.__P_334_0;
       },
+
       /**
        * Ensures that every propertyValue specified in propertyNames is an array.
        * The value arrays are extended and repeated to match in length.
@@ -177,24 +195,28 @@
         // transform non-array values to an array containing that value
         var propertyValues = propertyNames.map(function (propName) {
           var value = this.get(propName);
+
           if (!qx.lang.Type.isArray(value)) {
             value = [value];
           }
-          return value;
-        }, this);
 
-        // Because it's possible to set multiple values for a property there's
+          return value;
+        }, this); // Because it's possible to set multiple values for a property there's
         // a chance that not all properties have the same number of values set.
         // Extend the value arrays by repeating existing values until all
         // arrays match in length.
+
         var items = Math.max.apply(Math, propertyValues.map(function (prop) {
           return prop.length;
         }));
+
         for (var i = 0; i < propertyValues.length; i++) {
           this.__P_334_1(propertyValues[i], items);
         }
+
         return propertyValues;
       },
+
       /**
        * Extends an array up to the given length by repeating the elements already present.
        * @param array {Array} Incoming array. Has to contain at least one element.
@@ -202,6 +224,7 @@
        */
       __P_334_1: function __P_334_1(array, to) {
         var initial = array.length;
+
         while (array.length < to) {
           array.push(array[array.length % initial]);
         }
@@ -211,4 +234,4 @@
   qx.ui.decoration.Decorator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decorator.js.map?dt=1677362755539
+//# sourceMappingURL=Decorator.js.map?dt=1685978136564

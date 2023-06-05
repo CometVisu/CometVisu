@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,13 +35,12 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
-
   qx.core.Environment.add("qx.nativeScrollBars", false);
-
   /**
    * Include this widget if you want to create scrollbars depending on the global
    * "qx.nativeScrollBars" setting.
    */
+
   qx.Mixin.define("qx.ui.core.scroll.MScrollBarFactory", {
     members: {
       /**
@@ -60,4 +60,4 @@
   qx.ui.core.scroll.MScrollBarFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MScrollBarFactory.js.map?dt=1677362754756
+//# sourceMappingURL=MScrollBarFactory.js.map?dt=1685978135926

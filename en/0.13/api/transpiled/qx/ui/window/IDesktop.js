@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,12 +41,14 @@
       setWindowManager: function setWindowManager(manager) {
         this.assertInterface(manager, qx.ui.window.IWindowManager);
       },
+
       /**
        * Get a list of all windows added to the desktop (including hidden windows)
        *
        * @return {qx.ui.window.Window[]} Array of managed windows
        */
       getWindows: function getWindows() {},
+
       /**
        * Whether the configured layout supports a maximized window
        * e.g. is a Canvas.
@@ -53,6 +56,7 @@
        * @return {Boolean} Whether the layout supports maximized windows
        */
       supportsMaximize: function supportsMaximize() {},
+
       /**
        * Block direct child widgets with a zIndex below <code>zIndex</code>
        *
@@ -62,10 +66,12 @@
       blockContent: function blockContent(zIndex) {
         this.assertInteger(zIndex);
       },
+
       /**
        * Remove the blocker.
        */
       unblock: function unblock() {},
+
       /**
        * Whether the widget is currently blocked
        *
@@ -77,4 +83,4 @@
   qx.ui.window.IDesktop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IDesktop.js.map?dt=1677362772022
+//# sourceMappingURL=IDesktop.js.map?dt=1685978153418

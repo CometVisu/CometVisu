@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MResize.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,17 +40,22 @@
     */
     construct: function construct() {
       var _this = this;
+
       this._observer = new ResizeObserver(function (entries, observer) {
         var element = _this.getResizeTarget();
+
         entries.some(function (entry) {
           if (entry.target === element) {
             _this.fireDataEvent('resized', entry);
+
             return true;
           }
+
           return false;
         });
       });
     },
+
     /*
     ***********************************************
       EVENTS
@@ -58,6 +64,7 @@
     events: {
       resized: 'qx.event.type.Data'
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -70,6 +77,7 @@
         apply: '_applyResizeTarget'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -84,11 +92,13 @@
         if (oldElement) {
           this._observer.unobserve(oldElement);
         }
+
         if (element) {
           this._observer.observe(element);
         }
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -96,10 +106,11 @@
     */
     destruct: function destruct() {
       this._observer.disconnect();
+
       this._observer = null;
     }
   });
   cv.ui.structure.tile.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1677362718673
+//# sourceMappingURL=MResize.js.map?dt=1685978101431

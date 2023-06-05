@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,7 +43,6 @@
    * NOTE: Instances of this class must be disposed of after use
    *
    */
-
   qx.Class.define("qx.event.Idle", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
@@ -50,22 +50,22 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** This event if fired each time the interval time has elapsed */
       interval: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * Interval for the timer, which periodically fires the "interval" event,
@@ -85,12 +85,14 @@
           this.__P_200_0.setInterval(value);
         }
       },
+
       /**
        * Fires an "interval" event
        */
       _onInterval: function _onInterval() {
         this.fireEvent("interval");
       },
+
       /**
        * Starts the timer but only if there are listeners for the "interval" event
        */
@@ -102,49 +104,65 @@
           this.__P_200_0 = timer;
         }
       },
+
       /**
        * Stops the timer but only if there are no listeners for the interval event
        */
       __P_200_2: function __P_200_2() {
         if (this.__P_200_0 && !this.hasListener("interval")) {
           this.__P_200_0.stop();
+
           this.__P_200_0.dispose();
+
           this.__P_200_0 = null;
         }
       },
+
       /*
        * @Override
        */
       addListener: function addListener(type, listener, self, capture) {
         var result = qx.event.Idle.superclass.prototype.addListener.call(this, type, listener, self, capture);
+
         this.__P_200_1();
+
         return result;
       },
+
       /*
        * @Override
        */
       addListenerOnce: function addListenerOnce(type, listener, self, capture) {
         var result = qx.event.Idle.superclass.prototype.addListenerOnce.call(this, type, listener, self, capture);
+
         this.__P_200_1();
+
         return result;
       },
+
       /*
        * @Override
        */
       removeListener: function removeListener(type, listener, self, capture) {
         var result = qx.event.Idle.superclass.prototype.removeListener.call(this, type, listener, self, capture);
+
         this.__P_200_2();
+
         return result;
       },
+
       /*
        * @Override
        */
       removeListenerById: function removeListenerById(id) {
         var result = qx.event.Idle.superclass.prototype.removeListenerById.call(this, id);
+
         this.__P_200_2();
+
         return result;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -154,10 +172,11 @@
       if (this.__P_200_0) {
         this.__P_200_0.stop();
       }
+
       this.__P_200_0 = null;
     }
   });
   qx.event.Idle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Idle.js.map?dt=1677362737572
+//# sourceMappingURL=Idle.js.map?dt=1685978120446

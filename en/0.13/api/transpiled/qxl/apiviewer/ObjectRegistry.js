@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,4 +44,4 @@
   qxl.apiviewer.ObjectRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectRegistry.js.map?dt=1677362782453
+//# sourceMappingURL=ObjectRegistry.js.map?dt=1685978164962

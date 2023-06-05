@@ -21,6 +21,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,11 +49,13 @@
     extend: qx.ui.basic.Atom,
     implement: [qx.ui.form.IModel, qx.ui.form.IListItem],
     include: [qx.ui.form.MModelProperty],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
@@ -60,37 +63,41 @@
      */
     construct: function construct(label, icon, model) {
       qx.ui.basic.Atom.constructor.call(this, label, icon);
+
       if (model != null) {
         this.setModel(model);
       }
+
       this.addListener("pointerover", this._onPointerOver, this);
       this.addListener("pointerout", this._onPointerOut, this);
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** (Fired by {@link qx.ui.form.List}) */
       action: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
         init: "listitem"
       }
     },
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -100,12 +107,14 @@
         selected: true,
         dragover: true
       },
+
       /**
        * Event handler for the pointer over event.
        */
       _onPointerOver: function _onPointerOver() {
         this.addState("hovered");
       },
+
       /**
        * Event handler for the pointer out event.
        */
@@ -121,4 +130,4 @@
   qx.ui.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1677362757468
+//# sourceMappingURL=ListItem.js.map?dt=1685978138334

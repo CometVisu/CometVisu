@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,9 +42,8 @@
     extend: qx.ui.form.Slider,
     // overridden
     construct: function construct(orientation) {
-      qx.ui.form.Slider.constructor.call(this, orientation);
+      qx.ui.form.Slider.constructor.call(this, orientation); // Remove roll/keypress events
 
-      // Remove roll/keypress events
       this.removeListener("keypress", this._onKeyPress);
       this.removeListener("roll", this._onRoll);
     },
@@ -51,6 +51,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "knob":
             control = qx.ui.core.scroll.ScrollSlider.superclass.prototype._createChildControlImpl.call(this, id);
@@ -58,21 +59,23 @@
               e.stopPropagation();
             });
         }
+
         return control || qx.ui.core.scroll.ScrollSlider.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       getSizeHint: function getSizeHint(compute) {
         // get the original size hint
-        var hint = qx.ui.core.scroll.ScrollSlider.superclass.prototype.getSizeHint.call(this);
-        // set the width or height to 0 depending on the orientation.
+        var hint = qx.ui.core.scroll.ScrollSlider.superclass.prototype.getSizeHint.call(this); // set the width or height to 0 depending on the orientation.
         // this is necessary to prevent the ScrollSlider to change the size
         // hint of its parent, which can cause errors on outer flex layouts
         // [BUG #3279]
+
         if (this.getOrientation() === "horizontal") {
           hint.width = 0;
         } else {
           hint.height = 0;
         }
+
         return hint;
       }
     }
@@ -80,4 +83,4 @@
   qx.ui.core.scroll.ScrollSlider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollSlider.js.map?dt=1677362755067
+//# sourceMappingURL=ScrollSlider.js.map?dt=1685978136186

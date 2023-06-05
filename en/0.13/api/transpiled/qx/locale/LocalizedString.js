@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,6 +38,7 @@
    */
   qx.Class.define("qx.locale.LocalizedString", {
     extend: qx.type.BaseString,
+
     /**
      * @param translation {String} The translated message
      * @param messageId {String} The messageId to translate
@@ -53,6 +55,7 @@
       __P_270_1: null,
       __P_270_0: null,
       __P_270_2: null,
+
       /**
        * Get a translation of the string using the current locale.
        *
@@ -63,8 +66,10 @@
         if (this.__P_270_1) {
           return qx.locale.Manager.getInstance().localize(this.__P_270_0, this.__P_270_2);
         }
+
         return qx.locale.Manager.getInstance().translate(this.__P_270_0, this.__P_270_2);
       },
+
       /**
        * Returns the messageId.
        *
@@ -78,4 +83,4 @@
   qx.locale.LocalizedString.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LocalizedString.js.map?dt=1677362744920
+//# sourceMappingURL=LocalizedString.js.map?dt=1685978127897

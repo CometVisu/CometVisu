@@ -32,6 +32,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* FileItem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -56,6 +57,7 @@
    */
   qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
     extend: qx.ui.menu.Menu,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -65,14 +67,17 @@
       qx.ui.menu.Menu.constructor.call(this);
       this._noCompare = noCompare === true;
       this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
+
       this._init();
+
       this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium'));
       this._timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('medium'));
+
       if (file) {
         this.configure(file);
-      }
+      } // only react to events when this menu is visible
 
-      // only react to events when this menu is visible
+
       this.addListener('appear', function () {
         this.setActive(true);
       });
@@ -80,6 +85,7 @@
         this.setActive(false);
       });
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -90,12 +96,14 @@
         refine: true,
         init: 'cv-file-contextmenu'
       },
+
       /* This flag enables the event handling for this menu */
       active: {
         check: 'Boolean',
         init: false
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -110,13 +118,16 @@
       _noCompare: false,
       configure: function configure(file) {
         this._selectedNode = file;
+
         if (file) {
           var isFolder = file.getType() === 'dir';
           var folder = isFolder ? file : file.getParent();
           var isBackup = false;
+
           if (folder && folder.getFullPath().startsWith('backup') || file.getFullPath().startsWith('backup')) {
             isBackup = true;
           }
+
           if (!isFolder) {
             this.getChildControl('new-file-button').exclude();
             this.getChildControl('new-folder-button').exclude();
@@ -130,14 +141,15 @@
               visibility: 'visible'
             });
           }
+
           this.getChildControl('clone-file-button').setVisibility(file.isConfigFile() && !isBackup ? 'visible' : 'excluded');
           this.getChildControl('convert-file-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
-          this.getChildControl('delete-button').setLabel(file.isTrash() ? this.tr('Clear') : this.tr('Delete'));
+          this.getChildControl('delete-button').setLabel(file.isTrash() ? this.tr('Clear') : this.tr('Delete')); // create compare menu
 
-          // create compare menu
           if (!this._noCompare) {
             var compareMenu = this.getChildControl('compare-menu');
             compareMenu.removeAll();
+
             if (!isBackup) {
               this.getChildControl('compare-with-button').show();
               var backups = cv.ui.manager.model.BackupFolder.getInstance().getBackupFiles(file);
@@ -148,15 +160,18 @@
               var group = null;
               backups.forEach(function (backupEntry) {
                 var date = this._dateFormat.format(backupEntry.date);
+
                 if (group !== date) {
                   if (group !== null) {
                     compareMenu.add(new qx.ui.menu.Separator());
                   }
+
                   var groupButton = new qx.ui.menu.Button(date);
                   groupButton.setEnabled(false);
                   compareMenu.add(groupButton);
                   group = date;
                 }
+
                 var button = new qx.ui.menu.Button(this.tr('Backup from %1', this._timeFormat.format(backupEntry.date)));
                 button.setUserData('file', backupEntry.file);
                 button.addListener('execute', this._onCompareWith, this);
@@ -166,16 +181,16 @@
               this.getChildControl('compare-with-button').exclude();
             }
           }
-          var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
 
-          // open with menu
+          var defaultHandler = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file); // open with menu
+
           var openWithMenu = this.getChildControl('open-with-menu');
           openWithMenu.removeAll();
+
           if (!isBackup) {
             this.getChildControl('open-with-button').show();
-            var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file);
+            var availableHandlers = cv.ui.manager.control.FileHandlerRegistry.getInstance().getAllFileHandlers(file); // this menu only makes sense when there is more than one option to select from
 
-            // this menu only makes sense when there is more than one option to select from
             this.getChildControl('open-with-button').setEnabled(availableHandlers.length > 1);
             availableHandlers.sort(function (a, b) {
               return a.Clazz.constructor.TITLE.toString().localeCompare(b.Clazz.constructor.TITLE.toString());
@@ -183,29 +198,33 @@
             availableHandlers.forEach(function (handlerConf) {
               var button = new qx.ui.menu.Button(handlerConf.Clazz.constructor.TITLE, handlerConf.Clazz.constructor.ICON);
               button.setAppearance('open-with-button');
+
               if (defaultHandler.Clazz.classname === handlerConf.Clazz.classname) {
                 button.addState('default');
               }
+
               button.setUserData('handlerId', handlerConf.Clazz.classname);
               button.addListener('execute', this._onOpenWith, this);
               openWithMenu.add(button);
             }, this);
           } else {
             this.getChildControl('open-with-button').exclude();
-          }
+          } // validate button
 
-          // validate button
-          this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded');
 
-          // replacement button
+          this.getChildControl('validate-config-button').setVisibility(file.isConfigFile() && !file.isMounted() && !isBackup ? 'visible' : 'excluded'); // replacement button
+
           if (!isFolder && !isBackup) {
             this.getChildControl('replace-button').show();
+
             this._replacementManager.setFilename(file.getName());
+
             this._replacementManager.setFolder(file.getParent());
           } else {
             this.getChildControl('replace-button').exclude();
-          }
-          // buttons that need write access
+          } // buttons that need write access
+
+
           ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
             this.getChildControl(controlName).setEnabled(!file.isFake() && file.isWriteable() && (!isBackup || controlName === 'delete-button'));
           }, this);
@@ -225,17 +244,22 @@
         if (!this._noNew) {
           this.add(this.getChildControl('new-file-button'));
         }
+
         this.add(this.getChildControl('clone-file-button'));
         this.add(this.getChildControl('convert-file-button'));
+
         if (!this._noNew) {
           this.add(this.getChildControl('new-folder-button'));
         }
+
         this.add(new qx.ui.menu.Separator());
         this.add(this.getChildControl('open-button'));
         this.add(this.getChildControl('open-with-button'));
+
         if (!this._noCompare) {
           this.add(this.getChildControl('compare-with-button'));
         }
+
         this.add(new qx.ui.menu.Separator());
         this.add(this.getChildControl('rename-button'));
         this.add(this.getChildControl('delete-button'));
@@ -270,6 +294,7 @@
       },
       _onRename: function _onRename() {
         var _this = this;
+
         if (this._selectedNode && this.isActive()) {
           if (!this._renameDialog) {
             this._renameDialog = new cv.ui.manager.dialog.Prompt({
@@ -286,12 +311,14 @@
             });
           } else {
             this._renameDialog.setValue(this._selectedNode.getName());
+
             this._renameDialog.setCallback(function (name) {
               if (name && name !== _this._selectedNode.getName()) {
                 cv.ui.manager.control.FileController.getInstance().rename(_this._selectedNode, name);
               }
             });
           }
+
           this._renameDialog.show();
         }
       },
@@ -327,7 +354,9 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this2 = this;
+
         var control;
+
         switch (id) {
           case 'new-file-button':
             control = new qx.ui.menu.Button(this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18));
@@ -339,74 +368,93 @@
               }
             });
             break;
+
           case 'clone-file-button':
             control = new qx.ui.menu.Button(this.tr('Clone file'), cv.theme.dark.Images.getIcon('clone-file', 18));
             control.exclude();
             control.addListener('execute', this._onClone, this);
             break;
+
           case 'new-folder-button':
             control = new qx.ui.menu.Button(this.tr('New folder'), cv.theme.dark.Images.getIcon('new-folder', 18));
             control.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.action.new-folder', _this2._selectedNode.getType() === 'dir' ? _this2._selectedNode : _this2._selectedNode.getParent());
             });
             break;
+
           case 'rename-button':
             control = new qx.ui.menu.Button(this.tr('Rename'), cv.theme.dark.Images.getIcon('rename', 18));
             control.addListener('execute', this._onRename, this);
             break;
+
           case 'delete-button':
             control = new qx.ui.menu.Button(this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
             control.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.action.delete', _this2._selectedNode);
             });
             break;
+
           case 'download-button':
             control = new qx.ui.menu.Button(this.tr('Download'), cv.theme.dark.Images.getIcon('download', 18));
             control.addListener('execute', this._onDownload, this);
             break;
+
           case 'open-button':
             control = new qx.ui.menu.Button(this.tr('Open'), cv.theme.dark.Images.getIcon('open', 18));
             control.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.open', _this2._selectedNode);
             });
             break;
+
           case 'restore-button':
             control = new qx.ui.menu.Button(this.tr('Restore'), cv.theme.dark.Images.getIcon('trash', 18));
             control.exclude();
             control.addListener('execute', this._onRestore, this);
             break;
+
           case 'validate-config-button':
             control = new qx.ui.menu.Button(this.tr('Validate'), cv.theme.dark.Images.getIcon('validate', 18));
             control.exclude();
             control.addListener('execute', this._onValidate, this);
             break;
+
           case 'replace-button':
             control = new com.zenesis.qx.upload.UploadMenuButton(this.tr('Replace'), cv.theme.dark.Images.getIcon('upload', 18));
             control.exclude();
             this._replacementManager = new cv.ui.manager.upload.UploadMgr();
+
             this._replacementManager.setForce(true);
+
             this._replacementManager.addWidget(control);
+
             break;
+
           case 'compare-menu':
             control = new qx.ui.menu.Menu();
             break;
+
           case 'compare-with-button':
             control = new qx.ui.menu.Button(this.tr('Compare with...'), cv.theme.dark.Images.getIcon('compare', 18), null, this.getChildControl('compare-menu'));
             break;
+
           case 'open-with-button':
             control = new qx.ui.menu.Button(this.tr('Open with...'), cv.theme.dark.Images.getIcon('open-with', 18), null, this.getChildControl('open-with-menu'));
             break;
+
           case 'open-with-menu':
             control = new qx.ui.menu.Menu();
             break;
+
           case 'convert-file-button':
             control = new qx.ui.menu.Button(this.tr('Convert to tile structure'), cv.theme.dark.Images.getIcon('convert', 18));
             control.addListener('execute', this._onConvert, this);
             break;
         }
+
         return control || cv.ui.manager.contextmenu.FileItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -415,10 +463,11 @@
     destruct: function destruct() {
       this._commandGroup = null;
       this._renameDialog = null;
+
       this._disposeObjects('_dateFormat', '_timeFormat');
     }
   });
   cv.ui.manager.contextmenu.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1677362711733
+//# sourceMappingURL=FileItem.js.map?dt=1685978094353

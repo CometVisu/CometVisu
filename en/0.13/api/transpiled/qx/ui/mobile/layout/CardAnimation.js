@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,6 +41,7 @@
    */
   qx.Class.define("qx.ui.mobile.layout.CardAnimation", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -109,6 +111,7 @@
     },
     members: {
       _cardAnimationsMap: null,
+
       /**
        * Returns a map with properties for {@link qx.bom.element.Animation} according to the given input parameters.
        * @param animationName {String} the animation key
@@ -119,13 +122,16 @@
       getAnimation: function getAnimation(animationName, direction, reverse) {
         var animation = this._cardAnimationsMap[animationName];
         var animationObject = {};
+
         if (!reverse) {
           animationObject = animation[direction];
         } else {
           animationObject = animation["reverse"][direction];
         }
+
         return animationObject;
       },
+
       /**
        * Getter for the cardAnimationsMap.
        * @return {Map} the cardAnimationsMap.
@@ -141,4 +147,4 @@
   qx.ui.mobile.layout.CardAnimation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CardAnimation.js.map?dt=1677362763192
+//# sourceMappingURL=CardAnimation.js.map?dt=1685978144343

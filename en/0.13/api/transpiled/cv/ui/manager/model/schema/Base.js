@@ -1,9 +1,15 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -19,6 +25,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Base.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,11 +51,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   qx.Class.define('cv.ui.manager.model.schema.Base', {
     extend: qx.core.Object,
     type: 'abstract',
+
     /*
     ***********************************************
       CONSTRUCTOR
     ***********************************************
     */
+
     /**
      * @param   node    {Node} the group-node
      * @param   schema  {cv.ui.manager.model.Schema}  the corresponding schema
@@ -65,6 +74,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this._sortedContent = [];
       this._subGroupings = [];
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -91,6 +101,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         check: 'Node',
         nullable: false
       },
+
       /**
        * array of sub-choices, -sequences, -groups that are defined
        * @var array
@@ -99,6 +110,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         check: 'Array'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -110,21 +122,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        * @var object
        */
       _bounds: null,
+
       /**
        * cache for getRegex
        * @var string
        */
       _regexCache: null,
+
       /**
        * list of elements that are allowed as per our own definition
        * @var object
        */
       _allowedElements: null,
+
       /**
        * the sorted listed of allowed elements and sub-groupings
        * @var array
        */
       _sortedContent: null,
+
       /**
        * array of sub-choices, -sequences, -groups that are defined
        * @var array
@@ -134,12 +150,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       parse: function parse() {
         var n = this.getNode();
         var min = n.hasAttribute('minOccurs') ? n.getAttribute('minOccurs') : 1; // default is 1
+
         var max = n.hasAttribute('maxOccurs') ? n.getAttribute('maxOccurs') : 1; // default is 1
+
         this._bounds = {
           min: parseInt(min),
           max: max === 'unbounded' ? Number.POSITIVE_INFINITY : parseInt(max)
         };
       },
+
       /**
        * is an element (specified by its name) allowed in this group?
        * Goes recursive.
@@ -152,16 +171,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (typeof this._allowedElements[element] !== 'undefined') {
           // this element is immediately allowed
           return true;
-        }
+        } // go over the list of subGroupings and check, if the element is allowed with any of them
 
-        // go over the list of subGroupings and check, if the element is allowed with any of them
+
         for (var i = 0; i < this._subGroupings.length; ++i) {
           if (this._subGroupings[i].isElementAllowed(element) === true) {
             return true;
           }
         }
+
         return false;
       },
+
       /**
        * get the SchemaElement-object for a certain element-name.
        * May return undefined if no element is found, so you might be interested in checking isElementAllowed beforehand.
@@ -173,19 +194,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (typeof this._allowedElements[elementName] != 'undefined') {
           // this element is immediately allowed
           return this._allowedElements[elementName];
-        }
+        } // go over the list of sub-choices and check, if the element is allowed with them
 
-        // go over the list of sub-choices and check, if the element is allowed with them
+
         for (var i = 0; i < this._subGroupings.length; ++i) {
           if (this._subGroupings[i].isElementAllowed(elementName) === true) {
             // this element is allowed
             return this._subGroupings[i].getSchemaElementForElementName(elementName);
           }
-        }
+        } // can not find any reason why elementName is allowed with us...
 
-        // can not find any reason why elementName is allowed with us...
+
         return undefined;
       },
+
       /**
        * get a list of required elements.
        * if an element is required multiple times, it is listed multiple times
@@ -195,36 +217,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       getRequiredElements: function getRequiredElements() {
         // we do know what we require. might not be too easy to find out, but ok
-
         // if we have no lower bounds, then nothing is required
         if (this._bounds.min === 0) {
           return [];
         }
-        var requiredElements = [];
 
-        // my own elements
+        var requiredElements = []; // my own elements
+
         for (var _i = 0, _Object$entries = Object.entries(this._allowedElements); _i < _Object$entries.length; _i++) {
-          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-            name = _Object$entries$_i[0],
-            item = _Object$entries$_i[1];
+          var _Object$entries$_i2 = _slicedToArray(_Object$entries[_i], 2),
+              name = _Object$entries$_i2[0],
+              item = _Object$entries$_i2[1];
+
           if (item.getBounds().min > 0) {
             for (var i = 0; i < item.getBounds().min; ++i) {
               requiredElements.push(name);
             }
           }
-        }
+        } // elements of our sub-groupings, if any
 
-        // elements of our sub-groupings, if any
+
         this._subGroupings.forEach(function (grouping) {
           var subRequiredElements = grouping.getRequiredElements();
+
           if (subRequiredElements.length > 0) {
-            for (var _i2 = 0; _i2 < subRequiredElements.length; ++_i2) {
-              requiredElements.push(subRequiredElements[_i2]);
+            for (var _i3 = 0; _i3 < subRequiredElements.length; ++_i3) {
+              requiredElements.push(subRequiredElements[_i3]);
             }
           }
         });
+
         return requiredElements;
       },
+
       /**
        * get the elements allowed for this group
        *
@@ -232,19 +257,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       getAllowedElements: function getAllowedElements() {
         var myAllowedElements = {};
-        for (var _i3 = 0, _Object$entries2 = Object.entries(this._allowedElements); _i3 < _Object$entries2.length; _i3++) {
-          var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i3], 2),
-            name = _Object$entries2$_i[0],
-            item = _Object$entries2$_i[1];
-          myAllowedElements[name] = item;
-        }
 
-        // also the elements allowed by our sub-choices etc.
+        for (var _i4 = 0, _Object$entries2 = Object.entries(this._allowedElements); _i4 < _Object$entries2.length; _i4++) {
+          var _Object$entries2$_i2 = _slicedToArray(_Object$entries2[_i4], 2),
+              name = _Object$entries2$_i2[0],
+              item = _Object$entries2$_i2[1];
+
+          myAllowedElements[name] = item;
+        } // also the elements allowed by our sub-choices etc.
+
+
         this._subGroupings.forEach(function (grouping) {
           Object.assign(myAllowedElements, grouping.getAllowedElements());
         });
+
         return myAllowedElements;
       },
+
       /**
        * get the sorting of the allowed elements.
        * @param   sortNumber  integer the sort number of a parent (only used when recursive)
@@ -253,6 +282,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       getAllowedElementsSorting: function getAllowedElementsSorting(sortNumber) {
         return {};
       },
+
       /**
        * get a regex (string) describing this choice
        *
@@ -263,6 +293,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       getRegex: function getRegex(separator, nocapture) {
         return '';
       },
+
       /**
        * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
        * This makes it more or less impossible to know in advance which elements might be needed
@@ -272,6 +303,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       hasMultiLevelBounds: function hasMultiLevelBounds() {
         return this._subGroupings.length > 0;
       },
+
       /**
        * get the bounds of this very grouping
        *
@@ -280,6 +312,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       getBounds: function getBounds() {
         return this._bounds;
       },
+
       /**
        * get bounds for a specific element.
        * Take into account the bounds of the element and/or our own bounds
@@ -290,6 +323,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       getBoundsForElementName: function getBoundsForElementName(childName) {
         return this._bounds;
       },
+
       /**
        * create a regex-object from a pattern
        *
@@ -303,6 +337,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (modifiers === undefined) {
           modifiers = '';
         }
+
         return new RegExp(input, modifiers);
       }
     }
@@ -310,4 +345,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.ui.manager.model.schema.Base.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Base.js.map?dt=1677362715193
+//# sourceMappingURL=Base.js.map?dt=1685978097917

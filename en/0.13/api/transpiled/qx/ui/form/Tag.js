@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /**
    * Tags are small UI widgets that are used to show that something has been
    * "tagged", for example in `qx.ui.form.CheckedSelectBox` if you turn on
@@ -44,4 +45,4 @@
   qx.ui.form.Tag.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tag.js.map?dt=1677362758253
+//# sourceMappingURL=Tag.js.map?dt=1685978139146

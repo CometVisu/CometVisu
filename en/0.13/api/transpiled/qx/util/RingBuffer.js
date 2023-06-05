@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,6 +42,7 @@
    */
   qx.Bootstrap.define("qx.util.RingBuffer", {
     extend: Object,
+
     /**
      * Constructor.
      *
@@ -62,6 +64,7 @@
       __P_510_4: null,
       //Maximum number of messages to store. Could be converted to a qx property.
       __P_510_5: null,
+
       /**
        * Set the maximum number of messages to hold. If null the number of
        * messages is not limited.
@@ -74,6 +77,7 @@
         this.__P_510_5 = maxEntries;
         this.clear();
       },
+
       /**
        * Get the maximum number of entries to hold
        *
@@ -82,6 +86,7 @@
       getMaxEntries: function getMaxEntries() {
         return this.__P_510_5;
       },
+
       /**
        * Adds a single entry
        *
@@ -89,19 +94,20 @@
        */
       addEntry: function addEntry(entry) {
         this.__P_510_4[this.__P_510_0] = entry;
-        this.__P_510_0 = this.__P_510_6(this.__P_510_0, 1);
+        this.__P_510_0 = this.__P_510_6(this.__P_510_0, 1); //Count # of stored entries
 
-        //Count # of stored entries
         var max = this.getMaxEntries();
+
         if (this.__P_510_1 < max) {
           this.__P_510_1++;
-        }
+        } //Count # of stored elements since last mark call
 
-        //Count # of stored elements since last mark call
+
         if (this.__P_510_2 && this.__P_510_3 < max) {
           this.__P_510_3++;
         }
       },
+
       /**
        * Returns the number of entries stored
        * @return {Integer}
@@ -109,6 +115,7 @@
       getNumEntriesStored: function getNumEntriesStored() {
         return this.__P_510_1;
       },
+
       /**
        * Remembers the current position in the ring buffer
        *
@@ -117,12 +124,14 @@
         this.__P_510_2 = true;
         this.__P_510_3 = 0;
       },
+
       /**
        * Removes the current mark position
        */
       clearMark: function clearMark() {
         this.__P_510_2 = false;
       },
+
       /**
        * Returns all stored entries. Mark is ignored.
        *
@@ -131,6 +140,7 @@
       getAllEntries: function getAllEntries() {
         return this.getEntries(this.getMaxEntries(), false);
       },
+
       /**
        * Returns entries which have been added previously.
        *
@@ -145,17 +155,21 @@
         //Trim count so it does not exceed ringbuffer size
         if (count > this.__P_510_1) {
           count = this.__P_510_1;
-        }
-
-        // Trim count so it does not exceed last call to mark (if mark was called
+        } // Trim count so it does not exceed last call to mark (if mark was called
         // and startingFromMark was true)
+
+
         if (startingFromMark && this.__P_510_2 && count > this.__P_510_3) {
           count = this.__P_510_3;
         }
+
         if (count > 0) {
           var indexOfYoungestElementInHistory = this.__P_510_6(this.__P_510_0, -1);
+
           var startIndex = this.__P_510_6(indexOfYoungestElementInHistory, -count + 1);
+
           var result;
+
           if (startIndex <= indexOfYoungestElementInHistory) {
             //Requested segment not wrapping around ringbuffer boundary, get in one run
             result = this.__P_510_4.slice(startIndex, indexOfYoungestElementInHistory + 1);
@@ -166,8 +180,10 @@
         } else {
           result = [];
         }
+
         return result;
       },
+
       /**
        * Clears all entries
        */
@@ -177,6 +193,7 @@
         this.__P_510_3 = 0;
         this.__P_510_0 = 0;
       },
+
       /**
        * Adds a number to an ringbuffer index. Does a modulus calculation,
        * i. e. if the index leaves the ringbuffer space it will wrap around to
@@ -188,12 +205,12 @@
        */
       __P_510_6: function __P_510_6(idx, addMe) {
         var max = this.getMaxEntries();
-        var result = (idx + addMe) % max;
+        var result = (idx + addMe) % max; //If negative, wrap up into the ringbuffer space
 
-        //If negative, wrap up into the ringbuffer space
         if (result < 0) {
           result += max;
         }
+
         return result;
       }
     }
@@ -201,4 +218,4 @@
   qx.util.RingBuffer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RingBuffer.js.map?dt=1677362773110
+//# sourceMappingURL=RingBuffer.js.map?dt=1685978154589

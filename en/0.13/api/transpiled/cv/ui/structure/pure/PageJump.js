@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* PageJump.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -56,6 +57,7 @@
   qx.Class.define('cv.ui.structure.pure.PageJump', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren, cv.ui.common.HasAnimatedButton],
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -67,8 +69,10 @@
         // to bind the click events to the whole widget
         props.bindClickToWidget = true;
       }
+
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -92,6 +96,7 @@
         nullable: true
       }
     },
+
     /*
     ******************************************************
       STATICS
@@ -108,44 +113,45 @@
         var page_id = ev.getData();
         var page = cv.ui.structure.WidgetFactory.getInstanceById(page_id);
         var model = cv.data.Model.getInstance();
-        var name = page.getName();
+        var name = page.getName(); // remove old active classes
 
-        // remove old active classes
         document.querySelectorAll('.pagejump.active').forEach(function (elem) {
           elem.classList.remove('active');
         }, this);
         document.querySelectorAll('.pagejump.active_ancestor').forEach(function (elem) {
           elem.classList.remove('active_ancestor');
-        }, this);
+        }, this); // and set the new active ones
 
-        // and set the new active ones
         document.querySelectorAll('.pagejump').forEach(function (elem) {
           var data = model.getWidgetDataByElement(elem);
+
           if (name === data.target) {
             elem.classList.add('active');
           }
-        }, this);
+        }, this); // now set the active ancestors
 
-        // now set the active ancestors
-        var parentPage = cv.util.Tree.getParentWidget(page, 'page');
-        // set for all parent pages apart from the root page
+        var parentPage = cv.util.Tree.getParentWidget(page, 'page'); // set for all parent pages apart from the root page
 
         var pageJumps = document.querySelectorAll('.pagejump');
+
         var markPageJumps = function markPageJumps(parentName, elem) {
           var data = model.getWidgetDataByElement(elem);
+
           if (parentName === data.target || data.activeScope === 'path' && (typeof data.path === 'string' && data.path.match(parentName + '$') || typeof data.targetPath === 'string' && data.targetPath.match(parentName + '$'))) {
             elem.classList.add('active_ancestor');
           }
         };
+
         while (parentPage && cv.util.Tree.getParentWidget(parentPage, 'page')) {
           pageJumps.forEach(function (elem) {
             markPageJumps(parentPage.getName(), elem);
-          });
-          // recursively find pagejumps for parent pages
+          }); // recursively find pagejumps for parent pages
+
           parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
         }
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -155,22 +161,28 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var actor = '<div class="actor switchUnpressed';
+
         if (this.getAlign()) {
           actor += ' ' + this.getAlign();
         }
+
         actor += '">';
+
         if (this.getName()) {
           actor += '<div class="value">' + this.getName() + '</div>';
         }
+
         actor += '</div>';
         return actor + this.getChildrenDomString();
       },
       // overridden
       action: function action() {
         var target = this.getTarget();
+
         if (this.getTargetPath() !== null) {
           target = cv.Application.structureController.getPageIdByPath(target, this.getTargetPath());
         }
+
         cv.Application.structureController.scrollToPage(target);
       }
     },
@@ -182,4 +194,4 @@
   cv.ui.structure.pure.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1677362717259
+//# sourceMappingURL=PageJump.js.map?dt=1685978100033

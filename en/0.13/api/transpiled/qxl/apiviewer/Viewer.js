@@ -48,6 +48,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -91,6 +92,7 @@
    */
   qx.Class.define("qxl.apiviewer.Viewer", {
     extend: qx.ui.container.Composite,
+
     /*
     *****************************************************************************
      CONSTRUCTOR
@@ -107,31 +109,37 @@
       tree.setId("tree");
       this._searchView = new qxl.apiviewer.ui.SearchView();
       var legend = new qxl.apiviewer.ui.LegendView();
+
       var toggleView = this.__P_552_3(tree, this._searchView, legend);
+
       var mainFrame = this.__P_552_4();
+
       this.add(this.__P_552_5(toggleView, mainFrame), {
         flex: 1
-      });
+      }); // Search for the value of the "search" URL query key.
 
-      // Search for the value of the "search" URL query key.
       var parsedUri = qx.util.Uri.parseUri(location.href);
+
       if (parsedUri.queryKey && parsedUri.queryKey.search) {
         this._searchView.search(parsedUri.queryKey.search);
+
         toggleView.setSelection([this._searchView]);
+
         this.__P_552_6.setSelection([this.__P_552_6.getChildren()[1]]);
       }
     },
+
     /*
     *****************************************************************************
      MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_552_7: null,
       __P_552_8: null,
       __P_552_0: null,
       __P_552_6: null,
+
       /**
        * Creates the button view widget on the left
        * @param treeWidget {qx.ui.core.Widget} The widget for the "tree" pane
@@ -145,34 +153,41 @@
         stack.add(treeWidget);
         stack.add(searchWidget);
         stack.add(infoWidget);
+
         this.__P_552_6.addListener("changeSelection", function (e) {
           var selected = e.getData()[0];
           var show = selected ? selected.getUserData("value") : null;
+
           switch (show) {
             case "packages":
               stack.setSelection([treeWidget]);
               stack.show();
               break;
+
             case "search":
               stack.setSelection([searchWidget]);
               stack.show();
-
               /**
                * Delay focussing the text field in case it's html element
                * has no been added to the DOM yet.
                */
+
               qx.lang.Function.delay(this._onShowSearch, 100, this);
               break;
+
             case "legend":
               stack.setSelection([infoWidget]);
               stack.show();
               break;
+
             default:
               stack.exclude();
           }
         }, this);
+
         return stack;
       },
+
       /**
        * Creates the tool bar
        *
@@ -233,27 +248,27 @@
         var internalBtn = new qx.ui.toolbar.CheckBox(this.tr("Internal"), "qxl/apiviewer/image/method_internal18.gif");
         internalBtn.setId("btn_internal");
         internalBtn.setToolTipText(this.tr("Show/hide internal members of the current class."));
-        part.add(internalBtn);
+        part.add(internalBtn); // overflow handling
 
-        // overflow handling
-        toolbar.setOverflowHandling(true);
+        toolbar.setOverflowHandling(true); // add a button for overflow handling
 
-        // add a button for overflow handling
         var chevron = new qx.ui.toolbar.MenuButton(null, "icon/22/actions/media-seek-forward.png");
         chevron.setAppearance("toolbar-button"); // hide the down arrow icon
+
         toolbar.add(chevron);
-        toolbar.setOverflowIndicator(chevron);
+        toolbar.setOverflowIndicator(chevron); // add the overflow menu
 
-        // add the overflow menu
         this.__P_552_8 = new qx.ui.menu.Menu();
-        chevron.setMenu(this.__P_552_8);
+        chevron.setMenu(this.__P_552_8); // add the listener
 
-        // add the listener
         toolbar.addListener("hideItem", function (e) {
           var item = e.getData();
+
           var menuItems = this._getMenuItems(item);
+
           for (var i = 0; i < menuItems.length; i++) {
             menuItems[i].setVisibility("visible");
+
             if (menuItems[i] instanceof qx.ui.menu.Button) {
               menuItems[i].getMenu().setPosition("right-top");
             }
@@ -261,9 +276,12 @@
         }, this);
         toolbar.addListener("showItem", function (e) {
           var item = e.getData();
+
           var menuItems = this._getMenuItems(item);
+
           for (var i = 0; i < menuItems.length; i++) {
             menuItems[i].setVisibility("excluded");
+
             if (menuItems[i] instanceof qx.ui.menu.Button) {
               menuItems[i].getMenu().setPosition("bottom-left");
             }
@@ -271,6 +289,7 @@
         }, this);
         return toolbar;
       },
+
       /**
        * Helper for the overflow handling. It is responsible for returning a
        * corresponding menu item for the given toolbar item.
@@ -280,27 +299,31 @@
        */
       _getMenuItems: function _getMenuItems(toolbarPart) {
         var partChildren = toolbarPart.getChildren();
-        var menuItems = [];
+        var menuItems = []; // only add a separator if the first part pops in
 
-        // only add a separator if the first part pops in
         if (toolbarPart.toHashCode() === this.__P_552_7) {
           var cachedItem = this.__P_552_0[toolbarPart.toHashCode()];
+
           if (!cachedItem) {
             cachedItem = new qx.ui.menu.Separator();
+
             this.__P_552_8.addAt(cachedItem, 0);
+
             this.__P_552_0[toolbarPart.toHashCode()] = cachedItem;
           }
-          menuItems.push(cachedItem);
-        }
 
-        // take every item in the part
+          menuItems.push(cachedItem);
+        } // take every item in the part
+
+
         for (var i = partChildren.length - 1; i >= 0; i--) {
           var toolbarItem = partChildren[i];
           cachedItem = this.__P_552_0[toolbarItem.toHashCode()];
+
           if (!cachedItem) {
             if (toolbarItem instanceof qx.ui.toolbar.RadioButton) {
-              cachedItem = new qx.ui.menu.RadioButton(toolbarItem.getLabel());
-              // bidirectional binding takes care of everything
+              cachedItem = new qx.ui.menu.RadioButton(toolbarItem.getLabel()); // bidirectional binding takes care of everything
+
               toolbarItem.bind("value", cachedItem, "value");
               cachedItem.bind("value", toolbarItem, "value");
             } else if (toolbarItem instanceof qx.ui.toolbar.MenuButton) {
@@ -309,18 +332,23 @@
               cachedItem.setEnabled(toolbarItem.getEnabled());
               toolbarItem.bind("enabled", cachedItem, "enabled");
             } else {
-              cachedItem = new qx.ui.menu.CheckBox(toolbarItem.getLabel());
-              // bidirectional binding takes care of everything
+              cachedItem = new qx.ui.menu.CheckBox(toolbarItem.getLabel()); // bidirectional binding takes care of everything
+
               toolbarItem.bind("value", cachedItem, "value");
               cachedItem.bind("value", toolbarItem, "value");
             }
+
             this.__P_552_8.addAt(cachedItem, 0);
+
             this.__P_552_0[toolbarItem.toHashCode()] = cachedItem;
           }
+
           menuItems.push(cachedItem);
         }
+
         return menuItems;
       },
+
       /**
        * Create the detail Frame and adds the Class-, Package and Loader-views to it.
        *
@@ -330,20 +358,28 @@
         var detailFrame = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
         detailFrame.getContentElement().setAttribute("class", "content");
         this._detailLoader = new qx.ui.embed.Html('<div style="padding:10px;"><h1><small>please wait</small>Loading data...</h1></div>');
+
         this._detailLoader.getContentElement().setAttribute("id", "SplashScreen");
+
         this._detailLoader.setAppearance("detailviewer");
+
         this._detailLoader.setId("detail_loader");
+
         detailFrame.add(this._detailLoader, {
           edge: 0
         });
         this._tabView = new qxl.apiviewer.DetailFrameTabView();
+
         this._tabView.setId("tabView");
+
         this._tabView.exclude();
+
         detailFrame.add(this._tabView, {
           edge: 0
         });
         return detailFrame;
       },
+
       /**
        * Creates the main frame at the right
        *
@@ -360,6 +396,7 @@
         });
         return mainFrame;
       },
+
       /**
        * Creates the vertical splitter and populates the split panes
        *
@@ -374,6 +411,7 @@
         mainSplitPane.add(rightWidget, 1);
         return mainSplitPane;
       },
+
       /**
        * Creates the application header.
        */
@@ -391,6 +429,7 @@
         header.add(version);
         return header;
       },
+
       /**
        * Focusses the search view's text field.
        */
@@ -398,16 +437,17 @@
         this._searchView.sinput.focus();
       }
     },
+
     /*
     *****************************************************************************
      SETTINGS
     *****************************************************************************
     */
-
     environment: {
       "qxl.apiviewer.title": "qooxdoo",
       "qxl.apiviewer.initialTreeDepth": 1
     },
+
     /*
     *****************************************************************************
      DESTRUCTOR
@@ -415,10 +455,11 @@
     */
     destruct: function destruct() {
       this._classTreeNodeHash = this.__P_552_6 = null;
+
       this._disposeObjects("_tree", "_detailLoader", "_classViewer", "_packageViewer", "_searchView", "_tabView");
     }
   });
   qxl.apiviewer.Viewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Viewer.js.map?dt=1677362779131
+//# sourceMappingURL=Viewer.js.map?dt=1685978161254

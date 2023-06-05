@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -81,6 +82,7 @@
     construct: function construct() {
       // Borrow super-class constructor
       qx.bom.request.Script.apply(this);
+
       this.__P_144_0();
     },
     members: {
@@ -88,36 +90,45 @@
        * @type {Object} Parsed JSON response.
        */
       responseJson: null,
+
       /**
        * @type {Number} Identifier of this instance.
        */
       __P_144_1: null,
+
       /**
        * @type {String} Callback parameter.
        */
       __P_144_2: null,
+
       /**
        * @type {String} Callback name.
        */
       __P_144_3: null,
+
       /**
        * @type {Boolean} Whether callback was called.
        */
       __P_144_4: null,
+
       /**
        * @type {Boolean} Whether a custom callback was created automatically.
        */
       __P_144_5: null,
+
       /**
        * @type {String} The generated URL for the current request
        */
       __P_144_6: null,
+
       /**
        * @type {Boolean} Whether request was disposed.
        */
       __P_144_7: null,
+
       /** Prefix used for the internal callback name. */
       __P_144_8: "",
+
       /**
        * Initializes (prepares) request.
        *
@@ -132,29 +143,27 @@
         if (this.__P_144_7) {
           return;
         }
-        var query = {},
-          callbackParam,
-          callbackName,
-          that = this;
 
-        // Reset properties that may have been set by previous request
+        var query = {},
+            callbackParam,
+            callbackName,
+            that = this; // Reset properties that may have been set by previous request
+
         this.responseJson = null;
         this.__P_144_4 = false;
         callbackParam = this.__P_144_2 || "callback";
-        callbackName = this.__P_144_3 || this.__P_144_8 + "qx.bom.request.Jsonp." + this.__P_144_1 + ".callback";
+        callbackName = this.__P_144_3 || this.__P_144_8 + "qx.bom.request.Jsonp." + this.__P_144_1 + ".callback"; // Default callback
 
-        // Default callback
         if (!this.__P_144_3) {
           // Store globally available reference to this object
-          this.constructor[this.__P_144_1] = this;
-
-          // Custom callback
+          this.constructor[this.__P_144_1] = this; // Custom callback
         } else {
           // Dynamically create globally available callback (if it does not
           // exist yet) with user defined name. Delegate to this object’s
           // callback method.
           if (!window[this.__P_144_3]) {
             this.__P_144_5 = true;
+
             window[this.__P_144_3] = function (data) {
               that.callback(data);
             };
@@ -164,13 +173,17 @@
             }
           }
         }
+
         if (qx.core.Environment.get("qx.debug.io")) {
           qx.Bootstrap.debug(qx.bom.request.Jsonp, "Expecting JavaScript response to call: " + callbackName);
         }
+
         query[callbackParam] = callbackName;
         this.__P_144_6 = url = qx.util.Uri.appendParamsToUrl(url, query);
+
         this.__P_144_9("open", [method, url]);
       },
+
       /**
        * Callback provided for JSONP response to pass data.
        *
@@ -187,20 +200,19 @@
       callback: function callback(data) {
         if (this.__P_144_7) {
           return;
-        }
+        } // Signal callback was called
 
-        // Signal callback was called
-        this.__P_144_4 = true;
 
-        // Sanitize and parse
+        this.__P_144_4 = true; // Sanitize and parse
 
         // Set response
-        this.responseJson = data;
+        this.responseJson = data; // Delete global reference to this
 
-        // Delete global reference to this
         this.constructor[this.__P_144_1] = undefined;
+
         this.__P_144_10();
       },
+
       /**
        * Set callback parameter.
        *
@@ -215,6 +227,7 @@
         this.__P_144_2 = param;
         return this;
       },
+
       /**
        * Set callback name.
        *
@@ -238,6 +251,7 @@
         this.__P_144_3 = name;
         return this;
       },
+
       /**
        * Set the prefix used in front of 'qx.' in case 'qx' is not available
        * (for qx.Website e.g.)
@@ -247,6 +261,7 @@
       setPrefix: function setPrefix(prefix) {
         this.__P_144_8 = prefix;
       },
+
       /**
        * Returns the generated URL for the current / last request
        *
@@ -259,8 +274,10 @@
       dispose: function dispose() {
         // In case callback was not called
         this.__P_144_10();
+
         this.__P_144_9("dispose");
       },
+
       /**
        * Handle native load.
        */
@@ -272,8 +289,10 @@
         // response. Since the exact reason of the error is unknown, the most
         // generic message ("500 Internal Server Error") is chosen.
         this.status = this.__P_144_4 ? 200 : 500;
+
         this.__P_144_9("_onNativeLoad");
       },
+
       /**
        *  Delete custom callback if dynamically created before.
        */
@@ -283,6 +302,7 @@
           this.__P_144_5 = false;
         }
       },
+
       /**
        * Call overridden method.
        *
@@ -292,6 +312,7 @@
       __P_144_9: function __P_144_9(method, args) {
         qx.bom.request.Script.prototype[method].apply(this, args || []);
       },
+
       /**
        * Generate ID.
        */
@@ -305,4 +326,4 @@
   qx.bom.request.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1677362728824
+//# sourceMappingURL=Jsonp.js.map?dt=1685978111272

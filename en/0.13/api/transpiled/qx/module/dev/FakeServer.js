@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -29,6 +30,7 @@
        * Richard Sternagel (rsternagel)
   
   ************************************************************************ */
+
   /**
    * A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that
    * allows quick and simple configuration of mock HTTP backends for testing and
@@ -70,6 +72,7 @@
       configure: function configure(responseData) {
         qx.dev.FakeServer.getInstance().configure(responseData);
       },
+
       /**
        * Removes a response that was configured with {@link #configure}
        * @param method {String} HTTP method of the response
@@ -80,6 +83,7 @@
       removeResponse: function removeResponse(method, url) {
         qx.dev.FakeServer.getInstance().removeResponse(method, url);
       },
+
       /**
        * Adds a URL filtering function to decide whether a request should be handled
        * by the FakeServer or passed to the regular XMLHttp implementation.
@@ -95,6 +99,7 @@
       addFilter: function addFilter(filter) {
         qx.dev.FakeServer.getInstance().addFilter(filter);
       },
+
       /**
        * Remove a filter that was added with {@link #addFilter}
        * @param filter {Function} filter function to remove
@@ -104,6 +109,7 @@
       removeFilter: function removeFilter(filter) {
         qx.dev.FakeServer.getInstance().removeFilter(filter);
       },
+
       /**
        * Defines a fake XHR response to a matching request.
        *
@@ -116,6 +122,7 @@
       respondWith: function respondWith(method, urlRegExp, response) {
         qx.dev.FakeServer.getInstance().respondWith(method, urlRegExp, response);
       },
+
       /**
        * Creates and configures a FakeServer if necessary and returns it.
        *
@@ -125,6 +132,7 @@
       getFakeServer: function getFakeServer() {
         return qx.dev.FakeServer.getInstance().getFakeServer();
       },
+
       /**
        * Stops the FakeServer and removes all configured responses and/or filters.
        * @attachStatic {qxWeb, dev.fakeServer.restore}
@@ -152,4 +160,4 @@
   qx.module.dev.FakeServer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FakeServer.js.map?dt=1677362746759
+//# sourceMappingURL=FakeServer.js.map?dt=1685978129572

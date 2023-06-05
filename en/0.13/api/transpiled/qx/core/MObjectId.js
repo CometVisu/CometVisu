@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +51,6 @@
      * PROPERTIES
      * ****************************************************************************
      */
-
     properties: {
       /** The owning object */
       qxOwner: {
@@ -59,6 +59,7 @@
         nullable: true,
         apply: "_applyQxOwner"
       },
+
       /** {String} The ID of the object.  */
       qxObjectId: {
         init: null,
@@ -69,15 +70,16 @@
         apply: "_applyQxObjectId"
       }
     },
+
     /*
      * ****************************************************************************
      * MEMBERS
      * ****************************************************************************
      */
-
     members: {
       __P_165_0: null,
       __P_165_1: false,
+
       /**
        * Apply owner
        */
@@ -86,18 +88,22 @@
           throw new Error("Please use API methods to change owner, not the property");
         }
       },
+
       /**
        * Apply objectId
        */
       _applyQxObjectId: function _applyQxObjectId(value, oldValue) {
         if (!this.__P_165_1) {
           var owner = this.getQxOwner();
+
           if (owner) {
             owner.__P_165_2(this, value, oldValue);
           }
+
           this._cascadeQxObjectIdChanges();
         }
       },
+
       /**
        * Called when a child's objectId changes
        */
@@ -105,25 +111,30 @@
         delete this.__P_165_0[oldId];
         this.__P_165_0[newId] = obj;
       },
+
       /**
        * Reflect changes to IDs or owners
        */
       _cascadeQxObjectIdChanges: function _cascadeQxObjectIdChanges() {
         if (typeof this.getContentElement == "function") {
           var contentElement = this.getContentElement();
+
           if (contentElement) {
             contentElement.updateObjectId();
           }
         }
+
         if (this.__P_165_0) {
           for (var name in this.__P_165_0) {
             var obj = this.__P_165_0[name];
+
             if (obj instanceof qx.core.Object) {
               obj._cascadeQxObjectIdChanges();
             }
           }
         }
       },
+
       /**
        * Returns the object with the specified ID
        *
@@ -134,21 +145,23 @@
       getQxObject: function getQxObject(id) {
         if (this.__P_165_0) {
           var obj = this.__P_165_0[id];
+
           if (obj !== undefined) {
             return obj;
           }
-        }
+        } // Separate out the child control ID
 
-        // Separate out the child control ID
+
         var controlId = null;
         var pos = id.indexOf("#");
+
         if (pos > -1) {
           controlId = id.substring(pos + 1);
           id = id.substring(0, pos);
         }
-        var result = undefined;
 
-        // Handle paths
+        var result = undefined; // Handle paths
+
         if (id.indexOf("/") > -1) {
           var segs = id.split("/");
           var target = this;
@@ -156,15 +169,19 @@
             if (!seg.length) {
               return true;
             }
+
             if (!target) {
               return false;
             }
+
             var tmp = target.getQxObject(seg);
+
             if (tmp !== undefined) {
               target = tmp;
               return true;
             }
           });
+
           if (found) {
             result = target;
           }
@@ -172,17 +189,21 @@
           // No object, creating the object
           result = this._createQxObject(id);
         }
+
         if (result && controlId) {
           var childControl = result.getChildControl(controlId);
           return childControl;
         }
+
         if (!qx.core.Environment.get("qx.core.Object.allowUndefinedObjectId")) {
           if (result === undefined) {
             throw new Error("Cannot find a QX Object in ".concat(this.classname, " [").concat(this, "] with id=").concat(id));
           }
         }
+
         return result;
       },
+
       /**
        * Creates the object and adds it to a list; most classes are expected to
        * override `_createQxObjectImpl` NOT this method.
@@ -192,11 +213,14 @@
        */
       _createQxObject: function _createQxObject(id) {
         var result = this._createQxObjectImpl(id);
+
         if (result !== undefined) {
           this.addOwnedQxObject(result, id);
         }
+
         return result;
       },
+
       /**
        * Creates the object, intended to be overridden. Null is a valid return
        * value and will be cached by `getQxObject`, however `undefined` is NOT a
@@ -209,6 +233,7 @@
       _createQxObjectImpl: function _createQxObjectImpl(id) {
         return undefined;
       },
+
       /**
        * Adds an object as owned by this object
        *
@@ -219,45 +244,60 @@
         if (!this.__P_165_0) {
           this.__P_165_0 = {};
         }
+
         if (!(obj instanceof qx.core.Object)) {
           if (!id) {
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
+
           if (this.__P_165_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
+
           this.__P_165_0[id] = obj;
           return;
         }
+
         var thatOwner = obj.getQxOwner();
+
         if (thatOwner === this) {
           return;
         }
+
         obj.__P_165_1 = true;
+
         try {
           if (thatOwner) {
             thatOwner.__P_165_3(obj);
           }
+
           if (id === undefined) {
             id = obj.getQxObjectId();
           }
+
           if (!id) {
             throw new Error("Cannot register an object that has no ID, obj=" + obj);
           }
+
           if (this.__P_165_0[id]) {
             throw new Error("Cannot register an object with ID '" + id + "' because that ID is already in use, this=" + this + ", obj=" + obj);
           }
+
           if (obj.getQxOwner() != null) {
             throw new Error("Cannot register an object with ID '" + id + "' because it is already owned by another object this=" + this + ", obj=" + obj);
           }
+
           obj.setQxOwner(this);
           obj.setQxObjectId(id);
+
           obj._cascadeQxObjectIdChanges();
         } finally {
           obj.__P_165_1 = false;
         }
+
         this.__P_165_0[id] = obj;
       },
+
       /**
        * Discards an object from the list of owned objects; note that this does
        * not dispose of the object, simply forgets it if it exists.
@@ -268,35 +308,46 @@
         if (!this.__P_165_0) {
           throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
         }
+
         var id;
         var obj;
+
         if (typeof args === "string") {
           if (args.indexOf("/") > -1) {
             throw new Error("Cannot discard owned objects based on a path");
           }
+
           id = args;
           obj = this.__P_165_0[id];
+
           if (obj === undefined) {
             return;
           }
         } else {
           obj = args;
+
           if (!(obj instanceof qx.core.Object)) {
             throw new Error("Cannot discard object by reference because it is not a Qooxdoo object, please remove it using the original ID; object=" + obj);
           }
+
           id = obj.getQxObjectId();
+
           if (this.__P_165_0[id] !== obj) {
             throw new Error("Cannot discard object because it is not owned by this, this=" + this + ", object=" + obj);
           }
         }
+
         if (obj !== null) {
           if (!(obj instanceof qx.core.Object)) {
             this.__P_165_3(obj);
+
             delete this.__P_165_0[id];
           } else {
             obj.__P_165_1 = true;
+
             try {
               this.__P_165_3(obj);
+
               obj._cascadeQxObjectIdChanges();
             } finally {
               obj.__P_165_1 = false;
@@ -304,6 +355,7 @@
           }
         }
       },
+
       /**
        * Removes an owned object
        *
@@ -316,6 +368,7 @@
           delete this.__P_165_0[id];
         }
       },
+
       /**
        * Returns an array of objects that are owned by this object, or an empty
        * array if none exists.
@@ -330,4 +383,4 @@
   qx.core.MObjectId.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MObjectId.js.map?dt=1677362730561
+//# sourceMappingURL=MObjectId.js.map?dt=1685978113079

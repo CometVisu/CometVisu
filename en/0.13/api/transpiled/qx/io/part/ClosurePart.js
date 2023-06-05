@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,6 +40,7 @@
    */
   qx.Bootstrap.define("qx.io.part.ClosurePart", {
     extend: qx.io.part.Part,
+
     /**
      * @param name {String} Name of the part as defined in the config file at
      *    compile time.
@@ -55,13 +57,17 @@
         // store how many packages are already preloaded
         var packagesLoaded = 0;
         var that = this;
+
         for (var i = 0; i < this._packages.length; i++) {
           var pkg = this._packages[i];
+
           if (pkg.getReadyState() == "initialized") {
             pkg.loadClosure(function (pkg) {
               packagesLoaded++;
-              that._loader.notifyPackageResult(pkg);
-              // everything loaded?
+
+              that._loader.notifyPackageResult(pkg); // everything loaded?
+
+
               if (packagesLoaded >= that._packages.length && callback) {
                 callback.call(self);
               }
@@ -69,6 +75,7 @@
           }
         }
       },
+
       /**
        * Loads the closure part including all its packages. The loading will
        * be done parallel. After all packages are available, the closures are
@@ -81,37 +88,42 @@
         if (this._checkCompleteLoading(callback, self)) {
           return;
         }
+
         this._readyState = "loading";
+
         if (callback) {
           this._appendPartListener(callback, self, this);
         }
+
         this.__P_248_0 = this._packages.length;
+
         for (var i = 0; i < this._packages.length; i++) {
           var pkg = this._packages[i];
-          var pkgReadyState = pkg.getReadyState();
+          var pkgReadyState = pkg.getReadyState(); // trigger loading
 
-          // trigger loading
           if (pkgReadyState == "initialized") {
             pkg.loadClosure(this._loader.notifyPackageResult, this._loader);
-          }
+          } // Listener for package changes
 
-          // Listener for package changes
+
           if (pkgReadyState == "initialized" || pkgReadyState == "loading") {
             this._loader.addPackageListener(pkg, qx.Bootstrap.bind(this._onPackageLoad, this, pkg));
           } else if (pkgReadyState == "error") {
             this._markAsCompleted("error");
+
             return;
           } else {
             // "complete" and "cached"
             this.__P_248_0--;
           }
-        }
+        } // execute closures in case everything is already loaded/cached
 
-        // execute closures in case everything is already loaded/cached
+
         if (this.__P_248_0 <= 0) {
           this.__P_248_1();
         }
       },
+
       /**
        * Executes the packages in their correct order and marks the part as
        * complete after execution.
@@ -120,8 +132,10 @@
         for (var i = 0; i < this._packages.length; i++) {
           this._packages[i].execute();
         }
+
         this._markAsCompleted("complete");
       },
+
       /**
        * Handler for every package load. It checks for errors and decreases the
        * packages to load. If all packages has been loaded, it invokes the
@@ -133,16 +147,18 @@
         // if the part already has an error, ignore the callback
         if (this._readyState == "error") {
           return;
-        }
+        } // one error package results in an error part
 
-        // one error package results in an error part
+
         if (pkg.getReadyState() == "error") {
           this._markAsCompleted("error");
-          return;
-        }
 
-        // every package could be loaded -> execute the closures
+          return;
+        } // every package could be loaded -> execute the closures
+
+
         this.__P_248_0--;
+
         if (this.__P_248_0 <= 0) {
           this.__P_248_1();
         }
@@ -152,4 +168,4 @@
   qx.io.part.ClosurePart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClosurePart.js.map?dt=1677362742237
+//# sourceMappingURL=ClosurePart.js.map?dt=1685978125251

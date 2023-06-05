@@ -28,6 +28,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,6 +60,7 @@
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
+
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         abort: 1,
@@ -84,8 +86,10 @@
         volumechange: 1,
         waiting: 1
       },
+
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
+
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false
     },
@@ -93,15 +97,18 @@
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {
         var lower = target.tagName.toLowerCase();
+
         if (lower === "video" || lower === "audio") {
           return true;
         }
+
         return false;
       },
       // interface implementation
       registerEvent: function registerEvent(target, type, capture) {
         qx.bom.Event.addNativeListener(target, type, this.__P_227_0);
       },
+
       /**
        * Default event handler for events that do not bubble
        *
@@ -124,4 +131,4 @@
   qx.event.handler.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1677362739675
+//# sourceMappingURL=Video.js.map?dt=1685978122622

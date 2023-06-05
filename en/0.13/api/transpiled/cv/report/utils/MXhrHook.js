@@ -10,6 +10,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MXhrHook.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,6 +42,7 @@
     construct: function construct() {
       this.addListener('changePhase', this._onPhaseChange, this);
     },
+
     /*
     ******************************************************
       STATICS
@@ -49,6 +51,7 @@
     statics: {
       PENDING: {}
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -56,6 +59,7 @@
     */
     members: {
       __P_558_0: null,
+
       /**
        * Calculate Hash code for current request
        */
@@ -66,9 +70,10 @@
         var hash = this.getRequestHash();
         var delay;
         var url = cv.report.Record.normalizeUrl(this._getConfiguredUrl());
+
         if (ev.getData() === 'opened') {
-          this.__P_558_0 = Date.now();
-          // calculate Hash value for request
+          this.__P_558_0 = Date.now(); // calculate Hash value for request
+
           cv.report.Record.record(cv.report.Record.XHR, 'request', {
             url: url,
             method: this.getMethod(),
@@ -76,26 +81,27 @@
             requestData: this.getRequestData(),
             hash: hash
           });
+
           if (!cv.report.utils.MXhrHook.PENDING[hash]) {
             cv.report.utils.MXhrHook.PENDING[hash] = [];
           }
+
           cv.report.utils.MXhrHook.PENDING[hash].push(url);
         } else if (ev.getData() === 'load') {
           if (!this.__P_558_0) {
             this.error('response received without sendTime set. Not possible to calculate correct delay');
-          }
-          // response has been received (successful or not) -> log it
+          } // response has been received (successful or not) -> log it
+
+
           var headers = {};
           this.getAllResponseHeaders().trim().split('\r\n').forEach(function (entry) {
             var parts = entry.split(': ');
             headers[parts[0]] = parts[1];
           });
-          delay = Date.now() - this.__P_558_0;
-
-          // log the trigger that triggers the server responses
-
+          delay = Date.now() - this.__P_558_0; // log the trigger that triggers the server responses
           // do not log 404 answers as the fake server sends them automatically
           // end the logged ones break the replay for some reason
+
           if (this.getStatus() !== 404) {
             cv.report.Record.record(cv.report.Record.XHR, 'response', {
               url: url,
@@ -108,26 +114,26 @@
               phase: 'load'
             });
           }
-          this.__P_558_0 = null;
 
-          // delete pending request
+          this.__P_558_0 = null; // delete pending request
+
           cv.report.utils.MXhrHook.PENDING[hash].shift();
+
           if (cv.report.utils.MXhrHook.PENDING[hash].length === 0) {
             delete cv.report.utils.MXhrHook.PENDING[hash];
           }
         } else if (ev.getData() === 'abort') {
-          delay = Date.now() - this.__P_558_0;
+          delay = Date.now() - this.__P_558_0; // request aborted, maybe by watchdog
 
-          // request aborted, maybe by watchdog
           cv.report.Record.record(cv.report.Record.XHR, 'response', {
             url: url,
             delay: delay,
             hash: hash,
             phase: 'abort'
-          });
+          }); // delete pending request
 
-          // delete pending request
           cv.report.utils.MXhrHook.PENDING[hash].shift();
+
           if (cv.report.utils.MXhrHook.PENDING[hash].length === 0) {
             delete cv.report.utils.MXhrHook.PENDING[hash];
           }
@@ -138,4 +144,4 @@
   cv.report.utils.MXhrHook.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MXhrHook.js.map?dt=1677362779694
+//# sourceMappingURL=MXhrHook.js.map?dt=1685978161860

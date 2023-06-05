@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,4 +47,4 @@
   qx.core.IDisposable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IDisposable.js.map?dt=1677362730137
+//# sourceMappingURL=IDisposable.js.map?dt=1685978112673

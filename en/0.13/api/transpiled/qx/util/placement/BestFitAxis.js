@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
        * @return {Boolean} Whether the object is inside of the axis' range
        */
       _isInRange: qx.util.placement.AbstractAxis._isInRange,
+
       /**
        * Computes the start of the object by taking only the attachment and
        * alignment into account. The object by be not fully visible.
@@ -61,6 +63,7 @@
        * @return {Integer} The computed start position of the object.
        */
       _moveToEdgeAndAlign: qx.util.placement.AbstractAxis._moveToEdgeAndAlign,
+
       /**
        * Computes the start of the object on the axis
        *
@@ -82,15 +85,19 @@
        */
       computeStart: function computeStart(size, target, offsets, areaSize, position) {
         var start = this._moveToEdgeAndAlign(size, target, offsets, position);
+
         if (this._isInRange(start, size, areaSize)) {
           return start;
         }
+
         if (start < 0) {
           start = Math.min(0, areaSize - size);
         }
+
         if (start + size > areaSize) {
           start = Math.max(0, areaSize - size);
         }
+
         return start;
       }
     }
@@ -98,4 +105,4 @@
   qx.util.placement.BestFitAxis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BestFitAxis.js.map?dt=1677362774082
+//# sourceMappingURL=BestFitAxis.js.map?dt=1685978155651

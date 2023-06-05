@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,26 +55,30 @@
   qx.Class.define("qx.ui.layout.Abstract", {
     type: "abstract",
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /** @type {Map} The cached size hint */
       __P_368_0: null,
+
       /** @type {Boolean} Whether the children cache is valid. This field is protected
        *    because sub classes must be able to access it quickly.
        */
       _invalidChildrenCache: null,
+
       /** @type {qx.ui.core.Widget} The connected widget */
       __P_368_1: null,
+
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
       ---------------------------------------------------------------------------
       */
+
       /**
        * Invalidate all layout relevant caches. Automatically deletes the size hint.
        *
@@ -82,6 +87,7 @@
       invalidateLayoutCache: function invalidateLayoutCache() {
         this.__P_368_0 = null;
       },
+
       /**
        * Applies the children layout.
        *
@@ -94,6 +100,7 @@
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         this.warn("Missing renderLayout() implementation!");
       },
+
       /**
        * Computes the layout dimensions and possible ranges of these.
        *
@@ -106,8 +113,10 @@
         if (this.__P_368_0) {
           return this.__P_368_0;
         }
+
         return this.__P_368_0 = this._computeSizeHint();
       },
+
       /**
        * Whether the layout manager supports height for width.
        *
@@ -116,6 +125,7 @@
       hasHeightForWidth: function hasHeightForWidth() {
         return false;
       },
+
       /**
        * If layout wants to trade height for width it has to implement this
        * method and return the preferred height if it is resized to
@@ -129,6 +139,7 @@
         this.warn("Missing getHeightForWidth() implementation!");
         return null;
       },
+
       /**
        * This computes the size hint of the layout and returns it.
        *
@@ -138,6 +149,7 @@
       _computeSizeHint: function _computeSizeHint() {
         return null;
       },
+
       /**
        * This method is called, on each child "add" and "remove" action and
        * whenever the layout data of a child is changed. The method should be used
@@ -147,6 +159,7 @@
       invalidateChildrenCache: function invalidateChildrenCache() {
         this._invalidChildrenCache = true;
       },
+
       /**
        * Verifies the value of a layout property.
        *
@@ -158,11 +171,11 @@
        * @param value {Object} Value of the layout property
        */
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
-        "true": function _true(item, name, value) {
-          // empty implementation
+        "true": function _true(item, name, value) {// empty implementation
         },
         "false": null
       }),
+
       /**
        * Remove all currently visible separators
        */
@@ -170,10 +183,12 @@
         // It may be that the widget do not implement clearSeparators which is especially true
         // when it do not inherit from LayoutItem.
         var widget = this.__P_368_1;
+
         if (widget instanceof qx.ui.core.LayoutItem) {
           widget.clearSeparators();
         }
       },
+
       /**
        * Renders a separator between two children
        *
@@ -184,6 +199,7 @@
       _renderSeparator: function _renderSeparator(separator, bounds) {
         this.__P_368_1.renderSeparator(separator, bounds);
       },
+
       /**
        * This method is called by the widget to connect the widget with the layout.
        *
@@ -193,11 +209,12 @@
         if (widget && this.__P_368_1) {
           throw new Error("It is not possible to manually set the connected widget.");
         }
-        this.__P_368_1 = widget;
 
-        // Invalidate cache
+        this.__P_368_1 = widget; // Invalidate cache
+
         this.invalidateChildrenCache();
       },
+
       /**
        * Return the widget that is this layout is responsible for.
        *
@@ -206,6 +223,7 @@
       _getWidget: function _getWidget() {
         return this.__P_368_1;
       },
+
       /**
        * Indicate that the layout has layout changed and propagate this information
        * up the widget hierarchy.
@@ -217,6 +235,7 @@
           this.__P_368_1.scheduleLayoutUpdate();
         }
       },
+
       /**
        * Returns the list of all layout relevant children.
        *
@@ -226,6 +245,7 @@
         return this.__P_368_1.getLayoutChildren();
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -238,4 +258,4 @@
   qx.ui.layout.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1677362759195
+//# sourceMappingURL=Abstract.js.map?dt=1685978140154

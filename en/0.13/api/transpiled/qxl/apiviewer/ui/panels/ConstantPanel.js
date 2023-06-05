@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,6 +54,7 @@
       getPanelItemObjects: function getPanelItemObjects(daoClass, showInherited) {
         return daoClass.getConstants();
       },
+
       /**
        * Checks whether a constant has details.
        *
@@ -69,6 +71,7 @@
       getItemTitleHtml: function getItemTitleHtml(node) {
         return qxl.apiviewer.ui.panels.InfoPanel.setTitleClass(node, node.getName());
       },
+
       /**
        * Creates the HTML showing the information about a constant.
        *
@@ -79,14 +82,17 @@
        */
       getItemTextHtml: function getItemTextHtml(node, currentClassDocNode, showDetails) {
         var textHtml = qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node.getClass(), showDetails);
+
         if (showDetails) {
           textHtml += this.__P_581_1(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createErrorHtml(node, currentClassDocNode);
           textHtml += qxl.apiviewer.ui.panels.InfoPanel.createDeprecationHtml(node, "constant");
         }
+
         return textHtml;
       },
+
       /**
        * Checks whether a constant value is provided
        *
@@ -96,6 +102,7 @@
       __P_581_0: function __P_581_0(node) {
         return Boolean(node.getValue());
       },
+
       /**
        * Creates the HTML showing the value of a constant
        *
@@ -105,13 +112,16 @@
       __P_581_1: function __P_581_1(node) {
         if (this.__P_581_0(node)) {
           var value = node.getValue();
+
           if (typeof value !== "string") {
             value = qx.lang.Json.stringify(value);
           }
+
           value = qx.bom.String.escape(value);
           var html = new qx.util.StringBuilder('<div class="item-detail-headline">', "Value: ", "</div>", '<div class="item-detail-text">', value, "</div>");
           return html.get();
         }
+
         return "";
       }
     }
@@ -119,4 +129,4 @@
   qxl.apiviewer.ui.panels.ConstantPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConstantPanel.js.map?dt=1677362782333
+//# sourceMappingURL=ConstantPanel.js.map?dt=1685978164837

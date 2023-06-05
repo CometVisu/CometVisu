@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -118,11 +119,13 @@
    */
   qx.Class.define("qx.ui.layout.Dock", {
     extend: qx.ui.layout.Abstract,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param spacingX {Integer?0} The horizontal spacing. Sets {@link #spacingX}.
      * @param spacingY {Integer?0} The vertical spacing. Sets {@link #spacingY}.
@@ -131,25 +134,29 @@
      */
     construct: function construct(spacingX, spacingY, separatorX, separatorY) {
       qx.ui.layout.Abstract.constructor.call(this);
+
       if (spacingX) {
         this.setSpacingX(spacingX);
       }
+
       if (spacingY) {
         this.setSpacingY(spacingY);
       }
+
       if (separatorX) {
         this.setSeparatorX(separatorX);
       }
+
       if (separatorY) {
         this.setSeparatorY(separatorY);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * The way the widgets should be displayed (in conjunction with their
@@ -160,18 +167,21 @@
         init: "auto",
         apply: "_applySort"
       },
+
       /** Separator lines to use between the horizontal objects */
       separatorX: {
         check: "Decorator",
         nullable: true,
         apply: "_applyLayoutChange"
       },
+
       /** Separator lines to use between the vertical objects */
       separatorY: {
         check: "Decorator",
         nullable: true,
         apply: "_applyLayoutChange"
       },
+
       /**
        * Whether separators should be collapsed so when a spacing is
        * configured the line go over into each other
@@ -181,12 +191,14 @@
         init: false,
         apply: "_applyLayoutChange"
       },
+
       /** Horizontal spacing between two children */
       spacingX: {
         check: "Integer",
         init: 0,
         apply: "_applyLayoutChange"
       },
+
       /** Vertical spacing between two children */
       spacingY: {
         check: "Integer",
@@ -194,12 +206,12 @@
         apply: "_applyLayoutChange"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_369_0: null,
       __P_369_1: null,
@@ -207,6 +219,7 @@
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
         "true": function _true(item, name, value) {
           this.assertInArray(name, ["flex", "edge", "height", "width"], "The property '" + name + "' is not supported by the Dock layout!");
+
           if (name === "edge") {
             this.assertInArray(value, ["north", "south", "west", "east", "center"]);
           } else if (name === "flex") {
@@ -221,11 +234,11 @@
       // property apply
       _applySort: function _applySort() {
         // easiest way is to invalidate the cache
-        this._invalidChildrenCache = true;
+        this._invalidChildrenCache = true; // call normal layout change
 
-        // call normal layout change
         this._applyLayoutChange();
       },
+
       /**
        * @type {Map} Maps edge IDs to numeric values
        *
@@ -238,6 +251,7 @@
         east: 4,
         center: 5
       },
+
       /**
        * @type {Map} Maps edges to align values
        *
@@ -249,12 +263,14 @@
         3: "left",
         4: "right"
       },
+
       /**
        * Rebuilds cache for sorted children list.
        *
        */
       __P_369_4: function __P_369_4() {
         var all = this._getLayoutChildren();
+
         var child, center;
         var length = all.length;
         var high = [];
@@ -262,13 +278,16 @@
         var edge = [];
         var yfirst = this.getSort() === "y";
         var xfirst = this.getSort() === "x";
+
         for (var i = 0; i < length; i++) {
           child = all[i];
           edge = child.getLayoutProperties().edge;
+
           if (edge === "center") {
             if (center) {
               throw new Error("It is not allowed to have more than one child aligned to 'center'!");
             }
+
             center = child;
           } else if (xfirst || yfirst) {
             if (edge === "north" || edge === "south") {
@@ -279,26 +298,29 @@
           } else {
             high.push(child);
           }
-        }
+        } // Combine sorted children list
 
-        // Combine sorted children list
+
         var result = high.concat(low);
+
         if (center) {
           result.push(center);
         }
-        this.__P_369_0 = result;
 
-        // Cache edges for faster access
+        this.__P_369_0 = result; // Cache edges for faster access
+
         var edges = [];
+
         for (var i = 0; i < length; i++) {
           edge = result[i].getLayoutProperties().edge;
           edges[i] = this.__P_369_2[edge] || 5;
         }
-        this.__P_369_1 = edges;
 
-        // Clear invalidation marker
+        this.__P_369_1 = edges; // Clear invalidation marker
+
         delete this._invalidChildrenCache;
       },
+
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
@@ -310,6 +332,7 @@
         if (this._invalidChildrenCache) {
           this.__P_369_4();
         }
+
         var util = qx.ui.layout.Util;
         var children = this.__P_369_0;
         var edges = this.__P_369_1;
@@ -317,99 +340,114 @@
         var flexibles, child, hint, props, flex, grow, width, height, offset;
         var widths = [];
         var heights = [];
-        var separatorWidths = this._getSeparatorWidths();
-        var spacingX = this.getSpacingX();
-        var spacingY = this.getSpacingY();
 
-        // **************************************
+        var separatorWidths = this._getSeparatorWidths();
+
+        var spacingX = this.getSpacingX();
+        var spacingY = this.getSpacingY(); // **************************************
         //   Caching children data
         // **************************************
 
         var allocatedWidth = -spacingX;
         var allocatedHeight = -spacingY;
+
         if (separatorWidths.x) {
           allocatedWidth -= separatorWidths.x + spacingX;
         }
+
         if (separatorWidths.y) {
           allocatedHeight -= separatorWidths.y + spacingY;
         }
+
         for (var i = 0; i < length; i++) {
           child = children[i];
           props = child.getLayoutProperties();
           hint = child.getSizeHint();
           width = hint.width;
           height = hint.height;
+
           if (props.width != null) {
             width = Math.floor(availWidth * parseFloat(props.width) / 100);
+
             if (width < hint.minWidth) {
               width = hint.minWidth;
             } else if (width > hint.maxWidth) {
               width = hint.maxWidth;
             }
           }
+
           if (props.height != null) {
             height = Math.floor(availHeight * parseFloat(props.height) / 100);
+
             if (height < hint.minHeight) {
               height = hint.minHeight;
             } else if (height > hint.maxHeight) {
               height = hint.maxHeight;
             }
           }
-          widths[i] = width;
-          heights[i] = height;
 
-          // Update allocated width
+          widths[i] = width;
+          heights[i] = height; // Update allocated width
+
           switch (edges[i]) {
             // north+south
             case 1:
             case 2:
               allocatedHeight += height + child.getMarginTop() + child.getMarginBottom() + spacingY;
+
               if (separatorWidths.y) {
                 allocatedHeight += separatorWidths.y + spacingY;
               }
-              break;
 
+              break;
             // west+east
+
             case 3:
             case 4:
               allocatedWidth += width + child.getMarginLeft() + child.getMarginRight() + spacingX;
+
               if (separatorWidths.x) {
                 allocatedWidth += separatorWidths.x + spacingX;
               }
-              break;
 
+              break;
             // center
+
             default:
               allocatedWidth += width + child.getMarginLeft() + child.getMarginRight() + spacingX;
               allocatedHeight += height + child.getMarginTop() + child.getMarginBottom() + spacingY;
+
               if (separatorWidths.x) {
                 allocatedWidth += separatorWidths.x + spacingX;
               }
+
               if (separatorWidths.y) {
                 allocatedHeight += separatorWidths.y + spacingY;
               }
-          }
-        }
 
-        // **************************************
+          }
+        } // **************************************
         //   Horizontal flex support
         // **************************************
+
 
         if (allocatedWidth != availWidth) {
           flexibles = {};
           grow = allocatedWidth < availWidth;
+
           for (var i = 0; i < length; i++) {
             child = children[i];
+
             switch (edges[i]) {
               case 3:
               case 4:
               case 5:
-                flex = child.getLayoutProperties().flex;
+                flex = child.getLayoutProperties().flex; // Default flex for centered children is '1'
 
-                // Default flex for centered children is '1'
                 if (flex == null && edges[i] == 5) {
                   flex = 1;
                 }
+
                 if (flex > 0) {
                   hint = child.getSizeHint();
                   flexibles[i] = {
@@ -419,36 +457,40 @@
                     flex: flex
                   };
                 }
+
             }
           }
+
           var result = util.computeFlexOffsets(flexibles, availWidth, allocatedWidth);
+
           for (var i in result) {
             offset = result[i].offset;
             widths[i] += offset;
             allocatedWidth += offset;
           }
-        }
-
-        // **************************************
+        } // **************************************
         //   Vertical flex support
         // **************************************
-
         // Process height for flex stretching/shrinking
+
+
         if (allocatedHeight != availHeight) {
           flexibles = {};
           grow = allocatedHeight < availHeight;
+
           for (var i = 0; i < length; i++) {
             child = children[i];
+
             switch (edges[i]) {
               case 1:
               case 2:
               case 5:
-                flex = child.getLayoutProperties().flex;
+                flex = child.getLayoutProperties().flex; // Default flex for centered children is '1'
 
-                // Default flex for centered children is '1'
                 if (flex == null && edges[i] == 5) {
                   flex = 1;
                 }
+
                 if (flex > 0) {
                   hint = child.getSizeHint();
                   flexibles[i] = {
@@ -458,188 +500,193 @@
                     flex: flex
                   };
                 }
+
             }
           }
+
           var result = util.computeFlexOffsets(flexibles, availHeight, allocatedHeight);
+
           for (var i in result) {
             offset = result[i].offset;
             heights[i] += offset;
             allocatedHeight += offset;
           }
-        }
-
-        // **************************************
+        } // **************************************
         //   Layout children
         // **************************************
-
         // Pre configure separators
-        this._clearSeparators();
 
-        // Prepare loop
+
+        this._clearSeparators(); // Prepare loop
+
+
         var separatorX = this.getSeparatorX(),
-          separatorY = this.getSeparatorY();
+            separatorY = this.getSeparatorY();
         var connectSeparators = this.getConnectSeparators();
         var nextTop = 0,
-          nextLeft = 0;
+            nextLeft = 0;
         var left, top, width, height, used, edge;
         var separatorLeft, separatorTop, separatorWidth, separatorHeight;
         var marginTop, marginBottom, marginLeft, marginRight;
         var alignMap = this.__P_369_3;
+
         for (var i = 0; i < length; i++) {
           // Cache child data
           child = children[i];
           edge = edges[i];
-          hint = child.getSizeHint();
+          hint = child.getSizeHint(); // Cache child margins
 
-          // Cache child margins
           marginTop = child.getMarginTop();
           marginBottom = child.getMarginBottom();
           marginLeft = child.getMarginLeft();
-          marginRight = child.getMarginRight();
+          marginRight = child.getMarginRight(); // Calculate child layout
 
-          // Calculate child layout
           switch (edge) {
             // north + south
             case 1:
             case 2:
               // Full available width
-              width = availWidth - marginLeft - marginRight;
+              width = availWidth - marginLeft - marginRight; // Limit width to min/max
 
-              // Limit width to min/max
               if (width < hint.minWidth) {
                 width = hint.minWidth;
               } else if (width > hint.maxWidth) {
                 width = hint.maxWidth;
-              }
+              } // Child preferred height
 
-              // Child preferred height
-              height = heights[i];
 
-              // Compute position
+              height = heights[i]; // Compute position
+
               top = nextTop + util.computeVerticalAlignOffset(alignMap[edge], height, availHeight, marginTop, marginBottom);
-              left = nextLeft + util.computeHorizontalAlignOffset(child.getAlignX() || "left", width, availWidth, marginLeft, marginRight);
+              left = nextLeft + util.computeHorizontalAlignOffset(child.getAlignX() || "left", width, availWidth, marginLeft, marginRight); // Render the separator
 
-              // Render the separator
               if (separatorWidths.y) {
                 if (edge == 1) {
                   separatorTop = nextTop + height + marginTop + spacingY + marginBottom;
                 } else {
                   separatorTop = nextTop + availHeight - height - marginTop - spacingY - marginBottom - separatorWidths.y;
                 }
+
                 separatorLeft = left;
                 separatorWidth = availWidth;
+
                 if (connectSeparators && separatorLeft > 0) {
                   separatorLeft -= spacingX + marginLeft;
                   separatorWidth += spacingX * 2;
                 } else {
                   separatorLeft -= marginLeft;
                 }
+
                 this._renderSeparator(separatorY, {
                   left: separatorLeft + padding.left,
                   top: separatorTop + padding.top,
                   width: separatorWidth,
                   height: separatorWidths.y
                 });
-              }
+              } // Update available height
 
-              // Update available height
+
               used = height + marginTop + marginBottom + spacingY;
+
               if (separatorWidths.y) {
                 used += separatorWidths.y + spacingY;
               }
-              availHeight -= used;
 
-              // Update coordinates, for next child
+              availHeight -= used; // Update coordinates, for next child
+
               if (edge == 1) {
                 nextTop += used;
               }
-              break;
 
+              break;
             // west + east
+
             case 3:
             case 4:
               // Full available height
-              height = availHeight - marginTop - marginBottom;
+              height = availHeight - marginTop - marginBottom; // Limit height to min/max
 
-              // Limit height to min/max
               if (height < hint.minHeight) {
                 height = hint.minHeight;
               } else if (height > hint.maxHeight) {
                 height = hint.maxHeight;
-              }
+              } // Child preferred width
 
-              // Child preferred width
-              width = widths[i];
 
-              // Compute position
+              width = widths[i]; // Compute position
+
               left = nextLeft + util.computeHorizontalAlignOffset(alignMap[edge], width, availWidth, marginLeft, marginRight);
-              top = nextTop + util.computeVerticalAlignOffset(child.getAlignY() || "top", height, availHeight, marginTop, marginBottom);
+              top = nextTop + util.computeVerticalAlignOffset(child.getAlignY() || "top", height, availHeight, marginTop, marginBottom); // Render the separator
 
-              // Render the separator
               if (separatorWidths.x) {
                 if (edge == 3) {
                   separatorLeft = nextLeft + width + marginLeft + spacingX + marginRight;
                 } else {
                   separatorLeft = nextLeft + availWidth - width - marginLeft - spacingX - marginRight - separatorWidths.x;
                 }
+
                 separatorTop = top;
                 separatorHeight = availHeight;
+
                 if (connectSeparators && separatorTop > 0) {
                   separatorTop -= spacingY + marginTop;
                   separatorHeight += spacingY * 2;
                 } else {
                   separatorTop -= marginTop;
                 }
+
                 this._renderSeparator(separatorX, {
                   left: separatorLeft + padding.left,
                   top: separatorTop + padding.top,
                   width: separatorWidths.x,
                   height: separatorHeight
                 });
-              }
+              } // Update available height
 
-              // Update available height
+
               used = width + marginLeft + marginRight + spacingX;
+
               if (separatorWidths.x) {
                 used += separatorWidths.x + spacingX;
               }
-              availWidth -= used;
 
-              // Update coordinates, for next child
+              availWidth -= used; // Update coordinates, for next child
+
               if (edge == 3) {
                 nextLeft += used;
               }
-              break;
 
+              break;
             // center
+
             default:
               // Calculated width/height
               width = availWidth - marginLeft - marginRight;
-              height = availHeight - marginTop - marginBottom;
+              height = availHeight - marginTop - marginBottom; // Limit width to min/max
 
-              // Limit width to min/max
               if (width < hint.minWidth) {
                 width = hint.minWidth;
               } else if (width > hint.maxWidth) {
                 width = hint.maxWidth;
-              }
+              } // Limit height to min/max
 
-              // Limit height to min/max
+
               if (height < hint.minHeight) {
                 height = hint.minHeight;
               } else if (height > hint.maxHeight) {
                 height = hint.maxHeight;
-              }
+              } // Compute coordinates (respect margins and alignments for both axis)
 
-              // Compute coordinates (respect margins and alignments for both axis)
+
               left = nextLeft + util.computeHorizontalAlignOffset(child.getAlignX() || "left", width, availWidth, marginLeft, marginRight);
               top = nextTop + util.computeVerticalAlignOffset(child.getAlignY() || "top", height, availHeight, marginTop, marginBottom);
-          }
+          } // Apply layout
 
-          // Apply layout
+
           child.renderLayout(left + padding.left, top + padding.top, width, height);
         }
       },
+
       /**
        * Computes the dimensions each separator on both the <code>x</code> and
        * <code>y</code> axis needs.
@@ -649,20 +696,24 @@
        */
       _getSeparatorWidths: function _getSeparatorWidths() {
         var separatorX = this.getSeparatorX(),
-          separatorY = this.getSeparatorY();
+            separatorY = this.getSeparatorY();
+
         if (separatorX || separatorY) {
           var decorationManager = qx.theme.manager.Decoration.getInstance();
         }
+
         if (separatorX) {
           var separatorInstanceX = decorationManager.resolve(separatorX);
           var separatorInsetsX = separatorInstanceX.getInsets();
           var separatorWidthX = separatorInsetsX.left + separatorInsetsX.right;
         }
+
         if (separatorY) {
           var separatorInstanceY = decorationManager.resolve(separatorY);
           var separatorInsetsY = separatorInstanceY.getInsets();
           var separatorWidthY = separatorInsetsY.top + separatorInsetsY.bottom;
         }
+
         return {
           x: separatorWidthX || 0,
           y: separatorWidthY || 0
@@ -674,41 +725,44 @@
         if (this._invalidChildrenCache) {
           this.__P_369_4();
         }
+
         var children = this.__P_369_0;
         var edges = this.__P_369_1;
         var length = children.length;
         var hint, child;
         var marginX, marginY;
         var widthX = 0,
-          minWidthX = 0;
+            minWidthX = 0;
         var heightX = 0,
-          minHeightX = 0;
+            minHeightX = 0;
         var widthY = 0,
-          minWidthY = 0;
+            minWidthY = 0;
         var heightY = 0,
-          minHeightY = 0;
+            minHeightY = 0;
+
         var separatorWidths = this._getSeparatorWidths();
+
         var spacingX = this.getSpacingX(),
-          spacingY = this.getSpacingY();
+            spacingY = this.getSpacingY();
         var spacingSumX = -spacingX,
-          spacingSumY = -spacingY;
+            spacingSumY = -spacingY;
+
         if (separatorWidths.x) {
           spacingSumX -= separatorWidths.x + spacingX;
         }
+
         if (separatorWidths.y) {
           spacingSumY -= separatorWidths.y + spacingY;
-        }
+        } // Detect children sizes
 
-        // Detect children sizes
+
         for (var i = 0; i < length; i++) {
           child = children[i];
-          hint = child.getSizeHint();
+          hint = child.getSizeHint(); // Pre-cache margin sums
 
-          // Pre-cache margin sums
           marginX = child.getMarginLeft() + child.getMarginRight();
-          marginY = child.getMarginTop() + child.getMarginBottom();
+          marginY = child.getMarginTop() + child.getMarginBottom(); // Ok, this part is a bit complicated :)
 
-          // Ok, this part is a bit complicated :)
           switch (edges[i]) {
             case 1:
             case 2:
@@ -716,61 +770,66 @@
               // The recommended width used by these must add the currently
               // occupied width by the orthogonal ordered children.
               widthY = Math.max(widthY, hint.width + widthX + marginX);
-              minWidthY = Math.max(minWidthY, hint.minWidth + minWidthX + marginX);
+              minWidthY = Math.max(minWidthY, hint.minWidth + minWidthX + marginX); // Add the needed heights of this widget
 
-              // Add the needed heights of this widget
               heightY += hint.height + marginY;
-              minHeightY += hint.minHeight + marginY;
+              minHeightY += hint.minHeight + marginY; // Add spacing
 
-              // Add spacing
               spacingSumY += spacingY;
+
               if (separatorWidths.y) {
                 spacingSumY += separatorWidths.y + spacingY;
               }
+
               break;
+
             case 3:
             case 4:
               // Find the maximum height used by these fully stretched items
               // The recommended height used by these must add the currently
               // occupied height by the orthogonal ordered children.
               heightX = Math.max(heightX, hint.height + heightY + marginY);
-              minHeightX = Math.max(minHeightX, hint.minHeight + minHeightY + marginY);
+              minHeightX = Math.max(minHeightX, hint.minHeight + minHeightY + marginY); // Add the needed widths of this widget
 
-              // Add the needed widths of this widget
               widthX += hint.width + marginX;
-              minWidthX += hint.minWidth + marginX;
+              minWidthX += hint.minWidth + marginX; // Add spacing
 
-              // Add spacing
               spacingSumX += spacingX;
+
               if (separatorWidths.x) {
                 spacingSumX += separatorWidths.x + spacingX;
               }
+
               break;
+
             default:
               // A centered widget must be added to both sums as
               // it stretches into the remaining available space.
               widthX += hint.width + marginX;
               minWidthX += hint.minWidth + marginX;
               heightY += hint.height + marginY;
-              minHeightY += hint.minHeight + marginY;
+              minHeightY += hint.minHeight + marginY; // Add spacing
 
-              // Add spacing
               spacingSumX += spacingX;
+
               if (separatorWidths.x) {
                 spacingSumX += separatorWidths.x + spacingX;
               }
+
               spacingSumY += spacingY;
+
               if (separatorWidths.y) {
                 spacingSumY += separatorWidths.y + spacingY;
               }
+
           }
         }
+
         var minWidth = Math.max(minWidthX, minWidthY) + spacingSumX;
         var width = Math.max(widthX, widthY) + spacingSumX;
         var minHeight = Math.max(minHeightX, minHeightY) + spacingSumY;
-        var height = Math.max(heightX, heightY) + spacingSumY;
+        var height = Math.max(heightX, heightY) + spacingSumY; // Return hint
 
-        // Return hint
         return {
           minWidth: minWidth,
           width: width,
@@ -779,6 +838,7 @@
         };
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -791,4 +851,4 @@
   qx.ui.layout.Dock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dock.js.map?dt=1677362759479
+//# sourceMappingURL=Dock.js.map?dt=1685978140439

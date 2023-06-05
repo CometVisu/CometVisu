@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* InfoAction.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -87,6 +88,7 @@
   qx.Class.define('cv.ui.structure.pure.InfoAction', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.HasChildren,
+
     /*
     ******************************************************
       PROPERTIES
@@ -98,6 +100,7 @@
         init: true
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -116,4 +119,4 @@
   cv.ui.structure.pure.InfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoAction.js.map?dt=1677362716973
+//# sourceMappingURL=InfoAction.js.map?dt=1685978099756

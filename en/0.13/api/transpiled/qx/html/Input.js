@@ -30,6 +30,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,11 +55,13 @@
    */
   qx.Class.define("qx.html.Input", {
     extend: qx.html.Element,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param type {String} The type of the input field. Valid values are
      *   <code>text</code>, <code>textarea</code>, <code>select</code>,
@@ -78,22 +81,24 @@
       } else {
         nodeName = "input";
       }
+
       qx.html.Element.constructor.call(this, nodeName, styles, attributes);
       this.__P_240_0 = type;
       this.registerProperty("value", this._getValueProperty, this._setValueProperty);
       this.registerProperty("wrap", null, this._setWrapProperty);
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_240_0: null,
       // used for webkit only
       __P_240_1: null,
       __P_240_2: null,
+
       /*
       ---------------------------------------------------------------------------
         ELEMENT API
@@ -106,6 +111,7 @@
       _createDomElement: function _createDomElement() {
         return qx.bom.Input.create(this.__P_240_0);
       },
+
       /**
        * Implementation of setter for the "value" property
        *
@@ -115,6 +121,7 @@
         var element = this.getDomElement();
         qx.bom.Input.setValue(element, value);
       },
+
       /**
        * Implementation of getter for the "value" property
        *
@@ -125,6 +132,7 @@
         var value = qx.bom.Input.getValue(element);
         return value;
       },
+
       /**
        * Implementation of setter for the "wrap" property
        *
@@ -132,16 +140,16 @@
        */
       _setWrapProperty: function _setWrapProperty(value) {
         var element = this.getDomElement();
-        qx.bom.Input.setWrap(element, value);
-
-        // qx.bom.Input#setWrap has the side-effect that the CSS property
+        qx.bom.Input.setWrap(element, value); // qx.bom.Input#setWrap has the side-effect that the CSS property
         // overflow is set via DOM methods, causing queue and DOM to get
         // out of sync. Mirror all overflow properties to handle the case
         // when group and x/y property differ.
+
         this.setStyle("overflow", element.style.overflow, true);
         this.setStyle("overflowX", element.style.overflowX, true);
         this.setStyle("overflowY", element.style.overflowY, true);
       },
+
       /**
        * Set the input element enabled / disabled.
        * Webkit needs a special treatment because the set color of the input
@@ -156,6 +164,7 @@
       setEnabled: function setEnabled(value) {
         this.__P_240_2 = value;
         this.setAttribute("disabled", value === false);
+
         if (qx.core.Environment.get("engine.name") == "webkit") {
           if (!value) {
             this.setStyles({
@@ -170,6 +179,7 @@
           }
         }
       },
+
       /**
        * Set whether the element is selectable. It uses the qooxdoo attribute
        * qxSelectable with the values 'on' or 'off'.
@@ -180,20 +190,21 @@
        */
       setSelectable: qx.core.Environment.select("engine.name", {
         webkit: function webkit(value) {
-          this.__P_240_1 = value;
+          this.__P_240_1 = value; // Only apply the value when it is enabled
 
-          // Only apply the value when it is enabled
           qx.html.Input.superclass.prototype.setSelectable.call(this, this.__P_240_2 && value);
         },
         "default": function _default(value) {
           qx.html.Input.superclass.prototype.setSelectable.call(this, value);
         }
       }),
+
       /*
       ---------------------------------------------------------------------------
         INPUT API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the value of the input element.
        *
@@ -202,6 +213,7 @@
        */
       setValue: function setValue(value) {
         var element = this.getDomElement();
+
         if (element) {
           // Do not overwrite when already correct (on input events)
           // This is needed to keep caret position while typing.
@@ -211,8 +223,10 @@
         } else {
           this._setProperty("value", value);
         }
+
         return this;
       },
+
       /**
        * Get the current value.
        *
@@ -220,11 +234,14 @@
        */
       getValue: function getValue() {
         var element = this.getDomElement();
+
         if (element) {
           return qx.bom.Input.getValue(element);
         }
+
         return this._getProperty("value") || "";
       },
+
       /**
        * Sets the text wrap behavior of a text area element.
        *
@@ -241,8 +258,10 @@
         } else {
           throw new Error("Text wrapping is only support by textareas!");
         }
+
         return this;
       },
+
       /**
        * Gets the text wrap behavior of a text area element.
        *
@@ -262,4 +281,4 @@
   qx.html.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1677362741124
+//# sourceMappingURL=Input.js.map?dt=1685978124147

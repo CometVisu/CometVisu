@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 34,
+        "line": 31,
         "column": 0,
-        "index": 991
+        "index": 779
       },
       "end": {
-        "line": 105,
+        "line": 102,
         "column": 3,
-        "index": 3755
+        "index": 3543
       }
     },
     "jsdoc": {
@@ -29,23 +29,13 @@
       "@asset": [
         {
           "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v50.ttf"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v50.woff2"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v50.woff"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialicons-v50.eot"
-        },
-        {
-          "name": "@asset",
           "body": "qx/static/blank.png"
+        }
+      ],
+      "@usefont": [
+        {
+          "name": "@usefont",
+          "body": "MaterialIcons"
         }
       ]
     }
@@ -55,14 +45,14 @@
     "URLS": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 39,
           "column": 4,
-          "index": 1170
+          "index": 958
         },
         "end": {
-          "line": 103,
+          "line": 100,
           "column": 5,
-          "index": 3747
+          "index": 3535
         }
       },
       "jsdoc": {

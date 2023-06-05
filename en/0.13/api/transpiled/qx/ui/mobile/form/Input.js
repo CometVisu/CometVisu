@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,7 +63,9 @@
     type: "abstract",
     construct: function construct() {
       qx.ui.mobile.core.Widget.constructor.call(this);
+
       this._setAttribute("type", this._getType());
+
       this.addCssClass("gap");
       this.addListener("focus", this._onSelected, this);
     },
@@ -71,11 +74,13 @@
       _getTagName: function _getTagName() {
         return "input";
       },
+
       /**
        * Returns the type of the input field. Override this method in the
        * specialized input class.
        */
       _getType: function _getType() {},
+
       /**
        * Handles the <code>click</code> and <code>focus</code> event on this input widget.
        * @param evt {qx.event.type.Event} <code>click</code> or <code>focus</code> event
@@ -84,15 +89,18 @@
         if (!(evt.getTarget() instanceof qx.ui.mobile.form.TextField) && !(evt.getTarget() instanceof qx.ui.mobile.form.NumberField)) {
           return;
         }
+
         var scrollContainer = this._getParentScrollContainer();
+
         if (scrollContainer === null) {
           return;
         }
-        setTimeout(function () {
-          scrollContainer.scrollToWidget(this.getLayoutParent(), 0);
 
-          // Refresh caret position after scrolling.
+        setTimeout(function () {
+          scrollContainer.scrollToWidget(this.getLayoutParent(), 0); // Refresh caret position after scrolling.
+
           this._setStyle("position", "relative");
+
           qx.bom.AnimationFrame.request(function () {
             this._setStyle("position", null);
           }, this);
@@ -106,4 +114,4 @@
   qx.ui.mobile.form.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1677362762424
+//# sourceMappingURL=Input.js.map?dt=1685978143548

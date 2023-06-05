@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,6 +59,7 @@
       hasChild: function hasChild(parent, child) {
         return child.parentNode === parent;
       },
+
       /**
        * Whether the given <code>element</code> has children.
        *
@@ -67,6 +69,7 @@
       hasChildren: function hasChildren(element) {
         return !!element.firstChild;
       },
+
       /**
        * Whether the given <code>element</code> has any child elements.
        *
@@ -75,14 +78,18 @@
        */
       hasChildElements: function hasChildElements(element) {
         element = element.firstChild;
+
         while (element) {
           if (element.nodeType === 1) {
             return true;
           }
+
           element = element.nextSibling;
         }
+
         return false;
       },
+
       /**
        * Returns the parent element of the given element.
        *
@@ -92,6 +99,7 @@
       getParentElement: function getParentElement(element) {
         return element.parentNode;
       },
+
       /**
        * Checks if the <code>element</code> is in the DOM, but note that
        * the method is very expensive!
@@ -105,19 +113,24 @@
         if (!win) {
           win = window;
         }
+
         var domElements = win.document.getElementsByTagName(element.nodeName);
+
         for (var i = 0, l = domElements.length; i < l; i++) {
           if (domElements[i] === element) {
             return true;
           }
         }
+
         return false;
       },
+
       /*
       ---------------------------------------------------------------------------
         INSERTION
       ---------------------------------------------------------------------------
       */
+
       /**
        * Inserts <code>node</code> at the given <code>index</code>
        * inside <code>parent</code>.
@@ -129,13 +142,16 @@
        */
       insertAt: function insertAt(node, parent, index) {
         var ref = parent.childNodes[index];
+
         if (ref) {
           parent.insertBefore(node, ref);
         } else {
           parent.appendChild(node);
         }
+
         return true;
       },
+
       /**
        * Insert <code>node</code> into <code>parent</code> as first child.
        * Indexes of other children will be incremented by one.
@@ -150,8 +166,10 @@
         } else {
           parent.appendChild(node);
         }
+
         return true;
       },
+
       /**
        * Insert <code>node</code> into <code>parent</code> as last child.
        *
@@ -163,6 +181,7 @@
         parent.appendChild(node);
         return true;
       },
+
       /**
        * Inserts <code>node</code> before <code>ref</code> in the same parent.
        *
@@ -174,6 +193,7 @@
         ref.parentNode.insertBefore(node, ref);
         return true;
       },
+
       /**
        * Inserts <code>node</code> after <code>ref</code> in the same parent.
        *
@@ -183,18 +203,22 @@
        */
       insertAfter: function insertAfter(node, ref) {
         var parent = ref.parentNode;
+
         if (ref == parent.lastChild) {
           parent.appendChild(node);
         } else {
           return this.insertBefore(node, ref.nextSibling);
         }
+
         return true;
       },
+
       /*
       ---------------------------------------------------------------------------
         REMOVAL
       ---------------------------------------------------------------------------
       */
+
       /**
        * Removes the given <code>node</code> from its parent element.
        *
@@ -206,9 +230,11 @@
         if (!node.parentNode) {
           return false;
         }
+
         node.parentNode.removeChild(node);
         return true;
       },
+
       /**
        * Removes the given <code>node</code> from the <code>parent</code>.
        *
@@ -221,9 +247,11 @@
         if (node.parentNode !== parent) {
           return false;
         }
+
         parent.removeChild(node);
         return true;
       },
+
       /**
        * Removes the node at the given <code>index</code>
        * from the <code>parent</code>.
@@ -235,17 +263,21 @@
        */
       removeChildAt: function removeChildAt(index, parent) {
         var child = parent.childNodes[index];
+
         if (!child) {
           return false;
         }
+
         parent.removeChild(child);
         return true;
       },
+
       /*
       ---------------------------------------------------------------------------
         REPLACE
       ---------------------------------------------------------------------------
       */
+
       /**
        * Replaces <code>oldNode</code> with <code>newNode</code> in the current
        * parent of <code>oldNode</code>.
@@ -258,9 +290,11 @@
         if (!oldNode.parentNode) {
           return false;
         }
+
         oldNode.parentNode.replaceChild(newNode, oldNode);
         return true;
       },
+
       /**
        * Replaces the node at <code>index</code> with <code>newNode</code> in
        * the given parent.
@@ -272,18 +306,22 @@
        */
       replaceAt: function replaceAt(newNode, index, parent) {
         var oldNode = parent.childNodes[index];
+
         if (!oldNode) {
           return false;
         }
+
         parent.replaceChild(newNode, oldNode);
         return true;
       },
+
       /**
        * Stores helper element for element creation in WebKit
        *
        * @internal
        */
       __P_196_0: {},
+
       /**
        * Creates and returns a DOM helper element.
        *
@@ -293,21 +331,23 @@
       getHelperElement: function getHelperElement(win) {
         if (!win) {
           win = window;
-        }
+        } // key is needed to allow using different windows
 
-        // key is needed to allow using different windows
+
         var key = win.location.href;
-        if (!qx.dom.Element.__P_196_0[key]) {
-          var helper = qx.dom.Element.__P_196_0[key] = win.document.createElement("div");
 
-          // innerHTML will only parsed correctly if element is appended to document
+        if (!qx.dom.Element.__P_196_0[key]) {
+          var helper = qx.dom.Element.__P_196_0[key] = win.document.createElement("div"); // innerHTML will only parsed correctly if element is appended to document
+
           if (qx.core.Environment.get("engine.name") == "webkit") {
             helper.style.display = "none";
             win.document.body.appendChild(helper);
           }
         }
+
         return qx.dom.Element.__P_196_0[key];
       },
+
       /**
        * Creates a DOM element.
        *
@@ -320,15 +360,20 @@
         if (!win) {
           win = window;
         }
+
         if (!name) {
           throw new Error("The tag name is missing!");
         }
+
         var element = win.document.createElement(name);
+
         for (var key in attributes) {
           qx.bom.element.Attribute.set(element, key, attributes[key]);
         }
+
         return element;
       },
+
       /**
        * Removes all content from the given element
        *
@@ -343,4 +388,4 @@
   qx.dom.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362737266
+//# sourceMappingURL=Element.js.map?dt=1685978120128

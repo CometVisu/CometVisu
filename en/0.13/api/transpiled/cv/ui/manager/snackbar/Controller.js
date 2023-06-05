@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -28,6 +29,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Controller.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -53,6 +55,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Class.define('cv.ui.manager.snackbar.Controller', {
     extend: qx.ui.core.Widget,
     type: 'singleton',
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -60,12 +63,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.VBox(8));
+
       this.initMessages(new qx.data.Array());
       qx.event.message.Bus.subscribe('cv.manager.msg.snackbar', this._onMessage, this);
       this._listController = new qx.data.controller.List(this.getMessages(), this.getChildControl('list'));
+
       this._initDelegate();
     },
+
     /*
     ***********************************************
       STATICS
@@ -81,9 +88,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       },
       error: function error(message) {
         var msg = new cv.ui.manager.model.Message();
+
         if (_typeof(message) === 'object' && Object.prototype.hasOwnProperty.call(message, 'statusText')) {
           message = message.statusText;
         }
+
         msg.set({
           title: message,
           type: 'error',
@@ -92,6 +101,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         qx.event.message.Bus.dispatchByName('cv.manager.msg.snackbar', msg);
       }
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -108,6 +118,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         event: 'changeMessages'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -117,6 +128,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       _listController: null,
       _onMessage: function _onMessage(ev) {
         var msg = ev.getData();
+
         if (msg instanceof cv.ui.manager.model.Message) {
           this.getMessages().push(msg);
           this.show();
@@ -125,6 +137,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       _onCloseMessage: function _onCloseMessage(ev) {
         var msg = ev.getData();
         this.getMessages().remove(msg);
+
         if (this.getMessages().length === 0) {
           this.exclude();
         }
@@ -144,17 +157,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
+
         switch (id) {
           case 'list':
             control = new qx.ui.form.List();
+
             this._add(control, {
               flex: 1
             });
+
             break;
         }
+
         return control || cv.ui.manager.snackbar.Controller.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -162,10 +180,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     */
     destruct: function destruct() {
       qx.event.message.Bus.unsubscribe('cv.manager.msg.snackbar', this._onMessage, this);
+
       this._disposeObjects('_listController');
     }
   });
   cv.ui.manager.snackbar.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1677362715624
+//# sourceMappingURL=Controller.js.map?dt=1685978098346

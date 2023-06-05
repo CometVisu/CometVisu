@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,6 +47,7 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
+
   /**
    * This class is responsible for the normalization of the native 'Date' object.
    * It checks if these methods are available and, if not, appends them to
@@ -73,6 +75,7 @@
       now: function now() {
         return +new Date();
       },
+
       /**
        * Parses a string representation of a date and return number of
        * milliseconds since Epoch or NaN if string is unrecognized.
@@ -92,6 +95,7 @@
       parse: function parse(dateString) {
         // Match input against ISO8601 regular expression
         var captureGroups = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/.exec(dateString);
+
         if (!captureGroups) {
           //
           // if the regular expression does not match parse the string
@@ -107,40 +111,44 @@
           //   https://github.com/qooxdoo/qooxdoo/issues/9451
           //
           var time = Date.originalParse(dateString);
+
           if (isNaN(time) || isNaN(new Date().setTime(time))) {
             return NaN;
           }
-          return time;
-        }
 
-        // Just a date without time?
+          return time;
+        } // Just a date without time?
+
+
         var noTime = [4, 5, 6, 7].every(function (i) {
           return captureGroups[i] === undefined;
-        });
+        }); // Avoid invalid timestamps caused by undefined values being passed to Date.UTC
 
-        // Avoid invalid timestamps caused by undefined values being passed to Date.UTC
         [1, 4, 5, 6, 7, 10, 11].forEach(function (i) {
           captureGroups[i] = +captureGroups[i] || 0;
         });
         captureGroups[2] = (+captureGroups[2] || 1) - 1; // Allow undefined months
-        captureGroups[3] = +captureGroups[3] || 1; // Allow undefined days
 
+        captureGroups[3] = +captureGroups[3] || 1; // Allow undefined days
         // No timezone offset given and *not* just a date (without time)
+
         if (captureGroups[8] !== "Z" && captureGroups[9] === undefined && !noTime) {
           // => Treat as local
           return new Date(captureGroups[1], captureGroups[2], captureGroups[3], captureGroups[4], captureGroups[5], captureGroups[6], captureGroups[7]).getTime();
-        }
+        } // Handle timezone offsets
 
-        // Handle timezone offsets
+
         var minutesOffset = 0;
+
         if (captureGroups[8] !== "Z") {
           minutesOffset = captureGroups[10] * 60 + captureGroups[11];
+
           if (captureGroups[9] === "+") {
             minutesOffset = -minutesOffset;
           }
-        }
+        } // Return the number of milliseconds since Epoch
 
-        // Return the number of milliseconds since Epoch
+
         return Date.UTC(captureGroups[1], captureGroups[2], captureGroups[3], captureGroups[4], captureGroups[5] + minutesOffset, captureGroups[6], captureGroups[7]);
       }
     },
@@ -148,12 +156,14 @@
       // Date.now
       if (!qx.core.Environment.get("ecmascript.date.now")) {
         Date.now = statics.now;
-      }
-      // Date.parse
+      } // Date.parse
+
+
       if (!qx.core.Environment.get("ecmascript.date.parse")) {
         Date.originalParse = Date.parse || function (dateString) {
           return NaN;
         };
+
         Date.parse = statics.parse;
       }
     }
@@ -161,4 +171,4 @@
   qx.lang.normalize.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1677362744615
+//# sourceMappingURL=Date.js.map?dt=1685978127622

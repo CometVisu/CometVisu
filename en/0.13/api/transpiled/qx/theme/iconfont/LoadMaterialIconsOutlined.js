@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -29,14 +30,13 @@
   /**
    * A dummy class to trigger the compiler to copy the MaterialIconsOutlined font files
    */
+
   /**
-   * @asset(qx/iconfont/MaterialIcons/materialiconsoutlined-v101.otf)
-   * @asset(qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff2)
-   * @asset(qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff)
-   * @asset(qx/iconfont/MaterialIcons/materialiconsoutlined-v101.eot)
+   * @usefont(MaterialIconsOutlined)
+   * @deprecated use the `@usefont` directive directly in your code
    */
   qx.Class.define("qx.theme.iconfont.LoadMaterialIconsOutlined", {});
   qx.theme.iconfont.LoadMaterialIconsOutlined.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIconsOutlined.js.map?dt=1677362748064
+//# sourceMappingURL=LoadMaterialIconsOutlined.js.map?dt=1685978130663

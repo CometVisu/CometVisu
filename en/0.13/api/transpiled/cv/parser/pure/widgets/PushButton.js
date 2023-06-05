@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* PushButton.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.PushButton', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -79,4 +81,4 @@
   cv.parser.pure.widgets.PushButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PushButton.js.map?dt=1677362708371
+//# sourceMappingURL=PushButton.js.map?dt=1685978091290

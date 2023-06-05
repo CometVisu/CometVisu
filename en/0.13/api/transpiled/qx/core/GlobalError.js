@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
    */
   qx.Bootstrap.define("qx.core.GlobalError", {
     extend: Error,
+
     /**
      * @param exc {Error} source exception
      * @param args {Array} arguments
@@ -46,18 +48,22 @@
       if (qx.Bootstrap.DEBUG) {
         qx.core.Assert.assertNotUndefined(exc);
       }
+
       this.__P_160_0 = "GlobalError: " + (exc && exc.message ? exc.message : exc);
-      var inst = Error.call(this, this.__P_160_0);
-      // map stack trace properties since they're not added by Error's constructor
+      var inst = Error.call(this, this.__P_160_0); // map stack trace properties since they're not added by Error's constructor
+
       if (exc && exc.stack) {
         this.stack = exc.stack;
       }
+
       if (!this.stack && inst.stack) {
         this.stack = inst.stack;
       }
+
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
+
       this.__P_160_1 = args;
       this.__P_160_2 = exc;
     },
@@ -65,6 +71,7 @@
       __P_160_2: null,
       __P_160_1: null,
       __P_160_0: null,
+
       /**
        * Returns the error message.
        *
@@ -73,6 +80,7 @@
       toString: function toString() {
         return this.__P_160_0;
       },
+
       /**
        * Returns the arguments which are
        *
@@ -81,6 +89,7 @@
       getArguments: function getArguments() {
         return this.__P_160_1;
       },
+
       /**
        * Get the source exception
        *
@@ -94,4 +103,4 @@
   qx.core.GlobalError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalError.js.map?dt=1677362730118
+//# sourceMappingURL=GlobalError.js.map?dt=1685978112656

@@ -30,6 +30,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,11 +59,13 @@
   qx.Class.define("qx.event.handler.Element", {
     extend: qx.core.Object,
     implement: [qx.event.IEventHandler, qx.core.IDisposable],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Create a new instance
      *
@@ -73,15 +76,16 @@
       this._manager = manager;
       this._registeredEvents = {};
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
+
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         abort: true,
@@ -93,23 +97,26 @@
         reset: true,
         // Form Elements
         submit: true // Form Elements
+
       },
 
       /** @type {MAP} Whether the event is cancelable */
       CANCELABLE: {
         selectstart: true
       },
+
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
+
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -142,17 +149,22 @@
       // interface implementation
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var events = this._registeredEvents;
+
         if (!events) {
           return;
         }
+
         var elementId = qx.core.ObjectRegistry.toHashCode(target);
         var eventId = elementId + "-" + type;
         var eventData = this._registeredEvents[eventId];
+
         if (eventData) {
           qx.bom.Event.removeNativeListener(target, type, eventData.listener);
         }
+
         delete this._registeredEvents[eventId];
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT-HANDLER
@@ -168,14 +180,17 @@
        */
       _onNative: qx.event.GlobalError.observeMethod(function (nativeEvent, eventId) {
         var events = this._registeredEvents;
+
         if (!events) {
           return;
         }
+
         var eventData = events[eventId];
         var isCancelable = nativeEvent.cancelable || this.constructor.CANCELABLE[eventData.type];
         qx.event.Registration.fireNonBubblingEvent(eventData.element, eventData.type, qx.event.type.Native, [nativeEvent, undefined, undefined, undefined, isCancelable]);
       })
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -184,12 +199,15 @@
     destruct: function destruct() {
       var entry;
       var events = this._registeredEvents;
+
       for (var id in events) {
         entry = events[id];
         qx.bom.Event.removeNativeListener(entry.element, entry.type, entry.listener);
       }
+
       this._manager = this._registeredEvents = null;
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -202,4 +220,4 @@
   qx.event.handler.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362738421
+//# sourceMappingURL=Element.js.map?dt=1685978121357

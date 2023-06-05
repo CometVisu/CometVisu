@@ -41,6 +41,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,70 +78,68 @@
    */
   qx.Class.define("qx.ui.root.Page", {
     extend: qx.ui.root.Abstract,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param doc {Document} Document to use
      */
     construct: function construct(doc) {
       // Temporary storage of element to use
       this.__P_431_0 = doc;
-      qx.ui.root.Abstract.constructor.call(this);
+      qx.ui.root.Abstract.constructor.call(this); // Use a hard-coded basic layout
 
-      // Use a hard-coded basic layout
-      this._setLayout(new qx.ui.layout.Basic());
+      this._setLayout(new qx.ui.layout.Basic()); // Set a high zIndex to make sure the widgets really overlay the HTML page.
 
-      // Set a high zIndex to make sure the widgets really overlay the HTML page.
-      this.setZIndex(10000);
 
-      // Directly add to layout queue
-      qx.ui.core.queue.Layout.add(this);
+      this.setZIndex(10000); // Directly add to layout queue
 
-      // Register resize listener
-      this.addListener("resize", this.__P_431_1, this);
+      qx.ui.core.queue.Layout.add(this); // Register resize listener
 
-      // Register as root
-      qx.ui.core.FocusHandler.getInstance().connectTo(this);
+      this.addListener("resize", this.__P_431_1, this); // Register as root
 
-      // Avoid the automatically scroll in to view.
+      qx.ui.core.FocusHandler.getInstance().connectTo(this); // Avoid the automatically scroll in to view.
       // See http://bugzilla.qooxdoo.org/show_bug.cgi?id=3236 for details.
+
       if (qx.core.Environment.get("engine.name") == "mshtml") {
         this.setKeepFocus(true);
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_431_2: null,
       __P_431_0: null,
       // overridden
       _createContentElement: function _createContentElement() {
         var elem = this.__P_431_0.createElement("div");
+
         this.__P_431_0.body.appendChild(elem);
+
         var root = new qx.html.Root(elem);
         root.setStyles({
           position: "absolute",
           textAlign: "left"
-        });
+        }); // Store reference to the widget in the DOM element.
 
-        // Store reference to the widget in the DOM element.
-        root.connectObject(this);
-
-        // Mark the element of this root with a special attribute to prevent
+        root.connectObject(this); // Mark the element of this root with a special attribute to prevent
         // that qx.event.handler.Focus is performing a focus action.
         // This would end up in a scrolling to the top which is not wanted in
         // an inline scenario
         // see Bug #2740
+
         if (qx.core.Environment.get("engine.name") == "gecko") {
           root.setAttribute("qxIsRootPage", 1);
         }
+
         return root;
       },
       // overridden
@@ -156,6 +155,7 @@
           maxHeight: height
         };
       },
+
       /**
        * Adjust html element size on layout resizes.
        *
@@ -169,6 +169,7 @@
           height: 0
         });
       },
+
       /**
        * Whether the configured layout supports a maximized window
        * e.g. is a Canvas.
@@ -183,9 +184,11 @@
         if (value && (name == "paddingTop" || name == "paddingLeft")) {
           throw new Error("The root widget does not support 'left', or 'top' paddings!");
         }
+
         qx.ui.root.Page.superclass.prototype._applyPadding.call(this, value, old, name);
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -198,4 +201,4 @@
   qx.ui.root.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1677362764881
+//# sourceMappingURL=Page.js.map?dt=1685978146044

@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -107,20 +108,28 @@
     events: {
       /** Fires at each model change */
       modelChange: "Array",
+
       /** Fires at each selection change */
       selectionChange: "qxWeb",
+
       /** Fires each time a cell of the widget is clicked */
       cellClick: "Object",
+
       /** Fires each time a cell of the widget is hovered */
       cellHover: "Object",
+
       /** Fires each time the mouse leave a cell of the table widget */
       cellOut: "Object",
+
       /** Fires after the model has been applied to the widget */
       modelApplied: "Array",
+
       /** Fires each time the value of a cell is rendered into the cell */
       cellRender: "Object",
+
       /** Fires after the table rows have been sorted */
       sort: "Object",
+
       /** Fires after the table rows have been filtered */
       filter: "Object"
     },
@@ -138,6 +147,7 @@
         rowSelection: "none",
         sortable: false
       },
+
       /**
        * *columnDefault*
        * The Default cell template for all the table columns. Default value :
@@ -157,6 +167,7 @@
       _templates: {
         columnDefault: "<td class='qx-table-cell' data-qx-table-cell-key='{{ cellKey }}'><div class='qx-table-cell-wrapper'><label>{{& value }}</label></div><td>"
       },
+
       /**
        * Factory method which converts the current collection into a collection of
        * table widgets.
@@ -170,6 +181,7 @@
         table.init();
         return table;
       },
+
       /**
        * Checks if a given string is a number
        * @param n {String} The String to check the type for
@@ -178,6 +190,7 @@
       __P_492_1: function __P_492_1(n) {
         return (Object.prototype.toString.call(n) === "[object Number]" || Object.prototype.toString.call(n) === "[object String]") && !isNaN(parseFloat(n)) && isFinite(n.toString().replace(/^-/, ""));
       },
+
       /**
        * Checks if a given string is a Date
        * @param val {String} The String to check the type for
@@ -187,6 +200,7 @@
         var d = new Date(val);
         return !isNaN(d.valueOf());
       },
+
       /**
        * Gets the index of an HTMLElement inside of an HTMLCollection
        * @param htmlCollection {HTMLCollection} The HTMLCollection
@@ -195,14 +209,17 @@
        */
       __P_492_3: function __P_492_3(htmlCollection, htmlElement) {
         var index = -1;
+
         for (var i = 0, l = htmlCollection.length; i < l; i++) {
           if (htmlCollection.item(i) == htmlElement) {
             index = i;
             break;
           }
         }
+
         return index;
       },
+
       /**
        * Generates an unique id
        * @return {String} The generated id
@@ -210,32 +227,46 @@
       __P_492_4: function __P_492_4() {
         return (new Date().getTime() + "" + Math.floor(Math.random() * 1000000)).substr(0, 18);
       },
+
       /** */
       __P_492_5: ["single", "multiple", "none"],
+
       /** */
       __P_492_6: "qx-table-cell",
+
       /** */
       __P_492_7: "qx-table-header",
+
       /** */
       __P_492_8: "qx-table-row-selection",
+
       /** */
       __P_492_9: "qx-table-selection-input",
+
       /** */
       __P_492_10: "qx-table-all-columns",
+
       /** */
       __P_492_11: "data-qx-table-col-name",
+
       /** */
       __P_492_12: "data-qx-table-col-type",
+
       /** */
       __P_492_13: "data-qx-table-cell-key",
+
       /** */
       __P_492_14: "cellKey",
+
       /** */
       __P_492_15: "qx-table-input-label",
+
       /** */
       __P_492_16: "qx-table-row-selected",
+
       /** */
       __P_492_17: "qx-table-sort-asc",
+
       /** */
       __P_492_18: "qqx-table-sort-desc"
     },
@@ -254,22 +285,31 @@
         if (!qx.ui.website.Table.superclass.prototype.init.call(this)) {
           return false;
         }
+
         var model = this.__P_492_0;
+
         if (qxWeb.getNodeName(this).toUpperCase() !== "TABLE") {
           throw new Error("collection should contains only table elements !!");
         }
+
         if (!this[0].tHead) {
           throw new Error("A Table header element is required for this widget.");
         }
+
         this.find("tbody td").addClass("qx-table-cell");
         this.__P_492_24 = "input" + qx.ui.website.Table.__P_492_4();
+
         this.__P_492_27(model);
+
         this.setModel(model);
         this.setSortingFunction(this.__P_492_28);
+
         this.__P_492_29();
+
         this.__P_492_25 = null;
         return true;
       },
+
       /**
        * Sets the given model to the widgets in the collection
        *
@@ -285,8 +325,10 @@
             throw new Error("model must be an Array !!");
           }
         }
+
         return this;
       },
+
       /**
        * Set the column types for the table widgets in the collection
        * @param columnName {String} The column name
@@ -295,9 +337,11 @@
        */
       setColumnType: function setColumnType(columnName, type) {
         this.__P_492_30(columnName);
+
         this.__P_492_19[columnName].type = type;
         return this;
       },
+
       /**
        * Returns the type of the specified column
        * @param columnName {String} The column name
@@ -305,8 +349,10 @@
        */
       getColumnType: function getColumnType(columnName) {
         this.eq(0).__P_492_30(columnName);
+
         return this.eq(0).__P_492_19[columnName].type;
       },
+
       /**
        * Returns the cell at the given position for the first widget in the collection
        * @param row {Integer} The row number
@@ -316,6 +362,7 @@
       getCell: function getCell(row, col) {
         return qxWeb(this.eq(0).__P_492_31().rows.item(row).cells.item(col));
       },
+
       /**
        * Returns a collection containing the rows of the first table in the collection.
        * @return {qxWeb} The collection containing the table rows
@@ -323,6 +370,7 @@
       getRows: function getRows() {
         return qxWeb(this.eq(0).__P_492_31().rows);
       },
+
       /**
        * Defines the comparison function to use to sort columns of the given type
        * @param type {String} The type to define the function for
@@ -334,6 +382,7 @@
         this.setProperty(["_compare" + type], compareFunc);
         return this;
       },
+
       /**
        * Unset the compare function for the given type
        *
@@ -346,6 +395,7 @@
         this.setProperty(["_compare" + type], compareFunc);
         return this;
       },
+
       /**
        * Returns the comparison function for the given type
        * @param type {String} The type to get the comparison function for
@@ -355,6 +405,7 @@
         type = qxWeb.string.firstUp(type);
         return this.getProperty("_compare" + type) || this["_compare" + type];
       },
+
       /**
        * Set the function that control the sorting process
        * @param func {Function} The sorting function
@@ -362,9 +413,11 @@
        */
       setSortingFunction: function setSortingFunction(func) {
         func = func || function () {};
+
         this.__P_492_20 = func;
         return this;
       },
+
       /**
        * Unset the function that control the sorting process
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
@@ -373,6 +426,7 @@
         this.__P_492_20 = this.__P_492_28;
         return this;
       },
+
       /**
        * Set the function that will be used to process the column filtering
        * @param func {Function} The filter function
@@ -382,6 +436,7 @@
         this.__P_492_21 = func;
         return this;
       },
+
       /**
        * Unset the filter function
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
@@ -390,6 +445,7 @@
         this.__P_492_21 = this.__P_492_32;
         return this;
       },
+
       /**
        * Set the filter function to use to filter a specific column
        * @param columnName {String} The name of the column
@@ -399,12 +455,15 @@
        */
       setColumnFilter: function setColumnFilter(columnName, func) {
         this.__P_492_30(columnName);
+
         if (!this.__P_492_22) {
           this.__P_492_22 = {};
         }
+
         this.__P_492_22[columnName] = func;
         return this;
       },
+
       /**
        * Returns the filter function set on a specific column
        *
@@ -416,8 +475,10 @@
         if (this.__P_492_22) {
           return this.__P_492_22[columnName];
         }
+
         return null;
       },
+
       /**
        * Set the filter function to use to filter the table rows
        * @param func {Function} The filter
@@ -427,9 +488,11 @@
         if (!this.__P_492_22) {
           this.__P_492_22 = {};
         }
+
         this.__P_492_22.row = func;
         return this;
       },
+
       /**
        * Returns the filter function set on a specific column
        * @return {Function} The filter function
@@ -439,8 +502,10 @@
         if (this.__P_492_22) {
           return this.__P_492_22.row;
         }
+
         return null;
       },
+
       /**
        * Sort the column with the given name according to the specified direction
        * @param columnName {String} The name of the column to sort
@@ -449,14 +514,18 @@
        */
       sort: function sort(columnName, dir) {
         this.__P_492_30(columnName);
+
         this.setSortingClass(columnName, dir);
+
         this.__P_492_33(this.__P_492_34(columnName, dir));
+
         this.emit("sort", {
           columName: columnName,
           direction: dir
         });
         return this;
       },
+
       /**
        * Filters rows or columns according to the given parameters
        * @param keyword {String} The keyword to use to filter
@@ -466,17 +535,21 @@
       filter: function filter(keyword, columnName) {
         if (columnName) {
           this.__P_492_30(columnName);
+
           if (keyword == "") {
             this.resetFilter(columnName);
           }
         } else {
           columnName = qx.ui.website.Table.__P_492_10;
         }
+
         if (!this.__P_492_23) {
           this.__P_492_23 = {};
         }
+
         if (this.__P_492_23[columnName]) {
           this.__P_492_23[columnName].keyword = keyword;
+
           this.__P_492_31().appendChild(this.__P_492_23[columnName].rows);
         } else {
           this.__P_492_23[columnName] = {
@@ -484,13 +557,16 @@
             rows: document.createDocumentFragment()
           };
         }
+
         this.__P_492_35(keyword, columnName);
+
         this.emit("filter", {
           columName: columnName,
           keyword: keyword
         });
         return this;
       },
+
       /**
        * Resets the filter applied on a specific column
        * @param columnName {String ?} The column name
@@ -499,6 +575,7 @@
       resetFilter: function resetFilter(columnName) {
         var filters = null;
         filters = this.__P_492_23;
+
         if (filters) {
           if (columnName) {
             this.__P_492_31().appendChild(filters[columnName].rows);
@@ -508,8 +585,10 @@
             }
           }
         }
+
         return this;
       },
+
       /**
        * Removes the rows of in the table body
        * @param tableData {String|qxWeb} Html string or collection containing the rows to be added
@@ -517,12 +596,14 @@
        */
       setContent: function setContent(tableData) {
         var rows = this.__P_492_36(tableData);
+
         var tbody = this.find("tbody");
         tbody.empty();
         rows.appendTo(tbody);
         this.render();
         return this;
       },
+
       /**
        * Appends new rows to the table
        * @param tableData {String|qxWeb} Html string or collection containing the rows to be appended
@@ -530,11 +611,13 @@
        */
       appendContent: function appendContent(tableData) {
         var rows = this.__P_492_36(tableData);
+
         var tbody = this.find("tbody");
         rows.appendTo(tbody);
         this.render();
         return this;
       },
+
       /**
        * Extracts table rows from a given HTML String or qxWeb collection
        * @param data {qxWeb|String} Data containing the rows to be extracted
@@ -542,30 +625,38 @@
        */
       __P_492_36: function __P_492_36(data) {
         var rows = qxWeb();
+
         if (typeof data == "string") {
           var markup = data;
           data = qxWeb.create(data);
+
           if (qxWeb.getNodeName(data) != "table") {
             data = qxWeb.create("<table>" + markup + "</table>");
           }
+
           rows = data.find("tbody tr");
         } else if (qxWeb.isNode(data) || data instanceof qxWeb) {
           data = qxWeb(data);
           var nodeName = qxWeb.getNodeName(data);
+
           switch (nodeName) {
             case "table":
               rows = qxWeb(data).find("tbody tr");
               break;
+
             case "tr":
               rows = data;
               break;
+
             case "tbody":
               rows = qxWeb(data).find("tr");
               break;
           }
         }
+
         return rows;
       },
+
       /**
        * Filters the rendered table cells
        * @param keyword {String} The keyword to use to filter
@@ -574,10 +665,13 @@
        */
       __P_492_35: function __P_492_35(keyword, columnName) {
         var colIndex = this.__P_492_37(columnName);
+
         var filterFunc = columnName == qx.ui.website.Table.__P_492_10 ? this.getRowFilter() : this.getColumnFilter(columnName);
         filterFunc = filterFunc || this.__P_492_32;
+
         var rows = this.__P_492_38(),
-          data = {};
+            data = {};
+
         for (var i = 0; i < rows.length; i++) {
           data = {
             columnName: columnName,
@@ -586,12 +680,15 @@
             row: qxWeb(rows[i]),
             keyword: keyword
           };
+
           if (!filterFunc.bind(this)(data)) {
             this.__P_492_23[columnName].rows.appendChild(rows[i]);
           }
         }
+
         return this;
       },
+
       /**
        * Get the current column sorting information for the first widget in the collection
        * @return {Map} The map containing the current sorting information
@@ -603,16 +700,21 @@
       render: function render() {
         var sortingData = this.getSortingData();
         var rowSelection = this.getConfig("rowSelection");
+
         this.__P_492_39(this.__P_492_0);
+
         if (qx.ui.website.Table.__P_492_5.indexOf(rowSelection) != -1) {
           this.__P_492_40(rowSelection);
         }
+
         if (sortingData) {
           this.__P_492_33(this.__P_492_34(sortingData.columnName, sortingData.direction));
         }
+
         return this;
       },
       //Private API
+
       /**
        * Renders or removes the selection inputs according to the specified widget selection mode
        * @param rowSelection {String} The selection mode
@@ -623,16 +725,22 @@
           case "none":
             qxWeb("." + qx.ui.website.Table.__P_492_8).remove();
             break;
+
           case "multiple":
           case "single":
             this.__P_492_41("checkbox");
+
             break;
+
           case "single":
             this.__P_492_41("radio");
+
             break;
         }
+
         return this;
       },
+
       /**
        * Creates input nodes for the row selection
        * @param type {String} The type of the inputs to creates
@@ -640,12 +748,16 @@
        */
       __P_492_41: function __P_492_41(type) {
         this.__P_492_42(this.__P_492_43(), type);
+
         var rows = this.find("tbody")[0].getElementsByTagName("tr");
+
         for (var i = 0; i < rows.length; i++) {
           this.__P_492_42(rows.item(i), type);
         }
+
         return this;
       },
+
       /**
        * Creates an input an input node for a specific row
        * @param row {HTMLTableRowElement} The row to create the input for
@@ -658,22 +770,28 @@
         var headerInput = qxWeb("." + clazz.__P_492_7 + " input");
         var selectionMode = this.getConfig("rowSelection");
         var checked = "";
+
         if (headerInput.length > 0) {
           checked = selectionMode == "multiple" && headerInput[0].checked ? "checked" : "";
         }
+
         if (typeof nodeName == "undefined") {
           nodeName = qxWeb.getNodeName(qxWeb(row.cells.item(0)));
         }
+
         var inputName = this.__P_492_24;
         var className = nodeName == "th" ? clazz.__P_492_8 + " " + clazz.__P_492_7 : clazz.__P_492_8;
         var currentInput = qxWeb(row).find("." + clazz.__P_492_8);
+
         if (currentInput.length > 0) {
           if (currentInput[0].type != type) {
             currentInput[0].type = type;
           }
         } else {
           var id = qx.ui.website.Table.__P_492_4();
+
           var inputNode = qxWeb.create("<" + nodeName + " class='" + className + "'><input id='" + id + "' name='" + inputName + "' " + checked + " class='" + cssPrefix + "-" + type + " " + clazz.__P_492_9 + "' type='" + type + "' /><label class='" + clazz.__P_492_15 + "' for='" + id + "'></label></" + nodeName + ">");
+
           if (row.cells.item(0)) {
             inputNode.insertBefore(qxWeb(row.cells.item(0)));
           } else {
@@ -681,36 +799,45 @@
           }
         }
       },
+
       /**
        * Checks if a column with the specified name exists
        * @param columnName {String} The name of the column to check
        */
       __P_492_30: function __P_492_30(columnName) {
         var data = this.__P_492_19;
+
         if (data && !data[columnName]) {
           throw new Error("Column " + columnName + " does not exists !");
         }
       },
+
       /**
        * Returns the row containing the cells with the column names
        * @return {HTMLTableRowElement} The row with meta information
        */
       __P_492_43: function __P_492_43() {
         var tHeadOrFoot = this[0].tHead;
+
         if (!tHeadOrFoot) {
           throw new Error("A Table header element is required for this widget.");
         }
+
         var rows = tHeadOrFoot.rows;
+
         if (rows.length == 1) {
           return rows.item(0);
         } else {
           rows = qxWeb(".qx-table-header-row");
+
           if (rows.length > 0) {
             return rows[0];
           }
         }
+
         return null;
       },
+
       /**
        * Initializes columns metadata
        * @param model {Array} The widget's model
@@ -718,27 +845,36 @@
        */
       __P_492_27: function __P_492_27(model) {
         this.__P_492_44(this[0].tHead);
+
         this.__P_492_44(this[0].tFoot);
+
         var data = {},
-          cells = null,
-          colName = null,
-          cell = null;
+            cells = null,
+            colName = null,
+            cell = null;
+
         var headerRow = this.__P_492_43();
+
         cells = headerRow.cells;
+
         for (var i = 0, l = cells.length; i < l; i++) {
           cell = qxWeb(cells.item(i));
           colName = this.__P_492_45(cell[0]) || qx.ui.website.Table.__P_492_4();
+
           if (!cell[0].getAttribute(qx.ui.website.Table.__P_492_11)) {
             cell.setAttribute(qx.ui.website.Table.__P_492_11, colName);
           }
+
           data[colName] = {
             type: cell[0].getAttribute(qx.ui.website.Table.__P_492_12) || "String",
             name: colName
           };
         }
+
         this.__P_492_19 = data;
         return this;
       },
+
       /**
        * Adds the internal css class to the header and footer cells
        * @param footOrHead {HTMLElement} Html element representing the header or footer of the table
@@ -748,13 +884,16 @@
         if (footOrHead && footOrHead.rows.length > 0) {
           if (footOrHead.rows.item(0).cells.length > 0) {
             var row = this.__P_492_43();
+
             if (!qxWeb(row.cells.item(0)).hasClass(qx.ui.website.Table.__P_492_7)) {
               qxWeb(row.cells).addClass(qx.ui.website.Table.__P_492_7);
             }
           }
         }
+
         return this;
       },
+
       /**
        * Sorts the rows of the table widget
        * @param dataRows {Array} Array containing the sorted rows
@@ -768,8 +907,10 @@
             qxWeb(dataRows[i]).insertBefore(qxWeb(this.__P_492_31().rows.item(0)));
           }
         }
+
         return this;
       },
+
       /**
        * registers global events
        * @return {qx.ui.website.Table} <code>this</code> reference for chaining.
@@ -785,6 +926,7 @@
         this.on("pointerout", this.__P_492_48, this);
         return this;
       },
+
       /**
        * Checks if the selection inputs are already rendered
        * @return {Boolean} True if the inputs are rendered and false otherwise
@@ -792,6 +934,7 @@
       __P_492_49: function __P_492_49() {
         return qxWeb("." + qx.ui.website.Table.__P_492_8).length > 0;
       },
+
       /**
        * Handles clicks that happen on the selection inputs
        * @param cell {qxWeb} The table cell containing the clicked input
@@ -804,19 +947,24 @@
         var selectionMode = this.getConfig("rowSelection");
         var headerInput = qxWeb("." + clazz.__P_492_7 + " input");
         var selection = [];
+
         if (selectionMode == "multiple") {
           if (cell.hasClass(clazz.__P_492_7)) {
             inputs.setAttribute("checked", clickedInput[0].checked);
           }
+
           var checked = true;
+
           for (var i = 0; i < inputs.length; i++) {
             if (inputs[i] != headerInput[0] && !inputs[i].checked) {
               checked = false;
               break;
             }
           }
+
           headerInput.setAttribute("checked", checked);
           inputs = inputs.toArray();
+
           if (checked) {
             qxWeb.array.remove(inputs, headerInput[0]);
             selection = inputs;
@@ -830,6 +978,7 @@
             selection.push(clickedInput[0]);
           }
         }
+
         var selectedRows = selection.map(function (elem) {
           return elem.parentNode.parentNode;
         });
@@ -841,6 +990,7 @@
         });
         return this;
       },
+
       /**
        * Fires a custom table events
        * @param eventType {String} The event type
@@ -850,11 +1000,16 @@
        */
       __P_492_51: function __P_492_51(eventType, cell, target) {
         var row = cell[0].parentNode,
-          cells = row.cells;
+            cells = row.cells;
+
         var colNumber = qx.ui.website.Table.__P_492_3(cells, cell[0]);
+
         var tHead = this.__P_492_43();
+
         var headCell = tHead.cells.item(colNumber);
+
         var colName = this.__P_492_45(headCell);
+
         var columnIndex = this.getConfig("rowSelection") != "none" ? this.__P_492_37(colName) - 1 : this.__P_492_37(colName);
         var data = {
           cell: qxWeb(cell),
@@ -866,6 +1021,7 @@
         this.emit(eventType, data);
         return data;
       },
+
       /**
        * Click callback
        *
@@ -876,13 +1032,16 @@
         var target = e.getTarget();
         var cell = qxWeb(target);
         var clazz = qx.ui.website.Table;
+
         while (!(cell.hasClass(clazz.__P_492_6) || cell.hasClass(clazz.__P_492_7) || cell.hasClass(clazz.__P_492_8))) {
           if (cell.hasClass(this.classname)) {
             cell = null;
             break;
           }
+
           cell = cell.getParents().eq(0);
         }
+
         if (cell.hasClass(clazz.__P_492_8)) {
           window.setTimeout(function () {
             this.__P_492_50(cell);
@@ -892,8 +1051,10 @@
             this.__P_492_51("cellClick", cell, target);
           }
         }
+
         return this;
       },
+
       /**
        * Pointerover callback
        *
@@ -903,16 +1064,20 @@
         var target = e.getTarget();
         var cell = qxWeb(target);
         var hovered = this.__P_492_25;
+
         if (!cell.hasClass("qx-table-cell") && !cell.hasClass("qx-table-header")) {
           cell = cell.getClosest(".qx-table-cell, .qx-table-header");
         }
+
         if (cell && cell.length > 0 && (hovered && hovered.cell[0] != cell[0] || !hovered) && !cell.hasClass("qx-table-row-selection")) {
           if (hovered) {
             this.emit("cellOut", hovered);
           }
+
           this.__P_492_25 = this.__P_492_51("cellHover", cell, target);
         }
       },
+
       /**
        * pointerout callback
        *
@@ -921,6 +1086,7 @@
       __P_492_48: function __P_492_48(e) {
         var relatedTarget = e.getRelatedTarget();
         var cell = qxWeb(relatedTarget);
+
         if (this.__P_492_25) {
           if (!cell.isChildOf(this)) {
             this.emit("cellOut", this.__P_492_25);
@@ -928,6 +1094,7 @@
           } else {
             if (!cell.hasClass("qx-table-cell") && !cell.hasClass("qx-table-header")) {
               cell = cell.getClosest(".qx-table-cell, .qx-table-header");
+
               if (cell.hasClass("qx-table-row-selection")) {
                 this.emit("cellOut", this.__P_492_25);
                 this.__P_492_25 = null;
@@ -936,6 +1103,7 @@
           }
         }
       },
+
       /**
        * Applies the given model to the table cells depending on
        * the mustache template specified before
@@ -945,26 +1113,34 @@
       __P_492_39: function __P_492_39(model) {
         if (model && model.length > 0) {
           var cell, row;
+
           var tHead = this.__P_492_43();
+
           var createdRow = null,
-            colMeta = null;
+              colMeta = null;
           var renderedRow = null;
           var inputType = this.getConfig("rowSelection") == "single" ? "radio" : "checkbox";
+
           if (this.__P_492_31().rows.length > model.length) {
             this.__P_492_52(model.length);
           }
+
           var renderedColIndex = 0,
-            templateApplied = false;
+              templateApplied = false;
           var coltemplate = this.getTemplate("columnDefault");
           var colName = null;
+
           for (var i = 0, rowCount = model.length; i < rowCount; i++) {
             row = model[i];
+
             if (!this.__P_492_53(i)) {
               createdRow = this.__P_492_31().insertRow(i);
+
               if (this.__P_492_49()) {
                 this.__P_492_42(createdRow, inputType, "td");
               }
             }
+
             for (var j = 0, colCount = row.length; j < colCount; j++) {
               renderedColIndex = this.__P_492_49() ? j + 1 : j;
               colName = this.__P_492_45(tHead.cells.item(renderedColIndex));
@@ -972,14 +1148,17 @@
               coltemplate = this.getTemplate(colName) || coltemplate;
               renderedRow = this.__P_492_31().rows.item(i);
               cell = qxWeb.create(qxWeb.template.render(coltemplate, model[i][j]))[0];
+
               if (cell.nodeName.toUpperCase() != "TD") {
                 break;
               }
+
               if (!this.__P_492_55(i, renderedColIndex)) {
                 renderedRow.appendChild(cell);
               } else {
                 renderedRow.replaceChild(cell, this.getCell(i, renderedColIndex)[0]);
               }
+
               this.emit("cellRender", {
                 cell: cell,
                 row: i,
@@ -987,16 +1166,20 @@
                 value: model[i][j]
               });
             }
+
             if (i == rowCount - 1) {
               templateApplied = true;
             }
           }
+
           if (templateApplied) {
             this.emit("modelApplied", model);
           }
         }
+
         return this;
       },
+
       /**
        * Removes row from the DOM starting from the specified index
        * @param  rowCount {Integer} The number of rows the kept
@@ -1004,11 +1187,14 @@
        */
       __P_492_52: function __P_492_52(rowCount) {
         var renderedRows = this.__P_492_31().rows;
+
         while (renderedRows.length > rowCount) {
           this[0].deleteRow(renderedRows.length);
         }
+
         return this;
       },
+
       /**
        * Gets the metadata of the column width the specified name
        * @param columName {String} The name of the column to get the metadata for
@@ -1017,6 +1203,7 @@
       __P_492_54: function __P_492_54(columName) {
         return this.__P_492_19[columName];
       },
+
       /**
        * Gets the Root element containing the data rows
        * @return {HTMLElement} The element containing the data rows
@@ -1024,6 +1211,7 @@
       __P_492_31: function __P_492_31() {
         return this[0].tBodies.item(0) || this[0];
       },
+
       /**
        * Checks if the row with the given index is rendered
        * @param index {Integer} The index of the row to check
@@ -1033,8 +1221,10 @@
         if (this.__P_492_31().rows.item(index)) {
           return true;
         }
+
         return false;
       },
+
       /**
        * Checks if the cell with the given row and column indexes is rendered
        * @param rowIndex {Integer} The index of the row to check
@@ -1045,11 +1235,14 @@
         if (!this.__P_492_53(rowIndex)) {
           return false;
         }
+
         if (this.__P_492_31().rows.item(rowIndex).cells.item(colIndex)) {
           return true;
         }
+
         return false;
       },
+
       /**
        * Adds a class to the head and footer of the current sorted column
        * @param columnName {String} The name of the sorted column
@@ -1061,8 +1254,10 @@
           direction: dir
         };
         this.__P_492_26 = data;
+
         this.__P_492_56(this[0].tHead, columnName, dir);
       },
+
       /**
        * Adds a class to the head or footer of the current sorted column
        * @param HeaderOrFooter {Node} The n
@@ -1071,12 +1266,14 @@
        */
       __P_492_56: function __P_492_56(HeaderOrFooter, columnName, dir) {
         var rows = this.__P_492_43();
+
         if (HeaderOrFooter && rows) {
           qxWeb(rows.cells).removeClasses(["qx-table-sort-asc", "qx-table-sort-desc"]);
           var cell = qxWeb("[" + qx.ui.website.Table.__P_492_11 + "='" + columnName + "'], #" + columnName);
           cell.addClass("qx-table-sort-" + dir);
         }
       },
+
       /**
        * Sorts the table rows for the given row and direction
        * @param columnName {String} The name of the column to be sorted
@@ -1085,19 +1282,28 @@
        */
       __P_492_34: function __P_492_34(columnName, direction) {
         var meta = this.__P_492_54(columnName);
+
         var columnType = qxWeb.string.firstUp(meta.type);
+
         if (!this["_compare" + columnType] && !this.getProperty("_compare" + columnType)) {
           columnType = "String";
         }
+
         var compareFunc = this.getCompareFunction(columnType).bind(this);
+
         var model = this.__P_492_38();
+
         var columnIndex = this.__P_492_37(columnName);
+
         return model.sort(function (a, b) {
           var x = this.__P_492_57(qxWeb(a.cells.item(columnIndex)));
+
           var y = this.__P_492_57(qxWeb(b.cells.item(columnIndex)));
+
           return compareFunc(x, y, direction);
         }.bind(this));
       },
+
       /**
        * Compares two number
        * @param x {String} The String value of the first number to compare
@@ -1108,13 +1314,16 @@
       _compareNumber: function _compareNumber(x, y, direction) {
         x = qx.ui.website.Table.__P_492_1(x) ? Number(x) : 0;
         y = qx.ui.website.Table.__P_492_1(y) ? Number(y) : 0;
+
         if (direction == "asc") {
           return x - y;
         } else if (direction == "desc") {
           return y - x;
         }
+
         return 0;
       },
+
       /**
        * Gets the name of the column containing the given cell
        * @param headerCell {HTMLTableCellElement} The cell to get the column name for
@@ -1123,6 +1332,7 @@
       __P_492_45: function __P_492_45(headerCell) {
         return headerCell.getAttribute(qx.ui.website.Table.__P_492_11) || headerCell.getAttribute("id");
       },
+
       /**
        * Compares two Dates
        * @param x {String} The String value of the first date to compare
@@ -1133,13 +1343,16 @@
       _compareDate: function _compareDate(x, y, direction) {
         x = qx.ui.website.Table.__P_492_2(x) ? new Date(x) : new Date(0);
         y = qx.ui.website.Table.__P_492_2(y) ? new Date(y) : new Date(0);
+
         if (direction == "asc") {
           return x - y;
         } else if (direction == "desc") {
           return y - x;
         }
+
         return 0;
       },
+
       /**
        * Compares two Strings
        * @param x {String} The first string to compare
@@ -1152,13 +1365,16 @@
           x = x.toLowerCase();
           y = y.toLowerCase();
         }
+
         if (direction == "asc") {
           return x < y ? -1 : x > y ? 1 : 0;
         } else if (direction == "desc") {
           return x > y ? -1 : x < y ? 1 : 0;
         }
+
         return 0;
       },
+
       /**
        * Returns the value of the cell to use for sorting
        * @param cell {qxWeb} The cell to get the value of.
@@ -1167,6 +1383,7 @@
       __P_492_57: function __P_492_57(cell) {
         return cell.getAttribute(qx.ui.website.Table.__P_492_13) || this.__P_492_58(cell);
       },
+
       /**
        * Returns the value of the cell that will be used for sorting
        * @param cell {qxWeb} The cell to get the value of
@@ -1175,30 +1392,38 @@
       __P_492_58: function __P_492_58(cell) {
         return cell[0].textContent || cell[0].innerText || "";
       },
+
       /**
        * Gets the table's data rows from the DOM
        * @return {Array} Array containing the rows of the table
        */
       __P_492_38: function __P_492_38() {
         var rows = this.find("tbody")[0].rows,
-          model = [],
-          cell = null,
-          cells = [];
+            model = [],
+            cell = null,
+            cells = [];
+
         for (var i = 0, l = rows.length; i < l; i++) {
           cells = rows.item(i).cells;
+
           if (cells.length > 0 && cells[0].nodeName.toUpperCase() != "TD") {
             continue;
           }
+
           for (var j = 0, len = cells.length; j < len; j++) {
             cell = qxWeb(cells[j]);
+
             if (!cell.hasClass(qx.ui.website.Table.__P_492_6)) {
               cell.addClass(qx.ui.website.Table.__P_492_6);
             }
           }
+
           model.push(rows.item(i));
         }
+
         return model;
       },
+
       /**
        * Default sorting processing
        * @param data {Map} Sorting data
@@ -1206,6 +1431,7 @@
       __P_492_28: function __P_492_28(data) {
         var dir = "asc";
         var sortedData = this.getSortingData();
+
         if (sortedData) {
           if (data.columnName == sortedData.columnName) {
             if (sortedData.direction == dir) {
@@ -1213,10 +1439,12 @@
             }
           }
         }
+
         if (data.cell.hasClass("qx-table-header")) {
           this.sort(data.columnName, dir);
         }
       },
+
       /**
        * Default column filter function
        * @param data {Map} Map containing the filter data
@@ -1225,13 +1453,16 @@
       __P_492_32: function __P_492_32(data) {
         var caseSensitive = this.getConfig("caseSensitive");
         var cell = data.columnName == qx.ui.website.Table.__P_492_10 ? data.row : data.cell;
+
         var cellValue = this.__P_492_58(cell);
+
         if (caseSensitive) {
           return cellValue.indexOf(data.keyword) != -1;
         } else {
           return cellValue.toLowerCase().indexOf(data.keyword.toLowerCase()) != -1;
         }
       },
+
       /**
        * Gets the index of the column with the specified name
        * @param columnName {String} The colukn name
@@ -1239,12 +1470,15 @@
        */
       __P_492_37: function __P_492_37(columnName) {
         var tHead = this.__P_492_43();
+
         var cells = tHead.cells;
+
         for (var i = 0; i < cells.length; i++) {
           if (columnName == this.__P_492_45(cells.item(i))) {
             return i;
           }
         }
+
         return -1;
       }
     },
@@ -1257,4 +1491,4 @@
   qx.ui.website.Table.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Table.js.map?dt=1677362771787
+//# sourceMappingURL=Table.js.map?dt=1685978153168

@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,12 +43,12 @@
   qx.Class.define("qx.ui.table.celleditor.CheckBox", {
     extend: qx.core.Object,
     implement: qx.ui.table.ICellEditorFactory,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // interface implementation
       createCellEditor: function createCellEditor(cellInfo) {
@@ -60,14 +61,12 @@
         var checkbox = new qx.ui.form.CheckBox().set({
           value: cellInfo.value
         });
-        editor.add(checkbox);
+        editor.add(checkbox); // propagate focus
 
-        // propagate focus
         editor.addListener("focus", function () {
           checkbox.focus();
-        });
+        }); // propagate active state
 
-        // propagate active state
         editor.addListener("activate", function () {
           checkbox.activate();
         });
@@ -82,4 +81,4 @@
   qx.ui.table.celleditor.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1677362765651
+//# sourceMappingURL=CheckBox.js.map?dt=1685978146835

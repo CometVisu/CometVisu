@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,25 +78,26 @@
     extend: qx.ui.table.columnmodel.resizebehavior.Abstract,
     construct: function construct() {
       qx.ui.table.columnmodel.resizebehavior.Abstract.constructor.call(this);
-      this.__P_445_0 = [];
-
-      // This layout is not connected to a widget but to this class. This class
+      this.__P_445_0 = []; // This layout is not connected to a widget but to this class. This class
       // must implement the method "getLayoutChildren", which must return all
       // columns (LayoutItems) which should be recalculated. The call
       // "layout.renderLayout" will call the method "renderLayout" on each column
       // data object
       // The advantage of the use of the normal layout manager is that the
       // semantics of flex and percent are exactly the same as in the widget code.
+
       this.__P_445_1 = new qx.ui.layout.HBox();
+
       this.__P_445_1.connectToWidget(this);
+
       this.__P_445_2 = new qx.util.DeferredCall(this._computeColumnsFlexWidth, this);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * A function to instantiate a resize behavior column data object.
@@ -106,6 +108,7 @@
           return new qx.ui.core.ColumnData();
         }
       },
+
       /**
        * Whether to reinitialize default widths on each appear event.
        * Typically, one would want to initialize the default widths only upon
@@ -118,6 +121,7 @@
         check: "Boolean",
         init: false
       },
+
       /**
        * The table column model in use.  Of particular interest is the method
        * <i>getTable</i> which is a reference to the table widget.  This allows
@@ -128,21 +132,23 @@
         check: "qx.ui.table.columnmodel.Resize"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_445_1: null,
       __P_445_3: null,
       __P_445_0: null,
       __P_445_2: null,
+
       /**
        * Whether we have initialized widths on the first appear yet
        */
       __P_445_4: false,
+
       /**
        * Set the width of a column.
        *
@@ -163,12 +169,14 @@
         // Ensure the column is within range
         if (col >= this.__P_445_0.length) {
           throw new Error("Column number out of range");
-        }
+        } // Set the new width
 
-        // Set the new width
+
         this.__P_445_0[col].setColumnWidth(width, flex);
+
         this.__P_445_2.schedule();
       },
+
       /**
        * Set the minimum width of a column.
        *
@@ -186,12 +194,14 @@
         // Ensure the column is within range
         if (col >= this.__P_445_0.length) {
           throw new Error("Column number out of range");
-        }
+        } // Set the new width
 
-        // Set the new width
+
         this.__P_445_0[col].setMinWidth(width);
+
         this.__P_445_2.schedule();
       },
+
       /**
        * Set the maximum width of a column.
        *
@@ -209,12 +219,14 @@
         // Ensure the column is within range
         if (col >= this.__P_445_0.length) {
           throw new Error("Column number out of range");
-        }
+        } // Set the new width
 
-        // Set the new width
+
         this.__P_445_0[col].setMaxWidth(width);
+
         this.__P_445_2.schedule();
       },
+
       /**
        * Set any or all of the width, minimum width, and maximum width of a
        * column in a single call.
@@ -238,12 +250,15 @@
             case "width":
               this.setWidth(col, map[prop]);
               break;
+
             case "minWidth":
               this.setMinWidth(col, map[prop]);
               break;
+
             case "maxWidth":
               this.setMaxWidth(col, map[prop]);
               break;
+
             default:
               throw new Error("Unknown property: " + prop);
           }
@@ -255,9 +270,9 @@
         // they want us to reinitialize widths on every appear event...
         if (forceRefresh === true || !this.__P_445_4 || this.getInitializeWidthsOnEveryAppear()) {
           // Calculate column widths
-          this._computeColumnsFlexWidth();
+          this._computeColumnsFlexWidth(); // Track that we've initialized widths at least once
 
-          // Track that we've initialized widths at least once
+
           this.__P_445_4 = true;
         }
       },
@@ -277,34 +292,35 @@
       // overloaded
       onVisibilityChanged: function onVisibilityChanged(event) {
         // Event data properties: col, visible
-        var data = event.getData();
+        var data = event.getData(); // If a column just became visible, resize all columns.
 
-        // If a column just became visible, resize all columns.
         if (data.visible) {
           this._computeColumnsFlexWidth();
-          return;
-        }
 
-        // Extend the last column to fill blank space
+          return;
+        } // Extend the last column to fill blank space
+
+
         this._extendLastColumn(event);
       },
       // overloaded
       _setNumColumns: function _setNumColumns(numColumns) {
-        var colData = this.__P_445_0;
-        // Are there now fewer (or the same number of) columns than there were
+        var colData = this.__P_445_0; // Are there now fewer (or the same number of) columns than there were
         // previously?
+
         if (numColumns <= colData.length) {
           // Yup.  Delete the extras.
           colData.splice(numColumns, colData.length);
           return;
-        }
+        } // There are more columns than there were previously.  Allocate more.
 
-        // There are more columns than there were previously.  Allocate more.
+
         for (var i = colData.length; i < numColumns; i++) {
           colData[i] = this.getNewResizeBehaviorColumnData()();
           colData[i].columnNumber = i;
         }
       },
+
       /**
        * This method is required by the box layout. If returns an array of items
        * to relayout.
@@ -314,57 +330,69 @@
       getLayoutChildren: function getLayoutChildren() {
         return this.__P_445_3;
       },
+
       /**
        * Computes the width of all flexible children.
        *
        */
       _computeColumnsFlexWidth: function _computeColumnsFlexWidth() {
         this.__P_445_2.cancel();
+
         var width = this._getAvailableWidth();
+
         if (width === null) {
           return;
         }
+
         var tableColumnModel = this.getTableColumnModel();
         var visibleColumns = tableColumnModel.getVisibleColumns();
         var visibleColumnsLength = visibleColumns.length;
         var colData = this.__P_445_0;
         var i, l;
+
         if (visibleColumnsLength === 0) {
           return;
-        }
+        } // Create an array of the visible columns
 
-        // Create an array of the visible columns
+
         var columns = [];
+
         for (i = 0; i < visibleColumnsLength; i++) {
           columns.push(colData[visibleColumns[i]]);
         }
-        this.__P_445_3 = columns;
-        this.__P_445_5();
 
-        // Use a horizontal box layout to determine the available width.
+        this.__P_445_3 = columns;
+
+        this.__P_445_5(); // Use a horizontal box layout to determine the available width.
+
+
         this.__P_445_1.renderLayout(width, 100, {
           top: 0,
           right: 0,
           bottom: 0,
           left: 0
-        });
+        }); // Now that we've calculated the width, set it.
 
-        // Now that we've calculated the width, set it.
+
         for (i = 0, l = columns.length; i < l; i++) {
           var colWidth = columns[i].getComputedWidth();
           tableColumnModel.setColumnWidth(visibleColumns[i], colWidth);
         }
       },
+
       /**
        * Clear all layout caches of the column datas.
        */
       __P_445_5: function __P_445_5() {
         this.__P_445_1.invalidateChildrenCache();
+
         var children = this.__P_445_3;
+
         for (var i = 0, l = children.length; i < l; i++) {
           children[i].invalidateLayoutCache();
         }
       },
+
       /**
        * Extend the visible column to right of the column which just changed
        * width, to fill any available space within the inner width of the table.
@@ -381,35 +409,33 @@
        *
        */
       _extendNextColumn: function _extendNextColumn(event) {
-        var tableColumnModel = this.getTableColumnModel();
+        var tableColumnModel = this.getTableColumnModel(); // Event data properties: col, oldWidth, newWidth
 
-        // Event data properties: col, oldWidth, newWidth
         var data = event.getData();
-        var visibleColumns = tableColumnModel.getVisibleColumns();
+        var visibleColumns = tableColumnModel.getVisibleColumns(); // Determine the available width
 
-        // Determine the available width
-        var width = this._getAvailableWidth();
+        var width = this._getAvailableWidth(); // Determine the number of visible columns
 
-        // Determine the number of visible columns
-        var numColumns = visibleColumns.length;
 
-        // Did this column become longer than it was?
+        var numColumns = visibleColumns.length; // Did this column become longer than it was?
+
         if (data.newWidth > data.oldWidth) {
           // Yup.  Don't resize anything else.  The other columns will just get
           // pushed off and require scrollbars be added (if not already there).
           return;
-        }
-
-        // This column became shorter.  See if we no longer take up the full
+        } // This column became shorter.  See if we no longer take up the full
         // space that's available to us.
+
+
         var i;
         var nextCol;
         var widthUsed = 0;
+
         for (i = 0; i < numColumns; i++) {
           widthUsed += tableColumnModel.getColumnWidth(visibleColumns[i]);
-        }
+        } // If the used width is less than the available width...
 
-        // If the used width is less than the available width...
+
         if (widthUsed < width) {
           // ... then determine the next visible column
           for (i = 0; i < visibleColumns.length; i++) {
@@ -418,6 +444,7 @@
               break;
             }
           }
+
           if (nextCol) {
             // Make the next column take up the available space.
             var newWidth = width - (widthUsed - tableColumnModel.getColumnWidth(nextCol));
@@ -425,6 +452,7 @@
           }
         }
       },
+
       /**
        * If a column was just made invisible, extend the last column to fill any
        * available space within the inner width of the table.  This means that
@@ -440,48 +468,45 @@
        *
        */
       _extendLastColumn: function _extendLastColumn(event) {
-        var tableColumnModel = this.getTableColumnModel();
+        var tableColumnModel = this.getTableColumnModel(); // Event data properties: col, visible
 
-        // Event data properties: col, visible
-        var data = event.getData();
+        var data = event.getData(); // If the column just became visible, don't make any width changes
 
-        // If the column just became visible, don't make any width changes
         if (data.visible) {
           return;
-        }
+        } // Get the array of visible columns
 
-        // Get the array of visible columns
-        var visibleColumns = tableColumnModel.getVisibleColumns();
 
-        // If no columns are visible...
+        var visibleColumns = tableColumnModel.getVisibleColumns(); // If no columns are visible...
+
         if (visibleColumns.length == 0) {
           return;
-        }
+        } // Determine the available width
 
-        // Determine the available width
-        var width = this._getAvailableWidth(tableColumnModel);
 
-        // Determine the number of visible columns
-        var numColumns = visibleColumns.length;
+        var width = this._getAvailableWidth(tableColumnModel); // Determine the number of visible columns
 
-        // See if we no longer take up the full space that's available to us.
+
+        var numColumns = visibleColumns.length; // See if we no longer take up the full space that's available to us.
+
         var i;
         var lastCol;
         var widthUsed = 0;
+
         for (i = 0; i < numColumns; i++) {
           widthUsed += tableColumnModel.getColumnWidth(visibleColumns[i]);
-        }
+        } // If the used width is less than the available width...
 
-        // If the used width is less than the available width...
+
         if (widthUsed < width) {
           // ... then get the last visible column
-          lastCol = visibleColumns[visibleColumns.length - 1];
+          lastCol = visibleColumns[visibleColumns.length - 1]; // Make the last column take up the available space.
 
-          // Make the last column take up the available space.
           var newWidth = width - (widthUsed - tableColumnModel.getColumnWidth(lastCol));
           tableColumnModel.setColumnWidth(lastCol, newWidth);
         }
       },
+
       /**
        * Returns an array of the resizing information of a column.
        *
@@ -491,6 +516,7 @@
         return this.__P_445_0;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -498,10 +524,11 @@
     */
     destruct: function destruct() {
       this.__P_445_0 = this.__P_445_3 = null;
+
       this._disposeObjects("__P_445_1", "__P_445_2");
     }
   });
   qx.ui.table.columnmodel.resizebehavior.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1677362766450
+//# sourceMappingURL=Default.js.map?dt=1685978147647

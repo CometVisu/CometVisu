@@ -31,6 +31,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -73,33 +74,33 @@
     extend: qx.ui.form.Button,
     include: [qx.ui.form.MForm, qx.ui.form.MModelProperty],
     implement: [qx.ui.form.IRadioItem, qx.ui.form.IForm, qx.ui.form.IBooleanForm, qx.ui.form.IModel],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param label {String?null} An optional label for the radio button.
      */
     construct: function construct(label) {
-      qx.ui.form.Button.constructor.call(this, label);
-
-      // ARIA attrs
+      qx.ui.form.Button.constructor.call(this, label); // ARIA attrs
       // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'
+
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "radio");
-      contentEl.setAttribute("aria-checked", false);
+      contentEl.setAttribute("aria-checked", false); // Add listeners
 
-      // Add listeners
       this.addListener("execute", this._onExecute);
       this.addListener("keypress", this._onKeyPress);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** The assigned qx.ui.form.RadioGroup which handles the switching between registered buttons */
       group: {
@@ -107,6 +108,7 @@
         nullable: true,
         apply: "_applyGroup"
       },
+
       /** The value of the widget. True, if the widget is checked. */
       value: {
         check: "Boolean",
@@ -126,14 +128,17 @@
         init: false
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -144,10 +149,12 @@
         hovered: true
       },
       // overridden (from MExecutable to keep the icon out of the binding)
+
       /**
        * @lint ignoreReferenceField(_bindableProperties)
        */
       _bindableProperties: ["enabled", "label", "toolTipText", "value", "menu"],
+
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -158,19 +165,24 @@
         value ? this.addState("checked") : this.removeState("checked");
         this.getContentElement().setAttribute("aria-checked", Boolean(value));
       },
-      /** The assigned {@link qx.ui.form.RadioGroup} which handles the switching between registered buttons */_applyGroup: function _applyGroup(value, old) {
+
+      /** The assigned {@link qx.ui.form.RadioGroup} which handles the switching between registered buttons */
+      _applyGroup: function _applyGroup(value, old) {
         if (old) {
           old.remove(this);
         }
+
         if (value) {
           value.add(this);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT-HANDLER
       ---------------------------------------------------------------------------
       */
+
       /**
        * Event listener for the "execute" event.
        *
@@ -180,12 +192,14 @@
        */
       _onExecute: function _onExecute(e) {
         var grp = this.getGroup();
+
         if (grp && grp.getAllowEmptySelection()) {
           this.toggleValue();
         } else {
           this.setValue(true);
         }
       },
+
       /**
        * Event listener for the "keyPress" event.
        *
@@ -196,14 +210,17 @@
        */
       _onKeyPress: function _onKeyPress(e) {
         var grp = this.getGroup();
+
         if (!grp) {
           return;
         }
+
         switch (e.getKeyIdentifier()) {
           case "Left":
           case "Up":
             grp.selectPrevious();
             break;
+
           case "Right":
           case "Down":
             grp.selectNext();
@@ -215,4 +232,4 @@
   qx.ui.form.RadioButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButton.js.map?dt=1677362757642
+//# sourceMappingURL=RadioButton.js.map?dt=1685978138515

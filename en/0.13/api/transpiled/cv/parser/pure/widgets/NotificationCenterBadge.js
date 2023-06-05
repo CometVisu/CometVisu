@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* NotificationCenterBadge.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,6 +39,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.NotificationCenterBadge', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -75,4 +77,4 @@
   cv.parser.pure.widgets.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1677362708258
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1685978091189

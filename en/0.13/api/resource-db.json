@@ -10,10 +10,10 @@
       "hidden-schema.json": {
         "resourcePath": "resourcePath"
       },
-      "visu_config.xsd": {
+      "visu_config_tile.xsd": {
         "resourcePath": "resourcePath"
       },
-      "visu_config_tile.xsd": {
+      "visu_config.xsd": {
         "resourcePath": "resourcePath"
       },
       "config/.gitignore": {
@@ -40,10 +40,10 @@
       "demo/floorplan_demo.xml": {
         "resourcePath": "resourcePath"
       },
-      "demo/visu_config_2d3d.xml": {
+      "demo/visu_config_demo-tile.xml": {
         "resourcePath": "resourcePath"
       },
-      "demo/visu_config_demo-tile.xml": {
+      "demo/visu_config_2d3d.xml": {
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_demo.xml": {
@@ -61,10 +61,10 @@
       "demo/visu_config_empty.xml": {
         "resourcePath": "resourcePath"
       },
-      "demo/visu_config_gauge.xml": {
+      "demo/visu_config_metal.xml": {
         "resourcePath": "resourcePath"
       },
-      "demo/visu_config_metal.xml": {
+      "demo/visu_config_gauge.xml": {
         "resourcePath": "resourcePath"
       },
       "demo/visu_config_responsive.xml": {
@@ -77,6 +77,63 @@
         "resourcePath": "resourcePath"
       },
       "designs/tile-globals.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/EventRecorder.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/CvClientBaseClass.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/Three.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/d3.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/favico.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery-ui.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/jquery.svg.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.edl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.LICENSE.epl-v10": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.about.html": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/paho-mqtt.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/sprintf.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/strftime.js": {
+        "resourcePath": "resourcePath"
+      },
+      "libs/svg4everybody.js": {
         "resourcePath": "resourcePath"
       },
       "icons/COPYING": {
@@ -97,13 +154,13 @@
         "width": 45,
         "height": 35
       },
-      "icons/LICENCE.knx-uf-iconset": {
-        "resourcePath": "resourcePath"
-      },
       "icons/comet_112_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 112,
         "height": 40
+      },
+      "icons/LICENCE.knx-uf-iconset": {
+        "resourcePath": "resourcePath"
       },
       "icons/comet_128_000000.png": {
         "resourcePath": "resourcePath",
@@ -270,12 +327,12 @@
         "width": 64,
         "height": 23
       },
-      "icons/comet_64_ff0000.png": {
+      "icons/comet_64_ff8000.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 23
       },
-      "icons/comet_64_ff8000.png": {
+      "icons/comet_64_ff0000.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 23
@@ -345,15 +402,15 @@
         "width": 152,
         "height": 152
       },
-      "icons/comet_webapp_icon_167.png": {
-        "resourcePath": "resourcePath",
-        "width": 167,
-        "height": 167
-      },
       "icons/comet_webapp_icon_180.png": {
         "resourcePath": "resourcePath",
         "width": 180,
         "height": 180
+      },
+      "icons/comet_webapp_icon_167.png": {
+        "resourcePath": "resourcePath",
+        "width": 167,
+        "height": 167
       },
       "icons/comet_webapp_icon_76.png": {
         "resourcePath": "resourcePath",
@@ -380,15 +437,15 @@
         "width": 144,
         "height": 144
       },
-      "icons/comet_webapp_icon_android_152.png": {
-        "resourcePath": "resourcePath",
-        "width": 152,
-        "height": 152
-      },
       "icons/comet_webapp_icon_android_16.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
+      },
+      "icons/comet_webapp_icon_android_152.png": {
+        "resourcePath": "resourcePath",
+        "width": 152,
+        "height": 152
       },
       "icons/comet_webapp_icon_android_192.png": {
         "resourcePath": "resourcePath",
@@ -410,15 +467,15 @@
         "width": 48,
         "height": 48
       },
-      "icons/comet_webapp_icon_android_512.png": {
-        "resourcePath": "resourcePath",
-        "width": 512,
-        "height": 512
-      },
       "icons/comet_webapp_icon_android_57.png": {
         "resourcePath": "resourcePath",
         "width": 57,
         "height": 57
+      },
+      "icons/comet_webapp_icon_android_512.png": {
+        "resourcePath": "resourcePath",
+        "width": 512,
+        "height": 512
       },
       "icons/comet_webapp_icon_android_72.png": {
         "resourcePath": "resourcePath",
@@ -448,70 +505,16 @@
       "icons/iconlist.html": {
         "resourcePath": "resourcePath"
       },
-      "libs/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/EventRecorder.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/Three.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/d3.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/favico.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery-ui.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/jquery.svg.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.edl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.LICENSE.epl-v10": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.about.html": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/paho-mqtt.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/sprintf.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/strftime.js": {
-        "resourcePath": "resourcePath"
-      },
-      "libs/svg4everybody.js": {
-        "resourcePath": "resourcePath"
-      },
       "manager/crc32.js": {
-        "resourcePath": "resourcePath"
-      },
-      "manager/worker.js": {
         "resourcePath": "resourcePath"
       },
       "manager/xml.js": {
         "resourcePath": "resourcePath"
       },
       "manager/xmllint.js": {
+        "resourcePath": "resourcePath"
+      },
+      "manager/worker.js": {
         "resourcePath": "resourcePath"
       },
       "sentry/bundle.min.js": {
@@ -775,6 +778,9 @@
         "width": 120,
         "height": 120
       },
+      "plugins/diagram/influxfetch.php": {
+        "resourcePath": "resourcePath"
+      },
       "plugins/gauge/gauge.css": {
         "resourcePath": "resourcePath"
       },
@@ -846,9 +852,6 @@
       "plugins/upnpcontroller/volume.php": {
         "resourcePath": "resourcePath"
       },
-      "plugins/diagram/influxfetch.php": {
-        "resourcePath": "resourcePath"
-      },
       "structures/tile/templates.xml": {
         "resourcePath": "resourcePath"
       },
@@ -865,6 +868,30 @@
         "resourcePath": "resourcePath"
       },
       "designs/alaska/fonts/Tuffy_Bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/COPYING": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/ChangeLog": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/License.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/README": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/TODO": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/liberationsans-bold.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "designs/discreet/fonts/liberationsans-regular.ttf": {
         "resourcePath": "resourcePath"
       },
       "designs/discreet/images/button_bg.png": {
@@ -896,30 +923,6 @@
         "resourcePath": "resourcePath",
         "width": 14,
         "height": 8
-      },
-      "designs/discreet/fonts/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/COPYING": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/ChangeLog": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/License.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/README": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/TODO": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/liberationsans-bold.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "designs/discreet/fonts/liberationsans-regular.ttf": {
-        "resourcePath": "resourcePath"
       },
       "designs/discreet_sand/fonts/AUTHORS": {
         "resourcePath": "resourcePath"
@@ -1210,18 +1213,6 @@
       "designs/tile/fonts/remixicon.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qxl/apiviewer/css/sunlight.default.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qxl/apiviewer/lib/sunlight.xml-min.js": {
-        "resourcePath": "resourcePath"
-      },
       "plugins/gauge/dep/ChangeLog.txt": {
         "resourcePath": "resourcePath"
       },
@@ -1259,6 +1250,18 @@
         "resourcePath": "resourcePath"
       },
       "plugins/openweathermap/font/weathericons-regular-webfont.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/css/sunlight.default.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.javascript-min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qxl/apiviewer/lib/sunlight.xml-min.js": {
         "resourcePath": "resourcePath"
       },
       "designs/planet/fonts/OSP/OSP-DIN.ttf": {
@@ -1414,6 +1417,43 @@
     },
     "cv.io": {
       "lib/jquery.js": {
+        "resourcePath": "resourcePath"
+      }
+    },
+    "qxl.dialog": {
+      "qxl/dialog/logo.gif": {
+        "resourcePath": "resourcePath",
+        "width": 272,
+        "height": 81
+      },
+      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      }
+    },
+    "qx.io.remote": {
+      ".gitkeep": {
         "resourcePath": "resourcePath"
       }
     },
@@ -1995,48 +2035,14 @@
         }
       }
     },
-    "qxl.dialog": {
-      "qxl/dialog/logo.gif": {
-        "resourcePath": "resourcePath",
-        "width": 272,
-        "height": 81
-      },
-      "qxl/dialog/icon/IcoMoonFree/264-warning.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/269-info.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/272-cross.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      }
-    },
-    "qx.io.remote": {
-      ".gitkeep": {
-        "resourcePath": "resourcePath"
-      }
-    },
     "qx": {
       "source/readme.txt": {
         "resourcePath": "resourcePath"
       },
       "qx/icon/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/export-glyphs.sh": {
         "resourcePath": "resourcePath"
       },
       "qx/scss/_gradients.scss": {
@@ -2651,345 +2657,6 @@
         "resourcePath": "resourcePath",
         "width": 369,
         "height": 15
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/icon/Oxygen/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/icon/Oxygen/LICENSE": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/icon/Tango/AUTHORS": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/icon/Tango/LICENSE": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/LICENSE.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/MaterialIcons-Regular.nam": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/fetch-fonts.sh": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialicons-v126.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialicons-v126.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialicons-v126.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialicons-v126.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.otf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsround-v100.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsround-v100.otf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsround-v100.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconsround-v100.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconssharp-v101.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconssharp-v101.otf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconssharp-v101.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconssharp-v101.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.otf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.woff2": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/css/LICENSE": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/css/custom.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/js/LICENSE": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/js/iscroll.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/js/iscroll.min.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/dynamicscriptloader/first.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/dynamicscriptloader/second.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/dynamicscriptloader/third.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/knock.mp3": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/knock.ogg": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/knock.wav": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/qx.m4v": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/qx.ogv": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/media/qx.webm": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fineliner_script-webfont.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fineliner_script-webfont.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fineliner_script-webfont.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fontawesome-webfont.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fontawesome-webfont.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/fontawesome-webfont.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/tobec___-webfont.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/tobec___-webfont.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/tobec___-webfont.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.eot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.ttf": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.woff": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/bin/build-devtools": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/bin/build-website": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/bin/download-assets": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/404.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/echo_form_request.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/echo_get_request.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/echo_header.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/echo_post_request.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/get_content.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/invalid.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/loading.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/long_poll.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/not_modified.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/php_version.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/random.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/sample.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/sample.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/sample.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/sample.xml": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/send_known_header.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/time.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/test/xmlhttp/xml.php": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/schema/Manifest-1-0-0.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/schema/Manifest-2-0-0.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/schema/compile-1-0-0.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/schema/qooxdoo-1-0-0.json": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/website/scss/indigo.scss": {
-        "resourcePath": "resourcePath"
       },
       "qx/decoration/Classic/arrows-combined.gif": {
         "resourcePath": "resourcePath",
@@ -6770,11 +6437,6 @@
         "width": 8,
         "height": 7
       },
-      "qx/decoration/Modern/window-statusbar-tb-combined.png": {
-        "resourcePath": "resourcePath",
-        "width": 4,
-        "height": 24
-      },
       "qx/decoration/Modern/window-statusbar-tb-combined.meta": {
         "resourcePath": "resourcePath",
         "meta": {
@@ -6828,194 +6490,366 @@
           ]
         }
       },
-      "qx/mobile/scss/common/_all.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/common/_animations.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/common/_gradients.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/common/_main.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/common/_mixins.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/common/_scroller.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_all.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_blocker.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_button.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_carousel.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_checkbox.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_collapsible.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_drawer.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_form.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_input.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_list.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_main.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_masterdetail.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_menu.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_navigation.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_navigationbar.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_picker.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_popup.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_radiobutton.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_selectbox.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_slider.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_spinner.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_tabbar.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_togglebutton.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/mobile/scss/ui/_toolbar.scss": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/TypeScriptWriter-base_declaration.txt": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/template_vars.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/build/404.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/build/about.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/build/index.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/build/qooxdoo.css": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/layouts/default.dot": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/partials/footer.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/partials/head.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/partials/header.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/partials/icon-github.html": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/website/partials/icon-github.svg": {
+      "qx/decoration/Modern/window-statusbar-tb-combined.png": {
         "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
+        "width": 4,
+        "height": 24
       },
-      "qx/tool/website/partials/icon-twitter.html": {
+      "qx/font/Roboto/LICENSE.txt": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/partials/icon-twitter.svg": {
-        "resourcePath": "resourcePath",
-        "width": 16,
-        "height": 16
-      },
-      "qx/tool/website/sass/qooxdoo.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/src/404.html": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.ttf": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/src/about.md": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff": {
         "resourcePath": "resourcePath"
       },
-      "qx/tool/website/src/index.html": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/common/_all.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/common/_mixins.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.ttf": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_all.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_button.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-700italic.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_calendar.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_carousel.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.ttf": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_common.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_datepicker.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-italic.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_menu.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_rating.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.ttf": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_slider.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_tabs.scss": {
+      "qx/font/Roboto/roboto-mono-v6-latin_latin-ext-regular.woff2": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_toolbar.scss": {
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.eot": {
         "resourcePath": "resourcePath"
       },
-      "qx/website/scss/ui/_widget.scss": {
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-700italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-italic.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/font/Roboto/roboto-v18-latin_latin-ext-regular.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/icon/Oxygen/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/icon/Oxygen/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/icon/Tango/AUTHORS": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/icon/Tango/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/LICENSE.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/MaterialIcons-Regular.nam": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/fetch-fonts.sh": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialicons-v126.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialicons-v126.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialicons-v126.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialicons-v126.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialicons.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.otf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsoutlined.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsround-v100.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsround-v100.otf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsround-v100.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsround-v100.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconsround.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconssharp-v101.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconssharp-v101.otf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconssharp-v101.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconssharp-v101.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconssharp.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.otf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconstwotone-v104.woff2": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/materialiconstwotone.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/iconfont/MaterialIcons/x.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/css/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/css/custom.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/js/LICENSE": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/js/iscroll.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/js/iscroll.min.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/dynamicscriptloader/first.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/dynamicscriptloader/second.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/dynamicscriptloader/third.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/knock.mp3": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/knock.ogg": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/knock.wav": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/qx.m4v": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/qx.ogv": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/media/qx.webm": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fineliner_script-webfont.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fineliner_script-webfont.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fineliner_script-webfont.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fontawesome-webfont.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fontawesome-webfont.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/fontawesome-webfont.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/tobec___-webfont.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/tobec___-webfont.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/tobec___-webfont.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.eot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.ttf": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/webfonts/yanonekaffeesatz-regular-webfont.woff": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/404.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/echo_form_request.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/echo_get_request.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/echo_header.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/echo_post_request.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/get_content.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/invalid.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/loading.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/long_poll.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/not_modified.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/php_version.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/random.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/sample.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/sample.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/sample.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/sample.xml": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/send_known_header.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/time.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/test/xmlhttp/xml.php": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/bin/build-devtools": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/bin/build-website": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/bin/download-assets": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/schema/Manifest-1-0-0.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/schema/Manifest-2-0-0.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/schema/compile-1-0-0.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/schema/qooxdoo-1-0-0.json": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/indigo.scss": {
         "resourcePath": "resourcePath"
       },
       "qx/decoration/Classic/arrows/down-invert.gif": {
@@ -8607,15 +8441,15 @@
         "width": 255,
         "height": 59
       },
-      "qx/decoration/Modern/menu/bar-background.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 20
-      },
       "qx/decoration/Modern/menu/background.png": {
         "resourcePath": "resourcePath",
         "width": 40,
         "height": 49
+      },
+      "qx/decoration/Modern/menu/bar-background.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 20
       },
       "qx/decoration/Modern/menu/checkbox-invert.gif": {
         "resourcePath": "resourcePath",
@@ -8747,12 +8581,12 @@
         "width": 15,
         "height": 15
       },
-      "qx/decoration/Modern/shadow/shadow-bl.png": {
+      "qx/decoration/Modern/shadow/shadow-br.png": {
         "resourcePath": "resourcePath",
         "width": 15,
         "height": 15
       },
-      "qx/decoration/Modern/shadow/shadow-br.png": {
+      "qx/decoration/Modern/shadow/shadow-bl.png": {
         "resourcePath": "resourcePath",
         "width": 15,
         "height": 15
@@ -9027,17 +8861,22 @@
         "width": 5,
         "height": 5
       },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-b.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
-      },
       "qx/decoration/Modern/tabview/tab-button-left-active.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 47
       },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-b.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
       "qx/decoration/Modern/tabview/tab-button-left-inactive-bl.png": {
+        "resourcePath": "resourcePath",
+        "width": 3,
+        "height": 3
+      },
+      "qx/decoration/Modern/tabview/tab-button-left-inactive-br.png": {
         "resourcePath": "resourcePath",
         "width": 3,
         "height": 3
@@ -9046,11 +8885,6 @@
         "resourcePath": "resourcePath",
         "width": 40,
         "height": 39
-      },
-      "qx/decoration/Modern/tabview/tab-button-left-inactive-br.png": {
-        "resourcePath": "resourcePath",
-        "width": 3,
-        "height": 3
       },
       "qx/decoration/Modern/tabview/tab-button-left-inactive-l.png": {
         "resourcePath": "resourcePath",
@@ -9117,12 +8951,12 @@
         "width": 5,
         "height": 5
       },
-      "qx/decoration/Modern/tabview/tab-button-right-active-tr.png": {
+      "qx/decoration/Modern/tabview/tab-button-right-active-tl.png": {
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 5
       },
-      "qx/decoration/Modern/tabview/tab-button-right-active-tl.png": {
+      "qx/decoration/Modern/tabview/tab-button-right-active-tr.png": {
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 5
@@ -9167,12 +9001,12 @@
         "width": 3,
         "height": 3
       },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-tr.png": {
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-tl.png": {
         "resourcePath": "resourcePath",
         "width": 3,
         "height": 3
       },
-      "qx/decoration/Modern/tabview/tab-button-right-inactive-tl.png": {
+      "qx/decoration/Modern/tabview/tab-button-right-inactive-tr.png": {
         "resourcePath": "resourcePath",
         "width": 3,
         "height": 3
@@ -9182,12 +9016,12 @@
         "width": 20,
         "height": 45
       },
-      "qx/decoration/Modern/tabview/tab-button-top-active-bl.png": {
+      "qx/decoration/Modern/tabview/tab-button-top-active-b.png": {
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 5
       },
-      "qx/decoration/Modern/tabview/tab-button-top-active-b.png": {
+      "qx/decoration/Modern/tabview/tab-button-top-active-bl.png": {
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 5
@@ -9196,11 +9030,6 @@
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 5
-      },
-      "qx/decoration/Modern/tabview/tab-button-top-active-c.png": {
-        "resourcePath": "resourcePath",
-        "width": 40,
-        "height": 14
       },
       "qx/decoration/Modern/tabview/tab-button-top-active-l.png": {
         "resourcePath": "resourcePath",
@@ -9211,6 +9040,11 @@
         "resourcePath": "resourcePath",
         "width": 5,
         "height": 12
+      },
+      "qx/decoration/Modern/tabview/tab-button-top-active-c.png": {
+        "resourcePath": "resourcePath",
+        "width": 40,
+        "height": 14
       },
       "qx/decoration/Modern/tabview/tab-button-top-active-t.png": {
         "resourcePath": "resourcePath",
@@ -9322,15 +9156,15 @@
         "width": 30,
         "height": 30
       },
-      "qx/decoration/Modern/tabview/tabview-pane-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 30,
-        "height": 30
-      },
       "qx/decoration/Modern/tabview/tabview-pane.png": {
         "resourcePath": "resourcePath",
         "width": 185,
         "height": 250
+      },
+      "qx/decoration/Modern/tabview/tabview-pane-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 30,
+        "height": 30
       },
       "qx/decoration/Modern/toolbar/toolbar-gradient-blue.png": {
         "resourcePath": "resourcePath",
@@ -9412,15 +9246,15 @@
         "width": 6,
         "height": 6
       },
-      "qx/decoration/Modern/window/captionbar-active-tr.png": {
-        "resourcePath": "resourcePath",
-        "width": 6,
-        "height": 6
-      },
       "qx/decoration/Modern/window/captionbar-active.png": {
         "resourcePath": "resourcePath",
         "width": 69,
         "height": 21
+      },
+      "qx/decoration/Modern/window/captionbar-active-tr.png": {
+        "resourcePath": "resourcePath",
+        "width": 6,
+        "height": 6
       },
       "qx/decoration/Modern/window/captionbar-inactive-b.png": {
         "resourcePath": "resourcePath",
@@ -9881,6 +9715,196 @@
         "resourcePath": "resourcePath",
         "width": 8,
         "height": 9
+      },
+      "qx/mobile/scss/common/_all.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/common/_animations.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/common/_gradients.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/common/_main.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/common/_mixins.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/common/_scroller.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_all.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_blocker.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_button.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_carousel.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_checkbox.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_collapsible.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_drawer.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_form.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_input.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_list.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_main.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_masterdetail.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_menu.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_navigation.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_navigationbar.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_picker.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_popup.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_radiobutton.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_selectbox.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_slider.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_spinner.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_tabbar.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_togglebutton.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/mobile/scss/ui/_toolbar.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/TypeScriptWriter-base_declaration.txt": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/cli/templates/template_vars.js": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/build/404.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/build/about.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/build/index.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/build/qooxdoo.css": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/layouts/default.dot": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/footer.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/head.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/header.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/icon-github.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/icon-github.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/tool/website/partials/icon-twitter.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/partials/icon-twitter.svg": {
+        "resourcePath": "resourcePath",
+        "width": 16,
+        "height": 16
+      },
+      "qx/tool/website/sass/qooxdoo.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/src/404.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/src/about.md": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/tool/website/src/index.html": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/common/_all.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/common/_mixins.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_all.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_button.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_calendar.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_carousel.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_common.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_datepicker.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_menu.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_rating.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_slider.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_tabs.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_toolbar.scss": {
+        "resourcePath": "resourcePath"
+      },
+      "qx/website/scss/ui/_widget.scss": {
+        "resourcePath": "resourcePath"
       },
       "qx/icon/Oxygen/128/actions/address-book-new.png": {
         "resourcePath": "resourcePath",
@@ -13232,11 +13256,6 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Oxygen/22/status/mail-replied.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Oxygen/22/status/mail-unread.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -13253,6 +13272,11 @@
         "height": 22
       },
       "qx/icon/Oxygen/22/status/security-medium.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Oxygen/22/status/mail-replied.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -14152,16 +14176,6 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Oxygen/32/emblems/emblem-favorite.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Oxygen/32/emblems/emblem-important.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
       "qx/icon/Oxygen/32/emotes/face-angel.png": {
         "resourcePath": "resourcePath",
         "width": 32,
@@ -14208,6 +14222,16 @@
         "height": 32
       },
       "qx/icon/Oxygen/32/emotes/face-surprise.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Oxygen/32/emblems/emblem-favorite.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
+      "qx/icon/Oxygen/32/emblems/emblem-important.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -15862,11 +15886,6 @@
         "width": 64,
         "height": 64
       },
-      "qx/icon/Oxygen/64/actions/media-playback-start.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
       "qx/icon/Oxygen/64/actions/media-playback-stop.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -15968,6 +15987,11 @@
         "height": 64
       },
       "qx/icon/Oxygen/64/actions/window-close.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Oxygen/64/actions/media-playback-start.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -16917,12 +16941,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/actions/list-remove.png": {
+      "qx/icon/Tango/128/actions/list-add.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/actions/list-add.png": {
+      "qx/icon/Tango/128/actions/list-remove.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -17042,12 +17066,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/actions/system-log-out.png": {
+      "qx/icon/Tango/128/actions/process-stop.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/actions/process-stop.png": {
+      "qx/icon/Tango/128/actions/system-log-out.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -17317,12 +17341,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/apps/utilities-graphics-viewer.png": {
+      "qx/icon/Tango/128/apps/utilities-dictionary.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/apps/utilities-dictionary.png": {
+      "qx/icon/Tango/128/apps/utilities-graphics-viewer.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -17482,12 +17506,12 @@
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/devices/media-optical.png": {
+      "qx/icon/Tango/128/devices/media-flash.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
       },
-      "qx/icon/Tango/128/devices/media-flash.png": {
+      "qx/icon/Tango/128/devices/media-optical.png": {
         "resourcePath": "resourcePath",
         "width": 128,
         "height": 128
@@ -18382,12 +18406,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/apps/preferences-locale.png": {
+      "qx/icon/Tango/16/apps/preferences-keyboard.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/apps/preferences-keyboard.png": {
+      "qx/icon/Tango/16/apps/preferences-locale.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -18762,12 +18786,12 @@
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/mimetypes/text-plain.png": {
+      "qx/icon/Tango/16/mimetypes/text-html.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
       },
-      "qx/icon/Tango/16/mimetypes/text-html.png": {
+      "qx/icon/Tango/16/mimetypes/text-plain.png": {
         "resourcePath": "resourcePath",
         "width": 16,
         "height": 16
@@ -18922,12 +18946,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/document-new.png": {
+      "qx/icon/Tango/22/actions/dialog-ok.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/dialog-ok.png": {
+      "qx/icon/Tango/22/actions/document-new.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19162,12 +19186,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/list-remove.png": {
+      "qx/icon/Tango/22/actions/list-add.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/list-add.png": {
+      "qx/icon/Tango/22/actions/list-remove.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19212,12 +19236,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/mail-send.png": {
+      "qx/icon/Tango/22/actions/mail-reply-sender.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/actions/mail-reply-sender.png": {
+      "qx/icon/Tango/22/actions/mail-send.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19432,17 +19456,17 @@
         "width": 22,
         "height": 22
       },
+      "qx/icon/Tango/22/apps/office-chart.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
       "qx/icon/Tango/22/apps/office-database.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Tango/22/apps/office-draw.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/apps/office-chart.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19682,17 +19706,17 @@
         "width": 22,
         "height": 22
       },
+      "qx/icon/Tango/22/devices/battery.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
       "qx/icon/Tango/22/devices/camera-photo.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
       "qx/icon/Tango/22/devices/camera-web.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/devices/battery.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -19782,56 +19806,6 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/emotes/face-angel.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-embarrassed.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-kiss.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-laugh.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-plain.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-raspberry.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-sad.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-smile-big.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-smile.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
-      "qx/icon/Tango/22/emotes/face-surprise.png": {
-        "resourcePath": "resourcePath",
-        "width": 22,
-        "height": 22
-      },
       "qx/icon/Tango/22/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 22,
@@ -19872,12 +19846,12 @@
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/mimetypes/office-presentation.png": {
+      "qx/icon/Tango/22/mimetypes/office-illustration.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
       },
-      "qx/icon/Tango/22/mimetypes/office-illustration.png": {
+      "qx/icon/Tango/22/mimetypes/office-presentation.png": {
         "resourcePath": "resourcePath",
         "width": 22,
         "height": 22
@@ -20432,17 +20406,17 @@
         "width": 32,
         "height": 32
       },
+      "qx/icon/Tango/32/actions/system-shutdown.png": {
+        "resourcePath": "resourcePath",
+        "width": 32,
+        "height": 32
+      },
       "qx/icon/Tango/32/actions/view-fullscreen.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
       "qx/icon/Tango/32/actions/view-refresh.png": {
-        "resourcePath": "resourcePath",
-        "width": 32,
-        "height": 32
-      },
-      "qx/icon/Tango/32/actions/system-shutdown.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -20847,12 +20821,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/devices/media-flash.png": {
+      "qx/icon/Tango/32/devices/input-mouse.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/devices/input-mouse.png": {
+      "qx/icon/Tango/32/devices/media-flash.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -21012,12 +20986,12 @@
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/text-plain.png": {
+      "qx/icon/Tango/32/mimetypes/text-html.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
       },
-      "qx/icon/Tango/32/mimetypes/text-html.png": {
+      "qx/icon/Tango/32/mimetypes/text-plain.png": {
         "resourcePath": "resourcePath",
         "width": 32,
         "height": 32
@@ -21162,12 +21136,12 @@
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/actions/dialog-close.png": {
+      "qx/icon/Tango/48/actions/dialog-cancel.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
-      "qx/icon/Tango/48/actions/dialog-cancel.png": {
+      "qx/icon/Tango/48/actions/dialog-close.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -21337,17 +21311,17 @@
         "width": 48,
         "height": 48
       },
+      "qx/icon/Tango/48/actions/go-bottom.png": {
+        "resourcePath": "resourcePath",
+        "width": 48,
+        "height": 48
+      },
       "qx/icon/Tango/48/actions/go-down.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
       },
       "qx/icon/Tango/48/actions/go-first.png": {
-        "resourcePath": "resourcePath",
-        "width": 48,
-        "height": 48
-      },
-      "qx/icon/Tango/48/actions/go-bottom.png": {
         "resourcePath": "resourcePath",
         "width": 48,
         "height": 48
@@ -23207,6 +23181,51 @@
         "width": 64,
         "height": 64
       },
+      "qx/icon/Tango/64/places/folder-open.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/folder-remote.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/folder.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/network-server.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/network-workgroup.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/user-desktop.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/user-home.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/user-trash-full.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
+      "qx/icon/Tango/64/places/user-trash.png": {
+        "resourcePath": "resourcePath",
+        "width": 64,
+        "height": 64
+      },
       "qx/icon/Tango/64/mimetypes/archive.png": {
         "resourcePath": "resourcePath",
         "width": 64,
@@ -23268,51 +23287,6 @@
         "height": 64
       },
       "qx/icon/Tango/64/mimetypes/text-plain.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/folder-open.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/folder-remote.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/folder.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/network-server.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/network-workgroup.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/user-desktop.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/user-home.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/user-trash-full.png": {
-        "resourcePath": "resourcePath",
-        "width": 64,
-        "height": 64
-      },
-      "qx/icon/Tango/64/places/user-trash.png": {
         "resourcePath": "resourcePath",
         "width": 64,
         "height": 64
@@ -23383,6 +23357,59 @@
       "qx/mobile/scss/theme/indigo/_styles.scss": {
         "resourcePath": "resourcePath"
       },
+      "qx/icon/Tango/22/emotes/face-angel.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-embarrassed.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-kiss.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-laugh.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-plain.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-raspberry.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-sad.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-smile-big.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-smile.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/icon/Tango/22/emotes/face-surprise.png": {
+        "resourcePath": "resourcePath",
+        "width": 22,
+        "height": 22
+      },
+      "qx/tool/cli/templates/class/default.tmpl.js": {
+        "resourcePath": "resourcePath"
+      },
       "qx/tool/cli/templates/class/header.tmpl.js": {
         "resourcePath": "resourcePath"
       },
@@ -23390,9 +23417,6 @@
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/class/mixin.tmpl.js": {
-        "resourcePath": "resourcePath"
-      },
-      "qx/tool/cli/templates/class/default.tmpl.js": {
         "resourcePath": "resourcePath"
       },
       "qx/tool/cli/templates/class/singleton.tmpl.js": {

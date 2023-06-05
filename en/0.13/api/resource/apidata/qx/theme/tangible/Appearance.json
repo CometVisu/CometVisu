@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 38,
+        "line": 39,
         "column": 0,
-        "index": 1181
+        "index": 1208
       },
       "end": {
-        "line": 2500,
+        "line": 2501,
         "column": 3,
-        "index": 58374
+        "index": 58401
       }
     },
     "jsdoc": {
@@ -58,6 +58,12 @@
         {
           "name": "@asset",
           "body": "qx/icon/Tango/16/actions/dialog-ok.png"
+        }
+      ],
+      "@usefont": [
+        {
+          "name": "@usefont",
+          "body": "MaterialIcons"
         }
       ]
     }

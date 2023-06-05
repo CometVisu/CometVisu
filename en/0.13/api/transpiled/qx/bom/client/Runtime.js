@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -17,6 +18,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,6 +50,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    * @ignore(Titanium.*)
    * @ignore(Packages)
    */
+
   /* global Packages, enviroment, process, Titanium */
   qx.Bootstrap.define("qx.bom.client.Runtime", {
     statics: {
@@ -59,12 +62,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       getName: function getName() {
-        var name = "";
+        var name = ""; // check for the Rhino runtime
 
-        // check for the Rhino runtime
         if ((typeof Packages === "undefined" ? "undefined" : _typeof(Packages)) === "object" && Object.prototype.toString.call(Packages) === "[object JavaPackage]") {
-          name = "rhino";
-          // check for the Node.js runtime
+          name = "rhino"; // check for the Node.js runtime
         } else if (typeof process !== "undefined") {
           name = "node.js";
         } else if (typeof Titanium !== "undefined" && typeof Titanium.userAgent !== "undefined") {
@@ -73,6 +74,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // otherwise, we think its a browser
           name = qx.bom.client.Browser.getName();
         }
+
         return name;
       }
     },
@@ -83,4 +85,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Runtime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Runtime.js.map?dt=1677362727505
+//# sourceMappingURL=Runtime.js.map?dt=1685978109788

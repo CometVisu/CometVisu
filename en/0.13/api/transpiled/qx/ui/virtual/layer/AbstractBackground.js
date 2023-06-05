@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,32 +38,37 @@
    */
   qx.Class.define("qx.ui.virtual.layer.AbstractBackground", {
     extend: qx.ui.virtual.layer.Abstract,
+
     /*
      *****************************************************************************
         CONSTRUCTOR
      *****************************************************************************
      */
+
     /**
      * @param colorEven {Color?null} color for even indexes
      * @param colorOdd {Color?null} color for odd indexes
      */
     construct: function construct(colorEven, colorOdd) {
       qx.ui.virtual.layer.Abstract.constructor.call(this);
+
       if (colorEven) {
         this.setColorEven(colorEven);
       }
+
       if (colorOdd) {
         this.setColorOdd(colorOdd);
       }
+
       this.__P_480_0 = {};
       this.__P_480_1 = {};
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** color for event indexes */
       colorEven: {
@@ -71,6 +77,7 @@
         apply: "_applyColorEven",
         themeable: true
       },
+
       /** color for odd indexes */
       colorOdd: {
         nullable: true,
@@ -79,22 +86,24 @@
         themeable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_480_2: null,
       __P_480_3: null,
       __P_480_0: null,
       __P_480_1: null,
+
       /*
       ---------------------------------------------------------------------------
         COLOR HANDLING
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the color for the given index
        *
@@ -109,6 +118,7 @@
           delete this.__P_480_0[index];
         }
       },
+
       /**
        * Clear all colors set using {@link #setColor}.
        */
@@ -116,6 +126,7 @@
         this.__P_480_0 = {};
         this.updateLayerData();
       },
+
       /**
        * Get the color at the given index
        *
@@ -124,6 +135,7 @@
        */
       getColor: function getColor(index) {
         var customColor = this.__P_480_0[index];
+
         if (customColor) {
           return customColor;
         } else {
@@ -137,6 +149,7 @@
         } else {
           this.__P_480_2 = null;
         }
+
         this.updateLayerData();
       },
       // property apply
@@ -146,8 +159,10 @@
         } else {
           this.__P_480_3 = null;
         }
+
         this.updateLayerData();
       },
+
       /**
        * Sets the decorator for the given index
        *
@@ -161,8 +176,10 @@
         } else {
           delete this.__P_480_1[index];
         }
+
         this.updateLayerData();
       },
+
       /**
        * Get the decorator at the given index
        *
@@ -173,6 +190,7 @@
         return this.__P_480_1[index];
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -185,4 +203,4 @@
   qx.ui.virtual.layer.AbstractBackground.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBackground.js.map?dt=1677362770377
+//# sourceMappingURL=AbstractBackground.js.map?dt=1685978151722

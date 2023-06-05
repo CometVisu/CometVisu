@@ -61,6 +61,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -103,64 +104,62 @@
    */
   qx.Class.define("qx.ui.root.Application", {
     extend: qx.ui.root.Abstract,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param doc {Document} Document to use
      */
     construct: function construct(doc) {
       // Symbolic links
       this.__P_429_0 = qx.dom.Node.getWindow(doc);
-      this.__P_429_1 = doc;
+      this.__P_429_1 = doc; // Base call
 
-      // Base call
-      qx.ui.root.Abstract.constructor.call(this);
+      qx.ui.root.Abstract.constructor.call(this); // Resize handling
 
-      // Resize handling
-      qx.event.Registration.addListener(this.__P_429_0, "resize", this._onResize, this);
+      qx.event.Registration.addListener(this.__P_429_0, "resize", this._onResize, this); // Use a hard-coded canvas layout
 
-      // Use a hard-coded canvas layout
-      this._setLayout(new qx.ui.layout.Canvas());
+      this._setLayout(new qx.ui.layout.Canvas()); // Directly schedule layout for root element
 
-      // Directly schedule layout for root element
-      qx.ui.core.queue.Layout.add(this);
 
-      // Register as root
+      qx.ui.core.queue.Layout.add(this); // Register as root
+
       qx.ui.core.FocusHandler.getInstance().connectTo(this);
-      this.getContentElement().disableScrolling();
+      this.getContentElement().disableScrolling(); // quick fix for [BUG #7680]
 
-      // quick fix for [BUG #7680]
-      this.getContentElement().setStyle("-webkit-backface-visibility", "hidden");
+      this.getContentElement().setStyle("-webkit-backface-visibility", "hidden"); // prevent scrolling on touch devices
 
-      // prevent scrolling on touch devices
-      this.addListener("touchmove", this.__P_429_2, this);
+      this.addListener("touchmove", this.__P_429_2, this); // handle focus for iOS which seems to deny any focus action
 
-      // handle focus for iOS which seems to deny any focus action
       if (qx.core.Environment.get("os.name") == "ios") {
         this.getContentElement().addListener("tap", function (e) {
           var widget = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
+
           while (widget && !widget.isFocusable()) {
             widget = widget.getLayoutParent();
           }
+
           if (widget && widget.isFocusable()) {
             widget.getContentElement().focus();
           }
         }, this, true);
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_429_0: null,
       __P_429_1: null,
       // overridden
+
       /**
        * Create the widget's container HTML element.
        *
@@ -169,6 +168,7 @@
        */
       _createContentElement: function _createContentElement() {
         var doc = this.__P_429_1;
+
         if (qx.core.Environment.get("engine.name") == "webkit") {
           // In the "DOMContentLoaded" event of WebKit (Safari, Chrome) no body
           // element seems to be available in the DOM, if the HTML file did not
@@ -178,9 +178,9 @@
             /* eslint-disable-next-line no-alert */
             window.alert("The application could not be started due to a missing body tag in the HTML file!");
           }
-        }
+        } // Apply application layout
 
-        // Apply application layout
+
         var hstyle = doc.documentElement.style;
         var bstyle = doc.body.style;
         hstyle.overflow = bstyle.overflow = "hidden";
@@ -193,26 +193,25 @@
           position: "absolute",
           overflowX: "hidden",
           overflowY: "hidden"
-        });
+        }); // Store reference to the widget in the DOM element.
 
-        // Store reference to the widget in the DOM element.
         root.connectObject(this);
         return root;
       },
+
       /**
        * Listener for window's resize event
        *
        * @param e {qx.event.type.Event} Event object
        */
       _onResize: function _onResize(e) {
-        qx.ui.core.queue.Layout.add(this);
+        qx.ui.core.queue.Layout.add(this); // close all popups
 
-        // close all popups
         if (qx.ui.popup && qx.ui.popup.Manager) {
           qx.ui.popup.Manager.getInstance().hideAll();
-        }
+        } // close all menus
 
-        // close all menus
+
         if (qx.ui.menu && qx.ui.menu.Manager) {
           qx.ui.menu.Manager.getInstance().hideAll();
         }
@@ -235,8 +234,10 @@
         if (value && (name == "paddingTop" || name == "paddingLeft")) {
           throw new Error("The root widget does not support 'left', or 'top' paddings!");
         }
+
         qx.ui.root.Application.superclass.prototype._applyPadding.call(this, value, old, name);
       },
+
       /**
        * Handler for the native 'touchstart' on the window which prevents
        * the native page scrolling.
@@ -244,16 +245,20 @@
        */
       __P_429_2: function __P_429_2(e) {
         var node = e.getOriginalTarget();
+
         while (node && node.style) {
           var touchAction = qx.bom.element.Style.get(node, "touch-action") !== "none" && qx.bom.element.Style.get(node, "touch-action") !== "";
           var webkitOverflowScrolling = qx.bom.element.Style.get(node, "-webkit-overflow-scrolling") === "touch";
           var overflowX = qx.bom.element.Style.get(node, "overflowX") != "hidden";
           var overflowY = qx.bom.element.Style.get(node, "overflowY") != "hidden";
+
           if (touchAction || webkitOverflowScrolling || overflowY || overflowX) {
             return;
           }
+
           node = node.parentNode;
         }
+
         e.preventDefault();
       },
       // overridden
@@ -261,10 +266,12 @@
         if (this.$$disposed) {
           return;
         }
+
         qx.dom.Element.remove(this.getContentElement().getDomElement());
         qx.ui.root.Application.superclass.prototype.destroy.call(this);
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -277,4 +284,4 @@
   qx.ui.root.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1677362764799
+//# sourceMappingURL=Application.js.map?dt=1685978145960

@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -83,6 +84,7 @@
       factory: function factory(item, options) {
         return true;
       },
+
       /**
        * Empty the menu of all items, in preparation for building a new column
        * visibility menu.
@@ -96,4 +98,4 @@
   qx.ui.table.IColumnMenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IColumnMenuButton.js.map?dt=1677362765207
+//# sourceMappingURL=IColumnMenuButton.js.map?dt=1685978146381

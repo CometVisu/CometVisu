@@ -14,9 +14,9 @@
         "index": 31
       },
       "end": {
-        "line": 94,
+        "line": 97,
         "column": 3,
-        "index": 2939
+        "index": 3160
       }
     },
     "jsdoc": {
@@ -72,12 +72,13 @@
           "index": 473
         },
         "end": {
-          "line": 70,
+          "line": 73,
           "column": 5,
-          "index": 2381
+          "index": 2602
         }
       },
       "type": "function",
+      "async": true,
       "access": "protected",
       "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
       "appearsIn": [
@@ -87,17 +88,18 @@
     "loadPluginPart": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 75,
           "column": 4,
-          "index": 2388
+          "index": 2609
         },
         "end": {
-          "line": 81,
+          "line": 84,
           "column": 5,
-          "index": 2713
+          "index": 2934
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "bind": {
@@ -3504,14 +3506,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 84,
+        "line": 87,
         "column": 2,
-        "index": 2722
+        "index": 2943
       },
       "end": {
-        "line": 93,
+        "line": 96,
         "column": 3,
-        "index": 2935
+        "index": 3156
       }
     }
   },

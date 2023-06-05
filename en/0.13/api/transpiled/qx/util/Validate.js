@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -81,6 +82,7 @@
           qx.util.Validate.checkNumber(value, null, errorMessage);
         };
       },
+
       /**
        * The function checks the incoming value to see if it is a number.
        * If not, an ValidationError will be thrown.
@@ -96,10 +98,12 @@
        */
       checkNumber: function checkNumber(value, formItem, errorMessage) {
         errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a number.", value ? qx.bom.String.escape(value + "") : value);
+
         if (typeof value !== "number" && !(value instanceof Number) || !isFinite(value)) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
         }
       },
+
       /**
        * Returns the function that checks for an email address.
        *
@@ -111,6 +115,7 @@
           qx.util.Validate.checkEmail(value, null, errorMessage);
         };
       },
+
       /**
        * The function checks the incoming value to see if it is an email address.
        * If not, an ValidationError will be thrown.
@@ -127,10 +132,12 @@
       checkEmail: function checkEmail(value, formItem, errorMessage) {
         errorMessage = errorMessage || qx.locale.Manager.tr("'%1' is not an email address.", value ? qx.bom.String.escape(value + "") : "");
         var reg = /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/;
+
         if (reg.test(value) === false) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
         }
       },
+
       /**
        * Returns the function that checks for a string.
        *
@@ -142,6 +149,7 @@
           qx.util.Validate.checkString(value, null, errorMessage);
         };
       },
+
       /**
        * The function checks the incoming value to see if it is a string.
        * If not, an ValidationError will be thrown.
@@ -156,10 +164,12 @@
        */
       checkString: function checkString(value, formItem, errorMessage) {
         errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not a string.", value ? qx.bom.String.escape(value + "") : value);
+
         if (typeof value !== "string" && !(value instanceof String)) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
         }
       },
+
       /**
        * Returns the function that checks for an url.
        *
@@ -171,6 +181,7 @@
           qx.util.Validate.checkUrl(value, null, errorMessage);
         };
       },
+
       /**
        * The function checks the incoming value to see if it is an url.
        * If not, an ValidationError will be thrown.
@@ -186,10 +197,12 @@
       checkUrl: function checkUrl(value, formItem, errorMessage) {
         errorMessage = errorMessage || qx.locale.Manager.tr("%1 is not an url.", value ? qx.bom.String.escape(value + "") : value);
         var reg = /([A-Za-z0-9])+:\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
         if (!reg.test(value)) {
           throw new qx.core.ValidationError("Validation Error", errorMessage);
         }
       },
+
       /**
        * Returns the function that checks for a color.
        *
@@ -201,6 +214,7 @@
           qx.util.Validate.checkColor(value, null, errorMessage);
         };
       },
+
       /**
        * The function checks the incoming value to see if it is a color.
        * If not, an ValidationError will be thrown. The check itself will be
@@ -222,6 +236,7 @@
           throw new qx.core.ValidationError("Validation Error", message);
         }
       },
+
       /**
        * Returns a function that checks if the number is in the given range.
        * The range includes the border values.
@@ -238,11 +253,13 @@
       range: function range(from, to, errorMessage) {
         return function (value) {
           var message = errorMessage || qx.locale.Manager.tr("%1 is not in the range from [%2, %3].", value ? qx.bom.String.escape(value + "") : value, from, to);
+
           if (value < from || value > to) {
             throw new qx.core.ValidationError("Validation Error", message);
           }
         };
       },
+
       /**
        * Returns a function that checks if the given value is in the array.
        * If the value given to the returned function is not in the array, a
@@ -255,11 +272,13 @@
       inArray: function inArray(array, errorMessage) {
         return function (value) {
           var message = errorMessage || qx.locale.Manager.tr("%1 is not in %2", value ? qx.bom.String.escape(value + "") : value, array);
+
           if (array.indexOf(value) === -1) {
             throw new qx.core.ValidationError("Validation Error", message);
           }
         };
       },
+
       /**
        * Returns a function that checks if the given value fits the RegExp.
        * For testing, the function uses the RegExp.test function.
@@ -273,6 +292,7 @@
       regExp: function regExp(reg, errorMessage) {
         return function (value) {
           var message = errorMessage || qx.locale.Manager.tr("%1 does not fit %2.", value ? qx.bom.String.escape(value + "") : value, reg);
+
           if (!reg.test(value)) {
             throw new qx.core.ValidationError("Validation Error", message);
           }
@@ -283,4 +303,4 @@
   qx.util.Validate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validate.js.map?dt=1677362773418
+//# sourceMappingURL=Validate.js.map?dt=1685978154916

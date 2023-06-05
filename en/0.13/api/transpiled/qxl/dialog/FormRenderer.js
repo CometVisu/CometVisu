@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -52,6 +53,7 @@
         refine: true,
         init: ":"
       },
+
       /**
        * The text that is displayed after the label and the label suffix
        * if a field is mandatory
@@ -64,6 +66,7 @@
     members: {
       _row: 0,
       _buttonRow: null,
+
       /**
        * Add a group of form items with the corresponding names. The names are
        * displayed as label.
@@ -80,12 +83,15 @@
             column: 0,
             colSpan: 2
           });
+
           this._row++;
         }
+
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
           var widget = void 0;
           var label = void 0;
+
           if (item instanceof qx.ui.form.RadioGroup) {
             if (item.getUserData("orientation") === "horizontal") {
               widget = this._createHBoxForRadioGroup(item);
@@ -95,9 +101,11 @@
           } else {
             widget = item;
           }
+
           if (names[i] && item.getUserData("excluded")) {
             label = new qx.ui.basic.Label(names[i]);
             label.setRich(true);
+
             this._add(label, {
               row: this._row,
               column: 0,
@@ -109,6 +117,7 @@
               column: 0,
               colSpan: 2
             });
+
             this._getLayout().getCellWidget(this._row, 0).setAlignX("left");
           } else if (!names[i]) {
             this._add(widget, {
@@ -119,18 +128,22 @@
           } else {
             label = this._createLabel(names[i], item);
             label.setRich(true);
+
             this._add(label, {
               row: this._row,
               column: 0
             });
+
             this._add(widget, {
               row: this._row,
               column: 1
             });
           }
+
           this._row++;
         }
       },
+
       /**
        * Takes the items of the given RadioGroup and adds the to a Composite.
        * @param group {qx.ui.form.RadioGroup} The RadioGroup which needs to be
@@ -141,11 +154,14 @@
       _createWidgetForRadioGroup: function _createWidgetForRadioGroup(group) {
         var widget = new qx.ui.container.Composite(new qx.ui.layout.VBox(5));
         var items = group.getItems();
+
         for (var i = 0; i < items.length; i++) {
           widget.add(items[i]);
         }
+
         return widget;
       },
+
       /**
        * Takes the items of the given RadioGroup and adds the to a Composite.
        * The composite has a HBox layout so the RadioButtons will be alligned
@@ -159,9 +175,11 @@
       _createHBoxForRadioGroup: function _createHBoxForRadioGroup(group) {
         var widget = new qx.ui.container.Composite(new qx.ui.layout.HBox(5));
         var items = group.getItems();
+
         for (var i = 0; i < items.length; i++) {
           widget.add(items[i]);
         }
+
         return widget;
       }
     }
@@ -169,4 +187,4 @@
   qxl.dialog.FormRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FormRenderer.js.map?dt=1677362778009
+//# sourceMappingURL=FormRenderer.js.map?dt=1685978160407

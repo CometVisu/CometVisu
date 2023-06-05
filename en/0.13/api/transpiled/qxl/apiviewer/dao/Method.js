@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,27 +38,32 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
-
   qx.Class.define("qxl.apiviewer.dao.Method", {
     extend: qxl.apiviewer.dao.ClassItem,
     construct: function construct(meta, clazz, name) {
       var _this = this;
+
       qxl.apiviewer.dao.ClassItem.constructor.call(this, meta, clazz, name);
       this._params = (this._jsdoc["@params"] || this._jsdoc["@param"] || []).map(function (item) {
         return new qxl.apiviewer.dao.Param(item, _this);
       });
       var arr = this._jsdoc["@return"];
+
       if (arr && arr.length) {
         this._return = new qxl.apiviewer.dao.Param(arr[0], this);
       }
+
       arr = this._jsdoc["@throws"];
       this._throws = arr && arr.length ? new qxl.apiviewer.dao.Param(arr[0], this) : [];
+
       if (meta.property) {
         var m = name.match(/^(get|set|is)(.*)$/);
+
         if (m) {
           this._propertyName = qx.lang.String.firstLow(m[2]);
         }
       }
+
       this._applyFor = meta.applyFor || [];
     },
     members: {
@@ -78,6 +84,7 @@
       isFromProperty: function isFromProperty() {
         return Boolean(this._meta.property);
       },
+
       /**
        * @Override
        */
@@ -99,11 +106,13 @@
       getApplyFor: function getApplyFor() {
         return this._applyFor;
       },
+
       /**
        * @Override
        */
       isRequiredByInterface: function isRequiredByInterface(iface) {
         var _this2 = this;
+
         return (iface.getMethods() || []).some(function (method) {
           return method.getName() == _this2.getName();
         });
@@ -113,4 +122,4 @@
   qxl.apiviewer.dao.Method.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Method.js.map?dt=1677362781415
+//# sourceMappingURL=Method.js.map?dt=1685978163900

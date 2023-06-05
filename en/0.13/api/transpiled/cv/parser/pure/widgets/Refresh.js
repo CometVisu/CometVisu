@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Refresh.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Refresh', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -72,4 +74,4 @@
   cv.parser.pure.widgets.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1677362708398
+//# sourceMappingURL=Refresh.js.map?dt=1685978091313

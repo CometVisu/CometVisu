@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,11 +85,13 @@
    */
   qx.Bootstrap.define("qx.type.BaseArray", {
     extend: Array,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Creates a new Array with the given length or the listed elements.
      *
@@ -111,12 +114,12 @@
      *        OR an argument list of values.
      */
     construct: function construct(length_or_items) {},
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Converts a base array to a native Array
@@ -125,6 +128,7 @@
        * @return {Array} The native array
        */
       toArray: null,
+
       /**
        * Returns the current number of items stored in the Array
        *
@@ -132,6 +136,7 @@
        * @return {Integer} number of items
        */
       valueOf: null,
+
       /**
        * Removes the last element from an array and returns that element.
        *
@@ -141,6 +146,7 @@
        * @return {var} The last element of the array.
        */
       pop: null,
+
       /**
        * Adds one or more elements to the end of an array and returns the new length of the array.
        *
@@ -151,6 +157,7 @@
        * @return {Integer} The new array's length
        */
       push: null,
+
       /**
        * Reverses the order of the elements of an array -- the first becomes the last, and the last becomes the first.
        *
@@ -160,6 +167,7 @@
        * @return {Array} Returns the modified array (works in place)
        */
       reverse: null,
+
       /**
        * Removes the first element from an array and returns that element.
        *
@@ -169,6 +177,7 @@
        * @return {var} The first element of the array.
        */
       shift: null,
+
       /**
        * Sorts the elements of an array.
        *
@@ -180,6 +189,7 @@
        * @return {Array} Returns the modified array (works in place)
        */
       sort: null,
+
       /**
        * Adds and/or removes elements from an array.
        *
@@ -194,6 +204,7 @@
        * @return {qx.type.BaseArray} New array with the removed elements.
        */
       splice: null,
+
       /**
        * Adds one or more elements to the front of an array and returns the new length of the array.
        *
@@ -204,6 +215,7 @@
        * @return {Integer} The new array's length
        */
       unshift: null,
+
       /**
        * Returns a new array comprised of this array joined with other array(s) and/or value(s).
        *
@@ -214,6 +226,7 @@
        * @return {qx.type.BaseArray} New array built of the given arrays or values.
        */
       concat: null,
+
       /**
        * Joins all elements of an array into a string.
        *
@@ -223,6 +236,7 @@
        * @return {String} The stringified values of all elements divided by the given separator.
        */
       join: null,
+
       /**
        * Extracts a section of an array and returns a new array.
        *
@@ -237,6 +251,7 @@
        * @return {qx.type.BaseArray} An new array which contains a copy of the given region.
        */
       slice: null,
+
       /**
        * Returns a string representing the array and its elements. Overrides the Object.prototype.toString method.
        *
@@ -244,6 +259,7 @@
        * @return {String} The string representation of the array.
        */
       toString: null,
+
       /**
        * Returns the first (least) index of an element within the array equal to the specified value, or -1 if none is found.
        *
@@ -258,6 +274,7 @@
        * @return {Integer} The index of the given element
        */
       indexOf: null,
+
       /**
        * Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
        *
@@ -272,6 +289,7 @@
        * @return {Integer} The index of the given element
        */
       lastIndexOf: null,
+
       /**
        * Executes a provided function once per array element.
        *
@@ -301,6 +319,7 @@
        * @param obj {Object} Object to use as this when executing callback.
        */
       forEach: null,
+
       /**
        * Creates a new array with all elements that pass the test implemented by the provided
        * function.
@@ -335,6 +354,7 @@
        * @return {qx.type.BaseArray} The newly created array with all matching elements
        */
       filter: null,
+
       /**
        * Creates a new array with the results of calling a provided function on every element in this array.
        *
@@ -364,6 +384,7 @@
        * @return {qx.type.BaseArray} A new array which contains the return values of every item executed through the given function
        */
       map: null,
+
       /**
        * Tests whether some element in the array passes the test implemented by the provided function.
        *
@@ -396,6 +417,7 @@
        * @return {Boolean} Whether at least one elements passed the test
        */
       some: null,
+
       /**
        * Tests whether all elements in the array pass the test implemented by the provided function.
        *
@@ -429,6 +451,7 @@
       every: null
     }
   });
+
   (function () {
     function createStackConstructor(stack) {
       // In IE don't inherit from Array but use an empty object as prototype
@@ -439,19 +462,21 @@
           $$isArray: true
         };
         var args = "pop.push.reverse.shift.sort.splice.unshift.join.slice".split(".");
+
         for (var length = args.length; length;) {
           Stack.prototype[args[--length]] = Array.prototype[args[length]];
         }
-      }
+      } // Remember Array's slice method
 
-      // Remember Array's slice method
-      var slice = Array.prototype.slice;
 
-      // Fix "concat" method
+      var slice = Array.prototype.slice; // Fix "concat" method
+
       Stack.prototype.concat = function () {
         var constructor = this.slice(0);
+
         for (var i = 0, length = arguments.length; i < length; i++) {
           var copy;
+
           if (arguments[i] instanceof Stack) {
             copy = slice.call(arguments[i], 0);
           } else if (arguments[i] instanceof Array) {
@@ -459,69 +484,73 @@
           } else {
             copy = [arguments[i]];
           }
+
           constructor.push.apply(constructor, copy);
         }
-        return constructor;
-      };
 
-      // Fix "toString" method
+        return constructor;
+      }; // Fix "toString" method
+
+
       Stack.prototype.toString = function () {
         return slice.call(this, 0).toString();
-      };
+      }; // Fix "toLocaleString"
 
-      // Fix "toLocaleString"
+
       Stack.prototype.toLocaleString = function () {
         return slice.call(this, 0).toLocaleString();
-      };
+      }; // Fix constructor
 
-      // Fix constructor
-      Stack.prototype.constructor = Stack;
 
-      // Add JS 1.6 Array features
+      Stack.prototype.constructor = Stack; // Add JS 1.6 Array features
+
       Stack.prototype.indexOf = Array.prototype.indexOf;
       Stack.prototype.lastIndexOf = Array.prototype.lastIndexOf;
       Stack.prototype.forEach = Array.prototype.forEach;
       Stack.prototype.some = Array.prototype.some;
       Stack.prototype.every = Array.prototype.every;
       var filter = Array.prototype.filter;
-      var map = Array.prototype.map;
-
-      // Fix methods which generates a new instance
+      var map = Array.prototype.map; // Fix methods which generates a new instance
       // to return an instance of the same class
+
       Stack.prototype.filter = function () {
         var ret = new this.constructor();
         ret.push.apply(ret, filter.apply(this, arguments));
         return ret;
       };
+
       Stack.prototype.map = function () {
         var ret = new this.constructor();
         ret.push.apply(ret, map.apply(this, arguments));
         return ret;
       };
+
       Stack.prototype.slice = function () {
         var ret = new this.constructor();
         ret.push.apply(ret, Array.prototype.slice.apply(this, arguments));
         return ret;
       };
+
       Stack.prototype.splice = function () {
         var ret = new this.constructor();
         ret.push.apply(ret, Array.prototype.splice.apply(this, arguments));
         return ret;
-      };
+      }; // Add new "toArray" method for convert a base array to a native Array
 
-      // Add new "toArray" method for convert a base array to a native Array
+
       Stack.prototype.toArray = function () {
         return Array.prototype.slice.call(this, 0);
-      };
+      }; // Add valueOf() to return the length
 
-      // Add valueOf() to return the length
+
       Stack.prototype.valueOf = function () {
         return this.length;
-      };
+      }; // Return final class
 
-      // Return final class
+
       return Stack;
     }
+
     function Stack(length) {
       if (arguments.length === 1 && typeof length === "number") {
         this.length = -1 < length && length === length >> 0.5 ? length : this.push(length);
@@ -529,13 +558,16 @@
         this.push.apply(this, arguments);
       }
     }
+
     function PseudoArray() {}
+
     PseudoArray.prototype = [];
     Stack.prototype = new PseudoArray();
     Stack.prototype.length = 0;
     qx.type.BaseArray = createStackConstructor(Stack);
   })();
+
   qx.type.BaseArray.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseArray.js.map?dt=1677362750158
+//# sourceMappingURL=BaseArray.js.map?dt=1685978132519

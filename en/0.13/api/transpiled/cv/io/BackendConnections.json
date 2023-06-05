@@ -14,9 +14,9 @@
         "index": 876
       },
       "end": {
-        "line": 373,
+        "line": 472,
         "column": 3,
-        "index": 12947
+        "index": 15863
       }
     },
     "jsdoc": {
@@ -113,24 +113,104 @@
       "type": "variable",
       "access": "private"
     },
-    "initBackendClient": {
+    "__classListeners": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 36,
           "column": 4,
-          "index": 1312
+          "index": 1226
         },
         "end": {
-          "line": 74,
+          "line": 36,
+          "column": 24,
+          "index": 1246
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "__clientClasses": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1252
+        },
+        "end": {
+          "line": 37,
+          "column": 23,
+          "index": 1271
+        }
+      },
+      "type": "variable",
+      "access": "private"
+    },
+    "addClassLoadedListener": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1278
+        },
+        "end": {
+          "line": 46,
           "column": 5,
-          "index": 2583
+          "index": 1562
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "registerClientClass": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1570
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1844
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "isRegistered": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1851
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1920
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "initBackendClients": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2080
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4662
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Initialize the {@link cv.io.Client} for backend communication</p>"
+            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compability)</p>"
           }
         ]
       },
@@ -140,14 +220,14 @@
     "addBackendClient": {
       "location": {
         "start": {
-          "line": 76,
+          "line": 141,
           "column": 4,
-          "index": 2590
+          "index": 4669
         },
         "end": {
-          "line": 134,
+          "line": 204,
           "column": 5,
-          "index": 4763
+          "index": 7018
         }
       },
       "type": "function",
@@ -156,14 +236,14 @@
     "removeClient": {
       "location": {
         "start": {
-          "line": 136,
+          "line": 206,
           "column": 4,
-          "index": 4770
+          "index": 7025
         },
         "end": {
-          "line": 143,
+          "line": 213,
           "column": 5,
-          "index": 4960
+          "index": 7215
         }
       },
       "type": "function",
@@ -172,14 +252,14 @@
     "hasClient": {
       "location": {
         "start": {
-          "line": 150,
+          "line": 220,
           "column": 4,
-          "index": 5118
+          "index": 7373
         },
         "end": {
-          "line": 152,
+          "line": 222,
           "column": 5,
-          "index": 5214
+          "index": 7469
         }
       },
       "jsdoc": {
@@ -213,21 +293,21 @@
     "getClient": {
       "location": {
         "start": {
-          "line": 159,
+          "line": 229,
           "column": 4,
-          "index": 5458
+          "index": 7714
         },
         "end": {
-          "line": 174,
+          "line": 248,
           "column": 5,
-          "index": 6029
+          "index": 8405
         }
       },
       "jsdoc": {
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Get the backend client by name, if the name is not set the default backend is used.\n Usually that is the backend client created by initBackendClient().</p>"
+            "body": "<p>Get the backend client by name, if the name is not set the default backend is used.\n Usually that is the backend client created by initBackendClients().</p>"
           }
         ],
         "@param": [
@@ -244,33 +324,65 @@
       "type": "function",
       "access": "public"
     },
-    "initSystemBackend": {
+    "getClientByType": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 250,
           "column": 4,
-          "index": 6036
+          "index": 8412
         },
         "end": {
-          "line": 186,
+          "line": 265,
           "column": 5,
-          "index": 6447
+          "index": 8826
         }
       },
       "type": "function",
       "access": "public"
     },
-    "startInitialRequest": {
+    "getClients": {
       "location": {
         "start": {
-          "line": 191,
+          "line": 267,
           "column": 4,
-          "index": 6512
+          "index": 8833
         },
         "end": {
-          "line": 206,
+          "line": 269,
           "column": 5,
-          "index": 7147
+          "index": 8882
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "initSystemBackend": {
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 8889
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 9300
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "startInitialRequests": {
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 4,
+          "index": 9365
+        },
+        "end": {
+          "line": 290,
+          "column": 5,
+          "index": 9512
         }
       },
       "jsdoc": {
@@ -284,17 +396,33 @@
       "type": "function",
       "access": "public"
     },
+    "startInitialRequest": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 9519
+        },
+        "end": {
+          "line": 305,
+          "column": 5,
+          "index": 10063
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_onActiveChanged": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 307,
           "column": 4,
-          "index": 7154
+          "index": 10070
         },
         "end": {
-          "line": 258,
+          "line": 357,
           "column": 5,
-          "index": 9073
+          "index": 11989
         }
       },
       "type": "function",
@@ -303,14 +431,14 @@
     "_checkBackendConnection": {
       "location": {
         "start": {
-          "line": 260,
+          "line": 359,
           "column": 4,
-          "index": 9080
+          "index": 11996
         },
         "end": {
-          "line": 298,
+          "line": 397,
           "column": 5,
-          "index": 10342
+          "index": 13258
         }
       },
       "type": "function",
@@ -319,14 +447,14 @@
     "_updateClientScope": {
       "location": {
         "start": {
-          "line": 300,
+          "line": 399,
           "column": 4,
-          "index": 10349
+          "index": 13265
         },
         "end": {
-          "line": 308,
+          "line": 407,
           "column": 5,
-          "index": 10623
+          "index": 13539
         }
       },
       "type": "function",
@@ -335,14 +463,14 @@
     "_handleClientError": {
       "location": {
         "start": {
-          "line": 310,
+          "line": 409,
           "column": 4,
-          "index": 10630
+          "index": 13546
         },
         "end": {
-          "line": 371,
+          "line": 470,
           "column": 5,
-          "index": 12939
+          "index": 15855
         }
       },
       "type": "function",

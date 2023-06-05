@@ -63,6 +63,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "getModel": {

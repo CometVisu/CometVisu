@@ -12,8 +12,6 @@
     "container",
     "Composite",
     "construct",
-    "constructor",
-    "call",
     "layout",
     "Grow",
     "setMinWidth",
@@ -32,5 +30,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * Clipping area for the table header and table pane.\n */\nqx.Class.define(\"qx.ui.table.pane.Clipper\", {\n  extend: qx.ui.container.Composite,\n\n  construct() {\n    super(new qx.ui.layout.Grow());\n    this.setMinWidth(0);\n  },\n\n  members: {\n    /**\n     * Scrolls the element's content to the given left coordinate\n     *\n     * @param value {Integer} The vertical position to scroll to.\n     */\n    scrollToX(value) {\n      this.getContentElement().scrollToX(value, false);\n    },\n\n    /**\n     * Scrolls the element's content to the given top coordinate\n     *\n     * @param value {Integer} The horizontal position to scroll to.\n     */\n    scrollToY(value) {\n      this.getContentElement().scrollToY(value, true);\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjCC,SAAS,WAAAA,UAAA,EAAG;MACVV,EAAA,CAAAO,EAAA,CAAAC,SAAA,CAAAC,SAAA,CAAAE,WAAA,CAAAC,IAAA,OAAM,IAAIZ,EAAE,CAACO,EAAE,CAACM,MAAM,CAACC,IAAI,EAAE;MAC7B,IAAI,CAACC,WAAW,CAAC,CAAC,CAAC;IACrB,CAAC;IAEDC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MACIC,SAAS,WAAAA,UAACC,KAAK,EAAE;QACf,IAAI,CAACC,iBAAiB,EAAE,CAACF,SAAS,CAACC,KAAK,EAAE,KAAK,CAAC;MAClD,CAAC;MAED;AACJ;AACA;AACA;AACA;MACIE,SAAS,WAAAA,UAACF,KAAK,EAAE;QACf,IAAI,CAACC,iBAAiB,EAAE,CAACC,SAAS,CAACF,KAAK,EAAE,IAAI,CAAC;MACjD;IACF;EACF,CAAC,CAAC;EAhDFlB,EAAE,CAACO,EAAE,CAACc,KAAK,CAACC,IAAI,CAACC,OAAO,CAACpB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EAA4C;IAC1CC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBC,SADkB;IAG1CC,SAH0C,uBAG9B;MACV,iDAAM,IAAIV,EAAE,CAACO,EAAH,CAAMI,MAAN,CAAaC,IAAjB,EAAN;MACA,KAAKC,WAAL,CAAiB,CAAjB;IACD,CANyC;IAQ1CC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;MACIC,SANO,qBAMGC,KANH,EAMU;QACf,KAAKC,iBAAL,GAAyBF,SAAzB,CAAmCC,KAAnC,EAA0C,KAA1C;MACD,CARM;;MAUP;AACJ;AACA;AACA;AACA;MACIE,SAfO,qBAeGF,KAfH,EAeU;QACf,KAAKC,iBAAL,GAAyBC,SAAzB,CAAmCF,KAAnC,EAA0C,IAA1C;MACD;IAjBM;EARiC,CAA5C;EArBAhB,EAAE,CAACO,EAAH,CAAMY,KAAN,CAAYC,IAAZ,CAAiBC,OAAjB,CAAyBlB,aAAzB,GAAyCA,aAAzC"
 }

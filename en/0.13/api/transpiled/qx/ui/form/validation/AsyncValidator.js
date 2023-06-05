@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -29,6 +30,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * This class is responsible for validation in all asynchronous cases and
    * should always be used with {@link qx.ui.form.validation.Manager}.
@@ -56,13 +58,14 @@
    */
   qx.Class.define("qx.ui.form.validation.AsyncValidator", {
     extend: qx.core.Object,
+
     /**
      * @param validator {Function} The validator function, which has to be
      *   asynchronous.
      */
     construct: function construct(validator) {
-      qx.core.Object.constructor.call(this);
-      // save the validator function
+      qx.core.Object.constructor.call(this); // save the validator function
+
       this.__P_366_0 = validator;
     },
     members: {
@@ -70,6 +73,7 @@
       __P_366_1: null,
       __P_366_2: null,
       __P_366_3: null,
+
       /**
        * The validate function should only be called by
        * {@link qx.ui.form.validation.Manager}.
@@ -88,13 +92,14 @@
        */
       validate: function validate(item, value, manager, context) {
         // mark as item validator
-        this.__P_366_3 = false;
-        // store the item and the manager
+        this.__P_366_3 = false; // store the item and the manager
+
         this.__P_366_1 = item;
-        this.__P_366_2 = manager;
-        // invoke the user set validator function
+        this.__P_366_2 = manager; // invoke the user set validator function
+
         this.__P_366_0.call(context || this, this, value);
       },
+
       /**
        * The validateForm function should only be called by
        * {@link qx.ui.form.validation.Manager}.
@@ -113,8 +118,10 @@
       validateForm: function validateForm(items, manager, context) {
         this.__P_366_3 = true;
         this.__P_366_2 = manager;
+
         this.__P_366_0.call(context, items, this);
       },
+
       /**
        * This method should be called within the asynchronous callback to tell the
        * validator the result of the validation.
@@ -129,16 +136,19 @@
           if (message !== undefined) {
             this.__P_366_2.setInvalidMessage(message);
           }
+
           this.__P_366_2.setFormValid(valid);
         } else {
           // message processing
           if (message !== undefined) {
             this.__P_366_1.setInvalidMessage(message);
           }
+
           this.__P_366_2.setItemValid(this.__P_366_1, valid);
         }
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -151,4 +161,4 @@
   qx.ui.form.validation.AsyncValidator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AsyncValidator.js.map?dt=1677362758909
+//# sourceMappingURL=AsyncValidator.js.map?dt=1685978139848

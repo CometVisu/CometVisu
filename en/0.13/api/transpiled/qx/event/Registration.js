@@ -35,6 +35,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,13 +71,13 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Static list of all instantiated event managers. The key is the qooxdoo
        * hash value of the corresponding window
        */
       __P_203_0: {},
+
       /**
        * Get an instance of the event manager, which can handle events for the
        * given target.
@@ -92,14 +93,18 @@
         } else if (!qx.dom.Node.isWindow(target)) {
           target = window;
         }
+
         var hash = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
         var manager = this.__P_203_0[hash];
+
         if (!manager) {
           manager = new qx.event.Manager(target, this);
           this.__P_203_0[hash] = manager;
         }
+
         return manager;
       },
+
       /**
        * Removes a manager for a specific window from the list.
        *
@@ -112,6 +117,7 @@
         var id = mgr.getWindowId();
         delete this.__P_203_0[id];
       },
+
       /**
        * Add an event listener to a DOM target. The event listener is passed an
        * instance of {@link qx.event.type.Event} containing all relevant information
@@ -134,6 +140,7 @@
       addListener: function addListener(target, type, listener, self, capture) {
         return this.getManager(target).addListener(target, type, listener, self, capture);
       },
+
       /**
        * Remove an event listener from an event target.
        *
@@ -153,6 +160,7 @@
       removeListener: function removeListener(target, type, listener, self, capture) {
         return this.getManager(target).removeListener(target, type, listener, self, capture);
       },
+
       /**
        * Removes an event listener from an event target by an id returned by
        * {@link #addListener}
@@ -165,6 +173,7 @@
       removeListenerById: function removeListenerById(target, id) {
         return this.getManager(target).removeListenerById(target, id);
       },
+
       /**
        * Remove all event listeners, which are attached to the given event target.
        *
@@ -174,6 +183,7 @@
       removeAllListeners: function removeAllListeners(target) {
         return this.getManager(target).removeAllListeners(target);
       },
+
       /**
        * Internal helper for deleting the listeners map used during shutdown.
        *
@@ -184,10 +194,12 @@
        */
       deleteAllListeners: function deleteAllListeners(target) {
         var targetKey = target.$$hash;
+
         if (targetKey) {
           this.getManager(target).deleteAllListeners(targetKey);
         }
       },
+
       /**
        * Check whether there are one or more listeners for an event type
        * registered at the target.
@@ -201,6 +213,7 @@
       hasListener: function hasListener(target, type, capture) {
         return this.getManager(target).hasListener(target, type, capture);
       },
+
       /**
        * Returns a serialized array of all events attached on the given target.
        *
@@ -211,6 +224,7 @@
       serializeListeners: function serializeListeners(target) {
         return this.getManager(target).serializeListeners(target);
       },
+
       /**
        * Get an event instance of the given class, which can be dispatched using
        * an event manager. The created events must be initialized using
@@ -227,19 +241,20 @@
         if (clazz == null) {
           clazz = qx.event.type.Event;
         }
-        var obj = qx.event.Pool.getInstance().getObject(clazz);
 
-        // Initialize with given arguments
-        args ? obj.init.apply(obj, args) : obj.init();
+        var obj = qx.event.Pool.getInstance().getObject(clazz); // Initialize with given arguments
 
-        // Setup the type
+        args ? obj.init.apply(obj, args) : obj.init(); // Setup the type
         // Note: Native event may setup this later or using init() above
         // using the native information.
+
         if (type) {
           obj.setType(type);
         }
+
         return obj;
       },
+
       /**
        * Dispatch an event object on the given target.
        *
@@ -257,6 +272,7 @@
       dispatchEvent: function dispatchEvent(target, event) {
         return this.getManager(target).dispatchEvent(target, event);
       },
+
       /**
        * Create an event object and dispatch it on the given target.
        *
@@ -273,6 +289,7 @@
         this.getManager(target).dispatchEvent(target, evt);
         return evt;
       },
+
       /**
        * Create an event object and dispatch it on the given target.
        *
@@ -305,6 +322,7 @@
           return !evt.getDefaultPrevented();
         });
       },
+
       /**
        * Create an event object and dispatch it on the given target; equivalent to fireEvent, except that it
        * always returns a promise
@@ -325,6 +343,7 @@
           throw new Error(this.classname + ".fireEventAsync not supported because qx.promise==false");
         }
       },
+
       /**
        * Create an event object and dispatch it on the given target.
        * The event dispatched with this method does never bubble! Use only if you
@@ -340,13 +359,16 @@
        */
       __P_203_2: function __P_203_2(target, type, clazz, args) {
         var mgr = this.getManager(target);
+
         if (!mgr.hasListener(target, type, false)) {
           return null;
         }
+
         var evt = this.createEvent(type, clazz || null, args);
         mgr.dispatchEvent(target, evt);
         return evt;
       },
+
       /**
        * Create an event object and dispatch it on the given target.
        * The event dispatched with this method does never bubble! Use only if you
@@ -363,11 +385,14 @@
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(target, type, clazz, args) {
         var evt = this.__P_203_2.apply(this, arguments);
+
         if (evt === null) {
           return true;
         }
+
         return !evt.getDefaultPrevented();
       },
+
       /**
        * Create an event object and dispatch it on the given target.
        * The event dispatched with this method does never bubble! Use only if you
@@ -385,15 +410,18 @@
       fireNonBubblingEventAsync: qx.core.Environment.select("qx.promise", {
         "true": function _true(target, type, clazz, args) {
           var evt = this.__P_203_2.apply(this, arguments);
+
           if (evt === null) {
             return qx.Promise.resolve(true);
           }
+
           return evt.promise();
         },
         "false": function _false() {
           throw new Error(this.classname + ".fireNonBubblingEventAsync not supported because qx.promise==false");
         }
       }),
+
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER/DISPATCHER PRIORITY
@@ -402,10 +430,13 @@
 
       /** @type {Integer} Highest priority. Used by handlers and dispatchers. */
       PRIORITY_FIRST: -32000,
+
       /** @type {Integer} Default priority. Used by handlers and dispatchers. */
       PRIORITY_NORMAL: 0,
+
       /** @type {Integer} Lowest priority. Used by handlers and dispatchers. */
       PRIORITY_LAST: 32000,
+
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER REGISTRATION
@@ -414,6 +445,7 @@
 
       /** @type {Array} Contains all known event handlers */
       __P_203_3: [],
+
       /**
        * Register an event handler.
        *
@@ -422,13 +454,14 @@
        */
       addHandler: function addHandler(handler) {
         // Append to list
-        this.__P_203_3.push(handler);
+        this.__P_203_3.push(handler); // Re-sort list
 
-        // Re-sort list
+
         this.__P_203_3.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
+
       /**
        * Get a list of registered event handlers.
        *
@@ -437,6 +470,7 @@
       getHandlers: function getHandlers() {
         return this.__P_203_3;
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT DISPATCHER REGISTRATION
@@ -445,6 +479,7 @@
 
       /** @type {Array} Contains all known event dispatchers */
       __P_203_4: [],
+
       /**
        * Register an event dispatcher.
        *
@@ -457,13 +492,14 @@
        */
       addDispatcher: function addDispatcher(dispatcher, priority) {
         // Append to list
-        this.__P_203_4.push(dispatcher);
+        this.__P_203_4.push(dispatcher); // Re-sort list
 
-        // Re-sort list
+
         this.__P_203_4.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
+
       /**
        * Get a list of registered event dispatchers.
        *
@@ -477,4 +513,4 @@
   qx.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1677362737853
+//# sourceMappingURL=Registration.js.map?dt=1685978120757

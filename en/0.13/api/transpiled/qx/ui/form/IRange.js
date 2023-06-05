@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,13 +37,13 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         MINIMUM PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Set the minimum value of the range.
        *
@@ -51,17 +52,20 @@
       setMinimum: function setMinimum(min) {
         return arguments.length == 1;
       },
+
       /**
        * Return the current set minimum of the range.
        *
        * @return {Number} The current set minimum.
        */
       getMinimum: function getMinimum() {},
+
       /*
       ---------------------------------------------------------------------------
         MAXIMUM PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Set the maximum value of the range.
        *
@@ -70,17 +74,20 @@
       setMaximum: function setMaximum(max) {
         return arguments.length == 1;
       },
+
       /**
        * Return the current set maximum of the range.
        *
        * @return {Number} The current set maximum.
        */
       getMaximum: function getMaximum() {},
+
       /*
       ---------------------------------------------------------------------------
         SINGLESTEP PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the value for single steps in the range.
        *
@@ -89,17 +96,20 @@
       setSingleStep: function setSingleStep(step) {
         return arguments.length == 1;
       },
+
       /**
        * Returns the value which will be stepped in a single step in the range.
        *
        * @return {Number} The current value for single steps.
        */
       getSingleStep: function getSingleStep() {},
+
       /*
       ---------------------------------------------------------------------------
         PAGESTEP PROPERTY
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the value for page steps in the range.
        *
@@ -108,6 +118,7 @@
       setPageStep: function setPageStep(step) {
         return arguments.length == 1;
       },
+
       /**
        * Returns the value which will be stepped in a page step in the range.
        *
@@ -119,4 +130,4 @@
   qx.ui.form.IRange.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IRange.js.map?dt=1677362757358
+//# sourceMappingURL=IRange.js.map?dt=1685978138224

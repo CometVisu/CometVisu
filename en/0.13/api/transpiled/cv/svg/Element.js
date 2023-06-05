@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Element.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -30,9 +31,9 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.svg.Element', {
     extend: qx.html.Element,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -42,6 +43,7 @@
       qx.html.Element.constructor.call(this);
       this.__P_547_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -63,4 +65,4 @@
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362778153
+//# sourceMappingURL=Element.js.map?dt=1685978160566

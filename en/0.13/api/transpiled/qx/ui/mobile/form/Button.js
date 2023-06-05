@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,12 +52,12 @@
    */
   qx.Class.define("qx.ui.mobile.form.Button", {
     extend: qx.ui.mobile.basic.Atom,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       defaultCssClass: {
@@ -78,6 +79,7 @@
       setValue: function setValue(value) {
         this.setLabel(value);
       },
+
       /**
        * Returns the set value.
        *
@@ -91,4 +93,4 @@
   qx.ui.mobile.form.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1677362762304
+//# sourceMappingURL=Button.js.map?dt=1685978143424

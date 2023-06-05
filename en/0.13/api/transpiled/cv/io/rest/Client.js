@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Client.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -43,6 +44,7 @@
    */
   qx.Class.define('cv.io.rest.Client', {
     type: 'static',
+
     /*
     ***********************************************
       STATICS
@@ -57,13 +59,16 @@
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
           var path = '';
+
           if (qx.core.Init.getApplication().isServedByOpenhab()) {
             path = '/rest/cv';
           } else {
             path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
           }
+
           this.BASE_URL = path;
         }
+
         return this.BASE_URL;
       },
       getConfigClient: function getConfigClient() {
@@ -91,18 +96,24 @@
             }
           };
           this.__P_535_0 = new qx.io.rest.Resource(config);
+
           this.__P_535_0.setBaseUrl(this.getBaseUrl());
+
           this.__P_535_0.configureRequest(function (req, action) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
+
             if (action === 'save') {
               req.setRequestHeader('Content-Type', 'application/json');
             }
+
             req.setAccept('application/json');
           });
+
           this._enableSync(this.__P_535_0, config);
         }
+
         return this.__P_535_0;
       },
       getFsClient: function getFsClient() {
@@ -134,19 +145,25 @@
             }
           };
           this.__P_535_1 = new qx.io.rest.Resource(config);
+
           this.__P_535_1.setBaseUrl(this.getBaseUrl());
+
           this.__P_535_1.configureRequest(function (req, action, params) {
             if (cv.Config.transactionId) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             }
+
             if (params.hash) {
               req.setUrl(req.getUrl() + '&hash=' + params.hash);
             }
+
             if (params.recursive === true && action === 'read') {
               req.setUrl(req.getUrl() + '&recursive=true');
             }
+
             if (action === 'update' || action === 'create') {
               var parts = params.path.split('.');
+
               if (parts.length > 1) {
                 var type = parts.pop();
                 var mimetype = cv.ui.manager.tree.FileSystem.getMimetypeFromSuffix(type);
@@ -154,17 +171,23 @@
               } else {
                 req.setRequestHeader('Content-Type', 'text/plain');
               }
+
               req.setAccept('application/json');
             }
           });
-          this._enableSync(this.__P_535_1, config);
 
-          // general listeners
+          this._enableSync(this.__P_535_1, config); // general listeners
+
+
           this.__P_535_1.addListener('updateSuccess', this._onSaveSuccess, this);
+
           this.__P_535_1.addListener('createSuccess', this._onSaveSuccess, this);
+
           this.__P_535_1.addListener('updateError', this._onSaveError, this);
+
           this.__P_535_1.addListener('createError', this._onSaveError, this);
         }
+
         return this.__P_535_1;
       },
       getDataProviderClient: function getDataProviderClient() {
@@ -196,49 +219,59 @@
             }
           };
           this.__P_535_2 = new qx.io.rest.Resource(config);
+
           this.__P_535_2.setBaseUrl(this.getBaseUrl());
+
           if (cv.Config.transactionId) {
             this.__P_535_2.configureRequest(function (req, action, params) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
             });
           }
+
           this._enableSync(this.__P_535_2, config);
         }
+
         return this.__P_535_2;
       },
       _enableSync: function _enableSync(client, config) {
         var _this = this;
+
         // install the callback calls
         Object.keys(config).forEach(function (callName) {
           client[callName + 'Sync'] = function () {
             var args = qx.lang.Array.fromArguments(arguments);
             var callback;
             var context = args.pop();
+
             if (qx.lang.Type.isFunction(context)) {
               callback = context;
               context = this;
             } else {
               callback = args.pop();
             }
+
             this.__P_535_3[client[callName].apply(client, args)] = callback.bind(context);
           }.bind(this);
-        }, this);
+        }, this); // add the general listeners
 
-        // add the general listeners
         client.addListener('success', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
+
           if (Object.prototype.hasOwnProperty.call(_this.__P_535_3, id)) {
             _this.__P_535_3[id](null, ev.getData());
+
             delete _this.__P_535_3[id];
           }
         });
         client.addListener('error', function (ev) {
           var req = ev.getRequest();
           var id = parseInt(req.toHashCode(), 10);
+
           if (Object.prototype.hasOwnProperty.call(_this.__P_535_3, id)) {
             var data = ev.getData();
             var error;
+
             if (data && data.message) {
               error = data.message;
             } else {
@@ -247,10 +280,14 @@
                 statusText: ev.getRequest().getStatusText()
               };
             }
+
             qx.log.Logger.error(_this, error);
+
             _this.__P_535_3[id](error, null);
+
             delete _this.__P_535_3[id];
           }
+
           if (req.getPhase() === 'load') {
             // error during load phase => backend not reachable
             qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
@@ -259,16 +296,16 @@
       },
       _onSaveSuccess: function _onSaveSuccess(ev) {
         var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10);
-        // only handle this events, when there is no callback for it
+        var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
+
         if (!Object.prototype.hasOwnProperty.call(this.__P_535_3, id)) {
           cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('File has been saved'));
         }
       },
       _onSaveError: function _onSaveError(ev) {
         var req = ev.getRequest();
-        var id = parseInt(req.toHashCode(), 10);
-        // only handle this events, when there is no callback for it
+        var id = parseInt(req.toHashCode(), 10); // only handle this events, when there is no callback for it
+
         if (!Object.prototype.hasOwnProperty.call(this.__P_535_3, id)) {
           cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Error saving file'));
         }
@@ -278,4 +315,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1677362775709
+//# sourceMappingURL=Client.js.map?dt=1685978157768

@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Attribute.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,6 +42,7 @@
   qx.Class.define('cv.ui.manager.model.schema.Attribute', {
     extend: cv.ui.manager.model.schema.Base,
     include: cv.ui.manager.model.schema.MAnnotation,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -50,6 +52,7 @@
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
       this.parse();
     },
+
     /*
     ***********************************************
       STATICS
@@ -67,18 +70,23 @@
         if (e.hasAttribute('name')) {
           return e.getAttribute('name');
         }
+
         if (e.hasAttribute('ref')) {
           // it's a ref, seek other element!
           var refName = e.getAttribute('ref');
           var ref = schema.getReferencedNode('attribute', refName);
+
           if (!ref) {
             throw new Error('schema/xsd appears to be invalid, can not find element ' + refName);
           }
+
           return ref.getAttribute('name');
         }
+
         return 'unknown';
       }
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -102,6 +110,7 @@
         nullable: true
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -116,13 +125,17 @@
          * we have our own type
          * @var object  SchemaSimpleType of the attribute, for validating purposes
          */
+
         this._type = new cv.ui.manager.model.schema.SimpleType(node, schema);
         this.setName(cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema));
+
         if (node.hasAttribute('default')) {
           this.setDefaultValue(node.getAttribute('default'));
         }
+
         this.setOptional(node.getAttribute('use') !== 'required');
       },
+
       /**
        * check if a given value is valid for this attribute
        *
@@ -135,12 +148,15 @@
         } else {
           value = '' + value;
         }
+
         if (value === '') {
           // empty values are valid if this node is optional!
           return this.isOptional();
         }
+
         return this._type.isValueValid(value);
       },
+
       /**
        * get a simple string telling us, what type of content is allowed
        *
@@ -148,11 +164,14 @@
        */
       getTypeString: function getTypeString() {
         var description = this._type.getBaseType();
+
         if (description.match(/xsd\:/)) {
           return description.replace(/xsd\:/, '');
         }
+
         return this.tr('complex type, please see documentation');
       },
+
       /**
        * get the list of values that are valid for this attribute, if it is an enumeration
        *
@@ -162,6 +181,7 @@
         return this._type.getEnumeration();
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -175,4 +195,4 @@
   cv.ui.manager.model.schema.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1677362715124
+//# sourceMappingURL=Attribute.js.map?dt=1685978097849

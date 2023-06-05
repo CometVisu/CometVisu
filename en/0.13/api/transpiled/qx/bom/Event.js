@@ -46,6 +46,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -144,6 +145,7 @@
           target["on" + type] = listener;
         } else {}
       },
+
       /**
        * Use the low level browser functionality to remove event listeners
        * from DOM nodes.
@@ -171,6 +173,7 @@
           target["on" + type] = null;
         } else {}
       },
+
       /**
        * Returns the target of the event.
        *
@@ -180,6 +183,7 @@
       getTarget: function getTarget(e) {
         return e.target || e.srcElement;
       },
+
       /**
        * Computes the related target from the native DOM event
        *
@@ -198,6 +202,7 @@
               return null;
             }
           }
+
           return e.relatedTarget;
         } else if (e.fromElement !== undefined && (e.type === "mouseover" || e.type === "pointerover")) {
           return e.fromElement;
@@ -207,6 +212,7 @@
           return null;
         }
       },
+
       /**
        * Prevent the native default of the event to be processed.
        *
@@ -224,9 +230,11 @@
             // See bug #1049
             e.keyCode = 0;
           } catch (ex) {}
+
           e.returnValue = false;
         }
       },
+
       /**
        * Stops the propagation of the given event to the parent element.
        *
@@ -241,6 +249,7 @@
           e.cancelBubble = true;
         }
       },
+
       /**
        * Fires a synthetic native event on the given element.
        *
@@ -255,14 +264,13 @@
           var evt = document.createEvent("HTMLEvents");
           evt.initEvent(type, true, true);
           return !target.dispatchEvent(evt);
-        }
-
-        // dispatch for IE
+        } // dispatch for IE
         else {
           var evt = document.createEventObject();
           return target.fireEvent("on" + type, evt);
         }
       },
+
       /**
        * Whether the given target supports the given event type.
        *
@@ -280,46 +288,53 @@
        */
       supportsEvent: function supportsEvent(target, type) {
         var browserName = qx.core.Environment.get("browser.name");
-        var engineName = qx.core.Environment.get("engine.name");
+        var engineName = qx.core.Environment.get("engine.name"); // transitionEnd support can not be detected generically for Internet Explorer 10+ [BUG #7875]
 
-        // transitionEnd support can not be detected generically for Internet Explorer 10+ [BUG #7875]
         if (type.toLowerCase().indexOf("transitionend") != -1 && engineName === "mshtml" && qx.core.Environment.get("browser.documentmode") > 9) {
           return true;
         }
-
         /**
          * add exception for safari mobile ()
          * @see http://bugzilla.qooxdoo.org/show_bug.cgi?id=8244
          */
+
+
         var safariBrowserNames = ["mobile safari", "safari"];
+
         if (engineName === "webkit" && safariBrowserNames.indexOf(browserName) > -1) {
           var supportedEvents = ["loadeddata", "progress", "timeupdate", "seeked", "canplay", "play", "playing", "pause", "loadedmetadata", "ended", "volumechange"];
+
           if (supportedEvents.indexOf(type.toLowerCase()) > -1) {
             return true;
           }
-        }
-
-        // The 'transitionend' event can only be detected on window objects,
+        } // The 'transitionend' event can only be detected on window objects,
         // not DOM elements [BUG #7249]
+
+
         if (target != window && type.toLowerCase().indexOf("transitionend") != -1) {
           var transitionSupport = qx.core.Environment.get("css.transition");
           return transitionSupport && transitionSupport["end-event"] == type;
-        }
-        // Using the lowercase representation is important for the
+        } // Using the lowercase representation is important for the
         // detection of events like 'MSPointer*'. They have to detected
         // using the lower case name of the event.
+
+
         var eventName = "on" + type.toLowerCase();
         var supportsEvent = (eventName in target);
+
         if (!supportsEvent) {
           supportsEvent = typeof target[eventName] == "function";
+
           if (!supportsEvent && target.setAttribute) {
             target.setAttribute(eventName, "return;");
             supportsEvent = typeof target[eventName] == "function";
             target.removeAttribute(eventName);
           }
         }
+
         return supportsEvent;
       },
+
       /**
        * Returns the (possibly vendor-prefixed) name of the given event type.
        * *NOTE:* Incorrect capitalization of type names will *not* be corrected. See
@@ -332,12 +347,15 @@
        */
       getEventName: function getEventName(target, type) {
         var pref = [""].concat(qx.bom.Style.VENDOR_PREFIXES);
+
         for (var i = 0, l = pref.length; i < l; i++) {
           var prefix = pref[i].toLowerCase();
+
           if (qx.bom.Event.supportsEvent(target, prefix + type)) {
             return prefix ? prefix + qx.lang.String.firstUp(type) : type;
           }
         }
+
         return null;
       }
     }
@@ -345,4 +363,4 @@
   qx.bom.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1677362724453
+//# sourceMappingURL=Event.js.map?dt=1685978106765

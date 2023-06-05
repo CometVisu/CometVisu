@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -31,6 +32,7 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
+
   /**
    * Utility module to give some support to work with arrays.
    *
@@ -54,6 +56,7 @@
        * @return {Array} the converted array
        */
       cast: qx.lang.Array.cast,
+
       /**
        * Check whether the two arrays have the same content. Checks only the
        * equality of the arrays' content.
@@ -66,6 +69,7 @@
        * @return {Boolean} Whether the two arrays are equal
        */
       equals: qx.lang.Array.equals,
+
       /**
        * Modifies the first array as it removes all elements
        * which are listed in the second array as well.
@@ -78,6 +82,7 @@
        * @return {Array} The modified array.
        */
       exclude: qx.lang.Array.exclude,
+
       /**
        * Convert an arguments object into an array.
        *
@@ -89,6 +94,7 @@
        * @return {Array} a newly created array (copy) with the content of the arguments object.
        */
       fromArguments: qx.lang.Array.fromArguments,
+
       /**
        * Insert an element into the array after a given second element.
        *
@@ -101,6 +107,7 @@
        * @return {Array} The given array.
        */
       insertAfter: qx.lang.Array.insertAfter,
+
       /**
        * Insert an element into the array before a given second element.
        *
@@ -113,6 +120,7 @@
        * @return {Array} The given array.
        */
       insertBefore: qx.lang.Array.insertBefore,
+
       /**
        * Returns the highest value in the given array. Supports
        * numeric values only.
@@ -124,6 +132,7 @@
        * @return {Number|undefined} The highest of all values or undefined if array is empty.
        */
       max: qx.lang.Array.max,
+
       /**
        * Returns the lowest value in the given array. Supports
        * numeric values only.
@@ -135,6 +144,7 @@
        * @return {Number|undefined} The lowest of all values or undefined if array is empty.
        */
       min: qx.lang.Array.min,
+
       /**
        * Remove an element from the array.
        *
@@ -146,6 +156,7 @@
        * @return {var} the removed element
        */
       remove: qx.lang.Array.remove,
+
       /**
        * Remove all elements from the array
        *
@@ -156,6 +167,7 @@
        * @return {Array} empty array
        */
       removeAll: qx.lang.Array.removeAll,
+
       /**
        * Recreates an array which is free of all duplicate elements from the original.
        * This method do not modifies the original array!
@@ -169,6 +181,7 @@
        *   or the original array if no duplicates were found.
        */
       unique: qx.lang.Array.unique,
+
       /**
        * Returns a new array with integers from start to stop incremented or decremented by step.
        *
@@ -189,4 +202,4 @@
   qx.module.util.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1677362747351
+//# sourceMappingURL=Array.js.map?dt=1685978130059

@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,6 +52,7 @@
        * @return {Object} The manipulated data.
        */
       manipulateData: function manipulateData(data) {},
+
       /**
        * This method can change the settings on the used request by the store.
        *
@@ -63,4 +65,4 @@
   qx.data.store.IStoreDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IStoreDelegate.js.map?dt=1677362732366
+//# sourceMappingURL=IStoreDelegate.js.map?dt=1685978115172

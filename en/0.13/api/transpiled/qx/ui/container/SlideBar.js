@@ -23,6 +23,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -88,45 +89,52 @@
   qx.Class.define("qx.ui.container.SlideBar", {
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MRemoteChildrenHandling, qx.ui.core.MRemoteLayoutHandling],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param orientation {String?"horizontal"} The slide bar orientation
      */
     construct: function construct(orientation) {
       qx.ui.core.Widget.constructor.call(this);
       var scrollPane = this.getChildControl("scrollpane");
+
       this._add(scrollPane, {
         flex: 1
       });
+
       if (orientation != null) {
         this.setOrientation(orientation);
       } else {
         this.initOrientation();
       }
+
       this.addListener("roll", this._onRoll, this);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "slidebar"
       },
+
       /** Orientation of the bar */
       orientation: {
         check: ["horizontal", "vertical"],
         init: "horizontal",
         apply: "_applyOrientation"
       },
+
       /** The number of pixels to scroll if the buttons are pressed */
       scrollStep: {
         check: "Integer",
@@ -134,21 +142,23 @@
         themeable: true
       }
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fired on scroll animation end invoked by 'scroll*' methods. */
       scrollAnimationEnd: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /*
@@ -163,23 +173,31 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "button-forward":
             control = new qx.ui.form.RepeatButton();
             control.addListener("execute", this._onExecuteForward, this);
             control.setFocusable(false);
+
             this._addAt(control, 2);
+
             break;
+
           case "button-backward":
             control = new qx.ui.form.RepeatButton();
             control.addListener("execute", this._onExecuteBackward, this);
             control.setFocusable(false);
+
             this._addAt(control, 0);
+
             break;
+
           case "content":
             control = new qx.ui.container.Composite();
             this.getChildControl("scrollpane").add(control);
             break;
+
           case "scrollpane":
             control = new qx.ui.core.scroll.ScrollPane();
             control.addListener("update", this._onResize, this);
@@ -188,9 +206,11 @@
             control.addListener("scrollAnimationEnd", this._onScrollAnimationEnd, this);
             break;
         }
+
         return control || qx.ui.container.SlideBar.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -200,11 +220,13 @@
         barRight: true,
         barBottom: true
       },
+
       /*
       ---------------------------------------------------------------------------
         PUBLIC SCROLL API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Scrolls the element's content by the given amount.
        *
@@ -213,12 +235,14 @@
        */
       scrollBy: function scrollBy(offset, duration) {
         var pane = this.getChildControl("scrollpane");
+
         if (this.getOrientation() === "horizontal") {
           pane.scrollByX(offset, duration);
         } else {
           pane.scrollByY(offset, duration);
         }
       },
+
       /**
        * Scrolls the element's content to the given coordinate
        *
@@ -227,12 +251,14 @@
        */
       scrollTo: function scrollTo(value, duration) {
         var pane = this.getChildControl("scrollpane");
+
         if (this.getOrientation() === "horizontal") {
           pane.scrollToX(value, duration);
         } else {
           pane.scrollToY(value, duration);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -241,6 +267,7 @@
       // overridden
       _applyEnabled: function _applyEnabled(value, old, name) {
         qx.ui.container.SlideBar.superclass.prototype._applyEnabled.call(this, value, old, name);
+
         this._updateArrowsEnabled();
       },
       // property apply
@@ -249,10 +276,9 @@
         this.getContentElement().setAttribute("aria-orientation", value);
         var oldLayouts = [this.getLayout(), this._getLayout()];
         var buttonForward = this.getChildControl("button-forward");
-        var buttonBackward = this.getChildControl("button-backward");
-
-        // old can also be null, so we have to check both explicitly to set
+        var buttonBackward = this.getChildControl("button-backward"); // old can also be null, so we have to check both explicitly to set
         // the states correctly.
+
         if (old == "vertical" && value == "horizontal") {
           buttonForward.removeState("vertical");
           buttonBackward.removeState("vertical");
@@ -264,25 +290,32 @@
           buttonForward.addState("vertical");
           buttonBackward.addState("vertical");
         }
+
         if (value == "horizontal") {
           this._setLayout(new qx.ui.layout.HBox());
+
           this.setLayout(new qx.ui.layout.HBox());
         } else {
           this._setLayout(new qx.ui.layout.VBox());
+
           this.setLayout(new qx.ui.layout.VBox());
         }
+
         if (oldLayouts[0]) {
           oldLayouts[0].dispose();
         }
+
         if (oldLayouts[1]) {
           oldLayouts[1].dispose();
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Scrolls pane on roll events
        *
@@ -293,15 +326,16 @@
         if (e.getPointerType() == "mouse") {
           return;
         }
+
         var delta = 0;
         var pane = this.getChildControl("scrollpane");
+
         if (this.getOrientation() === "horizontal") {
           delta = e.getDelta().x;
           var position = pane.getScrollX();
           var max = pane.getScrollMaxX();
-          var steps = parseInt(delta);
+          var steps = parseInt(delta); // pass the event to the parent if both scrollbars are at the end
 
-          // pass the event to the parent if both scrollbars are at the end
           if (!(steps < 0 && position <= 0 || steps > 0 && position >= max || delta == 0)) {
             e.stop();
           } else {
@@ -311,34 +345,36 @@
           delta = e.getDelta().y;
           var position = pane.getScrollY();
           var max = pane.getScrollMaxY();
-          var steps = parseInt(delta);
+          var steps = parseInt(delta); // pass the event to the parent if both scrollbars are at the end
 
-          // pass the event to the parent if both scrollbars are at the end
           if (!(steps < 0 && position <= 0 || steps > 0 && position >= max || delta == 0)) {
             e.stop();
           } else {
             e.stopMomentum();
           }
         }
-        this.scrollBy(parseInt(delta, 10));
 
-        // block all momentum scrolling
+        this.scrollBy(parseInt(delta, 10)); // block all momentum scrolling
+
         if (e.getMomentum()) {
           e.stop();
         }
       },
+
       /**
        * Update arrow enabled state after scrolling
        */
       _onScroll: function _onScroll() {
         this._updateArrowsEnabled();
       },
+
       /**
        * Handler to fire the 'scrollAnimationEnd' event.
        */
       _onScrollAnimationEnd: function _onScrollAnimationEnd() {
         this.fireEvent("scrollAnimationEnd");
       },
+
       /**
        * Listener for resize event. This event is fired after the
        * first flush of the element which leads to another queuing
@@ -348,19 +384,24 @@
        */
       _onResize: function _onResize(e) {
         var content = this.getChildControl("scrollpane").getChildren()[0];
+
         if (!content) {
           return;
         }
+
         var innerSize = this.getInnerSize();
         var contentSize = content.getBounds();
         var overflow = this.getOrientation() === "horizontal" ? contentSize.width > innerSize.width : contentSize.height > innerSize.height;
+
         if (overflow) {
           this._showArrows();
+
           this._updateArrowsEnabled();
         } else {
           this._hideArrows();
         }
       },
+
       /**
        * Scroll handler for left scrolling
        *
@@ -368,6 +409,7 @@
       _onExecuteBackward: function _onExecuteBackward() {
         this.scrollBy(-this.getScrollStep());
       },
+
       /**
        * Scroll handler for right scrolling
        *
@@ -375,11 +417,13 @@
       _onExecuteForward: function _onExecuteForward() {
         this.scrollBy(this.getScrollStep());
       },
+
       /*
       ---------------------------------------------------------------------------
         UTILITIES
       ---------------------------------------------------------------------------
       */
+
       /**
        * Update arrow enabled state
        */
@@ -391,7 +435,9 @@
           this.getChildControl("button-forward").setEnabled(false);
           return;
         }
+
         var pane = this.getChildControl("scrollpane");
+
         if (this.getOrientation() === "horizontal") {
           var position = pane.getScrollX();
           var max = pane.getScrollMaxX();
@@ -399,24 +445,30 @@
           var position = pane.getScrollY();
           var max = pane.getScrollMaxY();
         }
+
         this.getChildControl("button-backward").setEnabled(position > 0);
         this.getChildControl("button-forward").setEnabled(position < max);
       },
+
       /**
        * Show the arrows (Called from resize event)
        *
        */
       _showArrows: function _showArrows() {
         this._showChildControl("button-forward");
+
         this._showChildControl("button-backward");
       },
+
       /**
        * Hide the arrows (Called from resize event)
        *
        */
       _hideArrows: function _hideArrows() {
         this._excludeChildControl("button-forward");
+
         this._excludeChildControl("button-backward");
+
         this.scrollTo(0);
       }
     }
@@ -424,4 +476,4 @@
   qx.ui.container.SlideBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SlideBar.js.map?dt=1677362750916
+//# sourceMappingURL=SlideBar.js.map?dt=1685978133173

@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,6 +38,7 @@
    */
   qx.Class.define("qx.ui.virtual.core.Axis", {
     extend: qx.core.Object,
+
     /**
      * @param defaultItemSize {Integer} The default size of the items.
      * @param itemCount {Integer} The number of item on the axis.
@@ -44,9 +46,8 @@
     construct: function construct(defaultItemSize, itemCount) {
       qx.core.Object.constructor.call(this);
       this.itemCount = itemCount;
-      this.defaultItemSize = defaultItemSize;
+      this.defaultItemSize = defaultItemSize; // sparse array
 
-      // sparse array
       this.customSizes = {};
     },
     events: {
@@ -55,6 +56,7 @@
     },
     members: {
       __P_476_0: null,
+
       /**
        * Get the default size of the items.
        *
@@ -63,6 +65,7 @@
       getDefaultItemSize: function getDefaultItemSize() {
         return this.defaultItemSize;
       },
+
       /**
        * Set the default size the items.
        *
@@ -75,6 +78,7 @@
           this.fireNonBubblingEvent("change");
         }
       },
+
       /**
        * Get the number of items in the axis.
        *
@@ -83,6 +87,7 @@
       getItemCount: function getItemCount() {
         return this.itemCount;
       },
+
       /**
        * Set the number of items in the axis.
        *
@@ -95,6 +100,7 @@
           this.fireNonBubblingEvent("change");
         }
       },
+
       /**
        * Sets the size of a specific item. This allow item, which have a size
        * different from the default size.
@@ -106,14 +112,17 @@
         if (this.customSizes[index] == size) {
           return;
         }
+
         if (size === null) {
           delete this.customSizes[index];
         } else {
           this.customSizes[index] = size;
         }
+
         this.__P_476_0 = null;
         this.fireNonBubblingEvent("change");
       },
+
       /**
        * Get the size of the item at the given index.
        *
@@ -124,6 +133,7 @@
         // custom size of 0 is not allowed
         return this.customSizes[index] || this.defaultItemSize;
       },
+
       /**
        * Reset all custom sizes set with {@link #setItemSize}.
        */
@@ -132,6 +142,7 @@
         this.__P_476_0 = null;
         this.fireNonBubblingEvent("change");
       },
+
       /**
        * Split the position range into disjunct intervals. Each interval starts
        * with a custom sized cell. Each position is contained in exactly one range.
@@ -145,15 +156,19 @@
         if (this.__P_476_0) {
           return this.__P_476_0;
         }
+
         var defaultSize = this.defaultItemSize;
         var itemCount = this.itemCount;
         var indexes = [];
+
         for (var key in this.customSizes) {
           var index = parseInt(key, 10);
+
           if (index < itemCount) {
             indexes.push(index);
           }
         }
+
         if (indexes.length == 0) {
           var ranges = [{
             startIndex: 0,
@@ -165,16 +180,20 @@
           this.__P_476_0 = ranges;
           return ranges;
         }
+
         indexes.sort(function (a, b) {
           return a > b ? 1 : -1;
         });
         var ranges = [];
         var correctionSum = 0;
+
         for (var i = 0; i < indexes.length; i++) {
           var index = indexes[i];
+
           if (index >= itemCount) {
             break;
           }
+
           var cellSize = this.customSizes[index];
           var rangeStart = index * defaultSize + correctionSum;
           correctionSum += cellSize - defaultSize;
@@ -183,13 +202,14 @@
             firstItemSize: cellSize,
             rangeStart: rangeStart
           };
+
           if (i > 0) {
             ranges[i - 1].rangeEnd = rangeStart - 1;
             ranges[i - 1].endIndex = index - 1;
           }
-        }
+        } // fix first range
 
-        // fix first range
+
         if (ranges[0].rangeStart > 0) {
           ranges.unshift({
             startIndex: 0,
@@ -198,9 +218,9 @@
             rangeStart: 0,
             rangeEnd: ranges[0].rangeStart - 1
           });
-        }
+        } // fix last range
 
-        // fix last range
+
         var lastRange = ranges[ranges.length - 1];
         var remainingItemsSize = (itemCount - lastRange.startIndex - 1) * defaultSize;
         lastRange.rangeEnd = lastRange.rangeStart + lastRange.firstItemSize + remainingItemsSize - 1;
@@ -208,6 +228,7 @@
         this.__P_476_0 = ranges;
         return ranges;
       },
+
       /**
        * Returns the range, which contains the position
        *
@@ -218,13 +239,14 @@
        */
       __P_476_2: function __P_476_2(position) {
         var ranges = this.__P_476_0 || this.__P_476_1();
-        var start = 0;
-        var end = ranges.length - 1;
 
-        // binary search in the sorted ranges list
+        var start = 0;
+        var end = ranges.length - 1; // binary search in the sorted ranges list
+
         while (true) {
           var pivot = start + (end - start >> 1);
           var range = ranges[pivot];
+
           if (range.rangeEnd < position) {
             start = pivot + 1;
           } else if (range.rangeStart > position) {
@@ -234,6 +256,7 @@
           }
         }
       },
+
       /**
        * Get the item and the offset into the item at the given position.
        *
@@ -247,10 +270,13 @@
         if (position < 0 || position >= this.getTotalSize()) {
           return null;
         }
+
         var range = this.__P_476_2(position);
+
         var startPos = range.rangeStart;
         var index = range.startIndex;
         var firstItemSize = range.firstItemSize;
+
         if (startPos + firstItemSize > position) {
           return {
             index: index,
@@ -264,6 +290,7 @@
           };
         }
       },
+
       /**
        * Returns the range, which contains the position.
        *
@@ -274,13 +301,14 @@
        */
       __P_476_3: function __P_476_3(index) {
         var ranges = this.__P_476_0 || this.__P_476_1();
-        var start = 0;
-        var end = ranges.length - 1;
 
-        // binary search in the sorted ranges list
+        var start = 0;
+        var end = ranges.length - 1; // binary search in the sorted ranges list
+
         while (true) {
           var pivot = start + (end - start >> 1);
           var range = ranges[pivot];
+
           if (range.endIndex < index) {
             start = pivot + 1;
           } else if (range.startIndex > index) {
@@ -290,6 +318,7 @@
           }
         }
       },
+
       /**
        * Get the start position of the item with the given index.
        *
@@ -301,13 +330,16 @@
         if (index < 0 || index >= this.itemCount) {
           return null;
         }
+
         var range = this.__P_476_3(index);
+
         if (range.startIndex == index) {
           return range.rangeStart;
         } else {
           return range.rangeStart + range.firstItemSize + (index - range.startIndex - 1) * this.defaultItemSize;
         }
       },
+
       /**
        * Returns the sum of all cell sizes.
        *
@@ -315,8 +347,10 @@
        */
       getTotalSize: function getTotalSize() {
         var ranges = this.__P_476_0 || this.__P_476_1();
+
         return ranges[ranges.length - 1].rangeEnd + 1;
       },
+
       /**
        * Get an array of item sizes starting with the item at "startIndex". The
        * sum of all sizes in the returned array is at least "minSizeSum".
@@ -333,15 +367,18 @@
         var sum = 0;
         var sizes = [];
         var i = 0;
+
         while (sum < minSizeSum) {
           var itemSize = customSizes[startIndex] != null ? customSizes[startIndex] : defaultSize;
           startIndex++;
           sum += itemSize;
           sizes[i++] = itemSize;
+
           if (startIndex >= this.itemCount) {
             break;
           }
         }
+
         return sizes;
       }
     },
@@ -352,4 +389,4 @@
   qx.ui.virtual.core.Axis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Axis.js.map?dt=1677362770067
+//# sourceMappingURL=Axis.js.map?dt=1685978151393

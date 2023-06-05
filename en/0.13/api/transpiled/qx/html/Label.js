@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
    */
   qx.Class.define("qx.html.Label", {
     extend: qx.html.Element,
+
     /**
      * Creates a new Image
      *
@@ -51,19 +53,21 @@
       qx.html.Element.constructor.call(this, tagName, styles, attributes);
       this.registerProperty("value", null, this._setValueProperty);
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_242_0: null,
+
       /*
       ---------------------------------------------------------------------------
         ELEMENT API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Implementation of setter for the "value" property
        *
@@ -85,11 +89,13 @@
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         return qx.html.Label.superclass.prototype._copyData.call(this, true, propertiesFromDom);
       },
+
       /*
       ---------------------------------------------------------------------------
         LABEL API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Toggles between rich HTML mode and pure text mode.
        *
@@ -98,16 +104,21 @@
        */
       setRich: function setRich(value) {
         var element = this.getDomElement();
+
         if (element) {
           throw new Error("The label mode cannot be modified after initial creation");
         }
+
         value = !!value;
+
         if (this.__P_242_0 == value) {
           return this;
         }
+
         this.__P_242_0 = value;
         return this;
       },
+
       /**
        * Sets the HTML/text content depending on the content mode.
        *
@@ -116,8 +127,10 @@
        */
       setValue: function setValue(value) {
         this._setProperty("value", value);
+
         return this;
       },
+
       /**
        * Get the current content.
        *
@@ -126,6 +139,7 @@
       getValue: function getValue() {
         return this._getProperty("value");
       },
+
       /**
        * Reset the current content
        *
@@ -139,4 +153,4 @@
   qx.html.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1677362741215
+//# sourceMappingURL=Label.js.map?dt=1685978124241

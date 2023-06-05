@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,7 +49,9 @@
       layout.setColumnAlign(1, "left", "top");
       layout.setColumnAlign(2, "right", "top");
       layout.setColumnAlign(3, "left", "top");
+
       this._setLayout(layout);
+
       qx.ui.form.renderer.AbstractRenderer.constructor.call(this, form);
     },
     members: {
@@ -58,11 +61,15 @@
       _onFormChange: function _onFormChange() {
         if (this._buttonRow) {
           this._buttonRow.destroy();
+
           this._buttonRow = null;
         }
+
         this._row = 0;
+
         qx.ui.form.renderer.Double.superclass.prototype._onFormChange.call(this);
       },
+
       /**
        * Add a group of form items with the corresponding names. The names are
        * displayed as label.
@@ -81,28 +88,34 @@
             column: 0,
             colSpan: 4
           });
-          this._row++;
-        }
 
-        // add the items
+          this._row++;
+        } // add the items
+
+
         for (var i = 0; i < items.length; i++) {
           var label = this._createLabel(names[i], items[i]);
+
           this._add(label, {
             row: this._row,
             column: i * 2 % 4
           });
+
           var item = items[i];
           label.setBuddy(item);
+
           this._connectVisibility(item, label);
+
           this._add(item, {
             row: this._row,
             column: i * 2 % 4 + 1
           });
+
           if (i % 2 == 1) {
             this._row++;
-          }
+          } // store the names for translation
 
-          // store the names for translation
+
           {
             this._names.push({
               name: names[i],
@@ -111,10 +124,12 @@
             });
           }
         }
+
         if (i % 2 == 1) {
           this._row++;
         }
       },
+
       /**
        * Adds a button the form renderer. All buttons will be added in a
        * single row at the bottom of the form.
@@ -125,24 +140,30 @@
         if (this._buttonRow == null) {
           // create button row
           this._buttonRow = new qx.ui.container.Composite();
+
           this._buttonRow.setMarginTop(5);
+
           var hbox = new qx.ui.layout.HBox();
           hbox.setAlignX("right");
           hbox.setSpacing(5);
-          this._buttonRow.setLayout(hbox);
-          // add the button row
+
+          this._buttonRow.setLayout(hbox); // add the button row
+
+
           this._add(this._buttonRow, {
             row: this._row,
             column: 0,
             colSpan: 4
-          });
-          // increase the row
-          this._row++;
-        }
+          }); // increase the row
 
-        // add the button
+
+          this._row++;
+        } // add the button
+
+
         this._buttonRow.add(button);
       },
+
       /**
        * Returns the set layout for configuration.
        *
@@ -151,6 +172,7 @@
       getLayout: function getLayout() {
         return this._getLayout();
       },
+
       /**
        * Creates a label for the given form item.
        *
@@ -160,12 +182,14 @@
        * @return {qx.ui.basic.Label} The label for the given item.
        */
       _createLabel: function _createLabel(name, item) {
-        var label = new qx.ui.basic.Label(this._createLabelText(name, item));
-        // store labels for disposal
+        var label = new qx.ui.basic.Label(this._createLabelText(name, item)); // store labels for disposal
+
         this._labels.push(label);
+
         label.setRich(true);
         return label;
       },
+
       /**
        * Creates a header label for the form groups.
        *
@@ -173,17 +197,21 @@
        * @return {qx.ui.basic.Label} The header for the form groups.
        */
       _createHeader: function _createHeader(title) {
-        var header = new qx.ui.basic.Label(title);
-        // store labels for disposal
+        var header = new qx.ui.basic.Label(title); // store labels for disposal
+
         this._labels.push(header);
+
         header.setFont("bold");
+
         if (this._row != 0) {
           header.setMarginTop(10);
         }
+
         header.setAlignX("left");
         return header;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -194,6 +222,7 @@
       // should not be disposed
       if (this._buttonRow) {
         this._buttonRow.removeAll();
+
         this._disposeObjects("_buttonRow");
       }
     }
@@ -201,4 +230,4 @@
   qx.ui.form.renderer.Double.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Double.js.map?dt=1677362758802
+//# sourceMappingURL=Double.js.map?dt=1685978139734

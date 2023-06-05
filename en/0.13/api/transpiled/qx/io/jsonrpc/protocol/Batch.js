@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,10 +66,11 @@
        */
       add: function add(message) {
         qx.core.Assert.assertInstance(message, qx.io.jsonrpc.protocol.Message);
-        this.getBatch().push(message);
-        // return the instance for chaining
+        this.getBatch().push(message); // return the instance for chaining
+
         return this;
       },
+
       /**
        * Adds a request to the batch
        * @param method
@@ -78,6 +80,7 @@
         this.add(new qx.io.jsonrpc.protocol.Request(method, params));
         return this;
       },
+
       /**
        * Adds a notification to the batch
        * @param method
@@ -87,6 +90,7 @@
         this.add(new qx.io.jsonrpc.protocol.Notification(method, params));
         return this;
       },
+
       /**
        * Returns an array of the promises of the requests in the batch
        * @return {qx.Promise[]}
@@ -96,6 +100,7 @@
           return message.getPromise();
         });
       },
+
       /**
        * Returns the message as a native object
        * @return {*}
@@ -105,6 +110,7 @@
           return message.toObject();
         });
       },
+
       /**
        * Returns the message as a JSON string
        * @return {String}
@@ -119,4 +125,4 @@
   qx.io.jsonrpc.protocol.Batch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Batch.js.map?dt=1677362742030
+//# sourceMappingURL=Batch.js.map?dt=1685978125059

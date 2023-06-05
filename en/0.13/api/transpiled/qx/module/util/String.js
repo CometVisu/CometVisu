@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,6 +35,7 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
+
   /**
    * Utility module to give some support to work with strings.
    *
@@ -53,6 +55,7 @@
       camelCase: function camelCase(str) {
         return qx.lang.String.camelCase.call(qx.lang.String, str);
       },
+
       /**
        * Converts a camelcased string to a hyphenated (separated by '-') string.
        *
@@ -63,6 +66,7 @@
       hyphenate: function hyphenate(str) {
         return qx.lang.String.hyphenate.call(qx.lang.String, str);
       },
+
       /**
        * Convert the first character of the string to upper case.
        *
@@ -72,6 +76,7 @@
        * @return {String} the string with an upper case first character
        */
       firstUp: qx.lang.String.firstUp,
+
       /**
        * Convert the first character of the string to lower case.
        *
@@ -81,6 +86,7 @@
        * @return {String} the string with a lower case first character
        */
       firstLow: qx.lang.String.firstLow,
+
       /**
        * Check whether the string starts with the given substring.
        *
@@ -93,6 +99,7 @@
       startsWith: function startsWith(fullstr, substr) {
         return fullstr.startsWith(substr);
       },
+
       /**
        * Check whether the string ends with the given substring.
        *
@@ -105,6 +112,7 @@
       endsWith: function endsWith(fullstr, substr) {
         return fullstr.endsWith(substr);
       },
+
       /**
        * Escapes all chars that have a special meaning in regular expressions.
        *
@@ -114,6 +122,7 @@
        * @return {String} the string with the escaped chars.
        */
       escapeRegexpChars: qx.lang.String.escapeRegexpChars,
+
       /**
        * Escapes the characters in a <code>String</code> using HTML entities.
        * Supports all known HTML 4.0 entities, including funky accents.
@@ -132,4 +141,4 @@
   qx.module.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1677362747426
+//# sourceMappingURL=String.js.map?dt=1685978130134

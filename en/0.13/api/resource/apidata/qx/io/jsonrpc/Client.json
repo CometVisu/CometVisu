@@ -401,6 +401,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "sendRequest": {
@@ -443,6 +444,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "sendNotification": {
@@ -485,6 +487,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "sendBatch": {
@@ -523,6 +526,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "handleIncoming": {

@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Option.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,6 +37,7 @@
    */
   qx.Class.define('cv.ui.manager.model.config.Option', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -46,6 +48,7 @@
       this.setKey(key);
       this.setValue(value);
     },
+
     /*
     ***********************************************
       EVENTS
@@ -55,6 +58,7 @@
       // sent whenever the options key or value has been changed
       change: 'qx.event.type.Event'
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -74,6 +78,7 @@
         apply: '_applyChange'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -88,4 +93,4 @@
   cv.ui.manager.model.config.Option.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Option.js.map?dt=1677362715033
+//# sourceMappingURL=Option.js.map?dt=1685978097758

@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,11 +47,14 @@
        */
       tr: function tr(messageId, varargs) {
         var nlsManager = qx.locale.Manager;
+
         if (nlsManager) {
           return nlsManager.tr.apply(nlsManager, arguments);
         }
+
         throw new Error("To enable localization please include qx.locale.Manager into your build!");
       },
+
       /**
        * Translate a plural message
        * Mark the messages for translation.
@@ -65,11 +69,14 @@
        */
       trn: function trn(singularMessageId, pluralMessageId, count, varargs) {
         var nlsManager = qx.locale.Manager;
+
         if (nlsManager) {
           return nlsManager.trn.apply(nlsManager, arguments);
         }
+
         throw new Error("To enable localization please include qx.locale.Manager into your build!");
       },
+
       /**
        * Translate a message with translation hint
        * Mark the messages for translation.
@@ -81,11 +88,14 @@
        */
       trc: function trc(hint, messageId, varargs) {
         var nlsManager = qx.locale.Manager;
+
         if (nlsManager) {
           return nlsManager.trc.apply(nlsManager, arguments);
         }
+
         throw new Error("To enable localization please include qx.locale.Manager into your build!");
       },
+
       /**
        * Translate a plural message with translation hint
        * Mark the messages for translation.
@@ -101,11 +111,14 @@
        */
       trnc: function trnc(hint, singularMessageId, pluralMessageId, count, varargs) {
         var nlsManager = qx.locale.Manager;
+
         if (nlsManager) {
           return nlsManager.trnc.apply(nlsManager, arguments);
         }
+
         throw new Error("To enable localization please include qx.locale.Manager into your build!");
       },
+
       /**
        * Mark the message for translation but return the original message.
        *
@@ -114,9 +127,11 @@
        */
       marktr: function marktr(messageId) {
         var nlsManager = qx.locale.Manager;
+
         if (nlsManager) {
           return nlsManager.marktr.apply(nlsManager, arguments);
         }
+
         throw new Error("To enable localization please include qx.locale.Manager into your build!");
       }
     }
@@ -124,4 +139,4 @@
   qx.locale.MTranslation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTranslation.js.map?dt=1677362744948
+//# sourceMappingURL=MTranslation.js.map?dt=1685978127923

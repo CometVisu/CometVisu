@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,6 +19,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,9 +63,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       createElement: function createElement(tagname, attributes) {
         var children = qx.lang.Array.fromArguments(arguments, 2);
         var self = this;
+
         if (typeof tagname === "function") {
           throw new Error("Custom tags are not supported");
         }
+
         if (tagname == qx.html.Jsx.FRAGMENT) {
           var addChildrenFragment = function addChildrenFragment(children) {
             children.forEach(function (child) {
@@ -74,14 +78,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             });
           };
+
           var arr = new qx.data.Array();
           addChildrenFragment(children);
           return arr;
         }
+
         var newAttrs = {};
         var eventHandlers = {};
         var innerHtml = null;
         var refs = [];
+
         if (attributes) {
           var RENAME = {
             className: "class",
@@ -90,10 +97,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           };
           Object.keys(attributes).forEach(function (prop) {
             var renameTo = RENAME[prop];
+
             if (renameTo) {
               newAttrs[renameTo] = attributes[prop];
               return;
             }
+
             if (prop === "ref") {
               if (attributes.ref instanceof qx.html.JsxRef || typeof attributes.ref === "function") {
                 refs.push(attributes.ref);
@@ -112,7 +121,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             }
           });
         }
+
         var element = qx.html.Factory.getInstance().createElement(tagname, newAttrs);
+
         if (children) {
           var addChildren = function addChildren(children) {
             children.forEach(function (child) {
@@ -125,14 +136,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             });
           };
+
           addChildren(children);
         }
+
         if (innerHtml) {
           element.setProperty("innerHtml", innerHtml);
         }
+
         for (var eventName in eventHandlers) {
           element.addListener(eventName, eventHandlers[eventName]);
         }
+
         refs.forEach(function (ref) {
           if (ref instanceof qx.html.JsxRef) {
             ref.setValue(element);
@@ -142,8 +157,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         });
         return element;
       },
+
       /** @type {Map} map of event names, all values are `true` */
       SYNTETIC_EVENTS: null,
+
       /** @type {String} tagname for fragments */
       FRAGMENT: "$$fragment"
     },
@@ -167,4 +184,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1677362741172
+//# sourceMappingURL=Jsx.js.map?dt=1685978124188

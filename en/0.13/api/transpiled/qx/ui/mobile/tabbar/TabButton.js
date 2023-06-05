@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,18 +39,19 @@
    */
   qx.Class.define("qx.ui.mobile.tabbar.TabButton", {
     extend: qx.ui.mobile.form.Button,
+
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
-
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "tabButton"
       },
+
       /**
        * The associated view.
        */
@@ -71,4 +73,4 @@
   qx.ui.mobile.tabbar.TabButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabButton.js.map?dt=1677362763884
+//# sourceMappingURL=TabButton.js.map?dt=1685978145037

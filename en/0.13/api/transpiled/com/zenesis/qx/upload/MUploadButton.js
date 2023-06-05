@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -61,6 +62,7 @@
         check: "String",
         event: "changeAcceptUpload"
       },
+
       /**
        * Whether to support multiple files (default=true); this is not supported
        * on older browsers
@@ -71,6 +73,7 @@
         nullable: false,
         event: "changeMultiple"
       },
+
       /**
        * Whether to support directories only (default=false); this is not supported
        * on older browsers
@@ -84,16 +87,14 @@
     },
     members: {
       // overridden
-      capture: function capture() {
-        // Nothing
+      capture: function capture() {// Nothing
       },
       // overridden
-      releaseCapture: function releaseCapture() {
-        // Nothing
+      releaseCapture: function releaseCapture() {// Nothing
       }
     }
   });
   com.zenesis.qx.upload.MUploadButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MUploadButton.js.map?dt=1677362779964
+//# sourceMappingURL=MUploadButton.js.map?dt=1685978162189

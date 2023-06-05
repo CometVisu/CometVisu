@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,30 +36,34 @@
    */
   qx.Class.define("qx.event.message.Message", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param name {String} The name of the message
      * @param data {var} Any type of data to attach
      */
     construct: function construct(name, data) {
       qx.core.Object.constructor.call(this);
+
       if (name != null) {
         this.setName(name);
       }
+
       if (data != null) {
         this.setData(data);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * Event name of the message. Based on this name the message is dispatched
@@ -67,6 +72,7 @@
       name: {
         check: "String"
       },
+
       /**
        * Any data the sender wants to pass with the event.
        */
@@ -74,6 +80,7 @@
         init: null,
         nullable: true
       },
+
       /**
        * A reference to the sending object.
        */
@@ -90,4 +97,4 @@
   qx.event.message.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1677362739799
+//# sourceMappingURL=Message.js.map?dt=1685978122756

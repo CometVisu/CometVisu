@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -112,12 +113,14 @@
        */
       animate: function animate(el, desc, duration) {
         var onlyCssKeys = qx.bom.element.Animation.__P_129_0(el, desc.keyFrames);
+
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animate(el, desc, duration);
         } else {
           return qx.bom.element.AnimationJs.animate(el, desc, duration);
         }
       },
+
       /**
        * Starts an animation in reversed order. For further details, take a look at
        * the {@link #animate} method.
@@ -130,12 +133,14 @@
        */
       animateReverse: function animateReverse(el, desc, duration) {
         var onlyCssKeys = qx.bom.element.Animation.__P_129_0(el, desc.keyFrames);
+
         if (qx.core.Environment.get("css.animation") && onlyCssKeys) {
           return qx.bom.element.AnimationCss.animateReverse(el, desc, duration);
         } else {
           return qx.bom.element.AnimationJs.animateReverse(el, desc, duration);
         }
       },
+
       /**
        * Detection helper which detects if only CSS keys are in
        * the animations key frames.
@@ -145,29 +150,37 @@
        */
       __P_129_0: function __P_129_0(el, keyFrames) {
         var keys = [];
+
         for (var nr in keyFrames) {
           var frame = keyFrames[nr];
+
           for (var key in frame) {
             if (keys.indexOf(key) == -1) {
               keys.push(key);
             }
           }
         }
+
         var transformKeys = ["scale", "rotate", "skew", "translate"];
+
         for (var i = 0; i < keys.length; i++) {
           var key = qx.lang.String.camelCase(keys[i]);
+
           if (!(key in el.style)) {
             // check for transform keys
             if (transformKeys.indexOf(keys[i]) != -1) {
               continue;
-            }
-            // check for prefixed keys
+            } // check for prefixed keys
+
+
             if (qx.bom.Style.getPropertyName(key)) {
               continue;
             }
+
             return false;
           }
         }
+
         return true;
       }
     }
@@ -175,4 +188,4 @@
   qx.bom.element.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1677362727675
+//# sourceMappingURL=Animation.js.map?dt=1685978109972

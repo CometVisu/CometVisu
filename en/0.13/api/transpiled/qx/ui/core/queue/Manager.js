@@ -46,6 +46,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,14 +75,19 @@
     statics: {
       /** @type {Boolean} Whether a flush was scheduled */
       __P_325_0: false,
+
       /** @type {Boolean} true, if the flush should not be executed */
       __P_325_1: false,
+
       /** @type {Map} Internal data structure for the current job list */
       __P_325_2: {},
+
       /** @type {Integer} Counts how often a flush failed due to exceptions */
       __P_325_3: 0,
+
       /** @type {Integer} Maximum number of flush retries */
       MAX_RETRIES: 10,
+
       /**
        * Schedule a deferred flush of all queues.
        *
@@ -92,6 +98,7 @@
         // Sometimes not executed in context, fix this
         var self = qx.ui.core.queue.Manager;
         self.__P_325_2[job] = true;
+
         if (!self.__P_325_0) {
           self.__P_325_1 = false;
           qx.bom.AnimationFrame.request(function () {
@@ -99,11 +106,13 @@
               self.__P_325_1 = false;
               return;
             }
+
             self.flush();
           }, self);
           self.__P_325_0 = true;
         }
       },
+
       /**
        * Flush all layout queues in the correct order. This function is called
        * deferred if {@link #scheduleFlush} is called.
@@ -111,17 +120,17 @@
        */
       flush: function flush() {
         // Sometimes not executed in context, fix this
-        var self = qx.ui.core.queue.Manager;
+        var self = qx.ui.core.queue.Manager; // Stop when already executed
 
-        // Stop when already executed
         if (self.__P_325_4) {
           return;
         }
-        self.__P_325_4 = true;
 
-        // Cancel timeout if called manually
+        self.__P_325_4 = true; // Cancel timeout if called manually
+
         self.__P_325_1 = true;
         var jobs = self.__P_325_2;
+
         self.__P_325_5(function () {
           // Process jobs
           while (jobs.visibility || jobs.widget || jobs.appearance || jobs.layout || jobs.element) {
@@ -136,6 +145,7 @@
                 }
               }
             }
+
             if (jobs.visibility) {
               delete jobs.visibility;
               {
@@ -146,6 +156,7 @@
                 }
               }
             }
+
             if (jobs.appearance) {
               delete jobs.appearance;
               {
@@ -155,12 +166,13 @@
                   qx.log.Logger.error(qx.ui.core.queue.Appearance, "Error in the 'Appearance' queue:" + e, e);
                 }
               }
-            }
+            } // Defer layout as long as possible
 
-            // Defer layout as long as possible
+
             if (jobs.widget || jobs.visibility || jobs.appearance) {
               continue;
             }
+
             if (jobs.layout) {
               delete jobs.layout;
               {
@@ -170,12 +182,13 @@
                   qx.log.Logger.error(qx.ui.core.queue.Layout, "Error in the 'Layout' queue:" + e, e);
                 }
               }
-            }
+            } // Defer element as long as possible
 
-            // Defer element as long as possible
+
             if (jobs.widget || jobs.visibility || jobs.appearance || jobs.layout) {
               continue;
             }
+
             if (jobs.element) {
               delete jobs.element;
               qx.html.Element.flush();
@@ -184,6 +197,7 @@
         }, function () {
           self.__P_325_0 = false;
         });
+
         self.__P_325_5(function () {
           if (jobs.dispose) {
             delete jobs.dispose;
@@ -198,11 +212,12 @@
         }, function () {
           // Clear flag
           self.__P_325_4 = false;
-        });
+        }); // flush succeeded successfully. Reset retries
 
-        // flush succeeded successfully. Reset retries
+
         self.__P_325_3 = 0;
       },
+
       /**
        * Executes the callback code. If the callback throws an error the current
        * flush is cleaned up and rescheduled. The finally code is called after the
@@ -219,23 +234,27 @@
         },
         "false": function _false(callback, finallyCode) {
           var self = qx.ui.core.queue.Manager;
+
           try {
             callback();
           } catch (e) {
             self.__P_325_0 = false;
             self.__P_325_4 = false;
             self.__P_325_3 += 1;
+
             if (self.__P_325_3 <= self.MAX_RETRIES) {
               self.scheduleFlush();
             } else {
               throw new Error("Fatal Error: Flush terminated " + (self.__P_325_3 - 1) + " times in a row" + " due to exceptions in user code. The application has to be reloaded!");
             }
+
             throw e;
           } finally {
             finallyCode();
           }
         }
       }),
+
       /**
        * Handler used on touch devices to prevent the queue from manipulating
        * the dom during the touch - mouse - ... event sequence. Usually, iOS
@@ -250,6 +269,7 @@
         qx.ui.core.queue.Manager.flush();
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -259,13 +279,12 @@
       // Replace default scheduler for HTML element with local one.
       // This is quite a hack, but allows us to force other flushes
       // before the HTML element flush.
-      qx.html.Element._scheduleFlush = statics.scheduleFlush;
+      qx.html.Element._scheduleFlush = statics.scheduleFlush; // Register to user action
 
-      // Register to user action
       qx.event.Registration.addListener(window, "useraction", qx.core.Environment.get("event.touch") ? statics.__P_325_6 : statics.flush);
     }
   });
   qx.ui.core.queue.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1677362753566
+//# sourceMappingURL=Manager.js.map?dt=1685978135687

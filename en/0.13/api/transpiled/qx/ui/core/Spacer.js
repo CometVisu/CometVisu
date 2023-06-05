@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,28 +62,29 @@
    */
   qx.Class.define("qx.ui.core.Spacer", {
     extend: qx.ui.core.LayoutItem,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param width {Integer?null} the initial width
      * @param height {Integer?null} the initial height
      */
     construct: function construct(width, height) {
-      qx.ui.core.LayoutItem.constructor.call(this);
+      qx.ui.core.LayoutItem.constructor.call(this); // Initialize dimensions
 
-      // Initialize dimensions
       this.setWidth(width != null ? width : 0);
       this.setHeight(height != null ? height : 0);
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Helper method called from the visibility queue to detect outstanding changes
@@ -90,17 +92,17 @@
        *
        * @internal
        */
-      checkAppearanceNeeds: function checkAppearanceNeeds() {
-        // placeholder to improve compatibility with Widget.
+      checkAppearanceNeeds: function checkAppearanceNeeds() {// placeholder to improve compatibility with Widget.
       },
+
       /**
        * Recursively adds all children to the given queue
        *
        * @param queue {Map} The queue to add widgets to
        */
-      addChildrenToQueue: function addChildrenToQueue(queue) {
-        // placeholder to improve compatibility with Widget.
+      addChildrenToQueue: function addChildrenToQueue(queue) {// placeholder to improve compatibility with Widget.
       },
+
       /**
        * Removes this widget from its parent and dispose it.
        *
@@ -112,10 +114,13 @@
         if (this.$$disposed) {
           return;
         }
+
         var parent = this.$$parent;
+
         if (parent) {
           parent._remove(this);
         }
+
         qx.ui.core.queue.Dispose.add(this);
       }
     }
@@ -123,4 +128,4 @@
   qx.ui.core.Spacer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spacer.js.map?dt=1677362752829
+//# sourceMappingURL=Spacer.js.map?dt=1685978135084

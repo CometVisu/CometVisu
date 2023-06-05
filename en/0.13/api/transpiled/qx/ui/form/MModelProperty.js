@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -25,6 +26,7 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * Can be included for implementing {@link qx.ui.form.IModel}. It only contains
    * a nullable property named 'model' with a 'changeModel' event.
@@ -56,12 +58,11 @@
     },
     members: {
       // apply method
-      _applyModel: function _applyModel(value, old) {
-        // Empty implementation
+      _applyModel: function _applyModel(value, old) {// Empty implementation
       }
     }
   });
   qx.ui.form.MModelProperty.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MModelProperty.js.map?dt=1677362757515
+//# sourceMappingURL=MModelProperty.js.map?dt=1685978138381

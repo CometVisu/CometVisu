@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -87,19 +88,18 @@
    */
   qx.Class.define("qx.ui.layout.Basic", {
     extend: qx.ui.layout.Abstract,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
       ---------------------------------------------------------------------------
       */
-
       // overridden
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
         "true": function _true(item, name, value) {
@@ -111,9 +111,9 @@
       // overridden
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         var children = this._getLayoutChildren();
-        var child, size, props, left, top;
 
-        // Render children
+        var child, size, props, left, top; // Render children
+
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
           size = child.getSizeHint();
@@ -126,27 +126,29 @@
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var children = this._getLayoutChildren();
+
         var child, size, props;
         var neededWidth = 0,
-          neededHeight = 0;
-        var localWidth, localHeight;
+            neededHeight = 0;
+        var localWidth, localHeight; // Iterate over children
 
-        // Iterate over children
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
           size = child.getSizeHint();
           props = child.getLayoutProperties();
           localWidth = size.width + (props.left || 0) + child.getMarginLeft() + child.getMarginRight();
           localHeight = size.height + (props.top || 0) + child.getMarginTop() + child.getMarginBottom();
+
           if (localWidth > neededWidth) {
             neededWidth = localWidth;
           }
+
           if (localHeight > neededHeight) {
             neededHeight = localHeight;
           }
-        }
+        } // Return hint
 
-        // Return hint
+
         return {
           width: neededWidth,
           height: neededHeight
@@ -157,4 +159,4 @@
   qx.ui.layout.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1677362759292
+//# sourceMappingURL=Basic.js.map?dt=1685978140249

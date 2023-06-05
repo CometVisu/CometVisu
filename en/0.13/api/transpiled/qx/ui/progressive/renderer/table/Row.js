@@ -56,6 +56,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
      qooxdoo - the new era of web development
      http://qooxdoo.org
@@ -73,38 +74,37 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.Row", {
     extend: qx.ui.progressive.renderer.Abstract,
+
     /**
      * @param columnWidths {qx.ui.progressive.renderer.table.Widths}
      *   Information that indicates how to resize each of the column widths
      */
     construct: function construct(columnWidths) {
-      qx.ui.progressive.renderer.Abstract.constructor.call(this);
+      qx.ui.progressive.renderer.Abstract.constructor.call(this); // Save the column widths
 
-      // Save the column widths
-      this.__P_423_0 = columnWidths;
+      this.__P_423_0 = columnWidths; // Create space to store renderers for each column
 
-      // Create space to store renderers for each column
-      this.__P_423_1 = {};
+      this.__P_423_1 = {}; // We need a default cell renderer to use if none is specified
 
-      // We need a default cell renderer to use if none is specified
-      this.__P_423_2 = new qx.ui.progressive.renderer.table.cell.Default();
+      this.__P_423_2 = new qx.ui.progressive.renderer.table.cell.Default(); // We don't yet know who our Progressive will be
 
-      // We don't yet know who our Progressive will be
       this.__P_423_3 = null;
       this.__P_423_4 = {};
-      this.__P_423_5();
 
-      // This layout is not connected to a widget but to this class. This class
+      this.__P_423_5(); // This layout is not connected to a widget but to this class. This class
       // must implement the method "getLayoutChildren", which must return all
       // columns (LayoutItems) which should be recalculated. The call
       // "layout.renderLayout" will call the method "renderLayout" on each
       // column data object The advantage of the use of the normal layout
       // manager is that the semantics of flex and percent are exactly the same
       // as in the widget code.
-      this.__P_423_6 = new qx.ui.layout.HBox();
-      this.__P_423_6.connectToWidget(this);
 
-      // dynamic theme switch
+
+      this.__P_423_6 = new qx.ui.layout.HBox();
+
+      this.__P_423_6.connectToWidget(this); // dynamic theme switch
+
+
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this.__P_423_5, this);
       }
@@ -116,6 +116,7 @@
        * @internal
        */
       __P_423_7: null,
+
       /**
        * Default row padding.
        *
@@ -146,6 +147,7 @@
       __P_423_2: null,
       __P_423_4: null,
       __P_423_6: null,
+
       /**
        * Helper to link the theme colors to the current class
        */
@@ -162,20 +164,21 @@
         if (this.__P_423_3) {
           // Yup.  Let 'em know they can't do that.
           throw new Error("Renderer is already joined to a Progressive.");
-        }
+        } // Save the Progressive to which we're joined
 
-        // Save the Progressive to which we're joined
-        this.__P_423_3 = progressive;
 
-        // Save the name that Progressive knows us by
-        this.__P_423_10 = name;
+        this.__P_423_3 = progressive; // Save the name that Progressive knows us by
 
-        // If we haven't created style sheets for this table yet...
+        this.__P_423_10 = name; // If we haven't created style sheets for this table yet...
+
         var tr = qx.ui.progressive.renderer.table.Row;
+
         if (!tr.__P_423_7) {
           tr.__P_423_7 = {};
         }
+
         var hash = progressive.toHashCode();
+
         if (!tr.__P_423_7[hash]) {
           // ... then do it now.
           tr.__P_423_7[hash] = {
@@ -184,21 +187,23 @@
           };
           var stylesheet = ".qx-progressive-" + hash + "-row {" + "  width : 100%;" + "}";
           tr.__P_423_7[hash].rowstylesheet = qx.bom.Stylesheet.createElement(stylesheet);
+
           var columnData = this.__P_423_0.getData();
+
           for (var i = 0; i < columnData.length; i++) {
             var stylesheet = ".qx-progressive-" + hash + "-col-" + i + " {" + tr.__P_423_9 + "}";
             tr.__P_423_7[hash].cellstylesheet[i] = qx.bom.Stylesheet.createElement(stylesheet);
-          }
+          } // Save the hash too
 
-          // Save the hash too
-          this.__P_423_11 = hash;
 
-          // Arrange to be called when the window appears or is resized, so we
+          this.__P_423_11 = hash; // Arrange to be called when the window appears or is resized, so we
           // can set each style sheet's left and width field appropriately.
+
           var pane = progressive.getStructure().getPane();
           pane.addListener("resize", this._resizeColumns, this);
         }
       },
+
       /**
        * Add a cell renderer for use within a row rendered by this row
        * renderer.
@@ -212,11 +217,14 @@
        */
       addRenderer: function addRenderer(column, renderer) {
         var columnData = this.__P_423_0.getData();
+
         if (column < 0 || column >= columnData.length) {
           throw new Error("Column " + column + " out of range (max: " + (columnData.length - 1) + ")");
         }
+
         this.__P_423_1[column] = renderer;
       },
+
       /**
        * Remove a cell renderer previously added with {@link #addRenderer}.
        *
@@ -226,12 +234,15 @@
        */
       removeRenderer: function removeRenderer(column) {
         var columnData = this.__P_423_0.getData();
+
         if (column < 0 || column >= columnData.length) {
           throw new Error("Column " + column + " out of range (max: " + (columnData.length - 1) + ")");
         }
+
         if (!this.__P_423_1[column]) {
           throw new Error("No existing renderer for column " + column);
         }
+
         delete this.__P_423_1[column];
       },
       // overridden
@@ -240,9 +251,7 @@
         var html = [];
         var cellInfo;
         var renderer;
-        var height = 0;
-
-        // Initialize row counter, if necessary.  We'll use this for shading
+        var height = 0; // Initialize row counter, if necessary.  We'll use this for shading
         // alternate rows.
 
         if (state.getRendererData()[this.__P_423_10].end === undefined) {
@@ -252,19 +261,16 @@
             rows: 0,
             totalHeight: 0
           };
-        }
+        } // Create the div for this row
 
-        // Create the div for this row
-        var div = document.createElement("div");
 
-        // For each cell...
+        var div = document.createElement("div"); // For each cell...
+
         for (var i = 0; i < data.length; i++) {
-          var stylesheet = "qx-progressive-" + this.__P_423_11 + "-col-" + i;
+          var stylesheet = "qx-progressive-" + this.__P_423_11 + "-col-" + i; // Determine what renderer to use for this column
 
-          // Determine what renderer to use for this column
-          renderer = this.__P_423_1[i] || this.__P_423_2;
+          renderer = this.__P_423_1[i] || this.__P_423_2; // Specify information that cell renderer will need
 
-          // Specify information that cell renderer will need
           cellInfo = {
             state: state,
             rowDiv: div,
@@ -274,79 +280,72 @@
             cellData: data[i],
             height: height,
             rowRenderer: this // useful, e.g., for getting default row height
-          };
 
-          // Render this cell
-          html.push(renderer.render(cellInfo));
+          }; // Render this cell
 
-          // If this cell's height was greater than our current maximum...
+          html.push(renderer.render(cellInfo)); // If this cell's height was greater than our current maximum...
+
           if (cellInfo.height > height) {
             // ... then it becomes our row height
             height = cellInfo.height;
           }
         }
-        height = height > 0 ? height : this.getDefaultRowHeight();
 
-        // Get a reference to our renderer data
-        var rendererData = state.getRendererData()[this.__P_423_10];
+        height = height > 0 ? height : this.getDefaultRowHeight(); // Get a reference to our renderer data
 
-        // Track total height so we can determine if there's a vertical scrollbar
-        rendererData.totalHeight += height;
+        var rendererData = state.getRendererData()[this.__P_423_10]; // Track total height so we can determine if there's a vertical scrollbar
 
-        // Set properties for the row div
+
+        rendererData.totalHeight += height; // Set properties for the row div
+
         div.style.position = "relative";
         div.style.height = height + "px";
         div.className = "qx-progressive-" + this.__P_423_11 + "-row";
-        div.innerHTML = html.join("");
+        div.innerHTML = html.join(""); // Add this row to the table
 
-        // Add this row to the table
         switch (element.location) {
           case "end":
             // Determine color of row based on state of last added row
-            var index = rendererData.end || 0;
+            var index = rendererData.end || 0; // Set the background color of this row
 
-            // Set the background color of this row
-            div.style.backgroundColor = this.__P_423_4.bgcol[index];
+            div.style.backgroundColor = this.__P_423_4.bgcol[index]; // Update state for next time
 
-            // Update state for next time
-            rendererData.end = index == 0 ? 1 : 0;
+            rendererData.end = index == 0 ? 1 : 0; // Append our new row to the pane.
 
-            // Append our new row to the pane.
             state.getPane().getContentElement().getDomElement().appendChild(div);
             break;
+
           case "start":
             // Get the pane element
-            var elem = state.getPane().getContentElement().getDomElement();
+            var elem = state.getPane().getContentElement().getDomElement(); // Get its children array
 
-            // Get its children array
-            var children = elem.childNodes;
+            var children = elem.childNodes; // Are there any children?
 
-            // Are there any children?
             if (children.length > 0) {
               // Yup.  Determine color of row based on state of last added row
-              var index = rendererData.start;
+              var index = rendererData.start; // Set the background color of this row
 
-              // Set the background color of this row
-              div.style.backgroundColor = this.__P_423_4.bgcol[index];
+              div.style.backgroundColor = this.__P_423_4.bgcol[index]; // Update state for next time
 
-              // Update state for next time
-              rendererData.start = index == 0 ? 1 : 0;
+              rendererData.start = index == 0 ? 1 : 0; // Insert our new row before the first child.
 
-              // Insert our new row before the first child.
               elem.insertBefore(div, children[0]);
               break;
             } else {
               /* No children yet.  We can append our new row. */
               elem.appendChild(div);
             }
+
             break;
+
           default:
             throw new Error("Invalid location: " + element.location);
-        }
+        } // Increment row count
 
-        // Increment row count
+
         ++rendererData.rows;
       },
+
       /**
        * This method is required by the box layout. If returns an array of items
        * to relayout.
@@ -355,6 +354,7 @@
       getLayoutChildren: function getLayoutChildren() {
         return this.__P_423_0.getData();
       },
+
       /**
        * Event handler for the "resize" event.  We recalculate the
        * widths of each of the columns, and modify the stylesheet rule
@@ -366,58 +366,52 @@
        */
       _resizeColumns: function _resizeColumns(e) {
         var pane = this.__P_423_3.getStructure().getPane();
-        var width = pane.getBounds().width - qx.bom.element.Scroll.getScrollbarWidth();
 
-        // Get the style sheet rule name for this row
-        var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-row";
+        var width = pane.getBounds().width - qx.bom.element.Scroll.getScrollbarWidth(); // Get the style sheet rule name for this row
 
-        // Remove the style rule for this row
+        var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-row"; // Remove the style rule for this row
+
         var tr = qx.ui.progressive.renderer.table.Row;
-        qx.bom.Stylesheet.removeRule(tr.__P_423_7[this.__P_423_11].rowstylesheet, stylesheet);
+        qx.bom.Stylesheet.removeRule(tr.__P_423_7[this.__P_423_11].rowstylesheet, stylesheet); // Create the new rule for this row
 
-        // Create the new rule for this row
-        var rule = "width: " + width + "px;";
+        var rule = "width: " + width + "px;"; // Apply the new rule
 
-        // Apply the new rule
-        qx.bom.Stylesheet.addRule(tr.__P_423_7[this.__P_423_11].rowstylesheet, stylesheet, rule);
+        qx.bom.Stylesheet.addRule(tr.__P_423_7[this.__P_423_11].rowstylesheet, stylesheet, rule); // Compute the column widths
 
-        // Compute the column widths
         this.__P_423_6.renderLayout(width, 100, {
           top: 0,
           right: 0,
           bottom: 0,
           left: 0
-        });
+        }); // Get the column data
 
-        // Get the column data
-        var columnData = this.__P_423_0.getData();
 
-        // Reset each of the column style sheets to deal with width changes
+        var columnData = this.__P_423_0.getData(); // Reset each of the column style sheets to deal with width changes
+
+
         for (var i = 0, left = 0; i < columnData.length; i++, left += width) {
           // Get the style sheet rule name for this cell
-          var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-col-" + i;
+          var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-col-" + i; // Remove the style rule for this column
 
-          // Remove the style rule for this column
           var tr = qx.ui.progressive.renderer.table.Row;
-          qx.bom.Stylesheet.removeRule(tr.__P_423_7[this.__P_423_11].cellstylesheet[i], stylesheet);
+          qx.bom.Stylesheet.removeRule(tr.__P_423_7[this.__P_423_11].cellstylesheet[i], stylesheet); // Get this column width.
 
-          // Get this column width.
           width = columnData[i].getComputedWidth();
           // Make our width calculations box-model independent
           var inset;
+
           if (qx.core.Environment.get("css.boxmodel") == "content") {
             inset = qx.ui.progressive.renderer.table.Row.__P_423_8 * 2;
           } else {
             inset = -1;
-          }
+          } // Create the new rule, based on calculated widths
 
-          // Create the new rule, based on calculated widths
+
           var widthRule = width - inset + "px;";
           var paddingRule = "0px " + qx.ui.progressive.renderer.table.Row.__P_423_8 + "px " + "0px " + qx.ui.progressive.renderer.table.Row.__P_423_8 + "px;";
           var leftRule = left + "px;";
-          var rule = tr.__P_423_9 + "width: " + widthRule + "left: " + leftRule + "padding: " + paddingRule;
+          var rule = tr.__P_423_9 + "width: " + widthRule + "left: " + leftRule + "padding: " + paddingRule; // Apply the new rule
 
-          // Apply the new rule
           qx.bom.Stylesheet.addRule(tr.__P_423_7[this.__P_423_11].cellstylesheet[i], stylesheet, rule);
         }
       }
@@ -426,48 +420,53 @@
       // remove dynamic theme listener
       qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this.__P_423_5, this);
       var name;
+
       for (name in this.__P_423_1) {
         this.__P_423_1[name] = null;
-      }
+      } // Remove any style sheets that we had added
 
-      // Remove any style sheets that we had added
+
       var tr = qx.ui.progressive.renderer.table.Row;
+
       var hash = this.__P_423_3.toHashCode();
+
       if (tr.__P_423_7 && tr.__P_423_7[hash]) {
         // Remove the row stylesheet
         if (tr.__P_423_7[hash].rowstylesheet) {
           // Get the style sheet rule name for this row
-          var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-row";
+          var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-row"; // Remove the style rule for this row
 
-          // Remove the style rule for this row
           var tr = qx.ui.progressive.renderer.table.Row;
           qx.bom.Stylesheet.removeRule(tr.__P_423_7[this.__P_423_11].rowstylesheet, stylesheet);
-        }
+        } // Remove each of the column style sheets
 
-        // Remove each of the column style sheets
+
         if (tr.__P_423_7[hash].cellstylesheet) {
           for (var i = tr.__P_423_7[hash].cellstylesheet.length - 1; i >= 0; i--) {
             // Get the style sheet rule name for this cell
             var stylesheet = ".qx-progressive-" + this.__P_423_11 + "-col-" + i;
-            var rule = tr.__P_423_7[this.__P_423_11].cellstylesheet[i];
+            var rule = tr.__P_423_7[this.__P_423_11].cellstylesheet[i]; // Remove the style rule for this column
 
-            // Remove the style rule for this column
             var tr = qx.ui.progressive.renderer.table.Row;
             qx.bom.Stylesheet.removeRule(rule, stylesheet);
           }
         }
       }
+
       if (this.__P_423_3 && this.__P_423_3.getRendererData) {
         var rendererData = this.__P_423_3.getRendererData();
+
         if (rendererData && rendererData[this.__P_423_10] && rendererData[this.__P_423_10].end !== undefined) {
           rendererData[this.__P_423_10] = null;
         }
       }
+
       this.__P_423_4 = this.__P_423_1 = this.__P_423_3 = this.__P_423_0 = null;
+
       this._disposeObjects("__P_423_6", "__P_423_2", "__columnData");
     }
   });
   qx.ui.progressive.renderer.table.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1677362764385
+//# sourceMappingURL=Row.js.map?dt=1685978145527

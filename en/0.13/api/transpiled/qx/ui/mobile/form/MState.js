@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /**
    * The mixin contains all functionality to provide methods
    * for form elements to manipulate their state. [usually "valid" and "invalid"]
@@ -19,12 +20,12 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * The states of the element
        */
       __P_400_0: null,
+
       /**
        * Adds a state to the element
        * @param state {String} the state to be added
@@ -34,9 +35,11 @@
         if (this.__P_400_0 === null) {
           this.__P_400_0 = {};
         }
+
         this.__P_400_0[state] = true;
         this.addCssClass(state);
       },
+
       /**
        * Checks whether the element has the state passed as argument
        * @param state {String} the state to be checked
@@ -46,6 +49,7 @@
       hasState: function hasState(state) {
         return this.__P_400_0 !== null && this.__P_400_0[state];
       },
+
       /**
        * Removes a state from the element
        * @param state {String} the state to be removed
@@ -57,6 +61,7 @@
           this.removeCssClass(state);
         }
       },
+
       /**
        * Replaces a state of the element with a new state.
        * If the element doesn't have the state to be removed, then th new state will
@@ -80,4 +85,4 @@
   qx.ui.mobile.form.MState.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MState.js.map?dt=1677362762484
+//# sourceMappingURL=MState.js.map?dt=1685978143610

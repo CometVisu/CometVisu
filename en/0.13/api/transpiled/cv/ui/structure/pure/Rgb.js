@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Rgb.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -46,6 +47,7 @@
   qx.Class.define('cv.ui.structure.pure.Rgb', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
+
     /*
      ******************************************************
      MEMBERS
@@ -56,6 +58,7 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor"><div class="value"></div></div>';
       },
+
       /**
        * Updates the RGB widget by setting the background color
        *
@@ -66,24 +69,30 @@
         if (data === undefined || address === undefined) {
           return;
         }
+
         var valElem = this.getValueElement();
         var value = cv.Transform.decode(this.getAddress()[address], data);
         var styleBg = window.getComputedStyle(valElem)['background-color'];
         var bg = styleBg.replace(/[a-zA-Z()\s]/g, '').split(/,/);
+
         if (bg.length !== 3) {
           bg = [0, 0, 0];
         }
+
         switch (this.getAddress()[address].variantInfo) {
           case 'r':
             bg[0] = value;
             break;
+
           case 'g':
             bg[1] = value;
             break;
+
           case 'b':
             bg[2] = value;
             break;
         }
+
         valElem.style['background-color'] = 'rgb(' + bg[0] + ', ' + bg[1] + ', ' + bg[2] + ')';
       }
     },
@@ -94,4 +103,4 @@
   cv.ui.structure.pure.Rgb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rgb.js.map?dt=1677362717383
+//# sourceMappingURL=Rgb.js.map?dt=1685978100170

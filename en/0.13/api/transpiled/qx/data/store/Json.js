@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,6 +66,7 @@
    */
   qx.Class.define("qx.data.store.Json", {
     extend: qx.core.Object,
+
     /**
      * @param url {String|null} The url where to find the data. The store starts
      *   loading as soon as the URL is give. If you want to change some details
@@ -74,11 +76,11 @@
      *   specified in {@link qx.data.store.IStoreDelegate}.
      */
     construct: function construct(url, delegate) {
-      qx.core.Object.constructor.call(this);
+      qx.core.Object.constructor.call(this); // store the marshaler and the delegate
 
-      // store the marshaler and the delegate
       this._marshaler = new qx.data.marshal.Json(delegate);
       this._delegate = delegate;
+
       if (url != null) {
         this.setUrl(url);
       }
@@ -89,12 +91,14 @@
        * created model.
        */
       loaded: "qx.event.type.Data",
+
       /**
        * Fired when a parse error (i.e. broken JSON) occurred
        * during the load. The data contains a hash of the original
        * response and the parser error (exception object).
        */
       parseError: "qx.event.type.Data",
+
       /**
        * Fired when an error (aborted, timeout or failed) occurred
        * during the load. The data contains the response of the request.
@@ -110,6 +114,7 @@
         nullable: true,
         event: "changeModel"
       },
+
       /**
        * The state of the request as an url. If you want to check if the request
        * did it’s job, use, the {@link #changeState} event and check for one of the
@@ -120,6 +125,7 @@
         init: "configured",
         event: "changeState"
       },
+
       /**
        * The url where the request should go to.
        */
@@ -140,9 +146,11 @@
           // take care of the resource management
           value = qx.util.AliasManager.getInstance().resolve(value);
           value = qx.util.ResourceManager.getInstance().toUri(value);
+
           this._createRequest(value);
         }
       },
+
       /**
        * Get request
        *
@@ -151,6 +159,7 @@
       _getRequest: function _getRequest() {
         return this.__P_181_0;
       },
+
       /**
        * Set request.
        *
@@ -159,6 +168,7 @@
       _setRequest: function _setRequest(request) {
         this.__P_181_0 = request;
       },
+
       /**
        * Creates and sends a GET request with the given url.
        *
@@ -171,35 +181,36 @@
         // dispose old request
         if (this.__P_181_0) {
           this.__P_181_0.dispose();
+
           this.__P_181_0 = null;
         }
+
         var req = new qx.io.request.Xhr(url);
-        this._setRequest(req);
 
-        // request json representation
-        req.setAccept("application/json");
+        this._setRequest(req); // request json representation
 
-        // parse as json no matter what content type is returned
-        req.setParser("json");
 
-        // register the internal event before the user has the change to
+        req.setAccept("application/json"); // parse as json no matter what content type is returned
+
+        req.setParser("json"); // register the internal event before the user has the change to
         // register its own event in the delegate
-        req.addListener("success", this._onSuccess, this);
-        req.addListener("parseError", this._onParseError, this);
 
-        // check for the request configuration hook
+        req.addListener("success", this._onSuccess, this);
+        req.addListener("parseError", this._onParseError, this); // check for the request configuration hook
+
         var del = this._delegate;
+
         if (del && qx.lang.Type.isFunction(del.configureRequest)) {
           this._delegate.configureRequest(req);
-        }
+        } // map request phase to it’s own phase
 
-        // map request phase to it’s own phase
-        req.addListener("changePhase", this._onChangePhase, this);
 
-        // add failed, aborted and timeout listeners
+        req.addListener("changePhase", this._onChangePhase, this); // add failed, aborted and timeout listeners
+
         req.addListener("fail", this._onFail, this);
         req.send();
       },
+
       /**
        * Handler called when request phase changes.
        *
@@ -209,8 +220,8 @@
        */
       _onChangePhase: function _onChangePhase(ev) {
         var requestPhase = ev.getData(),
-          requestPhaseToStorePhase = {},
-          state;
+            requestPhaseToStorePhase = {},
+            state;
         requestPhaseToStorePhase = {
           opened: "configured",
           sent: "sending",
@@ -221,10 +232,12 @@
           statusError: "failed"
         };
         state = requestPhaseToStorePhase[requestPhase];
+
         if (state) {
           this.setState(state);
         }
       },
+
       /**
        * Handler called when not completing the request successfully.
        *
@@ -234,6 +247,7 @@
         var req = ev.getTarget();
         this.fireDataEvent("error", req);
       },
+
       /**
        * Handler called when not completing the request successfully because
        * of parse errors.
@@ -244,6 +258,7 @@
       _onParseError: function _onParseError(ev) {
         this.fireDataEvent("parseError", ev.getData());
       },
+
       /**
        * Handler for the completion of the requests. It invokes the creation of
        * the needed classes and instances for the fetched data using
@@ -255,46 +270,49 @@
         if (this.isDisposed()) {
           return;
         }
-        var req = ev.getTarget(),
-          data = req.getResponse();
 
-        // check for the data manipulation hook
+        var req = ev.getTarget(),
+            data = req.getResponse(); // check for the data manipulation hook
+
         var del = this._delegate;
+
         if (del && qx.lang.Type.isFunction(del.manipulateData)) {
           data = this._delegate.manipulateData(data);
-        }
+        } // create the class
 
-        // create the class
+
         this._marshaler.toClass(data, true);
-        var oldModel = this.getModel();
 
-        // set the initial data
-        this.setModel(this._marshaler.toModel(data));
+        var oldModel = this.getModel(); // set the initial data
 
-        // get rid of the old model
+        this.setModel(this._marshaler.toModel(data)); // get rid of the old model
+
         if (oldModel && oldModel.dispose) {
           oldModel.dispose();
-        }
+        } // fire complete event
 
-        // fire complete event
-        this.fireDataEvent("loaded", this.getModel());
 
-        // get rid of the request object
+        this.fireDataEvent("loaded", this.getModel()); // get rid of the request object
+
         if (this.__P_181_0) {
           this.__P_181_0.dispose();
+
           this.__P_181_0 = null;
         }
       },
+
       /**
        * Reloads the data with the url set in the {@link #url} property.
        */
       reload: function reload() {
         var url = this.getUrl();
+
         if (url != null) {
           this._createRequest(url);
         }
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -303,15 +321,16 @@
     destruct: function destruct() {
       if (this.__P_181_0 != null) {
         this._disposeObjects("__P_181_0");
-      }
-
-      // The marshaler internally uses the singleton pattern
+      } // The marshaler internally uses the singleton pattern
       // (constructor.$$instance.
+
+
       this._disposeSingletonObjects("_marshaler");
+
       this._delegate = null;
     }
   });
   qx.data.store.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1677362732418
+//# sourceMappingURL=Json.js.map?dt=1685978115219

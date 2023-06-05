@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,6 +53,7 @@
       createHeaderCell: function createHeaderCell(cellInfo) {
         return true;
       },
+
       /**
        * Updates a header cell.
        *
@@ -69,4 +71,4 @@
   qx.ui.table.IHeaderRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IHeaderRenderer.js.map?dt=1677362765240
+//# sourceMappingURL=IHeaderRenderer.js.map?dt=1685978146417

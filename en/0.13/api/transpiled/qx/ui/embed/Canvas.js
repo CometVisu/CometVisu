@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -87,11 +88,13 @@
    */
   qx.Class.define("qx.ui.embed.Canvas", {
     extend: qx.ui.core.Widget,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param canvasWidth {Integer} The internal with of the canvas coordinates.
      * @param canvasHeight {Integer} The internal height of the canvas coordinates.
@@ -100,19 +103,21 @@
       qx.ui.core.Widget.constructor.call(this);
       this.__P_339_0 = new qx.util.DeferredCall(this.__P_339_1, this);
       this.addListener("resize", this._onResize, this);
+
       if (canvasWidth !== undefined) {
         this.setCanvasWidth(canvasWidth);
       }
+
       if (canvasHeight !== undefined) {
         this.setCanvasHeight(canvasHeight);
       }
     },
+
     /*
      *****************************************************************************
         EVENTS
      *****************************************************************************
      */
-
     events: {
       /**
        * The redraw event is fired each time the canvas dimension change and the
@@ -122,24 +127,26 @@
        */
       redraw: "qx.event.type.Data"
     },
+
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
-
     properties: {
       /** Whether canvas and widget coordinates should be synchronized */
       syncDimension: {
         check: "Boolean",
         init: false
       },
+
       /** The internal with of the canvas coordinates */
       canvasWidth: {
         check: "Integer",
         init: 300,
         apply: "_applyCanvasWidth"
       },
+
       /** The internal height of the canvas coordinates */
       canvasHeight: {
         check: "Integer",
@@ -147,15 +154,16 @@
         apply: "_applyCanvasHeight"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /** @type {qx.util.DeferredCall} */
       __P_339_0: null,
+
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -165,6 +173,7 @@
       _createContentElement: function _createContentElement() {
         return new qx.html.Canvas();
       },
+
       /**
        * This methods triggers the redraw of the canvas' content
        */
@@ -173,7 +182,9 @@
         var height = canvas.getHeight();
         var width = canvas.getWidth();
         var context = canvas.getContext2d();
+
         this._draw(width, height, context);
+
         this.fireNonBubblingEvent("redraw", qx.event.type.Data, [{
           width: width,
           height: height,
@@ -183,19 +194,23 @@
       // property apply
       _applyCanvasWidth: function _applyCanvasWidth(value, old) {
         this.getContentElement().setWidth(value);
+
         this.__P_339_0.schedule();
       },
       // property apply
       _applyCanvasHeight: function _applyCanvasHeight(value, old) {
         this.getContentElement().setHeight(value);
+
         this.__P_339_0.schedule();
       },
+
       /**
        * Redraw the canvas
        */
       update: function update() {
         this.__P_339_0.schedule();
       },
+
       /**
        * Widget resize event handler. Updates the canvas dimension if needed.
        *
@@ -203,11 +218,13 @@
        */
       _onResize: function _onResize(e) {
         var data = e.getData();
+
         if (this.getSyncDimension()) {
           this.setCanvasHeight(data.height);
           this.setCanvasWidth(data.width);
         }
       },
+
       /**
        * Get the native canvas 2D rendering context
        * [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d">W3C-HTML5</a>].
@@ -218,6 +235,7 @@
       getContext2d: function getContext2d() {
         return this.getContentElement().getContext2d();
       },
+
       /**
        * Template method, which can be used by derived classes to redraw the
        * content. It is called each time the canvas dimension change and the
@@ -229,6 +247,7 @@
        */
       _draw: function _draw(width, height, context) {}
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -241,4 +260,4 @@
   qx.ui.embed.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1677362756106
+//# sourceMappingURL=Canvas.js.map?dt=1685978137041

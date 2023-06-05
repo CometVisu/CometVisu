@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,7 +63,9 @@
   qx.Class.define("qx.ui.progressive.renderer.table.cell.Icon", {
     type: "abstract",
     extend: qx.ui.progressive.renderer.table.cell.Abstract,
-    /** Create a new instance of an Icon cell renderer */construct: function construct() {
+
+    /** Create a new instance of an Icon cell renderer */
+    construct: function construct() {
       qx.ui.progressive.renderer.table.cell.Abstract.constructor.call(this);
       var aliasManager = qx.util.AliasManager.getInstance();
       var resourceManager = qx.util.ResourceManager.getInstance();
@@ -74,6 +77,7 @@
        * A blank image for use as a spacer in place of another image
        */
       _imageBlank: null,
+
       /**
        * Retrieve the URI for a blank image
        *
@@ -83,6 +87,7 @@
       getBlankImage: function getBlankImage() {
         return this._imageBlank;
       },
+
       /**
        * Identify the image to be displayed in the cell.
        *
@@ -143,50 +148,49 @@
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
         var html = [];
-        var imageData = this._getImageData(cellInfo);
 
-        // Start the image tag
-        html.push("<img ");
+        var imageData = this._getImageData(cellInfo); // Start the image tag
 
-        // Add magic to make png images work in IE
+
+        html.push("<img "); // Add magic to make png images work in IE
+
         if (qx.core.Environment.get("css.alphaimageloaderneeded") && /\.png$/i.test(imageData.url)) {
           html.push('src="', this._imageBlank, '" style="filter:', "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='", imageData.url, "',sizingMethod='scale')", '" ');
         } else {
           html.push('src="', imageData.url, '" ');
-        }
+        } // If image width is specified...
 
-        // If image width is specified...
+
         if (imageData.imageWidth) {
           // ... then add it.
           html.push(" width='", imageData.imageWidth, "px'");
-        }
+        } // If image height is specified...
 
-        // If image height is specified...
+
         if (imageData.imageHeight) {
           // ... then add it.
           html.push(" height='", imageData.imageHeight, "px'");
-        }
+        } // Move the image off of the top border
 
-        // Move the image off of the top border
-        html.push(" style='padding-top:2px;'");
 
-        // If a tooltip is specified...
+        html.push(" style='padding-top:2px;'"); // If a tooltip is specified...
+
         if (imageData.tooltip) {
           // ... then add it.
           html.push(" title='", imageData.tooltip, "'");
-        }
+        } // If there are any extra parameters specified, add them now.
 
-        // If there are any extra parameters specified, add them now.
+
         if (imageData.extras) {
           html.push(imageData.extras);
-        }
+        } // All done.
 
-        // All done.
-        html.push(">");
 
-        // Give 'em what they came for
+        html.push(">"); // Give 'em what they came for
+
         return html.join("");
       },
+
       /**
        * Obtain the image data (url, tooltip) that's appropriate for this cell
        *
@@ -207,20 +211,21 @@
        */
       _getImageData: function _getImageData(cellInfo) {
         // Query the subclass about image and tooltip
-        var imageData = this._identifyImage(cellInfo);
+        var imageData = this._identifyImage(cellInfo); // If subclass refuses to give map, construct it
 
-        // If subclass refuses to give map, construct it
+
         if (imageData == null || typeof imageData == "string") {
           imageData = {
             url: imageData,
             tooltip: null
           };
-        }
+        } // If subclass gave null as url, replace with url to empty image
 
-        // If subclass gave null as url, replace with url to empty image
+
         if (imageData.url == null) {
           imageData.url = this._imageBlank;
         }
+
         return imageData;
       }
     }
@@ -228,4 +233,4 @@
   qx.ui.progressive.renderer.table.cell.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1677362764617
+//# sourceMappingURL=Icon.js.map?dt=1685978145768

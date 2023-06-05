@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -9,6 +10,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,6 +47,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       familyGetFirstChild: function familyGetFirstChild(nodeReference) {
         var node;
+
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
         } else if (typeof nodeReference == "number") {
@@ -52,11 +55,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           throw new Error("Expected node object or node id");
         }
+
         if (node.children.length > 0) {
           return node.children[0];
         }
+
         return null;
       },
+
       /**
        * Get the last child of the specified node.
        *
@@ -70,6 +76,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       familyGetLastChild: function familyGetLastChild(nodeReference) {
         var node;
+
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
         } else if (typeof nodeReference == "number") {
@@ -77,11 +84,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           throw new Error("Expected node object or node id");
         }
+
         if (node.children.length > 0) {
           return node.children[node.children.length - 1];
         }
+
         return null;
       },
+
       /**
        * Get the next sibling of the specified node.
        *
@@ -97,6 +107,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var node;
         var nodeId;
         var nodes = this.getTableModel().getData();
+
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
         } else if (typeof nodeReference == "number") {
@@ -105,10 +116,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           throw new Error("Expected node object or node id");
         }
-        var myNodeId = node.nodeId;
-        var parentChildren = nodes[node.parentNodeId].children;
 
-        // Find this node id in our parent's children array
+        var myNodeId = node.nodeId;
+        var parentChildren = nodes[node.parentNodeId].children; // Find this node id in our parent's children array
+
         for (var i = 0; i < parentChildren.length; i++) {
           // Is this our id?
           if (parentChildren[i] == myNodeId) {
@@ -116,13 +127,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             if (i < parentChildren.length - 1) {
               // There is.  Return the next sibling.
               return parentChildren[i + 1];
-            }
+            } // There's no next sibling
 
-            // There's no next sibling
+
             return null;
           }
         }
       },
+
       /**
        * Get the previous sibling of the specified node.
        *
@@ -138,6 +150,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var node;
         var nodeId;
         var nodes = this.getTableModel().getData();
+
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
         } else if (typeof nodeReference == "number") {
@@ -146,10 +159,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           throw new Error("Expected node object or node id");
         }
-        var myNodeId = node.nodeId;
-        var parentChildren = nodes[node.parentNodeId].children;
 
-        // Find this node id in our parent's children array
+        var myNodeId = node.nodeId;
+        var parentChildren = nodes[node.parentNodeId].children; // Find this node id in our parent's children array
+
         for (var i = 0; i < parentChildren.length; i++) {
           // Is this our id?
           if (parentChildren[i] == myNodeId) {
@@ -157,9 +170,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             if (i > 0) {
               // There is.  Return the previous sibling.
               return parentChildren[i - 1];
-            }
+            } // There's no previous sibling
 
-            // There's no previous sibling
+
             return null;
           }
         }
@@ -169,4 +182,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.treevirtual.MFamily.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFamily.js.map?dt=1677362769022
+//# sourceMappingURL=MFamily.js.map?dt=1685978150312

@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,10 +51,12 @@
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /* ************************************************************************
   
   
   ************************************************************************ */
+
   /**
    * A special blocker element for the splitpane which is based on
    * {@link qx.html.Element} and takes care of the positioning of the div.
@@ -63,6 +66,7 @@
    */
   qx.Class.define("qx.ui.splitpane.Blocker", {
     extend: qx.html.Element,
+
     /**
      * @param orientation {String} The orientation of the split pane control.
      */
@@ -70,16 +74,15 @@
       var styles = {
         position: "absolute",
         zIndex: 11
-      };
+      }; // IE needs some extra love here to convince it to block events.
 
-      // IE needs some extra love here to convince it to block events.
       if (qx.core.Environment.get("engine.name") == "mshtml") {
         styles.backgroundImage = "url(" + qx.util.ResourceManager.getInstance().toUri("qx/static/blank.gif") + ")";
         styles.backgroundRepeat = "repeat";
       }
-      qx.html.Element.constructor.call(this, "div", styles);
 
-      // Initialize orientation
+      qx.html.Element.constructor.call(this, "div", styles); // Initialize orientation
+
       if (orientation) {
         this.setOrientation(orientation);
       } else {
@@ -102,6 +105,7 @@
       _applyOrientation: function _applyOrientation(value, old) {
         // ARIA attrs
         this.setAttribute("aria-orientation", value);
+
         if (value == "horizontal") {
           this.setStyle("height", "100%");
           this.setStyle("cursor", "col-resize");
@@ -112,6 +116,7 @@
           this.setStyle("cursor", "row-resize");
         }
       },
+
       /**
        * Takes the two parameters and set the propper width of the blocker.
        *
@@ -122,6 +127,7 @@
         var width = spliterSize + 2 * offset;
         this.setStyle("width", width + "px");
       },
+
       /**
        * Takes the two parameter and sets the propper height of the blocker.
        *
@@ -132,6 +138,7 @@
         var height = spliterSize + 2 * offset;
         this.setStyle("height", height + "px");
       },
+
       /**
        * Takes the two parameter and sets the propper left position of
        * the blocker.
@@ -143,6 +150,7 @@
         var left = splitterLeft - offset;
         this.setStyle("left", left + "px");
       },
+
       /**
        * Takes the two parameter and sets the propper top position of
        * the blocker.
@@ -159,4 +167,4 @@
   qx.ui.splitpane.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1677362764910
+//# sourceMappingURL=Blocker.js.map?dt=1685978146075

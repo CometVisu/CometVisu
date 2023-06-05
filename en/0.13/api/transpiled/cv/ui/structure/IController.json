@@ -228,6 +228,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "createUI": {
@@ -366,6 +367,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "supports": {

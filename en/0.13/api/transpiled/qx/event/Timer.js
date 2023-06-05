@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,45 +53,49 @@
   qx.Class.define("qx.event.Timer", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param interval {Number} initial interval in milliseconds of the timer.
      */
     construct: function construct(interval) {
       qx.core.Object.constructor.call(this);
+
       if (interval != null) {
         this.setInterval(interval);
-      }
-
-      // don't use qx.lang.Function.bind because this function would add a
+      } // don't use qx.lang.Function.bind because this function would add a
       // disposed check, which could break the functionality. In IE the handler
       // may get called after "clearInterval" (i.e. after the timer is disposed)
       // and we must be able to handle this.
+
+
       var self = this;
+
       this.__P_204_0 = function () {
         self._oninterval.call(self);
       };
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** This event if fired each time the interval time has elapsed */
       interval: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Start a function after a given timeout.
@@ -105,32 +110,29 @@
        */
       once: function once(func, obj, timeout) {
         // Create time instance
-        var timer = new qx.event.Timer(timeout);
-
-        // Bug #3481: append original function to timer instance so it can be
+        var timer = new qx.event.Timer(timeout); // Bug #3481: append original function to timer instance so it can be
         // read by a debugger
-        timer.__P_204_1 = func;
 
-        // Add event listener to interval
+        timer.__P_204_1 = func; // Add event listener to interval
+
         timer.addListener("interval", function (e) {
           timer.stop();
           func.call(obj, e);
           delete timer.__P_204_1;
           timer.dispose();
           obj = null;
-        }, obj);
+        }, obj); // Directly start timer
 
-        // Directly start timer
         timer.start();
         return timer;
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * With the enabled property the Timer can be started and suspended.
@@ -142,6 +144,7 @@
         check: "Boolean",
         apply: "_applyEnabled"
       },
+
       /**
        * Time in milliseconds between two callback calls.
        * This property can be set to modify the interval of
@@ -153,20 +156,22 @@
         apply: "_applyInterval"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_204_2: null,
       __P_204_0: null,
+
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
       ---------------------------------------------------------------------------
       */
+
       /**
        * Apply the interval of the timer.
        *
@@ -178,6 +183,7 @@
           this.restart();
         }
       },
+
       /**
        * Apply the enabled state of the timer.
        *
@@ -192,11 +198,13 @@
           this.__P_204_2 = window.setInterval(this.__P_204_0, this.getInterval());
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         USER-ACCESS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Start the timer
        *
@@ -204,6 +212,7 @@
       start: function start() {
         this.setEnabled(true);
       },
+
       /**
        * Start the timer with a given interval
        *
@@ -213,6 +222,7 @@
         this.setInterval(interval);
         this.start();
       },
+
       /**
        * Stop the timer.
        *
@@ -220,6 +230,7 @@
       stop: function stop() {
         this.setEnabled(false);
       },
+
       /**
        * Restart the timer.
        * This makes it possible to change the interval of a running timer.
@@ -229,6 +240,7 @@
         this.stop();
         this.start();
       },
+
       /**
        * Restart the timer. with a given interval.
        *
@@ -238,6 +250,7 @@
         this.stop();
         this.startWith(interval);
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT-MAPPER
@@ -253,11 +266,13 @@
         if (this.$$disposed) {
           return;
         }
+
         if (this.getEnabled()) {
           this.fireEvent("interval");
         }
       })
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -267,10 +282,11 @@
       if (this.__P_204_2) {
         window.clearInterval(this.__P_204_2);
       }
+
       this.__P_204_2 = this.__P_204_0 = null;
     }
   });
   qx.event.Timer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timer.js.map?dt=1677362737900
+//# sourceMappingURL=Timer.js.map?dt=1685978120825

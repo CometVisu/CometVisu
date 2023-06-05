@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,11 +52,13 @@
    */
   qx.Class.define("qx.dev.unit.AsyncWrapper", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param delay {Integer?} The amount of time in milliseconds to wait
      * @param deferredFunction {Function?} The function to run after the timeout
@@ -81,6 +84,7 @@
           }
         }
       }
+
       if (context) {
         this.setContext(context);
       }
@@ -91,11 +95,13 @@
         check: "Function",
         init: false
       },
+
       /** The context in which the timeout function should be executed  */
       context: {
         check: "Object",
         init: null
       },
+
       /** The amount of time in milliseconds to wait */
       delay: {
         check: "Integer",
@@ -107,4 +113,4 @@
   qx.dev.unit.AsyncWrapper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AsyncWrapper.js.map?dt=1677362732964
+//# sourceMappingURL=AsyncWrapper.js.map?dt=1685978115740

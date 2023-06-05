@@ -176,7 +176,7 @@ entspricht der Name dem Wert des <code class="docutils literal notranslate"><spa
 <p>Der Name <code class="docutils literal notranslate"><span class="pre">system</span></code> ist für das interne <a class="reference internal" href="#tile-backend-system"><span class="std std-ref">System-Backend</span></a> reserviert und darf nicht benutzt werden.</p>
 </div>
 <p>Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/cgi-bin/l&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;knxd&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/cgi-bin/l&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
@@ -184,7 +184,7 @@ entspricht der Name dem Wert des <code class="docutils literal notranslate"><spa
 und alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente <code class="docutils literal notranslate"><span class="pre">name=&quot;mqtt&quot;</span></code>.</p>
 <section id="verbindung-zum-knxd-eibd">
 <h2>Verbindung zum KNXD / EIBD<a class="headerlink" href="#verbindung-zum-knxd-eibd" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;default&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;knxd&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Der KNXD/EIBD benötigt bisher keine Zugangsdaten, daher werden die Attribute <code class="docutils literal notranslate"><span class="pre">username</span></code> und <code class="docutils literal notranslate"><span class="pre">password</span></code> hier nicht

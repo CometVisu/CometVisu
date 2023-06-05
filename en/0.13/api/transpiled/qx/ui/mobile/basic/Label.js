@@ -28,6 +28,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,36 +64,41 @@
    */
   qx.Class.define("qx.ui.mobile.basic.Label", {
     extend: qx.ui.mobile.core.Widget,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param value {String?null} Text or HTML content to display
      */
     construct: function construct(value) {
       qx.ui.mobile.core.Widget.constructor.call(this);
+
       if (value) {
         this.setValue(value);
       }
+
       this.initWrap();
       {
         qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "label"
       },
+
       /**
        * Text or HTML content to display
        */
@@ -108,6 +114,7 @@
         refine: true,
         init: true
       },
+
       /**
        * Controls whether text wrap is activated or not.
        */
@@ -117,12 +124,12 @@
         apply: "_applyWrap"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // property apply
       _applyValue: function _applyValue(value, old) {
@@ -136,6 +143,7 @@
           this.addCssClass("no-wrap");
         }
       },
+
       /**
        * Locale change event handler
        *
@@ -145,6 +153,7 @@
       _onChangeLocale: qx.core.Environment.select("qx.dynlocale", {
         "true": function _true(e) {
           var content = this.getValue();
+
           if (content && content.translate) {
             this.setValue(content.translate());
           }
@@ -152,6 +161,7 @@
         "false": null
       })
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -166,4 +176,4 @@
   qx.ui.mobile.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1677362760932
+//# sourceMappingURL=Label.js.map?dt=1685978141947

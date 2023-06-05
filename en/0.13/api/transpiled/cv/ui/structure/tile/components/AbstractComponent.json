@@ -16,7 +16,7 @@
       "end": {
         "line": 352,
         "column": 3,
-        "index": 10696
+        "index": 10702
       }
     },
     "jsdoc": {
@@ -525,7 +525,7 @@
         "end": {
           "line": 340,
           "column": 5,
-          "index": 10472
+          "index": 10478
         }
       },
       "jsdoc": {
@@ -4430,12 +4430,12 @@
       "start": {
         "line": 348,
         "column": 2,
-        "index": 10606
+        "index": 10612
       },
       "end": {
         "line": 351,
         "column": 3,
-        "index": 10692
+        "index": 10698
       }
     },
     "jsdoc": {}
@@ -4458,6 +4458,7 @@
     "cv.ui.structure.tile.widgets.Group",
     "cv.ui.structure.tile.widgets.Page",
     "cv.ui.structure.tile.widgets.Popup",
-    "cv.ui.structure.tile.widgets.Tile"
+    "cv.ui.structure.tile.widgets.Tile",
+    "cv.ui.structure.tile.widgets.WidgetPair"
   ]
 }

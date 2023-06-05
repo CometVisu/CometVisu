@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,28 +60,28 @@
   qx.Class.define("qx.util.AliasManager", {
     type: "singleton",
     extend: qx.util.ValueManager,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.util.ValueManager.constructor.call(this);
+      qx.util.ValueManager.constructor.call(this); // Contains defined aliases (like icons/, widgets/, application/, ...)
 
-      // Contains defined aliases (like icons/, widgets/, application/, ...)
-      this.__P_498_0 = {};
+      this.__P_498_0 = {}; // Define static alias from setting
 
-      // Define static alias from setting
       this.add("static", "qx/static");
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_498_0: null,
+
       /**
        * pre-process incoming dynamic value
        *
@@ -89,6 +90,7 @@
        */
       _preprocess: function _preprocess(value) {
         var dynamics = this._getDynamic();
+
         if (dynamics[value] === false) {
           return value;
         } else if (dynamics[value] === undefined) {
@@ -96,17 +98,22 @@
             dynamics[value] = false;
             return value;
           }
+
           if (this.__P_498_0[value]) {
             return this.__P_498_0[value];
           }
+
           var alias = value.substring(0, value.indexOf("/"));
           var resolved = this.__P_498_0[alias];
+
           if (resolved !== undefined) {
             dynamics[value] = resolved + value.substring(alias.length);
           }
         }
+
         return value;
       },
+
       /**
        * Define an alias to a resource path
        *
@@ -115,29 +122,28 @@
        */
       add: function add(alias, base) {
         // Store new alias value
-        this.__P_498_0[alias] = base;
+        this.__P_498_0[alias] = base; // Localify stores
 
-        // Localify stores
-        var dynamics = this._getDynamic();
+        var dynamics = this._getDynamic(); // Update old entries which use this alias
 
-        // Update old entries which use this alias
+
         for (var path in dynamics) {
           if (path.substring(0, path.indexOf("/")) === alias) {
             dynamics[path] = base + path.substring(alias.length);
           }
         }
       },
+
       /**
        * Remove a previously defined alias
        *
        * @param alias {String} alias name for the resource path/url
        */
       remove: function remove(alias) {
-        delete this.__P_498_0[alias];
-
-        // No signal for depending objects here. These
+        delete this.__P_498_0[alias]; // No signal for depending objects here. These
         // will informed with the new value using add().
       },
+
       /**
        * Resolves a given path
        *
@@ -146,11 +152,14 @@
        */
       resolve: function resolve(path) {
         var dynamic = this._getDynamic();
+
         if (path != null) {
           path = this._preprocess(path);
         }
+
         return dynamic[path] || path;
       },
+
       /**
        * Get registered aliases
        *
@@ -158,9 +167,11 @@
        */
       getAliases: function getAliases() {
         var res = {};
+
         for (var key in this.__P_498_0) {
           res[key] = this.__P_498_0[key];
         }
+
         return res;
       }
     }
@@ -168,4 +179,4 @@
   qx.util.AliasManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AliasManager.js.map?dt=1677362772286
+//# sourceMappingURL=AliasManager.js.map?dt=1685978153692

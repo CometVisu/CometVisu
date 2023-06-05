@@ -14,9 +14,9 @@
         "index": 1178
       },
       "end": {
-        "line": 146,
+        "line": 148,
         "column": 3,
-        "index": 4894
+        "index": 4947
       }
     },
     "jsdoc": {
@@ -58,9 +58,9 @@
         "index": 1462
       },
       "end": {
-        "line": 55,
+        "line": 57,
         "column": 3,
-        "index": 2018
+        "index": 2071
       }
     },
     "jsdoc": {}
@@ -69,14 +69,14 @@
     "__notificationRouter": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 65,
           "column": 4,
-          "index": 2221
+          "index": 2274
         },
         "end": {
-          "line": 63,
+          "line": 65,
           "column": 30,
-          "index": 2247
+          "index": 2300
         }
       },
       "type": "variable",
@@ -85,14 +85,14 @@
     "__settings": {
       "location": {
         "start": {
-          "line": 64,
+          "line": 66,
           "column": 4,
-          "index": 2253
+          "index": 2306
         },
         "end": {
-          "line": 64,
+          "line": 66,
           "column": 20,
-          "index": 2269
+          "index": 2322
         }
       },
       "type": "variable",
@@ -101,14 +101,14 @@
     "_openSettings": {
       "location": {
         "start": {
-          "line": 65,
+          "line": 67,
           "column": 4,
-          "index": 2275
+          "index": 2328
         },
         "end": {
-          "line": 65,
+          "line": 67,
           "column": 23,
-          "index": 2294
+          "index": 2347
         }
       },
       "type": "variable",
@@ -117,14 +117,14 @@
     "_createSettings": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 69,
           "column": 4,
-          "index": 2301
+          "index": 2354
         },
         "end": {
-          "line": 116,
+          "line": 118,
           "column": 5,
-          "index": 4108
+          "index": 4161
         }
       },
       "type": "function",
@@ -133,14 +133,14 @@
     "_onNotification": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 125,
           "column": 4,
-          "index": 4223
+          "index": 4276
         },
         "end": {
-          "line": 129,
+          "line": 131,
           "column": 5,
-          "index": 4500
+          "index": 4553
         }
       },
       "jsdoc": {
@@ -3480,14 +3480,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 137,
+        "line": 139,
         "column": 2,
-        "index": 4648
+        "index": 4701
       },
       "end": {
-        "line": 140,
+        "line": 142,
         "column": 3,
-        "index": 4759
+        "index": 4812
       }
     },
     "jsdoc": {}
@@ -3495,14 +3495,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 142,
+        "line": 144,
         "column": 2,
-        "index": 4764
+        "index": 4817
       },
       "end": {
-        "line": 145,
+        "line": 147,
         "column": 3,
-        "index": 4890
+        "index": 4943
       }
     }
   },

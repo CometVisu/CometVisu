@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,12 +45,12 @@
    */
   qx.Class.define("qx.application.Inline", {
     extend: qx.application.AbstractGui,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       _createRootWidget: function _createRootWidget() {
         return new qx.ui.root.Page(document);
@@ -59,4 +60,4 @@
   qx.application.Inline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Inline.js.map?dt=1677362723941
+//# sourceMappingURL=Inline.js.map?dt=1685978106308

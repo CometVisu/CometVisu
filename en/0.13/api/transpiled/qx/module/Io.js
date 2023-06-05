@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,16 +67,21 @@
         if (!settings) {
           settings = {};
         }
+
         var xhr = new qx.bom.request.Xhr();
         xhr.open(settings.method, url, settings.async);
+
         if (settings.header) {
           var header = settings.header;
+
           for (var key in header) {
             xhr.setRequestHeader(key, header[key]);
           }
         }
+
         return xhr;
       },
+
       /**
        * Returns a predefined script tag wrapper which can be used to load data
        * from cross-domain origins.
@@ -89,6 +95,7 @@
         script.open("get", url);
         return script;
       },
+
       /**
        * Returns a predefined script tag wrapper which can be used to load data
        * from cross-domain origins via JSONP.
@@ -105,13 +112,17 @@
        */
       jsonp: function jsonp(url, settings) {
         var script = new qx.bom.request.Jsonp();
+
         if (settings && settings.callbackName) {
           script.setCallbackName(settings.callbackName);
         }
+
         if (settings && settings.callbackParam) {
           script.setCallbackParam(settings.callbackParam);
         }
+
         script.setPrefix("qxWeb.$$"); // needed in case no callback name is given
+
         script.open("get", url);
         return script;
       }
@@ -123,4 +134,4 @@
   qx.module.Io.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Io.js.map?dt=1677362746094
+//# sourceMappingURL=Io.js.map?dt=1685978128973

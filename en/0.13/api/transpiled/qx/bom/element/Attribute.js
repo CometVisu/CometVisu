@@ -39,6 +39,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -113,7 +114,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** Internal map of attribute conversions */
       __P_133_0: {
@@ -213,6 +213,7 @@
           maxLength: 1
         }
       },
+
       /**
        * Compiles an incoming attribute map to a string which
        * could be used when building HTML blocks using innerHTML.
@@ -226,13 +227,16 @@
       compile: function compile(map) {
         var html = [];
         var runtime = this.__P_133_0.runtime;
+
         for (var key in map) {
           if (!runtime[key]) {
             html.push(key, "='", map[key], "'");
           }
         }
+
         return html.join("");
       },
+
       /**
        * Returns the value of the given HTML attribute
        *
@@ -242,14 +246,13 @@
        */
       get: function get(element, name) {
         var hints = this.__P_133_0;
-        var value;
+        var value; // normalize name
 
-        // normalize name
-        name = hints.names[name] || name;
+        name = hints.names[name] || name; // respect properties
 
-        // respect properties
         if (hints.property[name]) {
           value = element[name];
+
           if (typeof hints.propertyDefault[name] !== "undefined" && value == hints.propertyDefault[name]) {
             // only return null for all non-boolean properties
             if (typeof hints.bools[name] === "undefined") {
@@ -260,9 +263,8 @@
           }
         } else {
           // fallback to attribute
-          value = element.getAttribute(name);
+          value = element.getAttribute(name); // All modern browsers interpret "" as true but not IE8, which set the property to "" reset
 
-          // All modern browsers interpret "" as true but not IE8, which set the property to "" reset
           if (hints.bools[name] && !(qx.core.Environment.get("engine.name") == "mshtml" && parseInt(qx.core.Environment.get("browser.documentmode"), 10) <= 8)) {
             return qx.Bootstrap.isString(value); // also respect empty strings as true
           }
@@ -271,8 +273,10 @@
         if (hints.bools[name]) {
           return !!value;
         }
+
         return value;
       },
+
       /**
        * Sets an HTML attribute on the given DOM element
        *
@@ -284,19 +288,18 @@
         if (typeof value === "undefined") {
           return;
         }
-        var hints = this.__P_133_0;
 
-        // normalize name
-        name = hints.names[name] || name;
+        var hints = this.__P_133_0; // normalize name
 
-        // respect booleans
+        name = hints.names[name] || name; // respect booleans
+
         if (hints.bools[name] && !qx.lang.Type.isBoolean(value)) {
           value = qx.lang.Type.isString(value);
-        }
-
-        // apply attribute
+        } // apply attribute
         // only properties which can be applied by the browser or qxProperties
         // otherwise use the attribute methods
+
+
         if (hints.property[name] && (!(element[name] === undefined) || hints.qxProperties[name])) {
           // resetting the attribute/property
           if (value == null) {
@@ -308,6 +311,7 @@
               value = hints.propertyDefault[name];
             }
           }
+
           element[name] = value;
         } else {
           if ((hints.bools[name] || value === null) && name.indexOf("data-") !== 0) {
@@ -323,6 +327,7 @@
           }
         }
       },
+
       /**
        * Serializes an HTML attribute into a writer; the `writer` function accepts
        *  an varargs, which can be joined with an empty string or streamed.
@@ -335,19 +340,19 @@
         if (typeof value === "undefined") {
           return;
         }
-        var hints = this.__P_133_0;
 
-        // Skip serialization of hidden Qooxdoo state properties
+        var hints = this.__P_133_0; // Skip serialization of hidden Qooxdoo state properties
+
         if (hints.qxProperties[name]) {
           return;
-        }
+        } // respect booleans
 
-        // respect booleans
+
         if (hints.bools[name] && !qx.lang.Type.isBoolean(value)) {
           value = qx.lang.Type.isString(value);
-        }
+        } // apply attribute
 
-        // apply attribute
+
         if ((hints.bools[name] || value === null) && name.indexOf("data-") !== 0) {
           if (value === true) {
             writer(name, "=", name);
@@ -356,6 +361,7 @@
           writer(name, '="', value, '"');
         }
       },
+
       /**
        * Resets an HTML attribute on the given DOM element
        *
@@ -374,4 +380,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1677362727936
+//# sourceMappingURL=Attribute.js.map?dt=1685978110281

@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,6 +63,7 @@
         apply: "_applyValid",
         event: "changeValid"
       },
+
       /**
        * Flag signaling if a widget is required.
        */
@@ -70,6 +72,7 @@
         init: false,
         event: "changeRequired"
       },
+
       /**
        * Message which will be shown in an tooltip if the widget is invalid.
        */
@@ -79,6 +82,7 @@
         check: "String",
         event: "changeInvalidMessage"
       },
+
       /**
        * Message which will be shown in an invalid tooltip if the {@link #required} is
        * set to true.
@@ -94,6 +98,7 @@
       _applyValid: function _applyValid(value, old) {
         value ? this.removeState("invalid") : this.addState("invalid");
       },
+
       /**
        * Locale change event handler
        *
@@ -104,11 +109,14 @@
         "true": function _true(e) {
           // invalid message
           var invalidMessage = this.getInvalidMessage();
+
           if (invalidMessage && invalidMessage.translate) {
             this.setInvalidMessage(invalidMessage.translate());
-          }
-          // required invalid message
+          } // required invalid message
+
+
           var requiredInvalidMessage = this.getRequiredInvalidMessage();
+
           if (requiredInvalidMessage && requiredInvalidMessage.translate) {
             this.setRequiredInvalidMessage(requiredInvalidMessage.translate());
           }
@@ -125,4 +133,4 @@
   qx.ui.form.MForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MForm.js.map?dt=1677362757492
+//# sourceMappingURL=MForm.js.map?dt=1685978138362

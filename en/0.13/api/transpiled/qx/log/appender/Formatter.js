@@ -35,11 +35,14 @@
         var str = offset.toString();
         var diff = (length || 6) - str.length;
         var pad = "";
+
         for (var i = 0; i < diff; i++) {
           pad += "0";
         }
+
         return pad + str;
       },
+
       /**
        * Formats the time part of an entry
        *
@@ -50,11 +53,14 @@
         if (this.getFormatTimeAs() == "offset") {
           return this.formatOffset(entry.offset, 6);
         }
+
         if (!qx.log.appender.Formatter.__P_275_0) {
           qx.log.appender.Formatter.__P_275_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
         }
+
         return qx.log.appender.Formatter.__P_275_0.format(entry.time);
       },
+
       /**
        * Normalises the entry into an object with clazz, object, hash.
        *
@@ -70,12 +76,15 @@
           object: null,
           hash: null
         };
+
         if (entry.object) {
           result.hash = entry.object;
+
           if (entry.clazz) {
             result.clazz = entry.clazz;
           } else {
             var obj = entry.win.qx.core.ObjectRegistry.fromHashCode(entry.object, true);
+
             if (obj) {
               result.clazz = obj.constructor;
               result.object = obj;
@@ -84,8 +93,10 @@
         } else if (entry.clazz) {
           result.clazz = entry.clazz;
         }
+
         return result;
       },
+
       /**
        * Formats the object part of an entry
        *
@@ -95,15 +106,19 @@
       formatEntryObjectAndClass: function formatEntryObjectAndClass(entry) {
         var breakdown = this.normalizeEntryClass(entry);
         var result = "";
+
         if (breakdown.clazz) {
           result += breakdown.clazz.classname;
         }
+
         if (breakdown.hash) {
           result += "[" + breakdown.hash + "]";
         }
+
         result += ":";
         return result;
       },
+
       /**
        * Formats the items part of an entry
        *
@@ -113,17 +128,22 @@
       formatEntryItems: function formatEntryItems(entry) {
         var output = [];
         var items = entry.items;
+
         for (var i = 0, il = items.length; i < il; i++) {
           var item = items[i];
           var msg = item.text;
+
           if (item.trace && item.trace.length > 0) {
             msg += "\n" + item.trace;
           }
+
           if (msg instanceof Array) {
             var list = [];
+
             for (var j = 0, jl = msg.length; j < jl; j++) {
               list.push(msg[j].text);
             }
+
             if (item.type === "map") {
               output.push("{", list.join(", "), "}");
             } else {
@@ -133,8 +153,10 @@
             output.push(msg);
           }
         }
+
         return output.join(" ");
       },
+
       /**
        * Converts a single log entry to plain text
        *
@@ -144,11 +166,14 @@
       toText: function toText(entry) {
         var output = this.formatEntryTime(entry) + " " + this.formatEntryObjectAndClass(entry);
         var str = this.formatEntryItems(entry);
+
         if (str) {
           output += " " + str;
         }
+
         return output;
       },
+
       /**
        * Converts a single log entry to an array of plain text.
        *
@@ -168,6 +193,7 @@
         output.push(this.formatEntryItems(entry));
         return output;
       },
+
       /**
        * Converts a single log entry to HTML
        *
@@ -180,9 +206,11 @@
         output.push("<span class='offset'>", this.formatEntryTime(entry), "</span> ");
         var breakdown = this.normalizeEntryClass(entry);
         var result = "";
+
         if (breakdown.clazz) {
           result += breakdown.clazz.classname;
         }
+
         if (breakdown.object) {
           output.push("<span class='object' title='Object instance with hash code: " + breakdown.object.toHashCode() + "'>", breakdown.classname, "[", breakdown.object, "]</span>: ");
         } else if (breakdown.hash) {
@@ -190,14 +218,19 @@
         } else if (breakdown.clazz) {
           output.push("<span class='object'>" + breakdown.clazz.classname, "</span>: ");
         }
+
         var items = entry.items;
+
         for (var i = 0, il = items.length; i < il; i++) {
           item = items[i];
           msg = item.text;
+
           if (msg instanceof Array) {
             var list = [];
+
             for (var j = 0, jl = msg.length; j < jl; j++) {
               sub = msg[j];
+
               if (typeof sub === "string") {
                 list.push("<span>" + qx.log.appender.Formatter.escapeHTML(sub) + "</span>");
               } else if (sub.key) {
@@ -206,17 +239,21 @@
                 list.push("<span class='type-" + sub.type + "'>" + qx.log.appender.Formatter.escapeHTML(sub.text) + "</span>");
               }
             }
+
             output.push("<span class='type-" + item.type + "'>");
+
             if (item.type === "map") {
               output.push("{", list.join(", "), "}");
             } else {
               output.push("[", list.join(", "), "]");
             }
+
             output.push("</span>");
           } else {
             output.push("<span class='type-" + item.type + "'>" + qx.log.appender.Formatter.escapeHTML(msg) + "</span> ");
           }
         }
+
         var wrapper = document.createElement("DIV");
         wrapper.innerHTML = output.join("");
         wrapper.className = "level-" + entry.level;
@@ -226,8 +263,10 @@
     statics: {
       /** @type {qx.util.format.DateFormat} format for datetimes */
       __P_275_0: null,
+
       /** @type {qx.log.appender.Formatter} the default instance */
       __P_275_1: null,
+
       /**
        * Returns the default formatter
        *
@@ -237,8 +276,10 @@
         if (!qx.log.appender.Formatter.__P_275_1) {
           qx.log.appender.Formatter.__P_275_1 = new qx.log.appender.Formatter();
         }
+
         return qx.log.appender.Formatter.__P_275_1;
       },
+
       /**
        * Sets the default formatter
        *
@@ -247,6 +288,7 @@
       setFormatter: function setFormatter(instance) {
         qx.log.appender.Formatter.__P_275_1 = instance;
       },
+
       /**
        * Escapes the HTML in the given value
        *
@@ -257,6 +299,7 @@
       escapeHTML: function escapeHTML(value) {
         return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_275_2);
       },
+
       /**
        * Internal replacement helper for HTML escape.
        *
@@ -279,4 +322,4 @@
   qx.log.appender.Formatter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Formatter.js.map?dt=1677362745364
+//# sourceMappingURL=Formatter.js.map?dt=1685978128312

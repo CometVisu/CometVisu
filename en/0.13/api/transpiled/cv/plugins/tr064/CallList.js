@@ -31,6 +31,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* CallList.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -60,10 +61,10 @@
    * @since 0.11.0
    * @asset(plugins/tr064/*)
    */
-
   qx.Class.define('cv.plugins.tr064.CallList', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Refresh, cv.ui.common.Update],
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -71,12 +72,14 @@
     */
     construct: function construct(props) {
       var _this = this;
+
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.__P_24_0 = {};
       this.addListenerOnce('domReady', function () {
         _this.refreshCalllist('initial');
       });
     },
+
     /*
     ******************************************************
       STATICS
@@ -180,6 +183,7 @@
         };
       }
     },
+
     /*
     ***********************************************
       EVENTS
@@ -187,6 +191,7 @@
     */
     events: {
       tr064ListRefreshed: 'qx.event.type.Event' // event to support unit test
+
     },
 
     /*
@@ -273,6 +278,7 @@
         check: 'String'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -282,6 +288,7 @@
       __P_24_1: '',
       __P_24_2: undefined,
       __P_24_3: false,
+
       /**
        * Prevent warning "Reference values are shared across all instances"
        * as the keys are unique a share doesn't matter:
@@ -293,12 +300,15 @@
       },
       _setupRefreshAction: function _setupRefreshAction() {
         var _this2 = this;
+
         this._timer = new qx.event.Timer(this.getRefresh());
+
         this._timer.addListener('interval', function () {
           if (!_this2.__P_24_3) {
             _this2.refreshCalllist('timer');
           }
         });
+
         this._timer.start();
       },
       _update: function _update(address, value) {
@@ -341,34 +351,43 @@
             color: this.getTypeActiveOutgoingColor()
           }
         };
+
         this.__P_24_2.forEach(function (cl) {
           var audio = '';
           var type = cl.Type in types ? types[cl.Type] : types[0];
+
           if (cl.Path) {
             audio = "<audio preload=\"none\"><source src=\"resource/plugins/tr064/proxy.php?device=" + self.getDevice() + '&uri=' + cl.Path + '%26sid=' + sid + '">' + '</audio>' + '<div class="tam clickable">' + cv.IconHandler.getInstance().getIconElement(self.getTAM(), '*', '*', self.getTAMColor(), '', '', true) + '</div>';
           }
+
           html += '<tr>';
           self.getColumns().split(';').forEach(function (col) {
             switch (col) {
               case 'type':
                 html += '<td>' + cv.IconHandler.getInstance().getIconElement(type.name, '*', '*', type.color, '', '', true) + '</td>';
                 break;
+
               case 'date':
                 html += '<td>' + cl.Date + '</td>';
                 break;
+
               case 'name':
                 html += '<td>' + cl.Name + '</td>';
                 break;
+
               case 'caller':
                 html += '<td>' + cl.Caller + '</td>';
                 break;
+
               case 'nameOrCaller':
                 if (cl.Name !== '') {
                   html += '<td>' + cl.Name + '</td>';
                 } else {
                   html += '<td>' + cl.Caller + '</td>';
                 }
+
                 break;
+
               case 'tam':
                 html += '<td>' + audio + '</td>';
                 break;
@@ -376,14 +395,17 @@
           });
           html += '</tr>';
         });
+
         clLi.innerHTML = html;
         var tamList = clLi.getElementsByClassName('tam');
+
         for (var i = 0; i < tamList.length; i++) {
           tamList[i].addEventListener('click', function () {
             self.__P_24_4(this);
           });
         }
       },
+
       /**
        * Fetch the TR-064 resource
        *   /upnp/control/x_contact urn:dslforum-org:service:X_AVM-DE_OnTel:1
@@ -395,8 +417,9 @@
         window.fetch(url).then(function (response) {
           if (response.ok) {
             return response.json();
-          }
-          // else:
+          } // else:
+
+
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
             title: qx.locale.Manager.tr('TR-064 communication error'),
             severity: 'urgent',
@@ -420,21 +443,25 @@
       },
       refreshCalllist: function refreshCalllist(source) {
         this.__P_24_3 = true;
+
         if (this.__P_24_1 === '<fail>') {
           return; // this problem won't fix anymore during this instance
         }
 
         if (this.__P_24_1 === '') {
           this._getCallListURI();
+
           return;
         }
+
         var self = this;
         var url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__P_24_1 + '%26max=' + this.getMax();
         window.fetch(url).then(function (response) {
           if (response.ok) {
             return response.text();
-          }
-          // else:
+          } // else:
+
+
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
             title: qx.locale.Manager.tr('TR-064 communication error'),
             severity: 'urgent',
@@ -446,15 +473,20 @@
         }).then(function (data) {
           self.__P_24_2 = [];
           var itemList = data.getElementsByTagName('Call');
+
           for (var i = 0; i < itemList.length; i++) {
             var childrenList = itemList[i].children;
             var entry = {};
+
             for (var ii = 0; ii < childrenList.length; ii++) {
               entry[childrenList[ii].nodeName] = childrenList[ii].textContent;
             }
+
             self.__P_24_2.push(entry);
           }
+
           self._displayCalllist();
+
           self.__P_24_3 = false;
           self.fireEvent('tr064ListRefreshed');
         })["catch"](function (error) {
@@ -466,6 +498,7 @@
           self.error('TR-064 refreshCalllist() error:', error);
         });
       },
+
       /**
        * The EventListener for click on the TAM button.
        * @param element
@@ -473,18 +506,22 @@
       __P_24_4: function __P_24_4(element) {
         var self = this;
         var audio = element.previousElementSibling;
+
         if (!this.__P_24_0[audio]) {
           audio.addEventListener('ended', function () {
             self.__P_24_5(element);
           });
           this.__P_24_0[audio] = true;
         }
+
         if (audio.readyState < 4) {
           // not ready yet
           this.__P_24_6(element);
         }
+
         if (audio.paused) {
           var playPromise = audio.play();
+
           if (playPromise !== undefined) {
             playPromise.then(function () {
               self.__P_24_7(element);
@@ -495,6 +532,7 @@
         } else {
           audio.pause();
           audio.currentTime = 0;
+
           this.__P_24_5(element);
         }
       },
@@ -518,4 +556,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1677362710421
+//# sourceMappingURL=CallList.js.map?dt=1685978093128

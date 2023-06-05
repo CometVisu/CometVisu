@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,17 +37,16 @@
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fired when the model data changes */
       changeModel: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Set the representative data for the item.
@@ -54,12 +54,14 @@
        * @param value {var} The data.
        */
       setModel: function setModel(value) {},
+
       /**
        * Returns the representative data for the item
        *
        * @return {var} The data.
        */
       getModel: function getModel() {},
+
       /**
        * Sets the representative data to null.
        */
@@ -69,4 +71,4 @@
   qx.ui.form.IModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IModel.js.map?dt=1677362757248
+//# sourceMappingURL=IModel.js.map?dt=1685978138109

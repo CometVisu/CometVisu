@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,6 +57,7 @@
       __P_249_4: null,
       __P_249_5: null,
       __P_249_6: null,
+
       /**
        * Get the package ID.
        *
@@ -64,6 +66,7 @@
       getId: function getId() {
         return this.__P_249_2;
       },
+
       /**
        * Get the ready state of the package. The value is one of
        * <ul>
@@ -82,6 +85,7 @@
       getReadyState: function getReadyState() {
         return this.__P_249_0;
       },
+
       /**
        * Returns the urlsstored stored in the package.
        *
@@ -91,6 +95,7 @@
       getUrls: function getUrls() {
         return this.__P_249_1;
       },
+
       /**
        * Method for storing the closure for this package. This is only relevant
        * if a {@link qx.io.part.ClosurePart} is used.
@@ -101,15 +106,19 @@
         if (this.__P_249_0 == "error") {
           return;
         }
+
         this.__P_249_3 = closure;
+
         if (!this.__P_249_4) {
           this.execute();
         } else {
           clearTimeout(this.__P_249_5);
           this.__P_249_0 = "cached";
+
           this.__P_249_6(this);
         }
       },
+
       /**
        * Executes the stored closure. This is only relevant if a
        * {@link qx.io.part.ClosurePart} is used.
@@ -117,14 +126,19 @@
       execute: function execute() {
         if (this.__P_249_3) {
           this.__P_249_3();
+
           delete this.__P_249_3;
         }
+
         if (qx.$$packageData[this.__P_249_2]) {
           this.__P_249_7(qx.$$packageData[this.__P_249_2]);
+
           delete qx.$$packageData[this.__P_249_2];
         }
+
         this.__P_249_0 = "complete";
       },
+
       /**
        * Load method if the package loads a closure. This is only relevant if a
        * {@link qx.io.part.ClosurePart} is used.
@@ -137,19 +151,23 @@
         if (this.__P_249_0 !== "initialized") {
           return;
         }
+
         this.__P_249_4 = true;
         this.__P_249_0 = "loading";
         this.__P_249_6 = qx.Bootstrap.bind(notifyPackageResult, self);
+
         this.__P_249_8(this.__P_249_1, function () {}, function () {
           this.__P_249_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
+
         var pkg = this;
         this.__P_249_5 = setTimeout(function () {
           pkg.__P_249_0 = "error";
           notifyPackageResult.call(self, pkg);
         }, qx.Part.TIMEOUT);
       },
+
       /**
        * Load the part's script URLs in the correct order.
        *
@@ -161,8 +179,10 @@
         if (this.__P_249_0 !== "initialized") {
           return;
         }
+
         this.__P_249_4 = false;
         this.__P_249_0 = "loading";
+
         this.__P_249_8(this.__P_249_1, function () {
           this.__P_249_0 = "complete";
           this.execute();
@@ -172,6 +192,7 @@
           notifyPackageResult.call(self, this);
         }, this);
       },
+
       /**
        * Loads a list of scripts in the correct order.
        *
@@ -185,21 +206,24 @@
           callback.call(self);
           return;
         }
+
         var urlsLoaded = 0;
         var self = this;
+
         var loadScripts = function loadScripts(urls) {
           if (urlsLoaded >= urlList.length) {
             callback.call(self);
             return;
           }
+
           var loader = new qx.bom.request.Script();
           loader.open("GET", urls.shift());
+
           loader.onload = function () {
             urlsLoaded += 1;
-            loader.dispose();
-
-            // Important to use engine detection directly to keep the minimal
+            loader.dispose(); // Important to use engine detection directly to keep the minimal
             // package size small [BUG #5068]
+
             if (qx.bom.client.Engine.getName() == "webkit") {
               // force asynchronous load
               // Safari fails with an "maximum recursion depth exceeded" error if it is
@@ -211,21 +235,24 @@
               loadScripts.call(self, urls, callback, self);
             }
           };
+
           loader.onerror = function () {
             if (self.__P_249_0 == "loading") {
               clearTimeout(self.__P_249_5);
               loader.dispose();
               return errBack.call(self);
             }
-          };
+          }; // Force loading script asynchronously (IE may load synchronously)
 
-          // Force loading script asynchronously (IE may load synchronously)
+
           window.setTimeout(function () {
             loader.send();
           });
         };
+
         loadScripts(urlList.concat());
       },
+
       /**
        * Import the data of a package. The function is defined in the loader
        * script.
@@ -239,4 +266,4 @@
   qx.io.part.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1677362742280
+//# sourceMappingURL=Package.js.map?dt=1685978125304

@@ -9,47 +9,31 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
+        "line": 27,
         "column": 0,
-        "index": 714
+        "index": 585
       },
       "end": {
-        "line": 118,
+        "line": 65,
         "column": 3,
-        "index": 3254
+        "index": 1335
       }
     },
     "jsdoc": {
       "@description": [
         {
           "name": "@description",
-          "body": ""
-        },
-        {
-          "name": "@description",
           "body": "<p>The simple qooxdoo font theme.</p>"
         }
       ],
-      "@asset": [
+      "@usefont": [
         {
-          "name": "@asset",
-          "body": "qx/font/Roboto/*.woff"
+          "name": "@usefont",
+          "body": "Roboto"
         },
         {
-          "name": "@asset",
-          "body": "qx/font/Roboto/*.woff2"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/font/Roboto/*.eot"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/font/Roboto/*.ttf"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/*"
+          "name": "@usefont",
+          "body": "Roboto Mono"
         }
       ]
     }

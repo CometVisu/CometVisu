@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,6 +50,7 @@
       setLocalItem: function setLocalItem(key, value) {
         qx.bom.Storage.getLocal().setItem(key, value);
       },
+
       /**
        * Returns the stored item.
        *
@@ -59,6 +61,7 @@
       getLocalItem: function getLocalItem(key) {
         return qx.bom.Storage.getLocal().getItem(key);
       },
+
       /**
        * Removes an item form the storage.
        * @attachStatic {qxWeb, localStorage.removeItem}
@@ -67,6 +70,7 @@
       removeLocalItem: function removeLocalItem(key) {
         qx.bom.Storage.getLocal().removeItem(key);
       },
+
       /**
        * Returns the amount of key-value pairs stored.
        * @attachStatic {qxWeb, localStorage.getLength}
@@ -75,6 +79,7 @@
       getLocalLength: function getLocalLength() {
         return qx.bom.Storage.getLocal().getLength();
       },
+
       /**
        * Returns the named key at the given index.
        * @attachStatic {qxWeb, localStorage.getKey}
@@ -84,6 +89,7 @@
       getLocalKey: function getLocalKey(index) {
         return qx.bom.Storage.getLocal().getKey(index);
       },
+
       /**
        * Deletes every stored item in the storage.
        * @attachStatic {qxWeb, localStorage.clear}
@@ -91,6 +97,7 @@
       clearLocal: function clearLocal() {
         qx.bom.Storage.getLocal().clear();
       },
+
       /**
        * Helper to access every stored item.
        *
@@ -103,6 +110,7 @@
       forEachLocal: function forEachLocal(callback, scope) {
         qx.bom.Storage.getLocal().forEach(callback, scope);
       },
+
       /**
        * Store an item in the storage.
        *
@@ -113,6 +121,7 @@
       setSessionItem: function setSessionItem(key, value) {
         qx.bom.Storage.getSession().setItem(key, value);
       },
+
       /**
        * Returns the stored item.
        *
@@ -123,6 +132,7 @@
       getSessionItem: function getSessionItem(key) {
         return qx.bom.Storage.getSession().getItem(key);
       },
+
       /**
        * Removes an item form the storage.
        * @attachStatic {qxWeb, sessionStorage.removeItem}
@@ -131,6 +141,7 @@
       removeSessionItem: function removeSessionItem(key) {
         qx.bom.Storage.getSession().removeItem(key);
       },
+
       /**
        * Returns the amount of key-value pairs stored.
        * @attachStatic {qxWeb, sessionStorage.getLength}
@@ -139,6 +150,7 @@
       getSessionLength: function getSessionLength() {
         return qx.bom.Storage.getSession().getLength();
       },
+
       /**
        * Returns the named key at the given index.
        * @attachStatic {qxWeb, sessionStorage.getKey}
@@ -148,6 +160,7 @@
       getSessionKey: function getSessionKey(index) {
         return qx.bom.Storage.getSession().getKey(index);
       },
+
       /**
        * Deletes every stored item in the storage.
        * @attachStatic {qxWeb, sessionStorage.clear}
@@ -155,6 +168,7 @@
       clearSession: function clearSession() {
         qx.bom.Storage.getSession().clear();
       },
+
       /**
        * Helper to access every stored item.
        *
@@ -194,4 +208,4 @@
   qx.module.Storage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Storage.js.map?dt=1677362746415
+//# sourceMappingURL=Storage.js.map?dt=1685978129261

@@ -16,9 +16,9 @@
         "index": 644
       },
       "end": {
-        "line": 258,
+        "line": 371,
         "column": 3,
-        "index": 7362
+        "index": 11088
       }
     },
     "jsdoc": {
@@ -188,9 +188,9 @@
           "index": 2423
         },
         "end": {
-          "line": 133,
+          "line": 129,
           "column": 5,
-          "index": 3856
+          "index": 3652
         }
       },
       "jsdoc": {
@@ -228,14 +228,14 @@
     "isDynamic": {
       "location": {
         "start": {
-          "line": 141,
+          "line": 137,
           "column": 4,
-          "index": 4078
+          "index": 3874
         },
         "end": {
-          "line": 171,
+          "line": 167,
           "column": 5,
-          "index": 5091
+          "index": 4903
         }
       },
       "jsdoc": {
@@ -273,14 +273,14 @@
     "__resolveInclude": {
       "location": {
         "start": {
-          "line": 179,
+          "line": 175,
           "column": 4,
-          "index": 5280
+          "index": 5092
         },
         "end": {
-          "line": 196,
+          "line": 192,
           "column": 5,
-          "index": 5792
+          "index": 5604
         }
       },
       "jsdoc": {
@@ -310,17 +310,58 @@
       "type": "function",
       "access": "private"
     },
+    "__initialiseFonts": {
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5845
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 9782
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialises fonts from a set of font definitions (eg from a theme Font configuration)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Map<String,Object>} fontDefs indexed by font ID",
+            "paramName": "fontDefs",
+            "description": "indexed by font ID",
+            "type": "Map<String,Object>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map<String,qx.bom.Font>} created fonts",
+            "type": "Map<String,qx.bom.Font>",
+            "description": " created fonts"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "private"
+    },
     "_applyTheme": {
       "location": {
         "start": {
-          "line": 199,
+          "line": 319,
           "column": 4,
-          "index": 5819
+          "index": 9809
         },
         "end": {
-          "line": 233,
+          "line": 337,
           "column": 5,
-          "index": 6791
+          "index": 10300
         }
       },
       "jsdoc": {},
@@ -333,14 +374,14 @@
     "__getFontClass": {
       "location": {
         "start": {
-          "line": 241,
+          "line": 345,
           "column": 4,
-          "index": 6980
+          "index": 10489
         },
         "end": {
-          "line": 246,
+          "line": 350,
           "column": 5,
-          "index": 7112
+          "index": 10637
         }
       },
       "jsdoc": {
@@ -370,6 +411,44 @@
       },
       "type": "function",
       "access": "private"
+    },
+    "getManifestFonts": {
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4,
+          "index": 10778
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 10838
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the font information output by the compiler</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": "subject to change"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Object",
+            "description": ""
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
     },
     "getQxOwner": {
       "type": "function",
@@ -579,14 +658,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 255,
+        "line": 368,
         "column": 2,
-        "index": 7308
+        "index": 11034
       },
       "end": {
-        "line": 257,
+        "line": 370,
         "column": 3,
-        "index": 7358
+        "index": 11084
       }
     },
     "jsdoc": {}

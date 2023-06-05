@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Function.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -46,15 +47,18 @@
         if (typeof options === 'undefined') {
           options = {};
         }
+
         var args;
         var result;
         var timeout = null;
         var previous = 0;
+
         var later = function later() {
           previous = options.leading === false ? 0 : new Date();
           timeout = null;
           result = callback.apply(context, args);
         };
+
         return {
           abort: function abort() {
             if (timeout) {
@@ -64,11 +68,14 @@
           },
           call: function call() {
             var now = new Date();
+
             if (!previous && options.leading === false) {
               previous = now;
             }
+
             var remaining = interval - (now - previous);
             args = arguments;
+
             if (remaining <= 0) {
               window.clearTimeout(timeout);
               timeout = null;
@@ -77,6 +84,7 @@
             } else if (!timeout && options.trailing !== false) {
               timeout = window.setTimeout(later, remaining);
             }
+
             return result;
           }
         };
@@ -86,4 +94,4 @@
   cv.util.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1677362776397
+//# sourceMappingURL=Function.js.map?dt=1685978158516

@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,12 +69,12 @@
   qx.Class.define("qx.ui.container.Resizer", {
     extend: qx.ui.container.Composite,
     include: qx.ui.core.MResizable,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
@@ -84,4 +85,4 @@
   qx.ui.container.Resizer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resizer.js.map?dt=1677362750777
+//# sourceMappingURL=Resizer.js.map?dt=1685978133066

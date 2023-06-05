@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,16 +54,16 @@
        */
       onReady: function onReady(callback, context) {
         var Registration = qx.event.Registration;
-        var appHandler = Registration.getManager(window).getHandler(qx.event.handler.Application);
-
-        // If the application is already available, execute the callback
+        var appHandler = Registration.getManager(window).getHandler(qx.event.handler.Application); // If the application is already available, execute the callback
         // immediately. Otherwise listen to the "ready" event to call it later.
+
         if (appHandler && appHandler.isApplicationReady()) {
           callback.call(context);
         } else {
           Registration.addListener(window, "ready", callback, context);
         }
       },
+
       /**
        * Register a callback function, which is called in the optionally provided
        * context, when the application is shutdown.
@@ -81,4 +82,4 @@
   qx.bom.Lifecycle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Lifecycle.js.map?dt=1677362725164
+//# sourceMappingURL=Lifecycle.js.map?dt=1685978107449

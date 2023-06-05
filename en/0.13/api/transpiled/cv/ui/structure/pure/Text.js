@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Text.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -46,6 +47,7 @@
    */
   qx.Class.define('cv.ui.structure.pure.Text', {
     extend: cv.ui.structure.pure.AbstractWidget,
+
     /*
      ******************************************************
      MEMBERS
@@ -61,4 +63,4 @@
   cv.ui.structure.pure.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1677362717653
+//# sourceMappingURL=Text.js.map?dt=1685978100445

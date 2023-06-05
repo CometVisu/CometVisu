@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,6 +36,7 @@
    */
   qx.Class.define("qx.io.exception.Exception", {
     extend: qx.type.BaseError,
+
     /**
      * Constructor
      * @param message {String}
@@ -51,4 +53,4 @@
   qx.io.exception.Exception.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Exception.js.map?dt=1677362741625
+//# sourceMappingURL=Exception.js.map?dt=1685978124669

@@ -14,9 +14,9 @@
         "index": 679
       },
       "end": {
-        "line": 726,
+        "line": 740,
         "column": 3,
-        "index": 21647
+        "index": 22101
       }
     },
     "jsdoc": {
@@ -1115,6 +1115,22 @@
       },
       "type": "function",
       "access": "protected"
+    },
+    "getRenderedRowHeight": {
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 4,
+          "index": 21309
+        },
+        "end": {
+          "line": 727,
+          "column": 5,
+          "index": 21756
+        }
+      },
+      "type": "function",
+      "access": "public"
     },
     "getQxOwner": {
       "type": "function",
@@ -5112,14 +5128,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 722,
+        "line": 736,
         "column": 2,
-        "index": 21498
+        "index": 21952
       },
       "end": {
-        "line": 725,
+        "line": 739,
         "column": 3,
-        "index": 21643
+        "index": 22097
       }
     },
     "jsdoc": {}

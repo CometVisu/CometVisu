@@ -10,6 +10,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,8 +46,10 @@
         if (qx.util.Delegate.containsMethod(delegate, specificMethod)) {
           return qx.lang.Function.bind(delegate[specificMethod], delegate);
         }
+
         return null;
       },
+
       /**
        * Checks, if the given delegate is valid or if a specific method is given.
        *
@@ -56,9 +59,11 @@
        */
       containsMethod: function containsMethod(delegate, specificMethod) {
         var Type = qx.lang.Type;
+
         if (Type.isObject(delegate)) {
           return Type.isFunction(delegate[specificMethod]);
         }
+
         return false;
       }
     }
@@ -66,4 +71,4 @@
   qx.util.Delegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Delegate.js.map?dt=1677362772611
+//# sourceMappingURL=Delegate.js.map?dt=1685978154068

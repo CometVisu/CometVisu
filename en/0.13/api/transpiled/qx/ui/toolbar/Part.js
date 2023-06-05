@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,31 +56,32 @@
   qx.Class.define("qx.ui.toolbar.Part", {
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MRemoteChildrenHandling],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.core.Widget.constructor.call(this);
+      qx.ui.core.Widget.constructor.call(this); // Hard coded HBox layout
 
-      // Hard coded HBox layout
-      this._setLayout(new qx.ui.layout.HBox());
+      this._setLayout(new qx.ui.layout.HBox()); // Force creation of the handle
 
-      // Force creation of the handle
+
       this._createChildControl("handle");
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
         init: "toolbar/part"
       },
+
       /** Whether icons, labels, both or none should be shown. */
       show: {
         init: "both",
@@ -87,6 +89,7 @@
         inheritable: true,
         event: "changeShow"
       },
+
       /** The spacing between every child of the toolbar */
       spacing: {
         nullable: true,
@@ -95,12 +98,12 @@
         apply: "_applySpacing"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -110,28 +113,37 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var _this = this;
+
         var control;
+
         switch (id) {
           case "handle":
             control = new qx.ui.basic.Image();
             control.setAlignY("middle");
+
             this._add(control);
+
             break;
+
           case "container":
             control = new qx.ui.toolbar.PartContainer();
             control.addListener("syncAppearance", this.__P_458_0, this);
+
             this._add(control);
+
             control.addListener("changeChildren", function () {
               _this.__P_458_0();
             });
             break;
         }
+
         return control || qx.ui.toolbar.Part.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       getChildrenContainer: function getChildrenContainer() {
         return this.getChildControl("container");
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -141,11 +153,13 @@
         var layout = this.getChildControl("container").getLayout();
         value == null ? layout.resetSpacing() : layout.setSpacing(value);
       },
+
       /*
       ---------------------------------------------------------------------------
         UTILITIES
       ---------------------------------------------------------------------------
       */
+
       /**
        * Helper which applies the left, right and middle states.
        */
@@ -155,18 +169,17 @@
         children = children.filter(function (child) {
           return child.getVisibility() == "visible";
         });
+
         for (var i = 0; i < children.length; i++) {
           // if its the first child
           if (i == 0 && i != children.length - 1) {
             children[i].addState("left");
             children[i].removeState("right");
-            children[i].removeState("middle");
-            // if its the last child
+            children[i].removeState("middle"); // if its the last child
           } else if (i == children.length - 1 && i != 0) {
             children[i].addState("right");
             children[i].removeState("left");
-            children[i].removeState("middle");
-            // if there is only one child
+            children[i].removeState("middle"); // if there is only one child
           } else if (i == 0 && i == children.length - 1) {
             children[i].removeState("left");
             children[i].removeState("middle");
@@ -178,12 +191,14 @@
           }
         }
       },
+
       /**
        * Adds a separator to the toolbar part.
        */
       addSeparator: function addSeparator() {
         this.add(new qx.ui.toolbar.Separator());
       },
+
       /**
        * Returns all nested buttons which contains a menu to show. This is mainly
        * used for keyboard support.
@@ -194,12 +209,15 @@
         var children = this.getChildren();
         var buttons = [];
         var child;
+
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
+
           if (child instanceof qx.ui.menubar.Button) {
             buttons.push(child);
           }
         }
+
         return buttons;
       }
     }
@@ -207,4 +225,4 @@
   qx.ui.toolbar.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1677362767958
+//# sourceMappingURL=Part.js.map?dt=1685978149192

@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -28,7 +29,9 @@
       This theme is based in large parts on the osparc.theme
   
   ************************************************************************ */
+
   /* eslint no-negated-condition: "off", no-nested-ternary: "off" */
+
   /* ************************************************************************
   
   
@@ -45,6 +48,7 @@
    * @asset(qx/icon/Tango/16/actions/window-close.png)
    * @asset(qx/icon/Tango/16/actions/dialog-cancel.png)
    * @asset(qx/icon/Tango/16/actions/dialog-ok.png)
+   * @usefont(MaterialIcons)
    */
   qx.Theme.define("qx.theme.tangible.Appearance", {
     appearances: {
@@ -53,7 +57,6 @@
         CORE
       ---------------------------------------------------------------------------
       */
-
       widget: {},
       label: {
         style: function style(states) {
@@ -135,6 +138,7 @@
       "dragdrop-cursor": {
         style: function style(states) {
           var icon = "nodrop";
+
           if (states.copy) {
             icon = "copy";
           } else if (states.move) {
@@ -142,6 +146,7 @@
           } else if (states.alias) {
             icon = "alias";
           }
+
           return {
             source: qx.theme.tangible.Image.URLS["cursor-" + icon],
             position: "right-top",
@@ -149,15 +154,14 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         BUTTON
       ---------------------------------------------------------------------------
       */
-
       button: {
         /* qx.ui.form.Button */
-
         alias: "material-button",
         include: "material-button",
         style: function style(states) {
@@ -183,6 +187,7 @@
               textColor: undefined
             };
           }
+
           return {
             textColor: undefined
           };
@@ -192,6 +197,7 @@
         alias: "atom",
         style: function style(states) {
           var decorator = "material-button";
+
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -201,9 +207,11 @@
           } else {
             decorator += "-disabled";
           }
+
           if (states.invalid && !states.disabled) {
             decorator += "-invalid";
           }
+
           return {
             decorator: decorator,
             padding: [6, 15],
@@ -234,6 +242,7 @@
         alias: "atom",
         style: function style(states) {
           var decorator = "button-box";
+
           if (!states.disabled) {
             if (states.hovered && !states.pressed && !states.checked) {
               decorator = "button-box-hovered";
@@ -243,11 +252,13 @@
               decorator = "button-box-pressed";
             }
           }
+
           if (states.invalid && !states.disabled) {
             decorator += "-invalid";
           } else if (states.focused) {
             decorator += "-focused";
           }
+
           return {
             decorator: decorator,
             padding: [3, 8],
@@ -284,18 +295,19 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TEXT FIELD
       ---------------------------------------------------------------------------
       */
-
       "material-textfield": {
         style: function style(states) {
           var decorator;
           var padding;
           decorator = "material-textfield";
           padding = [3, 0, 4, 0];
+
           if (states.readonly) {
             decorator += "-readonly";
             padding = [3, 0, 5, 0];
@@ -303,13 +315,16 @@
             decorator += "-disabled";
           } else if (states.focused) {
             decorator += "-focused";
+
             if (states.invalid) {
               decorator += "-invalid";
             }
+
             padding = [3, 0, 3, 0];
           } else if (states.invalid) {
             decorator += "-invalid";
           }
+
           return {
             decorator: decorator,
             padding: padding,
@@ -323,6 +338,7 @@
         style: function style(states) {
           var decorator;
           var padding;
+
           if (states.disabled) {
             decorator = "border-disabled";
             padding = [1, 2];
@@ -336,6 +352,7 @@
             padding = [1, 2];
             decorator = "border";
           }
+
           return {
             decorator: decorator,
             padding: padding,
@@ -343,6 +360,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SPLIT BUTTON
@@ -353,6 +371,7 @@
         alias: "material-button",
         style: function style(states) {
           var decorator = "material-button";
+
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -364,6 +383,7 @@
           } else {
             decorator += "-disabled";
           }
+
           decorator += "-left";
           return {
             decorator: decorator,
@@ -378,6 +398,7 @@
         alias: "material-button",
         style: function style(states) {
           var decorator = "material-button";
+
           if (!states.disabled) {
             if (states.pressed || states.checked) {
               decorator += "-pressed";
@@ -389,6 +410,7 @@
           } else {
             decorator += "-disabled";
           }
+
           decorator += "-right";
           return {
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -407,12 +429,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SLIDEBAR
       ---------------------------------------------------------------------------
       */
-
       slidebar: {},
       "slidebar/scrollpane": {},
       "slidebar/content": {},
@@ -434,12 +456,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
-
       table: {
         style: function style(states) {
           return {
@@ -492,8 +514,7 @@
       "table-scroller/pane": {},
       "table-scroller/focus-indicator": {
         style: function style(states) {
-          return {
-            // attention hackerery in the qx.ui.table.pane.Scroller
+          return {// attention hackerery in the qx.ui.table.pane.Scroller
             // decorator: "table-scroller-focus-indicator"
             // gets applied hardcoded! So do not try to change its
             // name here!
@@ -584,12 +605,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TREEVIRTUAL
       ---------------------------------------------------------------------------
       */
-
       treevirtual: {
         include: "framebox",
         alias: "table",
@@ -649,12 +670,12 @@
       "treevirtual-line": "treevirtual-blank",
       "treevirtual-end": "treevirtual-blank",
       "treevirtual-cross": "treevirtual-blank",
+
       /*
       ---------------------------------------------------------------------------
         RESIZER
       ---------------------------------------------------------------------------
       */
-
       resizer: {
         style: function style(states) {
           return {
@@ -662,12 +683,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SPLITPANE
       ---------------------------------------------------------------------------
       */
-
       splitpane: {},
       "splitpane/splitter": {
         style: function style(states) {
@@ -692,12 +713,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
-
       menu: {
         style: function style(states) {
           var result = {
@@ -710,13 +731,16 @@
             padding: 1,
             placementModeY: states.submenu || states.contextmenu ? "best-fit" : "keep-align"
           };
+
           if (states.submenu) {
             result.position = "right-top";
             result.offset = [-2, -3];
           }
+
           if (states.contextmenu) {
             result.offset = 4;
           }
+
           return result;
         }
       },
@@ -811,9 +835,11 @@
         include: "menu-button",
         style: function style(states) {
           var icon = "menu-checkbox";
+
           if (states.checked) {
             icon += "-checked";
           }
+
           return {
             icon: qx.theme.tangible.Image.URLS[icon]
           };
@@ -824,20 +850,22 @@
         include: "menu-button",
         style: function style(states) {
           var icon = "menu-radiobutton";
+
           if (states.checked) {
             icon += "-checked";
           }
+
           return {
             icon: qx.theme.tangible.Image.URLS[icon]
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         MENU BAR
       ---------------------------------------------------------------------------
       */
-
       menubar: {
         style: function style(states) {
           return {
@@ -850,6 +878,7 @@
         style: function style(states) {
           var decorator;
           var padding = [2, 6];
+
           if (!states.disabled) {
             if (states.pressed) {
               decorator = "menubar-button-pressed";
@@ -857,6 +886,7 @@
               decorator = "menubar-button-hovered";
             }
           }
+
           return {
             padding: padding,
             cursor: states.disabled ? undefined : "pointer",
@@ -872,6 +902,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         VIRTUAL WIDGETS
@@ -937,17 +968,18 @@
       "cell-atom": "cell",
       "cell-date": "cell",
       "cell-html": "cell",
+
       /*
       ---------------------------------------------------------------------------
         SCROLLBAR
       ---------------------------------------------------------------------------
       */
-
       scrollbar: {},
       "scrollbar/slider": {},
       "scrollbar/slider/knob": {
         style: function style(states) {
           var decorator = "scroll-knob";
+
           if (!states.disabled) {
             if (states.hovered && !states.pressed && !states.checked) {
               decorator = "scroll-knob-hovered";
@@ -957,6 +989,7 @@
               decorator = "scroll-knob-pressed";
             }
           }
+
           return {
             height: 8,
             width: 8,
@@ -980,12 +1013,12 @@
       },
       "scrollbar/button-begin": "scrollbar/button",
       "scrollbar/button-end": "scrollbar/button",
+
       /*
       ---------------------------------------------------------------------------
         SCROLLAREA
       ---------------------------------------------------------------------------
       */
-
       "scrollarea/corner": {
         style: function style(states) {
           return {
@@ -997,12 +1030,12 @@
       "scrollarea/pane": "widget",
       "scrollarea/scrollbar-x": "scrollbar",
       "scrollarea/scrollbar-y": "scrollbar",
+
       /*
       ---------------------------------------------------------------------------
         RADIO BUTTON
       ---------------------------------------------------------------------------
       */
-
       radiobutton: {
         style: function style(states) {
           return {
@@ -1021,6 +1054,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         FORM
@@ -1034,6 +1068,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         CHECK BOX
@@ -1057,12 +1092,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SPINNER
       ---------------------------------------------------------------------------
       */
-
       spinner: {
         style: function style(states) {
           return {
@@ -1097,12 +1132,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SELECTBOX
       ---------------------------------------------------------------------------
       */
-
       selectbox: "textfield",
       "selectbox/atom": "atom",
       "selectbox/popup": "popup",
@@ -1126,6 +1161,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         CHECKED SELECT BOX
@@ -1153,20 +1189,22 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         COMBO BOX
       ---------------------------------------------------------------------------
       */
-
       combobox: {},
       "combobox/button": {
         alias: "button-frame",
         include: "button-frame",
         style: function style(states) {
           var decorator = "material-textfield";
+
           if (states.focused) {
             decorator += "-focused";
+
             if (states.invalid) {
               decorator += "-invalid";
             }
@@ -1175,6 +1213,7 @@
           } else if (states.disabled) {
             decorator += "-disabled";
           }
+
           return {
             backgroundColor: undefined,
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -1193,12 +1232,12 @@
         }
       },
       "combobox/textfield": "textfield",
+
       /*
       ---------------------------------------------------------------------------
         DATEFIELD
       ---------------------------------------------------------------------------
       */
-
       datefield: "textfield",
       "datefield/button": {
         alias: "combobox/button",
@@ -1232,12 +1271,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         LIST
       ---------------------------------------------------------------------------
       */
-
       list: {
         alias: "scrollarea",
         include: "framebox"
@@ -1246,12 +1285,15 @@
         alias: "atom",
         style: function style(states) {
           var padding = [3, 5, 3, 5];
+
           if (states.lead) {
             padding = [2, 4, 2, 4];
           }
+
           if (states.dragover) {
             padding[2] -= 2;
           }
+
           return {
             gap: 4,
             padding: padding,
@@ -1262,16 +1304,17 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SLIDER
       ---------------------------------------------------------------------------
       */
-
       slider: {
         style: function style(states) {
           var decorator;
           var padding;
+
           if (states.disabled) {
             decorator = "border-disabled";
             padding = [1, 2];
@@ -1285,6 +1328,7 @@
             padding = [1, 2];
             decorator = "border";
           }
+
           return {
             decorator: decorator,
             padding: padding
@@ -1292,12 +1336,12 @@
         }
       },
       "slider/knob": "scrollbar/slider/knob",
+
       /*
       ---------------------------------------------------------------------------
         GROUP BOX
       ---------------------------------------------------------------------------
       */
-
       groupbox: {},
       "groupbox/legend": {
         alias: "atom",
@@ -1346,12 +1390,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TREE
       ---------------------------------------------------------------------------
       */
-
       "tree-folder/open": {
         include: "image",
         style: function style(states) {
@@ -1409,12 +1453,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
-
       window: {
         style: function style(states) {
           return {
@@ -1515,6 +1559,7 @@
         }
       },
       "window/statusbar-text": "label",
+
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
@@ -1553,6 +1598,7 @@
             show: "icon",
             cursor: states.disabled ? undefined : "pointer"
           };
+
           if (states.lastYear) {
             result.icon = qx.theme.tangible.Image.URLS["arrow-rewind"];
           } else if (states.lastMonth) {
@@ -1562,6 +1608,7 @@
           } else if (states.nextMonth) {
             result.icon = qx.theme.tangible.Image.URLS["arrow-right"];
           }
+
           return result;
         }
       },
@@ -1614,6 +1661,7 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
@@ -1637,12 +1685,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
-
       toolbar: {
         style: function style(states) {
           return {
@@ -1674,13 +1722,17 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 10];
+
           if (states.left || states.middle || states.right) {
             margin = [7, 3];
           }
+
           var decorator = "toolbar-button";
+
           if (states.hovered || states.pressed || states.checked) {
             decorator += "-hovered";
           }
+
           return {
             cursor: states.disabled ? undefined : "pointer",
             decorator: decorator,
@@ -1719,13 +1771,17 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 0, 7, 10];
+
           if (states.left || states.middle || states.right) {
             margin = [7, 0, 7, 3];
           }
+
           var decorator = "toolbar-button";
+
           if (states.hovered || states.pressed || states.focused || states.checked) {
             decorator += "-hovered";
           }
+
           decorator += "-left";
           return {
             decorator: decorator,
@@ -1739,13 +1795,17 @@
         style: function style(states) {
           // set the margin
           var margin = [7, 10, 7, 0];
+
           if (states.left || states.middle || states.right) {
             margin = [7, 3, 7, 0];
           }
+
           var decorator = "toolbar-button";
+
           if (states.hovered || states.pressed || states.focused || states.checked) {
             decorator += "-hovered";
           }
+
           decorator += "-right";
           return {
             icon: qx.theme.tangible.Image.URLS["arrow-down"],
@@ -1754,12 +1814,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TABVIEW
       ---------------------------------------------------------------------------
       */
-
       tabview: {},
       "tabview/bar": {
         alias: "slidebar",
@@ -1768,6 +1828,7 @@
           var marginRight = 0;
           var marginBottom = 0;
           var marginLeft = 0;
+
           if (states.barTop) {
             marginBottom -= 1;
           } else if (states.barBottom) {
@@ -1777,6 +1838,7 @@
           } else {
             marginRight -= 1;
           }
+
           return {
             marginBottom: marginBottom,
             marginTop: marginTop,
@@ -1808,6 +1870,7 @@
               decorator: null
             };
           }
+
           return {
             marginLeft: 2,
             marginRight: 4,
@@ -1838,6 +1901,7 @@
               decorator: null
             };
           }
+
           return {
             marginLeft: 2,
             marginRight: 4,
@@ -1852,6 +1916,7 @@
           var marginLeft = 0;
           var marginRight = 0;
           var decorator;
+
           if (states.barTop) {
             marginTop = -1;
             decorator = "main-top";
@@ -1865,6 +1930,7 @@
             marginRight = -1;
             decorator = "main-right";
           }
+
           return {
             marginLeft: marginLeft,
             marginRight: marginRight,
@@ -1880,17 +1946,17 @@
       "tabview-page/button": {
         style: function style(states) {
           var decorator;
-          var padding;
-          // default padding
+          var padding; // default padding
+
           if (states.barTop || states.barBottom) {
             padding = [8, 16, 8, 13];
           } else if (states.barRight) {
             padding = [8, 8, 8, 12];
           } else if (states.barLeft) {
             padding = [8, 8, 8, 8];
-          }
+          } // decorator
 
-          // decorator
+
           if (states.checked) {
             if (states.barTop) {
               decorator = "tabview-page-button-top";
@@ -1906,6 +1972,7 @@
               padding[1] -= 2;
             }
           }
+
           return {
             zIndex: states.checked ? 10 : 5,
             decorator: decorator,
@@ -1934,12 +2001,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         COLOR POPUP
       ---------------------------------------------------------------------------
       */
-
       colorpopup: {
         alias: "popup",
         include: "popup",
@@ -2003,12 +2070,12 @@
           };
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         COLOR SELECTOR
       ---------------------------------------------------------------------------
       */
-
       colorselector: "widget",
       "colorselector/control-bar": "widget",
       "colorselector/visual-pane": "groupbox",
@@ -2091,12 +2158,12 @@
       "colorselector/hue-saturation-handle": "widget",
       "colorselector/brightness-pane": "widget",
       "colorselector/brightness-handle": "widget",
+
       /*
       ---------------------------------------------------------------------------
         APPLICATION
       ---------------------------------------------------------------------------
       */
-
       "app-header": {
         style: function style(states) {
           return {
@@ -2122,12 +2189,12 @@
           };
         }
       },
+
       /*
         --------------------
         VIRTUAL SELECTBOX
         --------------------
       */
-
       "list-search-highlight": {
         style: function style(states) {
           return {
@@ -2142,4 +2209,4 @@
   qx.theme.tangible.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1677362749817
+//# sourceMappingURL=Appearance.js.map?dt=1685978132223

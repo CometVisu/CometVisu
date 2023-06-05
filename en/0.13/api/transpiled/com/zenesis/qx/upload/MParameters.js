@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -38,6 +39,7 @@
   qx.Mixin.define("com.zenesis.qx.upload.MParameters", {
     members: {
       __P_563_0: null,
+
       /**
        * Sets a parameter value to be sent with the file
        *
@@ -52,6 +54,7 @@
         if (!this.__P_563_0) this.__P_563_0 = {};
         this.__P_563_0[name] = value;
       },
+
       /**
        * Returns a parameter value to be sent with the file
        *
@@ -61,6 +64,7 @@
       getParam: function getParam(name) {
         return this.__P_563_0 && this.__P_563_0[name];
       },
+
       /**
        * Returns a list of parameter names
        *
@@ -76,4 +80,4 @@
   com.zenesis.qx.upload.MParameters.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MParameters.js.map?dt=1677362780203
+//# sourceMappingURL=MParameters.js.map?dt=1685978162476

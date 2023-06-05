@@ -70,6 +70,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -99,6 +100,7 @@
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
+
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         tap: 1,
@@ -113,8 +115,10 @@
         roll: 1
       },
       GESTURE_EVENTS: ["gesturebegin", "gesturefinish", "gesturemove", "gesturecancel"],
+
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE + qx.event.IEventHandler.TARGET_DOCUMENT,
+
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true,
       EVENT_CLASSES: {
@@ -130,6 +134,7 @@
         roll: qx.event.type.Roll
       }
     },
+
     /**
      * Create a new instance
      *
@@ -149,6 +154,7 @@
       __P_213_3: null,
       __P_213_4: null,
       __P_213_5: null,
+
       /**
        * Getter for the internal __window object
        * @return {Window} DOM window instance
@@ -159,12 +165,10 @@
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
       // interface implementation
-      registerEvent: function registerEvent(target, type, capture) {
-        // Nothing needs to be done here
+      registerEvent: function registerEvent(target, type, capture) {// Nothing needs to be done here
       },
       // interface implementation
-      unregisterEvent: function unregisterEvent(target, type, capture) {
-        // Nothing needs to be done here
+      unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
       },
       // overridden
       _initObserver: function _initObserver() {
@@ -172,18 +176,20 @@
         qx.event.handler.Gesture.GESTURE_EVENTS.forEach(function (type) {
           qx.event.Registration.addListener(this.__P_213_2, type, this.__P_213_3, this);
         }.bind(this));
+
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
           this.__P_213_4 = qx.lang.Function.listener(this._onDblClick, this);
           qx.bom.Event.addNativeListener(this.__P_213_2, "dblclick", this.__P_213_4);
-        }
+        } // list to wheel events
 
-        // list to wheel events
+
         var data = qx.bom.client.Event.getMouseWheel(this.__P_213_1);
-        this.__P_213_5 = qx.lang.Function.listener(this._fireRoll, this);
-        // replaced the useCapture (4th parameter) from this to true
+        this.__P_213_5 = qx.lang.Function.listener(this._fireRoll, this); // replaced the useCapture (4th parameter) from this to true
         // see https://github.com/qooxdoo/qooxdoo/pull/9292
+
         qx.bom.Event.addNativeListener(data.target, data.type, this.__P_213_5, true, false);
       },
+
       /**
        * Checks if a gesture was made and fires the gesture event.
        *
@@ -199,9 +205,11 @@
         qx.event.handler.Gesture.GESTURE_EVENTS.forEach(function (type) {
           qx.event.Registration.removeListener(this.__P_213_2, type, this.__P_213_3);
         }.bind(this));
+
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
           qx.bom.Event.removeNativeListener(this.__P_213_2, "dblclick", this.__P_213_4);
         }
+
         var data = qx.bom.client.Event.getMouseWheel(this.__P_213_1);
         qx.bom.Event.removeNativeListener(data.target, data.type, this.__P_213_5);
       },
@@ -211,6 +219,7 @@
            gesture handler */
         return false;
       },
+
       /**
        * Fire a touch event with the given parameters
        *
@@ -222,25 +231,32 @@
         if (!target) {
           target = qx.bom.Event.getTarget(domEvent);
         }
+
         if (!type) {
           type = domEvent.type;
         }
+
         var eventTypeClass = qx.event.handler.Gesture.EVENT_CLASSES[type] || qx.event.type.Pointer;
+
         if (target && target.nodeType) {
           qx.event.Registration.fireEvent(target, type, eventTypeClass, [domEvent, target, null, true, true]);
-        }
+        } // Fire user action event
 
-        // Fire user action event
+
         qx.event.Registration.fireEvent(this.__P_213_1, "useraction", qx.event.type.Data, [type]);
       },
+
       /**
        * Dispose this object
        */
       dispose: function dispose() {
         this._stopObserver();
+
         this.__P_213_6("dispose");
+
         this.__P_213_0 = this.__P_213_1 = this.__P_213_2 = this.__P_213_4 = null;
       },
+
       /**
        * Call overridden method.
        *
@@ -261,4 +277,4 @@
   qx.event.handler.Gesture.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gesture.js.map?dt=1677362738709
+//# sourceMappingURL=Gesture.js.map?dt=1685978121644

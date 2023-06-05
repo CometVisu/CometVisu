@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
+        "line": 24,
         "column": 0,
-        "index": 540
+        "index": 543
       },
       "end": {
-        "line": 93,
+        "line": 94,
         "column": 3,
-        "index": 2990
+        "index": 2993
       }
     },
     "jsdoc": {

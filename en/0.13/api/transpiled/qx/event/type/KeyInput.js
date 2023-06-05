@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,12 +40,12 @@
    */
   qx.Class.define("qx.event.type.KeyInput", {
     extend: qx.event.type.Dom,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Initialize the fields of the event.
@@ -65,6 +66,7 @@
         clone._charCode = this._charCode;
         return clone;
       },
+
       /**
        * Unicode number of the pressed character.
        *
@@ -73,6 +75,7 @@
       getCharCode: function getCharCode() {
         return this._charCode;
       },
+
       /**
        * Returns the pressed character
        *
@@ -86,4 +89,4 @@
   qx.event.type.KeyInput.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeyInput.js.map?dt=1677362740050
+//# sourceMappingURL=KeyInput.js.map?dt=1685978123012

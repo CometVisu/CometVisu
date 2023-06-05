@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,6 +19,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,6 +37,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Martin Wittemann (martinwittemann)
   
   ************************************************************************ */
+
   /**
    * Contains detection for QuickTime, Windows Media, DivX, Silverlight and gears.
    * If no version could be detected the version is set to an empty string as
@@ -56,6 +59,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getGears: function getGears() {
         return !!(window.google && window.google.gears);
       },
+
       /**
        * Checks for ActiveX availability.
        *
@@ -68,6 +72,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (typeof window.ActiveXObject === "function") {
           return true;
         }
+
         try {
           // in IE11 Preview, ActiveXObject is undefined but instances can
           // still be created
@@ -76,6 +81,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return false;
         }
       },
+
       /**
        * Checks for Skypes 'Click to call' availability.
        *
@@ -90,22 +96,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             return true;
           } catch (e) {}
         }
+
         var mimeTypes = navigator.mimeTypes;
+
         if (mimeTypes) {
           // FF support
           if ("application/x-skype" in mimeTypes) {
             return true;
-          }
-          // webkit support
+          } // webkit support
+
+
           for (var i = 0; i < mimeTypes.length; i++) {
             var desc = mimeTypes[i];
+
             if (desc.type.indexOf("skype.click2call") != -1) {
               return true;
             }
           }
         }
+
         return false;
       },
+
       /**
        * Database of supported features.
        * Filled with additional data at initialization
@@ -113,34 +125,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_127_0: {
         quicktime: {
           plugin: ["QuickTime"],
-          control: "QuickTimeCheckObject.QuickTimeCheck.1"
-          // call returns boolean: instance.IsQuickTimeAvailable(0)
-        },
+          control: "QuickTimeCheckObject.QuickTimeCheck.1" // call returns boolean: instance.IsQuickTimeAvailable(0)
 
+        },
         wmv: {
           plugin: ["Windows Media"],
-          control: "WMPlayer.OCX.7"
-          // version string in: instance.versionInfo
-        },
+          control: "WMPlayer.OCX.7" // version string in: instance.versionInfo
 
+        },
         divx: {
           plugin: ["DivX Web Player"],
           control: "npdivx.DivXBrowserPlugin.1"
         },
         silverlight: {
           plugin: ["Silverlight"],
-          control: "AgControl.AgControl"
-          // version string in: instance.version (Silverlight 1.0)
+          control: "AgControl.AgControl" // version string in: instance.version (Silverlight 1.0)
           // version string in: instance.settings.version (Silverlight 1.1)
           // version check possible using instance.IsVersionSupported
-        },
 
+        },
         pdf: {
           plugin: ["Chrome PDF Viewer", "Adobe Acrobat"],
-          control: "AcroPDF.PDF"
-          // this is detecting Acrobat PDF version > 7 and Chrome PDF Viewer
+          control: "AcroPDF.PDF" // this is detecting Acrobat PDF version > 7 and Chrome PDF Viewer
+
         }
       },
+
       /**
        * Fetches the version of the quicktime plugin.
        * @return {String} The version of the plugin, if available,
@@ -151,6 +161,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["quicktime"];
         return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
       },
+
       /**
        * Fetches the version of the windows media plugin.
        * @return {String} The version of the plugin, if available,
@@ -161,6 +172,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["wmv"];
         return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin, true);
       },
+
       /**
        * Fetches the version of the divx plugin.
        * @return {String} The version of the plugin, if available,
@@ -171,6 +183,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["divx"];
         return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
       },
+
       /**
        * Fetches the version of the silverlight plugin.
        * @return {String} The version of the plugin, if available,
@@ -181,6 +194,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["silverlight"];
         return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
       },
+
       /**
        * Fetches the version of the pdf plugin.
        *
@@ -205,6 +219,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["pdf"];
         return qx.bom.client.Plugin.__P_127_1(entry.control, entry.plugin);
       },
+
       /**
        * Checks if the quicktime plugin is available.
        * @return {Boolean} <code>true</code> if the plugin is available
@@ -214,6 +229,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["quicktime"];
         return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
       },
+
       /**
        * Checks if the windows media plugin is available.
        * @return {Boolean} <code>true</code> if the plugin is available
@@ -223,6 +239,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["wmv"];
         return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin, true);
       },
+
       /**
        * Checks if the divx plugin is available.
        * @return {Boolean} <code>true</code> if the plugin is available
@@ -232,6 +249,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["divx"];
         return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
       },
+
       /**
        * Checks if the silverlight plugin is available.
        * @return {Boolean} <code>true</code> if the plugin is available
@@ -241,6 +259,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["silverlight"];
         return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
       },
+
       /**
        * Checks if the pdf plugin is available.
        *
@@ -264,6 +283,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var entry = qx.bom.client.Plugin.__P_127_0["pdf"];
         return qx.bom.client.Plugin.__P_127_2(entry.control, entry.plugin);
       },
+
       /**
        * Internal helper for getting the version of a given plugin.
        *
@@ -276,52 +296,60 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {String} The version of the plugin as string.
        */
       __P_127_1: function __P_127_1(activeXName, pluginNames, forceActiveX) {
-        var available = qx.bom.client.Plugin.__P_127_2(activeXName, pluginNames, forceActiveX);
+        var available = qx.bom.client.Plugin.__P_127_2(activeXName, pluginNames, forceActiveX); // don't check if the plugin is not available
 
-        // don't check if the plugin is not available
+
         if (!available) {
           return "";
-        }
+        } // IE checks
 
-        // IE checks
+
         if (qx.bom.client.Engine.getName() == "mshtml" && (qx.bom.client.Browser.getDocumentMode() < 11 || forceActiveX)) {
           try {
             var obj = new window.ActiveXObject(activeXName);
-            var version;
+            var version; // pdf version detection
 
-            // pdf version detection
             if (obj.GetVersions && obj.GetVersions()) {
               version = obj.GetVersions().split(",");
+
               if (version.length > 1) {
                 version = version[0].split("=");
+
                 if (version.length === 2) {
                   return version[1];
                 }
               }
             }
+
             version = obj.versionInfo;
+
             if (version != undefined) {
               return version;
             }
+
             version = obj.version;
+
             if (version != undefined) {
               return version;
             }
+
             version = obj.settings.version;
+
             if (version != undefined) {
               return version;
             }
           } catch (ex) {
             return "";
           }
-          return "";
 
-          // all other browsers
+          return ""; // all other browsers
         } else {
           var plugins = navigator.plugins;
           var verreg = /([0-9]\.[0-9])/g;
+
           for (var i = 0; i < plugins.length; i++) {
             var plugin = plugins[i];
+
             for (var j = 0; j < pluginNames.length; j++) {
               if (plugin.name.indexOf(pluginNames[j]) !== -1) {
                 if (verreg.test(plugin.name) || verreg.test(plugin.description)) {
@@ -330,9 +358,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             }
           }
+
           return "";
         }
       },
+
       /**
        * Internal helper for getting the availability of a given plugin.
        *
@@ -350,27 +380,33 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (!this.getActiveX()) {
             return false;
           }
+
           try {
             new window.ActiveXObject(activeXName);
           } catch (ex) {
             return false;
           }
-          return true;
-          // all other
+
+          return true; // all other
         } else {
           var plugins = navigator.plugins;
+
           if (!plugins) {
             return false;
           }
+
           var name;
+
           for (var i = 0; i < plugins.length; i++) {
             name = plugins[i].name;
+
             for (var j = 0; j < pluginNames.length; j++) {
               if (name.indexOf(pluginNames[j]) !== -1) {
                 return true;
               }
             }
           }
+
           return false;
         }
       }
@@ -394,4 +430,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1677362727480
+//# sourceMappingURL=Plugin.js.map?dt=1685978109762

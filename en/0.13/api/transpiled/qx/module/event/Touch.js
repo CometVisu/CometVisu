@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
        * List of event types to be normalized
        */
       TYPES: ["tap", "longtap", "swipe", "dbltap"],
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -61,6 +63,7 @@
         if (!event) {
           return event;
         }
+
         event._type = type;
         return event;
       }
@@ -72,4 +75,4 @@
   qx.module.event.Touch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Touch.js.map?dt=1677362747243
+//# sourceMappingURL=Touch.js.map?dt=1685978129976

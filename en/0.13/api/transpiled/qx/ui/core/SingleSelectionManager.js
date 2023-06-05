@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,11 +41,13 @@
    */
   qx.Class.define("qx.ui.core.SingleSelectionManager", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Construct the single selection manager.
      *
@@ -55,22 +58,22 @@
       qx.core.Object.constructor.call(this);
       this.__P_320_0 = selectionProvider;
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fires after the selection was modified */
       changeSelected: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * If the value is <code>true</code> the manager allows an empty selection,
@@ -83,22 +86,25 @@
         apply: "__P_320_1"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /** @type {qx.ui.core.Widget} The selected widget. */
       __P_320_2: null,
+
       /** @type {qx.ui.core.ISingleSelectionProvider} The provider for selection management */
       __P_320_0: null,
+
       /*
       ---------------------------------------------------------------------------
          PUBLIC API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Returns the current selected element.
        *
@@ -108,6 +114,7 @@
       getSelected: function getSelected() {
         return this.__P_320_2;
       },
+
       /**
        * Selects the passed element.
        *
@@ -118,8 +125,10 @@
         if (!this.__P_320_3(item)) {
           throw new Error("Could not select " + item + ", because it is not a child element!");
         }
+
         this.__P_320_4(item);
       },
+
       /**
        * Reset the current selection. If {@link #allowEmptySelection} is set to
        * <code>true</code> the first element will be selected.
@@ -127,6 +136,7 @@
       resetSelected: function resetSelected() {
         this.__P_320_4(null);
       },
+
       /**
        * Return <code>true</code> if the passed element is selected.
        *
@@ -139,8 +149,10 @@
         if (!this.__P_320_3(item)) {
           throw new Error("Could not check if " + item + " is selected," + " because it is not a child element!");
         }
+
         return this.__P_320_2 === item;
       },
+
       /**
        * Returns <code>true</code> if selection is empty.
        *
@@ -150,6 +162,7 @@
       isSelectionEmpty: function isSelectionEmpty() {
         return this.__P_320_2 == null;
       },
+
       /**
        * Returns all elements which are selectable.
        *
@@ -159,14 +172,16 @@
        */
       getSelectables: function getSelectables(all) {
         var items = this.__P_320_0.getItems();
+
         var result = [];
+
         for (var i = 0; i < items.length; i++) {
           if (this.__P_320_0.isItemSelectable(items[i])) {
             result.push(items[i]);
           }
-        }
+        } // in case of an user selectable list, remove the enabled items
 
-        // in case of an user selectable list, remove the enabled items
+
         if (!all) {
           for (var i = result.length - 1; i >= 0; i--) {
             if (!result[i].getEnabled()) {
@@ -174,8 +189,10 @@
             }
           }
         }
+
         return result;
       },
+
       /*
       ---------------------------------------------------------------------------
          APPLY METHODS
@@ -187,11 +204,13 @@
           this.__P_320_4(this.__P_320_2);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
          HELPERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Set selected element.
        *
@@ -203,18 +222,23 @@
       __P_320_4: function __P_320_4(item) {
         var oldSelected = this.__P_320_2;
         var newSelected = item;
+
         if (newSelected != null && oldSelected === newSelected) {
           return;
         }
+
         if (!this.isAllowEmptySelection() && newSelected == null) {
           var firstElement = this.getSelectables(true)[0];
+
           if (firstElement) {
             newSelected = firstElement;
           }
         }
+
         this.__P_320_2 = newSelected;
         this.fireDataEvent("changeSelected", newSelected, oldSelected);
       },
+
       /**
        * Checks if passed element is a child element.
        *
@@ -224,14 +248,17 @@
        */
       __P_320_3: function __P_320_3(item) {
         var items = this.__P_320_0.getItems();
+
         for (var i = 0; i < items.length; i++) {
           if (items[i] === item) {
             return true;
           }
         }
+
         return false;
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -243,10 +270,11 @@
       } else {
         this.__P_320_0 = null;
       }
+
       this._disposeObjects("__P_320_2");
     }
   });
   qx.ui.core.SingleSelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SingleSelectionManager.js.map?dt=1677362752800
+//# sourceMappingURL=SingleSelectionManager.js.map?dt=1685978135058

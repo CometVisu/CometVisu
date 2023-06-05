@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Group.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Group', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -52,6 +54,7 @@
        */
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+
         if (data.target) {
           data.classes += ' clickable';
           data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
@@ -60,6 +63,7 @@
         if (data.noWidget === true) {
           data.classes = data.classes.replace('widget ', '');
         }
+
         cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
         return data;
       },
@@ -88,4 +92,4 @@
   cv.parser.pure.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1677362707972
+//# sourceMappingURL=Group.js.map?dt=1685978090921

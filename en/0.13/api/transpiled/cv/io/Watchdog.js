@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Watchdog.js
    *
    * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -37,6 +38,7 @@
    */
   qx.Class.define('cv.io.Watchdog', {
     extend: qx.core.Object,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -45,6 +47,7 @@
     construct: function construct() {
       this.last = Date.now();
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -57,6 +60,7 @@
         init: null
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -68,9 +72,11 @@
       __P_574_0: null,
       aliveCheckFunction: function aliveCheckFunction() {
         var now = new Date();
+
         if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning()) {
           return;
         }
+
         this.getClient().getCurrentTransport().restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);
         this.last = now;
       },
@@ -78,6 +84,7 @@
         if (this.__P_574_0) {
           this.stop();
         }
+
         this.__P_574_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       stop: function stop() {
@@ -91,6 +98,7 @@
       },
       ping: function ping(fullReload) {
         this.last = new Date();
+
         if (fullReload) {
           this.hardLast = this.last;
         }
@@ -100,4 +108,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1677362780835
+//# sourceMappingURL=Watchdog.js.map?dt=1685978163249

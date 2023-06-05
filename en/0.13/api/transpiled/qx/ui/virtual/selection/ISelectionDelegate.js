@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,6 +52,7 @@
        * @return {Boolean} Whether the given item is selectable
        */
       isItemSelectable: function isItemSelectable(item) {},
+
       /**
        * Update the style (appearance) of the given item.
        *
@@ -65,4 +67,4 @@
   qx.ui.virtual.selection.ISelectionDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISelectionDelegate.js.map?dt=1677362770888
+//# sourceMappingURL=ISelectionDelegate.js.map?dt=1685978152263

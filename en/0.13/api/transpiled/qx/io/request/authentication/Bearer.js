@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,6 +40,7 @@
   qx.Class.define("qx.io.request.authentication.Bearer", {
     extend: qx.core.Object,
     implement: qx.io.request.authentication.IAuthentication,
+
     /**
      * @param token {string} The token to use.
      */
@@ -47,6 +49,7 @@
     },
     members: {
       __P_261_0: null,
+
       /**
        * Headers to include for bearer (token) authentication.
        * @return {Map} Map containing the authentication credentials
@@ -62,4 +65,4 @@
   qx.io.request.authentication.Bearer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bearer.js.map?dt=1677362743323
+//# sourceMappingURL=Bearer.js.map?dt=1685978126345

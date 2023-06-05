@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,12 +57,12 @@
     extend: qx.ui.groupbox.GroupBox,
     implement: [qx.ui.form.IRadioItem, qx.ui.form.IExecutable, qx.ui.form.IBooleanForm, qx.ui.form.IModel],
     include: [qx.ui.form.MModelProperty],
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
@@ -69,24 +70,25 @@
         init: "radio-groupbox"
       }
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /** Fired when the included radiobutton changed its value */
       changeValue: "qx.event.type.Data",
+
       /** Fired if the {@link #execute} method is invoked.*/
       execute: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -96,6 +98,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "legend":
             control = new qx.ui.form.RadioButton();
@@ -104,23 +107,29 @@
             control.addListener("changeValue", this._onRadioChangeValue, this);
             control.addListener("resize", this._repositionFrame, this);
             control.addListener("execute", this._onExecute, this);
+
             this._add(control, {
               left: 0,
               right: 0
             });
+
         }
+
         return control || qx.ui.groupbox.RadioGroupBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
         qx.ui.groupbox.RadioGroupBox.superclass.prototype._applyEnabled.call(this, value, old);
+
         this.getChildrenContainer().setEnabled(value && this.getValue());
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Event listener for execute event of checkbox.
        *
@@ -129,20 +138,20 @@
       _onExecute: function _onExecute(e) {
         this.fireEvent("execute");
       },
+
       /**
        * Event listener for changeValue event of radio button
        *
        * @param e {qx.event.type.Data} Data event which holds the current status
        */
       _onRadioChangeValue: function _onRadioChangeValue(e) {
-        var checked = e.getData() ? true : false;
+        var checked = e.getData() ? true : false; // Disable content
 
-        // Disable content
-        this.getChildrenContainer().setEnabled(checked);
+        this.getChildrenContainer().setEnabled(checked); // Fire event to the outside
 
-        // Fire event to the outside
         this.fireDataEvent("changeValue", checked, e.getOldData());
       },
+
       /*
       ---------------------------------------------------------------------------
         REDIRECTIONS TO LEGEND (FOR RADIO GROUP SUPPORT)
@@ -160,6 +169,7 @@
       getCommand: function getCommand() {
         return this.getChildControl("legend").getCommand();
       },
+
       /**
        * Returns the radio group
        *
@@ -168,6 +178,7 @@
       getGroup: function getGroup() {
         return this.getChildControl("legend").getGroup();
       },
+
       /**
        * Sets the radio group to use
        *
@@ -177,8 +188,10 @@
         if (value != null) {
           value.add(this);
         }
+
         return;
       },
+
       /**
        * The value of the groupbox
        *
@@ -187,6 +200,7 @@
       getValue: function getValue() {
         return this.getChildControl("legend").getValue();
       },
+
       /**
        * Configures the value of the groupbox.
        *
@@ -195,12 +209,14 @@
       setValue: function setValue(value) {
         this.getChildControl("legend").setValue(value);
       },
+
       /**
        * Resets the value.
        */
       resetValue: function resetValue() {
         this.getChildControl("legend").resetValue();
       },
+
       /**
        * Returns the configured legend. Only used for RadioManager compatibility.
        *
@@ -214,4 +230,4 @@
   qx.ui.groupbox.RadioGroupBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroupBox.js.map?dt=1677362759120
+//# sourceMappingURL=RadioGroupBox.js.map?dt=1685978140069

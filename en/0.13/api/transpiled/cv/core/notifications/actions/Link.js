@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Link.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,6 +51,7 @@
   qx.Class.define('cv.core.notifications.actions.Link', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -59,6 +61,7 @@
       cv.core.notifications.actions.AbstractActionHandler.constructor.call(this);
       this.set(props);
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -87,6 +90,7 @@
         init: false
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
@@ -97,14 +101,17 @@
         if (typeof value === 'function') {
           return value;
         }
+
         switch (value) {
           case 'reload':
           case 'restart':
             return cv.util.Location.reload;
         }
+
         if (value) {
           this.error('Unknown action: ' + value);
         }
+
         return null;
       },
       handleAction: function handleAction(ev) {
@@ -112,9 +119,11 @@
           ev.stopPropagation();
           ev.preventDefault();
         }
+
         if (this.getAction()) {
           this.getAction()(ev);
         }
+
         if (this.getUrl()) {
           if (this.isHidden()) {
             // open link in background (fire and forget)
@@ -124,6 +133,7 @@
             cv.util.Location.open(this.getUrl(), '_blank');
           }
         }
+
         if (this.isDeleteMessageAfterExecution) {
           this.fireEvent('close');
         }
@@ -146,4 +156,4 @@
   cv.core.notifications.actions.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1677362706518
+//# sourceMappingURL=Link.js.map?dt=1685978089507

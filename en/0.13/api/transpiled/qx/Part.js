@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,6 +44,7 @@
    */
   qx.Bootstrap.define("qx.Part", {
     // !! Careful when editing this file. Do not extend the dependencies !!
+
     /**
      * @param loader {Object} The data structure from the boot script about all
      *   known parts and packages. Usually <code>qx.$$loader</code>.
@@ -50,37 +52,39 @@
     construct: function construct(loader) {
       // assert: boot part has a single package
       var bootPackageKey = loader.parts[loader.boot][0];
-      this.__P_93_0 = loader;
+      this.__P_93_0 = loader; // initialize the pseudo event listener maps
 
-      // initialize the pseudo event listener maps
       this.__P_93_1 = {};
       this.__P_93_2 = {};
-      this.__P_93_3 = {};
+      this.__P_93_3 = {}; // create the packages
 
-      // create the packages
       this.__P_93_4 = {};
+
       for (var key in loader.packages) {
         var pkg = new qx.io.part.Package(this.__P_93_5(loader.packages[key].uris), key, key == bootPackageKey);
         this.__P_93_4[key] = pkg;
-      }
+      } // create the parts
 
-      // create the parts
+
       this.__P_93_6 = {};
       var parts = loader.parts;
       var closureParts = loader.closureParts || {};
+
       for (var name in parts) {
         var pkgKeys = parts[name];
         var packages = [];
+
         for (var i = 0; i < pkgKeys.length; i++) {
           packages.push(this.__P_93_4[pkgKeys[i]]);
-        }
+        } // check for closure loading
 
-        // check for closure loading
+
         if (closureParts[name]) {
           var part = new qx.io.part.ClosurePart(name, packages, this);
         } else {
           var part = new qx.io.part.Part(name, packages, this);
         }
+
         this.__P_93_6[name] = part;
       }
     },
@@ -89,6 +93,7 @@
        * Default timeout in ms for the error handling of the closure loading.
        */
       TIMEOUT: 7500,
+
       /**
        * Get the default part loader instance
        *
@@ -98,8 +103,10 @@
         if (!this.$$instance) {
           this.$$instance = new this(qx.$$loader);
         }
+
         return this.$$instance;
       },
+
       /**
        * Loads one or more parts asynchronously. The callback is called after all
        * parts and their dependencies are fully loaded. If the parts are already
@@ -113,6 +120,7 @@
       require: function require(partNames, callback, self) {
         this.getInstance().require(partNames, callback, self);
       },
+
       /**
        * Preloads one or more closure parts but does not execute them. This means
        * the closure (the whole code of the part) is already loaded but not
@@ -126,6 +134,7 @@
       preload: function preload(partNames) {
         this.getInstance().preload(partNames);
       },
+
       /**
        * Loaded closure packages have to call this method to indicate
        * successful loading and to get their closure stored.
@@ -142,6 +151,7 @@
       __P_93_4: null,
       __P_93_6: null,
       __P_93_3: null,
+
       /**
        * This method is only for testing purposes! Don't use it!
        *
@@ -152,6 +162,7 @@
       addToPackage: function addToPackage(pkg) {
         this.__P_93_4[pkg.getId()] = pkg;
       },
+
       /**
        * Internal helper method to save the closure and notify that the load.
        *
@@ -161,27 +172,29 @@
        */
       saveClosure: function saveClosure(id, closure) {
         // search for the package
-        var pkg = this.__P_93_4[id];
+        var pkg = this.__P_93_4[id]; // error if no package could be found
 
-        // error if no package could be found
         if (!pkg) {
           throw new Error("Package not available: " + id);
-        }
+        } // save the closure in the package itself
 
-        // save the closure in the package itself
-        pkg.saveClosure(closure);
 
-        // call the listeners
+        pkg.saveClosure(closure); // call the listeners
+
         var listeners = this.__P_93_3[id];
+
         if (!listeners) {
           return;
         }
+
         for (var i = 0; i < listeners.length; i++) {
           listeners[i]("complete", id);
-        }
-        // get rid of all closure package listeners for that package
+        } // get rid of all closure package listeners for that package
+
+
         this.__P_93_3[id] = [];
       },
+
       /**
        * Internal method for testing purposes which returns the internal parts
        * store.
@@ -192,6 +205,7 @@
       getParts: function getParts() {
         return this.__P_93_6;
       },
+
       /**
        * Loads one or more parts asynchronously. The callback is called after all
        * parts and their dependencies are fully loaded. If the parts are already
@@ -207,13 +221,18 @@
        */
       require: function require(partNames, callback, self) {
         var callback = callback || function () {};
+
         var self = self || window;
+
         if (qx.Bootstrap.isString(partNames)) {
           partNames = [partNames];
         }
+
         var parts = [];
+
         for (var i = 0; i < partNames.length; i++) {
           var part = this.__P_93_6[partNames[i]];
+
           if (part === undefined) {
             var registeredPartNames = qx.Bootstrap.keys(this.getParts());
             throw new Error('Part "' + partNames[i] + '" not found in parts (' + registeredPartNames.join(", ") + ")");
@@ -221,23 +240,29 @@
             parts.push(part);
           }
         }
+
         var partsLoaded = 0;
+
         var onLoad = function onLoad() {
-          partsLoaded += 1;
-          // done?
+          partsLoaded += 1; // done?
+
           if (partsLoaded >= parts.length) {
             // gather the ready states of the parts
             var states = [];
+
             for (var i = 0; i < parts.length; i++) {
               states.push(parts[i].getReadyState());
             }
+
             callback.call(self, states);
           }
         };
+
         for (var i = 0; i < parts.length; i++) {
           parts[i].load(onLoad, this);
         }
       },
+
       /**
        * Preloader for the given part.
        *
@@ -251,16 +276,21 @@
         if (qx.Bootstrap.isString(partNames)) {
           partNames = [partNames];
         }
+
         var partsPreloaded = 0;
+
         for (var i = 0; i < partNames.length; i++) {
           this.__P_93_6[partNames[i]].preload(function () {
             partsPreloaded++;
+
             if (partsPreloaded >= partNames.length) {
               // gather the ready states of the parts
               var states = [];
+
               for (var i = 0; i < partNames.length; i++) {
                 states.push(this.__P_93_6[partNames[i]].getReadyState());
               }
+
               if (callback) {
                 callback.call(self, states);
               }
@@ -268,6 +298,7 @@
           }, this);
         }
       },
+
       /**
        * Get the URI lists of all packages
        *
@@ -276,11 +307,14 @@
       __P_93_7: function __P_93_7() {
         var packages = this.__P_93_0.packages;
         var uris = [];
+
         for (var key in packages) {
           uris.push(this.__P_93_5(packages[key].uris));
         }
+
         return uris;
       },
+
       /**
        * Decodes a list of source URIs. The function is defined in the loader
        * script.
@@ -290,13 +324,14 @@
        * @return {String[]} decompressed URIs
        */
       __P_93_5: qx.$$loader.decodeUris,
+
       /*
       ---------------------------------------------------------------------------
         PART
       ---------------------------------------------------------------------------
       */
-
       __P_93_1: null,
+
       /**
        * Register callback, which is called after the given part has been loaded
        * or fails with an error. After the call the listener is removed.
@@ -308,15 +343,19 @@
        */
       addPartListener: function addPartListener(part, callback) {
         var key = part.getName();
+
         if (!this.__P_93_1[key]) {
           this.__P_93_1[key] = [];
         }
+
         this.__P_93_1[key].push(callback);
       },
+
       /**
        * If defined this method is called after each part load.
        */
       onpart: null,
+
       /**
        * This method is called after a part has been loaded or failed to load.
        * It calls all listeners for this part.
@@ -327,23 +366,27 @@
       notifyPartResult: function notifyPartResult(part) {
         var key = part.getName();
         var listeners = this.__P_93_1[key];
+
         if (listeners) {
           for (var i = 0; i < listeners.length; i++) {
             listeners[i](part.getReadyState());
           }
+
           this.__P_93_1[key] = [];
         }
+
         if (typeof this.onpart === "function") {
           this.onpart(part);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         PACKAGE
       ---------------------------------------------------------------------------
       */
-
       __P_93_2: null,
+
       /**
        * Register callback, which is called after the given package has been loaded
        * or fails with an error. After the call the listener is removed.
@@ -355,11 +398,14 @@
        */
       addPackageListener: function addPackageListener(pkg, callback) {
         var key = pkg.getId();
+
         if (!this.__P_93_2[key]) {
           this.__P_93_2[key] = [];
         }
+
         this.__P_93_2[key].push(callback);
       },
+
       /**
        * This method is called after a packages has been loaded or failed to load.
        * It calls all listeners for this package.
@@ -370,12 +416,15 @@
       notifyPackageResult: function notifyPackageResult(pkg) {
         var key = pkg.getId();
         var listeners = this.__P_93_2[key];
+
         if (!listeners) {
           return;
         }
+
         for (var i = 0; i < listeners.length; i++) {
           listeners[i](pkg.getReadyState());
         }
+
         this.__P_93_2[key] = [];
       }
     }
@@ -383,4 +432,4 @@
   qx.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1677362722534
+//# sourceMappingURL=Part.js.map?dt=1685978105025

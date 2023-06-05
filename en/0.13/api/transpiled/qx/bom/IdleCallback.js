@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,12 +69,14 @@
        * that the callback will be called as soon as possible.
        */
       TIMEOUT: 0,
+
       /**
        * The default remaining time in ms the timeout fallback implementation uses. Since we
        * cannot know how much time is available, this is a hard coded time bucket available
        * for actions done in the callback.
        */
       REMAINING: 250,
+
       /**
        * Request for an IDLE callback. If the native <code>requestIdleCallback</code>
        * method is supported, it will be used. Otherwise, we use timeouts with a
@@ -93,6 +96,7 @@
         var cb = function cb(deadline) {
           return callback.call(context, deadline);
         };
+
         if (qx.core.Environment.get("client.idle")) {
           return window.requestIdleCallback(cb, timeout);
         } else {
@@ -103,15 +107,15 @@
               return Math.max(qx.bom.IdleCallback.REMAINING - (now - this.started), 0);
             },
             didTimeout: false
-          };
-
-          // make sure to use an indirection because setTimeout passes a
+          }; // make sure to use an indirection because setTimeout passes a
           // number as first argument as well
+
           return window.setTimeout(function () {
             cb(deadline);
           }, qx.bom.IdleCallback.TIMEOUT);
         }
       },
+
       /**
        * Cancel a requested IDLE callback.
        *
@@ -129,4 +133,4 @@
   qx.bom.IdleCallback.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IdleCallback.js.map?dt=1677362724886
+//# sourceMappingURL=IdleCallback.js.map?dt=1685978107188

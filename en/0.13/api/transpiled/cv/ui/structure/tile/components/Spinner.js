@@ -1,16 +1,25 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -27,6 +36,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Spinner.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -51,6 +61,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
    */
   qx.Class.define('cv.ui.structure.tile.components.Spinner', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
+
     /*
     ***********************************************
       PROPERTIES
@@ -66,6 +77,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         init: 'absolute'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -74,23 +86,30 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     members: {
       _init: function _init() {
         var _this = this;
+
         cv.ui.structure.tile.components.Spinner.superclass.prototype._init.call(this);
+
         var element = this._element;
+
         if (element.hasAttribute('step-width')) {
           this.setStepWidth(parseFloat(element.getAttribute('step-width')));
         }
+
         if (element.hasAttribute('mode')) {
           this.setMode(element.getAttribute('mode'));
-        }
-        // init components
+        } // init components
+
+
         var valueElement = element.querySelector(':scope > .value');
+
         if (!valueElement) {
           valueElement = document.createElement('label');
           valueElement.classList.add('value');
           valueElement.classList.add('primary');
           element.appendChild(valueElement);
-        }
-        // add increase / decrease buttons
+        } // add increase / decrease buttons
+
+
         var decrease = document.createElement('div');
         decrease.classList.add('clickable');
         decrease.classList.add('left');
@@ -114,14 +133,17 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       onDecrease: function onDecrease() {
         var value = this.getMode() === 'absolute' ? this.getValue() - this.getStepWidth() : this.getStepWidth() * -1;
+
         this.__P_83_0(value, 'decrease');
       },
       onIncrease: function onIncrease() {
         var value = this.getMode() === 'absolute' ? this.getValue() + this.getStepWidth() : this.getStepWidth();
+
         this.__P_83_0(value, 'increase');
       },
       _updateValue: function _updateValue(mappedValue) {
         var target = this._element.querySelector('.value');
+
         if (target) {
           target.innerHTML = mappedValue;
         }
@@ -133,6 +155,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             source: this
           }
         });
+
         this._writeAddresses.filter(function (addr) {
           return !addr.hasAttribute('on') || addr.getAttribute('on') === on;
         }).forEach(function (address) {
@@ -145,11 +168,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         "use strict";
 
         _inherits(_class, _QxConnector);
+
         var _super = _createSuper(_class);
+
         function _class() {
           _classCallCheck(this, _class);
+
           return _super.call(this, QxClass);
         }
+
         return _createClass(_class);
       }(QxConnector));
     }
@@ -157,4 +184,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1677362720599
+//# sourceMappingURL=Spinner.js.map?dt=1685978103467

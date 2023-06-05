@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +58,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Returns the instantiated qooxdoo application.
@@ -65,12 +65,14 @@
        * @return {qx.core.Object} The application instance.
        */
       getApplication: qx.core.BaseInit.getApplication,
+
       /**
        * Runs when the application is loaded. Automatically creates an instance
        * of the class defined by the setting <code>qx.application</code>.
        *
        */
       ready: qx.core.BaseInit.ready,
+
       /**
        * Runs before the document is unloaded. Calls the application's close
        * method to check if the unload process should be stopped.
@@ -79,10 +81,12 @@
        */
       __P_162_0: function __P_162_0(e) {
         var app = this.getApplication();
+
         if (app) {
           e.setReturnValue(app.close());
         }
       },
+
       /**
        * Runs when the document is unloaded. Automatically terminates a previously
        * created application instance.
@@ -90,11 +94,13 @@
        */
       __P_162_1: function __P_162_1() {
         var app = this.getApplication();
+
         if (app) {
           app.terminate();
         }
       }
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -109,4 +115,4 @@
   qx.core.Init.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Init.js.map?dt=1677362730216
+//# sourceMappingURL=Init.js.map?dt=1685978112743

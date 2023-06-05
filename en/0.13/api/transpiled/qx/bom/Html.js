@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,7 +72,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Helper method for XHTML replacement.
@@ -84,6 +84,7 @@
       __P_104_0: function __P_104_0(all, front, tag) {
         return tag.match(/^(abbr|br|col|img|input|link|meta|param|hr|area|embed)$/i) ? all : front + "></" + tag + ">";
       },
+
       /** @type {Map} Contains wrap fragments for specific HTML matches */
       __P_104_1: {
         opt: [1, "<select multiple='multiple'>", "</select>"],
@@ -98,6 +99,7 @@
           "default": null
         })
       },
+
       /**
        * Fixes "XHTML"-style tags in all browsers.
        * Replaces tags which are not allowed to be closed directly such as
@@ -110,6 +112,7 @@
       fixEmptyTags: function fixEmptyTags(html) {
         return html.replace(/(<(\w+)[^>]*?)\/>/g, this.__P_104_0);
       },
+
       /**
        * Translates a HTML string into an array of elements.
        *
@@ -119,14 +122,13 @@
        */
       __P_104_2: function __P_104_2(html, context) {
         var div = context.createElement("div");
-        html = qx.bom.Html.fixEmptyTags(html);
+        html = qx.bom.Html.fixEmptyTags(html); // Trim whitespace, otherwise indexOf won't work as expected
 
-        // Trim whitespace, otherwise indexOf won't work as expected
-        var tags = html.replace(/^\s+/, "").substring(0, 5).toLowerCase();
+        var tags = html.replace(/^\s+/, "").substring(0, 5).toLowerCase(); // Auto-wrap content into required DOM structure
 
-        // Auto-wrap content into required DOM structure
         var wrap,
-          map = this.__P_104_1;
+            map = this.__P_104_1;
+
         if (!tags.indexOf("<opt")) {
           wrap = map.opt;
         } else if (!tags.indexOf("<leg")) {
@@ -141,43 +143,45 @@
           wrap = map.col;
         } else {
           wrap = map.def;
-        }
+        } // Omit string concat when no wrapping is needed
 
-        // Omit string concat when no wrapping is needed
+
         if (wrap) {
           // Go to html and back, then peel off extra wrappers
-          div.innerHTML = wrap[1] + html + wrap[2];
+          div.innerHTML = wrap[1] + html + wrap[2]; // Move to the right depth
 
-          // Move to the right depth
           var depth = wrap[0];
+
           while (depth--) {
             div = div.lastChild;
           }
         } else {
           div.innerHTML = html;
-        }
+        } // Fix IE specific bugs
 
-        // Fix IE specific bugs
+
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           // Remove IE's autoinserted <tbody> from table fragments
           // String was a <table>, *may* have spurious <tbody>
-          var hasBody = /<tbody/i.test(html);
+          var hasBody = /<tbody/i.test(html); // String was a bare <thead> or <tfoot>
 
-          // String was a bare <thead> or <tfoot>
           var tbody = !tags.indexOf("<table") && !hasBody ? div.firstChild && div.firstChild.childNodes : wrap[1] == "<table>" && !hasBody ? div.childNodes : [];
+
           for (var j = tbody.length - 1; j >= 0; --j) {
             if (tbody[j].tagName.toLowerCase() === "tbody" && !tbody[j].childNodes.length) {
               tbody[j].parentNode.removeChild(tbody[j]);
             }
-          }
+          } // IE completely kills leading whitespace when innerHTML is used
 
-          // IE completely kills leading whitespace when innerHTML is used
+
           if (/^\s/.test(html)) {
             div.insertBefore(context.createTextNode(html.match(/^\s*/)[0]), div.firstChild);
           }
         }
+
         return qx.lang.Array.fromCollection(div.childNodes);
       },
+
       /**
        * Cleans-up the given HTML and append it to a fragment
        *
@@ -198,35 +202,35 @@
        * @return {Element[]} Array of elements (when a fragment is given it only contains script elements)
        */
       clean: function clean(objs, context, fragment) {
-        context = context || document;
+        context = context || document; // !context.createElement fails in IE with an error but returns typeof 'object'
 
-        // !context.createElement fails in IE with an error but returns typeof 'object'
         if (typeof context.createElement === "undefined") {
           context = context.ownerDocument || context[0] && context[0].ownerDocument || document;
-        }
-
-        // Fast-Path:
+        } // Fast-Path:
         // If a single string is passed in and it's a single tag
         // just do a createElement and skip the rest
+
+
         if (!fragment && objs.length === 1 && typeof objs[0] === "string") {
           var match = /^<(\w+)\s*\/?>$/.exec(objs[0]);
+
           if (match) {
             return [context.createElement(match[1])];
           }
-        }
+        } // Iterate through items in incoming array
 
-        // Iterate through items in incoming array
+
         var obj,
-          ret = [];
-        for (var i = 0, l = objs.length; i < l; i++) {
-          obj = objs[i];
+            ret = [];
 
-          // Convert HTML string into DOM nodes
+        for (var i = 0, l = objs.length; i < l; i++) {
+          obj = objs[i]; // Convert HTML string into DOM nodes
+
           if (typeof obj === "string") {
             obj = this.__P_104_2(obj, context);
-          }
+          } // Append or merge depending on type
 
-          // Append or merge depending on type
+
           if (obj.nodeType) {
             ret.push(obj);
           } else if (obj instanceof qx.type.BaseArray || typeof qxWeb !== "undefined" && obj instanceof qxWeb) {
@@ -236,16 +240,17 @@
           } else {
             ret.push.apply(ret, obj);
           }
-        }
+        } // Append to fragment and filter out scripts... or...
 
-        // Append to fragment and filter out scripts... or...
+
         if (fragment) {
           return qx.bom.Html.extractScripts(ret, fragment);
-        }
+        } // Otherwise return the array of all elements
 
-        // Otherwise return the array of all elements
+
         return ret;
       },
+
       /**
        * Extracts script elements from an element list. Optionally
        * attaches them to a given document fragment
@@ -256,30 +261,33 @@
        */
       extractScripts: function extractScripts(elements, fragment) {
         var scripts = [],
-          elem;
+            elem;
+
         for (var i = 0; elements[i]; i++) {
           elem = elements[i];
+
           if (elem.nodeType == 1 && elem.tagName.toLowerCase() === "script" && (!elem.type || elem.type.toLowerCase() === "text/javascript")) {
             // Trying to remove the element from DOM
             if (elem.parentNode) {
               elem.parentNode.removeChild(elements[i]);
-            }
+            } // Store in script list
 
-            // Store in script list
+
             scripts.push(elem);
           } else {
             if (elem.nodeType === 1) {
               // Recursively search for scripts and append them to the list of elements to process
               var scriptList = qx.lang.Array.fromCollection(elem.getElementsByTagName("script"));
               elements.splice.apply(elements, [i + 1, 0].concat(scriptList));
-            }
+            } // Finally append element to fragment
 
-            // Finally append element to fragment
+
             if (fragment) {
               fragment.appendChild(elem);
             }
           }
         }
+
         return scripts;
       }
     }
@@ -287,4 +295,4 @@
   qx.bom.Html.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Html.js.map?dt=1677362724848
+//# sourceMappingURL=Html.js.map?dt=1685978107153

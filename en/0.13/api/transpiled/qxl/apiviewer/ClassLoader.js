@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,10 +51,12 @@
       },
       loadClassList: function loadClassList(classes, callback, self) {
         var _this = this;
+
         if (!classes.length) {
           callback && callback.call(self || this, []);
           return qx.Promise.resolve([]);
         }
+
         var all = classes.map(function (clazz) {
           return clazz.load();
         });
@@ -66,10 +69,12 @@
       getClassOrPackage: function getClassOrPackage(name) {
         if (name) {
           var cls = qxl.apiviewer.dao.Class.getClassByName(name);
+
           if (cls) {
             return qxl.apiviewer.dao.Class.isNativeObject(cls) ? null : cls;
           }
         }
+
         var pkg = qxl.apiviewer.dao.Package.getPackage(name);
         return pkg;
       }
@@ -81,4 +86,4 @@
   qxl.apiviewer.ClassLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassLoader.js.map?dt=1677362780575
+//# sourceMappingURL=ClassLoader.js.map?dt=1685978162933

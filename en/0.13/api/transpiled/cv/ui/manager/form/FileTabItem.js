@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* FileTabItem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,6 +46,7 @@
   qx.Class.define('cv.ui.manager.form.FileTabItem', {
     extend: qx.ui.core.Widget,
     implement: [qx.ui.form.IModel],
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,13 +54,19 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.HBox());
+
       this._createChildControl('icon');
+
       this._createChildControl('label');
+
       this._createChildControl('close');
+
       this.addListener('pointerover', this._onPointerOver, this);
       this.addListener('pointerout', this._onPointerOut, this);
     },
+
     /*
     ***********************************************
       EVENTS
@@ -66,9 +74,11 @@
     */
     events: {
       close: 'qx.event.type.Data',
+
       /** (Fired by {@link qx.ui.form.List}) */
       action: 'qx.event.type.Event'
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -118,14 +128,17 @@
         apply: '_applyLabel'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
     ***********************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -135,6 +148,7 @@
         selected: true,
         dragover: true
       },
+
       /**
        * Event handler for the pointer over event.
        */
@@ -145,8 +159,10 @@
         if (name === '.') {
           return '';
         }
+
         return name;
       },
+
       /**
        * Event handler for the pointer out event.
        */
@@ -163,6 +179,7 @@
         if (old) {
           old.removeRelatedBindings(this);
         }
+
         if (value) {
           value.bind('file.writeable', this, 'writeable');
         }
@@ -170,6 +187,7 @@
       _applyIcon: function _applyIcon(value) {
         var control = this.getChildControl('icon');
         control.setSource(value);
+
         if (value) {
           control.show();
         } else {
@@ -179,18 +197,21 @@
       _applyLabel: function _applyLabel() {
         var label = this.getChildControl('label');
         var value = this.getLabel();
+
         if (value) {
-          var labelValue = this.getLabel();
-          // special treatment for hidden.php which is marked as fake, but has a special editor, so it has to be marked as not writeable
+          var labelValue = this.getLabel(); // special treatment for hidden.php which is marked as fake, but has a special editor, so it has to be marked as not writeable
+
           if (!this.isWriteable() && (!this.getModel().getFile().isFake() || this.getModel().getFile().getName() === 'hidden.php')) {
             labelValue += ' !';
             this.setToolTipText(this.tr('This file is not writeable'));
           } else {
             this.resetToolTipText();
           }
+
           if (this.isModified()) {
             labelValue += ' *';
           }
+
           label.setValue(labelValue);
           label.show();
         } else {
@@ -206,34 +227,46 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
+
         switch (id) {
           case 'icon':
             control = new qx.ui.basic.Image();
             control.setAppearance('open-file-item/icon');
             control.setAnonymous(true);
             control.exclude();
+
             this._addAt(control, 0);
+
             break;
+
           case 'label':
             control = new qx.ui.basic.Label();
             control.setAppearance('open-file-item/label');
             control.setAnonymous(true);
+
             this._addAt(control, 1);
+
             break;
+
           case 'close':
             control = new qx.ui.basic.Image('decoration/tabview/close.gif');
             control.setAppearance('open-file-item/close');
+
             if (this.isCloseable()) {
               control.addListener('tap', this._onClose, this);
             } else {
               control.exclude();
             }
+
             this._addAt(control, 2);
+
             break;
         }
+
         return control || cv.ui.manager.form.FileTabItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -247,4 +280,4 @@
   cv.ui.manager.form.FileTabItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileTabItem.js.map?dt=1677362713993
+//# sourceMappingURL=FileTabItem.js.map?dt=1685978096755

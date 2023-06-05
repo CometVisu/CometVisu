@@ -21,6 +21,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,12 +56,14 @@
        * List of event types to be normalized
        */
       TYPES: ["click", "dblclick", "mousedown", "mouseup", "mouseover", "mousemove", "mouseout"],
+
       /**
        * List qx.module.event.Mouse methods to be attached to native mouse event
        * objects
        * @internal
        */
       BIND_METHODS: ["getButton", "getViewportLeft", "getViewportTop", "getDocumentLeft", "getDocumentTop", "getScreenLeft", "getScreenTop"],
+
       /**
        * Standard mouse button mapping
        */
@@ -69,6 +72,7 @@
         2: "right",
         1: "middle"
       },
+
       /**
        * Legacy Internet Explorer mouse button mapping
        */
@@ -77,6 +81,7 @@
         2: "right",
         4: "middle"
       },
+
       /**
        * Returns the identifier of the mouse button that change state when the
        * event was triggered
@@ -88,19 +93,23 @@
         switch (this.type) {
           case "contextmenu":
             return "right";
+
           case "click":
             // IE does not support buttons on click --> assume left button
             if (qxWeb.env.get("browser.name") === "ie" && qxWeb.env.get("browser.documentmode") < 9) {
               return "left";
             }
+
           default:
             if (this.target !== undefined) {
               return qx.module.event.Mouse.BUTTONS_DOM2[this.button] || "none";
             } else {
               return qx.module.event.Mouse.BUTTONS_MSHTML[this.button] || "none";
             }
+
         }
       },
+
       /**
        * Get the horizontal coordinate at which the event occurred relative
        * to the viewport.
@@ -110,6 +119,7 @@
       getViewportLeft: function getViewportLeft() {
         return this.clientX;
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative
        * to the viewport.
@@ -120,6 +130,7 @@
       getViewportTop: function getViewportTop() {
         return this.clientY;
       },
+
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -135,6 +146,7 @@
           return this.clientX + qx.bom.Viewport.getScrollLeft(win);
         }
       },
+
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -150,6 +162,7 @@
           return this.clientY + qx.bom.Viewport.getScrollTop(win);
         }
       },
+
       /**
        * Get the horizontal coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -162,6 +175,7 @@
       getScreenLeft: function getScreenLeft() {
         return this.screenX;
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -174,6 +188,7 @@
       getScreenTop: function getScreenTop() {
         return this.screenY;
       },
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -187,12 +202,15 @@
         if (!event) {
           return event;
         }
+
         var bindMethods = qx.module.event.Mouse.BIND_METHODS;
+
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Mouse[bindMethods[i]].bind(event);
           }
         }
+
         return event;
       }
     },
@@ -203,4 +221,4 @@
   qx.module.event.Mouse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mouse.js.map?dt=1677362746892
+//# sourceMappingURL=Mouse.js.map?dt=1685978129679

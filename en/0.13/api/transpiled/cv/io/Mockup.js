@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Mockup.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -51,10 +52,12 @@
    * @author Tobias Bräutigam
    * @since 2016
    */
+
   /* istanbul ignore next */
   qx.Class.define('cv.io.Mockup', {
     extend: cv.io.AbstractClient,
     implement: cv.io.IClient,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -62,21 +65,25 @@
     */
     construct: function construct() {
       var _this = this;
+
       cv.io.AbstractClient.constructor.call(this);
-      cv.io.Client.CLIENTS.push(this);
-      // make some functions accessible for the protractor runner
+      cv.io.Client.CLIENTS.push(this); // make some functions accessible for the protractor runner
+
       window._receive = this.receive.bind(this);
       var model = cv.data.Model.getInstance();
       window._widgetDataGet = model.getWidgetData.bind(model);
       window._getWidgetDataModel = model.getWidgetDataModel.bind(model);
       window.writeHistory = [];
       var testMode = false;
+
       if (typeof testMode === 'string' && testMode !== 'true') {
         this.setConnected(false);
         this.__P_522_0 = new cv.data.Simulation(testMode, this);
       }
+
       this.addresses = [];
       var file = this._resources['simulation'];
+
       if (file) {
         this.setConnected(false);
         this.__P_522_0 = new cv.data.Simulation(file, this);
@@ -86,26 +93,26 @@
             case 'simulation':
               {
                 var _file = _this._resources['simulation'];
+
                 if (_file) {
                   _this.setConnected(false);
+
                   _this.__P_522_0 = new cv.data.Simulation(_file, _this);
                 }
+
                 break;
               }
           }
         });
       }
     },
+
     /*
     ******************************************************
       PROPERTIES
     ******************************************************
     */
     properties: {
-      dataReceived: {
-        check: 'Boolean',
-        init: true
-      },
       server: {
         check: 'String',
         init: 'Mockup'
@@ -116,6 +123,7 @@
         event: 'changeConnected'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -129,6 +137,7 @@
       getType: function getType() {
         return this.backendName;
       },
+
       /**
        * This function gets called once the communication is established and session information is available
        * @param json
@@ -142,11 +151,14 @@
       },
       login: function login(loginOnly, credentials, callback, context) {
         var _this2 = this;
+
         if (callback) {
           if (this.__P_522_0 && !this.__P_522_0.isInitialized()) {
             this.__P_522_0.addListenerOnce('changeInitialized', function () {
               _this2.setConnected(true);
+
               _this2.debug('(delayed) logged in to mockup client');
+
               callback.call(context);
             });
           } else {
@@ -156,12 +168,14 @@
           }
         }
       },
+
       /**
        * Subscribe to the addresses in the parameter
        * @param addresses
        */
       subscribe: function subscribe(addresses) {
         this.addresses = addresses ? addresses : [];
+
         if (this.__P_522_0) {
           this.__P_522_0.prepareTestData(this.addresses);
         }
@@ -176,8 +190,10 @@
             }
           }
         }
+
         return value;
       },
+
       /**
        * This function sends a value
        * @param address
@@ -188,14 +204,16 @@
           // do nothing in replay mode
           return;
         }
-        var ts = new Date().getTime();
-        // store in window, to make it accessible for protractor
+
+        var ts = new Date().getTime(); // store in window, to make it accessible for protractor
+
         var lastWrite = {
           address: address,
           value: value,
           ts: ts
         };
         value = this.__P_522_2(address, value);
+
         if (!this.__P_522_0 || !this.__P_522_0.onWrite(address, value)) {
           // send update
           var answer = {
@@ -206,8 +224,9 @@
           answer.d[address] = value;
           this.debug('sending value: ' + value + ' to address: ' + address);
           this.receive(answer);
-        }
-        // store in window, to make it accessible for protractor
+        } // store in window, to make it accessible for protractor
+
+
         window.writeHistory.push(lastWrite);
       },
       restart: function restart() {},
@@ -218,22 +237,29 @@
           if (name === 'charts' && map && map.src) {
             return name + '/' + map.src;
           }
+
           return name;
         }
+
         var basePath = '';
+
         if (Object.prototype.hasOwnProperty.call(this._resources, name)) {
           basePath = this._resources[name];
+
           if (basePath && !basePath.endsWith('/')) {
             basePath += '/';
           }
         }
+
         if (name === 'charts' && map && map.src) {
           if (map.src.startsWith('generator:')) {
             // the generator also might need the start/end values
             return basePath + map.src + '?start=' + map.start + '&end=' + map.end;
           }
+
           return basePath + map.src;
         }
+
         return basePath;
       },
       getLastError: function getLastError() {
@@ -272,4 +298,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1677362774572
+//# sourceMappingURL=Mockup.js.map?dt=1685978156184

@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -26,6 +27,7 @@
        * Andreas Ecker (ecker)
   
   ************************************************************************ */
+
   /**
    * Tango icons
    */
@@ -38,4 +40,4 @@
   qx.theme.icon.Tango.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tango.js.map?dt=1677362748012
+//# sourceMappingURL=Tango.js.map?dt=1685978130620

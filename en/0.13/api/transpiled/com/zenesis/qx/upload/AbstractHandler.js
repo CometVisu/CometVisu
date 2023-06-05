@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -47,6 +48,7 @@
   qx.Class.define("com.zenesis.qx.upload.AbstractHandler", {
     type: "abstract",
     extend: qx.core.Object,
+
     /**
      * Constructor
      *
@@ -83,6 +85,7 @@
       __P_576_1: null,
       // Parameters to post with the file
       __P_576_2: null,
+
       /**
        * Adds a file to the upload queue; this does not start uploading until
        * beginUploads is called.
@@ -95,14 +98,18 @@
        */
       addFile: function addFile(input, widget) {
         var files = this._createFile(input);
+
         if (!qx.lang.Type.isArray(files)) {
           files.setUploadWidget(widget);
+
           this._addFile(files);
         } else for (var i = 0; i < files.length; i++) {
           files[i].setUploadWidget(widget);
+
           this._addFile(files[i]);
         }
       },
+
       /**
        * Adds a blob to the upload list
        *
@@ -113,6 +120,7 @@
       addBlob: function addBlob(filename, blob, params) {
         /* abstract */
       },
+
       /**
        * Adds a file to the outbound queue
        *
@@ -122,18 +130,24 @@
       _addFile: function _addFile(file) {
         if (this.__P_576_3.fireDataEvent("addFile", file, null, true)) this.__P_576_0.push(file);
       },
+
       /**
        * Begins spooling uploads to the server, up to the maxConnections
        */
       beginUploads: function beginUploads() {
         while (this.__P_576_0.length > 0 && this.__P_576_1.length < this.getMaxConnections()) {
           var file = this.__P_576_0.shift();
+
           this.__P_576_1.push(file);
+
           this.__P_576_3.fireDataEvent("beginUpload", file);
+
           file.setState("uploading");
+
           this._doUpload(file);
         }
       },
+
       /**
        * Cancels a file
        *
@@ -141,20 +155,25 @@
        *          {com.zenesis.qx.upload.File} the file to cancel
        */
       cancel: function cancel(file) {
-        var wasUploading = this.__P_576_1.length > 0;
-        // this.debug("cancelled: id=" + file.getId() + ", fileName=" +
+        var wasUploading = this.__P_576_1.length > 0; // this.debug("cancelled: id=" + file.getId() + ", fileName=" +
         // file.getFilename());
+
         this._cancel(file);
+
         if (wasUploading && this.__P_576_3.getAutoUpload()) this.beginUploads();
       },
+
       /**
        * Cancels all uploads
        */
       cancelAll: function cancelAll() {
         for (var current = this.__P_576_1, i = 0; i < current.length; i++) this._cancel(current[i]);
+
         this.__P_576_1.splice(0, this.__P_576_1.length);
+
         this.__P_576_0.splice(0, this.__P_576_0.length);
       },
+
       /**
        * Cancels a file
        *
@@ -163,19 +182,24 @@
        */
       _cancel: function _cancel(file) {
         var inCurrent = false;
+
         for (var current = this.__P_576_1, i = 0; i < current.length; i++) if (current[i] == file) {
           current.splice(i, 1);
           inCurrent = true;
           break;
         }
+
         for (var queue = this.__P_576_0, i = 0; i < queue.length; i++) if (queue[i] == file) {
           queue.splice(i, 1);
           break;
         }
+
         file.setState("cancelled");
         if (inCurrent) this._doCancel(file);
+
         this.__P_576_3.fireDataEvent("cancelUpload", file);
       },
+
       /**
        * Called by derived classes when a file has completed
        *
@@ -189,21 +213,24 @@
         // this.debug("completed: id=" + file.getId() + ", fileName=" +
         // file.getFilename() + ", response=" + response);
         var current = this.__P_576_1;
+
         for (var i = 0; i < current.length; i++) if (current[i] == file) {
           current.splice(i, 1);
           break;
         }
-        file.setResponse(response);
 
-        // File state should be uploading or cancelled
+        file.setResponse(response); // File state should be uploading or cancelled
+
         if (file.getState() == "uploading") {
           file.setState("uploaded");
-          this.__P_576_3.fireDataEvent("completeUpload", file);
-        }
 
-        // Start the next one
+          this.__P_576_3.fireDataEvent("completeUpload", file);
+        } // Start the next one
+
+
         this.beginUploads();
       },
+
       /**
        * Returns the uploader
        *
@@ -212,6 +239,7 @@
       _getUploader: function _getUploader() {
         return this.__P_576_3;
       },
+
       /**
        * Allocates a unique ID
        *
@@ -220,6 +248,7 @@
       _getUniqueFileId: function _getUniqueFileId() {
         return ++this.__P_576_4;
       },
+
       /**
        * Adds a parameter to send to the client
        *
@@ -234,6 +263,7 @@
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.setParam or com.zenesis.qx.upload.File.setParam");
         this.__P_576_2[key] = value;
       },
+
       /**
        * Returns the paramaters map
        *
@@ -244,6 +274,7 @@
         qx.log.Logger.deprecatedMethodWarning(arguments.callee, "see com.zenesis.qx.upload.UploadMgr.getParam or com.zenesis.qx.upload.File.getParam");
         return this.__P_576_2;
       },
+
       /**
        * Helper method that produces a final list of parameter values, by merging
        * those set in this with those in the file.
@@ -254,24 +285,29 @@
        */
       _getMergedParams: function _getMergedParams(file) {
         var result = {};
+
         for (var name in this.__P_576_2) {
           var value = this.__P_576_2[name];
           if (value !== null) result[name] = value;
         }
+
         function merge(obj) {
           var names = obj.getParamNames();
+
           for (var i = 0; i < names.length; i++) {
             var name = names[i],
-              value = obj.getParam(name);
+                value = obj.getParam(name);
             if (value !== null) result[name] = value;else delete result[name];
           }
         }
+
         merge(this.__P_576_3);
         var widget = file.getUploadWidget();
         if (widget && typeof widget.getParamNames == "function") merge(widget);
         if (typeof file.getParamNames == "function") merge(file);
         return result;
       },
+
       /**
        * Implementation must create a com.zenesis.qx.upload.File or array of
        * com.zenesis.qx.upload.File
@@ -283,6 +319,7 @@
       _createFile: function _createFile(input) {
         /* abstract */
       },
+
       /**
        * Called to do the real work of uploading the file
        *
@@ -292,6 +329,7 @@
       _doUpload: function _doUpload(file) {
         /* abstract */
       },
+
       /**
        * Called to cancel the upload
        *
@@ -306,4 +344,4 @@
   com.zenesis.qx.upload.AbstractHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractHandler.js.map?dt=1677362781226
+//# sourceMappingURL=AbstractHandler.js.map?dt=1685978163673

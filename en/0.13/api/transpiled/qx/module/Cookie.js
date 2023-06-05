@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
        * @signature function(key)
        */
       get: qx.bom.Cookie.get,
+
       /**
        * Sets the string value of a cookie.
        *
@@ -62,6 +64,7 @@
        * @signature function(key, value, expires, path, domain, secure)
        */
       set: qx.bom.Cookie.set,
+
       /**
        * Deletes the string value of a cookie.
        *
@@ -80,4 +83,4 @@
   qx.module.Cookie.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cookie.js.map?dt=1677362745721
+//# sourceMappingURL=Cookie.js.map?dt=1685978128636

@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,6 +42,7 @@
    */
   qx.Class.define("qx.event.type.GeoPosition", {
     extend: qx.event.type.Event,
+
     /**
      * Create a new instance.
      */
@@ -54,6 +56,7 @@
       timestamp: {
         check: "Number"
       },
+
       /**
        * The angular distance north or south of the earth's equator, measured in
        * decimal degrees along a meridian
@@ -61,6 +64,7 @@
       latitude: {
         check: "Number"
       },
+
       /**
        * The angular distance on the earth's surface, measured east or west from
        * the prime meridian at Greenwich, England, in decimal degrees
@@ -68,6 +72,7 @@
       longitude: {
         check: "Number"
       },
+
       /**
        * The height of the position, specified in meters above the earth's
        * surface.
@@ -76,6 +81,7 @@
         check: "Number",
         nullable: true
       },
+
       /**
        * The accuracy level of the latitude and longitude coordinates specified
        * in meters.
@@ -83,6 +89,7 @@
       accuracy: {
         check: "Number"
       },
+
       /**
        * The accuracy level of the altitude specified in meters.
        */
@@ -90,6 +97,7 @@
         check: "Number",
         nullable: true
       },
+
       /**
        * The direction of travel of the hosting device specified in degrees in a
        * range from 0 to 360, counting clockwise relative to the true north.
@@ -102,6 +110,7 @@
       heading: {
         nullable: true
       },
+
       /**
        * The current ground speed of the hosting device specified in meters per
        * second.
@@ -137,4 +146,4 @@
   qx.event.type.GeoPosition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GeoPosition.js.map?dt=1677362740028
+//# sourceMappingURL=GeoPosition.js.map?dt=1685978122986

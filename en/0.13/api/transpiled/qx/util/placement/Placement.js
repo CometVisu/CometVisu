@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,12 +55,14 @@
       axisX: {
         check: "Class"
       },
+
       /**
        * The axis object to use for the vertical placement
        */
       axisY: {
         check: "Class"
       },
+
       /**
        * Specify to which edge of the target object, the object should be attached
        */
@@ -67,6 +70,7 @@
         check: ["top", "right", "bottom", "left"],
         init: "top"
       },
+
       /**
        * Specify with which edge of the target object, the object should be aligned
        */
@@ -77,6 +81,7 @@
     },
     statics: {
       __P_519_1: null,
+
       /**
        * DOM and widget independent method to compute the location
        * of an object to make it relative to any other object.
@@ -117,17 +122,20 @@
         var splitted = position.split("-");
         var edge = splitted[0];
         var align = splitted[1];
+
         this.__P_519_1.set({
           axisX: this.__P_519_2(modeX),
           axisY: this.__P_519_2(modeY),
           edge: edge,
           align: align
         });
+
         return this.__P_519_1.compute(size, area, target, offsets);
       },
       __P_519_3: null,
       __P_519_4: null,
       __P_519_5: null,
+
       /**
        * Get the axis implementation for the given mode
        *
@@ -140,12 +148,15 @@
           case "direct":
             this.__P_519_3 = this.__P_519_3 || qx.util.placement.DirectAxis;
             return this.__P_519_3;
+
           case "keep-align":
             this.__P_519_4 = this.__P_519_4 || qx.util.placement.KeepAlignAxis;
             return this.__P_519_4;
+
           case "best-fit":
             this.__P_519_5 = this.__P_519_5 || qx.util.placement.BestFitAxis;
             return this.__P_519_5;
+
           default:
             throw new Error("Invalid 'mode' argument!'");
         }
@@ -153,6 +164,7 @@
     },
     members: {
       __P_519_0: null,
+
       /**
        * DOM and widget independent method to compute the location
        * of an object to make it relative to any other object.
@@ -173,6 +185,7 @@
        */
       compute: function compute(size, area, target, offsets) {
         var axisX = this.getAxisX() || this.__P_519_0;
+
         var left = axisX.computeStart(size.width, {
           start: target.left,
           end: target.right
@@ -180,7 +193,9 @@
           start: offsets.left,
           end: offsets.right
         }, area.width, this.__P_519_6());
+
         var axisY = this.getAxisY() || this.__P_519_0;
+
         var top = axisY.computeStart(size.height, {
           start: target.top,
           end: target.bottom
@@ -193,6 +208,7 @@
           top: top
         };
       },
+
       /**
        * Get the position value for the horizontal axis
        *
@@ -201,6 +217,7 @@
       __P_519_6: function __P_519_6() {
         var edge = this.getEdge();
         var align = this.getAlign();
+
         if (edge == "left") {
           return "edge-start";
         } else if (edge == "right") {
@@ -213,6 +230,7 @@
           return "align-end";
         }
       },
+
       /**
        * Get the position value for the vertical axis
        *
@@ -221,6 +239,7 @@
       __P_519_7: function __P_519_7() {
         var edge = this.getEdge();
         var align = this.getAlign();
+
         if (edge == "top") {
           return "edge-start";
         } else if (edge == "bottom") {
@@ -241,4 +260,4 @@
   qx.util.placement.Placement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Placement.js.map?dt=1677362774174
+//# sourceMappingURL=Placement.js.map?dt=1685978155744

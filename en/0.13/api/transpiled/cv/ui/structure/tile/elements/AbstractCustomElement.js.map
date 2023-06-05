@@ -29,14 +29,7 @@
     "getElement",
     "destruct",
     "QxConnector",
-    "_HTMLElement",
-    "_inherits",
-    "_super",
-    "_createSuper",
     "QxClass",
-    "_this",
-    "_classCallCheck",
-    "call",
     "isSubClassOf",
     "cv",
     "ui",
@@ -45,26 +38,18 @@
     "elements",
     "AbstractCustomElement",
     "_instance",
-    "_assertThisInitialized",
     "Error",
     "hasAttribute",
     "classList",
     "add",
     "getAttribute",
-    "_createClass",
-    "key",
-    "getInstance",
-    "connectedCallback",
     "setConnected",
-    "disconnectedCallback",
-    "attributeChangedCallback",
     "name",
     "oldValue",
     "newValue",
     "hasProperty",
     "constructor",
     "set",
-    "_wrapNativeSuper",
     "HTMLElement",
     "window"
   ],
@@ -74,5 +59,5 @@
   "sourcesContent": [
     "/* AbstractCustomElement.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n *\n */\nqx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {\n  extend: qx.core.Object,\n  type: 'abstract',\n\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct(element) {\n    this._element = element;\n  },\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    connected: {\n      check: 'Boolean',\n      init: false,\n      apply: '_applyConnected',\n      event: 'changeConnected'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    /**\n     * @var {HTMLElement}\n     */\n    _element: null,\n\n    _initialized: false,\n\n    _applyConnected(value) {\n      if (value && !this._initialized) {\n        this._init();\n        this._initialized = true;\n      } else {\n        this._disconnected();\n        this._initialized = false;\n      }\n    },\n    _init() {},\n\n    _disconnected() {},\n\n    getElement() {\n      return this._element;\n    }\n  },\n\n  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct() {\n    this._element = null;\n  }\n});\n\n/* eslint-disable-next-line no-redeclare */\nclass QxConnector extends HTMLElement {\n  constructor(QxClass) {\n    super();\n    if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {\n      this._instance = new QxClass(this);\n    } else {\n      throw Error(QxClass + ' must be a subclass of cv.ui.structure.tile.elements.AbstractCustomElement');\n    }\n    if (this.hasAttribute('colspan')) {\n      this.classList.add('colspan-' + this.getAttribute('colspan'));\n    }\n    if (this.hasAttribute('rowspan')) {\n      this.classList.add('rowspan-' + this.getAttribute('rowspan'));\n    }\n  }\n\n  getInstance() {\n    return this._instance;\n  }\n\n  connectedCallback() {\n    if (this._instance) {\n      this._instance.setConnected(true);\n    }\n  }\n\n  disconnectedCallback() {\n    if (this._instance) {\n      this._instance.setConnected(false);\n    }\n  }\n\n  attributeChangedCallback(name, oldValue, newValue) {\n    if (this._instance && qx.Class.hasProperty(this._instance.constructor, name)) {\n      this._instance.set(name, newValue);\n    }\n  }\n}\n\nwindow.QxConnector = QxConnector;\n"
   ],
-  "mappings": "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"
+  "mappings": "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"
 }

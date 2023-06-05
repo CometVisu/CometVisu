@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,30 +72,33 @@
   qx.Class.define("qx.ui.core.scroll.ScrollBar", {
     extend: qx.ui.core.Widget,
     implement: qx.ui.core.scroll.IScrollBar,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param orientation {String?"horizontal"} The initial scroll bar orientation
      */
     construct: function construct(orientation) {
-      qx.ui.core.Widget.constructor.call(this);
+      qx.ui.core.Widget.constructor.call(this); // Create child controls
 
-      // Create child controls
       this._createChildControl("button-begin");
-      this._createChildControl("slider").addListener("resize", this._onResizeSlider, this);
-      this._createChildControl("button-end");
 
-      // Configure orientation
+      this._createChildControl("slider").addListener("resize", this._onResizeSlider, this);
+
+      this._createChildControl("button-end"); // Configure orientation
+
+
       if (orientation != null) {
         this.setOrientation(orientation);
       } else {
         this.initOrientation();
-      }
+      } // prevent drag & drop on scrolling
 
-      // prevent drag & drop on scrolling
+
       this.addListener("track", function (e) {
         e.stopPropagation();
       });
@@ -103,18 +107,19 @@
       /** Change event for the value. */
       scrollAnimationEnd: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "scrollbar"
       },
+
       /**
        * The scroll bar orientation
        */
@@ -123,6 +128,7 @@
         init: "horizontal",
         apply: "_applyOrientation"
       },
+
       /**
        * The maximum value (difference between available size and
        * content size).
@@ -132,6 +138,7 @@
         apply: "_applyMaximum",
         init: 100
       },
+
       /**
        * Position of the scrollbar (which means the scroll left/top of the
        * attached area's pane)
@@ -146,6 +153,7 @@
         apply: "_applyPosition",
         event: "scroll"
       },
+
       /**
        * Step size for each tap on the up/down or left/right buttons.
        */
@@ -153,6 +161,7 @@
         check: "Integer",
         init: 20
       },
+
       /**
        * The amount to increment on each event. Typically corresponds
        * to the user pressing <code>PageUp</code> or <code>PageDown</code>.
@@ -162,6 +171,7 @@
         init: 10,
         apply: "_applyPageStep"
       },
+
       /**
        * Factor to apply to the width/height of the knob in relation
        * to the dimension of the underlying area.
@@ -172,18 +182,19 @@
         nullable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_329_0: 2,
       __P_329_1: 0,
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var hint = qx.ui.core.scroll.ScrollBar.superclass.prototype._computeSizeHint.call(this);
+
         if (this.getOrientation() === "horizontal") {
           this.__P_329_1 = hint.minWidth;
           hint.minWidth = 0;
@@ -191,12 +202,14 @@
           this.__P_329_1 = hint.minHeight;
           hint.minHeight = 0;
         }
+
         return hint;
       },
       // overridden
       renderLayout: function renderLayout(left, top, width, height) {
         var changes = qx.ui.core.scroll.ScrollBar.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var horizontal = this.getOrientation() === "horizontal";
+
         if (this.__P_329_1 >= (horizontal ? width : height)) {
           this.getChildControl("button-begin").setVisibility("hidden");
           this.getChildControl("button-end").setVisibility("hidden");
@@ -204,11 +217,13 @@
           this.getChildControl("button-begin").setVisibility("visible");
           this.getChildControl("button-end").setVisibility("visible");
         }
+
         return changes;
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "slider":
             control = new qx.ui.core.scroll.ScrollSlider();
@@ -216,27 +231,37 @@
             control.setFocusable(false);
             control.addListener("changeValue", this._onChangeSliderValue, this);
             control.addListener("slideAnimationEnd", this._onSlideAnimationEnd, this);
+
             this._add(control, {
               flex: 1
             });
+
             break;
+
           case "button-begin":
             // Top/Left Button
             control = new qx.ui.form.RepeatButton();
             control.setFocusable(false);
             control.addListener("execute", this._onExecuteBegin, this);
+
             this._add(control);
+
             break;
+
           case "button-end":
             // Bottom/Right Button
             control = new qx.ui.form.RepeatButton();
             control.setFocusable(false);
             control.addListener("execute", this._onExecuteEnd, this);
+
             this._add(control);
+
             break;
         }
+
         return control || qx.ui.core.scroll.ScrollBar.superclass.prototype._createChildControlImpl.call(this, id);
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -261,17 +286,18 @@
       // property apply
       _applyOrientation: function _applyOrientation(value, old) {
         // ARIA attrs
-        this.getContentElement().setAttribute("aria-orientation", value);
+        this.getContentElement().setAttribute("aria-orientation", value); // Dispose old layout
 
-        // Dispose old layout
         var oldLayout = this._getLayout();
+
         if (oldLayout) {
           oldLayout.dispose();
-        }
+        } // Reconfigure
 
-        // Reconfigure
+
         if (value === "horizontal") {
           this._setLayout(new qx.ui.layout.HBox());
+
           this.setAllowStretchX(true);
           this.setAllowStretchY(false);
           this.replaceState("vertical", "horizontal");
@@ -279,21 +305,24 @@
           this.getChildControl("button-end").replaceState("down", "right");
         } else {
           this._setLayout(new qx.ui.layout.VBox());
+
           this.setAllowStretchX(false);
           this.setAllowStretchY(true);
           this.replaceState("horizontal", "vertical");
           this.getChildControl("button-begin").replaceState("left", "up");
           this.getChildControl("button-end").replaceState("right", "down");
-        }
+        } // Sync slider orientation
 
-        // Sync slider orientation
+
         this.getChildControl("slider").setOrientation(value);
       },
+
       /*
       ---------------------------------------------------------------------------
         METHOD REDIRECTION TO SLIDER
       ---------------------------------------------------------------------------
       */
+
       /**
        * Scrolls to the given position.
        *
@@ -306,6 +335,7 @@
       scrollTo: function scrollTo(position, duration) {
         this.getChildControl("slider").slideTo(position, duration);
       },
+
       /**
        * Scrolls by the given offset.
        *
@@ -318,6 +348,7 @@
       scrollBy: function scrollBy(offset, duration) {
         this.getChildControl("slider").slideBy(offset, duration);
       },
+
       /**
        * Scrolls by the given number of steps.
        *
@@ -331,6 +362,7 @@
         var size = this.getSingleStep();
         this.getChildControl("slider").slideBy(steps * size, duration);
       },
+
       /**
        * Updates the position property considering the minimum and maximum values.
        * @param position {Number} The new position.
@@ -338,17 +370,20 @@
       updatePosition: function updatePosition(position) {
         this.getChildControl("slider").updatePosition(position);
       },
+
       /**
        * If a scroll animation is running, it will be stopped.
        */
       stopScrollAnimation: function stopScrollAnimation() {
         this.getChildControl("slider").stopSlideAnimation();
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENER
       ---------------------------------------------------------------------------
       */
+
       /**
        * Executed when the up/left button is executed (pressed)
        *
@@ -357,6 +392,7 @@
       _onExecuteBegin: function _onExecuteBegin(e) {
         this.scrollBy(-this.getSingleStep(), 50);
       },
+
       /**
        * Executed when the down/right button is executed (pressed)
        *
@@ -365,12 +401,14 @@
       _onExecuteEnd: function _onExecuteEnd(e) {
         this.scrollBy(this.getSingleStep(), 50);
       },
+
       /**
        * Change listener for slider animation end.
        */
       _onSlideAnimationEnd: function _onSlideAnimationEnd() {
         this.fireEvent("scrollAnimationEnd");
       },
+
       /**
        * Change listener for slider value changes.
        *
@@ -379,6 +417,7 @@
       _onChangeSliderValue: function _onChangeSliderValue(e) {
         this.setPosition(e.getData());
       },
+
       /**
        * Hide the knob of the slider if the slidebar is too small or show it
        * otherwise.
@@ -390,6 +429,7 @@
         var knobHint = knob.getSizeHint();
         var hideKnob = false;
         var sliderSize = this.getChildControl("slider").getInnerSize();
+
         if (this.getOrientation() == "vertical") {
           if (sliderSize.height < knobHint.minHeight + this.__P_329_0) {
             hideKnob = true;
@@ -399,6 +439,7 @@
             hideKnob = true;
           }
         }
+
         if (hideKnob) {
           knob.exclude();
         } else {
@@ -410,4 +451,4 @@
   qx.ui.core.scroll.ScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollBar.js.map?dt=1677362754929
+//# sourceMappingURL=ScrollBar.js.map?dt=1685978136085

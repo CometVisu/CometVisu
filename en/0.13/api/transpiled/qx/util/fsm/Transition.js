@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,6 +19,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,6 +43,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    */
   qx.Class.define("qx.util.fsm.Transition", {
     extend: qx.core.Object,
+
     /**
      * @param transitionName {String}
      *   The name of this transition, used in debug messages.
@@ -145,47 +148,47 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
      *   </pre>
      */
     construct: function construct(transitionName, transitionInfo) {
-      var context;
+      var context; // Call our superclass' constructor
 
-      // Call our superclass' constructor
-      qx.core.Object.constructor.call(this);
+      qx.core.Object.constructor.call(this); // Save the state name
 
-      // Save the state name
-      this.setName(transitionName);
+      this.setName(transitionName); // If a context was specified, retrieve it.
 
-      // If a context was specified, retrieve it.
-      context = transitionInfo.context || window;
+      context = transitionInfo.context || window; // Save it for future use
 
-      // Save it for future use
-      this.setUserData("context", context);
+      this.setUserData("context", context); // Save data from the transitionInfo object
 
-      // Save data from the transitionInfo object
       for (var field in transitionInfo) {
         // If we find one of our properties, call its setter.
         switch (field) {
           case "predicate":
             this.setPredicate(this.__P_518_0(transitionInfo[field], context));
             break;
+
           case "nextState":
             this.setNextState(transitionInfo[field]);
             break;
+
           case "autoActionsBeforeOntransition":
             this.setAutoActionsBeforeOntransition(this.__P_518_0(transitionInfo[field], context));
             break;
+
           case "autoActionsAfterOntransition":
             this.setAutoActionsAfterOntransition(this.__P_518_0(transitionInfo[field], context));
             break;
+
           case "ontransition":
             this.setOntransition(this.__P_518_0(transitionInfo[field], context));
             break;
+
           case "context":
             // already handled
             break;
+
           default:
             // Anything else is user-provided data for their own use.  Save it.
-            this.setUserData(field, transitionInfo[field]);
+            this.setUserData(field, transitionInfo[field]); // Log it in case it was a typo and they intended a built-in field
 
-            // Log it in case it was a typo and they intended a built-in field
             this.debug("Transition " + transitionName + ": " + "Adding user-provided field to transition: " + field);
             break;
         }
@@ -199,6 +202,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         check: "String",
         nullable: true
       },
+
       /**
        * The predicate function for this transition.  This is documented in the
        * constructor, and is typically provided through the constructor's
@@ -211,6 +215,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         transform: "__P_518_1"
       },
+
       /**
        * The state to transition to, if the predicate determines that this
        * transition is acceptable.  This is documented in the constructor, and
@@ -222,6 +227,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE,
         transform: "__P_518_2"
       },
+
       /**
        * Automatic actions to take prior to calling the transition's
        * ontransition function.  This is documented in the constructor, and is
@@ -233,6 +239,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: function init(fsm, event) {},
         transform: "__P_518_3"
       },
+
       /**
        * Automatic actions to take immediately after calling the transition's
        * ontransition function.  This is documented in the constructor, and is
@@ -244,6 +251,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: function init(fsm, event) {},
         transform: "__P_518_4"
       },
+
       /**
        * The function run when the transition is accepted.  This is documented
        * in the constructor, and is typically provided through the constructor's
@@ -270,18 +278,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             return function (fsm, event) {
               return true;
             };
+
           case "boolean":
             // Convert boolean predicate to a function which returns that value
             return function (fsm, event) {
               return value;
             };
+
           case "function":
             // Use user-provided function.
             return qx.lang.Function.bind(value, this.getUserData("context"));
+
           default:
             throw new Error("Invalid transition predicate type: " + _typeof(value));
         }
       },
+
       /**
        * Internal transform method
        *
@@ -293,6 +305,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         switch (_typeof(value)) {
           case "string":
             return value;
+
           case "number":
             // Ensure that it's one of the possible state-change constants
             switch (value) {
@@ -300,13 +313,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               case qx.util.fsm.FiniteStateMachine.StateChange.POP_STATE_STACK:
               case qx.util.fsm.FiniteStateMachine.StateChange.TERMINATE:
                 return value;
+
               default:
                 throw new Error("Invalid transition nextState value: " + value + ": " + "nextState must be an explicit state name, " + "or one of the Fsm.StateChange constants");
             }
+
           default:
             throw new Error("Invalid transition nextState type: " + _typeof(value));
         }
       },
+
       /**
        * Internal transform method
        *
@@ -316,6 +332,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_518_3: function __P_518_3(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOntransition", value, this.getUserData("context"));
       },
+
       /**
        * Internal transform method
        *
@@ -325,6 +342,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_518_4: function __P_518_4(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOntransition", value, this.getUserData("context"));
       },
+
       /**
        * Internal transform method
        *
@@ -338,13 +356,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             // No provided function just means do nothing.  Use a null
             // function.
             return function (fsm, event) {};
+
           case "function":
             // Use user-provided function.
             return qx.lang.Function.bind(value, this.getUserData("context"));
+
           default:
             throw new Error("Invalid ontransition type: " + _typeof(value));
         }
       },
+
       /**
        * If given a function, bind it to a specified context.
        *
@@ -365,6 +386,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           // Yup. Bind it to the specified context.
           f = qx.lang.Function.bind(f, context);
         }
+
         return f;
       }
     }
@@ -372,4 +394,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.util.fsm.Transition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transition.js.map?dt=1677362774032
+//# sourceMappingURL=Transition.js.map?dt=1685978155597

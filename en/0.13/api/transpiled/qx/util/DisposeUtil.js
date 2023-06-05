@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,11 +53,14 @@
        */
       disposeObjects: function disposeObjects(obj, arr, disposeSingletons) {
         var name;
+
         for (var i = 0, l = arr.length; i < l; i++) {
           name = arr[i];
+
           if (obj[name] == null || !obj.hasOwnProperty(name)) {
             continue;
           }
+
           if (!qx.core.ObjectRegistry.inShutDown) {
             if (obj[name].dispose) {
               // singletons
@@ -69,9 +73,11 @@
               throw new Error("Has no disposable object under key: " + name + "!");
             }
           }
+
           obj[name] = null;
         }
       },
+
       /**
        * Disposes all members of the given array and deletes
        * the field which refers to the array afterwards.
@@ -81,35 +87,38 @@
        */
       disposeArray: function disposeArray(obj, field) {
         var data = obj[field];
+
         if (!data) {
           return;
-        }
+        } // Fast path for application shutdown
 
-        // Fast path for application shutdown
+
         if (qx.core.ObjectRegistry.inShutDown) {
           obj[field] = null;
           return;
-        }
+        } // Dispose all content
 
-        // Dispose all content
+
         try {
           var entry;
+
           for (var i = data.length - 1; i >= 0; i--) {
             entry = data[i];
+
             if (entry) {
               entry.dispose();
             }
           }
         } catch (ex) {
           throw new Error("The array field: " + field + " of object: " + obj + " has non disposable entries: " + ex);
-        }
+        } // Reduce array size to zero
 
-        // Reduce array size to zero
-        data.length = 0;
 
-        // Finally remove field
+        data.length = 0; // Finally remove field
+
         obj[field] = null;
       },
+
       /**
        * Disposes all members of the given map and deletes
        * the field which refers to the map afterwards.
@@ -119,32 +128,36 @@
        */
       disposeMap: function disposeMap(obj, field) {
         var data = obj[field];
+
         if (!data) {
           return;
-        }
+        } // Fast path for application shutdown
 
-        // Fast path for application shutdown
+
         if (qx.core.ObjectRegistry.inShutDown) {
           obj[field] = null;
           return;
-        }
+        } // Dispose all content
 
-        // Dispose all content
+
         try {
           var entry;
+
           for (var key in data) {
             entry = data[key];
+
             if (data.hasOwnProperty(key) && entry) {
               entry.dispose();
             }
           }
         } catch (ex) {
           throw new Error("The map field: " + field + " of object: " + obj + " has non disposable entries: " + ex);
-        }
+        } // Finally remove field
 
-        // Finally remove field
+
         obj[field] = null;
       },
+
       /**
        * Disposes a given object when another object is disposed
        *
@@ -154,11 +167,13 @@
        */
       disposeTriggeredBy: function disposeTriggeredBy(disposeMe, trigger) {
         var triggerDispose = trigger.dispose;
+
         trigger.dispose = function () {
           triggerDispose.call(trigger);
           disposeMe.dispose();
         };
       },
+
       /**
        * Destroys a container and all of its children recursively.
        * @param container {qx.ui.container.Composite | qx.ui.container.Scroll |
@@ -166,13 +181,18 @@
        */
       destroyContainer: function destroyContainer(container) {
         var arr = [];
+
         this._collectContainerChildren(container, arr);
+
         var len = arr.length;
+
         for (var i = len - 1; i >= 0; i--) {
           arr[i].destroy();
         }
+
         container.destroy();
       },
+
       /**
        * Helper function to collect all children widgets of an container recursively.
        * @param container {qx.ui.container.Composite | qx.ui.container.Scroll | qx.ui.container.SlideBar | qx.ui.container.Stack} Container to be destroyed
@@ -180,14 +200,17 @@
        */
       _collectContainerChildren: function _collectContainerChildren(container, arr) {
         var children = container.getChildren();
+
         for (var i = 0; i < children.length; i++) {
           var item = children[i];
           arr.push(item);
+
           if (this.__P_503_0(item)) {
             this._collectContainerChildren(item, arr);
           }
         }
       },
+
       /**
        * Checks if the given object is a qx container widget
        *
@@ -197,16 +220,19 @@
        */
       __P_503_0: function __P_503_0(obj) {
         var classes = [];
+
         if (qx.ui.mobile && obj instanceof qx.ui.mobile.core.Widget) {
           classes = [qx.ui.mobile.container.Composite];
         } else {
           classes = [qx.ui.container.Composite, qx.ui.container.Scroll, qx.ui.container.SlideBar, qx.ui.container.Stack];
         }
+
         for (var i = 0, l = classes.length; i < l; i++) {
           if (typeof classes[i] !== "undefined" && qx.Class.isSubClassOf(obj.constructor, classes[i])) {
             return true;
           }
         }
+
         return false;
       }
     }
@@ -214,4 +240,4 @@
   qx.util.DisposeUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DisposeUtil.js.map?dt=1677362772650
+//# sourceMappingURL=DisposeUtil.js.map?dt=1685978154117

@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,6 +58,7 @@
         XBOX: "xbox",
         Xbox: "xbox"
       },
+
       /**
        * Returns the name of the current device if detectable. It falls back to
        * <code>pc</code> if the detection for other devices fails.
@@ -66,16 +68,21 @@
        */
       getName: function getName() {
         var str = [];
+
         for (var key in qx.bom.client.Device.__P_122_0) {
           str.push(key);
         }
+
         var reg = new RegExp("(" + str.join("|").replace(/\./g, ".") + ")", "g");
         var match = reg.exec(navigator.userAgent);
+
         if (match && match[1]) {
           return qx.bom.client.Device.__P_122_0[match[1]];
         }
+
         return "pc";
       },
+
       /**
        * Determines on what type of device the application is running.
        * Valid values are: "mobile", "tablet" or "desktop".
@@ -84,6 +91,7 @@
       getType: function getType() {
         return qx.bom.client.Device.detectDeviceType(navigator.userAgent);
       },
+
       /**
        * Detects the device type, based on given userAgentString.
        *
@@ -96,8 +104,10 @@
         } else if (qx.bom.client.Device.detectMobileDevice(userAgentString)) {
           return "mobile";
         }
+
         return "desktop";
       },
+
       /**
        * Detects if a device is a mobile phone. (Tablets excluded.)
        * @param userAgentString {String} userAgent parameter, needed for decision.
@@ -106,6 +116,7 @@
       detectMobileDevice: function detectMobileDevice(userAgentString) {
         return /android.+mobile|ip(hone|od)|bada\/|blackberry|BB10|maemo|opera m(ob|in)i|fennec|NetFront|phone|psp|symbian|IEMobile|windows (ce|phone)|xda/i.test(userAgentString);
       },
+
       /**
        * Detects if a device is a tablet device.
        * @param userAgentString {String} userAgent parameter, needed for decision.
@@ -117,6 +128,7 @@
         var isCommonTablet = !/android.+mobile|Tablet PC/i.test(userAgentString) && /Android|ipad|tablet|playbook|silk|kindle|psp/i.test(userAgentString);
         return isIE10Tablet || isCommonTablet || iPadOS13Up;
       },
+
       /**
        * Detects the device's pixel ratio. Returns 1 if detection is not possible.
        *
@@ -126,8 +138,10 @@
         if (typeof window.devicePixelRatio !== "undefined") {
           return window.devicePixelRatio;
         }
+
         return 1;
       },
+
       /**
        * Detects if either touch events or pointer events are supported.
        * Additionally it checks if touch is enabled for pointer events.
@@ -148,4 +162,4 @@
   qx.bom.client.Device.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Device.js.map?dt=1677362726721
+//# sourceMappingURL=Device.js.map?dt=1685978108984

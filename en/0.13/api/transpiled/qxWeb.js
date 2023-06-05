@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,6 +65,7 @@
       __P_550_0: [],
       // internal reference to the used qx namespace
       $$qx: qx,
+
       /**
        * Internal helper to initialize collections.
        *
@@ -79,28 +81,38 @@
         if (arg.length && arg.length == 1 && arg[0] && arg[0].$widget instanceof qxWeb) {
           return arg[0].$widget;
         }
+
         var clean = [];
+
         for (var i = 0; i < arg.length; i++) {
           // check for node or window object
           var isNode = !!(arg[i] && (arg[i].nodeType === 1 || arg[i].nodeType === 9 || arg[i].nodeType === 11));
+
           if (isNode) {
             clean.push(arg[i]);
             continue;
           }
+
           var isWindow = !!(arg[i] && arg[i].history && arg[i].location && arg[i].document);
+
           if (isWindow) {
             clean.push(arg[i]);
           }
         }
+
         if (arg[0] && arg[0].getAttribute && arg[0].getAttribute("data-qx-class") && clean.length < 2) {
           clazz = qx.Bootstrap.getByName(arg[0].getAttribute("data-qx-class")) || clazz;
         }
+
         var col = qx.lang.Array.cast(clean, clazz);
+
         for (var i = 0; i < qxWeb.__P_550_0.length; i++) {
           qxWeb.__P_550_0[i].call(col);
         }
+
         return col;
       },
+
       /**
        * This is an API for module development and can be used to attach new methods
        * to {@link q}.
@@ -115,6 +127,7 @@
           }
         }
       },
+
       /**
        * This is an API for module development and can be used to attach new methods
        * to {@link q}.
@@ -127,6 +140,7 @@
           qxWeb[name] = module[name];
         }
       },
+
       /**
        * This is an API for module development and can be used to attach new methods
        * to {@link q} during runtime according to the following conventions:
@@ -151,22 +165,25 @@
           if (name.indexOf("$") !== 0 && name.indexOf("_") !== 0) {
             qxWeb.prototype[name] = clazz.members[name];
           }
-        }
+        } // statics
 
-        // statics
+
         var destination;
+
         if (staticsNamespace != null) {
           qxWeb[staticsNamespace] = qxWeb[staticsNamespace] || {};
           destination = qxWeb[staticsNamespace];
         } else {
           destination = qxWeb;
         }
+
         for (var name in clazz.statics) {
           if (name.indexOf("$") !== 0 && name.indexOf("_") !== 0 && name !== "name" && name !== "basename" && name !== "classname" && name !== "toString" && name !== name.toUpperCase()) {
             destination[name] = clazz.statics[name];
           }
         }
       },
+
       /**
        * This is an API for module development and can be used to attach new initialization
        * methods to {@link q} which will be called when a new collection is
@@ -177,6 +194,7 @@
       $attachInit: function $attachInit(init) {
         this.__P_550_0.push(init);
       },
+
       /**
        * Define a new class using the qooxdoo class system.
        *
@@ -206,9 +224,11 @@
           config = name;
           name = null;
         }
+
         return qx.Bootstrap.define.call(qx.Bootstrap, name, config);
       }
     },
+
     /**
      * Primary usage:
      * Accepts a selector string and returns a collection of found items. The optional context
@@ -232,12 +252,14 @@
       if (!selector && this instanceof qxWeb) {
         return this;
       }
+
       if (!selector) {
         selector = [];
       } else if (qx.Bootstrap.isString(selector)) {
         if (context instanceof qxWeb && context.length != 0) {
           context = context[0];
         }
+
         if (context instanceof qxWeb) {
           selector = [];
         } else {
@@ -246,6 +268,7 @@
       } else if (selector.nodeType === 1 || selector.nodeType === 9 || selector.nodeType === 11 || selector.history && selector.location && selector.document) {
         selector = [selector];
       }
+
       return qxWeb.$init(selector, qxWeb);
     },
     members: {
@@ -261,8 +284,10 @@
         if (qx.lang.Type.isFunction(selector)) {
           return qxWeb.$init(Array.prototype.filter.call(this, selector), this.constructor);
         }
+
         return qxWeb.$init(qx.bom.Selector.matches(selector, this), this.constructor);
       },
+
       /**
        * Recreates a collection which is free of all duplicate elements from the original.
        *
@@ -272,6 +297,7 @@
         var unique = qx.lang.Array.unique(this);
         return qxWeb.$init(unique, this.constructor);
       },
+
       /**
        * Returns a copy of the collection within the given range.
        *
@@ -285,8 +311,10 @@
         if (end !== undefined) {
           return qxWeb.$init(Array.prototype.slice.call(this, begin, end), this.constructor);
         }
+
         return qxWeb.$init(Array.prototype.slice.call(this, begin), this.constructor);
       },
+
       /**
        * Removes the given number of items and returns the removed items as a new collection.
        * This method can also add items. Take a look at the
@@ -300,6 +328,7 @@
       splice: function splice(index, howMany, varargs) {
         return qxWeb.$init(Array.prototype.splice.apply(this, arguments), this.constructor);
       },
+
       /**
        * Returns a new collection containing the modified elements. For more details, check out the
        * <a href='https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/map' target='_blank'>MDN documentation</a>.
@@ -311,6 +340,7 @@
       map: function map(callback, thisarg) {
         return qxWeb.$init(Array.prototype.map.apply(this, arguments), qxWeb);
       },
+
       /**
        * Returns a copy of the collection including the given elements.
        *
@@ -319,6 +349,7 @@
        */
       concat: function concat(varargs) {
         var clone = Array.prototype.slice.call(this, 0);
+
         for (var i = 0; i < arguments.length; i++) {
           if (arguments[i] instanceof qxWeb) {
             clone = clone.concat(Array.prototype.slice.call(arguments[i], 0));
@@ -326,8 +357,10 @@
             clone.push(arguments[i]);
           }
         }
+
         return qxWeb.$init(clone, this.constructor);
       },
+
       /**
        * Returns the index of the given element within the current
        * collection or -1 if the element is not in the collection
@@ -339,28 +372,36 @@
         if (!elem) {
           return -1;
         }
+
         if (!fromIndex) {
           fromIndex = 0;
         }
+
         if (typeof fromIndex !== "number") {
           return -1;
         }
+
         if (fromIndex < 0) {
           fromIndex = this.length + fromIndex;
+
           if (fromIndex < 0) {
             fromIndex = 0;
           }
         }
+
         if (qx.lang.Type.isArray(elem)) {
           elem = elem[0];
         }
+
         for (var i = fromIndex, l = this.length; i < l; i++) {
           if (this[i] === elem) {
             return i;
           }
         }
+
         return -1;
       },
+
       /**
        * Calls the browser's native debugger to easily allow debugging within
        * chained calls.
@@ -373,6 +414,7 @@
       debug: function debug() {
         return this;
       },
+
       /**
        * Logs information about the current collection, its DOM elements and the
        * length. Very useful during development to easily check the current state of
@@ -386,6 +428,7 @@
       logThis: function logThis() {
         return this;
       },
+
       /**
        * Calls a function for each DOM element  or document fragment in the
        * collection. This is used for DOM manipulations which can't be
@@ -402,8 +445,10 @@
             func.apply(ctx || this, [this[i], i, this]);
           }
         }
+
         return this;
       },
+
       /**
        * Calls a function for each DOM element node in the collection. Each node is wrapped
        * in a collection before the function is called.
@@ -418,9 +463,11 @@
         this._forEachElement(function (item, idx, arr) {
           func.apply(this, [qxWeb(item), idx, arr]);
         }, ctx);
+
         return this;
       }
     },
+
     /**
      * @ignore(q)
      */
@@ -433,4 +480,4 @@
   qxWeb.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=qxWeb.js.map?dt=1677362778617
+//# sourceMappingURL=qxWeb.js.map?dt=1685978161077

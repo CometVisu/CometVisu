@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
   qx.Class.define("qx.ui.mobile.list.renderer.Abstract", {
     extend: qx.ui.mobile.container.Composite,
     type: "abstract",
+
     /*
      *****************************************************************************
         CONSTRUCTOR
@@ -47,18 +49,19 @@
       this.initRemovable();
       this.initShowArrow();
     },
+
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
-
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "list-item"
       },
+
       /**
        * Whether the row is selected.
        */
@@ -67,6 +70,7 @@
         init: false,
         apply: "_applySelected"
       },
+
       /**
        * Whether the row is selectable.
        */
@@ -75,6 +79,7 @@
         init: true,
         apply: "_applyAttribute"
       },
+
       /**
        * Whether the row is removable.
        */
@@ -83,6 +88,7 @@
         init: false,
         apply: "_applyRemovable"
       },
+
       /**
        * Whether to show an arrow in the row.
        */
@@ -97,14 +103,15 @@
         init: true
       }
     },
+
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
-
     members: {
       // abstract method
+
       /**
        * Resets all defined child widgets. Override this method in your custom
        * list item renderer and reset all widgets displaying data. Needed as the
@@ -118,6 +125,7 @@
       _getTagName: function _getTagName() {
         return "li";
       },
+
       /**
        * Returns the row index of a certain DOM element in the list from the given event.
        *
@@ -127,6 +135,7 @@
       getRowIndexFromEvent: function getRowIndexFromEvent(evt) {
         return this.getRowIndex(evt.getOriginalTarget());
       },
+
       /**
        * Returns the row index of a certain DOM element in the list.
        *
@@ -137,6 +146,7 @@
         while (element.tagName != "LI") {
           element = element.parentNode;
         }
+
         return element.getAttribute("data-row");
       },
       // property apply
@@ -168,4 +178,4 @@
   qx.ui.mobile.list.renderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1677362763426
+//# sourceMappingURL=Abstract.js.map?dt=1685978144572

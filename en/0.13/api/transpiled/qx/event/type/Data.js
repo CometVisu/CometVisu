@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,15 +36,16 @@
    */
   qx.Class.define("qx.event.type.Data", {
     extend: qx.event.type.Event,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_230_0: null,
       __P_230_1: null,
+
       /**
        * Initializes an event object.
        *
@@ -63,6 +65,7 @@
         this.__P_230_1 = old;
         return this;
       },
+
       /**
        * Get a copy of this object
        *
@@ -78,6 +81,7 @@
         clone.__P_230_1 = this.__P_230_1;
         return clone;
       },
+
       /**
        * The new data of the event sending this data event.
        * The return data type is the same as the event data type.
@@ -87,6 +91,7 @@
       getData: function getData() {
         return this.__P_230_0;
       },
+
       /**
        * The old data of the event sending this data event.
        * The return data type is the same as the event data type.
@@ -101,4 +106,4 @@
   qx.event.type.Data.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Data.js.map?dt=1677362739830
+//# sourceMappingURL=Data.js.map?dt=1685978122781

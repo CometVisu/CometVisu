@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,6 +52,7 @@
        * @return {Integer} The computed start position of the object.
        */
       _moveToEdgeAndAlign: qx.util.placement.AbstractAxis._moveToEdgeAndAlign,
+
       /**
        * Whether the object specified by <code>start</code> and <code>size</code>
        * is completely inside of the axis' range..
@@ -61,6 +63,7 @@
        * @return {Boolean} Whether the object is inside of the axis' range
        */
       _isInRange: qx.util.placement.AbstractAxis._isInRange,
+
       /**
        * Computes the start of the object on the axis
        *
@@ -82,10 +85,13 @@
        */
       computeStart: function computeStart(size, target, offsets, areaSize, position) {
         var start = this._moveToEdgeAndAlign(size, target, offsets, position);
+
         var range1End, range2Start;
+
         if (this._isInRange(start, size, areaSize)) {
           return start;
         }
+
         if (position == "edge-start" || position == "edge-end") {
           range1End = target.start - offsets.end;
           range2Start = target.end + offsets.start;
@@ -93,11 +99,13 @@
           range1End = target.end - offsets.end;
           range2Start = target.start + offsets.start;
         }
+
         if (range1End > areaSize - range2Start) {
           start = Math.max(0, range1End - size);
         } else {
           start = range2Start;
         }
+
         return start;
       }
     }
@@ -105,4 +113,4 @@
   qx.util.placement.KeepAlignAxis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=KeepAlignAxis.js.map?dt=1677362774127
+//# sourceMappingURL=KeepAlignAxis.js.map?dt=1685978155695

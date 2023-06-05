@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ColorChooser.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,6 +37,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.ColorChooser', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -105,120 +107,157 @@
         var w_strength = xml.getAttribute('w_strength');
         var w_curve = xml.getAttribute('w_curve');
         var w_scale = xml.getAttribute('w_scale');
+
         if (r_wavelength) {
           var xy = cv.util.Color.wavelength2xy(parseFloat(r_wavelength));
           data.baseColors.r.x = xy.x;
           data.baseColors.r.y = xy.y;
         }
+
         if (r_x) {
           data.baseColors.r.x = parseFloat(r_x);
         }
+
         if (r_y) {
           data.baseColors.r.y = parseFloat(r_y);
         }
+
         if (r_strength) {
           data.baseColors.r.Y = parseFloat(r_strength);
         }
+
         data.baseColors.r.scale = r_scale ? parseFloat(r_scale) : 100;
+
         switch (r_curve) {
           case 'exponential':
             data.baseColors.r.curve = 'exp';
             break;
+
           case 'logarithmic':
             data.baseColors.r.curve = 'log';
             break;
+
           case 'linear':
           case null:
             data.baseColors.r.curve = [1];
             break;
+
           default:
             data.baseColors.r.curve = r_curve.split(';').map(function (x) {
               return parseFloat(x);
             });
         }
+
         if (g_wavelength) {
           var _xy = cv.util.Color.wavelength2xy(parseFloat(g_wavelength));
+
           data.baseColors.g.x = _xy.x;
           data.baseColors.g.y = _xy.y;
         }
+
         if (g_x) {
           data.baseColors.g.x = parseFloat(g_x);
         }
+
         if (g_y) {
           data.baseColors.g.y = parseFloat(g_y);
         }
+
         if (g_strength) {
           data.baseColors.g.Y = parseFloat(g_strength);
         }
+
         data.baseColors.g.scale = g_scale ? parseFloat(g_scale) : 100;
+
         switch (g_curve) {
           case 'exponential':
             data.baseColors.g.curve = 'exp';
             break;
+
           case 'logarithmic':
             data.baseColors.g.curve = 'log';
             break;
+
           case 'linear':
           case null:
             data.baseColors.g.curve = [1];
             break;
+
           default:
             data.baseColors.g.curve = g_curve.split(';').map(function (x) {
               return parseFloat(x);
             });
         }
+
         if (b_wavelength) {
           var _xy2 = cv.util.Color.wavelength2xy(parseFloat(b_wavelength));
+
           data.baseColors.b.x = _xy2.x;
           data.baseColors.b.y = _xy2.y;
         }
+
         if (b_x) {
           data.baseColors.b.x = parseFloat(b_x);
         }
+
         if (b_y) {
           data.baseColors.b.y = parseFloat(b_y);
         }
+
         if (b_strength) {
           data.baseColors.b.Y = parseFloat(b_strength);
         }
+
         data.baseColors.b.scale = b_scale ? parseFloat(b_scale) : 100;
+
         switch (b_curve) {
           case 'exponential':
             data.baseColors.b.curve = 'exp';
             break;
+
           case 'logarithmic':
             data.baseColors.b.curve = 'log';
             break;
+
           case 'linear':
           case null:
             data.baseColors.b.curve = [1];
             break;
+
           default:
             data.baseColors.b.curve = b_curve.split(';').map(function (x) {
               return parseFloat(x);
             });
         }
+
         if (w_x) {
           data.baseColors.w.x = parseFloat(w_x);
         }
+
         if (w_y) {
           data.baseColors.w.y = parseFloat(w_y);
         }
+
         if (w_strength) {
           data.baseColors.w.Y = parseFloat(w_strength);
         }
+
         data.baseColors.w.scale = w_scale ? parseFloat(w_scale) : 100;
+
         switch (w_curve) {
           case 'exponential':
             data.baseColors.w.curve = 'exp';
             break;
+
           case 'logarithmic':
             data.baseColors.w.curve = 'log';
             break;
+
           case 'linear':
           case null:
             data.baseColors.w.curve = [1];
             break;
+
           default:
             data.baseColors.w.curve = w_curve.split(';').map(function (x) {
               return parseFloat(x);
@@ -251,4 +290,4 @@
   cv.parser.pure.widgets.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1677362707909
+//# sourceMappingURL=ColorChooser.js.map?dt=1685978090867

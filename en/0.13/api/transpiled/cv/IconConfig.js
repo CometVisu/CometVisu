@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* IconConfig.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,6 +37,7 @@
    */
   qx.Class.define('cv.IconConfig', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -184,7 +186,6 @@
           }
         },
         // Do not remove this line: Dynamic Icons Start
-
         'audio_audio': {
           '*': {
             'white': '*/white',
@@ -13176,13 +13177,12 @@
               '*': cv.util.IconTools.svgKUF('weather_winter')
             }
           }
-        }
+        } // Do not remove this line: Dynamic Icons End
 
-        // Do not remove this line: Dynamic Icons End
       }
     }
   });
   cv.IconConfig.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconConfig.js.map?dt=1677362777943
+//# sourceMappingURL=IconConfig.js.map?dt=1685978160341

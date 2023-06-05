@@ -32,6 +32,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -112,9 +113,11 @@
           if (opacity >= 1) {
             opacity = 1;
           }
+
           if (opacity < 0.00001) {
             opacity = 0;
           }
+
           if (qx.core.Environment.get("css.opacity")) {
             return "opacity:" + opacity + ";";
           } else {
@@ -125,6 +128,7 @@
           return "opacity:" + opacity + ";";
         }
       }),
+
       /**
        * Sets opacity of given element. Accepts numbers between zero and one
        * where "0" means transparent, "1" means opaque.
@@ -140,20 +144,22 @@
           } else {
             // Read in computed filter
             var filter = qx.bom.element.Style.get(element, "filter", qx.bom.element.Style.COMPUTED_MODE, false);
+
             if (opacity >= 1) {
               opacity = 1;
             }
+
             if (opacity < 0.00001) {
               opacity = 0;
-            }
-
-            // IE has trouble with opacity if it does not have layout (hasLayout)
+            } // IE has trouble with opacity if it does not have layout (hasLayout)
             // Force it by setting the zoom level
+
+
             if (!element.currentStyle || !element.currentStyle.hasLayout) {
               element.style.zoom = 1;
-            }
+            } // Remove old alpha filter and add new one
 
-            // Remove old alpha filter and add new one
+
             element.style.filter = filter.replace(/alpha\([^\)]*\)/gi, "") + "alpha(opacity=" + opacity * 100 + ")";
           }
         },
@@ -161,6 +167,7 @@
           element.style.opacity = opacity;
         }
       }),
+
       /**
        * Resets opacity of given element.
        *
@@ -173,9 +180,8 @@
             element.style.opacity = "";
           } else {
             // Read in computed filter
-            var filter = qx.bom.element.Style.get(element, "filter", qx.bom.element.Style.COMPUTED_MODE, false);
+            var filter = qx.bom.element.Style.get(element, "filter", qx.bom.element.Style.COMPUTED_MODE, false); // Remove old alpha filter
 
-            // Remove old alpha filter
             element.style.filter = filter.replace(/alpha\([^\)]*\)/gi, "");
           }
         },
@@ -183,6 +189,7 @@
           element.style.opacity = "";
         }
       }),
+
       /**
        * Gets computed opacity of given element. Accepts numbers between zero and one
        * where "0" means transparent, "1" means opaque.
@@ -198,26 +205,33 @@
         mshtml: function mshtml(element, mode) {
           if (qx.core.Environment.get("css.opacity")) {
             var opacity = qx.bom.element.Style.get(element, "opacity", mode, false);
+
             if (opacity != null) {
               return parseFloat(opacity);
             }
+
             return 1.0;
           } else {
             var filter = qx.bom.element.Style.get(element, "filter", mode, false);
+
             if (filter) {
               var opacity = filter.match(/alpha\(opacity=(.*)\)/);
+
               if (opacity && opacity[1]) {
                 return parseFloat(opacity[1]) / 100;
               }
             }
+
             return 1.0;
           }
         },
         "default": function _default(element, mode) {
           var opacity = qx.bom.element.Style.get(element, "opacity", mode, false);
+
           if (opacity != null) {
             return parseFloat(opacity);
           }
+
           return 1.0;
         }
       })
@@ -226,4 +240,4 @@
   qx.bom.element.Opacity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Opacity.js.map?dt=1677362728426
+//# sourceMappingURL=Opacity.js.map?dt=1685978110853

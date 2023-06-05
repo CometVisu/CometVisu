@@ -14,9 +14,9 @@
         "index": 937
       },
       "end": {
-        "line": 191,
+        "line": 213,
         "column": 3,
-        "index": 6876
+        "index": 7938
       }
     },
     "jsdoc": {
@@ -82,9 +82,9 @@
           "index": 1253
         },
         "end": {
-          "line": 111,
+          "line": 124,
           "column": 5,
-          "index": 4315
+          "index": 4898
         }
       },
       "type": "function",
@@ -97,14 +97,14 @@
     "fireStateUpdate": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 131,
           "column": 4,
-          "index": 4532
+          "index": 5115
         },
         "end": {
-          "line": 158,
+          "line": 180,
           "column": 5,
-          "index": 6263
+          "index": 7325
         }
       },
       "jsdoc": {
@@ -137,14 +137,14 @@
     "isRead": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 186,
           "column": 4,
-          "index": 6349
+          "index": 7411
         },
         "end": {
-          "line": 166,
+          "line": 188,
           "column": 5,
-          "index": 6426
+          "index": 7488
         }
       },
       "jsdoc": {
@@ -169,14 +169,14 @@
     "isWrite": {
       "location": {
         "start": {
-          "line": 172,
+          "line": 194,
           "column": 4,
-          "index": 6513
+          "index": 7575
         },
         "end": {
-          "line": 174,
+          "line": 196,
           "column": 5,
-          "index": 6590
+          "index": 7652
         }
       },
       "jsdoc": {
@@ -201,14 +201,14 @@
     "getValue": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 198,
           "column": 4,
-          "index": 6597
+          "index": 7659
         },
         "end": {
-          "line": 178,
+          "line": 200,
           "column": 5,
-          "index": 6653
+          "index": 7715
         }
       },
       "type": "function",
@@ -450,14 +450,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 181,
+        "line": 203,
         "column": 2,
-        "index": 6662
+        "index": 7724
       },
       "end": {
-        "line": 190,
+        "line": 212,
         "column": 3,
-        "index": 6872
+        "index": 7934
       }
     }
   },

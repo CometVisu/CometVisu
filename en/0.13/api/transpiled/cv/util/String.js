@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* String.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -27,9 +28,9 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.util.String', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -37,6 +38,7 @@
     */
     statics: {
       __P_542_0: null,
+
       /**
        * Decode HTML entities like &amp; to &
        * @param str {String} string to decode
@@ -46,9 +48,11 @@
         if (!this.__P_542_0) {
           this.__P_542_0 = document.createElement('span');
         }
+
         this.__P_542_0.innerHTML = str;
         return this.__P_542_0.innerText;
       },
+
       /**
        * Clean the string that contains HTML code and convert it to a DOM element
        * @param str {String} string to decode
@@ -61,6 +65,7 @@
         div.innerHTML = str;
         return div.children[0];
       },
+
       /**
        * Insert in string values as the well known sprint() function of other
        * programming languages does.
@@ -72,18 +77,22 @@
         function sprintf() {
           return _sprintf.apply(this, arguments);
         }
+
         sprintf.toString = function () {
           return _sprintf.toString();
         };
+
         return sprintf;
       }(function () {
         var args = Array.prototype.slice.call(arguments);
         var string = '-';
+
         try {
           string = sprintf.apply(this, args);
         } catch (err) {
           qx.log.Logger.warn(this, err + ', ' + JSON.stringify(args));
         }
+
         return string;
       })
     }
@@ -91,4 +100,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1677362776491
+//# sourceMappingURL=String.js.map?dt=1685978158628

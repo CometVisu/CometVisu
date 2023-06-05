@@ -1,6 +1,9 @@
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -31,6 +34,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Router.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -60,6 +64,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   qx.Class.define('cv.core.notifications.Router', {
     extend: qx.core.Object,
     type: 'singleton',
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -72,6 +77,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.__P_4_1 = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
       this.__P_4_2 = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
     },
+
     /*
     ******************************************************
       STATICS
@@ -92,9 +98,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } else if (typeof message.condition === 'function') {
           return message.condition();
         }
+
         qx.log.Logger.error(this, 'unhandled message condition type: ' + message.condition);
         return false;
       },
+
       /**
        * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
        * @param topic
@@ -104,6 +112,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       dispatchMessage: function dispatchMessage(topic, message, target) {
         return this.getInstance().dispatchMessage(topic, message, target);
       },
+
       /**
        * Converts a target name to the related target object/function.
        *
@@ -114,21 +123,27 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         switch (name) {
           case 'popup':
             return cv.ui.PopupHandler;
+
           case 'notificationCenter':
             return cv.ui.NotificationCenter.getInstance();
+
           case 'speech':
             if (!window.speechSynthesis) {
               // not supported
               qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
               return null;
             }
+
             return cv.core.notifications.SpeechHandler.getInstance();
+
           case 'toast':
             return cv.ui.ToastManager.getInstance();
         }
+
         return null;
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
@@ -142,6 +157,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getStateMessageConfig: function getStateMessageConfig() {
         return this.__P_4_3;
       },
+
       /**
        * Register state update handler for one or more addresses.
        *
@@ -172,10 +188,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } else {
           this.__P_4_3 = config;
         }
+
         for (var address in config) {
           cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
         }
       },
+
       /**
        * Toggle state update handler enabled state
        * @param id {number} ID of the handler
@@ -184,10 +202,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       enableStateUpdateHandler: function enableStateUpdateHandler(id, enable) {
         for (var address in this.__P_4_3) {
           var _iterator = _createForOfIteratorHelper(this.__P_4_3[address]),
-            _step;
+              _step;
+
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
               var config = _step.value;
+
               if (config.id === id) {
                 config.enabled = enable;
               }
@@ -199,6 +219,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
       },
+
       /**
        * Change state update severity
        * @param id {number} ID of the handler
@@ -207,10 +228,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       changeStateUpdateHandlerSeverity: function changeStateUpdateHandlerSeverity(id, severity) {
         for (var address in this.__P_4_3) {
           var _iterator2 = _createForOfIteratorHelper(this.__P_4_3[address]),
-            _step2;
+              _step2;
+
           try {
             for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
               var config = _step2.value;
+
               if (config.id === id) {
                 config.severity = severity;
               }
@@ -222,6 +245,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           }
         }
       },
+
       /**
        * Unregister state update listeners for a list of addresses
        * @param addresses {Array}
@@ -229,11 +253,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       unregisterStateUpdatehandler: function unregisterStateUpdatehandler(addresses) {
         addresses.forEach(function (address) {
           cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
+
           if (this.__P_4_3[address]) {
             delete this.__P_4_3[address];
           }
         }, this);
       },
+
       /**
        * Register a handler for a list of topics
        * @param handler {cv.core.notifications.IHandler}
@@ -244,26 +270,31 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var segments = topic.split('.');
           var firstSegment = segments.shift();
           var currentSegment = this.__P_4_0[firstSegment];
+
           if (!currentSegment) {
             this.__P_4_0[firstSegment] = {
               __P_4_4: []
             };
             currentSegment = this.__P_4_0[firstSegment];
           }
+
           segments.forEach(function (segment) {
             if (!currentSegment[segment]) {
               currentSegment[segment] = {
                 __P_4_4: []
               };
             }
+
             currentSegment = currentSegment[segment];
           }, this);
+
           currentSegment.__P_4_4.push({
             handler: handler,
             config: topics[topic]
           });
         }, this);
       },
+
       /**
        * Handle address state updates and show them as message
        * @param address {String} GA or openHAB item name
@@ -276,33 +307,39 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.__P_4_3[address]) {
           return;
         }
+
         var now = new Date();
+
         var formattedDate = this.__P_4_1.format(now);
+
         var formattedTime = this.__P_4_2.format(now);
+
         this.__P_4_3[address].forEach(function (config) {
           if (config.enabled === false || initial === true && config.skipInitial === true || changed === false) {
             // do not handle the first update
             return;
-          }
+          } // process value
 
-          // process value
+
           state = cv.Transform.decode(config.addressConfig, state);
           var templateData = {
             address: address,
             value: state,
             date: formattedDate,
             time: formattedTime
-          };
+          }; // transform the raw value to a JavaScript type
 
-          // transform the raw value to a JavaScript type
           templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
+
           if (config.valueMapping) {
             // apply mapping
             templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
           }
+
           if (config.addressMapping) {
             templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
           }
+
           var message = {
             topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
             title: qx.bom.Template.render('' + config.titleTemplate, templateData),
@@ -311,15 +348,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
             severity: config.severity
           };
+
           if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
             message.condition = state == config.condition;
           }
+
           if (config.icon) {
             message.icon = config.icon;
+
             if (config.iconClasses) {
               message.iconClasses = config.iconClasses;
             }
           }
+
           this.dispatchMessage(message.topic, message, config.target);
         }, this);
       },
@@ -336,20 +377,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else if (segmentName === '*') {
             // collect all
             this.__P_4_6(currentSegment, handlers);
+
             return true;
           }
+
           if (currentSegment['*']) {
             handlers.append(currentSegment['*'].__P_4_4);
           }
+
           if (currentSegment[segmentName]) {
             if (idx === last) {
               handlers.append(currentSegment[segmentName].__P_4_4);
             }
+
             currentSegment = currentSegment[segmentName];
           } else {
             // stop searching
             return true;
           }
+
           return false;
         }, this);
         return handlers;
@@ -367,6 +413,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (message.target && !target) {
           target = cv.core.notifications.Router.getTarget(message.target);
         }
+
         if (target && target.handleMessage) {
           this.debug('dispatching \'' + topic + '\' message to handler: ' + target);
           target.handleMessage(message, {});
@@ -382,6 +429,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.__P_4_3 = {};
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -389,10 +437,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     */
     destruct: function destruct() {
       this.clear();
+
       this._disposeObjects("__P_4_1", "__P_4_2");
     }
   });
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1677362706326
+//# sourceMappingURL=Router.js.map?dt=1685978089354

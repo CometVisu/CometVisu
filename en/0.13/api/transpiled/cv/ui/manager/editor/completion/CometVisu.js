@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* CometVisu.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,6 +39,7 @@
    */
   qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -46,6 +48,7 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -125,9 +128,8 @@
             detail: 'destructor.',
             insertText: '  /*\n  ***********************************************\n    DESTRUCTOR\n  ***********************************************\n  */\n  destruct: function () {\n    this.base(arguments);\n    $0\n  }\n',
             insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
-          }];
+          }]; // load plugin template from backend
 
-          // load plugin template from backend
           return new Promise(function (resolve, reject) {
             cv.io.rest.Client.getFsClient().readSync({
               path: 'demo/templates/Plugin.js'
@@ -148,6 +150,7 @@
             }, this);
           }.bind(this));
         }
+
         return Promise.resolve(this.TEMPLATES);
       },
       getProvider: function getProvider() {
@@ -168,4 +171,4 @@
   cv.ui.manager.editor.completion.CometVisu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CometVisu.js.map?dt=1677362713133
+//# sourceMappingURL=CometVisu.js.map?dt=1685978095910

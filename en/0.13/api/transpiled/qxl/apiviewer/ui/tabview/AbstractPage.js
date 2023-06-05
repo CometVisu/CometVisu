@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,7 +38,6 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
-
   qx.Class.define("qxl.apiviewer.ui.tabview.AbstractPage", {
     extend: qx.ui.tabview.Page,
     type: "abstract",
@@ -46,12 +46,13 @@
       this.setLayout(new qx.ui.layout.Canvas());
       this.setShowCloseButton(true);
       this._bindings = [];
-      this._viewer = this._createViewer();
-      // while using edge 0, we need to set the padding to 0 as well [BUG #4688]
+      this._viewer = this._createViewer(); // while using edge 0, we need to set the padding to 0 as well [BUG #4688]
+
       this.add(this._viewer, {
         edge: 0
       });
       this.setPadding(0);
+
       this.__P_577_0(this._viewer);
     },
     properties: {
@@ -68,10 +69,14 @@
       },
       _applyClassNode: function _applyClassNode(value, old) {
         var _this = this;
+
         return this._viewer.setDocNodeAsync(value).then(function () {
           _this.setLabel(value.getFullName());
+
           _this.setIcon(qxl.apiviewer.TreeUtil.getIconUrl(value));
+
           _this.setUserData("nodeName", value.getFullName());
+
           qx.event.Timer.once(function (e) {
             this._viewer.getContentElement().scrollToY(0);
           }, _this, 0);
@@ -90,6 +95,7 @@
       __P_577_1: function __P_577_1() {
         var uiModel = qxl.apiviewer.UiModel.getInstance();
         var bindings = this._bindings;
+
         while (bindings.length > 0) {
           var id = bindings.pop();
           uiModel.removeBinding(id);
@@ -98,11 +104,13 @@
     },
     destruct: function destruct() {
       this.__P_577_1();
+
       this._viewer.destroy();
+
       this._viewer = null;
     }
   });
   qxl.apiviewer.ui.tabview.AbstractPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractPage.js.map?dt=1677362781539
+//# sourceMappingURL=AbstractPage.js.map?dt=1685978164028

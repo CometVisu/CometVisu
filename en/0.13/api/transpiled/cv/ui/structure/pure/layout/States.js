@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* States.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -37,6 +38,7 @@
    */
   qx.Class.define('cv.ui.structure.pure.layout.States', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       PROPERTIES
@@ -64,6 +66,7 @@
         event: 'changeRowspanInvalid'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -78,4 +81,4 @@
   cv.ui.structure.pure.layout.States.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=States.js.map?dt=1677362718076
+//# sourceMappingURL=States.js.map?dt=1685978100854

@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,6 +40,7 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.cell.Default", {
     extend: qx.ui.progressive.renderer.table.cell.Abstract,
+
     /**
      */
     construct: function construct() {
@@ -49,6 +51,7 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         return qx.bom.String.escape(this._formatValue(cellInfo.cellData));
       },
+
       /**
        * Formats a value in a reasonably predictable fashion.
        *
@@ -73,9 +76,11 @@
        */
       _formatValue: function _formatValue(value) {
         var ret;
+
         if (value == null) {
           return "";
         }
+
         if (typeof value == "string") {
           return value;
         } else if (typeof value == "number") {
@@ -84,12 +89,14 @@
             numberFormat.setMaximumFractionDigits(2);
             qx.ui.progressive.renderer.table.Row._numberFormat = numberFormat;
           }
+
           ret = qx.ui.progressive.renderer.table.Row._numberFormat.format(value);
         } else if (value instanceof Date) {
           ret = qx.util.format.DateFormat.getDateInstance().format(value);
         } else {
           ret = value;
         }
+
         return ret;
       }
     }
@@ -97,4 +104,4 @@
   qx.ui.progressive.renderer.table.cell.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1677362764563
+//# sourceMappingURL=Default.js.map?dt=1685978145709

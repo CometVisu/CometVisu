@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
        */
       TYPES: ["pinch"],
       BIND_METHODS: ["getScale"],
+
       /**
        * Returns the calculated scale of this event.
        *
@@ -55,6 +57,7 @@
       getScale: function getScale() {
         return this._original.scale;
       },
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -67,14 +70,17 @@
       normalize: function normalize(event, element) {
         if (!event) {
           return event;
-        }
-        // apply mouse event normalizations
+        } // apply mouse event normalizations
+
+
         var bindMethods = qx.module.event.Pinch.BIND_METHODS;
+
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Pinch[bindMethods[i]].bind(event);
           }
         }
+
         return event;
       }
     },
@@ -85,4 +91,4 @@
   qx.module.event.Pinch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pinch.js.map?dt=1677362747041
+//# sourceMappingURL=Pinch.js.map?dt=1685978129800

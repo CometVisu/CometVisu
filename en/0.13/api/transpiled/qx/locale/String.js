@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,7 +36,6 @@
    *
    * @cldr()
    */
-
   qx.Class.define("qx.locale.String", {
     statics: {
       /**
@@ -47,6 +47,7 @@
       getQuotationStart: function getQuotationStart(locale) {
         return qx.locale.Manager.getInstance().localize("cldr_quotationStart", [], locale);
       },
+
       /**
        * Get quotation end sign
        *
@@ -56,6 +57,7 @@
       getQuotationEnd: function getQuotationEnd(locale) {
         return qx.locale.Manager.getInstance().localize("cldr_quotationEnd", [], locale);
       },
+
       /**
        * Get quotation alternative start sign
        *
@@ -65,6 +67,7 @@
       getAlternateQuotationStart: function getAlternateQuotationStart(locale) {
         return qx.locale.Manager.getInstance().localize("cldr_alternateQuotationStart", [], locale);
       },
+
       /**
        * Get quotation alternative end sign
        *
@@ -79,4 +82,4 @@
   qx.locale.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1677362745082
+//# sourceMappingURL=String.js.map?dt=1685978128043

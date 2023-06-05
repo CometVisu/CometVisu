@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MobileMenu.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -56,6 +57,7 @@
   qx.Class.define('cv.plugins.MobileMenu', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren],
+
     /*
     ******************************************************
       STATICS
@@ -83,6 +85,7 @@
         });
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -95,9 +98,11 @@
       getDomString: function getDomString() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           var navLeft = this.__P_12_0 = document.querySelector('#navbarLeft');
+
           if (!navLeft.classList.contains('mobilemenu')) {
             navLeft.classList.add('mobilemenu');
           }
+
           navLeft.style.display = 'none';
           qx.event.message.Bus.subscribe('path.pageChanged', function () {
             var navbar = navLeft.querySelector('.navbar');
@@ -108,6 +113,7 @@
           });
           return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
         }
+
         return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
       },
       _onDomReady: function _onDomReady() {
@@ -119,7 +125,9 @@
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           if (this.isTouchDevice()) {
             this.__P_12_0.style.display = 'block';
+
             var navbar = this.__P_12_0.querySelector('.navbar.navbarActive');
+
             qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
           }
         }
@@ -145,6 +153,7 @@
             this.__P_12_1 = false;
           }
         }
+
         return this.__P_12_1;
       }
     },
@@ -165,4 +174,4 @@
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1677362709133
+//# sourceMappingURL=MobileMenu.js.map?dt=1685978092019

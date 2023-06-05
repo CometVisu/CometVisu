@@ -37,6 +37,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -69,7 +70,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * @type {Map} Default attributes for creation {@link #create}.
@@ -84,6 +84,7 @@
         border: 0,
         allowTransparency: true
       },
+
       /**
        * Creates an DOM element.
        *
@@ -98,19 +99,24 @@
         // Work on a copy to not modify given attributes map
         var attributes = attributes ? qx.lang.Object.clone(attributes) : {};
         var initValues = qx.bom.Iframe.DEFAULT_ATTRIBUTES;
+
         for (var key in initValues) {
           if (!(key in attributes)) {
             attributes[key] = initValues[key];
           }
         }
+
         var elem = qx.dom.Element.create("iframe", attributes, win);
+
         if (!("onload" in attributes)) {
           elem.onload = function () {
             qx.event.handler.Iframe.onevent(elem);
           };
         }
+
         return elem;
       },
+
       /**
        * Get the DOM window object of an iframe.
        *
@@ -125,6 +131,7 @@
           return null;
         }
       },
+
       /**
        * Get the DOM document object of an iframe.
        *
@@ -139,6 +146,7 @@
             return null;
           }
         }
+
         try {
           var win = this.getWindow(iframe);
           return win ? win.document : null;
@@ -146,6 +154,7 @@
           return null;
         }
       },
+
       /**
        * Get the HTML body element of the iframe.
        *
@@ -160,6 +169,7 @@
           return null;
         }
       },
+
       /**
        * Sets iframe's source attribute to given value
        *
@@ -184,26 +194,29 @@
               // loading its current page
               if (qx.core.Environment.get("engine.name") == "webkit" && qx.core.Environment.get("os.name") == "osx") {
                 var contentWindow = this.getWindow(iframe);
+
                 if (contentWindow) {
                   contentWindow.stop();
                 }
               }
+
               this.getWindow(iframe).location.replace(source);
             } catch (ex) {
               iframe.src = source;
             }
           } else {
             iframe.src = source;
-          }
-
-          // This is a programmer provided source. Remember URL for this source
+          } // This is a programmer provided source. Remember URL for this source
           // for later comparison with current URL. The current URL can diverge
           // if the end-user navigates in the Iframe.
+
+
           this.__P_105_0(iframe);
         } catch (ex) {
           qx.log.Logger.warn("Iframe source could not be set!");
         }
       },
+
       /**
        * Returns the current (served) URL inside the iframe
        *
@@ -212,13 +225,16 @@
        */
       queryCurrentUrl: function queryCurrentUrl(iframe) {
         var doc = this.getDocument(iframe);
+
         try {
           if (doc && doc.location) {
             return doc.location.href;
           }
         } catch (ex) {}
+
         return "";
       },
+
       /**
        * Remember actual URL of iframe.
        *
@@ -230,6 +246,7 @@
           qx.bom.Event.removeNativeListener(iframe, "load", callback);
           iframe.$$url = qx.bom.Iframe.queryCurrentUrl(iframe);
         };
+
         qx.bom.Event.addNativeListener(iframe, "load", callback);
       }
     }
@@ -237,4 +254,4 @@
   qx.bom.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1677362724935
+//# sourceMappingURL=Iframe.js.map?dt=1685978107229

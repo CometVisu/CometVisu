@@ -75,6 +75,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     }
   },
@@ -543,6 +544,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "_parseXSD": {

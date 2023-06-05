@@ -1,9 +1,15 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -85,6 +91,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Main.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -116,6 +123,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     type: 'singleton',
     include: [cv.ui.manager.control.MFileEventHandler],
     implement: [cv.ui.manager.IActionHandler, cv.ui.manager.control.IFileEventHandler],
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -123,24 +131,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     */
     construct: function construct() {
       var _this = this;
+
       qx.core.Object.constructor.call(this);
       cv.ui.manager.model.BackupFolder.getInstance();
+
       this._checkEnvironment();
+
       this.initOpenFiles(new qx.data.Array());
       this.__P_25_0 = cv.ui.manager.control.ActionDispatcher.getInstance();
+
       this.__P_25_0.setMain(this);
+
       this.__P_25_1();
+
       this._draw();
-      qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this);
 
-      // Initialize tooltip manager
-      qx.ui.tooltip.Manager.getInstance();
+      qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this); // Initialize tooltip manager
 
-      //qx.event.Registration.addListener(window, 'beforeunload', this._onBeforeUnload, this);
+      qx.ui.tooltip.Manager.getInstance(); //qx.event.Registration.addListener(window, 'beforeunload', this._onBeforeUnload, this);
+
       window.addEventListener('beforeunload', function (event) {
         _this._onBeforeUnload(event);
       });
     },
+
     /*
     ***********************************************
       STATICS
@@ -149,6 +163,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     statics: {
       ROOT: null
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -159,6 +174,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         check: 'qx.data.Array',
         deferredInit: true
       },
+
       /**
        * Current selected folder (if a file is selected its parent folder) is writeable.
        */
@@ -196,6 +212,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         apply: '_applyVisible'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -215,6 +232,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       __P_25_0: null,
       _applyVisible: function _applyVisible(value) {
         var manager = qx.core.Init.getApplication().getCommandManager();
+
         if (value) {
           manager.setActive(this._managerCommands);
           qx.bom.element.Style.set(this.__P_25_4(), 'display', 'block');
@@ -230,6 +248,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           } else if (res) {
             res.forEach(function (env) {
               var refreshActions = false;
+
               switch (env.entity) {
                 case '.':
                   // config folder must be writeable
@@ -244,26 +263,36 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                     refreshActions = true;
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('config folder is not writeable'));
                   }
+
                   if (refreshActions) {
                     var widget = this.__P_25_0.getFocusedWidget();
+
                     this.__P_25_0.resetFocusedWidget();
+
                     this.__P_25_0.setFocusedWidget(widget);
                   }
+
                   break;
+
                 case 'backup':
                   if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('backup folder is not writeable'));
                   }
+
                   break;
+
                 case 'media':
                   if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('media folder is not writeable'));
                   }
+
                   break;
+
                 case 'hidden.php':
                   if ((env.state & 4) === 0 && (env.state & 1) === 1) {
                     cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Hidden configuration file (hidden.php) not writeable'));
                   }
+
                   break;
               }
             }, this);
@@ -275,8 +304,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           // needs a writeable file
           return false;
         }
+
         var actions = ['close', 'quit', 'about'];
         var currentFolder = this.getCurrentFolder();
+
         if (currentFolder.isWriteable()) {
           actions.push('new-file');
           actions.push('new-folder');
@@ -285,9 +316,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           actions.push('clone');
           actions.push('convertToTile');
         }
+
         if (cv.ui.manager.model.FileItem.ROOT.isWriteable()) {
           actions.push('new-config-file');
         }
+
         return actions.includes(actionName);
       },
       _doClose: function _doClose() {
@@ -297,10 +330,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var app = qx.core.Init.getApplication();
           configLoader.load(app.bootstrap, app);
         }
+
         this.setVisible(false);
       },
       handleAction: function handleAction(actionName, data) {
         var unsavedFiles;
+
         switch (actionName) {
           case 'close':
             if (!data) {
@@ -308,11 +343,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             } else {
               this.closeFile(data);
             }
+
             break;
+
           case 'quit':
             unsavedFiles = this.getOpenFiles().filter(function (openFile) {
               return openFile.getFile().isModified();
             });
+
             if (unsavedFiles.length > 0) {
               var dialog = new qxl.dialog.Confirm({
                 message: qx.locale.Manager.tr('You have files opened with unsaved changes, you should save them now.'),
@@ -322,7 +360,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                       openFile.save();
                     });
                   }
+
                   dialog.dispose();
+
                   this._doClose();
                 },
                 context: this,
@@ -335,10 +375,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             } else {
               this._doClose();
             }
+
             break;
+
           case 'new-file':
             this._onCreate('file', null, data);
+
             break;
+
           case 'new-config-file':
             cv.io.rest.Client.getFsClient().readSync({
               path: 'demo/templates/visu_config.xml'
@@ -350,6 +394,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               }
             }, this);
             break;
+
           case 'clone':
             cv.io.rest.Client.getFsClient().readSync({
               path: data.file.getFullPath()
@@ -364,6 +409,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               }
             }, this);
             break;
+
           case 'convertToTile':
             cv.io.rest.Client.getFsClient().readSync({
               path: data.file.getFullPath()
@@ -372,36 +418,48 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Cannot load file content'));
               } else if (data.file.isConfigFile()) {
                 var converter = new cv.util.ConfigUpgrader();
-                var _converter$convertPur = converter.convertPureToTile(res),
-                  _converter$convertPur2 = _slicedToArray(_converter$convertPur, 2),
-                  _err = _converter$convertPur2[0],
-                  convertedContent = _converter$convertPur2[1];
+
+                var _converter$convertPur3 = converter.convertPureToTile(res),
+                    _converter$convertPur4 = _slicedToArray(_converter$convertPur3, 2),
+                    _err = _converter$convertPur4[0],
+                    convertedContent = _converter$convertPur4[1];
+
                 if (_err) {
                   cv.ui.manager.snackbar.Controller.error(_err);
                 } else {
                   var suggestedName = 'tile';
                   var match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(data.file.getName());
+
                   if (match) {
                     suggestedName = 'tile-' + match[1];
-                  }
-                  // config files need to be cloned in the root folder
+                  } // config files need to be cloned in the root folder
+
+
                   this._onCreate('config', convertedContent, cv.ui.manager.model.FileItem.ROOT, 'cv.ui.manager.editor.Source', suggestedName);
                 }
               }
             }, this);
             break;
+
           case 'new-folder':
             this._onCreate('dir', null, data);
+
             break;
+
           case 'delete':
             this._onDelete(data);
+
             break;
+
           case 'upload':
             // nothing to to, this is handled in another way
             break;
+
           case 'about':
             this._showAbout();
+
             break;
+
           default:
             this.warn(actionName + ' handling is not implemented yet!');
             break;
@@ -411,6 +469,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var unsavedFiles = this.getOpenFiles().filter(function (openFile) {
           return openFile.getFile().isModified();
         });
+
         if (unsavedFiles.length > 0) {
           ev.preventDefault();
           ev.returnValue = '';
@@ -422,6 +481,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       unConfigureButton: function unConfigureButton(button) {},
       _handleFileEvent: function _handleFileEvent(ev) {
         var data = ev.getData();
+
         if (data.action === 'deleted') {
           // check if file is currently opened and close it
           var openFiles = this.getOpenFiles().copy();
@@ -429,14 +489,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             if (openFile.getFile().isRelated(data.path)) {
               this.closeFile(openFile);
             }
+
             return false;
           }, this);
+
           if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
             this.resetCurrentFolder();
           }
         } else {
           this.warn('unhandled file event', data.action);
         }
+
         this._tree.refresh();
       },
       __P_25_5: function __P_25_5(name) {
@@ -449,45 +512,56 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             file = child;
             return true;
           }
+
           return false;
         });
+
         if (!file && demoFolder) {
           if (name.startsWith('demo/')) {
             name = name.substr(5);
-          }
-          // check demo configs
+          } // check demo configs
+
+
           demoFolder.getChildren().some(function (child) {
             if (child.getName() === name) {
               file = child;
               return true;
             }
+
             return false;
           });
         }
+
         return file;
       },
       _onManagerEvent: function _onManagerEvent(ev) {
         var data = ev.getData();
+
         switch (ev.getName()) {
           case 'cv.manager.compareFiles':
             this.openFile(data, false);
             break;
+
           case 'cv.manager.openWith':
             if (typeof data.file === 'string') {
               // this can only by a file in the root dir (a config)
               data.file = this.__P_25_5(data.file);
             }
+
             this.openFile(data.file || this.getCurrentSelection(), false, data.handler, null, data.handlerOptions);
             break;
+
           case 'cv.manager.open':
             if (typeof data === 'string') {
               // this can only by a file in the root dir (a config)
               data = this.__P_25_5(data);
             }
+
             this.openFile(data || this.getCurrentSelection(), false);
             break;
         }
       },
+
       /**
        * open selected file in preview mode
        * @param ev
@@ -495,16 +569,20 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       _onChangeTreeSelection: function _onChangeTreeSelection(ev) {
         var data = ev.getData();
+
         if (cv.ui.manager.model.Preferences.getInstance().isQuickPreview() && data.mode === 'tap' || data.mode === 'dbltap') {
           this.__P_25_6(data.node, data.mode);
         }
+
         var node = data.node;
+
         if (node) {
           if (data.node.getType() === 'file') {
             this.setCurrentFolder(data.node.getParent());
           } else {
             this.setCurrentFolder(node);
           }
+
           this.setCurrentSelection(node);
         } else {
           this.resetCurrentFolder();
@@ -525,6 +603,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (old) {
           old.removeRelatedBindings(this);
         }
+
         if (value) {
           value.bind('writeable', this, 'writeableFolder');
         } else {
@@ -535,6 +614,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         if (old) {
           old.removeRelatedBindings(this);
         }
+
         if (value) {
           value.bind('writeable', this, 'deleteableSelection');
           value.bind('inTrash', this, 'renameableSelection', {
@@ -548,33 +628,43 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       _onChangeFileSelection: function _onChangeFileSelection() {
         var sel = this._openFilesController.getSelection();
+
         if (sel.length > 0) {
           var openFile = sel.getItem(0);
           var file = openFile.getFile();
           var editorConfig;
           var handlerId = openFile.getHandlerId();
+
           if (handlerId) {
             editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
           } else {
             editorConfig = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
           }
+
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
           }
+
           editorConfig.instance.setFile(file);
+
           if (this._stack.indexOf(editorConfig.instance) < 0) {
             this._stack.add(editorConfig.instance);
           }
+
           if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
             editorConfig.instance.setHandlerOptions(openFile.getHandlerOptions());
           }
+
           this._stack.setSelection([editorConfig.instance]);
+
           this.__P_25_0.setFocusedWidget(editorConfig.instance);
+
           cv.ui.manager.core.GlobalState.getInstance().setOpenedFocusedFile(file);
         } else {
           cv.ui.manager.core.GlobalState.getInstance().resetOpenedFocusedFile();
         }
       },
+
       /**
        * @param file {cv.ui.manager.model.FileItem} the file to open
        * @param preview {Boolean} open the file in preview mode
@@ -586,40 +676,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var openFiles = this.getOpenFiles();
         var openFile;
         var handlerConf;
+
         if (!handlerId) {
           handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file, handlerType);
+
           if (!handlerConf) {
             // no handler
             cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Cannot open file: "%1"', file.getName()));
             return;
           }
+
           handlerId = handlerConf.Clazz.classname;
         } else {
           // check if this handler opens the file in a external frame that is not connected to the manager
           handlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandlerById(handlerId);
+
           if (!handlerConf.instance) {
             handlerConf.instance = new handlerConf.Clazz();
           }
+
           if (handlerConf.instance.isExternal()) {
             handlerConf.instance.setFile(file);
             return;
           }
         }
+
         var isOpen = openFiles.some(function (of) {
           if (of.getFile() === file && handlerId === of.getHandlerId()) {
             openFile = of;
             return true;
           }
+
           return false;
         });
+
         if (!openFile) {
           openFile = new cv.ui.manager.model.OpenFile(file, handlerId);
         }
+
         if (handlerOptions) {
           openFile.setHandlerOptions(handlerOptions);
         } else {
           openFile.resetHandlerOptions();
         }
+
         if (preview === true) {
           if (!openFile.isPermanent()) {
             if (this.__P_25_2 !== null && openFiles.getItem(this.__P_25_2) && !openFiles.getItem(this.__P_25_2).isPermanent()) {
@@ -627,19 +727,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             } else {
               this.__P_25_2 = openFiles.length;
               openFiles.push(openFile);
-            }
-            // do not 'downgrade' the permanent state
+            } // do not 'downgrade' the permanent state
+
+
             openFile.setPermanent(false);
           }
         } else {
           if (!isOpen && (this.__P_25_2 === null || openFiles.indexOf(openFile) !== this.__P_25_2)) {
             openFiles.push(openFile);
           }
+
           openFile.setPermanent(true);
           this.__P_25_2 = null;
         }
+
         this._openFilesController.getTarget().setModelSelection([openFile]);
       },
+
       /**
        * Opens a confirm dialog on how to treat the unsaved changes in the file if it has been modified and not saved.
        * @param openFile {cv.ui.manager.model.OpenFile|cv.ui.manager.model.FileItem} file to check
@@ -647,6 +751,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
        */
       checkUnsavedChanged: function checkUnsavedChanged(openFile) {
         var _this2 = this;
+
         if (openFile instanceof cv.ui.manager.model.FileItem) {
           // find the opened file
           var found = this.getOpenFiles().some(function (f) {
@@ -654,37 +759,46 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               openFile = f;
               return true;
             }
+
             return false;
           });
+
           if (!found) {
             return false;
           }
         }
+
         var file = openFile.getFile();
+
         if (file.isModified()) {
           // check if temporary
           var message = qx.locale.Manager.tr('This file has unsaved changes that will be lost when you close it without saving.');
+
           if (file.isTemporary()) {
             message = qx.locale.Manager.tr('This file has not been saved on the backend yet. It will be lost when you close it without saving.');
           }
+
           var dialog = new qxl.dialog.Confirm({
             message: message,
             callback: function callback(confirmed) {
               if (confirmed === true) {
                 openFile.save();
+
                 _this2.closeFile(openFile, true);
               } else if (confirmed === false) {
                 file.resetModified();
+
                 if (file.isTemporary()) {
                   qx.event.message.Bus.dispatchByName('cv.manager.file', {
                     action: 'deleted',
                     path: file.getFullPath()
                   });
                 }
+
                 _this2.closeFile(openFile, true);
-              } else {
-                // cancel closing, do nothing
+              } else {// cancel closing, do nothing
               }
+
               dialog.dispose();
             },
             context: this,
@@ -698,6 +812,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           dialog.show();
           return true;
         }
+
         return false;
       },
       closeFile: function closeFile(openFile, force) {
@@ -708,50 +823,66 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               openFile = f;
               return true;
             }
+
             return false;
           });
+
           if (!found) {
             return;
           }
         }
+
         if (!openFile || !openFile.isCloseable()) {
           return;
         }
-        var file = openFile.getFile();
 
-        // check if this file is modified
+        var file = openFile.getFile(); // check if this file is modified
+
         if (!force && this.checkUnsavedChanged(openFile)) {
           return;
         }
+
         if (openFile instanceof cv.ui.manager.model.OpenFile) {
           openFile.resetPermanent();
         }
+
         var currentSelection = this._openFilesController.getSelection();
+
         var selectionIndex = -1;
         var openFiles = this.getOpenFiles();
+
         if (currentSelection.length > 0 && currentSelection.getItem(0) === openFile) {
           // we need to select another file after this one got closed
           selectionIndex = openFiles.indexOf(openFile);
         }
+
         openFiles.remove(openFile);
+
         var currentHandler = this._stack.getSelection()[0];
+
         if (qx.Class.hasInterface(currentHandler.constructor, cv.ui.manager.editor.IEditor) && !(currentHandler instanceof cv.ui.manager.Start)) {
           // reset the handlers file
           currentHandler.resetFile();
         }
+
         if (this.getOpenFiles().length === 0) {
           this._stack.resetSelection();
+
           this.__P_25_0.resetFocusedWidget();
+
           this.__P_25_2 = null;
         }
+
         if (selectionIndex > 0) {
           this._openFilesController.getSelection().replace(openFiles.getItem(selectionIndex - 1));
         } else if (selectionIndex === 0 && openFiles.length > 0) {
           this._openFilesController.getSelection().replace(openFiles.getItem(0));
         }
+
         if (file instanceof cv.ui.manager.model.CompareFiles) {
           var fileHandlerConf = cv.ui.manager.control.FileHandlerRegistry.getInstance().getFileHandler(file);
           fileHandlerConf.instance.clear();
+
           if (openFiles.filter(function (openFile) {
             return openFile.getFile() instanceof cv.ui.manager.model.CompareFiles;
           }).length === 0) {
@@ -761,6 +892,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         } else if (window.monaco && openFile.getHandlerId() === 'cv.ui.manager.editor.Source') {
           // close textmodel in monaco editor if exists
           var oldModel = window.monaco.editor.getModel(file.getUri());
+
           if (oldModel) {
             oldModel.dispose();
           }
@@ -768,6 +900,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       closeCurrentFile: function closeCurrentFile() {
         var selected = this._openFilesController.getSelection().length > 0 ? this._openFilesController.getSelection().getItem(0) : null;
+
         if (selected) {
           this.closeFile(selected);
         }
@@ -784,27 +917,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           qx.dom.Element.insertEnd(this.__P_25_3, document.body);
           qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
         }
+
         return this.__P_25_3;
       },
       __P_25_1: function __P_25_1() {
         var group = this._managerCommands = new qx.ui.command.Group();
         group.add('save', new qx.ui.command.Command('Ctrl+S'));
-        group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S'));
-        // this command will close the browser window, thats not what we want
+        group.add('save-as', new qx.ui.command.Command('Ctrl+Shift+S')); // this command will close the browser window, thats not what we want
         // group.add('close', new qx.ui.command.Command('Ctrl+W'));
+
         group.add('new-file', new qx.ui.command.Command('Ctrl+N'));
         group.add('new-folder', new qx.ui.command.Command('Ctrl+Shift+N'));
-        group.add('quit', new qx.ui.command.Command('Ctrl+Q'));
-        // group.add('delete', new qx.ui.command.Command('Ctrl+Del'));
+        group.add('quit', new qx.ui.command.Command('Ctrl+Q')); // group.add('delete', new qx.ui.command.Command('Ctrl+Del'));
 
         var renameCommand = new qx.ui.command.Command('F2');
         group.add('rename', renameCommand);
         this.bind('renameableSelection', renameCommand, 'enabled');
         group.add('undo', new qx.ui.command.Command('Ctrl+Z'));
-        group.add('redo', new qx.ui.command.Command('Ctrl+Y'));
-
-        // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
+        group.add('redo', new qx.ui.command.Command('Ctrl+Y')); // edit commands (adding cut/copy/paste command will deactivate the native browser functions)
         // and as we cannot simulate pasting from clipboard, we do not use them here
+
         group.add('cut', new qx.ui.command.Command('Ctrl+X'));
         group.add('copy', new qx.ui.command.Command('Ctrl+C'));
         group.add('paste', new qx.ui.command.Command('Ctrl+V'));
@@ -816,22 +948,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       _onDelete: function _onDelete(file) {
         var item = file || this.getCurrentSelection();
+
         if (item) {
           cv.ui.manager.control.FileController.getInstance()["delete"](item);
         }
       },
       _onChangeStackSelection: function _onChangeStackSelection(ev) {
         var selection = ev.getData();
-        var openFiles = [];
-        // sync tab selection with currently visible page
+        var openFiles = []; // sync tab selection with currently visible page
+
         selection.forEach(function (page) {
           var openFile = this.getOpenFiles().toArray().find(function (openFile) {
             return openFile.getFile() === page.getFile() && openFile.getHandlerId() === page.classname;
           });
+
           if (openFile) {
             openFiles.push(openFile);
           }
         }, this);
+
         this._openFilesController.getSelection().replace(openFiles);
       },
       __P_25_7: function __P_25_7(message, callback, context, value, caption) {
@@ -848,11 +983,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       _onCreate: function _onCreate(type, content, folder, handlerId, suggestedName) {
         var currentFolder = folder || this.getCurrentFolder();
+
         if (!currentFolder) {
           return;
         }
+
         var message;
         var existsMessage;
+
         if (type === 'config') {
           message = qx.locale.Manager.tr('Please enter the name of the new configuration (without "visu_config_" at the beginning and ".xml" at the end)');
           existsMessage = qx.locale.Manager.tr('A configuration with this name already exists.');
@@ -863,26 +1001,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           message = qx.locale.Manager.tr('Please enter the folder name.');
           existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
         }
+
         var handlePrompt = function handlePrompt(name) {
           if (!name) {
             // canceled
             return;
           }
-          var filename = name;
-          // add visu_config_..-xml
+
+          var filename = name; // add visu_config_..-xml
+
           if (type === 'config') {
             var match = /visu[_-]config[_-]([\w\d_-]+)(\.xml)?/.exec(name);
+
             if (match) {
               name = match[1];
             }
+
             filename = 'visu_config_' + name + '.xml';
-          }
-          // check if name does not exist
+          } // check if name does not exist
+
+
           var exists = currentFolder.getChildren().some(function (child) {
             return child.getName() === filename && child.getType() === type;
           }, this);
+
           if (exists) {
             cv.ui.manager.snackbar.Controller.error(existsMessage);
+
             this.__P_25_7(message, handlePrompt, this, name);
           } else {
             var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
@@ -896,6 +1041,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               parentFolder: currentFolder.getFullPath(),
               content: content || ''
             });
+
             if (type === 'dir') {
               // create directory directly
               cv.io.rest.Client.getFsClient().createSync({
@@ -919,19 +1065,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 }
               }, this);
             }
+
             currentFolder.addChild(item);
             currentFolder.sortElements();
+
             this._tree.refresh();
-            this._tree.setSelection(item);
-            // do not open new folders
+
+            this._tree.setSelection(item); // do not open new folders
+
+
             if (type !== 'dir') {
               // open the file in an editor
               this.openFile(item, false, handlerId, 'edit');
             }
           }
         };
+
         this.__P_25_7(message, handlePrompt, this, suggestedName);
       },
+
       /**
        * Finds next droppable parent of the given element. Maybe the element itself as well.
        *
@@ -945,14 +1097,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           if (elem.getAttribute('qxDroppable') === 'on') {
             return elem;
           }
+
           elem = elem.parentNode;
         }
+
         return null;
       },
       // overridden
       _draw: function _draw() {
         var _this3 = this;
+
         var domRoot = this.__P_25_4();
+
         var root = new qx.ui.root.Inline(domRoot, true, true);
         this.bind('visible', root, 'visibility', {
           converter: function converter(visible) {
@@ -964,12 +1120,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           var element = root.getContentElement().getDomElement();
           element.addEventListener('drop', function (ev) {
             var target = this.__P_25_8(ev.target);
+
             if (!target) {
               ev.preventDefault();
             }
           }.bind(_this3));
           element.addEventListener('dragover', function (ev) {
             var target = this.__P_25_8(ev.target);
+
             if (!target) {
               ev.preventDefault();
             }
@@ -982,10 +1140,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           bottom: 10,
           left: 200
         });
-
         /**
          *
          */
+
         function resize() {
           var bounds = root.getBounds();
           snackbar.setLayoutProperties({
@@ -994,6 +1152,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           });
           snackbar.setMaxHeight(bounds.height - 40);
         }
+
         root.addListener('resize', resize, this);
         root.addListener('appear', resize, this);
         window.addEventListener('resize', function () {
@@ -1003,8 +1162,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var main = new qx.ui.container.Composite(new qx.ui.layout.Dock());
         root.add(main, {
           edge: 0
-        });
-        // menu on top
+        }); // menu on top
+
         var menuBar = cv.ui.manager.MenuBar.getInstance();
         main.add(menuBar, {
           edge: 'north'
@@ -1017,8 +1176,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           edge: 'center'
         });
         var rootFolder = cv.ui.manager.model.FileItem.ROOT = new cv.ui.manager.model.FileItem('.');
-        var fakeIconFile = cv.ui.manager.model.FileItem.getIconFile();
-        // TODO: needs to be verified by the backend
+        var fakeIconFile = cv.ui.manager.model.FileItem.getIconFile(); // TODO: needs to be verified by the backend
+
         rootFolder.set({
           overrideIcon: true,
           writeable: true,
@@ -1029,40 +1188,39 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         });
         this.setCurrentFolder(rootFolder);
         this._tree = new cv.ui.manager.tree.FileSystem(rootFolder);
-        this._tree.addListener('changeSelection', this._onChangeTreeSelection, this);
 
-        // left container
-        var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+        this._tree.addListener('changeSelection', this._onChangeTreeSelection, this); // left container
 
-        // left toolbar
+
+        var leftContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox()); // left toolbar
+
         var leftBar = new cv.ui.manager.ToolBar(uploadManager);
         this.bind('currentFolder', leftBar, 'folder');
         this.bind('currentSelection', leftBar, 'file');
-        leftBar.addListener('reload', this._tree.reload, this._tree);
+        leftBar.addListener('reload', this._tree.reload, this._tree); // globally bind writeable folder to command for new files
 
-        // globally bind writeable folder to command for new files
         var buttonConfig = menuBar.getButtonConfiguration();
         this.bind('writeableFolder', buttonConfig['new-file'].args[2], 'enabled');
-        this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled');
-
-        // this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
+        this.bind('writeableFolder', buttonConfig['new-folder'].args[2], 'enabled'); // this.bind('deleteableSelection', buttonConfig['delete'].args[2], 'enabled');
 
         leftContainer.add(leftBar);
         leftContainer.add(this._tree, {
           flex: 1
         });
+
         this._pane.add(leftContainer, 0);
+
         cv.ui.manager.model.Preferences.getInstance().bind('expertMode', leftContainer, 'visibility', {
           converter: function converter(value) {
             return value ? 'visible' : 'excluded';
           }
         });
-        this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox());
+        this._mainContent = new qx.ui.container.Composite(new qx.ui.layout.VBox()); // tab list
 
-        // tab list
         var list = new qx.ui.form.List(true);
         list.setAppearance('open-files-tabs');
         this._openFilesController = new qx.data.controller.List(this.getOpenFiles(), list, 'file.name');
+
         this._openFilesController.setDelegate({
           createItem: function () {
             var item = new cv.ui.manager.form.FileTabItem();
@@ -1077,14 +1235,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             controller.bindProperty('closeable', 'closeable', null, item, index);
           }
         });
+
         list.addListener('changeSelection', this._onChangeFileSelection, this);
+
         this._mainContent.add(list);
+
         this._stack = new qx.ui.container.Stack();
+
         this._stack.addListener('changeSelection', this._onChangeStackSelection, this);
+
         this._mainContent.add(this._stack, {
           flex: 1
         });
+
         this._pane.add(this._mainContent, 1);
+
         var startOpenFile = new cv.ui.manager.model.OpenFile(rootFolder, 'cv.ui.manager.Start');
         startOpenFile.setCloseable(false);
         this.getOpenFiles().push(startOpenFile);
@@ -1102,34 +1267,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         new cv.ui.manager.dialog.BigAlert(dialogConf).show();
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeObjects('_pane', '_tree', '_stack', '_mainContent', '_openFilesController');
+      this._disposeObjects('_pane', '_tree', '_stack', '_mainContent', '_openFilesController'); // restore former command group
 
-      // restore former command group
+
       var application = qx.core.Init.getApplication();
       var manager = application.getCommandManager();
       manager.setActive(this._oldCommandGroup);
-      this._oldCommandGroup = null;
+      this._oldCommandGroup = null; // defer the reset to let the dispose queue to be emptied before removing the root
 
-      // defer the reset to let the dispose queue to be emptied before removing the root
       new qx.util.DeferredCall(function () {
         application.resetRoot();
       }).schedule();
       document.body.removeChild(this.__P_25_3);
       this.__P_25_3 = null;
       this.__P_25_0 = null;
-      qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this);
+      qx.event.message.Bus.unsubscribe('cv.manager.*', this._onManagerEvent, this); // destroy the singleton instance
 
-      // destroy the singleton instance
       delete cv.ui.manager.Main.$$instance;
     }
   });
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1677362711105
+//# sourceMappingURL=Main.js.map?dt=1685978093745

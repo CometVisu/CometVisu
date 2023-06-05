@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -32,7 +33,6 @@
      *  Derrell Lipman
   
   ************************************************************************ */
-
   qx.Class.define("qxl.dialog.FormTag", {
     extend: qx.ui.container.Composite,
     construct: function construct(layout) {
@@ -49,4 +49,4 @@
   qxl.dialog.FormTag.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FormTag.js.map?dt=1677362781162
+//# sourceMappingURL=FormTag.js.map?dt=1685978163613

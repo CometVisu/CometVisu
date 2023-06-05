@@ -19,7 +19,7 @@
       "end": {
         "line": 353,
         "column": 3,
-        "index": 11299
+        "index": 11318
       }
     },
     "jsdoc": {
@@ -671,7 +671,7 @@
         "end": {
           "line": 347,
           "column": 5,
-          "index": 11180
+          "index": 11199
         }
       },
       "type": "function",
@@ -4235,12 +4235,12 @@
       "start": {
         "line": 350,
         "column": 2,
-        "index": 11189
+        "index": 11208
       },
       "end": {
         "line": 352,
         "column": 3,
-        "index": 11295
+        "index": 11314
       }
     }
   },

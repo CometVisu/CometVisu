@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Group.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,6 +40,7 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.Group', {
     extend: cv.ui.manager.model.schema.Base,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -48,6 +50,7 @@
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
       this.parse();
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -59,6 +62,7 @@
         init: 'group'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -74,22 +78,26 @@
         cv.ui.manager.model.schema.Group.superclass.prototype.parse.call(this);
         var schema = this.getSchema();
         var group = this.getNode();
+
         if (group.hasAttribute('ref')) {
           // if this is a reference, unravel it.
           group = schema.getReferencedNode('group', group.getAttribute('ref'));
-        }
+        } // we are allowed choice and sequence, but only ONE AT ALL is allowed
 
-        // we are allowed choice and sequence, but only ONE AT ALL is allowed
+
         var grouping = group.querySelector(':scope > choice');
+
         if (grouping) {
           this._subGroupings.push(new cv.ui.manager.model.schema.Choice(grouping, schema));
         } else {
           grouping = group.querySelector(':scope > sequence');
+
           if (grouping) {
             this._subGroupings.push(new cv.ui.manager.model.schema.Sequence(grouping, schema));
           }
         }
       },
+
       /**
        * get the elements allowed for this group
        *
@@ -99,6 +107,7 @@
         // we have non of ourselves, so we return what the child says
         return this._subGroupings[0].getAllowedElements();
       },
+
       /**
        * get the sorting of the allowed elements.
        * For a group, all elements have the same sorting, so they will all have the
@@ -115,9 +124,11 @@
         Object.keys(allowedElements).forEach(function (name) {
           var item = allowedElements[name];
           var mySortNumber = 'x'; // for a group, sortNumber is always the same
+
           if (sortNumber !== undefined) {
             mySortNumber = sortNumber + '.' + mySortNumber;
           }
+
           if (item.getType() === 'element') {
             namesWithSorting[item.getName()] = mySortNumber;
           } else {
@@ -128,6 +139,7 @@
         }, this);
         return namesWithSorting;
       },
+
       /**
        * get a regex (string) describing this choice
        *
@@ -140,32 +152,34 @@
           // use the cache if primed
           return this._regexCache;
         }
-        var regexString = '(';
 
-        // collect the regex for each and every grouping we might have;
+        var regexString = '('; // collect the regex for each and every grouping we might have;
         // 'each and every' means 'the only ONE'
+
         this._subGroupings.forEach(function (grouping) {
           regexString = '(';
+
           if (nocapture) {
             regexString += '?:';
           }
-          regexString += grouping.getRegex(separator, nocapture) + ')';
-        });
 
-        // append bounds to regex
+          regexString += grouping.getRegex(separator, nocapture) + ')';
+        }); // append bounds to regex
+
+
         regexString += '{';
         var bounds = this.getBounds();
         regexString += bounds.min === undefined ? 1 : bounds.min;
         regexString += ',';
+
         if (bounds.max !== Number.POSITIVE_INFINITY) {
           regexString += bounds.max === undefined ? 1 : bounds.max;
         }
-        regexString += '}';
 
-        // fill the cache
-        this._regexCache = regexString;
+        regexString += '}'; // fill the cache
 
-        // thats about it.
+        this._regexCache = regexString; // thats about it.
+
         return regexString;
       },
       getBoundsForElementName: function getBoundsForElementName(childName) {
@@ -178,4 +192,4 @@
   cv.ui.manager.model.schema.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1677362715410
+//# sourceMappingURL=Group.js.map?dt=1685978098139

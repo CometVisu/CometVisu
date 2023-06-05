@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /**
    * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)
    * This parser can handle those strings
@@ -29,6 +30,7 @@
    */
   qx.Class.define('cv.io.parser.Json', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -38,6 +40,7 @@
       parse: qx.core.Environment.select('cv.xhr', {
         jquery: function jquery(data) {
           var result = {};
+
           try {
             result = JSON.parse(data);
           } catch (e) {
@@ -51,18 +54,22 @@
               }
             }, this);
           }
+
           return result;
         },
         qx: function (_qx) {
           function qx(_x) {
             return _qx.apply(this, arguments);
           }
+
           qx.toString = function () {
             return _qx.toString();
           };
+
           return qx;
         }(function (data) {
           var result = {};
+
           try {
             result = JSON.parse(data);
           } catch (e) {
@@ -76,6 +83,7 @@
               }
             }, this);
           }
+
           return result;
         })
       })
@@ -84,4 +92,4 @@
   cv.io.parser.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1677362779485
+//# sourceMappingURL=Json.js.map?dt=1685978161616

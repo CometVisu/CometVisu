@@ -1,16 +1,25 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -33,6 +42,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Button.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -59,6 +69,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
    */
   qx.Class.define('cv.ui.structure.tile.components.Button', {
     extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -68,6 +79,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
       this.__P_74_0 = new Map();
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -116,6 +128,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         transform: '_parseInt'
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -125,6 +138,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _writeAddresses: null,
       __P_74_1: null,
       __P_74_2: null,
+
       /**
        * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
        */
@@ -135,34 +149,44 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       _init: function _init() {
         var _this = this;
+
         var element = this._element;
+
         if (element.hasAttribute('type')) {
           this.setType(element.getAttribute('type'));
         }
+
         if (element.hasAttribute('name')) {
           this.setName(element.getAttribute('name'));
         }
+
         if (element.hasAttribute('progress')) {
           this.setProgress(element.getAttribute('progress'));
         }
+
         if (element.hasAttribute('on-value')) {
           this.setOnValue(element.getAttribute('on-value'));
         }
+
         if (element.hasAttribute('off-value')) {
           this.setOffValue(element.getAttribute('off-value'));
         }
+
         var hasReadAddress = false;
         var writeAddresses = [];
         Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), function (address) {
           var mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
+
           switch (mode) {
             case 'readwrite':
               hasReadAddress = true;
               writeAddresses.push(address);
               break;
+
             case 'read':
               hasReadAddress = true;
               break;
+
             case 'write':
               writeAddresses.push(address);
               break;
@@ -170,30 +194,38 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         });
         this._writeAddresses = writeAddresses;
         var events = {};
+
         if (writeAddresses.length > 0) {
           var eventSource = element;
+
           if (element.getAttribute('whole-tile') === 'true') {
             // find parent tile and use it as event source
             var parent = element.parentElement;
             var level = 0;
+
             while (level <= 2) {
               parent = parent.parentElement;
               level++;
+
               if (parent.tagName.toLowerCase() === 'cv-tile') {
                 eventSource = parent;
                 eventSource.classList.add('clickable');
               }
             }
           }
+
           writeAddresses.forEach(function (addr) {
             var event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
+
             switch (event) {
               case 'click':
                 events.click = _this.onClicked.bind(_this);
                 break;
+
               case 'up':
                 events.pointerup = _this.onPointerUp.bind(_this);
                 break;
+
               case 'down':
                 events.pointerdown = _this.onPointerDown.bind(_this);
                 break;
@@ -205,15 +237,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
             });
           });
         }
+
         if (element.hasAttribute('doc-link') && !Object.prototype.hasOwnProperty.call(events, 'click')) {
           element.addEventListener('click', function (ev) {
             _this.onClicked(ev);
           });
         }
+
         if (hasReadAddress) {
           element.addEventListener('stateUpdate', function (ev) {
-            _this.onStateUpdate(ev);
-            // cancel event here
+            _this.onStateUpdate(ev); // cancel event here
+
+
             ev.stopPropagation();
           });
         } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
@@ -221,6 +256,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           var triggerAddresses = writeAddresses.filter(function (addr) {
             return addr.hasAttribute('value') && !addr.hasAttribute('on');
           });
+
           if (triggerAddresses.length === 1) {
             var value = triggerAddresses[0].getAttribute('value');
             qx.event.Timer.once(function () {
@@ -229,9 +265,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               _this.setOn(value == _this.getOnValue());
             }, this, 1000);
           }
-        }
+        } // detect button type
 
-        // detect button type
+
         if (!hasReadAddress && writeAddresses.filter(function (addr) {
           return addr.hasAttribute('value') && !addr.hasAttribute('on');
         }).length === 1) {
@@ -245,12 +281,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               if (!hasDown) {
                 hasDown = addr.getAttribute('on') === 'down';
               }
+
               if (!hasUp) {
                 hasUp = addr.getAttribute('on') === 'up';
               }
             }
+
             return hasUp && hasDown;
           });
+
           if (hasUp && hasDown) {
             // has an address for up and one for down event with a fixed value -> pushbutton
             this.setType('push');
@@ -272,12 +311,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         circle.setAttribute('stroke-dasharray', this.__P_74_2 + ' ' + this.__P_74_2);
         circle.setAttribute('stroke-dashoffset', '' + this.__P_74_2);
         svg.appendChild(circle);
-        element.appendChild(svg);
-        // make sure that we do not override the progress bar by state appearance
+        element.appendChild(svg); // make sure that we do not override the progress bar by state appearance
+
         element.classList.add('progress');
       },
       _applyConnected: function _applyConnected(value) {
         cv.ui.structure.tile.components.Button.superclass.prototype._applyConnected.call(this, value);
+
         if (value) {
           if (this.getType() !== 'trigger') {
             // delay this because we need the mappings to be ready
@@ -288,12 +328,17 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _applyOn: function _applyOn() {
         if (this.isConnected()) {
           var value = this.isOn() ? this.getOnValue() : this.getOffValue();
+
           this._element.setAttribute('value', value || '');
+
           var mappedValue = value;
+
           if (this._element.hasAttribute('mapping')) {
             mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__P_74_0);
           }
+
           var target = this._element.querySelector('.value');
+
           if (target && target.tagName.toLowerCase() === 'cv-icon') {
             if (target._instance) {
               target._instance.setId(mappedValue);
@@ -303,28 +348,36 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
           } else {
             this.updateValue(mappedValue);
           }
+
           var styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
+
           if (this._element.hasAttribute('styling')) {
             styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_74_0);
           }
+
           this.setStyleClass(styleClass);
         }
       },
       _applyProgress: function _applyProgress(value) {
         var valueElement = this._element.querySelector(':scope > svg > circle.bar');
+
         if (!valueElement) {
           this._initProgress();
+
           valueElement = this._element.querySelector(':scope > svg > circle.bar');
         }
+
         if (valueElement) {
           if (this._element.hasAttribute('progress-mapping')) {
             value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__P_74_0);
           }
+
           valueElement.setAttribute('stroke-dashoffset', '' + (this.__P_74_2 - value / 100 * this.__P_74_2));
         }
       },
       _applyStyleClass: function _applyStyleClass(value, oldValue) {
         var classes = this._element.classList;
+
         if (oldValue) {
           if (classes.contains(oldValue)) {
             classes.replace(oldValue, value);
@@ -339,17 +392,22 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       _applyName: function _applyName(value) {
         if (!this.__P_74_1) {
           this.__P_74_1 = document.createElement('label');
+
           this.__P_74_1.classList.add('button-label');
+
           this._element.appendChild(this.__P_74_1);
         }
+
         this.__P_74_1.textContent = value;
       },
       updateValue: function updateValue(value) {
         var elem = this._element.querySelector('span.value');
+
         if (elem) {
           elem.innerHTML = value;
         }
       },
+
       /**
        * Handles the incoming data from the backend for this widget
        *
@@ -360,13 +418,16 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         // noinspection EqualityComparisonWithCoercionJS
         var value = ev.detail.state == this.getOnValue();
         var target = ev.detail.target || 'default';
+
         if (ev.detail.source instanceof cv.ui.structure.tile.elements.Address) {
           var addressElement = ev.detail.source.getElement();
+
           if (addressElement.hasAttribute('value')) {
             // noinspection EqualityComparisonWithCoercionJS
             value = ev.detail.state == addressElement.getAttribute('value');
           }
         }
+
         if (target === 'default') {
           this.setOn(value);
         } else if (target === 'progress') {
@@ -380,16 +441,21 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       onClicked: function onClicked(event) {
         var _this2 = this;
+
         this.createRipple(event);
+
         if (this._element.hasAttribute('doc-link')) {
-          var relPath = this._element.getAttribute('doc-link');
-          // add locale and version
+          var relPath = this._element.getAttribute('doc-link'); // add locale and version
+
+
           var baseVersion = cv.Version.VERSION.split('.').slice(0, 2).join('.');
           var language = qx.locale.Manager.getInstance().getLanguage();
+
           if (language !== 'de') {
             // documentation only exists in 'de' and 'en'
             language = 'en';
           }
+
           window.open("https://www.cometvisu.org/CometVisu/".concat(language, "/").concat(baseVersion, "/manual/").concat(relPath));
           event.stopPropagation();
         } else {
@@ -398,12 +464,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               return !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read';
             });
           }
+
           var ev = new CustomEvent('sendState', {
             detail: {
               value: this.isOn() ? this.getOffValue() : this.getOnValue(),
               source: this
             }
           });
+
           if (this.getType() === 'trigger') {
             // simulate feedback
             this.setOn(true);
@@ -411,16 +479,19 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
               _this2.setOn(false);
             }, null, 250);
           }
+
           this._writeAddresses.filter(function (addr) {
             return !addr.hasAttribute('on') || addr.getAttribute('on') === 'click';
           }).forEach(function (address) {
             return address.dispatchEvent(ev);
           });
+
           event.stopPropagation();
         }
       },
       onPointerDown: function onPointerDown() {
         var _this3 = this;
+
         this._writeAddresses.filter(function (addr) {
           return addr.getAttribute('on') === 'down' && addr.hasAttribute('value');
         }).forEach(function (address) {
@@ -434,6 +505,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       },
       onPointerUp: function onPointerUp() {
         var _this4 = this;
+
         this._writeAddresses.filter(function (addr) {
           return addr.getAttribute('on') === 'up' && addr.hasAttribute('value');
         }).forEach(function (address) {
@@ -448,25 +520,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
       createRipple: function createRipple(event) {
         var button = event.currentTarget;
         var container = button.querySelector(':scope .ripple-container');
+
         if (!container) {
           container = document.createElement('div');
           container.classList.add('ripple-container');
           button.appendChild(container);
         }
+
         var circle = document.createElement('span');
         var diameter = Math.max(button.clientWidth, button.clientHeight);
         var radius = diameter / 2;
         circle.style.width = circle.style.height = "".concat(diameter, "px");
         var x = event.clientX - (button.offsetLeft + radius);
         var y = event.clientY - (button.offsetTop + radius);
+
         if (button === this._element) {
           x -= button.offsetParent.offsetLeft;
           y -= button.offsetParent.offsetTop;
         }
+
         circle.style.left = "".concat(x, "px");
         circle.style.top = "".concat(y, "px");
-        circle.classList.add('ripple');
-        // remove old ones
+        circle.classList.add('ripple'); // remove old ones
+
         container.querySelectorAll('.ripple').forEach(function (ripple) {
           return ripple.remove();
         });
@@ -478,11 +554,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
         "use strict";
 
         _inherits(_class, _QxConnector);
+
         var _super = _createSuper(_class);
+
         function _class() {
           _classCallCheck(this, _class);
+
           return _super.call(this, QxClass);
         }
+
         return _createClass(_class);
       }(QxConnector));
     }
@@ -490,4 +570,4 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1677362718928
+//# sourceMappingURL=Button.js.map?dt=1685978101701

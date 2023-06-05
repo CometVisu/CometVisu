@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,24 +38,24 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Default", {
     extend: qx.ui.table.cellrenderer.Abstract,
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       STYLEFLAG_ALIGN_RIGHT: 1,
       STYLEFLAG_BOLD: 2,
       STYLEFLAG_ITALIC: 4,
       _numberFormat: null
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * Whether the alignment should automatically be set according to the cell value.
@@ -65,12 +66,12 @@
         init: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Determines the styles to apply to the cell
@@ -85,30 +86,38 @@
             return qx.ui.table.cellrenderer.Default.STYLEFLAG_ALIGN_RIGHT;
           }
         }
+
         return 0;
       },
       // overridden
       _getCellClass: function _getCellClass(cellInfo) {
         var cellClass = qx.ui.table.cellrenderer.Default.superclass.prototype._getCellClass.call(this, cellInfo);
+
         if (!cellClass) {
           return "";
         }
+
         var stylesToApply = this._getStyleFlags(cellInfo);
+
         if (stylesToApply & qx.ui.table.cellrenderer.Default.STYLEFLAG_ALIGN_RIGHT) {
           cellClass += " qooxdoo-table-cell-right";
         }
+
         if (stylesToApply & qx.ui.table.cellrenderer.Default.STYLEFLAG_BOLD) {
           cellClass += " qooxdoo-table-cell-bold";
         }
+
         if (stylesToApply & qx.ui.table.cellrenderer.Default.STYLEFLAG_ITALIC) {
           cellClass += " qooxdoo-table-cell-italic";
         }
+
         return cellClass;
       },
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
         return qx.bom.String.escape(this._formatValue(cellInfo));
       },
+
       /**
        * Formats a value.
        *
@@ -120,22 +129,27 @@
       _formatValue: function _formatValue(cellInfo) {
         var value = cellInfo.value;
         var res;
+
         if (value == null) {
           return "";
         }
+
         if (typeof value == "string") {
           return value;
         } else if (typeof value == "number") {
           if (!qx.ui.table.cellrenderer.Default._numberFormat) {
             qx.ui.table.cellrenderer.Default._numberFormat = new qx.util.format.NumberFormat();
+
             qx.ui.table.cellrenderer.Default._numberFormat.setMaximumFractionDigits(2);
           }
+
           res = qx.ui.table.cellrenderer.Default._numberFormat.format(value);
         } else if (value instanceof Date) {
           res = qx.util.format.DateFormat.getDateInstance().format(value);
         } else {
           res = value.toString();
         }
+
         return res;
       }
     }
@@ -143,4 +157,4 @@
   qx.ui.table.cellrenderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1677362766025
+//# sourceMappingURL=Default.js.map?dt=1685978147209

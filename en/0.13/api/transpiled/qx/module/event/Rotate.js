@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
        */
       TYPES: ["rotate"],
       BIND_METHODS: ["getAngle"],
+
       /**
        * Returns a number with the current calculated angle between the primary and secondary active pointers.
        *
@@ -55,6 +57,7 @@
       getAngle: function getAngle() {
         return this._original.angle;
       },
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -67,14 +70,17 @@
       normalize: function normalize(event, element) {
         if (!event) {
           return event;
-        }
-        // apply mouse event normalizations
+        } // apply mouse event normalizations
+
+
         var bindMethods = qx.module.event.Rotate.BIND_METHODS;
+
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Rotate[bindMethods[i]].bind(event);
           }
         }
+
         return event;
       }
     },
@@ -85,4 +91,4 @@
   qx.module.event.Rotate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rotate.js.map?dt=1677362747139
+//# sourceMappingURL=Rotate.js.map?dt=1685978129885

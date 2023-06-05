@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Refresh.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -52,8 +53,10 @@
           this.setupRefreshAction();
         }, this);
       }
+
       this.addListener('changeVisible', this._maintainTimerState, this);
     },
+
     /*
      ******************************************************
      PROPERTIES
@@ -74,6 +77,7 @@
         apply: '_applyRestartOnVisible'
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -91,53 +95,68 @@
           this._maintainTimerState();
         }
       },
+
       /**
        * Stop the while invisible
        */
       _maintainTimerState: function _maintainTimerState() {
         if (this.__P_541_3) {
           this.debug('aborting restart timer ' + this.getPath());
+
           this.__P_541_3.stop();
+
           this.__P_541_3.dispose();
+
           this.__P_541_3 = null;
         }
+
         if (!this.isRestartOnVisible()) {
           return;
         }
+
         if (this._timer) {
           if (this.isVisible()) {
             var delta = this.getRefresh() - (Date.now() - this.__P_541_2);
+
             if (delta <= 0) {
               // run immediately
               this.debug('immediate refresh because refresh time has been reached ' + this.getPath());
+
               this._timer.start();
+
               this._timer.fireEvent('interval');
             } else {
-              this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms');
+              this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms'); // start when interval is finished
 
-              // start when interval is finished
               this.__P_541_3 = qx.event.Timer.once(function () {
                 this._timer.start();
+
                 this._timer.fireEvent('interval');
+
                 this.__P_541_3 = null;
               }, this, delta);
             }
           } else if (this._timer.isEnabled()) {
             this.debug('stop refreshing ' + this.getPath());
+
             this._timer.stop();
           }
         }
       },
       setupRefreshAction: function setupRefreshAction() {
         var _this = this;
+
         if (this.getRefresh() && this.getRefresh() > 0) {
           if (this.__P_541_1 === true) {
             return;
           }
+
           this.__P_541_1 = true;
+
           if (this._setupRefreshAction) {
             // overridden by inheriting class
             this._setupRefreshAction();
+
             if (this._timer) {
               // listen to foreign timer to get the last execution time;
               this._timer.addListener('interval', function () {
@@ -148,15 +167,20 @@
             var element = this.getDomElement();
             var target = element.querySelector('img') || element.querySelector('iframe');
             var src = target.getAttribute('src');
+
             if (src.indexOf('?') < 0 && (target.nodeName === 'IMG' && this.getCachecontrol() === 'full' || target.nodeName !== 'IMG')) {
               src += '?';
             }
+
             this._timer = new qx.event.Timer(this.getRefresh());
+
             this._timer.addListener('interval', function () {
               _this.refreshAction(target, src);
             });
+
             this._timer.start();
           }
+
           if (this._timer && this._timer.isEnabled()) {
             this.__P_541_2 = Date.now();
             this.setRestartOnVisible(true);
@@ -165,6 +189,7 @@
       },
       refreshAction: function refreshAction(target, src) {
         this.__P_541_2 = Date.now();
+
         if (this._refreshAction) {
           this._refreshAction();
         } else {
@@ -175,25 +200,28 @@
            * "flickering" so we avoid to use it on images, internal iframes and others
            */
           var parenthost = window.location.protocol + '//' + window.location.host;
+
           if (target.nodeName === 'IFRAME' && src.indexOf(parenthost) !== 0) {
             target.setAttribute('src', '');
             qx.event.Timer.once(function () {
               target.setAttribute('src', src);
             }, this, 0);
           } else {
-            var cachecontrol = this.getCachecontrol();
+            var cachecontrol = this.getCachecontrol(); // force is only implied for images
 
-            // force is only implied for images
             if (target.nodeName !== 'IMG' && cachecontrol === 'force') {
               cachecontrol = 'full';
             }
+
             switch (cachecontrol) {
               case 'full':
                 target.setAttribute('src', qx.util.Uri.appendParamsToUrl(src, '' + new Date().getTime()));
                 break;
+
               case 'weak':
                 target.setAttribute('src', src + '#' + new Date().getTime());
                 break;
+
               case 'force':
                 cv.ui.common.Refresh.__P_541_5(src);
 
@@ -205,6 +233,7 @@
         }
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -213,9 +242,11 @@
     destruct: function destruct() {
       if (this._timer) {
         this._timer.stop();
+
         this._disposeObjects('_timer');
       }
     },
+
     /*
      ******************************************************
      STATICS
@@ -238,4 +269,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1677362776469
+//# sourceMappingURL=Refresh.js.map?dt=1685978158600

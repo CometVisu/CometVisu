@@ -41,6 +41,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,6 +78,7 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.bom.History.constructor.call(this);
+
       this.__P_106_0();
     },
     members: {
@@ -88,11 +90,13 @@
       // overridden
       _setInitialState: function _setInitialState() {
         qx.bom.IframeHistory.superclass.prototype._setInitialState.call(this);
+
         this.__P_106_5 = this._getHash();
       },
       //overridden
       _setHash: function _setHash(value) {
         qx.bom.IframeHistory.superclass.prototype._setHash.call(this, value);
+
         this.__P_106_5 = this._encode(value);
       },
       //overridden
@@ -100,23 +104,29 @@
         if (!qx.lang.Type.isString(state)) {
           state = state + "";
         }
+
         if (qx.lang.Type.isString(newTitle)) {
           this.setTitle(newTitle);
           this._titles[state] = newTitle;
         }
+
         if (this.getState() !== state) {
           this.setState(state);
         }
+
         this.fireDataEvent("request", state);
       },
       //overridden
       _onHistoryLoad: function _onHistoryLoad(state) {
         this._setState(state);
+
         this.fireDataEvent("request", state);
+
         if (this._titles[state] != null) {
           this.setTitle(this._titles[state]);
         }
       },
+
       /**
        * Helper function to set state property. This will only be called
        * by _onHistoryLoad. It determines, that no apply of state will be called.
@@ -132,8 +142,10 @@
         if (this.__P_106_4) {
           return;
         }
+
         this._writeState(value);
       },
+
       /**
        * Get state from the iframe
        *
@@ -143,10 +155,12 @@
         if (!this.__P_106_2) {
           return this._decode(this._getHash());
         }
+
         var doc = this.__P_106_1.contentWindow.document;
         var elem = doc.getElementById("state");
         return elem ? this._decode(elem.innerText) : "";
       },
+
       /**
        * Store state to the iframe
        *
@@ -155,32 +169,39 @@
       _writeState: function _writeState(state) {
         if (!this.__P_106_2) {
           this.__P_106_6();
+
           this.__P_106_3 = qx.event.Timer.once(function () {
             this._writeState(state);
           }, this, 50);
           return;
         }
-        this.__P_106_6();
-        var state = this._encode(state);
 
-        // IE8 is sometimes recognizing a hash change as history entry. Cause of sporadic surface of this behavior, we have to prevent setting hash.
+        this.__P_106_6();
+
+        var state = this._encode(state); // IE8 is sometimes recognizing a hash change as history entry. Cause of sporadic surface of this behavior, we have to prevent setting hash.
+
+
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.version") != 8) {
           this._setHash(state);
         }
+
         var doc = this.__P_106_1.contentWindow.document;
         doc.open();
         doc.write('<html><body><div id="state">' + state + "</div></body></html>");
         doc.close();
       },
+
       /**
        * Helper function to clear the write state timer.
        */
       __P_106_6: function __P_106_6() {
         if (this.__P_106_3) {
           this.__P_106_3.stop();
+
           this.__P_106_3.dispose();
         }
       },
+
       /**
        * Initialize the polling timer
        */
@@ -189,6 +210,7 @@
           qx.event.Idle.getInstance().addListener("interval", this.__P_106_8, this);
         });
       },
+
       /**
        * Hash change listener.
        *
@@ -198,16 +220,20 @@
         // the location only changes if the user manually changes the fragment
         // identifier.
         var currentState = null;
+
         var locationState = this._getHash();
+
         if (!this.__P_106_9(locationState)) {
           currentState = this.__P_106_10(locationState);
         } else {
           currentState = this._readState();
         }
+
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
         }
       },
+
       /**
        * Stores the given location state.
        *
@@ -216,9 +242,12 @@
        */
       __P_106_10: function __P_106_10(locationState) {
         locationState = this._decode(locationState);
+
         this._writeState(locationState);
+
         return locationState;
       },
+
       /**
        * Checks whether the given location state is the current one.
        *
@@ -228,6 +257,7 @@
       __P_106_9: function __P_106_9(locationState) {
         return qx.lang.Type.isString(locationState) && locationState == this.__P_106_5;
       },
+
       /**
        * Initializes the iframe
        *
@@ -236,13 +266,16 @@
       __P_106_7: function __P_106_7(handler) {
         this.__P_106_1 = this.__P_106_11();
         document.body.appendChild(this.__P_106_1);
+
         this.__P_106_12(function () {
           this._writeState(this.getState());
+
           if (handler) {
             handler.call(this);
           }
         }, this);
       },
+
       /**
        * IMPORTANT NOTE FOR IE:
        * Setting the source before adding the iframe to the document.
@@ -260,6 +293,7 @@
         iframe.style.top = "-1000px";
         return iframe;
       },
+
       /**
        * Waits for the IFrame being loaded. Once the IFrame is loaded
        * the callback is called with the provided context.
@@ -272,29 +306,35 @@
         if (typeof retry === "undefined") {
           retry = 0;
         }
+
         if (!this.__P_106_1.contentWindow || !this.__P_106_1.contentWindow.document) {
           if (retry > 20) {
             throw new Error("can't initialize iframe");
           }
+
           qx.event.Timer.once(function () {
             this.__P_106_12(callback, context, ++retry);
           }, this, 10);
           return;
         }
+
         this.__P_106_2 = true;
         callback.call(context || window);
       }
     },
     destruct: function destruct() {
       this.__P_106_1 = null;
+
       if (this.__P_106_3) {
         this.__P_106_3.dispose();
+
         this.__P_106_3 = null;
       }
+
       qx.event.Idle.getInstance().removeListener("interval", this.__P_106_8, this);
     }
   });
   qx.bom.IframeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IframeHistory.js.map?dt=1677362725009
+//# sourceMappingURL=IframeHistory.js.map?dt=1685978107298

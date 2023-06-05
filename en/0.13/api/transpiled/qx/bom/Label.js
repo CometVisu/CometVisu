@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,7 +62,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** @type {Map} Contains all supported styles */
       __P_108_0: {
@@ -73,6 +73,7 @@
         wordBreak: 1,
         letterSpacing: 1
       },
+
       /**
        * Generates the helper DOM element for text measuring
        *
@@ -80,9 +81,11 @@
        */
       __P_108_1: function __P_108_1() {
         var el = this.__P_108_2(false);
+
         document.body.insertBefore(el, document.body.firstChild);
         return this._textElement = el;
       },
+
       /**
        * Generates the helper DOM element for HTML measuring
        *
@@ -90,9 +93,11 @@
        */
       __P_108_3: function __P_108_3() {
         var el = this.__P_108_2(true);
+
         document.body.insertBefore(el, document.body.firstChild);
         return this._htmlElement = el;
       },
+
       /**
        * Creates the measure element
        *
@@ -108,27 +113,32 @@
         style.position = "absolute";
         style.overflow = "visible";
         style.display = "block";
+
         if (html) {
           style.whiteSpace = "normal";
         } else {
           style.whiteSpace = "nowrap";
-          if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
-            var inner = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "label");
 
-            // Force style inheritance for font styles to omit usage of
+          if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
+            var inner = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "label"); // Force style inheritance for font styles to omit usage of
             // CSS "label" selector, See bug #1349 for details.
+
             var style = inner.style;
             style.padding = "0";
             style.margin = "0";
             style.width = "auto";
+
             for (var key in this.__P_108_0) {
               style[key] = "inherit";
             }
+
             el.appendChild(inner);
           }
         }
+
         return el;
       },
+
       /**
        * Returns a map of all styles which should be applied as
        * a basic set.
@@ -139,6 +149,7 @@
       __P_108_4: function __P_108_4(html) {
         var styles = {};
         styles.overflow = "hidden";
+
         if (html) {
           styles.whiteSpace = "normal";
         } else if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
@@ -147,8 +158,10 @@
           styles.whiteSpace = "nowrap";
           styles[qx.core.Environment.get("css.textoverflow")] = "ellipsis";
         }
+
         return styles;
       },
+
       /**
        * Creates a label.
        *
@@ -171,10 +184,13 @@
         if (!win) {
           win = window;
         }
+
         var el = win.document.createElement("div");
+
         if (html) {
           el.useHtml = true;
         }
+
         if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
           // Gecko as of Firefox 2.x and 3.0 does not support ellipsis
           // for text overflow. We use this feature from XUL instead.
@@ -186,25 +202,29 @@
           style.maxWidth = "100%";
           style.padding = "0";
           style.margin = "0";
-          style.width = "auto";
-
-          // Force style inheritance for font styles to omit usage of
+          style.width = "auto"; // Force style inheritance for font styles to omit usage of
           // CSS "label" selector, See bug #1349 for details.
+
           for (var key in this.__P_108_0) {
             xulel.style[key] = "inherit";
           }
+
           xulel.setAttribute("crop", "end");
           el.appendChild(xulel);
         } else {
           qx.bom.element.Style.setStyles(el, this.__P_108_4(html));
         }
+
         if (content) {
           this.setValue(el, content);
         }
+
         return el;
       },
+
       /** Sanitizer function */
       __P_108_5: null,
+
       /**
        * Sets a function to sanitize values. It will be used by {@link #setValue}.
        * The function to sanitize will get the <code>string</code> value and
@@ -216,6 +236,7 @@
       setSanitizer: function setSanitizer(func) {
         qx.bom.Label.__P_108_5 = func;
       },
+
       /**
        * Sets the content of the element.
        *
@@ -227,10 +248,12 @@
        */
       setValue: function setValue(element, value) {
         value = value || "";
+
         if (element.useHtml) {
           if (qx.bom.Label.__P_108_5 && typeof qx.bom.Label.__P_108_5 === "function") {
             value = qx.bom.Label.__P_108_5(value);
           }
+
           element.innerHTML = value;
         } else if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
           element.firstChild.setAttribute("value", value);
@@ -238,6 +261,7 @@
           qx.bom.element.Attribute.set(element, "text", value);
         }
       },
+
       /**
        * Returns the content of the element.
        *
@@ -253,6 +277,7 @@
           return qx.bom.element.Attribute.get(element, "text");
         }
       },
+
       /**
        * Returns the preferred dimensions of the given HTML content.
        *
@@ -262,14 +287,15 @@
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
       getHtmlSize: function getHtmlSize(content, styles, width) {
-        var element = this._htmlElement || this.__P_108_3();
+        var element = this._htmlElement || this.__P_108_3(); // apply width
 
-        // apply width
-        element.style.width = width != undefined ? width + "px" : "auto";
-        // insert content
+
+        element.style.width = width != undefined ? width + "px" : "auto"; // insert content
+
         element.innerHTML = content;
         return this.__P_108_6(element, styles);
       },
+
       /**
        * Returns the preferred dimensions of the given text.
        *
@@ -279,13 +305,16 @@
        */
       getTextSize: function getTextSize(text, styles) {
         var element = this._textElement || this.__P_108_1();
+
         if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
           element.firstChild.setAttribute("value", text);
         } else {
           qx.bom.element.Attribute.set(element, "text", text);
         }
+
         return this.__P_108_6(element, styles);
       },
+
       /**
        * Measure the size of the given element
        *
@@ -296,17 +325,18 @@
       __P_108_6: function __P_108_6(element, styles) {
         // sync styles
         var keys = this.__P_108_0;
+
         if (!styles) {
           styles = {};
         }
+
         for (var key in keys) {
           element.style[key] = styles[key] || "";
-        }
+        } // detect size
 
-        // detect size
-        var size = qx.bom.element.Dimension.getSize(element);
 
-        // all modern browser are needing one more pixel for width
+        var size = qx.bom.element.Dimension.getSize(element); // all modern browser are needing one more pixel for width
+
         size.width++;
         return size;
       }
@@ -315,4 +345,4 @@
   qx.bom.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1677362725140
+//# sourceMappingURL=Label.js.map?dt=1685978107420

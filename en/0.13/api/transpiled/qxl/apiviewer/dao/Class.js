@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,6 +50,7 @@
    */
   qx.Class.define("qxl.apiviewer.dao.Class", {
     extend: qxl.apiviewer.dao.Node,
+
     /**
      * @param className
      */
@@ -56,6 +58,7 @@
       qxl.apiviewer.dao.Node.constructor.call(this);
       this._className = className;
       this._package = qxl.apiviewer.dao.Package.getParentPackage(className);
+
       this._package.addClass(this);
     },
     members: {
@@ -78,12 +81,14 @@
       _loadingPromise: null,
       _loaded: false,
       __P_571_0: null,
+
       /**
        * retrieves the meta file name + path
        */
       getMetaFile: function getMetaFile() {
         return this.__P_571_0;
       },
+
       /**
        * Loads the class
        *
@@ -91,9 +96,11 @@
        */
       load: function load() {
         var _this = this;
+
         if (this._loadingPromise) {
           return this._loadingPromise;
         }
+
         var url = this.__P_571_0 = qxl.apiviewer.ClassLoader.getBaseUri() + this._className.replace(/\./g, "/") + ".json";
         return this._loadingPromise = qxl.apiviewer.RequestUtil.get(url).then(function (content) {
           /* eslint-disable-next-line no-eval */
@@ -109,6 +116,7 @@
       isLoaded: function isLoaded() {
         return this._loaded;
       },
+
       /**
        * Loads meta data, including super classes/interfaces/mixins
        * @param meta
@@ -116,16 +124,20 @@
        */
       _initMeta: function _initMeta(meta) {
         var _this2 = this;
+
         qxl.apiviewer.dao.Class.superclass.prototype._initMeta.call(this, meta);
+
         this._jsdoc = meta.clazz.jsdoc || {};
         this._construct = meta.construct ? [new qxl.apiviewer.dao.Method(meta.construct, this, "construct")] : [];
         this._destruct = meta.destruct ? [new qxl.apiviewer.dao.Method(meta.destruct, this, "destruct")] : [];
         this._defer = meta.defer ? [new qxl.apiviewer.dao.Method(meta.defer, this, "defer")] : [];
         this._staticMethods = [];
         this._constants = [];
+
         if (meta.statics) {
           for (var name in meta.statics) {
             var data = meta.statics[name];
+
             if (data.type == "variable") {
               this._constants.push(new qxl.apiviewer.dao.Constant(data, this, name));
             } else {
@@ -133,13 +145,17 @@
             }
           }
         }
+
         this._members = [];
         this._mixinMembers = [];
+
         if (meta.members) {
-          for (var _name in meta.members) {
-            var _data = meta.members[_name];
+          for (var _name2 in meta.members) {
+            var _data = meta.members[_name2];
+
             if (_data.type == "function") {
-              var obj = new qxl.apiviewer.dao.Method(_data, this, _name);
+              var obj = new qxl.apiviewer.dao.Method(_data, this, _name2);
+
               if (_data.mixin) {
                 this._mixinMembers.push(obj);
               } else {
@@ -148,12 +164,16 @@
             }
           }
         }
+
         this._events = [];
         this._mixinEvents = [];
+
         if (meta.events) {
-          for (var _name2 in meta.events) {
-            var _data2 = meta.events[_name2];
+          for (var _name4 in meta.events) {
+            var _data2 = meta.events[_name4];
+
             var _obj = new qxl.apiviewer.dao.Event(_data2, this);
+
             if (_data2.mixin) {
               this._mixinEvents.push(_obj);
             } else {
@@ -161,18 +181,24 @@
             }
           }
         }
+
         this._properties = [];
         this._mixinProperties = [];
+
         if (meta.properties) {
-          for (var _name3 in meta.properties) {
-            var _data3 = meta.properties[_name3];
-            var _obj2 = new qxl.apiviewer.dao.Property(_data3, this, _name3);
+          for (var _name6 in meta.properties) {
+            var _data3 = meta.properties[_name6];
+
+            var _obj2 = new qxl.apiviewer.dao.Property(_data3, this, _name6);
+
             if (_data3.mixin) {
               this._mixinProperties.push(_obj2);
             } else {
               this._properties.push(_obj2);
             }
+
             var evt = _obj2.getEvent();
+
             if (evt) {
               var objE = new qxl.apiviewer.dao.Event({
                 location: _obj2.location,
@@ -181,10 +207,11 @@
                 jsdoc: {
                   "@description": [{
                     name: "@description",
-                    body: "Fired on change of the property {@link ".concat(_data3.overriddenFrom || "", "#").concat(_name3, " ").concat(_name3, "}")
+                    body: "Fired on change of the property {@link ".concat(_data3.overriddenFrom || "", "#").concat(_name6, " ").concat(_name6, "}")
                   }]
                 }
               }, this);
+
               if (_data3.mixin) {
                 this._mixinEvents.push(objE);
               } else {
@@ -193,17 +220,21 @@
             }
           }
         }
+
         this._childControls = [];
         var arr = this._jsdoc["@childControl"];
+
         if (arr) {
           arr.forEach(function (elem) {
             _this2._childControls.push(new qxl.apiviewer.dao.ChildControl(elem, _this2));
           });
         }
+
         var all = [];
         /**
          * @param tmp
          */
+
         function findClasses(tmp) {
           var p = qxl.apiviewer.dao.Class.findClasses(tmp);
           return p.then(function (classes) {
@@ -213,9 +244,11 @@
             return classes;
           });
         }
+
         this._superClass = null;
         this._superInterfaces = [];
         this._superMixins = [];
+
         if (this._meta.type == "interface") {
           all.push(findClasses(meta.superClass).then(function (arr) {
             return _this2._superInterfaces = arr;
@@ -229,6 +262,7 @@
             return _this2._superClass = arr[0] || null;
           }));
         }
+
         this._interfaces = [];
         findClasses(meta.interfaces).then(function (arr) {
           return _this2._interfaces = arr;
@@ -242,6 +276,7 @@
       getPackage: function getPackage() {
         return this._package;
       },
+
       /**
        * Get the name of the class.
        *
@@ -250,6 +285,7 @@
       getName: function getName() {
         return this._className;
       },
+
       /**
        * Get the full name of the class, including the package name.
        *
@@ -258,6 +294,7 @@
       getFullName: function getFullName() {
         return this._className;
       },
+
       /**
        * Get the package name of the class.
        *
@@ -266,6 +303,7 @@
       getPackageName: function getPackageName() {
         return this._package.getFullName();
       },
+
       /**
        * Get type of the class. Valid types are "class", "interface" and "mixin".
        *
@@ -275,6 +313,7 @@
       getType: function getType() {
         return this._meta.type;
       },
+
       /**
        * Get whether the class is abstract.
        *
@@ -283,6 +322,7 @@
       isAbstract: function isAbstract() {
         return this._meta.isAbstract || false;
       },
+
       /**
        * Get whether the class is a static class.
        *
@@ -291,6 +331,7 @@
       isStatic: function isStatic() {
         return this._meta.isStatic || false;
       },
+
       /**
        * Get whether the class is a singleton.
        *
@@ -299,6 +340,7 @@
       isSingleton: function isSingleton() {
         return this._meta.isSingleton || false;
       },
+
       /**
        * Get the super class of the class.
        *
@@ -307,6 +349,7 @@
       getSuperClass: function getSuperClass() {
         return this._superClass;
       },
+
       /**
        * Get the direct child classes of the class.
        *
@@ -321,8 +364,10 @@
             this._childClassesPromise = qx.Promise.resolve([]);
           }
         }
+
         return this._childClassesPromise;
       },
+
       /**
        * Get all interfaces declared at the class declaration.
        *
@@ -332,6 +377,7 @@
       getInterfaces: function getInterfaces() {
         return this._interfaces;
       },
+
       /**
        * Get all super interfaces. (Only for interfaces)
        *
@@ -340,6 +386,7 @@
       getSuperInterfaces: function getSuperInterfaces() {
         return this._superInterfaces;
       },
+
       /**
        * Get all mixins declared at the class declaration.
        *
@@ -349,6 +396,7 @@
       getMixins: function getMixins() {
         return this._mixins;
       },
+
       /**
        * Get all super mixins. (Only for mixins)
        *
@@ -357,6 +405,7 @@
       getSuperMixins: function getSuperMixins() {
         return this._superMixins;
       },
+
       /**
        * Get all classes including this mixin. (Only for mixins)
        *
@@ -370,8 +419,10 @@
             this._includersPromise = qx.Promise.resolve([]);
           }
         }
+
         return this._includersPromise;
       },
+
       /**
        * Get all implementations of this interface. (Only for interfaces)
        *
@@ -385,8 +436,10 @@
             this._implementationsPromise = qx.Promise.resolve([]);
           }
         }
+
         return this._implementationsPromise;
       },
+
       /**
        * Get the constructor of the class.
        *
@@ -395,6 +448,7 @@
       getConstructor: function getConstructor() {
         return this._construct;
       },
+
       /**
        * Get all child controls
        *
@@ -403,6 +457,7 @@
       getChildControls: function getChildControls() {
         return this._childControls;
       },
+
       /**
        * Get the members of the class.
        *
@@ -412,6 +467,7 @@
       getMembers: function getMembers() {
         return this._members;
       },
+
       /**
        * Get the members of the class.
        *
@@ -420,6 +476,7 @@
       getMethods: function getMethods() {
         return this._members;
       },
+
       /**
        * Get the members of the class, contributed from mixins
        *
@@ -429,6 +486,7 @@
       getMixinMembers: function getMixinMembers() {
         return this._mixinMembers;
       },
+
       /**
        * Get the members of the class, contributed from mixins
        *
@@ -437,6 +495,7 @@
       getMixinMethods: function getMixinMethods() {
         return this._mixinMembers;
       },
+
       /**
        * Get the statics of the class.
        *
@@ -445,6 +504,7 @@
       getStatics: function getStatics() {
         return this._staticMethods;
       },
+
       /**
        * Get the events of the class.
        *
@@ -453,6 +513,7 @@
       getEvents: function getEvents() {
         return this._events;
       },
+
       /**
        * Get the events of the class, contributed from mixins
        *
@@ -461,6 +522,7 @@
       getMixinEvents: function getMixinEvents() {
         return this._mixinEvents;
       },
+
       /**
        * Get the properties of the class.
        *
@@ -469,6 +531,7 @@
       getProperties: function getProperties() {
         return this._properties;
       },
+
       /**
        * Returns a property with a given name
        * @param name
@@ -477,12 +540,15 @@
       getProperty: function getProperty(name) {
         for (var i = 0; i < this._properties.length; i++) {
           var prop = this._properties[i];
+
           if (prop.getName() == name) {
             return prop;
           }
         }
+
         return null;
       },
+
       /**
        * Get the properties of the class, contributed from mixins
        *
@@ -491,6 +557,7 @@
       getMixinProperties: function getMixinProperties() {
         return this._mixinProperties;
       },
+
       /**
        * Get the constants of the class.
        *
@@ -499,6 +566,7 @@
       getConstants: function getConstants() {
         return this._constants;
       },
+
       /**
        * Get all references declared using the "see" attribute.
        *
@@ -512,7 +580,9 @@
       getErrors: function getErrors() {
         return [];
       },
+
       /* COMPLEX FUNCTIONS */
+
       /**
        * Get the documentation nodes of all classes in the inheritance chain of a
        * class. The first entry in the list is the class itself.
@@ -524,17 +594,22 @@
        */
       getClassHierarchy: function getClassHierarchy(includeNativeObjects) {
         var result = [];
+
         for (var currentClass = this; currentClass; currentClass = currentClass.getSuperClass()) {
           var isNative = qxl.apiviewer.dao.Class.isNativeObject(currentClass);
+
           if (!isNative || includeNativeObjects) {
             result.push(currentClass);
           }
+
           if (isNative) {
             break;
           }
         }
+
         return result;
       },
+
       /**
        * Get the documentation nodes of all interfaces in the inheritance chain of
        * an interface. The first entry in the list is the interface itself.
@@ -544,19 +619,21 @@
        */
       getInterfaceHierarchy: function getInterfaceHierarchy() {
         var result = [];
-
         /**
          * @param currentClass
          */
+
         function add(currentClass) {
           result.push(currentClass);
           currentClass.getSuperInterfaces().forEach(function (itf) {
             return add(itf);
           });
         }
+
         add(this);
         return result;
       },
+
       /**
        * Returns a list of all interfaces the class implements directly.
        *
@@ -566,16 +643,19 @@
        */
       getAllInterfaces: function getAllInterfaces(includeSuperClasses) {
         var interfaceNodes = [];
+
         var ifaceRecurser = function ifaceRecurser(ifaceNode) {
           interfaceNodes.push(ifaceNode);
           (ifaceNode.getSuperInterfaces() || []).forEach(ifaceRecurser);
         };
+
         var classNodes = includeSuperClasses ? this.getClassHierarchy() : [this];
         classNodes.forEach(function (classNode) {
           (classNode.getInterfaces() || []).forEach(ifaceRecurser);
         });
         return interfaceNodes;
       },
+
       /**
        * Return a class item matching the given name.
        *
@@ -586,6 +666,7 @@
       getItemByNameFromMixins: function getItemByNameFromMixins(itemName) {
         return this._mixinMembers[itemName] || this._mixinProperties[itemName] || this._mixinEvents[itemName] || null;
       },
+
       /**
        * Return a class item matching the given name.
        *
@@ -593,11 +674,12 @@
        * @return {qxl.apiviewer.dao.ClassItem} the class item.
        */
       getItem: function getItem(itemName) {
-        var itemListNames = ["getMembers", "getStatics", "getEvents", "getProperties", "getConstants",
-        // "getAppearances",
+        var itemListNames = ["getMembers", "getStatics", "getEvents", "getProperties", "getConstants", // "getAppearances",
         "getChildControls"];
+
         for (var i = 0; i < itemListNames.length; i++) {
           var list = this[itemListNames[i]]();
+
           if (list) {
             for (var j = 0; j < list.length; j++) {
               if (itemName == list[j].getName()) {
@@ -606,8 +688,10 @@
             }
           }
         }
+
         return null;
       },
+
       /**
        * Get an array of class items matching the given list name. Known list names are:
        * <ul>
@@ -638,11 +722,14 @@
           superMixins: "getSuperMixins",
           childControls: "getChildControls"
         };
+
         if (listName == "constructor") {
           return this.getConstructor() ? [this.getConstructor()] : [];
         }
+
         return this[methodMap[listName]]();
       },
+
       /**
        * Get a class item by the item list name and the item name.
        * Valid item list names are documented at {@link #getItemList}.
@@ -653,16 +740,19 @@
        */
       getItemByListAndName: function getItemByListAndName(listName, itemName) {
         var list = this.getItemList(listName);
+
         for (var j = 0; j < list.length; j++) {
           if (itemName == list[j].getName()) {
             return list[j];
           }
         }
+
         return null;
       },
       loadDependedClasses: function loadDependedClasses() {
         return qxl.apiviewer.ClassLoader.loadClassList(this.getDependedClasses());
       },
+
       /**
        * Return a list of all classes, mixins and interfaces this class depends
        * on. This includes all super classes and their mixins/interfaces and the
@@ -675,10 +765,12 @@
         /**
          * @param clazz
          */
+
         function findClasses(clazz) {
           if (qxl.apiviewer.dao.Class.isNativeObject(clazz)) {
             return;
           }
+
           clazz.load().then(function () {});
           foundClasses.push(clazz);
           clazz.getSuperClass() && findClasses(clazz.getSuperClass());
@@ -695,6 +787,7 @@
             return findClasses;
           });
         }
+
         findClasses(this);
         return foundClasses;
       }
@@ -712,6 +805,7 @@
         RegExp: RegExp,
         String: String
       },
+
       /**
        * Get a class documentation by the class name.
        * @param className
@@ -721,19 +815,26 @@
        */
       getClassByName: function getClassByName(className, create) {
         var nativeClass = qxl.apiviewer.dao.Class._native_classes[className];
+
         if (nativeClass !== undefined) {
           return nativeClass;
         }
+
         var pkg = qxl.apiviewer.dao.Package.getParentPackage(className);
+
         if (!pkg) {
           throw new Error("Cannot find a package for " + className);
         }
+
         var cls = pkg.getClassByName(className);
+
         if (!cls && create) {
           cls = new qxl.apiviewer.dao.Class(className);
         }
+
         return cls;
       },
+
       /**
        * Get a class documentation by the class name.
        * @param classNames
@@ -751,17 +852,21 @@
         if (!name) {
           return qx.Promise.resolve([]);
         }
+
         var all = qx.lang.Array.toNativeArray(name).filter(function (name) {
           return !qxl.apiviewer.dao.Class._native_classes[name];
         }).map(function (name) {
           var c = qxl.apiviewer.dao.Class.getClassByName(name);
+
           if (c) {
             c.load();
           }
+
           return c;
         });
         return qx.Promise.all(all);
       },
+
       /**
        * Checks if the Class is a qooxdoo qxl.apiviewer.dao.Class Object or a native
        * one
@@ -778,4 +883,4 @@
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1677362780732
+//# sourceMappingURL=Class.js.map?dt=1685978163134

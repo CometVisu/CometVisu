@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
        * @return {qx.ui.core.LayoutItem} The configured widget for the given cell.
        */
       getCellWidget: function getCellWidget(row, column) {},
+
       /**
        * Release the given cell widget. Either pool or destroy the widget.
        *
@@ -53,4 +55,4 @@
   qx.ui.virtual.core.IWidgetCellProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IWidgetCellProvider.js.map?dt=1677362770147
+//# sourceMappingURL=IWidgetCellProvider.js.map?dt=1685978151478

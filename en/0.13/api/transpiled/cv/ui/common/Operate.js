@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Operate.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -53,15 +54,18 @@
           this._skipNextEvent = null;
           return;
         }
+
         if (this._action) {
           this._action(event);
         } else if (this.getActionValue) {
           this.sendToBackend(this.getActionValue(event));
         }
+
         if (event && event.getBubbles()) {
           event.stopPropagation();
         }
       },
+
       /**
        * Handles pointerdown events
        * @param event {Event} pointerdown event
@@ -70,10 +74,12 @@
         if (this._downaction) {
           this._downaction(event);
         }
+
         if (event.getBubbles()) {
           event.stopPropagation();
         }
       },
+
       /**
        * Send the given value to all writeable addresses known to this widget
        *
@@ -88,18 +94,23 @@
        */
       sendToBackend: function sendToBackend(value, filter, currentBusValues) {
         var encodedValues = {};
+
         if (this.getAddress) {
           var list = this.getAddress();
+
           for (var id in list) {
             if (Object.prototype.hasOwnProperty.call(list, id)) {
               var address = list[id];
+
               if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
                 try {
                   var encoding = address.transform;
                   var encodedValue = cv.Transform.encodeBusAndRaw(address, value);
+
                   if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                    cv.io.BackendConnections.getClient().write(id, encodedValue.bus, address);
+                    cv.io.BackendConnections.getClient(address.backendType).write(id, encodedValue.bus, address);
                   }
+
                   encodedValues[encoding] = encodedValue.raw;
                 } catch (e) {
                   if (!address.ignoreError) {
@@ -118,6 +129,7 @@
             }
           }
         }
+
         return encodedValues;
       }
     }
@@ -125,4 +137,4 @@
   cv.ui.common.Operate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Operate.js.map?dt=1677362776375
+//# sourceMappingURL=Operate.js.map?dt=1685978158492

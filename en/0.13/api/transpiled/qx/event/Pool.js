@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,6 +41,7 @@
     type: "singleton",
     // Even though this class contains almost no code it is required because the
     // legacy code needs a place to patch the event pooling behavior.
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -52,4 +54,4 @@
   qx.event.Pool.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pool.js.map?dt=1677362737781
+//# sourceMappingURL=Pool.js.map?dt=1685978120678

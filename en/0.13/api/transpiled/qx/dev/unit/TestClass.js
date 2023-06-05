@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,42 +62,48 @@
    * }
    * </pre>
    */
-
   qx.Class.define("qx.dev.unit.TestClass", {
     extend: qx.dev.unit.AbstractTestSuite,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param clazz {Class} Test class. Must be a sub class of {@link TestCase}.
      */
     construct: function construct(clazz) {
       qx.dev.unit.AbstractTestSuite.constructor.call(this);
+
       if (!clazz) {
         this.addFail("existsCheck", "Unknown test class!");
         return;
       }
+
       if (!qx.Class.isSubClassOf(clazz, qx.dev.unit.TestCase)) {
         this.addFail("Sub class check.", "The test class '" + clazz.classname + "'is not a sub class of 'qx.dev.unit.TestCase'");
         return;
       }
+
       var proto = clazz.prototype;
       var testCase = new clazz();
+
       for (var test in proto) {
         if (qx.lang.Type.isFunctionOrAsyncFunction(proto[test]) && test.indexOf("test") == 0) {
           this.addTestMethod(testCase, test);
         }
       }
+
       this.setName(clazz.classname);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** Name of the test suite */
       name: {
@@ -107,4 +114,4 @@
   qx.dev.unit.TestClass.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestClass.js.map?dt=1677362736967
+//# sourceMappingURL=TestClass.js.map?dt=1685978119807

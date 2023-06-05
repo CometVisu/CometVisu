@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,6 +39,7 @@
       OPERATION_DELETE: 1,
       OPERATION_INSERT: 2,
       OPERATION_REPLACE: 3,
+
       /**
        * Returns a distant matrix following a concept
        * named Levenshtein distance for two data structures
@@ -48,27 +50,29 @@
        */
       __P_505_0: function __P_505_0(dataA, dataB) {
         // distance is dataA table with dataA.length+1 rows and dataB.length+1 columns
-        var distance = [];
+        var distance = []; // posA and posB are used to iterate over str1 and str2
 
-        // posA and posB are used to iterate over str1 and str2
         var posA, posB, cost;
+
         for (posA = 0; posA <= dataA.length; posA++) {
           distance[posA] = [];
           distance[posA][0] = posA;
         }
+
         for (posB = 1; posB <= dataB.length; posB++) {
           distance[0][posB] = posB;
         }
+
         for (posA = 1; posA <= dataA.length; posA++) {
           for (posB = 1; posB <= dataB.length; posB++) {
             cost = dataA[posA - 1] === dataB[posB - 1] ? 0 : 1;
+
             if (distance[posA] === undefined) {
               distance[posA] = [];
             }
-            distance[posA][posB] = Math.min(distance[posA - 1][posB] + 1,
-            // deletion
-            distance[posA][posB - 1] + 1,
-            // insertion
+
+            distance[posA][posB] = Math.min(distance[posA - 1][posB] + 1, // deletion
+            distance[posA][posB - 1] + 1, // insertion
             distance[posA - 1][posB - 1] + cost // substitution
             );
           }
@@ -76,6 +80,7 @@
 
         return distance;
       },
+
       /**
        * Computes the operations needed to transform dataA to dataB.
        *
@@ -88,6 +93,7 @@
         var operations = [];
         var posA = dataA.length;
         var posB = dataB.length;
+
         if (posA === 0) {
           // insert from begin to end
           // reverted order than in all other cases for optimal performance
@@ -99,8 +105,10 @@
               value: dataB[i]
             });
           }
+
           return operations;
         }
+
         if (posB === 0) {
           // remove from end to begin
           for (var i = posA - 1; i >= 0; i--) {
@@ -111,8 +119,10 @@
               value: null
             });
           }
+
           return operations;
         }
+
         while (posA !== 0 || posB !== 0) {
           if (posA != 0 && distance[posA][posB] == distance[posA - 1][posB] + 1) {
             operations.push({
@@ -139,12 +149,15 @@
                 value: dataB[posB - 1]
               });
             }
+
             posA -= 1;
             posB -= 1;
           }
         }
+
         return operations;
       },
+
       /**
        * Returns the operations needed to transform dataA to dataB.
        *
@@ -154,7 +167,9 @@
        */
       getEditOperations: function getEditOperations(dataA, dataB) {
         var distance = this.__P_505_0(dataA, dataB);
+
         var operations = this.__P_505_1(distance, dataA, dataB);
+
         return operations;
       }
     }
@@ -162,4 +177,4 @@
   qx.util.EditDistance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EditDistance.js.map?dt=1677362772727
+//# sourceMappingURL=EditDistance.js.map?dt=1685978154198

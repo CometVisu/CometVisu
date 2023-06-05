@@ -488,6 +488,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "protected"
     },
     "isValid": {

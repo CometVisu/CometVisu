@@ -21,6 +21,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
   qx.Class.define("qx.ui.tabview.TabButton", {
     extend: qx.ui.form.RadioButton,
     implement: qx.ui.form.IRadioItem,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -60,16 +62,19 @@
       var layout = new qx.ui.layout.Grid(2, 0);
       layout.setRowAlign(0, "left", "middle");
       layout.setColumnAlign(0, "right", "middle");
+
       this._getLayout().dispose();
+
       this._setLayout(layout);
+
       this.initShowCloseButton();
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * Fired by {@link qx.ui.tabview.Page} if the close button is tapped.
@@ -78,12 +83,12 @@
        */
       close: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** Indicates if the close button of a TabButton should be shown. */
       showCloseButton: {
@@ -92,14 +97,15 @@
         apply: "_applyShowCloseButton"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -107,6 +113,7 @@
         focused: true,
         checked: true
       },
+
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -117,129 +124,159 @@
           icon: this.getChildControl("icon"),
           label: this.getChildControl("label"),
           closeButton: this.getShowCloseButton() ? this.getChildControl("close-button") : null
-        };
+        }; // Remove all children before adding them again
 
-        // Remove all children before adding them again
         for (var child in children) {
           if (children[child]) {
             this._remove(children[child]);
           }
         }
+
         switch (value) {
           case "top":
             this._add(children.label, {
               row: 3,
               column: 2
             });
+
             this._add(children.icon, {
               row: 1,
               column: 2
             });
+
             if (children.closeButton) {
               this._add(children.closeButton, {
                 row: 0,
                 column: 4
               });
             }
+
             break;
+
           case "bottom":
             this._add(children.label, {
               row: 1,
               column: 2
             });
+
             this._add(children.icon, {
               row: 3,
               column: 2
             });
+
             if (children.closeButton) {
               this._add(children.closeButton, {
                 row: 0,
                 column: 4
               });
             }
+
             break;
+
           case "left":
             this._add(children.label, {
               row: 0,
               column: 2
             });
+
             this._add(children.icon, {
               row: 0,
               column: 0
             });
+
             if (children.closeButton) {
               this._add(children.closeButton, {
                 row: 0,
                 column: 4
               });
             }
+
             break;
+
           case "right":
             this._add(children.label, {
               row: 0,
               column: 0
             });
+
             this._add(children.icon, {
               row: 0,
               column: 2
             });
+
             if (children.closeButton) {
               this._add(children.closeButton, {
                 row: 0,
                 column: 4
               });
             }
+
             break;
         }
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "label":
             var control = new qx.ui.basic.Label(this.getLabel());
             control.setAnonymous(true);
+
             this._add(control, {
               row: 0,
               column: 2
             });
+
             this._getLayout().setColumnFlex(2, 1);
+
             break;
+
           case "icon":
             control = new qx.ui.basic.Image(this.getIcon());
             control.setAnonymous(true);
+
             this._add(control, {
               row: 0,
               column: 0
             });
+
             break;
+
           case "close-button":
             control = new qx.ui.form.Button();
             control.setFocusable(false);
             control.setKeepActive(true);
             control.addListener("tap", this._onCloseButtonTap, this);
+
             this._add(control, {
               row: 0,
               column: 4
             });
+
             if (!this.getShowCloseButton()) {
               control.exclude();
             }
+
             break;
         }
+
         return control || qx.ui.tabview.TabButton.superclass.prototype._createChildControlImpl.call(this, id);
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Fires a "close" event when the close button is tapped.
        */
       _onCloseButtonTap: function _onCloseButtonTap() {
         this.fireDataEvent("close", this);
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY
@@ -256,6 +293,7 @@
       // property apply
       _applyCenter: function _applyCenter(value) {
         var layout = this._getLayout();
+
         if (value) {
           layout.setColumnAlign(2, "center", "middle");
         } else {
@@ -267,4 +305,4 @@
   qx.ui.tabview.TabButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabButton.js.map?dt=1677362767719
+//# sourceMappingURL=TabButton.js.map?dt=1685978148965

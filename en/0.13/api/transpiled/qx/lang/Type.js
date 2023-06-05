@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
        * @return {String} the internal class of the value
        */
       getClass: qx.Bootstrap.getClass,
+
       /**
        * Whether the value is a string.
        *
@@ -50,6 +52,7 @@
        * @return {Boolean} Whether the value is a string.
        */
       isString: qx.Bootstrap.isString,
+
       /**
        * Whether the value is an array.
        *
@@ -58,6 +61,7 @@
        * @return {Boolean} Whether the value is an array.
        */
       isArray: qx.Bootstrap.isArray,
+
       /**
        * Whether the value is an object. Note that built-in types like Window are
        * not reported to be objects.
@@ -67,6 +71,7 @@
        * @return {Boolean} Whether the value is an object.
        */
       isObject: qx.Bootstrap.isObject,
+
       /**
        * Whether the value is a function.
        *
@@ -75,6 +80,7 @@
        * @return {Boolean} Whether the value is a function.
        */
       isFunction: qx.Bootstrap.isFunction,
+
       /**
        * Whether the value is a function or an async function.
        *
@@ -83,6 +89,7 @@
        * @return {Boolean} Whether the value is a function or an async function.
        */
       isFunctionOrAsyncFunction: qx.Bootstrap.isFunctionOrAsyncFunction,
+
       /**
        * Whether the value is a regular expression.
        *
@@ -92,6 +99,7 @@
       isRegExp: function isRegExp(value) {
         return this.getClass(value) === "RegExp";
       },
+
       /**
        * Whether the value is a number.
        *
@@ -111,6 +119,7 @@
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (this.getClass(value) === "Number" || value instanceof Number);
       },
+
       /**
        * Whether the value is a boolean.
        *
@@ -125,6 +134,7 @@
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (this.getClass(value) === "Boolean" || value instanceof Boolean);
       },
+
       /**
        * Whether the value is a date.
        *
@@ -139,6 +149,7 @@
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (this.getClass(value) === "Date" || value instanceof Date);
       },
+
       /**
        * Whether the value is a Error.
        *
@@ -153,6 +164,7 @@
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (this.getClass(value) === "Error" || value instanceof Error);
       },
+
       /**
        * Whether the value is a Promise.
        *
@@ -170,4 +182,4 @@
   qx.lang.Type.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Type.js.map?dt=1677362744516
+//# sourceMappingURL=Type.js.map?dt=1685978127523

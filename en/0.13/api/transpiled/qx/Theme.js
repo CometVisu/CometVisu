@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -22,6 +23,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,6 +62,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
          PUBLIC API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Theme config
        *
@@ -94,10 +97,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!config) {
           var config = {};
         }
-        config.include = this.__P_95_0(config.include);
-        config.patch = this.__P_95_0(config.patch);
 
-        // Validate incoming data
+        config.include = this.__P_95_0(config.include);
+        config.patch = this.__P_95_0(config.patch); // Validate incoming data
 
         // Create alias
         var theme = {
@@ -106,36 +108,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           title: config.title,
           // Attach toString
           toString: this.genericToString
-        };
+        }; // Remember extend
 
-        // Remember extend
         if (config.extend) {
           theme.supertheme = config.extend;
-        }
+        } // Assign to namespace
 
-        // Assign to namespace
-        theme.basename = qx.Bootstrap.createNamespace(name, theme);
 
-        // Convert theme entry from Object to Function (for prototype inheritance)
+        theme.basename = qx.Bootstrap.createNamespace(name, theme); // Convert theme entry from Object to Function (for prototype inheritance)
+
         this.__P_95_1(theme, config);
-        this.__P_95_2(theme, config);
 
-        // Store class reference in global class registry
-        this.$$registry[name] = theme;
+        this.__P_95_2(theme, config); // Store class reference in global class registry
 
-        // Include mixin themes
+
+        this.$$registry[name] = theme; // Include mixin themes
+
         for (var i = 0, a = config.include, l = a.length; i < l; i++) {
           this.include(theme, a[i]);
         }
+
         for (var i = 0, a = config.patch, l = a.length; i < l; i++) {
           this.patch(theme, a[i]);
-        }
+        } // Run boot code
 
-        // Run boot code
+
         if (config.boot) {
           config.boot();
         }
       },
+
       /**
        * Normalize an object to an array
        *
@@ -149,12 +151,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!objectOrArray) {
           return [];
         }
+
         if (qx.Bootstrap.isArray(objectOrArray)) {
           return objectOrArray;
         } else {
           return [objectOrArray];
         }
       },
+
       /**
        * Initialize alias inheritance
        *
@@ -163,11 +167,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       __P_95_2: function __P_95_2(theme, config) {
         var aliases = config.aliases || {};
+
         if (config.extend && config.extend.aliases) {
           qx.Bootstrap.objectMergeWith(aliases, config.extend.aliases, false);
         }
+
         theme.aliases = aliases;
       },
+
       /**
        * Return a map of all known themes
        *
@@ -176,6 +183,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getAll: function getAll() {
         return this.$$registry;
       },
+
       /**
        * Returns a theme by name
        *
@@ -185,6 +193,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getByName: function getByName(name) {
         return this.$$registry[name];
       },
+
       /**
        * Determine if theme exists
        *
@@ -194,6 +203,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isDefined: function isDefined(name) {
         return this.getByName(name) !== undefined;
       },
+
       /**
        * Determine the number of themes which are defined
        *
@@ -202,11 +212,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getTotalNumber: function getTotalNumber() {
         return qx.Bootstrap.objectGetLength(this.$$registry);
       },
+
       /*
       ---------------------------------------------------------------------------
          PRIVATE/INTERNAL API
       ---------------------------------------------------------------------------
       */
+
       /**
        * This method will be attached to all themes to return
        * a nice identifier for them.
@@ -217,6 +229,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       genericToString: function genericToString() {
         return "[Theme " + this.name + "]";
       },
+
       /**
        * Extract the inheritable key (could be only one)
        *
@@ -230,6 +243,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
         }
       },
+
       /**
        * Convert existing entry to a prototype based inheritance function
        *
@@ -237,47 +251,47 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param config {Map} incoming theme configuration
        */
       __P_95_1: function __P_95_1(theme, config) {
-        var type = this.__P_95_3(config);
+        var type = this.__P_95_3(config); // Use theme key from extended theme if own one is not available
 
-        // Use theme key from extended theme if own one is not available
+
         if (config.extend && !type) {
           type = config.extend.type;
-        }
+        } // Save theme type
 
-        // Save theme type
-        theme.type = type || "other";
 
-        // Create pseudo class
-        var clazz = function clazz() {};
+        theme.type = type || "other"; // Create pseudo class
 
-        // Process extend config
+        var clazz = function clazz() {}; // Process extend config
+
+
         if (config.extend) {
           clazz.prototype = new config.extend.$$clazz();
         }
+
         var target = clazz.prototype;
-        var source = config[type];
+        var source = config[type]; // Copy entries to prototype
 
-        // Copy entries to prototype
         for (var id in source) {
-          target[id] = source[id];
-
-          // Appearance themes only:
+          target[id] = source[id]; // Appearance themes only:
           // Convert base flag to class reference (needed for mixin support)
+
           if (target[id].base) {
             target[id].base = config.extend;
           }
-        }
+        } // store pseudo class
 
-        // store pseudo class
-        theme.$$clazz = clazz;
 
-        // and create instance under the old key
+        theme.$$clazz = clazz; // and create instance under the old key
+
         theme[type] = new clazz();
       },
+
       /** @type {Map} Internal theme registry */
       $$registry: {},
+
       /** @type {Array} Keys which support inheritance */
       __P_95_4: ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"],
+
       /** @type {Map} allowed keys in theme definition */
       __P_95_5: qx.core.Environment.select("qx.debug", {
         "true": {
@@ -310,10 +324,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           patch: "object",
           // Array
           boot: "function" // Function
-        },
 
+        },
         "default": null
       }),
+
       /** @type {Map} allowed keys inside a meta theme block */
       __P_95_6: qx.core.Environment.select("qx.debug", {
         "true": {
@@ -327,6 +342,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         "default": null
       }),
+
       /**
        * Validates incoming configuration and checks keys and values
        *
@@ -338,71 +354,83 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_95_7: qx.core.Environment.select("qx.debug", {
         "true": function _true(name, config) {
           var allowed = this.__P_95_5;
+
           for (var key in config) {
             if (allowed[key] === undefined) {
               throw new Error('The configuration key "' + key + '" in theme "' + name + '" is not allowed!');
             }
+
             if (config[key] == null) {
               throw new Error('Invalid key "' + key + '" in theme "' + name + '"! The value is undefined/null!');
             }
+
             if (allowed[key] !== null && _typeof(config[key]) !== allowed[key]) {
               throw new Error('Invalid type of key "' + key + '" in theme "' + name + '"! The type of the key must be "' + allowed[key] + '"!');
             }
-          }
+          } // Validate maps
 
-          // Validate maps
+
           var maps = ["colors", "borders", "decorations", "fonts", "icons", "widgets", "appearances", "meta"];
+
           for (var i = 0, l = maps.length; i < l; i++) {
             var key = maps[i];
+
             if (config[key] !== undefined && (config[key] instanceof Array || config[key] instanceof RegExp || config[key] instanceof Date || config[key].classname !== undefined)) {
               throw new Error('Invalid key "' + key + '" in theme "' + name + '"! The value needs to be a map!');
             }
-          }
+          } // Check conflicts (detect number ...)
 
-          // Check conflicts (detect number ...)
+
           var counter = 0;
+
           for (var i = 0, l = maps.length; i < l; i++) {
             var key = maps[i];
+
             if (config[key]) {
               counter++;
             }
+
             if (counter > 1) {
               throw new Error("You can only define one theme category per file! Invalid theme: " + name);
             }
-          }
+          } // Validate meta
 
-          // Validate meta
+
           if (config.meta) {
             var value;
+
             for (var key in config.meta) {
               value = config.meta[key];
+
               if (this.__P_95_6[key] === undefined) {
                 throw new Error('The key "' + key + '" is not allowed inside a meta theme block.');
               }
+
               if (_typeof(value) !== this.__P_95_6[key]) {
                 throw new Error('The type of the key "' + key + '" inside the meta block is wrong.');
               }
+
               if (!(_typeof(value) === "object" && value !== null && value.$$type === "Theme")) {
                 throw new Error('The content of a meta theme must reference to other themes. The value for "' + key + '" in theme "' + name + '" is invalid: ' + value);
               }
             }
-          }
+          } // Validate extend
 
-          // Validate extend
+
           if (config.extend && config.extend.$$type !== "Theme") {
             throw new Error('Invalid extend in theme "' + name + '": ' + config.extend);
-          }
+          } // Validate include
 
-          // Validate include
+
           if (config.include) {
             for (var i = 0, l = config.include.length; i < l; i++) {
               if (typeof config.include[i] == "undefined" || config.include[i].$$type !== "Theme") {
                 throw new Error('Invalid include in theme "' + name + '": ' + config.include[i]);
               }
             }
-          }
+          } // Validate patch
 
-          // Validate patch
+
           if (config.patch) {
             for (var i = 0, l = config.patch.length; i < l; i++) {
               if (typeof config.patch[i] === "undefined" || config.patch[i].$$type !== "Theme") {
@@ -413,6 +441,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         "default": function _default() {}
       }),
+
       /**
        * Include all keys of the given mixin theme into the theme. The mixin may
        * include keys which are already defined in the target theme. Existing
@@ -423,16 +452,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       patch: function patch(theme, mixinTheme) {
         this.__P_95_8(mixinTheme);
+
         var type = this.__P_95_3(mixinTheme);
+
         if (type !== this.__P_95_3(theme)) {
           throw new Error("The mixins '" + theme.name + "' are not compatible '" + mixinTheme.name + "'!");
         }
+
         var source = mixinTheme[type];
         var target = theme.$$clazz.prototype;
+
         for (var key in source) {
           target[key] = source[key];
         }
       },
+
       /**
        * Include all keys of the given mixin theme into the theme. If the
        * mixin includes any keys that are already available in the
@@ -444,20 +478,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       include: function include(theme, mixinTheme) {
         this.__P_95_8(mixinTheme);
+
         var type = mixinTheme.type;
+
         if (type !== theme.type) {
           throw new Error("The mixins '" + theme.name + "' are not compatible '" + mixinTheme.name + "'!");
         }
+
         var source = mixinTheme[type];
         var target = theme.$$clazz.prototype;
+
         for (var key in source) {
           //Skip keys already present
           if (target[key] !== undefined) {
             continue;
           }
+
           target[key] = source[key];
         }
       },
+
       /**
        * Helper method to check for an invalid theme
        *
@@ -475,4 +515,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Theme.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Theme.js.map?dt=1677362723837
+//# sourceMappingURL=Theme.js.map?dt=1685978106214

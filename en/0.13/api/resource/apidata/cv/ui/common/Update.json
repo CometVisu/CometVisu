@@ -16,9 +16,9 @@
         "index": 882
       },
       "end": {
-        "line": 114,
+        "line": 117,
         "column": 3,
-        "index": 3546
+        "index": 3672
       }
     },
     "jsdoc": {
@@ -71,9 +71,9 @@
           "index": 1557
         },
         "end": {
-          "line": 64,
+          "line": 67,
           "column": 5,
-          "index": 2070
+          "index": 2196
         }
       },
       "type": "function",
@@ -82,14 +82,14 @@
     "update": {
       "location": {
         "start": {
-          "line": 72,
+          "line": 75,
           "column": 4,
-          "index": 2282
+          "index": 2408
         },
         "end": {
-          "line": 81,
+          "line": 84,
           "column": 5,
-          "index": 2549
+          "index": 2675
         }
       },
       "jsdoc": {
@@ -122,14 +122,14 @@
     "processIncomingValue": {
       "location": {
         "start": {
-          "line": 83,
+          "line": 86,
           "column": 4,
-          "index": 2556
+          "index": 2682
         },
         "end": {
-          "line": 93,
+          "line": 96,
           "column": 5,
-          "index": 2977
+          "index": 3103
         }
       },
       "type": "function",
@@ -138,14 +138,14 @@
     "update3d": {
       "location": {
         "start": {
-          "line": 101,
+          "line": 104,
           "column": 4,
-          "index": 3074
+          "index": 3200
         },
         "end": {
-          "line": 112,
+          "line": 115,
           "column": 5,
-          "index": 3538
+          "index": 3664
         }
       },
       "jsdoc": {

@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,27 +75,30 @@
   qx.Class.define("qx.ui.container.Composite", {
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MChildrenHandling, qx.ui.core.MLayoutHandling],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param layout {qx.ui.layout.Abstract} A layout instance to use to
      *   place widgets on the screen.
      */
     construct: function construct(layout) {
       qx.ui.core.Widget.constructor.call(this);
+
       if (layout != null) {
         this._setLayout(layout);
       }
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * This event is fired after a child widget was added to this widget. The
@@ -102,6 +106,7 @@
        * added child.
        */
       addChildWidget: "qx.event.type.Data",
+
       /**
        * This event is fired after a child widget has been removed from this widget.
        * The {@link qx.event.type.Data#getData} method of the event returns the
@@ -109,12 +114,12 @@
        */
       removeChildWidget: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // overridden
       _afterAddChild: function _afterAddChild(child) {
@@ -129,4 +134,4 @@
   qx.ui.container.Composite.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Composite.js.map?dt=1677362750756
+//# sourceMappingURL=Composite.js.map?dt=1685978133046

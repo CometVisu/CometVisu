@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MultiTrigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -55,6 +56,7 @@
   qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
+
     /*
     ******************************************************
       PROPERTIES
@@ -74,6 +76,7 @@
         nullable: false
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -91,17 +94,21 @@
         indices.forEach(function (i) {
           var buttonConfig = config[i];
           var label = buttonConfig.label;
+
           if (mapping) {
             var mappedValue = this.defaultValueHandling(undefined, buttonConfig.value);
+
             if (mappedValue !== buttonConfig.value || !label) {
               var div = document.createElement('div');
               this.defaultValue2DOM(mappedValue, div);
               label = div.innerHTML;
             }
           }
+
           if (label) {
             ret_val += '<div class="actor switchUnpressed"><div class="value">' + label + '</div></div>';
           }
+
           if (elementsPerLine > 0 && i % elementsPerLine === 0) {
             ret_val += '<br/>';
           }
@@ -115,6 +122,7 @@
       _processIncomingValue: function _processIncomingValue(address, data) {
         return this.applyTransform(address, data);
       },
+
       /**
        * Handles the incoming data from the backend for this widget
        */
@@ -123,11 +131,12 @@
         var buttonConfiguration = this.getButtonConfiguration();
         children.forEach(function (actor) {
           var index = Array.prototype.indexOf.call(children, actor) + 1;
+
           if (Object.prototype.hasOwnProperty.call(buttonConfiguration, index)) {
             var isPressed = '' + this.getBasicValue() === '' + buttonConfiguration[index].value; // compare as string
-
             // delay this a little bit to give the HasAnimatedButton stuff time to finish
             // otherwise it might override the settings here
+
             new qx.util.DeferredCall(function () {
               actor.classList.remove(isPressed ? 'switchUnpressed' : 'switchPressed');
               actor.classList.add(isPressed ? 'switchPressed' : 'switchUnpressed');
@@ -135,6 +144,7 @@
           }
         }, this);
       },
+
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @param event
@@ -148,6 +158,7 @@
         if (this.isAnonymous()) {
           return;
         }
+
         this.getActors().forEach(function (actor) {
           qx.event.Registration.addListener(actor, 'tap', this.action, this);
           qx.event.Registration.addListener(actor, 'pointerdown', this._onPointerDown, this);
@@ -161,4 +172,4 @@
   cv.ui.structure.pure.MultiTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MultiTrigger.js.map?dt=1677362717080
+//# sourceMappingURL=MultiTrigger.js.map?dt=1685978099861

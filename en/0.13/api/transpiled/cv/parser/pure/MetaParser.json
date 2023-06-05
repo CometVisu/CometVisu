@@ -37,6 +37,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "parseFiles": {
@@ -195,6 +196,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "bind": {

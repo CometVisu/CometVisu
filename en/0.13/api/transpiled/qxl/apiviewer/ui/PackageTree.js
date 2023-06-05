@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,21 +53,24 @@
       this.setDecorator(null);
       this.setPadding(0);
       this.__P_566_0 = new qx.ui.tree.TreeFolder("Packages");
+
       this.__P_566_0.setOpen(true);
+
       this.setRoot(this.__P_566_0);
-      this.setSelection([this.__P_566_0]);
-      // Workaround: Since navigating in qx.ui.tree.Tree doesn't work, we've to
+      this.setSelection([this.__P_566_0]); // Workaround: Since navigating in qx.ui.tree.Tree doesn't work, we've to
       // maintain a hash that keeps the tree nodes for class names
+
       this._classTreeNodeHash = {};
     },
+
     /*
      * ****************************************************************************
      * MEMBERS
      * ****************************************************************************
      */
-
     members: {
       __P_566_0: null,
+
       /**
        * Updates the tree on the left.
        *
@@ -76,15 +80,16 @@
        * @return {void}
        */
       setTreeData: function setTreeData(docTree) {
-        this._docTree = docTree;
+        this._docTree = docTree; // Fill the packages tree
 
-        // Fill the packages tree
         this.__P_566_1(this.__P_566_0, docTree, 0);
+
         if (this._wantedClassName) {
           this.selectTreeNodeByClassName(this._wantedClassName);
           this._wantedClassName = null;
         }
       },
+
       /**
        * Selects a certain class.
        *
@@ -94,49 +99,65 @@
        */
       selectTreeNodeByClassName: function selectTreeNodeByClassName(className) {
         var _this = this;
+
         if (!this._docTree) {
           // The doc tree has not been loaded yet
           // -> Remember the wanted class and show when loading is done
           this._wantedClassName = className;
           return qx.Promise.resolve(true);
         }
+
         if (!className) {
           this.__P_566_0.setOpen(true);
+
           this.setSelection([this.__P_566_0]);
           this.scrollChildIntoView(this.__P_566_0);
           return qx.Promise.resolve(true);
         }
+
         var nameParts = className.split(".");
         var name = "";
         var nameIndex = 0;
+
         var next = function next() {
           if (nameIndex > 0) {
             name += ".";
           }
+
           name += nameParts[nameIndex];
           var treeNode = _this._classTreeNodeHash[name];
+
           if (!treeNode) {
             return qx.Promise.resolve(false);
           }
+
           treeNode.setOpen(true);
           return treeNode.loading.then(function () {
             nameIndex++;
+
             if (nameIndex < nameParts.length) {
               return next();
             }
+
             return treeNode;
           });
         };
+
         return next().then(function (treeNode) {
           if (treeNode) {
             _this.setSelection([treeNode]);
+
             _this.scrollChildIntoView(treeNode);
+
             return true;
           }
+
           _this.setSelection([]);
+
           return false;
         });
       },
+
       /**
        * Create a callback which loads the child nodes of a tree folder
        *
@@ -153,11 +174,14 @@
         return function () {
           if (!packageTreeNode.loaded) {
             packageTreeNode.loaded = true;
+
             self.__P_566_1(packageTreeNode, packageDoc, depth + 1);
+
             packageTreeNode.setOpenSymbolMode("always");
           }
         };
       },
+
       /**
        * Fills a package tree node with tree nodes for the sub packages and
        * classes.
@@ -171,6 +195,7 @@
        */
       __P_566_1: function __P_566_1(treeNode, docNode, depth) {
         var _this2 = this;
+
         var PackageTree = qxl.apiviewer.ui.PackageTree;
         var packagesDoc = docNode.getPackages();
         packagesDoc.sort(function (l, r) {
@@ -185,12 +210,10 @@
           packageTreeNode.setIcon(iconUrl);
           packageTreeNode.setOpenSymbolMode("always");
           packageTreeNode.setUserData("nodeName", packageDoc.getFullName());
-          treeNode.add(packageTreeNode);
+          treeNode.add(packageTreeNode); // defer adding of child nodes
 
-          // defer adding of child nodes
-          packageTreeNode.addListener("changeOpen", _this2.__P_566_2(packageTreeNode, packageDoc, depth + 1), _this2);
+          packageTreeNode.addListener("changeOpen", _this2.__P_566_2(packageTreeNode, packageDoc, depth + 1), _this2); // Register the tree node
 
-          // Register the tree node
           _this2._classTreeNodeHash[packageDoc.getFullName()] = packageTreeNode;
           return packageDoc.load();
         });
@@ -209,15 +232,15 @@
             classTreeNode.treeType = PackageTree.PACKAGE_TREE;
             treeNode.add(classTreeNode);
             classTreeNode.loading = qx.Promise.resolve();
-            classTreeNode.loaded = true;
+            classTreeNode.loaded = true; // Register the tree node
 
-            // Register the tree node
             _this2._classTreeNodeHash[classDoc.getFullName()] = classTreeNode;
           });
           return null;
         });
       }
     },
+
     /*
      * ****************************************************************************
      * DESTRUCTOR
@@ -225,10 +248,11 @@
      */
     destruct: function destruct() {
       this._docTree = this._classTreeNodeHash = null;
+
       this._disposeObjects("__P_566_0");
     }
   });
   qxl.apiviewer.ui.PackageTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageTree.js.map?dt=1677362780369
+//# sourceMappingURL=PackageTree.js.map?dt=1685978162675

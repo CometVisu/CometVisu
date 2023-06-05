@@ -10,6 +10,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,6 +45,7 @@
     statics: {
       __P_151_0: null,
       __P_151_1: null,
+
       /**
        * Static accessor for the local storage.
        * @return {qx.bom.storage.Web} An instance of a local storage.
@@ -52,8 +54,10 @@
         if (this.__P_151_0) {
           return this.__P_151_0;
         }
+
         return this.__P_151_0 = new qx.bom.storage.Web("local");
       },
+
       /**
        * Static accessor for the session storage.
        * @return {qx.bom.storage.Web} An instance of a session storage.
@@ -62,9 +66,11 @@
         if (this.__P_151_1) {
           return this.__P_151_1;
         }
+
         return this.__P_151_1 = new qx.bom.storage.Web("session");
       }
     },
+
     /**
      * Create a new instance. Usually, you should take the static
      * accessors to get your instance.
@@ -77,6 +83,7 @@
     },
     members: {
       __P_151_2: null,
+
       /**
        * Returns the internal used storage (the native object).
        *
@@ -86,6 +93,7 @@
       getStorage: function getStorage() {
         return window[this.__P_151_2 + "Storage"];
       },
+
       /**
        * Returns the amount of key-value pairs stored.
        * @return {Integer} The length of the storage.
@@ -93,6 +101,7 @@
       getLength: function getLength() {
         return this.getStorage(this.__P_151_2).length;
       },
+
       /**
        * Store an item in the storage.
        *
@@ -101,12 +110,14 @@
        */
       setItem: function setItem(key, value) {
         value = qx.lang.Json.stringify(value);
+
         try {
           this.getStorage(this.__P_151_2).setItem(key, value);
         } catch (e) {
           throw new Error("Storage full.");
         }
       },
+
       /**
        * Returns the stored item.
        *
@@ -115,14 +126,16 @@
        */
       getItem: function getItem(key) {
         var item = this.getStorage(this.__P_151_2).getItem(key);
+
         if (qx.lang.Type.isString(item)) {
-          item = qx.lang.Json.parse(item);
-          // special case for FF3
+          item = qx.lang.Json.parse(item); // special case for FF3
         } else if (item && item.value && qx.lang.Type.isString(item.value)) {
           item = qx.lang.Json.parse(item.value);
         }
+
         return item;
       },
+
       /**
        * Removes an item form the storage.
        * @param key {String} The identifier.
@@ -130,11 +143,13 @@
       removeItem: function removeItem(key) {
         this.getStorage(this.__P_151_2).removeItem(key);
       },
+
       /**
        * Deletes every stored item in the storage.
        */
       clear: function clear() {
         var storage = this.getStorage(this.__P_151_2);
+
         if (!storage.clear) {
           for (var i = storage.length - 1; i >= 0; i--) {
             storage.removeItem(storage.key(i));
@@ -143,6 +158,7 @@
           storage.clear();
         }
       },
+
       /**
        * Returns the named key at the given index.
        * @param index {Integer} The index in the storage.
@@ -151,6 +167,7 @@
       getKey: function getKey(index) {
         return this.getStorage(this.__P_151_2).key(index);
       },
+
       /**
        * Helper to access every stored item.
        *
@@ -161,6 +178,7 @@
        */
       forEach: function forEach(callback, scope) {
         var length = this.getLength();
+
         for (var i = 0; i < length; i++) {
           var key = this.getKey(i);
           callback.call(scope, key, this.getItem(key));
@@ -171,4 +189,4 @@
   qx.bom.storage.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1677362729457
+//# sourceMappingURL=Web.js.map?dt=1685978111929

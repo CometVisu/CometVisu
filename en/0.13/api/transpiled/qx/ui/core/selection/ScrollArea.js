@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +36,12 @@
    */
   qx.Class.define("qx.ui.core.selection.ScrollArea", {
     extend: qx.ui.core.selection.Widget,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -51,6 +52,7 @@
       _isSelectable: function _isSelectable(item) {
         return this._isItemSelectable(item) && item.getLayoutParent() === this._getWidget().getChildrenContainer();
       },
+
       /*
       ---------------------------------------------------------------------------
         DIMENSION AND LOCATION
@@ -60,6 +62,7 @@
       _getDimension: function _getDimension() {
         return this._getWidget().getPaneSize();
       },
+
       /*
       ---------------------------------------------------------------------------
         SCROLL SUPPORT
@@ -68,6 +71,7 @@
       // overridden
       _getScroll: function _getScroll() {
         var widget = this._getWidget();
+
         return {
           left: widget.getScrollX(),
           top: widget.getScrollY()
@@ -76,9 +80,11 @@
       // overridden
       _scrollBy: function _scrollBy(xoff, yoff) {
         var widget = this._getWidget();
+
         widget.scrollByX(xoff);
         widget.scrollByY(yoff);
       },
+
       /*
       ---------------------------------------------------------------------------
         QUERY SUPPORT
@@ -87,76 +93,89 @@
       // overridden
       _getFirstVisibleSelectable: function _getFirstVisibleSelectable() {
         var selectables = this.getSelectables();
+
         var widget = this._getWidget();
+
         var scrollTop = widget.getScrollY();
+
         for (var i = 0; i < selectables.length; i++) {
           var bottom = widget.getItemBottom(selectables[i]);
+
           if (bottom > scrollTop) {
             return selectables[i];
           }
         }
+
         return null;
       },
       // overridden
       _getLastVisibleSelectable: function _getLastVisibleSelectable() {
         var selectables = this.getSelectables();
+
         var widget = this._getWidget();
+
         var scrollTop = widget.getScrollY();
         var innerHeight = widget.getInnerSize().height;
         var scrollBottom = scrollTop + innerHeight;
         var last = null;
+
         for (var i = 0; i < selectables.length; i++) {
           var top = widget.getItemTop(selectables[i]);
+
           if (top > scrollBottom) {
             break;
           }
+
           var bottom = widget.getItemBottom(selectables[i]);
+
           if (bottom > scrollTop) {
             last = selectables[i];
           }
         }
+
         return last;
       },
       // overridden
       _getPage: function _getPage(lead, up) {
         var selectables = this.getSelectables();
         var length = selectables.length;
-        var start = selectables.indexOf(lead);
+        var start = selectables.indexOf(lead); // Given lead is not a selectable?!?
 
-        // Given lead is not a selectable?!?
         if (start === -1) {
           throw new Error("Invalid lead item: " + lead);
         }
+
         var widget = this._getWidget();
+
         var scrollTop = widget.getScrollY();
         var innerHeight = widget.getInnerSize().height;
         var top, bottom, found;
+
         if (up) {
           var min = scrollTop;
-          var i = start;
+          var i = start; // Loop required to scroll pages up dynamically
 
-          // Loop required to scroll pages up dynamically
           while (1) {
             // Iterate through all selectables from start
             for (; i >= 0; i--) {
-              top = widget.getItemTop(selectables[i]);
+              top = widget.getItemTop(selectables[i]); // This item is out of the visible block
 
-              // This item is out of the visible block
               if (top < min) {
                 // Use previous one
                 found = i;
                 break;
               }
-            }
+            } // Nothing found. Return first item.
 
-            // Nothing found. Return first item.
+
             if (found == null) {
               var first = this._getFirstSelectable();
-              return first == lead ? null : first;
-            }
 
-            // Found item, but is identical to start or even before start item
+              return first == lead ? null : first;
+            } // Found item, but is identical to start or even before start item
             // Update min position and try on previous page
+
+
             if (found >= start) {
               // Reduce min by the distance of the lead item to the visible
               // bottom edge. This is needed instead of a simple subtraction
@@ -165,37 +184,36 @@
               min -= innerHeight + scrollTop - widget.getItemBottom(lead);
               found = null;
               continue;
-            }
+            } // Return selectable
 
-            // Return selectable
+
             return selectables[found];
           }
         } else {
           var max = innerHeight + scrollTop;
-          var i = start;
+          var i = start; // Loop required to scroll pages down dynamically
 
-          // Loop required to scroll pages down dynamically
           while (1) {
             // Iterate through all selectables from start
             for (; i < length; i++) {
-              bottom = widget.getItemBottom(selectables[i]);
+              bottom = widget.getItemBottom(selectables[i]); // This item is out of the visible block
 
-              // This item is out of the visible block
               if (bottom > max) {
                 // Use next one
                 found = i;
                 break;
               }
-            }
+            } // Nothing found. Return last item.
 
-            // Nothing found. Return last item.
+
             if (found == null) {
               var last = this._getLastSelectable();
-              return last == lead ? null : last;
-            }
 
-            // Found item, but is identical to start or even before start item
+              return last == lead ? null : last;
+            } // Found item, but is identical to start or even before start item
             // Update max position and try on next page
+
+
             if (found <= start) {
               // Extend max by the distance of the lead item to the visible
               // top edge. This is needed instead of a simple addition
@@ -204,9 +222,9 @@
               max += widget.getItemTop(lead) - scrollTop;
               found = null;
               continue;
-            }
+            } // Return selectable
 
-            // Return selectable
+
             return selectables[found];
           }
         }
@@ -216,4 +234,4 @@
   qx.ui.core.selection.ScrollArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollArea.js.map?dt=1677362755373
+//# sourceMappingURL=ScrollArea.js.map?dt=1685978136444

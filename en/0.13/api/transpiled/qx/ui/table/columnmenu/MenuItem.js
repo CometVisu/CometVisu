@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,11 +40,13 @@
   qx.Class.define("qx.ui.table.columnmenu.MenuItem", {
     extend: qx.ui.menu.CheckBox,
     implement: qx.ui.table.IColumnMenuItem,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Create a new instance of an item for insertion into the table column
      * visibility menu.
@@ -53,18 +56,17 @@
      *   table.
      */
     construct: function construct(text) {
-      qx.ui.menu.CheckBox.constructor.call(this, text);
+      qx.ui.menu.CheckBox.constructor.call(this, text); // Two way binding this.columnVisible <--> this.value
 
-      // Two way binding this.columnVisible <--> this.value
       this.bind("value", this, "columnVisible");
       this.bind("columnVisible", this, "value");
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       columnVisible: {
         check: "Boolean",
@@ -76,4 +78,4 @@
   qx.ui.table.columnmenu.MenuItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuItem.js.map?dt=1677362766219
+//# sourceMappingURL=MenuItem.js.map?dt=1685978147416

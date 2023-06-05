@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,9 +61,11 @@
         qx.event.type.Native.superclass.prototype.init.call(this, canBubble, cancelable);
         this._target = target || qx.bom.Event.getTarget(nativeEvent);
         this._relatedTarget = relatedTarget || qx.bom.Event.getRelatedTarget(nativeEvent);
+
         if (nativeEvent.timeStamp) {
           this._timeStamp = nativeEvent.timeStamp;
         }
+
         this._native = nativeEvent;
         this._returnValue = null;
         return this;
@@ -75,6 +78,7 @@
         clone._returnValue = this._returnValue;
         return clone;
       },
+
       /**
        * Clone the native browser event
        *
@@ -84,8 +88,10 @@
        */
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         clone.preventDefault = function () {};
+
         return clone;
       },
+
       /**
        * Prevent browser default behavior, e.g. opening the context menu, ...
        */
@@ -93,6 +99,7 @@
         qx.event.type.Native.superclass.prototype.preventDefault.call(this);
         qx.bom.Event.preventDefault(this._native);
       },
+
       /**
        * Get the native browser event object of this event.
        *
@@ -101,6 +108,7 @@
       getNativeEvent: function getNativeEvent() {
         return this._native;
       },
+
       /**
        * Sets the event's return value. If the return value is set in a
        * beforeunload event, the user will be asked by the browser, whether
@@ -112,6 +120,7 @@
       setReturnValue: function setReturnValue(returnValue) {
         this._returnValue = returnValue;
       },
+
       /**
        * Retrieves the event's return value.
        *
@@ -125,4 +134,4 @@
   qx.event.type.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1677362740189
+//# sourceMappingURL=Native.js.map?dt=1685978123157

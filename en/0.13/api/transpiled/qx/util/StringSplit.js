@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,44 +65,47 @@
         if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
           return String.prototype.split.call(str, separator, limit);
         }
+
         var output = [],
-          lastLastIndex = 0,
-          flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.sticky ? "y" : ""),
-          separator = RegExp(separator.source, flags + "g"),
-          // make `global` and avoid `lastIndex` issues by working with a copy
-          separator2,
-          match,
-          lastIndex,
-          lastLength,
-          compliantExecNpcg = /()??/.exec("")[1] === undefined; // NPCG: nonparticipating capturing group
+            lastLastIndex = 0,
+            flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.sticky ? "y" : ""),
+            separator = RegExp(separator.source, flags + "g"),
+            // make `global` and avoid `lastIndex` issues by working with a copy
+        separator2,
+            match,
+            lastIndex,
+            lastLength,
+            compliantExecNpcg = /()??/.exec("")[1] === undefined; // NPCG: nonparticipating capturing group
 
         str = str + ""; // type conversion
 
         if (!compliantExecNpcg) {
           separator2 = RegExp("^" + separator.source + "$(?!\\s)", flags); // doesn't need /g or /y, but they don't hurt
         }
-
         /* behavior for `limit`: if it's...
         - `undefined`: no limit.
         - `NaN` or zero: return an empty array.
         - a positive number: use `Math.floor(limit)`.
         - a negative number: no limit.
         - other: type-convert, then use the above rules. */
+
+
         if (limit === undefined || +limit < 0) {
           limit = Infinity;
         } else {
           limit = Math.floor(+limit);
+
           if (!limit) {
             return [];
           }
         }
+
         while (match = separator.exec(str)) {
           lastIndex = match.index + match[0].length; // `separator.lastIndex` is not reliable cross-browser
 
           if (lastIndex > lastLastIndex) {
-            output.push(str.slice(lastLastIndex, match.index));
+            output.push(str.slice(lastLastIndex, match.index)); // fix browsers whose `exec` methods don't consistently return `undefined` for nonparticipating capturing groups
 
-            // fix browsers whose `exec` methods don't consistently return `undefined` for nonparticipating capturing groups
             if (!compliantExecNpcg && match.length > 1) {
               match[0].replace(separator2, function () {
                 for (var i = 1; i < arguments.length - 2; i++) {
@@ -111,15 +115,19 @@
                 }
               });
             }
+
             if (match.length > 1 && match.index < str.length) {
               Array.prototype.push.apply(output, match.slice(1));
             }
+
             lastLength = match[0].length;
             lastLastIndex = lastIndex;
+
             if (output.length >= limit) {
               break;
             }
           }
+
           if (separator.lastIndex === match.index) {
             separator.lastIndex++; // avoid an infinite loop
           }
@@ -132,6 +140,7 @@
         } else {
           output.push(str.slice(lastLastIndex));
         }
+
         return output.length > limit ? output.slice(0, limit) : output;
       }
     }
@@ -139,4 +148,4 @@
   qx.util.StringSplit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringSplit.js.map?dt=1677362773259
+//# sourceMappingURL=StringSplit.js.map?dt=1685978154748

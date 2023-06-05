@@ -60,6 +60,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -104,11 +105,13 @@
    */
   qx.Class.define("qx.html.Element", {
     extend: qx.html.Node,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Creates a new Element
      *
@@ -122,6 +125,7 @@
       qx.html.Node.constructor.call(this, tagName || "div");
       this.__P_236_0 = styles || null;
       this.__P_236_1 = attributes || null;
+
       if (attributes) {
         for (var key in attributes) {
           if (!key) {
@@ -129,6 +133,7 @@
           }
         }
       }
+
       this.initCssClass();
       this.registerProperty("innerHtml", null, function (value) {
         if (this._domNode) {
@@ -140,12 +145,12 @@
         }
       });
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /*
       ---------------------------------------------------------------------------
@@ -155,28 +160,37 @@
 
       /** @type {Boolean} If debugging should be enabled */
       DEBUG: false,
+
       /** @type {Integer} number of roots */
       _hasRoots: 0,
+
       /** @type {Element} the default root to use */
       _defaultRoot: null,
+
       /** @type {Map} Contains the modified {@link qx.html.Element}s. The key is the hash code. */
       _modified: {},
+
       /** @type {Map} Contains the {@link qx.html.Element}s which should get hidden or visible at the next flush. The key is the hash code. */
       _visibility: {},
+
       /** @type {Map} Contains the {@link qx.html.Element}s which should scrolled at the next flush */
       _scroll: {},
+
       /** @type {Array} List of post actions for elements. The key is the action name. The value the {@link qx.html.Element}. */
       _actions: [],
+
       /**  @type {Map} List of all selections. */
       __P_236_2: {},
       __P_236_3: null,
       __P_236_4: null,
       __P_236_5: null,
+
       /*
       ---------------------------------------------------------------------------
         PUBLIC ELEMENT FLUSH
       ---------------------------------------------------------------------------
       */
+
       /**
        * Schedule a deferred element queue flush. If the widget subsystem is used
        * this method gets overwritten by {@link qx.ui.core.queue.Manager}.
@@ -186,6 +200,7 @@
       _scheduleFlush: function _scheduleFlush(job) {
         qx.html.Element.__P_236_6.schedule();
       },
+
       /**
        * Flush the global modified list
        */
@@ -194,156 +209,174 @@
         {
           // blur elements, which will be removed
           var focusHandler = this.__P_236_7();
+
           var focusedDomElement = focusHandler.getFocus();
+
           if (focusedDomElement && this.__P_236_8(focusedDomElement)) {
             focusHandler.blur(focusedDomElement);
-          }
+          } // deactivate elements, which will be removed
 
-          // deactivate elements, which will be removed
+
           var activeDomElement = focusHandler.getActive();
+
           if (activeDomElement && this.__P_236_8(activeDomElement)) {
             qx.bom.Element.deactivate(activeDomElement);
-          }
+          } // release capture for elements, which will be removed
 
-          // release capture for elements, which will be removed
+
           var captureDomElement = this.__P_236_9();
+
           if (captureDomElement && this.__P_236_8(captureDomElement)) {
             qx.bom.Element.releaseCapture(captureDomElement);
           }
         }
         var later = [];
         var modified = qx.html.Element._modified;
+
         for (var hc in modified) {
-          obj = modified[hc];
-          // Ignore all hidden elements except iframes
+          obj = modified[hc]; // Ignore all hidden elements except iframes
           // but keep them until they get visible (again)
+
           if (obj._willBeSeeable() || obj.classname == "qx.html.Iframe") {
             // Separately queue rendered elements
             if (obj._domNode && qx.dom.Hierarchy.isRendered(obj._domNode)) {
               later.push(obj);
-            }
-
-            // Flush invisible elements first
+            } // Flush invisible elements first
             else {
               obj.flush();
-            }
+            } // Cleanup modification list
 
-            // Cleanup modification list
+
             delete modified[hc];
           }
         }
+
         for (var i = 0, l = later.length; i < l; i++) {
           obj = later[i];
           obj.flush();
-        }
+        } // Process visibility list
 
-        // Process visibility list
+
         var visibility = this._visibility;
+
         for (var hc in visibility) {
           obj = visibility[hc];
           var element = obj._domNode;
+
           if (!element) {
             delete visibility[hc];
             continue;
           }
+
           // hiding or showing an object and deleting it right after that may
           // cause an disposed object in the visibility queue [BUG #3607]
           if (!obj.$$disposed) {
-            element.style.display = obj.isVisible() ? "" : "none";
-            // also hide the element (fixed some rendering problem in IE<8 & IE8 quirks)
+            element.style.display = obj.isVisible() ? "" : "none"; // also hide the element (fixed some rendering problem in IE<8 & IE8 quirks)
+
             if (qx.core.Environment.get("engine.name") == "mshtml") {
               if (!(document.documentMode >= 8)) {
                 element.style.visibility = obj.isVisible() ? "visible" : "hidden";
               }
             }
           }
+
           delete visibility[hc];
         }
+
         {
           // Process scroll list
           var scroll = this._scroll;
+
           for (var hc in scroll) {
             obj = scroll[hc];
             var elem = obj._domNode;
-            if (elem && elem.offsetWidth) {
-              var done = true;
 
-              // ScrollToX
+            if (elem && elem.offsetWidth) {
+              var done = true; // ScrollToX
+
               if (obj.__P_236_10 != null) {
                 obj._domNode.scrollLeft = obj.__P_236_10;
                 delete obj.__P_236_10;
-              }
+              } // ScrollToY
 
-              // ScrollToY
+
               if (obj.__P_236_11 != null) {
                 obj._domNode.scrollTop = obj.__P_236_11;
                 delete obj.__P_236_11;
-              }
+              } // ScrollIntoViewX
 
-              // ScrollIntoViewX
+
               var intoViewX = obj.__P_236_12;
+
               if (intoViewX != null) {
                 var child = intoViewX.element.getDomElement();
+
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewX(child, elem, intoViewX.align);
                   delete obj.__P_236_12;
                 } else {
                   done = false;
                 }
-              }
+              } // ScrollIntoViewY
 
-              // ScrollIntoViewY
+
               var intoViewY = obj.__P_236_13;
+
               if (intoViewY != null) {
                 var child = intoViewY.element.getDomElement();
+
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewY(child, elem, intoViewY.align);
                   delete obj.__P_236_13;
                 } else {
                   done = false;
                 }
-              }
-
-              // Clear flag if all things are done
+              } // Clear flag if all things are done
               // Otherwise wait for the next flush
+
+
               if (done) {
                 delete scroll[hc];
               }
             }
           }
+
           var activityEndActions = {
             releaseCapture: 1,
             blur: 1,
             deactivate: 1
-          };
+          }; // Process action list
 
-          // Process action list
           for (var i = 0; i < this._actions.length; i++) {
             var action = this._actions[i];
             var element = action.element._domNode;
+
             if (!element || !activityEndActions[action.type] && !action.element._willBeSeeable()) {
               continue;
             }
+
             var args = action.args;
             args.unshift(element);
             qx.bom.Element[action.type].apply(qx.bom.Element, args);
           }
-          this._actions = [];
-        }
 
-        // Process selection
+          this._actions = [];
+        } // Process selection
+
         for (var hc in this.__P_236_2) {
           var selection = this.__P_236_2[hc];
           var elem = selection.element._domNode;
+
           if (elem) {
             qx.bom.Selection.set(elem, selection.start, selection.end);
             delete this.__P_236_2[hc];
           }
-        }
+        } // Fire appear/disappear events
 
-        // Fire appear/disappear events
+
         qx.event.handler.Appear.refresh();
       },
+
       /**
        * Get the focus handler
        *
@@ -355,9 +388,11 @@
             var eventManager = qx.event.Registration.getManager(window);
             this.__P_236_3 = eventManager.getHandler(qx.event.handler.Focus);
           }
+
           return this.__P_236_3;
         }
       },
+
       /**
        * Get the mouse capture element
        *
@@ -369,9 +404,11 @@
             var eventManager = qx.event.Registration.getManager(window);
             this.__P_236_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
           }
+
           return this.__P_236_4.getCaptureElement();
         }
       },
+
       /**
        * Whether the given DOM element will become invisible after the flush
        *
@@ -382,6 +419,7 @@
         var element = this.fromDomElement(domElement);
         return element && !element._willBeSeeable();
       },
+
       /**
        * Finds the Widget for a given DOM element
        *
@@ -392,6 +430,7 @@
       fromDomElement: function fromDomElement(domElement) {
         return qx.html.Node.fromDomNode(domElement);
       },
+
       /**
        * Sets the default Root element
        *
@@ -400,6 +439,7 @@
       setDefaultRoot: function setDefaultRoot(root) {
         this._defaultRoot = root;
       },
+
       /**
        * Returns the default root
        *
@@ -409,12 +449,12 @@
         return this._defaultRoot;
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * @type{String} The primary CSS class for this element
@@ -435,12 +475,12 @@
         apply: "_applyCssClass"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -458,12 +498,14 @@
       __P_236_16: null,
       __P_236_0: null,
       __P_236_1: null,
+
       /*
        * @Override
        */
       _createDomElement: function _createDomElement() {
         return qx.dom.Element.create(this._nodeName);
       },
+
       /*
        * @Override
        */
@@ -472,43 +514,51 @@
           this.importQxObjectIds();
           this.__P_236_17 = false;
         }
+
         return qx.html.Element.superclass.prototype.serialize.call(this, writer);
       },
+
       /*
        * @Override
        */
       _serializeImpl: function _serializeImpl(writer) {
-        writer("<", this._nodeName);
+        writer("<", this._nodeName); // Copy attributes
 
-        // Copy attributes
         var data = this.__P_236_1;
+
         if (data) {
           var Attribute = qx.bom.element.Attribute;
+
           for (var key in data) {
             writer(" ");
             Attribute.serialize(writer, key, data[key]);
           }
-        }
+        } // Copy styles
 
-        // Copy styles
+
         var data = this.__P_236_0 || {};
+
         if (!this.isVisible()) {
           data = qx.lang.Object.clone(data);
           data.display = "none";
         }
+
         if (Object.keys(data).length) {
           var Style = qx.bom.element.Style;
           var css = Style.compile(data);
+
           if (css) {
             writer(' style="', css, '"');
           }
-        }
+        } // Copy properties
 
-        // Copy properties
+
         var data = this._properties;
+
         if (data) {
           for (var key in this._properties) {
             var property = this._properties[key];
+
             if (property.serialize) {
               writer(" ");
               property.serialize.call(this, writer, key, property);
@@ -518,9 +568,9 @@
               writer(key, "=", value);
             }
           }
-        }
+        } // Children
 
-        // Children
+
         if (!this._children || !this._children.length) {
           if (qx.html.Element.__P_236_5[this._nodeName]) {
             writer(">");
@@ -529,12 +579,15 @@
           }
         } else {
           writer(">");
+
           for (var i = 0; i < this._children.length; i++) {
             this._children[i]._serializeImpl(writer);
           }
+
           writer("</", this._nodeName, ">");
         }
       },
+
       /**
        * Connects a widget to this element, and to the DOM element in this Element.  They
        * remain associated until disposed or disconnectWidget is called
@@ -545,6 +598,7 @@
       connectWidget: function connectWidget(widget) {
         return this.connectObject(widget);
       },
+
       /**
        * Disconnects a widget from this element and the DOM element.  The DOM element remains
        * untouched, except that it can no longer be used to find the Widget.
@@ -555,20 +609,25 @@
       disconnectWidget: function disconnectWidget(widget) {
         return this.disconnectObject(widget);
       },
+
       /*
        * @Override
        */
       _addChildImpl: function _addChildImpl(child) {
         qx.html.Element.superclass.prototype._addChildImpl.call(this, child);
+
         this.__P_236_17 = true;
       },
+
       /*
        * @Override
        */
       _removeChildImpl: function _removeChildImpl(child) {
         qx.html.Element.superclass.prototype._removeChildImpl.call(this, child);
+
         this.__P_236_17 = true;
       },
+
       /*
        * @Override
        */
@@ -577,8 +636,10 @@
           this.importQxObjectIds();
           this.__P_236_17 = false;
         }
+
         return qx.html.Element.superclass.prototype.getQxObject.call(this, id);
       },
+
       /**
        * When a tree of virtual dom is loaded via JSX code, the paths in the `data-qx-object-id`
        * attribute are relative to the JSX, and these attribuite values need to be loaded into the
@@ -596,44 +657,44 @@
        */
       importQxObjectIds: function importQxObjectIds() {
         var _this = this;
+
         var thisId = this.getQxObjectId();
         var thisAttributeId = this.getAttribute("data-qx-object-id");
+
         if (thisId) {
           this.setAttribute("data-qx-object-id", thisId, true);
         } else if (thisAttributeId) {
           this.setQxObjectId(thisAttributeId);
         }
+
         var resolveImpl = function resolveImpl(node) {
           if (!(node instanceof qx.html.Element)) {
             return;
           }
+
           var id = node.getQxObjectId();
           var attributeId = node.getAttribute("data-qx-object-id");
+
           if (id) {
             if (attributeId && !attributeId.endsWith(id)) {
               _this.warn("Attribute ID ".concat(attributeId, " is not compatible with the qxObjectId ").concat(id, "; the qxObjectId will take prescedence"));
             }
+
             node.setAttribute("data-qx-object-id", id, true);
           } else if (attributeId) {
-            var segs = attributeId ? attributeId.split("/") : [];
+            var segs = attributeId ? attributeId.split("/") : []; // Only one segment is easy, add directly to the parent
 
-            // Only one segment is easy, add directly to the parent
             if (segs.length == 1) {
               var parentNode = _this;
-              parentNode.addOwnedQxObject(node, attributeId);
-
-              // Lots of segments
+              parentNode.addOwnedQxObject(node, attributeId); // Lots of segments
             } else if (segs.length > 1) {
-              var _parentNode = null;
+              var _parentNode = null; // If the first segment is the outer parent
 
-              // If the first segment is the outer parent
               if (segs[0] == thisAttributeId || segs[0] == thisId) {
                 // Only two segments, means that the parent is the outer and the last segment
                 //  is the ID of the node being examined
                 if (segs.length == 2) {
-                  _parentNode = _this;
-
-                  // Otherwise resolve it further
+                  _parentNode = _this; // Otherwise resolve it further
                 } else {
                   // Extract the segments, exclude the first and last, and that leaves us with a relative ID path
                   var subId = qx.lang.Array.clone(segs);
@@ -641,33 +702,40 @@
                   subId.pop();
                   subId = subId.join("/");
                   _parentNode = _this.getQxObject(subId);
-                }
+                } // Not the outer node, then resolve as a global.
 
-                // Not the outer node, then resolve as a global.
               } else {
                 _parentNode = qx.core.Id.getQxObject(attributeId);
               }
+
               if (!_parentNode) {
                 throw new Error("Cannot resolve object id ancestors, id=".concat(attributeId));
               }
+
               _parentNode.addOwnedQxObject(node, segs[segs.length - 1]);
             }
           }
+
           var children = node.getChildren();
+
           if (children) {
             children.forEach(resolveImpl);
           }
         };
+
         var children = this.getChildren();
+
         if (children) {
           children.forEach(resolveImpl);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         SUPPORT FOR ATTRIBUTE/STYLE/EVENT FLUSH
       ---------------------------------------------------------------------------
       */
+
       /**
        * Copies data between the internal representation and the DOM. This
        * simply copies all the data and only works well directly after
@@ -678,12 +746,14 @@
        */
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         qx.html.Element.superclass.prototype._copyData.call(this, fromMarkup, propertiesFromDom);
-        var elem = this._domNode;
 
-        // Copy attributes
+        var elem = this._domNode; // Copy attributes
+
         var data = this.__P_236_1;
+
         if (data) {
           var Attribute = qx.bom.element.Attribute;
+
           if (fromMarkup) {
             var str;
             var classes = {};
@@ -704,6 +774,7 @@
             });
             classes = Object.keys(classes);
             var segs = classes;
+
             if (segs.length) {
               this.setCssClass(segs[0]);
               this.setAttribute("class", classes.join(" "));
@@ -712,15 +783,18 @@
               this.setAttribute("class", null);
             }
           }
+
           for (var key in data) {
             Attribute.set(elem, key, data[key]);
           }
-        }
+        } // Copy styles
 
-        // Copy styles
+
         var data = this.__P_236_0;
+
         if (data) {
           var Style = qx.bom.element.Style;
+
           if (fromMarkup) {
             Style.setStyles(elem, data);
           } else {
@@ -728,11 +802,12 @@
             // compared to separate modifications of many single style properties.
             Style.setCss(elem, Style.compile(data));
           }
-        }
+        } // Copy visibility
 
-        // Copy visibility
+
         if (!fromMarkup) {
           var display = elem.style.display || "";
+
           if (display == "" && !this.isVisible()) {
             elem.style.display = "none";
           } else if (display == "none" && this.isVisible()) {
@@ -743,6 +818,7 @@
           this.setVisible(display != "none");
         }
       },
+
       /**
        * Synchronizes data between the internal representation and the DOM. This
        * is the counterpart of {@link #_copyData} and is used for further updates
@@ -751,18 +827,22 @@
        */
       _syncData: function _syncData() {
         qx.html.Element.superclass.prototype._syncData.call(this);
+
         var elem = this._domNode;
         var Attribute = qx.bom.element.Attribute;
-        var Style = qx.bom.element.Style;
+        var Style = qx.bom.element.Style; // Sync attributes
 
-        // Sync attributes
         var jobs = this.__P_236_16;
+
         if (jobs) {
           var data = this.__P_236_1;
+
           if (data) {
             var value;
+
             for (var key in jobs) {
               value = data[key];
+
               if (value !== undefined) {
                 Attribute.set(elem, key, value);
               } else {
@@ -770,28 +850,36 @@
               }
             }
           }
-          this.__P_236_16 = null;
-        }
 
-        // Sync styles
+          this.__P_236_16 = null;
+        } // Sync styles
+
+
         var jobs = this.__P_236_15;
+
         if (jobs) {
           var data = this.__P_236_0;
+
           if (data) {
             var styles = {};
+
             for (var key in jobs) {
               styles[key] = data[key];
             }
+
             Style.setStyles(elem, styles);
           }
+
           this.__P_236_15 = null;
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         DOM ELEMENT ACCESS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Sets the element's root flag, which indicates
        * whether the element should be a root element or not.
@@ -803,14 +891,17 @@
         } else if (!root && this.__P_236_14) {
           qx.html.Element._hasRoots--;
         }
+
         this.__P_236_14 = root;
       },
+
       /*
        * @Override
        */
       isRoot: function isRoot() {
         return this.__P_236_14;
       },
+
       /**
        * Uses existing markup for this element. This is mainly used
        * to insert pre-built markup blocks into the element hierarchy.
@@ -822,24 +913,25 @@
       useMarkup: function useMarkup(html) {
         if (this._domNode) {
           throw new Error("Could not overwrite existing element!");
-        }
-
-        // Prepare extraction
+        } // Prepare extraction
         // We have a IE specific issue with "Unknown error" messages
         // when we try to use the same DOM node again. I am not sure
         // why this happens. Would be a good performance improvement,
         // but does not seem to work.
+
+
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           var helper = document.createElement("div");
         } else {
           var helper = qx.dom.Element.getHelperElement();
-        }
+        } // Extract first element
 
-        // Extract first element
+
         helper.innerHTML = html;
         this.useElement(helper.firstChild);
         return this._domNode;
       },
+
       /**
        * Uses an existing element instead of creating one. This may be interesting
        * when the DOM element is directly needed to add content etc.
@@ -850,6 +942,7 @@
       useElement: function useElement(elem) {
         this.useNode(elem);
       },
+
       /**
        * Whether the element is focusable (or will be when created)
        *
@@ -857,15 +950,20 @@
        */
       isFocusable: function isFocusable() {
         var tabIndex = this.getAttribute("tabIndex");
+
         if (tabIndex >= 1) {
           return true;
         }
+
         var focusable = qx.event.handler.Focus.FOCUSABLE_ELEMENTS;
+
         if (tabIndex >= 0 && focusable[this._nodeName]) {
           return true;
         }
+
         return false;
       },
+
       /**
        * Set whether the element is selectable. It uses the qooxdoo attribute
        * qxSelectable with the values 'on' or 'off'.
@@ -876,10 +974,12 @@
       setSelectable: function setSelectable(value) {
         this.setAttribute("qxSelectable", value ? "on" : "off");
         var userSelect = qx.core.Environment.get("css.userselect");
+
         if (userSelect) {
           this.setStyle(userSelect, value ? "text" : qx.core.Environment.get("css.userselect.none"));
         }
       },
+
       /**
        * Whether the element is natively focusable (or will be when created)
        *
@@ -890,11 +990,13 @@
       isNativelyFocusable: function isNativelyFocusable() {
         return !!qx.event.handler.Focus.FOCUSABLE_ELEMENTS[this._nodeName];
       },
+
       /*
       ---------------------------------------------------------------------------
         ANIMATION SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Fades in the element.
        * @param duration {Number} Time in ms.
@@ -903,14 +1005,17 @@
        */
       fadeIn: function fadeIn(duration) {
         var col = qxWeb(this._domNode);
+
         if (col.isPlaying()) {
           col.stop();
-        }
-        // create the element right away
+        } // create the element right away
+
+
         if (!this._domNode) {
           this.flush();
           col.push(this._domNode);
         }
+
         if (this._domNode) {
           col.fadeIn(duration).once("animationEnd", function () {
             this.show();
@@ -919,6 +1024,7 @@
           return col.getAnimationHandles()[0];
         }
       },
+
       /**
        * Fades out the element.
        * @param duration {Number} Time in ms.
@@ -927,9 +1033,11 @@
        */
       fadeOut: function fadeOut(duration) {
         var col = qxWeb(this._domNode);
+
         if (col.isPlaying()) {
           col.stop();
         }
+
         if (this._domNode) {
           col.fadeOut(duration).once("animationEnd", function () {
             this.hide();
@@ -938,33 +1046,39 @@
           return col.getAnimationHandles()[0];
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         VISIBILITY SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /*
        * @Override
        */
       _applyVisible: function _applyVisible(value, oldValue) {
         qx.html.Element.superclass.prototype._applyVisible.call(this, value, oldValue);
+
         if (value) {
           if (this._domNode) {
             qx.html.Element._visibility[this.toHashCode()] = this;
-            qx.html.Element._scheduleFlush("element");
-          }
 
-          // Must be sure that the element gets included into the DOM.
+            qx.html.Element._scheduleFlush("element");
+          } // Must be sure that the element gets included into the DOM.
+
+
           if (this._parent) {
             this._parent._scheduleChildrenUpdate();
           }
         } else {
           if (this._domNode) {
             qx.html.Element._visibility[this.toHashCode()] = this;
+
             qx.html.Element._scheduleFlush("element");
           }
         }
       },
+
       /**
        * Marks the element as visible which means that a previously applied
        * CSS style of display=none gets removed and the element will inserted
@@ -976,6 +1090,7 @@
         this.setVisible(true);
         return this;
       },
+
       /**
        * Marks the element as hidden which means it will kept in DOM (if it
        * is already there, but configured hidden using a CSS style of display=none).
@@ -986,11 +1101,13 @@
         this.setVisible(false);
         return this;
       },
+
       /*
       ---------------------------------------------------------------------------
         SCROLL SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Scrolls the given child element into view. Only scrolls children.
        * Do not influence elements on top of this element.
@@ -1009,6 +1126,7 @@
       scrollChildIntoViewX: function scrollChildIntoViewX(elem, align, direct) {
         var thisEl = this._domNode;
         var childEl = elem.getDomElement();
+
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewX(childEl, thisEl, align);
         } else {
@@ -1017,10 +1135,13 @@
             align: align
           };
           qx.html.Element._scroll[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         delete this.__P_236_10;
       },
+
       /**
        * Scrolls the given child element into view. Only scrolls children.
        * Do not influence elements on top of this element.
@@ -1039,6 +1160,7 @@
       scrollChildIntoViewY: function scrollChildIntoViewY(elem, align, direct) {
         var thisEl = this._domNode;
         var childEl = elem.getDomElement();
+
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewY(childEl, thisEl, align);
         } else {
@@ -1047,10 +1169,13 @@
             align: align
           };
           qx.html.Element._scroll[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         delete this.__P_236_11;
       },
+
       /**
        * Scrolls the element to the given left position.
        *
@@ -1060,16 +1185,20 @@
        */
       scrollToX: function scrollToX(x, lazy) {
         var thisEl = this._domNode;
+
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollLeft = x;
           delete this.__P_236_10;
         } else {
           this.__P_236_10 = x;
           qx.html.Element._scroll[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         delete this.__P_236_12;
       },
+
       /**
        * Get the horizontal scroll position.
        *
@@ -1077,11 +1206,14 @@
        */
       getScrollX: function getScrollX() {
         var thisEl = this._domNode;
+
         if (thisEl) {
           return thisEl.scrollLeft;
         }
+
         return this.__P_236_10 || 0;
       },
+
       /**
        * Scrolls the element to the given top position.
        *
@@ -1091,16 +1223,20 @@
        */
       scrollToY: function scrollToY(y, lazy) {
         var thisEl = this._domNode;
+
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollTop = y;
           delete this.__P_236_11;
         } else {
           this.__P_236_11 = y;
           qx.html.Element._scroll[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         delete this.__P_236_13;
       },
+
       /**
        * Get the vertical scroll position.
        *
@@ -1108,11 +1244,14 @@
        */
       getScrollY: function getScrollY() {
         var thisEl = this._domNode;
+
         if (thisEl) {
           return thisEl.scrollTop;
         }
+
         return this.__P_236_11 || 0;
       },
+
       /**
        * Disables browser-native scrolling
        */
@@ -1122,6 +1261,7 @@
         this.scrollToY(0);
         this.addListener("scroll", this.__P_236_18, this);
       },
+
       /**
        * Re-enables browser-native scrolling
        */
@@ -1129,6 +1269,7 @@
         this.removeListener("scroll", this.__P_236_18, this);
       },
       __P_236_19: null,
+
       /**
        * Handler for the scroll-event
        *
@@ -1142,11 +1283,13 @@
           delete this.__P_236_19;
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         TEXT SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /*
        * Sets the text value of this element; it will delete children first, except
        * for the first node which (if it is a Text node) will have it's value updated
@@ -1156,6 +1299,7 @@
       setText: function setText(value) {
         var self = this;
         var children = this._children ? qx.lang.Array.clone(this._children) : [];
+
         if (children[0] instanceof qx.html.Text) {
           children[0].setText(value);
           children.shift();
@@ -1169,6 +1313,7 @@
           this.add(new qx.html.Text(value));
         }
       },
+
       /**
        * Returns the text value, accumulated from all child nodes
        *
@@ -1176,13 +1321,16 @@
        */
       getText: function getText() {
         var result = [];
+
         if (this._children) {
           this._children.forEach(function (child) {
             result.push(child.getText());
           });
         }
+
         return result.join("");
       },
+
       /**
        * Get the selection of the element.
        *
@@ -1193,11 +1341,14 @@
        */
       getTextSelection: function getTextSelection() {
         var el = this._domNode;
+
         if (el) {
           return qx.bom.Selection.get(el);
         }
+
         return null;
       },
+
       /**
        * Get the length of selection of the element.
        *
@@ -1208,11 +1359,14 @@
        */
       getTextSelectionLength: function getTextSelectionLength() {
         var el = this._domNode;
+
         if (el) {
           return qx.bom.Selection.getLength(el);
         }
+
         return null;
       },
+
       /**
        * Get the start of the selection of the element.
        *
@@ -1223,11 +1377,14 @@
        */
       getTextSelectionStart: function getTextSelectionStart() {
         var el = this._domNode;
+
         if (el) {
           return qx.bom.Selection.getStart(el);
         }
+
         return null;
       },
+
       /**
        * Get the end of the selection of the element.
        *
@@ -1238,11 +1395,14 @@
        */
       getTextSelectionEnd: function getTextSelectionEnd() {
         var el = this._domNode;
+
         if (el) {
           return qx.bom.Selection.getEnd(el);
         }
+
         return null;
       },
+
       /**
        * Set the selection of the element with the given start and end value.
        * If no end value is passed the selection will extend to the end.
@@ -1254,19 +1414,22 @@
        */
       setTextSelection: function setTextSelection(start, end) {
         var el = this._domNode;
+
         if (el) {
           qx.bom.Selection.set(el, start, end);
           return;
-        }
+        } // if element not created, save the selection for flushing
 
-        // if element not created, save the selection for flushing
+
         qx.html.Element.__P_236_2[this.toHashCode()] = {
           element: this,
           start: start,
           end: end
         };
+
         qx.html.Element._scheduleFlush("element");
       },
+
       /**
        * Clears the selection of the element.
        *
@@ -1275,16 +1438,20 @@
        */
       clearTextSelection: function clearTextSelection() {
         var el = this._domNode;
+
         if (el) {
           qx.bom.Selection.clear(el);
         }
+
         delete qx.html.Element.__P_236_2[this.toHashCode()];
       },
+
       /*
       ---------------------------------------------------------------------------
         FOCUS/ACTIVATE SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Takes the action to process as argument and queues this action if the
        * underlying DOM element is not yet created.
@@ -1304,9 +1471,11 @@
             element: this,
             args: args || []
           });
+
           qx.html.Element._scheduleFlush("element");
         }
       },
+
       /**
        * Focus this element.
        *
@@ -1320,6 +1489,7 @@
           this.__P_236_20("focus");
         }
       },
+
       /**
        * Mark this element to get blurred on the next flush of the queue
        *
@@ -1331,6 +1501,7 @@
           this.__P_236_20("blur");
         }
       },
+
       /**
        * Mark this element to get activated on the next flush of the queue
        *
@@ -1342,6 +1513,7 @@
           this.__P_236_20("activate");
         }
       },
+
       /**
        * Mark this element to get deactivated on the next flush of the queue
        *
@@ -1353,6 +1525,7 @@
           this.__P_236_20("deactivate");
         }
       },
+
       /**
        * Captures all mouse events to this element
        *
@@ -1367,6 +1540,7 @@
           this.__P_236_20("capture", [containerCapture !== false]);
         }
       },
+
       /**
        * Releases this element from a previous {@link #capture} call
        *
@@ -1377,11 +1551,13 @@
           this.__P_236_20("releaseCapture");
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         STYLE SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Set up the given style attribute
        *
@@ -1395,40 +1571,45 @@
         if (!this.__P_236_0) {
           this.__P_236_0 = {};
         }
+
         if (this.__P_236_0[key] == value) {
           return this;
         }
+
         this._applyStyle(key, value, this.__P_236_0[key]);
+
         if (value == null) {
           delete this.__P_236_0[key];
         } else {
           this.__P_236_0[key] = value;
-        }
-
-        // Uncreated elements simply copy all data
+        } // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
+
+
         if (this._domNode) {
           // Omit queuing in direct mode
           if (direct) {
             qx.bom.element.Style.set(this._domNode, key, value);
             return this;
-          }
+          } // Dynamically create if needed
 
-          // Dynamically create if needed
+
           if (!this.__P_236_15) {
             this.__P_236_15 = {};
-          }
+          } // Store job info
 
-          // Store job info
-          this.__P_236_15[key] = true;
 
-          // Register modification
+          this.__P_236_15[key] = true; // Register modification
+
           qx.html.Element._modified[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         return this;
       },
+
       /**
        * Called by setStyle when a value of a style changes; this is intended to be
        * overridden to allow the element to update properties etc according to the
@@ -1438,9 +1619,9 @@
        * @param value {String?} the value to set
        * @param oldValue {String?} The previous value (not from DOM)
        */
-      _applyStyle: function _applyStyle(key, value, oldValue) {
-        // Nothing
+      _applyStyle: function _applyStyle(key, value, oldValue) {// Nothing
       },
+
       /**
        * Convenience method to modify a set of styles at once.
        *
@@ -1453,48 +1634,57 @@
       setStyles: function setStyles(map, direct) {
         // inline calls to "set" because this method is very
         // performance critical!
-
         var Style = qx.bom.element.Style;
+
         if (!this.__P_236_0) {
           this.__P_236_0 = {};
         }
+
         if (this._domNode) {
           // Dynamically create if needed
           if (!this.__P_236_15) {
             this.__P_236_15 = {};
           }
+
           for (var key in map) {
             var value = map[key];
+
             if (this.__P_236_0[key] == value) {
               continue;
             }
+
             this._applyStyle(key, value, this.__P_236_0[key]);
+
             if (value == null) {
               delete this.__P_236_0[key];
             } else {
               this.__P_236_0[key] = value;
-            }
+            } // Omit queuing in direct mode
 
-            // Omit queuing in direct mode
+
             if (direct) {
               Style.set(this._domNode, key, value);
               continue;
-            }
+            } // Store job info
 
-            // Store job info
+
             this.__P_236_15[key] = true;
-          }
+          } // Register modification
 
-          // Register modification
+
           qx.html.Element._modified[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         } else {
           for (var key in map) {
             var value = map[key];
+
             if (this.__P_236_0[key] == value) {
               continue;
             }
+
             this._applyStyle(key, value, this.__P_236_0[key]);
+
             if (value == null) {
               delete this.__P_236_0[key];
             } else {
@@ -1502,8 +1692,10 @@
             }
           }
         }
+
         return this;
       },
+
       /**
        * Removes the given style attribute
        *
@@ -1516,6 +1708,7 @@
         this.setStyle(key, null, direct);
         return this;
       },
+
       /**
        * Get the value of the given style attribute.
        *
@@ -1525,6 +1718,7 @@
       getStyle: function getStyle(key) {
         return this.__P_236_0 ? this.__P_236_0[key] : null;
       },
+
       /**
        * Returns a map of all styles. Do not modify the result map!
        *
@@ -1533,6 +1727,7 @@
       getAllStyles: function getAllStyles() {
         return this.__P_236_0 || null;
       },
+
       /*
       ---------------------------------------------------------------------------
         CSS CLASS SUPPORT
@@ -1550,13 +1745,16 @@
       __P_236_22: function __P_236_22(map) {
         var primaryClass = this.getCssClass();
         var arr = [];
+
         if (primaryClass) {
           arr.push(primaryClass);
           delete map[primaryClass.toLowerCase()];
         }
+
         qx.lang.Array.append(arr, Object.values(map));
         return arr.length ? arr.join(" ") : null;
       },
+
       /**
        * Adds a css class to the element.
        *
@@ -1565,18 +1763,23 @@
        */
       addClass: function addClass(name) {
         var _this2 = this;
+
         var classes = this.__P_236_21();
+
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
+
           if (nameLower == primaryClass) {
             _this2.setCssClass(null);
           }
+
           classes[nameLower] = name;
         });
         this.setAttribute("class", this.__P_236_22(classes));
         return this;
       },
+
       /**
        * Removes a CSS class from the current element.
        *
@@ -1585,18 +1788,23 @@
        */
       removeClass: function removeClass(name) {
         var _this3 = this;
+
         var classes = this.__P_236_21();
+
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
+
           if (nameLower == primaryClass) {
             _this3.setCssClass(null);
           }
+
           delete classes[nameLower];
         });
         this.setAttribute("class", this.__P_236_22(classes));
         return this;
       },
+
       /**
        * Removes all CSS classed from the current element.
        */
@@ -1604,28 +1812,34 @@
         this.setCssClass(null);
         this.setAttribute("class", "");
       },
+
       /**
        * Apply method for cssClass
        */
       _applyCssClass: function _applyCssClass(value, oldValue) {
         var classes = this.__P_236_21();
+
         if (oldValue) {
           oldValue.split(" ").forEach(function (name) {
             return delete classes[name.toLowerCase()];
           });
         }
+
         if (value) {
           value.split(" ").forEach(function (name) {
             return classes[name.toLowerCase()] = name;
           });
         }
+
         this.setAttribute("class", this.__P_236_22(classes));
       },
+
       /*
       ---------------------------------------------------------------------------
         SIZE AND POSITION SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Returns the size and position of this element; this is just a helper method that wraps
        * the calls to qx.bom.*
@@ -1659,29 +1873,35 @@
             }
           };
         }
+
         var loc = qx.bom.element.Location.get(this._domNode, mode);
         loc.content = qx.bom.element.Dimension.getContentSize(this._domNode);
         loc.width = loc.right - loc.left;
         loc.height = loc.bottom - loc.top;
         return loc;
       },
+
       /**
        * Detects whether the DOM Node is visible
        */
       canBeSeen: function canBeSeen() {
         if (this._domNode && this.isVisible()) {
           var rect = this._domNode.getBoundingClientRect();
+
           if (rect.top > 0 || rect.left > 0 || rect.width > 0 || rect.height > 0) {
             return true;
           }
         }
+
         return false;
       },
+
       /*
       ---------------------------------------------------------------------------
         ATTRIBUTE SUPPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Set up the given attribute
        *
@@ -1695,42 +1915,47 @@
         if (!this.__P_236_1) {
           this.__P_236_1 = {};
         }
+
         if (this.__P_236_1[key] == value) {
           return this;
         }
+
         if (value == null) {
           delete this.__P_236_1[key];
         } else {
           this.__P_236_1[key] = value;
         }
+
         if (key == "data-qx-object-id") {
           this.setQxObjectId(value);
-        }
-
-        // Uncreated elements simply copy all data
+        } // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
+
+
         if (this._domNode) {
           // Omit queuing in direct mode
           if (direct) {
             qx.bom.element.Attribute.set(this._domNode, key, value);
             return this;
-          }
+          } // Dynamically create if needed
 
-          // Dynamically create if needed
+
           if (!this.__P_236_16) {
             this.__P_236_16 = {};
-          }
+          } // Store job info
 
-          // Store job info
-          this.__P_236_16[key] = true;
 
-          // Register modification
+          this.__P_236_16[key] = true; // Register modification
+
           qx.html.Element._modified[this.toHashCode()] = this;
+
           qx.html.Element._scheduleFlush("element");
         }
+
         return this;
       },
+
       /**
        * Convenience method to modify a set of attributes at once.
        *
@@ -1744,8 +1969,10 @@
         for (var key in map) {
           this.setAttribute(key, map[key], direct);
         }
+
         return this;
       },
+
       /**
        * Removes the given attribute
        *
@@ -1757,6 +1984,7 @@
       removeAttribute: function removeAttribute(key, direct) {
         return this.setAttribute(key, null, direct);
       },
+
       /**
        * Get the value of the given attribute.
        *
@@ -1767,6 +1995,7 @@
         return this.__P_236_1 ? this.__P_236_1[key] : null;
       }
     },
+
     /*
      *****************************************************************************
         DEFER
@@ -1779,6 +2008,7 @@
         statics.__P_236_5[tagName] = true;
       });
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -1786,10 +2016,12 @@
     */
     destruct: function destruct() {
       var hash = this.toHashCode();
+
       if (hash) {
         delete qx.html.Element._modified[hash];
         delete qx.html.Element._scroll[hash];
       }
+
       this.setRoot(false);
       this.__P_236_1 = this.__P_236_0 = this.__P_236_16 = this.__P_236_15 = this.__P_236_12 = this.__P_236_13 = null;
     }
@@ -1797,4 +2029,4 @@
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1677362740953
+//# sourceMappingURL=Element.js.map?dt=1685978123975

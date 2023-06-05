@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,6 +46,7 @@
       qx.core.Object.constructor.call(this);
       var loader = this._loader = qx.Part.getInstance();
       var self = this;
+
       loader.onpart = function (part) {
         if (part.getReadyState() == "complete") {
           self.fireDataEvent("partLoaded", part);
@@ -59,6 +61,7 @@
        * loaded part instance.
        */
       partLoaded: "qx.event.type.Data",
+
       /**
        * Fired if a part could not be loaded. The event's
        * {@link qx.event.type.Data#getData} method returns the name of the failed
@@ -98,6 +101,7 @@
       require: function require(partNames, callback, self) {
         this._loader.require(partNames, callback, self);
       },
+
       /**
        * Get the part instance of the part with the given name.
        *
@@ -108,6 +112,7 @@
       getPart: function getPart(name) {
         return this.getParts()[name];
       },
+
       /**
        * Checks if a part with the given name is available.
        * @param name {String} Name of the part as defined in the config file at
@@ -117,6 +122,7 @@
       hasPart: function hasPart(name) {
         return this.getPart(name) !== undefined;
       },
+
       /**
        * Returns a map of all known parts.
        * @return {Map} Map containing all parts.
@@ -129,4 +135,4 @@
   qx.io.PartLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PartLoader.js.map?dt=1677362741589
+//# sourceMappingURL=PartLoader.js.map?dt=1685978124626

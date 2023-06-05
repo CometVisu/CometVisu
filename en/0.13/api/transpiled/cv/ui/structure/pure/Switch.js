@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Switch.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -77,6 +78,7 @@
   qx.Class.define('cv.ui.structure.pure.Switch', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update],
+
     /*
      ******************************************************
      PROPERTIES
@@ -92,6 +94,7 @@
         init: '0'
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -102,20 +105,22 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
+
       /**
        * Handles the incoming data from the backend for this widget
        *
        * @param value {any} incoming data (already transformed + mapped)
        */
       handleUpdate: function handleUpdate(value) {
-        var actor = this.getActor();
-        // compare against the unmapped value
+        var actor = this.getActor(); // compare against the unmapped value
+
         value = this.getBasicValue();
-        var off = this.getOffValue();
-        // using == comparisons to make sure that e.g. 1 equals "1"
+        var off = this.getOffValue(); // using == comparisons to make sure that e.g. 1 equals "1"
+
         actor.classList.remove(value == off ? 'switchPressed' : 'switchUnpressed');
         actor.classList.add(value == off ? 'switchUnpressed' : 'switchPressed');
       },
+
       /**
        * Get the value that should be send to backend after the action has been triggered
        * @return {var}
@@ -129,4 +134,4 @@
   cv.ui.structure.pure.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1677362717634
+//# sourceMappingURL=Switch.js.map?dt=1685978100427

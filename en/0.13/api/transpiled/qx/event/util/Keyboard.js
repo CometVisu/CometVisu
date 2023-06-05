@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,7 +67,6 @@
         // The Backspace (Back) key.
         9: "Tab",
         // The Horizontal Tabulation (Tab) key.
-
         //   Note: This key identifier is also used for the
         //   Return (Macintosh numpad) key.
         13: "Enter",
@@ -74,6 +74,7 @@
         27: "Escape",
         // The Escape (Esc) key.
         32: "Space" // The Space (Spacebar) key.
+
       },
 
       /**
@@ -98,6 +99,7 @@
         110: ",".charCodeAt(0),
         111: "/".charCodeAt(0)
       },
+
       /**
        * @type {Map} maps the keycodes of non printable keys to key identifiers
        *
@@ -114,7 +116,6 @@
         // The CapsLock key
         224: "Meta",
         // The Meta key. (Apple Meta and Windows key)
-
         37: "Left",
         // The Left Arrow key.
         38: "Up",
@@ -123,22 +124,18 @@
         // The Right Arrow key.
         40: "Down",
         // The Down Arrow key.
-
         33: "PageUp",
         // The Page Up key.
         34: "PageDown",
         // The Page Down (Next) key.
-
         35: "End",
         // The End key.
         36: "Home",
         // The Home key.
-
         45: "Insert",
         // The Insert (Ins) key. (Does not fire in Opera/Win)
         46: "Delete",
         // The Delete (Del) Key.
-
         112: "F1",
         // The F1 key.
         113: "F2",
@@ -163,7 +160,6 @@
         // The F11 key.
         123: "F12",
         // The F12 key.
-
         144: "NumLock",
         // The Num Lock key.
         44: "PrintScreen",
@@ -179,14 +175,19 @@
         // The Application key (Windows Context Menu) or right cmd key
         93: qx.core.Environment.get("os.name") == "osx" ? "cmd" : "Apps"
       },
+
       /** char code for capital A */
       charCodeA: "A".charCodeAt(0),
+
       /** char code for capital Z */
       charCodeZ: "Z".charCodeAt(0),
+
       /** char code for 0 */
       charCode0: "0".charCodeAt(0),
+
       /** char code for 9 */
       charCode9: "9".charCodeAt(0),
+
       /**
        * converts a keyboard code to the corresponding identifier
        *
@@ -196,14 +197,17 @@
       keyCodeToIdentifier: function keyCodeToIdentifier(keyCode) {
         if (this.isIdentifiableKeyCode(keyCode)) {
           var numPadKeyCode = this.numpadToCharCode[keyCode];
+
           if (numPadKeyCode) {
             return String.fromCharCode(numPadKeyCode);
           }
+
           return this.keyCodeToIdentifierMap[keyCode] || this.specialCharCodeMap[keyCode] || String.fromCharCode(keyCode);
         } else {
           return "Unidentified";
         }
       },
+
       /**
        * converts a character code to the corresponding identifier
        *
@@ -213,6 +217,7 @@
       charCodeToIdentifier: function charCodeToIdentifier(charCode) {
         return this.specialCharCodeMap[charCode] || String.fromCharCode(charCode).toUpperCase();
       },
+
       /**
        * Check whether the keycode can be reliably detected in keyup/keydown events
        *
@@ -222,29 +227,31 @@
       isIdentifiableKeyCode: function isIdentifiableKeyCode(keyCode) {
         if (keyCode >= this.charCodeA && keyCode <= this.charCodeZ) {
           return true;
-        }
+        } // 0-9
 
-        // 0-9
+
         if (keyCode >= this.charCode0 && keyCode <= this.charCode9) {
           return true;
-        }
+        } // Enter, Space, Tab, Backspace
 
-        // Enter, Space, Tab, Backspace
+
         if (this.specialCharCodeMap[keyCode]) {
           return true;
-        }
+        } // Numpad
 
-        // Numpad
+
         if (this.numpadToCharCode[keyCode]) {
           return true;
-        }
+        } // non printable keys
 
-        // non printable keys
+
         if (this.isNonPrintableKeyCode(keyCode)) {
           return true;
         }
+
         return false;
       },
+
       /**
        * Checks whether the keyCode represents a non printable key
        *
@@ -254,6 +261,7 @@
       isNonPrintableKeyCode: function isNonPrintableKeyCode(keyCode) {
         return this.keyCodeToIdentifierMap[keyCode] ? true : false;
       },
+
       /**
        * Checks whether a given string is a valid keyIdentifier
        *
@@ -264,15 +272,19 @@
         if (this.identifierToKeyCodeMap[keyIdentifier]) {
           return true;
         }
+
         if (keyIdentifier.length != 1) {
           return false;
         }
+
         if (keyIdentifier >= "0" && keyIdentifier <= "9") {
           return true;
         }
+
         if (keyIdentifier >= "A" && keyIdentifier <= "Z") {
           return true;
         }
+
         switch (keyIdentifier) {
           case "+":
           case "-":
@@ -280,10 +292,12 @@
           case "/":
           case ",":
             return true;
+
           default:
             return false;
         }
       },
+
       /**
        * Checks whether a given string is a printable keyIdentifier.
        *
@@ -302,9 +316,11 @@
       // construct inverse of keyCodeToIdentifierMap
       if (!statics.identifierToKeyCodeMap) {
         statics.identifierToKeyCodeMap = {};
+
         for (var key in statics.keyCodeToIdentifierMap) {
           statics.identifierToKeyCodeMap[statics.keyCodeToIdentifierMap[key]] = parseInt(key, 10);
         }
+
         for (var key in statics.specialCharCodeMap) {
           statics.identifierToKeyCodeMap[statics.specialCharCodeMap[key]] = parseInt(key, 10);
         }
@@ -314,4 +330,4 @@
   qx.event.util.Keyboard.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Keyboard.js.map?dt=1677362740606
+//# sourceMappingURL=Keyboard.js.map?dt=1685978123614

@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -26,6 +27,7 @@
        * Andreas Ecker (ecker)
   
   ************************************************************************ */
+
   /**
    * KDE Oxygen icons
    */
@@ -38,4 +40,4 @@
   qx.theme.icon.Oxygen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Oxygen.js.map?dt=1677362747994
+//# sourceMappingURL=Oxygen.js.map?dt=1685978130603

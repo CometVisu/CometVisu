@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,6 +68,7 @@
         var fontChanged = true;
         var iconChanged = true;
         var appearanceChanged = true;
+
         if (old) {
           colorChanged = value.meta.color !== old.meta.color;
           decorationChanged = value.meta.decoration !== old.meta.decoration;
@@ -74,38 +76,41 @@
           iconChanged = value.meta.icon !== old.meta.icon;
           appearanceChanged = value.meta.appearance !== old.meta.appearance;
         }
+
         var colorMgr = qx.theme.manager.Color.getInstance();
         var decorationMgr = qx.theme.manager.Decoration.getInstance();
         var fontMgr = qx.theme.manager.Font.getInstance();
         var iconMgr = qx.theme.manager.Icon.getInstance();
-        var appearanceMgr = qx.theme.manager.Appearance.getInstance();
+        var appearanceMgr = qx.theme.manager.Appearance.getInstance(); // suspend listeners
 
-        // suspend listeners
-        this._suspendEvents();
+        this._suspendEvents(); // apply meta changes
 
-        // apply meta changes
+
         if (colorChanged) {
           // color theme changed, but decorator not? force decorator
           if (!decorationChanged) {
             var dec = decorationMgr.getTheme();
+
             decorationMgr._applyTheme(dec);
           }
+
           colorMgr.setTheme(value.meta.color);
         }
+
         decorationMgr.setTheme(value.meta.decoration);
         fontMgr.setTheme(value.meta.font);
         iconMgr.setTheme(value.meta.icon);
-        appearanceMgr.setTheme(value.meta.appearance);
+        appearanceMgr.setTheme(value.meta.appearance); // fire change event only if at least one theme manager changed
 
-        // fire change event only if at least one theme manager changed
         if (colorChanged || decorationChanged || fontChanged || iconChanged || appearanceChanged) {
           this.fireEvent("changeTheme");
-        }
+        } // re add listener
 
-        // re add listener
+
         this._activateEvents();
       },
       __P_294_0: null,
+
       /**
        * Fires <code>changeTheme</code> event.
        *
@@ -117,8 +122,10 @@
           // re-create decorator rules with changed color theme
           qx.theme.manager.Decoration.getInstance().refresh();
         }
+
         this.fireEvent("changeTheme");
       },
+
       /**
        * Removes listeners for <code>changeTheme</code> event of all
        * related theme managers.
@@ -128,25 +135,29 @@
         var decorationMgr = qx.theme.manager.Decoration.getInstance();
         var fontMgr = qx.theme.manager.Font.getInstance();
         var iconMgr = qx.theme.manager.Icon.getInstance();
-        var appearanceMgr = qx.theme.manager.Appearance.getInstance();
+        var appearanceMgr = qx.theme.manager.Appearance.getInstance(); // suspend listeners
 
-        // suspend listeners
         if (colorMgr.hasListener("changeTheme")) {
           colorMgr.removeListener("changeTheme", this._fireEvent, this);
         }
+
         if (decorationMgr.hasListener("changeTheme")) {
           decorationMgr.removeListener("changeTheme", this._fireEvent, this);
         }
+
         if (fontMgr.hasListener("changeTheme")) {
           fontMgr.removeListener("changeTheme", this._fireEvent, this);
         }
+
         if (iconMgr.hasListener("changeTheme")) {
           iconMgr.removeListener("changeTheme", this._fireEvent, this);
         }
+
         if (appearanceMgr.hasListener("changeTheme")) {
           appearanceMgr.removeListener("changeTheme", this._fireEvent, this);
         }
       },
+
       /**
        * Activates listeners for <code>changeTheme</code> event of all related
        * theme managers, to forwards the event to this meta manager instance.
@@ -156,25 +167,29 @@
         var decorationMgr = qx.theme.manager.Decoration.getInstance();
         var fontMgr = qx.theme.manager.Font.getInstance();
         var iconMgr = qx.theme.manager.Icon.getInstance();
-        var appearanceMgr = qx.theme.manager.Appearance.getInstance();
+        var appearanceMgr = qx.theme.manager.Appearance.getInstance(); // add listeners to check changes
 
-        // add listeners to check changes
         if (!colorMgr.hasListener("changeTheme")) {
           colorMgr.addListener("changeTheme", this._fireEvent, this);
         }
+
         if (!decorationMgr.hasListener("changeTheme")) {
           decorationMgr.addListener("changeTheme", this._fireEvent, this);
         }
+
         if (!fontMgr.hasListener("changeTheme")) {
           fontMgr.addListener("changeTheme", this._fireEvent, this);
         }
+
         if (!iconMgr.hasListener("changeTheme")) {
           iconMgr.addListener("changeTheme", this._fireEvent, this);
         }
+
         if (!appearanceMgr.hasListener("changeTheme")) {
           appearanceMgr.addListener("changeTheme", this._fireEvent, this);
         }
       },
+
       /**
        * Initialize the themes which were selected using the settings. Should only
        * be called from qooxdoo based application.
@@ -183,21 +198,24 @@
         var env = qx.core.Environment;
         var theme, obj;
         theme = env.get("qx.theme");
+
         if (theme) {
           obj = qx.Theme.getByName(theme);
+
           if (!obj) {
             throw new Error("The theme to use is not available: " + theme);
           }
+
           this.setTheme(obj);
         }
       }
     },
+
     /*
     *****************************************************************************
        ENVIRONMENT SETTINGS
     *****************************************************************************
     */
-
     environment: {
       "qx.theme": "qx.theme.Modern"
     }
@@ -205,4 +223,4 @@
   qx.theme.manager.Meta.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Meta.js.map?dt=1677362748698
+//# sourceMappingURL=Meta.js.map?dt=1685978131221

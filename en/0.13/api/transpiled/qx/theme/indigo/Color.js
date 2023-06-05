@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,7 +59,6 @@
       // bright blue
       "highlight-shade": "#5583D0",
       // bright blue
-
       // backgrounds
       "background-selected": "#3D72C9",
       "background-selected-disabled": "#CDCDCD",
@@ -134,4 +134,4 @@
   qx.theme.indigo.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1677362748244
+//# sourceMappingURL=Color.js.map?dt=1685978130811

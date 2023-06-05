@@ -37,6 +37,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,19 +67,22 @@
    */
   qx.Class.define("qx.event.type.Mouse", {
     extend: qx.event.type.Dom,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
-        var clone = qx.event.type.Mouse.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-        // Fix for #9619 pointermove/mousemove events return wrong result in isLeftPressed()
+        var clone = qx.event.type.Mouse.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone); // Fix for #9619 pointermove/mousemove events return wrong result in isLeftPressed()
         // button only valid in button events. Undefined otherwise.
         // see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+
+
         switch (nativeEvent.type) {
           case "mousemove":
           case "mouseenter":
@@ -87,10 +91,12 @@
           case "mouseout":
             clone.button = -1;
             break;
+
           default:
             clone.button = nativeEvent.button;
             break;
         }
+
         clone.buttons = nativeEvent.buttons;
         clone.clientX = Math.round(nativeEvent.clientX);
         clone.clientY = Math.round(nativeEvent.clientY);
@@ -114,6 +120,7 @@
         clone.target = nativeEvent.target;
         return clone;
       },
+
       /**
        * @type {Map} Contains the button ID to identifier data.
        *
@@ -124,6 +131,7 @@
         2: "right",
         1: "middle"
       },
+
       /**
        * @type {Map} Contains the button ID to identifier data.
        *
@@ -135,6 +143,7 @@
         2: "right",
         4: "middle"
       },
+
       /**
        * @type {Map} Contains the button ID to identifier data.
        *
@@ -149,6 +158,7 @@
       stop: function stop() {
         this.stopPropagation();
       },
+
       /**
        * During mouse events caused by the depression or release of a mouse button,
        * this method can be used to check which mouse button changed state.
@@ -178,11 +188,13 @@
         switch (this._type) {
           case "contextmenu":
             return "right";
+
           case "click":
             // IE does not support buttons on click --> assume left button
             if (qx.core.Environment.get("browser.name") === "ie" && qx.core.Environment.get("browser.documentmode") < 9) {
               return "left";
             }
+
           default:
             if (!(qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") <= 8)) {
               // if the button value is -1, we should use the DOM level 3 .buttons attribute
@@ -190,12 +202,15 @@
               if (this._native.button === -1) {
                 return this.__P_231_1[this._native.buttons] || "none";
               }
+
               return this.__P_231_0[this._native.button] || "none";
             } else {
               return this.__P_231_2[this._native.button] || "none";
             }
+
         }
       },
+
       /**
        * Whether the left button is pressed
        *
@@ -204,6 +219,7 @@
       isLeftPressed: function isLeftPressed() {
         return this.getButton() === "left";
       },
+
       /**
        * Whether the middle button is pressed
        *
@@ -212,6 +228,7 @@
       isMiddlePressed: function isMiddlePressed() {
         return this.getButton() === "middle";
       },
+
       /**
        * Whether the right button is pressed
        *
@@ -220,6 +237,7 @@
       isRightPressed: function isRightPressed() {
         return this.getButton() === "right";
       },
+
       /**
        * Get a secondary event target related to an UI event. This attribute is
        * used with the mouseover event to indicate the event target which the
@@ -232,6 +250,7 @@
       getRelatedTarget: function getRelatedTarget() {
         return this._relatedTarget;
       },
+
       /**
        * Get the he horizontal coordinate at which the event occurred relative
        * to the viewport.
@@ -241,6 +260,7 @@
       getViewportLeft: function getViewportLeft() {
         return Math.round(this._native.clientX);
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative
        * to the viewport.
@@ -251,6 +271,7 @@
       getViewportTop: function getViewportTop() {
         return Math.round(this._native.clientY);
       },
+
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -268,6 +289,7 @@
           return Math.round(this._native.clientX) + qx.bom.Viewport.getScrollLeft(window);
         }
       },
+
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -285,6 +307,7 @@
           return Math.round(this._native.clientY) + qx.bom.Viewport.getScrollTop(window);
         }
       },
+
       /**
        * Get the horizontal coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -297,6 +320,7 @@
       getScreenLeft: function getScreenLeft() {
         return Math.round(this._native.screenX);
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -314,4 +338,4 @@
   qx.event.type.Mouse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mouse.js.map?dt=1677362740131
+//# sourceMappingURL=Mouse.js.map?dt=1685978123099

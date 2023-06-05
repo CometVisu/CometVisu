@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +37,6 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
-
   qx.Class.define("qxl.apiviewer.ui.panels.AbstractMethodPanel", {
     extend: qxl.apiviewer.ui.panels.InfoPanel,
     construct: function construct(caption, icon) {
@@ -48,11 +48,14 @@
       },
       getPanelItemObjects: function getPanelItemObjects(daoClass, showInherited) {
         var arr = daoClass.getMethods();
+
         if (showInherited) {
           arr = arr.concat(daoClass.getMixinMethods());
         }
+
         return arr;
       },
+
       /**
        * Get the title HTML for a method
        *
@@ -65,24 +68,30 @@
         } else {
           title = method.getName();
         }
-        var titleHtml = new qx.util.StringBuilder(qxl.apiviewer.ui.panels.InfoPanel.setTitleClass(method, title));
 
-        // Add the title (the method signature)
+        var titleHtml = new qx.util.StringBuilder(qxl.apiviewer.ui.panels.InfoPanel.setTitleClass(method, title)); // Add the title (the method signature)
+
         titleHtml.add('<span class="method-signature"><span class="parenthesis">(</span>');
         var params = method.getParams();
+
         for (var i = 0; i < params.length; i++) {
           var param = params[i];
+
           if (i != 0) {
             titleHtml.add('<span class="separator">,</span> ');
           }
+
           titleHtml.add('<span class="parameter-type">', qxl.apiviewer.ui.panels.InfoPanel.createTypeHtml(param, "var"), "</span> <code>", param.getName(), "</code>");
+
           if (param.isOptional()) {
             titleHtml.add("?");
           }
         }
+
         titleHtml.add('<span class="parenthesis">)</span></span>');
         return titleHtml.get();
       },
+
       /**
        * Get the type HTML for a method
        *
@@ -91,14 +100,18 @@
        */
       getItemTypeHtml: function getItemTypeHtml(method) {
         var typeHtml = new qx.util.StringBuilder();
+
         if (method.isAbstract() && method.getClass().isAbstract()) {
           typeHtml.add("abstract ");
         }
+
         if (!method.isConstructor()) {
           typeHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createTypeHtml(method.getReturn(), "void"));
         }
+
         return typeHtml.get();
       },
+
       /**
        * Creates the HTML showing the information about a method.
        *
@@ -108,20 +121,23 @@
        * @return {String} the HTML showing the information about the method.
        */
       getItemTextHtml: function getItemTextHtml(method, currentClassDocNode, showDetails) {
-        var docClass = method.getClass();
+        var docClass = method.getClass(); // Add the description
 
-        // Add the description
         var textHtml = new qx.util.StringBuilder();
+
         if (method.isConstructor() && !method.getDescription()) {
           textHtml.add("Creates a new instance of ", docClass.getName(), ".");
         } else {
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(method, docClass, showDetails));
         }
+
         if (showDetails) {
           // Add Parameters
           var params = method.getParams();
+
           if (params.length > 0) {
             textHtml.add('<div class="item-detail-headline">', "Parameters:", "</div>");
+
             for (var i = 0; i < params.length; i++) {
               var param = params[i];
               /*
@@ -133,60 +149,78 @@
                 }
               }
               */
+
               var defaultValue = param.getDefaultValue();
               textHtml.add('<div class="item-detail-text">');
+
               if (defaultValue) {
                 textHtml.add('<span class="item-detail-optional">');
               }
+
               textHtml.add("<code>", param.getName(), "</code>");
+
               if (defaultValue) {
                 textHtml.add(" (" + (param.isOptional() ? "optional; " : "") + "default: ", defaultValue, ") ");
               } else if (param.isOptional()) {
                 textHtml.add(" (optional) ");
               }
+
               textHtml.add("</span>");
               var desc = param.getDescription();
+
               if (desc) {
                 textHtml.add(" ", qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(desc, docClass));
               }
+
               textHtml.add("</div>");
             }
-          }
+          } // Add return value
 
-          // Add return value
+
           var returnNode = method.getReturn();
+
           if (returnNode) {
             desc = returnNode.getDescription();
+
             if (desc) {
               textHtml.add('<div class="item-detail-headline">', "Returns:", "</div>", '<div class="item-detail-text">', qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(desc, docClass), "</div>");
             }
           }
+
           var applyToProperties = method.getApplyFor();
+
           if (applyToProperties && applyToProperties.length > 0) {
             // gabi check
             textHtml.add('<div class="item-detail-headline">', applyToProperties.length == 1 ? "Apply method of property:" : "Apply method of properties:", "</div>", '<div class="item-detail-text">');
-            for (var _i = 0; _i < applyToProperties.length; _i++) {
-              textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml(applyToProperties[_i], method.getClass(), true, true), ", ");
-            }
-            textHtml.add("</div>");
-          }
 
-          // Add throws
+            for (var _i2 = 0; _i2 < applyToProperties.length; _i2++) {
+              textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml(applyToProperties[_i2], method.getClass(), true, true), ", ");
+            }
+
+            textHtml.add("</div>");
+          } // Add throws
+
+
           var throwsEntries = method.getThrows();
+
           if (throwsEntries.length > 0) {
             textHtml.add('<div class="item-detail-headline">', "Throws:", "</div>");
-            for (var _i2 = 0; _i2 < throwsEntries.length; _i2++) {
-              var throwsEntry = throwsEntries[_i2];
+
+            for (var _i4 = 0; _i4 < throwsEntries.length; _i4++) {
+              var throwsEntry = throwsEntries[_i4];
               var throwsEntryType = throwsEntry.getType() ? throwsEntry.getType() : throwsEntry.getDefaultType();
               textHtml.add('<div class="item-detail-text">');
               textHtml.add('<span class="parameter-type">', throwsEntryType === throwsEntry.getDefaultType() ? throwsEntry.getDefaultType() : qxl.apiviewer.ui.panels.InfoPanel.createItemLinkHtml(throwsEntryType), "</span>");
               desc = throwsEntry.getDescription();
+
               if (desc) {
                 textHtml.add(" ", qxl.apiviewer.ui.panels.InfoPanel.resolveLinkAttributes(desc, docClass));
               }
+
               textHtml.add("</div>");
             }
           }
+
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createAccessHtml(method));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createIncludedFromHtml(method, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createOverwriddenFromHtml(method));
@@ -197,8 +231,10 @@
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createDeprecationHtml(method, "function"));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createSourceLinkHtml(method));
         }
+
         return textHtml.get();
       },
+
       /**
        * Checks whether a method has details.
        *
@@ -209,8 +245,7 @@
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
         // Get the method node that holds the documentation
         var hasReturn = node.getReturn() && node.getReturn().getDescription();
-        return node.getClass() != currentClassDocNode ||
-        // method is inherited
+        return node.getClass() != currentClassDocNode || // method is inherited
         !node.getOverriddenFrom() || node.getRequiredBy().length > 0 || node.getParams().length > 0 || node.getThrows().length > 0 || hasReturn || node.getSee().length > 0 || node.getErrors().length > 0 || node.isDeprecated() || node.getApplyFor() || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node) || qxl.apiviewer.ui.ClassViewer.getSourceUri(node);
       }
     }
@@ -218,4 +253,4 @@
   qxl.apiviewer.ui.panels.AbstractMethodPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractMethodPanel.js.map?dt=1677362782519
+//# sourceMappingURL=AbstractMethodPanel.js.map?dt=1685978165028

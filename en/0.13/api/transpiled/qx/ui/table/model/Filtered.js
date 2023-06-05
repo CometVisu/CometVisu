@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -109,6 +110,7 @@
       __P_447_2: null,
       __P_447_1: null,
       __P_447_0: null,
+
       /**
        * Function to get the full array of the filtered model
        * @return {Array} the full array of model (with no changes)
@@ -116,6 +118,7 @@
       getFullArray: function getFullArray() {
         return this.__P_447_2;
       },
+
       /**
        * Whether the given string (needle) is in the array (haystack)
        *
@@ -126,13 +129,16 @@
        */
       _js_in_array: function _js_in_array(the_needle, the_haystack) {
         var the_hay = the_haystack.toString();
+
         if (the_hay == "") {
           return false;
         }
+
         var the_pattern = new RegExp(the_needle, "g");
         var matched = the_pattern.test(the_haystack);
         return matched;
       },
+
       /**
        * The addBetweenFilter method is used to add a between filter to the
        * table model.
@@ -159,12 +165,14 @@
             var temp = [filter, value1, value2, target];
           }
         }
+
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("Filter not recognized or value1/value2 is null!");
         }
       },
+
       /**
        * The addNumericFilter method is used to add a basic numeric filter to
        * the table model.
@@ -184,17 +192,20 @@
        */
       addNumericFilter: function addNumericFilter(filter, value1, target) {
         var temp = null;
+
         if (this.__P_447_0[filter] === "numeric" && target != null) {
           if (value1 != null) {
             temp = [filter, value1, target];
           }
         }
+
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("Filter not recognized: value or target is null!");
         }
       },
+
       /**
        * The addRegex method is used to add a regular expression filter to the
        * table model.
@@ -213,20 +224,24 @@
        */
       addRegex: function addRegex(regex, target, ignorecase) {
         var regexarg;
+
         if (ignorecase) {
           regexarg = "gi";
         } else {
           regexarg = "g";
         }
+
         if (regex != null && target != null) {
           var temp = ["regex", regex, target, regexarg];
         }
+
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("regex cannot be null!");
         }
       },
+
       /**
        * The addNotRegex method is used to add a regular expression filter to the
        * table model and filter cells that do not match.
@@ -245,20 +260,24 @@
        */
       addNotRegex: function addNotRegex(regex, target, ignorecase) {
         var regexarg;
+
         if (ignorecase) {
           regexarg = "gi";
         } else {
           regexarg = "g";
         }
+
         if (regex != null && target != null) {
           var temp = ["notregex", regex, target, regexarg];
         }
+
         if (temp != null) {
           this.Filters.push(temp);
         } else {
           throw new Error("notregex cannot be null!");
         }
       },
+
       /**
        * The applyFilters method is called to apply filters to the table model.
        */
@@ -269,55 +288,73 @@
         var rowArr = this.getData();
         var rowLength = rowArr.length;
         var rowsToHide = [];
+
         for (var row = 0; row < rowLength; row++) {
           filter_test = false;
+
           for (i in this.Filters) {
             if (this.__P_447_0[this.Filters[i][0]] === "numeric") {
               compareValue = this.getValueById(this.Filters[i][2], row);
+
               switch (this.Filters[i][0]) {
                 case "==":
                   if (compareValue == this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case "!=":
                   if (compareValue != this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case ">":
                   if (compareValue > this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case "<":
                   if (compareValue < this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case ">=":
                   if (compareValue >= this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case "<=":
                   if (compareValue <= this.Filters[i][1]) {
                     filter_test = true;
                   }
+
                   break;
               }
             } else if (this.__P_447_0[this.Filters[i][0]] === "between") {
               compareValue = this.getValueById(this.Filters[i][3], row);
+
               switch (this.Filters[i][0]) {
                 case "between":
                   if (compareValue >= this.Filters[i][1] && compareValue <= this.Filters[i][2]) {
                     filter_test = true;
                   }
+
                   break;
+
                 case "!between":
                   if (compareValue < this.Filters[i][1] || compareValue > this.Filters[i][2]) {
                     filter_test = true;
                   }
+
                   break;
               }
             } else if (this.Filters[i][0] === "regex") {
@@ -329,20 +366,23 @@
               var the_pattern = new RegExp(this.Filters[i][1], this.Filters[i][3]);
               filter_test = !the_pattern.test(compareValue);
             }
+
             if (filter_test === true) {
               break;
             }
-          }
+          } // instead of hiding a single row, push it into the hiding-store for later hiding.
 
-          // instead of hiding a single row, push it into the hiding-store for later hiding.
+
           if (filter_test === true) {
             rowsToHide.push(row);
           }
         }
+
         if (!this.__P_447_1) {
           this.__P_447_2 = rowArr.slice(0);
           this.__P_447_1 = true;
         }
+
         rowArr = rowArr.filter(function (row, index) {
           return !rowsToHide.includes(index);
         });
@@ -352,11 +392,11 @@
           lastRow: this._rowArr.length - 1,
           firstColumn: 0,
           lastColumn: this.getColumnCount() - 1
-        };
+        }; // Inform the listeners
 
-        // Inform the listeners
         this.fireDataEvent("dataChanged", data);
       },
+
       /**
        * Hides a specified number of rows.
        *
@@ -373,19 +413,22 @@
       hideRows: function hideRows(rowNum, numOfRows, dispatchEvent) {
         var rowArr = this.getData();
         dispatchEvent = dispatchEvent != null ? dispatchEvent : true;
+
         if (!this.__P_447_1) {
           this.__P_447_2 = rowArr.slice(0);
           this.__P_447_1 = true;
         }
+
         if (numOfRows == null || numOfRows < 1) {
           numOfRows = 1;
         }
+
         for (var kludge = rowNum; kludge < rowArr.length - numOfRows; kludge++) {
           rowArr[kludge] = rowArr[kludge + numOfRows];
         }
-        this.removeRows(kludge, numOfRows);
 
-        // Inform the listeners
+        this.removeRows(kludge, numOfRows); // Inform the listeners
+
         if (dispatchEvent) {
           var data = {
             firstRow: 0,
@@ -396,6 +439,7 @@
           this.fireDataEvent("dataChanged", data);
         }
       },
+
       /**
        * Return the table to the original state with all rows shown and clears
        * all filters.
@@ -406,6 +450,7 @@
           // nothing to reset
           return;
         }
+
         this.Filters = [];
         this.setData(qx.lang.Array.clone(this.__P_447_2));
       },
@@ -423,4 +468,4 @@
   qx.ui.table.model.Filtered.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Filtered.js.map?dt=1677362766647
+//# sourceMappingURL=Filtered.js.map?dt=1685978147851

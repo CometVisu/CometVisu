@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
       has: function has(namespace) {
         return !!qx.util.LibraryManager.__P_506_0[namespace];
       },
+
       /**
        * Returns the value of an attribute of the given library
        * @param namespace {String} The library's namespace
@@ -59,6 +61,7 @@
       get: function get(namespace, key) {
         return qx.util.LibraryManager.__P_506_0[namespace][key] ? qx.util.LibraryManager.__P_506_0[namespace][key] : null;
       },
+
       /**
        * Sets an attribute on the given library.
        *
@@ -74,4 +77,4 @@
   qx.util.LibraryManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LibraryManager.js.map?dt=1677362772818
+//# sourceMappingURL=LibraryManager.js.map?dt=1685978154289

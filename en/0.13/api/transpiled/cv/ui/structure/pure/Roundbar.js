@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Roundbar.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -56,6 +57,7 @@
   qx.Class.define('cv.ui.structure.pure.Roundbar', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -65,6 +67,7 @@
       this.__P_65_0 = [];
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
+
     /*
     ******************************************************
       STATICS
@@ -74,6 +77,7 @@
       coord: function coord(position) {
         return position.x.toFixed(1) + ' ' + position.y.toFixed(1);
       },
+
       /**
        * Create the SVG path for the round bar.
        * Angle = 0 === horizontal on the right
@@ -89,9 +93,7 @@
       createBarPath: function createBarPath(startAngle, startArrowPoint, endAngle, endArrowPoint, radius, width) {
         var getBBox = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
         var startArrowPointAngle = startAngle + startArrowPoint;
-        var endArrowPointAngle = endAngle + endArrowPoint;
-
-        // The path to generate is using those positions:
+        var endArrowPointAngle = endAngle + endArrowPoint; // The path to generate is using those positions:
         // rO             -- outer --
         // rMO        /// outermiddle \\\
         // rM      //       middle        \\
@@ -100,6 +102,7 @@
         //     |        /             \        |
         //     |_______|               |_______|
         //       start      center        end
+
         var clockwise = startAngle > endAngle ? 1 : 0;
         var rI = radius;
         var rIM = radius + width * 1 / 4;
@@ -143,7 +146,6 @@
         var endMiddleFlag = Math.abs(endAngle - endArrowPointAngle) > Math.PI ? 1 : 0;
         var startMiddleDir = startAngle < startArrowPointAngle ? 1 : 0;
         var endMiddleDir = endAngle < endArrowPointAngle ? 1 : 0;
-
         /**
          * @param start
          * @param end
@@ -151,14 +153,18 @@
          * @param flag
          * @param cw
          */
+
         function arc(start, end, r, flag, cw) {
           return start.x === end.x && start.y === end.y ? '' : Math.abs(start.x - end.x) + Math.abs(start.y - end.y) < 2 ? 'L' + cv.ui.structure.pure.Roundbar.coord(end) : ['A', r, r, 0, flag, cw, cv.ui.structure.pure.Roundbar.coord(end)].join(' ');
         }
+
         if (getBBox) {
           var rMax = Math.max(rI, rO);
+
           var isInside = function isInside(a) {
             return startAngle < a && a < endAngle || startAngle > a && a > endAngle;
           };
+
           var rMiddle = isInside(-Math.PI * 4 / 2) || isInside(Math.PI * 0 / 2) ? rMax : startInner.x;
           var uMiddle = isInside(-Math.PI * 3 / 2) || isInside(Math.PI * 1 / 2) ? -rMax : startInner.y;
           var lMiddle = isInside(-Math.PI * 2 / 2) || isInside(Math.PI * 2 / 2) ? -rMax : startInner.x;
@@ -169,14 +175,16 @@
             l: Math.min(startInner.x, startMiddle.x, startOuter.x, endInner.x, endMiddle.x, endOuter.x, lMiddle),
             r: Math.max(startInner.x, startMiddle.x, startOuter.x, endInner.x, endMiddle.x, endOuter.x, rMiddle)
           };
-        }
+        } // a thin bar path should just be a single line
 
-        // a thin bar path should just be a single line
+
         if (width < 1.0) {
           return ['M', cv.ui.structure.pure.Roundbar.coord(startOuter), arc(startOuter, centerOuter, rO, startEndFlag, clockwise), arc(centerOuter, endOuter, rO, startEndFlag, clockwise)].join('');
         }
+
         return ['M', cv.ui.structure.pure.Roundbar.coord(startInner), startArrowPointAngle === startAngle ? 'L' + cv.ui.structure.pure.Roundbar.coord(startOuter) : arc(startInner, startMiddle, rIM, startMiddleFlag, 1 - startMiddleDir) + arc(startMiddle, startOuter, rMO, startMiddleFlag, startMiddleDir), arc(startOuter, centerOuter, rO, startEndFlag, clockwise), arc(centerOuter, endOuter, rO, startEndFlag, clockwise), endArrowPointAngle === endAngle ? 'L' + cv.ui.structure.pure.Roundbar.coord(endInner) : arc(endOuter, endMiddle, rMO, endMiddleFlag, 1 - endMiddleDir) + arc(endMiddle, endInner, rIM, endMiddleFlag, endMiddleDir), arc(startInner, centerInner, rI, startEndFlag, 1 - clockwise), arc(centerInner, startInner, rI, startEndFlag, 1 - clockwise), 'Z'].join('');
       },
+
       /**
        * Create the SVG path for an pointer.
        * @param angle {Float}
@@ -187,6 +195,7 @@
         var c = Math.cos(angle);
         var wx = c * p.width;
         var wy = s * p.width;
+
         if (p.thickness > 0) {
           var tx = -s * p.thickness / 2;
           var ty = c * p.thickness / 2;
@@ -201,6 +210,7 @@
             y: -(s * p.radius + wy + ty)
           })].join('');
         }
+
         return ['M', this.coord({
           x: c * p.radius,
           y: -(s * p.radius)
@@ -210,6 +220,7 @@
         })].join('');
       }
     },
+
     /*
      ******************************************************
      PROPERTIES
@@ -318,6 +329,7 @@
         init: []
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -339,17 +351,22 @@
           if (bbox.u > y) {
             bbox.u = y;
           }
+
           if (bbox.d < y) {
             bbox.d = y;
           }
+
           if (bbox.l > x) {
             bbox.l = x;
           }
+
           if (bbox.r < x) {
             bbox.r = x;
           }
+
           return bbox;
         }
+
         this.setCurrentRatioValue(Array(this.getIndicators().length).fill(0));
         this.setTargetRatioValue(Array(this.getIndicators().length).fill([0, false, false]));
         var self = this;
@@ -364,9 +381,8 @@
         var svgRanges = '';
         var svgIndicators = '';
         var svgText = '';
-        var createBarPath = cv.ui.structure.pure.Roundbar.createBarPath;
+        var createBarPath = cv.ui.structure.pure.Roundbar.createBarPath; // Determine the bounding box, first get the biggest radius that must fit
 
-        // Determine the bounding box, first get the biggest radius that must fit
         var rMax = this.getAxisradius() + this.getAxiswidth();
         var sMax = 0;
         var eMax = 0;
@@ -376,15 +392,19 @@
           eMax = Math.max(eMax, indicator.endarrow);
         });
         var BBox = createBarPath(s, sMax, e, eMax, rMax, 0, true);
+
         if (this.getMinorwidth() > 0) {
           var spacing = parseFloat(this.getMinorspacing());
           var rIn = this.getMinorradius();
           var rOut = this.getMinorwidth() + rIn;
+
           if (/^[0-9]+%/.test(this.getMinorspacing())) {
             // special case: percentage
             spacing = (max - min) * spacing / 100;
           }
+
           svgMinor += '<path class="minor" d="';
+
           for (var angle = s, delta = (e - s) * spacing / (max - min), cnt = (max - min) / spacing; cnt >= 0; angle += delta, cnt--) {
             var sin = Math.sin(angle);
             var cos = Math.cos(angle);
@@ -398,24 +418,31 @@
             BBox = bboxAdd(BBox, cos * rIn, -sin * rIn);
             BBox = bboxAdd(BBox, cos * rOut, -sin * rOut);
           }
+
           if (this.getMinorcolor() !== '') {
             svgMinor += '" style="stroke:' + this.getMinorcolor();
           }
+
           svgMinor += '" />';
         }
+
         if (this.getMajorwidth() > 0) {
           var _rIn = this.getMajorradius();
+
           var _rOut = this.getMajorwidth() + _rIn;
+
           svgMajor += '<path class="major" d="';
           this.getMajorposition().split(';').forEach(function (position) {
             switch (position) {
               case 'min':
                 position = min;
                 break;
+
               case 'max':
                 position = max;
                 break;
             }
+
             var angle = s + (e - s) * (position - min) / (max - min);
             var sin = Math.sin(angle);
             var cos = Math.cos(angle);
@@ -429,11 +456,14 @@
             BBox = bboxAdd(BBox, cos * _rIn, -sin * _rIn);
             BBox = bboxAdd(BBox, cos * _rOut, -sin * _rOut);
           });
+
           if (this.getMajorcolor() !== '') {
             svgMajor += '" style="stroke:' + this.getMajorcolor();
           }
+
           svgMajor += '" />';
         }
+
         var labelstyle = this.getLabelstyle();
         this.getLabels().forEach(function (label, labelnumber) {
           var angle = s + (e - s) * (label.value - min) / (max - min);
@@ -442,8 +472,10 @@
           var alignmentBaseline = '';
           var textAnchor = '';
           var textAngle = 0;
+
           if (label.orientation < 3) {
             svgLabels += '<text class="axislabel" x="' + x + '" y="' + y + '"';
+
             switch (label.orientation) {
               default:
               case 0:
@@ -453,50 +485,63 @@
                 } else {
                   textAnchor = ['start', 'middle', 'end'][label.position];
                 }
+
                 if (Math.abs(x) < 1) {
                   textAnchor = 'middle';
                 }
+
                 if (y < 0) {
                   alignmentBaseline = ['baseline', 'middle', 'hanging'][label.position];
                 } else {
                   alignmentBaseline = ['hanging', 'middle', 'baseline'][label.position];
                 }
+
                 if (Math.abs(y) < 1) {
                   alignmentBaseline = 'middle';
                 }
+
                 break;
+
               case 1:
                 {
                   // parallel
                   var _textAngle = -angle * 180 / Math.PI + 90;
+
                   if (y < 0) {
                     alignmentBaseline = ['baseline', 'middle', 'hanging'][label.position];
                   } else {
                     alignmentBaseline = ['hanging', 'middle', 'baseline'][label.position];
                     _textAngle += 180;
                   }
+
                   textAnchor = 'middle';
                   svgLabels += ' transform="rotate(' + _textAngle + ',' + x + ',' + y + ')"';
                   break;
                 }
+
               case 2:
                 // perpendicular
                 textAngle = -angle * 180 / Math.PI;
+
                 if (x < 0) {
                   textAnchor = ['end', 'middle', 'start'][label.position];
                   textAngle += 180;
                 } else {
                   textAnchor = ['start', 'middle', 'end'][label.position];
                 }
+
                 alignmentBaseline = 'middle';
                 svgLabels += ' transform="rotate(' + textAngle + ',' + x + ',' + y + ')"';
                 break;
             }
+
             svgLabels += ' dominant-baseline="' + alignmentBaseline + '"';
             svgLabels += ' text-anchor="' + textAnchor + '"';
+
             if (labelstyle !== '') {
               svgLabels += ' style="' + labelstyle + '"';
             }
+
             svgLabels += '>' + label.name + '</text>';
           } else {
             // label.orientation >= 3 -> round
@@ -504,27 +549,33 @@
             var cw = s < e ? 0 : 1;
             var path = '';
             var align = '';
+
             switch (label.orientation) {
               case 3:
                 // roundstart
                 path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
                 break;
+
               case 4:
                 // roundmiddle
                 path = ['M', -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y].join(' ');
                 align = ' startOffset="50%" text-anchor="middle"';
                 break;
+
               case 5:
                 // roundend
                 path = ['M', x, y, 'A', label.radius, label.radius, 0, 0, cw, -x, -y, 'A', label.radius, label.radius, 0, 0, cw, x, y].join(' ');
                 align = ' startOffset="100%" text-anchor="end"';
                 break;
             }
+
             svgLabels += '<path style="stroke:none; fill:none; stroke-width:0" id="' + labelid + '" d="' + path + '"/>';
             svgLabels += '<text class="axislabel"';
+
             if (labelstyle !== '') {
               svgLabels += ' style="' + labelstyle + '"';
             }
+
             svgLabels += '><textPath href="#' + labelid + '"' + align + '>' + label.name + '</textPath></text>';
           }
         });
@@ -536,9 +587,11 @@
           var thisBBox = createBarPath(sRange, 0, eRange, 0, rRange, wRange, true);
           svgRanges += '<path class="range" d="';
           svgRanges += createBarPath(sRange, 0, eRange, 0, rRange, wRange);
+
           if (range.style) {
             svgRanges += '" style="' + range.style;
           }
+
           svgRanges += '" />';
           BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
           BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
@@ -546,11 +599,14 @@
         this.__P_65_1 = [];
         this.getIndicators().forEach(function (indicator, number) {
           self.__P_65_1.push(new cv.util.LimitedRateUpdateAnimator(self.__P_65_2, self, number));
+
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
+
           if (indicator.showValue) {
             cntValues++;
           }
         });
+
         if (cntValues > 0) {
           svgText += '<text class="value" y="' + this.getTexty() + '"' + ' text-anchor="' + this.getTextanchor() + '"' + ' font-size="' + this.getFontsize() + '">' + '<tspan x="' + this.getTextx() + '" dy="0">-</tspan>' + ('<tspan x="' + this.getTextx() + '" dy="' + this.getLinespace() + '">-</tspan>').repeat(cntValues - 1) + '</text>';
           var textDistribution = {
@@ -563,10 +619,13 @@
           BBox = bboxAdd(BBox, this.getTextx() - textDistribution[0] * this.getTextlength(), this.getTexty() + textU);
           BBox = bboxAdd(BBox, this.getTextx() + textDistribution[1] * this.getTextlength(), this.getTexty() + textD);
         }
+
         var html = "<div class=\"actor\"><svg width=\"100%\" height=\"100%\" viewBox=\"" + [BBox.l - this.getBboxgrow().l, BBox.u - this.getBboxgrow().u, BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r, BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d].join(' ') + '">';
+
         if (this.getDebug()) {
           html += '<rect width="' + (BBox.r - BBox.l) + '" height="' + (BBox.d - BBox.u) + '" x="' + BBox.l + '" y="' + BBox.u + '" stroke="blue" fill="none" />' + '<rect width="' + (BBox.r - BBox.l + this.getBboxgrow().l + this.getBboxgrow().r) + '" height="' + (BBox.d - BBox.u + this.getBboxgrow().u + this.getBboxgrow().d) + '" x="' + (BBox.l - this.getBboxgrow().l) + '" y="' + (BBox.u - this.getBboxgrow().u) + '" stroke="green" fill="none" />' + '<circle cx="0" cy="0" r="3" fill="red" />';
         }
+
         if (this.getAxisradius() > 0) {
           var sectorPath = createBarPath(s, 0, e, 0, this.getAxisradius(), 0);
           var axisPath = createBarPath(s, 0, e, 0, this.getAxisradius(), this.getAxiswidth());
@@ -574,10 +633,12 @@
           var fill = this.getAxiswidth() < 1 ? 'none' : stroke;
           html += '<path class="sector" d="' + sectorPath + ' L0 0Z"/>' + '<path class="axis" d="' + axisPath + '" style="' + (stroke ? 'stroke:' + stroke : '') + (fill ? ';fill:' + fill : '') + '"/>';
         }
+
         html += svgMinor + svgMajor + svgRanges + svgLabels + svgIndicators + svgText;
         html += '</svg></div>';
         return html;
       },
+
       /**
        * Updates the roundbar widget
        *
@@ -588,6 +649,7 @@
         if (data === undefined || address === undefined) {
           return;
         }
+
         var self = this;
         var value = cv.Transform.decode(this.getAddress()[address], data);
         var target = this.getTargetRatioValue();
@@ -596,14 +658,17 @@
         this.getIndicators().forEach(function (indicator, i) {
           if (address === indicator.address) {
             target[i] = [(Math.min(Math.max(value, indicator.min), indicator.max) - indicator.min) / (indicator.max - indicator.min), value < indicator.min, value > indicator.max];
+
             if (tspan[i] !== undefined) {
               tspan[i].textContent = valueFormat;
             }
+
             self.__P_65_1[i].setTo(target[i][0], !self.isVisible());
           }
         });
         this.setTargetRatioValue(target);
       },
+
       /**
        * Callback to update the display of the indicators.
        *
@@ -619,15 +684,18 @@
           // cache
           this.__P_65_0 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         }
+
         var indicator = this.getIndicators()[indicatorNumber];
         var target = this.getTargetRatioValue()[indicatorNumber];
         var startAngle = this.getStart();
         var endAngle = this.getEnd();
         var targetAngle = startAngle + ratio * (endAngle - startAngle);
         var overflowarrow = this.getOverflowarrow();
+
         if (!overflowarrow) {
           targetAngle = endAngle > startAngle ? Math.max(startAngle, targetAngle - indicator.endarrow) : Math.min(startAngle, targetAngle - indicator.endarrow);
         }
+
         if (indicator.isBar) {
           this.__P_65_0[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
         } else {
@@ -639,4 +707,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1677362717545
+//# sourceMappingURL=Roundbar.js.map?dt=1685978100331

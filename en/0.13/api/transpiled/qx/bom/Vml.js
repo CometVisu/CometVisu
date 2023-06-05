@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,7 +65,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Create VML element
@@ -78,13 +78,16 @@
       create: function create(type, attributes, win) {
         var win = win || window;
         var el = win.document.createElement("v:" + (type || "shape"));
+
         if (attributes) {
           for (var key in attributes) {
             el.setAttribute(key, attributes[key]);
           }
         }
+
         return el;
       },
+
       /**
        * Creates an VML image and configures it. The image is always tiled.
        *
@@ -109,11 +112,14 @@
           type: "tile"
         });
         shape.appendChild(fill);
+
         if (source || width || height) {
           this.updateImage(shape, source, width, height, xOffset, yOffset, imageWidth, imageHeight);
         }
+
         return shape;
       },
+
       /**
        * Sets the image source and configures the image. The image element size
        * resized to the given size and the image is always tiled.
@@ -144,6 +150,7 @@
         Attribute.set(fill, "origin", xOrigin.toFixed(2) + "," + yOrigin, false);
       }
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -153,6 +160,7 @@
       qx.module.Event.ready(function () {
         if (qx.core.Environment.get("html.vml")) {
           qx.bom.Stylesheet.createElement("v\\: * { behavior:url(#default#VML);display:inline-block; }");
+
           if (!document.namespaces["v"]) {
             document.namespaces.add("v", "urn:schemas-microsoft-com:vml");
           }
@@ -163,4 +171,4 @@
   qx.bom.Vml.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Vml.js.map?dt=1677362726346
+//# sourceMappingURL=Vml.js.map?dt=1685978108570

@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
    */
   qx.Class.define("qx.ui.mobile.toolbar.Separator", {
     extend: qx.ui.mobile.core.Widget,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -44,12 +46,12 @@
     construct: function construct() {
       qx.ui.mobile.core.Widget.constructor.call(this);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       defaultCssClass: {
@@ -61,4 +63,4 @@
   qx.ui.mobile.toolbar.Separator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Separator.js.map?dt=1677362763922
+//# sourceMappingURL=Separator.js.map?dt=1685978145078

@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.cell.String", {
     extend: qx.ui.progressive.renderer.table.cell.Abstract,
+
     /**
      */
     construct: function construct() {
@@ -51,4 +53,4 @@
   qx.ui.progressive.renderer.table.cell.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1677362764659
+//# sourceMappingURL=String.js.map?dt=1685978145812

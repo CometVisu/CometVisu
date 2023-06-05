@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
    */
   qx.Class.define("qx.data.store.Rest", {
     extend: qx.core.Object,
+
     /**
      * @param resource {qx.io.rest.Resource} The resource.
      * @param actionName {String} The name of the resource's action to retrieve
@@ -56,6 +58,7 @@
      */
     construct: function construct(resource, actionName, delegate) {
       qx.core.Object.constructor.call(this);
+
       try {
         this.setResource(resource);
         this.setActionName(actionName);
@@ -63,12 +66,16 @@
         this.dispose();
         throw e;
       }
+
       this._delegate = delegate;
       this._marshaler = new qx.data.marshal.Json(delegate);
+
       if (delegate && qx.lang.Type.isFunction(delegate.configureRequest)) {
         this.__P_183_0();
       }
+
       this.__P_183_1 = qx.lang.Function.bind(this.__P_183_2, this);
+
       this.__P_183_3();
     },
     properties: {
@@ -78,12 +85,14 @@
       resource: {
         check: "qx.io.rest.Resource"
       },
+
       /**
        * The name of the resource's action to retrieve the response from.
        */
       actionName: {
         check: "String"
       },
+
       /**
        * Populated with the marshaled response.
        */
@@ -96,26 +105,29 @@
       _marshaler: null,
       _delegate: null,
       __P_183_1: null,
+
       /**
        * Configure the resource's request by processing the delegate.
        */
       __P_183_0: function __P_183_0() {
         var resource = this.getResource(),
-          delegate = this._delegate;
+            delegate = this._delegate; // Overrides existing callback, if any
 
-        // Overrides existing callback, if any
         resource.configureRequest(delegate.configureRequest);
       },
+
       /**
        * Listen to events fired by the resource.
        */
       __P_183_3: function __P_183_3() {
         var resource = this.getResource(),
-          actionName = this.getActionName();
+            actionName = this.getActionName();
+
         if (resource && actionName) {
           resource.addListener(this.getActionName() + "Success", this.__P_183_1);
         }
       },
+
       /**
        * Handle actionSuccess event.
        *
@@ -125,28 +137,28 @@
        */
       __P_183_2: function __P_183_2(e) {
         var data = e.getData(),
-          marshaler = this._marshaler,
-          model,
-          oldModel = this.getModel(),
-          delegate = this._delegate;
+            marshaler = this._marshaler,
+            model,
+            oldModel = this.getModel(),
+            delegate = this._delegate; // Skip if data is empty
 
-        // Skip if data is empty
         if (data) {
           // Manipulate received data
           if (delegate && delegate.manipulateData) {
             data = delegate.manipulateData(data);
-          }
-
-          // Create class suiting data and assign instance
+          } // Create class suiting data and assign instance
           // initialized with data to model property
+
+
           marshaler.toClass(data, true);
           model = marshaler.toModel(data);
+
           if (model) {
             this.setModel(model);
           }
-        }
+        } // Dispose instance marshaled before
 
-        // Dispose instance marshaled before
+
         if (oldModel && oldModel.dispose) {
           oldModel.dispose();
         }
@@ -154,13 +166,15 @@
     },
     destruct: function destruct() {
       var model = this.getModel();
+
       if (model && typeof model.dispose === "function") {
         model.dispose();
       }
+
       this._marshaler && this._marshaler.dispose();
     }
   });
   qx.data.store.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1677362732530
+//# sourceMappingURL=Rest.js.map?dt=1685978115320

@@ -21,6 +21,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Info.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,10 +40,10 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.plugins.diagram.Info', {
     extend: cv.plugins.diagram.AbstractDiagram,
     include: [cv.ui.common.Update],
+
     /*
      ******************************************************
      CONSTRUCTOR
@@ -52,6 +53,7 @@
       this._init = false;
       cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
     },
+
     /*
     ******************************************************
       STATICS
@@ -74,6 +76,7 @@
         return data;
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -87,6 +90,7 @@
         if (address !== undefined && data !== undefined) {
           return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
         }
+
         return null;
       }
     },
@@ -99,4 +103,4 @@
   cv.plugins.diagram.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1677362709954
+//# sourceMappingURL=Info.js.map?dt=1685978092867

@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -16,6 +17,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,6 +50,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Bootstrap.define("qx.core.Assert", {
     statics: {
       __P_156_0: true,
+
       /**
        * Assert that the condition evaluates to <code>true</code>. An
        * {@link AssertionError} is thrown if otherwise.
@@ -67,29 +70,38 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // Build up message from message varargs. It's not really important
         // how long this takes as it is done only when assertion is triggered
         var msg = "";
+
         for (var i = 1, l = arguments.length; i < l; i++) {
           msg = msg + this.__P_156_2(arguments[i] === undefined ? "'undefined'" : arguments[i]);
         }
+
         var fullComment = "";
+
         if (msg) {
           fullComment = comment + ": " + msg;
         } else {
           fullComment = comment;
         }
+
         var errorMsg = "Assertion error! " + fullComment;
+
         if (qx.Class && qx.Class.isDefined("qx.core.AssertionError")) {
           var err = new qx.core.AssertionError(comment, msg);
+
           if (this.__P_156_0) {
             qx.Bootstrap.error(errorMsg + "\n Stack trace: \n" + err.getStackTrace());
           }
+
           throw err;
         } else {
           if (this.__P_156_0) {
             qx.Bootstrap.error(errorMsg);
           }
+
           throw new Error(errorMsg);
         }
       },
+
       /**
        * Convert an unknown value to a string to display in error messages
        *
@@ -98,6 +110,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       __P_156_2: function __P_156_2(value) {
         var stringValue;
+
         if (value === null) {
           stringValue = "null";
         } else if (qx.lang.Type.isArray(value) && value.length > 10) {
@@ -111,8 +124,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             stringValue = "";
           }
         }
+
         return stringValue;
       },
+
       /**
        * Assert that the condition evaluates to <code>true</code>.
        *
@@ -123,6 +138,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assert: function assert(condition, msg) {
         condition == true || this.__P_156_1(msg || "", "Called assert with 'false'");
       },
+
       /**
        * Raise an {@link AssertionError}.
        *
@@ -131,8 +147,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       fail: function fail(msg, compact) {
         var msgvarargs = compact ? "" : "Called fail().";
+
         this.__P_156_1(msg || "", msgvarargs);
       },
+
       /**
        * Assert that the value is <code>true</code> (Identity check).
        *
@@ -143,6 +161,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertTrue: function assertTrue(value, msg) {
         value === true || this.__P_156_1(msg || "", "Called assertTrue with '", value, "'");
       },
+
       /**
        * Assert that the value is <code>false</code> (Identity check).
        *
@@ -153,6 +172,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertFalse: function assertFalse(value, msg) {
         value === false || this.__P_156_1(msg || "", "Called assertFalse with '", value, "'");
       },
+
       /**
        * Assert that both values are equal. (Uses the equality operator
        * <code>==</code>.)
@@ -164,6 +184,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertEquals: function assertEquals(expected, found, msg) {
         expected == found || this.__P_156_1(msg || "", "Expected '", expected, "' but found '", found, "'!");
       },
+
       /**
        * Assert that both values are not equal. (Uses the not equality operator
        * <code>!=</code>.)
@@ -175,6 +196,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNotEquals: function assertNotEquals(expected, found, msg) {
         expected != found || this.__P_156_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
       },
+
       /**
        * Assert that both float values are equal. This might be needed because
        * of the natural floating point inaccuracy of computers.
@@ -188,6 +210,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.assertNumber(found);
         qx.lang.Number.equals(expected, found) || this.__P_156_1(msg || "", "Expected '", expected, "' to be equal with '", found, "'!");
       },
+
       /**
        * Assert that both float values are not equal. This might be needed
        * because of the natural floating point inaccuracy of computers.
@@ -201,6 +224,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.assertNumber(found);
         !qx.lang.Number.equals(expected, found) || this.__P_156_1(msg || "", "Expected '", expected, "' to be not equal with '", found, "'!");
       },
+
       /**
        * Assert that both values are identical. (Uses the identity operator
        * <code>===</code>.)
@@ -212,6 +236,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertIdentical: function assertIdentical(expected, found, msg) {
         expected === found || this.__P_156_1(msg || "", "Expected '", expected, "' (identical) but found '", found, "'!");
       },
+
       /**
        * Assert that both values are not identical. (Uses the not identity operator
        * <code>!==</code>.)
@@ -223,6 +248,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNotIdentical: function assertNotIdentical(expected, found, msg) {
         expected !== found || this.__P_156_1(msg || "", "Expected '", expected, "' to be not identical with '", found, "'!");
       },
+
       /**
        * Assert that the value is not <code>undefined</code>.
        *
@@ -232,6 +258,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNotUndefined: function assertNotUndefined(value, msg) {
         value !== undefined || this.__P_156_1(msg || "", "Expected value not to be undefined but found undefined!");
       },
+
       /**
        * Assert that the value is <code>undefined</code>.
        *
@@ -241,6 +268,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertUndefined: function assertUndefined(value, msg) {
         value === undefined || this.__P_156_1(msg || "", "Expected value to be undefined but found ", value, "!");
       },
+
       /**
        * Assert that the value is not <code>null</code>.
        *
@@ -250,6 +278,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNotNull: function assertNotNull(value, msg) {
         value !== null || this.__P_156_1(msg || "", "Expected value not to be null but found null!");
       },
+
       /**
        * Assert that the value is <code>null</code>.
        *
@@ -259,6 +288,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNull: function assertNull(value, msg) {
         value === null || this.__P_156_1(msg || "", "Expected value to be null but found ", value, "!");
       },
+
       /**
        * Assert that the first two arguments are equal, when serialized into
        * JSON.
@@ -270,6 +300,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertJsonEquals: function assertJsonEquals(expected, found, msg) {
         this.assertEquals(qx.lang.Json.stringify(expected), qx.lang.Json.stringify(found), msg);
       },
+
       /**
        * Assert that the given string matches the regular expression
        *
@@ -282,6 +313,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.assert(qx.lang.Type.isRegExp(re) || qx.lang.Type.isString(re), "The parameter 're' must be a string or a regular expression.");
         str.search(re) >= 0 || this.__P_156_1(msg || "", "The String '", str, "' does not match the regular expression '", re.toString(), "'!");
       },
+
       /**
        * Assert that the number of arguments is within the given range
        *
@@ -294,6 +326,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var argCount = args.length;
         argCount >= minCount && argCount <= maxCount || this.__P_156_1(msg || "", "Wrong number of arguments given. Expected '", minCount, "' to '", maxCount, "' arguments but found '", argCount, "' arguments.");
       },
+
       /**
        * Assert that an event is fired.
        *
@@ -307,13 +340,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       assertEventFired: function assertEventFired(obj, event, invokeFunc, listenerFunc, msg) {
         var called = false;
+
         var listener = function listener(e) {
           if (listenerFunc) {
             listenerFunc.call(obj, e);
           }
+
           called = true;
         };
+
         var id;
+
         try {
           id = obj.addListener(event, listener, obj);
           invokeFunc.call(obj);
@@ -326,8 +363,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             /* ignore */
           }
         }
+
         called === true || this.__P_156_1(msg || "", "Event (", event, ") not fired.");
       },
+
       /**
        * Assert that an event is not fired.
        *
@@ -339,14 +378,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       assertEventNotFired: function assertEventNotFired(obj, event, invokeFunc, msg) {
         var called = false;
+
         var listener = function listener(e) {
           called = true;
         };
+
         var id = obj.addListener(event, listener, obj);
         invokeFunc.call();
         called === false || this.__P_156_1(msg || "", "Event (", event, ") was fired.");
         obj.removeListenerById(id);
       },
+
       /**
        * Asserts that the callback raises a matching exception.
        *
@@ -361,6 +403,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertException: function assertException(callback, exception, re, msg) {
         var exception = exception || Error;
         var error;
+
         try {
           this.__P_156_0 = false;
           callback();
@@ -369,14 +412,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } finally {
           this.__P_156_0 = true;
         }
+
         if (error == null) {
           this.__P_156_1(msg || "", "The function did not raise an exception!");
         }
+
         error instanceof exception || this.__P_156_1(msg || "", "The raised exception does not have the expected type! ", exception, " != ", error);
+
         if (re) {
           this.assertMatch(error.toString(), re, msg);
         }
       },
+
       /**
        * Assert that the value is an item in the given array.
        *
@@ -387,6 +434,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertInArray: function assertInArray(value, array, msg) {
         array.indexOf(value) !== -1 || this.__P_156_1(msg || "", "The value '", value, "' must have any of the values defined in the array '", array, "'");
       },
+
       /**
        * Assert that the value is NOT an item in the given array
        *
@@ -397,6 +445,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNotInArray: function assertNotInArray(value, array, msg) {
         array.indexOf(value) === -1 || this.__P_156_1(msg || "", qx.lang.String.format("The value '%1' must not have any of the values defined in the array '%2'", [value, array]));
       },
+
       /**
        * Assert that both array have identical array items.
        *
@@ -408,15 +457,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.assertArray(expected, msg);
         this.assertArray(found, msg);
         msg = msg || "Expected [" + expected.join(", ") + "], but found [" + found.join(", ") + "]";
+
         if (expected.length !== found.length) {
           this.fail(msg, true);
         }
+
         for (var i = 0; i < expected.length; i++) {
           if (expected[i] !== found[i]) {
             this.fail(msg, true);
           }
         }
       },
+
       /**
        * Assert that the value is a key in the given map.
        *
@@ -427,6 +479,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertKeyInMap: function assertKeyInMap(value, map, msg) {
         map[value] !== undefined || this.__P_156_1(msg || "", "The value '", value, "' must must be a key of the map '", map, "'");
       },
+
       /**
        * Assert that the value is a function.
        *
@@ -436,6 +489,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertFunction: function assertFunction(value, msg) {
         qx.lang.Type.isFunction(value) || this.__P_156_1(msg || "", "Expected value to be typeof function but found ", value, "!");
       },
+
       /**
        * Assert that the value is a function or an async function.
        *
@@ -445,6 +499,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertFunctionOrAsyncFunction: function assertFunctionOrAsyncFunction(value, msg) {
         qx.lang.Type.isFunctionOrAsyncFunction(value) || this.__P_156_1(msg || "", "Expected value to be typeof function or typeof async function but found ", value, "!");
       },
+
       /**
        * Assert that the value is a string.
        *
@@ -454,6 +509,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertString: function assertString(value, msg) {
         qx.lang.Type.isString(value) || this.__P_156_1(msg || "", "Expected value to be a string but found ", value, "!");
       },
+
       /**
        * Assert that the value is a boolean.
        *
@@ -463,6 +519,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertBoolean: function assertBoolean(value, msg) {
         qx.lang.Type.isBoolean(value) || this.__P_156_1(msg || "", "Expected value to be a boolean but found ", value, "!");
       },
+
       /**
        * Assert that the value is a number.
        *
@@ -472,6 +529,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertNumber: function assertNumber(value, msg) {
         qx.lang.Type.isNumber(value) && isFinite(value) || this.__P_156_1(msg || "", "Expected value to be a number but found ", value, "!");
       },
+
       /**
        * Assert that the value is a number >= 0.
        *
@@ -481,6 +539,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertPositiveNumber: function assertPositiveNumber(value, msg) {
         qx.lang.Type.isNumber(value) && isFinite(value) && value >= 0 || this.__P_156_1(msg || "", "Expected value to be a number >= 0 but found ", value, "!");
       },
+
       /**
        * Assert that the value is an integer.
        *
@@ -490,6 +549,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertInteger: function assertInteger(value, msg) {
         qx.lang.Type.isNumber(value) && isFinite(value) && value % 1 === 0 || this.__P_156_1(msg || "", "Expected value to be an integer but found ", value, "!");
       },
+
       /**
        * Assert that the value is an integer >= 0.
        *
@@ -500,6 +560,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var condition = qx.lang.Type.isNumber(value) && isFinite(value) && value % 1 === 0 && value >= 0;
         condition || this.__P_156_1(msg || "", "Expected value to be an integer >= 0 but found ", value, "!");
       },
+
       /**
        * Assert that the value is inside the given range.
        *
@@ -511,6 +572,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertInRange: function assertInRange(value, min, max, msg) {
         value >= min && value <= max || this.__P_156_1(msg || "", qx.lang.String.format("Expected value '%1' to be in the range '%2'..'%3'!", [value, min, max]));
       },
+
       /**
        * Assert that the value is an object.
        *
@@ -521,6 +583,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var condition = value !== null && (qx.lang.Type.isObject(value) || _typeof(value) === "object");
         condition || this.__P_156_1(msg || "", "Expected value to be typeof object but found ", value, "!");
       },
+
       /**
        * Assert that the value is an array.
        *
@@ -530,6 +593,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertArray: function assertArray(value, msg) {
         qx.lang.Type.isArray(value) || this.__P_156_1(msg || "", "Expected value to be an array but found ", value, "!");
       },
+
       /**
        * Assert that the value is a map either created using <code>new Object</code>
        * or by using the object literal notation <code>{ ... }</code>.
@@ -540,6 +604,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertMap: function assertMap(value, msg) {
         qx.lang.Type.isObject(value) || this.__P_156_1(msg || "", "Expected value to be a map but found ", value, "!");
       },
+
       /**
        * Assert that the value is a regular expression.
        *
@@ -549,6 +614,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertRegExp: function assertRegExp(value, msg) {
         qx.lang.Type.isRegExp(value) || this.__P_156_1(msg || "", "Expected value to be a regular expression but found ", value, "!");
       },
+
       /**
        * Assert that the value has the given type using the <code>typeof</code>
        * operator. Because the type is not always what it is supposed to be it is
@@ -563,6 +629,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.assertString(type, "Invalid argument 'type'");
         _typeof(value) === type || this.__P_156_1(msg || "", "Expected value to be typeof '", type, "' but found ", value, "!");
       },
+
       /**
        * Assert that the value is an instance of the given class.
        *
@@ -574,6 +641,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var className = clazz.classname || clazz + "";
         value instanceof clazz || this.__P_156_1(msg || "", "Expected value to be instanceof '", className, "' but found ", value, "!");
       },
+
       /**
        * Assert that the value implements the given interface.
        *
@@ -584,6 +652,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertInterface: function assertInterface(value, iface, msg) {
         qx.Class && qx.Class.implementsInterface(value, iface) || this.__P_156_1(msg || "", "Expected object '", value, "' to implement the interface '", iface, "'!");
       },
+
       /**
        * Assert that the value represents the given CSS color value. This method
        * parses the color strings and compares the RGB values. It is able to
@@ -595,18 +664,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       assertCssColor: function assertCssColor(expected, value, msg) {
         var ColorUtil = qx.Class ? qx.Class.getByName("qx.util.ColorUtil") : null;
+
         if (!ColorUtil) {
           throw new Error("qx.util.ColorUtil not available! Your code must have a dependency on 'qx.util.ColorUtil'");
         }
+
         var expectedRgb = ColorUtil.stringToRgb(expected);
+
         try {
           var valueRgb = ColorUtil.stringToRgb(value);
         } catch (ex) {
           this.__P_156_1(msg || "", "Expected value to be the CSS color '", expected, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "', which cannot be converted to a CSS color!");
         }
+
         var condition = expectedRgb[0] == valueRgb[0] && expectedRgb[1] == valueRgb[1] && expectedRgb[2] == valueRgb[2];
         condition || this.__P_156_1(msg || "", "Expected value to be the CSS color '", expectedRgb, "' (rgb(", expectedRgb.join(","), ")), but found value '", value, "' (rgb(", valueRgb.join(","), "))!");
       },
+
       /**
        * Assert that the value is a DOM element.
        *
@@ -617,6 +691,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // see qx.dom.Node.isElement
         !!(value && value.nodeType === 1) || this.__P_156_1(msg || "", "Expected value to be a DOM element but found  '", value, "'!");
       },
+
       /**
        * Assert that the value is an instance of {@link qx.core.Object}.
        *
@@ -626,6 +701,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertQxObject: function assertQxObject(value, msg) {
         this.__P_156_3(value, "qx.core.Object") || this.__P_156_1(msg || "", "Expected value to be a qooxdoo object but found ", value, "!");
       },
+
       /**
        * Assert that the value is an instance of {@link qx.ui.core.Widget}.
        *
@@ -635,6 +711,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       assertQxWidget: function assertQxWidget(value, msg) {
         this.__P_156_3(value, "qx.ui.core.Widget") || this.__P_156_1(msg || "", "Expected value to be a qooxdoo widget but found ", value, "!");
       },
+
       /**
        * Internal helper for checking the instance of a qooxdoo object using the
        * classname.
@@ -648,13 +725,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!object) {
           return false;
         }
+
         var clazz = object.constructor;
+
         while (clazz) {
           if (clazz.classname === classname) {
             return true;
           }
+
           clazz = clazz.superclass;
         }
+
         return false;
       }
     }
@@ -662,4 +743,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.core.Assert.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Assert.js.map?dt=1677362729936
+//# sourceMappingURL=Assert.js.map?dt=1685978112486

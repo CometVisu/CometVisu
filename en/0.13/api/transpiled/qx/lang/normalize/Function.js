@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,6 +85,7 @@
        commit  9f539abd9aa9950e1d907077a4be7f5133a00e52
   
   ************************************************************************ */
+
   /**
    * This class is responsible for the normalization of the native 'Function' object.
    * It checks if these methods are available and, if not, appends them to
@@ -92,6 +94,7 @@
    *
    * @group (Polyfill)
    */
+
   /* eslint-disable no-extend-native */
   qx.Bootstrap.define("qx.lang.normalize.Function", {
     statics: {
@@ -103,17 +106,18 @@
        * @return {Function} The bound function
        */
       bind: function bind(that) {
-        var slice = Array.prototype.slice;
-        // .length is 1
+        var slice = Array.prototype.slice; // .length is 1
         // 1. Let Target be the this value.
-        var target = this;
-        // 2. If IsCallable(Target) is false, throw a TypeError exception.
+
+        var target = this; // 2. If IsCallable(Target) is false, throw a TypeError exception.
+
         if (typeof target != "function") {
           throw new TypeError("Function.prototype.bind called on incompatible " + target);
-        }
-        // 3. Let A be a new (possibly empty) internal list of all of the
+        } // 3. Let A be a new (possibly empty) internal list of all of the
         //   argument values provided after thisArg (arg1, arg2 etc), in order.
         // XXX slicedArgs will stand in for "A" if used
+
+
         var args = slice.call(arguments, 1); // for normal call
         // 4. Let F be a new native ECMAScript object.
         // 11. Set the [[Prototype]] internal property of F to the standard
@@ -124,6 +128,7 @@
         //   15.3.4.5.2.
         // 14. Set the [[HasInstance]] internal property of F as described in
         //   15.3.4.5.3.
+
         var bound = function bound() {
           if (this instanceof bound) {
             // 15.3.4.5.2 [[Construct]]
@@ -141,14 +146,16 @@
             //   values as the list ExtraArgs in the same order.
             // 5. Return the result of calling the [[Construct]] internal
             //   method of target providing args as the arguments.
-
             var F = function F() {};
+
             F.prototype = target.prototype;
             var self = new F();
             var result = target.apply(self, args.concat(slice.call(arguments)));
+
             if (Object(result) === result) {
               return result;
             }
+
             return self;
           } else {
             // 15.3.4.5.1 [[Call]]
@@ -168,12 +175,10 @@
             // 5. Return the result of calling the [[Call]] internal method
             //   of target providing boundThis as the this value and
             //   providing args as the arguments.
-
             // equiv: target.call(this, ...boundArgs, ...args)
             return target.apply(that, args.concat(slice.call(arguments)));
           }
-        };
-        // XXX bound.length is never writable, so don't even try
+        }; // XXX bound.length is never writable, so don't even try
         //
         // 15. If the [[Class]] internal property of Target is "Function", then
         //     a. Let L be the length property of Target minus the length of A.
@@ -182,10 +187,8 @@
         // 16. Else set the length own property of F to 0.
         // 17. Set the attributes of the length own property of F to the values
         //   specified in 15.3.5.1.
-
         // (Not implemented but in the spec)
         // 18. Set the [[Extensible]] internal property of F to true.
-
         // (Not implemented but in the spec)
         // 19. Let thrower be the [[ThrowTypeError]] function Object (13.2.3).
         // 20. Call the [[DefineOwnProperty]] internal method of F with
@@ -196,13 +199,13 @@
         //   arguments "arguments", PropertyDescriptor {[[Get]]: thrower,
         //   [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false},
         //   and false.
-
         // NOTE Function objects created using Function.prototype.bind do not
         // have a prototype property or the [[Code]], [[FormalParameters]], and
         // [[Scope]] internal properties.
         // XXX can't delete prototype in pure-js.
-
         // 22. Return F.
+
+
         return bound;
       }
     },
@@ -215,4 +218,4 @@
   qx.lang.normalize.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1677362744670
+//# sourceMappingURL=Function.js.map?dt=1685978127669

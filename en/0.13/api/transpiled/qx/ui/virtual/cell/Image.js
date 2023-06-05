@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,27 +31,26 @@
        * Jonathan Weiß (jonathan_rass)
   
   ************************************************************************ */
-
   qx.Class.define("qx.ui.virtual.cell.Image", {
     extend: qx.ui.virtual.cell.AbstractImage,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       appearance: {
         refine: true,
         init: "cell-image"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // overridden
       _identifyImage: function _identifyImage(value) {
@@ -61,4 +61,4 @@
   qx.ui.virtual.cell.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1677362769942
+//# sourceMappingURL=Image.js.map?dt=1685978151255

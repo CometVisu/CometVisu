@@ -33,6 +33,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -98,6 +99,7 @@
    */
   qx.Class.define("qx.io.request.Xhr", {
     extend: qx.io.request.AbstractRequest,
+
     /**
      * @param url {String?} The URL of the resource to request.
      * @param method {String?} The HTTP method.
@@ -106,12 +108,12 @@
       if (method !== undefined) {
         this.setMethod(method);
       }
+
       qx.io.request.AbstractRequest.constructor.call(this, url);
       this._parser = this._createResponseParser();
     },
     // Only document events with transport specific details.
     // For a complete list of events, refer to AbstractRequest.
-
     events: {
       /**
        * Fired on every change of the transport’s readyState.
@@ -119,6 +121,7 @@
        * See {@link qx.bom.request.Xhr} for available readyStates.
        */
       readyStateChange: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error and transport status
        * indicates success.
@@ -127,6 +130,7 @@
        * status considered successful.
        */
       success: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error.
        *
@@ -136,6 +140,7 @@
        * responses, listen to the {@link #success} event instead.
        */
       load: "qx.event.type.Event",
+
       /**
        * Fired when request completes without error but erroneous HTTP status.
        *
@@ -151,6 +156,7 @@
       method: {
         init: "GET"
       },
+
       /**
        * Whether the request should be executed asynchronously.
        */
@@ -158,6 +164,7 @@
         check: "Boolean",
         init: true
       },
+
       /**
        * The content type to accept. By default, every content type
        * is accepted.
@@ -172,6 +179,7 @@
         check: "String",
         nullable: true
       },
+
       /**
        * Whether to allow request to be answered from cache.
        *
@@ -215,11 +223,13 @@
        * @type {Function} Parser.
        */
       _parser: null,
+
       /*
       ---------------------------------------------------------------------------
         CONFIGURE TRANSPORT
       ---------------------------------------------------------------------------
       */
+
       /**
        * Create XHR transport.
        *
@@ -228,6 +238,7 @@
       _createTransport: function _createTransport() {
         return new qx.bom.request.Xhr();
       },
+
       /**
        * Get configured URL.
        *
@@ -238,47 +249,51 @@
        */
       _getConfiguredUrl: function _getConfiguredUrl() {
         var url = this.getUrl(),
-          serializedData;
+            serializedData;
+
         if (this.getMethod() === "GET" && this.getRequestData()) {
           serializedData = this._serializeData(this.getRequestData());
           url = qx.util.Uri.appendParamsToUrl(url, serializedData);
         }
+
         if (this.getCache() === false) {
           // Make sure URL cannot be served from cache and new request is made
           url = qx.util.Uri.appendParamsToUrl(url, {
             nocache: new Date().valueOf()
           });
         }
+
         return url;
       },
       // overridden
       _getConfiguredRequestHeaders: function _getConfiguredRequestHeaders() {
         var headers = {},
-          isAllowsBody = qx.util.Request.methodAllowsRequestBody(this.getMethod()),
-          isFormData = qx.Bootstrap.getClass(this.getRequestData()) == "FormData";
+            isAllowsBody = qx.util.Request.methodAllowsRequestBody(this.getMethod()),
+            isFormData = qx.Bootstrap.getClass(this.getRequestData()) == "FormData"; // Follow convention to include X-Requested-With header when same origin
 
-        // Follow convention to include X-Requested-With header when same origin
         if (!qx.util.Request.isCrossDomain(this.getUrl())) {
           headers["X-Requested-With"] = "XMLHttpRequest";
-        }
+        } // Include Cache-Control header if configured
 
-        // Include Cache-Control header if configured
+
         if (qx.lang.Type.isString(this.getCache())) {
           headers["Cache-Control"] = this.getCache();
-        }
+        } // By default, set content-type urlencoded for requests with body
 
-        // By default, set content-type urlencoded for requests with body
+
         if (this.getRequestData() && isAllowsBody && !isFormData) {
           headers["Content-Type"] = "application/x-www-form-urlencoded";
-        }
+        } // What representations to accept
 
-        // What representations to accept
+
         if (this.getAccept()) {
           if (qx.core.Environment.get("qx.debug.io")) {
             this.debug("Accepting: '" + this.getAccept() + "'");
           }
+
           headers["Accept"] = this.getAccept();
         }
+
         return headers;
       },
       // overridden
@@ -289,11 +304,13 @@
       _isAsync: function _isAsync() {
         return this.isAsync();
       },
+
       /*
       ---------------------------------------------------------------------------
         PARSING
       ---------------------------------------------------------------------------
       */
+
       /**
        * Create response parser.
        *
@@ -302,6 +319,7 @@
       _createResponseParser: function _createResponseParser() {
         return new qx.util.ResponseParser();
       },
+
       /**
        * Returns response parsed with parser determined by content type.
        *
@@ -309,8 +327,9 @@
        */
       _getParsedResponse: function _getParsedResponse() {
         var response = this._transport.responseType === "blob" ? this._transport.response : this._transport.responseText,
-          contentType = this.getResponseContentType() || "",
-          parsedResponse = "";
+            contentType = this.getResponseContentType() || "",
+            parsedResponse = "";
+
         try {
           parsedResponse = this._parser.parse(response, contentType);
           this._parserFailed = false;
@@ -321,8 +340,10 @@
             response: response
           });
         }
+
         return parsedResponse;
       },
+
       /**
        * Set parser used to parse response once request has
        * completed successfully.
@@ -340,4 +361,4 @@
   qx.io.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1677362743283
+//# sourceMappingURL=Xhr.js.map?dt=1685978126300

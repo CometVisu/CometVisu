@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,28 +45,32 @@
   qx.Class.define("qx.ui.table.celleditor.Dynamic", {
     extend: qx.core.Object,
     implement: qx.ui.table.ICellEditorFactory,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param cellEditorFactoryFunction {Function?null} the factory function
      *    {@link #cellEditorFactoryFunction}.
      */
     construct: function construct(cellEditorFactoryFunction) {
       qx.core.Object.constructor.call(this);
+
       if (cellEditorFactoryFunction) {
         this.setCellEditorFactoryFunction(cellEditorFactoryFunction);
       }
+
       this.__P_436_0 = {};
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * Function that returns a cellEditorFactory instance which will be
@@ -88,15 +93,16 @@
         init: null
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_436_1: null,
       __P_436_0: null,
+
       /**
        * Creates the cell editor based on the cellEditorFactory instance
        * returned by the function stored in the cellEditorFactoryFunction
@@ -109,22 +115,28 @@
       createCellEditor: function createCellEditor(cellInfo) {
         var cellEditorFactoryFunction = this.getCellEditorFactoryFunction();
         this.__P_436_1 = cellEditorFactoryFunction(cellInfo);
-        var cellEditor = this.__P_436_1.createCellEditor(cellInfo);
 
-        // save the cell info to the editor (needed for getting the value)
+        var cellEditor = this.__P_436_1.createCellEditor(cellInfo); // save the cell info to the editor (needed for getting the value)
+
+
         this.__P_436_0[cellEditor.toHashCode()] = cellInfo;
         return cellEditor;
       },
       // interface implementation
       getCellEditorValue: function getCellEditorValue(cellEditor) {
         var cellEditorFactoryFunction = this.getCellEditorFactoryFunction();
-        var cellInfo = this.__P_436_0[cellEditor.toHashCode()];
-        // update the propper factory
+
+        var cellInfo = this.__P_436_0[cellEditor.toHashCode()]; // update the propper factory
+
+
         this.__P_436_1 = cellEditorFactoryFunction(cellInfo);
+
         var value = this.__P_436_1.getCellEditorValue(cellEditor);
+
         return value;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -137,4 +149,4 @@
   qx.ui.table.celleditor.Dynamic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dynamic.js.map?dt=1677362765706
+//# sourceMappingURL=Dynamic.js.map?dt=1685978146892

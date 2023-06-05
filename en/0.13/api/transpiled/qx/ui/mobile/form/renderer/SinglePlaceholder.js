@@ -31,6 +31,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,6 +57,7 @@
    */
   qx.Class.define("qx.ui.mobile.form.renderer.SinglePlaceholder", {
     extend: qx.ui.mobile.form.renderer.Single,
+
     /**
      * @param form {qx.ui.mobile.form.Form} The target form of this renderer
      */
@@ -70,9 +72,11 @@
         if (title != null) {
           this._addGroupHeader(title);
         }
+
         for (var i = 0, l = items.length; i < l; i++) {
           var item = items[i];
           var name = names[i];
+
           if (item instanceof qx.ui.mobile.form.TextArea) {
             if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
               this._addToScrollContainer(item, name);
@@ -88,9 +92,11 @@
               row.add(item, {
                 flex: 1
               });
+
               this._add(row);
             }
           }
+
           if (!item.isValid()) {
             this.showErrorForItem(item);
           }
@@ -101,4 +107,4 @@
   qx.ui.mobile.form.renderer.SinglePlaceholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SinglePlaceholder.js.map?dt=1677362763017
+//# sourceMappingURL=SinglePlaceholder.js.map?dt=1685978144173

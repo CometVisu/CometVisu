@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,32 +45,28 @@
   qx.Class.define("qx.application.Native", {
     extend: qx.core.Object,
     implement: [qx.application.IApplication],
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // interface method
-      main: function main() {
-        // empty
+      main: function main() {// empty
       },
       // interface method
-      finalize: function finalize() {
-        // empty
+      finalize: function finalize() {// empty
       },
       // interface method
-      close: function close() {
-        // empty
+      close: function close() {// empty
       },
       // interface method
-      terminate: function terminate() {
-        // empty
+      terminate: function terminate() {// empty
       }
     }
   });
   qx.application.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1677362723991
+//# sourceMappingURL=Native.js.map?dt=1685978106355

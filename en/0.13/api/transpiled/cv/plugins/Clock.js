@@ -1,9 +1,15 @@
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -33,6 +39,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Clock.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -58,6 +65,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   qx.Class.define('cv.plugins.Clock', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Operate],
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -70,6 +78,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       this.__P_10_1 = [];
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
+
     /*
     ******************************************************
     PROPERTIES
@@ -122,6 +131,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         init: false
       }
     },
+
     /*
     ******************************************************
       STATICS
@@ -148,6 +158,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var transformValueTrue = function transformValueTrue(value) {
           return value === 'true';
         };
+
         return {
           src: {
             "default": 'plugins/clock/clock_pure.svg'
@@ -218,32 +229,41 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           digits: svg.querySelector('#Digits')
         };
         var tspan;
+
         while (elements.digits !== null && (tspan = elements.digits.querySelector('tspan')) !== null) {
           elements.digits = tspan;
         }
+
         var hour24Group = svg.querySelector('#Hour24Group');
+
         if (hide24h && hour24Group !== null) {
           hour24Group.setAttribute('display', 'none');
         }
+
         if (hideAMPM) {
           if (elements.am !== null) {
             elements.am.setAttribute('display', 'none');
             elements.am = null;
           }
+
           if (elements.pm !== null) {
             elements.pm.setAttribute('display', 'none');
             elements.pm = null;
           }
         }
+
         if (hideDigits && elements.digits !== null) {
           elements.digits.setAttribute('display', 'none');
         }
+
         if (hideSeconds && elements.second !== null) {
           elements.second.setAttribute('display', 'none');
         }
+
         return elements;
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -258,6 +278,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // is the handle currently dragged?
       __P_10_0: null,
       // time to show on the clock
+
       /**
        *  to handle legacy mode, when a time string is used and not a `Date` object
        */
@@ -267,24 +288,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       _onDomReady: function _onDomReady() {
         var _this = this;
+
         cv.plugins.Clock.superclass.prototype._onDomReady.call(this);
+
         this.__P_10_5 = cv.util.Function.throttle(this.dragAction, 250, {
           trailing: true
         }, this);
         var uri = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
         var uriPopup = this.getSrcPopup();
         var promises = [window.fetch(uri)];
+
         if (uriPopup !== '') {
           uriPopup = qx.util.ResourceManager.getInstance().toUri(uriPopup);
           promises.push(window.fetch(uriPopup));
         }
+
         Promise.all(promises).then(function (responses) {
           var result = [];
+
           if (!responses[0].ok) {
             throw new Error('Not 2xx response for URI "' + uri + '"');
           } else {
             result.push(responses[0].text());
           }
+
           if (uriPopup !== '') {
             if (!responses[1].ok) {
               throw new Error('Not 2xx response for popup URI "' + uriPopup + '"');
@@ -292,25 +319,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               result.push(responses[1].text());
             }
           }
+
           return Promise.all(result);
         }).then(function (texts) {
           var actor = _this.getActor();
-          actor.innerHTML = texts[0];
-          var svg = actor.firstElementChild;
 
-          // make sure that the SVG fits exactly to the available space
+          actor.innerHTML = texts[0];
+          var svg = actor.firstElementChild; // make sure that the SVG fits exactly to the available space
+
           if (!svg.getAttribute('viewBox')) {
             // fix SVGs that don't contain a viewBox
             var width = svg.getAttribute('width') || 300;
             var height = svg.getAttribute('height') || 150;
             svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
           }
+
           svg.setAttribute('width', '100%');
           svg.setAttribute('height', '100%');
           _this.__P_10_1 = [cv.plugins.Clock.getElements(svg, _this.getHide24h(), _this.getHideAMPM(), _this.getHideDigits(), _this.getHideSeconds())];
+
           if (texts.length > 1) {
             var popup = document.createElement('div');
+
             var title = _this.getTitlePopup();
+
             popup.setAttribute('style', 'width:100%;height:100%;position:absolute;');
             popup.innerHTML = texts[1];
             svg.addEventListener('click', function () {
@@ -319,34 +351,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                 content: popup
               });
             });
-            svg = popup.firstElementChild;
+            svg = popup.firstElementChild; // make sure that also this SVG fits exactly to the available space
 
-            // make sure that also this SVG fits exactly to the available space
             if (!svg.getAttribute('viewBox')) {
               // fix SVGs that don't contain a viewBox
               var _width = svg.getAttribute('width') || 300;
+
               var _height = svg.getAttribute('height') || 150;
+
               svg.setAttribute('viewBox', '0 0 ' + _width + ' ' + _height);
             }
+
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
+
             _this.__P_10_1.push(cv.plugins.Clock.getElements(svg, _this.getHide24hPopup(), _this.getHideAMPMPopup(), _this.getHideDigitsPopup(), _this.getHideSecondsPopup()));
           }
+
           svg.setAttribute('style', 'touch-action: none'); // prevent scroll interference
 
           var HotSpotHour = svg.querySelector('#HotSpotHour');
+
           if (HotSpotHour) {
             HotSpotHour.addEventListener('pointerdown', _this);
           }
+
           var HotSpotMinute = svg.querySelector('#HotSpotMinute');
+
           if (HotSpotMinute) {
             HotSpotMinute.addEventListener('pointerdown', _this);
           }
+
           var HotSpotSecond = svg.querySelector('#HotSpotSecond');
+
           if (HotSpotSecond) {
             HotSpotSecond.addEventListener('pointerdown', _this);
           }
+
           _this.__P_10_2 = svg;
+
           _this._updateHands();
         })["catch"](function (error) {
           _this.error('There has been a problem with the reading of the clock SVG:', error);
@@ -357,6 +400,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       // overridden
       _update: function _update(address, data, isDataAlreadyHandled) {
         var value = isDataAlreadyHandled ? data : this.applyTransform(address, data);
+
         if (value instanceof Date) {
           this.__P_10_4 = false;
           this.__P_10_0 = [value.getHours(), value.getMinutes(), value.getSeconds()];
@@ -368,9 +412,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           this.__P_10_0[1] = this.__P_10_0[1] >= 0 && this.__P_10_0[1] <= 59 ? this.__P_10_0[1] : 0;
           this.__P_10_0[2] = this.__P_10_0[2] >= 0 && this.__P_10_0[2] <= 59 ? this.__P_10_0[2] : 0;
           var date = new Date(); // assume today
+
           date.setHours(this.__P_10_0[0], this.__P_10_0[1], this.__P_10_0[2], 0);
           this.setValue(date);
         }
+
         this._updateHands();
       },
       handleEvent: function handleEvent(event) {
@@ -380,18 +426,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           minute: 2,
           second: 3
         };
+
         switch (event.type) {
           case 'pointerdown':
             switch (event.target.id) {
               case 'HotSpotHour':
                 this.__P_10_3 = dragMode.hour;
                 break;
+
               case 'HotSpotMinute':
                 this.__P_10_3 = dragMode.minute;
                 break;
+
               case 'HotSpotSecond':
                 this.__P_10_3 = dragMode.second;
                 break;
+
               default:
                 this.__P_10_3 = dragMode.none;
                 return;
@@ -403,19 +453,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             event.preventDefault();
             event.stopPropagation();
             break;
+
           case 'pointermove':
             if (this.__P_10_3 === dragMode.none) {
               return;
             }
+
             event.preventDefault();
             event.stopPropagation();
+
             if (event.buttons > 0) {
               this.dragHelper(event);
               break;
             }
-          // pass through to end drag when no buttons are pressed anymore
 
+          // pass through to end drag when no buttons are pressed anymore
           // eslint-disable-next-line no-fallthrough
+
           case 'pointerup':
           case 'pointercancel':
             this.dragHelper(event);
@@ -424,6 +478,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             document.removeEventListener('pointerup', this);
             break;
         }
+
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
           this.__P_10_5.call();
         }
@@ -435,12 +490,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           minute: 2,
           second: 3
         };
+
         var CTM = this.__P_10_2.getScreenCTM(); // get the Current Transformation Matrix
+
+
         var x = (event.clientX - CTM.e) / CTM.a - 60;
         var y = 60 - (event.clientY - CTM.f) / CTM.d;
         var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
         var time = this.getValue();
         var minutes;
+
         switch (this.__P_10_3) {
           case dragMode.hour:
             {
@@ -448,6 +507,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               var pm = oldHours >= 12;
               var hours = Math.floor(angle / 30);
               minutes = angle % 30 * 2;
+
               if (oldHours % 12 > 9 && hours < 3) {
                 if (pm) {
                   pm = false;
@@ -463,10 +523,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                   time.setDate(time.getDate() - 1);
                 }
               }
+
               time.setHours(hours + pm * 12);
               time.setMinutes(minutes);
               break;
             }
+
           case dragMode.minute:
             {
               if (this.getHideSeconds()) {
@@ -474,33 +536,42 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               } else {
                 minutes = Math.floor(angle / 6);
               }
+
               var oldMinutes = time.getMinutes();
+
               if (oldMinutes > 45 && minutes < 15) {
                 time.setHours(time.getHours() + 1);
               } else if (minutes > 45 && oldMinutes < 15) {
                 time.setHours(time.getHours() - 1);
               }
+
               time.setMinutes(minutes);
               time.setSeconds(angle % 6 * 10);
               break;
             }
+
           case dragMode.second:
             {
               var seconds = Math.round(angle / 6) % 60;
               var oldSeconds = time.getSeconds();
+
               if (oldSeconds > 45 && seconds < 15) {
                 time.setMinutes(time.getMinutes() + 1);
               } else if (seconds > 45 && oldSeconds < 15) {
                 time.setMinutes(time.getMinutes() - 1);
               }
+
               time.setSeconds(seconds);
               break;
             }
         }
+
         if (this.getHideSeconds()) {
           time.setSeconds(0);
         }
+
         this.__P_10_0 = [time.getHours(), time.getMinutes(), time.getSeconds()];
+
         this._updateHands();
       },
       dragAction: function dragAction() {
@@ -509,12 +580,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       },
       _updateHands: function _updateHands() {
         var _this2 = this;
+
         var _this$__P_10_ = _slicedToArray(this.__P_10_0, 3),
-          hour = _this$__P_10_[0],
-          minute = _this$__P_10_[1],
-          second = _this$__P_10_[2];
+            hour = _this$__P_10_[0],
+            minute = _this$__P_10_[1],
+            second = _this$__P_10_[2];
+
         Array.isArray(this.__P_10_1) && this.__P_10_1.forEach(function (e) {
           var showSeconds = true;
+
           if (e.hour !== null) {
             if (showSeconds) {
               e.hour.setAttribute('transform', 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60 + second * 30 / 60 / 60) + ',0,0)');
@@ -522,6 +596,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               e.hour.setAttribute('transform', 'rotate(' + (hour % 12 * 360 / 12 + minute * 30 / 60) + ',0,0)');
             }
           }
+
           if (e.minute !== null) {
             if (showSeconds) {
               e.minute.setAttribute('transform', 'rotate(' + (minute * 6 + second * 6 / 60) + ',0,0)');
@@ -529,18 +604,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               e.minute.setAttribute('transform', 'rotate(' + minute * 6 + ',0,0)');
             }
           }
+
           if (e.second !== null) {
             e.second.setAttribute('transform', 'rotate(' + second * 6 + ',0,0)');
           }
+
           if (e.hour24 !== null) {
             e.hour24.setAttribute('transform', 'rotate(' + (hour % 24 * 360 / 24 + minute * 15 / 60) + ',0,0)');
           }
+
           if (e.am !== null) {
             e.am.setAttribute('display', hour < 12 ? '' : 'none');
           }
+
           if (e.pm !== null) {
             e.pm.setAttribute('display', hour < 12 ? 'none' : '');
           }
+
           if (e.digits !== null) {
             if (_this2.getHideSeconds()) {
               e.digits.textContent = sprintf('%02d:%02d', hour, minute);
@@ -559,4 +639,4 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   cv.plugins.Clock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clock.js.map?dt=1677362708992
+//# sourceMappingURL=Clock.js.map?dt=1685978091884

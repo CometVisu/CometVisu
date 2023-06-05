@@ -323,7 +323,7 @@ das Popup mit dem ColorChooser.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="14"><dl class="simple">
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
 <dt>cv-color</dt><dd><ul class="simple">
 <li><p>cv-address</p></li>
 </ul>
@@ -366,23 +366,27 @@ das Popup mit dem ColorChooser.</p>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Nur MQTT: retain Flag</p></td>
 </tr>
-<tr class="row-even"><td><p>backend</p></td>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>Text</p></td>
+<td><p>Nur MQTT: JSON Selektor</p></td>
+</tr>
+<tr class="row-odd"><td><p>backend</p></td>
 <td><p>Text</p></td>
 <td><p>Optionaler Name des Backends zu dem diese Adresse gehört.</p></td>
 </tr>
-<tr class="row-odd"><td><p>mapping</p></td>
+<tr class="row-even"><td><p>mapping</p></td>
 <td><p>Text</p></td>
 <td><p>Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>format</p></td>
+<tr class="row-odd"><td><p>format</p></td>
 <td><p>Text</p></td>
 <td><p>Formatierung des Wertes (printf-Syntax).</p></td>
 </tr>
-<tr class="row-odd"><td><p>delay</p></td>
+<tr class="row-even"><td><p>delay</p></td>
 <td><p>positiveInteger</p></td>
 <td><p>Optionales delay in Millisekunden, um welches das Schreiben an diese Adresse verzögert wird.</p></td>
 </tr>
-<tr class="row-even"><td><p>send-mode</p></td>
+<tr class="row-odd"><td><p>send-mode</p></td>
 <td><p><em>on-change</em> oder <em>always</em></p></td>
 <td><p>Normalerweise bekommen Elemente, die diese Adresse benutzen nur eine Update-Benachrichtigung, wenn sich der Wert tatsächlich geändert hat (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). Mit <code class="docutils literal notranslate"><span class="pre">always</span></code> wird diese Überprüfung umgangen und die Update-Benachrichtigung jedes Mal geschickt, wenn ein neuer Wert vom Backend empfangen wurde.</p></td>
 </tr>

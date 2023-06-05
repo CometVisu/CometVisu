@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,6 +34,7 @@
        * Daniel Wagner (d_wagner)
   
   ************************************************************************ */
+
   /**
    * Internal class which contains the checks used by {@link qx.core.Environment}.
    * All checks in here are marked as internal which means you should never use
@@ -53,6 +55,7 @@
       getImplementation: function getImplementation() {
         return document.implementation && document.implementation.hasFeature && document.implementation.hasFeature("XML", "1.0");
       },
+
       /**
        * Checks if an XML DOMParser is available
        *
@@ -62,6 +65,7 @@
       getDomParser: function getDomParser() {
         return typeof window.DOMParser !== "undefined";
       },
+
       /**
        * Checks if the proprietary selectSingleNode method is available on XML DOM
        * nodes.
@@ -72,6 +76,7 @@
       getSelectSingleNode: function getSelectSingleNode() {
         return typeof qx.xml.Document.create().selectSingleNode !== "undefined";
       },
+
       /**
        * Checks if the proprietary selectNodes method is available on XML DOM
        * nodes.
@@ -82,6 +87,7 @@
       getSelectNodes: function getSelectNodes() {
         return typeof qx.xml.Document.create().selectNodes !== "undefined";
       },
+
       /**
        * Checks availability of the getElementsByTagNameNS XML DOM method.
        *
@@ -91,6 +97,7 @@
       getElementsByTagNameNS: function getElementsByTagNameNS() {
         return typeof qx.xml.Document.create().getElementsByTagNameNS !== "undefined";
       },
+
       /**
        * Checks if MSXML-style DOM Level 2 properties are supported.
        *
@@ -101,6 +108,7 @@
         var doc = qx.xml.Document.create();
         return "getProperty" in doc && typeof doc.getProperty("SelectionLanguage") === "string";
       },
+
       /**
        * Checks if the getAttributeNS and setAttributeNS methods are supported on
        * XML DOM elements
@@ -112,6 +120,7 @@
         var docElem = qx.xml.Document.fromString("<a></a>").documentElement;
         return typeof docElem.getAttributeNS === "function" && typeof docElem.setAttributeNS === "function";
       },
+
       /**
        * Checks if the createElementNS method is supported on XML DOM documents
        *
@@ -121,6 +130,7 @@
       getCreateElementNS: function getCreateElementNS() {
         return typeof qx.xml.Document.create().createElementNS === "function";
       },
+
       /**
        * Checks if the proprietary createNode method is supported on XML DOM
        * documents
@@ -131,6 +141,7 @@
       getCreateNode: function getCreateNode() {
         return typeof qx.xml.Document.create().createNode !== "undefined";
       },
+
       /**
        * Checks if the proprietary getQualifiedItem method is supported for XML
        * element attributes
@@ -159,4 +170,4 @@
   qx.bom.client.Xml.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xml.js.map?dt=1677362727636
+//# sourceMappingURL=Xml.js.map?dt=1685978109934

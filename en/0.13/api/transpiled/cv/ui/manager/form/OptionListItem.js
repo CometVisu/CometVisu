@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* OptionListItem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,6 +45,7 @@
    */
   qx.Class.define('cv.ui.manager.form.OptionListItem', {
     extend: qx.ui.core.Widget,
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -51,14 +53,22 @@
     */
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.HBox(8));
+
       this._createChildControl('key');
+
       this._createChildControl('value');
+
       this._createChildControl('key-title');
+
       this._createChildControl('value-title');
+
       this._createChildControl('delete');
+
       this._createChildControl('add');
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -80,6 +90,7 @@
         event: 'changeReadOnly'
       }
     },
+
     /*
     ***********************************************
       EVENTS
@@ -89,6 +100,7 @@
       "delete": 'qx.event.type.Data',
       add: 'qx.event.type.Event'
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -104,7 +116,9 @@
         var valueField = this.getChildControl('value');
         var keyTitleField = this.getChildControl('key-title');
         var valueTitleField = this.getChildControl('value-title');
+
         this.__P_40_0(old);
+
         if (value) {
           // bi-directional bind
           value.bind('key', keyField, 'value');
@@ -130,6 +144,7 @@
         if (model) {
           var keyField = this.getChildControl('key');
           var valueField = this.getChildControl('value');
+
           if (model) {
             model.removeRelatedBindings(keyField);
             model.removeRelatedBindings(valueField);
@@ -141,7 +156,9 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this = this;
+
         var control;
+
         switch (id) {
           case 'key':
             control = new qx.ui.form.TextField();
@@ -150,20 +167,26 @@
               required: true
             });
             this.bind('readOnly', control, 'readOnly');
+
             this._add(control, {
               width: '40%'
             });
+
             break;
+
           case 'value':
             control = new qx.ui.form.TextField();
             control.set({
               liveUpdate: true
             });
             this.bind('readOnly', control, 'readOnly');
+
             this._add(control, {
               width: '40%'
             });
+
             break;
+
           case 'delete':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('delete', 22));
             control.setToolTipText(this.tr('Delete option'));
@@ -175,8 +198,11 @@
                 return value ? 'hidden' : 'visible';
               }
             });
+
             this._add(control);
+
             break;
+
           case 'add':
             control = new qx.ui.form.Button(null, cv.theme.dark.Images.getIcon('add', 18));
             control.setToolTipText(this.tr('Add option'));
@@ -188,26 +214,36 @@
                 return value ? 'hidden' : 'visible';
               }
             });
+
             this._add(control);
+
             break;
+
           case 'key-title':
             control = new qx.ui.basic.Label(this.tr('Key'));
             control.exclude();
+
             this._add(control, {
               width: '40%'
             });
+
             break;
+
           case 'value-title':
             control = new qx.ui.basic.Label(this.tr('Value'));
             control.exclude();
+
             this._add(control, {
               width: '40%'
             });
+
             break;
         }
+
         return control || cv.ui.manager.form.OptionListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -220,4 +256,4 @@
   cv.ui.manager.form.OptionListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionListItem.js.map?dt=1677362714086
+//# sourceMappingURL=OptionListItem.js.map?dt=1685978096844

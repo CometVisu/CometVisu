@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -66,6 +67,7 @@
         init: "Yes",
         event: "changeYesButtonLabel"
       },
+
       /**
        * Icon used for the "yes button"
        */
@@ -75,6 +77,7 @@
         init: "qxl.dialog.icon.ok",
         event: "changeYesButtonIcon"
       },
+
       /**
        * Label used for the "no button"
        */
@@ -84,6 +87,7 @@
         init: "No",
         event: "changeNoButtonLabel"
       },
+
       /**
        * Icon used for the "no button"
        */
@@ -93,6 +97,7 @@
         init: "qxl.dialog.icon.cancel",
         event: "changeNoButtonIcon"
       },
+
       /**
        * This property controls the display of a cancel button
        */
@@ -104,28 +109,35 @@
     members: {
       _yesButton: null,
       _noButton: null,
+
       /**
        * Create the main content of the widget
        */
       _createWidgetContent: function _createWidgetContent() {
         var container = this._createDialogContainer();
+
         var hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
         container.add(hbox);
         this._image = new qx.ui.basic.Image();
+
         this._image.setVisibility("excluded");
+
         hbox.add(this._image);
         this._message = new qx.ui.basic.Label();
+
         this._message.setRich(true);
+
         this._message.setWidth(200);
+
         this._message.setAllowStretchX(true);
+
         hbox.add(this._message, {
           flex: 1
-        });
+        }); // buttons
 
-        // buttons
-        var buttonPane = this._createButtonPane();
+        var buttonPane = this._createButtonPane(); // yes button
 
-        // yes button
+
         var yesButton = this._yesButton = new qx.ui.form.Button();
         yesButton.setAllowStretchX(true);
         yesButton.addListener("execute", this._handleYes, this);
@@ -136,8 +148,8 @@
           height: 16,
           scale: true
         });
-        yesButton.setLabel(this.tr("yes"));
-        // no button
+        yesButton.setLabel(this.tr("yes")); // no button
+
         var noButton = this._noButton = new qx.ui.form.Button();
         noButton.setAllowStretchX(true);
         noButton.addListener("execute", this._handleNo, this);
@@ -149,14 +161,15 @@
           scale: true
         });
         noButton.setLabel(this.tr("no"));
+
         var cancelButton = this._createCancelButton();
+
         buttonPane.add(yesButton);
         buttonPane.add(noButton);
         buttonPane.add(cancelButton);
         container.add(buttonPane);
-        this.add(container);
+        this.add(container); // object id
 
-        // object id
         if (qx.core.Environment.get("module.objectid") === true) {
           yesButton.setQxObjectId("yes");
           this.getQxObject("buttons").addOwnedQxObject(yesButton);
@@ -164,23 +177,28 @@
           this.getQxObject("buttons").addOwnedQxObject(noButton);
         }
       },
+
       /**
        * Handle click on yes button. Calls callback with
        * a "true" value
        */
       _handleYes: function _handleYes() {
         this.hide();
+
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), true);
         }
+
         this.resetCallback();
       },
+
       /**
        * Handle click on no button. Calls callback with
        * a "false" value
        */
       _handleNo: function _handleNo() {
         this.hide();
+
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), false);
         }
@@ -190,4 +208,4 @@
   qxl.dialog.Confirm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Confirm.js.map?dt=1677362776654
+//# sourceMappingURL=Confirm.js.map?dt=1685978158802

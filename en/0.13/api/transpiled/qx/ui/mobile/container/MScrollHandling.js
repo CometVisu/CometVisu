@@ -10,6 +10,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,17 +42,21 @@
        */
       _getParentScrollContainer: function _getParentScrollContainer() {
         var scroll = this;
+
         while (!(scroll instanceof qx.ui.mobile.container.Scroll)) {
           if (scroll.getLayoutParent) {
             var layoutParent = scroll.getLayoutParent();
+
             if (layoutParent === null || layoutParent instanceof qx.ui.mobile.core.Root) {
               return null;
             }
+
             scroll = layoutParent;
           } else {
             return null;
           }
         }
+
         return scroll;
       }
     }
@@ -59,4 +64,4 @@
   qx.ui.mobile.container.MScrollHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MScrollHandling.js.map?dt=1677362761363
+//# sourceMappingURL=MScrollHandling.js.map?dt=1685978142414

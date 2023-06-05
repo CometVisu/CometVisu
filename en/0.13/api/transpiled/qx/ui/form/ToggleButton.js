@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,11 +54,13 @@
     extend: qx.ui.basic.Atom,
     include: [qx.ui.core.MExecutable],
     implement: [qx.ui.form.IBooleanForm, qx.ui.form.IExecutable, qx.ui.form.IRadioItem],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * Creates a ToggleButton.
      *
@@ -65,32 +68,28 @@
      * @param icon {String} An URI to the icon of the button.
      */
     construct: function construct(label, icon) {
-      qx.ui.basic.Atom.constructor.call(this, label, icon);
+      qx.ui.basic.Atom.constructor.call(this, label, icon); // register pointer events
 
-      // register pointer events
       this.addListener("pointerover", this._onPointerOver);
       this.addListener("pointerout", this._onPointerOut);
       this.addListener("pointerdown", this._onPointerDown);
-      this.addListener("pointerup", this._onPointerUp);
+      this.addListener("pointerup", this._onPointerUp); // register keyboard events
 
-      // register keyboard events
       this.addListener("keydown", this._onKeyDown);
-      this.addListener("keyup", this._onKeyUp);
+      this.addListener("keyup", this._onKeyUp); // register execute event
 
-      // register execute event
-      this.addListener("execute", this._onExecute, this);
+      this.addListener("execute", this._onExecute, this); // ARIA attrs
 
-      // ARIA attrs
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "button");
       contentEl.setAttribute("aria-pressed", false);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
@@ -102,6 +101,7 @@
         refine: true,
         init: true
       },
+
       /** The value of the widget. True, if the widget is checked. */
       value: {
         check: "Boolean",
@@ -110,12 +110,14 @@
         apply: "_applyValue",
         init: false
       },
+
       /** The assigned qx.ui.form.RadioGroup which handles the switching between registered buttons. */
       group: {
         check: "qx.ui.form.RadioGroup",
         nullable: true,
         apply: "_applyGroup"
       },
+
       /**
        * Whether the button has a third state. Use this for tri-state checkboxes.
        *
@@ -131,21 +133,24 @@
         init: null
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
-      /** The assigned {@link qx.ui.form.RadioGroup} which handles the switching between registered buttons */_applyGroup: function _applyGroup(value, old) {
+      /** The assigned {@link qx.ui.form.RadioGroup} which handles the switching between registered buttons */
+      _applyGroup: function _applyGroup(value, old) {
         if (old) {
           old.remove(this);
         }
+
         if (value) {
           value.add(this);
         }
       },
+
       /**
        * Changes the state of the button dependent on the checked value.
        *
@@ -155,6 +160,7 @@
       _applyValue: function _applyValue(value, old) {
         value ? this.addState("checked") : this.removeState("checked");
         var ariaPressed = Boolean(value);
+
         if (this.isTriState()) {
           if (value === null) {
             ariaPressed = "mixed";
@@ -163,8 +169,10 @@
             this.removeState("undetermined");
           }
         }
+
         this.getContentElement().setAttribute("aria-pressed", ariaPressed);
       },
+
       /**
        * Apply value property when triState property is modified.
        *
@@ -174,6 +182,7 @@
       _applyTriState: function _applyTriState(value, old) {
         this._applyValue(this.getValue());
       },
+
       /**
        * Handler for the execute event.
        *
@@ -182,6 +191,7 @@
       _onExecute: function _onExecute(e) {
         this.toggleValue();
       },
+
       /**
        * Listener method for "pointerover" event.
        * <ul>
@@ -195,12 +205,15 @@
         if (e.getTarget() !== this) {
           return;
         }
+
         this.addState("hovered");
+
         if (this.hasState("abandoned")) {
           this.removeState("abandoned");
           this.addState("pressed");
         }
       },
+
       /**
        * Listener method for "pointerout" event.
        * <ul>
@@ -215,14 +228,18 @@
         if (e.getTarget() !== this) {
           return;
         }
+
         this.removeState("hovered");
+
         if (this.hasState("pressed")) {
           if (!this.getValue()) {
             this.removeState("pressed");
           }
+
           this.addState("abandoned");
         }
       },
+
       /**
        * Listener method for "pointerdown" event.
        * <ul>
@@ -236,15 +253,16 @@
       _onPointerDown: function _onPointerDown(e) {
         if (!e.isLeftPressed()) {
           return;
-        }
-
-        // Activate capturing if the button get a pointerout while
+        } // Activate capturing if the button get a pointerout while
         // the button is pressed.
+
+
         this.capture();
         this.removeState("abandoned");
         this.addState("pressed");
         e.stopPropagation();
       },
+
       /**
        * Listener method for "pointerup" event.
        * <ul>
@@ -258,14 +276,17 @@
        */
       _onPointerUp: function _onPointerUp(e) {
         this.releaseCapture();
+
         if (this.hasState("abandoned")) {
           this.removeState("abandoned");
         } else if (this.hasState("pressed")) {
           this.execute();
         }
+
         this.removeState("pressed");
         e.stopPropagation();
       },
+
       /**
        * Listener method for "keydown" event.<br/>
        * Removes "abandoned" and adds "pressed" state
@@ -282,6 +303,7 @@
             e.stopPropagation();
         }
       },
+
       /**
        * Listener method for "keyup" event.<br/>
        * Removes "abandoned" and "pressed" state (if "pressed" state is set)
@@ -293,6 +315,7 @@
         if (!this.hasState("pressed")) {
           return;
         }
+
         switch (e.getKeyIdentifier()) {
           case "Enter":
           case "Space":
@@ -307,4 +330,4 @@
   qx.ui.form.ToggleButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToggleButton.js.map?dt=1677362758399
+//# sourceMappingURL=ToggleButton.js.map?dt=1685978139304

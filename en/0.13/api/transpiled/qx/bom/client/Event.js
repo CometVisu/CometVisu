@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,6 +56,7 @@
       getTouch: function getTouch() {
         return "ontouchstart" in window;
       },
+
       /**
        * Checks if MSPointer events are available.
        *
@@ -67,13 +69,16 @@
         if ("PointerEvent" in window) {
           return true;
         }
+
         if ("pointerEnabled" in window.navigator) {
           return window.navigator.pointerEnabled;
         } else if ("msPointerEnabled" in window.navigator) {
           return window.navigator.msPointerEnabled;
         }
+
         return false;
       },
+
       /**
        * Checks if the proprietary <code>help</code> event is available.
        *
@@ -83,6 +88,7 @@
       getHelp: function getHelp() {
         return "onhelp" in document;
       },
+
       /**
        * Checks if the <code>hashchange</code> event is available
        *
@@ -95,6 +101,7 @@
         var hashchange = ("onhashchange" in window);
         return engine !== "mshtml" && hashchange || engine === "mshtml" && "documentMode" in document && document.documentMode >= 8 && hashchange;
       },
+
       /**
        * Checks if the DOM2 dispatchEvent method is available
        * @return {Boolean} <code>true</code> if dispatchEvent is supported.
@@ -102,6 +109,7 @@
       getDispatchEvent: function getDispatchEvent() {
         return typeof document.dispatchEvent == "function";
       },
+
       /**
        * Checks if the CustomEvent constructor is available and supports
        * custom event types.
@@ -112,6 +120,7 @@
         if (!window.CustomEvent) {
           return false;
         }
+
         try {
           new window.CustomEvent("foo");
           return true;
@@ -119,6 +128,7 @@
           return false;
         }
       },
+
       /**
        * Checks if the MouseEvent constructor is available and supports
        * custom event types.
@@ -129,6 +139,7 @@
         if (!window.MouseEvent) {
           return false;
         }
+
         try {
           new window.MouseEvent("foo");
           return true;
@@ -136,6 +147,7 @@
           return false;
         }
       },
+
       /**
        * Returns the event type used in pointer layer to create mouse events.
        *
@@ -149,14 +161,17 @@
           var e = document.createEvent("MouseEvents");
           var orig = e.pageX;
           e.initMouseEvent("click", false, false, window, 0, 0, 0, orig + 1, 0, false, false, false, false, 0, null);
+
           if (e.pageX !== orig) {
             return "MouseEvents";
           }
+
           return "UIEvents";
         } catch (ex) {
           return "UIEvents";
         }
       },
+
       /**
        * Checks if the MouseWheel event is available and on which target.
        *
@@ -166,9 +181,9 @@
       getMouseWheel: function getMouseWheel(win) {
         if (!win) {
           win = window;
-        }
+        } // Fix for bug #3234
 
-        // Fix for bug #3234
+
         var targets = [win, win.document, win.document.body];
         var target = win;
         var type = "DOMMouseScroll"; // for FF < 17
@@ -179,19 +194,22 @@
             type = "wheel";
             target = targets[i];
             break;
-          }
-          // check for the non spec event
+          } // check for the non spec event
+
+
           if (qx.bom.Event.supportsEvent(targets[i], "mousewheel")) {
             type = "mousewheel";
             target = targets[i];
             break;
           }
         }
+
         return {
           type: type,
           target: target
         };
       },
+
       /**
        * Detects if the engine/browser supports auxclick events
        *
@@ -201,16 +219,20 @@
        */
       getAuxclickEvent: function getAuxclickEvent() {
         var hasAuxclick = false;
+
         try {
           hasAuxclick = "onauxclick" in document.documentElement;
         } catch (ex) {}
+
         return hasAuxclick ? true : false;
       },
+
       /**
        * Checks whether the browser supports passive event handlers.
        */
       getPassive: function getPassive() {
         var passiveSupported = false;
+
         try {
           var options = Object.defineProperties({}, {
             passive: {
@@ -226,6 +248,7 @@
         } catch (err) {
           passiveSupported = false;
         }
+
         return passiveSupported;
       }
     },
@@ -246,4 +269,4 @@
   qx.bom.client.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1677362726901
+//# sourceMappingURL=Event.js.map?dt=1685978109170

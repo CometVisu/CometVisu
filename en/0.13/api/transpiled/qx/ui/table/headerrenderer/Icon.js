@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,11 +38,13 @@
    */
   qx.Class.define("qx.ui.table.headerrenderer.Icon", {
     extend: qx.ui.table.headerrenderer.Default,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param iconUrl {String} URL to the icon to show
      * @param tooltip {String ? ""} Text of the tooltip to show if the pointer hovers over the
@@ -49,20 +52,23 @@
      */
     construct: function construct(iconUrl, tooltip) {
       qx.ui.table.headerrenderer.Default.constructor.call(this);
+
       if (iconUrl == null) {
         iconUrl = "";
       }
+
       this.setIconUrl(iconUrl);
+
       if (tooltip) {
         this.setToolTip(tooltip);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * URL of the icon to show
@@ -72,12 +78,12 @@
         init: ""
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // overridden
       updateHeaderCell: function updateHeaderCell(cellInfo, cellWidget) {
@@ -89,4 +95,4 @@
   qx.ui.table.headerrenderer.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1677362766532
+//# sourceMappingURL=Icon.js.map?dt=1685978147731

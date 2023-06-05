@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,6 +38,7 @@
    */
   qx.Class.define("qx.ui.progressive.renderer.table.cell.Conditional", {
     extend: qx.ui.progressive.renderer.table.cell.Abstract,
+
     /**
      * @param align {String}
      *   The default alignment to format the cell with if the condition matches.
@@ -68,6 +70,7 @@
       __P_425_4: null,
       __P_425_5: null,
       __P_425_6: null,
+
       /**
        * Applies the cell styles to the style map.
        *
@@ -81,16 +84,20 @@
         if (condition.align) {
           style["text-align"] = condition.align;
         }
+
         if (condition.color) {
           style["color"] = condition.color;
         }
+
         if (condition.style) {
           style["font-style"] = condition.style;
         }
+
         if (condition.weight) {
           style["font-weight"] = condition.weight;
         }
       },
+
       /**
        * The addNumericCondition method is used to add a basic numeric condition
        * to the cell renderer.
@@ -132,6 +139,7 @@
         if (!this.__P_425_0.includes(condition) || value1 == null) {
           throw new Error("Condition not recognized or value is null!");
         }
+
         this.__P_425_2.push({
           condition: condition,
           align: align,
@@ -142,6 +150,7 @@
           target: target
         });
       },
+
       /**
        * The addBetweenCondition method is used to add a between condition to
        * the cell renderer.
@@ -186,6 +195,7 @@
         if (!this.__P_425_1.includes(condition) || value1 == null || value2 == null) {
           throw new Error("Condition not recognized or value1/value2 is null!");
         }
+
         this.__P_425_2.push({
           condition: condition,
           align: align,
@@ -197,6 +207,7 @@
           target: target
         });
       },
+
       /**
        * The addRegex method is used to add a regular expression condition to
        * the cell renderer.
@@ -233,6 +244,7 @@
         if (!regex) {
           throw new Error("regex cannot be null!");
         }
+
         this.__P_425_2.push({
           condition: "regex",
           align: align,
@@ -243,6 +255,7 @@
           target: target
         });
       },
+
       /**
        * Overridden; called whenever the cell updates. The cell will iterate
        * through each available condition and apply formatting for those that
@@ -260,6 +273,7 @@
         if (this.__P_425_2.length == 0) {
           return cellInfo.style || "";
         }
+
         var i;
         var bTestPassed;
         var compareValue;
@@ -269,45 +283,59 @@
           "font-style": this.__P_425_5,
           "font-weight": this.__P_425_6
         };
+
         for (i = 0; i < this.__P_425_2.length; i++) {
           var test = this.__P_425_2[i];
           bTestPassed = false;
+
           if (this.__P_425_0.includes(test.condition)) {
             if (test.target == null) {
               compareValue = cellInfo.cellData;
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
+
             switch (test.condition) {
               case "==":
                 if (compareValue == test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case "!=":
                 if (compareValue != test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case ">":
                 if (compareValue > test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case "<":
                 if (compareValue < test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case ">=":
                 if (compareValue >= test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case "<=":
                 if (compareValue <= test.value1) {
                   bTestPassed = true;
                 }
+
                 break;
             }
           } else if (this.__P_425_1.includes(test.condition)) {
@@ -316,16 +344,20 @@
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
+
             switch (test.condition) {
               case "between":
                 if (compareValue >= test.value1 && compareValue <= test.value2) {
                   bTestPassed = true;
                 }
+
                 break;
+
               case "!between":
                 if (compareValue < test.value1 && compareValue > test.value2) {
                   bTestPassed = true;
                 }
+
                 break;
             }
           } else if (test.condition == "regex") {
@@ -334,21 +366,25 @@
             } else {
               compareValue = cellInfo.element.data[test.target];
             }
+
             var the_pattern = new RegExp(test.value1, "g");
             bTestPassed = the_pattern.test(compareValue);
-          }
+          } // Apply formatting, if any.
 
-          // Apply formatting, if any.
+
           if (bTestPassed) {
             this.__P_425_7(test, style);
           }
+
           var styleString = [];
+
           for (var key in style) {
             if (style[key]) {
               styleString.push(key, ":", style[key], ";");
             }
           }
         }
+
         return styleString.join("");
       }
     },
@@ -359,4 +395,4 @@
   qx.ui.progressive.renderer.table.cell.Conditional.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Conditional.js.map?dt=1677362764537
+//# sourceMappingURL=Conditional.js.map?dt=1685978145682

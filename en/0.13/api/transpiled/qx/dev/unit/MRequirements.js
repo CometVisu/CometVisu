@@ -52,6 +52,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -93,6 +94,7 @@
    */
   qx.Mixin.define("qx.dev.unit.MRequirements", {
     include: [qx.dev.unit.MRequirementsBasic],
+
     /*
     *****************************************************************************
        STATICS
@@ -103,6 +105,7 @@
        * repeating the check. */
       __P_190_0: null
     },
+
     /*
     *****************************************************************************
        MEMBERS
@@ -117,6 +120,7 @@
       hasHttp: function hasHttp() {
         return document.location.protocol.indexOf("http") == 0;
       },
+
       /**
        * Checks if the server supports PHP.
        *
@@ -126,6 +130,7 @@
         if (qx.dev.unit.MRequirements.__P_190_0 != null) {
           return qx.dev.unit.MRequirements.__P_190_0;
         }
+
         var url = qx.util.ResourceManager.getInstance().toUri("qx/test/xmlhttp/php_version.php");
         var req = new qx.bom.request.Xhr();
         req.onload = qx.lang.Function.bind(function () {
@@ -140,13 +145,16 @@
           qx.dev.unit.MRequirements.__P_190_0 = false;
         }, this);
         req.open("POST", url, false);
+
         try {
           req.send();
         } catch (ex) {
           qx.dev.unit.MRequirements.__P_190_0 = false;
         }
+
         return qx.dev.unit.MRequirements.__P_190_0;
       },
+
       /**
        * Checks if the application extends qx.application.Standalone
        *
@@ -160,6 +168,7 @@
           return false;
         }
       },
+
       /**
        * Checks if the application extends qx.application.Inline
        *
@@ -172,6 +181,7 @@
           return false;
         }
       },
+
       /**
        * Checks if the application extends qx.application.Native
        *
@@ -184,6 +194,7 @@
           return false;
         }
       },
+
       /**
        * Checks if the application is running in Google Chrome
        *
@@ -192,6 +203,7 @@
       hasChrome: function hasChrome() {
         return qx.core.Environment.get("browser.name") === "chrome";
       },
+
       /**
        * Checks if the application is running in Firefox
        *
@@ -200,6 +212,7 @@
       hasFirefox: function hasFirefox() {
         return qx.core.Environment.get("browser.name") === "firefox";
       },
+
       /**
        * Checks if the application is running in a browser using the Gecko engine
        *
@@ -208,6 +221,7 @@
       hasGecko: function hasGecko() {
         return qx.core.Environment.get("engine.name") == "gecko";
       },
+
       /**
        * Checks if the application is running in Internet Explorer
        *
@@ -216,6 +230,7 @@
       hasIe: function hasIe() {
         return qx.core.Environment.get("browser.name") === "ie";
       },
+
       /**
        * Checks if the application is running in a browser using the MSHTML engine
        *
@@ -224,6 +239,7 @@
       hasMshtml: function hasMshtml() {
         return qx.core.Environment.get("engine.name") == "mshtml";
       },
+
       /**
        * Checks if the application is running in a browser using the Opera engine
        *
@@ -232,6 +248,7 @@
       hasOpera: function hasOpera() {
         return qx.core.Environment.get("engine.name") == "opera";
       },
+
       /**
        * Checks if the application is running in a browser using the Webkit engine
        *
@@ -240,6 +257,7 @@
       hasWebkit: function hasWebkit() {
         return qx.core.Environment.get("engine.name") == "webkit";
       },
+
       /**
        * Checks if the application is NOT running on OS X
        *
@@ -248,6 +266,7 @@
       hasNoOsx: function hasNoOsx() {
         return qx.core.Environment.get("os.name") === "osx" ? false : true;
       },
+
       /**
        * Checks if the application is running on Windows 7
        *
@@ -257,6 +276,7 @@
         var isWin7 = qx.core.Environment.get("os.name") === "win" && qx.core.Environment.get("os.version") === "7";
         return isWin7 ? false : true;
       },
+
       /**
        * Checks if the application is running on Windows 10
        *
@@ -266,6 +286,7 @@
         var isWin10 = qx.core.Environment.get("os.name") === "win" && qx.core.Environment.get("os.version") === "10";
         return isWin10 ? false : true;
       },
+
       /**
        * Checks if the application is not running in a Google Chrome browser on Linux
        *
@@ -274,6 +295,7 @@
       hasNoChromeOnLinux: function hasNoChromeOnLinux() {
         return qx.core.Environment.get("browser.name") === "chrome" && qx.core.Environment.get("os.name") === "linux" ? false : true;
       },
+
       /**
        * Checks if the application is running on a client supporting async functions
        *
@@ -287,4 +309,4 @@
   qx.dev.unit.MRequirements.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequirements.js.map?dt=1677362733162
+//# sourceMappingURL=MRequirements.js.map?dt=1685978115922

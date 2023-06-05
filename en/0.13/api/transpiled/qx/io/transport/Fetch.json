@@ -177,6 +177,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public",
       "overriddenFrom": "qx.io.transport.ITransport",
       "appearsIn": [

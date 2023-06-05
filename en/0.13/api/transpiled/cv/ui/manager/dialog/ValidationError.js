@@ -24,6 +24,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ValidationError.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -48,11 +49,13 @@
    */
   qx.Class.define('cv.ui.manager.dialog.ValidationError', {
     extend: qxl.dialog.Dialog,
+
     /*
     ***********************************************
       CONSTRUCTOR
     ***********************************************
     */
+
     /**
      *
      * @param file {cv.ui.manager.model.FileItem}
@@ -62,6 +65,7 @@
      */
     construct: function construct(file, content, errors, properties) {
       var _this = this;
+
       this._file = file;
       this._content = content.split('\n');
       this._errors = errors;
@@ -76,6 +80,7 @@
         }
       });
     },
+
     /*
     ***********************************************
       EVENTS
@@ -84,6 +89,7 @@
     events: {
       action: 'qx.event.type.Data'
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -93,6 +99,7 @@
       _content: null,
       _errors: null,
       _rootListenerId: null,
+
       /**
        * @var {cv.ui.manager.model.FileItem}
        */
@@ -104,12 +111,15 @@
           });
         });
       },
+
       /**
        * Create the main content of the widget
        */
       _createWidgetContent: function _createWidgetContent() {
         var _this2 = this;
+
         var container = this._createDialogContainer();
+
         var vbox = new qx.ui.container.Composite(new qx.ui.layout.VBox(10));
         container.add(vbox);
         var prologue = this.tr('<h3>Config Errors</h3>\
@@ -130,9 +140,8 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         };
         var message = new qx.ui.basic.Label(prologue);
         message.set(labelOptions);
-        vbox.add(message);
+        vbox.add(message); // errors
 
-        // errors
         var errorBox = new qx.ui.container.Composite(new qx.ui.layout.VBox(0));
         var errorScroll = new qx.ui.container.Scroll(errorBox);
         errorScroll.set({
@@ -148,29 +157,38 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
           flex: 1
         });
         var errorLabels = new Map();
+
         this._errors.forEach(function (error) {
           var errorId = error.line + error.element + error.attribute;
           var label;
+
           if (!errorLabels.has(errorId)) {
             var codeSnippet = [];
             var startIndex = Math.max(0, error.line - 3);
             var endIndex = Math.min(_this2._content.length - 1, error.line + 2);
             var minIndent = Number.POSITIVE_INFINITY;
+
             for (var i = startIndex; i < endIndex; i++) {
               var line = _this2._content[i];
               var indent = line.search(/\S|$/);
+
               if (indent < minIndent && indent >= 0) {
                 minIndent = indent;
               }
+
               codeSnippet.push([i + 1, line.trimRight()]);
             }
+
             if (minIndent === Number.POSITIVE_INFINITY) {
               minIndent = 0;
             }
+
             codeSnippet = codeSnippet.map(function (line) {
               return line[0] + ': ' + qx.xml.String.escape(line[1].substr(minIndent));
             });
+
             var headline = _this2.tr('Line %1', error.line);
+
             label = new qx.ui.basic.Label("<h4>".concat(headline, "</h4><pre class=\"highlight\" style=\"background-color: black; padding: 8px;\" data-lang=\"text/xml\">").concat(codeSnippet.join('\n'), "</pre>"));
             label.set(labelOptions);
             errorLabels.set(errorId, label);
@@ -178,18 +196,19 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
           } else {
             label = errorLabels.get(errorId);
           }
+
           if (!error.message.startsWith('[facet')) {
             label.setValue(label.getValue() + "<p>".concat(error.message, "</p>"));
           }
         }, this);
+
         var option = new qx.ui.basic.Label(options);
         option.set(labelOptions);
-        vbox.add(option);
+        vbox.add(option); // buttons
 
-        // buttons
-        var buttonPane = this._createButtonPane();
+        var buttonPane = this._createButtonPane(); // close button
 
-        // close button
+
         var closeButton = new qx.ui.form.Button(this.tr('Cancel'));
         closeButton.addListener('execute', function () {
           return _this2.fireDataEvent('action', 'cancel');
@@ -209,6 +228,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
         this.add(container);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -218,6 +238,7 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
       this._content = null;
       this._errors = null;
       this._file = null;
+
       if (this._rootListenerId) {
         qx.core.Init.getApplication().getRoot().removeListenerById(this._rootListenerId);
         this._rootListenerId = null;
@@ -227,4 +248,4 @@ Only proceed to edit the file in the XML-Tree editor if you know what you are do
   cv.ui.manager.dialog.ValidationError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ValidationError.js.map?dt=1677362712163
+//# sourceMappingURL=ValidationError.js.map?dt=1685978094774

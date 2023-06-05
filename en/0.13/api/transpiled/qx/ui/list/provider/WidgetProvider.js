@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,6 +56,7 @@
     extend: qx.core.Object,
     implement: [qx.ui.virtual.core.IWidgetCellProvider, qx.ui.list.provider.IListProvider],
     include: [qx.ui.list.core.MWidgetController],
+
     /**
      * Creates the <code>WidgetProvider</code>
      *
@@ -65,15 +67,20 @@
       this._list = list;
       this._itemRenderer = this.createItemRenderer();
       this._groupRenderer = this.createGroupRenderer();
+
       this._itemRenderer.addListener("created", this._onItemCreated, this);
+
       this._groupRenderer.addListener("created", this._onGroupItemCreated, this);
+
       this._list.addListener("changeDelegate", this._onChangeDelegate, this);
     },
     members: {
       /** @type {qx.ui.virtual.cell.WidgetCell} the used item renderer */
       _itemRenderer: null,
+
       /** @type {qx.ui.virtual.cell.WidgetCell} the used group renderer */
       _groupRenderer: null,
+
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
@@ -82,10 +89,13 @@
       // interface implementation
       getCellWidget: function getCellWidget(row, column) {
         var widget = null;
+
         if (!this._list._isGroup(row)) {
           widget = this._itemRenderer.getCellWidget();
           widget.setUserData("cell.type", "item");
+
           this._bindItem(widget, this._list._lookup(row));
+
           if (this._list._manager.isItemSelected(row)) {
             this._styleSelectabled(widget);
           } else {
@@ -94,18 +104,22 @@
         } else {
           widget = this._groupRenderer.getCellWidget();
           widget.setUserData("cell.type", "group");
+
           this._bindGroupItem(widget, this._list._lookupGroup(row));
         }
+
         return widget;
       },
       // interface implementation
       poolCellWidget: function poolCellWidget(widget) {
         this._removeBindingsFrom(widget);
+
         if (widget.getUserData("cell.type") == "item") {
           this._itemRenderer.pool(widget);
         } else if (widget.getUserData("cell.type") == "group") {
           this._groupRenderer.pool(widget);
         }
+
         this._onPool(widget);
       },
       // interface implementation
@@ -115,11 +129,13 @@
       // interface implementation
       createItemRenderer: function createItemRenderer() {
         var createWidget = qx.util.Delegate.getMethod(this.getDelegate(), "createItem");
+
         if (createWidget == null) {
           createWidget = function createWidget() {
             return new qx.ui.form.ListItem();
           };
         }
+
         var renderer = new qx.ui.virtual.cell.WidgetCell();
         renderer.setDelegate({
           createWidget: createWidget
@@ -129,6 +145,7 @@
       // interface implementation
       createGroupRenderer: function createGroupRenderer() {
         var createWidget = qx.util.Delegate.getMethod(this.getDelegate(), "createGroupItem");
+
         if (createWidget == null) {
           createWidget = function createWidget() {
             var group = new qx.ui.basic.Label();
@@ -136,6 +153,7 @@
             return group;
           };
         }
+
         var renderer = new qx.ui.virtual.cell.WidgetCell();
         renderer.setDelegate({
           createWidget: createWidget
@@ -145,11 +163,13 @@
       // interface implementation
       styleSelectabled: function styleSelectabled(row) {
         var widget = this.__P_377_0(row);
+
         this._styleSelectabled(widget);
       },
       // interface implementation
       styleUnselectabled: function styleUnselectabled(row) {
         var widget = this.__P_377_0(row);
+
         this._styleUnselectabled(widget);
       },
       // interface implementation
@@ -157,18 +177,22 @@
         if (this._list._isGroup(row)) {
           return false;
         }
+
         var widget = this._list._layer.getRenderedCellWidget(row, 0);
+
         if (widget != null) {
           return widget.isEnabled();
         } else {
           return true;
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         INTERNAL API
       ---------------------------------------------------------------------------
       */
+
       /**
        * Styles a selected item.
        *
@@ -179,6 +203,7 @@
           selected: 1
         });
       },
+
       /**
        * Styles a not selected item.
        *
@@ -187,6 +212,7 @@
       _styleUnselectabled: function _styleUnselectabled(widget) {
         this.__P_377_1(widget, {});
       },
+
       /**
        * Calls the delegate <code>onPool</code> method when it is used in the
        * {@link #delegate} property.
@@ -195,15 +221,18 @@
        */
       _onPool: function _onPool(item) {
         var onPool = qx.util.Delegate.getMethod(this.getDelegate(), "onPool");
+
         if (onPool != null) {
           onPool(item);
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Event handler for the created item widget event.
        *
@@ -211,8 +240,10 @@
        */
       _onItemCreated: function _onItemCreated(event) {
         var widget = event.getData();
+
         this._configureItem(widget);
       },
+
       /**
        * Event handler for the created item widget event.
        *
@@ -220,8 +251,10 @@
        */
       _onGroupItemCreated: function _onGroupItemCreated(event) {
         var widget = event.getData();
+
         this._configureGroupItem(widget);
       },
+
       /**
        * Event handler for the change delegate event.
        *
@@ -229,19 +262,28 @@
        */
       _onChangeDelegate: function _onChangeDelegate(event) {
         this._itemRenderer.dispose();
+
         this._itemRenderer = this.createItemRenderer();
+
         this._itemRenderer.addListener("created", this._onItemCreated, this);
+
         this._groupRenderer.dispose();
+
         this._groupRenderer = this.createGroupRenderer();
+
         this._groupRenderer.addListener("created", this._onGroupItemCreated, this);
+
         this.removeBindings();
+
         this._list.getPane().fullUpdate();
       },
+
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Helper method to get the widget from the passed row.
        *
@@ -251,6 +293,7 @@
       __P_377_0: function __P_377_0(row) {
         return this._list._layer.getRenderedCellWidget(row, 0);
       },
+
       /**
        * Helper method to update the states from a widget.
        *
@@ -261,16 +304,19 @@
         if (widget == null) {
           return;
         }
+
         this._itemRenderer.updateStates(widget, states);
       }
     },
     destruct: function destruct() {
       this._itemRenderer.dispose();
+
       this._groupRenderer.dispose();
+
       this._itemRenderer = this._groupRenderer = null;
     }
   });
   qx.ui.list.provider.WidgetProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetProvider.js.map?dt=1677362760309
+//# sourceMappingURL=WidgetProvider.js.map?dt=1685978141290

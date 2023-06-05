@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,24 +37,25 @@
    */
   qx.Class.define("qx.dev.unit.TestLoaderNative", {
     extend: qx.application.Native,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       // overridden
       main: function main() {
-        qx.dev.unit.TestLoaderNative.superclass.prototype.main.call(this);
+        qx.dev.unit.TestLoaderNative.superclass.prototype.main.call(this); // Dependencies to loggers
 
-        // Dependencies to loggers
         qx.log.appender.Console;
         this.setTestNamespace(this._getClassNameFromUrl());
+
         if (window.top.jsUnitTestSuite) {
           this.runJsUnit();
           return;
         }
+
         if (window == window.top) {
           this.runStandAlone();
           return;
@@ -64,4 +66,4 @@
   qx.dev.unit.TestLoaderNative.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestLoaderNative.js.map?dt=1677362737096
+//# sourceMappingURL=TestLoaderNative.js.map?dt=1685978119946

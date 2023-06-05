@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -29,6 +30,7 @@
        * Richard Sternagel (rsternagel)
   
   ************************************************************************ */
+
   /**
    * This modules eases the communication with a RESTful web service by providing
    * a client-side wrapper of a REST resource.
@@ -59,4 +61,4 @@
   qx.module.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1677362746373
+//# sourceMappingURL=Rest.js.map?dt=1685978129221

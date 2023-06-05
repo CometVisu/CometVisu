@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,7 +40,6 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** Mapping of HTML entity names to the corresponding char code */
       TO_CHARCODE: {
@@ -51,7 +51,6 @@
         // <
         gt: 62,
         // >
-
         // http://www.w3.org/TR/REC-html40/sgml/entities.html
         // ISO 8859-1 characters
         nbsp: 160,
@@ -246,11 +245,9 @@
         // small thorn, Icelandic
         yuml: 255,
         // small y, dieresis or umlaut mark
-
         // Latin Extended-B
         fnof: 402,
         // latin small f with hook = function= florin, U+0192 ISOtech
-
         // Greek
         Alpha: 913,
         // greek capital letter alpha, U+0391
@@ -286,7 +283,6 @@
         // greek capital letter pi, U+03A0 ISOgrk3
         Rho: 929,
         // greek capital letter rho, U+03A1
-
         // there is no Sigmaf, and no U+03A2 character either
         Sigma: 931,
         // greek capital letter sigma,U+03A3 ISOgrk3
@@ -358,11 +354,9 @@
         // greek upsilon with hook symbol,U+03D2 NEW
         piv: 982,
         // greek pi symbol, U+03D6 ISOgrk3
-
         // General Punctuation
         bull: 8226,
         // bullet = black small circle,U+2022 ISOpub
-
         // bullet is NOT the same as bullet operator, U+2219
         hellip: 8230,
         // horizontal ellipsis = three dot leader,U+2026 ISOpub
@@ -374,7 +368,6 @@
         // overline = spacing overscore,U+203E NEW
         frasl: 8260,
         // fraction slash, U+2044 NEW
-
         // Letterlike Symbols
         weierp: 8472,
         // script capital P = power set= Weierstrass p, U+2118 ISOamso
@@ -386,7 +379,6 @@
         // trade mark sign, U+2122 ISOnum
         alefsym: 8501,
         // alef symbol = first transfinite cardinal,U+2135 NEW
-
         // alef symbol is NOT the same as hebrew letter alef,U+05D0 although the same glyph could be used to depict both characters
         // Arrows
         larr: 8592,
@@ -403,19 +395,16 @@
         // downwards arrow with corner leftwards= carriage return, U+21B5 NEW
         lArr: 8656,
         // leftwards double arrow, U+21D0 ISOtech
-
         // ISO 10646 does not say that lArr is the same as the 'is implied by' arrow but also does not have any other character for that function. So ? lArr can be used for 'is implied by' as ISOtech suggests
         uArr: 8657,
         // upwards double arrow, U+21D1 ISOamsa
         rArr: 8658,
         // rightwards double arrow,U+21D2 ISOtech
-
         // ISO 10646 does not say this is the 'implies' character but does not have another character with this function so ?rArr can be used for 'implies' as ISOtech suggests
         dArr: 8659,
         // downwards double arrow, U+21D3 ISOamsa
         hArr: 8660,
         // left right double arrow,U+21D4 ISOamsa
-
         // Mathematical Operators
         forall: 8704,
         // for all, U+2200 ISOtech
@@ -433,15 +422,12 @@
         // not an element of, U+2209 ISOtech
         ni: 8715,
         // contains as member, U+220B ISOtech
-
         // should there be a more memorable name than 'ni'?
         prod: 8719,
         // n-ary product = product sign,U+220F ISOamsb
-
         // prod is NOT the same character as U+03A0 'greek capital letter pi' though the same glyph might be used for both
         sum: 8721,
         // n-ary summation, U+2211 ISOamsb
-
         // sum is NOT the same character as U+03A3 'greek capital letter sigma' though the same glyph might be used for both
         minus: 8722,
         // minus sign, U+2212 ISOtech
@@ -469,7 +455,6 @@
         // therefore, U+2234 ISOtech
         sim: 8764,
         // tilde operator = varies with = similar to,U+223C ISOtech
-
         // tilde operator is NOT the same character as the tilde, U+007E,although the same glyph might be used to represent both
         cong: 8773,
         // approximately equal to, U+2245 ISOtech
@@ -487,7 +472,6 @@
         // subset of, U+2282 ISOtech
         sup: 8835,
         // superset of, U+2283 ISOtech
-
         // note that nsup, 'not a superset of, U+2283' is not covered by the Symbol font encoding and is not included. Should it be, for symmetry?It is in ISOamsn  --> <!ENTITY nsub": 8836,  //not a subset of, U+2284 ISOamsn
         sube: 8838,
         // subset of or equal to, U+2286 ISOtech
@@ -501,7 +485,6 @@
         // up tack = orthogonal to = perpendicular,U+22A5 ISOtech
         sdot: 8901,
         // dot operator, U+22C5 ISOamsb
-
         // dot operator is NOT the same character as U+00B7 middle dot
         // Miscellaneous Technical
         lceil: 8968,
@@ -514,20 +497,16 @@
         // right floor, U+230B ISOamsc
         lang: 9001,
         // left-pointing angle bracket = bra,U+2329 ISOtech
-
         // lang is NOT the same character as U+003C 'less than' or U+2039 'single left-pointing angle quotation mark'
         rang: 9002,
         // right-pointing angle bracket = ket,U+232A ISOtech
-
         // rang is NOT the same character as U+003E 'greater than' or U+203A 'single right-pointing angle quotation mark'
         // Geometric Shapes
         loz: 9674,
         // lozenge, U+25CA ISOpub
-
         // Miscellaneous Symbols
         spades: 9824,
         // black spade suit, U+2660 ISOpub
-
         // black here seems to mean filled as opposed to hollow
         clubs: 9827,
         // black club suit = shamrock,U+2663 ISOpub
@@ -535,13 +514,11 @@
         // black heart suit = valentine,U+2665 ISOpub
         diams: 9830,
         // black diamond suit, U+2666 ISOpub
-
         // Latin Extended-A
         OElig: 338,
         //  -- latin capital ligature OE,U+0152 ISOlat2
         oelig: 339,
         //  -- latin small ligature oe, U+0153 ISOlat2
-
         // ligature is a misnomer, this is a separate character in some languages
         Scaron: 352,
         //  -- latin capital letter S with caron,U+0160 ISOlat2
@@ -549,13 +526,11 @@
         //  -- latin small letter s with caron,U+0161 ISOlat2
         Yuml: 376,
         //  -- latin capital letter Y with diaeresis,U+0178 ISOlat2
-
         // Spacing Modifier Letters
         circ: 710,
         //  -- modifier letter circumflex accent,U+02C6 ISOpub
         tilde: 732,
         // small tilde, U+02DC ISOdia
-
         // General Punctuation
         ensp: 8194,
         // en space, U+2002 ISOpub
@@ -600,7 +575,9 @@
         // single right-pointing angle quotation mark,U+203A ISO proposed
         // rsaquo is proposed but not yet ISO standardized
         euro: 8364 //  -- euro sign, U+20AC NEW
+
       },
+
       /**
        * Escapes the characters in a <code>String</code> using HTML entities.
        *
@@ -619,6 +596,7 @@
       escape: function escape(str) {
         return qx.util.StringEscape.escape(str, qx.bom.String.FROM_CHARCODE);
       },
+
       /**
        * Unescapes a string containing entity escapes to a string
        * containing the actual Unicode characters corresponding to the
@@ -638,6 +616,7 @@
       unescape: function unescape(str) {
         return qx.util.StringEscape.unescape(str, qx.bom.String.TO_CHARCODE);
       },
+
       /**
        * Converts a plain text string into HTML.
        * This is similar to {@link #escape} but converts new lines to
@@ -656,6 +635,7 @@
           return map[chr] || chr;
         });
       },
+
       /**
        * Converts HTML to plain text.
        *
@@ -667,8 +647,7 @@
        * @return {String} plain text representation of the HTML string
        */
       toText: function toText(str) {
-        return qx.bom.String.unescape(str.replace(/\s+|<([^>])+>/gi, function (chr)
-        //return qx.bom.String.unescape(str.replace(/<\/?[^>]+(>|$)/gi, function(chr)
+        return qx.bom.String.unescape(str.replace(/\s+|<([^>])+>/gi, function (chr) //return qx.bom.String.unescape(str.replace(/<\/?[^>]+(>|$)/gi, function(chr)
         {
           if (chr.indexOf("<br") === 0) {
             return "\n";
@@ -680,6 +659,7 @@
         }));
       }
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -693,4 +673,4 @@
   qx.bom.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1677362726049
+//# sourceMappingURL=String.js.map?dt=1685978108245

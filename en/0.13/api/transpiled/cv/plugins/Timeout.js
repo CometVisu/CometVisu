@@ -22,6 +22,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Timeout.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -49,6 +50,7 @@
    */
   qx.Class.define('cv.plugins.Timeout', {
     extend: cv.ui.structure.pure.AbstractBasicWidget,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -57,8 +59,10 @@
     construct: function construct(props) {
       cv.ui.structure.pure.AbstractBasicWidget.constructor.call(this, props);
       this.__P_18_0 = 0;
+
       this.__P_18_1();
     },
+
     /*
     ******************************************************
       STATICS
@@ -96,6 +100,7 @@
         };
       }
     },
+
     /*
      ******************************************************
      PROPERTIES
@@ -115,6 +120,7 @@
         init: false
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -131,15 +137,17 @@
           this.debug('Timeout Set to : ' + this.getTime());
           this.debug('Target Page: ' + this.getTarget());
         }
+
         var deltaT = this.getTime() * 100;
         this.__P_18_5 = new qx.event.Timer(deltaT);
+
         this.__P_18_5.addListener('interval', this.timeoutTrigger, this);
-        this.__P_18_5.start();
 
-        // Reset Counter on every interaction
-        qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this);
+        this.__P_18_5.start(); // Reset Counter on every interaction
 
-        // Keep track of current page
+
+        qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this); // Keep track of current page
+
         qx.event.message.Bus.subscribe('path.pageChanged', function (ev) {
           var path = ev.getData();
           this.__P_18_2 = path;
@@ -161,27 +169,32 @@
         if (this.isDebug()) {
           this.debug('TIMEOUT: Got Trigger (' + this.__P_18_0 + ')');
         }
+
         this.__P_18_0++;
         this.__P_18_4 = this.getTarget();
+
         if (this.__P_18_0 >= 10) {
           this.__P_18_0 = 0;
           var pageNavigationHandler = cv.Application.structureController;
+
           if (this.__P_18_2 !== this.__P_18_4 && this.__P_18_3 !== this.__P_18_4) {
             if (this.isDebug()) {
               this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__P_18_4);
             }
+
             pageNavigationHandler.scrollToPage(this.__P_18_4);
-            pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
-            //templateEngine.updateTopNavigation();
+            pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0; //templateEngine.updateTopNavigation();
           } else {
             if (this.isDebug()) {
               this.debug('TIMEOUT: Already on page ' + this.__P_18_4);
             }
+
             pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           }
         }
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -198,4 +211,4 @@
   cv.plugins.Timeout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timeout.js.map?dt=1677362709648
+//# sourceMappingURL=Timeout.js.map?dt=1685978092537

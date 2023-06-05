@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +42,6 @@
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** Top padding of the content pane */
       contentPaddingTop: {
@@ -50,6 +50,7 @@
         apply: "_applyContentPadding",
         themeable: true
       },
+
       /** Right padding of the content pane */
       contentPaddingRight: {
         check: "Integer",
@@ -57,6 +58,7 @@
         apply: "_applyContentPadding",
         themeable: true
       },
+
       /** Bottom padding of the content pane */
       contentPaddingBottom: {
         check: "Integer",
@@ -64,6 +66,7 @@
         apply: "_applyContentPadding",
         themeable: true
       },
+
       /** Left padding of the content pane */
       contentPaddingLeft: {
         check: "Integer",
@@ -71,6 +74,7 @@
         apply: "_applyContentPadding",
         themeable: true
       },
+
       /**
        * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',
        * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'
@@ -86,11 +90,13 @@
         themeable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /**
@@ -104,6 +110,7 @@
         contentPaddingBottom: "setPaddingBottom",
         contentPaddingLeft: "setPaddingLeft"
       },
+
       /**
        * @type {Map} Maps property names of content padding to the themed setter of the padding
        *
@@ -115,6 +122,7 @@
         contentPaddingBottom: "setThemedPaddingBottom",
         contentPaddingLeft: "setThemedPaddingLeft"
       },
+
       /**
        * @type {Map} Maps property names of content padding to the resetter of the padding
        *
@@ -129,6 +137,7 @@
       // property apply
       _applyContentPadding: function _applyContentPadding(value, old, name, variant) {
         var target = this._getContentPaddingTarget();
+
         if (value == null) {
           var resetter = this.__P_311_2[name];
           target[resetter]();
@@ -148,4 +157,4 @@
   qx.ui.core.MContentPadding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MContentPadding.js.map?dt=1677362752106
+//# sourceMappingURL=MContentPadding.js.map?dt=1685978134484

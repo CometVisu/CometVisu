@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,11 +45,13 @@
    */
   qx.Class.define("qx.ui.virtual.behavior.Prefetch", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param scroller {qx.ui.virtual.core.Scroller} The scroller to prefetch
      * @param settings {Map} This map contains minimum and maximum pixels to
@@ -69,17 +72,19 @@
       this.setPrefetchX(settings.minLeft, settings.maxLeft, settings.minRight, settings.maxRight);
       this.setPrefetchY(settings.minAbove, settings.maxAbove, settings.minBelow, settings.maxBelow);
       this.__P_470_0 = new qx.event.Timer(this.getInterval());
+
       this.__P_470_0.addListener("interval", this._onInterval, this);
+
       if (scroller) {
         this.setScroller(scroller);
       }
     },
+
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
-
     properties: {
       /** @type {qx.ui.virtual.core.Scroller} The scroller to prefetch */
       scroller: {
@@ -88,6 +93,7 @@
         init: null,
         apply: "_applyScroller"
       },
+
       /** @type {Integer} Polling interval */
       interval: {
         check: "Integer",
@@ -95,18 +101,19 @@
         apply: "_applyInterval"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_470_1: null,
       __P_470_2: null,
       __P_470_0: null,
       __P_470_3: null,
       __P_470_4: null,
+
       /**
        * Configure horizontal prefetching
        *
@@ -118,6 +125,7 @@
       setPrefetchX: function setPrefetchX(minLeft, maxLeft, minRight, maxRight) {
         this.__P_470_1 = [minLeft, maxLeft, minRight, maxRight];
       },
+
       /**
        * Configure vertical prefetching
        *
@@ -129,16 +137,20 @@
       setPrefetchY: function setPrefetchY(minAbove, maxAbove, minBelow, maxBelow) {
         this.__P_470_2 = [minAbove, maxAbove, minBelow, maxBelow];
       },
+
       /**
        * Update prefetching
        */
       _onInterval: function _onInterval() {
         var px = this.__P_470_1;
+
         if (px[1] && px[3]) {
           this.getScroller().getPane().prefetchX(px[0], px[1], px[2], px[3]);
           qx.ui.core.queue.Manager.flush();
         }
+
         var py = this.__P_470_2;
+
         if (py[1] && py[3]) {
           this.getScroller().getPane().prefetchY(py[0], py[1], py[2], py[3]);
           qx.ui.core.queue.Manager.flush();
@@ -150,28 +162,28 @@
           if (this.__P_470_3) {
             old.getChildControl("scrollbar-x").removeListenerById(this.__P_470_3);
           }
+
           if (this.__P_470_4) {
             old.getChildControl("scrollbar-y").removeListenerById(this.__P_470_4);
           }
         }
+
         if (value) {
           if (!value.getContentElement().getDomElement()) {
             this.__P_470_0.stop();
+
             value.addListenerOnce("appear", this.__P_470_0.start, this.__P_470_0);
           } else {
             this.__P_470_0.restart();
-          }
-
-          //        if (value.hasChildControl("scrollbar-x"))
+          } //        if (value.hasChildControl("scrollbar-x"))
           //        {
-          this.__P_470_3 = value.getChildControl("scrollbar-x").addListener("scroll", this.__P_470_0.restart, this.__P_470_0);
 
-          //        }
+
+          this.__P_470_3 = value.getChildControl("scrollbar-x").addListener("scroll", this.__P_470_0.restart, this.__P_470_0); //        }
           //        if (value.hasChildControl("scrollbar-y"))
           //        {
-          this.__P_470_4 = value.getChildControl("scrollbar-y").addListener("scroll", this.__P_470_0.restart, this.__P_470_0);
 
-          //        }
+          this.__P_470_4 = value.getChildControl("scrollbar-y").addListener("scroll", this.__P_470_0.restart, this.__P_470_0); //        }
         } else {
           this.__P_470_0.stop();
         }
@@ -181,6 +193,7 @@
         this.__P_470_0.setInterval(value);
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -189,10 +202,11 @@
     destruct: function destruct() {
       this.setScroller(null);
       this.__P_470_1 = this.__P_470_2 = null;
+
       this._disposeObjects("__P_470_0");
     }
   });
   qx.ui.virtual.behavior.Prefetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prefetch.js.map?dt=1677362769608
+//# sourceMappingURL=Prefetch.js.map?dt=1685978150904

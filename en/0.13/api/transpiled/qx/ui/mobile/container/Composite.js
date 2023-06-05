@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,21 +69,25 @@
   qx.Class.define("qx.ui.mobile.container.Composite", {
     extend: qx.ui.mobile.core.Widget,
     include: [qx.ui.mobile.core.MChildrenHandling, qx.ui.mobile.core.MLayoutHandling],
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param layout {qx.ui.mobile.layout.Abstract?null} The layout that should be used for this
      *     container
      */
     construct: function construct(layout) {
       qx.ui.mobile.core.Widget.constructor.call(this);
+
       if (layout) {
         this.setLayout(layout);
       }
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -96,4 +101,4 @@
   qx.ui.mobile.container.Composite.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Composite.js.map?dt=1677362761117
+//# sourceMappingURL=Composite.js.map?dt=1685978142145

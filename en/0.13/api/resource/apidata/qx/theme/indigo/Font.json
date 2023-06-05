@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 30,
+        "line": 31,
         "column": 0,
-        "index": 813
+        "index": 786
       },
       "end": {
-        "line": 75,
+        "line": 68,
         "column": 3,
-        "index": 1804
+        "index": 1461
       }
     },
     "jsdoc": {
@@ -26,14 +26,18 @@
           "body": "<p>The simple qooxdoo font theme.</p>"
         }
       ],
-      "@asset": [
+      "@usefont": [
         {
-          "name": "@asset",
-          "body": "qx/decoration/Indigo/font/JosefinSlab-SemiBold.woff"
+          "name": "@usefont",
+          "body": "JosefinSlab"
         },
         {
-          "name": "@asset",
-          "body": "qx/decoration/Indigo/font/JosefinSlab-SemiBold.ttf"
+          "name": "@usefont",
+          "body": "qx.theme.indigo.defaultFont"
+        },
+        {
+          "name": "@usefont",
+          "body": "qx.theme.monospace"
         }
       ]
     }

@@ -28,6 +28,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,10 +56,10 @@
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /** @type {Integer} The typical native scrollbar size in the environment */
       __P_141_0: null,
+
       /**
        * Get the typical native scrollbar size in the environment
        *
@@ -68,21 +69,27 @@
         if (this.__P_141_0 !== null) {
           return this.__P_141_0;
         }
+
         var Style = qx.bom.element.Style;
+
         var getStyleSize = function getStyleSize(el, propertyName) {
           return parseInt(Style.get(el, propertyName), 10) || 0;
         };
+
         var getBorderRight = function getBorderRight(el) {
           return Style.get(el, "borderRightStyle") == "none" ? 0 : getStyleSize(el, "borderRightWidth");
         };
+
         var getBorderLeft = function getBorderLeft(el) {
           return Style.get(el, "borderLeftStyle") == "none" ? 0 : getStyleSize(el, "borderLeftWidth");
         };
+
         var getInsetRight = qx.core.Environment.select("engine.name", {
           mshtml: function mshtml(el) {
             if (Style.get(el, "overflowY") == "hidden" || el.clientWidth == 0) {
               return getBorderRight(el);
             }
+
             return Math.max(0, el.offsetWidth - el.clientLeft - el.clientWidth);
           },
           "default": function _default(el) {
@@ -93,12 +100,15 @@
               var sbv = ov == "scroll" || ov == "-moz-scrollbars-vertical" ? 16 : 0;
               return Math.max(0, getBorderRight(el) + sbv);
             }
+
             return Math.max(0, el.offsetWidth - el.clientWidth - getBorderLeft(el));
           }
         });
+
         var getScrollBarSizeRight = function getScrollBarSizeRight(el) {
           return getInsetRight(el) - getBorderRight(el);
         };
+
         var t = document.createElement("div");
         var s = t.style;
         s.height = s.width = "100px";
@@ -109,11 +119,13 @@
         document.body.removeChild(t);
         return this.__P_141_0;
       },
+
       /*
       ---------------------------------------------------------------------------
         SCROLL INTO VIEW
       ---------------------------------------------------------------------------
       */
+
       /**
        * The method scrolls the element into view (x-axis only).
        *
@@ -135,12 +147,10 @@
         var elementLocation, elementLeft, elementRight, elementWidth;
         var leftOffset, rightOffset, scrollDiff;
         var alignLeft = align === "left";
-        var alignRight = align === "right";
+        var alignRight = align === "right"; // Correcting stop position
 
-        // Correcting stop position
-        stop = stop ? stop.parentNode : doc;
+        stop = stop ? stop.parentNode : doc; // Go up the parent chain
 
-        // Go up the parent chain
         while (parent && parent != stop) {
           // "overflow" is always visible for both: document.body and document.documentElement
           if (parent.scrollWidth > parent.clientWidth && (parent === body || qx.bom.element.Style.get(parent, "overflowY") != "visible")) {
@@ -165,55 +175,49 @@
               parentLeftBorder = parseInt(qx.bom.element.Style.get(parent, "borderLeftWidth"), 10) || 0;
               parentRightBorder = parseInt(qx.bom.element.Style.get(parent, "borderRightWidth"), 10) || 0;
               parentScrollBarWidth = parentOuterWidth - parentClientWidth - parentLeftBorder - parentRightBorder;
-            }
+            } // Calculate element data
 
-            // Calculate element data
+
             elementLocation = qx.bom.element.Location.get(element);
             elementLeft = elementLocation.left;
             elementRight = elementLocation.right;
-            elementWidth = element.offsetWidth;
+            elementWidth = element.offsetWidth; // Relative position from each other
 
-            // Relative position from each other
             leftOffset = elementLeft - parentLeft - parentLeftBorder;
-            rightOffset = elementRight - parentRight + parentRightBorder;
+            rightOffset = elementRight - parentRight + parentRightBorder; // Scroll position rearrangement
 
-            // Scroll position rearrangement
-            scrollDiff = 0;
+            scrollDiff = 0; // be sure that element is on left edge
 
-            // be sure that element is on left edge
             if (alignLeft) {
               scrollDiff = leftOffset;
-            }
-
-            // be sure that element is on right edge
+            } // be sure that element is on right edge
             else if (alignRight) {
               scrollDiff = rightOffset + parentScrollBarWidth;
-            }
-
-            // element must go down
+            } // element must go down
             // * when current left offset is smaller than 0
             // * when width is bigger than the inner width of the parent
             else if (leftOffset < 0 || elementWidth > parentClientWidth) {
               scrollDiff = leftOffset;
-            }
-
-            // element must go up
+            } // element must go up
             // * when current right offset is bigger than 0
             else if (rightOffset > 0) {
               scrollDiff = rightOffset + parentScrollBarWidth;
             }
-            parent.scrollLeft += scrollDiff;
 
-            // Browsers that follow the CSSOM View Spec fire the "scroll"
+            parent.scrollLeft += scrollDiff; // Browsers that follow the CSSOM View Spec fire the "scroll"
             // event asynchronously. See #intoViewY for more details.
+
             qx.event.Registration.fireNonBubblingEvent(parent, "scroll");
           }
+
           if (parent === body) {
             break;
           }
+
           parent = parent.parentNode;
         }
       },
+
       /**
        * The method scrolls the element into view (y-axis only).
        *
@@ -235,12 +239,10 @@
         var elementLocation, elementTop, elementBottom, elementHeight;
         var topOffset, bottomOffset, scrollDiff;
         var alignTop = align === "top";
-        var alignBottom = align === "bottom";
+        var alignBottom = align === "bottom"; // Correcting stop position
 
-        // Correcting stop position
-        stop = stop ? stop.parentNode : doc;
+        stop = stop ? stop.parentNode : doc; // Go up the parent chain
 
-        // Go up the parent chain
         while (parent && parent != stop) {
           // "overflow" is always visible for both: document.body and document.documentElement
           if (parent.scrollHeight > parent.clientHeight && (parent === body || qx.bom.element.Style.get(parent, "overflowY") != "visible")) {
@@ -265,46 +267,36 @@
               parentTopBorder = parseInt(qx.bom.element.Style.get(parent, "borderTopWidth"), 10) || 0;
               parentBottomBorder = parseInt(qx.bom.element.Style.get(parent, "borderBottomWidth"), 10) || 0;
               parentScrollBarHeight = parentOuterHeight - parentClientHeight - parentTopBorder - parentBottomBorder;
-            }
+            } // Calculate element data
 
-            // Calculate element data
+
             elementLocation = qx.bom.element.Location.get(element);
             elementTop = elementLocation.top;
             elementBottom = elementLocation.bottom;
-            elementHeight = element.offsetHeight;
+            elementHeight = element.offsetHeight; // Relative position from each other
 
-            // Relative position from each other
             topOffset = elementTop - parentTop - parentTopBorder;
-            bottomOffset = elementBottom - parentBottom + parentBottomBorder;
+            bottomOffset = elementBottom - parentBottom + parentBottomBorder; // Scroll position rearrangement
 
-            // Scroll position rearrangement
-            scrollDiff = 0;
+            scrollDiff = 0; // be sure that element is on top edge
 
-            // be sure that element is on top edge
             if (alignTop) {
               scrollDiff = topOffset;
-            }
-
-            // be sure that element is on bottom edge
+            } // be sure that element is on bottom edge
             else if (alignBottom) {
               scrollDiff = bottomOffset + parentScrollBarHeight;
-            }
-
-            // element must go down
+            } // element must go down
             // * when current top offset is smaller than 0
             // * when height is bigger than the inner height of the parent
             else if (topOffset < 0 || elementHeight > parentClientHeight) {
               scrollDiff = topOffset;
-            }
-
-            // element must go up
+            } // element must go up
             // * when current bottom offset is bigger than 0
             else if (bottomOffset > 0) {
               scrollDiff = bottomOffset + parentScrollBarHeight;
             }
-            parent.scrollTop += scrollDiff;
 
-            // Browsers that follow the CSSOM View Spec fire the "scroll"
+            parent.scrollTop += scrollDiff; // Browsers that follow the CSSOM View Spec fire the "scroll"
             // event asynchronously.
             //
             // The widget layer expects the "scroll" event to be fired before
@@ -312,14 +304,18 @@
             // since a duplicate "scroll" should not cause any issues and it
             // is hard to track which version of the browser engine started to
             // follow the CSSOM Spec. Fixes [BUG #4570].
+
             qx.event.Registration.fireNonBubblingEvent(parent, "scroll");
           }
+
           if (parent === body) {
             break;
           }
+
           parent = parent.parentNode;
         }
       },
+
       /**
        * The method scrolls the element into view.
        *
@@ -344,4 +340,4 @@
   qx.bom.element.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1677362728501
+//# sourceMappingURL=Scroll.js.map?dt=1685978110921

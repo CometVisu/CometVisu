@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,6 +48,7 @@
     statics: {
       /** @type {Array} Registry for all known aspect wishes */
       __P_155_0: [],
+
       /**
        * This function is used by {@link qx.Class#define} to wrap all statics, members and
        * constructors.
@@ -63,33 +65,43 @@
         var after = [];
         var reg = this.__P_155_0;
         var entry;
+
         for (var i = 0; i < reg.length; i++) {
           entry = reg[i];
+
           if ((entry.type == null || type == entry.type || entry.type == "*") && (entry.name == null || fullName.match(entry.name))) {
             entry.pos == -1 ? before.push(entry.fcn) : after.push(entry.fcn);
           }
         }
+
         if (before.length === 0 && after.length === 0) {
           return fcn;
         }
+
         var wrapper = function wrapper() {
           for (var i = 0; i < before.length; i++) {
             before[i].call(this, fullName, fcn, type, arguments);
           }
+
           var ret = fcn.apply(this, arguments);
+
           for (var i = 0; i < after.length; i++) {
             after[i].call(this, fullName, fcn, type, arguments, ret);
           }
+
           return ret;
         };
+
         if (type !== "static") {
           wrapper.self = fcn.self;
           wrapper.base = fcn.base;
         }
+
         fcn.wrapper = wrapper;
         wrapper.original = fcn;
         return wrapper;
       },
+
       /**
        * Register a function to be called just before or after each time
        * one of the selected functions is called.
@@ -121,4 +133,4 @@
   qx.core.Aspect.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Aspect.js.map?dt=1677362729715
+//# sourceMappingURL=Aspect.js.map?dt=1685978112355

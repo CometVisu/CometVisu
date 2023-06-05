@@ -25,6 +25,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* UrlTrigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -53,6 +54,7 @@
   qx.Class.define('cv.ui.structure.pure.UrlTrigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
+
     /*
     ******************************************************
       PROPERTIES
@@ -73,6 +75,7 @@
         apply: '_applyUrl'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -102,14 +105,17 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.UrlTrigger.superclass.prototype._onDomReady.call(this);
+
         this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
       },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var actor = '<div class="actor switchUnpressed ';
+
         if (this.getAlign()) {
           actor += this.getAlign();
         }
+
         actor += '"><div class="value"></div></div>';
         return actor;
       },
@@ -120,6 +126,7 @@
         }
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -135,4 +142,4 @@
   cv.ui.structure.pure.UrlTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UrlTrigger.js.map?dt=1677362717755
+//# sourceMappingURL=UrlTrigger.js.map?dt=1685978100553

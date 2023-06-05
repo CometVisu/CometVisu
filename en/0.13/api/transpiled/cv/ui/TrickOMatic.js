@@ -9,6 +9,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* TrickOMatic.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -34,6 +35,7 @@
    */
   qx.Class.define('cv.ui.TrickOMatic', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -43,16 +45,18 @@
       id: 0,
       run: function run() {
         var svg = this.getSVGDocument();
+
         if (!svg) {
           return;
-        }
+        } // Pipe-O-Matic:
 
-        // Pipe-O-Matic:
+
         var pipes = svg.querySelectorAll('.pipe_group');
         pipes.forEach(function (pipe_group) {
           pipe_group.querySelectorAll('path').forEach(function (path) {
             var halfsize = Math.floor(parseFloat(path.style.strokeWidth) / 2);
             var opacity = 0.15;
+
             for (var width = halfsize - 1; width > 0; width--) {
               opacity -= 0.1 / halfsize;
               var n = path.cloneNode();
@@ -64,9 +68,8 @@
             }
           });
         });
-        var model = cv.data.Model.getInstance();
+        var model = cv.data.Model.getInstance(); // Flow-O-Matic: add Paths
 
-        // Flow-O-Matic: add Paths
         var segmentLength = 40;
         pipes = svg.querySelectorAll('.show_flow');
         pipes.forEach(function (pipe_group) {
@@ -75,10 +78,12 @@
             if (path.className.animVal.split(' ').indexOf('pipe-o-matic_clone') > 0) {
               return;
             }
+
             var stroke = path.style.stroke;
             var r;
             var g;
             var b;
+
             if (stroke[0] === '#') {
               r = parseInt(path.style.stroke.substring(1, 3), 16);
               g = parseInt(path.style.stroke.substring(3, 5), 16);
@@ -89,17 +94,20 @@
               g = colors[1];
               b = colors[2];
             }
+
             var rTarget = 0; // this color should be somehow user setable but how?
+
             var gTarget = 0;
             var bTarget = 0;
-
             /**
              * @param v
              */
+
             function toHex(v) {
               var ret = parseInt(v).toString(16);
               return ret.length < 2 ? '0' + ret : ret;
             }
+
             for (var i = segmentLength / 2; i > 0; i -= 2) {
               var factor = 1 - i / (segmentLength / 2);
               var offset = (length + segmentLength / 2 - i) % segmentLength;
@@ -108,48 +116,54 @@
               var n = path.cloneNode();
               n.className.baseVal += ' flow-o-matic_clone';
               n.style.stroke = '#' + toHex(r * factor + rTarget * (1 - factor)) + toHex(g * factor + gTarget * (1 - factor)) + toHex(b * factor + bTarget * (1 - factor));
+
               if (high > offset) {
                 n.style.strokeDasharray = [high - offset, low, offset, 0];
               } else {
                 n.style.strokeDasharray = [0, low - (offset - high), high, offset - high];
               }
+
               n.style.strokeDashoffset = length % (0.5 * segmentLength);
               pipe_group.insertBefore(n, path.nextElementSibling);
             }
+
             length += path.getTotalLength();
             var activeValues = pipe_group.getAttribute('data-cometvisu-active');
+
             if (activeValues) {
               activeValues.split(' ').forEach(function (address) {
                 var id = 'flow_' + cv.ui.TrickOMatic.id++;
                 model.addAddress(address, id);
                 model.addUpdateListener(address, function (address, data) {
                   cv.ui.TrickOMatic.updateActive(pipe_group, data);
-                });
-                // init
+                }); // init
+
                 cv.ui.TrickOMatic.updateActive(pipe_group, cv.data.Model.getInstance().getState(address));
               });
             }
           });
-        });
-
-        // Flow-O-Matic: add CSS
+        }); // Flow-O-Matic: add CSS
         // helper for multiple bowser support
+
         /**
          * @param name
          * @param content
          */
+
         function createKeyframe(name, content) {
           return '@keyframes ' + name + ' {\n' + content + '}\n' + '@-moz-keyframes ' + name + ' {\n' + content + '}\n' + '@-webkit-keyframes ' + name + ' {\n' + content + '}\n';
         }
-        var keyframes = createKeyframe('move', 'from {  stroke-dashoffset: ' + segmentLength + ';  }\nto   {  stroke-dashoffset: 0;  }\n');
 
+        var keyframes = createKeyframe('move', 'from {  stroke-dashoffset: ' + segmentLength + ';  }\nto   {  stroke-dashoffset: 0;  }\n');
         /**
          * @param style
          * @param value
          */
+
         function createCSSRules(style, value) {
           return "".concat(style, ": ").concat(value, ";\n          -moz-").concat(style, ": ").concat(value, ";\n          -webkit-").concat(style, ": ").concat(value, ";\n        ");
         }
+
         keyframes += '.flow_active path {\n' + createCSSRules('animation-duration', '3s') + createCSSRules('animation-name', 'move') + createCSSRules('animation-timing-function', 'linear') + createCSSRules('animation-iteration-count', 'infinite') + '}\n';
         var s = svg.createElementNS('http://www.w3.org/2000/svg', 'style');
         s.setAttribute('type', 'text/css');
@@ -169,4 +183,4 @@
   cv.ui.TrickOMatic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TrickOMatic.js.map?dt=1677362778371
+//# sourceMappingURL=TrickOMatic.js.map?dt=1685978160800

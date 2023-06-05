@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,17 +40,18 @@
   qx.Class.define("qx.ui.core.FocusHandler", {
     extend: qx.core.Object,
     type: "singleton",
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this);
+      qx.core.Object.constructor.call(this); // Create data structure
 
-      // Create data structure
       this.__P_308_0 = {};
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -64,17 +66,18 @@
         init: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_308_0: null,
       __P_308_1: null,
       __P_308_2: null,
       __P_308_3: null,
+
       /**
        * Connects to a top-level root element (which initially receives
        * all events of the root). This are normally all page and application
@@ -91,6 +94,7 @@
         root.addListener("activate", this._onActivate, this, true);
         root.addListener("deactivate", this._onDeactivate, this, true);
       },
+
       /**
        * Registers a widget as a focus root. A focus root comes
        * with an separate tab sequence handling.
@@ -101,6 +105,7 @@
         // this.debug("Add focusRoot: " + widget);
         this.__P_308_0[widget.toHashCode()] = widget;
       },
+
       /**
        * Deregisters a previous added widget.
        *
@@ -110,6 +115,7 @@
         // this.debug("Remove focusRoot: " + widget);
         delete this.__P_308_0[widget.toHashCode()];
       },
+
       /**
        * Get the active widget
        *
@@ -119,6 +125,7 @@
       getActiveWidget: function getActiveWidget() {
         return this.__P_308_1;
       },
+
       /**
        * Whether the given widget is the active one
        *
@@ -128,6 +135,7 @@
       isActive: function isActive(widget) {
         return this.__P_308_1 == widget;
       },
+
       /**
        * Get the focused widget
        *
@@ -137,6 +145,7 @@
       getFocusedWidget: function getFocusedWidget() {
         return this.__P_308_2;
       },
+
       /**
        * Whether the given widget is the focused one.
        *
@@ -146,6 +155,7 @@
       isFocused: function isFocused(widget) {
         return this.__P_308_2 == widget;
       },
+
       /**
        * Whether the given widgets acts as a focus root.
        *
@@ -155,11 +165,13 @@
       isFocusRoot: function isFocusRoot(widget) {
         return !!this.__P_308_0[widget.toHashCode()];
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
+
       /**
        * Internal event handler for activate event.
        *
@@ -167,14 +179,15 @@
        */
       _onActivate: function _onActivate(e) {
         var target = e.getTarget();
-        this.__P_308_1 = target;
-        //this.debug("active: " + target);
+        this.__P_308_1 = target; //this.debug("active: " + target);
 
         var root = this.__P_308_5(target);
+
         if (root != this.__P_308_3) {
           this.__P_308_3 = root;
         }
       },
+
       /**
        * Internal event handler for deactivate event.
        *
@@ -182,10 +195,12 @@
        */
       _onDeactivate: function _onDeactivate(e) {
         var target = e.getTarget();
+
         if (this.__P_308_1 == target) {
           this.__P_308_1 = null;
         }
       },
+
       /**
        * Internal event handler for focusin event.
        *
@@ -193,11 +208,13 @@
        */
       _onFocusIn: function _onFocusIn(e) {
         var target = e.getTarget();
+
         if (target != this.__P_308_2) {
           this.__P_308_2 = target;
           target.visualizeFocus();
         }
       },
+
       /**
        * Internal event handler for focusout event.
        *
@@ -205,11 +222,13 @@
        */
       _onFocusOut: function _onFocusOut(e) {
         var target = e.getTarget();
+
         if (target == this.__P_308_2) {
           this.__P_308_2 = null;
           target.visualizeBlur();
         }
       },
+
       /**
        * Internal event handler for TAB key.
        *
@@ -219,32 +238,35 @@
         if (e.getKeyIdentifier() != "Tab" || !this.isUseTabNavigation()) {
           return;
         }
+
         if (!this.__P_308_3) {
           return;
-        }
+        } // Stop all key-events with a TAB keycode
 
-        // Stop all key-events with a TAB keycode
+
         e.stopPropagation();
-        e.preventDefault();
+        e.preventDefault(); // Support shift key to reverse widget detection order
 
-        // Support shift key to reverse widget detection order
         var current = this.__P_308_2;
+
         if (!e.isShiftPressed()) {
           var next = current ? this.__P_308_6(current) : this.__P_308_7();
         } else {
           var next = current ? this.__P_308_8(current) : this.__P_308_9();
-        }
+        } // If there was a widget found, focus it
 
-        // If there was a widget found, focus it
+
         if (next) {
           next.tabFocus();
         }
       },
+
       /*
       ---------------------------------------------------------------------------
         UTILS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Finds the next focus root, starting with the given widget.
        *
@@ -254,19 +276,24 @@
        */
       __P_308_5: function __P_308_5(widget) {
         var roots = this.__P_308_0;
+
         while (widget) {
           if (roots[widget.toHashCode()]) {
             return widget;
           }
+
           widget = widget.getLayoutParent();
         }
+
         return null;
       },
+
       /*
       ---------------------------------------------------------------------------
         TAB SUPPORT IMPLEMENTATION
       ---------------------------------------------------------------------------
       */
+
       /**
        * Compares the order of two widgets
        *
@@ -278,40 +305,43 @@
       __P_308_10: function __P_308_10(widget1, widget2) {
         if (widget1 === widget2) {
           return 0;
-        }
+        } // Sort-Check #1: Tab-Index
 
-        // Sort-Check #1: Tab-Index
+
         var tab1 = widget1.getTabIndex() || 0;
         var tab2 = widget2.getTabIndex() || 0;
+
         if (tab1 != tab2) {
           return tab1 - tab2;
-        }
+        } // Computing location
 
-        // Computing location
+
         var el1 = widget1.getContentElement().getDomElement();
         var el2 = widget2.getContentElement().getDomElement();
         var Location = qx.bom.element.Location;
         var loc1 = Location.get(el1);
-        var loc2 = Location.get(el2);
+        var loc2 = Location.get(el2); // Sort-Check #2: Top-Position
 
-        // Sort-Check #2: Top-Position
         if (loc1.top != loc2.top) {
           return loc1.top - loc2.top;
-        }
+        } // Sort-Check #3: Left-Position
 
-        // Sort-Check #3: Left-Position
+
         if (loc1.left != loc2.left) {
           return loc1.left - loc2.left;
-        }
+        } // Sort-Check #4: zIndex
 
-        // Sort-Check #4: zIndex
+
         var z1 = widget1.getZIndex();
         var z2 = widget2.getZIndex();
+
         if (z1 != z2) {
           return z1 - z2;
         }
+
         return 0;
       },
+
       /**
        * Returns the first widget.
        *
@@ -321,6 +351,7 @@
       __P_308_7: function __P_308_7() {
         return this.__P_308_11(this.__P_308_3, null);
       },
+
       /**
        * Returns the last widget.
        *
@@ -330,6 +361,7 @@
       __P_308_9: function __P_308_9() {
         return this.__P_308_12(this.__P_308_3, null);
       },
+
       /**
        * Returns the widget after the given one.
        *
@@ -338,21 +370,28 @@
        */
       __P_308_6: function __P_308_6(widget) {
         var root = this.__P_308_3;
+
         if (root == widget) {
           return this.__P_308_7();
         }
+
         while (widget && widget.getAnonymous()) {
           widget = widget.getLayoutParent();
         }
+
         if (widget == null) {
           return [];
         }
+
         var result = [];
+
         this.__P_308_13(root, widget, result);
+
         result.sort(this.__P_308_10);
         var len = result.length;
         return len > 0 ? result[0] : this.__P_308_7();
       },
+
       /**
        * Returns the widget before the given one.
        *
@@ -361,26 +400,34 @@
        */
       __P_308_8: function __P_308_8(widget) {
         var root = this.__P_308_3;
+
         if (root == widget) {
           return this.__P_308_9();
         }
+
         while (widget && widget.getAnonymous()) {
           widget = widget.getLayoutParent();
         }
+
         if (widget == null) {
           return [];
         }
+
         var result = [];
+
         this.__P_308_14(root, widget, result);
+
         result.sort(this.__P_308_10);
         var len = result.length;
         return len > 0 ? result[len - 1] : this.__P_308_9();
       },
+
       /*
       ---------------------------------------------------------------------------
         INTERNAL API USED BY METHODS ABOVE
       ---------------------------------------------------------------------------
       */
+
       /**
        * Collects all widgets which are after the given widget in
        * the given parent widget. Append all found children to the
@@ -393,21 +440,24 @@
       __P_308_13: function __P_308_13(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
-        for (var i = 0, l = children.length; i < l; i++) {
-          child = children[i];
 
-          // Filter spacers etc.
+        for (var i = 0, l = children.length; i < l; i++) {
+          child = children[i]; // Filter spacers etc.
+
           if (!(child instanceof qx.ui.core.Widget)) {
             continue;
           }
+
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable() && this.__P_308_10(widget, child) < 0) {
               result.push(child);
             }
+
             this.__P_308_13(child, widget, result);
           }
         }
       },
+
       /**
        * Collects all widgets which are before the given widget in
        * the given parent widget. Append all found children to the
@@ -420,21 +470,24 @@
       __P_308_14: function __P_308_14(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
-        for (var i = 0, l = children.length; i < l; i++) {
-          child = children[i];
 
-          // Filter spacers etc.
+        for (var i = 0, l = children.length; i < l; i++) {
+          child = children[i]; // Filter spacers etc.
+
           if (!(child instanceof qx.ui.core.Widget)) {
             continue;
           }
+
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable() && this.__P_308_10(widget, child) > 0) {
               result.push(child);
             }
+
             this.__P_308_14(child, widget, result);
           }
         }
       },
+
       /**
        * Find first (positioned) widget. (Sorted by coordinates, zIndex, etc.)
        *
@@ -445,28 +498,30 @@
       __P_308_11: function __P_308_11(parent, firstWidget) {
         var children = parent.getLayoutChildren();
         var child;
-        for (var i = 0, l = children.length; i < l; i++) {
-          child = children[i];
 
-          // Filter spacers etc.
+        for (var i = 0, l = children.length; i < l; i++) {
+          child = children[i]; // Filter spacers etc.
+
           if (!(child instanceof qx.ui.core.Widget)) {
             continue;
-          }
+          } // Ignore focus roots completely
 
-          // Ignore focus roots completely
+
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
               if (firstWidget == null || this.__P_308_10(child, firstWidget) < 0) {
                 firstWidget = child;
               }
-            }
+            } // Deep iteration into children hierarchy
 
-            // Deep iteration into children hierarchy
+
             firstWidget = this.__P_308_11(child, firstWidget);
           }
         }
+
         return firstWidget;
       },
+
       /**
        * Find last (positioned) widget. (Sorted by coordinates, zIndex, etc.)
        *
@@ -477,29 +532,31 @@
       __P_308_12: function __P_308_12(parent, lastWidget) {
         var children = parent.getLayoutChildren();
         var child;
-        for (var i = 0, l = children.length; i < l; i++) {
-          child = children[i];
 
-          // Filter spacers etc.
+        for (var i = 0, l = children.length; i < l; i++) {
+          child = children[i]; // Filter spacers etc.
+
           if (!(child instanceof qx.ui.core.Widget)) {
             continue;
-          }
+          } // Ignore focus roots completely
 
-          // Ignore focus roots completely
+
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
               if (lastWidget == null || this.__P_308_10(child, lastWidget) > 0) {
                 lastWidget = child;
               }
-            }
+            } // Deep iteration into children hierarchy
 
-            // Deep iteration into children hierarchy
+
             lastWidget = this.__P_308_12(child, lastWidget);
           }
         }
+
         return lastWidget;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -507,10 +564,11 @@
     */
     destruct: function destruct() {
       this._disposeMap("__P_308_0");
+
       this.__P_308_2 = this.__P_308_1 = this.__P_308_3 = null;
     }
   });
   qx.ui.core.FocusHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FocusHandler.js.map?dt=1677362751790
+//# sourceMappingURL=FocusHandler.js.map?dt=1685978134222

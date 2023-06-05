@@ -30,6 +30,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ToastManager.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -57,6 +58,7 @@
     implement: cv.core.notifications.IHandler,
     include: cv.ui.MHandleMessage,
     type: 'singleton',
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -83,14 +85,14 @@
             }, this, message.duration);
           }
         }.bind(this)
-      });
-
-      // as the Mixins constructor has not been called yet, the messages array has not been initialized
+      }); // as the Mixins constructor has not been called yet, the messages array has not been initialized
       // so we defer this call here to make sure everything is in place
+
       new qx.util.DeferredCall(function () {
         cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
       }, this).schedule();
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -105,6 +107,7 @@
         init: 5000
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -114,6 +117,7 @@
       __P_529_0: null,
       __P_529_1: null,
       __P_529_2: false,
+
       /**
        * Attach to dom element and style it
        */
@@ -121,15 +125,18 @@
         if (!this.__P_529_0) {
           // check if there is one (might be restored from cache)
           this.__P_529_0 = document.querySelector(this.getRootElementId());
+
           if (!this.__P_529_0) {
             this.__P_529_0 = qx.dom.Element.create('div', {
               id: this.getRootElementId()
             });
           }
         }
+
         if (document.querySelectorAll(this.getRootElementId()).length === 0) {
           document.body.appendChild(this.__P_529_0);
         }
+
         if (document.querySelectorAll('#ToastTemplate').length === 0) {
           var template = qx.dom.Element.create('script', {
             id: 'ToastTemplate',
@@ -138,17 +145,20 @@
           });
           document.body.appendChild(template);
         }
+
         this._list = new qx.data.controller.website.List(this._messages, this.__P_529_0, 'ToastTemplate');
         qx.event.Registration.addListener(this.__P_529_0, 'tap', this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
           return false;
-        }
-        // default is to delete the toast
+        } // default is to delete the toast
+
+
         return this.deleteMessage(message.id);
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -157,10 +167,13 @@
     destruct: function destruct() {
       if (this.__P_529_1) {
         this.__P_529_1.stop();
+
         this.__P_529_1 = null;
       }
+
       if (this.__P_529_0) {
         this.__P_529_0.parentNode.removeChild(this.__P_529_0);
+
         this.__P_529_0 = null;
       }
     }
@@ -168,4 +181,4 @@
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1677362775337
+//# sourceMappingURL=ToastManager.js.map?dt=1685978157347

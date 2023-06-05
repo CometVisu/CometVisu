@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,12 +45,12 @@
    */
   qx.Class.define("qx.dev.unit.TestResult", {
     extend: qx.core.Object,
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * Fired before the test is started
@@ -57,35 +58,41 @@
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       startTest: "qx.event.type.Data",
+
       /** Fired after the test has finished
        *
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       endTest: "qx.event.type.Data",
+
       /**
        * Fired if the test raised an {@link qx.core.AssertionError}
        *
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       error: "qx.event.type.Data",
+
       /**
        * Fired if the test failed with a different exception
        *
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       failure: "qx.event.type.Data",
+
       /**
        * Fired if an asynchronous test sets a timeout
        *
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       wait: "qx.event.type.Data",
+
       /**
        * Fired if the test was skipped, e.g. because a requirement was not met.
        *
        * Event data: The test {@link qx.dev.unit.TestFunction}
        */
       skip: "qx.event.type.Data",
+
       /**
        * Fired if a performance test returned results.
        *
@@ -93,12 +100,12 @@
        */
       endMeasurement: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
-
     statics: {
       /**
        * Run a test function using a given test result
@@ -111,14 +118,15 @@
         testResult.run(test, testFunction);
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       _timeout: null,
+
       /**
        * Run the test
        *
@@ -131,32 +139,43 @@
        */
       run: function run(test, testFunction, self, resume) {
         var _this = this;
+
         if (!this._timeout) {
           this._timeout = {};
         }
+
         var testClass = test.getTestClass();
+
         if (!testClass.hasListener("assertionFailed")) {
           testClass.addListener("assertionFailed", function (ev) {
             var error = [{
               exception: ev.getData(),
               test: test
             }];
+
             _this.fireDataEvent("failure", error);
           });
         }
+
         if (resume && !this._timeout[test.getFullName()]) {
           this._timeout[test.getFullName()] = "failed";
           var qxEx = new qx.type.BaseError("Error in asynchronous test", "resume() called before wait()");
+
           this._createError("failure", [qxEx], test);
+
           this.fireDataEvent("endTest", test);
           return undefined;
         }
+
         this.fireDataEvent("startTest", test);
+
         if (this._timeout[test.getFullName()]) {
           if (this._timeout[test.getFullName()] !== "failed") {
             this._timeout[test.getFullName()].stop();
+
             this._timeout[test.getFullName()].dispose();
           }
+
           delete this._timeout[test.getFullName()];
         } else {
           try {
@@ -167,11 +186,14 @@
                 // Do nothing if there's already a timeout for this test
                 return;
               }
+
               if (ex.getDelay()) {
                 var that = this;
+
                 var defaultTimeoutFunction = function defaultTimeoutFunction() {
                   throw new qx.core.AssertionError("Asynchronous Test Error in setUp", "Timeout of " + ex.getDelay() + " ms reached before resume() was called.");
                 };
+
                 var timeoutFunc = ex.getDeferredFunction() ? ex.getDeferredFunction() : defaultTimeoutFunction;
                 var context = ex.getContext() ? ex.getContext() : window;
                 this._timeout[test.getFullName()] = qx.event.Timer.once(function () {
@@ -179,6 +201,7 @@
                 }, that, ex.getDelay());
                 this.fireDataEvent("wait", test);
               }
+
               return undefined;
             } else {
               try {
@@ -187,8 +210,10 @@
                 /* Any exceptions here are likely caused by setUp having failed
                  previously, so we'll ignore them. */
               }
+
               if (ex.classname == "qx.dev.unit.RequirementError") {
                 this._createError("skip", [ex], test);
+
                 this.fireDataEvent("endTest", test);
               } else {
                 if (ex instanceof qx.type.BaseError && ex.message == qx.type.BaseError.DEFAULTMESSAGE) {
@@ -196,28 +221,37 @@
                 } else {
                   ex.message = "setUp failed: " + ex.message;
                 }
+
                 this._createError("error", [ex], test);
+
                 this.fireDataEvent("endTest", test);
               }
+
               return undefined;
             }
           }
         }
+
         var returnValue;
+
         try {
           returnValue = testFunction.call(self || window);
         } catch (ex) {
           var error = true;
+
           if (ex instanceof qx.dev.unit.AsyncWrapper) {
             if (this._timeout[test.getFullName()]) {
               // Do nothing if there's already a timeout for this test
               return;
             }
+
             if (ex.getDelay()) {
               var that = this;
+
               var defaultTimeoutFunction = function defaultTimeoutFunction() {
                 throw new qx.core.AssertionError("Asynchronous Test Error", "Timeout of " + ex.getDelay() + " ms reached before resume() was called.");
               };
+
               var timeoutFunc = ex.getDeferredFunction() ? ex.getDeferredFunction() : defaultTimeoutFunction;
               var context = ex.getContext() ? ex.getContext() : window;
               this._timeout[test.getFullName()] = qx.event.Timer.once(function () {
@@ -227,23 +261,29 @@
             }
           } else if (ex instanceof qx.dev.unit.MeasurementResult) {
             error = false;
+
             this._createError("endMeasurement", [ex], test);
           } else {
             try {
               this.tearDown(test);
             } catch (except) {}
+
             if (ex.classname == "qx.core.AssertionError") {
               this._createError("failure", [ex], test);
+
               this.fireDataEvent("endTest", test);
             } else if (ex.classname == "qx.dev.unit.RequirementError") {
               this._createError("skip", [ex], test);
+
               this.fireDataEvent("endTest", test);
             } else {
               this._createError("error", [ex], test);
+
               this.fireDataEvent("endTest", test);
             }
           }
         }
+
         if (!error) {
           try {
             this.tearDown(test);
@@ -254,19 +294,22 @@
             } else {
               ex.message = "tearDown failed: " + ex.message;
             }
+
             this._createError("error", [ex], test);
+
             this.fireDataEvent("endTest", test);
           }
         }
-
         /*
         if (!this._timeout[test.getFullName()]) {
           this.__removeListeners(test.getTestClass()[test.getName()]);
         }
         */
 
+
         return returnValue;
       },
+
       /**
        * Fire an error event
        *
@@ -276,6 +319,7 @@
        */
       _createError: function _createError(eventName, exceptions, test) {
         var errors = [];
+
         for (var i = 0, l = exceptions.length; i < l; i++) {
           // WebKit and Opera
           errors.push({
@@ -283,8 +327,10 @@
             test: test
           });
         }
+
         this.fireDataEvent(eventName, errors);
       },
+
       /**
        * Wraps the AUT's qx.event.Registration.addListener function so that it
        * stores references to all added listeners in an array attached to the
@@ -296,21 +342,27 @@
        */
       __P_195_0: function __P_195_0(testFunction) {
         testFunction._addedListeners = [];
+
         if (!qx.event.Registration.addListenerOriginal) {
           qx.event.Registration.addListenerOriginal = qx.event.Registration.addListener;
+
           qx.event.Registration.addListener = function (target, type, listener, self, capture) {
             var listenerId = qx.event.Registration.addListenerOriginal(target, type, listener, self, capture);
             var store = true;
+
             if (target.classname && target.classname.indexOf("testrunner.unit") == 0 || self && self.classname && self.classname.indexOf("testrunner.unit") == 0) {
               store = false;
             }
+
             if (store) {
               testFunction._addedListeners.push([target, listenerId]);
             }
+
             return listenerId;
           };
         }
       },
+
       /**
        * Removes any listeners left over after a test's run.
        *
@@ -320,15 +372,18 @@
         // remove listeners added during test execution
         if (testFunction._addedListeners) {
           var listeners = testFunction._addedListeners;
+
           for (var i = 0, l = listeners.length; i < l; i++) {
             var target = listeners[i][0];
             var id = listeners[i][1];
+
             try {
               qx.event.Registration.removeListenerById(target, id);
             } catch (ex) {}
           }
         }
       },
+
       /**
        * Calls the generic tearDown method on the test class, then the specific
        * tearDown for the test, if one is defined.
@@ -339,18 +394,24 @@
         test.tearDown();
         var testClass = test.getTestClass();
         var specificTearDown = "tearDown" + qx.lang.String.firstUp(test.getName());
+
         if (testClass[specificTearDown]) {
           testClass[specificTearDown]();
         }
+
         testClass.doAutoDispose();
+
         if (false && qx.dev.Debug.disposeProfilingActive) {
           var testName = test.getFullName();
           var undisposed = qx.dev.Debug.stopDisposeProfiling();
+
           for (var i = 0; i < undisposed.length; i++) {
             var trace;
+
             if (undisposed[i].stackTrace) {
               trace = undisposed[i].stackTrace.join("\n");
             }
+
             window.top.qx.log.Logger.warn("Undisposed object in " + testName + ": " + undisposed[i].object.classname + "[" + undisposed[i].object.toHashCode() + "]" + "\n" + trace);
           }
         }
@@ -363,4 +424,4 @@
   qx.dev.unit.TestResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestResult.js.map?dt=1677362737172
+//# sourceMappingURL=TestResult.js.map?dt=1685978120024

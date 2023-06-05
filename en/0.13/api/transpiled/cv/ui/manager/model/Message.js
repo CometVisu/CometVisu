@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Message.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -35,6 +36,7 @@
    */
   qx.Class.define('cv.ui.manager.model.Message', {
     extend: qx.core.Object,
+
     /*
     ***********************************************
       PROPERTIES
@@ -66,4 +68,4 @@
   cv.ui.manager.model.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1677362714436
+//# sourceMappingURL=Message.js.map?dt=1685978097208

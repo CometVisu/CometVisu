@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -105,6 +106,7 @@
       _templates: {
         button: "<li><button>{{{content}}}</button></li>"
       },
+
       /**
        * Factory method which converts the current collection into a collection of
        * accordion widgets.
@@ -117,9 +119,11 @@
       accordion: function accordion(preselected) {
         var accordion = new qx.ui.website.Accordion(this);
         accordion.setConfig("orientation", "vertical");
+
         if (preselected) {
           accordion.setConfig("preselected", preselected);
         }
+
         accordion.init();
         return accordion;
       }
@@ -136,4 +140,4 @@
   qx.ui.website.Accordion.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Accordion.js.map?dt=1677362771020
+//# sourceMappingURL=Accordion.js.map?dt=1685978152401

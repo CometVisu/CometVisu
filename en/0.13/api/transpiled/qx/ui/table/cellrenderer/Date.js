@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +37,12 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Date", {
     extend: qx.ui.table.cellrenderer.Conditional,
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * DateFormat used to format the data.
@@ -52,15 +53,16 @@
         nullable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       _getContentHtml: function _getContentHtml(cellInfo) {
         var df = this.getDateFormat();
+
         if (df) {
           if (cellInfo.value) {
             return qx.bom.String.escape(df.format(cellInfo.value));
@@ -80,4 +82,4 @@
   qx.ui.table.cellrenderer.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1677362765973
+//# sourceMappingURL=Date.js.map?dt=1685978147161

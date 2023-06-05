@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,6 +60,7 @@
     statics: {
       /** Internal storage of the CSS names */
       __P_143_0: qx.core.Environment.get("css.transform"),
+
       /**
        * Method to apply multiple transforms at once to the given element. It
        * takes a map containing the transforms you want to apply plus the values
@@ -80,11 +82,13 @@
        */
       transform: function transform(el, transforms) {
         var transformCss = this.getTransformValue(transforms);
+
         if (this.__P_143_0 != null) {
           var style = this.__P_143_0["name"];
           el.style[style] = transformCss;
         }
       },
+
       /**
        * Translates the given element by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -96,6 +100,7 @@
           translate: value
         });
       },
+
       /**
        * Scales the given element by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -107,6 +112,7 @@
           scale: value
         });
       },
+
       /**
        * Rotates the given element by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -118,6 +124,7 @@
           rotate: value
         });
       },
+
       /**
        * Skews the given element by the given value. For further details, take
        * a look at the {@link #transform} method.
@@ -129,6 +136,7 @@
           skew: value
         });
       },
+
       /**
        * Converts the given map to a string which could be added to a css
        * stylesheet.
@@ -138,12 +146,15 @@
        */
       getCss: function getCss(transforms) {
         var transformCss = this.getTransformValue(transforms);
+
         if (this.__P_143_0 != null) {
           var style = this.__P_143_0["name"];
           return qx.bom.Style.getCssName(style) + ":" + transformCss + ";";
         }
+
         return "";
       },
+
       /**
        * Sets the transform-origin property of the given element.
        *
@@ -157,6 +168,7 @@
           el.style[this.__P_143_0["origin"]] = value;
         }
       },
+
       /**
        * Returns the transform-origin property of the given element.
        *
@@ -168,8 +180,10 @@
         if (this.__P_143_0 != null) {
           return el.style[this.__P_143_0["origin"]];
         }
+
         return "";
       },
+
       /**
        * Sets the transform-style property of the given element.
        *
@@ -182,6 +196,7 @@
           el.style[this.__P_143_0["style"]] = value;
         }
       },
+
       /**
        * Returns the transform-style property of the given element.
        *
@@ -194,8 +209,10 @@
         if (this.__P_143_0 != null) {
           return el.style[this.__P_143_0["style"]];
         }
+
         return "";
       },
+
       /**
        * Sets the perspective property of the given element.
        *
@@ -209,6 +226,7 @@
           el.style[this.__P_143_0["perspective"]] = value + "px";
         }
       },
+
       /**
        * Returns the perspective property of the given element.
        *
@@ -220,8 +238,10 @@
         if (this.__P_143_0 != null) {
           return el.style[this.__P_143_0["perspective"]];
         }
+
         return "";
       },
+
       /**
        * Sets the perspective-origin property of the given element.
        *
@@ -235,6 +255,7 @@
           el.style[this.__P_143_0["perspective-origin"]] = value;
         }
       },
+
       /**
        * Returns the perspective-origin property of the given element.
        *
@@ -245,18 +266,22 @@
       getPerspectiveOrigin: function getPerspectiveOrigin(el) {
         if (this.__P_143_0 != null) {
           var value = el.style[this.__P_143_0["perspective-origin"]];
+
           if (value != "") {
             return value;
           } else {
             var valueX = el.style[this.__P_143_0["perspective-origin"] + "X"];
             var valueY = el.style[this.__P_143_0["perspective-origin"] + "Y"];
+
             if (valueX != "") {
               return valueX + " " + valueY;
             }
           }
         }
+
         return "";
       },
+
       /**
        * Sets the backface-visibility property of the given element.
        *
@@ -269,6 +294,7 @@
           el.style[this.__P_143_0["backface-visibility"]] = value ? "visible" : "hidden";
         }
       },
+
       /**
        * Returns the backface-visibility property of the given element.
        *
@@ -280,8 +306,10 @@
         if (this.__P_143_0 != null) {
           return el.style[this.__P_143_0["backface-visibility"]] == "visible";
         }
+
         return true;
       },
+
       /**
        * Converts the given transforms map to a valid CSS string.
        *
@@ -291,29 +319,28 @@
       getTransformValue: function getTransformValue(transforms) {
         var value = "";
         var properties3d = ["translate", "scale"];
-        for (var property in transforms) {
-          var params = transforms[property];
 
-          // if an array is given
+        for (var property in transforms) {
+          var params = transforms[property]; // if an array is given
+
           if (qx.Bootstrap.isArray(params)) {
             // use 3d properties for translate and scale if all 3 parameter are given
             if (params.length === 3 && properties3d.indexOf(property) > -1 && qx.core.Environment.get("css.transform.3d")) {
               value += this._compute3dProperty(property, params);
-            }
-
-            // use axis related properties
+            } // use axis related properties
             else {
               value += this._computeAxisProperties(property, params);
-            }
+            } // case for single values given
 
-            // case for single values given
           } else {
             // single value case
             value += property + "(" + params + ") ";
           }
         }
+
         return value.trim();
       },
+
       /**
        * Helper function to create 3d property.
        *
@@ -325,14 +352,17 @@
       _compute3dProperty: function _compute3dProperty(property, params) {
         var cssValue = "";
         property += "3d";
+
         for (var i = 0; i < params.length; i++) {
           if (params[i] == null) {
             params[i] = 0;
           }
         }
+
         cssValue += property + "(" + params.join(", ") + ") ";
         return cssValue;
       },
+
       /**
        * Helper function to create axis related properties.
        *
@@ -344,14 +374,17 @@
       _computeAxisProperties: function _computeAxisProperties(property, params) {
         var value = "";
         var dimensions = ["X", "Y", "Z"];
+
         for (var i = 0; i < params.length; i++) {
           if (params[i] == null || i == 2 && !qx.core.Environment.get("css.transform.3d")) {
             continue;
           }
+
           value += property + dimensions[i] + "(";
           value += params[i];
           value += ") ";
         }
+
         return value;
       }
     }
@@ -359,4 +392,4 @@
   qx.bom.element.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1677362728631
+//# sourceMappingURL=Transform.js.map?dt=1685978111056

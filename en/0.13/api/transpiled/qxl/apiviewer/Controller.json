@@ -330,6 +330,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "protected"
     },
     "__selectItem": {

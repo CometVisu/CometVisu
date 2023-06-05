@@ -17,6 +17,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,6 +58,7 @@
    */
   qx.Class.define("qx.ui.mobile.container.Navigation", {
     extend: qx.ui.mobile.container.Composite,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -65,14 +67,18 @@
     construct: function construct() {
       qx.ui.mobile.container.Composite.constructor.call(this, new qx.ui.mobile.layout.VBox());
       this.__P_387_0 = this._createNavigationBar();
+
       if (this.__P_387_0) {
         this._add(this.__P_387_0);
       }
+
       this.__P_387_1 = this._createContent();
+
       this._add(this.__P_387_1, {
         flex: 1
       });
     },
+
     /*
     *****************************************************************************
        PROPERTIES
@@ -85,6 +91,7 @@
         init: "navigation"
       }
     },
+
     /*
     *****************************************************************************
        EVENTS
@@ -94,12 +101,12 @@
       /** Fired when the navigation bar gets updated */
       update: "qx.event.type.Data"
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_387_0: null,
       __P_387_1: null,
@@ -112,6 +119,7 @@
       remove: function remove(widget) {
         this.getContent().remove(widget);
       },
+
       /**
        * Returns the content container. Add all your widgets to this container.
        *
@@ -120,6 +128,7 @@
       getContent: function getContent() {
         return this.__P_387_1;
       },
+
       /**
        * Returns the assigned card layout.
        * @return {qx.ui.mobile.layout.Card} assigned Card Layout.
@@ -127,6 +136,7 @@
       getLayout: function getLayout() {
         return this.__P_387_2;
       },
+
       /**
        * Returns the navigation bar.
        *
@@ -135,6 +145,7 @@
       getNavigationBar: function getNavigationBar() {
         return this.__P_387_0;
       },
+
       /**
        * Creates the content container.
        *
@@ -142,23 +153,30 @@
        */
       _createContent: function _createContent() {
         this.__P_387_2 = new qx.ui.mobile.layout.Card();
+
         this.__P_387_2.addListener("updateLayout", this._onUpdateLayout, this);
+
         this.__P_387_2.addListener("animationStart", this._onAnimationStart, this);
+
         this.__P_387_2.addListener("animationEnd", this._onAnimationEnd, this);
+
         return new qx.ui.mobile.container.Composite(this.__P_387_2);
       },
+
       /**
        * Handler for the "animationStart" event on the layout.
        */
       _onAnimationStart: function _onAnimationStart() {
         this.addCssClass("blocked");
       },
+
       /**
        * Handler for the "animationEnd" event on the layout.
        */
       _onAnimationEnd: function _onAnimationEnd() {
         this.removeCssClass("blocked");
       },
+
       /**
        * Event handler. Called when the "updateLayout" event occurs.
        *
@@ -168,10 +186,12 @@
         var data = evt.getData();
         var widget = data.widget;
         var action = data.action;
+
         if (action == "visible") {
           this._update(widget);
         }
       },
+
       /**
        * Updates the navigation bar depending on the set widget.
        *
@@ -179,33 +199,45 @@
        */
       _update: function _update(widget) {
         var navigationBar = this.getNavigationBar();
+
         this._setStyle("transitionDuration", widget.getNavigationBarToggleDuration() + "s");
+
         if (widget.isNavigationBarHidden()) {
           this.addCssClass("hidden");
         } else {
           navigationBar.show();
           this.removeCssClass("hidden");
         }
+
         navigationBar.removeAll();
+
         if (widget.basename) {
           this._setAttribute("data-target-page", widget.basename.toLowerCase());
         }
+
         var leftContainer = widget.getLeftContainer();
+
         if (leftContainer) {
           navigationBar.add(leftContainer);
         }
+
         var title = widget.getTitleWidget();
+
         if (title) {
           navigationBar.add(title, {
             flex: 1
           });
         }
+
         var rightContainer = widget.getRightContainer();
+
         if (rightContainer) {
           navigationBar.add(rightContainer);
         }
+
         this.fireDataEvent("update", widget);
       },
+
       /**
        * Creates the navigation bar.
        *
@@ -218,11 +250,13 @@
     destruct: function destruct() {
       this.getLayout().removeListener("animationStart", this._onAnimationStart, this);
       this.getLayout().removeListener("animationEnd", this._onAnimationEnd, this);
+
       this._disposeObjects("__P_387_0", "__P_387_1", "__P_387_2");
+
       this.__P_387_0 = this.__P_387_1 = this.__P_387_2 = null;
     }
   });
   qx.ui.mobile.container.Navigation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Navigation.js.map?dt=1677362761407
+//# sourceMappingURL=Navigation.js.map?dt=1685978142457

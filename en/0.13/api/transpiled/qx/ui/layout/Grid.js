@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -104,11 +105,13 @@
    */
   qx.Class.define("qx.ui.layout.Grid", {
     extend: qx.ui.layout.Abstract,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param spacingX {Integer?0} The horizontal spacing between grid cells.
      *     Sets {@link #spacingX}.
@@ -119,19 +122,21 @@
       qx.ui.layout.Abstract.constructor.call(this);
       this.__P_371_0 = [];
       this.__P_371_1 = [];
+
       if (spacingX) {
         this.setSpacingX(spacingX);
       }
+
       if (spacingY) {
         this.setSpacingY(spacingY);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /**
        * The horizontal spacing between grid cells.
@@ -141,6 +146,7 @@
         init: 0,
         apply: "_applyLayoutChange"
       },
+
       /**
        * The vertical spacing between grid cells.
        */
@@ -149,6 +155,7 @@
         init: 0,
         apply: "_applyLayoutChange"
       },
+
       /**
        * Allow growing of spanning cells' widths beyond the accumulated widths of the columns.
        * The default behavior (init value false) is that the width of the spanning cell is
@@ -162,12 +169,12 @@
         apply: "_applyLayoutChange"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /** @type {Array} 2D array of grid cell data */
       __P_371_2: null,
@@ -177,8 +184,10 @@
       __P_371_4: null,
       __P_371_5: null,
       __P_371_6: null,
+
       /** @type {Array} cached row heights */
       __P_371_7: null,
+
       /** @type {Array} cached column widths */
       __P_371_8: null,
       // overridden
@@ -196,6 +205,7 @@
         },
         "false": null
       }),
+
       /**
        * Rebuild the internal representation of the grid
        */
@@ -205,58 +215,65 @@
         var rowSpans = [];
         var maxRowIndex = -1;
         var maxColIndex = -1;
+
         var children = this._getLayoutChildren();
+
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
           var props = child.getLayoutProperties();
           var row = props.row;
           var column = props.column;
           props.colSpan = props.colSpan || 1;
-          props.rowSpan = props.rowSpan || 1;
+          props.rowSpan = props.rowSpan || 1; // validate arguments
 
-          // validate arguments
           if (row == null || column == null) {
             throw new Error("The layout properties 'row' and 'column' of the child widget '" + child + "' must be defined!");
           }
+
           if (grid[row] && grid[row][column]) {
             throw new Error("Cannot add widget '" + child + "'!. " + "There is already a widget '" + grid[row][column] + "' in this cell (" + row + ", " + column + ") for '" + this + "'");
           }
+
           for (var x = column; x < column + props.colSpan; x++) {
             for (var y = row; y < row + props.rowSpan; y++) {
               if (grid[y] == undefined) {
                 grid[y] = [];
               }
+
               grid[y][x] = child;
               maxColIndex = Math.max(maxColIndex, x);
               maxRowIndex = Math.max(maxRowIndex, y);
             }
           }
+
           if (props.rowSpan > 1) {
             rowSpans.push(child);
           }
+
           if (props.colSpan > 1) {
             colSpans.push(child);
           }
-        }
-
-        // make sure all columns are defined so that accessing the grid using
+        } // make sure all columns are defined so that accessing the grid using
         // this.__grid[column][row] will never raise an exception
+
+
         for (var y = 0; y <= maxRowIndex; y++) {
           if (grid[y] == undefined) {
             grid[y] = [];
           }
         }
+
         this.__P_371_2 = grid;
         this.__P_371_3 = colSpans;
         this.__P_371_4 = rowSpans;
         this.__P_371_5 = maxRowIndex;
         this.__P_371_6 = maxColIndex;
         this.__P_371_7 = null;
-        this.__P_371_8 = null;
+        this.__P_371_8 = null; // Clear invalidation marker
 
-        // Clear invalidation marker
         delete this._invalidChildrenCache;
       },
+
       /**
        * Stores data for a grid row
        *
@@ -266,6 +283,7 @@
        */
       _setRowData: function _setRowData(row, key, value) {
         var rowData = this.__P_371_0[row];
+
         if (!rowData) {
           this.__P_371_0[row] = {};
           this.__P_371_0[row][key] = value;
@@ -273,6 +291,7 @@
           rowData[key] = value;
         }
       },
+
       /**
        * Stores data for a grid column
        *
@@ -282,6 +301,7 @@
        */
       _setColumnData: function _setColumnData(column, key, value) {
         var colData = this.__P_371_1[column];
+
         if (!colData) {
           this.__P_371_1[column] = {};
           this.__P_371_1[column][key] = value;
@@ -289,6 +309,7 @@
           colData[key] = value;
         }
       },
+
       /**
        * Shortcut to set both horizontal and vertical spacing between grid cells
        * to the same value.
@@ -301,6 +322,7 @@
         this.setSpacingX(spacing);
         return this;
       },
+
       /**
        * Set the default cell alignment for a column. This alignment can be
        * overridden on a per cell basis by setting the cell's content widget's
@@ -319,10 +341,14 @@
        */
       setColumnAlign: function setColumnAlign(column, hAlign, vAlign) {
         this._setColumnData(column, "hAlign", hAlign);
+
         this._setColumnData(column, "vAlign", vAlign);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get a map of the column's alignment.
        *
@@ -337,6 +363,7 @@
           hAlign: colData.hAlign || "left"
         };
       },
+
       /**
        * Set the default cell alignment for a row. This alignment can be
        * overridden on a per cell basis by setting the cell's content widget's
@@ -355,10 +382,14 @@
        */
       setRowAlign: function setRowAlign(row, hAlign, vAlign) {
         this._setRowData(row, "hAlign", hAlign);
+
         this._setRowData(row, "vAlign", vAlign);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get a map of the row's alignment.
        *
@@ -373,6 +404,7 @@
           hAlign: rowData.hAlign || "left"
         };
       },
+
       /**
        * Get the widget located in the cell. If a the cell is empty or the widget
        * has a {@link qx.ui.core.Widget#visibility} value of <code>exclude</code>,
@@ -386,9 +418,11 @@
         if (this._invalidChildrenCache) {
           this.__P_371_9();
         }
+
         var row = this.__P_371_2[row] || {};
         return row[column] || null;
       },
+
       /**
        * Get the number of rows in the grid layout.
        *
@@ -398,8 +432,10 @@
         if (this._invalidChildrenCache) {
           this.__P_371_9();
         }
+
         return this.__P_371_5 + 1;
       },
+
       /**
        * Get the number of columns in the grid layout.
        *
@@ -409,8 +445,10 @@
         if (this._invalidChildrenCache) {
           this.__P_371_9();
         }
+
         return this.__P_371_6 + 1;
       },
+
       /**
        * Get a map of the cell's alignment. For vertical alignment the row alignment
        * takes precedence over the column alignment. For horizontal alignment it is
@@ -429,6 +467,7 @@
         var rowData = this.__P_371_0[row];
         var colData = this.__P_371_1[column];
         var widget = this.__P_371_2[row][column];
+
         if (widget) {
           var widgetProps = {
             vAlign: widget.getAlignY(),
@@ -436,20 +475,20 @@
           };
         } else {
           widgetProps = {};
-        }
-
-        // compute vAlign
+        } // compute vAlign
         // precedence : widget -> row -> column
+
+
         if (widgetProps.vAlign) {
           vAlign = widgetProps.vAlign;
         } else if (rowData && rowData.vAlign) {
           vAlign = rowData.vAlign;
         } else if (colData && colData.vAlign) {
           vAlign = colData.vAlign;
-        }
-
-        // compute hAlign
+        } // compute hAlign
         // precedence : widget -> column -> row
+
+
         if (widgetProps.hAlign) {
           hAlign = widgetProps.hAlign;
         } else if (colData && colData.hAlign) {
@@ -457,11 +496,13 @@
         } else if (rowData && rowData.hAlign) {
           hAlign = rowData.hAlign;
         }
+
         return {
           vAlign: vAlign,
           hAlign: hAlign
         };
       },
+
       /**
        * Set the flex value for a grid column.
        * By default the column flex value is <code>0</code>.
@@ -472,9 +513,12 @@
        */
       setColumnFlex: function setColumnFlex(column, flex) {
         this._setColumnData(column, "flex", flex);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the flex value of a grid column.
        *
@@ -485,6 +529,7 @@
         var colData = this.__P_371_1[column] || {};
         return colData.flex !== undefined ? colData.flex : 0;
       },
+
       /**
        * Set the flex value for a grid row.
        * By default the row flex value is <code>0</code>.
@@ -495,9 +540,12 @@
        */
       setRowFlex: function setRowFlex(row, flex) {
         this._setRowData(row, "flex", flex);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the flex value of a grid row.
        *
@@ -509,6 +557,7 @@
         var rowFlex = rowData.flex !== undefined ? rowData.flex : 0;
         return rowFlex;
       },
+
       /**
        * Set the maximum width of a grid column.
        * The default value is <code>Infinity</code>.
@@ -519,9 +568,12 @@
        */
       setColumnMaxWidth: function setColumnMaxWidth(column, maxWidth) {
         this._setColumnData(column, "maxWidth", maxWidth);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the maximum width of a grid column.
        *
@@ -532,6 +584,7 @@
         var colData = this.__P_371_1[column] || {};
         return colData.maxWidth !== undefined ? colData.maxWidth : Infinity;
       },
+
       /**
        * Set the preferred width of a grid column.
        * The default value is <code>Infinity</code>.
@@ -542,9 +595,12 @@
        */
       setColumnWidth: function setColumnWidth(column, width) {
         this._setColumnData(column, "width", width);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the preferred width of a grid column.
        *
@@ -555,6 +611,7 @@
         var colData = this.__P_371_1[column] || {};
         return colData.width !== undefined ? colData.width : null;
       },
+
       /**
        * Set the minimum width of a grid column.
        * The default value is <code>0</code>.
@@ -565,9 +622,12 @@
        */
       setColumnMinWidth: function setColumnMinWidth(column, minWidth) {
         this._setColumnData(column, "minWidth", minWidth);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the minimum width of a grid column.
        *
@@ -578,6 +638,7 @@
         var colData = this.__P_371_1[column] || {};
         return colData.minWidth || 0;
       },
+
       /**
        * Set the maximum height of a grid row.
        * The default value is <code>Infinity</code>.
@@ -588,9 +649,12 @@
        */
       setRowMaxHeight: function setRowMaxHeight(row, maxHeight) {
         this._setRowData(row, "maxHeight", maxHeight);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the maximum height of a grid row.
        *
@@ -601,6 +665,7 @@
         var rowData = this.__P_371_0[row] || {};
         return rowData.maxHeight || Infinity;
       },
+
       /**
        * Set the preferred height of a grid row.
        * The default value is <code>Infinity</code>.
@@ -611,9 +676,12 @@
        */
       setRowHeight: function setRowHeight(row, height) {
         this._setRowData(row, "height", height);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the preferred height of a grid row.
        *
@@ -624,6 +692,7 @@
         var rowData = this.__P_371_0[row] || {};
         return rowData.height !== undefined ? rowData.height : null;
       },
+
       /**
        * Set the minimum height of a grid row.
        * The default value is <code>0</code>.
@@ -634,9 +703,12 @@
        */
       setRowMinHeight: function setRowMinHeight(row, minHeight) {
         this._setRowData(row, "minHeight", minHeight);
+
         this._applyLayoutChange();
+
         return this;
       },
+
       /**
        * Get the minimum height of a grid row.
        *
@@ -647,6 +719,7 @@
         var rowData = this.__P_371_0[row] || {};
         return rowData.minHeight || 0;
       },
+
       /**
        * Computes the widget's size hint including the widget's margins
        *
@@ -667,6 +740,7 @@
         };
         return outerSize;
       },
+
       /**
        * Check whether all row spans fit with their preferred height into the
        * preferred row heights. If there is not enough space, the preferred
@@ -682,18 +756,23 @@
        */
       _fixHeightsRowSpan: function _fixHeightsRowSpan(rowHeights) {
         var vSpacing = this.getSpacingY();
+
         for (var i = 0, l = this.__P_371_4.length; i < l; i++) {
           var widget = this.__P_371_4[i];
+
           var hint = this._getOuterSize(widget);
+
           var widgetProps = widget.getLayoutProperties();
           var widgetRow = widgetProps.row;
           var prefSpanHeight = vSpacing * (widgetProps.rowSpan - 1);
           var minSpanHeight = prefSpanHeight;
           var rowFlexes = {};
+
           for (var j = 0; j < widgetProps.rowSpan; j++) {
             var row = widgetProps.row + j;
             var rowHeight = rowHeights[row];
             var rowFlex = this.getRowFlex(row);
+
             if (rowFlex > 0) {
               // compute flex array for the preferred height
               rowFlexes[row] = {
@@ -703,57 +782,59 @@
                 flex: rowFlex
               };
             }
+
             prefSpanHeight += rowHeight.height;
             minSpanHeight += rowHeight.minHeight;
-          }
-
-          // If there is not enough space for the preferred size
+          } // If there is not enough space for the preferred size
           // increment the preferred row sizes.
+
+
           if (prefSpanHeight < hint.height) {
             if (!qx.lang.Object.isEmpty(rowFlexes)) {
               var rowIncrements = qx.ui.layout.Util.computeFlexOffsets(rowFlexes, hint.height, prefSpanHeight);
+
               for (var k = 0; k < widgetProps.rowSpan; k++) {
                 var offset = rowIncrements[widgetRow + k] ? rowIncrements[widgetRow + k].offset : 0;
                 rowHeights[widgetRow + k].height += offset;
-              }
-              // row is too small and we have no flex value set
+              } // row is too small and we have no flex value set
+
             } else {
               var totalSpacing = vSpacing * (widgetProps.rowSpan - 1);
-              var availableHeight = hint.height - totalSpacing;
-
-              // get the row height which every child would need to share the
+              var availableHeight = hint.height - totalSpacing; // get the row height which every child would need to share the
               // available hight equally
-              var avgRowHeight = Math.floor(availableHeight / widgetProps.rowSpan);
 
-              // get the hight already used and the number of children which do
+              var avgRowHeight = Math.floor(availableHeight / widgetProps.rowSpan); // get the hight already used and the number of children which do
               // not have at least that avg row height
+
               var usedHeight = 0;
               var rowsNeedAddition = 0;
+
               for (var k = 0; k < widgetProps.rowSpan; k++) {
                 var currentHeight = rowHeights[widgetRow + k].height;
                 usedHeight += currentHeight;
+
                 if (currentHeight < avgRowHeight) {
                   rowsNeedAddition++;
                 }
-              }
-
-              // the difference of available and used needs to be shared among
+              } // the difference of available and used needs to be shared among
               // those not having the min size
-              var additionalRowHeight = Math.floor((availableHeight - usedHeight) / rowsNeedAddition);
 
-              // add the extra height to the too small children
+
+              var additionalRowHeight = Math.floor((availableHeight - usedHeight) / rowsNeedAddition); // add the extra height to the too small children
+
               for (var k = 0; k < widgetProps.rowSpan; k++) {
                 if (rowHeights[widgetRow + k].height < avgRowHeight) {
                   rowHeights[widgetRow + k].height += additionalRowHeight;
                 }
               }
             }
-          }
-
-          // If there is not enough space for the min size
+          } // If there is not enough space for the min size
           // increment the min row sizes.
+
+
           if (minSpanHeight < hint.minHeight) {
             var rowIncrements = qx.ui.layout.Util.computeFlexOffsets(rowFlexes, hint.minHeight, minSpanHeight);
+
             for (var j = 0; j < widgetProps.rowSpan; j++) {
               var offset = rowIncrements[widgetRow + j] ? rowIncrements[widgetRow + j].offset : 0;
               rowHeights[widgetRow + j].minHeight += offset;
@@ -761,6 +842,7 @@
           }
         }
       },
+
       /**
        * Check whether all col spans fit with their preferred width into the
        * preferred column widths. If there is not enough space the preferred
@@ -776,22 +858,26 @@
        */
       _fixWidthsColSpan: function _fixWidthsColSpan(colWidths) {
         var hSpacing = this.getSpacingX();
+
         var colSpans = this._getColSpans();
+
         for (var i = 0, l = colSpans.length; i < l; i++) {
           var widget = colSpans[i];
+
           var hint = this._getOuterSize(widget);
+
           var widgetProps = widget.getLayoutProperties();
           var widgetColumn = widgetProps.column;
           var prefSpanWidth = hSpacing * (widgetProps.colSpan - 1);
           var minSpanWidth = prefSpanWidth;
           var colFlexes = {};
           var offset;
+
           for (var j = 0; j < widgetProps.colSpan; j++) {
             var col = widgetProps.column + j;
             var colWidth = colWidths[col];
-            var colFlex = this.getColumnFlex(col);
+            var colFlex = this.getColumnFlex(col); // compute flex array for the preferred width
 
-            // compute flex array for the preferred width
             if (colFlex > 0) {
               colFlexes[col] = {
                 min: colWidth.minWidth,
@@ -800,12 +886,13 @@
                 flex: colFlex
               };
             }
+
             prefSpanWidth += colWidth.width;
             minSpanWidth += colWidth.minWidth;
-          }
-
-          // If there is not enough space for the preferred size
+          } // If there is not enough space for the preferred size
           // increment the preferred column sizes.
+
+
           if (prefSpanWidth < hint.width) {
             // Do not adapt column widths to the width
             // of the spanning cell if allowGrowSpannedCellWidth property
@@ -813,48 +900,49 @@
             // See https://github.com/qooxdoo/qooxdoo/issues/9871
             if (!this.getAllowGrowSpannedCellWidth() || !qx.lang.Object.isEmpty(colFlexes)) {
               var colIncrements = qx.ui.layout.Util.computeFlexOffsets(colFlexes, hint.width, prefSpanWidth);
+
               for (var j = 0; j < widgetProps.colSpan; j++) {
                 offset = colIncrements[widgetColumn + j] ? colIncrements[widgetColumn + j].offset : 0;
                 colWidths[widgetColumn + j].width += offset;
-              }
-              // col is too small and we have no flex value set
+              } // col is too small and we have no flex value set
+
             } else {
               var totalSpacing = hSpacing * (widgetProps.colSpan - 1);
-              var availableWidth = hint.width - totalSpacing;
-
-              // get the col width which every child would need to share the
+              var availableWidth = hint.width - totalSpacing; // get the col width which every child would need to share the
               // available width equally
-              var avgColWidth = Math.floor(availableWidth / widgetProps.colSpan);
 
-              // get the width already used and the number of children which do
+              var avgColWidth = Math.floor(availableWidth / widgetProps.colSpan); // get the width already used and the number of children which do
               // not have at least that avg col width
+
               var usedWidth = 0;
               var colsNeedAddition = 0;
+
               for (var k = 0; k < widgetProps.colSpan; k++) {
                 var currentWidth = colWidths[widgetColumn + k].width;
                 usedWidth += currentWidth;
+
                 if (currentWidth < avgColWidth) {
                   colsNeedAddition++;
                 }
-              }
-
-              // the difference of available and used needs to be shared among
+              } // the difference of available and used needs to be shared among
               // those not having the min size
-              var additionalColWidth = Math.floor((availableWidth - usedWidth) / colsNeedAddition);
 
-              // add the extra width to the too small children
+
+              var additionalColWidth = Math.floor((availableWidth - usedWidth) / colsNeedAddition); // add the extra width to the too small children
+
               for (var k = 0; k < widgetProps.colSpan; k++) {
                 if (colWidths[widgetColumn + k].width < avgColWidth) {
                   colWidths[widgetColumn + k].width += additionalColWidth;
                 }
               }
             }
-          }
-
-          // If there is not enough space for the min size
+          } // If there is not enough space for the min size
           // increment the min column sizes.
+
+
           if (minSpanWidth < hint.minWidth) {
             var colIncrements = qx.ui.layout.Util.computeFlexOffsets(colFlexes, hint.minWidth, minSpanWidth);
+
             for (var j = 0; j < widgetProps.colSpan; j++) {
               offset = colIncrements[widgetColumn + j] ? colIncrements[widgetColumn + j].offset : 0;
               colWidths[widgetColumn + j].minWidth += offset;
@@ -862,6 +950,7 @@
           }
         }
       },
+
       /**
        * Compute the min/pref/max row heights.
        *
@@ -873,52 +962,66 @@
         if (this.__P_371_7 != null) {
           return this.__P_371_7;
         }
+
         var rowHeights = [];
         var maxRowIndex = this.__P_371_5;
         var maxColIndex = this.__P_371_6;
+
         for (var row = 0; row <= maxRowIndex; row++) {
           var minHeight = 0;
           var height = 0;
           var maxHeight = 0;
+
           for (var col = 0; col <= maxColIndex; col++) {
             var widget = this.__P_371_2[row][col];
+
             if (!widget) {
               continue;
-            }
-
-            // ignore rows with row spans at this place
+            } // ignore rows with row spans at this place
             // these rows will be taken into account later
+
+
             var widgetRowSpan = widget.getLayoutProperties().rowSpan || 0;
+
             if (widgetRowSpan > 1) {
               continue;
             }
+
             var cellSize = this._getOuterSize(widget);
+
             if (this.getRowFlex(row) > 0) {
               minHeight = Math.max(minHeight, cellSize.minHeight);
             } else {
               minHeight = Math.max(minHeight, cellSize.height);
             }
+
             height = Math.max(height, cellSize.height);
           }
+
           var minHeight = Math.max(minHeight, this.getRowMinHeight(row));
           var maxHeight = this.getRowMaxHeight(row);
+
           if (this.getRowHeight(row) !== null) {
             var height = this.getRowHeight(row);
           } else {
             var height = Math.max(minHeight, Math.min(height, maxHeight));
           }
+
           rowHeights[row] = {
             minHeight: minHeight,
             height: height,
             maxHeight: maxHeight
           };
         }
+
         if (this.__P_371_4.length > 0) {
           this._fixHeightsRowSpan(rowHeights);
         }
+
         this.__P_371_7 = rowHeights;
         return rowHeights;
       },
+
       /**
        * Compute the min/pref/max column widths.
        *
@@ -930,48 +1033,61 @@
         if (this.__P_371_8 != null) {
           return this.__P_371_8;
         }
+
         var colWidths = [];
         var maxColIndex = this.__P_371_6;
         var maxRowIndex = this.__P_371_5;
+
         for (var col = 0; col <= maxColIndex; col++) {
           var width = 0;
           var minWidth = 0;
           var maxWidth = Infinity;
+
           for (var row = 0; row <= maxRowIndex; row++) {
             var widget = this.__P_371_2[row][col];
+
             if (!widget) {
               continue;
-            }
-
-            // ignore columns with col spans at this place
+            } // ignore columns with col spans at this place
             // these columns will be taken into account later
+
+
             var widgetColSpan = widget.getLayoutProperties().colSpan || 0;
+
             if (widgetColSpan > 1) {
               continue;
             }
+
             var cellSize = this._getOuterSize(widget);
+
             minWidth = Math.max(minWidth, cellSize.minWidth);
             width = Math.max(width, cellSize.width);
           }
+
           minWidth = Math.max(minWidth, this.getColumnMinWidth(col));
           maxWidth = this.getColumnMaxWidth(col);
+
           if (this.getColumnWidth(col) !== null) {
             var width = this.getColumnWidth(col);
           } else {
             var width = Math.max(minWidth, Math.min(width, maxWidth));
           }
+
           colWidths[col] = {
             minWidth: minWidth,
             width: width,
             maxWidth: maxWidth
           };
         }
+
         if (this._getColSpans().length > 0) {
           this._fixWidthsColSpan(colWidths);
         }
+
         this.__P_371_8 = colWidths;
         return colWidths;
       },
+
       /**
        * Computes for each column by how many pixels it must grow or shrink, taking
        * the column flex values and min/max widths into account.
@@ -983,19 +1099,24 @@
       _getColumnFlexOffsets: function _getColumnFlexOffsets(width) {
         var hint = this.getSizeHint();
         var diff = width - hint.width;
+
         if (diff == 0) {
           return {};
-        }
+        } // collect all flexible children
 
-        // collect all flexible children
+
         var colWidths = this._getColWidths();
+
         var flexibles = {};
+
         for (var i = 0, l = colWidths.length; i < l; i++) {
           var col = colWidths[i];
           var colFlex = this.getColumnFlex(i);
+
           if (colFlex <= 0 || col.width == col.maxWidth && diff > 0 || col.width == col.minWidth && diff < 0) {
             continue;
           }
+
           flexibles[i] = {
             min: col.minWidth,
             value: col.width,
@@ -1003,8 +1124,10 @@
             flex: colFlex
           };
         }
+
         return qx.ui.layout.Util.computeFlexOffsets(flexibles, width, hint.width);
       },
+
       /**
        * Computes for each row by how many pixels it must grow or shrink, taking
        * the row flex values and min/max heights into account.
@@ -1016,19 +1139,24 @@
       _getRowFlexOffsets: function _getRowFlexOffsets(height) {
         var hint = this.getSizeHint();
         var diff = height - hint.height;
+
         if (diff == 0) {
           return {};
-        }
+        } // collect all flexible children
 
-        // collect all flexible children
+
         var rowHeights = this._getRowHeights();
+
         var flexibles = {};
+
         for (var i = 0, l = rowHeights.length; i < l; i++) {
           var row = rowHeights[i];
           var rowFlex = this.getRowFlex(i);
+
           if (rowFlex <= 0 || row.height == row.maxHeight && diff > 0 || row.height == row.minHeight && diff < 0) {
             continue;
           }
+
           flexibles[i] = {
             min: row.minHeight,
             value: row.height,
@@ -1036,8 +1164,10 @@
             flex: rowFlex
           };
         }
+
         return qx.ui.layout.Util.computeFlexOffsets(flexibles, height, hint.height);
       },
+
       /**
        * Returns the internal private __colSpans array in order
        * have a protected getter which can be used other methods
@@ -1053,61 +1183,72 @@
         if (this._invalidChildrenCache) {
           this.__P_371_9();
         }
+
         var Util = qx.ui.layout.Util;
         var hSpacing = this.getSpacingX();
-        var vSpacing = this.getSpacingY();
+        var vSpacing = this.getSpacingY(); // calculate column widths
 
-        // calculate column widths
         var prefWidths = this._getColWidths();
+
         var colStretchOffsets = this._getColumnFlexOffsets(availWidth);
+
         var colWidths = [];
         var maxColIndex = this.__P_371_6;
         var maxRowIndex = this.__P_371_5;
         var offset;
+
         for (var col = 0; col <= maxColIndex; col++) {
           offset = colStretchOffsets[col] ? colStretchOffsets[col].offset : 0;
           colWidths[col] = prefWidths[col].width + offset;
-        }
+        } // calculate row heights
 
-        // calculate row heights
+
         var prefHeights = this._getRowHeights();
+
         var rowStretchOffsets = this._getRowFlexOffsets(availHeight);
+
         var rowHeights = [];
+
         for (var row = 0; row <= maxRowIndex; row++) {
           offset = rowStretchOffsets[row] ? rowStretchOffsets[row].offset : 0;
           rowHeights[row] = prefHeights[row].height + offset;
-        }
+        } // do the layout
 
-        // do the layout
+
         var left = 0;
+
         for (var col = 0; col <= maxColIndex; col++) {
           var top = 0;
-          for (var row = 0; row <= maxRowIndex; row++) {
-            var widget = this.__P_371_2[row][col];
 
-            // ignore empty cells
+          for (var row = 0; row <= maxRowIndex; row++) {
+            var widget = this.__P_371_2[row][col]; // ignore empty cells
+
             if (!widget) {
               top += rowHeights[row] + vSpacing;
               continue;
             }
-            var widgetProps = widget.getLayoutProperties();
 
-            // ignore cells, which have cell spanning but are not the origin
+            var widgetProps = widget.getLayoutProperties(); // ignore cells, which have cell spanning but are not the origin
             // of the widget
+
             if (widgetProps.row !== row || widgetProps.column !== col) {
               top += rowHeights[row] + vSpacing;
               continue;
-            }
+            } // compute sizes width including cell spanning
 
-            // compute sizes width including cell spanning
+
             var spanWidth = hSpacing * (widgetProps.colSpan - 1);
+
             for (var i = 0; i < widgetProps.colSpan; i++) {
               spanWidth += colWidths[col + i];
             }
+
             var spanHeight = vSpacing * (widgetProps.rowSpan - 1);
+
             for (var i = 0; i < widgetProps.rowSpan; i++) {
               spanHeight += rowHeights[row + i];
             }
+
             var cellHint = widget.getSizeHint();
             var marginTop = widget.getMarginTop();
             var marginLeft = widget.getMarginLeft();
@@ -1121,6 +1262,7 @@
             widget.renderLayout(cellLeft + padding.left, cellTop + padding.top, cellWidth, cellHeight);
             top += rowHeights[row] + vSpacing;
           }
+
           left += colWidths[col] + hSpacing;
         }
       },
@@ -1134,35 +1276,44 @@
       _computeSizeHint: function _computeSizeHint() {
         if (this._invalidChildrenCache) {
           this.__P_371_9();
-        }
+        } // calculate col widths
 
-        // calculate col widths
+
         var colWidths = this._getColWidths();
+
         var minWidth = 0,
-          width = 0;
+            width = 0;
+
         for (var i = 0, l = colWidths.length; i < l; i++) {
           var col = colWidths[i];
+
           if (this.getColumnFlex(i) > 0) {
             minWidth += col.minWidth;
           } else {
             minWidth += col.width;
           }
-          width += col.width;
-        }
 
-        // calculate row heights
+          width += col.width;
+        } // calculate row heights
+
+
         var rowHeights = this._getRowHeights();
+
         var minHeight = 0,
-          height = 0;
+            height = 0;
+
         for (var i = 0, l = rowHeights.length; i < l; i++) {
           var row = rowHeights[i];
+
           if (this.getRowFlex(i) > 0) {
             minHeight += row.minHeight;
           } else {
             minHeight += row.height;
           }
+
           height += row.height;
         }
+
         var spacingX = this.getSpacingX() * (colWidths.length - 1);
         var spacingY = this.getSpacingY() * (rowHeights.length - 1);
         var hint = {
@@ -1174,6 +1325,7 @@
         return hint;
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCT
@@ -1186,4 +1338,4 @@
   qx.ui.layout.Grid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Grid.js.map?dt=1677362759729
+//# sourceMappingURL=Grid.js.map?dt=1685978140705

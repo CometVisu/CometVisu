@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Slide.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,6 +37,7 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Slide', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -61,10 +63,12 @@
           return m.matches('address');
         }).forEach(function (elem) {
           var transform = elem.getAttribute('transform');
+
           if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
             if (!(datatype_min > cv.Transform.registry[transform].range.min)) {
               datatype_min = cv.Transform.registry[transform].range.min;
             }
+
             if (!(datatype_max < cv.Transform.registry[transform].range.max)) {
               datatype_max = cv.Transform.registry[transform].range.max;
             }
@@ -100,4 +104,4 @@
   cv.parser.pure.widgets.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1677362708559
+//# sourceMappingURL=Slide.js.map?dt=1685978091464

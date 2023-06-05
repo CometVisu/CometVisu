@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,7 +36,6 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
-
   qx.Class.define("qxl.apiviewer.ui.panels.MethodPanel", {
     extend: qxl.apiviewer.ui.panels.AbstractMethodPanel,
     construct: function construct() {
@@ -53,4 +53,4 @@
   qxl.apiviewer.ui.panels.MethodPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MethodPanel.js.map?dt=1677362782412
+//# sourceMappingURL=MethodPanel.js.map?dt=1685978164922

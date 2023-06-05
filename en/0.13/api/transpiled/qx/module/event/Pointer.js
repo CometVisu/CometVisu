@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,6 +56,7 @@
        * List of event types to be normalized
        */
       TYPES: ["pointerdown", "pointerup", "pointermove", "pointercancel", "pointerover", "pointerout"],
+
       /**
        * Returns the device type which the event triggered. This can be one
        * of the following strings: <code>mouse</code>, <code>pen</code>
@@ -66,6 +68,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the horizontal coordinate at which the event occurred relative
        * to the viewport.
@@ -76,6 +79,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative
        * to the viewport.
@@ -87,6 +91,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the horizontal position at which the event occurred relative to the
        * left of the document. This property takes into account any scrolling of
@@ -98,6 +103,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the vertical position at which the event occurred relative to the
        * top of the document. This property takes into account any scrolling of
@@ -109,6 +115,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the horizontal coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -122,6 +129,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Get the vertical coordinate at which the event occurred relative to
        * the origin of the screen coordinate system.
@@ -135,6 +143,7 @@
         // stub for documentation. Implementation is in qx.event.type.dom.Pointer
         return false;
       },
+
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -148,6 +157,7 @@
         if (!event) {
           return event;
         }
+
         qx.event.type.dom.Pointer.normalize(event);
         return event;
       }
@@ -159,4 +169,4 @@
   qx.module.event.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1677362747075
+//# sourceMappingURL=Pointer.js.map?dt=1685978129828

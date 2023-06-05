@@ -65,6 +65,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Folder.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -91,6 +92,7 @@
     extend: cv.ui.manager.viewer.AbstractViewer,
     implement: [qx.ui.core.ISingleSelection, qx.ui.form.IModelSelection],
     include: [qx.ui.core.MSingleSelectionHandling, qx.ui.core.MRemoteChildrenHandling, qx.ui.form.MModelSelection, cv.ui.manager.control.MFileEventHandler],
+
     /*
     ***********************************************
      CONSTRUCTOR
@@ -101,7 +103,9 @@
       cv.ui.manager.model.Preferences.getInstance().bind('startViewMode', this, 'viewMode');
       this._isImageRegex = new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i');
       this.initModel(new qx.data.Array());
+
       this._setLayout(new qx.ui.layout.VBox(8));
+
       this._newItem = new cv.ui.manager.model.FileItem('new', 'new', null).set({
         fake: true,
         type: 'file',
@@ -111,11 +115,14 @@
         special: 'add-file'
       });
       this._debouncedOnFilter = qx.util.Function.debounce(this._onFilter, 500, false);
+
       if (!noToolbar) {
         this._createChildControl('toolbar');
       }
+
       this._createChildControl('filter');
     },
+
     /*
     ***********************************************
       STATICS
@@ -129,6 +136,7 @@
       TITLE: qx.locale.Manager.tr('Show folder'),
       ICON: cv.theme.dark.Images.getIcon('folder', 18)
     },
+
     /*
     ***********************************************
       EVENTS
@@ -141,6 +149,7 @@
        * added item.
        */
       addItem: 'qx.event.type.Data',
+
       /**
        * This event is fired after a list item has been removed from the list.
        * The {@link qx.event.type.Data#getData} method of the event returns the
@@ -148,6 +157,7 @@
        */
       removeItem: 'qx.event.type.Data'
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -183,6 +193,7 @@
         event: 'changeViewMode'
       }
     },
+
     /*
     ***********************************************
      MEMBERS
@@ -203,10 +214,13 @@
           // do not remove file type in list mode
           return name;
         }
+
         var parts = name.split('.');
+
         if (parts.length > 1) {
           parts.pop();
         }
+
         return parts.join('.');
       },
       _getDelegate: function _getDelegate() {
@@ -234,14 +248,18 @@
                   // use the image as icon
                   return file.getServerPath();
                 }
+
                 if (!source) {
                   return null;
-                }
-                // remove size from icon source
+                } // remove size from icon source
+
+
                 var parts = source.split('/');
+
                 if (parts.length === 3) {
                   parts.pop();
                 }
+
                 return parts.join('/');
               }.bind(this)
             }, item, index);
@@ -250,47 +268,57 @@
       },
       _onFsItemRightClick: function _onFsItemRightClick(ev) {
         var file = ev.getCurrentTarget().getModel();
+
         if (file.getSpecial() === 'add-file') {
           ev.preventDefault();
+
           if (ev.getBubbles()) {
             ev.stopPropagation();
           }
+
           return;
         }
+
         var menu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
         menu.configure(file);
         ev.getCurrentTarget().setContextMenu(menu);
-        menu.openAtPointer(ev);
-
-        // Do not show native menu
+        menu.openAtPointer(ev); // Do not show native menu
         // don't open any other contextmenus
+
         if (ev.getBubbles()) {
           ev.stop();
         }
       },
       _onDblTap: function _onDblTap(ev) {
         var file = ev.getCurrentTarget().getModel();
-        if (file.getSpecial() === 'add-file') {
-          // Select file for upload
+
+        if (file.getSpecial() === 'add-file') {// Select file for upload
         } else {
           qx.event.message.Bus.dispatchByName('cv.manager.open', file);
         }
       },
       _applyFile: function _applyFile(file, old) {
         var _this = this;
+
         if (old) {
           old.removeRelatedBindings(this);
           this.resetModel();
         }
+
         if (file) {
           var container = this.getChildControl('list');
+
           if (!this._controller) {
             this._controller = new qx.data.controller.List(null, container);
+
             this._controller.setDelegate(this._getDelegate());
           }
+
           file.bind('children', this, 'model');
           var model = this.getModel();
+
           this._newItem.setParent(file);
+
           model.addListener('change', function () {
             if (_this.getChildControl('filter').getValue() || _this.getPermanentFilter()) {
               _this._onFilter();
@@ -298,32 +326,40 @@
               _this._controller.setModel(model);
             }
           });
+
           this._controller.setModel(model);
+
           file.load();
         } else {
           if (this._controller) {
             this._controller.resetModel();
           }
+
           this._newItem.resetParent();
         }
       },
       _handleFileEvent: function _handleFileEvent(ev) {
         var folder = this.getFile();
         var data = ev.getData();
+
         switch (data.action) {
           case 'moved':
             folder.reload();
             break;
+
           case 'added':
           case 'uploaded':
           case 'created':
             if (data.path.startsWith(folder.getFullPath())) {
               folder.reload();
             }
+
             break;
+
           case 'deleted':
             {
               var children;
+
               if (folder) {
                 if (data.path === folder.getFullPath()) {
                   // this item has been deleted
@@ -337,10 +373,12 @@
                       this.removeRelatedBindings(child);
                       return true;
                     }
+
                     return false;
                   }, this);
                 }
               }
+
               children = this.getModel();
               children.some(function (child) {
                 if (child.getFullPath() === data.path) {
@@ -348,6 +386,7 @@
                   this.removeRelatedBindings(child);
                   return true;
                 }
+
                 return false;
               }, this);
               break;
@@ -364,12 +403,14 @@
           var filtered = this.getModel().filter(function (file) {
             return (!filterFunction || filterFunction(file)) && (!filterString || file.getName().includes(filterString));
           });
+
           this._controller.setModel(filtered);
         }
       },
       getChildrenContainer: function getChildrenContainer() {
         return this.getChildControl('list');
       },
+
       /**
        * Handle child widget adds on the content pane
        *
@@ -378,6 +419,7 @@
       _onAddChild: function _onAddChild(e) {
         this.fireDataEvent('addItem', e.getData());
       },
+
       /**
        * Handle child widget removes on the content pane
        *
@@ -388,6 +430,7 @@
       },
       _onFileEvent: function _onFileEvent(ev) {
         var data = ev.getData();
+
         switch (data.action) {
           case 'deleted':
             break;
@@ -396,6 +439,7 @@
       _applyDisableScrolling: function _applyDisableScrolling(value) {
         if (value) {
           this.getChildControl('scroll').exclude();
+
           this._addAt(this.getChildControl('list'), 1, {
             flex: 1
           });
@@ -403,6 +447,7 @@
           var scrollContainer = this.getChildControl('scroll');
           scrollContainer.show();
           scrollContainer.add(this.getChildControl('list'));
+
           this._addAt(scrollContainer, 1, {
             flex: 1
           });
@@ -411,7 +456,9 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this2 = this;
+
         var control;
+
         switch (id) {
           case 'toolbar':
             control = new cv.ui.manager.ToolBar(null, ['new-file', 'new-folder', 'upload', 'reload']);
@@ -419,8 +466,11 @@
             control.addListener('reload', function () {
               _this2.getFile().reload();
             });
+
             this._addAt(control, 0);
+
             break;
+
           case 'filter':
             control = new qx.ui.form.TextField();
             control.set({
@@ -428,24 +478,32 @@
               liveUpdate: true,
               margin: 8
             });
+
             if (!this.isShowTextFilter()) {
               control.exclude();
             }
+
             control.addListener('changeValue', this._debouncedOnFilter, this);
+
             this._addAt(control, 1);
+
             break;
+
           case 'scroll':
             control = new qx.ui.container.Scroll();
+
             this._addAt(control, 2, {
               flex: 1
             });
-            break;
-          case 'list':
-            control = new qx.ui.container.Composite(new qx.ui.layout.Flow(8, 8));
 
-            // Used to fire item add/remove events
+            break;
+
+          case 'list':
+            control = new qx.ui.container.Composite(new qx.ui.layout.Flow(8, 8)); // Used to fire item add/remove events
+
             control.addListener('addChildWidget', this._onAddChild, this);
             control.addListener('removeChildWidget', this._onRemoveChild, this);
+
             if (this.isDisableScrolling()) {
               this._addAt(control, 1, {
                 flex: 1
@@ -453,11 +511,14 @@
             } else {
               this.getChildControl('scroll').add(control);
             }
+
             break;
         }
+
         return control || cv.ui.manager.viewer.Folder.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -465,6 +526,7 @@
     */
     destruct: function destruct() {
       this._disposeObjects('_controller');
+
       this._isImageRegex = null;
       cv.ui.manager.model.Preferences.getInstance().removeRelatedBindings(this);
     }
@@ -472,4 +534,4 @@
   cv.ui.manager.viewer.Folder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Folder.js.map?dt=1677362716107
+//# sourceMappingURL=Folder.js.map?dt=1685978098853

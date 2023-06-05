@@ -1,4 +1,5 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -22,6 +23,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ScriptLoader.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -40,10 +42,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.util.ScriptLoader', {
     extend: qx.core.Object,
     type: 'singleton',
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -56,6 +58,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this.__P_531_2 = new qx.data.Array();
       this.__P_531_3 = [];
     },
+
     /*
     ***********************************************
       STATICS
@@ -68,6 +71,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isMarkedAsLoaded: function isMarkedAsLoaded(path) {
         return this.getInstance().isMarkedAsLoaded(path);
       },
+
       /**
        * Include a CSS file
        *
@@ -76,24 +80,30 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       includeStylesheet: function includeStylesheet(href, media) {
         var _this = this;
+
         return new Promise(function (res, rej) {
           var el = document.createElement('link');
           el.type = 'text/css';
           el.rel = 'stylesheet';
           el.href = href;
+
           if (media) {
             el.media = media;
           }
+
           el.onload = res;
+
           el.onerror = function () {
-            qx.log.Logger.error(_this, 'error loading ' + href);
-            // always resolve
+            qx.log.Logger.error(_this, 'error loading ' + href); // always resolve
+
             res();
           };
+
           var head = document.getElementsByTagName('head')[0];
           head.appendChild(el);
         });
       },
+
       /**
        * Include a JS file with module support
        *
@@ -103,11 +113,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       includeScript: function includeScript(src, type) {
         return new Promise(function (res, rej) {
           var head = document.getElementsByTagName('head')[0];
+
           if (!head.querySelector(":scope > script[src='".concat(src, "']"))) {
             var el = document.createElement('script');
+
             if (type) {
               el.type = type;
             }
+
             el.onload = res;
             el.onerror = rej;
             el.src = src;
@@ -118,6 +131,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         });
       }
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -136,6 +150,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         event: 'changeFinished'
       }
     },
+
     /*
     ******************************************************
       EVENTS
@@ -146,6 +161,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       stylesLoaded: 'qx.event.type.Event',
       designError: 'qx.event.type.Data'
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -158,12 +174,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_531_3: null,
       addStyles: function addStyles(styleArr) {
         var _this2 = this;
+
         var queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
         var promises = [];
         queue.forEach(function (style) {
           var media;
           var src;
+
           if (typeof style === 'string') {
             src = style;
           } else if (_typeof(style) === 'object') {
@@ -172,31 +190,38 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           } else {
             this.error('unknown style parameter type', _typeof(style));
           }
+
           if (src) {
             var resPath = qx.util.ResourceManager.getInstance().toUri(src);
+
             if (resPath === src) {
               // this file is unknown to the resource manager, might be a scss source
               var scssStyle = src.replace(/\.css$/, '.scss');
               var scssPath = qx.util.ResourceManager.getInstance().toUri(scssStyle);
+
               if (scssStyle !== scssPath) {
                 resPath = scssPath.replace(/\.scss$/, '.css');
               }
             }
+
             promises.push(cv.util.ScriptLoader.includeStylesheet(resPath + suffix, media));
           }
         }, this);
         Promise.all(promises).then(function () {
           _this2.debug('styles have been loaded');
+
           _this2.fireEvent('stylesLoaded');
         })["catch"](function (reason) {
-          _this2.error('error loading styles', reason);
-          // fire this event anyways, because a non loaded CSS file is no blocker
+          _this2.error('error loading styles', reason); // fire this event anyways, because a non loaded CSS file is no blocker
+
+
           _this2.fireEvent('stylesLoaded');
         });
       },
       markAsLoaded: function markAsLoaded(path) {
         if (!this.__P_531_3.includes(path)) {
           this.debug('marking ' + path + ' as loaded');
+
           this.__P_531_3.push(path);
         }
       },
@@ -204,34 +229,42 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         return this.__P_531_3.includes(path);
       },
       addScripts: function addScripts(scriptArr, order) {
-        var queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr;
-        // make sure that no cached scripts are loaded
+        var queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr; // make sure that no cached scripts are loaded
+
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
         var realQueue = [];
         var i = 0;
         var l = queue.length;
+
         for (; i < l; i++) {
           if (!this.__P_531_3.includes(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
+
         if (realQueue.length === 0) {
           return;
         }
+
         this.debug('queueing ' + realQueue.length + ' scripts');
         this.resetFinished();
+
         this.__P_531_0.append(realQueue);
+
         if (order) {
           var processQueue = function () {
             if (order.length > 0) {
               var loadIndex = order.shift();
               var script = realQueue.splice(loadIndex, 1)[0];
+
               var loader = this.__P_531_5(script);
+
               loader.addListener('ready', processQueue, this);
             } else {
               realQueue.forEach(this.__P_531_5, this);
             }
           }.bind(this);
+
           processQueue();
         } else {
           // use an extra DynamicScriptLoader for every single script because loading errors stop the process
@@ -240,6 +273,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           this.__P_531_5(realQueue);
         }
       },
+
       /**
        * Load one script
        *
@@ -247,12 +281,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       __P_531_5: function __P_531_5(script) {
         var _this3 = this;
+
         var loader = new qx.util.DynamicScriptLoader(script);
+
         this.__P_531_1.push(loader);
+
         loader.addListener('loaded', this._onLoaded, this);
         loader.addListener('failed', this._onFailed, this);
         loader.addListenerOnce('ready', function () {
           _this3.__P_531_1.remove(loader);
+
           loader.removeListener('loaded', _this3._onLoaded, _this3);
           loader.removeListener('failed', _this3._onFailed, _this3);
         });
@@ -261,18 +299,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       },
       _onLoaded: function _onLoaded(ev) {
         var data = ev.getData();
+
         this.__P_531_0.remove(data.script);
+
         this.debug(data.script + ' loaded');
+
         this._checkQueue();
       },
       _onFailed: function _onFailed(ev) {
         var data = ev.getData();
+
         this.__P_531_0.remove(data.script);
+
         if (data.script.startsWith('design')) {
           var failedDesign = data.script.split('/')[1];
           this.fireDataEvent('designError', failedDesign);
         } else if (data.script.includes('/plugins/')) {
           var match = /.+\/plugins\/([\w]+)\/index\.js.*/.exec(data.script);
+
           if (match) {
             cv.core.notifications.Router.dispatchMessage('cv.loading.error', {
               title: qx.locale.Manager.tr('Error loading plugin "%1"', match[1]),
@@ -289,11 +333,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             deletable: true
           });
         }
+
         this._checkQueue();
       },
       // property apply
       _checkQueue: function _checkQueue() {
         var _this4 = this;
+
         if (this.__P_531_0.length === 0) {
           if (this.isAllQueued()) {
             this.debug('script loader finished');
@@ -305,10 +351,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               if (ev.getData() === true) {
                 if (_this4.__P_531_0.length === 0) {
                   _this4.debug('script loader finished');
+
                   _this4.fireEvent('finished');
+
                   _this4.setFinished(true);
                 }
+
                 _this4.removeListenerById(_this4.__P_531_4);
+
                 _this4.__P_531_4 = null;
               }
             });
@@ -322,4 +372,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1677362775486
+//# sourceMappingURL=ScriptLoader.js.map?dt=1685978157495

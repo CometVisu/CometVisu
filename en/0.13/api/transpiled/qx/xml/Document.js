@@ -34,6 +34,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,14 +71,18 @@
    * * <a href="http://msdn2.microsoft.com/en-us/library/ms764622.aspx">MSXML GUIDs and ProgIDs</a>
    * * <a href="https://developer.mozilla.org/en-US/docs/Parsing_and_serializing_XML">MDN Parsing and Serializing XML</a>
    */
+
   /* global ActiveXObject */
+
   /* global window */
   qx.Bootstrap.define("qx.xml.Document", {
     statics: {
       /** @type {String} ActiveX class name of DOMDocument (IE specific) */
       DOMDOC: null,
+
       /** @type {String} ActiveX class name of XMLHttpRequest (IE specific) */
       XMLHTTP: null,
+
       /**
        * Whether the given element is a XML document or element
        * which is part of a XML document.
@@ -94,6 +99,7 @@
           return false;
         }
       },
+
       /**
        * Create an XML document.
        *
@@ -109,28 +115,35 @@
         // ActiveX - This is the preferred way for IE9 as well since it has no XPath
         // support when using the native implementation.createDocument
         if (qx.core.Environment.get("plugin.activex")) {
-          var obj = new ActiveXObject(this.DOMDOC);
-          //The SelectionLanguage property is no longer needed in MSXML 6; trying
+          var obj = new ActiveXObject(this.DOMDOC); //The SelectionLanguage property is no longer needed in MSXML 6; trying
           // to set it causes an exception in IE9.
+
           if (this.DOMDOC == "MSXML2.DOMDocument.3.0") {
             obj.setProperty("SelectionLanguage", "XPath");
           }
+
           if (qualifiedName) {
             var str = '<?xml version="1.0" encoding="utf-8"?>\n<';
             str += qualifiedName;
+
             if (namespaceUri) {
               str += " xmlns='" + namespaceUri + "'";
             }
+
             str += " />";
             obj.loadXML(str);
           }
+
           return obj;
         }
+
         if (qx.core.Environment.get("xml.implementation")) {
           return document.implementation.createDocument(namespaceUri || "", qualifiedName || "", null);
         }
+
         throw new Error("No XML implementation available!");
       },
+
       /**
        * The string passed in is parsed into a DOM document.
        *
@@ -147,13 +160,16 @@
           dom.loadXML(str);
           return dom;
         }
+
         if (qx.core.Environment.get("xml.domparser")) {
           var parser = new DOMParser();
           return parser.parseFromString(str, "text/xml");
         }
+
         throw new Error("No XML implementation available!");
       }
     },
+
     /*
     *****************************************************************************
        DEFER
@@ -167,6 +183,7 @@
         // http://blogs.msdn.com/xmlteam/archive/2006/10/23/using-the-right-version-of-msxml-in-internet-explorer.aspx
         var domDoc = ["MSXML2.DOMDocument.6.0", "MSXML2.DOMDocument.3.0"];
         var httpReq = ["MSXML2.XMLHTTP.6.0", "MSXML2.XMLHTTP.3.0"];
+
         for (var i = 0, l = domDoc.length; i < l; i++) {
           try {
             // Keep both objects in sync with the same version.
@@ -175,13 +192,12 @@
             new ActiveXObject(httpReq[i]);
           } catch (ex) {
             continue;
-          }
+          } // Update static constants
 
-          // Update static constants
+
           statics.DOMDOC = domDoc[i];
-          statics.XMLHTTP = httpReq[i];
+          statics.XMLHTTP = httpReq[i]; // Stop loop here
 
-          // Stop loop here
           break;
         }
       }
@@ -190,4 +206,4 @@
   qx.xml.Document.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Document.js.map?dt=1677362774207
+//# sourceMappingURL=Document.js.map?dt=1685978155780

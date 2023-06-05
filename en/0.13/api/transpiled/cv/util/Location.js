@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Location.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -33,6 +34,7 @@
    */
   qx.Class.define('cv.util.Location', {
     type: 'static',
+
     /*
     ******************************************************
       STATICS
@@ -47,6 +49,7 @@
       getHref: function getHref() {
         return window.location.href;
       },
+
       /**
        * Changes <code>window.location.href</code> to trigger a redirect
        *
@@ -55,6 +58,7 @@
       setHref: function setHref(loc) {
         window.location.href = loc;
       },
+
       /**
        * Wrapper for calling <code>window.location.reload()</code>
        *
@@ -63,6 +67,7 @@
       reload: function reload(value) {
         window.location.reload(value);
       },
+
       /**
        * Wrapper for calling <code>window.open()</code>
        *
@@ -77,4 +82,4 @@
   cv.util.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1677362775238
+//# sourceMappingURL=Location.js.map?dt=1685978157233

@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 28,
+        "line": 26,
         "column": 0,
-        "index": 823
+        "index": 649
       },
       "end": {
-        "line": 28,
+        "line": 26,
         "column": 67,
-        "index": 890
+        "index": 716
       }
     },
     "jsdoc": {
@@ -30,22 +30,16 @@
           "body": ""
         }
       ],
-      "@asset": [
+      "@usefont": [
         {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.otf"
-        },
+          "name": "@usefont",
+          "body": "MaterialIconsOutlined"
+        }
+      ],
+      "@deprecated": [
         {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff2"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.woff"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/iconfont/MaterialIcons/materialiconsoutlined-v101.eot"
+          "name": "@deprecated",
+          "body": "use the <code>@usefont</code> directive directly in your code"
         }
       ]
     }

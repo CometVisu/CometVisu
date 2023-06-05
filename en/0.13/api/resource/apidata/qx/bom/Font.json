@@ -14,9 +14,9 @@
         "index": 680
       },
       "end": {
-        "line": 366,
+        "line": 402,
         "column": 3,
-        "index": 9150
+        "index": 10092
       }
     },
     "jsdoc": {
@@ -554,6 +554,34 @@
       "allowNull": true,
       "check": "Integer"
     },
+    "fontName": {
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 6738
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 6830
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This specifies the name of the font defined in Manifest.json in <code>provides.fonts</code> - setting it will\n copy the values from the Manifest into this font definition</p>"
+          }
+        ]
+      },
+      "name": "fontName",
+      "propertyType": "new",
+      "apply": "_applyFontName",
+      "nullable": true,
+      "allowNull": true,
+      "check": "String"
+    },
     "qxOwner": {
       "type": "property",
       "name": "qxOwner",
@@ -591,30 +619,54 @@
     "__lookupMap": {
       "location": {
         "start": {
-          "line": 278,
+          "line": 288,
           "column": 4,
-          "index": 6750
+          "index": 7038
         },
         "end": {
-          "line": 278,
+          "line": 288,
           "column": 21,
-          "index": 6767
+          "index": 7055
         }
       },
       "type": "variable",
       "access": "private"
     },
+    "loadComplete": {
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 7162
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 7201
+        }
+      },
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by the theme manager when all the properties to be set, have been set</p>"
+          }
+        ]
+      },
+      "type": "function",
+      "access": "public"
+    },
     "_applySize": {
       "location": {
         "start": {
-          "line": 281,
+          "line": 298,
           "column": 4,
-          "index": 6796
+          "index": 7230
         },
         "end": {
-          "line": 283,
+          "line": 300,
           "column": 5,
-          "index": 6898
+          "index": 7332
         }
       },
       "jsdoc": {},
@@ -627,14 +679,14 @@
     "_applyLineHeight": {
       "location": {
         "start": {
-          "line": 285,
+          "line": 302,
           "column": 4,
-          "index": 6905
+          "index": 7339
         },
         "end": {
-          "line": 287,
+          "line": 304,
           "column": 5,
-          "index": 7008
+          "index": 7442
         }
       },
       "type": "function",
@@ -646,14 +698,14 @@
     "_applyFamily": {
       "location": {
         "start": {
-          "line": 290,
+          "line": 307,
           "column": 4,
-          "index": 7037
+          "index": 7471
         },
         "end": {
-          "line": 311,
+          "line": 328,
           "column": 5,
-          "index": 7720
+          "index": 8154
         }
       },
       "jsdoc": {},
@@ -663,17 +715,37 @@
         "family"
       ]
     },
+    "_applyFontName": {
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 8183
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 8662
+        }
+      },
+      "jsdoc": {},
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "fontName"
+      ]
+    },
     "_applyBold": {
       "location": {
         "start": {
-          "line": 314,
+          "line": 350,
           "column": 4,
-          "index": 7749
+          "index": 8691
         },
         "end": {
-          "line": 317,
+          "line": 353,
           "column": 5,
-          "index": 7873
+          "index": 8815
         }
       },
       "jsdoc": {},
@@ -686,14 +758,14 @@
     "_applyItalic": {
       "location": {
         "start": {
-          "line": 320,
+          "line": 356,
           "column": 4,
-          "index": 7902
+          "index": 8844
         },
         "end": {
-          "line": 323,
+          "line": 359,
           "column": 5,
-          "index": 8029
+          "index": 8971
         }
       },
       "jsdoc": {},
@@ -706,14 +778,14 @@
     "_applyDecoration": {
       "location": {
         "start": {
-          "line": 326,
+          "line": 362,
           "column": 4,
-          "index": 8058
+          "index": 9000
         },
         "end": {
-          "line": 328,
+          "line": 364,
           "column": 5,
-          "index": 8164
+          "index": 9106
         }
       },
       "jsdoc": {},
@@ -726,14 +798,14 @@
     "_applyColor": {
       "location": {
         "start": {
-          "line": 331,
+          "line": 367,
           "column": 4,
-          "index": 8193
+          "index": 9135
         },
         "end": {
-          "line": 337,
+          "line": 373,
           "column": 5,
-          "index": 8384
+          "index": 9326
         }
       },
       "jsdoc": {},
@@ -746,14 +818,14 @@
     "_applyWeight": {
       "location": {
         "start": {
-          "line": 340,
+          "line": 376,
           "column": 4,
-          "index": 8413
+          "index": 9355
         },
         "end": {
-          "line": 342,
+          "line": 378,
           "column": 5,
-          "index": 8488
+          "index": 9430
         }
       },
       "jsdoc": {},
@@ -766,14 +838,14 @@
     "_applyTextShadow": {
       "location": {
         "start": {
-          "line": 345,
+          "line": 381,
           "column": 4,
-          "index": 8517
+          "index": 9459
         },
         "end": {
-          "line": 347,
+          "line": 383,
           "column": 5,
-          "index": 8619
+          "index": 9561
         }
       },
       "jsdoc": {},
@@ -786,14 +858,14 @@
     "_applyLetterSpacing": {
       "location": {
         "start": {
-          "line": 350,
+          "line": 386,
           "column": 4,
-          "index": 8648
+          "index": 9590
         },
         "end": {
-          "line": 352,
+          "line": 388,
           "column": 5,
-          "index": 8764
+          "index": 9706
         }
       },
       "jsdoc": {},
@@ -806,14 +878,14 @@
     "getStyles": {
       "location": {
         "start": {
-          "line": 362,
+          "line": 398,
           "column": 4,
-          "index": 9092
+          "index": 10034
         },
         "end": {
-          "line": 364,
+          "line": 400,
           "column": 5,
-          "index": 9142
+          "index": 10084
         }
       },
       "jsdoc": {
@@ -4981,6 +5053,72 @@
           {
             "name": "@description",
             "body": "Resets the user value of the property <code>letterSpacing</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #letterSpacing}."
+          }
+        ]
+      }
+    },
+    "getFontName": {
+      "type": "function",
+      "name": "getFontName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "get",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Gets the (computed) value of the property <code>fontName</code>.\n\nFor further details take a look at the property definition: {@link #fontName}."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "type": "String",
+            "desc": "Returns the value for fontName"
+          }
+        ]
+      }
+    },
+    "setFontName": {
+      "type": "function",
+      "name": "setFontName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "set",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Sets the user value of the property <code>fontName</code>.\n\nFor further details take a look at the property definition: {@link #fontName}."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "type": "String",
+            "paramName": "value",
+            "desc": "Value for fontName"
+          }
+        ]
+      }
+    },
+    "resetFontName": {
+      "type": "function",
+      "name": "resetFontName",
+      "abstract": false,
+      "mixin": false,
+      "inherited": false,
+      "access": "public",
+      "property": "reset",
+      "jsdoc": {
+        "@description": [
+          {
+            "name": "@description",
+            "body": "Resets the user value of the property <code>fontName</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fontName}."
           }
         ]
       }

@@ -26,6 +26,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,6 +53,7 @@
   qx.Class.define("qx.ui.virtual.layer.WidgetCellSpan", {
     extend: qx.ui.virtual.layer.Abstract,
     include: [qx.ui.core.MChildrenHandling],
+
     /**
      * @param widgetCellProvider {qx.ui.virtual.core.IWidgetCellProvider} This
      *    class manages the life cycle of the cell widgets.
@@ -67,16 +69,19 @@
       this._cellProvider = widgetCellProvider;
       this.__P_486_0 = [];
       this._cellLayer = new qx.ui.virtual.layer.WidgetCell(this.__P_486_1());
+
       this._cellLayer.setZIndex(0);
+
       this._setLayout(new qx.ui.layout.Grow());
+
       this._add(this._cellLayer);
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       anonymous: {
@@ -84,12 +89,12 @@
         init: false
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Returns the widget used to render the given cell. May return null if the
@@ -102,28 +107,36 @@
        */
       getRenderedCellWidget: function getRenderedCellWidget(row, column) {
         var widget = this._cellLayer.getRenderedCellWidget(row, column);
+
         if (!widget || widget.getUserData("cell.spanning")) {
           var children = this._getChildren();
+
           for (var i = 0, l = children.length; i < l; i++) {
             var child = children[i];
+
             if (child == this._cellLayer) {
               continue;
             }
+
             var cell = {
               row: child.getUserData("cell.row"),
               column: child.getUserData("cell.column"),
               rowSpan: child.getUserData("cell.rowspan"),
               colSpan: child.getUserData("cell.colspan")
             };
+
             if (cell.row <= row && row < cell.row + cell.rowSpan && cell.column <= column && column < cell.column + cell.colSpan) {
               return child;
             }
           }
+
           return null;
         }
+
         return widget;
       },
       __P_486_0: null,
+
       /**
        * Set the row and column span for a specific cell
        *
@@ -134,12 +147,16 @@
        */
       setCellSpan: function setCellSpan(row, column, rowSpan, columnSpan) {
         var id = row + "x" + column;
+
         this._spanManager.removeCell(id);
+
         if (rowSpan > 1 || columnSpan > 1) {
           this._spanManager.addCell(id, row, column, rowSpan, columnSpan);
         }
+
         qx.ui.core.queue.Widget.add(this);
       },
+
       /**
        * Get the spacer widget, for span cells
        *
@@ -147,13 +164,16 @@
        */
       _getSpacer: function _getSpacer() {
         var spacer = this.__P_486_0.pop();
+
         if (!spacer) {
           spacer = new qx.ui.core.Spacer();
           spacer.setUserData("cell.empty", 1);
           spacer.setUserData("cell.spanning", 1);
         }
+
         return spacer;
       },
+
       /**
        * Get the cell provider for the non spanning cells
        *
@@ -170,6 +190,7 @@
             } else {
               var widget = self._getSpacer();
             }
+
             return widget;
           },
           poolCellWidget: function poolCellWidget(widget) {
@@ -182,6 +203,7 @@
         };
         return nonSpanningCellProvider;
       },
+
       /**
        * Updates the fields <code>_cells</code>, <code>_bounds</code> and
        * <code>_spanMap</code> according to the given grid window.
@@ -193,18 +215,21 @@
        */
       __P_486_2: function __P_486_2(firstRow, firstColumn, rowCount, columnCount) {
         this._cells = this._spanManager.findCellsInWindow(firstRow, firstColumn, rowCount, columnCount);
+
         if (this._cells.length > 0) {
           this._bounds = this._spanManager.getCellBounds(this._cells, firstRow, firstColumn);
           this._spanMap = this._spanManager.computeCellSpanMap(this._cells, firstRow, firstColumn, rowCount, columnCount);
         } else {
-          this._bounds = [];
-          // create empty dummy map
+          this._bounds = []; // create empty dummy map
+
           this._spanMap = [];
+
           for (var i = 0; i < rowCount; i++) {
             this._spanMap[firstRow + i] = [];
           }
         }
       },
+
       /**
        * Updates the widget in spanned cells.
        *
@@ -214,23 +239,30 @@
       __P_486_3: function __P_486_3() {
         // remove and pool existing cells
         var children = this.getChildren();
+
         for (var i = children.length - 1; i >= 0; i--) {
           var child = children[i];
+
           if (child !== this._cellLayer) {
             this._cellProvider.poolCellWidget(child);
+
             this._remove(child);
           }
         }
+
         for (var i = 0, l = this._cells.length; i < l; i++) {
           var cell = this._cells[i];
           var cellBounds = this._bounds[i];
+
           var cellWidget = this._cellProvider.getCellWidget(cell.firstRow, cell.firstColumn);
+
           if (cellWidget) {
             cellWidget.setUserBounds(cellBounds.left, cellBounds.top, cellBounds.width, cellBounds.height);
             cellWidget.setUserData("cell.row", cell.firstRow);
             cellWidget.setUserData("cell.column", cell.firstColumn);
             cellWidget.setUserData("cell.rowspan", cell.lastRow - cell.firstRow + 1);
             cellWidget.setUserData("cell.colspan", cell.lastColumn - cell.firstColumn + 1);
+
             this._add(cellWidget);
           }
         }
@@ -238,26 +270,33 @@
       // overridden
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
         this.__P_486_2(firstRow, firstColumn, rowSizes.length, columnSizes.length);
+
         this.__P_486_3();
+
         this._cellLayer.fullUpdate(firstRow, firstColumn, rowSizes, columnSizes);
       },
       // overridden
       _updateLayerWindow: function _updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes) {
         this.__P_486_2(firstRow, firstColumn, rowSizes.length, columnSizes.length);
+
         this.__P_486_3();
+
         this._cellLayer.updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes);
       }
     },
     destruct: function destruct() {
       var children = this._getChildren();
+
       for (var i = 0; i < children.length; i++) {
         children[i].dispose();
       }
+
       this._disposeObjects("_spanManager", "_cellLayer");
+
       this._cellProvider = this.__P_486_0 = this._cells = this._bounds = this._spanMap = null;
     }
   });
   qx.ui.virtual.layer.WidgetCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCellSpan.js.map?dt=1677362770733
+//# sourceMappingURL=WidgetCellSpan.js.map?dt=1685978152091

@@ -13,6 +13,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,28 +41,32 @@
    */
   qx.Class.define("qx.ui.tabview.Page", {
     extend: qx.ui.container.Composite,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param label {String} Initial label of the tab
      * @param icon {String} Initial icon of the tab
      */
     construct: function construct(label, icon) {
       qx.ui.container.Composite.constructor.call(this);
-      this._createChildControl("button");
 
-      // init
+      this._createChildControl("button"); // init
+
+
       if (label != null) {
         this.setLabel(label);
       }
+
       if (icon != null) {
         this.setIcon(icon);
-      }
+      } // ARIA attrs
 
-      // ARIA attrs
+
       var btn = this.getButton();
       var pageId = "page-" + this.toHashCode();
       var btnId = "btn-" + pageId + btn.toHashCode();
@@ -77,36 +82,38 @@
       btnContentEl.setAttribute("aria-controls", pageId);
       btn.addListener("changeValue", this._onBtnChangeValue, this);
     },
+
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
-
     events: {
       /**
        * Fired by {@link qx.ui.tabview.TabButton} if the close button is tapped.
        */
       close: "qx.event.type.Event"
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "tabview-page"
       },
+
       /** The label/caption/text of the Page's button. */
       label: {
         check: "String",
         init: "",
         apply: "_applyLabel"
       },
+
       /** Any URI String supported by qx.ui.basic.Image to display an icon in Page's button. */
       icon: {
         check: "String",
@@ -114,12 +121,14 @@
         apply: "_applyIcon",
         nullable: true
       },
+
       /** Indicates if the close button of a TabButton should be shown. */
       showCloseButton: {
         check: "Boolean",
         init: false,
         apply: "_applyShowCloseButton"
       },
+
       /** Allows the tab to be excluded from the display */
       tabVisibility: {
         init: "visible",
@@ -129,21 +138,22 @@
         event: "changeTabVisibility"
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
 
+    /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /*
       ---------------------------------------------------------------------------
         WIDGET API
       ---------------------------------------------------------------------------
       */
-
       // overridden
+
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -155,6 +165,7 @@
         firstTab: 1,
         lastTab: 1
       },
+
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -163,8 +174,10 @@
       // property apply
       _applyIcon: function _applyIcon(value, old) {
         var btn = this.getChildControl("button");
+
         if (value) {
           btn.setIcon(value);
+
           btn._showChildControl("icon");
         } else {
           btn._excludeChildControl("icon");
@@ -176,13 +189,14 @@
       },
       // overridden
       _applyEnabled: function _applyEnabled(value, old) {
-        qx.ui.tabview.Page.superclass.prototype._applyEnabled.call(this, value, old);
-
-        // delegate to non-child widget button
+        qx.ui.tabview.Page.superclass.prototype._applyEnabled.call(this, value, old); // delegate to non-child widget button
         // since enabled is inheritable value may be null
+
+
         var btn = this.getChildControl("button");
         value == null ? btn.resetEnabled() : btn.setEnabled(value);
       },
+
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -191,6 +205,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case "button":
             control = new qx.ui.tabview.TabButton();
@@ -201,8 +216,10 @@
             control.setVisibility(this.getTabVisibility());
             break;
         }
+
         return control || qx.ui.tabview.Page.superclass.prototype._createChildControlImpl.call(this, id);
       },
+
       /**
        * Tab Change Listener
        * @param {*} e
@@ -210,8 +227,10 @@
       _onBtnChangeValue: function _onBtnChangeValue(e) {
         var val = e.getData();
         this.getContentElement().setAttribute("aria-expanded", val, true); // Set third argument to true -> direct Update
+
         this.getButton().getContentElement().setAttribute("aria-selected", val);
       },
+
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY
@@ -225,11 +244,13 @@
       _applyTabVisibility: function _applyTabVisibility(newValue, oldValue) {
         this.getButton().setVisibility(newValue);
       },
+
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
+
       /**
        * Fires an "close" event when the close button of the TabButton of the page
        * is tapped.
@@ -237,11 +258,13 @@
       _onButtonClose: function _onButtonClose() {
         this.fireEvent("close");
       },
+
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
+
       /**
        * By default, widgets are added to `this`
        *
@@ -250,6 +273,7 @@
       getChildrenContainer: function getChildrenContainer() {
         return this;
       },
+
       /**
        * Returns the button used within this page. This method is used by
        * the TabView to access the button.
@@ -264,4 +288,4 @@
   qx.ui.tabview.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1677362767647
+//# sourceMappingURL=Page.js.map?dt=1685978148903

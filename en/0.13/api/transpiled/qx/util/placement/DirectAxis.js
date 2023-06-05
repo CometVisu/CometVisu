@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
        * @return {Integer} The computed start position of the object.
        */
       _moveToEdgeAndAlign: qx.util.placement.AbstractAxis._moveToEdgeAndAlign,
+
       /**
        * Computes the start of the object on the axis
        *
@@ -77,4 +79,4 @@
   qx.util.placement.DirectAxis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DirectAxis.js.map?dt=1677362774101
+//# sourceMappingURL=DirectAxis.js.map?dt=1685978155672

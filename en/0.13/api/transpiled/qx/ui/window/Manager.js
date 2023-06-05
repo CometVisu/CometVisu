@@ -16,6 +16,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,17 +41,18 @@
   qx.Class.define("qx.ui.window.Manager", {
     extend: qx.core.Object,
     implement: qx.ui.window.IWindowManager,
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_496_0: null,
       // interface implementation
       setDesktop: function setDesktop(desktop) {
         this.__P_496_0 = desktop;
+
         if (desktop) {
           this.updateStack();
         } else {
@@ -60,6 +62,7 @@
           qx.ui.core.queue.Widget.remove(this);
         }
       },
+
       /**
        * Returns the connected desktop
        *
@@ -74,10 +77,12 @@
           this.bringToFront(active);
           active.setActive(true);
         }
+
         if (oldActive) {
           oldActive.resetActive();
         }
       },
+
       /** @type {Integer} Minimum zIndex to start with for windows */
       _minZIndex: 1e5,
       // interface implementation
@@ -86,37 +91,43 @@
         // flushed. The queue will call "syncWidget"
         qx.ui.core.queue.Widget.add(this);
       },
+
       /**
        * This method is called during the flush of the
        * {@link qx.ui.core.queue.Widget widget queue}.
        */
       syncWidget: function syncWidget() {
         this.__P_496_0.forceUnblock();
-        var windows = this.__P_496_0.getWindows();
-        // z-index for all three window kinds
+
+        var windows = this.__P_496_0.getWindows(); // z-index for all three window kinds
+
+
         var zIndex = this._minZIndex;
         var zIndexOnTop = zIndex + windows.length * 2;
-        var zIndexModal = zIndex + windows.length * 4;
-        // marker if there is an active window
+        var zIndexModal = zIndex + windows.length * 4; // marker if there is an active window
+
         var active = null;
+
         for (var i = 0, l = windows.length; i < l; i++) {
-          var win = windows[i];
-          // ignore invisible windows
+          var win = windows[i]; // ignore invisible windows
+
           if (!win.isVisible()) {
             continue;
-          }
-          // take the first window as active window
-          active = active || win;
+          } // take the first window as active window
 
-          // We use only every second z index to easily insert a blocker between
+
+          active = active || win; // We use only every second z index to easily insert a blocker between
           // two windows
           // Modal Windows stays on top of AlwaysOnTop Windows, which stays on
           // top of Normal Windows.
+
           if (win.isModal()) {
             win.setZIndex(zIndexModal);
+
             this.__P_496_0.blockContent(zIndexModal - 1);
-            zIndexModal += 2;
-            //just activate it if it's modal
+
+            zIndexModal += 2; //just activate it if it's modal
+
             active = win;
           } else if (win.isAlwaysOnTop()) {
             win.setZIndex(zIndexOnTop);
@@ -124,21 +135,23 @@
           } else {
             win.setZIndex(zIndex);
             zIndex += 2;
-          }
+          } // store the active window
 
-          // store the active window
+
           if (!active.isModal() && win.isActive() || win.getZIndex() > active.getZIndex()) {
             active = win;
           }
-        }
+        } //set active window or null otherwise
 
-        //set active window or null otherwise
+
         this.__P_496_0.setActiveWindow(active);
       },
       // interface implementation
       bringToFront: function bringToFront(win) {
         var windows = this.__P_496_0.getWindows();
+
         var removed = qx.lang.Array.remove(windows, win);
+
         if (removed) {
           windows.push(win);
           this.updateStack();
@@ -147,13 +160,16 @@
       // interface implementation
       sendToBack: function sendToBack(win) {
         var windows = this.__P_496_0.getWindows();
+
         var removed = qx.lang.Array.remove(windows, win);
+
         if (removed) {
           windows.unshift(win);
           this.updateStack();
         }
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -166,4 +182,4 @@
   qx.ui.window.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1677362772121
+//# sourceMappingURL=Manager.js.map?dt=1685978153521

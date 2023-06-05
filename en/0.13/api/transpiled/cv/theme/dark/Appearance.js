@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Appearance.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -30,7 +31,6 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Theme.define('cv.theme.dark.Appearance', {
     extend: qx.theme.tangible.Appearance,
     appearances: {
@@ -173,19 +173,25 @@
         alias: 'atom',
         style: function style(states) {
           var padding = [2, 5, 2, 5];
+
           if (states.lead) {
             padding = [1, 4, 1, 4];
           }
+
           if (states.dragover) {
             padding[2] -= 1;
           }
+
           var backgroundColor = 'primary';
+
           if (states.selected) {
             backgroundColor += '-selected';
+
             if (states.disabled) {
               backgroundColor += '_disabled';
             }
           }
+
           return {
             backgroundColor: backgroundColor,
             textColor: 'text-on-primary',
@@ -482,10 +488,12 @@
         style: function style(states) {
           var font = 'default';
           var textColor = 'text-on-primary';
+
           if (states.error || states.loading) {
             font = 'italic';
             textColor = states.error ? 'warning-color' : 'text-on-secondary';
           }
+
           return {
             textColor: textColor,
             font: font
@@ -535,6 +543,7 @@
       'dragdrop-cursor': {
         style: function style(states) {
           var icon = 'nodrop';
+
           if (states.copy) {
             icon = 'copy';
           } else if (states.move) {
@@ -542,10 +551,13 @@
           } else if (states.alias) {
             icon = 'alias';
           }
+
           var leftOffset = 8;
+
           if (states.touch) {
             leftOffset = 44;
           }
+
           return {
             source: qx.theme.tangible.Image.URLS['cursor-' + icon],
             position: 'left-middle',
@@ -581,11 +593,13 @@
         include: 'atom/icon',
         style: function style(states) {
           var color = 'valid-color';
+
           if (states.error) {
             color = 'invalid-color';
           } else if (states.warning) {
             color = 'warning-color';
           }
+
           return {
             textColor: color
           };
@@ -596,4 +610,4 @@
   cv.theme.dark.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1677362778536
+//# sourceMappingURL=Appearance.js.map?dt=1685978160990

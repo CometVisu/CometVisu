@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -32,11 +33,13 @@
    */
   qx.Bootstrap.define("qx.core.WindowError", {
     extend: Error,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param failMessage {String} The error message
      * @param uri {String} URI where error was raised
@@ -45,32 +48,35 @@
      * @param sourceException {Error} orginal error
      */
     construct: function construct(failMessage, uri, lineNumber, columnNumber, sourceException) {
-      var inst = sourceException || Error.call(this, failMessage);
-      // map stack trace properties since they're not added by Error's constructor
+      var inst = sourceException || Error.call(this, failMessage); // map stack trace properties since they're not added by Error's constructor
+
       if (inst.stack) {
         this.stack = inst.stack;
       }
+
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
+
       this.__P_169_0 = failMessage;
       this.__P_169_1 = uri || "";
       this.__P_169_2 = lineNumber === undefined ? -1 : lineNumber;
       this.__P_169_3 = columnNumber === undefined ? -1 : columnNumber;
       this.__P_169_4 = sourceException;
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_169_0: null,
       __P_169_1: null,
       __P_169_2: null,
       __P_169_3: null,
       __P_169_4: null,
+
       /**
        * Returns the error message.
        *
@@ -79,6 +85,7 @@
       toString: function toString() {
         return this.__P_169_0;
       },
+
       /**
        * Get the URI where error was raised
        *
@@ -87,6 +94,7 @@
       getUri: function getUri() {
         return this.__P_169_1;
       },
+
       /**
        * Get the line number where the error was raised
        *
@@ -95,6 +103,7 @@
       getLineNumber: function getLineNumber() {
         return this.__P_169_2;
       },
+
       /**
        * Get the column number where the error was raised
        *
@@ -103,6 +112,7 @@
       getColumnNumber: function getColumnNumber() {
         return this.__P_169_3;
       },
+
       /**
        * Get the source exception
        *
@@ -116,4 +126,4 @@
   qx.core.WindowError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WindowError.js.map?dt=1677362731032
+//# sourceMappingURL=WindowError.js.map?dt=1685978113525

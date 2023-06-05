@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +37,6 @@
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /**
        * Tries to set the selection using the given array containing the
@@ -45,6 +45,7 @@
        * @param value {Array} An array of models.
        */
       setModelSelection: function setModelSelection(value) {},
+
       /**
        * Returns an array of the selected models.
        *
@@ -57,4 +58,4 @@
   qx.ui.form.IModelSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IModelSelection.js.map?dt=1677362757286
+//# sourceMappingURL=IModelSelection.js.map?dt=1685978138153

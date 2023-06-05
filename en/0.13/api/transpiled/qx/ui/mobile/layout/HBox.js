@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,12 +64,12 @@
    */
   qx.Class.define("qx.ui.mobile.layout.HBox", {
     extend: qx.ui.mobile.layout.AbstractBox,
+
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
-
     members: {
       // overridden
       _getCssClasses: function _getCssClasses() {
@@ -79,4 +80,4 @@
   qx.ui.mobile.layout.HBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HBox.js.map?dt=1677362763212
+//# sourceMappingURL=HBox.js.map?dt=1685978144361

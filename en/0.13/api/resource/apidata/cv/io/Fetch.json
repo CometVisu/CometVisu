@@ -96,6 +96,7 @@
         }
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "fetch": {
@@ -146,6 +147,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "proxyFetch": {
@@ -192,6 +194,7 @@
         ]
       },
       "type": "function",
+      "async": true,
       "access": "public"
     },
     "_gc": {

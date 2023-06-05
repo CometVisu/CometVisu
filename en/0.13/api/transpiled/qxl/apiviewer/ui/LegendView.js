@@ -27,6 +27,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,6 +57,7 @@
    */
   qx.Class.define("qxl.apiviewer.ui.LegendView", {
     extend: qx.ui.container.Scroll,
+
     /*
     *****************************************************************************
      CONSTRUCTOR
@@ -141,12 +143,15 @@
       var length = this.__P_568_0.length;
       var entry;
       var imageUrl;
+
       for (var i = 0; i < length; i++) {
         entry = this.__P_568_0[i];
         imageUrl = qxl.apiviewer.TreeUtil.iconNameToIconPath(entry.icon);
+
         if (typeof imageUrl != "string") {
           imageUrl = imageUrl[0];
         }
+
         content.add(new qx.ui.basic.Image(imageUrl).set({
           alignX: "center",
           alignY: "middle"
@@ -162,17 +167,19 @@
           column: 1
         });
       }
+
       this.add(content);
     },
+
     /*
     *****************************************************************************
      MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_568_0: null
     },
+
     /*
     *****************************************************************************
      DESTRUCTOR
@@ -185,4 +192,4 @@
   qxl.apiviewer.ui.LegendView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LegendView.js.map?dt=1677362780504
+//# sourceMappingURL=LegendView.js.map?dt=1685978162849

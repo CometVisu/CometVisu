@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -32,6 +33,7 @@
    */
   qx.Class.define("qx.dev.unit.MeasurementResult", {
     extend: Object,
+
     /**
      *
      * @param message {String} Description
@@ -50,6 +52,7 @@
       __P_191_1: null,
       __P_191_2: null,
       __P_191_3: null,
+
       /**
        * Returns the stored data as a map.
        * @return {Map} The stored data.
@@ -62,6 +65,7 @@
           renderTime: this.__P_191_3
         };
       },
+
       /**
        * Returns a readable summary of this result
        *
@@ -75,4 +79,4 @@
   qx.dev.unit.MeasurementResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MeasurementResult.js.map?dt=1677362733264
+//# sourceMappingURL=MeasurementResult.js.map?dt=1685978116014

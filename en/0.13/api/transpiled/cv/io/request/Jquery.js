@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /**
    * JQuery Wrapper for AJAX request that allows re-sending the request
    *
@@ -20,9 +21,9 @@
    * @ignore($)
    * @asset(lib/jquery.js)
    */
-
   qx.Class.define('cv.io.request.Jquery', {
     extend: qx.core.Object,
+
     /*
     ******************************************************
       CONSTRUCTOR
@@ -31,6 +32,7 @@
     construct: function construct(config) {
       this.__P_556_0 = config;
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -43,6 +45,7 @@
         apply: '_applyRequestData'
       }
     },
+
     /*
     ******************************************************
       MEMBERS
@@ -70,6 +73,7 @@
           this.error('no request settings found, skipping');
         }
       },
+
       /*
       ***********************************************************
         Methods that are forwarded to the native XHR object
@@ -84,6 +88,7 @@
         if (this.__P_556_1) {
           return this.__P_556_1.getResponseHeader(headerName);
         }
+
         return null;
       }
     }
@@ -91,4 +96,4 @@
   cv.io.request.Jquery.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jquery.js.map?dt=1677362779506
+//# sourceMappingURL=Jquery.js.map?dt=1685978161639

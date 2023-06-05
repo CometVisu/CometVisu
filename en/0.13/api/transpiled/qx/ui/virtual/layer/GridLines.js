@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +37,7 @@
    */
   qx.Class.define("qx.ui.virtual.layer.GridLines", {
     extend: qx.ui.virtual.layer.Abstract,
+
     /**
      * @param orientation {String?"horizontal"} The grid line orientation.
      * @param lineColor {Color?null} The default color for grid lines
@@ -45,22 +47,25 @@
     construct: function construct(orientation, lineColor, lineSize) {
       qx.ui.virtual.layer.Abstract.constructor.call(this);
       this.setZIndex(11);
+
       if (lineColor) {
         this.setDefaultLineColor(lineColor);
       }
+
       if (lineSize !== undefined) {
         this.setDefaultLineSize(lineSize);
       }
+
       this.__P_482_0 = [];
       this.__P_482_1 = [];
       this._isHorizontal = (orientation || "horizontal") == "horizontal";
     },
+
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
-
     properties: {
       /** The default color for grid lines.*/
       defaultLineColor: {
@@ -68,6 +73,7 @@
         check: "Color",
         themeable: true
       },
+
       /** The default width/height for grid lines.*/
       defaultLineSize: {
         init: 1,
@@ -75,17 +81,19 @@
         themeable: true
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       /** Stores the colors for deviant grid lines. */
       __P_482_0: null,
+
       /** Stores the width/height for deviant grid lines. */
       __P_482_1: null,
+
       /**
        * Whether horizontal lines are rendered
        *
@@ -94,6 +102,7 @@
       isHorizontal: function isHorizontal() {
         return this._isHorizontal;
       },
+
       /**
        * Sets the color for the grid line with the given index.
        *
@@ -102,10 +111,12 @@
        */
       setLineColor: function setLineColor(index, color) {
         this.__P_482_0[index] = color;
+
         if (this.__P_482_2(index)) {
           this.updateLayerData();
         }
       },
+
       /**
        * Sets the width/height for the grid line with the given index.
        *
@@ -114,10 +125,12 @@
        */
       setLineSize: function setLineSize(index, size) {
         this.__P_482_1[index] = size;
+
         if (this.__P_482_2(index)) {
           this.updateLayerData();
         }
       },
+
       /**
        * Whether the line with the given index is currently rendered (i.e. in the
        * layer's view port).
@@ -136,6 +149,7 @@
           return index >= firstRow && index <= lastRow;
         }
       },
+
       /**
        * Returns the size of the grid line with the given index.
        *
@@ -145,6 +159,7 @@
       getLineSize: function getLineSize(index) {
         return this.__P_482_1[index] || this.getDefaultLineSize();
       },
+
       /**
        * Returns the color of the grid line with the given index.
        *
@@ -154,6 +169,7 @@
       getLineColor: function getLineColor(index) {
         return this.__P_482_0[index] || this.getDefaultLineColor();
       },
+
       /**
        * Helper function to render horizontal lines.
        *
@@ -164,6 +180,7 @@
       __P_482_3: function __P_482_3(htmlArr, firstRow, rowSizes) {
         var top = 0;
         var color, height;
+
         for (var y = 0; y < rowSizes.length - 1; y++) {
           color = this.getLineColor(firstRow + y);
           height = this.getLineSize(firstRow + y);
@@ -171,6 +188,7 @@
           htmlArr.push("<div style='", "position: absolute;", "height: " + height + "px;", "width: 100%;", "top:", top - (height > 1 ? Math.floor(height / 2) : 1), "px;", "background-color:", color, "'>", "</div>");
         }
       },
+
       /**
        * Helper function to render vertical lines.
        *
@@ -181,6 +199,7 @@
       __P_482_4: function __P_482_4(htmlArr, firstColumn, columnSizes) {
         var left = 0;
         var color, width;
+
         for (var x = 0; x < columnSizes.length - 1; x++) {
           color = this.getLineColor(firstColumn + x);
           width = this.getLineSize(firstColumn + x);
@@ -191,22 +210,26 @@
       // overridden
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
         var html = [];
+
         if (this._isHorizontal) {
           this.__P_482_3(html, firstRow, rowSizes);
         } else {
           this.__P_482_4(html, firstColumn, columnSizes);
         }
+
         this.getContentElement().setAttribute("html", html.join(""));
       },
       // overridden
       _updateLayerWindow: function _updateLayerWindow(firstRow, firstColumn, rowSizes, columnSizes) {
         var rowChanged = firstRow !== this.getFirstRow() || rowSizes.length !== this.getRowSizes().length;
         var columnChanged = firstColumn !== this.getFirstColumn() || columnSizes.length !== this.getColumnSizes().length;
+
         if (this._isHorizontal && rowChanged || !this._isHorizontal && columnChanged) {
           this._fullUpdate(firstRow, firstColumn, rowSizes, columnSizes);
         }
       }
     },
+
     /*
      *****************************************************************************
         DESTRUCT
@@ -219,4 +242,4 @@
   qx.ui.virtual.layer.GridLines.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GridLines.js.map?dt=1677362770520
+//# sourceMappingURL=GridLines.js.map?dt=1685978151869

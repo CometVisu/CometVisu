@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Diagram.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,9 +39,9 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
-
   qx.Class.define('cv.plugins.diagram.Diagram', {
     extend: cv.plugins.diagram.AbstractDiagram,
+
     /*
      ******************************************************
      CONSTRUCTOR
@@ -50,6 +51,7 @@
       this._init = true;
       cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
     },
+
     /*
      ******************************************************
      PROPERTIES
@@ -65,6 +67,7 @@
         nullable: true
       }
     },
+
     /*
      ******************************************************
      STATICS
@@ -98,6 +101,7 @@
         };
       }
     },
+
     /*
      ******************************************************
      MEMBERS
@@ -107,11 +111,11 @@
       __P_21_0: null,
       _onDomReady: function _onDomReady() {
         var _this = this;
+
         if (!this.$$domReady) {
           var pageId = this.getParentPage().getPath();
-          var broker = qx.event.message.Bus;
+          var broker = qx.event.message.Bus; // let the refresh only be active when this widget is visible
 
-          // let the refresh only be active when this widget is visible
           this.setRestartOnVisible(true);
           broker.subscribe('path.' + pageId + '.beforePageChange', function () {
             if (!this._init) {
@@ -123,10 +127,9 @@
             if (this._init) {
               this.initDiagram(false);
             }
-          }, this);
-
-          // initialize the diagram but don't make the initialization process wait for it
+          }, this); // initialize the diagram but don't make the initialization process wait for it
           // by using a deferred call
+
           if (this.isVisible()) {
             new qx.util.DeferredCall(function () {
               if (!this._init) {
@@ -143,11 +146,14 @@
                 } else {
                   _this.initDiagram(false);
                 }
+
                 _this.removeListenerById(_this.__P_21_0);
+
                 _this.__P_21_0 = null;
               }
             });
           }
+
           this.$$domReady = true;
           this.initListeners();
         }
@@ -167,4 +173,4 @@
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1677362709921
+//# sourceMappingURL=Diagram.js.map?dt=1685978092841

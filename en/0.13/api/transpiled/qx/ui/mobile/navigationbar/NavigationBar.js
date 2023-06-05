@@ -15,6 +15,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,6 +55,7 @@
    */
   qx.Class.define("qx.ui.mobile.navigationbar.NavigationBar", {
     extend: qx.ui.mobile.container.Composite,
+
     /*
      *****************************************************************************
         CONSTRUCTOR
@@ -61,18 +63,19 @@
      */
     construct: function construct(layout) {
       qx.ui.mobile.container.Composite.constructor.call(this, layout);
+
       if (!layout) {
         this.setLayout(new qx.ui.mobile.layout.HBox().set({
           alignY: "middle"
         }));
       }
     },
+
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
-
     properties: {
       // overridden
       defaultCssClass: {
@@ -84,4 +87,4 @@
   qx.ui.mobile.navigationbar.NavigationBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavigationBar.js.map?dt=1677362763599
+//# sourceMappingURL=NavigationBar.js.map?dt=1685978144734

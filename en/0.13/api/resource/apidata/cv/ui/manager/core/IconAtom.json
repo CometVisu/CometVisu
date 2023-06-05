@@ -14,9 +14,9 @@
         "index": 896
       },
       "end": {
-        "line": 154,
+        "line": 156,
         "column": 3,
-        "index": 4218
+        "index": 4283
       }
     },
     "jsdoc": {
@@ -161,9 +161,9 @@
           "index": 1766
         },
         "end": {
-          "line": 66,
+          "line": 68,
           "column": 5,
-          "index": 1946
+          "index": 2011
         }
       },
       "type": "function",
@@ -172,14 +172,14 @@
     "_applyLabel": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 71,
           "column": 4,
-          "index": 1975
+          "index": 2040
         },
         "end": {
-          "line": 72,
+          "line": 74,
           "column": 5,
-          "index": 2077
+          "index": 2142
         }
       },
       "jsdoc": {},
@@ -193,14 +193,14 @@
     "_applyModel": {
       "location": {
         "start": {
-          "line": 74,
+          "line": 76,
           "column": 4,
-          "index": 2084
+          "index": 2149
         },
         "end": {
-          "line": 83,
+          "line": 85,
           "column": 5,
-          "index": 2298
+          "index": 2363
         }
       },
       "type": "function",
@@ -212,14 +212,14 @@
     "_applyIcon": {
       "location": {
         "start": {
-          "line": 85,
+          "line": 87,
           "column": 4,
-          "index": 2305
+          "index": 2370
         },
         "end": {
-          "line": 107,
+          "line": 109,
           "column": 5,
-          "index": 3056
+          "index": 3121
         }
       },
       "type": "function",
@@ -232,14 +232,14 @@
     "_handleIcon": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 111,
           "column": 4,
-          "index": 3063
+          "index": 3128
         },
         "end": {
-          "line": 115,
+          "line": 117,
           "column": 5,
-          "index": 3297
+          "index": 3362
         }
       },
       "type": "function",
@@ -252,14 +252,14 @@
     "_createChildControlImpl": {
       "location": {
         "start": {
-          "line": 118,
+          "line": 120,
           "column": 4,
-          "index": 3322
+          "index": 3387
         },
         "end": {
-          "line": 152,
+          "line": 154,
           "column": 5,
-          "index": 4210
+          "index": 4275
         }
       },
       "jsdoc": {},

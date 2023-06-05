@@ -9,14 +9,14 @@
   "clazz": {
     "location": {
       "start": {
-        "line": 23,
+        "line": 26,
         "column": 0,
-        "index": 549
+        "index": 626
       },
       "end": {
-        "line": 69,
+        "line": 53,
         "column": 3,
-        "index": 1364
+        "index": 1126
       }
     },
     "jsdoc": {
@@ -24,6 +24,16 @@
         {
           "name": "@description",
           "body": "<p>The classic qooxdoo font theme.</p>"
+        }
+      ],
+      "@usefont": [
+        {
+          "name": "@usefont",
+          "body": "qx.theme.classic.defaultFont"
+        },
+        {
+          "name": "@usefont",
+          "body": "qx.theme.monospace"
         }
       ]
     }

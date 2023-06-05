@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -197,6 +198,7 @@
         row: "<tr>{{#row}}<td class='{{cssClass}}'><button class='{{cssPrefix}}-day {{hidden}}' {{disabled}} value='{{date}}'>{{day}}</button></td>{{/row}}</tr>",
         table: "<table class='{{cssPrefix}}-container'><thead>{{{thead}}}</thead><tbody>{{{tbody}}}</tbody></table>"
       },
+
       /**
        * *monthNames*
        *
@@ -254,6 +256,7 @@
         hideDaysOtherMonth: false,
         disableDaysOtherMonth: false
       },
+
       /**
        * Factory method which converts the current collection into a collection of
        * Calendar widgets. Therefore, an initialization process needs to be done which
@@ -266,9 +269,11 @@
       calendar: function calendar(date) {
         var calendar = new qx.ui.website.Calendar(this);
         calendar.init();
+
         if (date !== undefined) {
           calendar.setValue(date);
         }
+
         return calendar;
       }
     },
@@ -278,6 +283,7 @@
     events: {
       /** Fired at each value change */
       changeValue: "Date",
+
       /** Fired whenvever a render process finished. This event can be used as hook to add
           custom markup and/or manipulate existing. */
       rendered: ""
@@ -291,6 +297,7 @@
         if (!qx.ui.website.Calendar.superclass.prototype.init.call(this)) {
           return false;
         }
+
         this.__P_488_0 = [];
         var today = new Date();
         today = this._getNormalizedDate(today);
@@ -300,19 +307,24 @@
       // overridden
       render: function render() {
         var minDate = this.getConfig("minDate");
+
         if (minDate) {
           minDate = this._getNormalizedDate(minDate);
         }
+
         var maxDate = this.getConfig("maxDate");
+
         if (maxDate) {
           maxDate = this._getNormalizedDate(maxDate);
         }
+
         this.showValue(this._shownValue);
         return this;
       },
       // overridden
       setEnabled: function setEnabled(value) {
         this.setAttribute("disabled", !value);
+
         if (value === true) {
           // let the render process decide which state to set for the different DOM elements
           // this highly depends on the configuration (e.g. 'minDate', 'maxDate' or 'disableDaysOtherMonth')
@@ -320,8 +332,10 @@
         } else {
           this.find("*").setAttribute("disabled", !value);
         }
+
         return this;
       },
+
       /**
        * Sets the given date as the current value displays it
        *
@@ -331,19 +345,25 @@
       setValue: function setValue(value) {
         var minDate = this.getConfig("minDate");
         var maxDate = this.getConfig("maxDate");
+
         if (this.getConfig("selectionMode") == "single") {
           value = this._getNormalizedDate(value);
+
           if (this.getConfig("selectableWeekDays").indexOf(value.getDay()) == -1) {
             throw new Error("The given date's week day is not selectable.");
           }
+
           if (minDate) {
             minDate = this._getNormalizedDate(minDate);
+
             if (value < minDate) {
               throw new Error("Given date " + value.toDateString() + " is earlier than configured minDate " + minDate.toDateString());
             }
           }
+
           if (maxDate) {
             maxDate = this._getNormalizedDate(maxDate);
+
             if (value > maxDate) {
               throw new Error("Given date " + value.toDateString() + " is later than configured maxDate " + maxDate.toDateString());
             }
@@ -354,6 +374,7 @@
               return val.toDateString();
             });
           }
+
           if (value.length == 2) {
             value.sort(function (a, b) {
               return a - b;
@@ -363,13 +384,17 @@
             value[0] = this._getNormalizedDate(value[0]);
           }
         }
+
         this._value = value;
         this.showValue(value);
+
         if (this.getConfig("selectionMode") == "single" || this.getConfig("selectionMode") == "range" && value.length >= 1) {
           this.emit("changeValue", value);
         }
+
         return this;
       },
+
       /**
        * Returns the currently selected date of the first
        * calendar widget in the collection.
@@ -380,6 +405,7 @@
         var value = this._value;
         return value ? qx.Bootstrap.isArray(value) ? value : new Date(value) : null;
       },
+
       /**
        * Displays the given date
        *
@@ -391,9 +417,11 @@
         value = qx.Bootstrap.isArray(value) ? value[value.length - 1] : value;
         this._shownValue = value;
         var cssPrefix = this.getCssPrefix();
+
         if (this.getAttribute("tabindex") < 0) {
           this.setAttribute("tabindex", 0);
         }
+
         this.find("." + cssPrefix + "-prev").off("tap", this._prevMonth, this);
         this.find("." + cssPrefix + "-next").off("tap", this._nextMonth, this);
         this.find("." + cssPrefix + "-day").off("tap", this._selectDay, this);
@@ -402,13 +430,13 @@
         this.find("." + cssPrefix + "-prev").on("tap", this._prevMonth, this);
         this.find("." + cssPrefix + "-next").on("tap", this._nextMonth, this);
         this.find("td").not(".qx-calendar-invalid").find("." + cssPrefix + "-day").on("tap", this._selectDay, this);
-        this.on("focus", this._onFocus, this, true).on("blur", this._onBlur, this, true);
-
-        // signal the rendering process is done - this is useful for application developers if they
+        this.on("focus", this._onFocus, this, true).on("blur", this._onBlur, this, true); // signal the rendering process is done - this is useful for application developers if they
         // want to hook into and change / adapt the DOM elements of the calendar
+
         this.emit("rendered");
         return this;
       },
+
       /**
        * Displays the previous month
        */
@@ -416,6 +444,7 @@
         var shownValue = this._shownValue;
         this.showValue(new Date(shownValue.getFullYear(), shownValue.getMonth() - 1));
       },
+
       /**
        * Displays the next month
        */
@@ -423,6 +452,7 @@
         var shownValue = this._shownValue;
         this.showValue(new Date(shownValue.getFullYear(), shownValue.getMonth() + 1));
       },
+
       /**
        * Sets the current value to the day selected by the user
        * @param e {Event} The tap event.
@@ -431,11 +461,14 @@
         var day = qxWeb(e.getTarget());
         var newStr = day.getAttribute("value");
         var newValue = new Date(newStr);
+
         if (this.getConfig("selectionMode") == "range") {
           var range = this.__P_488_0.slice(0);
+
           if (range.length == 2) {
             range = [];
           }
+
           range.push(newStr);
           this.__P_488_0 = range;
           range = range.map(function (item) {
@@ -447,10 +480,12 @@
           this.setValue(newValue);
           newStr = [newStr];
         }
+
         newStr.forEach(function (str) {
           this.find("." + this.getCssPrefix() + "-day[value='" + str + "']").focus();
         }.bind(this));
       },
+
       /**
        * Renders the calendar for the given date.
        *
@@ -467,6 +502,7 @@
         };
         return qxWeb.template.render(this.getTemplate("table"), data);
       },
+
       /**
        * Returns the month and year to be displayed in the calendar controls.
        *
@@ -476,20 +512,26 @@
       _getControlsData: function _getControlsData(date) {
         var prevDisabled = "";
         var minDate = this.getConfig("minDate");
+
         if (minDate) {
           minDate = this._getNormalizedDate(minDate);
+
           if (date.getMonth() <= minDate.getMonth()) {
             prevDisabled = "disabled";
           }
         }
+
         var nextDisabled = "";
         var maxDate = this.getConfig("maxDate");
+
         if (maxDate) {
           maxDate = this._getNormalizedDate(maxDate);
+
           if (date.getMonth() >= maxDate.getMonth()) {
             nextDisabled = "disabled";
           }
         }
+
         return {
           month: this.getConfig("monthNames")[date.getMonth()],
           year: date.getFullYear(),
@@ -498,6 +540,7 @@
           nextDisabled: nextDisabled
         };
       },
+
       /**
        * Returns the week day names to be displayed in the calendar.
        *
@@ -509,6 +552,7 @@
           cssPrefix: this.getCssPrefix()
         };
       },
+
       /**
        * Returns the table rows displaying the days of the month.
        *
@@ -519,73 +563,87 @@
         date = qx.Bootstrap.isArray(date) ? date[date.length - 1] : date;
         var weeks = [];
         var value = null,
-          valueString = null;
+            valueString = null;
         var today = new Date();
+
         var helpDate = this._getHelpDate(date);
+
         var cssPrefix = this.getCssPrefix();
         var minDate = this.getConfig("minDate");
+
         if (minDate) {
           minDate = this._getNormalizedDate(minDate);
         }
+
         var maxDate = this.getConfig("maxDate");
+
         if (maxDate) {
           this._getNormalizedDate(maxDate);
         }
+
         var hideDaysOtherMonth = this.getConfig("hideDaysOtherMonth");
         var disableDaysOtherMonth = this.getConfig("disableDaysOtherMonth");
+
         if (qx.Bootstrap.isArray(this._value)) {
           valueString = this._value.map(function (currentDate) {
             return currentDate.toDateString();
           });
         }
+
         for (var week = 0; week < 6; week++) {
           var data = {
             row: []
           };
+
           for (var i = 0; i < 7; i++) {
             var cssClasses = "";
             var hidden = "";
             var disabled = "";
+
             if (helpDate.getMonth() !== date.getMonth()) {
               // first day of the last displayed week is already in the next month
               if (hideDaysOtherMonth === true && week === 5 && i === 0) {
                 break;
-              }
-
-              // set 'previous-month' and 'next-month' to make it easier for the developer to select
+              } // set 'previous-month' and 'next-month' to make it easier for the developer to select
               // the days after the render process
+
+
               if (helpDate.getMonth() < date.getMonth() && helpDate.getFullYear() == date.getFullYear() || helpDate.getMonth() > date.getMonth() && helpDate.getFullYear() < date.getFullYear()) {
                 cssClasses += cssPrefix + "-previous-month";
               } else {
                 cssClasses += cssPrefix + "-next-month";
               }
+
               hidden += hideDaysOtherMonth ? "qx-hidden" : "";
               disabled += disableDaysOtherMonth ? "disabled=disabled" : "";
             }
+
             if (this.getConfig("selectionMode") == "range" && qx.Bootstrap.isArray(this._value)) {
               if (valueString.indexOf(helpDate.toDateString()) != -1) {
                 cssClasses += " " + cssPrefix + "-selected";
               }
             } else {
               var range = this.__P_488_0;
+
               if (this._value) {
                 value = this.getConfig("selectionMode") == "range" ? new Date(range[range.length - 1]) : this._value;
                 cssClasses += helpDate.toDateString() === value.toDateString() ? " " + cssPrefix + "-selected" : "";
               }
-            }
+            } // extra check for today date necessary - otherwise 'today' would be marked as past day
 
-            // extra check for today date necessary - otherwise 'today' would be marked as past day
+
             var isPast = Date.parse(today) > Date.parse(helpDate) && today.toDateString() !== helpDate.toDateString();
             cssClasses += isPast ? " " + cssPrefix + "-past" : "";
-            cssClasses += today.toDateString() === helpDate.toDateString() ? " " + cssPrefix + "-today" : "";
+            cssClasses += today.toDateString() === helpDate.toDateString() ? " " + cssPrefix + "-today" : ""; // if 'disableDaysOtherMonth' config is set - 'disabled' might already be set
 
-            // if 'disableDaysOtherMonth' config is set - 'disabled' might already be set
             if (disabled === "") {
               disabled = this.getEnabled() ? "" : "disabled=disabled";
+
               if (minDate && helpDate < minDate || maxDate && helpDate > maxDate || this.getConfig("selectableWeekDays").indexOf(helpDate.getDay()) == -1) {
                 disabled = "disabled=disabled";
               }
             }
+
             cssClasses += helpDate.getDay() === 0 || helpDate.getDay() === 6 ? " " + cssPrefix + "-weekend" : " " + cssPrefix + "-weekday";
             data.row.push({
               day: helpDate.getDate(),
@@ -597,10 +655,13 @@
             });
             helpDate.setDate(helpDate.getDate() + 1);
           }
+
           weeks.push(qxWeb.template.render(this.getTemplate("row"), data));
         }
+
         return weeks.join("");
       },
+
       /**
        * Returns a date instance for the first visible day to be displayed
        *
@@ -609,6 +670,7 @@
        */
       _getHelpDate: function _getHelpDate(date) {
         var startOfWeek = 1; //TODO: config option
+
         var helpDate = new Date(date.getFullYear(), date.getMonth(), 1);
         var firstDayOfWeek = helpDate.getDay();
         helpDate = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0);
@@ -616,6 +678,7 @@
         helpDate.setDate(helpDate.getDate() - nrDaysOfLastMonth);
         return helpDate;
       },
+
       /**
        * Returns a Date object with hours, minutes and seconds set to 0
        * to facilitate date comparisons.
@@ -631,6 +694,7 @@
         date.setMilliseconds(0);
         return date;
       },
+
       /**
        * Attaches the keydown listener.
        *
@@ -639,6 +703,7 @@
       _onFocus: function _onFocus(e) {
         this.on("keydown", this._onKeyDown, this);
       },
+
       /**
        * Removes the keydown listener if the focus moves outside of the calendar.
        *
@@ -649,6 +714,7 @@
           this.off("keydown", this._onKeyDown, this);
         }
       },
+
       /**
        * Keyboard handling.
        *
@@ -659,39 +725,52 @@
         var target = qxWeb(e.getTarget());
         var key = e.getKeyIdentifier();
         var isDayButton = target.hasClass(cssPrefix + "-day");
+
         if (isDayButton) {
           if (key == "Space") {
             this._selectDay(e);
           } else if (key == "Right") {
             e.preventDefault();
+
             this._focusNextDay(target);
           } else if (key == "Left") {
             e.preventDefault();
+
             this._focusPrevDay(target);
           }
         } else {
           if (key == "Space") {
             if (target.hasClass(cssPrefix + "-prev")) {
               e.preventDefault();
+
               this._prevMonth();
+
               this.find("." + cssPrefix + "-prev").focus();
             } else if (target.hasClass(cssPrefix + "-next")) {
               e.preventDefault();
+
               this._nextMonth();
+
               this.find("." + cssPrefix + "-next").focus();
             }
           } else if (key == "Right") {
             e.preventDefault();
+
             this._nextMonth();
+
             this.find("." + cssPrefix + "-next").focus();
           } else if (key == "Left") {
             e.preventDefault();
+
             this._prevMonth();
+
             this.find("." + cssPrefix + "-prev").focus();
           }
         }
+
         e.stopPropagation();
       },
+
       /**
        * Focuses the day button following the given one.
        *
@@ -700,14 +779,17 @@
       _focusNextDay: function _focusNextDay(currentDay) {
         var cssPrefix = this.getCssPrefix();
         var nextDayInWeek = currentDay.getParents().getNext();
+
         if (nextDayInWeek.length > 0) {
           nextDayInWeek.getChildren("." + cssPrefix + "-day").focus();
         } else {
           var nextWeekRow = currentDay.getParents().getParents().getNext();
+
           if (nextWeekRow.length > 0) {
             nextWeekRow.find("> td > ." + cssPrefix + "-day").getFirst().focus();
           } else {
             this._nextMonth();
+
             var oldDate = new Date(currentDay.getAttribute("value"));
             var newDate = new Date(oldDate.valueOf());
             newDate.setDate(oldDate.getDate() + 1);
@@ -716,6 +798,7 @@
           }
         }
       },
+
       /**
        * Focuses the day button preceding the given one.
        *
@@ -724,14 +807,17 @@
       _focusPrevDay: function _focusPrevDay(currentDay) {
         var cssPrefix = this.getCssPrefix();
         var prevDayInWeek = currentDay.getParents().getPrev();
+
         if (prevDayInWeek.length > 0) {
           prevDayInWeek.getChildren("." + cssPrefix + "-day").focus();
         } else {
           var prevWeekRow = currentDay.getParents().getParents().getPrev();
+
           if (prevWeekRow.length > 0) {
             prevWeekRow.find("> td > ." + cssPrefix + "-day").getLast().focus();
           } else {
             this._prevMonth();
+
             var oldDate = new Date(currentDay.getAttribute("value"));
             var newDate = new Date(oldDate.valueOf());
             newDate.setDate(oldDate.getDate() - 1);
@@ -740,6 +826,7 @@
           }
         }
       },
+
       /**
        * Generates a date list depending on the given range
        *
@@ -748,32 +835,36 @@
        */
       _generateRange: function _generateRange(range) {
         var list = [],
-          current = range[0];
+            current = range[0];
         var minDate = this.getConfig("minDate") ? this.getConfig("minDate") : new Date(range[0].toDateString());
         var maxDate = this.getConfig("maxDate") ? this.getConfig("maxDate") : new Date(range[1].toDateString());
         minDate = this._getNormalizedDate(minDate);
         maxDate = this._getNormalizedDate(maxDate);
+
         while (current <= range[1]) {
           current = this._getNormalizedDate(current);
           list.push(new Date(current.toDateString()));
           current.setDate(current.getDate() + 1);
-        }
+        } // Removing non selectable days
 
-        // Removing non selectable days
+
         list = list.filter(function (date) {
           return this.getConfig("selectableWeekDays").indexOf(date.getDay()) != -1;
         }, this);
+
         if (list.length == 0) {
           throw new Error("Given date range is not valid. Please verify the 'selectableWeekDays' config");
-        }
+        } // Removing days out of defined min/max range
 
-        // Removing days out of defined min/max range
+
         list = list.filter(function (date) {
           return date >= minDate && date <= maxDate;
         }, this);
+
         if (list.length == 0) {
           throw new Error("Given date range is not valid. Please verify the 'minDate' and 'maxDate' configs");
         }
+
         return list;
       },
       dispose: function dispose() {
@@ -795,4 +886,4 @@
   qx.ui.website.Calendar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Calendar.js.map?dt=1677362771191
+//# sourceMappingURL=Calendar.js.map?dt=1685978152580

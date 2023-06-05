@@ -11,6 +11,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +43,7 @@
         check: "Integer",
         nullable: true
       },
+
       /** The table column of the event target. */
       column: {
         check: "Integer",
@@ -68,4 +70,4 @@
   qx.ui.virtual.core.CellEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellEvent.js.map?dt=1677362770086
+//# sourceMappingURL=CellEvent.js.map?dt=1685978151414

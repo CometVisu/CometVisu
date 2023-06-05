@@ -46,6 +46,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -87,8 +88,10 @@
       __P_130_0: null,
       __P_130_1: "Anni",
       __P_130_2: 0,
+
       /** Static map of rules */
       __P_130_3: {},
+
       /** The used keys for transforms. */
       __P_130_4: {
         scale: true,
@@ -96,8 +99,10 @@
         skew: true,
         translate: true
       },
+
       /** Map of cross browser CSS keys. */
       __P_130_5: qx.core.Environment.get("css.animation"),
+
       /**
        * This is the main function to start the animation in reverse mode.
        * For further details, take a look at the documentation of the wrapper
@@ -111,6 +116,7 @@
       animateReverse: function animateReverse(el, desc, duration) {
         return this._animate(el, desc, duration, true);
       },
+
       /**
        * This is the main function to start the animation. For further details,
        * take a look at the documentation of the wrapper
@@ -124,6 +130,7 @@
       animate: function animate(el, desc, duration) {
         return this._animate(el, desc, duration, false);
       },
+
       /**
        * Internal method to start an animation either reverse or not.
        * {@link qx.bom.element.Animation}.
@@ -136,48 +143,52 @@
        * @return {qx.bom.element.AnimationHandle} The handle.
        */
       _animate: function _animate(el, desc, duration, reverse) {
-        this.__P_130_6(desc);
+        this.__P_130_6(desc); // debug validation
 
-        // debug validation
 
         // reverse the keep property if the animation is reverse as well
         var keep = desc.keep;
+
         if (keep != null && (reverse || desc.alternate && desc.repeat % 2 == 0)) {
           keep = 100 - keep;
         }
+
         if (!this.__P_130_0) {
           this.__P_130_0 = qx.bom.Stylesheet.createElement();
         }
+
         var keyFrames = desc.keyFrames;
+
         if (duration == undefined) {
           duration = desc.duration;
-        }
+        } // if animations are supported
 
-        // if animations are supported
+
         if (this.__P_130_5 != null) {
           var name = this.__P_130_7(keyFrames, reverse);
+
           var style = name + " " + duration + "ms " + desc.timing + " " + (desc.delay ? desc.delay + "ms " : "") + desc.repeat + " " + (desc.alternate ? "alternate" : "");
           qx.bom.Event.addNativeListener(el, this.__P_130_5["start-event"], this.__P_130_8);
           qx.bom.Event.addNativeListener(el, this.__P_130_5["iteration-event"], this.__P_130_9);
           qx.bom.Event.addNativeListener(el, this.__P_130_5["end-event"], this.__P_130_10);
-          el.style[qx.lang.String.camelCase(this.__P_130_5["name"])] = style;
-          // use the fill mode property if available and suitable
+          el.style[qx.lang.String.camelCase(this.__P_130_5["name"])] = style; // use the fill mode property if available and suitable
+
           if (keep && keep == 100 && this.__P_130_5["fill-mode"]) {
             el.style[this.__P_130_5["fill-mode"]] = "forwards";
           }
         }
+
         var animation = new qx.bom.element.AnimationHandle();
         animation.desc = desc;
         animation.el = el;
         animation.keep = keep;
-        el.$$animation = animation;
+        el.$$animation = animation; // additional transform keys
 
-        // additional transform keys
         if (desc.origin != null) {
           qx.bom.element.Transform.setOrigin(el, desc.origin);
-        }
+        } // fallback for browsers not supporting animations
 
-        // fallback for browsers not supporting animations
+
         if (this.__P_130_5 == null) {
           window.setTimeout(function () {
             qx.bom.element.AnimationCss.__P_130_10({
@@ -185,8 +196,10 @@
             });
           }, 0);
         }
+
         return animation;
       },
+
       /**
        * Handler for the animation start.
        * @param e {Event} The native event from the browser.
@@ -196,6 +209,7 @@
           e.target.$$animation.emit("start", e.target);
         }
       },
+
       /**
        * Handler for the animation iteration.
        * @param e {Event} The native event from the browser.
@@ -207,34 +221,40 @@
           e.target.$$animation.emit("iteration", e.target);
         }
       },
+
       /**
        * Handler for the animation end.
        * @param e {Event} The native event from the browser.
        */
       __P_130_10: function __P_130_10(e) {
         var el = e.target;
-        var animation = el.$$animation;
+        var animation = el.$$animation; // ignore events when already cleaned up
 
-        // ignore events when already cleaned up
         if (!animation) {
           return;
         }
+
         var desc = animation.desc;
+
         if (qx.bom.element.AnimationCss.__P_130_5 != null) {
           // reset the styling
           var key = qx.lang.String.camelCase(qx.bom.element.AnimationCss.__P_130_5["name"]);
           el.style[key] = "";
           qx.bom.Event.removeNativeListener(el, qx.bom.element.AnimationCss.__P_130_5["name"], qx.bom.element.AnimationCss.__P_130_10);
         }
+
         if (desc.origin != null) {
           qx.bom.element.Transform.setOrigin(el, "");
         }
+
         qx.bom.element.AnimationCss.__P_130_11(el, desc.keyFrames[animation.keep]);
+
         el.$$animation = null;
         animation.el = null;
         animation.ended = true;
         animation.emit("end", el);
       },
+
       /**
        * Helper method which takes an element and a key frame description and
        * applies the properties defined in the given frame to the element. This
@@ -246,22 +266,25 @@
       __P_130_11: function __P_130_11(el, endFrame) {
         // keep the element at this animation step
         var transforms;
+
         for (var style in endFrame) {
           if (style in qx.bom.element.AnimationCss.__P_130_4) {
             if (!transforms) {
               transforms = {};
             }
+
             transforms[style] = endFrame[style];
           } else {
             el.style[qx.lang.String.camelCase(style)] = endFrame[style];
           }
-        }
+        } // transform keeping
 
-        // transform keeping
+
         if (transforms) {
           qx.bom.element.Transform.transform(el, transforms);
         }
       },
+
       /**
        * Preprocessing of the description to make sure every necessary key is
        * set to its default.
@@ -271,19 +294,24 @@
         if (!desc.hasOwnProperty("alternate")) {
           desc.alternate = false;
         }
+
         if (!desc.hasOwnProperty("keep")) {
           desc.keep = null;
         }
+
         if (!desc.hasOwnProperty("repeat")) {
           desc.repeat = 1;
         }
+
         if (!desc.hasOwnProperty("timing")) {
           desc.timing = "linear";
         }
+
         if (!desc.hasOwnProperty("origin")) {
           desc.origin = null;
         }
       },
+
       /**
        * Debugging helper to validate the description.
        * @signature function(desc)
@@ -291,14 +319,14 @@
        */
       __P_130_12: qx.core.Environment.select("qx.debug", {
         "true": function _true(desc) {
-          var possibleKeys = ["origin", "duration", "keep", "keyFrames", "delay", "repeat", "timing", "alternate"];
+          var possibleKeys = ["origin", "duration", "keep", "keyFrames", "delay", "repeat", "timing", "alternate"]; // check for unknown keys
 
-          // check for unknown keys
           for (var name in desc) {
             if (!(possibleKeys.indexOf(name) != -1)) {
               qx.Bootstrap.warn("Unknown key '" + name + "' in the animation description.");
             }
           }
+
           if (desc.keyFrames == null) {
             qx.Bootstrap.warn("No 'keyFrames' given > 0");
           } else {
@@ -312,6 +340,7 @@
         },
         "default": null
       }),
+
       /**
        * Helper to add the given frames to an internal CSS stylesheet. It parses
        * the description and adds the key frames to the sheet.
@@ -321,51 +350,56 @@
        * @return {String} The generated name of the keyframes rule.
        */
       __P_130_7: function __P_130_7(frames, reverse) {
-        var rule = "";
+        var rule = ""; // for each key frame
 
-        // for each key frame
         for (var position in frames) {
           rule += (reverse ? -(position - 100) : position) + "% {";
           var frame = frames[position];
-          var transforms;
-          // each style
+          var transforms; // each style
+
           for (var style in frame) {
             if (style in this.__P_130_4) {
               if (!transforms) {
                 transforms = {};
               }
+
               transforms[style] = frame[style];
             } else {
               var propName = qx.bom.Style.getPropertyName(style);
               var prefixed = propName !== null ? qx.bom.Style.getCssName(propName) : "";
               rule += (prefixed || style) + ":" + frame[style] + ";";
             }
-          }
+          } // transform handling
 
-          // transform handling
+
           if (transforms) {
             rule += qx.bom.element.Transform.getCss(transforms);
           }
-          rule += "} ";
-        }
 
-        // cached shorthand
+          rule += "} ";
+        } // cached shorthand
+
+
         if (this.__P_130_3[rule]) {
           return this.__P_130_3[rule];
         }
+
         var name = this.__P_130_1 + this.__P_130_2++;
         var selector = this.__P_130_5["keyframes"] + " " + name;
         qx.bom.Stylesheet.addRule(this.__P_130_0, selector, rule);
         this.__P_130_3[rule] = name;
         return name;
       },
+
       /**
        * Internal helper to reset the cache.
        */
       __P_130_13: function __P_130_13() {
         this.__P_130_2 = 0;
+
         if (this.__P_130_0) {
           this.__P_130_0.ownerNode.remove();
+
           this.__P_130_0 = null;
           this.__P_130_3 = {};
         }
@@ -386,4 +420,4 @@
   qx.bom.element.AnimationCss.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationCss.js.map?dt=1677362727748
+//# sourceMappingURL=AnimationCss.js.map?dt=1685978110056

@@ -14,8 +14,6 @@
     "construct",
     "message",
     "data",
-    "constructor",
-    "call",
     "Transport",
     "CANCELLED",
     "Cancel"
@@ -26,5 +24,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2020 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n *  A class for representing a user-initiated cancellation of a request.\n */\nqx.Class.define(\"qx.io.exception.Cancel\", {\n  extend: qx.io.exception.Exception,\n\n  /**\n   * Constructor\n   * @param message {String}\n   * @param data {*|null}\n   */\n  construct(message, data) {\n    super(message, qx.io.exception.Transport.CANCELLED, data);\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjC;AACF;AACA;AACA;AACA;IACEC,SAAS,WAAAA,UAACC,OAAO,EAAEC,IAAI,EAAE;MACvBZ,EAAA,CAAAO,EAAA,CAAAC,SAAA,CAAAC,SAAA,CAAAI,WAAA,CAAAC,IAAA,OAAMH,OAAO,EAAEX,EAAE,CAACO,EAAE,CAACC,SAAS,CAACO,SAAS,CAACC,SAAS,EAAEJ,IAAI;IAC1D;EACF,CAAC,CAAC;EAhCFZ,EAAE,CAACO,EAAE,CAACC,SAAS,CAACS,MAAM,CAACd,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,wBAAhB,EAA0C;IACxCC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBC,SADgB;;IAGxC;AACF;AACA;AACA;AACA;IACEC,SARwC,qBAQ9BC,OAR8B,EAQrBC,IARqB,EAQf;MACvB,iDAAMD,OAAN,EAAeX,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBK,SAAhB,CAA0BC,SAAzC,EAAoDF,IAApD;IACD;EAVuC,CAA1C;EArBAZ,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBO,MAAhB,CAAuBZ,aAAvB,GAAuCA,aAAvC"
 }

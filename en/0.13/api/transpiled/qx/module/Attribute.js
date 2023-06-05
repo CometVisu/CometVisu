@@ -14,6 +14,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,8 +49,10 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Attribute.get(this[0], "html");
         }
+
         return null;
       },
+
       /**
        * Sets the HTML content of each item in the collection
        *
@@ -59,11 +62,14 @@
        */
       setHtml: function setHtml(html) {
         html = qx.bom.Html.fixEmptyTags(html);
+
         this._forEachElement(function (item) {
           qx.bom.element.Attribute.set(item, "html", html);
         });
+
         return this;
       },
+
       /**
        * Sets an HTML attribute on each item in the collection
        *
@@ -76,8 +82,10 @@
         this._forEachElement(function (item) {
           qx.bom.element.Attribute.set(item, name, value);
         });
+
         return this;
       },
+
       /**
        * Returns the value of the given attribute for the first item in the
        * collection.
@@ -90,8 +98,10 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Attribute.get(this[0], name);
         }
+
         return null;
       },
+
       /**
        * Removes the given attribute from all elements in the collection
        *
@@ -103,8 +113,10 @@
         this._forEachElement(function (item) {
           qx.bom.element.Attribute.set(item, name, null);
         });
+
         return this;
       },
+
       /**
        * Sets multiple attributes for each item in the collection.
        *
@@ -116,8 +128,10 @@
         for (var name in attributes) {
           this.setAttribute(name, attributes[name]);
         }
+
         return this;
       },
+
       /**
        * Returns the values of multiple attributes for the first item in the collection
        *
@@ -127,11 +141,14 @@
        */
       getAttributes: function getAttributes(names) {
         var attributes = {};
+
         for (var i = 0; i < names.length; i++) {
           attributes[names[i]] = this.getAttribute(names[i]);
         }
+
         return attributes;
       },
+
       /**
        * Removes multiple attributes from each item in the collection.
        *
@@ -143,8 +160,10 @@
         for (var i = 0, l = attributes.length; i < l; i++) {
           this.removeAttribute(attributes[i]);
         }
+
         return this;
       },
+
       /**
        * Sets a property on each item in the collection
        *
@@ -157,8 +176,10 @@
         for (var i = 0; i < this.length; i++) {
           this[i][name] = value;
         }
+
         return this;
       },
+
       /**
        * Returns the value of the given property for the first item in the
        * collection
@@ -171,8 +192,10 @@
         if (this[0]) {
           return this[0][name];
         }
+
         return null;
       },
+
       /**
        * Sets multiple properties for each item in the collection.
        *
@@ -184,8 +207,10 @@
         for (var name in properties) {
           this.setProperty(name, properties[name]);
         }
+
         return this;
       },
+
       /**
        * Removes multiple properties for each item in the collection.
        *
@@ -197,8 +222,10 @@
         for (var i = 0; i < properties.length; i++) {
           this.removeProperty(properties[i]);
         }
+
         return this;
       },
+
       /**
        * Returns the values of multiple properties for the first item in the collection
        *
@@ -208,11 +235,14 @@
        */
       getProperties: function getProperties(names) {
         var properties = {};
+
         for (var i = 0; i < names.length; i++) {
           properties[names[i]] = this.getProperty(names[i]);
         }
+
         return properties;
       },
+
       /**
        * Deletes a property from each item in the collection
        *
@@ -224,8 +254,10 @@
         if (this[0]) {
           this[0][name] = undefined;
         }
+
         return this;
       },
+
       /**
        * Returns the currently configured value for the first item in the collection.
        * Works with simple input fields as well as with select boxes or option
@@ -239,8 +271,10 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.Input.getValue(this[0]);
         }
+
         return null;
       },
+
       /**
        * Applies the given value to each element in the collection.
        * Normally the value is given as a string/number value and applied to the
@@ -260,6 +294,7 @@
         this._forEachElement(function (item) {
           qx.bom.Input.setValue(item, value);
         });
+
         return this;
       }
     },
@@ -270,4 +305,4 @@
   qx.module.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1677362745698
+//# sourceMappingURL=Attribute.js.map?dt=1685978128617

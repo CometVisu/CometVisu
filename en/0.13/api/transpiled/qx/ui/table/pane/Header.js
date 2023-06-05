@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,36 +42,39 @@
    */
   qx.Class.define("qx.ui.table.pane.Header", {
     extend: qx.ui.core.Widget,
+
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
+
     /**
      * @param paneScroller {qx.ui.table.pane.Scroller} the TablePaneScroller the header belongs to.
      */
     construct: function construct(paneScroller) {
       qx.ui.core.Widget.constructor.call(this);
-      this._setLayout(new qx.ui.layout.HBox());
 
-      // add blocker
+      this._setLayout(new qx.ui.layout.HBox()); // add blocker
+
+
       this.__P_450_0 = new qx.ui.core.Blocker(this);
-      this.__P_450_1 = paneScroller;
+      this.__P_450_1 = paneScroller; // ARIA attrs
 
-      // ARIA attrs
       this.getContentElement().setAttribute("role", "row");
     },
+
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     members: {
       __P_450_1: null,
       __P_450_2: null,
       __P_450_3: null,
       __P_450_0: null,
+
       /**
        * Returns the TablePaneScroller this header belongs to.
        *
@@ -79,6 +83,7 @@
       getPaneScroller: function getPaneScroller() {
         return this.__P_450_1;
       },
+
       /**
        * Returns the table this header belongs to.
        *
@@ -87,6 +92,7 @@
       getTable: function getTable() {
         return this.__P_450_1.getTable();
       },
+
       /**
        * Returns the blocker of the header.
        *
@@ -95,6 +101,7 @@
       getBlocker: function getBlocker() {
         return this.__P_450_0;
       },
+
       /**
        * Event handler. Called the column order has changed.
        *
@@ -102,12 +109,14 @@
       onColOrderChanged: function onColOrderChanged() {
         this._updateContent(true);
       },
+
       /**
        * Event handler. Called when the pane model has changed.
        */
       onPaneModelChanged: function onPaneModelChanged() {
         this._updateContent(true);
       },
+
       /**
        * Event handler. Called when the table model meta data has changed.
        *
@@ -115,6 +124,7 @@
       onTableModelMetaDataChanged: function onTableModelMetaDataChanged() {
         this._updateContent();
       },
+
       /**
        * Sets the column width. This overrides the width from the column model.
        *
@@ -131,10 +141,12 @@
        */
       setColumnWidth: function setColumnWidth(col, width, isPointerAction) {
         var child = this.getHeaderWidgetAtColumn(col);
+
         if (child != null) {
           child.setWidth(width);
         }
       },
+
       /**
        * Sets the column the pointer is currently over.
        *
@@ -145,16 +157,20 @@
         if (col != this.__P_450_3) {
           if (this.__P_450_3 != null) {
             var widget = this.getHeaderWidgetAtColumn(this.__P_450_3);
+
             if (widget != null) {
               widget.removeState("hovered");
             }
           }
+
           if (col != null) {
             this.getHeaderWidgetAtColumn(col).addState("hovered");
           }
+
           this.__P_450_3 = col;
         }
       },
+
       /**
        * Get the header widget for the given column
        *
@@ -165,6 +181,7 @@
         var xPos = this.getPaneScroller().getTablePaneModel().getX(col);
         return this._getChildren()[xPos];
       },
+
       /**
        * Shows the feedback shown while a column is moved by the user.
        *
@@ -174,10 +191,13 @@
        */
       showColumnMoveFeedback: function showColumnMoveFeedback(col, x) {
         var pos = this.getContentLocation();
+
         if (this.__P_450_2 == null) {
           var table = this.getTable();
           var xPos = this.getPaneScroller().getTablePaneModel().getX(col);
+
           var cellWidget = this._getChildren()[xPos];
+
           var tableModel = table.getTableModel();
           var columnModel = table.getTableColumnModel();
           var cellInfo = {
@@ -188,9 +208,8 @@
           };
           var cellRenderer = columnModel.getHeaderCellRenderer(col);
           var feedback = cellRenderer.createHeaderCell(cellInfo);
-          var size = cellWidget.getBounds();
+          var size = cellWidget.getBounds(); // Configure the feedback
 
-          // Configure the feedback
           feedback.setWidth(size.width);
           feedback.setHeight(size.height);
           feedback.setZIndex(1000000);
@@ -201,20 +220,25 @@
           this.getApplicationRoot().add(feedback);
           this.__P_450_2 = feedback;
         }
+
         this.__P_450_2.setLayoutProperties({
           left: pos.left + x
         });
+
         this.__P_450_2.show();
       },
+
       /**
        * Hides the feedback shown while a column is moved by the user.
        */
       hideColumnMoveFeedback: function hideColumnMoveFeedback() {
         if (this.__P_450_2 != null) {
           this.__P_450_2.destroy();
+
           this.__P_450_2 = null;
         }
       },
+
       /**
        * Returns whether the column move feedback is currently shown.
        *
@@ -224,6 +248,7 @@
       isShowingColumnMoveFeedback: function isShowingColumnMoveFeedback() {
         return this.__P_450_2 != null;
       },
+
       /**
        * Updates the content of the header.
        *
@@ -235,23 +260,27 @@
         var tableModel = table.getTableModel();
         var columnModel = table.getTableColumnModel();
         var paneModel = this.getPaneScroller().getTablePaneModel();
-        var children = this._getChildren();
-        var colCount = paneModel.getColumnCount();
-        var sortedColumn = tableModel.getSortColumnIndex();
 
-        // Remove all widgets on the complete update
+        var children = this._getChildren();
+
+        var colCount = paneModel.getColumnCount();
+        var sortedColumn = tableModel.getSortColumnIndex(); // Remove all widgets on the complete update
+
         if (completeUpdate) {
           this._cleanUpCells();
-        }
+        } // Update the header
 
-        // Update the header
+
         var cellInfo = {};
         cellInfo.sortedAscending = tableModel.isSortAscending();
+
         for (var x = 0; x < colCount; x++) {
           var col = paneModel.getColumnAtX(x);
+
           if (col === undefined) {
             continue;
           }
+
           var colWidth = columnModel.getColumnWidth(col);
           var cellRenderer = columnModel.getHeaderCellRenderer(col);
           cellInfo.xPos = x;
@@ -259,25 +288,24 @@
           cellInfo.name = tableModel.getColumnName(col);
           cellInfo.editable = tableModel.isColumnEditable(col);
           cellInfo.sorted = col == sortedColumn;
-          cellInfo.table = table;
+          cellInfo.table = table; // Get the cached widget
 
-          // Get the cached widget
-          var cachedWidget = children[x];
+          var cachedWidget = children[x]; // Create or update the widget
 
-          // Create or update the widget
           if (cachedWidget == null) {
             // We have no cached widget -> create it
             cachedWidget = cellRenderer.createHeaderCell(cellInfo);
             cachedWidget.set({
               width: colWidth
             });
+
             this._add(cachedWidget);
           } else {
             // This widget already created before -> recycle it
             cellRenderer.updateHeaderCell(cellInfo, cachedWidget);
-          }
+          } // set the states
 
-          // set the states
+
           if (x === 0) {
             cachedWidget.addState("first");
             cachedWidget.removeState("last");
@@ -290,18 +318,21 @@
           }
         }
       },
+
       /**
        * Cleans up all header cells.
        *
        */
       _cleanUpCells: function _cleanUpCells() {
         var children = this._getChildren();
+
         for (var x = children.length - 1; x >= 0; x--) {
           var cellWidget = children[x];
           cellWidget.destroy();
         }
       }
     },
+
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -309,10 +340,11 @@
     */
     destruct: function destruct() {
       this.__P_450_0.dispose();
+
       this._disposeObjects("__P_450_1");
     }
   });
   qx.ui.table.pane.Header.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Header.js.map?dt=1677362766983
+//# sourceMappingURL=Header.js.map?dt=1685978148208

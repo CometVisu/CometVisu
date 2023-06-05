@@ -12,6 +12,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,6 +36,7 @@
    */
   qx.Class.define("qx.ui.progressive.State", {
     extend: qx.core.Object,
+
     /**
      * @param initialState {Map}
      *   Map containing these members:
@@ -70,6 +72,7 @@
       progressive: {
         nullable: true
       },
+
       /**
        * The data model being used. This property should be treated as
        * read-only.
@@ -77,6 +80,7 @@
       model: {
         nullable: true
       },
+
       /**
        * The widget in which the element data should be rendered.  This property
        * should be treated as read-only.
@@ -84,11 +88,13 @@
       pane: {
         nullable: true
       },
+
       /**
        * How many elements are rendered at a time, before yielding to the
        * browser.  This property should be treated as read-only.
        */
       batchSize: {},
+
       /**
        * Add a place for renderers' private data.  If multiple renderers are
        * being used, each renderer should place its own private data in the the
@@ -103,6 +109,7 @@
        *                  can clean up.
        */
       rendererData: {},
+
       /**
        * User data.  This is useful, for example, by communication between
        * the renderStart event listener and the renderers.
@@ -124,4 +131,4 @@
   qx.ui.progressive.State.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=State.js.map?dt=1677362764102
+//# sourceMappingURL=State.js.map?dt=1685978145244

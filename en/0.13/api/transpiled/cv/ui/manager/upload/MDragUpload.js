@@ -20,6 +20,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* MDragUpload.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -57,7 +58,9 @@
     */
     construct: function construct() {
       var _this = this;
+
       this.setDroppable(true);
+
       if (this.getBounds()) {
         this._applyStartDragListeners();
       } else {
@@ -65,11 +68,14 @@
           _this._applyStartDragListeners();
         });
       }
+
       var layout = this._getLayout();
+
       if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
         this.addListener('resize', this.__P_54_0, this);
       }
     },
+
     /*
     *****************************************************************************
        PROPERTIES
@@ -86,6 +92,7 @@
         init: ''
       }
     },
+
     /*
     ***********************************************
       STATICS
@@ -100,6 +107,7 @@
         ev.preventDefault();
         this.getFiles(ev).forEach(this.uploadFile, this);
       },
+
       /**
        * Uploads the dropped file to the correct folder:
        * - config files to the resources/config folder
@@ -110,6 +118,7 @@
       uploadFile: function uploadFile(file, replaceFile) {
         var isConfig = cv.ui.manager.model.FileItem.isConfigFile(file.name);
         var folder;
+
         if (isConfig) {
           // upload to root folder
           folder = new cv.ui.manager.model.FileItem('.');
@@ -117,11 +126,13 @@
           // upload to media folder
           folder = new cv.ui.manager.model.FileItem('media');
         }
+
         if (folder) {
           folder.set({
             type: 'dir'
           });
           var manager = new cv.ui.manager.upload.UploadMgr();
+
           if (replaceFile) {
             manager.replaceFile(file, replaceFile);
           } else {
@@ -133,6 +144,7 @@
       hasDroppableFile: function hasDroppableFile(ev) {
         return this.getFiles(ev).length > 0;
       },
+
       /**
        * Extracts acceptable files from event
        * @param ev {Event}
@@ -143,11 +155,13 @@
         var i;
         var l;
         var file;
+
         if (ev.dataTransfer.items) {
           // Use DataTransferItemList interface to access the file(s)
           for (i = 0, l = ev.dataTransfer.items.length; i < l; i++) {
             // If dropped items aren't files, reject them
             var item = ev.dataTransfer.items[i];
+
             if (item.kind === 'file' && cv.ui.manager.tree.FileSystem.isAccepted(item.type)) {
               file = item.getAsFile();
               files.push(file);
@@ -156,14 +170,17 @@
         } else {
           for (i = 0, l = ev.dataTransfer.files.length; i < l; i++) {
             file = ev.dataTransfer.files[i];
+
             if (cv.ui.manager.tree.FileSystem.isAccepted(file.type)) {
               files.push(file);
             }
           }
         }
+
         return files;
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
@@ -181,12 +198,15 @@
       _createMDragUploadChildControlImpl: function _createMDragUploadChildControlImpl(id) {
         var control;
         var bounds = this.getBounds();
+
         var layout = this._getLayout();
+
         switch (id) {
           case 'upload-overlay':
             control = new qx.ui.container.Composite();
             control.setZIndex(1000000);
             control.exclude();
+
             if (layout instanceof qx.ui.layout.Canvas) {
               this._add(control, {
                 edge: 0
@@ -194,9 +214,12 @@
             } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
               control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
             }
+
             this._add(control);
+
             this.getChildControl('upload-dropbox').bind('visibility', control, 'visibility');
             break;
+
           case 'upload-dropbox':
             {
               control = new qx.ui.container.Composite(new qx.ui.layout.Grow());
@@ -207,13 +230,13 @@
                 iconPosition: 'top',
                 rich: true,
                 center: true
-              });
+              }); // control.bind('width', dropBox, 'maxWidth');
 
-              // control.bind('width', dropBox, 'maxWidth');
               dropBox.getChildControl('label').setWrap(true);
               control.setAnonymous(true);
               control.add(dropBox);
               control.exclude();
+
               if (layout instanceof qx.ui.layout.Canvas) {
                 this._add(control, {
                   edge: 0
@@ -221,10 +244,13 @@
               } else if (!(this._getLayout() instanceof qx.ui.layout.Grow) && bounds) {
                 control.setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
               }
+
               this._add(control);
+
               break;
             }
         }
+
         return control;
       },
       _onStopDragging: function _onStopDragging(ev) {
@@ -232,11 +258,13 @@
         this.setUploadMode(false);
         document.removeEventListener('dragend', this._boundOnStop, false);
       },
+
       /**
        * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop
        */
       _applyStartDragListeners: function _applyStartDragListeners() {
         var _this2 = this;
+
         // add the start listener to this widget
         this.getContentElement().getDomElement().addEventListener('dragenter', function (ev) {
           // ev.preventDefault();
@@ -250,6 +278,7 @@
             this.setUploadMode(true);
           }
         }.bind(this), false);
+
         if (this.getChildControl('upload-overlay').getBounds()) {
           this._applyDragListeners();
         } else {
@@ -258,32 +287,39 @@
           });
         }
       },
+
       /**
        * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop
        */
       _applyDragListeners: function _applyDragListeners() {
         var _this3 = this;
+
         var element = this.getChildControl('upload-overlay').getContentElement().getDomElement();
+
         if (!element) {
           var lid = this.getChildControl('upload-overlay').addListener('visibility', function (ev) {
             if (ev.getData() === 'visible') {
               _this3._applyDragListeners();
+
               _this3.getChildControl('upload-overlay').removeListenerById(lid);
             }
           });
           return;
         }
+
         element.addEventListener('dragexit', function () {
           this.setUploadMode(false);
         }.bind(this), false);
         element.addEventListener('dragover', function (ev) {
           ev.preventDefault();
           var uploadable = false;
+
           if (this._isDroppable) {
             uploadable = this._isDroppable(ev.dataTransfer.items);
           } else if (cv.ui.manager.upload.MDragUpload.hasDroppableFile(ev)) {
             uploadable = true;
           }
+
           this.setUploadMode(uploadable);
         }.bind(this), false);
         this._boundOnStop = this._onStopDragging.bind(this);
@@ -292,11 +328,13 @@
           this.setUploadMode(false);
         }.bind(this), false);
         document.addEventListener('dragend', this._boundOnStop, false);
+
         if (this._onDrop) {
           element.addEventListener('drop', this._onDrop.bind(this), false);
         } else {
           element.addEventListener('drop', function (ev) {
             cv.ui.manager.upload.MDragUpload.onHtml5Drop(ev);
+
             this._onStopDragging(ev);
           }.bind(this), false);
         }
@@ -305,6 +343,7 @@
       __P_54_1: function __P_54_1(value) {
         if (value === true) {
           this.getChildControl('upload-dropbox').show();
+
           if (this.hasChildControl('empty-info') && this.getChildControl('empty-info').isVisible()) {
             this.getChildControl('empty-info').exclude();
             this.__P_54_2 = true;
@@ -313,6 +352,7 @@
           }
         } else {
           this.getChildControl('upload-dropbox').exclude();
+
           if (this.__P_54_2 === true) {
             this.getChildControl('empty-info').show();
           }
@@ -323,4 +363,4 @@
   cv.ui.manager.upload.MDragUpload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDragUpload.js.map?dt=1677362715894
+//# sourceMappingURL=MDragUpload.js.map?dt=1685978098623

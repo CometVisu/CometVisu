@@ -8,6 +8,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,6 +51,7 @@
        * @param row {Integer} The row index.
        */
       configureItem: function configureItem(item, data, row) {},
+
       /**
        * Creates an instance of the item renderer to use.
        *
@@ -61,4 +63,4 @@
   qx.ui.mobile.list.IListDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListDelegate.js.map?dt=1677362763252
+//# sourceMappingURL=IListDelegate.js.map?dt=1685978144402

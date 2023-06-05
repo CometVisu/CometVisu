@@ -18,6 +18,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ActionDispatcher.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,6 +45,7 @@
   qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     extend: qx.core.Object,
     type: 'singleton',
+
     /*
     ***********************************************
       CONSTRUCTOR
@@ -53,6 +55,7 @@
       qx.core.Object.constructor.call(this);
       qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
     },
+
     /*
     ***********************************************
       PROPERTIES
@@ -69,6 +72,7 @@
         nullable: true
       }
     },
+
     /*
     ***********************************************
       MEMBERS
@@ -82,8 +86,10 @@
         var button;
         Object.keys(config).forEach(function (actionId) {
           button = menuBar.getButton(actionId);
+
           if (button) {
             button.setEnabled(config[actionId].general || this.hasHandler(actionId));
+
             if (actionHandler) {
               actionHandler.configureButton(actionId, button);
             }
@@ -97,13 +103,16 @@
           var button;
           Object.keys(config).forEach(function (actionId) {
             button = menuBar.getButton(actionId);
+
             if (button) {
               old.unConfigureButton(actionId, button);
             }
           }, this);
         }
+
         this.updateBarButtons();
       },
+
       /**
        * Check if there is an existing handler for the given actionName.
        * @param actionName
@@ -115,17 +124,21 @@
       _getHandler: function _getHandler(actionName) {
         var handler = this.getFocusedWidget();
         var main = this.getMain();
+
         if (handler && handler.canHandleAction(actionName)) {
           return handler;
         } else if (main && main.canHandleAction(actionName)) {
           return main;
         }
+
         return null;
       },
       _onAction: function _onAction(ev) {
         var topic = ev.getName();
         var actionName = topic.split('.').pop();
+
         var handler = this._getHandler(actionName);
+
         if (handler) {
           handler.handleAction(actionName, ev.getData());
         } else {
@@ -133,6 +146,7 @@
         }
       }
     },
+
     /*
     ***********************************************
       DESTRUCTOR
@@ -145,4 +159,4 @@
   cv.ui.manager.control.ActionDispatcher.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ActionDispatcher.js.map?dt=1677362711784
+//# sourceMappingURL=ActionDispatcher.js.map?dt=1685978094404

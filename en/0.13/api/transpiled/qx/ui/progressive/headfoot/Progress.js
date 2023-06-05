@@ -19,6 +19,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,6 +44,7 @@
    */
   qx.Class.define("qx.ui.progressive.headfoot.Progress", {
     extend: qx.ui.progressive.headfoot.Abstract,
+
     /**
      * @param columnWidths {qx.ui.progressive.renderer.table.Widths}
      *   The set of widths, minimum widths, and maximum widths to be used for
@@ -53,44 +55,45 @@
      *
      */
     construct: function construct(columnWidths, labelArr) {
-      qx.ui.progressive.headfoot.Abstract.constructor.call(this);
+      qx.ui.progressive.headfoot.Abstract.constructor.call(this); // Set a default height for the progress bar
 
-      // Set a default height for the progress bar
       this.setHeight(16);
       this.setPadding(0);
       this.__P_420_0 = {};
+
       this.__P_420_1();
+
       this.set({
         backgroundColor: this.__P_420_0.background
-      });
+      }); // Create a widget that continually increases its width for progress bar
 
-      // Create a widget that continually increases its width for progress bar
       this.__P_420_2 = new qx.ui.core.Widget();
+
       this.__P_420_2.set({
         width: 0,
         backgroundColor: this.__P_420_0.indicatorDone
       });
-      this.add(this.__P_420_2);
 
-      // Create a flex area between the progress bar and the percent done
+      this.add(this.__P_420_2); // Create a flex area between the progress bar and the percent done
+
       var spacer = new qx.ui.core.Widget();
       spacer.set({
         backgroundColor: this.__P_420_0.indicatorUndone
       });
       this.add(spacer, {
         flex: 1
-      });
+      }); // We also like to show progress as a percentage done string.
 
-      // We also like to show progress as a percentage done string.
       this.__P_420_3 = new qx.ui.basic.Atom("0%");
+
       this.__P_420_3.set({
         width: 100,
         backgroundColor: this.__P_420_0.percentBackground,
         textColor: this.__P_420_0.percentText
       });
-      this.add(this.__P_420_3);
 
-      // We're initially invisible
+      this.add(this.__P_420_3); // We're initially invisible
+
       this.exclude();
     },
     members: {
@@ -101,8 +104,10 @@
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.progressive.headfoot.Progress.superclass.prototype._onChangeTheme.call(this);
+
         this.__P_420_1();
       },
+
       /**
        * Helper to link the theme colors to the current class.
        */
@@ -118,31 +123,34 @@
       // overridden
       join: function join(progressive) {
         var _this = this;
-        // Save the progressive handle
-        qx.ui.progressive.headfoot.Progress.superclass.prototype.join.call(this, progressive);
 
-        // Listen for the "renderStart" event, to save the number of elements on
+        // Save the progressive handle
+        qx.ui.progressive.headfoot.Progress.superclass.prototype.join.call(this, progressive); // Listen for the "renderStart" event, to save the number of elements on
         // the queue, and to set ourself visible
+
         progressive.addListener("renderStart", function (e) {
           _this.__P_420_4 = e.getData().initial;
-          _this.show();
-        });
 
-        // Listen for the "progress" event, to update the progress bar
+          _this.show();
+        }); // Listen for the "progress" event, to update the progress bar
+
         progressive.addListener("progress", function (e) {
           var complete = 1.0 - e.getData().remaining / _this.__P_420_4;
+
           var mySize = _this.getBounds();
+
           if (mySize) {
             var barWidth = Math.floor((mySize.width - _this.__P_420_3.getBounds().width) * complete);
             var percent = Math.floor(complete * 100) + "%";
+
             if (!isNaN(barWidth)) {
               _this.__P_420_2.setMinWidth(barWidth);
+
               _this.__P_420_3.setLabel(percent);
             }
           }
-        });
+        }); // Listen for the "renderEnd" event to make ourself invisible
 
-        // Listen for the "renderEnd" event to make ourself invisible
         progressive.addListener("renderEnd", function (e) {
           _this.exclude();
         });
@@ -150,10 +158,11 @@
     },
     destruct: function destruct() {
       this.__P_420_0 = null;
+
       this._disposeObjects("__P_420_2", "__P_420_3");
     }
   });
   qx.ui.progressive.headfoot.Progress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Progress.js.map?dt=1677362764169
+//# sourceMappingURL=Progress.js.map?dt=1685978145322

@@ -18,7 +18,7 @@
       "end": {
         "line": 195,
         "column": 3,
-        "index": 6268
+        "index": 6272
       }
     },
     "jsdoc": {
@@ -69,7 +69,7 @@
         "end": {
           "line": 98,
           "column": 5,
-          "index": 3506
+          "index": 3510
         }
       },
       "type": "function",
@@ -82,12 +82,12 @@
         "start": {
           "line": 107,
           "column": 4,
-          "index": 3674
+          "index": 3678
         },
         "end": {
           "line": 107,
           "column": 29,
-          "index": 3699
+          "index": 3703
         }
       },
       "name": "path",
@@ -99,12 +99,12 @@
         "start": {
           "line": 108,
           "column": 4,
-          "index": 3705
+          "index": 3709
         },
         "end": {
           "line": 108,
           "column": 31,
-          "index": 3732
+          "index": 3736
         }
       },
       "name": "$$type",
@@ -116,12 +116,12 @@
         "start": {
           "line": 109,
           "column": 4,
-          "index": 3738
+          "index": 3742
         },
         "end": {
           "line": 109,
           "column": 43,
-          "index": 3777
+          "index": 3781
         }
       },
       "name": "$$initOnCacheLoad",
@@ -133,12 +133,12 @@
         "start": {
           "line": 110,
           "column": 4,
-          "index": 3783
+          "index": 3787
         },
         "end": {
           "line": 110,
           "column": 33,
-          "index": 3812
+          "index": 3816
         }
       },
       "name": "language",
@@ -150,12 +150,12 @@
         "start": {
           "line": 111,
           "column": 4,
-          "index": 3818
+          "index": 3822
         },
         "end": {
           "line": 111,
           "column": 42,
-          "index": 3856
+          "index": 3860
         }
       },
       "name": "mapping",
@@ -169,12 +169,12 @@
         "start": {
           "line": 112,
           "column": 4,
-          "index": 3862
+          "index": 3866
         },
         "end": {
           "line": 112,
           "column": 48,
-          "index": 3906
+          "index": 3910
         }
       },
       "name": "repeatTimeout",
@@ -188,12 +188,12 @@
         "start": {
           "line": 113,
           "column": 4,
-          "index": 3912
+          "index": 3916
         },
         "end": {
           "line": 116,
           "column": 5,
-          "index": 4007
+          "index": 4011
         }
       },
       "name": "parentWidget",
@@ -316,12 +316,12 @@
         "start": {
           "line": 125,
           "column": 4,
-          "index": 4169
+          "index": 4173
         },
         "end": {
           "line": 125,
           "column": 22,
-          "index": 4187
+          "index": 4191
         }
       },
       "type": "variable",
@@ -332,12 +332,12 @@
         "start": {
           "line": 127,
           "column": 4,
-          "index": 4194
+          "index": 4198
         },
         "end": {
           "line": 129,
           "column": 5,
-          "index": 4240
+          "index": 4244
         }
       },
       "type": "function",
@@ -348,12 +348,12 @@
         "start": {
           "line": 131,
           "column": 4,
-          "index": 4247
+          "index": 4251
         },
         "end": {
           "line": 137,
           "column": 5,
-          "index": 4498
+          "index": 4502
         }
       },
       "type": "function",
@@ -364,12 +364,12 @@
         "start": {
           "line": 139,
           "column": 4,
-          "index": 4505
+          "index": 4509
         },
         "end": {
           "line": 187,
           "column": 5,
-          "index": 6067
+          "index": 6071
         }
       },
       "type": "function",
@@ -4870,12 +4870,12 @@
       "start": {
         "line": 190,
         "column": 2,
-        "index": 6076
+        "index": 6080
       },
       "end": {
         "line": 194,
         "column": 3,
-        "index": 6264
+        "index": 6268
       }
     }
   },

@@ -29,6 +29,7 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+
   /* Settings.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -57,6 +58,7 @@
    */
   qx.Class.define('cv.plugins.openhab.Settings', {
     extend: qx.ui.core.Widget,
+
     /*
     *****************************************************************************
       CONSTRUCTOR
@@ -64,15 +66,17 @@
     */
     construct: function construct() {
       var _this = this;
+
       qx.ui.core.Widget.constructor.call(this);
+
       this._setLayout(new qx.ui.layout.VBox());
+
       this.set({
         padding: 10,
         backgroundColor: 'rgba(216, 216, 216, 1.0)',
         textColor: 'rgb(61, 61, 61)'
-      });
+      }); // override text-shadow setting
 
-      // override text-shadow setting
       if (!this.getBounds()) {
         this.addListenerOnce('appear', function () {
           _this.getContentElement().setStyle('text-shadow', 'none');
@@ -80,10 +84,13 @@
       } else {
         this.getContentElement().setStyle('text-shadow', 'none');
       }
+
       this.__P_23_0 = 'org.openhab.cometvisu';
       this.__P_23_1 = 'ui:cometvisu';
+
       this._initConfigRestClient();
     },
+
     /*
     ******************************************************
       PROPERTIES
@@ -96,6 +103,7 @@
         event: 'changeModified'
       }
     },
+
     /*
     *****************************************************************************
        MEMBERS
@@ -112,6 +120,7 @@
       __P_23_6: null,
       _initStore: function _initStore(pid) {
         var _this2 = this;
+
         var serviceDesc = {
           get: {
             method: 'GET',
@@ -127,10 +136,11 @@
           }
         };
         var service = this.__P_23_3 = new qx.io.rest.Resource(serviceDesc);
-        var client = cv.io.BackendConnections.getClient();
+        var client = cv.io.BackendConnections.getClientByType('openhab');
         this._store = new qx.data.store.Rest(service, 'get', {
           configureRequest: function configureRequest(req) {
             req.setRequestHeader('Content-Type', 'application/json');
+
             if (client instanceof cv.io.openhab.Rest) {
               client.authorize(req);
             }
@@ -141,15 +151,17 @@
             Object.getOwnPropertyNames(data).forEach(function (key) {
               n[key.replace(/[\.>]/g, '_')] = data[key];
             });
+
             if (!Object.prototype.hasOwnProperty.call(n, 'autoDownload')) {
               n.autoDownload = false;
             }
+
             return n;
           }
-        });
+        }); // load data
 
-        // load data
         service.get();
+
         this._store.addListenerOnce('changeModel', function () {
           _this2.__P_23_6 = JSON.parse(qx.util.Serializer.toJson(_this2._store.getModel()));
         });
@@ -158,11 +170,14 @@
         var data = qx.util.Serializer.toJson(this._store.getModel());
         data = data.replace(/icons_mapping_/g, 'icons.mapping>');
         data = JSON.parse(data.replace('icons_enableMapping', 'icons>enableMapping'));
+
         this.__P_23_3.put(null, data);
+
         this.__P_23_3.addListenerOnce('putSuccess', this.close, this);
       },
       _initConfigRestClient: function _initConfigRestClient() {
         var _this3 = this;
+
         var description = {
           get: {
             method: 'GET',
@@ -170,48 +185,59 @@
           }
         };
         var config = this.__P_23_2 = new qx.io.rest.Resource(description);
-        var client = cv.io.BackendConnections.getClient();
+        var client = cv.io.BackendConnections.getClientByType('openhab');
         config.addListener('getSuccess', function (ev) {
           _this3._createForm(ev.getRequest().getResponse());
         });
         config.configureRequest(function (req) {
           req.setRequestHeader('Content-Type', 'application/json');
+
           if (client instanceof cv.io.openhab.Rest) {
             client.authorize(req);
           }
         });
         config.get();
+
         this._initStore(this.__P_23_0);
       },
       _createForm: function _createForm(config) {
         if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
           this._createChildControl('title');
+
           var form = this.getChildControl('form');
           config.parameters.forEach(function (param) {
             var field;
+
             switch (param.type) {
               case 'TEXT':
                 field = new qx.ui.form.TextField();
+
                 if (param.defaultValue) {
                   field.setPlaceholder(param.defaultValue);
                 }
+
                 break;
+
               case 'BOOLEAN':
                 field = new qx.ui.form.CheckBox();
                 field.setValue(param.defaultValue === 'true');
                 break;
             }
+
             if (param.readOnly) {
               field.setReadOnly(true);
             }
+
             if (param.required) {
               field.setRequired(true);
             }
+
             field.setToolTipText(param.description);
             field.addListener('changeValue', this._onFormFieldChange, this);
             form.add(field, param.label, null, param.name, null, param);
           }, this);
           var renderer = new cv.plugins.openhab.renderer.Single(form);
+
           if (cv.Config.guessIfProxied()) {
             renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
             renderer.getChildControl('bottom-text').set({
@@ -220,11 +246,16 @@
               font: 'bold'
             });
           }
+
           renderer.addButton(this.getChildControl('cancel-button'));
           renderer.addButton(this.getChildControl('save-button'));
+
           this._addAt(renderer, 1);
+
           var controller = new qx.data.controller.Form(null, form);
+
           this._store.bind('model', controller, 'model');
+
           this.setModified(false);
         }
       },
@@ -238,6 +269,7 @@
             modified = true;
             return true;
           }
+
           return false;
         }, this);
         this.setModified(modified);
@@ -245,6 +277,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
+
         switch (id) {
           case 'title':
             control = new qx.ui.basic.Label(this.tr('openHAB backend settings'));
@@ -254,27 +287,34 @@
               allowGrowX: true,
               decorator: 'window-caption'
             });
+
             this._addAt(control, 0);
+
             break;
+
           case 'form':
             control = new qx.ui.form.Form();
             break;
+
           case 'cancel-button':
             control = new qx.ui.form.Button(qx.locale.Manager.tr('Cancel'));
             control.addListener('execute', this.close, this);
             break;
+
           case 'save-button':
             control = new qx.ui.form.Button(qx.locale.Manager.tr('Save'));
             control.addListener('execute', this._saveConfig, this);
             this.bind('modified', control, 'enabled');
             break;
         }
+
         return control || cv.plugins.openhab.Settings.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
       close: function close() {
         this.setVisibility('excluded');
       }
     },
+
     /*
     ******************************************************
       DESTRUCTOR
@@ -287,4 +327,4 @@
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1677362710082
+//# sourceMappingURL=Settings.js.map?dt=1685978092974
