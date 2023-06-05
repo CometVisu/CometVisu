@@ -1,5 +1,10 @@
 ## Change Log
 
+0.12.4
+======
+
+- [#1353](https://github.com/CometVisu/CometVisu/pull/1353) fixes icon cache error (@peuter)
+
 0.12.3
 ======
 
