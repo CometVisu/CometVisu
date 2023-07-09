@@ -68,14 +68,16 @@ if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses su
     $environmentInfoJSON = file_get_contents($environmentInfoFile);
   }
   $environmentInfo = json_decode($environmentInfoJSON, true);
-  if(array_key_exists('release', $environmentInfo)) {
-    $retval['server_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
-  }
-  if(array_key_exists('branch', $environmentInfo)) {
-    $retval['server_branch'] = $environmentInfo['branch'];
-  }
-  if(array_key_exists('id', $environmentInfo)) {
-    $retval['server_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+  if (is_array($environmentInfo)) {
+    if(array_key_exists('release', $environmentInfo)) {
+      $retval['server_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
+    }
+    if(array_key_exists('branch', $environmentInfo)) {
+      $retval['server_branch'] = $environmentInfo['branch'];
+    }
+    if(array_key_exists('id', $environmentInfo)) {
+      $retval['server_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+    }
   }
 }
 
