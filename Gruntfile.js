@@ -478,6 +478,12 @@ module.exports = function(grunt) {
       },
       build: {
         command: 'npm run make-cv'
+      },
+      composerInstallRest: {
+        command: 'composer install --prefer-dist --no-dev',
+        execOptions: {
+          cwd: 'source/rest/manager'
+        }
       }
     },
 
@@ -503,14 +509,6 @@ module.exports = function(grunt) {
           }
         }
       }
-    },
-    composer : {
-      rest: {
-        options : {
-          flags: ['prefer-dist', 'no-dev'],
-          cwd: 'source/rest/manager'
-        }
-      }
     }
   };
   grunt.initConfig(config);
@@ -533,24 +531,21 @@ module.exports = function(grunt) {
   });
 
     // Load the plugin tasks
-  grunt.loadNpmTasks('grunt-banner');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-prompt');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
-  grunt.loadNpmTasks('grunt-composer');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'composer:rest:install', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'shell:composerInstallRest', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
