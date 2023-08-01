@@ -1008,7 +1008,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let xBar;
         let xzScale;
 
-        for (const key of zDomain) {
+        for (const key in this._dataSetConfigs) {
           switch (this._dataSetConfigs[key].chartType) {
             case 'line': {
               const idx = I.filter(i => Z[i] === key);
