@@ -31,7 +31,8 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
   properties: {
     stepWidth: {
       check: 'Number',
-      init: 5
+      init: 5,
+      apply: '_applyStepWidth'
     },
 
     min: {
@@ -132,6 +133,11 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     _applyMax(value) {
       const input = this._element.querySelector(':scope > input');
       input.setAttribute('max', '' + value);
+    },
+
+    _applyStepWidth(value) {
+      const input = this._element.querySelector(':scope > input');
+      input.setAttribute('step', '' + value);
     },
 
     _applyShowValue(value) {
