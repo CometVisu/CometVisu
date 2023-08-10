@@ -43,12 +43,39 @@ class RequestproxyApi extends AbstractRequestproxyApi {
     $selfSigned = Helper::getQueryParam($request, 'self-signed', 'false') === "true";
     $allowed = false;
     $configSection = [];
+    $headers = [];
     if ($hiddenConfigSection != null) {
       if (array_key_exists($hiddenConfigSection, $hidden)) {
         $configSection = $hidden[$hiddenConfigSection];
         $url = $configSection['uri'];
         $selfSigned = array_key_exists( 'selfsigned', $configSection) && $configSection['selfsigned'] === 'true';
         $allowed = true;
+        $forwardParams = [];
+        if (array_key_exists("header", $configSection)) {
+          $headers = $configSection["header"];
+        }
+        if (array_key_exists("forwardParams", $configSection)) {
+          $forwardParams = $configSection["forwardParams"];
+        }
+        if (array_key_exists("config", $configSection) && $configSection["config"] === "flux") {
+          $forwardParams[] = "orgID";
+          $forwardParams[] = "org";
+          $headers[] = "Accept: application/csv";
+          $headers[] = "Content-Type: application/vnd.flux";
+        }
+        if (array_key_exists("token", $configSection)) {
+          $auth = "bearer";
+        }
+        if (sizeof($forwardParams) > 0) {
+          $params = $request->getQueryParams();
+          $queryParams = array();
+          foreach ($forwardParams as $name) {
+            if (array_key_exists($name, $params)) {
+              $queryParams[$name] = $params[$name];
+            }
+          }
+          $url .= "?".http_build_query($queryParams);
+        }
       } else {
         return $response->withStatus(404);
       }
@@ -96,6 +123,9 @@ class RequestproxyApi extends AbstractRequestproxyApi {
     $body = $request->getBody();
     if ($body) {
       curl_setopt($curl_session, CURLOPT_POSTFIELDS, $body);
+    }
+    if (sizeof($headers) > 0) {
+      curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
     }
     $result = curl_exec($curl_session);
     if (!curl_errno($curl_session)) {

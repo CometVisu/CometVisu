@@ -644,18 +644,42 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             }
             ts[name] = value;
           }
+          if (ts.src.startsWith('flux://')) {
+            ts.isFlux = true;
+            const fluxUrl = new URL(ts.src.replace("flux:", "http:"));
+            ts.org = fluxUrl.username;
+            ts.bucket = fluxUrl.hostname;
+            const parts = fluxUrl.pathname.substring(1).split('/');
+            ts.measurement = parts.shift();
+            ts.field = parts.shift() || 'value';
+          }
           this._dataSetConfigs[ts.src] = ts;
         }
       }
 
       for (const src in this._dataSetConfigs) {
-        url = client.getResourcePath('charts', {
-          src: src,
-          start: this.getStartTime(),
-          end: this.getEndTime()
-        });
-
         const ts = this._dataSetConfigs[src];
+        let proxy = false;
+        const options = {ttl: this.getRefresh()};
+        if (!ts.isFlux) {
+          url = client.getResourcePath('charts', {
+            src: src,
+            start: this.getStartTime(),
+            end: this.getEndTime()
+          });
+        } else {
+          url = "influx";
+          proxy = true;
+          options.method = 'POST';
+          options['config-section'] = 'influx';
+          options.searchParams = {
+            org: ts.org
+          };
+          options.requestData = `from(bucket:"${ts.bucket}")
+  |> range(start: -12d)
+  |> filter(fn: (r) => r._measurement == "${ts.measurement}" and r._field == "${ts.field}")
+  |> aggregateWindow(every: 1d, fn: mean)`;
+        }
 
         if (!url) {
           continue;
@@ -663,7 +687,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         this.debug('loading', url);
         promises.push(
-          cv.io.Fetch.cachedFetch(url, {ttl: this.getRefresh()}, false, client)
+          cv.io.Fetch.cachedFetch(url, options, proxy, client)
             .then(data => {
               this.debug('successfully loaded', url);
               if (client.hasCustomChartsDataProcessor(data)) {
