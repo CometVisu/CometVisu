@@ -77,6 +77,10 @@ qx.Class.define('cv.io.openhab.Rest', {
       return {};
     },
 
+    getBackendUrl() {
+      return this._backendUrl;
+    },
+
     getType() {
       return this._type;
     },
