@@ -644,7 +644,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             }
             ts[name] = value;
           }
-          const type = ts.src.split('://')[0];
+          const type = ts.src.split('://')[0].toLowerCase();
           ts.type = type;
           switch (type) {
             case 'flux':
@@ -653,6 +653,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
             case 'openhab':
               ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src);
+              break;
+
+            case 'rrd':
+              ts.source = new cv.io.timeseries.RRDSource(ts.src);
               break;
 
             default:

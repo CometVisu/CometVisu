@@ -38,15 +38,15 @@ Konfiguration der Datenquelle
 #############################
 
 Im ``src``-Attribute des ``dataset``-Elements wird eine URL angegeben die die Datenquelle definiert. Bisher werden
-openHAB (`Persistence <https://www.openhab.org/docs/configuration/persistence.html>`_) und InfluxDB als Datenquellen unterstützt.
+openHAB (`Persistence <https://www.openhab.org/docs/configuration/persistence.html>`_), InfluxDB und RRD als Datenquellen unterstützt.
 
-**Konfiguration der openHAB-Quelle**
+**Konfiguration einer openHAB-Quelle**
 
 ``openhab://<Item-Name>`` wobei <Item-Name> ein beliebiger Item-Name in openHAB sein kann, für den historische Daten aufgezeichnet werden.
 Es ist zusätzlich möglich einen spezielle Persistence-Service anzugeben, falls man mehrere benutzt:
 ``openhab://<service-id>@<Item-Name>``, gibt man diesen nicht an wird der in openHAB konfigurierte default-Persistence Service benutzt.
 
-**Konfiguration der InfluxDB-Quelle**
+**Konfiguration einer InfluxDB-Quelle**
 
 ``flux://<organization>@<bucket>/<measurement>/<field>`` Optional können Angaben für die
 `aggregationWindow-Funktion <https://docs.influxdata.com/flux/v0.x/stdlib/universe/aggregatewindow/>`_ als
@@ -61,9 +61,17 @@ Datenbank geschickt:
       |> filter(fn: (r) => r._measurement == "Temperature" and r._field == "value")
       |> aggregateWindow(every: 1d, fn: mean)
 
-.. hint::
 
-    RRD als Datenquelle wird zur Zeit vom Tile-Design noch nicht unterstützt.
+**Konfiguration einer RRD-Quelle**
+
+``rrd://<dateiname-ohne-rrd>`` Für die RRD-Datenquelle muss der Dateiname ohne das ".rrd" am Ende angebene werden.
+Zusätzlich können als Query-Parameter hinzugefügt werden:
+
+* ``ds``: Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).
+* ``res``: Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.
+
+Beispiel: ``rrd://<dateiname-ohne-rrd>?ds=AVERAGE&resolution=3600``
+
 
 Weitere Beispiele
 #################
