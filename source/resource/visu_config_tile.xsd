@@ -2160,7 +2160,7 @@
   </xsd:complexType>
 
   <xsd:complexType name="dataset">
-    <xsd:attribute name="src" type="xsd:string">
+    <xsd:attribute name="src" type="xsd:anyURI">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Data source for this chart element</xsd:documentation>
         <xsd:documentation xml:lang="de">Datenquelle für dieses Chart-Element.</xsd:documentation>

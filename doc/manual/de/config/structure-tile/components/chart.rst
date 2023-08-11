@@ -24,7 +24,7 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
     <cv-widget size="2x1">
         <cv-tile>
             <cv-chart title="Wohnzimmer" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">
-                <dataset chart-type="line" src="Temperature_FF_Living" />
+                <dataset chart-type="line" src="openhab://Temperature_FF_Living" />
             </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -33,6 +33,40 @@ Das Beispiel zeigt den Temperaturverlauf der letzten 24 Stunden, der exakte, for
 einen Zeitpunkt im Chart wird als Tooltip angezeigt, wenn man mit dem Mauszeiger über den Chart fährt.
 Damit der Chart eine gewisse Größe erreicht wird hier eine Kachel mit doppelter Breite ``<cv-tile size="2x1">`` benutzt
 und der Chart selbst soll die gesamte Kachel ausfüllen ``<cv-chart ... colspan="3" rowspan="3">``.
+
+Konfiguration der Datenquelle
+#############################
+
+Im ``src``-Attribute des ``dataset``-Elements wird eine URL angegeben die die Datenquelle definiert. Bisher werden
+openHAB (`Persistence <https://www.openhab.org/docs/configuration/persistence.html>`_) und InfluxDB als Datenquellen unterstützt.
+
+**Konfiguration der openHAB-Quelle**
+
+``openhab://<Item-Name>`` wobei <Item-Name> ein beliebiger Item-Name in openHAB sein kann, für den historische Daten aufgezeichnet werden.
+Es ist zusätzlich möglich einen spezielle Persistence-Service anzugeben, falls man mehrere benutzt:
+``openhab://<service-id>@<Item-Name>``, gibt man diesen nicht an wird der in openHAB konfigurierte default-Persistence Service benutzt.
+
+**Konfiguration der InfluxDB-Quelle**
+
+``flux://<organization>@<bucket>/<measurement>/<field>`` Optional können Angaben für die
+`aggregationWindow-Funktion <https://docs.influxdata.com/flux/v0.x/stdlib/universe/aggregatewindow/>`_ als
+Query-Parameter angehängt werden. Diese benötigen den Präfix ``ag-``. Beispiel:
+``flux://cometvisu@cv-bucket/Temperature/value?ag-every=1d&amp;ag-fn=mean`` würde in folgende Flux-Query an die
+Datenbank geschickt:
+
+.. code-block::
+
+    from(bucket:"cv-bucket")
+      |> range(start: <start-zeit>, stop: <end-zeit>)
+      |> filter(fn: (r) => r._measurement == "Temperature" and r._field == "value")
+      |> aggregateWindow(every: 1d, fn: mean)
+
+.. hint::
+
+    RRD als Datenquelle wird zur Zeit vom Tile-Design noch nicht unterstützt.
+
+Weitere Beispiele
+#################
 
 Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farblich von einander abzugrenzen.
 
@@ -77,8 +111,8 @@ Das Chart-Element bietet auch die Möglichkeit ein Balkendiagramm darzustellen:
     <cv-widget size="2x1">
         <cv-tile>
             <cv-chart title="Strom" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
-                <dataset src="Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false" chart-type="bar"/>
-                <dataset src="PV_Energy_Today" color="#FF9900" title="Produktion" chart-type="bar"/>
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false" chart-type="bar"/>
+                <dataset src="openhab://PV_Energy_Today" color="#FF9900" title="Produktion" chart-type="bar"/>
               </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -103,7 +137,7 @@ füllen, oder einfach mit ``all`` for alle.
     <cv-widget size="2x1">
         <cv-tile>
             <cv-chart title="Strom" selection="week,month,year" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
-                <dataset src="Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
               </cv-chart>
         </cv-tile>
     </cv-widget>
