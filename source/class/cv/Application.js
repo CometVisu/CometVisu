@@ -1060,7 +1060,7 @@ qx.Class.define('cv.Application', {
       } else {
         const isOpenHab = this.isServedByOpenhab();
         const url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment'
-          : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -2).join('/') + '/environment.php';
+          : cv.io.rest.Client.getBaseUrl().split('/').slice(0, -1).join('/') + '/environment.php';
         const xhr = new qx.io.request.Xhr(url);
         xhr.set({
           method: 'GET',
