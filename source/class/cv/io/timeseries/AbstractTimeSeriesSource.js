@@ -41,7 +41,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       this.error('invalid url '+ resource + ' this source will not be usable!');
       this.initUrl(null);
     }
-    this._init();
+    this.init();
   },
 
   /*
@@ -68,9 +68,18 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   members: {
-    _init() {
+    _initialized: null,
 
+    init() {
+      if (!this._initialized) {
+        this._init();
+        this._initialized = true;
+      }
     },
+
+    _init() {},
+    _applySeries() {},
+
     /**
      * Returns configuration options for a cv.io.Fetch request
      * @param start {Date} start time
