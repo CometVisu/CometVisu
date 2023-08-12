@@ -615,6 +615,7 @@
       <xsd:element name="cv-chart" type="cv-chart" />
       <xsd:element name="cv-list" type="cv-list" />
       <xsd:element name="cv-color" type="cv-color" />
+      <xsd:element name="cv-icon" type="cv-icon" />
       <xsd:element name="label" type="label"/>
       <xsd:element name="p" type="p"/>
       <xsd:element name="cv-plugin" type="cv-plugin"/>
