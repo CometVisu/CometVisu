@@ -17,14 +17,14 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
 
     <settings design="tile" selector="cv-widget">
         <fixtures>
-            <fixture source-file="source/test/fixtures/temp-chart.json" target-path="charts/Temperature_FF_Living" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/temp-chart.json" target-path="/rest/persistence/items/Temperature_FF_Living" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-chart-temp"/>
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
             <cv-chart title="Wohnzimmer" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">
-                <dataset chart-type="line" src="openhab://Temperature_FF_Living" />
+                <dataset chart-type="line" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -61,6 +61,25 @@ Datenbank geschickt:
       |> filter(fn: (r) => r._measurement == "Temperature" and r._field == "value")
       |> aggregateWindow(every: 1d, fn: mean)
 
+Wird nur ``ag-every`` angegeben, dann wird "mean" als Standard-Wert für ``ag-fn`` genommen. Wird beides nicht
+angeben, werden die Werte anhand der vom Chart benutzen ``series`` automatisch bestimmmt.
+
+Die URI des InfluxDB-Servers und ein Token für die Authentifizierung der Anfragen müssen in der :ref:`Versteckten Konfigurationen <hidden-config>`
+unter der Sektion "influx" angegeben werden. In dieser Sektion sind folgende Schlüssel-Wert Einträge erforderlich.
+
++----------------+-----------------------------------+
+| Schlüssel      | Wert                              |
++----------------+-----------------------------------+
+| uri            | `http://<influx-server>:8062`     |
++----------------+-----------------------------------+
+| token          | `API Token (kann in der Influx-UI |
+|                | generiert werden)`                |
++----------------+-----------------------------------+
+| config         | flux                              |
++----------------+-----------------------------------+
+
+Die Werte für "uri" und "token" müssen entsprechend angepasst werden, der Wert für "config" muss "flux" sind damit
+die Kommunikation korrekt funktionieren kann.
 
 **Konfiguration einer RRD-Quelle**
 
@@ -82,8 +101,8 @@ Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farbli
 
     <settings design="tile" selector="cv-widget">
         <fixtures>
-            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
-            <fixture source-file="source/test/fixtures/pv-chart.json" target-path="charts/PV_Energy_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/pv-chart.json" target-path="/rest/persistence/items/PV_Energy_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-chart-pv">
             <caption>Zwei Linien in einem Chart.</caption>
@@ -95,8 +114,8 @@ Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farbli
     <cv-widget size="2x1">
         <cv-tile>
             <cv-chart title="Strom" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
-                <dataset src="Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
-                <dataset src="PV_Energy_Today" color="#FF9900" title="Produktion" />
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <dataset src="openhab://PV_Energy_Today" color="#FF9900" title="Produktion" />
               </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -109,8 +128,8 @@ Das Chart-Element bietet auch die Möglichkeit ein Balkendiagramm darzustellen:
 
     <settings design="tile" selector="cv-widget">
         <fixtures>
-            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
-            <fixture source-file="source/test/fixtures/pv-chart.json" target-path="charts/PV_Energy_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/pv-chart.json" target-path="/rest/persistence/items/PV_Energy_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-chart-pv-bar">
             <caption>Zwei Balken in einem Chart.</caption>
@@ -133,7 +152,7 @@ füllen, oder einfach mit ``all`` for alle.
 
     <settings design="tile" selector="cv-widget">
         <fixtures>
-            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-chart-pv-nav">
             <caption>Zeitserienauswahl mit Navigation.</caption>
