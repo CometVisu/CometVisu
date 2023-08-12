@@ -132,7 +132,6 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           res.push([date.getTime(), value]);
         }
       }
-      console.log(res);
       return res;
     }
   }
