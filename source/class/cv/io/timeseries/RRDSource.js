@@ -31,17 +31,35 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
     _backendUrl: null,
     _baseRequestConfig: null,
     _queryTemplate: null,
+    _timeFormat: null,
+    _defaultResolution: null,
+    _defaultFunc: null,
 
     _init() {
       const resourceUrl = this.getUrl();
+      this._timeFormat = new qx.util.format.DateFormat('dd.MM.yyyy HH:mm');
+      this._defaultResolution = 300;
+      this._defaultFunc = 'AVERAGE';
       if (resourceUrl) {
+        // we need the file name case-sensitive (and upper case letters get lost be the url parser)
+        let match = /.*:\/\/([\w\-:]+@)?([^\/?]+).*/.exec(this.getRawUrl());
+        let fileName = resourceUrl.hostname;
+        if (match) {
+          fileName = match[2];
+        }
         this._baseRequestConfig = {
-          url: `/cgi-bin/rrdfetch?rrd=${resourceUrl.hostname}.rrd'`,
+          url: `/cgi-bin/rrdfetch?rrd=${fileName}.rrd`,
           proxy: false,
           options: {}
         }
         for (const [key, value] of resourceUrl.searchParams) {
-          this._baseRequestConfig.url += `&${key}=${value}`
+          this._baseRequestConfig.url += `&${key}=${value}`;
+        }
+        if (!resourceUrl.searchParams.has('res')) {
+          this._baseRequestConfig.url += `&res=${this._defaultResolution}`;
+        }
+        if (!resourceUrl.searchParams.has('ds')) {
+          this._baseRequestConfig.url += `&ds=${this._defaultFunc}`;
         }
       } else {
         this._baseRequestConfig = {
@@ -52,9 +70,14 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
       }
     },
 
-    getRequestConfig(start, end) {
+    getRequestConfig(start, end, series, offset) {
       const config = Object.assign(this._baseRequestConfig, {});
-      config.url += `&start=${start}&end=${end}`;
+      let rrdStart = `now-${offset+1}${series}`;
+      let rrdEnd = 'now';
+      if (offset > 0) {
+        rrdEnd = `now-${offset}${series}`;
+      }
+      config.url += `&start=${rrdStart}&end=${rrdEnd}`;
       return config;
     },
 

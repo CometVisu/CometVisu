@@ -672,7 +672,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         let proxy = false;
         let options = {ttl: this.getRefresh()};
         if (ts.source) {
-          const config = ts.source.getRequestConfig(this.getStartTime(), this.getEndTime());
+          const config = ts.source.getRequestConfig(
+            this.getStartTime(),
+            this.getEndTime(),
+            this.getCurrentSeries(),
+            this.getCurrentPeriod()
+          );
           url = config.url;
           proxy = config.proxy;
           options = Object.assign(options, config.options);

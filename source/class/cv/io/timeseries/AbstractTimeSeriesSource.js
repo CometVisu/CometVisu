@@ -75,9 +75,11 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
      * Returns configuration options for a cv.io.Fetch request
      * @param start {Date} start time
      * @param end {Date?} optional end time, if not set its "now"
+     * @param series {'hour'|'day'|'week'|'month'|'year'}
+     * @param offset {Number} series offset
      * @return {{proxy: boolean, options: {}, url: string}}
      */
-    getRequestConfig(start, end) {
+    getRequestConfig(start, end, series, offset) {
       return {
         url: '',
         options: {},
