@@ -45,16 +45,16 @@ $SERVER_ADDR = explode('.', $_SERVER['SERVER_ADDR']);
 if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses subnet 172.17.0.0/16
   $environmentInfoFile = '/dev/shm/CometVisuEnvironmentInfo.json';
   if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || isset($_GET['force'])) {
-    $context = stream_context_create([
-      'http' => [
+    $context = stream_context_create(array(
+      'http' => array(
         'method' => "GET",
-      ],
-      'ssl' => [
+      ),
+      'ssl' => array(
         'verify_peer' => false,
         'allow_self_signed' => true,
         'verify_peer_name' => false
-      ]
-    ]);
+      )
+    ));
     $environmentInfoJSON = file_get_contents('https://172.17.0.1/version.json', false, $context);
     if ($environmentInfoJSON === false) {
       // we are not running on a Timberwolf - or the environment isn't as usual
@@ -69,13 +69,13 @@ if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses su
   }
   $environmentInfo = json_decode($environmentInfoJSON, true);
   if(array_key_exists('release', $environmentInfo)) {
-    $retval['server_release'] = implode(' ', ['Timberwolf', $environmentInfo['release']]);
+    $retval['server_release'] = implode(' ', array('Timberwolf', $environmentInfo['release']));
   }
   if(array_key_exists('branch', $environmentInfo)) {
     $retval['server_branch'] = $environmentInfo['branch'];
   }
   if(array_key_exists('id', $environmentInfo)) {
-    $retval['server_id'] = implode(' ', ['Timberwolf', $environmentInfo['id']]);
+    $retval['server_id'] = implode(' ', array('Timberwolf', $environmentInfo['id']));
   }
 }
 
