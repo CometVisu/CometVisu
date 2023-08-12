@@ -70,10 +70,12 @@ class BaseXsdDirective(BaseDirective):
             res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
         return res
 
-    def normalize_type(self, type):
-        if type[0:4] == "xsd:":
-            type = type[4:]
-        res = self.type_mapping[type] if type in self.type_mapping else type
+    def normalize_type(self, type_name):
+        if type_name is None:
+            return ""
+        if type_name[0:4] == "xsd:":
+            type_name = type_name[4:]
+        res = self.type_mapping[type_name] if type_name in self.type_mapping else type_name
         return res
 
     def get_name(self, name):
