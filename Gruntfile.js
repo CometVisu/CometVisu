@@ -341,20 +341,11 @@ module.exports = function(grunt) {
 
     // protractor end-to-end tests
     protractor: {
-      options: {
-        configFile: "source/test/protractor/conf.js", // Default config file
-        args: {
-          // Arguments passed to the command
-        }
-      },
-      all: {},
-      ci: {
+      all: {
         options: {
+          configFile: "source/test/protractor/conf.js", // Default config file
           args: {
-            capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
-              browserName: 'firefox'
-            }
+            // Arguments passed to the command
           }
         }
       },
@@ -372,34 +363,6 @@ module.exports = function(grunt) {
               verbose: grunt.option('verbose')
             },
             capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
-          }
-        }
-      },
-      screenshotsSource: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "source"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
-          }
-        }
-      },
-      screenshotsManual: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "manual"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
           }
         }
       }
@@ -505,11 +468,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
-  grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
-  grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
