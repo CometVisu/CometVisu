@@ -47,7 +47,7 @@ function resizeTiles() {
     availableWidth -= (columns-1) * spacing;
     let tileWidth =availableWidth / columns;
     const cellWidth = tileWidth / 3;
-    console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
+    //console.log('Cols:', columns, tileWidth, 'aw:', availableWidth, 'padX:', pageXPadding);
     style.setProperty('--tileCellWidth', cellWidth + 'px');
     qx.event.message.Bus.dispatchByName('cv.design.tile.cellWidthChanged', cellWidth);
     lastWindowWidth = page.offsetWidth;
