@@ -71,7 +71,7 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
     },
 
     getRequestConfig(start, end, series, offset) {
-      const config = Object.assign(this._baseRequestConfig, {});
+      const config = Object.assign({}, this._baseRequestConfig);
       let rrdStart = `now-${offset+1}${series}`;
       let rrdEnd = 'now';
       if (offset > 0) {

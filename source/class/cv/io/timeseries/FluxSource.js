@@ -94,12 +94,14 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
     },
 
     getRequestConfig(start, end) {
-      const config = Object.assign(this._baseRequestConfig, {});
+      const config = Object.assign({}, this._baseRequestConfig);
       const timeRange = this.getTimeRange(start, end);
       let range = 'start: -1d'
       if (timeRange.start) {
         range = `start: ${timeRange.start.toISOString().split('.')[0]+'Z'}, stop: ${timeRange.end.toISOString().split('.')[0]+'Z'}`;
       }
+      // add time range to the resource url to make the request cache work
+      config.url += `&range=${encodeURIComponent(range)}`;
       config.options.requestData = this._queryTemplate.replace('$$RANGE$$', range);
       return config;
     },
@@ -110,7 +112,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
      * @returns {(number|number)[][]|*[]}
      */
     processResponse(response) {
-      const lines = response.trim().split('\n');
+      const lines = response.replace(/\r/g, '').trim().split('\n');
       let fields = lines.shift().split(',');
       const res = [];
       const timeIndex = fields.indexOf('_time');
