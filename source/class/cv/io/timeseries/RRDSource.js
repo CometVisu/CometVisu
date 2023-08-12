@@ -51,7 +51,7 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
           url: `/cgi-bin/rrdfetch?rrd=${fileName}.rrd`,
           proxy: false,
           options: {}
-        }
+        };
         for (const [key, value] of resourceUrl.searchParams) {
           this._baseRequestConfig.url += `&${key}=${value}`;
         }
@@ -66,7 +66,7 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
           url: '',
           proxy: false,
           options: {}
-        }
+        };
       }
     },
 

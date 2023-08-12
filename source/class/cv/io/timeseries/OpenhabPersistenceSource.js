@@ -37,7 +37,7 @@ qx.Class.define('cv.io.timeseries.OpenhabPersistenceSource', {
         url: '',
         options: {},
         proxy: false
-      }
+      };
       const resourceUrl = this.getUrl();
       if (!resourceUrl) {
         return config;
@@ -47,7 +47,7 @@ qx.Class.define('cv.io.timeseries.OpenhabPersistenceSource', {
           const client = cv.io.BackendConnections.getClientByType('openhab');
           if (!client) {
             // use the default
-            this._backendUrl = '/rest/'
+            this._backendUrl = '/rest/';
           } else {
             this._backendUrl = client.getBackendUrl();
           }
@@ -65,7 +65,7 @@ qx.Class.define('cv.io.timeseries.OpenhabPersistenceSource', {
         this._baseRequestConfig = {
           baseUrl: baseUrl,
           params: params
-        }
+        };
       }
       let url = this._baseRequestConfig.baseUrl;
       let params = this._baseRequestConfig.params.slice();

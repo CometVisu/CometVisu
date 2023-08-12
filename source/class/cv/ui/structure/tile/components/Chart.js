@@ -659,6 +659,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               ts.source = new cv.io.timeseries.RRDSource(ts.src);
               break;
 
+            case 'demo':
+              ts.source = new cv.io.timeseries.DemoSource(ts.src);
+              break;
+
             default:
               this.error('unknown chart data source type ' + type);
               break;
@@ -1189,14 +1193,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             .attr('stroke', 'currentColor')
             .attr('stroke-opacity', '15%');
         }
-        const x1 = this._chartConf.x(X[data[0]]);
-        const x2 = this._chartConf.x(X[X.length -1]); // always draw until end of chart (not until end of src dataset)
-        const y = this._chartConf.y(yValue);
-        lineElem
-          .attr('x1', x1)
-          .attr('x2', x2)
-          .attr('y1', y)
-          .attr('y2', y);
+        if (X.length > 0) {
+          const x1 = this._chartConf.x(X[data[0]]);
+          const x2 = this._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
+          const y = this._chartConf.y(yValue);
+          lineElem
+            .attr('x1', x1)
+            .attr('x2', x2)
+            .attr('y1', y)
+            .attr('y2', y);
+        }
       }
 
       const t = d3.transition()

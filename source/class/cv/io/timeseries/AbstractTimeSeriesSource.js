@@ -93,7 +93,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
         url: '',
         options: {},
         proxy: true
-      }
+      };
     },
 
     processResponse(data) {
@@ -104,7 +104,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       const res = {
         start: null,
         end: null
-      }
+      };
       if (start) {
         let endTime = end ? this._convertTimes(end) : new Date();
         let startTime = new Date();
@@ -156,5 +156,5 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       }
       return null;
     }
-  },
+  }
 });

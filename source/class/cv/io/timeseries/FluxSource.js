@@ -73,11 +73,11 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
             }
             // use default
             if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
-              parts.push(`fn: mean`);
+              parts.push('fn: mean');
             }
             queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
           } else {
-            this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.')
+            this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.');
           }
         }
 
@@ -86,13 +86,13 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           url: resourceUrl.toString(),
           proxy: true,
           options: options
-        }
+        };
       } else {
         this._baseRequestConfig = {
           url: '',
           proxy: false,
           options: {}
-        }
+        };
       }
     },
 
@@ -116,7 +116,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
     getRequestConfig(start, end, series) {
       const config = Object.assign({}, this._baseRequestConfig);
       const timeRange = this.getTimeRange(start, end);
-      let range = 'start: -1d'
+      let range = 'start: -1d';
       if (timeRange.start) {
         range = `start: ${timeRange.start.toISOString().split('.')[0]+'Z'}, stop: ${timeRange.end.toISOString().split('.')[0]+'Z'}`;
       }

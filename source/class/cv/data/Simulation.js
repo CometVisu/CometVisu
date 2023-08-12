@@ -228,26 +228,35 @@ qx.Class.define('cv.data.Simulation', {
       const data = [];
       if (generator) {
         if (options) {
-          // currently only end=now and start=end-??? is implemented
           let end = Date.now();
           let start = Date.now();
           if (options.start) {
-            const match = /end-(\d+)(hour|day|month)/.exec(options.start);
-            if (match) {
-              let interval = 0;
-              switch (match[2]) {
-                case 'hour':
-                  interval = 60 * 60 * 1000;
-                  break;
-                case 'day':
-                  interval = 24 * 60 * 60 * 1000;
-                  break;
-                case 'month':
-                  // this is not really precise, but good enough to fake some data
-                  interval = 30 * 24 * 60 * 60 * 1000;
-                  break;
+            if (/^\d{10}$/.test(options.start)) {
+              // timestamp without millis
+              start = new Date(parseInt(options.start) * 1000).getTime();
+              end = new Date(parseInt(options.end) * 1000).getTime();
+            } else if (/^\d{13}$/.test(options.start)) {
+              // timestamp with millis
+              start = new Date(parseInt(options.start)).getTime();
+              end = new Date(parseInt(options.end)).getTime();
+            } else {
+              const match = /end-(\d+)(hour|day|month)/.exec(options.start);
+              if (match) {
+                let interval = 0;
+                switch (match[2]) {
+                  case 'hour':
+                    interval = 60 * 60 * 1000;
+                    break;
+                  case 'day':
+                    interval = 24 * 60 * 60 * 1000;
+                    break;
+                  case 'month':
+                    // this is not really precise, but good enough to fake some data
+                    interval = 30 * 24 * 60 * 60 * 1000;
+                    break;
+                }
+                start -= parseInt(match[1]) * interval;
               }
-              start -= parseInt(match[1]) * interval;
             }
           }
           let val = 0;
