@@ -62,6 +62,7 @@ class RequestproxyApi extends AbstractRequestproxyApi {
           $forwardParams[] = "org";
           $headers[] = "Accept: application/csv";
           $headers[] = "Content-Type: application/vnd.flux";
+          $url .= "/api/v2/query";
         }
         if (array_key_exists("token", $configSection)) {
           $auth = "bearer";
