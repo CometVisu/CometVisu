@@ -927,7 +927,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // Compute default domains, and unique the z-domain.
       let xDomain = d3.extent(X);
       let minVal = 0;
-      if (this._element.hasAttribute('zero-based') && this._element.getAttribute('zero-based') === 'false') {
+      const zeroBased = !this._element.hasAttribute('zero-based') || this._element.getAttribute('zero-based') === 'true';
+      if (!zeroBased) {
         minVal = d3.min(Y);
         if (minVal > 1.0) {
           minVal -= 1;
@@ -1175,6 +1176,28 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this.__config = config;
       this._dot = svg.select('g.dot');
+
+      // show zero line in grid for non-zero based charts
+      if (!zeroBased) {
+        let targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
+        let yValue = 0.0;
+        let data = [0, X.length-1];
+        let lineElem = targetContainer.select('.zero-line');
+        if (lineElem.empty()) {
+          lineElem = targetContainer.append('line')
+            .attr('class', 'zero-line')
+            .attr('stroke', 'currentColor')
+            .attr('stroke-opacity', '15%');
+        }
+        const x1 = this._chartConf.x(X[data[0]]);
+        const x2 = this._chartConf.x(X[X.length -1]); // always draw until end of chart (not until end of src dataset)
+        const y = this._chartConf.y(yValue);
+        lineElem
+          .attr('x1', x1)
+          .attr('x2', x2)
+          .attr('y1', y)
+          .attr('y2', y);
+      }
 
       const t = d3.transition()
         .duration(single ? 0 : 500)
