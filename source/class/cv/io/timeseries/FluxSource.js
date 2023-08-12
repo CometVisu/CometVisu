@@ -66,11 +66,14 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           }
         }
         if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-          if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every') &&
-              Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
+          if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
             let parts = [];
             for (const key in additional.aggregateWindow) {
               parts.push(`${key}: ${additional.aggregateWindow[key]}`);
+            }
+            // use default
+            if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
+              parts.push(`fn: mean`);
             }
             queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
           } else {
@@ -93,7 +96,24 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
       }
     },
 
-    getRequestConfig(start, end) {
+    _getAgWindowEveryForSeries(series) {
+      switch (series) {
+        case 'hour':
+          return '1m';
+        case 'day':
+          return '1h';
+        case 'week':
+          return '6h';
+        case 'month':
+          return '1d';
+        case 'year':
+          return '1mo';
+        default:
+          return '1d';
+      }
+    },
+
+    getRequestConfig(start, end, series) {
       const config = Object.assign({}, this._baseRequestConfig);
       const timeRange = this.getTimeRange(start, end);
       let range = 'start: -1d'
@@ -103,6 +123,10 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
       // add time range to the resource url to make the request cache work
       config.url += `&range=${encodeURIComponent(range)}`;
       config.options.requestData = this._queryTemplate.replace('$$RANGE$$', range);
+      if (!config.options.requestData.includes('aggregateWindow')) {
+        // get aggregation from series
+        config.options.requestData += `\n  |> aggregateWindow(every: ${this._getAgWindowEveryForSeries(series)}, fn: mean)`;
+      }
       return config;
     },
 
