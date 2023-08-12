@@ -4,8 +4,5 @@ runs:
   steps:
     - name: Install Webdriver version
       run: |
-        export CHROME_BIN=`pwd`/chrome/google-chrome
-        export CHROME_VERSION=$($CHROME_BIN --version | awk '{ print $3 }' | cut -d'.' -f 1,2,3,4)
-        echo "using chrome driver version CHROME_VERSION"
-        ./node_modules/.bin/webdriver-manager update --gecko=false --versions.chrome=${CHROME_VERSION}
+        ./node_modules/.bin/webdriver-manager update --gecko=false
       shell: bash
