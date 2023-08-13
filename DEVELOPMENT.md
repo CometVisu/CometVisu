@@ -77,3 +77,11 @@ Run all tests locally:
 Filter tests to run (by the content of the describe/it phrase of the tests):
 
 `grunt karma:debug --grep=contains-this`
+
+Running in docker container
+---------------------------
+
+`docker run -d -p 8080:80 --name cometvisu-test -v "$PWD/compiled/source":/var/www/html php:8.0-apache`
+
+Test with PHP 5.2 (Wiregate version)
+`docker run -d -p 8080:80 --name cometvisu-test -v "$PWD/compiled/source":/var/www/html deminy/php-5.2`
