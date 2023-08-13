@@ -274,6 +274,10 @@ body {
         aside:last-child {
             border-left: 1px solid var(--borderColor);
         }*/
+
+        dataset {
+            display: none;
+        }
     }
 
     svg.defs-only {
@@ -818,6 +822,7 @@ body {
         > cv-tile {
             flex-basis: 100%;
             width: 100%;
+            height: 100%;
             // reset own appearance that is handled by the cv-widget
             background-color: transparent;
             box-shadow: none;

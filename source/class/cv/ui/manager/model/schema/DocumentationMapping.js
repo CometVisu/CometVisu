@@ -30,11 +30,10 @@ qx.Class.define('cv.ui.manager.model.schema.DocumentationMapping', {
   */
   statics: {
     MAP: {
-      _base: 'https://www.cometvisu.org/CometVisu/',
+      '_base': 'https://www.cometvisu.org/CometVisu/',
       'system-voraussetzungen': '/0.13/manual/#system-voraussetzungen',
-      'tile-backend-system': '/0.13/manual/config/structure-tile/elements/backend.html#tile-backend-system',
+      'tile-component-chart': '/0.13/manual/config/structure-tile/components/chart.html#tile-component-chart',
       'tile-components': '/0.13/manual/config/structure-tile/index.html#tile-components',
-      'tile-element-backend': '/0.13/manual/config/structure-tile/elements/backend.html#tile-element-backend',
       'tile-widgets': '/0.13/manual/config/structure-tile/index.html#tile-widgets'
     }
   }

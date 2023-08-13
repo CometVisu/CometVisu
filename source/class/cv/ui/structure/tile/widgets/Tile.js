@@ -190,9 +190,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
 
     checkOutdated() {
       if (this._lastUpdate instanceof Date) {
-        const age = Math.floor((Date.now() - this._lastUpdate.getTime()) / 1000);
-        this.setOutdated(age > this._maxAge);
-        this.setOutdatedMessage(qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(this._lastUpdate)));
+        if (isNaN(this._lastUpdate.getTime())) {
+          this.setOutdated(true);
+          this.setOutdatedMessage(qx.locale.Manager.tr('Last update: unknown'));
+        } else {
+          const age = Math.floor((Date.now() - this._lastUpdate.getTime()) / 1000);
+          this.setOutdated(age > this._maxAge);
+          this.setOutdatedMessage(qx.locale.Manager.tr('Last update: %1', this._dateFormat.format(this._lastUpdate)));
+        }
       } else if (this._lastUpdate === '-') {
         this.setOutdated(true);
         this.setOutdatedMessage(qx.locale.Manager.tr('Last update: unknown'));

@@ -73,7 +73,11 @@ qx.Class.define('cv.util.Prettifier', {
             prefix = `ns${nsIndex + 1}:`;
           }
         }
-        attributesOutput += ` ${prefix}${attr.name}="${attr.value}"`;
+        let value = attr.value
+          .replace(/&(?!amp;)/g, '&amp;')
+          .replaceAll('"', '&quot;')
+          .replaceAll('<', '&lt;');
+        attributesOutput += ` ${prefix}${attr.name}="${value}"`;
       }
       namespaces.forEach((ns, index) => {
         output += ` xmlns:ns${index + 1}="${ns}"`;

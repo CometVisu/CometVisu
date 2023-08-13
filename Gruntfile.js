@@ -212,51 +212,6 @@ module.exports = function(grunt) {
     branch = grunt.option('branch');
 
   var config = {
-
-    // license header adding
-    usebanner: {
-      dist: {
-        options: {
-          position: 'top',
-          replace: true,
-          linebreak: true,
-          process: function( filepath ) {
-            var filename = filepath.match(/\/([^/]*)$/)[1];
-            if (filename === "__init__.js") { return ""; }
-
-            return grunt.template.process('/* <%= filename %> \n'+
-              ' * \n'+
-              ' * copyright (c) 2010-<%= grunt.template.today("yyyy") %>, Christian Mayer and the CometVisu contributors.\n'+
-              ' * \n'+
-              ' * This program is free software; you can redistribute it and/or modify it\n'+
-              ' * under the terms of the GNU General Public License as published by the Free\n'+
-              ' * Software Foundation; either version 3 of the License, or (at your option)\n'+
-              ' * any later version.\n'+
-              ' *\n'+
-              ' * This program is distributed in the hope that it will be useful, but WITHOUT\n'+
-              ' * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n'+
-              ' * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n'+
-              ' * more details.\n'+
-              ' *\n'+
-              ' * You should have received a copy of the GNU General Public License along\n'+
-              ' * with this program; if not, write to the Free Software Foundation, Inc.,\n'+
-              ' * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n'+
-              ' */\n', {
-                data: {
-                  filename: filename,
-                  author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
-                  version: pkg.version
-                }
-              }
-            );
-          }
-        },
-        files: {
-          src: sourceFiles.concat(['source/test/**/*.js'])
-        }
-      }
-    },
-
     // make a zipfile
     compress: {
       qxClient: {
@@ -386,20 +341,11 @@ module.exports = function(grunt) {
 
     // protractor end-to-end tests
     protractor: {
-      options: {
-        configFile: "source/test/protractor/conf.js", // Default config file
-        args: {
-          // Arguments passed to the command
-        }
-      },
-      all: {},
-      ci: {
+      all: {
         options: {
+          configFile: "source/test/protractor/conf.js", // Default config file
           args: {
-            capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not to work in ci
-              browserName: 'firefox'
-            }
+            // Arguments passed to the command
           }
         }
       },
@@ -417,34 +363,6 @@ module.exports = function(grunt) {
               verbose: grunt.option('verbose')
             },
             capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
-          }
-        }
-      },
-      screenshotsSource: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "source"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
-          }
-        }
-      },
-      screenshotsManual: {
-        options: {
-          configFile: "utils/protractor.conf.js",
-          args: {
-            params: {
-              subDir: "manual"
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
-            }
           }
         }
       }
@@ -478,6 +396,12 @@ module.exports = function(grunt) {
       },
       build: {
         command: 'npm run make-cv'
+      },
+      composerInstallRest: {
+        command: 'composer install --prefer-dist --no-dev',
+        execOptions: {
+          cwd: 'source/rest/manager'
+        }
       }
     },
 
@@ -503,14 +427,6 @@ module.exports = function(grunt) {
           }
         }
       }
-    },
-    composer : {
-      rest: {
-        options : {
-          flags: ['prefer-dist', 'no-dev'],
-          cwd: 'source/rest/manager'
-        }
-      }
     }
   };
   grunt.initConfig(config);
@@ -533,33 +449,27 @@ module.exports = function(grunt) {
   });
 
     // Load the plugin tasks
-  grunt.loadNpmTasks('grunt-banner');
-  grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-prompt');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
-  grunt.loadNpmTasks('grunt-composer');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'composer:rest:install', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'shell:composerInstallRest', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
-  grunt.registerTask('e2e', ['connect', 'protractor:ci']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
-  grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
