@@ -780,7 +780,14 @@ qx.Class.define('cv.Application',
             // we have to replace the cached design scripts styles to load
             const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function(style) {
-              styles.push(style.replace('designs/'+cv.Config.configSettings.clientDesign, 'designs/'+cv.Config.clientDesign));
+              if (typeof style === 'string') {
+                styles.push(
+                  style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign)
+                );
+              } else if (typeof style === 'object' && style.uri) {
+                style.uri = style.uri.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign);
+                styles.push(style);
+              }
             }, this);
             this.loadStyles(styles);
 
