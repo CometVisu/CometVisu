@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,48 +53,45 @@
     extend: qx.ui.menu.AbstractButton,
     include: [qx.ui.form.MModelProperty],
     implement: [qx.ui.form.IRadioItem, qx.ui.form.IBooleanForm, qx.ui.form.IModel],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Initial label
      * @param menu {qx.ui.menu.Menu} Initial sub menu
      */
     construct: function construct(label, menu) {
-      qx.ui.menu.AbstractButton.constructor.call(this); // ARIA attrs
-      // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'
+      qx.ui.menu.AbstractButton.constructor.call(this);
 
+      // ARIA attrs
+      // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "radio");
-      contentEl.setAttribute("aria-checked", false); // Initialize with incoming arguments
+      contentEl.setAttribute("aria-checked", false);
 
+      // Initialize with incoming arguments
       if (label != null) {
         this.setLabel(label);
       }
-
       if (menu != null) {
         this.setMenu(menu);
       }
-
       this.addListener("execute", this._onExecute, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "menu-radiobutton"
       },
-
       /** The value of the widget. True, if the widget is checked. */
       value: {
         check: "Boolean",
@@ -104,7 +100,6 @@
         apply: "_applyValue",
         init: false
       },
-
       /** The assigned qx.ui.form.RadioGroup which handles the switching between registered buttons */
       group: {
         check: "qx.ui.form.RadioGroup",
@@ -112,25 +107,24 @@
         apply: "_applyGroup"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
+
     members: {
       // overridden (from MExecutable to keep the icon out of the binding)
-
       /**
        * @lint ignoreReferenceField(_bindableProperties)
        */
       _bindableProperties: ["enabled", "label", "toolTipText", "value", "menu"],
       // property apply
       _applyValue: function _applyValue(value, old) {
-        value ? this.addState("checked") : this.removeState("checked"); // ARIA attrs
+        value ? this.addState("checked") : this.removeState("checked");
 
+        // ARIA attrs
         this.getContentElement().setAttribute("aria-checked", Boolean(value));
       },
       // property apply
@@ -138,12 +132,10 @@
         if (old) {
           old.remove(this);
         }
-
         if (value) {
           value.add(this);
         }
       },
-
       /**
        * Handler for the execute event.
        *
@@ -151,7 +143,6 @@
        */
       _onExecute: function _onExecute(e) {
         var grp = this.getGroup();
-
         if (grp && grp.getAllowEmptySelection()) {
           this.toggleValue();
         } else {
@@ -163,4 +154,4 @@
   qx.ui.menu.RadioButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButton.js.map?dt=1685978141749
+//# sourceMappingURL=RadioButton.js.map?dt=1691935438207

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Audio.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Audio', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -59,7 +57,6 @@
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
       },
-
       /**
        * Returns a map with definitions for the XML Parser to map XML-Attribute values
        * to properties e.g
@@ -102,4 +99,4 @@
   cv.parser.pure.widgets.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1685978090773
+//# sourceMappingURL=Audio.js.map?dt=1691935390368

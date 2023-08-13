@@ -28,11 +28,21 @@
     "call",
     "clazz",
     "REQUIRES",
+    "_iterator",
+    "_createForOfIteratorHelper",
+    "_step",
+    "s",
+    "n",
+    "done",
     "check",
+    "value",
     "core",
     "Init",
     "getApplication",
     "getServerHasPhpSupport",
+    "err",
+    "e",
+    "f",
     "Registry"
   ],
   "sources": [
@@ -41,5 +51,5 @@
   "sourcesContent": [
     "/**\n * Registry for all classes that implement cv.io.listmodel.IListModel.\n */\nqx.Class.define('cv.io.listmodel.Registry', {\n  type: 'static',\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    _REG: {},\n\n    /**\n     *\n     * @param modelClass {Class}\n     */\n    register(modelClass) {\n      if (qx.Class.hasInterface(modelClass, cv.io.listmodel.IListModel)) {\n        const className = modelClass.basename.toLowerCase();\n        this._REG[className] = modelClass;\n      }\n    },\n\n    /**\n     *\n     * @param name {String}\n     */\n    get(name) {\n      name = name.toLowerCase();\n      if (Object.prototype.hasOwnProperty.call(this._REG, name)) {\n        const clazz = this._REG[name];\n        if (clazz.REQUIRES) {\n          for (const check of clazz.REQUIRES) {\n            switch (check) {\n              case 'php':\n                if (!qx.core.Init.getApplication().getServerHasPhpSupport()) {\n                  return null;\n                }\n                break;\n            }\n          }\n        }\n        return clazz;\n      }\n      return null;\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0BAAhB,EAA4C;IAC1CC,IAAI,EAAE,QADoC;;IAG1C;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,IAAI,EAAE,EADC;;MAGP;AACJ;AACA;AACA;MACIC,QAPO,oBAOEC,UAPF,EAOc;QACnB,IAAIV,EAAE,CAACI,KAAH,CAASO,YAAT,CAAsBD,UAAtB,EAAkCE,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,UAAlD,CAAJ,EAAmE;UACjE,IAAMC,SAAS,GAAGN,UAAU,CAACO,QAAX,CAAoBC,WAApB,EAAlB;UACA,KAAKV,IAAL,CAAUQ,SAAV,IAAuBN,UAAvB;QACD;MACF,CAZM;;MAcP;AACJ;AACA;AACA;MACIS,GAlBO,eAkBHC,IAlBG,EAkBG;QACRA,IAAI,GAAGA,IAAI,CAACF,WAAL,EAAP;;QACA,IAAIG,MAAM,CAACC,SAAP,CAAiBC,cAAjB,CAAgCC,IAAhC,CAAqC,KAAKhB,IAA1C,EAAgDY,IAAhD,CAAJ,EAA2D;UACzD,IAAMK,KAAK,GAAG,KAAKjB,IAAL,CAAUY,IAAV,CAAd;;UACA,IAAIK,KAAK,CAACC,QAAV,EAAoB;YAAA,2CACED,KAAK,CAACC,QADR;YAAA;;YAAA;cAClB,oDAAoC;gBAAA,IAAzBC,KAAyB;;gBAClC,QAAQA,KAAR;kBACE,KAAK,KAAL;oBACE,IAAI,CAAC3B,EAAE,CAAC4B,IAAH,CAAQC,IAAR,CAAaC,cAAb,GAA8BC,sBAA9B,EAAL,EAA6D;sBAC3D,OAAO,IAAP;oBACD;;oBACD;gBALJ;cAOD;YATiB;cAAA;YAAA;cAAA;YAAA;UAUnB;;UACD,OAAON,KAAP;QACD;;QACD,OAAO,IAAP;MACD;IApCM;EARiC,CAA5C;EAHAb,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBkB,QAAhB,CAAyB7B,aAAzB,GAAyCA,aAAzC"
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,IAAI,EAAE,QAAQ;IAEd;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,IAAI,EAAE,CAAC,CAAC;MAER;AACJ;AACA;AACA;MACIC,QAAQ,WAAAA,SAACC,UAAU,EAAE;QACnB,IAAIV,EAAE,CAACI,KAAK,CAACO,YAAY,CAACD,UAAU,EAAEE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,UAAU,CAAC,EAAE;UACjE,IAAMC,SAAS,GAAGN,UAAU,CAACO,QAAQ,CAACC,WAAW,CAAC,CAAC;UACnD,IAAI,CAACV,IAAI,CAACQ,SAAS,CAAC,GAAGN,UAAU;QACnC;MACF,CAAC;MAED;AACJ;AACA;AACA;MACIS,GAAG,WAAAA,IAACC,IAAI,EAAE;QACRA,IAAI,GAAGA,IAAI,CAACF,WAAW,CAAC,CAAC;QACzB,IAAIG,MAAM,CAACC,SAAS,CAACC,cAAc,CAACC,IAAI,CAAC,IAAI,CAAChB,IAAI,EAAEY,IAAI,CAAC,EAAE;UACzD,IAAMK,KAAK,GAAG,IAAI,CAACjB,IAAI,CAACY,IAAI,CAAC;UAC7B,IAAIK,KAAK,CAACC,QAAQ,EAAE;YAAA,IAAAC,SAAA,GAAAC,0BAAA,CACEH,KAAK,CAACC,QAAQ;cAAAG,KAAA;YAAA;cAAlC,KAAAF,SAAA,CAAAG,CAAA,MAAAD,KAAA,GAAAF,SAAA,CAAAI,CAAA,IAAAC,IAAA,GAAoC;gBAAA,IAAzBC,KAAK,GAAAJ,KAAA,CAAAK,KAAA;gBACd,QAAQD,KAAK;kBACX,KAAK,KAAK;oBACR,IAAI,CAACjC,EAAE,CAACmC,IAAI,CAACC,IAAI,CAACC,cAAc,CAAC,CAAC,CAACC,sBAAsB,CAAC,CAAC,EAAE;sBAC3D,OAAO,IAAI;oBACb;oBACA;gBACJ;cACF;YAAC,SAAAC,GAAA;cAAAZ,SAAA,CAAAa,CAAA,CAAAD,GAAA;YAAA;cAAAZ,SAAA,CAAAc,CAAA;YAAA;UACH;UACA,OAAOhB,KAAK;QACd;QACA,OAAO,IAAI;MACb;IACF;EACF,CAAC,CAAC;EAjDFb,EAAE,CAACC,EAAE,CAACC,SAAS,CAAC4B,QAAQ,CAACvC,aAAa,GAAGA,aAAa;AAAC"
 }

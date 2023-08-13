@@ -38,7 +38,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* System.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -70,7 +69,6 @@
   qx.Class.define('cv.io.System', {
     extend: cv.io.AbstractClient,
     implement: cv.io.IClient,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -79,12 +77,11 @@
     construct: function construct() {
       cv.io.AbstractClient.constructor.call(this);
       this.addresses = [];
-      this.__P_561_0 = {
+      this.__P_562_0 = {
         theme: '_applyTheme'
       };
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
     },
-
     /*
     ***********************************************
      PROPERTIES
@@ -96,7 +93,6 @@
         init: true,
         event: 'changeConnected'
       },
-
       /**
        * The server the client is currently speaking to
        */
@@ -106,7 +102,6 @@
         event: 'changedServer'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -116,7 +111,7 @@
       backendName: 'system',
       addresses: null,
       implementedAddresses: null,
-      __P_561_0: null,
+      __P_562_0: null,
       _onPageChange: function _onPageChange(ev) {
         var page = ev.getData();
         var data = {};
@@ -134,16 +129,12 @@
       },
       subscribe: function subscribe(addresses, filters) {
         this.addresses = addresses ? addresses : [];
-
         if (qx.core.Environment.get('html.storage.local')) {
           var value;
-
-          for (var name in this.__P_561_0) {
+          for (var name in this.__P_562_0) {
             value = localStorage.getItem('system:' + name);
-
             if (value) {
-              var func = this[this.__P_561_0[name]];
-
+              var func = this[this.__P_562_0[name]];
               if (typeof func === 'function') {
                 func(value);
               } else {
@@ -157,41 +148,34 @@
         if (address) {
           var parts = address.split(':');
           var target = parts.shift();
-
           if (target === 'backend') {
             var name = parts.shift();
             var backend = name === 'system' ? this : cv.io.BackendConnections.getClient(name);
-
             if (backend) {
               switch (value) {
                 case 'restart':
                   backend.restart(true);
                   break;
-
                 default:
                   this.warn('unhandled backend action:', value);
               }
             }
           } else if (target === 'browser') {
             var url;
-
             switch (value) {
               case 'reload':
                 window.location.reload();
                 break;
-
               case 'forced-reload':
                 url = new URL(window.location.href);
                 url.searchParams.set('forceReload', 'true');
                 window.location.replace(url.toString());
                 break;
-
               default:
                 this.warn('unhandled browser action:', value);
             }
           } else if (target === 'nav') {
             var action = parts.shift();
-
             switch (action) {
               case 'current-page':
                 cv.Application.structureController.scrollToPage(value);
@@ -203,20 +187,16 @@
             // send HTTP request, ignore the answer
             if (parts.length >= 2 && parts[0] === 'proxy') {
               var _url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-
               _url.searchParams.set('url', target + ':' + parts[1]);
-
               address = _url.toString();
             }
-
             var xhr = new qx.io.request.Xhr(address);
             xhr.send();
           } else if (target === 'state' || target === 'notification') {
             // just write the value to the states to update Listeners
             cv.data.Model.getInstance().onUpdate(address, value, 'system');
           }
-
-          if (qx.core.Environment.get('html.storage.local') && target in this.__P_561_0) {
+          if (qx.core.Environment.get('html.storage.local') && target in this.__P_562_0) {
             localStorage.setItem('system:' + target, value);
           }
         }
@@ -231,7 +211,6 @@
         if (name === 'charts') {
           return null;
         }
-
         return name;
       },
       getLastError: function getLastError() {
@@ -262,7 +241,6 @@
       getProviderData: function getProviderData(name, format) {
         if (name === 'addresses') {
           var data = null;
-
           if (format === 'monaco') {
             data = this.implementedAddresses.map(function (name) {
               return {
@@ -279,10 +257,8 @@
               };
             });
           }
-
           return Promise.resolve(data);
         }
-
         return null;
       },
       getProviderConvertFunction: function getProviderConvertFunction(name, format) {
@@ -293,4 +269,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1685978162146
+//# sourceMappingURL=System.js.map?dt=1691935457427

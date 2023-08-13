@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Fabian Jakobs (fjakobs)
   
   ************************************************************************ */
-
   /**
    * This class acts as abstract class for all decorators. It offers the
    * properties for the insets handling. Each decorator has to define its own
@@ -46,7 +44,6 @@
     type: "abstract",
     members: {
       __P_333_0: null,
-
       /**
        * Abstract method. Should return a map containing the default insets of
        * the decorator. This could look like this:
@@ -63,7 +60,6 @@
       _getDefaultInsets: function _getDefaultInsets() {
         throw new Error("Abstract method called.");
       },
-
       /**
        * Abstract method. Should return an boolean value if the decorator is
        * already initialized or not.
@@ -72,7 +68,6 @@
       _isInitialized: function _isInitialized() {
         throw new Error("Abstract method called.");
       },
-
       /**
        * Resets the insets.
        */
@@ -84,11 +79,9 @@
         if (!this.__P_333_0) {
           this.__P_333_0 = this._getDefaultInsets();
         }
-
         return this.__P_333_0;
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -101,4 +94,4 @@
   qx.ui.decoration.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978136522
+//# sourceMappingURL=Abstract.js.map?dt=1691935433139

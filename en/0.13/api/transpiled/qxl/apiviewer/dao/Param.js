@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -17,7 +16,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -85,7 +83,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this._types = [{
         type: "var"
       }];
-
       if (meta.type) {
         this._types = qx.lang.Array.toNativeArray(meta.type).map(function (type) {
           if (_typeof(type) === "object") {
@@ -94,16 +91,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               arrayDimensions: type.dimensions
             };
           }
-
           var m = type.match(/^([^[]+)((\[\])+)?$/);
-
           if (m && m[2]) {
             return {
               type: m[1],
               arrayDimensions: m[2].length / 2
             };
           }
-
           return {
             type: type
           };
@@ -144,4 +138,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qxl.apiviewer.dao.Param.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Param.js.map?dt=1685978164282
+//# sourceMappingURL=Param.js.map?dt=1691935459221

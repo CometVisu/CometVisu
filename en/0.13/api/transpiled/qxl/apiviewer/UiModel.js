@@ -21,35 +21,30 @@
         init: false,
         event: "changeShowInherited"
       },
-
       /** whether to display included items */
       showIncluded: {
         check: "Boolean",
         init: true,
         event: "changeShowIncluded"
       },
-
       /** whether to display protected items */
       expandProperties: {
         check: "Boolean",
         init: false,
         event: "changeExpandProperties"
       },
-
       /** whether to display protected items */
       showProtected: {
         check: "Boolean",
         init: false,
         event: "changeShowProtected"
       },
-
       /** whether to display private items */
       showPrivate: {
         check: "Boolean",
         init: false,
         event: "changeShowPrivate"
       },
-
       /** whether to display internal items */
       showInternal: {
         check: "Boolean",
@@ -61,4 +56,4 @@
   qxl.apiviewer.UiModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UiModel.js.map?dt=1685978163196
+//# sourceMappingURL=UiModel.js.map?dt=1691935458328

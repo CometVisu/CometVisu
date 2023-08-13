@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo
@@ -36,11 +35,12 @@
   /**
    * A toolbar-aware version of the {@link qx.ui.form.FileSelectorButton}.
    */
+
   qx.Class.define("qx.ui.toolbar.FileSelectorButton", {
     extend: qx.ui.form.FileSelectorButton,
     construct: function construct(label, icon, command) {
-      qx.ui.form.FileSelectorButton.constructor.call(this, label, icon, command); // Toolbar buttons should not support the keyboard events
-
+      qx.ui.form.FileSelectorButton.constructor.call(this, label, icon, command);
+      // Toolbar buttons should not support the keyboard events
       this.removeListener("keydown", this._onKeyDown);
       this.removeListener("keyup", this._onKeyUp);
     },
@@ -61,11 +61,9 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.FileSelectorButton.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
-
-
+        qx.ui.toolbar.FileSelectorButton.superclass.prototype._applyVisibility.call(this, value, old);
+        // trigger a appearance recalculation of the parent
         var parent = this.getLayoutParent();
-
         if (parent && parent instanceof qx.ui.toolbar.PartContainer) {
           qx.ui.core.queue.Appearance.add(parent);
         }
@@ -75,4 +73,4 @@
   qx.ui.toolbar.FileSelectorButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSelectorButton.js.map?dt=1685978149126
+//# sourceMappingURL=FileSelectorButton.js.map?dt=1691935445417

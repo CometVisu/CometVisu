@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -31,7 +30,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,7 +65,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @internal
        */
       disposeProfilingActive: false,
-
       /**
        * Recursively display an object (as a debug message)
        *
@@ -87,7 +84,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // We've compiled the complete message.  Give 'em what they came for!
         qx.log.Logger.debug(this, qx.dev.Debug.debugObjectToString(obj, initialMessage, maxLevel, false));
       },
-
       /**
        * Recursively display an object (into a string)
        *
@@ -116,48 +112,45 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!maxLevel) {
           // ... then create one arbitrarily
           maxLevel = 10;
-        } // If they want html, the differences are "<br>" instead of "\n"
+        }
+
+        // If they want html, the differences are "<br>" instead of "\n"
         // and how we do the indentation.  Define the end-of-line string
         // and a start-of-line function.
-
-
         var eol = bHtml ? "</span><br>" : "\n";
-
         var sol = function sol(currentLevel) {
           var indentStr;
-
           if (!bHtml) {
             indentStr = "";
-
             for (var i = 0; i < currentLevel; i++) {
               indentStr += "  ";
             }
           } else {
             indentStr = "<span style='padding-left:" + currentLevel * 8 + "px;'>";
           }
-
           return indentStr;
-        }; // Initialize an empty message to be displayed
+        };
 
+        // Initialize an empty message to be displayed
+        var message = "";
 
-        var message = ""; // Function to recursively display an object
-
+        // Function to recursively display an object
         var displayObj = function displayObj(obj, level, maxLevel) {
           // If we've exceeded the maximum recursion level...
           if (level > maxLevel) {
             // ... then tell 'em so, and get outta dodge.
             message += sol(level) + "*** TOO MUCH RECURSION: not displaying ***" + eol;
             return;
-          } // Is this an ordinary non-recursive item?
+          }
 
-
+          // Is this an ordinary non-recursive item?
           if (_typeof(obj) != "object") {
             // Yup.  Just add it to the message.
             message += sol(level) + obj + eol;
             return;
-          } // We have an object  or array.  For each child...
+          }
 
-
+          // We have an object  or array.  For each child...
           for (var prop in obj) {
             // Is this child a recursive item?
             if (_typeof(obj[prop]) == "object") {
@@ -173,9 +166,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
                   continue;
                 } else {
                   message += sol(level) + prop + ": " + "Object" + eol;
-                } // Recurse into it to display its children.
+                }
 
-
+                // Recurse into it to display its children.
                 displayObj(obj[prop], level + 1, maxLevel);
               } catch (e) {
                 message += sol(level) + prop + ": EXCEPTION expanding property" + eol;
@@ -185,39 +178,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               message += sol(level) + prop + ": " + obj[prop] + eol;
             }
           }
-        }; // Was an initial message provided?
+        };
 
-
+        // Was an initial message provided?
         if (initialMessage) {
           // Yup.  Add it to the displayable message.
           message += sol(0) + initialMessage + eol;
         }
-
         if (obj instanceof Array) {
           message += sol(0) + "Array, length=" + obj.length + ":" + eol;
         } else if (_typeof(obj) == "object") {
           var count = 0;
-
           for (var prop in obj) {
             count++;
           }
-
           message += sol(0) + "Object, count=" + count + ":" + eol;
         }
-
         message += sol(0) + "------------------------------------------------------------" + eol;
-
         try {
           // Recursively display this object
           displayObj(obj, 0, maxLevel);
         } catch (ex) {
           message += sol(0) + "*** EXCEPTION (" + ex + ") ***" + eol;
         }
-
         message += sol(0) + "============================================================" + eol;
         return message;
       },
-
       /**
        * Get the name of a member/static function or constructor defined using the new style class definition.
        * If the function could not be found <code>null</code> is returned.
@@ -231,36 +217,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       getFunctionName: function getFunctionName(func, functionType) {
         var clazz = func.self;
-
         if (!clazz) {
           return null;
-        } // unwrap
+        }
 
-
+        // unwrap
         while (func.wrapper) {
           func = func.wrapper;
         }
-
         switch (functionType) {
           case "construct":
             return func == clazz ? "construct" : null;
-
           case "members":
             return qx.lang.Object.getKeyFromValue(clazz, func);
-
           case "statics":
             return qx.lang.Object.getKeyFromValue(clazz.prototype, func);
-
           default:
             // constructor
             if (func == clazz) {
               return "construct";
             }
-
             return qx.lang.Object.getKeyFromValue(clazz.prototype, func) || qx.lang.Object.getKeyFromValue(clazz, func) || null;
         }
       },
-
       /**
        * Returns a string representing the given model. The string will include
        * all model objects to a given recursive depth.
@@ -278,17 +257,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // set the default max depth of the recursion
         if (maxLevel == null) {
           maxLevel = 10;
-        } // set the default startin indent
-
-
+        }
+        // set the default startin indent
         if (indent == null) {
           indent = 1;
         }
-
         var newLine = "";
         html ? newLine = "<br>" : newLine = "\r\n";
         var message = "";
-
         if (qx.lang.Type.isNumber(model) || qx.lang.Type.isString(model) || qx.lang.Type.isBoolean(model) || model == null || maxLevel <= 0) {
           return model;
         } else if (qx.Class.hasInterface(model.constructor, qx.data.IListData)) {
@@ -298,31 +274,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             for (var j = 0; j < indent; j++) {
               message += "-";
             }
-
             message += "index(" + i + "): " + this.debugProperties(model.getItem(i), maxLevel - 1, html, indent + 1) + newLine;
           }
-
           return message + newLine;
         } else if (model.constructor != null) {
           // go threw all properties
           var properties = model.constructor.$$properties;
-
           for (var key in properties) {
-            message += newLine; // print out the indentation
-
+            message += newLine;
+            // print out the indentation
             for (var j = 0; j < indent; j++) {
               message += "-";
             }
-
             message += " " + key + ": " + this.debugProperties(model["get" + qx.lang.String.firstUp(key)](), maxLevel - 1, html, indent + 1);
           }
-
           return message;
         }
-
         return "";
       },
-
       /**
        * Starts a dispose profiling session. Use {@link #stopDisposeProfiling} to
        * get the results
@@ -339,7 +308,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         "default": function _default() {}
       }),
-
       /**
        * Returns a list of any (qx) objects that were created but not disposed
        * since {@link #startDisposeProfiling} was called. Also returns a stack
@@ -360,9 +328,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (!this.__P_184_0) {
             qx.log.Logger.error("Call " + this.classname + ".startDisposeProfiling first.");
             return [];
-          } //qx.core.ObjectRegistry.saveStackTraces = false;
+          }
 
-
+          //qx.core.ObjectRegistry.saveStackTraces = false;
           this.disposeProfilingActive = false;
           var undisposedObjects = this.showDisposeProfiling(checkFunction, startHandle || this.__P_184_0);
           delete this.__P_184_0;
@@ -370,7 +338,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         "default": function _default() {}
       }),
-
       /**
        * Returns a list of any (qx) objects that were created but not disposed
        * since {@link #startDisposeProfiling} was called. Also returns a stack
@@ -389,64 +356,53 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       showDisposeProfiling: qx.core.Environment.select("qx.debug.dispose", {
         "true": function _true(checkFunction) {
-          var undisposedObjects = []; // If destroy calls another destroy, flushing the queue once is not enough
-
+          var undisposedObjects = [];
+          // If destroy calls another destroy, flushing the queue once is not enough
           if (qx.Class.getByName("qx.ui.core.queue.Dispose")) {
             while (!qx.ui.core.queue.Dispose.isEmpty()) {
               qx.ui.core.queue.Dispose.flush();
             }
           }
-
           var nextHashLast = qx.core.ObjectRegistry.getNextHash();
           var postId = qx.core.ObjectRegistry.getPostId();
           var traces = qx.core.ObjectRegistry.getStackTraces();
-
           for (var hash = this.__P_184_0; hash < nextHashLast; hash++) {
             var obj = qx.core.ObjectRegistry.fromHashCode(hash + postId);
-
             if (obj && obj.isDisposed && !obj.isDisposed()) {
               // User-defined check
               if (checkFunction && typeof checkFunction == "function" && !checkFunction(obj)) {
                 continue;
-              } // Singleton instances
-
-
+              }
+              // Singleton instances
               if (obj.constructor.$$instance === obj) {
                 continue;
-              } // Event handlers
-
-
+              }
+              // Event handlers
               if (qx.Class.implementsInterface(obj, qx.event.IEventHandler)) {
                 continue;
-              } // Pooled Decorators
-
-
+              }
+              // Pooled Decorators
               if (obj.$$pooled) {
                 continue;
-              } // Dynamic decorators
-
-
+              }
+              // Dynamic decorators
               if (qx.Interface.getByName("qx.ui.decoration.IDecorator") && qx.Class.getByName("qx.theme.manager.Decoration") && qx.Class.implementsInterface(obj, qx.ui.decoration.IDecorator) && qx.theme.manager.Decoration.getInstance().isCached(obj)) {
                 continue;
-              } // ignored objects
-
-
+              }
+              // ignored objects
               if (obj.$$ignoreDisposeWarning) {
                 continue;
-              } // Dynamic fonts
-
-
+              }
+              // Dynamic fonts
               if (qx.Class.getByName("qx.bom.Font") && obj instanceof qx.bom.Font && qx.Class.getByName("qx.theme.manager.Font") && qx.theme.manager.Font.getInstance().isDynamic(obj)) {
                 continue;
               }
-
               undisposedObjects.push({
                 object: obj,
                 stackTrace: traces[hash + postId] ? traces[hash + postId] : null
               });
             }
           }
-
           return undisposedObjects;
         },
         "default": function _default() {}
@@ -456,4 +412,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.dev.Debug.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Debug.js.map?dt=1685978115403
+//# sourceMappingURL=Debug.js.map?dt=1691935413234

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +39,6 @@
   qx.Class.define("qx.ui.tree.core.FolderOpenButton", {
     extend: qx.ui.basic.Image,
     include: qx.ui.core.MExecutable,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -53,12 +51,12 @@
       this.addListener("pointerdown", this._stopPropagation, this);
       this.addListener("pointerup", this._stopPropagation, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Whether the button state is "open"
@@ -70,19 +68,18 @@
         apply: "_applyOpen"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyOpen: function _applyOpen(value, old) {
         value ? this.addState("opened") : this.removeState("opened");
         this.execute();
       },
-
       /**
        * Stop tap event propagation
        *
@@ -91,7 +88,6 @@
       _stopPropagation: function _stopPropagation(e) {
         e.stopPropagation();
       },
-
       /**
        * Pointer tap event listener
        *
@@ -106,4 +102,4 @@
   qx.ui.tree.core.FolderOpenButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FolderOpenButton.js.map?dt=1685978149971
+//# sourceMappingURL=FolderOpenButton.js.map?dt=1691935446264

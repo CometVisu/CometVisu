@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,7 +61,6 @@
         el = qx.module.Template.__P_284_0(el);
         return qxWeb.$init([el], qxWeb);
       },
-
       /**
        * Original and only template method of mustache.js. For further
        * documentation, please visit <a href="https://github.com/janl/mustache.js">mustache.js</a>.
@@ -76,7 +74,6 @@
       render: function render(template, view, partials) {
         return qx.bom.Template.render(template, view, partials);
       },
-
       /**
        * Combines {@link #render} and {@link #get}. Input is equal to {@link #render}
        * and output is equal to {@link #get}. The advantage over {@link #get}
@@ -96,7 +93,6 @@
         el = qx.module.Template.__P_284_0(el);
         return qxWeb.$init([el], qxWeb);
       },
-
       /**
        * If the given node is a DOM text node, wrap it in a span element and return
        * the wrapper.
@@ -109,7 +105,6 @@
           wrapper.appendChild(el);
           el = wrapper;
         }
-
         return el;
       }
     },
@@ -120,4 +115,4 @@
   qx.module.Template.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Template.js.map?dt=1685978129297
+//# sourceMappingURL=Template.js.map?dt=1691935426527

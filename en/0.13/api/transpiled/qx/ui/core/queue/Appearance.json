@@ -11,12 +11,12 @@
       "start": {
         "line": 24,
         "column": 0,
-        "index": 611
+        "index": 634
       },
       "end": {
         "line": 98,
         "column": 3,
-        "index": 2660
+        "index": 2757
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 27,
           "column": 4,
-          "index": 759
+          "index": 785
         },
         "end": {
           "line": 27,
           "column": 15,
-          "index": 770
+          "index": 796
         }
       },
       "jsdoc": {
@@ -65,12 +65,12 @@
         "start": {
           "line": 30,
           "column": 4,
-          "index": 851
+          "index": 880
         },
         "end": {
           "line": 30,
           "column": 16,
-          "index": 863
+          "index": 892
         }
       },
       "jsdoc": {
@@ -95,12 +95,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1080
+          "index": 1117
         },
         "end": {
           "line": 43,
           "column": 5,
-          "index": 1261
+          "index": 1303
         }
       },
       "jsdoc": {
@@ -128,12 +128,12 @@
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1450
+          "index": 1501
         },
         "end": {
           "line": 60,
           "column": 5,
-          "index": 1689
+          "index": 1748
         }
       },
       "jsdoc": {
@@ -161,12 +161,12 @@
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1897
+          "index": 1964
         },
         "end": {
           "line": 70,
           "column": 5,
-          "index": 1967
+          "index": 2036
         }
       },
       "jsdoc": {
@@ -202,12 +202,12 @@
         "start": {
           "line": 77,
           "column": 4,
-          "index": 2107
+          "index": 2183
         },
         "end": {
           "line": 96,
           "column": 5,
-          "index": 2652
+          "index": 2747
         }
       },
       "jsdoc": {

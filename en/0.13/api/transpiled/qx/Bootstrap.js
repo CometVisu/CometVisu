@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -7,7 +6,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       "qx.util.OOUtil": {}
     }
   };
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,6 +36,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   if (!window.qx) {
     window.qx = {};
   }
+
   /**
    * This wraps a function with a plain `function`; JavaScript does not allow methods which are defined
    * using object method shorthand (eg `{ construct() { this.base(arguments); }}`) to be used as constructors,
@@ -46,19 +45,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    * @param {Function} construct
    * @returns {Function}
    */
-
-
   function createPlainFunction(construct) {
     return function () {
       return construct.apply(this, [].slice.call(arguments));
     };
   }
+
   /**
    * Bootstrap qx.Bootstrap to create myself later
    * This is needed for the API browser etc. to let them detect me
    */
-
-
   qx.Bootstrap = {
     genericToString: function genericToString() {
       return "[Class " + this.classname + "]";
@@ -67,18 +63,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       var splits = name.split(".");
       var part = splits[0];
       var parent = qx.$$namespaceRoot && qx.$$namespaceRoot[part] ? qx.$$namespaceRoot : window;
-
       for (var i = 0, len = splits.length - 1; i < len; i++, part = splits[i]) {
         if (!parent[part]) {
           parent = parent[part] = {};
         } else {
           parent = parent[part];
         }
-      } // store object
+      }
 
+      // store object
+      parent[part] = object;
 
-      parent[part] = object; // return last part name (e.g. classname)
-
+      // return last part name (e.g. classname)
       return part;
     },
     setDisplayName: function setDisplayName(fcn, classname, name) {
@@ -87,7 +83,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     setDisplayNames: function setDisplayNames(functionMap, classname) {
       for (var name in functionMap) {
         var value = functionMap[name];
-
         if (value instanceof Function) {
           value.displayName = classname + "." + (value.name || name) + "()";
         }
@@ -99,7 +94,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           throw new Error("Cannot call super class. Method is not derived: " + args.callee.displayName);
         }
       }
-
       if (arguments.length === 1) {
         return args.callee.base.call(this);
       } else {
@@ -110,110 +104,106 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       var isStrictMode = function isStrictMode() {
         return typeof this == "undefined";
       };
-
       if (!config) {
         config = {
           statics: {}
         };
       }
-
       var clazz;
       var proto = null;
       qx.Bootstrap.setDisplayNames(config.statics, name);
-
       if (config.members || config.extend) {
         qx.Bootstrap.setDisplayNames(config.members, name + ".prototype");
-        var construct = config.construct; // Object methods include the method name as part of the signature (eg `construct() {}`),
+        var construct = config.construct;
+        // Object methods include the method name as part of the signature (eg `construct() {}`),
         //  whereas plain functions just have `function() {}`
-
         if (construct && !construct.toString().match(/^function\s*\(/)) {
           construct = createPlainFunction(construct);
         }
-
         clazz = construct || new Function();
         this.extendClass(clazz, clazz, config.extend, name, basename);
-        var statics = config.statics || {}; // use keys to include the shadowed in IE
-
+        var statics = config.statics || {};
+        // use keys to include the shadowed in IE
         for (var i = 0, keys = qx.Bootstrap.keys(statics), l = keys.length; i < l; i++) {
           var key = keys[i];
           clazz[key] = statics[key];
         }
-
-        proto = clazz.prototype; // Enable basecalls within constructor
-
+        proto = clazz.prototype;
+        // Enable basecalls within constructor
         proto.base = qx.Bootstrap.base;
         proto.name = proto.classname = name;
         var members = config.members || {};
-        var key, member; // use keys to include the shadowed in IE
+        var key, member;
 
+        // use keys to include the shadowed in IE
         for (var i = 0, keys = qx.Bootstrap.keys(members), l = keys.length; i < l; i++) {
           key = keys[i];
-          member = members[key]; // Enable basecalls for methods
-          // Hint: proto[key] is not yet overwritten here
+          member = members[key];
 
+          // Enable basecalls for methods
+          // Hint: proto[key] is not yet overwritten here
           if (member instanceof Function && proto[key]) {
             member.base = proto[key];
           }
-
           proto[key] = member;
         }
       } else {
-        clazz = config.statics || {}; // Merge class into former class (needed for 'optimize: ["statics"]')
+        clazz = config.statics || {};
 
+        // Merge class into former class (needed for 'optimize: ["statics"]')
         if (qx.Bootstrap.$$registry && qx.Bootstrap.$$registry[name]) {
-          var formerClass = qx.Bootstrap.$$registry[name]; // Add/overwrite properties and return early if necessary
+          var formerClass = qx.Bootstrap.$$registry[name];
 
+          // Add/overwrite properties and return early if necessary
           if (this.keys(clazz).length !== 0) {
             // Execute defer to prevent too early overrides
             if (config.defer) {
               config.defer(clazz, proto);
             }
-
             for (var curProp in clazz) {
               formerClass[curProp] = clazz[curProp];
             }
-
             return formerClass;
           }
         }
-      } // Store type info
+      }
 
+      // Store type info
+      clazz.$$type = "Class";
 
-      clazz.$$type = "Class"; // Attach toString
-
+      // Attach toString
       if (!clazz.hasOwnProperty("toString")) {
         clazz.toString = this.genericToString;
-      } // Create namespace
+      }
 
+      // Create namespace
+      var basename = name ? this.createNamespace(name, clazz) : "";
 
-      var basename = name ? this.createNamespace(name, clazz) : ""; // Store names in constructor/object
-
+      // Store names in constructor/object
       clazz.classname = name;
-
       if (!isStrictMode()) {
         try {
           clazz.name = name;
-        } catch (ex) {// Nothing
+        } catch (ex) {
+          // Nothing
         }
       }
-
       clazz.basename = basename;
-      clazz.$$events = config.events; // Execute defer section
+      clazz.$$events = config.events;
 
+      // Execute defer section
       if (config.defer) {
         this.addPendingDefer(clazz, function () {
           config.defer(clazz, proto);
         });
-      } // Store class reference in global class registry
+      }
 
-
+      // Store class reference in global class registry
       if (name != null) {
         qx.Bootstrap.$$registry[name] = clazz;
       }
-
       return clazz;
     },
-
     /**
      * Tests whether an object is an instance of qx.core.Object without using instanceof - this
      * is only for certain low level instances which would otherwise cause a circular, load time
@@ -226,44 +216,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       if (object === object.constructor) {
         return false;
       }
-
       var clz = object.constructor;
-
       while (clz) {
         if (clz.classname === "qx.core.Object") {
           return true;
         }
-
         clz = clz.superclass;
       }
-
       return false;
     }
   };
+
   /**
    * Internal class that is responsible for bootstrapping the qooxdoo
    * framework at load time.
    */
-
   qx.Bootstrap.define("qx.Bootstrap", {
     statics: {
       /** Timestamp of qooxdoo based application startup */
       LOADSTART: qx.$$start || new Date(),
-
       /**
        * Mapping for early use of the qx.debug environment setting.
        */
       DEBUG: function () {
         // make sure to reflect all changes here to the environment class!
         var debug = true;
-
         if (qx.$$environment && qx.$$environment["qx.debug"] === false) {
           debug = false;
         }
-
         return debug;
       }(),
-
       /**
        * Minimal accessor API for the environment settings given from the
        * generator.
@@ -279,7 +261,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return qx.$$environment[key];
         }
       },
-
       /**
        * Minimal mutator for the environment settings given from the generator.
        * It checks for the existence of the environment settings and sets the
@@ -296,12 +277,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.$$environment) {
           qx.$$environment = {};
         }
-
         if (qx.$$environment[key] === undefined) {
           qx.$$environment[key] = value;
         }
       },
-
       /**
        * Creates a namespace and assigns the given object to it.
        *
@@ -313,7 +292,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @throws {Error} when the given object already exists.
        */
       createNamespace: qx.Bootstrap.createNamespace,
-
       /**
        * Offers the ability to change the root for creating namespaces from window to
        * whatever object is given.
@@ -324,7 +302,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       setRoot: function setRoot(root) {
         qx.$$namespaceRoot = root;
       },
-
       /**
        * Call the same method of the super class.
        *
@@ -334,7 +311,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {var} the return value of the method of the base class.
        */
       base: qx.Bootstrap.base,
-
       /**
        * Define a new class using the qooxdoo class system.
        * Lightweight version of {@link qx.Class#define} with less features.
@@ -355,7 +331,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Class} The defined class.
        */
       define: qx.Bootstrap.define,
-
       /**
        * Tests whether an object is an instance of qx.core.Object without using instanceof - this
        * is only for certain low level instances which would otherwise cause a circular, load time
@@ -365,7 +340,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Boolean} true if object is an instance of qx.core.Object
        */
       isQxCoreObject: qx.Bootstrap.isQxCoreObject,
-
       /**
        * Sets the display name of the given function
        *
@@ -375,7 +349,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param name {String} the function name
        */
       setDisplayName: qx.Bootstrap.setDisplayName,
-
       /**
        * Set the names of all functions defined in the given map
        *
@@ -385,7 +358,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        *   defined in
        */
       setDisplayNames: qx.Bootstrap.setDisplayNames,
-
       /**
        * This method will be attached to all classes to return
        * a nice identifier for them.
@@ -395,7 +367,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {String} The class identifier
        */
       genericToString: qx.Bootstrap.genericToString,
-
       /**
        * Inherit a clazz from a super class.
        *
@@ -411,36 +382,37 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param basename {Function} the base name
        */
       extendClass: function extendClass(clazz, construct, superClass, name, basename) {
-        var superproto = superClass ? superClass.prototype : null; // Use helper function/class to save the unnecessary constructor call while
-        // setting up inheritance.
+        var superproto = superClass ? superClass.prototype : null;
 
+        // Use helper function/class to save the unnecessary constructor call while
+        // setting up inheritance.
         var helper = new Function();
         helper.prototype = superproto;
-        var proto = new helper(); // Apply prototype to new helper instance
+        var proto = new helper();
 
-        clazz.prototype = proto; // Store names in prototype
+        // Apply prototype to new helper instance
+        clazz.prototype = proto;
 
+        // Store names in prototype
         proto.name = proto.classname = name;
         proto.basename = basename;
+
         /*
           - Store base constructor to constructor-
           - Store reference to extend class
         */
-
         construct.base = superClass;
         clazz.superclass = superClass;
+
         /*
           - Store statics/constructor onto constructor/prototype
           - Store correct constructor
           - Store statics onto prototype
         */
-
         construct.self = clazz.constructor = proto.constructor = clazz;
       },
-
       /** Private list of classes which have a defer method that needs to be executed */
       __P_89_0: [],
-
       /**
        * Adds a callback for a class so that it's defer method can be called, either after all classes
        * are loaded or when absolutely necessary because of load-time requirements of other classes.
@@ -451,13 +423,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       addPendingDefer: function addPendingDefer(clazz, cb) {
         if (qx.$$loader && qx.$$loader.delayDefer) {
           this.__P_89_0.push(clazz);
-
           clazz.$$pendingDefer = cb;
         } else {
           cb.call(clazz);
         }
       },
-
       /**
        * Executes the defer methods for classes which are required by the dependency information in
        * dbClassInfo (which is a map in the format generated by qxcompiler).  Defer methods are of course
@@ -470,88 +440,68 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var executeForDbClassInfo = function executeForDbClassInfo(dbClassInfo) {
           if (dbClassInfo.environment) {
             var required = dbClassInfo.environment.required;
-
             if (required) {
               for (var key in required) {
                 var info = required[key];
-
                 if (info.load && info.className) {
                   executeForClassName(info.className);
                 }
               }
             }
           }
-
           for (var key in dbClassInfo.dependsOn) {
             var depInfo = dbClassInfo.dependsOn[key];
-
             if (depInfo.require || depInfo.usage === "dynamic") {
               executeForClassName(key);
             }
           }
         };
-
         var executeForClassName = function executeForClassName(className) {
           var clazz = getByName(className);
-
           if (!clazz) {
             return;
           }
-
           if (clazz.$$deferComplete) {
             return;
           }
-
           var dbClassInfo = clazz.$$dbClassInfo;
-
           if (dbClassInfo) {
             executeForDbClassInfo(dbClassInfo);
           }
-
           execute(clazz);
         };
-
         var execute = function execute(clazz) {
           var cb = clazz.$$pendingDefer;
-
           if (cb) {
             delete clazz.$$pendingDefer;
             clazz.$$deferComplete = true;
             cb.call(clazz);
           }
         };
-
         var getByName = function getByName(name) {
           var clazz = qx.Bootstrap.getByName(name);
-
           if (!clazz) {
             var splits = name.split(".");
             var part = splits[0];
             var root = qx.$$namespaceRoot && qx.$$namespaceRoot[part] ? qx.$$namespaceRoot : window;
             var tmp = root;
-
             for (var i = 0, len = splits.length - 1; tmp && i < len; i++, part = splits[i]) {
               tmp = tmp[part];
             }
-
             if (tmp != root) {
               clazz = tmp;
             }
           }
-
           return clazz;
         };
-
         if (!dbClassInfo) {
           var pendingDefers = this.__P_89_0;
           this.__P_89_0 = [];
           pendingDefers.forEach(execute);
           return;
         }
-
         executeForDbClassInfo(dbClassInfo);
       },
-
       /**
        * Find a class by its name
        *
@@ -561,16 +511,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getByName: function getByName(name) {
         return qx.Bootstrap.$$registry[name];
       },
-
       /** @type {Map} Stores all defined classes */
       $$registry: {},
-
       /*
       ---------------------------------------------------------------------------
         OBJECT UTILITY FUNCTIONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the number of own properties in the object.
        *
@@ -581,7 +528,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       objectGetLength: function objectGetLength(map) {
         return qx.Bootstrap.keys(map).length;
       },
-
       /**
        * Inserts all keys of the source object into the
        * target objects. Attention: The target map gets modified.
@@ -595,16 +541,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (overwrite === undefined) {
           overwrite = true;
         }
-
         for (var key in source) {
           if (overwrite || target[key] === undefined) {
             target[key] = source[key];
           }
         }
-
         return target;
       },
-
       /**
        * IE does not return "shadowed" keys even if they are defined directly
        * in the object.
@@ -613,7 +556,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @type {String[]}
        */
       __P_89_1: ["isPrototypeOf", "hasOwnProperty", "toLocaleString", "toString", "valueOf", "propertyIsEnumerable", "constructor"],
-
       /**
        * Get the keys of a map as array as returned by a "for ... in" statement.
        *
@@ -628,43 +570,36 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (map === null || _typeof(map) !== "object" && typeof map !== "function") {
             throw new TypeError("Object.keys requires an object as argument.");
           }
-
           var arr = [];
           var hasOwnProperty = Object.prototype.hasOwnProperty;
-
           for (var key in map) {
             if (hasOwnProperty.call(map, key)) {
               arr.push(key);
             }
-          } // IE does not return "shadowed" keys even if they are defined directly
+          }
+
+          // IE does not return "shadowed" keys even if they are defined directly
           // in the object. This is incompatible with the ECMA standard!!
           // This is why this checks are needed.
-
-
           var shadowedKeys = qx.Bootstrap.__P_89_1;
-
           for (var i = 0, a = shadowedKeys, l = a.length; i < l; i++) {
             if (hasOwnProperty.call(map, a[i])) {
               arr.push(a[i]);
             }
           }
-
           return arr;
         },
         "default": function _default(map) {
           if (map === null || _typeof(map) !== "object" && typeof map !== "function") {
             throw new TypeError("Object.keys requires an object as argument.");
           }
-
           var arr = [];
           var hasOwnProperty = Object.prototype.hasOwnProperty;
-
           for (var key in map) {
             if (hasOwnProperty.call(map, key)) {
               arr.push(key);
             }
           }
-
           return arr;
         }
       }[typeof Object.keys === "function" ? "ES5" : function () {
@@ -674,7 +609,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return key;
         }
       }() !== "toString" ? "BROKEN_IE" : "default"],
-
       /**
        * Mapping from JavaScript string representation of objects to names
        * @internal
@@ -695,13 +629,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         "[object ArrayBuffer]": "ArrayBuffer",
         "[object FormData]": "FormData"
       },
-
       /*
       ---------------------------------------------------------------------------
         FUNCTION UTILITY FUNCTIONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns a function whose "this" is altered.
        *
@@ -735,13 +667,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return func.apply(self, fixedArgs.concat(args));
         };
       },
-
       /*
       ---------------------------------------------------------------------------
         STRING UTILITY FUNCTIONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Convert the first character of the string to upper case.
        *
@@ -751,7 +681,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       firstUp: function firstUp(str) {
         return str.charAt(0).toUpperCase() + str.substr(1);
       },
-
       /**
        * Convert the first character of the string to lower case.
        *
@@ -761,13 +690,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       firstLow: function firstLow(str) {
         return str.charAt(0).toLowerCase() + str.substr(1);
       },
-
       /*
       ---------------------------------------------------------------------------
         TYPE UTILITY FUNCTIONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the internal class of the value. See
        * http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
@@ -783,11 +710,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else if (value === null) {
           return "Null";
         }
-
         var classString = Object.prototype.toString.call(value);
         return qx.Bootstrap.__P_89_2[classString] || classString.slice(8, -1);
       },
-
       /**
        * Whether the value is a string.
        *
@@ -802,7 +727,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (typeof value === "string" || qx.Bootstrap.getClass(value) === "String" || value instanceof String || !!value && !!value.$$isString);
       },
-
       /**
        * Whether the value is an array.
        *
@@ -817,7 +741,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // e.q. by document.getElementById("ReturnedNull").
         return value !== null && (value instanceof Array || value && qx.data && qx.data.IListData && qx.util.OOUtil.hasInterface(value.constructor, qx.data.IListData) || qx.Bootstrap.getClass(value) === "Array" || !!value && !!value.$$isArray);
       },
-
       /**
        * Whether the value is an object. Note that built-in types like Window are
        * not reported to be objects.
@@ -828,7 +751,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isObject: function isObject(value) {
         return value !== undefined && value !== null && qx.Bootstrap.getClass(value) === "Object";
       },
-
       /**
        * Whether the value is a function.
        *
@@ -838,7 +760,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isFunction: function isFunction(value) {
         return qx.Bootstrap.getClass(value) === "Function";
       },
-
       /**
        * Whether the value is a function or an async function.
        *
@@ -849,14 +770,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var name = qx.Bootstrap.getClass(value);
         return name === "Function" || name === "AsyncFunction";
       },
-
       /*
       ---------------------------------------------------------------------------
         LOGGING UTILITY FUNCTIONS
       ---------------------------------------------------------------------------
       */
-      $$logs: [],
 
+      $$logs: [],
       /**
        * Sending a message at level "debug" to the logger.
        *
@@ -868,7 +788,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       debug: function debug(object, message) {
         qx.Bootstrap.$$logs.push(["debug", arguments]);
       },
-
       /**
        * Sending a message at level "info" to the logger.
        *
@@ -880,7 +799,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       info: function info(object, message) {
         qx.Bootstrap.$$logs.push(["info", arguments]);
       },
-
       /**
        * Sending a message at level "warn" to the logger.
        *
@@ -892,7 +810,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       warn: function warn(object, message) {
         qx.Bootstrap.$$logs.push(["warn", arguments]);
       },
-
       /**
        * Sending a message at level "error" to the logger.
        *
@@ -904,7 +821,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       error: function error(object, message) {
         qx.Bootstrap.$$logs.push(["error", arguments]);
       },
-
       /**
        * Prints the current stack trace at level "info"
        *
@@ -916,4 +832,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Bootstrap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bootstrap.js.map?dt=1685978104562
+//# sourceMappingURL=Bootstrap.js.map?dt=1691935403833

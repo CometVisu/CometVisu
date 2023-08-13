@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,7 +52,6 @@
         this.assertArray(rowSizes);
         this.assertArray(columnSizes);
       },
-
       /**
        * Update the layer to display a different window of the virtual grid.
        * This method is called if the pane is scrolled, resized or cells
@@ -76,7 +74,6 @@
         this.assertArray(rowSizes);
         this.assertArray(columnSizes);
       },
-
       /**
        * Update the layer to reflect changes in the data the layer displays.
        */
@@ -86,4 +83,4 @@
   qx.ui.virtual.core.ILayer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ILayer.js.map?dt=1685978151460
+//# sourceMappingURL=ILayer.js.map?dt=1691935447732

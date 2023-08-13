@@ -11,12 +11,12 @@
       "start": {
         "line": 27,
         "column": 0,
-        "index": 909
+        "index": 935
       },
       "end": {
         "line": 36,
         "column": 3,
-        "index": 1197
+        "index": 1232
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 29,
         "column": 2,
-        "index": 986
+        "index": 1014
       },
       "end": {
         "line": 35,
         "column": 3,
-        "index": 1193
+        "index": 1227
       }
     },
     "themeMetaMap": {

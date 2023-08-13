@@ -38,7 +38,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -72,12 +71,10 @@
     implement: [qx.core.IDisposable],
     construct: function construct() {
       qx.bom.History.constructor.call(this);
-
       this.__P_110_0();
     },
     members: {
       __P_110_1: null,
-
       /**
        * Attach hash change listeners
        */
@@ -90,7 +87,6 @@
           qx.event.Idle.getInstance().addListener("interval", this.__P_110_2, this);
         }
       },
-
       /**
        * Remove hash change listeners
        */
@@ -101,18 +97,15 @@
           qx.event.Idle.getInstance().removeListener("interval", this.__P_110_2, this);
         }
       },
-
       /**
        * hash change event handler
        */
       __P_110_2: function __P_110_2() {
         var currentState = this._readState();
-
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
         }
       },
-
       /**
        * Browser dependent function to read the current state of the history
        *
@@ -121,7 +114,6 @@
       _readState: function _readState() {
         return this._decode(this._getHash());
       },
-
       /**
        * Save a state into the browser history.
        *
@@ -145,4 +137,4 @@
   qx.bom.NativeHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NativeHistory.js.map?dt=1685978107555
+//# sourceMappingURL=NativeHistory.js.map?dt=1691935406635

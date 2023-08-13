@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ToolBar.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,7 +49,6 @@
    */
   qx.Class.define('cv.ui.manager.ToolBar', {
     extend: qx.ui.toolbar.ToolBar,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -58,18 +56,14 @@
     */
     construct: function construct(uploadManager, showOnly) {
       qx.ui.toolbar.ToolBar.constructor.call(this);
-
       if (showOnly) {
         this.__P_28_0 = showOnly;
       }
-
       this._menuBar = cv.ui.manager.MenuBar.getInstance();
       this._menuButtonConfig = this._menuBar.getButtonConfiguration();
       this._uploadManager = uploadManager;
-
       this._init();
     },
-
     /*
     ***********************************************
       EVENTS
@@ -78,7 +72,6 @@
     events: {
       reload: 'qx.event.type.Event'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -102,7 +95,6 @@
         event: 'changeFile'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -118,11 +110,9 @@
       },
       _init: function _init() {
         var _this = this;
-
         if (!this._uploadManager) {
           this._uploadManager = new cv.ui.manager.upload.UploadMgr();
         }
-
         var fileController = cv.ui.manager.control.FileController.getInstance();
         var createPart = new qx.ui.toolbar.Part();
         createPart.set({
@@ -130,7 +120,6 @@
         });
         this.add(createPart);
         var newButton;
-
         if (this.__P_28_1('new-menu')) {
           newButton = new qx.ui.toolbar.MenuButton(null, cv.theme.dark.Images.getIcon('new-file', 15), this._menuBar.getChildControl('new-menu'));
           this.bind('folder.writeable', newButton, 'enabled');
@@ -156,7 +145,6 @@
             });
             createPart.add(newButton);
           }
-
           if (this.__P_28_1('new-folder')) {
             newButton = this._createButton('new-folder', cv.theme.dark.Images.getIcon('new-folder', 15), true);
             this.bind('folder.writeable', newButton, 'enabled');
@@ -166,19 +154,14 @@
             createPart.add(newButton);
           }
         }
-
         if (this.__P_28_1('upload')) {
           var upload = this._createButton('upload');
-
           this._uploadManager.addWidget(upload);
-
           this.bind('folder.writeable', upload, 'enabled');
           createPart.add(upload);
         }
-
         if (this.__P_28_1('delete')) {
           var deleteSelection = this._createButton('delete');
-
           deleteSelection.addListener('execute', function () {
             fileController["delete"](_this.getFile());
           });
@@ -189,15 +172,14 @@
           });
           this.add(deleteSelection);
         }
-
         if (this.__P_28_1('download')) {
           var download = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('download', 15));
           download.setAppearance('cv-toolbar-button');
           download.setToolTipText(qx.locale.Manager.tr('Download'));
           download.addListener('execute', function () {
             fileController.download(_this.getFile());
-          }); // download button is only enabled when a file is selected
-
+          });
+          // download button is only enabled when a file is selected
           this.bind('file', download, 'enabled', {
             converter: function converter(file) {
               return !!file && file.getType() === 'file' && !file.isFake();
@@ -205,7 +187,6 @@
           });
           createPart.add(download);
         }
-
         if (this.__P_28_1('validate')) {
           // config check
           var checkConfig = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('validate', 15));
@@ -213,8 +194,9 @@
           checkConfig.setToolTipText(qx.locale.Manager.tr('Validate'));
           checkConfig.addListener('execute', function () {
             fileController.validate(_this.getFile());
-          }); // validate button is only enabled when a file is selected
+          });
 
+          // validate button is only enabled when a file is selected
           this.bind('file', checkConfig, 'enabled', {
             converter: function converter(file) {
               return !!file && file.isConfigFile();
@@ -222,7 +204,6 @@
           });
           this.add(checkConfig);
         }
-
         if (this.__P_28_1('reload')) {
           var reload = new qx.ui.toolbar.Button(null, cv.theme.dark.Images.getIcon('reload', 15));
           reload.setAppearance('cv-toolbar-button');
@@ -254,7 +235,6 @@
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -269,4 +249,4 @@
   cv.ui.manager.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1685978093973
+//# sourceMappingURL=ToolBar.js.map?dt=1691935393456

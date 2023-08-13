@@ -15,6 +15,8 @@
     "cell",
     "Abstract",
     "construct",
+    "constructor",
+    "call",
     "members",
     "_getContentHtml",
     "cellInfo",
@@ -27,7 +29,7 @@
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/String.js"
   ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * Table Cell Renderer for Progressive.\n */\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.String\", {\n  extend: qx.ui.progressive.renderer.table.cell.Abstract,\n\n  /**\n   */\n  construct() {\n    super();\n  },\n\n  members: {\n    // overridden\n    _getContentHtml(cellInfo) {\n      return qx.bom.String.escape(cellInfo.cellData);\n    }\n  }\n});\n"
+    "/* ************************************************************************\r\n\r\n   qooxdoo - the new era of web development\r\n\r\n   http://qooxdoo.org\r\n\r\n   Copyright:\r\n     2008 Derrell Lipman\r\n\r\n   License:\r\n     MIT: https://opensource.org/licenses/MIT\r\n     See the LICENSE file in the project's top-level directory for details.\r\n\r\n   Authors:\r\n     * Derrell Lipman (derrell)\r\n\r\n************************************************************************ */\r\n\r\n/**\r\n * Table Cell Renderer for Progressive.\r\n */\r\nqx.Class.define(\"qx.ui.progressive.renderer.table.cell.String\", {\r\n  extend: qx.ui.progressive.renderer.table.cell.Abstract,\r\n\r\n  /**\r\n   */\r\n  construct() {\r\n    super();\r\n  },\r\n\r\n  members: {\r\n    // overridden\r\n    _getContentHtml(cellInfo) {\r\n      return qx.bom.String.escape(cellInfo.cellData);\r\n    }\r\n  }\r\n});\r\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8CAAhB,EAAgE;IAC9DC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCC,QADgB;;IAG9D;AACF;IACEC,SAL8D,uBAKlD;MACV;IACD,CAP6D;IAS9DC,OAAO,EAAE;MACP;MACAC,eAFO,2BAESC,QAFT,EAEmB;QACxB,OAAOhB,EAAE,CAACiB,GAAH,CAAOC,MAAP,CAAcC,MAAd,CAAqBH,QAAQ,CAACI,QAA9B,CAAP;MACD;IAJM;EATqD,CAAhE;EArBApB,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,KAA3B,CAAiCC,IAAjC,CAAsCO,MAAtC,CAA6Cf,aAA7C,GAA6DA,aAA7D"
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8CAA8C,EAAE;IAC9DC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACC,QAAQ;IAEtD;AACF;IACEC,SAAS,WAAAA,UAAA,EAAG;MACVb,EAAA,CAAAO,EAAA,CAAAC,WAAA,CAAAC,QAAA,CAAAC,KAAA,CAAAC,IAAA,CAAAC,QAAA,CAAAE,WAAA,CAAAC,IAAA;IACF,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,eAAe,WAAAA,gBAACC,QAAQ,EAAE;QACxB,OAAOlB,EAAE,CAACmB,GAAG,CAACC,MAAM,CAACC,MAAM,CAACH,QAAQ,CAACI,QAAQ,CAAC;MAChD;IACF;EACF,CAAC,CAAC;EApCFtB,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,KAAK,CAACC,IAAI,CAACS,MAAM,CAACjB,aAAa,GAAGA,aAAa;AAAC"
 }

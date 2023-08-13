@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,4 +46,4 @@
   qx.ui.form.PasswordField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PasswordField.js.map?dt=1685978138484
+//# sourceMappingURL=PasswordField.js.map?dt=1691935435063

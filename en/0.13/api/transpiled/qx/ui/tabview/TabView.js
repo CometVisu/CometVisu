@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,13 +64,11 @@
     extend: qx.ui.core.Widget,
     implement: qx.ui.core.ISingleSelection,
     include: [qx.ui.core.MContentPadding],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param barPosition {String} Initial bar position ({@link #barPosition})
      */
@@ -83,52 +80,48 @@
         bottom: "barBottom",
         left: "barLeft"
       };
-
       this._createChildControl("bar");
+      this._createChildControl("pane");
 
-      this._createChildControl("pane"); // Create manager
-
-
+      // Create manager
       var mgr = this.__P_457_1 = this._createRadioGroupInstance();
-
       mgr.setWrap(false);
-      mgr.addListener("changeSelection", this._onChangeSelection, this); // Initialize bar position
+      mgr.addListener("changeSelection", this._onChangeSelection, this);
 
+      // Initialize bar position
       if (barPosition != null) {
         this.setBarPosition(barPosition);
       } else {
         this.initBarPosition();
-      } // ARIA attrs
+      }
 
-
+      // ARIA attrs
       this.getContentElement().setAttribute("role", "tablist");
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the selection was modified */
       changeSelection: "qx.event.type.Data",
-
       /** Fires after the value was modified */
       changeValue: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "tabview"
       },
-
       /**
        * This property defines on which side of the TabView the bar should be positioned.
        */
@@ -138,16 +131,15 @@
         apply: "_applyBarPosition"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.form.RadioGroup} instance containing the radio group */
       __P_457_1: null,
-
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -159,7 +151,6 @@
           this.resetSelection();
           return null;
         }
-
         if (item instanceof qx.ui.tabview.Page) {
           this.setSelection([item]);
           return null;
@@ -167,7 +158,6 @@
           return new TypeError("Given argument is not null or a {qx.ui.tabview.Page}.");
         }
       },
-
       /**
        * getValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -175,21 +165,18 @@
        */
       getValue: function getValue() {
         var pages = this.getSelection();
-
         if (pages.length) {
           return pages[0];
         } else {
           return null;
         }
       },
-
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
         this.resetSelection();
       },
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -198,30 +185,22 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "bar":
             control = new qx.ui.container.SlideBar();
             control.setZIndex(10);
-
             this._add(control);
-
             break;
-
           case "pane":
             control = new qx.ui.container.Stack();
             control.setZIndex(5);
-
             this._add(control, {
               flex: 1
             });
-
             break;
         }
-
         return control || qx.ui.tabview.TabView.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /**
        * Creates the radio group manager instance.
        *
@@ -232,7 +211,6 @@
       _createRadioGroupInstance: function _createRadioGroupInstance() {
         return new qx.ui.form.RadioGroup();
       },
-
       /**
        * Returns the element, to which the content padding should be applied.
        *
@@ -241,13 +219,11 @@
       _getContentPaddingTarget: function _getContentPaddingTarget() {
         return this.getChildControl("pane");
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILDREN HANDLING
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds a page to the tabview including its needed button
        * (contained in the page).
@@ -257,30 +233,31 @@
       add: function add(page) {
         var button = page.getButton();
         var bar = this.getChildControl("bar");
-        var pane = this.getChildControl("pane"); // Exclude page
+        var pane = this.getChildControl("pane");
 
-        page.exclude(); // Add button and page
+        // Exclude page
+        page.exclude();
 
+        // Add button and page
         bar.add(button);
-        pane.add(page); // Register button
+        pane.add(page);
 
-        this.__P_457_1.add(button); // Add state to page
+        // Register button
+        this.__P_457_1.add(button);
 
+        // Add state to page
+        page.addState(this.__P_457_0[this.getBarPosition()]);
 
-        page.addState(this.__P_457_0[this.getBarPosition()]); // Update states
-
+        // Update states
         page.addState("lastTab");
         var children = this.getChildren();
-
         if (children[0] == page) {
           page.addState("firstTab");
         } else {
           children[children.length - 2].removeState("lastTab");
         }
-
         page.addListener("close", this._onPageClose, this);
       },
-
       /**
        * Adds a page to the tabview including its needed button
        * (contained in the page).
@@ -290,44 +267,41 @@
        */
       addAt: function addAt(page, index) {
         var children = this.getChildren();
-
         if (!(index == null) && index > children.length) {
           throw new Error("Index should be less than : " + children.length);
         }
-
         if (index == null) {
           index = children.length;
         }
-
         var button = page.getButton();
         var bar = this.getChildControl("bar");
-        var pane = this.getChildControl("pane"); // Exclude page
+        var pane = this.getChildControl("pane");
 
-        page.exclude(); // Add button and page
+        // Exclude page
+        page.exclude();
 
+        // Add button and page
         bar.addAt(button, index);
-        pane.addAt(page, index); // Register button
+        pane.addAt(page, index);
 
-        this.__P_457_1.add(button); // Add state to page
+        // Register button
+        this.__P_457_1.add(button);
 
+        // Add state to page
+        page.addState(this.__P_457_0[this.getBarPosition()]);
 
-        page.addState(this.__P_457_0[this.getBarPosition()]); // Update states
-
+        // Update states
         children = this.getChildren();
-
         if (index == children.length - 1) {
           page.addState("lastTab");
         }
-
         if (children[0] == page) {
           page.addState("firstTab");
         } else {
           children[children.length - 2].removeState("lastTab");
         }
-
         page.addListener("close", this._onPageClose, this);
       },
-
       /**
        * Removes a page (and its corresponding button) from the TabView.
        *
@@ -337,11 +311,11 @@
         var pane = this.getChildControl("pane");
         var bar = this.getChildControl("bar");
         var button = page.getButton();
-        var children = pane.getChildren(); // Try to select next page
+        var children = pane.getChildren();
 
+        // Try to select next page
         if (this.getSelection()[0] == page) {
           var index = children.indexOf(page);
-
           if (index == 0) {
             if (children[1]) {
               this.setSelection([children[1]]);
@@ -351,36 +325,33 @@
           } else {
             this.setSelection([children[index - 1]]);
           }
-        } // Remove the button and page
+        }
 
-
+        // Remove the button and page
         bar.remove(button);
-        pane.remove(page); // Remove the button from the radio group
+        pane.remove(page);
 
-        this.__P_457_1.remove(button); // Remove state from page
+        // Remove the button from the radio group
+        this.__P_457_1.remove(button);
 
+        // Remove state from page
+        page.removeState(this.__P_457_0[this.getBarPosition()]);
 
-        page.removeState(this.__P_457_0[this.getBarPosition()]); // Update states
-
+        // Update states
         if (page.hasState("firstTab")) {
           page.removeState("firstTab");
-
           if (children[0]) {
             children[0].addState("firstTab");
           }
         }
-
         if (page.hasState("lastTab")) {
           page.removeState("lastTab");
-
           if (children.length > 0) {
             children[children.length - 1].addState("lastTab");
           }
         }
-
         page.removeListener("close", this._onPageClose, this);
       },
-
       /**
        * Returns TabView's children widgets.
        *
@@ -389,7 +360,6 @@
       getChildren: function getChildren() {
         return this.getChildControl("pane").getChildren();
       },
-
       /**
        * Returns the position of the given page in the TabView.
        *
@@ -399,7 +369,6 @@
       indexOf: function indexOf(page) {
         return this.getChildControl("pane").indexOf(page);
       },
-
       /**
        * Returns the radio group manager.
        *
@@ -408,7 +377,6 @@
       getRadioGroup: function getRadioGroup() {
         return this.__P_457_1;
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -417,7 +385,6 @@
 
       /** @type {Map} Maps the bar position to an appearance state */
       __P_457_0: null,
-
       /**
        * Apply method for the placeBarOnTop-Property.
        *
@@ -435,53 +402,57 @@
         var horizontal = value == "left" || value == "right";
         var reversed = value == "right" || value == "bottom";
         var layoutClass = horizontal ? qx.ui.layout.HBox : qx.ui.layout.VBox;
-
         var layout = this._getLayout();
-
-        if (layout && layout instanceof layoutClass) {// pass
+        if (layout && layout instanceof layoutClass) {
+          // pass
         } else {
           this._setLayout(layout = new layoutClass());
-        } // Update reversed
+        }
 
+        // Update reversed
+        layout.setReversed(reversed);
 
-        layout.setReversed(reversed); // Sync orientation to bar
+        // Sync orientation to bar
+        bar.setOrientation(horizontal ? "vertical" : "horizontal");
 
-        bar.setOrientation(horizontal ? "vertical" : "horizontal"); // Read children
-
+        // Read children
         var children = this.getChildren();
-        var i, l; // Toggle state to bar
-
+        var i, l;
+        // Toggle state to bar
         if (old) {
-          var oldState = this.__P_457_0[old]; // Update bar
+          var oldState = this.__P_457_0[old];
 
-          bar.removeState(oldState); // Update pane
+          // Update bar
+          bar.removeState(oldState);
 
-          pane.removeState(oldState); // Update pages
+          // Update pane
+          pane.removeState(oldState);
 
+          // Update pages
           for (i = 0, l = children.length; i < l; i++) {
             children[i].removeState(oldState);
           }
         }
-
         if (value) {
-          var newState = this.__P_457_0[value]; // Update bar
+          var newState = this.__P_457_0[value];
 
-          bar.addState(newState); // Update pane
+          // Update bar
+          bar.addState(newState);
 
-          pane.addState(newState); // Update pages
+          // Update pane
+          pane.addState(newState);
 
+          // Update pages
           for (i = 0, l = children.length; i < l; i++) {
             children[i].addState(newState);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns an array of currently selected items.
        *
@@ -492,16 +463,12 @@
        */
       getSelection: function getSelection() {
         var buttons = this.__P_457_1.getSelection();
-
         var result = [];
-
         for (var i = 0; i < buttons.length; i++) {
           result.push(buttons[i].getUserData("page"));
         }
-
         return result;
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -511,21 +478,17 @@
        */
       setSelection: function setSelection(items) {
         var buttons = [];
-
         for (var i = 0; i < items.length; i++) {
           buttons.push(items[i].getChildControl("button"));
         }
-
         this.__P_457_1.setSelection(buttons);
       },
-
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
         this.__P_457_1.resetSelection();
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -537,7 +500,6 @@
         var button = item.getChildControl("button");
         return this.__P_457_1.isSelected(button);
       },
-
       /**
        * Whether the selection is empty.
        *
@@ -546,7 +508,6 @@
       isSelectionEmpty: function isSelectionEmpty() {
         return this.__P_457_1.isSelectionEmpty();
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -556,16 +517,12 @@
        */
       getSelectables: function getSelectables(all) {
         var buttons = this.__P_457_1.getSelectables(all);
-
         var result = [];
-
         for (var i = 0; i < buttons.length; i++) {
           result.push(buttons[i].getUserData("page"));
         }
-
         return result;
       },
-
       /**
        * Event handler for <code>changeSelection</code>.
        *
@@ -577,7 +534,6 @@
         var oldButton = e.getOldData()[0];
         var value = [];
         var old = [];
-
         if (button) {
           value = [button.getUserData("page")];
           pane.setSelection(value);
@@ -585,14 +541,11 @@
         } else {
           pane.resetSelection();
         }
-
         if (oldButton) {
           old = [oldButton.getUserData("page")];
         }
-
         this.fireDataEvent("changeSelection", value, old);
       },
-
       /**
        * Event handler for <code>beforeChangeSelection</code>.
        *
@@ -603,27 +556,23 @@
           e.preventDefault();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for the change of the selected item of the radio group.
        * @param e {qx.event.type.Data} The data event
        */
       _onRadioChangeSelection: function _onRadioChangeSelection(e) {
         var element = e.getData()[0];
-
         if (element) {
           this.setSelection([element.getUserData("page")]);
         } else {
           this.resetSelection();
         }
       },
-
       /**
        * Removes the Page widget on which the close button was tapped.
        *
@@ -638,7 +587,6 @@
         this.remove(page);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -646,11 +594,10 @@
     */
     destruct: function destruct() {
       this._disposeObjects("__P_457_1");
-
       this.__P_457_0 = null;
     }
   });
   qx.ui.tabview.TabView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabView.js.map?dt=1685978149065
+//# sourceMappingURL=TabView.js.map?dt=1691935445350

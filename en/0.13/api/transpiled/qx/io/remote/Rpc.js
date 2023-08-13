@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -95,15 +94,14 @@
    * <p>
    * @ignore(qx.core.ServerSettings.*)
    */
+
   qx.Class.define("qx.io.remote.Rpc", {
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param url {String}            identifies the url where the service
      *                                is found.  Note that if the url is to
@@ -123,52 +121,46 @@
      */
     construct: function construct(url, serviceName) {
       qx.core.Object.constructor.call(this);
-
       if (url !== undefined) {
         this.setUrl(url);
       }
-
       if (serviceName != null) {
         this.setServiceName(serviceName);
       }
-
       if (qx.core.ServerSettings) {
         this.__P_255_0 = qx.core.ServerSettings.serverPathSuffix;
       }
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when call is completed.
        */
       completed: "qx.event.type.Event",
-
       /**
        * Fired when call aborted.
        */
       aborted: "qx.event.type.Event",
-
       /**
        * Fired when call failed.
        */
       failed: "qx.event.type.Event",
-
       /**
        * Fired when call timed out.
        */
       timeout: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Origins of errors
@@ -179,7 +171,6 @@
         transport: 3,
         local: 4
       },
-
       /**
        *  Locally-detected errors
        */
@@ -188,7 +179,6 @@
         abort: 2,
         nodata: 3
       },
-
       /**
        * Boolean flag which controls the stringification of date objects.
        * <code>null</code> for the default behavior, acts like false
@@ -212,7 +202,6 @@
        * specification neglects to provide a literal form for it.
        */
       CONVERT_DATES: null,
-
       /**
        * Boolean flag which controls whether to expect and verify a JSON
        * response.
@@ -231,7 +220,6 @@
        * is preferred over the potentially insecure <code>eval</code>.
        */
       RESPONSE_JSON: null,
-
       /**
        * Creates an URL for talking to a local service. A local service is one that
        * lives in the same application as the page calling the service. For backends
@@ -250,24 +238,21 @@
        */
       makeServerURL: function makeServerURL(instanceId) {
         var retVal = null;
-
         if (qx.core.ServerSettings) {
           retVal = qx.core.ServerSettings.serverPathPrefix + "/.qxrpc" + qx.core.ServerSettings.serverPathSuffix;
-
           if (instanceId != null) {
             retVal += "?instanceId=" + instanceId;
           }
         }
-
         return retVal;
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -280,7 +265,6 @@
         check: "Integer",
         nullable: true
       },
-
       /**
        * Indicate that the request is cross domain.
        *
@@ -294,19 +278,16 @@
         check: "Boolean",
         init: false
       },
-
       /** The URL at which the service is located. */
       url: {
         check: "String",
         nullable: true
       },
-
       /** The service name.  */
       serviceName: {
         check: "String",
         nullable: true
       },
-
       /**
        * Data sent as "out of band" data in the request to the server.  The
        * format of the data is opaque to RPC and may be recognized only by
@@ -319,7 +300,6 @@
         check: "Object",
         nullable: true
       },
-
       /**
        * Username to use for HTTP authentication. Null if HTTP authentication
        * is not used.
@@ -328,7 +308,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * Password to use for HTTP authentication. Null if HTTP authentication
        * is not used.
@@ -337,7 +316,6 @@
         check: "String",
         nullable: true
       },
-
       /**
         Use Basic HTTP Authentication
       */
@@ -345,7 +323,6 @@
         check: "Boolean",
         nullable: true
       },
-
       /**
        *
        * Whether to use the original qooxdoo RPC protocol or the
@@ -361,16 +338,15 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_255_1: null,
       __P_255_0: null,
-
       /**
        * Factory method to create a request object. By default, a POST request
        * will be made, and the expected response type will be
@@ -382,7 +358,6 @@
       createRequest: function createRequest() {
         return new qx.io.remote.Request(this.getUrl(), "POST", "application/json");
       },
-
       /**
        * Factory method to create the object containing the remote procedure
        * call data. By default, a qooxdoo-style RPC request is built, which
@@ -408,8 +383,9 @@
        */
       createRpcData: function createRpcData(id, method, parameters, serverData) {
         var requestObject;
-        var service; // Create a protocol-dependent request object
+        var service;
 
+        // Create a protocol-dependent request object
         if (this.getProtocol() == "qx1") {
           // Create a qooxdoo-modified version 1.0 rpc data object
           requestObject = {
@@ -417,22 +393,22 @@
             method: method,
             id: id,
             params: parameters
-          }; // Only add the server_data member if there is actually server data
+          };
 
+          // Only add the server_data member if there is actually server data
           if (serverData) {
             requestObject.server_data = serverData;
           }
         } else {
           // If there's a service name, we'll prepend it to the method name
           service = this.getServiceName();
-
           if (service && service != "") {
             service += ".";
           } else {
             service = "";
-          } // Create a standard version 2.0 rpc data object
+          }
 
-
+          // Create a standard version 2.0 rpc data object
           requestObject = {
             jsonrpc: "2.0",
             method: service + method,
@@ -440,10 +416,8 @@
             params: parameters
           };
         }
-
         return requestObject;
       },
-
       /**
        * Internal RPC call method
        *
@@ -471,36 +445,32 @@
         var argsArray = [];
         var eventTarget = this;
         var protocol = this.getProtocol();
-
         for (var i = offset + 1; i < args.length; ++i) {
           argsArray.push(args[i]);
         }
+        var req = this.createRequest();
 
-        var req = this.createRequest(); // Get any additional out-of-band data to be sent to the server
+        // Get any additional out-of-band data to be sent to the server
+        var serverData = this.getServerData();
 
-        var serverData = this.getServerData(); // Create the request object
-
+        // Create the request object
         var rpcData = this.createRpcData(req.getSequenceNumber(), whichMethod, argsArray, serverData);
         req.setCrossDomain(this.getCrossDomain());
-
         if (this.getUsername()) {
           req.setUseBasicHttpAuth(this.getUseBasicHttpAuth());
           req.setUsername(this.getUsername());
           req.setPassword(this.getPassword());
         }
-
         req.setTimeout(this.getTimeout());
         var ex = null;
         var id = null;
         var result = null;
         var response = null;
-
         var handleRequestFinished = function handleRequestFinished(eventType, eventTarget) {
           switch (callType) {
             case 0:
               // sync
               break;
-
             case 1:
               // async with handler function
               try {
@@ -508,9 +478,7 @@
               } catch (e) {
                 eventTarget.error("rpc handler threw an error: id=" + id + " result=" + qx.lang.Json.stringify(result) + " ex=" + qx.lang.Json.stringify(ex), e);
               }
-
               break;
-
             case 2:
               // async with event listeners
               // Dispatch the event to our listeners.
@@ -519,7 +487,6 @@
               } else {
                 // Add the id to the exception
                 ex.id = id;
-
                 if (args[0]) {
                   // coalesce
                   // They requested that we coalesce all failure types to
@@ -530,58 +497,47 @@
                   eventTarget.fireDataEvent(eventType, ex);
                 }
               }
-
           }
         };
-
         var addToStringToObject = function addToStringToObject(obj) {
           if (protocol == "qx1") {
             obj.toString = function () {
               switch (obj.origin) {
                 case qx.io.remote.Rpc.origin.server:
                   return "Server error " + obj.code + ": " + obj.message;
-
                 case qx.io.remote.Rpc.origin.application:
                   return "Application error " + obj.code + ": " + obj.message;
-
                 case qx.io.remote.Rpc.origin.transport:
                   return "Transport error " + obj.code + ": " + obj.message;
-
                 case qx.io.remote.Rpc.origin.local:
                   return "Local error " + obj.code + ": " + obj.message;
-
                 default:
                   return "UNEXPECTED origin " + obj.origin + " error " + obj.code + ": " + obj.message;
               }
             };
-          } // protocol == "2.0"
+          }
+          // protocol == "2.0"
           else {
             obj.toString = function () {
               var ret;
               ret = "Error " + obj.code + ": " + obj.message;
-
               if (obj.data) {
                 ret += " (" + obj.data + ")";
               }
-
               return ret;
             };
           }
         };
-
         var makeException = function makeException(origin, code, message) {
           var ex = {};
-
           if (protocol == "qx1") {
             ex.origin = origin;
           }
-
           ex.code = code;
           ex.message = message;
           addToStringToObject(ex);
           return ex;
         };
-
         req.addListener("failed", function (evt) {
           var code = evt.getStatusCode();
           ex = makeException(qx.io.remote.Rpc.origin.transport, code, qx.io.remote.Exchange.statusCodeToString(code));
@@ -600,17 +556,18 @@
           handleRequestFinished("aborted", eventTarget);
         });
         req.addListener("completed", function (evt) {
-          response = evt.getContent(); // server may have reset, giving us no data on our requests
+          response = evt.getContent();
 
+          // server may have reset, giving us no data on our requests
           if (response === null) {
             ex = makeException(qx.io.remote.Rpc.origin.local, qx.io.remote.Rpc.localError.nodata, "No data in response to " + whichMethod);
             id = this.getSequenceNumber();
             handleRequestFinished("failed", eventTarget);
             return;
-          } // Parse. Skip when response is already an object
+          }
+
+          // Parse. Skip when response is already an object
           // because the script transport was used.
-
-
           if (!qx.lang.Type.isObject(response)) {
             // Handle converted dates
             if (self._isConvertDates()) {
@@ -623,99 +580,88 @@
                       return new Date(Date.UTC(m[1], m[2], m[3], m[4], m[5], m[6], m[7]));
                     }
                   }
-
                   return value;
-                }); // Eval
+                });
+
+                // Eval
               } else {
                 response = response && response.length > 0 ? eval("(" + response + ")") : null;
-              } // No special date handling required, JSON assumed
+              }
 
+              // No special date handling required, JSON assumed
             } else {
               response = qx.lang.Json.parse(response);
             }
           }
-
           id = response["id"];
-
           if (id != this.getSequenceNumber()) {
             this.warn("Received id (" + id + ") does not match requested id " + "(" + this.getSequenceNumber() + ")!");
-          } // Determine if an error was returned. Assume no error, initially.
+          }
 
-
+          // Determine if an error was returned. Assume no error, initially.
           var eventType = "completed";
           var exTest = response["error"];
-
           if (exTest != null) {
             // There was an error
             result = null;
             addToStringToObject(exTest);
-            ex = exTest; // Change the event type
+            ex = exTest;
 
+            // Change the event type
             eventType = "failed";
           } else {
             result = response["result"];
-
             if (refreshSession) {
               result = eval("(" + result + ")");
               var newSuffix = qx.core.ServerSettings.serverPathSuffix;
-
               if (self.__P_255_0 != newSuffix) {
                 self.__P_255_1 = self.__P_255_0;
                 self.__P_255_0 = newSuffix;
               }
-
               self.setUrl(self.fixUrl(self.getUrl()));
             }
           }
-
           handleRequestFinished(eventType, eventTarget);
-        }); // Provide a replacer when convert dates is enabled
+        });
 
+        // Provide a replacer when convert dates is enabled
         var replacer = null;
-
         if (this._isConvertDates()) {
           replacer = function replacer(key, value) {
             // The value passed in is of type string, because the Date's
             // toJson gets applied before. Get value from containing object.
             value = this[key];
-
             if (qx.lang.Type.isDate(value)) {
               var dateParams = value.getUTCFullYear() + "," + value.getUTCMonth() + "," + value.getUTCDate() + "," + value.getUTCHours() + "," + value.getUTCMinutes() + "," + value.getUTCSeconds() + "," + value.getUTCMilliseconds();
               return "new Date(Date.UTC(" + dateParams + "))";
             }
-
             return value;
           };
         }
-
         req.setData(qx.lang.Json.stringify(rpcData, replacer));
         req.setAsynchronous(callType > 0);
-
         if (req.getCrossDomain()) {
           // Our choice here has no effect anyway.  This is purely informational.
           req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         } else {
           // When not cross-domain, set type to text/json
           req.setRequestHeader("Content-Type", "application/json");
-        } // Do not parse as JSON. Later done conditionally.
+        }
 
-
+        // Do not parse as JSON. Later done conditionally.
         req.setParseJson(false);
         req.send();
-
         if (callType == 0) {
           if (ex != null) {
             var error = new Error(ex.toString());
             error.rpcdetails = ex;
             throw error;
           }
-
           return result;
         } else {
           return req;
         }
       },
-
       /**
        * Helper method to rewrite a URL with a stale session id (so that it includes
        * the correct session id afterwards).
@@ -727,16 +673,12 @@
         if (this.__P_255_1 == null || this.__P_255_0 == null || this.__P_255_1 == "" || this.__P_255_1 == this.__P_255_0) {
           return url;
         }
-
         var index = url.indexOf(this.__P_255_1);
-
         if (index == -1) {
           return url;
         }
-
         return url.substring(0, index) + this.__P_255_0 + url.substring(index + this.__P_255_1.length);
       },
-
       /**
        * Makes a synchronous server call. The method arguments (if any) follow
        * after the method name (as normal JavaScript arguments, separated by
@@ -762,7 +704,6 @@
       callSync: function callSync(methodName, args) {
         return this._callInternal(arguments, 0);
       },
-
       /**
        * Makes an asynchronous server call. The method arguments (if any) follow
        * after the method name (as normal JavaScript arguments, separated by
@@ -799,7 +740,6 @@
       callAsync: function callAsync(handler, methodName, args) {
         return this._callInternal(arguments, 1);
       },
-
       /**
        * Makes an asynchronous server call and dispatches an event upon completion
        * or failure. The method arguments (if any) follow after the method name
@@ -852,7 +792,6 @@
       callAsyncListeners: function callAsyncListeners(coalesce, methodName, args) {
         return this._callInternal(arguments, 2);
       },
-
       /**
        * Refreshes a server session by retrieving the session id again from the
        * server.
@@ -872,7 +811,6 @@
       refreshSession: function refreshSession(handler) {
         if (qx.core.ServerSettings && qx.core.ServerSettings.serverPathSuffix) {
           var timeDiff = new Date().getTime() - qx.core.ServerSettings.lastSessionRefresh;
-
           if (timeDiff / 1000 > qx.core.ServerSettings.sessionTimeoutInSeconds - 30) {
             // this.info("refreshing session");
             this._callInternal([handler], 1, true);
@@ -883,7 +821,6 @@
           handler(false); // no refresh possible, but would be necessary
         }
       },
-
       /**
        * Whether to convert date objects to pseudo literals and
        * parse with eval.
@@ -895,7 +832,6 @@
       _isConvertDates: function _isConvertDates() {
         return !!qx.io.remote.Rpc.CONVERT_DATES;
       },
-
       /**
        * Whether to expect and verify a JSON response.
        *
@@ -906,7 +842,6 @@
       _isResponseJson: function _isResponseJson() {
         return !!qx.io.remote.Rpc.RESPONSE_JSON;
       },
-
       /**
        * Aborts an asynchronous server call. Consequently, the callback function
        * provided to <code>callAsync</code> or <code>callAsyncListeners</code>
@@ -924,4 +859,4 @@
   qx.io.remote.Rpc.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rpc.js.map?dt=1685978125753
+//# sourceMappingURL=Rpc.js.map?dt=1691935423246

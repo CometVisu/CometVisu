@@ -36,7 +36,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -63,7 +62,6 @@
    */
   qx.Class.define("qx.html.Blocker", {
     extend: qx.html.Element,
-
     /**
      * @param backgroundColor {Color?null} the blocker's background color. This
      *    color can be themed and will be resolved by the blocker.
@@ -75,13 +73,13 @@
         position: "absolute",
         opacity: opacity || 0,
         backgroundColor: backgroundColor
-      }; // IE needs some extra love here to convince it to block events.
+      };
 
+      // IE needs some extra love here to convince it to block events.
       if (qx.core.Environment.get("engine.name") == "mshtml") {
         styles.backgroundImage = "url(" + qx.util.ResourceManager.getInstance().toUri("qx/static/blank.gif") + ")";
         styles.backgroundRepeat = "repeat";
       }
-
       qx.html.Element.constructor.call(this, "div", styles);
       this.addListener("mousedown", this._stopPropagation, this);
       this.addListener("mouseup", this._stopPropagation, this);
@@ -114,7 +112,6 @@
       _stopPropagation: function _stopPropagation(e) {
         e.stopPropagation();
       },
-
       /**
        * Refreshes the cursor by setting it to <code>null</code> and then to the
        * old value.
@@ -129,4 +126,4 @@
   qx.html.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1685978123643
+//# sourceMappingURL=Blocker.js.map?dt=1691935421228

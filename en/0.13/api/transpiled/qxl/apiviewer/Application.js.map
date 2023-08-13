@@ -11,6 +11,8 @@
     "application",
     "Standalone",
     "construct",
+    "constructor",
+    "call",
     "uri",
     "util",
     "ResourceManager",
@@ -21,12 +23,15 @@
     "includeFile",
     "members",
     "main",
+    "qxl",
+    "apiviewer",
+    "Application",
+    "superclass",
+    "prototype",
     "include",
     "ui",
     "core",
     "Widget",
-    "qxl",
-    "apiviewer",
     "MWidgetRegistry",
     "viewer",
     "Viewer",
@@ -42,8 +47,7 @@
     "load",
     "classes",
     "destruct",
-    "_disposeObjects",
-    "Application"
+    "_disposeObjects"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v2_0_0/source/class/qxl/apiviewer/Application.js"
@@ -51,5 +55,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Til Schneider (til132)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\n/**\n * Your apiviewer application\n *\n * @asset(qxl/apiviewer/*)\n * @ignore (qxl.$$apiviewer)\n */\nqx.Class.define(\"qxl.apiviewer.Application\", {\n  extend: qx.application.Standalone,\n\n  construct() {\n    super();\n    var uri = qx.util.ResourceManager.getInstance().toUri(\n      \"qxl/apiviewer/css/apiviewer.css\"\n    );\n    qx.bom.Stylesheet.includeFile(uri);\n  },\n\n  members: {\n    // overridden\n    main() {\n      // Call super class\n      super.main();\n\n      // Add log appenders\n      if (qx.core.Environment.get(\"qx.debug\")) {\n        qx.log.appender.Native;\n        qx.log.appender.Console;\n      }\n      qx.Class.include(qx.ui.core.Widget, qxl.apiviewer.MWidgetRegistry);\n      this.viewer = new qxl.apiviewer.Viewer();\n      this.controller = new qxl.apiviewer.Controller();\n      // set variables for later usage.\n      this.getRoot().add(this.viewer, { edge: 0 });\n    },\n\n    // overridden\n    finalize() {\n      super.finalize();\n      // Finally load the data\n      this.viewer._searchView.apiindex = qxl.$$apiviewer.apiindex;\n      this.controller.load(qxl.$$apiviewer.classes);\n    },\n  },\n\n  destruct() {\n    this._disposeObjects(\"viewer\", \"controller\");\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,2BAAhB,EAA6C;IAC3CC,MAAM,EAAEN,EAAE,CAACO,WAAH,CAAeC,UADoB;IAG3CC,SAH2C,uBAG/B;MACV;MACA,IAAIC,GAAG,GAAGV,EAAE,CAACW,IAAH,CAAQC,eAAR,CAAwBC,WAAxB,GAAsCC,KAAtC,CACR,iCADQ,CAAV;MAGAd,EAAE,CAACe,GAAH,CAAOC,UAAP,CAAkBC,WAAlB,CAA8BP,GAA9B;IACD,CAT0C;IAW3CQ,OAAO,EAAE;MACP;MACAC,IAFO,kBAEA;QACL;QACA,+DAFK,CAIL;;QAKAnB,EAAE,CAACI,KAAH,CAASgB,OAAT,CAAiBpB,EAAE,CAACqB,EAAH,CAAMC,IAAN,CAAWC,MAA5B,EAAoCC,GAAG,CAACC,SAAJ,CAAcC,eAAlD;QACA,KAAKC,MAAL,GAAc,IAAIH,GAAG,CAACC,SAAJ,CAAcG,MAAlB,EAAd;QACA,KAAKC,UAAL,GAAkB,IAAIL,GAAG,CAACC,SAAJ,CAAcK,UAAlB,EAAlB,CAXK,CAYL;;QACA,KAAKC,OAAL,GAAeC,GAAf,CAAmB,KAAKL,MAAxB,EAAgC;UAAEM,IAAI,EAAE;QAAR,CAAhC;MACD,CAhBM;MAkBP;MACAC,QAnBO,sBAmBI;QACT,mEADS,CAET;;QACA,KAAKP,MAAL,CAAYQ,WAAZ,CAAwBC,QAAxB,GAAmCZ,GAAG,CAACa,WAAJ,CAAgBD,QAAnD;QACA,KAAKP,UAAL,CAAgBS,IAAhB,CAAqBd,GAAG,CAACa,WAAJ,CAAgBE,OAArC;MACD;IAxBM,CAXkC;IAsC3CC,QAtC2C,sBAsChC;MACT,KAAKC,eAAL,CAAqB,QAArB,EAA+B,YAA/B;IACD;EAxC0C,CAA7C;EA9BAjB,GAAG,CAACC,SAAJ,CAAciB,WAAd,CAA0BvC,aAA1B,GAA0CA,aAA1C"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,WAAW,CAACC,UAAU;IAEjCC,SAAS,WAAAA,UAAA,EAAG;MACVT,EAAA,CAAAO,WAAA,CAAAC,UAAA,CAAAE,WAAA,CAAAC,IAAA;MACA,IAAIC,GAAG,GAAGZ,EAAE,CAACa,IAAI,CAACC,eAAe,CAACC,WAAW,CAAC,CAAC,CAACC,KAAK,CACnD,iCACF,CAAC;MACDhB,EAAE,CAACiB,GAAG,CAACC,UAAU,CAACC,WAAW,CAACP,GAAG,CAAC;IACpC,CAAC;IAEDQ,OAAO,EAAE;MACP;MACAC,IAAI,WAAAA,KAAA,EAAG;QACL;QACAC,GAAA,CAAAC,SAAA,CAAAC,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAL,IAAA,CAAAV,IAAA;;QAEA;;QAKAX,EAAE,CAACI,KAAK,CAACuB,OAAO,CAAC3B,EAAE,CAAC4B,EAAE,CAACC,IAAI,CAACC,MAAM,EAAER,GAAG,CAACC,SAAS,CAACQ,eAAe,CAAC;QAClE,IAAI,CAACC,MAAM,GAAG,IAAIV,GAAG,CAACC,SAAS,CAACU,MAAM,CAAC,CAAC;QACxC,IAAI,CAACC,UAAU,GAAG,IAAIZ,GAAG,CAACC,SAAS,CAACY,UAAU,CAAC,CAAC;QAChD;QACA,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAAC,IAAI,CAACL,MAAM,EAAE;UAAEM,IAAI,EAAE;QAAE,CAAC,CAAC;MAC9C,CAAC;MAED;MACAC,QAAQ,WAAAA,SAAA,EAAG;QACTjB,GAAA,CAAAC,SAAA,CAAAC,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAa,QAAA,CAAA5B,IAAA;QACA;QACA,IAAI,CAACqB,MAAM,CAACQ,WAAW,CAACC,QAAQ,GAAGnB,GAAG,CAACoB,WAAW,CAACD,QAAQ;QAC3D,IAAI,CAACP,UAAU,CAACS,IAAI,CAACrB,GAAG,CAACoB,WAAW,CAACE,OAAO,CAAC;MAC/C;IACF,CAAC;IAEDC,QAAQ,WAAAA,SAAA,EAAG;MACT,IAAI,CAACC,eAAe,CAAC,QAAQ,EAAE,YAAY,CAAC;IAC9C;EACF,CAAC,CAAC;EAvEFxB,GAAG,CAACC,SAAS,CAACC,WAAW,CAACrB,aAAa,GAAGA,aAAa;AAAC"
 }

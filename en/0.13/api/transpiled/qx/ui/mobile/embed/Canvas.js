@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,30 +60,27 @@
    */
   qx.Class.define("qx.ui.mobile.embed.Canvas", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      */
     construct: function construct() {
       qx.ui.mobile.core.Widget.constructor.call(this);
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _getTagName: function _getTagName() {
         return "canvas";
       },
-
       /**
        * Get the canvas element [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas">W3C-HMTL5</a>]
        *
@@ -93,7 +89,6 @@
       getCanvas: function getCanvas() {
         return this.getContainerElement();
       },
-
       /**
        * Set the width attribute of the canvas element. This property controls the
        * size of the canvas coordinate space.
@@ -103,7 +98,6 @@
       setWidth: function setWidth(width) {
         this.getContainerElement().width = width;
       },
-
       /**
        * Get the width attribute of the canvas element
        *
@@ -112,7 +106,6 @@
       getWidth: function getWidth() {
         return this.getContainerElement().width;
       },
-
       /**
        * Set the height attribute of the canvas element. This property controls the
        * size of the canvas coordinate space.
@@ -122,7 +115,6 @@
       setHeight: function setHeight(height) {
         this.getContainerElement().height = height;
       },
-
       /**
        * Get the height attribute of the canvas element
        *
@@ -131,7 +123,6 @@
       getHeight: function getHeight() {
         return this.getContainerElement().height;
       },
-
       /**
        * Get the canvas' 2D rendering context
        * [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d">W3C-HTML5</a>].
@@ -147,4 +138,4 @@
   qx.ui.mobile.embed.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1685978143385
+//# sourceMappingURL=Canvas.js.map?dt=1691935439782

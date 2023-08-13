@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,6 +56,7 @@
         CORE
       ---------------------------------------------------------------------------
       */
+
       widget: {},
       label: {
         style: function style(states) {
@@ -138,7 +138,6 @@
       "dragdrop-cursor": {
         style: function style(states) {
           var icon = "nodrop";
-
           if (states.copy) {
             icon = "copy";
           } else if (states.move) {
@@ -146,7 +145,6 @@
           } else if (states.alias) {
             icon = "alias";
           }
-
           return {
             source: "decoration/cursors/" + icon + ".gif",
             position: "right-top",
@@ -154,12 +152,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BUTTON
       ---------------------------------------------------------------------------
       */
+
       "button-frame": {
         alias: "atom",
         style: function style(states) {
@@ -170,7 +168,6 @@
             var decorator = !states.inner && states.focused ? "focused-outset" : "outset";
             var padding = [3, 4];
           }
-
           return {
             backgroundColor: states.abandoned ? "button-abandoned" : states.hovered ? "button-hovered" : states.checked ? "button-checked" : "button",
             decorator: decorator,
@@ -219,12 +216,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLLAREA
       ---------------------------------------------------------------------------
       */
+
       "scrollarea/corner": {
         style: function style() {
           return {
@@ -236,12 +233,12 @@
       "scrollarea/pane": "widget",
       "scrollarea/scrollbar-x": "scrollbar",
       "scrollarea/scrollbar-y": "scrollbar",
-
       /*
       ---------------------------------------------------------------------------
         LIST
       ---------------------------------------------------------------------------
       */
+
       list: {
         alias: "scrollarea",
         style: function style(states) {
@@ -249,7 +246,6 @@
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (invalid && !disabled) {
             backgroundColor = "background-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -259,7 +255,6 @@
           } else {
             backgroundColor = "white";
           }
-
           return {
             decorator: states.focused ? "focused-inset" : "inset",
             backgroundColor: backgroundColor
@@ -279,7 +274,6 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FORM FIELDS
@@ -299,7 +293,6 @@
           var focused = !!states.focused;
           var invalid = !!states.invalid;
           var disabled = !!states.disabled;
-
           if (invalid && !disabled) {
             backgroundColor = "background-invalid";
           } else if (focused && !invalid && !disabled) {
@@ -309,9 +302,7 @@
           } else {
             backgroundColor = "background-field";
           }
-
           var textColor;
-
           if (states.disabled) {
             textColor = "text-disabled";
           } else if (states.showingPlaceholder) {
@@ -319,7 +310,6 @@
           } else {
             textColor = undefined;
           }
-
           return {
             decorator: states.focused ? "focused-inset" : "inset",
             padding: [2, 3],
@@ -337,8 +327,9 @@
           // already by replacing the current image with a disabled version
           // (if available). If no disabled image is found, the opacity style
           // is used.
-          var icon; // Checked
+          var icon;
 
+          // Checked
           if (states.checked) {
             if (states.disabled) {
               icon = "checkbox-checked";
@@ -350,8 +341,9 @@
               icon = "checkbox-checked-hovered";
             } else {
               icon = "checkbox-checked";
-            } // Undetermined
+            }
 
+            // Undetermined
           } else if (states.undetermined) {
             if (states.disabled) {
               icon = "checkbox-undetermined";
@@ -361,8 +353,9 @@
               icon = "checkbox-undetermined-hovered";
             } else {
               icon = "checkbox-undetermined";
-            } // Focused & Pressed & Hovered (when enabled)
+            }
 
+            // Focused & Pressed & Hovered (when enabled)
           } else if (!states.disabled) {
             if (states.focused) {
               icon = "checkbox-focused";
@@ -371,9 +364,9 @@
             } else if (states.hovered) {
               icon = "checkbox-hovered";
             }
-          } // Unchecked
+          }
 
-
+          // Unchecked
           icon = icon || "checkbox";
           var invalid = states.invalid && !states.disabled ? "-invalid" : "";
           return {
@@ -391,7 +384,6 @@
           // disabled version (if available). If no disabled image is found the
           // opacity style is used.
           var icon;
-
           if (states.checked && states.focused) {
             icon = "radiobutton-checked-focused";
           } else if (states.checked && states.disabled) {
@@ -411,19 +403,18 @@
           } else {
             icon = "radiobutton";
           }
-
           var invalid = states.invalid && !states.disabled ? "-invalid" : "";
           return {
             icon: "decoration/form/" + icon + invalid + ".png"
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPINNER
       ---------------------------------------------------------------------------
       */
+
       spinner: {
         style: function style(states) {
           return {
@@ -463,12 +454,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATEFIELD
       ---------------------------------------------------------------------------
       */
+
       datefield: "combobox",
       "datefield/button": {
         alias: "combobox/button",
@@ -491,12 +482,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         GROUP BOX
       ---------------------------------------------------------------------------
       */
+
       groupbox: {
         style: function style(states) {
           return {
@@ -547,12 +538,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TOOLBAR
       ---------------------------------------------------------------------------
       */
+
       toolbar: {
         style: function style(states) {
           return {
@@ -594,7 +585,6 @@
             var border = undefined;
             var padding = [3, 4];
           }
-
           return {
             cursor: "default",
             decorator: border,
@@ -632,12 +622,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SLIDEBAR
       ---------------------------------------------------------------------------
       */
+
       slidebar: {},
       "slidebar/scrollpane": {},
       "slidebar/content": {},
@@ -659,21 +649,20 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TABVIEW
       ---------------------------------------------------------------------------
       */
+
       tabview: {},
       "tabview/bar": {
         alias: "slidebar",
         style: function style(states) {
           var marginTop = 0,
-              marginRight = 0,
-              marginBottom = 0,
-              marginLeft = 0;
-
+            marginRight = 0,
+            marginBottom = 0,
+            marginLeft = 0;
           if (states.barTop) {
             marginBottom = -2;
           } else if (states.barBottom) {
@@ -683,7 +672,6 @@
           } else {
             marginRight = -2;
           }
-
           return {
             marginBottom: marginBottom,
             marginTop: marginTop,
@@ -740,22 +728,20 @@
         style: function style(states) {
           var decorator;
           var marginTop = 0,
-              marginRight = 0,
-              marginBottom = 0,
-              marginLeft = 0;
-
+            marginRight = 0,
+            marginBottom = 0,
+            marginLeft = 0;
           if (states.barTop || states.barBottom) {
             var paddingTop = 2,
-                paddingBottom = 2,
-                paddingLeft = 6,
-                paddingRight = 6;
+              paddingBottom = 2,
+              paddingLeft = 6,
+              paddingRight = 6;
           } else {
             var paddingTop = 6,
-                paddingBottom = 6,
-                paddingLeft = 6,
-                paddingRight = 6;
+              paddingBottom = 6,
+              paddingLeft = 6,
+              paddingRight = 6;
           }
-
           if (states.barTop) {
             decorator = "tabview-page-button-top";
           } else if (states.barRight) {
@@ -765,7 +751,6 @@
           } else {
             decorator = "tabview-page-button-left";
           }
-
           if (states.checked) {
             if (states.barTop || states.barBottom) {
               paddingLeft += 2;
@@ -783,7 +768,6 @@
               marginLeft += 2;
             }
           }
-
           if (states.checked) {
             if (!states.firstTab) {
               if (states.barTop || states.barBottom) {
@@ -792,7 +776,6 @@
                 marginTop = -4;
               }
             }
-
             if (!states.lastTab) {
               if (states.barTop || states.barBottom) {
                 marginRight = -4;
@@ -801,7 +784,6 @@
               }
             }
           }
-
           return {
             zIndex: states.checked ? 10 : 5,
             decorator: decorator,
@@ -830,12 +812,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SCROLLBAR
       ---------------------------------------------------------------------------
       */
+
       scrollbar: {},
       "scrollbar/slider": {
         alias: "slider",
@@ -861,7 +843,6 @@
         include: "button",
         style: function style(states) {
           var padding;
-
           if (states.up || states.down) {
             if (states.pressed || states.abandoned || states.checked) {
               padding = [5, 2, 3, 4];
@@ -875,9 +856,7 @@
               padding = [3, 4];
             }
           }
-
           var icon = "decoration/arrows/";
-
           if (states.left) {
             icon += "left.gif";
           } else if (states.right) {
@@ -887,7 +866,6 @@
           } else {
             icon += "down.gif";
           }
-
           return {
             padding: padding,
             icon: icon
@@ -896,16 +874,15 @@
       },
       "scrollbar/button-begin": "scrollbar/button",
       "scrollbar/button-end": "scrollbar/button",
-
       /*
       ---------------------------------------------------------------------------
         SLIDER
       ---------------------------------------------------------------------------
       */
+
       slider: {
         style: function style(states) {
           var backgroundColor;
-
           if (states.disabled) {
             backgroundColor = "background-disabled";
           } else if (states.invalid) {
@@ -915,7 +892,6 @@
           } else {
             backgroundColor = "background-field";
           }
-
           return {
             backgroundColor: backgroundColor,
             decorator: states.focused ? "focused-inset" : "inset"
@@ -932,12 +908,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREE
       ---------------------------------------------------------------------------
       */
+
       "tree-folder/open": {
         style: function style(states) {
           return {
@@ -990,12 +966,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         TREEVIRTUAL
       ---------------------------------------------------------------------------
       */
+
       treevirtual: {
         style: function style(states) {
           return {
@@ -1112,12 +1088,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         WINDOW
       ---------------------------------------------------------------------------
       */
+
       window: {
         style: function style(states) {
           return {
@@ -1205,12 +1181,12 @@
         }
       },
       "window/statusbar-text": "label",
-
       /*
       ---------------------------------------------------------------------------
         RESIZER
       ---------------------------------------------------------------------------
       */
+
       resizer: {
         style: function style(states) {
           return {
@@ -1218,12 +1194,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SPLITPANE
       ---------------------------------------------------------------------------
       */
+
       splitpane: {},
       "splitpane/splitter": {
         style: function style(states) {
@@ -1248,17 +1224,16 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTBOX
       ---------------------------------------------------------------------------
       */
+
       selectbox: {
         include: "button-frame",
         style: function style(states) {
           var background = "button";
-
           if (states.invalid && !states.disabled) {
             background = "background-invalid";
           } else if (states.abandoned) {
@@ -1268,7 +1243,6 @@
           } else if (!states.abandoned && !states.hovered && states.checked) {
             background = "button-checked";
           }
-
           return {
             backgroundColor: background
           };
@@ -1287,12 +1261,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
       ---------------------------------------------------------------------------
       */
+
       datechooser: {
         style: function style(states) {
           return {
@@ -1324,7 +1298,6 @@
             width: 17,
             show: "icon"
           };
-
           if (states.lastYear) {
             result.icon = "decoration/arrows/rewind.gif";
           } else if (states.lastMonth) {
@@ -1334,7 +1307,6 @@
           } else if (states.nextMonth) {
             result.icon = "decoration/arrows/right.gif";
           }
-
           if (states.pressed || states.checked || states.abandoned) {
             result.decorator = "inset-thin";
           } else if (states.hovered) {
@@ -1342,7 +1314,6 @@
           } else {
             result.decorator = undefined;
           }
-
           if (states.pressed || states.checked || states.abandoned) {
             result.padding = [2, 0, 0, 2];
           } else if (states.hovered) {
@@ -1350,7 +1321,6 @@
           } else {
             result.padding = 2;
           }
-
           return result;
         }
       },
@@ -1402,16 +1372,15 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COMBOBOX
       ---------------------------------------------------------------------------
       */
+
       combobox: {
         style: function style(states) {
           var backgroundColor;
-
           if (states.disabled) {
             backgroundColor = "background-disabled";
           } else if (states.invalid) {
@@ -1421,7 +1390,6 @@
           } else {
             backgroundColor = "background-field";
           }
-
           return {
             decorator: states.focused ? "focused-inset" : "inset",
             textColor: states.disabled ? "text-disabled" : undefined,
@@ -1451,12 +1419,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU
       ---------------------------------------------------------------------------
       */
+
       menu: {
         style: function style(states) {
           var result = {
@@ -1469,16 +1437,13 @@
             padding: 1,
             placementModeY: states.submenu || states.contextmenu ? "best-fit" : "keep-align"
           };
-
           if (states.submenu) {
             result.position = "right-top";
             result.offset = [-2, -3];
           }
-
           if (states.contextmenu) {
             result.offset = 4;
           }
-
           return result;
         }
       },
@@ -1585,12 +1550,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         MENU BAR
       ---------------------------------------------------------------------------
       */
+
       menubar: {
         style: function style(states) {
           return {
@@ -1609,12 +1574,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COLOR SELECTOR
       ---------------------------------------------------------------------------
       */
+
       colorselector: "widget",
       "colorselector/control-bar": "widget",
       "colorselector/visual-pane": "groupbox",
@@ -1697,12 +1662,12 @@
       "colorselector/hue-saturation-handle": "widget",
       "colorselector/brightness-pane": "widget",
       "colorselector/brightness-handle": "widget",
-
       /*
       ---------------------------------------------------------------------------
         TABLE
       ---------------------------------------------------------------------------
       */
+
       table: "widget",
       "table/statusbar": {
         style: function style(states) {
@@ -1717,7 +1682,6 @@
         alias: "button",
         style: function style(states) {
           var border, padding;
-
           if (states.pressed || states.checked || states.abandoned) {
             border = "inset-thin";
             padding = [3, 2, 1, 4];
@@ -1728,7 +1692,6 @@
             border = undefined;
             padding = [3, 4];
           }
-
           return {
             decorator: border,
             padding: padding,
@@ -1848,12 +1811,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         COLOR POPUP
       ---------------------------------------------------------------------------
       */
+
       colorpopup: {
         alias: "popup",
         include: "popup",
@@ -1919,7 +1882,6 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         VIRTUAL WIDGETS
@@ -1985,7 +1947,6 @@
       "cell-atom": "cell",
       "cell-date": "cell",
       "cell-html": "cell",
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSBAR
@@ -2009,12 +1970,12 @@
           };
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLICATION
       ---------------------------------------------------------------------------
       */
+
       "app-header": {
         style: function style(states) {
           return {
@@ -2034,12 +1995,12 @@
           };
         }
       },
-
       /*
         --------------------
         VIRTUAL SELECTBOX 
         --------------------
       */
+
       "list-search-highlight": {
         style: function style(states) {
           return {
@@ -2054,4 +2015,4 @@
   qx.theme.classic.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1685978130505
+//# sourceMappingURL=Appearance.js.map?dt=1691935427710

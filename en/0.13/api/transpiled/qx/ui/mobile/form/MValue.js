@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,7 +44,6 @@
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {var?null} The value of the widget.
      */
@@ -53,21 +51,19 @@
       if (value) {
         this.setValue(value);
       }
-
       if (this._getTagName() == "input" || this._getTagName() == "textarea") {
         qx.event.Registration.addListener(this.getContentElement(), "change", this._onChangeContent, this);
         qx.event.Registration.addListener(this.getContentElement(), "input", this._onInput, this);
       }
-
       this.addListener("focus", this._onFocus, this);
       this.addListener("blur", this._onBlur, this);
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * The event is fired on every keystroke modifying the value of the field.
@@ -76,7 +72,6 @@
        * current value of the text field.
        */
       input: "qx.event.type.Data",
-
       /**
        * The event is fired each time the text field looses focus and the
        * text field values has changed.
@@ -90,12 +85,12 @@
        */
       changeValue: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Whether the {@link #changeValue} event should be fired on every key
@@ -107,17 +102,16 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_401_0: null,
       __P_401_1: null,
       __P_401_2: null,
-
       /**
        * Converts the incoming value.
        *
@@ -133,21 +127,18 @@
           return value || "";
         }
       },
-
       /**
        * Handler for <code>focus</code> event.
        */
       _onFocus: function _onFocus() {
         this.__P_401_2 = true;
       },
-
       /**
        * Handler for <code>blur</code> event.
        */
       _onBlur: function _onBlur() {
         this.__P_401_2 = false;
       },
-
       /**
        * Returns whether this widget has focus or not.
        * @return {Boolean} <code>true</code> or <code>false</code>
@@ -155,7 +146,6 @@
       hasFocus: function hasFocus() {
         return this.__P_401_2;
       },
-
       /**
        * Sets the value.
        *
@@ -163,18 +153,15 @@
        */
       setValue: function setValue(value) {
         value = this._convertValue(value);
-
         if (this.__P_401_0 != value) {
           if (this._setValue) {
             this._setValue(value);
           } else {
             this._setAttribute("value", value);
           }
-
           this.__P_401_3(value);
         }
       },
-
       /**
        * Returns the set value.
        *
@@ -183,14 +170,12 @@
       getValue: function getValue() {
         return this._convertValue(this._getValue ? this._getValue() : this._getAttribute("value"));
       },
-
       /**
        * Resets the value.
        */
       resetValue: function resetValue() {
         this.setValue(null);
       },
-
       /**
        * Event handler. Called when the {@link #changeValue} event occurs.
        *
@@ -199,7 +184,6 @@
       _onChangeContent: function _onChangeContent(evt) {
         this.__P_401_3(this._convertValue(evt.getData()));
       },
-
       /**
        * Event handler. Called when the {@link #input} event occurs.
        *
@@ -208,7 +192,6 @@
       _onInput: function _onInput(evt) {
         var data = evt.getData();
         this.fireDataEvent("input", data, true);
-
         if (this.getLiveUpdate()) {
           if (this._setValue) {
             this._setValue(data);
@@ -217,21 +200,18 @@
           }
         }
       },
-
       /**
        * Returns the caret position of this widget.
        * @return {Integer} the caret position.
        */
       _getCaretPosition: function _getCaretPosition() {
         var val = this.getContentElement().value;
-
         if (val && this._getAttribute("type") !== "number") {
           return val.slice(0, this.getContentElement().selectionStart).length;
         } else {
           return val.length;
         }
       },
-
       /**
        * Sets the caret position on this widget.
        * @param position {Integer} the caret position.
@@ -243,7 +223,6 @@
           }
         }
       },
-
       /**
        * Fires the {@link #changeValue} event.
        *
@@ -264,4 +243,4 @@
   qx.ui.mobile.form.MValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MValue.js.map?dt=1685978143681
+//# sourceMappingURL=MValue.js.map?dt=1691935440082

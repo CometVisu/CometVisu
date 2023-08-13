@@ -174,7 +174,8 @@ module.exports = function(config) {
     qooxdooFramework: {
       testSources: true,
       codePath: 'source/',
-      scriptFile: 'cv/index.js'
+      scriptFile: 'cv/index.js',
+      dbFile: 'db.json'
     }
   });
 };

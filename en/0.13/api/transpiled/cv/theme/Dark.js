@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Dark.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -59,4 +58,4 @@
   cv.theme.Dark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dark.js.map?dt=1685978104355
+//# sourceMappingURL=Dark.js.map?dt=1691935403658

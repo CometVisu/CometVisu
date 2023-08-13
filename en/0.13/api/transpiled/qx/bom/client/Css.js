@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,7 +59,6 @@
   qx.Bootstrap.define("qx.bom.client.Css", {
     statics: {
       __P_121_0: null,
-
       /**
        * Checks what box model is used in the current environment.
        * @return {String} It either returns "content" or "border".
@@ -70,7 +68,6 @@
         var content = qx.bom.client.Engine.getName() !== "mshtml" || !qx.bom.client.Browser.getQuirksMode();
         return content ? "content" : "border";
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>textOverflow</code> style property.
@@ -82,7 +79,6 @@
       getTextOverflow: function getTextOverflow() {
         return qx.bom.Style.getPropertyName("textOverflow");
       },
-
       /**
        * Checks if a placeholder could be used.
        * @return {Boolean} <code>true</code>, if it could be used.
@@ -92,11 +88,9 @@
         if (qx.core.Environment.get("engine.name") === "mshtml") {
           return false;
         }
-
         var i = document.createElement("input");
         return "placeholder" in i;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>appearance</code> style property.
@@ -108,7 +102,6 @@
       getAppearance: function getAppearance() {
         return qx.bom.Style.getPropertyName("appearance");
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>borderRadius</code> style property.
@@ -120,7 +113,6 @@
       getBorderRadius: function getBorderRadius() {
         return qx.bom.Style.getPropertyName("borderRadius");
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>boxShadow</code> style property.
@@ -132,7 +124,6 @@
       getBoxShadow: function getBoxShadow() {
         return qx.bom.Style.getPropertyName("boxShadow");
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>borderImage</code> style property.
@@ -144,7 +135,6 @@
       getBorderImage: function getBorderImage() {
         return qx.bom.Style.getPropertyName("borderImage");
       },
-
       /**
        * Returns the type of syntax this client supports for its CSS border-image
        * implementation. Some browsers do not support the "fill" keyword defined
@@ -158,33 +148,28 @@
        */
       getBorderImageSyntax: function getBorderImageSyntax() {
         var styleName = qx.bom.client.Css.getBorderImage();
-
         if (!styleName) {
           return null;
         }
-
         var el = document.createElement("div");
-
         if (styleName === "borderImage") {
           // unprefixed implementation: check individual properties
           el.style[styleName] = 'url("foo.png") 4 4 4 4 fill stretch';
-
           if (el.style.borderImageSource.indexOf("foo.png") >= 0 && el.style.borderImageSlice.indexOf("4 fill") >= 0 && el.style.borderImageRepeat.indexOf("stretch") >= 0) {
             return true;
           }
         } else {
           // prefixed implementation, assume no support for "fill"
-          el.style[styleName] = 'url("foo.png") 4 4 4 4 stretch'; // serialized value is unreliable, so just a simple check
-
+          el.style[styleName] = 'url("foo.png") 4 4 4 4 stretch';
+          // serialized value is unreliable, so just a simple check
           if (el.style[styleName].indexOf("foo.png") >= 0) {
             return false;
           }
-        } // unable to determine syntax
+        }
 
-
+        // unable to determine syntax
         return null;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>userSelect</code> style property.
@@ -196,7 +181,6 @@
       getUserSelect: function getUserSelect() {
         return qx.bom.Style.getPropertyName("userSelect");
       },
-
       /**
        * Returns the (possibly vendor-prefixed) value for the
        * <code>userSelect</code> style property that disables selection. For Gecko,
@@ -209,16 +193,13 @@
        */
       getUserSelectNone: function getUserSelectNone() {
         var styleProperty = qx.bom.client.Css.getUserSelect();
-
         if (styleProperty) {
           var el = document.createElement("span");
           el.style[styleProperty] = "-moz-none";
           return el.style[styleProperty] === "-moz-none" ? "-moz-none" : "none";
         }
-
         return null;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>userModify</code> style property.
@@ -230,7 +211,6 @@
       getUserModify: function getUserModify() {
         return qx.bom.Style.getPropertyName("userModify");
       },
-
       /**
        * Returns the vendor-specific name of the <code>float</code> style property
        *
@@ -243,7 +223,6 @@
         var style = document.documentElement.style;
         return style.cssFloat !== undefined ? "cssFloat" : style.styleFloat !== undefined ? "styleFloat" : null;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name this client uses for
        * <code>linear-gradient</code>.
@@ -258,26 +237,22 @@
         var value = "linear-gradient(0deg, #fff, #000)";
         var el = document.createElement("div");
         var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value);
-
         if (!style) {
           //try old WebKit syntax (versions 528 - 534.16)
           value = "-webkit-gradient(linear,0% 0%,100% 100%,from(white), to(red))";
           var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value, false);
-
           if (style) {
             qx.bom.client.Css.__P_121_0 = true;
           }
-        } // not supported
+        }
 
-
+        // not supported
         if (!style) {
           return null;
         }
-
         var match = /(.*?)\(/.exec(style);
         return match ? match[1] : null;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name this client uses for
        * <code>radial-gradient</code>.
@@ -290,15 +265,12 @@
         var value = "radial-gradient(0px 0px, cover, red 50%, blue 100%)";
         var el = document.createElement("div");
         var style = qx.bom.Style.getAppliedStyle(el, "backgroundImage", value);
-
         if (!style) {
           return null;
         }
-
         var match = /(.*?)\(/.exec(style);
         return match ? match[1] : null;
       },
-
       /**
        * Checks if **only** the old WebKit (version < 534.16) syntax for
        * linear gradients is supported, e.g.
@@ -311,10 +283,8 @@
         if (qx.bom.client.Css.__P_121_0 === null) {
           qx.bom.client.Css.getLinearGradient();
         }
-
         return qx.bom.client.Css.__P_121_0;
       },
-
       /**
        * Checks if rgba colors can be used:
        * http://www.w3.org/TR/2010/PR-css3-color-20101028/#rgba-color
@@ -324,25 +294,21 @@
        */
       getRgba: function getRgba() {
         var el;
-
         try {
           el = document.createElement("div");
         } catch (ex) {
           el = document.createElement();
-        } // try catch for IE
+        }
 
-
+        // try catch for IE
         try {
           el.style["color"] = "rgba(1, 2, 3, 0.5)";
-
           if (el.style["color"].indexOf("rgba") != -1) {
             return true;
           }
         } catch (ex) {}
-
         return false;
       },
-
       /**
        * Returns the (possibly vendor-prefixed) name the browser uses for the
        * <code>boxSizing</code> style property.
@@ -354,7 +320,6 @@
       getBoxSizing: function getBoxSizing() {
         return qx.bom.Style.getPropertyName("boxSizing");
       },
-
       /**
        * Returns the browser-specific name used for the <code>display</code> style
        * property's <code>inline-block</code> value.
@@ -365,20 +330,15 @@
       getInlineBlock: function getInlineBlock() {
         var el = document.createElement("span");
         el.style.display = "inline-block";
-
         if (el.style.display == "inline-block") {
           return "inline-block";
         }
-
         el.style.display = "-moz-inline-box";
-
         if (el.style.display !== "-moz-inline-box") {
           return "-moz-inline-box";
         }
-
         return null;
       },
-
       /**
        * Checks if CSS opacity is supported
        *
@@ -388,7 +348,6 @@
       getOpacity: function getOpacity() {
         return typeof document.documentElement.style.opacity == "string";
       },
-
       /**
        * Checks if CSS texShadow is supported
        *
@@ -398,7 +357,6 @@
       getTextShadow: function getTextShadow() {
         return !!qx.bom.Style.getPropertyName("textShadow");
       },
-
       /**
        * Checks if the Alpha Image Loader must be used to display transparent PNGs.
        *
@@ -407,7 +365,6 @@
       getAlphaImageLoaderNeeded: function getAlphaImageLoaderNeeded() {
         return qx.bom.client.Engine.getName() == "mshtml" && qx.bom.client.Browser.getDocumentMode() < 9;
       },
-
       /**
        * Checks if pointer events are available.
        *
@@ -415,22 +372,20 @@
        * @return {Boolean} <code>true</code> if pointer events are supported.
        */
       getPointerEvents: function getPointerEvents() {
-        var el = document.documentElement; // Check if browser reports that pointerEvents is a known style property
-
+        var el = document.documentElement;
+        // Check if browser reports that pointerEvents is a known style property
         if ("pointerEvents" in el.style) {
           // The property is defined in Opera and IE9 but setting it has no effect
           var initial = el.style.pointerEvents;
-          el.style.pointerEvents = "auto"; // don't assume support if a nonsensical value isn't ignored
-
+          el.style.pointerEvents = "auto";
+          // don't assume support if a nonsensical value isn't ignored
           el.style.pointerEvents = "foo";
           var supported = el.style.pointerEvents == "auto";
           el.style.pointerEvents = initial;
           return supported;
         }
-
         return false;
       },
-
       /**
        * Returns which Flexbox syntax is supported by the browser.
        * <code>display: box;</code> old 2009 version of Flexbox.
@@ -452,7 +407,6 @@
           value: "-webkit-flex",
           syntax: "flex"
         }];
-
         for (var i = 0; i < flexSyntax.length; i++) {
           // old IEs will throw an "Invalid argument" exception here
           try {
@@ -460,13 +414,11 @@
           } catch (ex) {
             return null;
           }
-
           if (detector.style.display === flexSyntax[i].value) {
             detectedSyntax = flexSyntax[i].syntax;
             break;
           }
         }
-
         detector = null;
         return detectedSyntax;
       }
@@ -500,4 +452,4 @@
   qx.bom.client.Css.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Css.js.map?dt=1685978108818
+//# sourceMappingURL=Css.js.map?dt=1691935407725

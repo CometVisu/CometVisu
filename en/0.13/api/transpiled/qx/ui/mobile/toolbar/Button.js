@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,12 +35,12 @@
    */
   qx.Class.define("qx.ui.mobile.toolbar.Button", {
     extend: qx.ui.mobile.form.Button,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
@@ -53,4 +52,4 @@
   qx.ui.mobile.toolbar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1685978145054
+//# sourceMappingURL=Button.js.map?dt=1691935441415

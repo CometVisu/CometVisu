@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* IconHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -48,7 +47,6 @@
   qx.Class.define('cv.IconHandler', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
      ******************************************************
      CONSTRUCTOR
@@ -57,7 +55,6 @@
     construct: function construct() {
       this.__P_538_0 = cv.IconConfig.DB;
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -71,7 +68,6 @@
        * @property {string} styling
        * @property {(string|HTMLCanvasElement|SVGElement)} icon
        */
-
       /**
        * @typedef iconDB
        * Hierachy:      name,           type,                   flavour,                color,   URI
@@ -84,7 +80,6 @@
        * @type {iconDB}
        */
       __P_538_0: null,
-
       /**
        * Insert or overwrite one or many icons into the database. The parameter
        * might be a full hash of icon definitions or a single one consisting out of
@@ -106,23 +101,18 @@
         var styling = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : undefined;
         var dynamic = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : '';
         var source = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : undefined;
-
         if (!this.__P_538_0[name]) {
           this.__P_538_0[name] = {};
         }
-
         if (source) {
           this.__P_538_0[name].source = source;
         }
-
         if (!this.__P_538_0[name][type]) {
           this.__P_538_0[name][type] = {};
         }
-
         if (!this.__P_538_0[name][type][flavour]) {
           this.__P_538_0[name][type][flavour] = {};
         }
-
         if (dynamic && window[dynamic]) {
           this.__P_538_0[name][type][flavour][color] = window[dynamic](uri);
         } else if (dynamic && cv.util.IconTools[dynamic]) {
@@ -134,7 +124,6 @@
           };
         }
       },
-
       /**
        * Get the icon information for a name.
        *
@@ -148,49 +137,40 @@
         var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '*';
         var flavour = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '*';
         var color = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '*';
-
         if (!this.__P_538_0[name]) {
           return function (a, b, c, asText) {
             return asText ? '[unknown]' : document.createTextNode('[unknown]');
           };
         }
-
         if (!this.__P_538_0[name][type]) {
           type = '*'; // undefined -> use default
         }
 
         var all;
-
         if (typeof this.__P_538_0[name][type] === 'string') {
           type = this.__P_538_0[name][type]; // redirect link
-
           if (type.split('/').length > 1) {
             all = type.split('/');
             type = all.shift();
-
             if (flavour === undefined) {
               flavour = all.shift();
             }
           }
         }
-
         if (!this.__P_538_0[name][type][flavour]) {
           flavour = '*'; // undefined -> use default
         }
 
         if (typeof this.__P_538_0[name][type][flavour] === 'string') {
           flavour = this.__P_538_0[name][type][flavour]; // redirect link
-
           if (flavour.split('/').length > 1) {
             all = flavour.split('/');
             flavour = all.shift();
-
             if (!color) {
               color = all.shift();
             }
           }
         }
-
         if (!this.__P_538_0[name][type][flavour][color]) {
           if (/\.svg(#.+)?$/.test(this.__P_538_0[name][type][flavour]['*'].uri)) {
             // SVGs can be dynamically recolored, so create new entry for this color
@@ -198,30 +178,23 @@
           } else {
             color = '*'; // undefined -> use default
           }
-        } // handle a generic mapping function
-
-
+        }
+        // handle a generic mapping function
         if (typeof this.__P_538_0[name][type][flavour]['*'] === 'function') {
           return this.__P_538_0[name][type][flavour]['*'];
         }
-
         if (typeof this.__P_538_0[name][type][flavour][color] === 'string') {
           color = this.__P_538_0[name][type][flavour][color];
         } // redirect link
-
-
         return this.__P_538_0[name][type][flavour][color];
       },
       getURI: function getURI() {
         var i = this.get.apply(this, arguments);
-
         if (i) {
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
         }
-
         return '';
       },
-
       /**
        * Get the icon - either as DOM element (`asText = false`) or as string
        * (`asText = true`).
@@ -242,52 +215,41 @@
         var iconclass = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '';
         var asText = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
         var i = this.get(name, type, flavour, color);
-
         if (i) {
           if (i.icon && !styling && typeof i !== 'function' && !asText) {
             return i.icon;
-          } // fetch and cache image
+          }
 
-
+          // fetch and cache image
           if (!styling) {
             styling = i.styling;
           }
-
           var classes = 'icon';
-
           if (iconclass) {
             classes = classes + ' custom_' + iconclass;
           }
-
           if (typeof i === 'function') {
             if (asText) {
               return i(color, styling, classes, true);
             }
-
             i.icon = i(color, styling, classes, false);
           } else {
             if (color) {
               styling += ';color:' + color;
             }
-
             var icon = /\.svg#.*?$/.test(i.uri) // SVG with fragment identifier?
             ? '<svg class="' + classes + '" style="' + (styling ? styling : '') + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"></use></svg>' : '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '" style="' + (styling ? styling : '') + '"/>';
-
             if (asText) {
               return icon;
             }
-
             var template = document.createElement('template');
             template.innerHTML = icon;
             i.icon = template.content.firstChild;
           }
-
           return i.icon;
         }
-
         return asText ? '' : null;
       },
-
       /**
        * Provide a value that can be used by cv.ui.manager.basic.Image to display the icon on an qooxdoo widget.
        * @param {string} name
@@ -296,33 +258,25 @@
        */
       getIconSource: function getIconSource(name, classes) {
         var i = this.get(name);
-
         if (i) {
           if (!classes) {
             classes = 'icon';
           }
-
           if (typeof i === 'function') {
             var res = i(undefined, undefined, classes, true);
-
             if (res.startsWith('<canvas')) {
               // no support for canvas as icon preview
               return '';
             }
-
             return res;
           }
-
           if (/\.svg#.*?$/.test(i.uri)) {
             return '<svg class="' + classes + '"><use href="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"></use></svg>';
           }
-
           return qx.util.ResourceManager.getInstance().toUri(i.uri);
         }
-
         return '';
       },
-
       /**
        * Fill the icons in the array.
        * @param array
@@ -330,7 +284,6 @@
       fillIcons: function fillIcons(array) {
         array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
       },
-
       /**
        * List all known icons
        *
@@ -340,7 +293,6 @@
       list: function list() {
         return Object.keys(this.__P_538_0);
       },
-
       /**
        * Return icon database for debuging purposes - use ONLY for debugging as it's
        * circumventing the data hiding and exposes a writeable reference to the
@@ -357,4 +309,4 @@
   cv.IconHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconHandler.js.map?dt=1685978158129
+//# sourceMappingURL=IconHandler.js.map?dt=1691935453752

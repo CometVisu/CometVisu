@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,13 +41,11 @@
    */
   qx.Class.define("qx.html.Text", {
     extend: qx.html.Node,
-
     /*
      * ****************************************************************************
      * CONSTRUCTOR
      * ****************************************************************************
      */
-
     /**
      * Creates a new Text
      *
@@ -57,68 +54,58 @@
      */
     construct: function construct(text) {
       qx.html.Node.constructor.call(this, "#text");
-
       if (text) {
         this.__P_244_0 = text;
       }
     },
-
     /*
      * ****************************************************************************
      * MEMBERS
      * ****************************************************************************
      */
+
     members: {
       __P_244_0: null,
-
       /*
        * @Override
        */
       _createDomElement: function _createDomElement() {
         return window.document.createTextNode(this.__P_244_0 || "");
       },
-
       /*
        * @Override
        */
       isRoot: function isRoot() {
         return false;
       },
-
       /*
        * @Override
        */
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         qx.html.Text.superclass.prototype._copyData.call(this, fromMarkup, propertiesFromDom);
-
         var elem = this._domNode;
         elem.nodeValue = this.__P_244_0 || "";
       },
-
       /*
        * @Override
        */
       _useNode: function _useNode(domNode) {
         this.setText(domNode.nodeValue);
       },
-
       /*
        * @Override
        */
       _useNodeImpl: function _useNodeImpl(domNode) {
         this.setText(domNode.nodeValue);
       },
-
       /**
        * @Override
        */
       _syncData: function _syncData() {
         qx.html.Text.superclass.prototype._syncData.call(this);
-
         var elem = this._domNode;
         elem.nodeValue = this.__P_244_0 || "";
       },
-
       /*
        * @Override
        */
@@ -127,14 +114,12 @@
           writer(this.__P_244_0);
         }
       },
-
       /**
        * @Override
        */
       useMarkup: function useMarkup(html) {
         throw new Error("Could not overwrite existing text node!");
       },
-
       /**
        * Sets the text value
        *
@@ -143,16 +128,13 @@
        */
       setText: function setText(value, direct) {
         this.__P_244_0 = value;
-
         if (direct && this._domNode) {
           this._domNode.nodeValue = value;
         } else {
           qx.html.Element._modified[this.$$hash] = this;
-
           qx.html.Element._scheduleFlush("element");
         }
       },
-
       /**
        * Returns the value of the node
        *
@@ -162,7 +144,6 @@
         return this.__P_244_0;
       }
     },
-
     /*
      * ****************************************************************************
      * DEFER
@@ -171,7 +152,6 @@
     defer: function defer(statics) {
       statics.__P_244_1 = new qx.util.DeferredCall(statics.flush, statics);
     },
-
     /*
      * ****************************************************************************
      * DESTRUCT
@@ -182,11 +162,10 @@
         delete qx.html.Element._modified[this.toHashCode()];
         delete qx.html.Element._scroll[this.toHashCode()];
       }
-
       this.__P_244_2 = this.__P_244_3 = this.__P_244_4 = this.__P_244_5 = this.__P_244_6 = this.__P_244_7 = this.__P_244_8 = null;
     }
   });
   qx.html.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1685978124533
+//# sourceMappingURL=Text.js.map?dt=1691935422097

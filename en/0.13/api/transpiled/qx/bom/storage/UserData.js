@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,7 +48,6 @@
       __P_150_1: null,
       // global id used as key for the storage
       __P_150_2: 0,
-
       /**
        * Returns an instance of {@link qx.bom.storage.UserData} used to store
        * data persistent.
@@ -59,10 +57,8 @@
         if (this.__P_150_0) {
           return this.__P_150_0;
         }
-
         return this.__P_150_0 = new qx.bom.storage.UserData("local");
       },
-
       /**
        * Returns an instance of {@link qx.bom.storage.UserData} used to store
        * data persistent.
@@ -72,11 +68,9 @@
         if (this.__P_150_1) {
           return this.__P_150_1;
         }
-
         return this.__P_150_1 = new qx.bom.storage.UserData("session");
       }
     },
-
     /**
      * Create a new instance. Usually, you should take the static
      * accessors to get your instance.
@@ -88,24 +82,22 @@
       this.__P_150_3 = document.createElement("div");
       this.__P_150_3.style["display"] = "none";
       document.getElementsByTagName("head")[0].appendChild(this.__P_150_3);
-
       this.__P_150_3.addBehavior("#default#userdata");
+      this.__P_150_4 = storeName;
+      // load the inital data which might be stored
+      this.__P_150_3.load(this.__P_150_4);
 
-      this.__P_150_4 = storeName; // load the inital data which might be stored
-
-      this.__P_150_3.load(this.__P_150_4); // set up the internal reference maps
-
-
+      // set up the internal reference maps
       this.__P_150_5 = {};
-      this.__P_150_6 = {}; // initialize
+      this.__P_150_6 = {};
 
+      // initialize
       var value = this.__P_150_3.getAttribute("qx" + qx.bom.storage.UserData.__P_150_2);
-
       while (value != undefined) {
-        value = qx.lang.Json.parse(value); // save the data in the internal storage
-
-        this.__P_150_5[value.key] = value.value; // save the reference
-
+        value = qx.lang.Json.parse(value);
+        // save the data in the internal storage
+        this.__P_150_5[value.key] = value.value;
+        // save the reference
         this.__P_150_6[value.key] = "qx" + qx.bom.storage.UserData.__P_150_2;
         qx.bom.storage.UserData.__P_150_2++;
         value = this.__P_150_3.getAttribute("qx" + qx.bom.storage.UserData.__P_150_2);
@@ -118,7 +110,6 @@
       __P_150_5: null,
       // reference store which holds the key and the key used to store
       __P_150_6: null,
-
       /**
        * Returns the map used to keep a in memory copy of the stored data.
        * @return {Map} The stored data.
@@ -127,7 +118,6 @@
       getStorage: function getStorage() {
         return this.__P_150_5;
       },
-
       /**
        * Returns the amount of key-value pairs stored.
        * @return {Integer} The length of the storage.
@@ -135,7 +125,6 @@
       getLength: function getLength() {
         return Object.keys(this.__P_150_5).length;
       },
-
       /**
        * Store an item in the storage.
        *
@@ -145,27 +134,25 @@
       setItem: function setItem(key, value) {
         // override case
         if (this.__P_150_6[key]) {
-          var storageKey = this.__P_150_6[key]; // new case
+          var storageKey = this.__P_150_6[key];
+          // new case
         } else {
           var storageKey = "qx" + qx.bom.storage.UserData.__P_150_2;
           qx.bom.storage.UserData.__P_150_2++;
-        } // build and save the data used to store both, key and value
+        }
 
-
+        // build and save the data used to store both, key and value
         var storageValue = qx.lang.Json.stringify({
           key: key,
           value: value
         });
-
         this.__P_150_3.setAttribute(storageKey, storageValue);
+        this.__P_150_3.save(this.__P_150_4);
 
-        this.__P_150_3.save(this.__P_150_4); // also update the internal mappings
-
-
+        // also update the internal mappings
         this.__P_150_5[key] = value;
         this.__P_150_6[key] = storageKey;
       },
-
       /**
        * Returns the stored item.
        *
@@ -175,7 +162,6 @@
       getItem: function getItem(key) {
         return this.__P_150_5[key] || null;
       },
-
       /**
        * Removes an item form the storage.
        * @param key {String} The identifier.
@@ -183,38 +169,33 @@
       removeItem: function removeItem(key) {
         // check if the item is available
         var storageName = this.__P_150_6[key];
-
         if (storageName == undefined) {
           return;
-        } // remove the item
+        }
 
+        // remove the item
+        this.__P_150_3.removeAttribute(storageName);
+        // decrease the id because we removed one item
+        qx.bom.storage.UserData.__P_150_2--;
 
-        this.__P_150_3.removeAttribute(storageName); // decrease the id because we removed one item
-
-
-        qx.bom.storage.UserData.__P_150_2--; // update the internal maps
-
+        // update the internal maps
         delete this.__P_150_5[key];
-        delete this.__P_150_6[key]; // check if we have deleted the last item
+        delete this.__P_150_6[key];
 
+        // check if we have deleted the last item
         var lastStoreName = "qx" + qx.bom.storage.UserData.__P_150_2;
-
         if (this.__P_150_3.getAttribute(lastStoreName)) {
           // if not, move the last item to the deleted spot
           var lastItem = this.__P_150_3.getAttribute("qx" + qx.bom.storage.UserData.__P_150_2);
-
           this.__P_150_3.removeAttribute(lastStoreName);
+          this.__P_150_3.setAttribute(storageName, lastItem);
 
-          this.__P_150_3.setAttribute(storageName, lastItem); // update the reference map
-
-
+          // update the reference map
           var lastKey = qx.lang.Json.parse(lastItem).key;
           this.__P_150_6[lastKey] = storageName;
         }
-
         this.__P_150_3.save(this.__P_150_4);
       },
-
       /**
        * Deletes every stored item in the storage.
        */
@@ -223,14 +204,11 @@
         for (var key in this.__P_150_6) {
           this.__P_150_3.removeAttribute(this.__P_150_6[key]);
         }
-
-        this.__P_150_3.save(this.__P_150_4); // reset the internal maps
-
-
+        this.__P_150_3.save(this.__P_150_4);
+        // reset the internal maps
         this.__P_150_5 = {};
         this.__P_150_6 = {};
       },
-
       /**
        * Returns the named key at the given index.
        * @param index {Integer} The index in the storage.
@@ -239,7 +217,6 @@
       getKey: function getKey(index) {
         return Object.keys(this.__P_150_5)[index];
       },
-
       /**
        * Helper to access every stored item.
        *
@@ -250,7 +227,6 @@
        */
       forEach: function forEach(callback, scope) {
         var length = this.getLength();
-
         for (var i = 0; i < length; i++) {
           var key = this.getKey(i);
           callback.call(scope, key, this.getItem(key));
@@ -261,4 +237,4 @@
   qx.bom.storage.UserData.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UserData.js.map?dt=1685978111882
+//# sourceMappingURL=UserData.js.map?dt=1691935410314

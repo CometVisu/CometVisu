@@ -46,7 +46,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -79,13 +78,11 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       var cr = qx.ui.table.cellrenderer.Abstract;
-
       if (!cr.__P_437_0) {
         cr.__P_437_0 = qx.ui.table.cellrenderer.Abstract;
+        this._createStyleSheet();
 
-        this._createStyleSheet(); // add dynamic theme listener
-
-
+        // add dynamic theme listener
         {
           qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
         }
@@ -110,12 +107,10 @@
       _onChangeTheme: qx.core.Environment.select("qx.dyntheme", {
         "true": function _true() {
           qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_437_0.stylesheet);
-
           this._createStyleSheet();
         },
         "false": null
       }),
-
       /**
        * the sum of the horizontal insets. This is needed to compute the box model
        * independent size
@@ -128,7 +123,6 @@
        * independent size
        */
       _insetY: 0,
-
       /**
        * Creates the style sheet used for the table cells.
        */
@@ -145,14 +139,11 @@
           textOverflow: "ellipsis",
           userSelect: "none"
         }) + "} " + ".qooxdoo-table-cell-right { text-align:right } " + ".qooxdoo-table-cell-italic { font-style:italic} " + ".qooxdoo-table-cell-bold { font-weight:bold } ";
-
         if (qx.core.Environment.get("css.boxsizing")) {
           stylesheet += ".qooxdoo-table-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
         }
-
         qx.ui.table.cellrenderer.Abstract.__P_437_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
       },
-
       /**
        * Get a string of the cell element's HTML classes.
        *
@@ -164,7 +155,6 @@
       _getCellClass: function _getCellClass(cellInfo) {
         return "qooxdoo-table-cell";
       },
-
       /**
        * Returns the CSS styles that should be applied to the main div of this
        * cell.
@@ -178,7 +168,6 @@
       _getCellStyle: function _getCellStyle(cellInfo) {
         return cellInfo.style || "";
       },
-
       /**
        * Retrieve any extra attributes the cell renderer wants applied to this
        * cell.
@@ -194,7 +183,6 @@
         var readOnly = cellInfo.editable !== null && cellInfo.editable !== undefined ? !cellInfo.editable : true;
         return "id=" + cellId + " role=gridcell aria-readonly=" + readOnly;
       },
-
       /**
        * Returns the HTML that should be used inside the main div of this cell.
        *
@@ -207,7 +195,6 @@
       _getContentHtml: function _getContentHtml(cellInfo) {
         return cellInfo.value || "";
       },
-
       /**
        * Get the cell size taking the box model into account
        *
@@ -221,12 +208,10 @@
        */
       _getCellSizeStyle: function _getCellSizeStyle(width, height, insetX, insetY) {
         var style = "";
-
         if (qx.core.Environment.get("css.boxmodel") == "content") {
           width -= insetX;
           height -= insetY;
         }
-
         style += "width:" + Math.max(width, 0) + "px;";
         style += "height:" + Math.max(height, 0) + "px;";
         return style;
@@ -246,4 +231,4 @@
   qx.ui.table.cellrenderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978147009
+//# sourceMappingURL=Abstract.js.map?dt=1691935443292

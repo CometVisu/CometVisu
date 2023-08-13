@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,15 +57,14 @@
       getVersion: function getVersion() {
         var agent = window.navigator.userAgent;
         var version = "";
-
         if (qx.bom.client.Engine.__P_123_0()) {
           var isTrident = /Trident\/([^\);]+)(\)|;)/.test(agent);
-
           if (/MSIE\s+([^\);]+)(\)|;)/.test(agent)) {
-            version = RegExp.$1; // If the IE8 or IE9 is running in the compatibility mode, the MSIE value
+            version = RegExp.$1;
+
+            // If the IE8 or IE9 is running in the compatibility mode, the MSIE value
             // is set to an older version, but we need the correct version. The only
             // way is to compare the trident version.
-
             if (version < 8 && isTrident) {
               if (RegExp.$1 == "4.0") {
                 version = "8.0";
@@ -77,7 +75,6 @@
           } else if (isTrident) {
             // IE 11 dropped the "MSIE" string
             var match = /\brv\:(\d+?\.\d+?)\b/.exec(agent);
-
             if (match) {
               version = match[1];
             }
@@ -91,12 +88,11 @@
             // in a separate "Version/" postfix
             // http://my.opera.com/chooseopera/blog/2009/05/29/changes-in-operas-user-agent-string-format
             if (agent.indexOf("Version/") != -1) {
-              var match = agent.match(/Version\/(\d+)\.(\d+)/); // ignore the first match, its the whole version string
-
+              var match = agent.match(/Version\/(\d+)\.(\d+)/);
+              // ignore the first match, its the whole version string
               version = match[1] + "." + match[2].charAt(0) + "." + match[2].substring(1, match[2].length);
             } else {
               version = RegExp.$1 + "." + RegExp.$2;
-
               if (RegExp.$3 != "") {
                 version += "." + RegExp.$3;
               }
@@ -104,10 +100,10 @@
           }
         } else if (qx.bom.client.Engine.__P_123_2()) {
           if (/AppleWebKit\/([^ ]+)/.test(agent)) {
-            version = RegExp.$1; // We need to filter these invalid characters
+            version = RegExp.$1;
 
+            // We need to filter these invalid characters
             var invalidCharacter = RegExp("[^\\.0-9]").exec(version);
-
             if (invalidCharacter) {
               version = version.slice(0, invalidCharacter.index);
             }
@@ -119,7 +115,6 @@
           }
         } else {
           var failFunction = window.qxFail;
-
           if (failFunction && typeof failFunction === "function") {
             version = failFunction().FULLVERSION;
           } else {
@@ -127,10 +122,8 @@
             qx.Bootstrap.warn("Unsupported client: " + agent + "! Assumed gecko version 1.9.0.0 (Firefox 3.0).");
           }
         }
-
         return version;
       },
-
       /**
        * Returns the name of the engine.
        *
@@ -139,7 +132,6 @@
        */
       getName: function getName() {
         var name;
-
         if (qx.bom.client.Engine.__P_123_0()) {
           name = "mshtml";
         } else if (qx.bom.client.Engine.__P_123_1()) {
@@ -151,7 +143,6 @@
         } else {
           // check for the fallback
           var failFunction = window.qxFail;
-
           if (failFunction && typeof failFunction === "function") {
             name = failFunction().NAME;
           } else {
@@ -159,10 +150,8 @@
             qx.Bootstrap.warn("Unsupported client: " + window.navigator.userAgent + "! Assumed gecko version 1.9.0.0 (Firefox 3.0).");
           }
         }
-
         return name;
       },
-
       /**
        * Internal helper for checking for opera (presto powered).
        *
@@ -174,7 +163,6 @@
       __P_123_1: function __P_123_1() {
         return window.opera && Object.prototype.toString.call(window.opera) == "[object Opera]";
       },
-
       /**
        * Internal helper for checking for webkit.
        * @return {Boolean} true, if its webkit.
@@ -182,7 +170,6 @@
       __P_123_2: function __P_123_2() {
         return window.navigator.userAgent.indexOf("AppleWebKit/") != -1;
       },
-
       /**
        * Internal helper for checking for gecko.
        *
@@ -203,7 +190,6 @@
       __P_123_3: function __P_123_3() {
         return (window.navigator.mozApps || window.navigator.buildID) && window.navigator.product === "Gecko" && window.navigator.userAgent.indexOf("Trident") == -1;
       },
-
       /**
        * Internal helper to check for MSHTML.
        * @return {Boolean} true, if its MSHTML.
@@ -212,14 +198,11 @@
         if (window.navigator.cpuClass && (/MSIE\s+([^\);]+)(\)|;)/.test(window.navigator.userAgent) || /Trident\/\d+?\.\d+?/.test(window.navigator.userAgent))) {
           return true;
         }
-
         if (qx.bom.client.Engine.__P_123_4()) {
           return true;
         }
-
         return false;
       },
-
       /**
        * Internal helper to check for Windows phone.
        * @return {Boolean} true, if its Windows phone.
@@ -236,4 +219,4 @@
   qx.bom.client.Engine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Engine.js.map?dt=1685978109114
+//# sourceMappingURL=Engine.js.map?dt=1691935407969

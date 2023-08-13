@@ -11,12 +11,12 @@
       "start": {
         "line": 23,
         "column": 0,
-        "index": 630
+        "index": 652
       },
       "end": {
-        "line": 440,
+        "line": 463,
         "column": 3,
-        "index": 12517
+        "index": 13732
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 39,
         "column": 2,
-        "index": 1256
+        "index": 1294
       },
       "end": {
         "line": 57,
         "column": 3,
-        "index": 1723
+        "index": 1779
       }
     },
     "jsdoc": {
@@ -90,12 +90,12 @@
         "start": {
           "line": 70,
           "column": 4,
-          "index": 2086
+          "index": 2155
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 2214
+          "index": 2286
         }
       },
       "jsdoc": {
@@ -114,12 +114,12 @@
         "start": {
           "line": 78,
           "column": 4,
-          "index": 2318
+          "index": 2395
         },
         "end": {
           "line": 90,
           "column": 5,
-          "index": 2601
+          "index": 2690
         }
       },
       "jsdoc": {
@@ -138,12 +138,12 @@
         "start": {
           "line": 98,
           "column": 4,
-          "index": 2908
+          "index": 3005
         },
         "end": {
           "line": 98,
           "column": 29,
-          "index": 2933
+          "index": 3030
         }
       },
       "jsdoc": {
@@ -162,12 +162,12 @@
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2939
+          "index": 3037
         },
         "end": {
           "line": 99,
           "column": 24,
-          "index": 2959
+          "index": 3057
         }
       },
       "type": "variable",
@@ -178,12 +178,12 @@
         "start": {
           "line": 100,
           "column": 4,
-          "index": 2965
+          "index": 3064
         },
         "end": {
           "line": 100,
           "column": 26,
-          "index": 2987
+          "index": 3086
         }
       },
       "type": "variable",
@@ -194,12 +194,12 @@
         "start": {
           "line": 106,
           "column": 4,
-          "index": 3106
+          "index": 3211
         },
         "end": {
           "line": 114,
           "column": 5,
-          "index": 3419
+          "index": 3532
         }
       },
       "jsdoc": {
@@ -220,12 +220,12 @@
         "start": {
           "line": 127,
           "column": 4,
-          "index": 3700
+          "index": 3826
         },
         "end": {
           "line": 131,
           "column": 5,
-          "index": 3791
+          "index": 3921
         }
       },
       "jsdoc": {
@@ -247,12 +247,12 @@
         "start": {
           "line": 134,
           "column": 4,
-          "index": 3834
+          "index": 3967
         },
         "end": {
           "line": 138,
           "column": 5,
-          "index": 3930
+          "index": 4067
         }
       },
       "jsdoc": {
@@ -275,12 +275,12 @@
         "start": {
           "line": 141,
           "column": 4,
-          "index": 3972
+          "index": 4112
         },
         "end": {
           "line": 145,
           "column": 5,
-          "index": 4066
+          "index": 4210
         }
       },
       "jsdoc": {
@@ -303,12 +303,12 @@
         "start": {
           "line": 150,
           "column": 4,
-          "index": 4164
+          "index": 4313
         },
         "end": {
           "line": 153,
           "column": 5,
-          "index": 4228
+          "index": 4380
         }
       },
       "jsdoc": {
@@ -329,12 +329,12 @@
         "start": {
           "line": 159,
           "column": 4,
-          "index": 4367
+          "index": 4525
         },
         "end": {
           "line": 162,
           "column": 5,
-          "index": 4424
+          "index": 4585
         }
       },
       "jsdoc": {
@@ -390,12 +390,12 @@
         "start": {
           "line": 177,
           "column": 4,
-          "index": 4817
+          "index": 4993
         },
         "end": {
           "line": 177,
           "column": 38,
-          "index": 4851
+          "index": 5027
         }
       },
       "jsdoc": {
@@ -416,12 +416,12 @@
         "start": {
           "line": 187,
           "column": 4,
-          "index": 5059
+          "index": 5245
         },
         "end": {
           "line": 187,
           "column": 28,
-          "index": 5083
+          "index": 5269
         }
       },
       "type": "variable",
@@ -432,12 +432,12 @@
         "start": {
           "line": 188,
           "column": 4,
-          "index": 5089
+          "index": 5276
         },
         "end": {
           "line": 188,
           "column": 22,
-          "index": 5107
+          "index": 5294
         }
       },
       "type": "variable",
@@ -448,12 +448,12 @@
         "start": {
           "line": 189,
           "column": 4,
-          "index": 5113
+          "index": 5301
         },
         "end": {
           "line": 189,
           "column": 24,
-          "index": 5133
+          "index": 5321
         }
       },
       "type": "variable",
@@ -464,12 +464,12 @@
         "start": {
           "line": 190,
           "column": 4,
-          "index": 5139
+          "index": 5328
         },
         "end": {
           "line": 190,
           "column": 24,
-          "index": 5159
+          "index": 5348
         }
       },
       "type": "variable",
@@ -480,12 +480,12 @@
         "start": {
           "line": 201,
           "column": 4,
-          "index": 5400
+          "index": 5600
         },
         "end": {
-          "line": 218,
+          "line": 279,
           "column": 5,
-          "index": 5902
+          "index": 8154
         }
       },
       "jsdoc": {
@@ -502,14 +502,14 @@
     "isValid": {
       "location": {
         "start": {
-          "line": 225,
+          "line": 286,
           "column": 4,
-          "index": 6032
+          "index": 8291
         },
         "end": {
-          "line": 227,
+          "line": 288,
           "column": 5,
-          "index": 6095
+          "index": 8356
         }
       },
       "jsdoc": {
@@ -535,14 +535,14 @@
     "_reset": {
       "location": {
         "start": {
-          "line": 238,
+          "line": 299,
           "column": 4,
-          "index": 6361
+          "index": 8633
         },
         "end": {
-          "line": 246,
+          "line": 307,
           "column": 5,
-          "index": 6619
+          "index": 8899
         }
       },
       "jsdoc": {
@@ -559,14 +559,14 @@
     "_isFontValid": {
       "location": {
         "start": {
-          "line": 256,
+          "line": 317,
           "column": 4,
-          "index": 6921
+          "index": 9211
         },
         "end": {
-          "line": 287,
+          "line": 348,
           "column": 5,
-          "index": 7875
+          "index": 10196
         }
       },
       "jsdoc": {
@@ -591,14 +591,14 @@
     "_getRequestedHelpers": {
       "location": {
         "start": {
-          "line": 295,
+          "line": 356,
           "column": 4,
-          "index": 8104
+          "index": 10433
         },
         "end": {
-          "line": 308,
+          "line": 369,
           "column": 5,
-          "index": 8553
+          "index": 10895
         }
       },
       "jsdoc": {
@@ -623,14 +623,14 @@
     "_getHelperElement": {
       "location": {
         "start": {
-          "line": 319,
+          "line": 380,
           "column": 4,
-          "index": 9034
+          "index": 11387
         },
         "end": {
-          "line": 341,
+          "line": 402,
           "column": 5,
-          "index": 9822
+          "index": 12197
         }
       },
       "jsdoc": {
@@ -672,14 +672,14 @@
     "_applyFontFamily": {
       "location": {
         "start": {
-          "line": 344,
+          "line": 405,
           "column": 4,
-          "index": 9851
+          "index": 12229
         },
         "end": {
-          "line": 348,
+          "line": 409,
           "column": 5,
-          "index": 9945
+          "index": 12327
         }
       },
       "jsdoc": {},
@@ -692,14 +692,14 @@
     "_applyFontWeight": {
       "location": {
         "start": {
-          "line": 351,
+          "line": 412,
           "column": 4,
-          "index": 9974
+          "index": 12359
         },
         "end": {
-          "line": 355,
+          "line": 416,
           "column": 5,
-          "index": 10068
+          "index": 12457
         }
       },
       "jsdoc": {},
@@ -712,14 +712,14 @@
     "_applyFontStyle": {
       "location": {
         "start": {
-          "line": 358,
+          "line": 419,
           "column": 4,
-          "index": 10097
+          "index": 12489
         },
         "end": {
-          "line": 362,
+          "line": 423,
           "column": 5,
-          "index": 10190
+          "index": 12586
         }
       },
       "jsdoc": {},
@@ -732,14 +732,14 @@
     "__init": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 434,
           "column": 4,
-          "index": 10471
+          "index": 12878
         },
         "end": {
-          "line": 386,
+          "line": 447,
           "column": 5,
-          "index": 10944
+          "index": 13364
         }
       },
       "jsdoc": {
@@ -747,30 +747,6 @@
           {
             "name": "@description",
             "body": "<p>Creates the default helper elements and gets their widths</p>"
-          }
-        ]
-      },
-      "type": "function",
-      "access": "private"
-    },
-    "__onTimerInterval": {
-      "location": {
-        "start": {
-          "line": 392,
-          "column": 4,
-          "index": 11080
-        },
-        "end": {
-          "line": 425,
-          "column": 5,
-          "index": 12130
-        }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Triggers helper element size comparison and fires a ({@link #changeStatus})\n event with the result.</p>"
           }
         ]
       },
@@ -4421,14 +4397,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 434,
+        "line": 456,
         "column": 2,
-        "index": 12326
+        "index": 13569
       },
       "end": {
-        "line": 439,
+        "line": 462,
         "column": 3,
-        "index": 12513
+        "index": 13727
       }
     },
     "jsdoc": {}

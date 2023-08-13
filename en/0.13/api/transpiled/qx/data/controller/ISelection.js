@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,13 +36,11 @@
        * @param value {qx.data.IListData} The data of the selection.
        */
       setSelection: function setSelection(value) {},
-
       /**
        * Getter for the selection list.
        * @return {qx.data.IListData} The current selection.
        */
       getSelection: function getSelection() {},
-
       /**
        * Resets the selection to its default value.
        */
@@ -53,4 +50,4 @@
   qx.data.controller.ISelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISelection.js.map?dt=1685978114517
+//# sourceMappingURL=ISelection.js.map?dt=1691935412419

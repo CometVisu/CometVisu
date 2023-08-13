@@ -11,12 +11,12 @@
       "start": {
         "line": 19,
         "column": 0,
-        "index": 460
+        "index": 478
       },
       "end": {
-        "line": 461,
+        "line": 491,
         "column": 3,
-        "index": 13840
+        "index": 15140
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 22,
         "column": 2,
-        "index": 540
+        "index": 561
       },
       "end": {
-        "line": 25,
+        "line": 26,
         "column": 3,
-        "index": 616
+        "index": 669
       }
     }
   },
@@ -47,14 +47,14 @@
     "fontFamily": {
       "location": {
         "start": {
-          "line": 29,
+          "line": 30,
           "column": 4,
-          "index": 691
+          "index": 748
         },
         "end": {
-          "line": 31,
+          "line": 32,
           "column": 5,
-          "index": 732
+          "index": 791
         }
       },
       "jsdoc": {
@@ -72,14 +72,14 @@
     "fontFaces": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 4,
-          "index": 789
+          "index": 851
         },
         "end": {
-          "line": 37,
+          "line": 38,
           "column": 5,
-          "index": 860
+          "index": 925
         }
       },
       "jsdoc": {
@@ -99,14 +99,14 @@
     "css": {
       "location": {
         "start": {
-          "line": 40,
+          "line": 41,
           "column": 4,
-          "index": 920
+          "index": 988
         },
         "end": {
-          "line": 43,
+          "line": 44,
           "column": 5,
-          "index": 975
+          "index": 1046
         }
       },
       "jsdoc": {
@@ -126,14 +126,14 @@
     "comparisonString": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 52,
           "column": 4,
-          "index": 1249
+          "index": 1328
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 5,
-          "index": 1336
+          "index": 1419
         }
       },
       "jsdoc": {
@@ -153,14 +153,14 @@
     "version": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 69,
           "column": 4,
-          "index": 1895
+          "index": 1991
         },
         "end": {
-          "line": 77,
+          "line": 78,
           "column": 5,
-          "index": 2108
+          "index": 2213
         }
       },
       "jsdoc": {
@@ -214,14 +214,14 @@
     "__fontFacesQueue": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 88,
           "column": 4,
-          "index": 2316
+          "index": 2431
         },
         "end": {
-          "line": 87,
+          "line": 88,
           "column": 26,
-          "index": 2338
+          "index": 2453
         }
       },
       "type": "variable",
@@ -230,30 +230,62 @@
     "__fontFacesCreatedPromise": {
       "location": {
         "start": {
-          "line": 88,
+          "line": 89,
           "column": 4,
-          "index": 2344
+          "index": 2460
         },
         "end": {
-          "line": 88,
+          "line": 89,
           "column": 35,
-          "index": 2375
+          "index": 2491
         }
       },
       "type": "variable",
       "access": "private"
     },
-    "load": {
+    "_validators": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2500
+        },
+        "end": {
+          "line": 91,
+          "column": 21,
+          "index": 2517
+        }
+      },
+      "type": "variable",
+      "access": "protected"
+    },
+    "getValidator": {
       "location": {
         "start": {
           "line": 93,
           "column": 4,
-          "index": 2454
+          "index": 2526
         },
         "end": {
-          "line": 124,
+          "line": 110,
           "column": 5,
-          "index": 3553
+          "index": 3120
+        }
+      },
+      "type": "function",
+      "access": "public"
+    },
+    "load": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3204
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4334
         }
       },
       "jsdoc": {
@@ -271,14 +303,14 @@
     "promiseLoaded": {
       "location": {
         "start": {
-          "line": 126,
+          "line": 148,
           "column": 4,
-          "index": 3560
+          "index": 4343
         },
         "end": {
-          "line": 128,
+          "line": 150,
           "column": 5,
-          "index": 3640
+          "index": 4425
         }
       },
       "type": "function",
@@ -288,14 +320,14 @@
     "__dequeueFontFaces": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 155,
           "column": 4,
-          "index": 3710
+          "index": 4500
         },
         "end": {
-          "line": 156,
+          "line": 178,
           "column": 5,
-          "index": 4438
+          "index": 5251
         }
       },
       "jsdoc": {
@@ -312,14 +344,14 @@
     "__addFontFace": {
       "location": {
         "start": {
-          "line": 164,
+          "line": 186,
           "column": 4,
-          "index": 4603
+          "index": 5424
         },
         "end": {
-          "line": 267,
+          "line": 297,
           "column": 5,
-          "index": 7824
+          "index": 8930
         }
       },
       "jsdoc": {
@@ -353,14 +385,14 @@
     "_applyFontFaces": {
       "location": {
         "start": {
-          "line": 270,
+          "line": 300,
           "column": 4,
-          "index": 7853
+          "index": 8962
         },
         "end": {
-          "line": 283,
+          "line": 313,
           "column": 5,
-          "index": 8226
+          "index": 9348
         }
       },
       "jsdoc": {},
@@ -373,14 +405,14 @@
     "_quoteFontFamily": {
       "location": {
         "start": {
-          "line": 291,
+          "line": 321,
           "column": 4,
-          "index": 8435
+          "index": 9565
         },
         "end": {
-          "line": 293,
+          "line": 323,
           "column": 5,
-          "index": 8517
+          "index": 9649
         }
       },
       "jsdoc": {
@@ -4056,14 +4088,14 @@
     "FONT_FORMATS": {
       "location": {
         "start": {
-          "line": 301,
+          "line": 331,
           "column": 4,
-          "index": 8704
+          "index": 9844
         },
         "end": {
-          "line": 301,
+          "line": 331,
           "column": 56,
-          "index": 8756
+          "index": 9896
         }
       },
       "jsdoc": {
@@ -4080,14 +4112,14 @@
     "VALIDATION_TIMEOUT": {
       "location": {
         "start": {
-          "line": 306,
+          "line": 336,
           "column": 4,
-          "index": 8858
+          "index": 10003
         },
         "end": {
-          "line": 306,
+          "line": 336,
           "column": 28,
-          "index": 8882
+          "index": 10027
         }
       },
       "jsdoc": {
@@ -4104,14 +4136,14 @@
     "__preferredFormats": {
       "location": {
         "start": {
-          "line": 309,
+          "line": 339,
           "column": 4,
-          "index": 8970
+          "index": 10118
         },
         "end": {
-          "line": 309,
+          "line": 339,
           "column": 28,
-          "index": 8994
+          "index": 10142
         }
       },
       "jsdoc": {
@@ -4134,14 +4166,14 @@
     "__loadedStylesheets": {
       "location": {
         "start": {
-          "line": 312,
+          "line": 342,
           "column": 4,
-          "index": 9012
+          "index": 10163
         },
         "end": {
-          "line": 312,
+          "line": 342,
           "column": 27,
-          "index": 9035
+          "index": 10186
         }
       },
       "jsdoc": {},
@@ -4151,14 +4183,14 @@
     "__addedFontFaces": {
       "location": {
         "start": {
-          "line": 313,
+          "line": 343,
           "column": 4,
-          "index": 9041
+          "index": 10193
         },
         "end": {
-          "line": 313,
+          "line": 343,
           "column": 24,
-          "index": 9061
+          "index": 10213
         }
       },
       "type": "variable",
@@ -4167,14 +4199,14 @@
     "__loaders": {
       "location": {
         "start": {
-          "line": 316,
+          "line": 346,
           "column": 4,
-          "index": 9124
+          "index": 10279
         },
         "end": {
-          "line": 316,
+          "line": 346,
           "column": 17,
-          "index": 9137
+          "index": 10292
         }
       },
       "jsdoc": {
@@ -4191,14 +4223,14 @@
     "getLoader": {
       "location": {
         "start": {
-          "line": 325,
+          "line": 355,
           "column": 4,
-          "index": 9352
+          "index": 10516
         },
         "end": {
-          "line": 332,
+          "line": 362,
           "column": 5,
-          "index": 9625
+          "index": 10796
         }
       },
       "jsdoc": {
@@ -4240,14 +4272,14 @@
     "__loadStylesheet": {
       "location": {
         "start": {
-          "line": 339,
+          "line": 369,
           "column": 4,
-          "index": 9721
+          "index": 10899
         },
         "end": {
-          "line": 346,
+          "line": 376,
           "column": 5,
-          "index": 9954
+          "index": 11139
         }
       },
       "jsdoc": {
@@ -4270,14 +4302,14 @@
     "createFontLookupKey": {
       "location": {
         "start": {
-          "line": 355,
+          "line": 385,
           "column": 4,
-          "index": 10228
+          "index": 11422
         },
         "end": {
-          "line": 363,
+          "line": 393,
           "column": 5,
-          "index": 10476
+          "index": 11678
         }
       },
       "jsdoc": {
@@ -4325,14 +4357,14 @@
     "__getSourcesMap": {
       "location": {
         "start": {
-          "line": 373,
+          "line": 403,
           "column": 4,
-          "index": 10808
+          "index": 12020
         },
         "end": {
-          "line": 385,
+          "line": 415,
           "column": 5,
-          "index": 11225
+          "index": 12449
         }
       },
       "jsdoc": {
@@ -4366,14 +4398,14 @@
     "getPreferredFormats": {
       "location": {
         "start": {
-          "line": 395,
+          "line": 425,
           "column": 4,
-          "index": 11606
+          "index": 12840
         },
         "end": {
-          "line": 445,
+          "line": 475,
           "column": 5,
-          "index": 13353
+          "index": 14637
         }
       },
       "jsdoc": {
@@ -4398,14 +4430,14 @@
     "__fixCssText": {
       "location": {
         "start": {
-          "line": 455,
+          "line": 485,
           "column": 4,
-          "index": 13679
+          "index": 14973
         },
         "end": {
-          "line": 459,
+          "line": 489,
           "column": 5,
-          "index": 13832
+          "index": 15130
         }
       },
       "jsdoc": {

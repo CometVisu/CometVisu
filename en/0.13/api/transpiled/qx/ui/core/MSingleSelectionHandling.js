@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,29 +48,27 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the value was modified */
       changeValue: "qx.event.type.Data",
-
       /** Fires after the selection was modified */
       changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.core.SingleSelectionManager} the single selection manager */
       __P_319_0: null,
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -83,16 +80,13 @@
           this.resetSelection();
           return null;
         }
-
         if (item instanceof qx.ui.core.Widget) {
           this.__P_319_1().setSelected(item);
-
           return null;
         } else {
           return new TypeError("Given argument is not null or a {qx.ui.core.Widget}.");
         }
       },
-
       /**
        * getValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -101,14 +95,12 @@
       getValue: function getValue() {
         return this.__P_319_1().getSelected() || null;
       },
-
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
         this.__P_319_1().resetSelected();
       },
-
       /**
        * Returns an array of currently selected items.
        *
@@ -119,14 +111,12 @@
        */
       getSelection: function getSelection() {
         var selected = this.__P_319_1().getSelected();
-
         if (selected) {
           return [selected];
         } else {
           return [];
         }
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -139,24 +129,19 @@
           case 0:
             this.resetSelection();
             break;
-
           case 1:
             this.__P_319_1().setSelected(items[0]);
-
             break;
-
           default:
             throw new Error("Could only select one item, but the selection array contains " + items.length + " items!");
         }
       },
-
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
         this.__P_319_1().resetSelected();
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -167,7 +152,6 @@
       isSelected: function isSelected(item) {
         return this.__P_319_1().isSelected(item);
       },
-
       /**
        * Whether the selection is empty.
        *
@@ -176,7 +160,6 @@
       isSelectionEmpty: function isSelectionEmpty() {
         return this.__P_319_1().isSelectionEmpty();
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -187,13 +170,11 @@
       getSelectables: function getSelectables(all) {
         return this.__P_319_1().getSelectables(all);
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for <code>changeSelected</code> event on single
        * selection manager.
@@ -208,7 +189,6 @@
         oldValue == null ? oldValue = [] : oldValue = [oldValue];
         this.fireDataEvent("changeSelection", newValue, oldValue);
       },
-
       /**
        * Return the selection manager if it is already exists, otherwise creates
        * the manager.
@@ -230,16 +210,12 @@
               }
             }
           });
-
           this.__P_319_0.addListener("changeSelected", this._onChangeSelected, this);
         }
-
         this.__P_319_0.setAllowEmptySelection(this._isAllowEmptySelection());
-
         return this.__P_319_0;
       }
     },
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -252,4 +228,4 @@
   qx.ui.core.MSingleSelectionHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1685978135011
+//# sourceMappingURL=MSingleSelectionHandling.js.map?dt=1691935431715

@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,9 +66,9 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       __P_158_0: null,
-
       /**
        * Returns the instantiated qooxdoo application.
        *
@@ -78,7 +77,6 @@
       getApplication: function getApplication() {
         return this.__P_158_0 || null;
       },
-
       /**
        * Runs when the application is loaded. Automatically creates an instance
        * of the class defined by the setting <code>qx.application</code>.
@@ -88,50 +86,37 @@
         if (this.__P_158_0) {
           return;
         }
-
         if (qx.core.Environment.get("engine.name") == "") {
           qx.log.Logger.warn("Could not detect engine!");
         }
-
         if (qx.core.Environment.get("engine.version") == "") {
           qx.log.Logger.warn("Could not detect the version of the engine!");
         }
-
         if (qx.core.Environment.get("os.name") == "") {
           qx.log.Logger.warn("Could not detect operating system!");
         }
-
         if (qx.core.Environment.get("qx.debug.startupTimings")) {
           qx.log.Logger.debug(this, "Load runtime: " + (new Date() - qx.Bootstrap.LOADSTART) + "ms");
         }
-
         var app = qx.core.Environment.get("qx.application");
         var clazz = qx.Class.getByName(app);
-
         if (clazz) {
           this.__P_158_0 = new clazz();
           var start = new Date();
-
           this.__P_158_0.main();
-
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Main runtime: " + (new Date() - start) + "ms");
           }
-
           var start = new Date();
-
           this.__P_158_0.finalize();
-
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Finalize runtime: " + (new Date() - start) + "ms");
           }
-
           qx.event.handler.Application.onAppInstanceInitialized();
         } else {
           qx.log.Logger.warn("Missing application class: " + app);
         }
       },
-
       /**
        * Runs before the document is unloaded. Calls the application's close
        * method to check if the unload process should be stopped.
@@ -140,12 +125,10 @@
        */
       __P_158_1: function __P_158_1(e) {
         var app = this.__P_158_0;
-
         if (app) {
           app.close();
         }
       },
-
       /**
        * Runs when the document is unloaded. Automatically terminates a previously
        * created application instance.
@@ -153,7 +136,6 @@
        */
       __P_158_2: function __P_158_2() {
         var app = this.__P_158_0;
-
         if (app) {
           app.terminate();
         }
@@ -163,4 +145,4 @@
   qx.core.BaseInit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseInit.js.map?dt=1685978112547
+//# sourceMappingURL=BaseInit.js.map?dt=1691935410927

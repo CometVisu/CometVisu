@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ListItem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.ui.manager.form.ListItem', {
     extend: qx.ui.form.ListItem,
-
     /*
     ***********************************************
       MEMBERS
@@ -47,7 +45,6 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case 'icon':
             control = new cv.ui.manager.basic.Image(this.getIcon());
@@ -56,16 +53,12 @@
               scale: true,
               maxHeight: 64
             });
-
             this._addAt(control, 0);
-
             if (this.getIcon() === null || this.getShow() === 'label') {
               control.exclude();
             }
-
             break;
         }
-
         return control || cv.ui.manager.form.ListItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -73,4 +66,4 @@
   cv.ui.manager.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1685978096782
+//# sourceMappingURL=ListItem.js.map?dt=1691935396148

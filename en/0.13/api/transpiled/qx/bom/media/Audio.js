@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,7 +39,6 @@
    */
   qx.Class.define("qx.bom.media.Audio", {
     extend: qx.bom.media.Abstract,
-
     /**
      * @param source {String} the source url to the sound file.
      */
@@ -55,4 +53,4 @@
   qx.bom.media.Audio.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Audio.js.map?dt=1685978111153
+//# sourceMappingURL=Audio.js.map?dt=1691935409707

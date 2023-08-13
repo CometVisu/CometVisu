@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,7 +52,6 @@
         nullable: true,
         init: null
       },
-
       /**
        * "The errors entry in the response is a non‐empty list of errors,
        * where each error is a map. If no errors were encountered during
@@ -79,4 +77,4 @@
   qx.io.graphql.protocol.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1685978124880
+//# sourceMappingURL=Response.js.map?dt=1691935422427

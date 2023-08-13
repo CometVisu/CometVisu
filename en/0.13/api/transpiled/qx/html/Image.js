@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,7 +52,6 @@
    */
   qx.Class.define("qx.html.Image", {
     extend: qx.html.Element,
-
     /**
      * Creates a new Image
      *
@@ -66,12 +64,12 @@
       });
       this.registerProperty("scale", null, this._setScaleProperty);
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_239_0: null,
       __P_239_1: null,
@@ -82,7 +80,6 @@
       // ImageLoader has finished its loading of an external image.
       // See Bug #3894 for more details
       tagNameHint: null,
-
       /**
        * Maps padding to background-position if the widget is rendered as a
        * background image
@@ -92,42 +89,37 @@
       setPadding: function setPadding(paddingLeft, paddingTop) {
         this.__P_239_1 = paddingLeft;
         this.__P_239_0 = paddingTop;
-
         if (this.getNodeName() == "div") {
           this.setStyle("backgroundPosition", paddingLeft + "px " + paddingTop + "px");
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         ELEMENT API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Implementation of setter for the "source" property
        *
        * @param value {String?} value to set
        */
       _setSourceProperty: function _setSourceProperty(value) {
-        var elem = this.getDomElement(); // To prevent any wrong background-position or -repeat it is necessary
+        var elem = this.getDomElement();
+
+        // To prevent any wrong background-position or -repeat it is necessary
         // to reset those styles whenever a background-image is updated.
         // This is only necessary if any backgroundImage was set already.
         // See bug #3376 for details
-
         var styles = this.getAllStyles() || {};
-
         if (this.getNodeName() == "div" && this.getStyle("backgroundImage")) {
           styles.backgroundRepeat = null;
         }
-
         var source = this._getProperty("source");
-
         var scale = this._getProperty("scale");
+        var repeat = scale ? "scale" : "no-repeat";
 
-        var repeat = scale ? "scale" : "no-repeat"; // Source can be null in certain circumstances.
+        // Source can be null in certain circumstances.
         // See bug #3701 for details.
-
         if (source != null) {
           // Normalize "" to null
           source = source || null;
@@ -136,7 +128,8 @@
           qx.bom.element.Decoration.update(elem, source, repeat, styles);
         }
       },
-      _setScaleProperty: function _setScaleProperty(value) {// Nothing
+      _setScaleProperty: function _setScaleProperty(value) {
+        // Nothing
       },
       // overridden
       _removeProperty: function _removeProperty(key, direct) {
@@ -152,12 +145,9 @@
       // overridden
       _createDomElement: function _createDomElement() {
         var scale = this._getProperty("scale");
-
         var repeat = scale ? "scale" : "no-repeat";
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           var source = this._getProperty("source");
-
           if (this.tagNameHint != null) {
             this.setNodeName(this.tagNameHint);
           } else {
@@ -166,7 +156,6 @@
         } else {
           this.setNodeName(qx.bom.element.Decoration.getTagName(repeat));
         }
-
         return qx.html.Image.superclass.prototype._createDomElement.call(this);
       },
       // overridden
@@ -174,13 +163,11 @@
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
         return qx.html.Image.superclass.prototype._copyData.call(this, true, propertiesFromDom);
       },
-
       /*
       ---------------------------------------------------------------------------
         IMAGE API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Configures the image source
        *
@@ -189,10 +176,8 @@
        */
       setSource: function setSource(value) {
         this._setProperty("source", value);
-
         return this;
       },
-
       /**
        * Returns the image source.
        *
@@ -201,7 +186,6 @@
       getSource: function getSource() {
         return this._getProperty("source");
       },
-
       /**
        * Resets the current source to null which means that no image
        * is shown anymore.
@@ -215,10 +199,8 @@
         } else {
           this._removeProperty("source", true);
         }
-
         return this;
       },
-
       /**
        * Whether the image should be scaled or not.
        *
@@ -227,10 +209,8 @@
        */
       setScale: function setScale(value) {
         this._setProperty("scale", value);
-
         return this;
       },
-
       /**
        * Returns whether the image is scaled or not.
        *
@@ -244,4 +224,4 @@
   qx.html.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1685978124100
+//# sourceMappingURL=Image.js.map?dt=1691935421666

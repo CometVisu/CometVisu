@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,7 +33,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * This is a simple button widget which takes care of setting the label
    * and icon of a button.
@@ -81,15 +79,12 @@
       button: function button(label, icon) {
         var buttons = new qx.ui.website.Button(this);
         buttons.init();
-
         if (label != null) {
           buttons.setLabel(label);
         }
-
         if (icon != null) {
           buttons.setIcon(icon);
         }
-
         return buttons;
       }
     },
@@ -102,18 +97,14 @@
         if (!qx.ui.website.Button.superclass.prototype.init.call(this)) {
           return false;
         }
-
         if (this.getChildren("span") == 0) {
           qxWeb.create("<span>").appendTo(this);
         }
-
         if (this.getChildren("img") == 0) {
           qxWeb.create("<img>").appendTo(this).setStyle("display", "none");
         }
-
         return true;
       },
-
       /**
        * Sets the button's label text
        *
@@ -124,7 +115,6 @@
         this.getChildren("span").setHtml(value);
         return this;
       },
-
       /**
        * Returns the button's label text
        *
@@ -133,7 +123,6 @@
       getLabel: function getLabel() {
         return this.getChildren("span").getHtml();
       },
-
       /**
        * Sets the source of the button's icon
        *
@@ -146,7 +135,6 @@
         img.setStyle("display", src ? "inline" : "none");
         return this;
       },
-
       /**
        * Returns the URI of the button's icon
        *
@@ -155,7 +143,6 @@
       getIcon: function getIcon() {
         return this.getChildren("img").getAttribute("src");
       },
-
       /**
        * Sets the menu to be shown when the button is clicked or tapped
        *
@@ -173,7 +160,6 @@
           } else {
             menu.hide();
           }
-
           e.stopPropagation();
         });
         return this;
@@ -188,4 +174,4 @@
   qx.ui.website.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1685978152436
+//# sourceMappingURL=Button.js.map?dt=1691935448915

@@ -11,12 +11,12 @@
       "start": {
         "line": 23,
         "column": 0,
-        "index": 564
+        "index": 586
       },
       "end": {
         "line": 47,
         "column": 3,
-        "index": 1024
+        "index": 1070
       }
     },
     "jsdoc": {
@@ -41,12 +41,12 @@
         "start": {
           "line": 26,
           "column": 4,
-          "index": 683
+          "index": 708
         },
         "end": {
           "line": 29,
           "column": 5,
-          "index": 743
+          "index": 771
         }
       },
       "name": "method",
@@ -60,12 +60,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 750
+          "index": 780
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 827
+          "index": 861
         }
       },
       "name": "params",
@@ -80,12 +80,12 @@
       "start": {
         "line": 43,
         "column": 2,
-        "index": 935
+        "index": 977
       },
       "end": {
         "line": 46,
         "column": 3,
-        "index": 1020
+        "index": 1065
       }
     },
     "jsdoc": {

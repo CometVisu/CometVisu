@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -28,7 +27,6 @@
        * Tristan Koch (tristankoch)
   
   ************************************************************************ */
-
   /**
    *
    * Provides test spies, stubs and mocks as well as custom assertions.
@@ -108,15 +106,12 @@
   qx.Mixin.define("qx.dev.unit.MMock", {
     construct: function construct() {
       var sinon = this.__P_189_0();
-
       this.__P_189_1();
-
       this.__P_189_2 = sinon.createSandbox();
     },
     members: {
       __P_189_2: null,
       __P_189_3: null,
-
       /**
        * Expose Sinon.JS assertions. Provides methods such
        * as assertCalled(), assertCalledWith().
@@ -129,14 +124,12 @@
         sinon.assert.expose(temp, {
           includeFail: false
         });
-
         for (var method in temp) {
           if (!this[method]) {
             this[method] = temp[method];
           }
         }
       },
-
       /**
        * Get the Sinon.JS object.
        *
@@ -146,7 +139,6 @@
       __P_189_0: function __P_189_0() {
         return qx.dev.unit.Sinon.getSinon();
       },
-
       /**
        * Test spies allow introspection on how a function is used
        * throughout the system under test.
@@ -225,7 +217,6 @@
       spy: function spy(function_or_object, method) {
         return this.__P_189_2.spy.apply(this.__P_189_2, arguments);
       },
-
       /**
        * Test stubs are functions (spies) with pre-programmed behavior.
        *
@@ -272,14 +263,11 @@
        */
       stub: function stub(object, method, func) {
         var res = this.__P_189_2.stub.bind(this.__P_189_2)(object, method);
-
         if (func && qx.lang.Type.isFunction(func)) {
           res = res.callsFake(func);
         }
-
         return res;
       },
-
       /**
        * Mocks are slightly different from spies and stubs in that you mock an
        * object, and then set an expectation on one or more of its objects.
@@ -315,10 +303,8 @@
        */
       mock: function mock(object) {
         var sinon = this.__P_189_0();
-
         return sinon.mock.apply(sinon, arguments);
       },
-
       /**
        * Replace the native XMLHttpRequest object in browsers that support it with
        * a custom implementation which does not send actual requests.
@@ -334,7 +320,6 @@
       useFakeXMLHttpRequest: function useFakeXMLHttpRequest() {
         return this.__P_189_3 = this.__P_189_2.useFakeServer();
       },
-
       /**
        * Get requests made with faked XHR or server.
        *
@@ -348,7 +333,6 @@
       getRequests: function getRequests() {
         return this.__P_189_3.requests;
       },
-
       /**
        * As {@link #useFakeXMLHttpRequest}, but additionally provides a high-level
        * API to setup server responses. To setup responses, use the server
@@ -365,7 +349,6 @@
       useFakeServer: function useFakeServer() {
         return this.__P_189_3 = this.__P_189_2.useFakeServer();
       },
-
       /**
        * Get fake server created by {@link #useFakeServer}.
        *
@@ -374,7 +357,6 @@
       getServer: function getServer() {
         return this.__P_189_2.server;
       },
-
       /**
        * Get sandbox.
        *
@@ -387,7 +369,6 @@
       getSandbox: function getSandbox() {
         return this.__P_189_2;
       },
-
       /**
        *
        * Returns a deep copied, API-identical stubbed out clone of the given
@@ -403,10 +384,8 @@
         this.__P_189_4(object).forEach(function (prop) {
           this.__P_189_5(object, prop);
         }, this);
-
         return object;
       },
-
       /**
        *
        * Shallowly stub all methods (except excluded) that belong to classes found in inheritance
@@ -423,13 +402,10 @@
             // don't stub excluded prop
             return;
           }
-
           this.__P_189_5(object, prop);
         }, this);
-
         return object;
       },
-
       /**
        *
        * Changes the given factory (e.g. a constructor) to return a stub. The
@@ -450,7 +426,6 @@
         this.stub(object, property).returns(stub);
         return stub;
       },
-
       /**
        * Changes the given factory (e.g. a constructor) to make a mock of the
        * object returned. The method itself returns this mock.
@@ -468,11 +443,9 @@
        */
       revealMock: function revealMock(object, property, customObject) {
         var source = customObject || this.__P_189_6(new object[property]());
-
         this.stub(object, property).returns(source);
         return this.mock(source);
       },
-
       /**
        * Deep clone object by copying properties from prototype.
        *
@@ -480,15 +453,14 @@
        * @return {Object} Prepared (deeply cloned) object.
        */
       __P_189_6: function __P_189_6(obj) {
-        var clone = {}; // Copy from prototype
+        var clone = {};
 
+        // Copy from prototype
         for (var prop in obj) {
           clone[prop] = obj[prop];
         }
-
         return clone;
       },
-
       /**
        * Get the object’s own properties.
        *
@@ -498,38 +470,34 @@
        */
       __P_189_4: function __P_189_4(object, targetClazz) {
         var clazz = object.constructor,
-            clazzes = [],
-            properties = []; // Find classes in inheritance chain up to targetClazz
+          clazzes = [],
+          properties = [];
 
+        // Find classes in inheritance chain up to targetClazz
         if (targetClazz) {
           while (clazz.superclass) {
             clazzes.push(clazz);
             clazz = clazz.superclass;
-
             if (clazz == targetClazz.superclass) {
               break;
             }
           }
-        } // Check if property is own in one of the classes in chain
+        }
 
-
+        // Check if property is own in one of the classes in chain
         for (var prop in object) {
           if (clazzes.length) {
             var found = clazzes.some(function (clazz) {
               return clazz.prototype.hasOwnProperty(prop);
             });
-
             if (!found) {
               continue;
             }
           }
-
           properties.push(prop);
         }
-
         return properties;
       },
-
       /**
        * Safely stub property.
        *
@@ -541,7 +509,6 @@
         if (prop === "constructor" || typeof object[prop] !== "function") {
           return;
         }
-
         this.stub(object, prop);
       }
     }
@@ -549,4 +516,4 @@
   qx.dev.unit.MMock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMock.js.map?dt=1685978115872
+//# sourceMappingURL=MMock.js.map?dt=1691935413680

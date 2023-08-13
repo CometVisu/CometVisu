@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* OptionGroup.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -48,7 +47,6 @@
   qx.Class.define('cv.core.notifications.actions.OptionGroup', {
     extend: cv.core.notifications.actions.AbstractActionHandler,
     implement: cv.core.notifications.IActionHandler,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -58,7 +56,6 @@
       cv.core.notifications.actions.AbstractActionHandler.constructor.call(this);
       this.set(props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -74,7 +71,6 @@
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -91,7 +87,6 @@
         if (this.getOptions().length === 0) {
           return null;
         }
-
         var content = this.getTitle() + ' ';
         var container = qx.dom.Element.create('div', {
           style: this.getStyle(),
@@ -110,4 +105,4 @@
   cv.core.notifications.actions.OptionGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OptionGroup.js.map?dt=1685978089599
+//# sourceMappingURL=OptionGroup.js.map?dt=1691935389546

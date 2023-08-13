@@ -11,12 +11,12 @@
       "start": {
         "line": 23,
         "column": 0,
-        "index": 558
+        "index": 580
       },
       "end": {
         "line": 130,
         "column": 3,
-        "index": 3480
+        "index": 3609
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 27,
           "column": 4,
-          "index": 644
+          "index": 670
         },
         "end": {
           "line": 30,
           "column": 5,
-          "index": 708
+          "index": 737
         }
       },
       "type": "variable",
@@ -52,12 +52,12 @@
       "start": {
         "line": 39,
         "column": 2,
-        "index": 984
+        "index": 1022
       },
       "end": {
         "line": 72,
         "column": 3,
-        "index": 1970
+        "index": 2041
       }
     },
     "jsdoc": {
@@ -106,12 +106,12 @@
         "start": {
           "line": 75,
           "column": 4,
-          "index": 1990
+          "index": 2064
         },
         "end": {
           "line": 75,
           "column": 15,
-          "index": 2001
+          "index": 2075
         }
       },
       "type": "variable",
@@ -122,12 +122,12 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2007
+          "index": 2082
         },
         "end": {
           "line": 76,
           "column": 16,
-          "index": 2019
+          "index": 2094
         }
       },
       "type": "variable",
@@ -138,12 +138,12 @@
         "start": {
           "line": 82,
           "column": 4,
-          "index": 2115
+          "index": 2196
         },
         "end": {
           "line": 95,
           "column": 5,
-          "index": 2562
+          "index": 2656
         }
       },
       "jsdoc": {
@@ -170,12 +170,12 @@
         "start": {
           "line": 103,
           "column": 4,
-          "index": 2815
+          "index": 2917
         },
         "end": {
           "line": 128,
           "column": 5,
-          "index": 3472
+          "index": 3599
         }
       },
       "jsdoc": {

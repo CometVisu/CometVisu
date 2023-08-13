@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -62,31 +61,23 @@
        */
       _createWidgetContent: function _createWidgetContent() {
         var container = this._createDialogContainer();
-
         this.add(container);
         var hbox = new qx.ui.container.Composite(new qx.ui.layout.HBox(10));
         container.add(hbox);
         this._message = new qx.ui.basic.Label();
-
         this._message.setRich(true);
-
         this._message.setWidth(200);
-
         this._message.setAllowStretchX(true);
-
         hbox.add(this._message, {
           flex: 1
         });
-
         var buttonPane = this._createButtonPane();
-
         this.addListener("changeOptions", function (event) {
           if (qx.core.Environment.get("module.objectid") === true) {
             buttonPane.getOwnedQxObjects().map(function (obj) {
               return buttonPane.removeOwnedQxObject(obj);
             });
           }
-
           buttonPane.removeAll();
           var options = event.getData();
           options.forEach(function (option) {
@@ -97,20 +88,16 @@
               this._handleSelection(value);
             }, this);
             buttonPane.add(button);
-
             if (qx.core.Environment.get("module.objectid") === true) {
               button.setQxObjectId(value);
               buttonPane.addOwnedQxObject(button, value);
             }
           }, this);
-
           var cancelButton = this._createCancelButton();
-
           buttonPane.add(cancelButton);
         }, this);
         container.add(buttonPane);
       },
-
       /**
        * Handle click on a button. Calls callback with
        * the value set in the options map.
@@ -118,7 +105,6 @@
        */
       _handleSelection: function _handleSelection(value) {
         this.hide();
-
         if (this.getCallback()) {
           this.getCallback().call(this.getContext(), value);
         }
@@ -128,4 +114,4 @@
   qxl.dialog.Select.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Select.js.map?dt=1685978162293
+//# sourceMappingURL=Select.js.map?dt=1691935457544

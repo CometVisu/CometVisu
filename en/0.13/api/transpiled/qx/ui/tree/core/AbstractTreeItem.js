@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,7 +66,6 @@
     members: {
       __P_464_0: null,
       __P_464_1: null,
-
       /**
        * Returns the tree the tree item is connected to. If the item is not part of
        * a tree <code>null</code> will be returned.
@@ -76,17 +74,13 @@
        */
       getTree: function getTree() {
         var treeItem = this;
-
         while (treeItem.getParent()) {
           treeItem = treeItem.getParent();
         }
-
         var tree = treeItem.getLayoutParent() ? treeItem.getLayoutParent().getLayoutParent() : 0;
-
         if (tree && tree instanceof qx.ui.core.scroll.ScrollPane) {
           return tree.getLayoutParent();
         }
-
         return null;
       },
       // property apply
@@ -94,10 +88,8 @@
         if (this.hasChildren()) {
           this.getChildrenContainer().setVisibility(value ? "visible" : "excluded");
         }
-
         qx.ui.tree.core.AbstractTreeItem.superclass.prototype._applyOpen.call(this, value, old);
       },
-
       /*
       ---------------------------------------------------------------------------
         INDENT HANDLING
@@ -106,13 +98,10 @@
       // overridden
       _shouldShowOpenSymbol: function _shouldShowOpenSymbol() {
         var open = this.getChildControl("open", true);
-
         if (!open) {
           return false;
         }
-
         var tree = this.getTree();
-
         if (!tree.getRootOpenClose()) {
           if (tree.getHideRoot()) {
             if (tree.getRoot() == this.getParent()) {
@@ -124,7 +113,6 @@
             }
           }
         }
-
         return this.isOpenable();
       },
       // overridden
@@ -132,37 +120,30 @@
         if (!this.getTree()) {
           return;
         }
-
         qx.ui.tree.core.AbstractTreeItem.superclass.prototype._updateIndent.call(this);
       },
       // overridden
       getLevel: function getLevel() {
         var tree = this.getTree();
-
         if (!tree) {
           return;
         }
-
         var treeItem = this;
         var level = -1;
-
         while (treeItem) {
           treeItem = treeItem.getParent();
           level += 1;
-        } // don't count the hidden root node in the tree widget
+        }
 
-
+        // don't count the hidden root node in the tree widget
         if (tree.getHideRoot()) {
           level -= 1;
         }
-
         if (!tree.getRootOpenClose()) {
           level -= 1;
         }
-
         return level;
       },
-
       /*
       ---------------------------------------------------------------------------
         STATE HANDLING
@@ -171,12 +152,9 @@
       // overridden
       addState: function addState(state) {
         qx.ui.tree.core.AbstractTreeItem.superclass.prototype.addState.call(this, state);
-
         var children = this._getChildren();
-
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
-
           if (child.addState) {
             children[i].addState(state);
           }
@@ -185,24 +163,19 @@
       // overridden
       removeState: function removeState(state) {
         qx.ui.tree.core.AbstractTreeItem.superclass.prototype.removeState.call(this, state);
-
         var children = this._getChildren();
-
         for (var i = 0, l = children.length; i < l; i++) {
           var child = children[i];
-
           if (child.removeState) {
             children[i].removeState(state);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILDREN CONTAINER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the widget, which acts as container for the child items.
        * This widget must have a vertical box layout.
@@ -215,10 +188,8 @@
             visibility: this.isOpen() ? "visible" : "excluded"
           });
         }
-
         return this.__P_464_1;
       },
-
       /**
        * Whether the tree item has a children container
        *
@@ -227,7 +198,6 @@
       hasChildrenContainer: function hasChildrenContainer() {
         return this.__P_464_1;
       },
-
       /**
        * Get the children container of the item's parent. This function will return
        * <code>null</code>, if the item does not have a parent or is not the root
@@ -244,13 +214,11 @@
           return null;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILDREN HANDLING
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get all child items.
        *
@@ -266,7 +234,6 @@
       hasChildren: function hasChildren() {
         return this.__P_464_0 ? this.__P_464_0.length > 0 : false;
       },
-
       /**
        * Returns all children of the folder.
        *
@@ -284,12 +251,9 @@
         } else {
           var items = [this];
         }
-
         var addChildren = this.hasChildren() && (invisible !== false || this.isOpen());
-
         if (addChildren) {
           var children = this.getChildren();
-
           if (recursive === false) {
             items = items.concat(children);
           } else {
@@ -298,10 +262,8 @@
             }
           }
         }
-
         return items;
       },
-
       /**
        * Adds this item and recursively all sub items to the widget queue to
        * update the indentation.
@@ -310,12 +272,10 @@
        */
       recursiveAddToWidgetQueue: function recursiveAddToWidgetQueue() {
         var children = this.getItems(true, true, false);
-
         for (var i = 0, l = children.length; i < l; i++) {
           qx.ui.core.queue.Widget.add(children[i]);
         }
       },
-
       /**
        * Adds the item's children container to the parent's children container.
        */
@@ -324,7 +284,6 @@
           this.getParentChildrenContainer()._addAfter(this.getChildrenContainer(), this);
         }
       },
-
       /**
        * Adds the passed tree items to the end of this item's children list.
        *
@@ -333,40 +292,31 @@
       add: function add(varargs) {
         var container = this.getChildrenContainer();
         var tree = this.getTree();
-
         for (var i = 0, l = arguments.length; i < l; i++) {
           var treeItem = arguments[i];
           var oldParent = treeItem.getParent();
-
           if (oldParent) {
             oldParent.remove(treeItem);
           }
-
           treeItem.setParent(this);
           var hasChildren = this.hasChildren();
           container.add(treeItem);
-
           if (treeItem.hasChildren()) {
             container.add(treeItem.getChildrenContainer());
           }
-
           this.__P_464_0.push(treeItem);
-
           if (!hasChildren) {
             this.__P_464_2();
           }
-
           if (tree) {
             treeItem.recursiveAddToWidgetQueue();
             tree.fireNonBubblingEvent("addItem", qx.event.type.Data, [treeItem]);
           }
         }
-
         if (tree) {
           qx.ui.core.queue.Widget.add(this);
         }
       },
-
       /**
        * Adds the tree item to the current item, at the given index.
        *
@@ -378,35 +328,27 @@
           this.add(treeItem);
           return;
         }
-
         var oldParent = treeItem.getParent();
-
         if (oldParent) {
           oldParent.remove(treeItem);
         }
-
         var container = this.getChildrenContainer();
         treeItem.setParent(this);
         var hasChildren = this.hasChildren();
         var nextItem = this.__P_464_0[index];
         container.addBefore(treeItem, nextItem);
-
         if (treeItem.hasChildren()) {
           container.addAfter(treeItem.getChildrenContainer(), treeItem);
         }
-
         qx.lang.Array.insertAt(this.__P_464_0, treeItem, index);
-
         if (!hasChildren) {
           this.__P_464_2();
         }
-
         if (this.getTree()) {
           treeItem.recursiveAddToWidgetQueue();
           qx.ui.core.queue.Widget.add(this);
         }
       },
-
       /**
        * Add a tree item to this item before the existing child <code>before</code>.
        *
@@ -417,14 +359,11 @@
         // It's important to remove the item before the addAt is called
         // otherwise the index calculation could be wrong
         var oldParent = treeItem.getParent();
-
         if (oldParent) {
           oldParent.remove(treeItem);
         }
-
         this.addAt(treeItem, this.__P_464_0.indexOf(before));
       },
-
       /**
        * Add a tree item to this item after the existing child <code>before</code>.
        *
@@ -435,14 +374,11 @@
         // It's important to remove the item before the addAt is called
         // otherwise the index calculation could be wrong
         var oldParent = treeItem.getParent();
-
         if (oldParent) {
           oldParent.remove(treeItem);
         }
-
         this.addAt(treeItem, this.__P_464_0.indexOf(after) + 1);
       },
-
       /**
        * Add a tree item as the first child of this item.
        *
@@ -451,7 +387,6 @@
       addAtBegin: function addAtBegin(treeItem) {
         this.addAt(treeItem, 0);
       },
-
       /**
        * Removes the passed tree items from this item.
        *
@@ -460,37 +395,28 @@
       remove: function remove(varargs) {
         for (var i = 0, l = arguments.length; i < l; i++) {
           var treeItem = arguments[i];
-
           if (this.__P_464_0.indexOf(treeItem) == -1) {
             this.warn("Cannot remove treeitem '" + treeItem + "'. It is not a child of this tree item.");
             return;
           }
-
           var container = this.getChildrenContainer();
-
           if (treeItem.hasChildrenContainer()) {
             var treeItemChildContainer = treeItem.getChildrenContainer();
-
             if (container.getChildren().indexOf(treeItemChildContainer) >= 0) {
               // Sometimes not, see bug #3038
               container.remove(treeItemChildContainer);
             }
           }
-
           qx.lang.Array.remove(this.__P_464_0, treeItem);
           treeItem.setParent(null);
           container.remove(treeItem);
         }
-
         var tree = this.getTree();
-
         if (tree) {
           tree.fireNonBubblingEvent("removeItem", qx.event.type.Data, [treeItem]);
         }
-
         qx.ui.core.queue.Widget.add(this);
       },
-
       /**
        * Remove the child with the given child index.
        *
@@ -498,33 +424,28 @@
        */
       removeAt: function removeAt(index) {
         var item = this.__P_464_0[index];
-
         if (item) {
           this.remove(item);
         }
       },
-
       /**
        * Remove all child items from this item.
        */
       removeAll: function removeAll() {
         // create a copy for returning
         var children = this.__P_464_0.concat();
-
         for (var i = this.__P_464_0.length - 1; i >= 0; i--) {
           this.remove(this.__P_464_0[i]);
         }
-
         return children;
       }
     },
     destruct: function destruct() {
       this._disposeArray("__P_464_0");
-
       this._disposeObjects("__P_464_1");
     }
   });
   qx.ui.tree.core.AbstractTreeItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTreeItem.js.map?dt=1685978149939
+//# sourceMappingURL=AbstractTreeItem.js.map?dt=1691935446233

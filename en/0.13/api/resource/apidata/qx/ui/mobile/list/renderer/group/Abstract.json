@@ -11,12 +11,12 @@
       "start": {
         "line": 22,
         "column": 0,
-        "index": 537
+        "index": 558
       },
       "end": {
         "line": 75,
         "column": 3,
-        "index": 1748
+        "index": 1822
       }
     },
     "jsdoc": {
@@ -37,12 +37,12 @@
       "start": {
         "line": 26,
         "column": 2,
-        "index": 667
+        "index": 692
       },
       "end": {
         "line": 29,
         "column": 3,
-        "index": 736
+        "index": 764
       }
     }
   },
@@ -52,12 +52,12 @@
         "start": {
           "line": 33,
           "column": 4,
-          "index": 777
+          "index": 809
         },
         "end": {
           "line": 36,
           "column": 5,
-          "index": 846
+          "index": 881
         }
       },
       "jsdoc": {},
@@ -76,12 +76,12 @@
         "start": {
           "line": 41,
           "column": 4,
-          "index": 907
+          "index": 947
         },
         "end": {
           "line": 45,
           "column": 5,
-          "index": 1000
+          "index": 1044
         }
       },
       "jsdoc": {
@@ -104,12 +104,12 @@
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1024
+          "index": 1071
         },
         "end": {
           "line": 51,
           "column": 5,
-          "index": 1081
+          "index": 1131
         }
       },
       "jsdoc": {},
@@ -130,12 +130,12 @@
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1554
+          "index": 1617
         },
         "end": {
           "line": 68,
           "column": 5,
-          "index": 1675
+          "index": 1742
         }
       },
       "jsdoc": {
@@ -159,12 +159,12 @@
         "start": {
           "line": 71,
           "column": 4,
-          "index": 1700
+          "index": 1770
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 1740
+          "index": 1812
         }
       },
       "jsdoc": {},

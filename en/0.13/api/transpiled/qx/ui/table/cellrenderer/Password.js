@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,12 +37,12 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Password", {
     extend: qx.ui.table.cellrenderer.Default,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Overridden; called whenever the cell updates.
@@ -54,11 +53,9 @@
        */
       _getContentHtml: function _getContentHtml(cellInfo) {
         var value = cellInfo.value;
-
         if (value === null) {
           value = "";
         }
-
         cellInfo.value = value.replace(/./g, "*");
         return qx.bom.String.escape(this._formatValue(cellInfo));
       }
@@ -67,4 +64,4 @@
   qx.ui.table.cellrenderer.Password.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Password.js.map?dt=1685978147321
+//# sourceMappingURL=Password.js.map?dt=1691935443607

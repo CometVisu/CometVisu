@@ -31,7 +31,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -73,6 +72,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Processes a single log entry
@@ -83,7 +83,6 @@
         if (qx.core.Environment.get("html.console")) {
           // Firefox 4's Web Console doesn't support "debug"
           var level = console[entry.level] ? entry.level : "log";
-
           if (console[level]) {
             var formatter = qx.log.appender.Formatter.getFormatter();
             var args = formatter.toText(entry);
@@ -92,7 +91,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -105,4 +103,4 @@
   qx.log.appender.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1685978128338
+//# sourceMappingURL=Native.js.map?dt=1691935425653

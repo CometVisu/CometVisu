@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,7 +29,6 @@
   /**
    * A dummy class to trigger the compiler to copy the MaterialIconsRound font files
    */
-
   /**
    * @usefont(MaterialIconsRound)
    * @deprecated use the `@usefont` directive directly in your code
@@ -39,4 +37,4 @@
   qx.theme.iconfont.LoadMaterialIconsRound.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIconsRound.js.map?dt=1685978130679
+//# sourceMappingURL=LoadMaterialIconsRound.js.map?dt=1691935427876

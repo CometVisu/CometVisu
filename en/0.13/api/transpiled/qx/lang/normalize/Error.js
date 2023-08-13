@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native 'Error' object.
    * It contains a simple bugfix for toString which might not print out the proper
@@ -51,7 +49,6 @@
    *
    * @group (Polyfill)
    */
-
   /* eslint-disable no-extend-native */
   qx.Bootstrap.define("qx.lang.normalize.Error", {
     statics: {
@@ -66,19 +63,15 @@
       toString: function toString() {
         var name = this.name || "Error";
         var message = this.message || "";
-
         if (name === "" && message === "") {
           return "Error";
         }
-
         if (name === "") {
           return message;
         }
-
         if (message === "") {
           return name;
         }
-
         return name + ": " + message;
       }
     },
@@ -92,4 +85,4 @@
   qx.lang.normalize.Error.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Error.js.map?dt=1685978127644
+//# sourceMappingURL=Error.js.map?dt=1691935425016

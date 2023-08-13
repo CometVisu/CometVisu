@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Group.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -91,7 +90,6 @@
   qx.Class.define('cv.ui.structure.pure.Group', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.HasChildren,
-
     /*
     ******************************************************
       PROPERTIES
@@ -111,7 +109,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -128,7 +125,6 @@
       action: function action(event) {
         if (this.getTarget()) {
           cv.Application.structureController.scrollToPage(this.getTarget());
-
           if (event.getBubbles()) {
             event.stopPropagation();
           }
@@ -141,24 +137,19 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Group.superclass.prototype._onDomReady.call(this);
-
         this.getDomElement().style['z-index'] = 1;
       },
       // overridden
       getDomString: function getDomString() {
         // heading style
         var hstyle = '';
-
         if (this.getAlign()) {
           hstyle += 'style="text-align:' + this.getAlign() + '"';
         }
-
         var container = '<div class="clearfix">';
-
         if (this.getName()) {
           container += '<h2 ' + hstyle + '>' + this.getName() + '</h2>';
         }
-
         container += this.getChildrenDomString();
         container += '</div>';
         return '<div class="' + this.getClasses() + '" ' + this.getStyle() + '>' + container + '</div>';
@@ -171,4 +162,4 @@
   cv.ui.structure.pure.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1685978099615
+//# sourceMappingURL=Group.js.map?dt=1691935398926

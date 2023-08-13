@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      Copyright:
@@ -83,4 +82,4 @@
   qx.core.MBindTo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBindTo.js.map?dt=1685978112860
+//# sourceMappingURL=MBindTo.js.map?dt=1691935411212

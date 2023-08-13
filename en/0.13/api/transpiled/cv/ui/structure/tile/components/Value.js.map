@@ -19,12 +19,17 @@
     "MResize",
     "construct",
     "element",
+    "constructor",
+    "call",
     "addListener",
     "_applyVisible",
     "members",
     "_queuedOverflowDetection",
     "_debouncedDetectOverflow",
     "_init",
+    "Value",
+    "superclass",
+    "prototype",
     "util",
     "Function",
     "debounce",
@@ -48,7 +53,13 @@
     "mappedValue",
     "value",
     "styleClass",
+    "_iterator",
+    "_createForOfIteratorHelper",
     "querySelectorAll",
+    "_step",
+    "s",
+    "n",
+    "done",
     "_instance",
     "setId",
     "hasAttribute",
@@ -63,13 +74,22 @@
     "setProgress",
     "setText",
     "innerHTML",
+    "err",
+    "e",
+    "f",
     "defer",
     "QxClass",
     "customElements",
     "Controller",
     "PREFIX",
-    "QxConnector",
-    "Value"
+    "_QxConnector",
+    "_inherits",
+    "_class",
+    "_super",
+    "_createSuper",
+    "_classCallCheck",
+    "_createClass",
+    "QxConnector"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/components/Value.js"
@@ -77,5 +97,5 @@
   "sourcesContent": [
     "/* Value.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Shows a value from the backend, as label or image/icon\n * @author Tobias Bräutigam\n * @since 2022\n */\nqx.Class.define('cv.ui.structure.tile.components.Value', {\n  extend: cv.ui.structure.tile.components.AbstractComponent,\n  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MResize],\n\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct(element) {\n    super(element);\n    this.addListener('changeVisible', this._applyVisible, this);\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _queuedOverflowDetection: null,\n    _debouncedDetectOverflow: null,\n\n    _init() {\n      super._init();\n      this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);\n\n      const target = this._element.querySelector('.value');\n      if (target && target.tagName.toLowerCase() === 'label') {\n        // check for overflowing text, when labels parent gets resized\n        this.setResizeTarget(this._element);\n        this.addListener('resized', this._debouncedDetectOverflow, this);\n      }\n    },\n\n    _applyVisible(ev) {\n      if (ev.getData()) {\n        if (this._queuedOverflowDetection) {\n          this._debouncedDetectOverflow();\n        }\n      } else {\n        const target = this._element.querySelector('.value');\n        if (target && target.classList.contains('scroll')) {\n          target.classList.remove('scroll');\n        }\n      }\n    },\n\n    _detectOverflow() {\n      const target = this._element.querySelector('.value');\n      if (this.isVisible()) {\n        this._queuedOverflowDetection = false;\n        if (target.clientWidth > target.parentElement.clientWidth) {\n          target.classList.add('scroll');\n        } else {\n          target.classList.remove('scroll');\n        }\n      } else {\n        this._queuedOverflowDetection = true;\n      }\n    },\n\n    _updateValue(mappedValue, value) {\n      let styleClass = '';\n      for (const target of this._element.querySelectorAll('.value')) {\n        const tagName = target.tagName.toLowerCase();\n        switch (tagName) {\n          case 'cv-icon':\n            target._instance.setId(mappedValue);\n            if (this._element.hasAttribute('styling')) {\n              styleClass = cv.Application.structureController.styleValue(\n                this._element.getAttribute('styling'),\n                value,\n                this.__store\n              );\n            }\n            target._instance.setStyleClass(styleClass);\n            break;\n          case 'meter':\n            target.setAttribute('value', value);\n            break;\n          case 'cv-round-progress':\n            if (typeof value === 'string') {\n              value = parseInt(value);\n            }\n            target._instance.setProgress(value);\n            target._instance.setText('' + mappedValue);\n            break;\n          case 'label':\n            target.innerHTML = mappedValue;\n            this._debouncedDetectOverflow();\n            break;\n        }\n      }\n    }\n  },\n\n  defer(QxClass) {\n    customElements.define(\n      cv.ui.structure.tile.Controller.PREFIX + 'value',\n      class extends QxConnector {\n        constructor() {\n          super(QxClass);\n        }\n      }\n    );\n  }\n});\n"
   ],
-  "mappings": "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"
+  "mappings": "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"
 }

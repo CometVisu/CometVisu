@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -96,28 +95,28 @@
     extend: qx.ui.mobile.core.Widget,
     include: [qx.ui.mobile.form.MValue, qx.ui.form.MForm, qx.ui.mobile.form.MText, qx.ui.mobile.form.MState],
     implement: [qx.ui.form.IForm, qx.ui.form.IField, qx.ui.form.IModel],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.mobile.core.Widget.constructor.call(this); // This text node is for compatibility reasons, because Firefox can not
+      qx.ui.mobile.core.Widget.constructor.call(this);
+
+      // This text node is for compatibility reasons, because Firefox can not
       // change appearance of SelectBoxes.
-
       this._setAttribute("type", "text");
-
       this.setReadOnly(true);
       this.addListener("focus", this.blur);
-      this.addListener("tap", this._onTap, this); // Selection dialog creation.
+      this.addListener("tap", this._onTap, this);
 
+      // Selection dialog creation.
       this.__P_402_0 = this._createSelectionDialog();
-      this.addCssClass("gap"); // When selectionDialogs changes selection, get chosen selectedIndex from it.
+      this.addCssClass("gap");
 
+      // When selectionDialogs changes selection, get chosen selectedIndex from it.
       this.__P_402_0.addListener("changeSelection", this._onChangeSelection, this);
     },
-
     /*
     *****************************************************************************
        EVENTS
@@ -129,12 +128,12 @@
        */
       changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
@@ -146,7 +145,6 @@
         refine: true,
         init: true
       },
-
       /**
        * Defines if the SelectBox has a clearButton, which resets the selection.
        */
@@ -155,7 +153,6 @@
         check: "Boolean",
         apply: "_applyNullable"
       },
-
       /**
        * The model to use to render the list.
        */
@@ -166,7 +163,6 @@
         nullable: true,
         init: null
       },
-
       /**
        * The selected index of this SelectBox.
        */
@@ -184,22 +180,22 @@
         // No select here, see BUG #6054
         return "input";
       },
-
       /**
        * Creates the menu dialog. Override this to customize the widget.
        *
        * @return {qx.ui.mobile.dialog.Menu} A dialog, containing a selection list.
        */
       _createSelectionDialog: function _createSelectionDialog() {
-        var menu = new qx.ui.mobile.dialog.Menu(); // Special appearance for SelectBox menu items.
+        var menu = new qx.ui.mobile.dialog.Menu();
 
+        // Special appearance for SelectBox menu items.
         menu.setSelectedItemClass("selectbox-selected");
-        menu.setUnselectedItemClass("selectbox-unselected"); // Hide selectionDialog on tap on blocker.
+        menu.setUnselectedItemClass("selectbox-unselected");
 
+        // Hide selectionDialog on tap on blocker.
         menu.setHideOnBlockerTap(true);
         return menu;
       },
-
       /**
        * Returns the SelectionDialog.
        * @return {qx.ui.mobile.dialog.Menu} the SelectionDialog.
@@ -207,7 +203,6 @@
       getSelectionDialog: function getSelectionDialog() {
         return this.__P_402_0;
       },
-
       /**
        * Sets the dialog title on the selection dialog.
        * @param title {String} the title to set on selection dialog.
@@ -215,7 +210,6 @@
       setDialogTitle: function setDialogTitle(title) {
         this.__P_402_0.setTitle(title);
       },
-
       /**
        * Set the ClearButton label of the selection dialog.
        * @param value {String} the value to set on the ClearButton at selection dialog.
@@ -223,7 +217,6 @@
       setClearButtonLabel: function setClearButtonLabel(value) {
         this.__P_402_0.setClearButtonLabel(value);
       },
-
       /**
        * Sets the selected text value of this SelectBox.
        * @param value {String} the text value which should be selected.
@@ -232,7 +225,6 @@
         if (this.getModel() == null) {
           return;
         }
-
         if (value == "") {
           if (this.isNullable()) {
             this.setSelection(null);
@@ -245,7 +237,6 @@
           this.setSelection(null);
         }
       },
-
       /**
        * Get the text value of this
        * It is called by setValue method of qx.ui.mobile.form.MValue mixin.
@@ -254,7 +245,6 @@
       _getValue: function _getValue() {
         return this._getAttribute("value");
       },
-
       /**
        * Renders this SelectBox. Override this if you would like to display the
        * values of the SelectBox in a different way than the default.
@@ -262,13 +252,10 @@
       _render: function _render() {
         if (this.getModel() != null && this.getModel().length > 0) {
           var selectedItem = this.getModel().getItem(this.getSelection());
-
           this._setAttribute("value", selectedItem);
         }
-
         this._domUpdated();
       },
-
       /**
        * Sets the model property to the new value
        * @param value {qx.data.Array}, the new model
@@ -276,14 +263,11 @@
        */
       _applyModel: function _applyModel(value, old) {
         value.addListener("change", this._render, this);
-
         if (old != null) {
           old.removeListener("change", this._render, this);
         }
-
         this._render();
       },
-
       /**
        * Refreshs selection dialogs model, and shows it.
        */
@@ -291,35 +275,29 @@
         if (this.isEnabled() == true) {
           // Set index before items, because setItems() triggers rendering.
           this.__P_402_0.setSelectedIndex(this.getSelection());
-
           this.__P_402_0.setItems(this.getModel());
-
           this.__P_402_0.show();
         }
       },
-
       /**
        * Gets the selectedIndex out of change selection event and renders view.
        * @param evt {qx.event.type.Data} data event.
        */
       _onChangeSelection: function _onChangeSelection(evt) {
         this.setSelection(evt.getData().index);
-
         this._render();
       },
-
       /**
        * Handler for <code>tap</code> event on this widget.
        * @param evt {qx.event.type.Tap} the handling tap event.
        */
       _onTap: function _onTap(evt) {
-        this.__P_402_1(); // request focus so that it leaves previous widget
+        this.__P_402_1();
+
+        // request focus so that it leaves previous widget
         // such as text field and hide virtual keyboard.
-
-
         evt.getOriginalTarget().focus();
       },
-
       /**
        * Validates the selection value.
        * @param value {Integer} the selection value to validate.
@@ -328,15 +306,12 @@
         if (value != null && qx.lang.Type.isNumber(value) == false) {
           throw new qx.core.ValidationError("Validation Error: Input value is not a number");
         }
-
         if (this.getModel() === null) {
           throw new qx.core.ValidationError("Validation Error: Please apply model before selection");
         }
-
         if (!this.isNullable() && value === null) {
           throw new qx.core.ValidationError("Validation Error: SelectBox is not nullable");
         }
-
         if (value != null && (value < 0 || value >= this.getModel().getLength())) {
           throw new qx.core.ValidationError("Validation Error: Input value is out of model range");
         }
@@ -348,7 +323,6 @@
           index: value,
           item: selectedItem
         });
-
         this._render();
       },
       // property apply
@@ -359,9 +333,7 @@
     },
     destruct: function destruct() {
       this.__P_402_0.removeListener("changeSelection", this._onChangeSelection, this);
-
       this._disposeObjects("__P_402_0", "__selectionDialogTitle");
-
       this.removeListener("focus", this.blur);
       this.removeListener("tap", this._onTap, this);
     }
@@ -369,4 +341,4 @@
   qx.ui.mobile.form.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1685978143850
+//# sourceMappingURL=SelectBox.js.map?dt=1691935440246

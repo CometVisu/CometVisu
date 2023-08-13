@@ -13,12 +13,12 @@
       "start": {
         "line": 50,
         "column": 0,
-        "index": 1527
+        "index": 1576
       },
       "end": {
         "line": 441,
         "column": 3,
-        "index": 12215
+        "index": 12655
       }
     },
     "jsdoc": {
@@ -38,16 +38,9 @@
         },
         {
           "name": "@childControl",
-          "body": "button-begin {qx.ui.form.RepeatButton} button to scroll to top",
+          "body": "button-begin {qx.ui.form.RepeatButton} button to scroll to top\n @childControl button-end {qx.ui.form.RepeatButton} button to scroll to bottom\r*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n This example creates a horizontal scroll bar with a maximum value of 500.\r*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
           "controlName": "button-begin",
-          "description": "button to scroll to top",
-          "type": "qx.ui.form.RepeatButton"
-        },
-        {
-          "name": "@childControl",
-          "body": "button-end {qx.ui.form.RepeatButton} button to scroll to bottom\n*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n This example creates a horizontal scroll bar with a maximum value of 500.\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
-          "controlName": "button-end",
-          "description": "button to scroll to bottom\n*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n This example creates a horizontal scroll bar with a maximum value of 500.\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
+          "description": "button to scroll to top\n @childControl button-end {qx.ui.form.RepeatButton} button to scroll to bottom\r*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n This example creates a horizontal scroll bar with a maximum value of 500.\r*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
           "type": "qx.ui.form.RepeatButton"
         }
       ]
@@ -59,12 +52,12 @@
       "start": {
         "line": 63,
         "column": 2,
-        "index": 1932
+        "index": 1994
       },
       "end": {
         "line": 87,
         "column": 3,
-        "index": 2471
+        "index": 2557
       }
     },
     "jsdoc": {
@@ -93,12 +86,12 @@
         "start": {
           "line": 91,
           "column": 4,
-          "index": 2529
+          "index": 2619
         },
         "end": {
           "line": 91,
           "column": 45,
-          "index": 2570
+          "index": 2660
         }
       },
       "jsdoc": {
@@ -135,12 +128,12 @@
         "start": {
           "line": 102,
           "column": 4,
-          "index": 2802
+          "index": 2903
         },
         "end": {
           "line": 105,
           "column": 5,
-          "index": 2865
+          "index": 2969
         }
       },
       "jsdoc": {},
@@ -159,12 +152,12 @@
         "start": {
           "line": 110,
           "column": 4,
-          "index": 2922
+          "index": 3031
         },
         "end": {
           "line": 114,
           "column": 5,
-          "index": 3042
+          "index": 3155
         }
       },
       "jsdoc": {
@@ -190,12 +183,12 @@
         "start": {
           "line": 120,
           "column": 4,
-          "index": 3151
+          "index": 3270
         },
         "end": {
           "line": 124,
           "column": 5,
-          "index": 3245
+          "index": 3368
         }
       },
       "jsdoc": {
@@ -218,12 +211,12 @@
         "start": {
           "line": 134,
           "column": 4,
-          "index": 3562
+          "index": 3695
         },
         "end": {
           "line": 139,
           "column": 5,
-          "index": 3728
+          "index": 3866
         }
       },
       "jsdoc": {
@@ -247,12 +240,12 @@
         "start": {
           "line": 144,
           "column": 4,
-          "index": 3819
+          "index": 3962
         },
         "end": {
           "line": 147,
           "column": 5,
-          "index": 3877
+          "index": 4023
         }
       },
       "jsdoc": {
@@ -274,12 +267,12 @@
         "start": {
           "line": 153,
           "column": 4,
-          "index": 4042
+          "index": 4194
         },
         "end": {
           "line": 157,
           "column": 5,
-          "index": 4129
+          "index": 4285
         }
       },
       "jsdoc": {
@@ -302,12 +295,12 @@
         "start": {
           "line": 163,
           "column": 4,
-          "index": 4267
+          "index": 4429
         },
         "end": {
           "line": 167,
           "column": 5,
-          "index": 4371
+          "index": 4537
         }
       },
       "jsdoc": {
@@ -332,12 +325,12 @@
         "start": {
           "line": 177,
           "column": 4,
-          "index": 4579
+          "index": 4755
         },
         "end": {
           "line": 177,
           "column": 15,
-          "index": 4590
+          "index": 4766
         }
       },
       "type": "variable",
@@ -348,12 +341,12 @@
         "start": {
           "line": 178,
           "column": 4,
-          "index": 4596
+          "index": 4773
         },
         "end": {
           "line": 178,
           "column": 24,
-          "index": 4616
+          "index": 4793
         }
       },
       "type": "variable",
@@ -364,12 +357,12 @@
         "start": {
           "line": 181,
           "column": 4,
-          "index": 4641
+          "index": 4821
         },
         "end": {
           "line": 191,
           "column": 5,
-          "index": 4956
+          "index": 5146
         }
       },
       "jsdoc": {},
@@ -386,12 +379,12 @@
         "start": {
           "line": 194,
           "column": 4,
-          "index": 4981
+          "index": 5174
         },
         "end": {
           "line": 206,
           "column": 5,
-          "index": 5549
+          "index": 5754
         }
       },
       "jsdoc": {},
@@ -408,12 +401,12 @@
         "start": {
           "line": 209,
           "column": 4,
-          "index": 5574
+          "index": 5782
         },
         "end": {
           "line": 245,
           "column": 5,
-          "index": 6684
+          "index": 6928
         }
       },
       "jsdoc": {},
@@ -429,12 +422,12 @@
         "start": {
           "line": 254,
           "column": 4,
-          "index": 6918
+          "index": 7171
         },
         "end": {
           "line": 256,
           "column": 5,
-          "index": 7002
+          "index": 7257
         }
       },
       "jsdoc": {},
@@ -449,12 +442,12 @@
         "start": {
           "line": 259,
           "column": 4,
-          "index": 7031
+          "index": 7289
         },
         "end": {
           "line": 261,
           "column": 5,
-          "index": 7114
+          "index": 7374
         }
       },
       "jsdoc": {},
@@ -469,12 +462,12 @@
         "start": {
           "line": 264,
           "column": 4,
-          "index": 7143
+          "index": 7406
         },
         "end": {
           "line": 266,
           "column": 5,
-          "index": 7233
+          "index": 7498
         }
       },
       "jsdoc": {},
@@ -489,12 +482,12 @@
         "start": {
           "line": 269,
           "column": 4,
-          "index": 7262
+          "index": 7530
         },
         "end": {
           "line": 271,
           "column": 5,
-          "index": 7348
+          "index": 7618
         }
       },
       "jsdoc": {},
@@ -509,12 +502,12 @@
         "start": {
           "line": 274,
           "column": 4,
-          "index": 7377
+          "index": 7650
         },
         "end": {
           "line": 309,
           "column": 5,
-          "index": 8467
+          "index": 8775
         }
       },
       "jsdoc": {},
@@ -529,12 +522,12 @@
         "start": {
           "line": 326,
           "column": 4,
-          "index": 9016
+          "index": 9341
         },
         "end": {
           "line": 328,
           "column": 5,
-          "index": 9118
+          "index": 9445
         }
       },
       "jsdoc": {
@@ -573,12 +566,12 @@
         "start": {
           "line": 339,
           "column": 4,
-          "index": 9428
+          "index": 9766
         },
         "end": {
           "line": 341,
           "column": 5,
-          "index": 9526
+          "index": 9866
         }
       },
       "jsdoc": {
@@ -617,12 +610,12 @@
         "start": {
           "line": 352,
           "column": 4,
-          "index": 9838
+          "index": 10189
         },
         "end": {
           "line": 355,
           "column": 5,
-          "index": 9985
+          "index": 10339
         }
       },
       "jsdoc": {
@@ -661,12 +654,12 @@
         "start": {
           "line": 361,
           "column": 4,
-          "index": 10139
+          "index": 10499
         },
         "end": {
           "line": 363,
           "column": 5,
-          "index": 10234
+          "index": 10596
         }
       },
       "jsdoc": {
@@ -694,12 +687,12 @@
         "start": {
           "line": 368,
           "column": 4,
-          "index": 10318
+          "index": 10685
         },
         "end": {
           "line": 370,
           "column": 5,
-          "index": 10406
+          "index": 10775
         }
       },
       "jsdoc": {
@@ -718,12 +711,12 @@
         "start": {
           "line": 383,
           "column": 4,
-          "index": 10760
+          "index": 11142
         },
         "end": {
           "line": 385,
           "column": 5,
-          "index": 10834
+          "index": 11218
         }
       },
       "jsdoc": {
@@ -751,12 +744,12 @@
         "start": {
           "line": 392,
           "column": 4,
-          "index": 10995
+          "index": 11386
         },
         "end": {
           "line": 394,
           "column": 5,
-          "index": 11066
+          "index": 11459
         }
       },
       "jsdoc": {
@@ -784,12 +777,12 @@
         "start": {
           "line": 399,
           "column": 4,
-          "index": 11138
+          "index": 11536
         },
         "end": {
           "line": 401,
           "column": 5,
-          "index": 11212
+          "index": 11612
         }
       },
       "jsdoc": {
@@ -808,12 +801,12 @@
         "start": {
           "line": 408,
           "column": 4,
-          "index": 11352
+          "index": 11759
         },
         "end": {
           "line": 410,
           "column": 5,
-          "index": 11420
+          "index": 11829
         }
       },
       "jsdoc": {
@@ -841,12 +834,12 @@
         "start": {
           "line": 418,
           "column": 4,
-          "index": 11593
+          "index": 12010
         },
         "end": {
           "line": 439,
           "column": 5,
-          "index": 12207
+          "index": 12645
         }
       },
       "jsdoc": {

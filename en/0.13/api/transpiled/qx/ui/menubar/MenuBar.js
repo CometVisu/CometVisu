@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,23 +35,23 @@
    */
   qx.Class.define("qx.ui.menubar.MenuBar", {
     extend: qx.ui.toolbar.ToolBar,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.toolbar.ToolBar.constructor.call(this); // ARIA attrs
+      qx.ui.toolbar.ToolBar.constructor.call(this);
 
+      // ARIA attrs
       this.getContentElement().setAttribute("role", "menubar");
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Appearance of the widget */
       appearance: {
@@ -64,4 +63,4 @@
   qx.ui.menubar.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1685978141822
+//# sourceMappingURL=MenuBar.js.map?dt=1691935438276

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Preferences.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
   qx.Class.define('cv.ui.manager.model.Preferences', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -49,10 +47,8 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-
       this._restorePreferences();
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -71,7 +67,6 @@
         event: 'changeQuickPreview',
         apply: '_savePreferences'
       },
-
       /**
        * In export mode the manager looks and behaves like a file explorer.
        */
@@ -81,7 +76,6 @@
         event: 'changeExpertMode',
         apply: '_savePreferences'
       },
-
       /**
        * View mode of the start page
        */
@@ -92,7 +86,6 @@
         apply: '_savePreferences'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -116,7 +109,6 @@
         if (noSave) {
           this._skipSaving = true;
         }
-
         this.set(preferences);
         this._skipSaving = false;
       }
@@ -125,4 +117,4 @@
   cv.ui.manager.model.Preferences.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Preferences.js.map?dt=1685978097271
+//# sourceMappingURL=Preferences.js.map?dt=1691935396616

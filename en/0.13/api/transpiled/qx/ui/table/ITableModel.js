@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +35,7 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when the table data changed (the stuff shown in the table body).
@@ -48,23 +48,21 @@
        * </ul>
        */
       dataChanged: "qx.event.type.Data",
-
       /**
        * Fired when the meta data changed (the stuff shown in the table header).
        */
       metaDataChanged: "qx.event.type.Event",
-
       /**
        * Fired after the table is sorted (but before the metaDataChanged event)
        */
       sorted: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Returns the number of rows in the model.
@@ -73,7 +71,6 @@
        * @return {Integer} the number of rows.
        */
       getRowCount: function getRowCount() {},
-
       /**
        *
        * Returns the data of one row. This function may be overridden by models which hold
@@ -89,7 +86,6 @@
        *                    implementation only.
        */
       getRowData: function getRowData(rowIndex) {},
-
       /**
        * Returns the number of columns in the model.
        *
@@ -97,7 +93,6 @@
        * @return {Integer} the number of columns.
        */
       getColumnCount: function getColumnCount() {},
-
       /**
        * Returns the ID of column. The ID may be used to identify columns
        * independent from their index in the model. E.g. for being aware of added
@@ -108,7 +103,6 @@
        * @return {String} the ID of the column.
        */
       getColumnId: function getColumnId(columnIndex) {},
-
       /**
        * Returns the index of a column.
        *
@@ -117,7 +111,6 @@
        * @return {Integer} the index of the column.
        */
       getColumnIndexById: function getColumnIndexById(columnId) {},
-
       /**
        * Returns the name of a column. This name will be shown to the user in the
        * table header.
@@ -127,7 +120,6 @@
        * @return {String} the name of the column.
        */
       getColumnName: function getColumnName(columnIndex) {},
-
       /**
        * Returns whether a column is editable.
        *
@@ -135,7 +127,6 @@
        * @return {Boolean} whether the column is editable.
        */
       isColumnEditable: function isColumnEditable(columnIndex) {},
-
       /**
        * Returns whether a column is sortable.
        *
@@ -143,7 +134,6 @@
        * @return {Boolean} whether the column is sortable.
        */
       isColumnSortable: function isColumnSortable(columnIndex) {},
-
       /**
        * Sorts the model by a column.
        *
@@ -151,7 +141,6 @@
        * @param ascending {Boolean} whether to sort ascending.
        */
       sortByColumn: function sortByColumn(columnIndex, ascending) {},
-
       /**
        * Returns the column index the model is sorted by. If the model is not sorted
        * -1 is returned.
@@ -159,14 +148,12 @@
        * @return {Integer} the column index the model is sorted by.
        */
       getSortColumnIndex: function getSortColumnIndex() {},
-
       /**
        * Returns whether the model is sorted ascending.
        *
        * @return {Boolean} whether the model is sorted ascending.
        */
       isSortAscending: function isSortAscending() {},
-
       /**
        * Prefetches some rows. This is a hint to the model that the specified rows
        * will be read soon.
@@ -175,7 +162,6 @@
        * @param lastRowIndex {Integer} the index of last row.
        */
       prefetchRows: function prefetchRows(firstRowIndex, lastRowIndex) {},
-
       /**
        * Returns a cell value by column index.
        *
@@ -186,7 +172,6 @@
        * @see #getValueById
        */
       getValue: function getValue(columnIndex, rowIndex) {},
-
       /**
        * Returns a cell value by column ID.
        *
@@ -198,7 +183,6 @@
        * @return {var} the value of the cell.
        */
       getValueById: function getValueById(columnId, rowIndex) {},
-
       /**
        * Sets a cell value by column index.
        *
@@ -209,7 +193,6 @@
        * @see #setValueById
        */
       setValue: function setValue(columnIndex, rowIndex, value) {},
-
       /**
        * Sets a cell value by column ID.
        *
@@ -226,4 +209,4 @@
   qx.ui.table.ITableModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ITableModel.js.map?dt=1685978146475
+//# sourceMappingURL=ITableModel.js.map?dt=1691935442770

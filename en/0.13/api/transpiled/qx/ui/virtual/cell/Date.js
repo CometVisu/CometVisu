@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,14 +42,12 @@
    */
   qx.Class.define("qx.ui.virtual.cell.Date", {
     extend: qx.ui.virtual.cell.Cell,
-
     /**
      * @param dateFormat {qx.util.format.DateFormat|null} optional date formatter
      *   to use
      */
     construct: function construct(dateFormat) {
       qx.ui.virtual.cell.Cell.constructor.call(this);
-
       if (dateFormat) {
         this.setDateFormat(dateFormat);
       } else {
@@ -63,7 +60,6 @@
         refine: true,
         init: "cell-date"
       },
-
       /** The date format used to render the cell */
       dateFormat: {
         check: "qx.util.format.DateFormat",
@@ -80,4 +76,4 @@
   qx.ui.virtual.cell.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1685978151162
+//# sourceMappingURL=Date.js.map?dt=1691935447433

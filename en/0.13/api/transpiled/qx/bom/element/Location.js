@@ -35,7 +35,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -95,7 +94,6 @@
       __P_140_0: function __P_140_0(elem, style) {
         return qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false);
       },
-
       /**
        * Queries a style property for the given element and parses it to an integer value
        *
@@ -106,7 +104,6 @@
       __P_140_1: function __P_140_1(elem, style) {
         return parseInt(qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false), 10) || 0;
       },
-
       /**
        * Computes the scroll offset of the given element relative to the document
        * <code>body</code>.
@@ -116,8 +113,8 @@
        */
       __P_140_2: function __P_140_2(elem) {
         var left = 0,
-            top = 0; // Find window
-
+          top = 0;
+        // Find window
         var win = qx.dom.Node.getWindow(elem);
         left -= qx.bom.Viewport.getScrollLeft(win);
         top -= qx.bom.Viewport.getScrollTop(win);
@@ -126,7 +123,6 @@
           top: top
         };
       },
-
       /**
        * Computes the offset of the given element relative to the document
        * <code>body</code>.
@@ -143,12 +139,10 @@
           var top = 0;
           left -= body.clientLeft + doc.documentElement.clientLeft;
           top -= body.clientTop + doc.documentElement.clientTop;
-
           if (!qx.core.Environment.get("browser.quirksmode")) {
             left += this.__P_140_1(body, "borderLeftWidth");
             top += this.__P_140_1(body, "borderTopWidth");
           }
-
           return {
             left: left,
             top: top
@@ -157,8 +151,9 @@
         webkit: function webkit(elem) {
           // Find body element
           var doc = qx.dom.Node.getDocument(elem);
-          var body = doc.body; // Start with the offset
+          var body = doc.body;
 
+          // Start with the offset
           var left = body.offsetLeft;
           var top = body.offsetTop;
           return {
@@ -168,16 +163,17 @@
         },
         gecko: function gecko(elem) {
           // Find body element
-          var body = qx.dom.Node.getDocument(elem).body; // Start with the offset
+          var body = qx.dom.Node.getDocument(elem).body;
 
+          // Start with the offset
           var left = body.offsetLeft;
-          var top = body.offsetTop; // Correct substracted border (only in content-box mode)
+          var top = body.offsetTop;
 
+          // Correct substracted border (only in content-box mode)
           if (qx.bom.element.BoxSizing.get(body) !== "border-box") {
             left += this.__P_140_1(body, "borderLeftWidth");
             top += this.__P_140_1(body, "borderTopWidth");
           }
-
           return {
             left: left,
             top: top
@@ -186,8 +182,9 @@
         // At the moment only correctly supported by Opera
         "default": function _default(elem) {
           // Find body element
-          var body = qx.dom.Node.getDocument(elem).body; // Start with the offset
+          var body = qx.dom.Node.getDocument(elem).body;
 
+          // Start with the offset
           var left = body.offsetLeft;
           var top = body.offsetTop;
           return {
@@ -196,7 +193,6 @@
           };
         }
       }),
-
       /**
        * Computes the sum of all offsets of the given element node.
        *
@@ -205,16 +201,16 @@
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets
        */
       __P_140_4: function __P_140_4(elem) {
-        var rect = elem.getBoundingClientRect(); // Firefox 3.0 alpha 6 (gecko 1.9) returns floating point numbers
+        var rect = elem.getBoundingClientRect();
+
+        // Firefox 3.0 alpha 6 (gecko 1.9) returns floating point numbers
         // use Math.round() to round them to style compatible numbers
         // MSHTML returns integer numbers
-
         return {
           left: Math.round(rect.left),
           top: Math.round(rect.top)
         };
       },
-
       /**
        * Computes the location of the given element in context of
        * the document dimensions.
@@ -236,27 +232,21 @@
       get: function get(elem, mode) {
         if (elem.tagName == "BODY") {
           var location = this.__P_140_5(elem);
-
           var left = location.left;
           var top = location.top;
         } else {
           var body = this.__P_140_3(elem);
-
-          var offset = this.__P_140_4(elem); // Reduce by viewport scrolling.
+          var offset = this.__P_140_4(elem);
+          // Reduce by viewport scrolling.
           // Hint: getBoundingClientRect returns the location of the
           // element in relation to the viewport which includes
           // the scrolling
-
-
           var scroll = this.__P_140_2(elem);
-
           var left = offset.left + body.left - scroll.left;
           var top = offset.top + body.top - scroll.top;
         }
-
         var elementWidth;
         var elementHeight;
-
         if (elem instanceof SVGElement) {
           var rect = elem.getBoundingClientRect();
           elementWidth = rect.width;
@@ -265,27 +255,21 @@
           elementWidth = elem.offsetWidth;
           elementHeight = elem.offsetHeight;
         }
-
         var right = left + elementWidth;
         var bottom = top + elementHeight;
-
         if (mode) {
           // In this modes we want the size as seen from a child what means that we want the full width/height
           // which may be higher than the outer width/height when the element has scrollbars.
           if (mode == "padding" || mode == "scroll") {
             var overX = qx.bom.element.Style.get(elem, "overflowX");
-
             if (overX == "scroll" || overX == "auto") {
               right += elem.scrollWidth - elementWidth + this.__P_140_1(elem, "borderLeftWidth") + this.__P_140_1(elem, "borderRightWidth");
             }
-
             var overY = qx.bom.element.Style.get(elem, "overflowY");
-
             if (overY == "scroll" || overY == "auto") {
               bottom += elem.scrollHeight - elementHeight + this.__P_140_1(elem, "borderTopWidth") + this.__P_140_1(elem, "borderBottomWidth");
             }
           }
-
           switch (mode) {
             case "padding":
               left += this.__P_140_1(elem, "paddingLeft");
@@ -307,7 +291,6 @@
               right -= this.__P_140_1(elem, "borderRightWidth");
               bottom -= this.__P_140_1(elem, "borderBottomWidth");
               break;
-
             case "margin":
               left -= this.__P_140_1(elem, "marginLeft");
               top -= this.__P_140_1(elem, "marginTop");
@@ -316,7 +299,6 @@
               break;
           }
         }
-
         return {
           left: left,
           top: top,
@@ -324,7 +306,6 @@
           bottom: bottom
         };
       },
-
       /**
        * Get the location of the body element relative to the document.
        * @param body {Element} The body element.
@@ -335,18 +316,15 @@
         var left = body.offsetLeft;
         top += this.__P_140_1(body, "marginTop");
         left += this.__P_140_1(body, "marginLeft");
-
         if (qx.core.Environment.get("engine.name") === "gecko") {
           top += this.__P_140_1(body, "borderLeftWidth");
           left += this.__P_140_1(body, "borderTopWidth");
         }
-
         return {
           left: left,
           top: top
         };
       },
-
       /**
        * Computes the location of the given element in context of
        * the document dimensions. For supported modes please
@@ -360,7 +338,6 @@
       getLeft: function getLeft(elem, mode) {
         return this.get(elem, mode).left;
       },
-
       /**
        * Computes the location of the given element in context of
        * the document dimensions. For supported modes please
@@ -374,7 +351,6 @@
       getTop: function getTop(elem, mode) {
         return this.get(elem, mode).top;
       },
-
       /**
        * Computes the location of the given element in context of
        * the document dimensions. For supported modes please
@@ -388,7 +364,6 @@
       getRight: function getRight(elem, mode) {
         return this.get(elem, mode).right;
       },
-
       /**
        * Computes the location of the given element in context of
        * the document dimensions. For supported modes please
@@ -402,7 +377,6 @@
       getBottom: function getBottom(elem, mode) {
         return this.get(elem, mode).bottom;
       },
-
       /**
        * Returns the distance between two DOM elements. For supported modes please
        * have a look at the {@link qx.bom.element.Location#get} method.
@@ -424,7 +398,6 @@
           bottom: loc1.bottom - loc2.bottom
         };
       },
-
       /**
        * Returns the distance between the given element to its offset parent.
        *
@@ -435,7 +408,6 @@
       getPosition: function getPosition(elem) {
         return this.getRelative(elem, this.getOffsetParent(elem));
       },
-
       /**
        * Detects the offset parent of the given element
        *
@@ -447,14 +419,11 @@
         if (element instanceof SVGElement) {
           return document.body;
         }
-
         var offsetParent = element.offsetParent || document.body;
         var Style = qx.bom.element.Style;
-
         while (offsetParent && !/^body|html$/i.test(offsetParent.tagName) && Style.get(offsetParent, "position") === "static") {
           offsetParent = offsetParent.offsetParent;
         }
-
         return offsetParent;
       }
     }
@@ -462,4 +431,4 @@
   qx.bom.element.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1685978110814
+//# sourceMappingURL=Location.js.map?dt=1691935409407

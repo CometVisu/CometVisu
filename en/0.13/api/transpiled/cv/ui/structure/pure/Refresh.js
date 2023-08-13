@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Refresh.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,7 +49,6 @@
   qx.Class.define('cv.ui.structure.pure.Refresh', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
-
     /*
     ******************************************************
       PROPERTIES
@@ -62,7 +60,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -72,7 +69,6 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Refresh.superclass.prototype._onDomReady.call(this);
-
         this.defaultUpdate(undefined, this.getSendValue());
       },
       // overridden
@@ -81,7 +77,6 @@
       },
       _action: function _action() {
         var clients = cv.io.BackendConnections.getClients();
-
         for (var name in clients) {
           clients[name].restart(true);
         }
@@ -91,4 +86,4 @@
   cv.ui.structure.pure.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1685978100124
+//# sourceMappingURL=Refresh.js.map?dt=1691935399541

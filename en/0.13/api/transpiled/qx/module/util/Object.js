@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,7 +55,6 @@
        * @return {Object} A copy of the object
        */
       clone: qx.lang.Object.clone,
-
       /**
        * Get the values of a map as array
        *
@@ -67,7 +65,6 @@
        * @return {Array} array of the values of the map
        */
       getValues: qx.lang.Object.getValues,
-
       /**
        * Inverts a map by exchanging the keys with the values.
        *
@@ -81,7 +78,6 @@
        * @return {Object} inverted Map
        */
       invert: qx.lang.Object.invert,
-
       /**
        * Whether the map contains the given value.
        *
@@ -93,7 +89,6 @@
        * @return {Boolean} Whether the value was found in the map.
        */
       contains: qx.lang.Object.contains,
-
       /**
        * Merges one or more objects into the 'target' object.
        * *The objects are merged by overwriting existing keys.*
@@ -120,4 +115,4 @@
   qx.module.util.Object.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Object.js.map?dt=1685978130103
+//# sourceMappingURL=Object.js.map?dt=1691935427280

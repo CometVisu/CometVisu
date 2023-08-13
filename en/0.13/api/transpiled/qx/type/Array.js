@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,13 +38,11 @@
    */
   qx.Class.define("qx.type.Array", {
     extend: qx.type.BaseArray,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Creates a new Array with the given length or the listed items.
      *
@@ -72,7 +69,6 @@
        * @signature function()
        */
       clone: qx.type.BaseArray.prototype.concat,
-
       /**
        * Insert an element at a given position
        *
@@ -84,7 +80,6 @@
         this.splice(i, 0, obj);
         return this;
       },
-
       /**
        * Insert an element before a given second element
        *
@@ -94,16 +89,13 @@
        */
       insertBefore: function insertBefore(obj, obj2) {
         var i = this.indexOf(obj2);
-
         if (i == -1) {
           this.push(obj);
         } else {
           this.splice(i, 0, obj);
         }
-
         return this;
       },
-
       /**
        * Insert an element after a given second element
        *
@@ -113,16 +105,13 @@
        */
       insertAfter: function insertAfter(obj, obj2) {
         var i = this.indexOf(obj2);
-
         if (i == -1 || i == this.length - 1) {
           this.push(obj);
         } else {
           this.splice(i + 1, 0, obj);
         }
-
         return this;
       },
-
       /**
        * Remove an element at the given index
        *
@@ -132,7 +121,6 @@
       removeAt: function removeAt(i) {
         return this.splice(i, 1)[0];
       },
-
       /**
        * Remove all elements
        *
@@ -142,7 +130,6 @@
         this.length = 0;
         return this;
       },
-
       /**
        * Append the elements of the given array
        *
@@ -152,11 +139,9 @@
        */
       append: function append(arr) {
         var arg = this.__P_295_0(arr);
-
         Array.prototype.push.apply(this, arg);
         return this;
       },
-
       /**
        * Prepend the elements of the given array.
        *
@@ -166,11 +151,9 @@
        */
       prepend: function prepend(arr) {
         var arg = this.__P_295_0(arr);
-
         Array.prototype.splice.apply(this, [0, 0].concat(arg));
         return this;
       },
-
       /**
        * Helper which checks for the given element and converts that to a
        * native array if necessary.
@@ -181,19 +164,17 @@
       __P_295_0: function __P_295_0(arr) {
         // this check is important because Opera throws an uncatchable error if
         // apply is called without an arr as second argument.
-        var arg = arr; // concat needs a plain array as argument [BUG #4488]
 
+        var arg = arr;
+        // concat needs a plain array as argument [BUG #4488]
         if (arr instanceof qx.type.BaseArray) {
           arg = [];
-
           for (var i = 0; i < arr.length; i++) {
             arg[i] = arr[i];
           }
         }
-
         return arg;
       },
-
       /**
        * Remove an element
        *
@@ -202,13 +183,11 @@
        */
       remove: function remove(obj) {
         var i = this.indexOf(obj);
-
         if (i != -1) {
           this.splice(i, 1);
           return obj;
         }
       },
-
       /**
        * Whether the array contains the given element
        *
@@ -223,4 +202,4 @@
   qx.type.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1685978132462
+//# sourceMappingURL=Array.js.map?dt=1691935429545

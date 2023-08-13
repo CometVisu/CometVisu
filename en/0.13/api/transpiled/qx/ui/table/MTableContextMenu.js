@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,74 +35,74 @@
   qx.Mixin.define("qx.ui.table.MTableContextMenu", {
     construct: function construct() {
       var _this = this;
-
       // Add an event listener to handle context menu events.  The actual menu
       // is built by a function registered with a call to
       // setContextMenuHandler(col, handler).
       this.addListener("cellContextmenu", function (e) {
-        var contextMenu = _this.getContextMenu(); // Dispose of any previously existing context menu
+        var contextMenu = _this.getContextMenu();
 
-
+        // Dispose of any previously existing context menu
         if (contextMenu && !contextMenu.isDisposed()) {
           // Dispose of the context menu.
           contextMenu.hide();
-
           _this.setContextMenu(null);
-
           _this.getApplicationRoot().remove(contextMenu);
-
           contextMenu.dispose();
           contextMenu = null;
-        } // Get the context menu handler for the column on which the context
+        }
+
+        // Get the context menu handler for the column on which the context
         // menu request was issued.
-
-
         var col = e.getColumn();
+        var contextMenuHandler = _this.getContextMenuHandler(col);
 
-        var contextMenuHandler = _this.getContextMenuHandler(col); // If there's no context menu handler for this column, we have nothing
+        // If there's no context menu handler for this column, we have nothing
         // to do.
-
-
         if (typeof contextMenuHandler !== "function") {
           return;
-        } // Get the context object for the handler function
+        }
 
+        // Get the context object for the handler function
+        var handlerContext = _this.__P_434_0[col];
 
-        var handlerContext = _this.__P_434_0[col]; // Get the data model
+        // Get the data model
+        var tableModel = _this.getTableModel();
 
-        var tableModel = _this.getTableModel(); // Create a context menu for this tree.
+        // Create a context menu for this tree.
+        contextMenu = new qx.ui.menu.Menu();
 
-
-        contextMenu = new qx.ui.menu.Menu(); // Don't display context menus from the context menu
-
+        // Don't display context menus from the context menu
         contextMenu.addListener("contextmenu", function (e) {
           e.preventDefault();
-        }); // This prevents the display of context menu on table header cells
+        });
 
+        // This prevents the display of context menu on table header cells
         contextMenu.addListenerOnce("disappear", function () {
           _this.setContextMenu(null);
-        }); // Call the context menu handler for this column.
+        });
 
-        var bShowContextMenu = contextMenuHandler.call(handlerContext, col, e.getRow(), _this, tableModel, contextMenu); // If we were told not to display the context menu...
+        // Call the context menu handler for this column.
+        var bShowContextMenu = contextMenuHandler.call(handlerContext, col, e.getRow(), _this, tableModel, contextMenu);
 
+        // If we were told not to display the context menu...
         if (!bShowContextMenu) {
           // ... then we're all done here.
           contextMenu.dispose();
           return;
-        } // Set the context menu
+        }
 
-
+        // Set the context menu
         _this.setContextMenu(contextMenu);
-      }); // Provide an array in which context menu handlers will be stored.  The
-      // array is indexed by column number.
+      });
 
+      // Provide an array in which context menu handlers will be stored.  The
+      // array is indexed by column number.
       this.__P_434_1 = [];
       this.__P_434_0 = [];
     },
     members: {
       __P_434_1: null,
       __P_434_0: null,
-
       /**
        * Add a handler for a context menu which is initiated in a specific
        * column.
@@ -151,7 +150,6 @@
         this.__P_434_1[col] = handler;
         this.__P_434_0[col] = context || this;
       },
-
       /**
        * Return the registered context menu handler for a column.
        *
@@ -167,7 +165,6 @@
         return this.__P_434_1[col];
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -181,4 +178,4 @@
   qx.ui.table.MTableContextMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTableContextMenu.js.map?dt=1685978146502
+//# sourceMappingURL=MTableContextMenu.js.map?dt=1691935442803

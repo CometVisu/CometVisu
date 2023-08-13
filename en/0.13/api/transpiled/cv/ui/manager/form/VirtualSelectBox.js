@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* VirtualSelectBox.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -37,7 +36,6 @@
    */
   qx.Class.define('cv.ui.manager.form.VirtualSelectBox', {
     extend: qx.ui.form.VirtualSelectBox,
-
     /*
     ***********************************************
       MEMBERS
@@ -47,20 +45,16 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case 'atom':
             control = new cv.ui.manager.form.ListItem('');
             control.setCenter(false);
             control.setAnonymous(true);
-
             this._add(control, {
               flex: 1
             });
-
             break;
         }
-
         return control || cv.ui.manager.form.VirtualSelectBox.superclass.prototype._createChildControlImpl.call(this, id, hash);
       }
     }
@@ -68,4 +62,4 @@
   cv.ui.manager.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1685978096975
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1691935396335

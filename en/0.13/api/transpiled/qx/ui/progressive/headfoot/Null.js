@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,12 +36,13 @@
   qx.Class.define("qx.ui.progressive.headfoot.Null", {
     extend: qx.ui.progressive.headfoot.Abstract,
     construct: function construct() {
-      qx.ui.progressive.headfoot.Abstract.constructor.call(this); // We're null, so don't display.
+      qx.ui.progressive.headfoot.Abstract.constructor.call(this);
 
+      // We're null, so don't display.
       this.exclude();
     }
   });
   qx.ui.progressive.headfoot.Null.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Null.js.map?dt=1685978145283
+//# sourceMappingURL=Null.js.map?dt=1691935441629

@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,13 +45,11 @@
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Roll.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.delta = nativeEvent.delta;
         clone.momentum = nativeEvent.momentum;
         clone.timeoutId = nativeEvent.timeoutId;
         return clone;
       },
-
       /**
        * Boolean flag to indicate if this event was triggered by a momentum.
        * @return {Boolean} <code>true</code>, if the event is momentum based
@@ -60,7 +57,6 @@
       getMomentum: function getMomentum() {
         return this._native.momentum;
       },
-
       /**
        * Stops the momentum events.
        */
@@ -69,7 +65,6 @@
           qx.event.Registration.getManager(this._originalTarget).getHandler(qx.event.handler.Gesture).stopMomentum(this._native.timeoutId);
         }
       },
-
       /**
        * Returns a map with the calculated delta coordinates and axis,
        * relative to the last <code>roll</code> event.
@@ -85,4 +80,4 @@
   qx.event.type.Roll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roll.js.map?dt=1685978123313
+//# sourceMappingURL=Roll.js.map?dt=1691935420939

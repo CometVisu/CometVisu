@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -75,7 +74,6 @@
       bind: function bind(sourcePropertyChain, targetObject, targetProperty, options) {
         return qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty || "value", options);
       },
-
       /**
        * The bind method delegates the call to the
        * {@link qx.data.SingleValueBinding#bind} function. As source, the current
@@ -104,7 +102,6 @@
       bindAsync: qx.core.Environment.select("qx.promise", {
         "true": function _true(sourcePropertyChain, targetObject, targetProperty, options) {
           var id = qx.data.SingleValueBinding.bind(this, sourcePropertyChain, targetObject, targetProperty || "value", options);
-
           if (id.initialPromise) {
             return id.initialPromise.then(function () {
               id.initialPromise = null;
@@ -118,7 +115,6 @@
           return this.bind(sourcePropertyChain, targetObject, targetProperty, options);
         }
       }),
-
       /**
        * Removes the binding with the given id from the current object. The
        * id has to be the id returned by any of the bind functions.
@@ -129,7 +125,6 @@
       removeBinding: function removeBinding(id) {
         qx.data.SingleValueBinding.removeBindingFromObject(this, id);
       },
-
       /**
        * Removes all bindings between the object and the related one.
        *
@@ -141,7 +136,6 @@
       removeRelatedBindings: function removeRelatedBindings(relatedObject) {
         qx.data.SingleValueBinding.removeRelatedBindings(this, relatedObject);
       },
-
       /**
        * Removes all bindings from the object.
        *
@@ -153,7 +147,6 @@
       removeAllBindings: function removeAllBindings() {
         qx.data.SingleValueBinding.removeAllBindingsForObject(this);
       },
-
       /**
        * Returns an array which lists all bindings for the object.
        *
@@ -175,4 +168,4 @@
   qx.data.MBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBinding.js.map?dt=1685978113791
+//# sourceMappingURL=MBinding.js.map?dt=1691935412047

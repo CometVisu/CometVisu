@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,10 +76,8 @@
           old: old,
           item: this
         });
-
         this._registerEventChaining(value, old, name);
       },
-
       /**
        * Registers for the given parameters the changeBubble listener, if
        * possible. It also removes the old listener, if an old item with
@@ -94,31 +91,27 @@
         // if an old value is given, remove the old listener if possible
         if (old != null && old.getUserData && old.getUserData("idBubble-" + this.toHashCode()) != null) {
           var listeners = old.getUserData("idBubble-" + this.toHashCode());
-
           for (var i = 0; i < listeners.length; i++) {
             old.removeListenerById(listeners[i]);
           }
-
           old.setUserData("idBubble-" + this.toHashCode(), null);
-        } // if the child supports chaining
+        }
 
-
+        // if the child supports chaining
         if (value instanceof qx.core.Object && qx.Class.hasMixin(value.constructor, qx.data.marshal.MEventBubbling)) {
           // create the listener
-          var listener = qx.lang.Function.bind(this.__P_180_0, this, name); // add the listener
+          var listener = qx.lang.Function.bind(this.__P_180_0, this, name);
 
+          // add the listener
           var id = value.addListener("changeBubble", listener, this);
           var listeners = value.getUserData("idBubble-" + this.toHashCode());
-
           if (listeners == null) {
             listeners = [];
             value.setUserData("idBubble-" + this.toHashCode(), listeners);
           }
-
           listeners.push(id);
         }
       },
-
       /**
        * Listener responsible for formating the name and firing the change event
        * for the changed property.
@@ -130,23 +123,23 @@
       __P_180_0: function __P_180_0(name, e) {
         var data = e.getData();
         var value = data.value;
-        var old = data.old; // if the target is an array
+        var old = data.old;
 
+        // if the target is an array
         if (qx.Class.hasInterface(e.getTarget().constructor, qx.data.IListData)) {
           if (data.name.indexOf) {
             var dotIndex = data.name.indexOf(".") != -1 ? data.name.indexOf(".") : data.name.length;
-            var bracketIndex = data.name.indexOf("[") != -1 ? data.name.indexOf("[") : data.name.length; // brackets in the first spot is ok [BUG #5985]
+            var bracketIndex = data.name.indexOf("[") != -1 ? data.name.indexOf("[") : data.name.length;
 
+            // brackets in the first spot is ok [BUG #5985]
             if (bracketIndex == 0) {
               var newName = name + data.name;
             } else if (dotIndex < bracketIndex) {
               var index = data.name.substring(0, dotIndex);
               var rest = data.name.substring(dotIndex + 1, data.name.length);
-
               if (rest[0] != "[") {
                 rest = "." + rest;
               }
-
               var newName = name + "[" + index + "]" + rest;
             } else if (bracketIndex < dotIndex) {
               var index = data.name.substring(0, bracketIndex);
@@ -157,17 +150,16 @@
             }
           } else {
             var newName = name + "[" + data.name + "]";
-          } // if the target is not an array
+          }
 
+          // if the target is not an array
         } else {
           // special case for array as first element of the chain [BUG #5985]
           if (parseInt(name) == name && name !== "") {
             name = "[" + name + "]";
           }
-
           var newName = name + "." + data.name;
         }
-
         this.fireDataEvent("changeBubble", {
           value: value,
           name: newName,
@@ -180,4 +172,4 @@
   qx.data.marshal.MEventBubbling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEventBubbling.js.map?dt=1685978115151
+//# sourceMappingURL=MEventBubbling.js.map?dt=1691935413000

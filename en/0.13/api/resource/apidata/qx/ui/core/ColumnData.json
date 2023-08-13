@@ -11,12 +11,12 @@
       "start": {
         "line": 26,
         "column": 0,
-        "index": 660
+        "index": 685
       },
       "end": {
         "line": 101,
         "column": 3,
-        "index": 2393
+        "index": 2493
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 29,
         "column": 2,
-        "index": 739
+        "index": 767
       },
       "end": {
         "line": 32,
         "column": 3,
-        "index": 802
+        "index": 833
       }
     }
   },
@@ -49,12 +49,12 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 822
+          "index": 856
         },
         "end": {
           "line": 35,
           "column": 25,
-          "index": 843
+          "index": 877
         }
       },
       "type": "variable",
@@ -65,12 +65,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 868
+          "index": 905
         },
         "end": {
           "line": 40,
           "column": 5,
-          "index": 950
+          "index": 989
         }
       },
       "jsdoc": {},
@@ -86,12 +86,12 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1065
+          "index": 1110
         },
         "end": {
           "line": 48,
           "column": 5,
-          "index": 1126
+          "index": 1173
         }
       },
       "jsdoc": {
@@ -118,12 +118,12 @@
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1240
+          "index": 1294
         },
         "end": {
           "line": 57,
           "column": 5,
-          "index": 1308
+          "index": 1364
         }
       },
       "jsdoc": {
@@ -150,12 +150,12 @@
         "start": {
           "line": 71,
           "column": 4,
-          "index": 1711
+          "index": 1781
         },
         "end": {
           "line": 95,
           "column": 5,
-          "index": 2329
+          "index": 2423
         }
       },
       "jsdoc": {

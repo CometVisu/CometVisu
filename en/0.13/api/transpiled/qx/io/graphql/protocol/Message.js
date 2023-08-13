@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,7 +41,6 @@
    */
   qx.Class.define("qx.io.graphql.protocol.Message", {
     extend: qx.core.Object,
-
     /**
      * Constructor
      * @param {Object} data
@@ -58,14 +56,11 @@
        */
       toNormalizedObject: function toNormalizedObject() {
         var data = this.toObject();
-
         if (!data.errors) {
           delete data.errors;
         }
-
         return data;
       },
-
       /**
        * Serialize to a spec-conformant JSON string
        * @return {String}
@@ -73,7 +68,6 @@
       toString: function toString() {
         return qx.lang.Json.stringify(this.toNormalizedObject());
       },
-
       /**
        * Serialize to a native javascript object. If you need a normalized object
        * that conforms to the spec, use {@link #toNormalizedObject}
@@ -87,4 +81,4 @@
   qx.io.graphql.protocol.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1685978124832
+//# sourceMappingURL=Message.js.map?dt=1691935422373

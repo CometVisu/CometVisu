@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* BasicUpdate.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
    */
   qx.Mixin.define('cv.ui.common.BasicUpdate', {
     include: cv.ui.common.HasAddress,
-
     /*
     ******************************************************
       PROPERTIES
@@ -56,7 +54,6 @@
         init: null,
         event: 'changeValue'
       },
-
       /**
        * @type {var} the incoming value after transformation
        */
@@ -64,7 +61,6 @@
         nullable: true,
         init: null
       },
-
       /**
        * Format to apply to incoming values
        */
@@ -74,7 +70,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -92,11 +87,9 @@
         if (mappingName && cv.Config.hasMapping(mappingName)) {
           var mapping = cv.Config.getMapping(mappingName);
           var ret = value;
-
           if (mapping.formula) {
             ret = mapping.formula(ret);
           }
-
           var mapValue = function mapValue(v) {
             if (v === null && mapping.NULL) {
               return mapping.NULL;
@@ -105,42 +98,33 @@
             } else if (mapping.range) {
               var valueFloat = parseFloat(v);
               var range = mapping.range;
-
               for (var min in range) {
                 if (min > valueFloat) {
                   continue;
                 }
-
                 if (range[min][0] < valueFloat) {
                   continue;
                 } // check max
-
-
                 return range[min][1];
               }
             } else if (mapping['*']) {
               // catchall mapping
               return mapping['*'];
             }
-
             return v; // pass through when nothing was found
           };
 
           ret = mapValue(ret);
-
           if (!ret && mapping.defaultValue) {
             ret = mapValue(mapping.defaultValue);
           }
-
           if (ret !== undefined) {
             return ret;
           }
         }
-
         return value;
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -148,7 +132,6 @@
     */
     members: {
       formatValueCache: null,
-
       /**
        * Decode the given data with the addresses transform
        *
@@ -161,10 +144,8 @@
           // transform the raw value to a JavaScript type
           return cv.Transform.decode(this.getAddress()[address], data);
         }
-
         return data;
       },
-
       /**
        * Apply the given mapping to the value
        *
@@ -176,10 +157,8 @@
         if (!mappingName) {
           mappingName = this.getMapping();
         }
-
         return cv.ui.common.BasicUpdate.applyMapping(value, mappingName);
       },
-
       /**
        * Look up the entry for <code>value</code> in the mapping <code>this_map</code> and
        * return the next value in the list (including wrap around).
@@ -193,10 +172,8 @@
           var keys = Object.keys(cv.Config.getMapping(this_map));
           return keys[(keys.indexOf('' + value) + 1) % keys.length];
         }
-
         return value;
       },
-
       /**
        * Format the given value according to the defined format.
        * If no format is defined the value will not be changed.
@@ -210,15 +187,12 @@
           if (!this.formatValueCache) {
             this.formatValueCache = [this.getFormat()];
           }
-
           var argListPos = this.getAddress() && this.getAddress()[address] ? this.getAddress()[address].formatPos : 1;
           this.formatValueCache[argListPos] = value;
           return cv.util.String.sprintf.apply(this, this.formatValueCache);
         }
-
         return value;
       },
-
       /**
        * The default value handling for most of the widgets.
        * This method applies the transform, mapping, format and styling to the value.
@@ -229,51 +203,46 @@
        */
       defaultValueHandling: function defaultValueHandling(address, data) {
         // #1: transform the raw value to a JavaScript type
-        var value = this.applyTransform(address, data); // store it to be able to suppress sending of unchanged data
+        var value = this.applyTransform(address, data);
 
+        // store it to be able to suppress sending of unchanged data
         if (value !== undefined) {
           this.setBasicValue(value);
-        } // #2: map it to a value the user wants to see
+        }
 
+        // #2: map it to a value the user wants to see
+        value = this.applyMapping(value);
 
-        value = this.applyMapping(value); // #3: format it in a way the user understands the value
-
+        // #3: format it in a way the user understands the value
         if (value !== undefined) {
           value = this.applyFormat(address, value);
           this.setValue(value);
         }
-
         if (value && value.constructor === Date) {
           switch (this.getAddress()[address].transform // special case for KNX
           ) {
             case 'DPT:10.001':
               value = value.toLocaleTimeString();
               break;
-
             case 'DPT:11.001':
               value = value.toLocaleDateString();
               break;
-
             case 'OH:datetime':
               value = value.toLocaleDateString();
               break;
-
             case 'OH:time':
               value = value.toLocaleTimeString();
               break;
           }
         }
-
-        this.applyStyling(this.getBasicValue()); // #4 will happen outside: style the value to be pretty
-
+        this.applyStyling(this.getBasicValue());
+        // #4 will happen outside: style the value to be pretty
         return value;
       },
-
       /**
        * @typedef widgetValueTypes
        * @type {(string|number|Uint8Array|Map|Function)}
        */
-
       /**
        * Method to handle all special cases for the value. The might come from
        * the mapping where it can be quite complex as it can contain icons.
@@ -283,29 +252,23 @@
        */
       defaultValue2DOM: function defaultValue2DOM(value, targetElement) {
         var _this = this;
-
         var modifyFn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this._applyValueToDom;
-
         if (Array.isArray(value)) {
           value.forEach(function (v) {
             return _this.defaultValue2DOM(v, targetElement, modifyFn);
           });
           return;
         }
-
         if (value instanceof Node) {
           var element = value.cloneNode(true);
-
           if (value.getContext) {
             cv.util.IconTools.fillRecoloredIcon(element);
           }
-
           modifyFn(targetElement, element);
         } else {
           modifyFn(targetElement, value);
         }
       },
-
       /**
        * Default update function, processes the incoming value and applies it to the DOM value element.
        *
@@ -316,26 +279,22 @@
        */
       defaultUpdate: function defaultUpdate(ga, data, passedElement) {
         var element = passedElement || this.getDomElement();
-        var value = this.defaultValueHandling(ga, data); // TODO: check if this is the right place for this
-        // might be if the styling removes the align class
+        var value = this.defaultValueHandling(ga, data);
 
+        // TODO: check if this is the right place for this
+        // might be if the styling removes the align class
         if (this.getAlign()) {
           element.classList.add(this.getAlign());
         }
-
         var valueElement = this.getValueElement ? this.getValueElement() : element.querySelector('.value');
-
         if (undefined !== value) {
           valueElement.replaceChildren(); // delete anything inside
-
           this.defaultValue2DOM(value, valueElement);
         } else {
           valueElement.textContent = '-';
         }
-
         return value;
       },
-
       /**
        * Internal function which updates the DOM element with the given value
        * @param {HTMLElement} targetElement - element to update
@@ -345,7 +304,6 @@
         if (value === undefined || value === null) {
           return;
         }
-
         if (value instanceof Node) {
           targetElement.appendChild(value);
         } else if (typeof value === 'number' || typeof value === 'string') {
@@ -359,4 +317,4 @@
   cv.ui.common.BasicUpdate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BasicUpdate.js.map?dt=1685978157900
+//# sourceMappingURL=BasicUpdate.js.map?dt=1691935453549

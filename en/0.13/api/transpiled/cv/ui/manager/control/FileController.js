@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* FileController.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -46,7 +45,6 @@
   qx.Class.define('cv.ui.manager.control.FileController', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -56,7 +54,6 @@
       qx.core.Object.constructor.call(this);
       this.__P_31_0 = cv.io.rest.Client.getFsClient();
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -66,13 +63,10 @@
       __P_31_0: null,
       rename: function rename(file, newName) {
         var newPath = file.getPath() || '';
-
         if (newPath.length > 0 && !newPath.endsWith('/')) {
           newPath += '/';
         }
-
         newPath += newName;
-
         if (file.isTemporary()) {
           // create new item
           this.__P_31_0.createSync({
@@ -102,12 +96,10 @@
               file.resetModified();
               file.reload();
             }
-
             file.resetEditing();
           }, this);
         }
       },
-
       /**
        * Move file to another path
        * @param file {cv.ui.manager.model.FileItem} file to move
@@ -129,7 +121,6 @@
           }
         }, this);
       },
-
       /**
        * Restore file from trash by moving it out of the trash to the old path
        * @param file {cv.ui.manager.model.FileItem} file to restore
@@ -137,15 +128,14 @@
       restore: function restore(file) {
         if (file.isInTrash()) {
           var target = file.getFullPath().replace('.trash/', '');
-
           this.__P_31_1(file, target);
         } else if (file.getType() === 'file' && !file.isTemporary()) {
           var match = /^\/?backup\/visu_config(.*)-[0-9]{14}\.xml$/.exec(file.getFullPath());
-
           if (match) {
             // find the existing target config to restore
-            var targetFileName = 'visu_config' + match[1] + '.xml'; // find the target file
+            var targetFileName = 'visu_config' + match[1] + '.xml';
 
+            // find the target file
             var parentFolder = file.getParent().getParent();
             var targetFile = null;
             parentFolder.getChildren().some(function (child) {
@@ -153,10 +143,10 @@
                 targetFile = child;
                 return true;
               }
-
               return false;
-            }); // load the backup content
+            });
 
+            // load the backup content
             this.__P_31_0.readSync({
               path: file.getFullPath()
             }, function (err, res) {
@@ -221,7 +211,6 @@
           }
         } else if (file) {
           var message;
-
           if (file.isTrash()) {
             message = qx.locale.Manager.tr('Do you really want to clear the trash?');
           } else if (file.isInTrash()) {
@@ -229,7 +218,6 @@
           } else {
             message = file.getType() === 'file' ? qx.locale.Manager.tr('Do you really want to delete file "%1"?', file.getDisplayName()) : qx.locale.Manager.tr('Do you really want to delete folder "%1"?', file.getDisplayName());
           }
-
           qxl.dialog.Dialog.confirm(message, function (confirmed) {
             if (confirmed) {
               this.__P_31_2(file, callback, context);
@@ -246,13 +234,11 @@
         }, null, function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(err);
-
             if (callback) {
               callback.apply(context, false);
             }
           } else {
             var message;
-
             if (file.isTrash()) {
               message = qx.locale.Manager.tr('Trash has been cleared');
             } else if (file.isInTrash()) {
@@ -260,13 +246,10 @@
             } else {
               message = file.getType() === 'file' ? qx.locale.Manager.tr('File "%1" has been deleted', file.getDisplayName()) : qx.locale.Manager.tr('Folder "%1" has been deleted', file.getDisplayName());
             }
-
             cv.ui.manager.snackbar.Controller.info(message);
-
             if (callback) {
               callback.apply(context, true);
             }
-
             qx.event.message.Bus.dispatchByName('cv.manager.file', {
               action: 'deleted',
               path: file.getFullPath()
@@ -295,7 +278,6 @@
         var d = qxl.dialog.Dialog.alert(qx.locale.Manager.tr('Validating %1', file.getFullPath()));
         cv.ui.manager.editor.Worker.getInstance().validateConfig(file).then(function (res) {
           d.close();
-
           if (res === true) {
             file.setValid(true);
             cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('%1 has no errors!', file.getFullPath()));
@@ -313,7 +295,6 @@
         });
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -326,4 +307,4 @@
   cv.ui.manager.control.FileController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileController.js.map?dt=1685978094482
+//# sourceMappingURL=FileController.js.map?dt=1691935393971

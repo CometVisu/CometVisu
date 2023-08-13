@@ -43,7 +43,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -107,77 +106,74 @@
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MExecutable, qx.ui.form.MForm],
     implement: [qx.ui.form.IExecutable, qx.ui.form.IForm, qx.ui.form.IDateForm],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param date {Date ? null} The initial date to show. If <code>null</code>
      * the current day (today) is shown.
      */
     construct: function construct(date) {
-      qx.ui.core.Widget.constructor.call(this); // set the layout
+      qx.ui.core.Widget.constructor.call(this);
 
+      // set the layout
       var layout = new qx.ui.layout.VBox();
+      this._setLayout(layout);
 
-      this._setLayout(layout); // create the child controls
-
-
+      // create the child controls
       this._createChildControl("navigation-bar");
+      this._createChildControl("date-pane");
 
-      this._createChildControl("date-pane"); // Support for key events
+      // Support for key events
+      this.addListener("keypress", this._onKeyPress);
 
-
-      this.addListener("keypress", this._onKeyPress); // initialize format - moved from statics{} to constructor due to [BUG #7149]
-
+      // initialize format - moved from statics{} to constructor due to [BUG #7149]
       var DateChooser = qx.ui.control.DateChooser;
-
       if (!DateChooser.MONTH_YEAR_FORMAT) {
         DateChooser.MONTH_YEAR_FORMAT = qx.locale.Date.getDateTimeFormat("yyyyMMMM", "MMMM yyyy");
-      } // Show the right date
+      }
 
-
+      // Show the right date
       var shownDate = date != null ? date : new Date();
-      this.showMonth(shownDate.getMonth(), shownDate.getFullYear()); // listen for locale changes
+      this.showMonth(shownDate.getMonth(), shownDate.getFullYear());
 
+      // listen for locale changes
       {
         qx.locale.Manager.getInstance().addListener("changeLocale", this._updateDatePane, this);
-      } // register pointer up and down handler
+      }
 
+      // register pointer up and down handler
       this.addListener("pointerdown", this._onPointerUpDown, this);
       this.addListener("pointerup", this._onPointerUpDown, this);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * @type {string} The format for the date year label at the top center.
        */
       MONTH_YEAR_FORMAT: null,
-
       /**
        * @type {string} The format for the weekday labels (the headers of the date table).
        */
       WEEKDAY_FORMAT: "EE",
-
       /**
        * @type {string} The format for the week numbers (the labels of the left column).
        */
       WEEK_FORMAT: "ww"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -194,7 +190,6 @@
         refine: true,
         init: 150
       },
-
       /** The currently shown month. 0 = january, 1 = february, and so on. */
       shownMonth: {
         check: "Integer",
@@ -202,7 +197,6 @@
         nullable: true,
         event: "changeShownMonth"
       },
-
       /** The currently shown year. */
       shownYear: {
         check: "Integer",
@@ -210,7 +204,6 @@
         nullable: true,
         event: "changeShownYear"
       },
-
       /**
        * The date value of the widget.
        *
@@ -238,7 +231,6 @@
         event: "changeValue",
         apply: "_applyValue"
       },
-
       /**
        * The minimal date value of the widget. Dates which are less
        * than this property value will be shown as disabled (not clickable).
@@ -249,7 +241,6 @@
         nullable: true,
         apply: "_applyMinValue"
       },
-
       /**
        * The maximal date value of the widget. Dates which are greater
        * than this property value will be shown as disabled (not clickable).
@@ -261,27 +252,23 @@
         apply: "_applyMaxValue"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       __P_304_0: null,
       __P_304_1: null,
       __P_304_2: null,
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
       _forwardStates: {
         invalid: true
       },
-
       /*
       ---------------------------------------------------------------------------
         WIDGET INTERNALS
@@ -290,12 +277,12 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           // NAVIGATION BAR STUFF
           case "navigation-bar":
-            control = new qx.ui.container.Composite(new qx.ui.layout.HBox()); // Add the navigation bar elements
+            control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
 
+            // Add the navigation bar elements
             control.add(this.getChildControl("last-year-button"));
             control.add(this.getChildControl("last-month-button"));
             control.add(this.getChildControl("month-year-label"), {
@@ -303,15 +290,11 @@
             });
             control.add(this.getChildControl("next-month-button"));
             control.add(this.getChildControl("next-year-button"));
-
             this._add(control);
-
             break;
-
           case "last-year-button-tooltip":
             control = new qx.ui.tooltip.ToolTip(this.tr("Last year"));
             break;
-
           case "last-year-button":
             control = new qx.ui.toolbar.Button();
             control.addState("lastYear");
@@ -319,11 +302,9 @@
             control.setToolTip(this.getChildControl("last-year-button-tooltip"));
             control.addListener("tap", this._onNavButtonTap, this);
             break;
-
           case "last-month-button-tooltip":
             control = new qx.ui.tooltip.ToolTip(this.tr("Last month"));
             break;
-
           case "last-month-button":
             control = new qx.ui.toolbar.Button();
             control.addState("lastMonth");
@@ -331,11 +312,9 @@
             control.setToolTip(this.getChildControl("last-month-button-tooltip"));
             control.addListener("tap", this._onNavButtonTap, this);
             break;
-
           case "next-month-button-tooltip":
             control = new qx.ui.tooltip.ToolTip(this.tr("Next month"));
             break;
-
           case "next-month-button":
             control = new qx.ui.toolbar.Button();
             control.addState("nextMonth");
@@ -343,11 +322,9 @@
             control.setToolTip(this.getChildControl("next-month-button-tooltip"));
             control.addListener("tap", this._onNavButtonTap, this);
             break;
-
           case "next-year-button-tooltip":
             control = new qx.ui.tooltip.ToolTip(this.tr("Next year"));
             break;
-
           case "next-year-button":
             control = new qx.ui.toolbar.Button();
             control.addState("nextYear");
@@ -355,13 +332,11 @@
             control.setToolTip(this.getChildControl("next-year-button-tooltip"));
             control.addListener("tap", this._onNavButtonTap, this);
             break;
-
           case "month-year-label":
             control = new qx.ui.basic.Label();
             control.setAllowGrowX(true);
             control.setAnonymous(true);
             break;
-
           case "week":
             control = new qx.ui.basic.Label();
             control.setAllowGrowX(true);
@@ -370,7 +345,6 @@
             control.setAnonymous(true);
             control.setCursor("default");
             break;
-
           case "weekday":
             control = new qx.ui.basic.Label();
             control.setAllowGrowX(true);
@@ -379,7 +353,6 @@
             control.setAnonymous(true);
             control.setCursor("default");
             break;
-
           case "day":
             control = new qx.ui.basic.Label();
             control.setAllowGrowX(true);
@@ -388,21 +361,18 @@
             control.addListener("pointerdown", this._onDayTap, this);
             control.addListener("dbltap", this._onDayDblTap, this);
             break;
-
           case "date-pane":
             var controlLayout = new qx.ui.layout.Grid();
             control = new qx.ui.container.Composite(controlLayout);
-
             for (var i = 0; i < 8; i++) {
               controlLayout.setColumnFlex(i, 1);
             }
-
             for (var i = 0; i < 7; i++) {
               controlLayout.setRowFlex(i, 1);
-            } // Create the weekdays
+            }
+
+            // Create the weekdays
             // Add an empty label as spacer for the week numbers
-
-
             var label = this.getChildControl("week#0");
             label.addState("header");
             control.add(label, {
@@ -410,21 +380,18 @@
               row: 0
             });
             this.__P_304_0 = [];
-
             for (var i = 0; i < 7; i++) {
               label = this.getChildControl("weekday#" + i);
               control.add(label, {
                 column: i + 1,
                 row: 0
               });
-
               this.__P_304_0.push(label);
-            } // Add the days
+            }
 
-
+            // Add the days
             this.__P_304_1 = [];
             this.__P_304_2 = [];
-
             for (var y = 0; y < 6; y++) {
               // Add the week label
               var label = this.getChildControl("week#" + (y + 1));
@@ -432,26 +399,21 @@
                 column: 0,
                 row: y + 1
               });
+              this.__P_304_2.push(label);
 
-              this.__P_304_2.push(label); // Add the day labels
-
-
+              // Add the day labels
               for (var x = 0; x < 7; x++) {
                 var label = this.getChildControl("day#" + (y * 7 + x));
                 control.add(label, {
                   column: x + 1,
                   row: y + 1
                 });
-
                 this.__P_304_1.push(label);
               }
             }
-
             this._add(control);
-
             break;
         }
-
         return control || qx.ui.control.DateChooser.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // apply methods
@@ -462,17 +424,14 @@
         } else {
           // The new date is in the current month -> Just change the states
           var newDay = value == null ? -1 : value.getDate();
-
           for (var i = 0; i < 42; i++) {
             var dayLabel = this.__P_304_1[i];
-
             if (dayLabel.hasState("otherMonth")) {
               if (dayLabel.hasState("selected")) {
                 dayLabel.removeState("selected");
               }
             } else {
               var day = parseInt(dayLabel.getValue(), 10);
-
               if (day == newDay) {
                 dayLabel.addState("selected");
               } else if (dayLabel.hasState("selected")) {
@@ -488,13 +447,11 @@
       _applyMaxValue: function _applyMaxValue() {
         this._updateDatePane();
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Handler which stops the propagation of the tap event if
        * the navigation bar or calendar headers will be tapped.
@@ -503,13 +460,11 @@
        */
       _onPointerUpDown: function _onPointerUpDown(e) {
         var target = e.getTarget();
-
         if (target == this.getChildControl("navigation-bar") || target == this.getChildControl("date-pane")) {
           e.stopPropagation();
           return;
         }
       },
-
       /**
        * Event handler. Called when a navigation button has been tapped.
        *
@@ -518,40 +473,30 @@
       _onNavButtonTap: function _onNavButtonTap(evt) {
         var year = this.getShownYear();
         var month = this.getShownMonth();
-
         switch (evt.getCurrentTarget()) {
           case this.getChildControl("last-year-button"):
             year--;
             break;
-
           case this.getChildControl("last-month-button"):
             month--;
-
             if (month < 0) {
               month = 11;
               year--;
             }
-
             break;
-
           case this.getChildControl("next-month-button"):
             month++;
-
             if (month >= 12) {
               month = 0;
               year++;
             }
-
             break;
-
           case this.getChildControl("next-year-button"):
             year++;
             break;
         }
-
         this.showMonth(month, year);
       },
-
       /**
        * Event handler. Called when a day has been tapped.
        *
@@ -561,14 +506,12 @@
         var time = evt.getCurrentTarget().dateTime;
         this.setValue(new Date(time));
       },
-
       /**
        * Event handler. Called when a day has been double-tapped.
        */
       _onDayDblTap: function _onDayDblTap() {
         this.execute();
       },
-
       /**
        * Event handler. Called when a key was pressed.
        *
@@ -578,47 +521,37 @@
         var dayIncrement = null;
         var monthIncrement = null;
         var yearIncrement = null;
-
         if (evt.getModifiers() == 0) {
           switch (evt.getKeyIdentifier()) {
             case "Left":
               dayIncrement = -1;
               break;
-
             case "Right":
               dayIncrement = 1;
               break;
-
             case "Up":
               dayIncrement = -7;
               break;
-
             case "Down":
               dayIncrement = 7;
               break;
-
             case "PageUp":
               monthIncrement = -1;
               break;
-
             case "PageDown":
               monthIncrement = 1;
               break;
-
             case "Escape":
               if (this.getValue() != null) {
                 this.setValue(null);
                 return;
               }
-
               break;
-
             case "Enter":
             case "Space":
               if (this.getValue() != null) {
                 this.execute();
               }
-
               return;
           }
         } else if (evt.isShiftPressed()) {
@@ -626,40 +559,32 @@
             case "PageUp":
               yearIncrement = -1;
               break;
-
             case "PageDown":
               yearIncrement = 1;
               break;
           }
         }
-
         if (dayIncrement != null || monthIncrement != null || yearIncrement != null) {
           var date = this.getValue();
-
           if (date != null) {
             date = new Date(date.getTime());
           }
-
           if (date == null) {
             date = new Date();
           } else {
             if (dayIncrement != null) {
               date.setDate(date.getDate() + dayIncrement);
             }
-
             if (monthIncrement != null) {
               date.setMonth(date.getMonth() + monthIncrement);
             }
-
             if (yearIncrement != null) {
               date.setFullYear(date.getFullYear() + yearIncrement);
             }
           }
-
           this.setValue(date);
         }
       },
-
       /**
        * Shows a certain month.
        *
@@ -673,15 +598,12 @@
           if (month != null) {
             this.setShownMonth(month);
           }
-
           if (year != null) {
             this.setShownYear(year);
           }
-
           this._updateDatePane();
         }
       },
-
       /**
        * Event handler. Used to handle the key events.
        *
@@ -690,7 +612,6 @@
       handleKeyPress: function handleKeyPress(e) {
         this._onKeyPress(e);
       },
-
       /**
        * Updates the date pane.
        */
@@ -706,73 +627,66 @@
         var selDayOfMonth = selDate == null ? -1 : selDate.getDate();
         var shownMonth = this.getShownMonth();
         var shownYear = this.getShownYear();
-        var startOfWeek = qx.locale.Date.getWeekStart(); // Create a help date that points to the first of the current month
+        var startOfWeek = qx.locale.Date.getWeekStart();
 
+        // Create a help date that points to the first of the current month
         var helpDate = new Date(this.getShownYear(), this.getShownMonth(), 1);
         var monthYearFormat = new qx.util.format.DateFormat(DateChooser.MONTH_YEAR_FORMAT);
-        this.getChildControl("month-year-label").setValue(monthYearFormat.format(helpDate)); // Show the day names
+        this.getChildControl("month-year-label").setValue(monthYearFormat.format(helpDate));
 
+        // Show the day names
         var firstDayOfWeek = helpDate.getDay();
         var firstSundayInMonth = 1 + (7 - firstDayOfWeek) % 7;
         var weekDayFormat = new qx.util.format.DateFormat(DateChooser.WEEKDAY_FORMAT);
-
         for (var i = 0; i < 7; i++) {
           var day = (i + startOfWeek) % 7;
           var dayLabel = this.__P_304_0[i];
           helpDate.setDate(firstSundayInMonth + day);
           dayLabel.setValue(weekDayFormat.format(helpDate));
-
           if (qx.locale.Date.isWeekend(day)) {
             dayLabel.addState("weekend");
           } else {
             dayLabel.removeState("weekend");
           }
-        } // Show the days
+        }
 
-
+        // Show the days
         helpDate = new Date(shownYear, shownMonth, 1, 12, 0, 0);
         var nrDaysOfLastMonth = (7 + firstDayOfWeek - startOfWeek) % 7;
         helpDate.setDate(helpDate.getDate() - nrDaysOfLastMonth);
         var weekFormat = new qx.util.format.DateFormat(DateChooser.WEEK_FORMAT);
-
         for (var week = 0; week < 6; week++) {
           this.__P_304_2[week].setValue(weekFormat.format(helpDate));
-
           for (var i = 0; i < 7; i++) {
             var dayLabel = this.__P_304_1[week * 7 + i];
             var year = helpDate.getFullYear();
             var month = helpDate.getMonth();
             var dayOfMonth = helpDate.getDate();
             var isSelectedDate = selYear == year && selMonth == month && selDayOfMonth == dayOfMonth;
-
             if (isSelectedDate) {
               dayLabel.addState("selected");
             } else {
               dayLabel.removeState("selected");
             }
-
             if (month != shownMonth) {
               dayLabel.addState("otherMonth");
             } else {
               dayLabel.removeState("otherMonth");
             }
-
             var isToday = year == todayYear && month == todayMonth && dayOfMonth == todayDayOfMonth;
-
             if (isToday) {
               dayLabel.addState("today");
             } else {
               dayLabel.removeState("today");
             }
-
             dayLabel.setValue("" + dayOfMonth);
             dayLabel.dateTime = helpDate.getTime();
-            dayLabel.setEnabled(!this.__P_304_3(helpDate)); // Go to the next day
+            dayLabel.setEnabled(!this.__P_304_3(helpDate));
 
+            // Go to the next day
             helpDate.setDate(helpDate.getDate() + 1);
           }
         }
-
         monthYearFormat.dispose();
         weekDayFormat.dispose();
         weekFormat.dispose();
@@ -785,7 +699,6 @@
         return exceedsMin || exceedsMax;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -801,4 +714,4 @@
   qx.ui.control.DateChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateChooser.js.map?dt=1685978133909
+//# sourceMappingURL=DateChooser.js.map?dt=1691935430675

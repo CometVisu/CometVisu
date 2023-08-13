@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,6 @@
         LEAF: 1,
         BRANCH: 2
       },
-
       /**
        * Add a node to the tree.
        *
@@ -115,16 +113,16 @@
        * @throws {Error} If one tries to add a node to a leaf.
        */
       _addNode: function _addNode(nodeArr, parentNodeId, label, bOpened, bHideOpenCloseButton, type, icon, iconSelected, nodeId) {
-        var parentNode; // Ensure that if parent was specified, it exists
+        var parentNode;
 
+        // Ensure that if parent was specified, it exists
         if (parentNodeId) {
           parentNode = nodeArr[parentNodeId];
-
           if (!parentNode) {
             throw new Error("Request to add a child to a non-existent parent");
-          } // Ensure parent isn't a leaf
+          }
 
-
+          // Ensure parent isn't a leaf
           if (parentNode.type == qx.ui.treevirtual.MTreePrimitive.Type.LEAF) {
             throw new Error("Sorry, a LEAF may not have children.");
           }
@@ -132,21 +130,21 @@
           // This is a child of the root
           parentNode = nodeArr[0];
           parentNodeId = 0;
-        } // If this is a leaf, we don't present open/close icon
+        }
 
-
+        // If this is a leaf, we don't present open/close icon
         if (type == qx.ui.treevirtual.MTreePrimitive.Type.LEAF) {
           // mask off the opened bit but retain the hide open/close button bit
           bOpened = false;
           bHideOpenCloseButton = false;
-        } // Determine the node id of this new node
+        }
 
-
+        // Determine the node id of this new node
         if (nodeId === undefined) {
           nodeId = nodeArr.length;
-        } // Set the data for this node.
+        }
 
-
+        // Set the data for this node.
         var node = {
           type: type,
           nodeId: nodeId,
@@ -160,15 +158,17 @@
           iconSelected: iconSelected,
           children: [],
           columnData: []
-        }; // Add this node to the array
+        };
 
-        nodeArr[nodeId] = node; // Add this node to its parent's child array.
+        // Add this node to the array
+        nodeArr[nodeId] = node;
 
-        parentNode.children.push(nodeId); // Return the node id we just added
+        // Add this node to its parent's child array.
+        parentNode.children.push(nodeId);
 
+        // Return the node id we just added
         return nodeId;
       },
-
       /**
        * An empty tree contains only this one node
        *
@@ -188,4 +188,4 @@
   qx.ui.treevirtual.MTreePrimitive.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MTreePrimitive.js.map?dt=1685978150402
+//# sourceMappingURL=MTreePrimitive.js.map?dt=1691935446658

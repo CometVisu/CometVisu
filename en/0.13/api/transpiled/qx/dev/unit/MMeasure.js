@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,13 +47,11 @@
       measureRepeated: function measureRepeated(msg, callback, finalize, iterations, displayIterations) {
         this.measure(msg, function () {
           var i = iterations;
-
           while (i--) {
             callback(i);
           }
         }, finalize, displayIterations || iterations);
       },
-
       /**
        * Repeatedly runs code for a given amount of time and measures completed
        * iterations
@@ -72,22 +69,18 @@
         this.measure(msg, function () {
           var i = 0;
           var testTime = 0;
-
           while (testTime < time) {
             if (prepare) {
               prepare();
             }
-
             var startIter = Date.now();
             callback(i);
             testTime += Date.now() - startIter;
             i++;
           }
-
           return i;
         }, finalize, null, time);
       },
-
       /**
        * Executes a given callback function once and measures JavaScript execution
        * and rendering time
@@ -105,27 +98,23 @@
       measure: function measure(msg, callback, finalize, displayIterations, maxTime) {
         // profiling
         var profilingEnabled;
-
         try {
           profilingEnabled = window.top.qx.core.Init.getApplication().runner.view.getNativeProfiling();
         } catch (ex) {
           profilingEnabled = false;
         }
-
         var profilingActive = profilingEnabled && console && console.profile && typeof console.profile == "function" && console.profileEnd && typeof console.profileEnd == "function";
-
         if (profilingActive) {
           console.profile(msg);
         }
-
         var start = Date.now();
         var iterations = callback();
-        var end = Date.now(); // profiling
+        var end = Date.now();
 
+        // profiling
         if (profilingActive) {
           console.profileEnd(msg);
         }
-
         var time = end - start;
         var renderStart = Date.now();
         var self = this;
@@ -138,7 +127,6 @@
         }, 0);
         this.wait(maxTime ? maxTime + 5000 : 10000);
       },
-
       /**
        * Logs a single measurement result
        *
@@ -155,4 +143,4 @@
   qx.dev.unit.MMeasure.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMeasure.js.map?dt=1685978115799
+//# sourceMappingURL=MMeasure.js.map?dt=1691935413613

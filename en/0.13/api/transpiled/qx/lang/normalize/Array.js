@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Martin Wittemann (wittemann)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native 'Array' object.
    * It checks if these methods are available and, if not, appends them to
@@ -45,7 +43,6 @@
    * @group (Polyfill)
    * @require(qx.bom.client.EcmaScript)
    */
-
   /* eslint-disable no-extend-native */
   qx.Bootstrap.define("qx.lang.normalize.Array", {
     statics: {
@@ -74,16 +71,13 @@
         } else if (fromIndex < 0) {
           fromIndex = Math.max(0, this.length + fromIndex);
         }
-
         for (var i = fromIndex; i < this.length; i++) {
           if (this[i] === searchElement) {
             return i;
           }
         }
-
         return -1;
       },
-
       /**
        * The <code>lastIndexOf()</code> method returns the last index
        * at which a given element can be found in the array, or -1 if
@@ -112,16 +106,13 @@
         } else if (fromIndex < 0) {
           fromIndex = Math.max(0, this.length + fromIndex);
         }
-
         for (var i = fromIndex; i >= 0; i--) {
           if (this[i] === searchElement) {
             return i;
           }
         }
-
         return -1;
       },
-
       /**
        * The <code>forEach()</code> method executes a provided function
        * once per array element. You can not break the loop with this function.
@@ -135,16 +126,13 @@
        */
       forEach: function forEach(callback, obj) {
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (value !== undefined) {
             callback.call(obj || window, value, i, this);
           }
         }
       },
-
       /**
        * The <code>filter()</code> method creates a new array with
        * all elements that pass the test implemented by the provided
@@ -160,20 +148,16 @@
       filter: function filter(callback, obj) {
         var res = [];
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (value !== undefined) {
             if (callback.call(obj || window, value, i, this)) {
               res.push(this[i]);
             }
           }
         }
-
         return res;
       },
-
       /**
        * The <code>map()</code> method creates a new array with
        * the results of calling a provided function on every
@@ -195,18 +179,14 @@
       map: function map(callback, obj) {
         var res = [];
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (value !== undefined) {
             res[i] = callback.call(obj || window, value, i, this);
           }
         }
-
         return res;
       },
-
       /**
        * The <code>some()</code> method tests whether some
        * element in the array passes the test implemented by
@@ -221,20 +201,16 @@
        */
       some: function some(callback, obj) {
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (value !== undefined) {
             if (callback.call(obj || window, value, i, this)) {
               return true;
             }
           }
         }
-
         return false;
       },
-
       /**
        * The <code>every()</code> method tests whether all elements
        * in the array pass the test implemented by the provided function.
@@ -248,20 +224,16 @@
        */
       every: function every(callback, obj) {
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (value !== undefined) {
             if (!callback.call(obj || window, value, i, this)) {
               return false;
             }
           }
         }
-
         return true;
       },
-
       /**
        * The <code>find()</code> method returns a value in the array, if an element in the
        * array satisfies the provided testing function. Otherwise undefined is returned.
@@ -274,18 +246,14 @@
        */
       find: function find(callback, obj) {
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (callback.call(obj || window, value, i, this)) {
             return value;
           }
         }
-
         return undefined;
       },
-
       /**
        * The <code>findIndex()</code> method returns an index in the array, if an element in the
        * array satisfies the provided testing function. Otherwise -1 is returned.
@@ -298,18 +266,14 @@
        */
       findIndex: function findIndex(callback, obj) {
         var l = this.length;
-
         for (var i = 0; i < l; i++) {
           var value = this[i];
-
           if (callback.call(obj || window, value, i, this)) {
             return i;
           }
         }
-
         return -1;
       },
-
       /**
        * The <code>reduce()</code> method applies a function against
        * an accumulator and each value of the array (from left-to-right)
@@ -335,22 +299,17 @@
         if (typeof callback !== "function") {
           throw new TypeError("First argument is not callable");
         }
-
         if (init === undefined && this.length === 0) {
           throw new TypeError("Length is 0 and no second argument given");
         }
-
         var ret = init === undefined ? this[0] : init;
-
         for (var i = init === undefined ? 1 : 0; i < this.length; i++) {
           if (i in this) {
             ret = callback.call(undefined, ret, this[i], i, this);
           }
         }
-
         return ret;
       },
-
       /**
        * The reduceRight() method applies a function against an
        * accumulator and each value of the array (from right-to-left)
@@ -376,22 +335,17 @@
         if (typeof callback !== "function") {
           throw new TypeError("First argument is not callable");
         }
-
         if (init === undefined && this.length === 0) {
           throw new TypeError("Length is 0 and no second argument given");
         }
-
         var ret = init === undefined ? this[this.length - 1] : init;
-
         for (var i = init === undefined ? this.length - 2 : this.length - 1; i >= 0; i--) {
           if (i in this) {
             ret = callback.call(undefined, ret, this[i], i, this);
           }
         }
-
         return ret;
       },
-
       /**
        * The includes() method determines whether an array includes a certain element, returning
        * true or false as appropriate.
@@ -405,48 +359,48 @@
       includes: function includes(searchElement, fromIndex) {
         if (this == null) {
           throw new TypeError('"this" is null or not defined');
-        } // 1. Let O be ? ToObject(this value).
+        }
 
+        // 1. Let O be ? ToObject(this value).
+        var o = Object(this);
 
-        var o = Object(this); // 2. Let len be ? ToLength(? Get(O, "length")).
+        // 2. Let len be ? ToLength(? Get(O, "length")).
+        var len = o.length >>> 0;
 
-        var len = o.length >>> 0; // 3. If len is 0, return false.
-
+        // 3. If len is 0, return false.
         if (len === 0) {
           return false;
-        } // 4. Let n be ? ToInteger(fromIndex).
+        }
+
+        // 4. Let n be ? ToInteger(fromIndex).
         //    (If fromIndex is undefined, this step produces the value 0.)
+        var n = fromIndex | 0;
 
-
-        var n = fromIndex | 0; // 5. If n ≥ 0, then
+        // 5. If n ≥ 0, then
         //  a. Let k be n.
         // 6. Else n < 0,
         //  a. Let k be len + n.
         //  b. If k < 0, let k be 0.
-
         var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-
         function sameValueZero(x, y) {
           return x === y || typeof x === "number" && typeof y === "number" && isNaN(x) && isNaN(y);
-        } // 7. Repeat, while k < len
+        }
 
-
+        // 7. Repeat, while k < len
         while (k < len) {
           // a. Let elementK be the result of ? Get(O, ! ToString(k)).
           // b. If SameValueZero(searchElement, elementK) is true, return true.
           if (sameValueZero(o[k], searchElement)) {
             return true;
-          } // c. Increase k by 1.
-
-
+          }
+          // c. Increase k by 1.
           k++;
-        } // 8. Return false
+        }
 
-
+        // 8. Return false
         return false;
       }
     },
-
     /**
      * @lint environmentNonLiteralKey()
      */
@@ -459,7 +413,6 @@
           });
         }
       };
-
       install("ecmascript.array.indexof", "indexOf");
       install("ecmascript.array.lastindexof", "lastIndexOf");
       install("ecmascript.array.foreach", "forEach");
@@ -477,4 +430,4 @@
   qx.lang.normalize.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1685978127587
+//# sourceMappingURL=Array.js.map?dt=1691935424968

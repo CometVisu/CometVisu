@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* IPage.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,7 +49,6 @@
        * @type {String}
        */
       path: {},
-
       /**
        * The page type (text, 2d, 3d)
        * @type {String}
@@ -59,7 +57,6 @@
       backdropAlign: {},
       backdropType: {}
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -76,4 +73,4 @@
   cv.ui.structure.IPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IPage.js.map?dt=1685978161880
+//# sourceMappingURL=IPage.js.map?dt=1691935457217

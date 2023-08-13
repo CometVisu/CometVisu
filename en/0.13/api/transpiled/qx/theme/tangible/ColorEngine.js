@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -29,27 +28,24 @@
     Origin:
       This theme is inspired by ideas from Material design.
   ************************************************************************ */
-
   /**
    * Simple color theme
    */
+
   var helper = {
     tone: function tone(color) {
       if (color == "dark" || color == "light") {
         return color;
       }
-
       var minimumContrast = 3.1;
       var lightContrast = qx.util.ColorUtil.contrast(color, "#fff");
       var darkContrast = qx.util.ColorUtil.contrast(color, "rgba(0,0,0,0.87)");
-
       if (lightContrast < minimumContrast && darkContrast > lightContrast) {
         return "light";
       } else {
         return "dark";
       }
     },
-
     /**
      * contrastTone
      *
@@ -62,7 +58,6 @@
     contrastTone: function contrastTone(color) {
       return helper.tone(color) === "dark" ? "light" : "dark";
     },
-
     /**
      * inkColorForFill
      *
@@ -100,36 +95,30 @@
       var d = key.split("-");
       var color = d[0];
       var state = d[1];
-
       switch (state) {
         case "focused":
           return qx.util.ColorUtil.scale(color, {
             lightness: 10,
             saturation: 10
           });
-
         case "hovered":
           return qx.util.ColorUtil.scale(color, {
             lightness: 10
           });
-
         case "disabled":
           return qx.util.ColorUtil.scale(color, {
             lightness: -10,
             saturation: -70
           });
-
         case "selected":
           return qx.util.ColorUtil.scale(color, {
             lightness: 30
           });
-
         case "selected_disabled":
           return qx.util.ColorUtil.scale(color, {
             lightness: 30,
             saturation: -70
           });
-
         default:
           return color;
       }
@@ -142,12 +131,10 @@
     },
     setAlpha: function setAlpha(key) {
       var splitKey = key.split("-");
-
       if (splitKey.length == 4) {
         splitKey[1] = splitKey[0] + "-" + splitKey[1];
         splitKey.shift();
       }
-
       var baseColor = splitKey[0];
       var alphaPercent = splitKey[2];
       var actualColor = qx.theme.manager.Color.getInstance().resolve(baseColor);
@@ -160,11 +147,13 @@
     colors: {
       // actual implementations must supply these 4 colors
       // at least
+
       //"primary": "#6200ee",
       //"secondary": "#018786",
       //"surface": "#ffffff",
       //"error": "#b00020",
       // automatic colors
+
       "text-on-primary": helper.onX,
       "text-on-secondary": helper.onX,
       "text-on-surface": helper.onX,
@@ -217,4 +206,4 @@
   qx.theme.tangible.ColorEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorEngine.js.map?dt=1685978132281
+//# sourceMappingURL=ColorEngine.js.map?dt=1691935429376

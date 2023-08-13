@@ -128,7 +128,7 @@ Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;data
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -138,6 +138,81 @@ Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;data
 einen Zeitpunkt im Chart wird als Tooltip angezeigt, wenn man mit dem Mauszeiger über den Chart fährt.
 Damit der Chart eine gewisse Größe erreicht wird hier eine Kachel mit doppelter Breite <code class="docutils literal notranslate"><span class="pre">&lt;cv-tile</span> <span class="pre">size=&quot;2x1&quot;&gt;</span></code> benutzt
 und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils literal notranslate"><span class="pre">&lt;cv-chart</span> <span class="pre">...</span> <span class="pre">colspan=&quot;3&quot;</span> <span class="pre">rowspan=&quot;3&quot;&gt;</span></code>.</p>
+<section id="konfiguration-der-datenquelle">
+<h3>Konfiguration der Datenquelle<a class="headerlink" href="#konfiguration-der-datenquelle" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im <code class="docutils literal notranslate"><span class="pre">src</span></code>-Attribute des <code class="docutils literal notranslate"><span class="pre">dataset</span></code>-Elements wird eine URL angegeben die die Datenquelle definiert. Bisher werden
+openHAB (<a class="reference external" href="https://www.openhab.org/docs/configuration/persistence.html">Persistence</a>), InfluxDB und RRD als Datenquellen unterstützt.</p>
+<p><strong>Konfiguration einer openHAB-Quelle</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">openhab://&lt;Item-Name&gt;</span></code> wobei &lt;Item-Name&gt; ein beliebiger Item-Name in openHAB sein kann, für den historische Daten aufgezeichnet werden.
+Es ist zusätzlich möglich einen spezielle Persistence-Service anzugeben, falls man mehrere benutzt:
+<code class="docutils literal notranslate"><span class="pre">openhab://&lt;service-id&gt;&#64;&lt;Item-Name&gt;</span></code>, gibt man diesen nicht an wird der in openHAB konfigurierte default-Persistence Service benutzt.</p>
+<p><strong>Konfiguration einer InfluxDB-Quelle</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">flux://&lt;organization&gt;&#64;&lt;bucket&gt;/&lt;measurement&gt;/&lt;field&gt;</span></code> Optional können Angaben für die
+<a class="reference external" href="https://docs.influxdata.com/flux/v0.x/stdlib/universe/aggregatewindow/">aggregationWindow-Funktion</a> als
+Query-Parameter angehängt werden. Diese benötigen den Präfix <code class="docutils literal notranslate"><span class="pre">ag-</span></code>. Beispiel:
+<code class="docutils literal notranslate"><span class="pre">flux://cometvisu&#64;cv-bucket/Temperature/value?ag-every=1d&amp;amp;ag-fn=mean</span></code> würde in folgende Flux-Query an die
+Datenbank geschickt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span><span class="s2">&quot;cv-bucket&quot;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">-</span><span class="n">zeit</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">end</span><span class="o">-</span><span class="n">zeit</span><span class="o">&gt;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="nb">filter</span><span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">_measurement</span> <span class="o">==</span> <span class="s2">&quot;Temperature&quot;</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">_field</span> <span class="o">==</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="p">:</span> <span class="mi">1</span><span class="n">d</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Wird nur <code class="docutils literal notranslate"><span class="pre">ag-every</span></code> angegeben, dann wird „mean“ als Standard-Wert für <code class="docutils literal notranslate"><span class="pre">ag-fn</span></code> genommen. Wird beides nicht
+angeben, werden die Werte anhand der vom Chart benutzen <code class="docutils literal notranslate"><span class="pre">series</span></code> automatisch bestimmt.</p>
+<p>Für komplexere Datenbankanfragen kann auch direkt der Code der Flux-Query als Text-Inhalt des <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code>-Elements
+angegeben werden. Im <code class="docutils literal notranslate"><span class="pre">src</span></code>-Attribute muss dann lediglich noch die Organisation und der Hinweis, dass die Query „inline“
+angegeben wurde angegeben werden.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;flux://openhab@inline&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>from(bucket:&quot;openhab&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>range(start:<span class="w"> </span>-2d)
+<span class="w">        </span>|&gt;<span class="w"> </span>filter(fn:<span class="w"> </span>(r)<span class="w"> </span>=&gt;<span class="w"> </span>r._measurement<span class="w"> </span>==<span class="w"> </span>&quot;Counter&quot;<span class="w"> </span>and<span class="w"> </span>r._field<span class="w"> </span>==<span class="w"> </span>&quot;value&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>aggregateWindow(every:<span class="w"> </span>1d,<span class="w"> </span>fn:<span class="w"> </span>last)
+<span class="w">        </span>|&gt;<span class="w"> </span>difference()
+<span class="nt">&lt;/dataset&gt;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query
+in der UI der InfluxDB zusammenzustellen und den funktionieren Code dann zu kopieren.</p>
+</div>
+<p>Die URI des InfluxDB-Servers und ein Token für die Authentifizierung der Anfragen müssen in der <a class="reference internal" href="../../hidden-config.html#hidden-config"><span class="std std-ref">Versteckten Konfigurationen</span></a>
+unter der Sektion „influx“ angegeben werden. In dieser Sektion sind folgende Schlüssel-Wert Einträge erforderlich.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Schlüssel</p></td>
+<td><p>Wert</p></td>
+</tr>
+<tr class="row-even"><td><p>uri</p></td>
+<td><p><cite>http://&lt;influx-server&gt;:8062</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p>token</p></td>
+<td><p><cite>API Token (kann in der Influx-UI
+generiert werden)</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>config</p></td>
+<td><p>flux</p></td>
+</tr>
+</tbody>
+</table>
+<p>Die Werte für „uri“ und „token“ müssen entsprechend angepasst werden, der Wert für „config“ muss „flux“ sind damit
+die Kommunikation korrekt funktionieren kann.</p>
+<p><strong>Konfiguration einer RRD-Quelle</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">rrd://&lt;dateiname-ohne-rrd&gt;</span></code> Für die RRD-Datenquelle muss der Dateiname ohne das „.rrd“ am Ende angebene werden.
+Zusätzlich können als Query-Parameter hinzugefügt werden:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ds</span></code>: Auswählen einer der verfügbaren Consolidation Functions des RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">res</span></code>: Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</p></li>
+</ul>
+<p>Beispiel: <code class="docutils literal notranslate"><span class="pre">rrd://&lt;dateiname-ohne-rrd&gt;?ds=AVERAGE&amp;resolution=3600</span></code></p>
+</section>
+<section id="weitere-beispiele">
+<h3>Weitere Beispiele<a class="headerlink" href="#weitere-beispiele" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farblich von einander abzugrenzen.</p>
 <figure class="align-default" id="id1">
 <img alt="Zwei Linien in einem Chart." src="../../../_images/cv-chart-pv.png" />
@@ -154,8 +229,8 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -172,8 +247,8 @@ und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils li
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -197,17 +272,14 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
 <span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;week,month,year&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
-<section id="navigation">
-<h3>Navigation<a class="headerlink" href="#navigation" title="Link zu dieser Überschrift">¶</a></h3>
-</section>
 <section id="erlaubte-attribute">
-<h3>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h4>Erlaubte Attribute<a class="headerlink" href="#erlaubte-attribute" title="Link zu dieser Überschrift">¶</a></h4>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -291,7 +363,7 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 </table>
 </section>
 <section id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
+<h4>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h4>
 <table class="schema-table docutils align-default">
 <colgroup>
 <col style="width: 15%" />
@@ -318,7 +390,7 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 </dl>
 </td>
 <td><p>src</p></td>
-<td><p>Text</p></td>
+<td><p>anyURI</p></td>
 <td><p>Datenquelle für dieses Chart-Element.</p></td>
 </tr>
 <tr class="row-even"><td><p>title</p></td>
@@ -340,6 +412,21 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 <tr class="row-even"><td><p>show-area</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Bereich unterhalb eines Liniendiagramms ausfüllen.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>dataset</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>Text</p></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -394,6 +481,7 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 </tr>
 </tbody>
 </table>
+</section>
 </section>
 </section>
 </section>

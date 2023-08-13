@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -67,43 +66,37 @@
    */
   qx.Class.define("qx.ui.basic.Atom", {
     extend: qx.ui.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
      */
     construct: function construct(label, icon) {
       qx.ui.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.Atom());
-
       if (label != null) {
         this.setLabel(label);
       }
-
       if (icon !== undefined) {
         this.setIcon(icon);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "atom"
       },
-
       /** The label/caption/text of the qx.ui.basic.Atom instance */
       label: {
         apply: "_applyLabel",
@@ -111,7 +104,6 @@
         check: "String",
         event: "changeLabel"
       },
-
       /**
        * Switches between rich HTML and text content. The text mode (<code>false</code>) supports
        * advanced features like ellipsis when the available space is not
@@ -123,7 +115,6 @@
         init: false,
         apply: "_applyRich"
       },
-
       /** Any URI String supported by qx.ui.basic.Image to display an icon */
       icon: {
         check: "String",
@@ -132,7 +123,6 @@
         themeable: true,
         event: "changeIcon"
       },
-
       /**
        * The space between the icon and the label
        */
@@ -144,7 +134,6 @@
         themeable: true,
         init: 4
       },
-
       /**
        * Configure the visibility of the sub elements/widgets.
        * Possible values: both, label, icon
@@ -157,7 +146,6 @@
         apply: "_applyShow",
         event: "changeShow"
       },
-
       /**
        * The position of the icon in relation to the text.
        * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
@@ -168,7 +156,6 @@
         themeable: true,
         apply: "_applyIconPosition"
       },
-
       /**
        * Whether the content should be rendered centrally when to much space
        * is available. Enabling this property centers in both axis. The behavior
@@ -185,51 +172,39 @@
         apply: "_applyCenter"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "label":
             control = new qx.ui.basic.Label(this.getLabel());
             control.setAnonymous(true);
             control.setRich(this.getRich());
             control.setSelectable(this.getSelectable());
-
             this._add(control);
-
             if (this.getLabel() == null || this.getShow() === "icon") {
               control.exclude();
             }
-
             break;
-
           case "icon":
             control = new qx.ui.basic.Image(this.getIcon());
             control.setAnonymous(true);
-
             this._addAt(control, 0);
-
             if (this.getIcon() == null || this.getShow() === "label") {
               control.exclude();
             }
-
             break;
         }
-
         return control || qx.ui.basic.Atom.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -237,7 +212,6 @@
         focused: true,
         hovered: true
       },
-
       /**
        * Updates the visibility of the label
        */
@@ -248,7 +222,6 @@
           this._showChildControl("label");
         }
       },
-
       /**
        * Updates the visibility of the icon
        */
@@ -262,17 +235,14 @@
       // property apply
       _applyLabel: function _applyLabel(value, old) {
         var label = this.getChildControl("label", true);
-
         if (label) {
           label.setValue(value);
         }
-
         this._handleLabel();
       },
       // property apply
       _applyRich: function _applyRich(value, old) {
         var label = this.getChildControl("label", true);
-
         if (label) {
           label.setRich(value);
         }
@@ -280,11 +250,9 @@
       // property apply
       _applyIcon: function _applyIcon(value, old) {
         var icon = this.getChildControl("icon", true);
-
         if (icon) {
           icon.setSource(value);
         }
-
         this._handleIcon();
       },
       // property apply
@@ -294,7 +262,6 @@
       // property apply
       _applyShow: function _applyShow(value, old) {
         this._handleLabel();
-
         this._handleIcon();
       },
       // property apply
@@ -308,9 +275,7 @@
       // overridden
       _applySelectable: function _applySelectable(value, old) {
         qx.ui.basic.Atom.superclass.prototype._applySelectable.call(this, value, old);
-
         var label = this.getChildControl("label", true);
-
         if (label) {
           this.getChildControl("label").setSelectable(value);
         }
@@ -320,4 +285,4 @@
   qx.ui.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1685978132643
+//# sourceMappingURL=Atom.js.map?dt=1691935429700

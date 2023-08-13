@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -33,7 +32,6 @@
        * Martijn Evers (mever)
   
   ************************************************************************ */
-
   /**
    * The resetter is responsible for managing a set of fields and resetting these
    * fields on a {@link #reset} call. It can handle all form field implementing IField.
@@ -46,7 +44,6 @@
     },
     members: {
       __P_356_0: null,
-
       /**
        * Adding a field to the resetter will get its current value and store
        * it for resetting.
@@ -56,13 +53,11 @@
        */
       add: function add(field) {
         this.__P_356_1(field);
-
         this.__P_356_0.push({
           item: field,
           init: field.getValue()
         });
       },
-
       /**
        * Removes a field from the resetter.
        *
@@ -72,20 +67,15 @@
        */
       remove: function remove(field) {
         this.__P_356_1(field);
-
         for (var i = 0; i < this.__P_356_0.length; i++) {
           var storedItem = this.__P_356_0[i];
-
           if (storedItem.item === field) {
             this.__P_356_0.splice(i, 1);
-
             return true;
           }
         }
-
         return false;
       },
-
       /**
        * Resets all added fields to their initial value. The initial value
        * is the value in the widget during the {@link #add}.
@@ -94,25 +84,21 @@
        */
       reset: function reset() {
         var dataEntry,
-            e,
-            errors = [];
-
+          e,
+          errors = [];
         for (var i = 0; i < this.__P_356_0.length; i++) {
           dataEntry = this.__P_356_0[i];
           e = dataEntry.item.setValue(dataEntry.init);
-
           if (e && e instanceof Error) {
             errors.push(e);
           }
         }
-
         if (errors.length) {
           return new Error(errors.join(", "));
         } else {
           return null;
         }
       },
-
       /**
        * Resets a single given field. The field has to be added to the resetter
        * instance before. Otherwise, an error is thrown.
@@ -123,18 +109,14 @@
        */
       resetItem: function resetItem(field) {
         this.__P_356_1(field);
-
         for (var i = 0; i < this.__P_356_0.length; i++) {
           var dataEntry = this.__P_356_0[i];
-
           if (dataEntry.item === field) {
             return field.setValue(dataEntry.init);
           }
         }
-
         throw new Error("The given field has not been added.");
       },
-
       /**
        * Takes the current values of all added fields and uses these values as
        * init values for resetting.
@@ -142,12 +124,11 @@
       redefine: function redefine() {
         // go threw all added items
         for (var i = 0; i < this.__P_356_0.length; i++) {
-          var item = this.__P_356_0[i].item; // set the new init value for the item
-
+          var item = this.__P_356_0[i].item;
+          // set the new init value for the item
           this.__P_356_0[i].init = item.getValue();
         }
       },
-
       /**
        * Takes the current value of the given field and stores this value as init
        * value for resetting.
@@ -156,11 +137,10 @@
        * @throws {TypeError} When given argument is not a field.
        */
       redefineItem: function redefineItem(field) {
-        this.__P_356_1(field); // get the data entry
+        this.__P_356_1(field);
 
-
+        // get the data entry
         var dataEntry;
-
         for (var i = 0; i < this.__P_356_0.length; i++) {
           if (this.__P_356_0[i].item === field) {
             dataEntry = this.__P_356_0[i];
@@ -168,10 +148,8 @@
             return;
           }
         }
-
         throw new Error("The given field has not been added.");
       },
-
       /**
        * Assert when given argument is not a field.
        *
@@ -185,7 +163,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -199,4 +176,4 @@
   qx.ui.form.Resetter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resetter.js.map?dt=1685978138743
+//# sourceMappingURL=Resetter.js.map?dt=1691935435308

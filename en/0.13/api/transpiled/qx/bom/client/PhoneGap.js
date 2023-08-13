@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
       getPhoneGap: function getPhoneGap() {
         return "cordova" in window || "Cordova" in window || "PhoneGap" in window;
       },
-
       /**
        * Checks if notifications can be displayed.
        * @return {Boolean} <code>true</code>, if it could be used.
@@ -70,4 +68,4 @@
   qx.bom.client.PhoneGap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PhoneGap.js.map?dt=1685978109683
+//# sourceMappingURL=PhoneGap.js.map?dt=1691935408467

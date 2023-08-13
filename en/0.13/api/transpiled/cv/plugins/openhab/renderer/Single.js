@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Single.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,9 +44,9 @@
    * @author Tobias Bräutigam
    * @since 0.11.0
    */
+
   qx.Class.define('cv.plugins.openhab.renderer.Single', {
     extend: qx.ui.form.renderer.AbstractRenderer,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -55,12 +54,9 @@
     */
     construct: function construct(form) {
       var layout = new qx.ui.layout.VBox(6);
-
       this._setLayout(layout);
-
       qx.ui.form.renderer.AbstractRenderer.constructor.call(this, form);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -73,7 +69,6 @@
         apply: '_applyBottomText'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -83,7 +78,6 @@
       // property apply
       _applyBottomText: function _applyBottomText(value) {
         var control = this.getChildControl('bottom-text');
-
         if (value) {
           control.setValue(value);
           control.show();
@@ -94,48 +88,36 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case 'content':
             control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
-
             this._addAt(control, 1);
-
             break;
-
           case 'bottom-text':
             control = new qx.ui.basic.Label(this.getBottomText());
             control.set({
               rich: true,
               wrap: true
             });
-
             this._addAt(control, 2);
-
             if (this.getBottomText()) {
               control.show();
             } else {
               control.exclude();
             }
-
             break;
-
           case 'button-container':
             {
               var hbox = new qx.ui.layout.HBox();
               hbox.setAlignX('right');
               hbox.setSpacing(5);
               control = new qx.ui.container.Composite(hbox);
-
               this._addAt(control, 3);
-
               break;
             }
         }
-
         return control || cv.plugins.openhab.renderer.Single.superclass.prototype._createChildControlImpl.call(this, id, hash);
       },
-
       /**
        * Add a group of form items with the corresponding names. The names are
        * displayed as label.
@@ -151,15 +133,13 @@
         if (title !== null) {
           this.getChildControl('content').add(this._createHeader(title));
         }
+        var container = this.getChildControl('content');
 
-        var container = this.getChildControl('content'); // add the items
-
+        // add the items
         for (var i = 0; i < items.length; i++) {
           var label = this._createLabel(names[i], items[i]);
-
           var item = items[i];
           label.setBuddy(item);
-
           if (item instanceof qx.ui.form.CheckBox) {
             // label + checkbox in one line
             var box = new qx.ui.container.Composite(new qx.ui.layout.HBox());
@@ -174,10 +154,9 @@
             container.add(label);
             container.add(item);
           }
+          this._connectVisibility(item, label);
 
-          this._connectVisibility(item, label); // store the names for translation
-
-
+          // store the names for translation
           {
             this._names.push({
               name: names[i],
@@ -187,7 +166,6 @@
           }
         }
       },
-
       /**
        * Adds a button to the form renderer. All buttons will be added in a
        * single row at the bottom of the form.
@@ -198,7 +176,6 @@
         // add the button
         this.getChildControl('button-container').add(button);
       },
-
       /**
        * Returns the set layout for configuration.
        *
@@ -207,7 +184,6 @@
       getLayout: function getLayout() {
         return this._getLayout();
       },
-
       /**
        * Creates a label for the given form item.
        *
@@ -217,15 +193,13 @@
        * @return {qx.ui.basic.Label} The label for the given item.
        */
       _createLabel: function _createLabel(name, item) {
-        var label = new qx.ui.basic.Label(this._createLabelText(name, item)); // store labels for disposal
-
+        var label = new qx.ui.basic.Label(this._createLabelText(name, item));
+        // store labels for disposal
         this._labels.push(label);
-
         label.setRich(true);
         label.setAppearance('form-renderer-label');
         return label;
       },
-
       /**
        * Creates a header label for the form groups.
        *
@@ -233,16 +207,13 @@
        * @return {qx.ui.basic.Label} The header for the form groups.
        */
       _createHeader: function _createHeader(title) {
-        var header = new qx.ui.basic.Label(title); // store labels for disposal
-
+        var header = new qx.ui.basic.Label(title);
+        // store labels for disposal
         this._labels.push(header);
-
         header.setFont('bold');
-
         if (this._row != 0) {
           header.setMarginTop(10);
         }
-
         header.setAlignX('left');
         return header;
       }
@@ -251,4 +222,4 @@
   cv.plugins.openhab.renderer.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1685978093025
+//# sourceMappingURL=Single.js.map?dt=1691935392536

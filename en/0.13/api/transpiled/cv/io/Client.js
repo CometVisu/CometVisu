@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -37,7 +36,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Client.js
    *
    * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -73,13 +71,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.Class.define('cv.io.Client', {
     extend: qx.core.Object,
     implement: cv.io.IClient,
-
     /*
      ******************************************************
      CONSTRUCTOR
      ******************************************************
      */
-
     /**
      * @param backendName {String} name of the backend
      * @param backendLoginUrl {String} URL of the login resource
@@ -93,25 +89,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         callbackAfterLoggedIn: null,
         context: null,
         loginOnly: false // login only for backend configuration, do not start address subscription
+      };
 
-      }; // init default settings
-
+      // init default settings
       if (cv.io.Client.backendNameAliases[backendName]) {
         backendName = cv.io.Client.backendNameAliases[backendName];
       }
-
       this.backendName = backendName;
-
       switch (this.backendName) {
         case 'default':
           this._type = 'knxd';
           break;
-
         case 'openhab':
           this._type = 'openhab';
           break;
       }
-
       if (backendName && backendName !== 'default') {
         if (_typeof(backendName) === 'object') {
           // override default settings
@@ -123,7 +115,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       } else {
         this.setBackend(cv.io.Client.backends['default']);
       }
-
       this.backendLoginUrl = backendLoginUrl;
       this.addresses = [];
       this.initialAddresses = [];
@@ -133,7 +124,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this.device = '';
       this.headers = {};
     },
-
     /*
      ******************************************************
      STATICS
@@ -148,7 +138,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         PROTOCOL_INVALID_READ_RESPONSE: 50,
         PROTOCOL_INVALID_READ_RESPONSE_MISSING_I: 51
       },
-
       /**
        * Stop all running clients
        */
@@ -194,7 +183,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         }
       }
     },
-
     /*
      ******************************************************
      PROPERTIES
@@ -209,7 +197,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: false,
         event: 'changeRunning'
       },
-
       /**
        * Is the client connected to a backend at the moment?
        */
@@ -219,7 +206,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         event: 'changeConnected',
         apply: '_applyConnected'
       },
-
       /**
        * needed to be able to check if the incoming update is the initial answer or a successing update
        */
@@ -227,14 +213,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         check: 'Boolean',
         init: false
       },
-
       /**
        * the currently used transport layer
        */
       currentTransport: {
         init: null
       },
-
       /**
        * The server we are currently speaking to (read from the login response)
        */
@@ -248,7 +232,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         nullable: true
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -273,6 +256,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // the current device ID
       session: null,
       // current session ID
+
       loginSettings: null,
       headers: null,
       __P_521_0: null,
@@ -292,22 +276,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         // override default settings
         var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
         this.backend = backend;
-
         if (backend.transport === 'sse' && backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
             // transport + settings
             Object.assign(backend, backend.transportFallback);
           }
-        } // add trailing slash to baseURL if not set
-
-
+        }
+        // add trailing slash to baseURL if not set
         if (backend.baseURL && backend.baseURL.substr(-1) !== '/') {
           backend.baseURL += '/';
         }
-
         var currentTransport = this.getCurrentTransport();
-
         switch (backend.transport) {
           case 'long-polling':
             if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
@@ -315,25 +295,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               if (currentTransport) {
                 currentTransport.dispose();
               }
-
               this.setCurrentTransport(new cv.io.transport.LongPolling(this));
             }
-
             break;
-
           case 'sse':
             if (!(currentTransport instanceof cv.io.transport.Sse)) {
               // replace old transport
               if (currentTransport) {
                 currentTransport.dispose();
               }
-
               this.setCurrentTransport(new cv.io.transport.Sse(this));
             }
-
             break;
         }
-
         if (this.backend.name === 'openHAB') {
           // use the fallback parser
           qx.util.ResponseParser.PARSER.json = cv.io.parser.Json.parse;
@@ -342,7 +316,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getBackend: function getBackend() {
         return this.backend;
       },
-
       /**
        * manipulates the header of the current ajax query before it is been send to the server
        * @param xhr
@@ -353,7 +326,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
           }
         }
-
         for (headerName in this.headers) {
           if (this.headers[headerName] !== undefined) {
             xhr.setRequestHeader(headerName, this.headers[headerName]);
@@ -372,7 +344,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       processChartsData: function processChartsData(data) {
         return data;
       },
-
       /**
        * Subscribe to the addresses in the parameter. The second parameter
        * (filter) is optional
@@ -385,10 +356,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var startCommunication = !this.addresses.length; // start when
         // addresses were
         // empty
-
         this.addresses = addresses ? addresses : [];
         this.filters = filters ? filters : [];
-
         if (!addresses.length) {
           this.stop(); // stop when new addresses are empty
         } else if (startCommunication) {
@@ -401,7 +370,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           }
         }
       },
-
       /**
        * This function starts the communication by a login and then runs the
        * ongoing communication task
@@ -419,19 +387,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           this.loginSettings.callbackAfterLoggedIn = callback;
           this.loginSettings.context = context;
           var request = {};
-
           if (this.user !== '') {
             request.u = this.user;
           }
-
           if (this.pass !== '') {
             request.p = this.pass;
           }
-
           if (this.device !== '') {
             request.d = this.device;
           }
-
           this.doRequest(this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'), request, this.handleLogin, this);
         } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           // call callback immediately
@@ -440,37 +404,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           this.loginSettings.context = null;
         }
       },
-
       /**
        * Get the json response from the parameter received from the used XHR transport
        */
       getResponse: qx.core.Environment.select('cv.xhr', {
         jquery: function jquery(args) {
           var data = args[0];
-
           if (data && $.type(data) === 'string') {
             data = cv.io.parser.Json.parse(data);
           }
-
           return data;
         },
         qx: function qx(args) {
           var ev = args[0];
-
           if (!ev) {
             return null;
           }
-
           var json = ev.getTarget().getResponse();
-
           if (!json) {
             return null;
           }
-
           if (typeof json === 'string') {
             json = cv.io.parser.Json.parse(json);
           }
-
           return json;
         }
       }),
@@ -482,14 +438,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (!args[0]) {
             return null;
           }
-
           return args[0].getTarget().getResponseHeader(name);
         }
       }),
       getQueryString: function getQueryString(data) {
         var prefix = '';
         var suffix = '';
-
         if (data) {
           Object.getOwnPropertyNames(data).forEach(function (key) {
             if (key === 'i' || key === 't') {
@@ -500,17 +454,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               suffix += key + '=' + data[key] + '&';
             }
           });
-
           if (suffix.length) {
             suffix = suffix.substring(0, suffix.length - 1);
           } else if (prefix.length) {
             prefix = prefix.substring(0, prefix.length - 1);
           }
         }
-
         return prefix + suffix;
       },
-
       /**
        * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
        * (currently "qx" and "jquery" are supported)
@@ -523,26 +474,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       doRequest: qx.core.Environment.select('cv.xhr', {
         jquery: function jquery(url, data, callback, context, options) {
           var qs = '';
-
           if (data) {
             qs = this.getQueryString(data);
             url = qx.util.Uri.appendParamsToUrl(url, qs);
           }
-
           var config = {
             url: url,
             dataType: 'json',
             context: context,
             success: callback
           };
-
           if (options) {
             if (options.listeners) {
               config = $.extend(config, options.listeners);
               delete options.listeners;
             }
           }
-
           config = $.extend(config, options || {});
           var request = new cv.io.request.Jquery(config);
           request.send();
@@ -552,29 +499,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           function qx(_x, _x2, _x3, _x4, _x5) {
             return _qx.apply(this, arguments);
           }
-
           qx.toString = function () {
             return _qx.toString();
           };
-
           return qx;
         }(function (url, data, callback, context, options) {
           // append data to URL
           var qs = '';
-
           if (data) {
             qs = this.getQueryString(data);
             url = qx.util.Uri.appendParamsToUrl(url, qs);
           }
-
           var ajaxRequest = new qx.io.request.Xhr(url);
-
           if (options) {
             if (options.beforeSend) {
               this.beforeSend(ajaxRequest);
               delete options.beforeSend;
             }
-
             if (options.listeners) {
               Object.getOwnPropertyNames(options.listeners).forEach(function (eventName) {
                 var qxEventName = eventName !== 'error' ? eventName : 'statusError';
@@ -583,28 +524,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               delete options.listeners;
             }
           }
-
           ajaxRequest.set(Object.assign({
             accept: 'application/json'
           }, options || {}));
-
           if (callback) {
             ajaxRequest.addListener('success', callback, context);
           }
-
           ajaxRequest.addListener('statusError', this._onError, this);
           ajaxRequest.send();
           return ajaxRequest;
         })
       }),
-
       /**
        * Handle errors from qooxdoos XHR request
        * @param ev {Event}
        */
       _onError: function _onError(ev) {
         var req = ev.getTarget();
-
         if (req.serverErrorHandled) {
           return; // ignore error when already handled
         }
@@ -619,7 +555,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.setConnected(false);
         this.fireDataEvent('changeConnected', false);
       },
-
       /**
        * Get the last recorded error
        *
@@ -628,7 +563,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getLastError: function getLastError() {
         return this.__P_521_0;
       },
-
       /**
        * Handles login response, applies backend configuration if send by
        * backend and forwards to the configurated transport handleSession
@@ -645,45 +579,37 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       handleLogin: function handleLogin() {
         var args = Array.prototype.slice.call(arguments, 0);
-        var json = this.getResponse(args); // read backend configuration if send by backend
-
+        var json = this.getResponse(args);
+        // read backend configuration if send by backend
         if (json.c) {
           this.setBackend(Object.assign(this.getBackend(), json.c));
         }
-
         this.session = json.s || 'SESSION';
         this.setServer(this.getResponseHeader(args, 'Server'));
         this.setDataReceived(false);
-
         if (this.loginSettings.loginOnly) {
           this.getCurrentTransport().handleSession(args, false);
         } else {
           this.getCurrentTransport().handleSession(args, true);
         }
-
         this.loginSettings.loggedIn = true;
-
         if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
           this.loginSettings.callbackAfterLoggedIn = null;
           this.loginSettings.context = null;
         }
       },
-
       /**
        * This function stops an ongoing connection
        *
        */
       stop: function stop() {
         this.setRunning(false);
-
         if (this.getCurrentTransport().abort) {
           this.getCurrentTransport().abort();
         }
-
         this.loginSettings.loggedIn = false;
       },
-
       /**
        * Build the URL part that contains the addresses and filters
        * @param addresses {Array}
@@ -696,30 +622,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           var qs = 's=' + this.session;
           addresses = addresses ? addresses : this.addresses;
           qs += '&a=' + addresses.join('&a=');
-
           if (this.filters.length) {
             qs += '&f=' + this.filters.join('&f=');
           }
-
           return qs;
         }
-
         var data = {
           s: this.session
         };
         addresses = addresses || this.addresses;
-
         if (addresses && addresses.length) {
           data.a = addresses;
         }
-
         if (this.filters.length) {
           data.f = this.filters;
         }
-
         return data;
       },
-
       /**
        * This function sends a value
        * @param address {String} address to send the value to
@@ -743,7 +662,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       },
       // this client does not implement an authorization
       authorize: function authorize(req) {},
-
       /**
        * Restart the connection
        * @param full
@@ -755,14 +673,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.getCurrentTransport().abort();
       },
       update: function update(json) {},
-
       /**
        * Can be overridden to record client communication with backend
        * @param type {String} type of event to record
        * @param data {Object} data to record
        */
       record: function record(type, data) {},
-
       /**
        * Can be overridden to provide an error handler for client errors
        * @param type {Number} one of cv.io.Client.ERROR_CODES
@@ -783,7 +699,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         return null;
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -796,4 +711,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1685978156050
+//# sourceMappingURL=Client.js.map?dt=1691935452154

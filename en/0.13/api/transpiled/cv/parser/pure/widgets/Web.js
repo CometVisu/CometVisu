@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Web.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Web', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -61,11 +59,9 @@
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         cv.parser.pure.WidgetParser.parseRefresh(xml, path);
         var ga = xml.getAttribute('ga');
-
         if (ga) {
           cv.data.Model.getInstance().addAddress(ga);
           var defaultClient = cv.io.BackendConnections.getClient();
-
           if (defaultClient) {
             switch (defaultClient.getType()) {
               case 'knxd':
@@ -74,24 +70,20 @@
                   mode: 0
                 };
                 break;
-
               case 'openhab':
                 data.address['_' + ga] = {
                   transform: 'OH:switch',
                   mode: 'OFF'
                 };
                 break;
-
               default:
                 qx.log.Logger.error(this, 'web-widget address does not support backends of type', defaultClient.getType());
                 break;
             }
           }
         }
-
         return data;
       },
-
       /**
        * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
        * @return {Map}
@@ -120,4 +112,4 @@
   cv.parser.pure.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1685978091688
+//# sourceMappingURL=Web.js.map?dt=1691935391286

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* LimitedRateUpdateAnimator.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -51,13 +50,11 @@
    */
   qx.Class.define('cv.util.LimitedRateUpdateAnimator', {
     extend: qx.core.Object,
-
     /*
     ******************************************************
       CONSTRUCTOR
     ******************************************************
     */
-
     /**
      * Create a new animated display where an object will be smoothly transitioned
      * from its current position to a new target position.
@@ -74,7 +71,6 @@
       this.__P_548_0 = context;
       this.__P_548_1 = displayFnParameters;
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -86,7 +82,6 @@
         this.__P_548_2 = undefined;
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -113,7 +108,6 @@
         check: 'Function'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -125,7 +119,6 @@
       __P_548_1: undefined,
       __P_548_3: undefined,
       __P_548_4: undefined,
-
       /**
        * Set animation speed by defining the (typical) maximal range.
        * An animation of the full ``range`` will require about 0.5 to 1 second
@@ -141,13 +134,11 @@
         } else {
           this.setEpsilon(range / 1000);
         }
-
-        this.setLinearRateLimit(2 * range); // Note: as the exponential dampening is working on a ratio it doesn't
+        this.setLinearRateLimit(2 * range);
+        // Note: as the exponential dampening is working on a ratio it doesn't
         // need to be changed here and the default of 0.01 is fine:
-
         this.setExpDampTimeConstant(0.01);
       },
-
       /**
        * Set the value to a new value.
        * @param {Number} targetValue the new value.
@@ -159,16 +150,13 @@
         var show = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
         var now = performance.now();
         this.__P_548_4 = targetValue;
-
         if (instant || this.__P_548_3 === undefined) {
           this.__P_548_3 = targetValue;
         }
-
         if (this.__P_548_2 === undefined && show) {
           this.__P_548_5(now, now - 10);
         }
       },
-
       /**
        * Internal implementation of the animation and value setting.
        * @param {DOMHighResTimeStamp} thistime
@@ -177,28 +165,22 @@
        */
       __P_548_5: function __P_548_5(thistime, lasttime) {
         var _this = this;
-
         var isNumber = typeof this.__P_548_3 === 'number';
         var dt = Math.max(0, (thistime - lasttime) / 1000); // in seconds - clamp negative dt
-
         var maxLinearDelta = this.getLinearRateLimit() * dt;
         var alpha = Math.max(0, Math.min(Math.exp(-dt / this.getExpDampTimeConstant()), 1));
         var nextValue = isNumber ? this.__P_548_4 * alpha + this.__P_548_3 * (1 - alpha) : this.__P_548_3.blend(this.__P_548_4, alpha);
         var delta = isNumber ? nextValue - this.__P_548_3 : this.__P_548_3.delta(nextValue);
         var notFinished = true;
-
         if (Math.abs(delta) > maxLinearDelta) {
           nextValue = isNumber ? this.__P_548_3 + Math.sign(delta) * maxLinearDelta : this.__P_548_3.blend(this.__P_548_4, alpha * maxLinearDelta / delta);
         }
-
         if (isNumber && Math.abs(nextValue - this.__P_548_4) < this.getEpsilon() || !isNumber && nextValue.delta(this.__P_548_4) < this.getEpsilon()) {
           nextValue = this.__P_548_4;
           notFinished = false;
         }
-
         this.__P_548_3 = isNumber ? nextValue : nextValue.copy();
         this.getDisplayFn().call(this.__P_548_0, this.__P_548_3, this.__P_548_1);
-
         if (notFinished) {
           this.__P_548_2 = window.requestAnimationFrame(function (time) {
             _this.__P_548_5(time, thistime);
@@ -212,4 +194,4 @@
   cv.util.LimitedRateUpdateAnimator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1685978160656
+//# sourceMappingURL=LimitedRateUpdateAnimator.js.map?dt=1691935455954

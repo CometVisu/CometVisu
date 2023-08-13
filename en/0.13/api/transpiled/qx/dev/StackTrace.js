@@ -31,7 +31,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,7 +67,6 @@
        * string is used in the output of {@link #getStackTraceFromError}
        */
       FILENAME_TO_CLASSNAME: null,
-
       /**
        * Optional user-defined formatting function for stack trace information.
        * Will be called by with an array of strings representing the calls in the
@@ -76,7 +74,6 @@
        * this function. Must return an array of strings.
        */
       FORMAT_STACKTRACE: null,
-
       /**
        * Get a stack trace of the current position in the code.
        *
@@ -94,7 +91,6 @@
        */
       getStackTrace: function getStackTrace() {
         var trace = [];
-
         try {
           throw new Error();
         } catch (ex) {
@@ -103,68 +99,52 @@
             var callerTrace = qx.dev.StackTrace.getStackTraceFromCaller(arguments);
             qx.lang.Array.removeAt(errorTrace, 0);
             trace = callerTrace.length > errorTrace.length ? callerTrace : errorTrace;
-
             for (var i = 0; i < Math.min(callerTrace.length, errorTrace.length); i++) {
               var callerCall = callerTrace[i];
-
               if (callerCall.indexOf("anonymous") >= 0) {
                 continue;
               }
-
               var methodName = null;
               var callerArr = callerCall.split(".");
               var mO = /(.*?)\(/.exec(callerArr[callerArr.length - 1]);
-
               if (mO && mO.length == 2) {
                 methodName = mO[1];
                 callerArr.pop();
               }
-
               if (callerArr[callerArr.length - 1] == "prototype") {
                 callerArr.pop();
               }
-
               var callerClassName = callerArr.join(".");
               var errorCall = errorTrace[i];
               var errorArr = errorCall.split(":");
               var errorClassName = errorArr[0];
               var lineNumber = errorArr[1];
               var columnNumber;
-
               if (errorArr[2]) {
                 columnNumber = errorArr[2];
               }
-
               var className = null;
-
               if (qx.Class && qx.Class.getByName(errorClassName)) {
                 className = errorClassName;
               } else {
                 className = callerClassName;
               }
-
               var line = className;
-
               if (methodName) {
                 line += "." + methodName;
               }
-
               line += ":" + lineNumber;
-
               if (columnNumber) {
                 line += ":" + columnNumber;
               }
-
               trace[i] = line;
             }
           } else {
             trace = this.getStackTraceFromCaller(arguments);
           }
         }
-
         return trace;
       },
-
       /**
        * Get a stack trace from the arguments special variable using the
        * <code>caller</code> property.
@@ -183,47 +163,38 @@
         var isStrictMode = function isStrictMode() {
           return typeof this == "undefined";
         };
-
         var trace = [];
         var fcn = null;
-
         if (!isStrictMode()) {
           try {
             fcn = qx.lang.Function.getCaller(args);
-          } catch (ex) {// Nothing
+          } catch (ex) {
+            // Nothing
           }
         }
-
         var knownFunction = {};
-
         while (fcn) {
           var fcnName = qx.lang.Function.getName(fcn);
           trace.push(fcnName);
-
           try {
             fcn = fcn.caller;
           } catch (ex) {
             break;
           }
-
           if (!fcn) {
             break;
-          } // avoid infinite recursion
+          }
 
-
+          // avoid infinite recursion
           var hash = qx.core.ObjectRegistry.toHashCode(fcn);
-
           if (knownFunction[hash]) {
             trace.push("...");
             break;
           }
-
           knownFunction[hash] = fcn;
         }
-
         return trace;
       },
-
       /**
        * Try to get a stack trace from an Error object. Mozilla sets the field
        * <code>stack</code> for Error objects thrown using <code>throw new Error()</code>.
@@ -250,22 +221,18 @@
         var trace = [];
         var lineRe, hit, className, lineNumber, columnNumber, fileName, url;
         var traceProp = qx.dev.StackTrace.hasEnvironmentCheck ? qx.core.Environment.get("ecmascript.error.stacktrace") : null;
-
         if (traceProp === "stack") {
           if (!error.stack) {
             return trace;
-          } // Gecko style, e.g. "()@http://localhost:8080/webcomponent-test-SNAPSHOT/webcomponent/js/com/ptvag/webcomponent/common/log/Logger:253"
-
-
+          }
+          // Gecko style, e.g. "()@http://localhost:8080/webcomponent-test-SNAPSHOT/webcomponent/js/com/ptvag/webcomponent/common/log/Logger:253"
           lineRe = /@(.+):(\d+)$/gm;
-
           while ((hit = lineRe.exec(error.stack)) != null) {
             url = hit[1];
             lineNumber = hit[2];
             className = this.__P_187_0(url);
             trace.push(className + ":" + lineNumber);
           }
-
           if (trace.length > 0) {
             return this.__P_187_1(trace);
           }
@@ -275,21 +242,16 @@
            * at [jsObject].function() [as something] (fileUrl:line:char)
            * at fileUrl:line:char
            */
-
-
           lineRe = /at (.*)/gm;
           var fileReParens = /(\(\) \[as [^\]]+\]\s)?\((.*?)(:[\d:]+)\)/;
           var fileRe = /(.*?)(:[\d:]+$)/;
-
           while ((hit = lineRe.exec(error.stack)) != null) {
             var fileMatch = fileReParens.exec(hit[1]);
-
             if (fileMatch) {
               className = this.__P_187_0(fileMatch[2]);
               trace.push(className + fileMatch[3]);
             } else {
               fileMatch = fileRe.exec(hit[1]);
-
               if (fileMatch) {
                 className = this.__P_187_0(fileMatch[1]);
                 trace.push(className + fileMatch[2]);
@@ -301,18 +263,15 @@
         } else if (traceProp === "stacktrace") {
           // Opera
           var stacktrace = error.stacktrace;
-
           if (!stacktrace) {
             return trace;
           }
-
           if (stacktrace.indexOf("Error created at") >= 0) {
             stacktrace = stacktrace.split("Error created at")[0];
-          } // new Opera style (10.6+)
+          }
 
-
+          // new Opera style (10.6+)
           lineRe = /line\ (\d+?),\ column\ (\d+?)\ in\ (?:.*?)\ in\ (.*?):[^\/]/gm;
-
           while ((hit = lineRe.exec(stacktrace)) != null) {
             lineNumber = hit[1];
             columnNumber = hit[2];
@@ -320,14 +279,12 @@
             className = this.__P_187_0(url);
             trace.push(className + ":" + lineNumber + ":" + columnNumber);
           }
-
           if (trace.length > 0) {
             return this.__P_187_1(trace);
-          } // older Opera style
+          }
 
-
+          // older Opera style
           lineRe = /Line\ (\d+?)\ of\ linked\ script\ (.*?)$/gm;
-
           while ((hit = lineRe.exec(stacktrace)) != null) {
             lineNumber = hit[1];
             url = hit[2];
@@ -338,10 +295,8 @@
           // Some old Opera versions append the trace to the message property
           var traceString = error.message.split("Backtrace:")[1].trim();
           var lines = traceString.split("\n");
-
           for (var i = 0; i < lines.length; i++) {
             var reResult = lines[i].match(/\s*Line ([0-9]+) of.* (\S.*)/);
-
             if (reResult && reResult.length >= 2) {
               lineNumber = reResult[1];
               fileName = this.__P_187_0(reResult[2]);
@@ -352,10 +307,8 @@
           // Safari
           trace.push(this.__P_187_0(error.sourceURL) + ":" + error.line);
         }
-
         return this.__P_187_1(trace);
       },
-
       /**
        * Converts the URL of a JavaScript file to a class name using either a
        * user-defined ({@link #FILENAME_TO_CLASSNAME}) or default
@@ -367,17 +320,13 @@
       __P_187_0: function __P_187_0(fileName) {
         if (typeof qx.dev.StackTrace.FILENAME_TO_CLASSNAME == "function") {
           var convertedName = qx.dev.StackTrace.FILENAME_TO_CLASSNAME(fileName);
-
           if (false && !qx.lang.Type.isString(convertedName)) {
             throw new Error("FILENAME_TO_CLASSNAME must return a string!");
           }
-
           return convertedName;
         }
-
         return qx.dev.StackTrace.__P_187_2(fileName);
       },
-
       /**
        * Converts the URL of a JavaScript file to a class name if the file is
        * named using the qooxdoo naming conventions.
@@ -389,22 +338,17 @@
       __P_187_2: function __P_187_2(fileName) {
         var scriptDir = "/source/class/";
         var jsPos = fileName.indexOf(scriptDir);
-
         if (jsPos < 0) {
           scriptDir = "/transpiled/";
           jsPos = fileName.indexOf(scriptDir);
         }
-
         var paramPos = fileName.indexOf("?");
-
         if (paramPos >= 0) {
           fileName = fileName.substring(0, paramPos);
         }
-
         var className = jsPos == -1 ? fileName : fileName.substring(jsPos + scriptDir.length).replace(/\//g, ".").replace(/\.js$/, "");
         return className;
       },
-
       /**
        * Runs the given stack trace array through the formatter function
        * ({@link #FORMAT_STACKTRACE}) if available and returns it. Otherwise, the
@@ -415,14 +359,13 @@
        */
       __P_187_1: function __P_187_1(trace) {
         if (typeof qx.dev.StackTrace.FORMAT_STACKTRACE == "function") {
-          trace = qx.dev.StackTrace.FORMAT_STACKTRACE(trace); // Can't use qx.core.Assert here since it throws an AssertionError which
+          trace = qx.dev.StackTrace.FORMAT_STACKTRACE(trace);
+          // Can't use qx.core.Assert here since it throws an AssertionError which
           // calls getStackTrace in its constructor, leading to infinite recursion
-
           if (false && !qx.lang.Type.isArray(trace)) {
             throw new Error("FORMAT_STACKTRACE must return an array of strings!");
           }
         }
-
         return trace;
       }
     },
@@ -435,4 +378,4 @@
   qx.dev.StackTrace.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StackTrace.js.map?dt=1685978115628
+//# sourceMappingURL=StackTrace.js.map?dt=1691935413447

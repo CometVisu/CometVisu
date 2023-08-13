@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -15,7 +14,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,14 +41,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // overridden
       getCellEditorValue: function getCellEditorValue(cellEditor) {
         var label = cellEditor.getValue(); // This will be the new label for the Tree Node
+
         // validation function will be called with new and old label
-
         var validationFunc = this.getValidationFunction();
-
         if (validationFunc) {
           label = validationFunc(label, cellEditor.originalLabel);
         }
-
         var newValue = qx.lang.Object.clone(cellEditor.originalValue);
         newValue.label = label;
         return newValue;
@@ -60,22 +56,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!cellInfo.table.getTableModel().isNodeEditable(cellInfo.row)) {
           return null;
         }
+        var cellEditor = this._createEditor();
 
-        var cellEditor = this._createEditor(); // The value in the case of a Tree is a Node and we want the label
-
-
+        // The value in the case of a Tree is a Node and we want the label
         if (cellInfo.value === null || _typeof(cellInfo.value) != "object") {
           cellInfo.value = {
             label: "",
             labelPos: 0
           };
         }
-
         var label = cellInfo.value.label;
         cellEditor.originalValue = cellInfo.value;
         cellEditor.originalLabel = label;
-        cellEditor.setValue("" + label); // dynamically pad to the position of the node label - calculated in CellRenderer
-
+        cellEditor.setValue("" + label);
+        // dynamically pad to the position of the node label - calculated in CellRenderer
         cellEditor.setPaddingLeft(cellInfo.value.labelPos);
         cellEditor.addListener("appear", function () {
           cellEditor.selectAllText();
@@ -92,4 +86,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.treevirtual.celleditor.NodeEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NodeEditor.js.map?dt=1685978150839
+//# sourceMappingURL=NodeEditor.js.map?dt=1691935447108

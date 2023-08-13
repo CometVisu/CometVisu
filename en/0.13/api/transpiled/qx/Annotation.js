@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -105,23 +104,18 @@
         if (clazz.$$annotations === undefined) {
           return [];
         }
-
         var annos = group ? clazz.$$annotations[group] : clazz.$$annotations;
         var match = annos && annos.hasOwnProperty(name) ? annos[name] : null;
-
         if (!match) {
           return [];
         }
-
         if (annoClass) {
           match = match.filter(function (anno) {
             return anno instanceof annoClass;
           });
         }
-
         return match;
       },
-
       /**
        * Returns a list of annotations, from this class and superclasses
        * @param clazz {Class} the starting class to inspect
@@ -132,27 +126,22 @@
        */
       __P_88_1: function __P_88_1(clazz, name, group, annoClass) {
         var result = [];
-
         for (var tmp = clazz; tmp; tmp = tmp.superclass) {
           if (tmp.$$annotations !== undefined) {
             var annos = group ? tmp.$$annotations[group] : tmp.$$annotations;
             var src = annos && annos.hasOwnProperty(name) ? annos[name] : null;
-
             if (src) {
               if (annoClass) {
                 src = src.filter(function (anno) {
                   return anno instanceof annoClass;
                 });
               }
-
               qx.lang.Array.append(result, src);
             }
           }
         }
-
         return result;
       },
-
       /**
        * Returns the class annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -162,7 +151,6 @@
       getOwnClass: function getOwnClass(clazz, annoClass) {
         return this.__P_88_0(clazz, "@", null, annoClass);
       },
-
       /**
        * Returns the class annotations, from this class and superclasses
        * @param clazz {Class} the class to inspect
@@ -172,7 +160,6 @@
       getClass: function getClass(clazz, annoClass) {
         return this.__P_88_1(clazz, "@", null, annoClass);
       },
-
       /**
        * Returns the class constructor's annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -182,7 +169,6 @@
       getOwnConstructor: function getOwnConstructor(clazz, annoClass) {
         return this.__P_88_0(clazz, "@construct", null, annoClass);
       },
-
       /**
        * Returns the class constructor's annotations, from the class and superclasses
        * @param clazz {Class} the class to inspect
@@ -192,7 +178,6 @@
       getConstructor: function getConstructor(clazz, annoClass) {
         return this.__P_88_1(clazz, "@construct", null, annoClass);
       },
-
       /**
        * Returns the class destructor's annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -202,7 +187,6 @@
       getOwnDestructor: function getOwnDestructor(clazz, annoClass) {
         return this.__P_88_0(clazz, "@destruct", null, annoClass);
       },
-
       /**
        * Returns the class destructor's annotations, from the class and superclasses
        * @param clazz {Class} the class to inspect
@@ -212,7 +196,6 @@
       getDestructor: function getDestructor(clazz, annoClass) {
         return this.__P_88_1(clazz, "@destruct", null, annoClass);
       },
-
       /**
        * Returns the class member's annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -223,7 +206,6 @@
       getOwnMember: function getOwnMember(clazz, name, annoClass) {
         return this.__P_88_0(clazz, name, "members", annoClass);
       },
-
       /**
        * Returns the class member's annotations, from the class and superclass
        * @param clazz {Class} the class to inspect
@@ -234,7 +216,6 @@
       getMember: function getMember(clazz, name, annoClass) {
         return this.__P_88_1(clazz, name, "members", annoClass);
       },
-
       /**
        * Returns the class property's annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -245,7 +226,6 @@
       getOwnProperty: function getOwnProperty(clazz, name, annoClass) {
         return this.__P_88_0(clazz, name, "properties", annoClass);
       },
-
       /**
        * Returns the class property's annotations, from the class and superclasses
        * @param clazz {Class} the class to inspect
@@ -256,7 +236,6 @@
       getProperty: function getProperty(clazz, name, annoClass) {
         return this.__P_88_1(clazz, name, "properties", annoClass);
       },
-
       /**
        * Returns a list of property names that implement a given annotation.
        * @param clazz {Class} the class to inspect
@@ -272,7 +251,6 @@
         });
         return properties;
       },
-
       /**
        * Returns the class static's annotations, exclusively from the class
        * @param clazz {Class} the class to inspect
@@ -288,4 +266,4 @@
   qx.Annotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Annotation.js.map?dt=1685978104413
+//# sourceMappingURL=Annotation.js.map?dt=1691935403708

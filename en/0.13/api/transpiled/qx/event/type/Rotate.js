@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,11 +39,9 @@
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Rotate.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.angle = nativeEvent.angle;
         return clone;
       },
-
       /**
        * Returns a number with the current calculated angle between the primary and secondary active pointers.
        *
@@ -58,4 +55,4 @@
   qx.event.type.Rotate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rotate.js.map?dt=1685978123334
+//# sourceMappingURL=Rotate.js.map?dt=1691935420957

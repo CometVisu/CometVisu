@@ -32,7 +32,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -73,7 +72,6 @@
    * @require(qx.log.appender.Formatter)
    * @ignore(debug.*)
    */
-
   /* global debug */
   qx.Class.define("qx.log.appender.PhoneGap", {
     /*
@@ -81,6 +79,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Processes a single log entry
@@ -90,7 +89,6 @@
         var formatter = qx.log.appender.Formatter.getFormatter();
         var args = formatter.toText(entry);
         var level = entry.level;
-
         if (level == "warn") {
           debug.warn(args);
         } else if (level == "error") {
@@ -100,7 +98,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -114,7 +111,6 @@
           window.setTimeout(register, 200);
         }
       }
-
       if (qx.core.Environment.get("phonegap")) {
         register();
       }
@@ -123,4 +119,4 @@
   qx.log.appender.PhoneGap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PhoneGap.js.map?dt=1685978128403
+//# sourceMappingURL=PhoneGap.js.map?dt=1691935425704

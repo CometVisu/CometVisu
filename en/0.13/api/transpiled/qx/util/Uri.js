@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,14 +58,12 @@
           }
         };
         var o = options,
-            m = options.parser[strict ? "strict" : "loose"].exec(str),
-            uri = {},
-            i = 14;
-
+          m = options.parser[strict ? "strict" : "loose"].exec(str),
+          uri = {},
+          i = 14;
         while (i--) {
           uri[o.key[i]] = m[i] || "";
         }
-
         uri[o.q.name] = {};
         uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
           if ($1) {
@@ -75,7 +72,6 @@
         });
         return uri;
       },
-
       /**
        * Append string to query part of URL. Respects existing query.
        *
@@ -87,18 +83,14 @@
         if (params === undefined) {
           return url;
         }
-
         if (qx.lang.Type.isObject(params)) {
           params = qx.util.Uri.toParameter(params);
         }
-
         if (!params) {
           return url;
         }
-
         return url += /\?/.test(url) ? "&" + params : "?" + params;
       },
-
       /**
        * Serializes an object to URI parameters (also known as query string).
        *
@@ -117,12 +109,10 @@
        */
       toParameter: function toParameter(obj, post) {
         var key,
-            parts = [];
-
+          parts = [];
         for (key in obj) {
           if (obj.hasOwnProperty(key)) {
             var value = obj[key];
-
             if (value instanceof Array) {
               for (var i = 0; i < value.length; i++) {
                 this.__P_513_0(key, value[i], parts, post);
@@ -132,10 +122,8 @@
             }
           }
         }
-
         return parts.join("&");
       },
-
       /**
        * Encodes key/value to URI safe string and pushes to given array.
        *
@@ -146,14 +134,12 @@
        */
       __P_513_0: function __P_513_0(key, value, parts, post) {
         var encode = window.encodeURIComponent;
-
         if (post) {
           parts.push(encode(key).replace(/%20/g, "+") + "=" + encode(value).replace(/%20/g, "+"));
         } else {
           parts.push(encode(key) + "=" + encode(value));
         }
       },
-
       /**
        * Takes a relative URI and returns an absolute one.
        *
@@ -170,4 +156,4 @@
   qx.util.Uri.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uri.js.map?dt=1685978154828
+//# sourceMappingURL=Uri.js.map?dt=1691935451062

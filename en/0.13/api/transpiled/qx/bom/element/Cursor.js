@@ -42,7 +42,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,10 +69,10 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** Internal helper structure to map cursor values to supported ones */
       __P_137_0: {},
-
       /**
        * Compiles the given cursor into a CSS compatible string.
        *
@@ -83,7 +82,6 @@
       compile: function compile(cursor) {
         return "cursor:" + (this.__P_137_0[cursor] || cursor) + ";";
       },
-
       /**
        * Returns the computed cursor style for the given element.
        *
@@ -96,7 +94,6 @@
       get: function get(element, mode) {
         return qx.bom.element.Style.get(element, "cursor", mode, false);
       },
-
       /**
        * Applies a new cursor style to the given element
        *
@@ -106,7 +103,6 @@
       set: function set(element, value) {
         element.style.cursor = this.__P_137_0[value] || value;
       },
-
       /**
        * Removes the local cursor style applied to the element
        *
@@ -127,4 +123,4 @@
   qx.bom.element.Cursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cursor.js.map?dt=1685978110514
+//# sourceMappingURL=Cursor.js.map?dt=1691935409148

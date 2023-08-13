@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,7 +70,6 @@
           }
         }
       },
-
       /**
        * Performs animated scrolling
        *
@@ -86,7 +84,6 @@
         desc.keyFrames[100][property] = value;
         return this.animate(desc, duration);
       },
-
       /**
        * Creates a new collection from the given argument
        * @param arg {var} Selector expression, HTML string, DOM element or list of
@@ -95,25 +92,24 @@
        * @internal
        */
       __P_281_1: function __P_281_1(arg) {
-        var coll; // Collection/array of DOM elements
-
+        var coll;
+        // Collection/array of DOM elements
         if (qx.lang.Type.isArray(arg)) {
           coll = qxWeb(arg);
-        } // HTML string
+        }
+        // HTML string
         else {
           var arr = qx.bom.Html.clean([arg]);
-
           if (arr.length > 0 && qx.dom.Node.isElement(arr[0])) {
             coll = qxWeb(arr);
-          } // Selector or single element
+          }
+          // Selector or single element
           else {
             coll = qxWeb(arg);
           }
         }
-
         return coll;
       },
-
       /**
        * Returns the innermost element of a DOM tree as determined by a simple
        * depth-first search.
@@ -126,16 +122,13 @@
         if (element.childNodes.length == 0) {
           return element;
         }
-
         for (var i = 0, l = element.childNodes.length; i < l; i++) {
           if (element.childNodes[i].nodeType === 1) {
             return this.__P_281_2(element.childNodes[i]);
           }
         }
-
         return element;
       },
-
       /**
        * Returns an array from a selector expression or a single element
        *
@@ -149,12 +142,10 @@
           var fromSelector = qxWeb(arg);
           arg = fromSelector.length > 0 ? fromSelector : [arg];
         }
-
         return arg.filter(function (item) {
           return item && (item.nodeType === 1 || item.nodeType === 11);
         });
       },
-
       /**
        * Creates a new collection from the given argument. This can either be an
        * HTML string, a single DOM element or an array of elements
@@ -187,20 +178,16 @@
        */
       clone: function clone(events) {
         var clones = [];
-
         for (var i = 0; i < this.length; i++) {
           if (this[i] && this[i].nodeType === 1) {
             clones[i] = this[i].cloneNode(true);
           }
         }
-
         if (events === true && this.copyEventsTo) {
           this.copyEventsTo(clones);
         }
-
         return qxWeb(clones);
       },
-
       /**
        * Appends content to each element in the current set. Accepts an HTML string,
        * a single DOM element or an array of elements
@@ -212,7 +199,6 @@
       append: function append(html) {
         var arr = qx.bom.Html.clean([html]);
         var children = qxWeb.$init(arr, qxWeb);
-
         this._forEachElement(function (item, index) {
           for (var j = 0, m = children.length; j < m; j++) {
             if (index == 0) {
@@ -223,10 +209,8 @@
             }
           }
         });
-
         return this;
       },
-
       /**
        * Appends all items in the collection to the specified parents. If multiple
        * parents are given, the items will be moved to the first parent, while
@@ -239,7 +223,6 @@
        */
       appendTo: function appendTo(parent) {
         parent = qx.module.Manipulating.__P_281_3(parent);
-
         for (var i = 0, l = parent.length; i < l; i++) {
           this._forEachElement(function (item, j) {
             if (i == 0) {
@@ -251,10 +234,8 @@
             }
           });
         }
-
         return this;
       },
-
       /**
        * Inserts the current collection before each target item. The collection
        * items are moved before the first target. For subsequent targets,
@@ -267,7 +248,6 @@
        */
       insertBefore: function insertBefore(target) {
         target = qx.module.Manipulating.__P_281_3(target);
-
         for (var i = 0, l = target.length; i < l; i++) {
           this._forEachElement(function (item, index) {
             if (i == 0) {
@@ -279,10 +259,8 @@
             }
           });
         }
-
         return this;
       },
-
       /**
        * Inserts the current collection after each target item. The collection
        * items are moved after the first target. For subsequent targets,
@@ -295,13 +273,11 @@
        */
       insertAfter: function insertAfter(target) {
         target = qx.module.Manipulating.__P_281_3(target);
-
         for (var i = 0, l = target.length; i < l; i++) {
           for (var j = this.length - 1; j >= 0; j--) {
             if (!this[j] || this[j].nodeType !== 1) {
               continue;
             }
-
             if (i == 0) {
               // first target: move the target node(s)
               qx.dom.Element.insertAfter(this[j], target[i]);
@@ -311,10 +287,8 @@
             }
           }
         }
-
         return this;
       },
-
       /**
        * Wraps each element in the collection in a copy of an HTML structure.
        * Elements will be appended to the deepest nested element in the structure
@@ -327,23 +301,17 @@
        */
       wrap: function wrap(wrapper) {
         wrapper = qx.module.Manipulating.__P_281_1(wrapper);
-
         if (wrapper.length == 0) {
           return this;
         }
-
         this._forEachElement(function (item) {
           var clonedwrapper = wrapper.eq(0).clone(true);
           qx.dom.Element.insertAfter(clonedwrapper[0], item);
-
           var innermost = qx.module.Manipulating.__P_281_2(clonedwrapper[0]);
-
           qx.dom.Element.insertEnd(item, innermost);
         });
-
         return this;
       },
-
       /**
        * Removes each element in the current collection from the DOM
        *
@@ -354,10 +322,8 @@
         this._forEachElement(function (item) {
           qx.dom.Element.remove(item);
         });
-
         return this;
       },
-
       /**
        * Removes all content from the elements in the collection
        *
@@ -372,10 +338,8 @@
             item.removeChild(item.firstChild);
           }
         });
-
         return this;
       },
-
       /**
        * Inserts content before each element in the collection. This can either
        * be an HTML string, an array of HTML strings, a single DOM element or an
@@ -390,29 +354,22 @@
         if (!qx.lang.Type.isArray(content)) {
           content = [content];
         }
-
         var fragment = document.createDocumentFragment();
         qx.bom.Html.clean(content, document, fragment);
-
         this._forEachElement(function (item, index) {
           var kids = qx.lang.Array.cast(fragment.childNodes, Array);
-
           for (var i = 0, l = kids.length; i < l; i++) {
             var child;
-
             if (index < this.length - 1) {
               child = kids[i].cloneNode(true);
             } else {
               child = kids[i];
             }
-
             item.parentNode.insertBefore(child, item);
           }
         }, this);
-
         return this;
       },
-
       /**
        * Inserts content after each element in the collection. This can either
        * be an HTML string, an array of HTML strings, a single DOM element or an
@@ -427,29 +384,22 @@
         if (!qx.lang.Type.isArray(content)) {
           content = [content];
         }
-
         var fragment = document.createDocumentFragment();
         qx.bom.Html.clean(content, document, fragment);
-
         this._forEachElement(function (item, index) {
           var kids = qx.lang.Array.cast(fragment.childNodes, Array);
-
           for (var i = kids.length - 1; i >= 0; i--) {
             var child;
-
             if (index < this.length - 1) {
               child = kids[i].cloneNode(true);
             } else {
               child = kids[i];
             }
-
             item.parentNode.insertBefore(child, item.nextSibling);
           }
         }, this);
-
         return this;
       },
-
       /**
        * Returns the left scroll position of the first element in the collection.
        *
@@ -458,20 +408,15 @@
        */
       getScrollLeft: function getScrollLeft() {
         var obj = this[0];
-
         if (!obj) {
           return null;
         }
-
         var Node = qx.dom.Node;
-
         if (Node.isWindow(obj) || Node.isDocument(obj)) {
           return qx.bom.Viewport.getScrollLeft();
         }
-
         return obj.scrollLeft;
       },
-
       /**
        * Returns the top scroll position of the first element in the collection.
        *
@@ -480,20 +425,15 @@
        */
       getScrollTop: function getScrollTop() {
         var obj = this[0];
-
         if (!obj) {
           return null;
         }
-
         var Node = qx.dom.Node;
-
         if (Node.isWindow(obj) || Node.isDocument(obj)) {
           return qx.bom.Viewport.getScrollTop();
         }
-
         return obj.scrollTop;
       },
-
       /**
        * Scrolls the elements of the collection to the given coordinate.
        *
@@ -504,14 +444,11 @@
        */
       setScrollLeft: function setScrollLeft(value, duration) {
         var Node = qx.dom.Node;
-
         if (duration && qx.bom.element && qx.bom.element.AnimationJs) {
           qx.module.Manipulating.__P_281_0.bind(this, "scrollLeft", value, duration)();
         }
-
         for (var i = 0, l = this.length, obj; i < l; i++) {
           obj = this[i];
-
           if (Node.isElement(obj)) {
             if (!(duration && qx.bom.element && qx.bom.element.AnimationJs)) {
               obj.scrollLeft = value;
@@ -522,10 +459,8 @@
             Node.getWindow(obj).scrollTo(value, this.getScrollTop(obj));
           }
         }
-
         return this;
       },
-
       /**
        * Scrolls the elements of the collection to the given coordinate.
        *
@@ -536,14 +471,11 @@
        */
       setScrollTop: function setScrollTop(value, duration) {
         var Node = qx.dom.Node;
-
         if (duration && qx.bom.element && qx.bom.element.AnimationJs) {
           qx.module.Manipulating.__P_281_0.bind(this, "scrollTop", value, duration)();
         }
-
         for (var i = 0, l = this.length, obj; i < l; i++) {
           obj = this[i];
-
           if (Node.isElement(obj)) {
             if (!(duration && qx.bom.element && qx.bom.element.AnimationJs)) {
               obj.scrollTop = value;
@@ -554,10 +486,8 @@
             Node.getWindow(obj).scrollTo(this.getScrollLeft(obj), value);
           }
         }
-
         return this;
       },
-
       /**
        * Focuses the first element in the collection
        *
@@ -568,10 +498,8 @@
         try {
           this[0].focus();
         } catch (ex) {}
-
         return this;
       },
-
       /**
        * Blurs each element in the collection
        *
@@ -594,4 +522,4 @@
   qx.module.Manipulating.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manipulating.js.map?dt=1685978129078
+//# sourceMappingURL=Manipulating.js.map?dt=1691935426326

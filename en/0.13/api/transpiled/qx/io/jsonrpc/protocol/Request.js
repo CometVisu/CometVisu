@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,7 +63,6 @@
         }
       }
     },
-
     /**
      * JSON-RPC request constructor
      * @param {String} method
@@ -75,11 +73,9 @@
      */
     construct: function construct(method, params, id) {
       qx.io.jsonrpc.protocol.Notification.constructor.call(this, method, params);
-
       if (id === undefined) {
         id = ++qx.io.jsonrpc.protocol.Request.__P_247_0;
       }
-
       this.set({
         id: id
       });
@@ -87,7 +83,6 @@
     },
     members: {
       __P_247_1: null,
-
       /**
        * Getter for promise which resolves with the result to the request
        * @return {qx.Promise}
@@ -95,7 +90,6 @@
       getPromise: function getPromise() {
         return this.__P_247_1;
       },
-
       /**
        * Determines how an exception during transport is handled. Standard
        * behavior is to reject the request's promise with that exception.
@@ -115,4 +109,4 @@
   qx.io.jsonrpc.protocol.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1685978125197
+//# sourceMappingURL=Request.js.map?dt=1691935422749

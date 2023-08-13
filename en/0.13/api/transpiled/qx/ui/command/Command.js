@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,7 +34,6 @@
        * Mustafa Sak (msak)
   
   ************************************************************************ */
-
   /**
    * Commands can be used to globally define keyboard shortcuts. They could
    * also be used to assign an execution of a command sequence to multiple
@@ -47,7 +45,6 @@
    */
   qx.Class.define("qx.ui.command.Command", {
     extend: qx.core.Object,
-
     /**
      * @param shortcut {String} Shortcuts can be composed of optional modifier
      *    keys Control, Alt, Shift, Meta and a non modifier key.
@@ -58,9 +55,7 @@
     construct: function construct(shortcut) {
       qx.core.Object.constructor.call(this);
       this._shortcut = new qx.bom.Shortcut(shortcut);
-
       this._shortcut.addListener("execute", this.execute, this);
-
       if (shortcut !== undefined) {
         this.setShortcut(shortcut);
       }
@@ -82,7 +77,6 @@
         event: "changeActive",
         apply: "_applyActive"
       },
-
       /** Whether the command should be respected/enabled. If 'false' execute event
        * wouldn't fire. If value of property {@link qx.ui.command.Command#active}
        * is 'false', enabled value can be set but has no effect until
@@ -93,28 +87,24 @@
         event: "changeEnabled",
         apply: "_applyEnabled"
       },
-
       /** The command shortcut as a string */
       shortcut: {
         check: "String",
         apply: "_applyShortcut",
         nullable: true
       },
-
       /** The label, which will be set in all connected widgets (if available) */
       label: {
         check: "String",
         nullable: true,
         event: "changeLabel"
       },
-
       /** The icon, which will be set in all connected widgets (if available) */
       icon: {
         check: "String",
         nullable: true,
         event: "changeIcon"
       },
-
       /**
        * The tooltip text, which will be set in all connected
        * widgets (if available)
@@ -124,13 +114,11 @@
         nullable: true,
         event: "changeToolTipText"
       },
-
       /** The value of the connected widgets */
       value: {
         nullable: true,
         event: "changeValue"
       },
-
       /** The menu, which will be set in all connected widgets (if available) */
       menu: {
         check: "qx.ui.menu.Menu",
@@ -159,7 +147,6 @@
       _applyShortcut: function _applyShortcut(value) {
         this._shortcut.setShortcut(value);
       },
-
       /**
        * Fire the "execute" event on this command. If property
        * <code>active</code> and <code>enabled</code> set to
@@ -171,7 +158,6 @@
           this.fireDataEvent("execute", target);
         }
       },
-
       /**
        * Returns the used shortcut as string using the currently selected locale.
        *
@@ -181,17 +167,15 @@
         if (this._shortcut) {
           return this._shortcut.toString();
         }
-
         return qx.ui.command.Command.superclass.prototype.toString.call(this);
       }
     },
     destruct: function destruct() {
       this._shortcut.removeListener("execute", this.execute, this);
-
       this._disposeObjects("_shortcut");
     }
   });
   qx.ui.command.Command.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Command.js.map?dt=1685978132944
+//# sourceMappingURL=Command.js.map?dt=1691935429983

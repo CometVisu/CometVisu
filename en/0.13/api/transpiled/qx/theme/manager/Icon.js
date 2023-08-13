@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,12 +37,12 @@
   qx.Class.define("qx.theme.manager.Icon", {
     type: "singleton",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** currently used icon theme */
       theme: {
@@ -53,23 +52,21 @@
         event: "changeTheme"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // property apply
       _applyTheme: function _applyTheme(value, old) {
         var aliasManager = qx.util.AliasManager.getInstance();
-
         if (old) {
           for (var alias in old.aliases) {
             aliasManager.remove(alias);
           }
         }
-
         if (value) {
           for (var alias in value.aliases) {
             aliasManager.add(alias, value.aliases[alias]);
@@ -81,4 +78,4 @@
   qx.theme.manager.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1685978131164
+//# sourceMappingURL=Icon.js.map?dt=1691935428328

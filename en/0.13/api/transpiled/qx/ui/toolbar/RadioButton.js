@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,27 +50,27 @@
     extend: qx.ui.toolbar.CheckBox,
     include: [qx.ui.form.MModelProperty],
     implement: [qx.ui.form.IModel, qx.ui.form.IRadioItem],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct(label, icon) {
-      qx.ui.toolbar.CheckBox.constructor.call(this, label, icon); // ARIA attrs
-      // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'
+      qx.ui.toolbar.CheckBox.constructor.call(this, label, icon);
 
+      // ARIA attrs
+      // Important: (Grouped) radio btns should be children of a div with role 'radiogroup'
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "radio");
       contentEl.setAttribute("aria-checked", false);
       contentEl.removeAttribute("aria-pressed");
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -80,16 +79,14 @@
       */
       // overridden
       _applyValue: function _applyValue(value, old) {
-        qx.ui.toolbar.RadioButton.superclass.prototype._applyValue.call(this, value, old); // ARIA attrs
+        qx.ui.toolbar.RadioButton.superclass.prototype._applyValue.call(this, value, old);
 
-
+        // ARIA attrs
         var contentEl = this.getContentElement();
         contentEl.removeAttribute("aria-pressed");
         contentEl.setAttribute("aria-checked", Boolean(value));
-
         if (value) {
           var grp = this.getGroup();
-
           if (grp) {
             grp.setSelection([this]);
           }
@@ -98,7 +95,6 @@
       // overridden
       _onExecute: function _onExecute(e) {
         var grp = this.getGroup();
-
         if (grp && grp.getAllowEmptySelection()) {
           this.toggleValue();
         } else {
@@ -110,4 +106,4 @@
   qx.ui.toolbar.RadioButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButton.js.map?dt=1685978149244
+//# sourceMappingURL=RadioButton.js.map?dt=1691935445532

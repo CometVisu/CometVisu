@@ -65,7 +65,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -110,13 +109,11 @@
   qx.Class.define("qx.event.handler.Transition", {
     extend: qx.core.Object,
     implement: [qx.event.IEventHandler, qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      *
@@ -127,16 +124,15 @@
       this.__P_225_0 = {};
       this.__P_225_1 = qx.lang.Function.listener(this._onNative, this);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         transitionEnd: 1,
@@ -144,39 +140,34 @@
         animationStart: 1,
         animationIteration: 1
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true,
-
       /** Mapping of supported event types to native event types */
       TYPE_TO_NATIVE: null,
-
       /** Mapping of native event types to supported event types */
       NATIVE_TO_TYPE: null
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_225_1: null,
       __P_225_0: null,
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
       ---------------------------------------------------------------------------
       */
       // interface implementation
-      canHandleEvent: function canHandleEvent(target, type) {// Nothing needs to be done here
+      canHandleEvent: function canHandleEvent(target, type) {
+        // Nothing needs to be done here
       },
       // interface implementation
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is added using {@link qx.event.Manager#addListener}.
@@ -219,7 +210,6 @@
         "default": function _default() {}
       }),
       // interface implementation
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is removed by using {@link qx.event.Manager#removeListener}
@@ -235,52 +225,39 @@
       unregisterEvent: qx.core.Environment.select("engine.name", {
         webkit: function webkit(target, type, capture) {
           var events = this.__P_225_0;
-
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
           qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_225_1);
         },
         gecko: function gecko(target, type, capture) {
           var events = this.__P_225_0;
-
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
           qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_225_1);
         },
         mshtml: function mshtml(target, type, capture) {
           var events = this.__P_225_0;
-
           if (!events) {
             return;
           }
-
           var hash = qx.core.ObjectRegistry.toHashCode(target) + type;
-
           if (events[hash]) {
             delete events[hash];
           }
-
           qx.bom.Event.removeNativeListener(target, qx.event.handler.Transition.TYPE_TO_NATIVE[type], this.__P_225_1);
         },
         "default": function _default() {}
       }),
-
       /*
       ---------------------------------------------------------------------------
         EVENT-HANDLER
@@ -297,7 +274,6 @@
         qx.event.Registration.fireEvent(nativeEvent.target, qx.event.handler.Transition.NATIVE_TO_TYPE[nativeEvent.type], qx.event.type.Event);
       })
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -306,18 +282,14 @@
     destruct: function destruct() {
       var event;
       var events = this.__P_225_0;
-
       for (var id in events) {
         event = events[id];
-
         if (event.target) {
           qx.bom.Event.removeNativeListener(event.target, event.type, this.__P_225_1);
         }
       }
-
       this.__P_225_0 = this.__P_225_1 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -333,16 +305,14 @@
         animationEnd: aniEnv["end-event"] || null,
         animationIteration: aniEnv["iteration-event"] || null
       };
-
       for (var type in t2n) {
         var nate = t2n[type];
         n2t[nate] = type;
       }
-
       qx.event.Registration.addHandler(statics);
     }
   });
   qx.event.handler.Transition.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transition.js.map?dt=1685978122571
+//# sourceMappingURL=Transition.js.map?dt=1691935420252

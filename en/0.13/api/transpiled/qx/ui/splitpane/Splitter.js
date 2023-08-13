@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,40 +47,37 @@
    */
   qx.Class.define("qx.ui.splitpane.Splitter", {
     extend: qx.ui.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param parentWidget {qx.ui.splitpane.Pane} The underlaying split pane.
      */
     construct: function construct(parentWidget) {
-      qx.ui.core.Widget.constructor.call(this); // set layout
+      qx.ui.core.Widget.constructor.call(this);
 
+      // set layout
       if (parentWidget.getOrientation() == "vertical") {
         this._setLayout(new qx.ui.layout.HBox(0, "center"));
-
         this._getLayout().setAlignY("middle");
       } else {
         this._setLayout(new qx.ui.layout.VBox(0, "middle"));
-
         this._getLayout().setAlignX("center");
-      } // create knob child control
+      }
 
-
+      // create knob child control
       if (this.isKnobVisible()) {
         this._createChildControl("knob");
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       allowShrinkX: {
@@ -93,7 +89,6 @@
         refine: true,
         init: false
       },
-
       /**
        * The visibility of the splitter button.
        * Allows to remove the splitter button in favor of other visual separation
@@ -106,27 +101,23 @@
         apply: "_applyKnobVisible"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           // Create splitter knob
           case "knob":
             control = new qx.ui.basic.Image();
-
             this._add(control);
-
             break;
         }
-
         return control || qx.ui.splitpane.Splitter.superclass.prototype._createChildControlImpl.call(this, id);
       },
       // property apply
@@ -138,4 +129,4 @@
   qx.ui.splitpane.Splitter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Splitter.js.map?dt=1685978146250
+//# sourceMappingURL=Splitter.js.map?dt=1691935442564

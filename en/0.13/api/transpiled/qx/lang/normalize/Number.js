@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
        * Cajus Pollmeier (cajus)
   
   ************************************************************************ */
-
   /**
    * This class is responsible for the normalization of the native 'String' object.
    * It checks if these methods are available and, if not, appends them to
@@ -52,7 +50,6 @@
    *
    * @group (Polyfill)
    */
-
   /* eslint-disable no-extend-native */
   qx.Bootstrap.define("qx.lang.normalize.Number", {
     statics: {
@@ -67,4 +64,4 @@
   qx.lang.normalize.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1685978127687
+//# sourceMappingURL=Number.js.map?dt=1691935425062

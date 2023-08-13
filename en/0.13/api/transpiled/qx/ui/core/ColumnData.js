@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
       renderLayout: function renderLayout(left, top, width, height) {
         this.__P_306_0 = width;
       },
-
       /**
        * Get the computed width of the column.
        * @return {Integer} Computed column width
@@ -58,7 +56,6 @@
       getComputedWidth: function getComputedWidth() {
         return this.__P_306_0;
       },
-
       /**
        * Get the column's flex value
        *
@@ -67,7 +64,6 @@
       getFlex: function getFlex() {
         return this.getLayoutProperties().flex || 0;
       },
-
       /**
        * Set the column width. The column width can be one of the following
        * values:
@@ -83,7 +79,6 @@
       setColumnWidth: function setColumnWidth(width, flex) {
         var flex = flex || 0;
         var percent = null;
-
         if (typeof width == "number") {
           this.setWidth(width);
         } else if (typeof width == "string") {
@@ -91,7 +86,6 @@
             flex = 1;
           } else {
             var match = width.match(/^[0-9]+(?:\.[0-9]+)?([%\*])$/);
-
             if (match) {
               if (match[1] == "*") {
                 flex = parseFloat(width);
@@ -101,7 +95,6 @@
             }
           }
         }
-
         this.setLayoutProperties({
           flex: flex,
           width: percent
@@ -115,4 +108,4 @@
   qx.ui.core.ColumnData.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColumnData.js.map?dt=1685978134025
+//# sourceMappingURL=ColumnData.js.map?dt=1691935430786

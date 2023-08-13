@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,38 +56,28 @@
    */
   qx.Class.define("qx.ui.mobile.container.Collapsible", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param title {String?} the text which should be displayed in the Collapsible's header label.
      */
     construct: function construct(title) {
       qx.ui.mobile.core.Widget.constructor.call(this);
       this._header = this._createHeader();
-
       this._header.addCssClass("collapsible-header");
-
       this._header.addListener("tap", this.toggleCollapsed, this);
-
       this.setTitle(title);
       this._content = this._createContent();
-
       this._content.addCssClass("collapsible-content");
-
       this._add(this._header);
-
       this._add(this._content);
-
       this.initCollapsed();
       this.initCombined();
       this.addCssClass("gap");
     },
-
     /*
     *****************************************************************************
        PROPERTIES
@@ -100,7 +89,6 @@
         refine: true,
         init: "collapsible"
       },
-
       /** The collapsed state of this widget. */
       collapsed: {
         check: "Boolean",
@@ -109,7 +97,6 @@
         apply: "_applyCollapsed",
         event: "changeCollapsed"
       },
-
       /** Controls whether the Collapsible's content
           should be visually associated with its headers. */
       combined: {
@@ -118,7 +105,6 @@
         apply: "_applyCombined"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -127,7 +113,6 @@
     members: {
       _header: null,
       _content: null,
-
       /**
        * Adds a new child widget to the Collapsible's content composite.
        * @param child {qx.ui.mobile.core.Widget} the widget to add.
@@ -138,7 +123,6 @@
           this._content.add(child, layoutProperties);
         }
       },
-
       /**
        * Setter for the Collapsible's header title.
        * @param title {String} the Collapsible's title.
@@ -148,7 +132,6 @@
           this._header.setValue(title);
         }
       },
-
       /**
        * Getter for the Collapsible's header label.
        * @return {qx.ui.mobile.basic.Label} the header.
@@ -156,7 +139,6 @@
       getHeader: function getHeader() {
         return this._header;
       },
-
       /**
        * Getter for the Collapsible's content composite.
        * @return {qx.ui.mobile.container.Composite} the content composite.
@@ -164,7 +146,6 @@
       getContent: function getContent() {
         return this._content;
       },
-
       /**
        * Factory method for the Collapsible's header.
        * @return {qx.ui.mobile.basic.Label} the label which represents the header.
@@ -175,7 +156,6 @@
         header.setActivatable(true);
         return header;
       },
-
       /**
        * Factory method for the Collapsible's content.
        * @return {qx.ui.mobile.container.Composite} the content composite.
@@ -187,11 +167,9 @@
       _applyCollapsed: function _applyCollapsed(value, old) {
         if (value === true) {
           this._content.exclude();
-
           this.addCssClass("collapsed");
         } else {
           this._content.show();
-
           this.removeCssClass("collapsed");
         }
       },
@@ -206,11 +184,10 @@
     },
     destruct: function destruct() {
       this._header.removeListener("tap", this.toggleCollapsed, this);
-
       this._disposeObjects("_header", "_content");
     }
   });
   qx.ui.mobile.container.Collapsible.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Collapsible.js.map?dt=1685978142116
+//# sourceMappingURL=Collapsible.js.map?dt=1691935438556

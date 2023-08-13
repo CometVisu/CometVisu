@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
     construct: function construct() {
       qx.bom.History.constructor.call(this);
       this._baseUrl = null;
-
       this.__P_103_0();
     },
     members: {
@@ -69,17 +67,14 @@
         if (!qx.lang.Type.isString(state)) {
           state = state + "";
         }
-
         if (qx.lang.Type.isString(newTitle)) {
           this.setTitle(newTitle);
           this._titles[state] = newTitle;
         }
-
         if (this.getState() !== state) {
           this._writeState(state);
         }
       },
-
       /**
        * Initializes the iframe
        *
@@ -87,14 +82,11 @@
       __P_103_0: function __P_103_0() {
         this.__P_103_2 = this.__P_103_4();
         document.body.appendChild(this.__P_103_2);
-
         this.__P_103_5(function () {
           this._baseUrl = this.__P_103_2.contentWindow.document.location.href;
-
           this.__P_103_6();
         }, this);
       },
-
       /**
        * IMPORTANT NOTE FOR IE:
        * Setting the source before adding the iframe to the document.
@@ -112,7 +104,6 @@
         iframe.style.top = "-1000px";
         return iframe;
       },
-
       /**
        * Waits for the IFrame being loaded. Once the IFrame is loaded
        * the callback is called with the provided context.
@@ -125,47 +116,39 @@
         if (typeof retry === "undefined") {
           retry = 0;
         }
-
         if (!this.__P_103_2.contentWindow || !this.__P_103_2.contentWindow.document) {
           if (retry > 20) {
             throw new Error("can't initialize iframe");
           }
-
           qx.event.Timer.once(function () {
             this.__P_103_5(callback, context, ++retry);
           }, this, 10);
           return;
         }
-
         this.__P_103_3 = true;
         callback.call(context || window);
       },
-
       /**
        * Attach hash change listeners
        */
       __P_103_6: function __P_103_6() {
         qx.event.Idle.getInstance().addListener("interval", this.__P_103_7, this);
       },
-
       /**
        * Remove hash change listeners
        */
       __P_103_8: function __P_103_8() {
         qx.event.Idle.getInstance().removeListener("interval", this.__P_103_7, this);
       },
-
       /**
        * hash change event handler
        */
       __P_103_7: function __P_103_7() {
         var currentState = this._readState();
-
         if (qx.lang.Type.isString(currentState) && currentState != this.getState()) {
           this._onHistoryLoad(currentState);
         }
       },
-
       /**
        * Browser dependent function to read the current state of the history
        *
@@ -175,7 +158,6 @@
         var hash = !this._getHash() ? "" : this._getHash().substr(1);
         return this._decode(hash);
       },
-
       /**
        * Returns the fragment identifier of the top window URL. For gecko browsers we
        * have to use a regular expression to avoid encoding problems.
@@ -187,10 +169,8 @@
         if (!this.__P_103_3) {
           return null;
         }
-
         return this.__P_103_2.contentWindow.document.location.hash;
       },
-
       /**
        * Save a state into the browser history.
        *
@@ -199,7 +179,6 @@
       _writeState: function _writeState(state) {
         this._setHash(this._encode(state));
       },
-
       /**
        * Sets the fragment identifier of the window URL
        *
@@ -209,9 +188,7 @@
         if (!this.__P_103_2 || !this._baseUrl) {
           return;
         }
-
         var hash = !this.__P_103_2.contentWindow.document.location.hash ? "" : this.__P_103_2.contentWindow.document.location.hash.substr(1);
-
         if (value != hash) {
           this.__P_103_2.contentWindow.document.location.hash = value;
         }
@@ -219,11 +196,10 @@
     },
     destruct: function destruct() {
       this.__P_103_8();
-
       this.__P_103_2 = null;
     }
   });
   qx.bom.HashHistory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HashHistory.js.map?dt=1685978107031
+//# sourceMappingURL=HashHistory.js.map?dt=1691935406193

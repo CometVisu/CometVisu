@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Update.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
    */
   qx.Mixin.define('cv.ui.common.Update', {
     include: cv.ui.common.BasicUpdate,
-
     /*
      ******************************************************
      CONSTRUCTOR
@@ -56,7 +54,6 @@
         }
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -70,23 +67,18 @@
         var addressSettings;
         Object.getOwnPropertyNames(addresses).forEach(function (address) {
           addressSettings = addresses[address];
-
           if (!cv.data.Model.isReadAddress(addressSettings)) {
             // no read address
             return;
           }
-
           var state = model.getState(address);
-
           if (state !== undefined) {
             this.update(address, state);
-          } //add listener
-
-
+          }
+          //add listener
           model.addUpdateListener(address, this.update, this, addressSettings.backendType);
         }, this);
       },
-
       /**
        * Process the incoming data, update the shown value and the stylings
        *
@@ -98,7 +90,6 @@
           this._update(address, data);
         } else {
           var value = this.processIncomingValue(address, data);
-
           if (this.handleUpdate) {
             this.handleUpdate(value, address);
           }
@@ -106,19 +97,15 @@
       },
       processIncomingValue: function processIncomingValue(address, data) {
         if (this._processIncomingValue) {
-          var value = this._processIncomingValue(address, data); // store it to be able to suppress sending of unchanged data
-
-
+          var value = this._processIncomingValue(address, data);
+          // store it to be able to suppress sending of unchanged data
           if (value !== undefined) {
             this.setBasicValue(value);
           }
-
           return value;
         }
-
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       },
-
       /**
        * Description
        *
@@ -131,11 +118,9 @@
         ev.data.element.css('left', pos.x + 'px');
         ev.data.element.css('top', pos.y + 'px');
         var floorFilter = true;
-
         if (l.floorFilter) {
           floorFilter = data.getState('showFloor') === data.buildingProperties.floorNames[l.floorFilter];
         }
-
         ev.data.element.css('display', floorFilter ? '' : 'none');
       }
     }
@@ -143,4 +128,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1685978158455
+//# sourceMappingURL=Update.js.map?dt=1691935454045

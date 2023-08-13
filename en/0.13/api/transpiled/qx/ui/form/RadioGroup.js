@@ -1,9 +1,6 @@
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -39,7 +36,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,34 +73,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     extend: qx.core.Object,
     implement: [qx.ui.core.ISingleSelection, qx.ui.form.IField, qx.ui.form.IForm, qx.ui.form.IModelSelection],
     include: [qx.ui.core.MSingleSelectionHandling, qx.ui.form.MModelSelection],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param varargs {qx.core.Object} A variable number of items, which are
      *     initially added to the radio group, the first item will be selected.
      */
     construct: function construct(varargs) {
-      qx.core.Object.constructor.call(this); // create item array
+      qx.core.Object.constructor.call(this);
 
-      this.__P_354_0 = []; // add listener before call add!!!
+      // create item array
+      this.__P_354_0 = [];
 
+      // add listener before call add!!!
       this.addListener("changeSelection", this.__P_354_1, this);
-
       if (varargs != null) {
         this.add.apply(this, arguments);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The property name in each of the added widgets that is grouped
@@ -115,7 +110,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeGroupedProperty",
         init: "value"
       },
-
       /**
        * The property name in each of the added widgets that is informed of the
        * RadioGroup object it is a member of
@@ -125,7 +119,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeGroupProperty",
         init: "group"
       },
-
       /**
        * Whether the radio group is enabled
        */
@@ -135,7 +128,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeEnabled",
         init: true
       },
-
       /**
        * Whether the selection should wrap around. This means that the successor of
        * the last item is the first item.
@@ -144,7 +136,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         check: "Boolean",
         init: true
       },
-
       /**
        * If is set to <code>true</code> the selection could be empty,
        * otherwise is always one <code>RadioButton</code> selected.
@@ -154,7 +145,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: false,
         apply: "_applyAllowEmptySelection"
       },
-
       /**
        * Flag signaling if the group at all is valid. All children will have the
        * same state.
@@ -165,7 +155,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         apply: "_applyValid",
         event: "changeValid"
       },
-
       /**
        * Flag signaling if the group is required.
        */
@@ -174,7 +163,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         init: false,
         event: "changeRequired"
       },
-
       /**
        * Message which is shown in an invalid tooltip.
        */
@@ -184,7 +172,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeInvalidMessage",
         apply: "_applyInvalidMessage"
       },
-
       /**
        * Message which is shown in an invalid tooltip if the {@link #required} is
        * set to true.
@@ -195,22 +182,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         event: "changeInvalidMessage"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /** @type {qx.ui.form.IRadioItem[]} The items of the radio group */
       __P_354_0: null,
-
       /*
       ---------------------------------------------------------------------------
         UTILITIES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get all managed items
        *
@@ -219,13 +204,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getItems: function getItems() {
         return this.__P_354_0;
       },
-
       /*
       ---------------------------------------------------------------------------
         REGISTRY
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add the passed items to the radio group.
        *
@@ -236,32 +219,32 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var item;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
-
         for (var i = 0, l = arguments.length; i < l; i++) {
           item = arguments[i];
-
           if (items.includes(item)) {
             continue;
-          } // Register listeners
+          }
 
+          // Register listeners
+          item.addListener("change" + groupedPropertyUp, this._onItemChangeChecked, this);
 
-          item.addListener("change" + groupedPropertyUp, this._onItemChangeChecked, this); // Push RadioButton to array
+          // Push RadioButton to array
+          items.push(item);
 
-          items.push(item); // Inform radio button about new group
+          // Inform radio button about new group
+          item.set(this.getGroupProperty(), this);
 
-          item.set(this.getGroupProperty(), this); // Need to update internal value?
-
+          // Need to update internal value?
           if (item.get(groupedProperty)) {
             this.setSelection([item]);
           }
-        } // Select first item when only one is registered
+        }
 
-
+        // Select first item when only one is registered
         if (!this.isAllowEmptySelection() && items.length > 0 && !this.getSelection()[0]) {
           this.setSelection([items[0]]);
         }
       },
-
       /**
        * Remove an item from the radio group.
        *
@@ -271,24 +254,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var items = this.__P_354_0;
         var groupedProperty = this.getGroupedProperty();
         var groupedPropertyUp = qx.lang.String.firstUp(groupedProperty);
-
         if (items.includes(item)) {
           // Remove RadioButton from array
-          qx.lang.Array.remove(items, item); // Inform radio button about new group
+          qx.lang.Array.remove(items, item);
 
+          // Inform radio button about new group
           if (item.get(this.getGroupProperty()) === this) {
             item.reset(this.getGroupProperty());
-          } // Deregister listeners
+          }
 
+          // Deregister listeners
+          item.removeListener("change" + groupedPropertyUp, this._onItemChangeChecked, this);
 
-          item.removeListener("change" + groupedPropertyUp, this._onItemChangeChecked, this); // if the radio was checked, set internal selection to null
-
+          // if the radio was checked, set internal selection to null
           if (item.get(groupedProperty)) {
             this.resetSelection();
           }
         }
       },
-
       /**
        * Returns an array containing the group's items.
        *
@@ -297,13 +280,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getChildren: function getChildren() {
         return this.__P_354_0;
       },
-
       /*
       ---------------------------------------------------------------------------
         LISTENER FOR ITEM CHANGES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event listener for <code>changeValue</code> event of every managed item.
        *
@@ -312,14 +293,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _onItemChangeChecked: function _onItemChangeChecked(e) {
         var item = e.getTarget();
         var groupedProperty = this.getGroupedProperty();
-
         if (item.get(groupedProperty)) {
           this.setSelection([item]);
         } else if (this.getSelection()[0] == item) {
           this.resetSelection();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -330,12 +309,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var item;
         var oldFirstUp = qx.lang.String.firstUp(old);
         var newFirstUp = qx.lang.String.firstUp(value);
-
         for (var i = 0; i < this.__P_354_0.length; i++) {
-          item = this.__P_354_0[i]; // remove the listener for the old change event
+          item = this.__P_354_0[i];
 
-          item.removeListener("change" + oldFirstUp, this._onItemChangeChecked, this); // add the listener for the new change event
+          // remove the listener for the old change event
+          item.removeListener("change" + oldFirstUp, this._onItemChangeChecked, this);
 
+          // add the listener for the new change event
           item.removeListener("change" + newFirstUp, this._onItemChangeChecked, this);
         }
       },
@@ -354,7 +334,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // property apply
       _applyEnabled: function _applyEnabled(value, old) {
         var items = this.__P_354_0;
-
         if (value == null) {
           for (var i = 0, l = items.length; i < l; i++) {
             items[i].resetEnabled();
@@ -371,13 +350,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.resetSelection();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Select the item following the given item.
        */
@@ -385,28 +362,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var item = this.getSelection()[0];
         var items = this.__P_354_0;
         var index = items.indexOf(item);
-
         if (index == -1) {
           return;
         }
-
         var i = 0;
-        var length = items.length; // Find next enabled item
+        var length = items.length;
 
+        // Find next enabled item
         if (this.getWrap()) {
           index = (index + 1) % length;
         } else {
           index = Math.min(index + 1, length - 1);
         }
-
         while (i < length && !items[index].getEnabled()) {
           index = (index + 1) % length;
           i++;
         }
-
         this.setSelection([items[index]]);
       },
-
       /**
        * Select the item previous the given item.
        */
@@ -414,34 +387,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var item = this.getSelection()[0];
         var items = this.__P_354_0;
         var index = items.indexOf(item);
-
         if (index == -1) {
           return;
         }
-
         var i = 0;
-        var length = items.length; // Find previous enabled item
+        var length = items.length;
 
+        // Find previous enabled item
         if (this.getWrap()) {
           index = (index - 1 + length) % length;
         } else {
           index = Math.max(index - 1, 0);
         }
-
         while (i < length && !items[index].getEnabled()) {
           index = (index - 1 + length) % length;
           i++;
         }
-
         this.setSelection([items[index]]);
       },
-
       /*
       ---------------------------------------------------------------------------
         HELPER METHODS FOR SELECTION API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the items for the selection.
        *
@@ -450,7 +418,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _getItems: function _getItems() {
         return this.getItems();
       },
-
       /**
        * Returns if the selection could be empty or not.
        *
@@ -460,7 +427,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _isAllowEmptySelection: function _isAllowEmptySelection() {
         return this.isAllowEmptySelection();
       },
-
       /**
        * Returns whether the item is selectable. In opposite to the default
        * implementation (which checks for visible items) every radio button
@@ -473,7 +439,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _isItemSelectable: function _isItemSelectable(item) {
         return this.__P_354_0.indexOf(item) != -1;
       },
-
       /**
        * Event handler for <code>changeSelection</code>.
        *
@@ -483,34 +448,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var value = e.getData()[0];
         var old = e.getOldData()[0];
         var groupedProperty = this.getGroupedProperty();
-
         if (old) {
           old.set(groupedProperty, false);
         }
-
         if (value) {
-          value.set(groupedProperty, true); // If Group is focused, the selection was changed by keyboard. Switch focus to new value
+          value.set(groupedProperty, true);
 
+          // If Group is focused, the selection was changed by keyboard. Switch focus to new value
           if (this.__P_354_2() && value.isFocusable()) {
             value.focus();
           }
         }
       },
-
       /**
        * Checks if this group is focused by checking focused state of each item
        * @returns {Boolean} result
        */
       __P_354_2: function __P_354_2() {
         var focusHandler = qx.ui.core.FocusHandler.getInstance();
-
         var _iterator = _createForOfIteratorHelper(this._getItems()),
-            _step;
-
+          _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var item = _step.value;
-
             if (focusHandler.isFocused(item)) {
               return true;
             }
@@ -520,11 +480,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         } finally {
           _iterator.f();
         }
-
         return false;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -537,4 +495,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   qx.ui.form.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1685978138651
+//# sourceMappingURL=RadioGroup.js.map?dt=1691935435223

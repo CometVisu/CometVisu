@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* HasAnimatedButton.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -28,6 +27,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Mixin.define('cv.ui.common.HasAnimatedButton', {
     /*
      ******************************************************
@@ -37,7 +37,6 @@
     construct: function construct() {
       this.addListenerOnce('domReady', this.__P_549_0, this);
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -49,18 +48,15 @@
       __P_549_3: null,
       __P_549_0: function __P_549_0() {
         var actors = this.__P_549_4();
-
         if (this.isBindClickToWidget()) {
           actors = [this.getInteractionElement()];
         }
-
         actors.forEach(function (actor) {
           qx.event.Registration.addListener(actor, 'pointerdown', this.buttonPressed, this);
         }, this);
       },
       __P_549_4: function __P_549_4() {
         var actors = [this.getActor()];
-
         if (this.getActors) {
           this.getActors().forEach(function (a) {
             if (actors.indexOf(a) === -1) {
@@ -68,10 +64,8 @@
             }
           });
         }
-
         return actors;
       },
-
       /**
        * Create an action handling that shows a button press animation.
        * When the action is not set, it will be searched for - so that widgets
@@ -84,9 +78,7 @@
         this.__P_549_3 = actor;
         qx.event.Registration.addListener(document, 'pointerup', this.buttonReleased, this);
         var buttons = this.isBindClickToWidget() ? this.__P_549_4() : [actor];
-
         this.__P_549_5(buttons, true);
-
         this.__P_549_1 = qx.event.Registration.addListener(actor, 'pointerout', function () {
           this.__P_549_5(buttons, false);
         }, this);
@@ -111,7 +103,6 @@
           });
         }
       },
-
       /**
        * Create an action handling that shows a button unpress animation.
        * When the action is not set, it will be searched for - so that widgets
@@ -123,23 +114,18 @@
         qx.event.Registration.removeListener(document, 'pointerup', this.buttonReleased, this);
         var actor = this.__P_549_3;
         var buttons = this.isBindClickToWidget() ? this.__P_549_4() : [actor];
-
         this.__P_549_5(buttons, false);
-
         if (this.__P_549_1) {
           qx.event.Registration.removeListenerById(actor, this.__P_549_1);
         }
-
         if (this.__P_549_2) {
           qx.event.Registration.removeListenerById(actor, this.__P_549_2);
         }
-
         this.__P_549_1 = null;
         this.__P_549_2 = null;
         this.__P_549_3 = null;
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -152,4 +138,4 @@
   cv.ui.common.HasAnimatedButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HasAnimatedButton.js.map?dt=1685978160834
+//# sourceMappingURL=HasAnimatedButton.js.map?dt=1691935456115

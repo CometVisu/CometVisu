@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ImageTrigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -102,7 +101,6 @@
   qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.Refresh, cv.ui.common.Update],
-
     /*
     ******************************************************
       PROPERTIES
@@ -134,7 +132,6 @@
         init: ''
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -144,33 +141,26 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var style = '';
-
         if (Object.keys(this.getLayout()).length === 0) {
           style += cv.parser.pure.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
         }
-
         if (this.getHeight()) {
           style += 'height:' + this.getHeight() + ';';
         }
-
         if (style.length > 0) {
           style = ' style="' + style + '"';
         }
-
         var actor = '<div class="actor">';
-
         if (this.getUpdateType() === 'show') {
           actor += '<img src="' + this.__P_61_0(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
         } else {
           actor += '<img src=""' + style + ' />';
         }
-
         actor += '</div>';
         return actor;
       },
       _update: function _update(address, value) {
         var imageChild = this.getDomElement().querySelector('img');
-
         if (this.getUpdateType() === 'show') {
           if (value === 0) {
             imageChild.style.display = 'none';
@@ -185,27 +175,25 @@
             imageChild.setAttribute('src', this.__P_61_0(this.getSrc() + value + '.' + this.getSuffix()));
             imageChild.style.display = 'block';
           }
-        } //TODO: add value if mapping exists
+        }
+
+        //TODO: add value if mapping exists
         //TODO: get image name from mapping
         //TODO: add bitmask for multiple images
         //TODO: add SVG-magics
-
       },
       __P_61_0: function __P_61_0(url) {
         var parsedUri = qx.util.Uri.parseUri(url);
-
         if (!parsedUri.protocol && !url.startsWith('/')) {
           // is relative URI, use the ResourceManager
           url = qx.util.ResourceManager.getInstance().toUri(url);
         }
-
         return url;
       },
       _action: function _action() {
         if (this.getSendValue() === '') {
           return;
         }
-
         this.sendToBackend(this.getSendValue());
       }
     },
@@ -216,4 +204,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1685978099700
+//# sourceMappingURL=ImageTrigger.js.map?dt=1691935399003

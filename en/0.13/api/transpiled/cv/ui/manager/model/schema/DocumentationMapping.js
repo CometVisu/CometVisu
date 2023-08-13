@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* DocumentationMapping.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -33,7 +32,6 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.DocumentationMapping', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -178,4 +176,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1685978097991
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1691935397325

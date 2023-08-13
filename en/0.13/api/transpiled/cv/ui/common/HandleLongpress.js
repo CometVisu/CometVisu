@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* HandleLongpress.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -27,6 +26,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Mixin.define('cv.ui.common.HandleLongpress', {
     /*
      ******************************************************
@@ -57,4 +57,4 @@
   cv.ui.common.HandleLongpress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HandleLongpress.js.map?dt=1685978160608
+//# sourceMappingURL=HandleLongpress.js.map?dt=1691935455909

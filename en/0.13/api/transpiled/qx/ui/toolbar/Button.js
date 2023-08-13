@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,12 +38,12 @@
    */
   qx.Class.define("qx.ui.toolbar.Button", {
     extend: qx.ui.form.Button,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       appearance: {
         refine: true,
@@ -58,11 +57,9 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.Button.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
-
-
+        qx.ui.toolbar.Button.superclass.prototype._applyVisibility.call(this, value, old);
+        // trigger a appearance recalculation of the parent
         var parent = this.getLayoutParent();
-
         if (parent && parent instanceof qx.ui.toolbar.PartContainer) {
           qx.ui.core.queue.Appearance.add(parent);
         }
@@ -72,4 +69,4 @@
   qx.ui.toolbar.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1685978149086
+//# sourceMappingURL=Button.js.map?dt=1691935445379

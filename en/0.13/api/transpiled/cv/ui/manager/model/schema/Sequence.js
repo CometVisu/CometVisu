@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Sequence.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -42,7 +41,6 @@
    */
   qx.Class.define('cv.ui.manager.model.schema.Sequence', {
     extend: cv.ui.manager.model.schema.Base,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,7 +50,6 @@
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
       this.parse();
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -68,7 +65,6 @@
         init: true
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -82,62 +78,47 @@
        */
       parse: function parse() {
         var _this = this;
-
         cv.ui.manager.model.schema.Sequence.superclass.prototype.parse.call(this);
-        var schema = this.getSchema(); // for a sequence, we need to keep the order of the elements
-        // so we have to use a 'mixed' approach in reading them
+        var schema = this.getSchema();
 
+        // for a sequence, we need to keep the order of the elements
+        // so we have to use a 'mixed' approach in reading them
         var subNodes = Array.from(this.getNode().children);
         subNodes.forEach(function (subNode) {
           var subObject;
-
           switch (subNode.nodeName) {
             case 'xsd:element':
             case 'element':
-              subObject = new cv.ui.manager.model.schema.Element(subNode, schema); // sequences' children are non-sortable
-
+              subObject = new cv.ui.manager.model.schema.Element(subNode, schema);
+              // sequences' children are non-sortable
               subObject.setSortable(false);
               _this._allowedElements[subObject.getName()] = subObject;
               break;
-
             case 'xsd:choice':
             case 'choice':
               subObject = new cv.ui.manager.model.schema.Choice(subNode, schema);
-
               _this._subGroupings.push(subObject);
-
               break;
-
             case 'xsd:sequence':
             case 'sequence':
               subObject = new cv.ui.manager.model.schema.Sequence(subNode, schema);
-
               _this._subGroupings.push(subObject);
-
               break;
-
             case 'xsd:group':
             case 'group':
               subObject = new cv.ui.manager.model.schema.Group(subNode, schema);
-
               _this._subGroupings.push(subObject);
-
               break;
-
             case 'xsd:any':
             case 'any':
               subObject = new cv.ui.manager.model.schema.Any(subNode, schema);
-
               _this._subGroupings.push(subObject);
-
               break;
           }
-
           _this._sortedContent.push(subObject);
         });
         this._allowedElements['#comment'] = this.getSchema().getCommentNodeSchemaElement();
       },
-
       /**
        * get a regex (string) describing this choice
        *
@@ -150,89 +131,80 @@
           // use the cache if primed
           return this._regexCache;
         }
+        var regexString = '(';
 
-        var regexString = '('; // create list of allowed elements
-
+        // create list of allowed elements
         if (nocapture) {
           regexString += '?:';
         }
+        var elementRegexes = [];
 
-        var elementRegexes = []; // this goes over ALL elements AND sub-groupings
-
+        // this goes over ALL elements AND sub-groupings
         this._sortedContent.forEach(function (element) {
           elementRegexes.push(element.getRegex(separator, nocapture));
         });
-
         regexString += elementRegexes.join('');
-        regexString += ')'; // append bounds to regex
+        regexString += ')';
 
+        // append bounds to regex
         regexString += '{';
         var bounds = this.getBounds();
         regexString += bounds.min === undefined ? 1 : bounds.min;
         regexString += ',';
-
         if (bounds.max !== Number.POSITIVE_INFINITY) {
           regexString += bounds.max === undefined ? 1 : bounds.max;
         }
+        regexString += '}';
 
-        regexString += '}'; // fill the cache
+        // fill the cache
+        this._regexCache = regexString;
 
-        this._regexCache = regexString; // thats about it.
-
+        // thats about it.
         return regexString;
       },
       getBoundsForElementName: function getBoundsForElementName(childName) {
         // we are a sequence-element; there is actually a lot of sayings ...
         if (typeof this._allowedElements[childName] !== 'undefined') {
           var elementBounds = this._allowedElements[childName].getBounds();
-
           var sequenceBounds = this.getBounds();
           var resultBounds = {
             min: 1,
             max: 1
-          }; // if it is bounded, we must duplicate element and sequence bounds
+          };
+
+          // if it is bounded, we must duplicate element and sequence bounds
           // (an element may appear as often as the number of sequences times the number of elements
           // in each sequence - roughly)
-
           if (Object.prototype.hasOwnProperty.call(elementBounds, 'min')) {
             resultBounds.min = elementBounds.min;
           }
-
           if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'min') && !isNaN(sequenceBounds.min)) {
             resultBounds.min *= sequenceBounds.min;
           }
-
           if (elementBounds.max === Number.POSITIVE_INFINITY || sequenceBounds.max === Number.POSITIVE_INFINITY) {
             resultBounds.max = Number.POSITIVE_INFINITY;
           } else {
             if (Object.prototype.hasOwnProperty.call(elementBounds, 'max')) {
               resultBounds.max = elementBounds.max;
             }
-
             if (Object.prototype.hasOwnProperty.call(sequenceBounds, 'max') && !isNaN(sequenceBounds.max)) {
               resultBounds.max *= sequenceBounds.max;
             }
           }
-
           return resultBounds;
         }
-
         var childBounds;
         var tmpBounds;
-
         for (var i = 0; i < this._subGroupings.length; ++i) {
           tmpBounds = this._subGroupings[i].getBoundsForElementName(childName);
-
           if (undefined !== tmpBounds) {
             // once we find the first set of bounds, we return that
             childBounds = tmpBounds;
             break;
           }
         }
-
         return childBounds;
       },
-
       /**
        * get the sorting of the allowed elements
        *
@@ -242,14 +214,11 @@
        */
       getAllowedElementsSorting: function getAllowedElementsSorting(sortNumber) {
         var namesWithSorting = {};
-
         this._sortedContent.forEach(function (item, i) {
           var mySortNumber = i;
-
           if (sortNumber !== undefined) {
             mySortNumber = sortNumber + '.' + i;
           }
-
           if (item.getType() === 'element') {
             namesWithSorting[item.getName()] = mySortNumber;
           } else {
@@ -258,7 +227,6 @@
             Object.assign(namesWithSorting, subSortedElements);
           }
         });
-
         return namesWithSorting;
       }
     }
@@ -266,4 +234,4 @@
   cv.ui.manager.model.schema.Sequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sequence.js.map?dt=1685978098244
+//# sourceMappingURL=Sequence.js.map?dt=1691935397569

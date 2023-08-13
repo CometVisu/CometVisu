@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -29,6 +28,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.PasswordField", {
     statics: {
       register: function register() {
@@ -45,7 +45,6 @@
           this._formController.addTarget(formElement, "value", key, true, null, {
             converter: function (value) {
               this._form.getValidationManager().validate();
-
               return value;
             }.bind(this)
           });
@@ -61,7 +60,8 @@
             if (!fieldData.allowBrowserAutocomplete) {
               //turn off autocomplete
               formElement.getContentElement().setAttribute("autocomplete", "new-password");
-            } else {// leave autocomplete alone.
+            } else {
+              // leave autocomplete alone.
               // Note: Password field above sets attribute
             }
           } else if (!this.getAllowBrowserAutocomplete()) {
@@ -75,4 +75,4 @@
   qxl.dialog.formElement.PasswordField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PasswordField.js.map?dt=1685978163452
+//# sourceMappingURL=PasswordField.js.map?dt=1691935458529

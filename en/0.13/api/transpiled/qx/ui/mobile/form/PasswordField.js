@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +34,12 @@
    */
   qx.Class.define("qx.ui.mobile.form.PasswordField", {
     extend: qx.ui.mobile.form.TextField,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
@@ -48,12 +47,12 @@
         init: "password-field"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _getType: function _getType() {
@@ -64,4 +63,4 @@
   qx.ui.mobile.form.PasswordField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PasswordField.js.map?dt=1685978143730
+//# sourceMappingURL=PasswordField.js.map?dt=1691935440130

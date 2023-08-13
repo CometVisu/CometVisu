@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Unknown.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,7 +44,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.Unknown', {
     extend: qx.core.Object,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -54,7 +52,6 @@
     construct: function construct(props) {
       this.set(props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -82,7 +79,6 @@
         init: null
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -96,7 +92,6 @@
       getDomElement: function getDomElement() {
         return document.querySelector('#' + this.getPath());
       },
-
       /**
        * Return the HTML string for this widget
        * @return {String} HTML code
@@ -112,4 +107,4 @@
   cv.ui.structure.pure.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1685978100525
+//# sourceMappingURL=Unknown.js.map?dt=1691935399917

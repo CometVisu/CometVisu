@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* FileSystem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -53,7 +52,6 @@
   qx.Class.define('cv.ui.manager.tree.FileSystem', {
     extend: qx.ui.core.Widget,
     include: [cv.ui.manager.upload.MDragUpload],
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -61,13 +59,10 @@
     */
     construct: function construct(rootFolder) {
       qx.ui.core.Widget.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.Grow());
-
       this.setRootFolder(rootFolder);
       qx.event.message.Bus.subscribe('cv.manager.tree.enable', this._onEnableTree, this);
     },
-
     /*
     ***********************************************
       STATICS
@@ -93,7 +88,6 @@
         return Object.prototype.hasOwnProperty.call(this.MIMETYPES, mimetype);
       }
     },
-
     /*
     ***********************************************
       EVENTS
@@ -102,7 +96,6 @@
     events: {
       changeSelection: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -123,7 +116,6 @@
         nullable: true
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -148,7 +140,6 @@
       },
       openPath: function openPath(path) {
         var root = this.getChildControl('tree').getModel();
-
         if (path === '.') {
           root.setOpen(true);
         } else {
@@ -172,7 +163,6 @@
         var tree = this.getChildControl('tree');
         var contextMenu = cv.ui.manager.contextmenu.GlobalFileItem.getInstance();
         contextMenu.configure(value);
-
         if (value) {
           tree.setContextMenu(contextMenu);
         }
@@ -182,13 +172,11 @@
       },
       _onDblTapTreeSelection: function _onDblTapTreeSelection() {
         var sel = this.getSelectedNode();
-
         if (sel) {
           if (this.__P_51_0) {
             this.__P_51_0.stop();
-          } // only files show a different behaviour when double-clicked (permanent vs. preview mode)
-
-
+          }
+          // only files show a different behaviour when double-clicked (permanent vs. preview mode)
           if (sel.getType() === 'file') {
             this.fireDataEvent('changeSelection', {
               node: sel,
@@ -201,18 +189,15 @@
         if (this.__P_51_0) {
           this.__P_51_0.stop();
         }
-
         if (this.__P_51_2 === true) {
           return;
         }
-
         var tree = this.getChildControl('tree');
         var sel = tree.getSelection();
-
         if (sel.length > 0) {
           var node = sel.getItem(0);
-          this.setSelectedNode(node); // wait for double tap
-
+          this.setSelectedNode(node);
+          // wait for double tap
           if (node.getType() === 'file') {
             this.__P_51_0 = qx.event.Timer.once(function () {
               this.fireDataEvent('changeSelection', {
@@ -235,10 +220,8 @@
       _onFsItemRightClick: function _onFsItemRightClick(ev) {
         var tree = this.getChildControl('tree');
         var widget = ev.getTarget();
-
         if (widget instanceof cv.ui.manager.tree.VirtualFsItem) {
           var node = widget.getModel();
-
           if (node) {
             this.__P_51_2 = true;
             tree.getSelection().replace([node]);
@@ -251,7 +234,6 @@
           }
         }
       },
-
       /**
        * Handle message on 'cv.manager.tree.enable' topic.
        * @param ev {Event}
@@ -263,7 +245,6 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
-
         switch (id) {
           case 'tree':
             control = new qx.ui.tree.VirtualTree(null, 'name', 'children');
@@ -295,20 +276,15 @@
               }
             });
             control.getSelection().addListener('change', this._onChangeTreeSelection, this);
-
             this._add(control);
-
             break;
         }
-
         if (!control) {
           control = this._createMDragUploadChildControlImpl(id);
         }
-
         return control || cv.ui.manager.tree.FileSystem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -316,11 +292,10 @@
     */
     destruct: function destruct() {
       qx.event.message.Bus.unsubscribe('cv.manager.tree.enable', this._onEnableTree, this);
-
       this._disposeObjects('_dateFormat', '_timeFormat', '_replacementManager');
     }
   });
   cv.ui.manager.tree.FileSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSystem.js.map?dt=1685978098447
+//# sourceMappingURL=FileSystem.js.map?dt=1691935397770

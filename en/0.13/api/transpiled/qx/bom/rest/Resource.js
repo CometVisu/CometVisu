@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -86,7 +85,6 @@
   qx.Bootstrap.define("qx.bom.rest.Resource", {
     extend: qx.event.Emitter,
     implement: [qx.core.IDisposable],
-
     /**
      * @param description {Map?} Each key of the map is interpreted as
      *  <code>action</code> name. The value associated to the key must be a map
@@ -101,7 +99,6 @@
       this.__P_148_1 = {};
       this.__P_148_2 = {};
       this.__P_148_3 = {};
-
       try {
         if (typeof description !== "undefined") {
           this.__P_148_4(description);
@@ -121,7 +118,6 @@
        * "<action>Success", e.g. "indexSuccess".
        */
       success: "qx.bom.rest.Resource",
-
       /**
        * Fired when request associated to action given in prefix was successful.
        *
@@ -129,7 +125,6 @@
        * successful.
        */
       actionSuccess: "qx.bom.rest.Resource",
-
       /**
        * Fired when any request fails.
        *
@@ -139,19 +134,16 @@
        * "<action>Error", e.g. "indexError".
        */
       error: "qx.bom.rest.Resource",
-
       /**
        * Fired when any request associated to action given in prefix fails.
        *
        * For example, "indexError" is fired when <code>index()</code> failed.
        */
       actionError: "qx.bom.rest.Resource",
-
       /**
        * Fired when a request is sent to the given endpoint.
        */
       sent: "qx.bom.rest.Resource",
-
       /**
        * Fired when any request associated to action is sent to the given endpoint.
        *
@@ -159,13 +151,11 @@
        * called.
        */
       actionSent: "qx.bom.rest.Resource",
-
       /**
        * Fired when a request is started to the given endpoint. This moment is right after the request
        * was opened and send.
        */
       started: "qx.bom.rest.Resource",
-
       /**
        * Fired when any request associated to action is started to the given endpoint. This moment is
        * right after the request was opened and send.
@@ -180,17 +170,14 @@
        * subject to throttling checks.
        */
       POLL_THROTTLE_LIMIT: 100,
-
       /**
        * Number of immediate long-poll responses accepted before throttling takes place.
        */
       POLL_THROTTLE_COUNT: 30,
-
       /**
        * A symbol used in checks to declare required parameter.
        */
       REQUIRED: true,
-
       /**
        * Get placeholders from URL.
        *
@@ -199,14 +186,14 @@
        */
       placeholdersFromUrl: function placeholdersFromUrl(url) {
         var placeholderRe = /\{(\w+)(=\w+)?\}/g,
-            match,
-            placeholders = []; // With g flag set, searching begins at the regex object's
-        // lastIndex, which is zero initially and increments with each match.
+          match,
+          placeholders = [];
 
+        // With g flag set, searching begins at the regex object's
+        // lastIndex, which is zero initially and increments with each match.
         while (match = placeholderRe.exec(url)) {
           placeholders.push(match[1]);
         }
-
         return placeholders;
       }
     },
@@ -217,12 +204,10 @@
       __P_148_2: null,
       __P_148_3: null,
       __P_148_6: null,
-
       /**
        * @type {Map} Request callbacks for 'onsuccess', 'onfail' and 'onloadend' - see {@link #setRequestHandler}.
        */
       __P_148_7: null,
-
       /**
        * @type {Function} Function which returns instances from {@link qx.io.request.AbstractRequest}.
        */
@@ -230,7 +215,6 @@
       //
       // Request
       //
-
       /**
        * Set a request factory function to switch the request implementation.
        * The created requests have to implement {@link qx.io.request.AbstractRequest}.
@@ -242,7 +226,6 @@
       setRequestFactory: function setRequestFactory(fn) {
         this.__P_148_8 = fn;
       },
-
       /**
        * Sets request callbacks for 'onsuccess', 'onfail' and 'onloadend'.
        *
@@ -253,7 +236,6 @@
       setRequestHandler: function setRequestHandler(handler) {
         this.__P_148_7 = handler;
       },
-
       /**
        * Provides the request callbacks for 'onsuccess', 'onfail' and 'onloadend'.
        *
@@ -314,7 +296,6 @@
                   this.emit(action + "Sent", response);
                   this.emit("sent", response);
                 }
-
                 if (req.getTransport().readyState === qx.bom.request.Xhr.OPENED) {
                   var payload = {
                     id: parseInt(req.toHashCode(), 10),
@@ -349,7 +330,6 @@
           }
         } : this.__P_148_7;
       },
-
       /**
        * Retrieve the currently stored request objects for an action.
        *
@@ -362,7 +342,6 @@
         var hasRequests = this.__P_148_0 !== null && action in this.__P_148_0;
         return hasRequests ? this.__P_148_0[action] : null;
       },
-
       /**
        * Configure request.
        *
@@ -372,7 +351,6 @@
       configureRequest: function configureRequest(callback) {
         this.__P_148_6 = callback;
       },
-
       /**
        * Get request.
        *
@@ -382,7 +360,6 @@
       _getRequest: function _getRequest() {
         return this.__P_148_8 === null ? new qx.bom.request.SimpleXhr() : this.__P_148_8();
       },
-
       /**
        * Create request.
        *
@@ -391,21 +368,16 @@
        */
       __P_148_9: function __P_148_9(action) {
         var req = this._getRequest();
-
         if (!qx.lang.Type.isArray(this.__P_148_0[action])) {
           this.__P_148_0[action] = [];
         }
-
         qx.core.ObjectRegistry.register(req);
-
         this.__P_148_0[action].push(req);
-
         return req;
       },
       //
       // Routes and actions
       //
-
       /**
        * Map action to combination of method and URL pattern.
        *
@@ -420,32 +392,31 @@
        *   <code>qx.bom.rest.Resource.REQUIRED</code> (to verify existence).
        */
       map: function map(action, method, url, check) {
-        this.__P_148_1[action] = [method, url, check]; // Track requests
+        this.__P_148_1[action] = [method, url, check];
 
-        this.__P_148_0[action] = []; // Undefine generic getter when action is named "get"
+        // Track requests
+        this.__P_148_0[action] = [];
 
+        // Undefine generic getter when action is named "get"
         if (action == "get") {
           this[action] = undefined;
-        } // Do not overwrite existing "non-action" methods unless the method is
+        }
+
+        // Do not overwrite existing "non-action" methods unless the method is
         // null (i.e. because it exists as a stub for documentation)
-
-
         if (typeof this[action] !== "undefined" && this[action] !== null && this[action].action !== true) {
           throw new Error("Method with name of action (" + action + ") already exists");
         }
-
         this.__P_148_10(action + "Success");
-
         this.__P_148_10(action + "Error");
-
         this[action] = qx.lang.Function.bind(function () {
           Array.prototype.unshift.call(arguments, action);
           return this.invoke.apply(this, arguments);
-        }, this); // Method is safe to overwrite
+        }, this);
 
+        // Method is safe to overwrite
         this[action].action = true;
       },
-
       /**
        * Invoke action with parameters.
        *
@@ -465,47 +436,45 @@
        */
       invoke: function invoke(action, params, data) {
         var req = this.__P_148_9(action),
-            params = params == null ? {} : params,
-            config = this._getRequestConfig(action, params); // Cache parameters
+          params = params == null ? {} : params,
+          config = this._getRequestConfig(action, params);
 
+        // Cache parameters
+        this.__P_148_1[action].params = params;
 
-        this.__P_148_1[action].params = params; // Check parameters
+        // Check parameters
+        this.__P_148_11(params, config.check);
 
-        this.__P_148_11(params, config.check); // Configure request
+        // Configure request
+        this.__P_148_12(req, config, data);
 
-
-        this.__P_148_12(req, config, data); // Run configuration callback, passing in pre-configured request
-
-
+        // Run configuration callback, passing in pre-configured request
         if (this.__P_148_6) {
           this.__P_148_6.call(this, req, action, params, data);
-        } // Configure JSON request (content type may have been set in configuration callback)
+        }
 
-
+        // Configure JSON request (content type may have been set in configuration callback)
         this.__P_148_13(req, config, data);
+        var reqHandler = this._getRequestHandler();
 
-        var reqHandler = this._getRequestHandler(); // Handle successful request
+        // Handle successful request
+        req.addListenerOnce("success", reqHandler.onsuccess.callback(req, action), reqHandler.onsuccess.context);
 
+        // Handle erroneous request
+        req.addListenerOnce("fail", reqHandler.onfail.callback(req, action), reqHandler.onfail.context);
 
-        req.addListenerOnce("success", reqHandler.onsuccess.callback(req, action), reqHandler.onsuccess.context); // Handle erroneous request
-
-        req.addListenerOnce("fail", reqHandler.onfail.callback(req, action), reqHandler.onfail.context); // Handle loadend (Note that loadEnd is fired after "success")
-
+        // Handle loadend (Note that loadEnd is fired after "success")
         req.addListenerOnce("loadEnd", reqHandler.onloadend.callback(req, action), reqHandler.onloadend.context);
-
         if (reqHandler.hasOwnProperty("onreadystatechange")) {
           req.addListener("readystatechange", reqHandler.onreadystatechange.callback(req, action), reqHandler.onreadystatechange.context);
-        } // Handle progress (which is fired multiple times)
-
-
+        }
+        // Handle progress (which is fired multiple times)
         if (reqHandler.hasOwnProperty("onprogress")) {
           req.addListener("progress", reqHandler.onprogress.callback(req, action), reqHandler.onprogress.context);
         }
-
         req.send();
         return parseInt(req.toHashCode(), 10);
       },
-
       /**
        * Set base URL.
        *
@@ -517,7 +486,6 @@
       setBaseUrl: function setBaseUrl(baseUrl) {
         this.__P_148_5 = baseUrl;
       },
-
       /**
        * Check parameters.
        *
@@ -528,24 +496,24 @@
         if (typeof check !== "undefined") {
           Object.keys(check).forEach(function (param) {
             // Warn about invalid check
+
             // Missing parameter
             if (check[param] === qx.bom.rest.Resource.REQUIRED && typeof params[param] === "undefined") {
               throw new Error("Missing parameter '" + param + "'");
-            } // Ignore invalid checks
+            }
 
-
+            // Ignore invalid checks
             if (!(check[param] && typeof check[param].test == "function")) {
               return;
-            } // Invalid parameter
+            }
 
-
+            // Invalid parameter
             if (!check[param].test(params[param])) {
               throw new Error("Parameter '" + param + "' is invalid");
             }
           });
         }
       },
-
       /**
        * Configure request.
        *
@@ -555,20 +523,16 @@
        */
       __P_148_12: function __P_148_12(req, config, data) {
         req.setUrl(config.url);
-
         if (!req.setMethod && config.method !== "GET") {
           throw new Error("Request (" + req.classname + ") doesn't support other HTTP methods than 'GET'");
         }
-
         if (req.setMethod) {
           req.setMethod(config.method);
         }
-
         if (data) {
           req.setRequestData(data);
         }
       },
-
       /**
        * Serialize data to JSON when content type indicates.
        *
@@ -579,7 +543,6 @@
       __P_148_13: function __P_148_13(req, config, data) {
         if (data) {
           var contentType = req.getRequestHeader("Content-Type");
-
           if (req.getMethod && qx.util.Request.methodAllowsRequestBody(req.getMethod())) {
             if (/application\/.*\+?json/.test(contentType)) {
               data = qx.lang.Json.stringify(data);
@@ -588,7 +551,6 @@
           }
         }
       },
-
       /**
        * Abort action.
        *
@@ -600,14 +562,12 @@
           var id = varargs;
           var post = qx.core.ObjectRegistry.getPostId();
           var req = qx.core.ObjectRegistry.fromHashCode(id + post);
-
           if (req) {
             req.abort();
           }
         } else {
           var action = varargs;
           var reqs = this.__P_148_0[action];
-
           if (this.__P_148_0[action]) {
             reqs.forEach(function (req) {
               req.abort();
@@ -615,7 +575,6 @@
           }
         }
       },
-
       /**
        * Resend request associated to action.
        *
@@ -626,7 +585,6 @@
       refresh: function refresh(action) {
         this.invoke(action, this.__P_148_1[action].params);
       },
-
       /**
        * Periodically invoke action.
        *
@@ -655,36 +613,31 @@
         // Dispose timer previously created for action
         if (this.__P_148_2[action]) {
           this.stopPollByAction(action);
-        } // Fallback to previous params
+        }
 
-
+        // Fallback to previous params
         if (typeof params == "undefined") {
           params = this.__P_148_1[action].params;
-        } // Invoke immediately
+        }
 
-
+        // Invoke immediately
         if (immediately) {
           this.invoke(action, params);
         }
-
         var intervalListener = function (scope) {
           return function () {
             var req = scope.__P_148_0[action][0];
-
             if (!immediately && !req) {
               scope.invoke(action, params);
               return;
             }
-
             if (req.isDone() || req.isDisposed()) {
               scope.refresh(action);
             }
           };
         }(this);
-
         this._startPoll(action, intervalListener, interval);
       },
-
       /**
        * Start a poll process.
        *
@@ -699,7 +652,6 @@
           listener: listener
         };
       },
-
       /**
        * Stops a poll process by the associated action.
        *
@@ -711,7 +663,6 @@
           window.clearInterval(intervalId);
         }
       },
-
       /**
        * Restarts a poll process by the associated action.
        *
@@ -721,11 +672,9 @@
         if (action in this.__P_148_2) {
           var timer = this.__P_148_2[action];
           this.stopPollByAction(action);
-
           this._startPoll(action, timer.listener, timer.interval);
         }
       },
-
       /**
        * Long-poll action.
        *
@@ -750,35 +699,30 @@
        */
       longPoll: function longPoll(action) {
         var res = this,
-            lastResponse,
-            // Keep track of last response
-        immediateResponseCount = 0; // Count immediate responses
-        // Throttle to prevent high load on server and client
+          lastResponse,
+          // Keep track of last response
+          immediateResponseCount = 0; // Count immediate responses
 
+        // Throttle to prevent high load on server and client
         function throttle() {
           var isImmediateResponse = lastResponse && new Date() - lastResponse < res._getThrottleLimit();
-
           if (isImmediateResponse) {
             immediateResponseCount += 1;
-
             if (immediateResponseCount > res._getThrottleCount()) {
               return true;
             }
-          } // Reset counter on delayed response
+          }
 
-
+          // Reset counter on delayed response
           if (!isImmediateResponse) {
             immediateResponseCount = 0;
           }
-
           return false;
         }
-
         var handlerId = this.__P_148_3[action] = this.addListener(action + "Success", function longPollHandler() {
           if (res.isDisposed()) {
             return;
           }
-
           if (!throttle()) {
             lastResponse = new Date();
             res.refresh(action);
@@ -787,7 +731,6 @@
         this.invoke(action);
         return handlerId;
       },
-
       /**
        * Get request configuration for action and parameters.
        *
@@ -799,24 +742,24 @@
        *   <code>method</code>, <code>url</code> and <code>check</code>.
        */
       _getRequestConfig: function _getRequestConfig(action, params) {
-        var route = this.__P_148_1[action]; // Not modify original params
+        var route = this.__P_148_1[action];
 
+        // Not modify original params
         var params = qx.lang.Object.clone(params);
-
         if (!qx.lang.Type.isArray(route)) {
           throw new Error("No route for action " + action);
         }
-
         var method = route[0],
-            url = this.__P_148_5 !== null ? this.__P_148_5 + route[1] : route[1],
-            check = route[2],
-            placeholders = qx.bom.rest.Resource.placeholdersFromUrl(url);
+          url = this.__P_148_5 !== null ? this.__P_148_5 + route[1] : route[1],
+          check = route[2],
+          placeholders = qx.bom.rest.Resource.placeholdersFromUrl(url);
         params = params || {};
         placeholders.forEach(function (placeholder) {
           // Placeholder part of template and default value
           var re = new RegExp("{" + placeholder + "=?(\\w+)?}"),
-              defaultValue = url.match(re)[1]; // Fill in default or empty string when missing
+            defaultValue = url.match(re)[1];
 
+          // Fill in default or empty string when missing
           if (typeof params[placeholder] === "undefined") {
             if (defaultValue) {
               params[placeholder] = defaultValue;
@@ -824,7 +767,6 @@
               params[placeholder] = "";
             }
           }
-
           url = url.replace(re, params[placeholder]);
         });
         return {
@@ -833,7 +775,6 @@
           check: check
         };
       },
-
       /**
        * Override to adjust the throttle limit.
        * @return {Integer} Throttle limit in milliseconds
@@ -841,7 +782,6 @@
       _getThrottleLimit: function _getThrottleLimit() {
         return qx.bom.rest.Resource.POLL_THROTTLE_LIMIT;
       },
-
       /**
        * Override to adjust the throttle count.
        * @return {Integer} Throttle count
@@ -849,7 +789,6 @@
       _getThrottleCount: function _getThrottleCount() {
         return qx.bom.rest.Resource.POLL_THROTTLE_COUNT;
       },
-
       /**
        * Map actions from description.
        *
@@ -860,13 +799,12 @@
       __P_148_4: function __P_148_4(description) {
         Object.keys(description).forEach(function (action) {
           var route = description[action],
-              method = route.method,
-              url = route.url,
-              check = route.check;
+            method = route.method,
+            url = route.url,
+            check = route.check;
           this.map(action, method, url, check);
         }, this);
       },
-
       /**
        * Declare event at runtime.
        *
@@ -876,18 +814,15 @@
         if (!this.constructor.$$events) {
           this.constructor.$$events = {};
         }
-
         if (!this.constructor.$$events[type]) {
           this.constructor.$$events[type] = "qx.bom.rest.Resource";
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         DISPOSER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns true if the object is disposed.
        *
@@ -896,7 +831,6 @@
       isDisposed: function isDisposed() {
         return this.$$disposed || false;
       },
-
       /**
        * Dispose this object
        *
@@ -905,14 +839,17 @@
         // Check first
         if (this.$$disposed) {
           return;
-        } // Mark as disposed (directly, not at end, to omit recursions)
+        }
 
+        // Mark as disposed (directly, not at end, to omit recursions)
+        this.$$disposed = true;
 
-        this.$$disposed = true; // Debug output
+        // Debug output
 
-        this.destruct(); // Additional checks
+        this.destruct();
+
+        // Additional checks
       },
-
       /**
        * Destructs the Resource.
        *
@@ -920,7 +857,6 @@
        */
       destruct: function destruct() {
         var action;
-
         for (action in this.__P_148_0) {
           if (this.__P_148_0[action]) {
             this.__P_148_0[action].forEach(function (req) {
@@ -928,20 +864,17 @@
             });
           }
         }
-
         if (this.__P_148_2) {
           for (action in this.__P_148_2) {
             this.stopPollByAction(action);
           }
         }
-
         if (this.__P_148_3) {
           for (action in this.__P_148_3) {
             var id = this.__P_148_3[action];
             this.removeListenerById(id);
           }
         }
-
         this.__P_148_0 = this.__P_148_1 = this.__P_148_2 = null;
       }
     }
@@ -949,4 +882,4 @@
   qx.bom.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1685978111791
+//# sourceMappingURL=Resource.js.map?dt=1691935410234

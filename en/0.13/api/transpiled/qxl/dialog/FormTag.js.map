@@ -13,6 +13,8 @@
     "Composite",
     "construct",
     "layout",
+    "constructor",
+    "call",
     "VBox",
     "members",
     "_createContentElement",
@@ -28,5 +30,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo dialog library\n\n   http://qooxdoo.org/contrib/catalog/#Dialog\n\n   Copyright:\n     2018 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n\n   Authors:\n   *  Derrell Lipman\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.dialog.FormTag\", {\n  extend: qx.ui.container.Composite,\n\n  construct(layout) {\n    super(layout || new qx.ui.layout.VBox());\n  },\n\n  members: {\n    // overridden\n    // Instead of creating a <div> for the content element, use <form>\n    _createContentElement() {\n      return new qx.html.Element(\"form\");\n    },\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EAEAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,oBAAhB,EAAsC;IACpCC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,SAAN,CAAgBC,SADY;IAGpCC,SAHoC,qBAG1BC,MAH0B,EAGlB;MAChB,iDAAMA,MAAM,IAAI,IAAIX,EAAE,CAACO,EAAH,CAAMI,MAAN,CAAaC,IAAjB,EAAhB;IACD,CALmC;IAOpCC,OAAO,EAAE;MACP;MACA;MACAC,qBAHO,mCAGiB;QACtB,OAAO,IAAId,EAAE,CAACe,IAAH,CAAQC,OAAZ,CAAoB,MAApB,CAAP;MACD;IALM;EAP2B,CAAtC;EAjBAC,GAAG,CAACC,MAAJ,CAAWC,OAAX,CAAmBhB,aAAnB,GAAmCA,aAAnC"
+  "mappings": ";;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oBAAoB,EAAE;IACpCC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,SAAS,CAACC,SAAS;IAEjCC,SAAS,WAAAA,UAACC,MAAM,EAAE;MAChBX,EAAA,CAAAO,EAAA,CAAAC,SAAA,CAAAC,SAAA,CAAAG,WAAA,CAAAC,IAAA,OAAMF,MAAM,IAAI,IAAIX,EAAE,CAACO,EAAE,CAACI,MAAM,CAACG,IAAI,CAAC,CAAC;IACzC,CAAC;IAEDC,OAAO,EAAE;MACP;MACA;MACAC,qBAAqB,WAAAA,sBAAA,EAAG;QACtB,OAAO,IAAIhB,EAAE,CAACiB,IAAI,CAACC,OAAO,CAAC,MAAM,CAAC;MACpC;IACF;EACF,CAAC,CAAC;EA/BFC,GAAG,CAACC,MAAM,CAACC,OAAO,CAAClB,aAAa,GAAGA,aAAa;AAAC"
 }

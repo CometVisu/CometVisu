@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,7 +45,6 @@
     },
     members: {
       __P_419_0: null,
-
       /**
        * Join this header/footer to a Progressive.  This makes the Progressive
        * object available to the header/footer through the _progressive member.
@@ -66,4 +64,4 @@
   qx.ui.progressive.headfoot.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978145264
+//# sourceMappingURL=Abstract.js.map?dt=1691935441613

@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Strftime.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -50,7 +49,6 @@
    */
   qx.Class.define('cv.plugins.Strftime', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       PROPERTIES
@@ -66,7 +64,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -76,7 +73,6 @@
       __P_17_0: {},
       __P_17_1: 0,
       __P_17_2: null,
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -106,13 +102,11 @@
         if (!this.__P_17_2) {
           this.__P_17_2 = new qx.event.Timer(1000);
         }
-
         if (!this.__P_17_2.isEnabled()) {
           this.__P_17_2.start();
         }
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -129,13 +123,11 @@
         if (!this.__P_17_4) {
           this.__P_17_4 = this.getDomElement().querySelector('.strftime_value');
         }
-
         return this.__P_17_4;
       },
       // overridden
       _onDomReady: function _onDomReady() {
         cv.plugins.Strftime.startTimer();
-
         cv.plugins.Strftime.__P_17_2.addListener('interval', this.__P_17_5, this);
       },
       __P_17_5: function __P_17_5() {
@@ -145,7 +137,6 @@
         elem.innerText = d.strftime(this.getFormat());
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -158,8 +149,9 @@
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/strftime/strftime.css');
       cv.parser.pure.WidgetParser.addHandler('strftime', statics);
-      cv.ui.structure.WidgetFactory.registerClass('strftime', statics); // extend locales by German and French
+      cv.ui.structure.WidgetFactory.registerClass('strftime', statics);
 
+      // extend locales by German and French
       Date.ext.locales.de = {
         a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
         A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
@@ -187,4 +179,4 @@
   cv.plugins.Strftime.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Strftime.js.map?dt=1685978092457
+//# sourceMappingURL=Strftime.js.map?dt=1691935391992

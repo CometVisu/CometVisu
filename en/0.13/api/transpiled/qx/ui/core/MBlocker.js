@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
         apply: "_applyBlockerColor",
         themeable: true
       },
-
       /**
        * Opacity of the blocker
        */
@@ -63,7 +61,6 @@
     },
     members: {
       __P_310_0: null,
-
       /**
        * Template method for creating the blocker item.
        * @return {qx.ui.core.Blocker} The blocker to use.
@@ -79,7 +76,6 @@
       _applyBlockerOpacity: function _applyBlockerOpacity(value, old) {
         this.getBlocker().setOpacity(value);
       },
-
       /**
        * Block all events from this widget by placing a transparent overlay widget,
        * which receives all events, exactly over the widget.
@@ -87,7 +83,6 @@
       block: function block() {
         this.getBlocker().block();
       },
-
       /**
        * Returns whether the widget is blocked.
        *
@@ -96,7 +91,6 @@
       isBlocked: function isBlocked() {
         return this.__P_310_0 && this.__P_310_0.isBlocked();
       },
-
       /**
        * Unblock the widget blocked by {@link #block}, but it takes care of
        * the amount of {@link #block} calls. The blocker is only removed if
@@ -107,7 +101,6 @@
           this.__P_310_0.unblock();
         }
       },
-
       /**
        * Unblock the widget blocked by {@link #block}, but it doesn't take care of
        * the amount of {@link #block} calls. The blocker is directly removed.
@@ -117,7 +110,6 @@
           this.__P_310_0.forceUnblock();
         }
       },
-
       /**
        * Block direct child widgets with a zIndex below <code>zIndex</code>
        *
@@ -127,7 +119,6 @@
       blockContent: function blockContent(zIndex) {
         this.getBlocker().blockContent(zIndex);
       },
-
       /**
        * Get the blocker
        *
@@ -137,7 +128,6 @@
         if (!this.__P_310_0) {
           this.__P_310_0 = this._createBlocker();
         }
-
         return this.__P_310_0;
       }
     },
@@ -148,4 +138,4 @@
   qx.ui.core.MBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBlocker.js.map?dt=1685978134426
+//# sourceMappingURL=MBlocker.js.map?dt=1691935431154

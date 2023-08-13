@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,11 +40,9 @@
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Track.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.delta = nativeEvent.delta;
         return clone;
       },
-
       /**
        * Returns a map with the calculated delta coordinates and axis,
        * relative to the position on <code>trackstart</code> event.
@@ -61,4 +58,4 @@
   qx.event.type.Track.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Track.js.map?dt=1685978123456
+//# sourceMappingURL=Track.js.map?dt=1691935421073

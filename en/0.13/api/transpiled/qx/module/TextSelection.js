@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -31,7 +30,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * Text selection manipulation module
    */
@@ -49,7 +47,6 @@
         var tag = el.tagName ? el.tagName.toLowerCase() : null;
         return tag === "input" || tag === "textarea";
       },
-
       /**
        * Returns the first text child node of the given element
        *
@@ -64,7 +61,6 @@
             return el.childNodes[i];
           }
         }
-
         return null;
       }
     },
@@ -76,18 +72,14 @@
        */
       getTextSelection: function getTextSelection() {
         var el = this[0];
-
         if (el) {
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           return el ? qx.bom.Selection.get(el) : null;
         }
-
         return null;
       },
-
       /**
        * Get the length of the text selection of the first element.
        *
@@ -98,18 +90,14 @@
        */
       getTextSelectionLength: function getTextSelectionLength() {
         var el = this[0];
-
         if (el) {
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           return el ? qx.bom.Selection.getLength(el) : null;
         }
-
         return null;
       },
-
       /**
        * Get the start of the text selection of the first element.
        *
@@ -119,18 +107,14 @@
        */
       getTextSelectionStart: function getTextSelectionStart() {
         var el = this[0];
-
         if (el) {
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           return el ? qx.bom.Selection.getStart(el) : null;
         }
-
         return null;
       },
-
       /**
        * Get the end of the text selection of the first element.
        *
@@ -140,18 +124,14 @@
        */
       getTextSelectionEnd: function getTextSelectionEnd() {
         var el = this[0];
-
         if (el) {
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           return el ? qx.bom.Selection.getEnd(el) : null;
         }
-
         return null;
       },
-
       /**
        * Set the text selection of the first element in the collection
        * with the given start and end value.
@@ -165,20 +145,16 @@
        */
       setTextSelection: function setTextSelection(start, end) {
         var el = this[0];
-
         if (el) {
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           if (el) {
             qx.bom.Selection.set(el, start, end);
           }
         }
-
         return this;
       },
-
       /**
        * Clears the text selection of all elements.
        *
@@ -191,12 +167,10 @@
           if (!qx.module.TextSelection.__P_285_0(el)) {
             el = qx.module.TextSelection.__P_285_1(el);
           }
-
           if (el) {
             qx.bom.Selection.clear(el);
           }
         });
-
         return this;
       }
     },
@@ -207,4 +181,4 @@
   qx.module.TextSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextSelection.js.map?dt=1685978129334
+//# sourceMappingURL=TextSelection.js.map?dt=1691935426561

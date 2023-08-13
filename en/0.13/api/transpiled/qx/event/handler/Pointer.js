@@ -64,7 +64,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -96,7 +95,6 @@
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         pointermove: 1,
@@ -110,14 +108,11 @@
         gesturefinish: 1,
         gesturecancel: 1
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE + qx.event.IEventHandler.TARGET_DOCUMENT,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true
     },
-
     /**
      * Create a new instance
      *
@@ -137,24 +132,23 @@
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
       // interface implementation
-      registerEvent: function registerEvent(target, type, capture) {// Nothing needs to be done here
+      registerEvent: function registerEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
       // interface implementation
-      unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
+      unregisterEvent: function unregisterEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
       // overridden
       _initPointerObserver: function _initPointerObserver() {
         var useEmitter = false;
-
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
           // Workaround for bug #8293: Use an emitter to listen to the
           // pointer events fired by a pointer handler attached by qxWeb.
           useEmitter = true;
         }
-
         this._initObserver(this._onPointerEvent, useEmitter);
       },
-
       /**
        * Fire a pointer event with the given parameters
        *
@@ -165,30 +159,26 @@
       _fireEvent: function _fireEvent(domEvent, type, target) {
         if (!target) {
           target = qx.bom.Event.getTarget(domEvent);
-        } // respect anonymous elements
+        }
 
-
+        // respect anonymous elements
         while (target && target.getAttribute && target.getAttribute("qxanonymous")) {
           target = target.parentNode;
         }
-
         if (!type) {
           type = domEvent.type;
         }
-
         type = qx.event.handler.PointerCore.MSPOINTER_TO_POINTER_MAPPING[type] || type;
-
         if (target && target.nodeType) {
           qx.event.type.dom.Pointer.normalize(domEvent);
-
           if (qx.core.Environment.get("browser.name") === "msie" && qx.core.Environment.get("browser.version") < 9) {
             // ensure compatibility with native events for IE8
             try {
               domEvent.srcElement = target;
-            } catch (ex) {// Nothing - cannot change properties in strict mode
+            } catch (ex) {
+              // Nothing - cannot change properties in strict mode
             }
           }
-
           var tracker = {};
           var self = this;
           qx.event.Utils.track(tracker, function () {
@@ -211,20 +201,16 @@
         if (domEvent._original && domEvent._original[this._processedFlag]) {
           return;
         }
-
         var type = qx.event.handler.PointerCore.MSPOINTER_TO_POINTER_MAPPING[domEvent.type] || domEvent.type;
         return this._fireEvent(domEvent, type, qx.bom.Event.getTarget(domEvent));
       },
-
       /**
        * Dispose this object
        */
       dispose: function dispose() {
         this.__P_221_3("dispose");
-
         this.__P_221_0 = this.__P_221_1 = this.__P_221_2 = null;
       },
-
       /**
        * Call overridden method.
        *
@@ -243,4 +229,4 @@
   qx.event.handler.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1685978122286
+//# sourceMappingURL=Pointer.js.map?dt=1691935420002

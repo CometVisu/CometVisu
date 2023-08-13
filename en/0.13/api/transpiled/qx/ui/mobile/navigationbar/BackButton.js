@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,12 +34,12 @@
    */
   qx.Class.define("qx.ui.mobile.navigationbar.BackButton", {
     extend: qx.ui.mobile.navigationbar.Button,
-
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
+
     properties: {
       // overridden
       defaultCssClass: {
@@ -52,4 +51,4 @@
   qx.ui.mobile.navigationbar.BackButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackButton.js.map?dt=1685978144692
+//# sourceMappingURL=BackButton.js.map?dt=1691935441073

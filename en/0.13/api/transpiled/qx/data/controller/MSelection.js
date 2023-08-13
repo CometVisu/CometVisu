@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,20 +52,20 @@
       // check for a target property
       if (!qx.Class.hasProperty(this.constructor, "target")) {
         throw new Error("Target property is needed.");
-      } // create a default selection array
+      }
 
-
+      // create a default selection array
       if (this.getSelection() == null) {
         this.__P_175_0 = new qx.data.Array();
         this.setSelection(this.__P_175_0);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Data array containing the selected model objects. This property can be
@@ -90,16 +89,15 @@
        * <pre class="javascript">obj.getSelection().addListener("change", listener, this);</pre>
        */
       changeSelection: "qx.event.type.Data",
-
       /** Fires after the value was modified */
       changeValue: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // private members //
       // set the semaphore-like variable for the selection change
@@ -107,7 +105,6 @@
       __P_175_1: null,
       __P_175_2: null,
       __P_175_0: null,
-
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -120,10 +117,8 @@
         } else {
           this.setSelection(selection);
         }
-
         return null;
       },
-
       /**
        * getValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -132,20 +127,17 @@
       getValue: function getValue() {
         return this.getSelection();
       },
-
       /**
        * resetValue implements part of the {@link qx.ui.form.IField} interface.
        */
       resetValue: function resetValue() {
         this.resetSelection();
       },
-
       /*
       ---------------------------------------------------------------------------
          APPLY METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Apply-method for setting a new selection array. Only the change listener
        * will be removed from the old array and added to the new.
@@ -158,23 +150,20 @@
         if (this.__P_175_2 != undefined && old != undefined) {
           old.removeListenerById(this.__P_175_2);
           this.__P_175_2 = null;
-        } // add a new change listener to the changeArray
-
-
+        }
+        // add a new change listener to the changeArray
         if (value) {
           this.__P_175_2 = value.addListener("change", this.__P_175_3, this);
-        } // apply the new selection
+        }
 
-
+        // apply the new selection
         this._updateSelection();
       },
-
       /*
       ---------------------------------------------------------------------------
          EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for the change of the data array holding the selection.
        * If a change is in the selection array, the selection update will be
@@ -183,7 +172,6 @@
       __P_175_3: function __P_175_3() {
         this._updateSelection();
       },
-
       /**
        * Event handler for a change in the target selection.
        * If the selection in the target has changed, the selected model objects
@@ -193,51 +181,46 @@
         // dont do anything without a target
         if (this.getTarget() == null) {
           return;
-        } // if a selection API is supported
+        }
 
-
+        // if a selection API is supported
         if (!this.__P_175_4() && !this.__P_175_5()) {
           return;
-        } // if __changeSelectionArray is currently working, do nothing
+        }
 
-
+        // if __changeSelectionArray is currently working, do nothing
         if (this._inSelectionModification()) {
           return;
-        } // get both selections
+        }
 
-
+        // get both selections
         var targetSelection = this.getTarget().getSelection();
         var selection = this.getSelection();
-
         if (selection == null) {
           selection = new qx.data.Array();
           this.__P_175_0 = selection;
           this.setSelection(selection);
-        } // go through the target selection
+        }
 
-
+        // go through the target selection
         var spliceArgs = [0, selection.getLength()];
-
         for (var i = 0; i < targetSelection.length; i++) {
           var model = targetSelection[i].getModel();
-
           if (model !== null) {
             spliceArgs.push(model);
           }
-        } // use splice to ensure a correct change event [BUG #4728]
+        }
+        // use splice to ensure a correct change event [BUG #4728]
+        selection.splice.apply(selection, spliceArgs).dispose();
 
-
-        selection.splice.apply(selection, spliceArgs).dispose(); // fire the change event manually
-
+        // fire the change event manually
         this.fireDataEvent("changeSelection", this.getSelection());
       },
-
       /*
       ---------------------------------------------------------------------------
          SELECTION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Helper method which should be called by the classes including this
        * Mixin when the target changes.
@@ -250,7 +233,6 @@
         if (this.__P_175_1 != undefined && old != undefined) {
           old.removeListenerById(this.__P_175_1);
         }
-
         if (value != null) {
           // if a selection API is supported
           if (this.__P_175_4() || this.__P_175_5()) {
@@ -259,7 +241,6 @@
           }
         }
       },
-
       /**
        * Method for updating the selection. It checks for the case of single or
        * multi selection and after that checks if the selection in the selection
@@ -269,69 +250,62 @@
         // do not update if no target is given
         if (!this.getTarget() || !this.getSelection()) {
           return;
-        } // mark the change process in a flag
+        }
+        // mark the change process in a flag
+        this._startSelectionModification();
 
-
-        this._startSelectionModification(); // if its a multi selection target
-
-
+        // if its a multi selection target
         if (this.__P_175_4()) {
-          var targetSelection = []; // go through the selection array
-
+          var targetSelection = [];
+          // go through the selection array
           for (var i = 0; i < this.getSelection().length; i++) {
             // store each item
             var model = this.getSelection().getItem(i);
-
             var selectable = this.__P_175_6(model);
-
             if (selectable != null) {
               targetSelection.push(selectable);
             }
           }
+          this.getTarget().setSelection(targetSelection);
 
-          this.getTarget().setSelection(targetSelection); // get the selection of the target
-
-          targetSelection = this.getTarget().getSelection(); // get all items selected in the list
-
+          // get the selection of the target
+          targetSelection = this.getTarget().getSelection();
+          // get all items selected in the list
           var targetSelectionItems = [];
-
           for (var i = 0; i < targetSelection.length; i++) {
             targetSelectionItems[i] = targetSelection[i].getModel();
-          } // go through the controller selection
+          }
 
-
+          // go through the controller selection
           for (var i = this.getSelection().length - 1; i >= 0; i--) {
             // if the item in the controller selection is not selected in the list
             if (!targetSelectionItems.includes(this.getSelection().getItem(i))) {
               // remove the current element and get rid of the return array
               this.getSelection().splice(i, 1).dispose();
             }
-          } // if its a single selection target
+          }
 
+          // if its a single selection target
         } else if (this.__P_175_5()) {
           // get the model which should be selected
           var item = this.getSelection().getItem(this.getSelection().length - 1);
-
           if (item !== undefined) {
             // select the last selected item (old selection will be removed anyway)
-            this.__P_175_7(item); // remove the other items from the selection data array and get
+            this.__P_175_7(item);
+            // remove the other items from the selection data array and get
             // rid of the return array
-
-
             this.getSelection().splice(0, this.getSelection().getLength() - 1).dispose();
           } else {
             // if there is no item to select (e.g. new model set [BUG #4125]),
             // reset the selection
             this.getTarget().resetSelection();
           }
-        } // reset the changing flag
+        }
 
-
+        // reset the changing flag
         this._endSelectionModification();
-
         this.fireDataEvent("changeValue", this.getSelection());
       },
-
       /**
        * Helper-method returning true, if the target supports multi selection.
        * @return {Boolean} true, if the target supports multi selection.
@@ -340,7 +314,6 @@
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.IMultiSelection);
       },
-
       /**
        * Helper-method returning true, if the target supports single selection.
        * @return {Boolean} true, if the target supports single selection.
@@ -349,7 +322,6 @@
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.ISingleSelection);
       },
-
       /**
        * Internal helper for selecting an item in the target. The item to select
        * is defined by a given model item.
@@ -357,22 +329,20 @@
        * @param item {qx.core.Object} A model element.
        */
       __P_175_7: function __P_175_7(item) {
-        var selectable = this.__P_175_6(item); // if no selectable could be found, just return
-
-
+        var selectable = this.__P_175_6(item);
+        // if no selectable could be found, just return
         if (selectable == null) {
           return;
-        } // if the target is multi selection able
-
-
+        }
+        // if the target is multi selection able
         if (this.__P_175_4()) {
           // select the item in the target
-          this.getTarget().addToSelection(selectable); // if the target is single selection able
+          this.getTarget().addToSelection(selectable);
+          // if the target is single selection able
         } else if (this.__P_175_5()) {
           this.getTarget().setSelection([selectable]);
         }
       },
-
       /**
        * Returns the list item storing the given model in its model property.
        *
@@ -381,18 +351,17 @@
        */
       __P_175_6: function __P_175_6(model) {
         // get all list items
-        var children = this.getTarget().getSelectables(true); // go through all children and search for the child to select
+        var children = this.getTarget().getSelectables(true);
 
+        // go through all children and search for the child to select
         for (var i = 0; i < children.length; i++) {
           if (children[i].getModel() == model) {
             return children[i];
           }
-        } // if no selectable was found
-
-
+        }
+        // if no selectable was found
         return null;
       },
-
       /**
        * Helper-Method signaling that currently the selection of the target is
        * in change. That will block the change of the internal selection.
@@ -401,7 +370,6 @@
       _startSelectionModification: function _startSelectionModification() {
         this._modifingSelection++;
       },
-
       /**
        * Helper-Method signaling that the internal changing of the targets
        * selection is over.
@@ -410,7 +378,6 @@
       _endSelectionModification: function _endSelectionModification() {
         this._modifingSelection > 0 ? this._modifingSelection-- : null;
       },
-
       /**
        * Helper-Method for checking the state of the selection modification.
        * {@link #_startSelectionModification}
@@ -421,7 +388,6 @@
         return this._modifingSelection > 0;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -436,4 +402,4 @@
   qx.data.controller.MSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSelection.js.map?dt=1685978114732
+//# sourceMappingURL=MSelection.js.map?dt=1691935412619

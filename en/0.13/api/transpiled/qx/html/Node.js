@@ -39,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -78,7 +77,6 @@
   qx.Class.define("qx.html.Node", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * Creates a new Element
      *
@@ -89,12 +87,12 @@
       qx.core.Object.constructor.call(this);
       this._nodeName = nodeName;
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Finds the Widget for a given DOM element
@@ -105,7 +103,6 @@
       fromDomNode: function fromDomNode(domNode) {
         return domNode.$$elementObject;
       },
-
       /**
        * Converts a DOM node into a qx.html.Node, providing the existing instance if
        * there is one
@@ -117,18 +114,17 @@
         if (domNode.$$elementObject) {
           return domNode.$$elementObject;
         }
-
         var html = qx.html.Factory.getInstance().createElement(domNode.nodeName, domNode.attributes);
         html.useNode(domNode);
         return html;
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Controls whether the element is visible which means that a previously applied
@@ -150,12 +146,12 @@
         event: "changeVisible"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -165,26 +161,20 @@
 
       /** @type {String} the name of the node */
       _nodeName: null,
-
       /** @type {Node} DOM node of this object */
       _domNode: null,
-
       /** @type {qx.html.Element} parent element */
       _parent: null,
-
       /** @type {qx.core.Object} the Qooxdoo object this node is attached to */
       _qxObject: null,
-
       /** @type {Boolean} Whether the element should be included in the render result */
       _included: true,
       _children: null,
       _modifiedChildren: null,
       _propertyJobs: null,
       _properties: null,
-
       /** @type {Map} map of event handlers */
       __P_243_0: null,
-
       /**
        * Connects a widget to this element, and to the DOM element in this Element.  They
        * remain associated until disposed or disconnectObject is called
@@ -193,17 +183,14 @@
        */
       connectObject: function connectObject(qxObject) {
         this._qxObject = qxObject;
-
         if (this._domNode) {
           this._domNode.$$qxObjectHash = qxObject.toHashCode();
           this._domNode.$$qxObject = qxObject;
         }
-
         if (qx.core.Environment.get("module.objectid")) {
           this.updateObjectId();
         }
       },
-
       /**
        * Disconnects a widget from this element and the DOM element.  The DOM element remains
        * untouched, except that it can no longer be used to find the Widget.
@@ -212,17 +199,14 @@
        */
       disconnectObject: function disconnectObject(qxObject) {
         delete this._qxObject;
-
         if (this._domNode) {
           this._domNode.$$qxObjectHash = "";
           delete this._domNode.$$qxObject;
         }
-
         if (qx.core.Environment.get("module.objectid")) {
           this.updateObjectId();
         }
       },
-
       /**
        * Internal helper to generate the DOM element
        *
@@ -231,7 +215,6 @@
       _createDomElement: function _createDomElement() {
         throw new Error("No implementation for " + this.classname + "._createDomElement");
       },
-
       /**
        * Serializes the virtual DOM element to a writer; the `writer` function accepts
        *  an varargs, which can be joined with an empty string or streamed.
@@ -244,44 +227,33 @@
        */
       serialize: function serialize(writer) {
         var temporaryQxObjectId = !this.getQxObjectId();
-
         if (temporaryQxObjectId) {
           this.setQxObjectId(this.classname);
         }
-
         var id = qx.core.Id.getAbsoluteIdOf(this, true);
         var isIdRoot = !id;
-
         if (isIdRoot) {
           qx.core.Id.getInstance().register(this);
         }
-
         var result = undefined;
-
         if (writer) {
           this._serializeImpl(writer);
         } else {
           var buffer = [];
-
           this._serializeImpl(function () {
             var args = qx.lang.Array.fromArguments(arguments);
             qx.lang.Array.append(buffer, args);
           });
-
           result = buffer.join("");
         }
-
         if (isIdRoot) {
           qx.core.Id.getInstance().unregister(this);
         }
-
         if (temporaryQxObjectId) {
           this.setQxObjectId(null);
         }
-
         return result;
       },
-
       /**
        * Serializes the virtual DOM element to a writer; the `writer` function accepts
        *  an varargs, which can be joined with an empty string or streamed.
@@ -291,7 +263,6 @@
       _serializeImpl: function _serializeImpl(writer) {
         throw new Error("No implementation for " + this.classname + ".serializeImpl");
       },
-
       /**
        * Uses an existing element instead of creating one. This may be interesting
        * when the DOM element is directly needed to add content etc.
@@ -300,23 +271,19 @@
        */
       useNode: function useNode(domNode) {
         var id = domNode.getAttribute("data-qx-object-id");
-
         if (id) {
           this.setQxObjectId(id);
         }
-
         var temporaryQxObjectId = !this.getQxObjectId();
-
         if (temporaryQxObjectId) {
           this.setQxObjectId(this.classname);
         }
-
         var id = qx.core.Id.getAbsoluteIdOf(this, true);
         var isIdRoot = !id;
-
         if (isIdRoot) {
           qx.core.Id.getInstance().register(this);
         }
+
         /*
          * When merging children, we want to keep the original DOM nodes in
          * domNode no matter what - however, where the DOM nodes have a qxObjectId
@@ -343,23 +310,18 @@
          * the qxObjectId mechanism.
          */
 
-
         var self = this;
-
         function convert(domNode) {
           var children = qx.lang.Array.fromCollection(domNode.childNodes);
           children = children.map(function (domChild) {
             var child = null;
-
             if (domChild.nodeType == window.Node.ELEMENT_NODE) {
               var id = domChild.getAttribute("data-qx-object-id");
-
               if (id) {
                 var owningQxObjectId = null;
                 var qxObjectId = null;
                 var owningQxObject = null;
                 var pos = id.lastIndexOf("/");
-
                 if (pos > -1) {
                   owningQxObjectId = id.substring(0, pos);
                   qxObjectId = id.substring(pos + 1);
@@ -372,11 +334,9 @@
                 }
               }
             }
-
             if (!child) {
               child = qx.html.Factory.getInstance().createElement(domChild.nodeName, domChild.attributes);
             }
-
             return {
               htmlNode: child,
               domNode: domChild,
@@ -385,16 +345,13 @@
           });
           return children;
         }
-
         function install(map) {
           var htmlChildren = map.children.map(function (mapEntry) {
             install(mapEntry);
             return mapEntry.htmlNode;
           });
-
           map.htmlNode._useNodeImpl(map.domNode, htmlChildren);
         }
-
         var rootMap = {
           htmlNode: this,
           domNode: domNode,
@@ -402,18 +359,14 @@
         };
         install(rootMap);
         this.flush();
-
         this._insertChildren();
-
         if (isIdRoot) {
           qx.core.Id.getInstance().unregister(this);
         }
-
         if (temporaryQxObjectId) {
           this.setQxObjectId(null);
         }
       },
-
       /**
        * Called internally to complete the connection to an existing DOM node
        *
@@ -423,53 +376,47 @@
       _useNodeImpl: function _useNodeImpl(domNode, newChildren) {
         if (this._domNode) {
           throw new Error("Could not overwrite existing element!");
-        } // Use incoming element
+        }
 
+        // Use incoming element
+        this._connectDomNode(domNode);
 
-        this._connectDomNode(domNode); // Copy currently existing data over to element
+        // Copy currently existing data over to element
+        this._copyData(true, true);
 
-
-        this._copyData(true, true); // Add children
-
-
+        // Add children
         var lookup = {};
         var oldChildren = this._children ? qx.lang.Array.clone(this._children) : null;
         newChildren.forEach(function (child) {
           lookup[child.toHashCode()] = child;
         });
-        this._children = newChildren; // Make sure that unused children are disconnected
+        this._children = newChildren;
 
+        // Make sure that unused children are disconnected
         if (oldChildren) {
           oldChildren.forEach(function (child) {
             if (!lookup[child.toHashCode()]) {
               if (child._domNode && child._domNode.parentElement) {
                 child._domNode.parentElement.removeChild(child._domNode);
               }
-
               child._parent = null;
             }
           });
         }
-
         var self = this;
-
         this._children.forEach(function (child) {
           child._parent = self;
-
           if (child._domNode && child._domNode.parentElement !== self._domNode) {
             child._domNode.parentElement.removeChild(child._domNode);
-
             if (this._domNode) {
               this._domNode.appendChild(child._domNode);
             }
           }
         });
-
         if (this._domNode) {
           this._scheduleChildrenUpdate();
         }
       },
-
       /**
        * Connects a DOM element to this Node; if this Node is already connected to a Widget
        * then the Widget is also connected.
@@ -480,13 +427,11 @@
         this._domNode = domNode;
         domNode.$$elementObject = this;
         domNode.$$element = this.toHashCode();
-
         if (this._qxObject) {
           domNode.$$qxObjectHash = this._qxObject.toHashCode();
           domNode.$$qxObject = this._qxObject;
         }
       },
-
       /**
        * Detects whether the DOM node has been created and is in the document
        *
@@ -500,10 +445,8 @@
             }
           }
         }
-
         return false;
       },
-
       /**
        * Updates the Object ID on the element to match the QxObjectId
        */
@@ -511,11 +454,9 @@
         // Copy Object Id
         if (qx.core.Environment.get("module.objectid")) {
           var id = this.getQxObjectId();
-
           if (!id && this._qxObject) {
             id = this._qxObject.getQxObjectId();
           }
-
           this.setAttribute("data-qx-object-id", id, true);
         }
       },
@@ -523,16 +464,13 @@
         if (qx.core.Environment.get("module.objectid")) {
           this.updateObjectId();
         }
-
         qx.html.Node.superclass.prototype._cascadeQxObjectIdChanges.call(this);
       },
-
       /*
       ---------------------------------------------------------------------------
         FLUSH OBJECT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add the element to the global modification list.
        *
@@ -541,15 +479,12 @@
         if (this._modifiedChildren) {
           return;
         }
-
         if (this._domNode) {
           this._modifiedChildren = true;
           qx.html.Element._modified[this.toHashCode()] = this;
-
           qx.html.Element._scheduleFlush("element");
         }
       },
-
       /**
        * Syncs data of an HtmlElement object to the DOM.
        *
@@ -560,7 +495,6 @@
       _flush: function _flush() {
         this.flush();
       },
-
       /**
        * Syncs data of an HtmlElement object to the DOM.
        *
@@ -568,39 +502,30 @@
       flush: function flush() {
         var length;
         var children = this._children;
-
         if (children) {
           length = children.length;
           var child;
-
           for (var i = 0; i < length; i++) {
             child = children[i];
-
             if (child.isVisible() && child._included && !child._domNode) {
               child.flush();
             }
           }
         }
-
         if (!this._domNode) {
           this._connectDomNode(this._createDomElement());
-
           this._copyData(false, false);
-
           if (children && length > 0) {
             this._insertChildren();
           }
         } else {
           this._syncData();
-
           if (this._modifiedChildren) {
             this._syncChildren();
           }
         }
-
         delete this._modifiedChildren;
       },
-
       /**
        * Returns this element's root flag
        *
@@ -609,7 +534,6 @@
       isRoot: function isRoot() {
         throw new Error("No implementation for " + this.classname + ".isRoot");
       },
-
       /**
        * Detects whether this element is inside a root element
        *
@@ -617,18 +541,14 @@
        */
       isInRoot: function isInRoot() {
         var tmp = this;
-
         while (tmp) {
           if (tmp.isRoot()) {
             return true;
           }
-
           tmp = tmp._parent;
         }
-
         return false;
       },
-
       /**
        * Walk up the internal children hierarchy and
        * look if one of the children is marked as root.
@@ -641,30 +561,25 @@
         if (!qx.html.Element._hasRoots) {
           return false;
         }
+        var pa = this;
 
-        var pa = this; // Any chance to cache this information in the parents?
-
+        // Any chance to cache this information in the parents?
         while (pa) {
           if (pa.isRoot()) {
             return true;
           }
-
           if (!pa._included || !pa.isVisible()) {
             return false;
           }
-
           pa = pa._parent;
         }
-
         return false;
       },
-
       /*
       ---------------------------------------------------------------------------
         SUPPORT FOR CHILDREN FLUSH
       ---------------------------------------------------------------------------
       */
-
       /**
        * Append all child nodes to the DOM
        * element. This function is used when the element is initially
@@ -674,39 +589,30 @@
        */
       _insertChildren: function _insertChildren() {
         var children = this._children;
-
         if (!children) {
           return;
         }
-
         var length = children.length;
         var child;
-
         if (length > 2) {
           var domElement = document.createDocumentFragment();
-
           for (var i = 0; i < length; i++) {
             child = children[i];
-
             if (child._domNode && child._included) {
               domElement.appendChild(child._domNode);
             }
           }
-
           this._domNode.appendChild(domElement);
         } else {
           var domElement = this._domNode;
-
           for (var i = 0; i < length; i++) {
             child = children[i];
-
             if (child._domNode && child._included) {
               domElement.appendChild(child._domNode);
             }
           }
         }
       },
-
       /**
        * Synchronize internal children hierarchy to the DOM. This is used
        * for further runtime updates after the element has been created
@@ -722,48 +628,46 @@
         var domChildren = domParent.childNodes;
         var domPos = 0;
         var domEl;
-
         // Remove children from DOM which are excluded or remove first
         for (var i = domChildren.length - 1; i >= 0; i--) {
           domEl = domChildren[i];
           dataEl = qx.html.Node.fromDomNode(domEl);
-
           if (!dataEl || !dataEl._included || dataEl._parent !== this) {
             domParent.removeChild(domEl);
           }
-        } // Start from beginning and bring DOM in sync
+        }
+
+        // Start from beginning and bring DOM in sync
         // with the data structure
-
-
         for (var i = 0; i < dataLength; i++) {
-          dataChild = dataChildren[i]; // Only process visible childs
+          dataChild = dataChildren[i];
 
+          // Only process visible childs
           if (dataChild._included) {
             dataEl = dataChild._domNode;
             domEl = domChildren[domPos];
-
             if (!dataEl) {
               continue;
-            } // Only do something when out of sync
+            }
+
+            // Only do something when out of sync
             // If the data element is not there it may mean that it is still
             // marked as visible=false
-
-
             if (dataEl != domEl) {
               if (domEl) {
                 domParent.insertBefore(dataEl, domEl);
               } else {
                 domParent.appendChild(dataEl);
               }
-            } // Increase counter
+            }
 
-
+            // Increase counter
             domPos++;
           }
-        } // User feedback
+        }
 
+        // User feedback
       },
-
       /**
        * Copies data between the internal representation and the DOM. This
        * simply copies all the data and only works well directly after
@@ -775,35 +679,33 @@
        *  values in the dom
        */
       _copyData: function _copyData(fromMarkup, propertiesFromDom) {
-        var elem = this._domNode; // Attach events
+        var elem = this._domNode;
 
+        // Attach events
         var data = this.__P_243_0;
-
         if (data) {
           // Import listeners
           var domEvents = {};
           var manager = qx.event.Registration.getManager(elem);
-
           for (var id in data) {
             if (manager.findHandler(elem, data[id].type)) {
               domEvents[id] = data[id];
             }
           }
+          qx.event.Registration.getManager(elem).importListeners(elem, domEvents);
 
-          qx.event.Registration.getManager(elem).importListeners(elem, domEvents); // Cleanup event map
+          // Cleanup event map
           // Events are directly attached through event manager
           // after initial creation. This differs from the
           // handling of styles and attributes where queuing happens
           // through the complete runtime of the application.
-
           delete this.__P_243_0;
-        } // Copy properties
+        }
 
-
+        // Copy properties
         if (this._properties) {
           for (var key in this._properties) {
             var prop = this._properties[key];
-
             if (propertiesFromDom) {
               if (prop.get) {
                 prop.value = prop.get.call(this, key);
@@ -814,7 +716,6 @@
           }
         }
       },
-
       /**
        * Synchronizes data between the internal representation and the DOM. This
        * is the counterpart of {@link #_copyData} and is used for further updates
@@ -824,26 +725,21 @@
       _syncData: function _syncData() {
         // Sync misc
         var jobs = this._propertyJobs;
-
         if (jobs && this._properties) {
           for (var key in jobs) {
             var prop = this._properties[key];
-
             if (prop.value !== undefined) {
               prop.set.call(this, prop.value, key);
             }
           }
-
           this._propertyJobs = null;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PRIVATE HELPERS/DATA
       ---------------------------------------------------------------------------
       */
-
       /**
        * Internal helper for all children addition needs
        *
@@ -855,29 +751,28 @@
         if (child._parent === this) {
           throw new Error("Child is already in: " + child);
         }
-
         if (child.__P_243_1) {
           throw new Error("Root elements could not be inserted into other ones.");
-        } // Remove from previous parent
+        }
 
-
+        // Remove from previous parent
         if (child._parent) {
           child._parent.remove(child);
-        } // Convert to child of this object
+        }
 
+        // Convert to child of this object
+        child._parent = this;
 
-        child._parent = this; // Prepare array
-
+        // Prepare array
         if (!this._children) {
           this._children = [];
-        } // Schedule children update
+        }
 
-
+        // Schedule children update
         if (this._domNode) {
           this._scheduleChildrenUpdate();
         }
       },
-
       /**
        * Internal helper for all children removal needs
        *
@@ -888,17 +783,16 @@
       _removeChildImpl: function _removeChildImpl(child) {
         if (child._parent !== this) {
           throw new Error("Has no child: " + child);
-        } // Schedule children update
+        }
 
-
+        // Schedule children update
         if (this._domNode) {
           this._scheduleChildrenUpdate();
-        } // Remove reference to old parent
+        }
 
-
+        // Remove reference to old parent
         delete child._parent;
       },
-
       /**
        * Internal helper for all children move needs
        *
@@ -909,20 +803,18 @@
       _moveChildImpl: function _moveChildImpl(child) {
         if (child._parent !== this) {
           throw new Error("Has no child: " + child);
-        } // Schedule children update
+        }
 
-
+        // Schedule children update
         if (this._domNode) {
           this._scheduleChildrenUpdate();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILDREN MANAGEMENT (EXECUTED ON THE PARENT)
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns a copy of the internal children structure.
        *
@@ -935,7 +827,6 @@
       getChildren: function getChildren() {
         return this._children || null;
       },
-
       /**
        * Get a child element at the given index
        *
@@ -947,7 +838,6 @@
         var children = this._children;
         return children && children[index] || null;
       },
-
       /**
        * Returns whether the element has any child nodes
        *
@@ -957,7 +847,6 @@
         var children = this._children;
         return children && children[0] !== undefined;
       },
-
       /**
        * Find the position of the given child
        *
@@ -969,7 +858,6 @@
         var children = this._children;
         return children ? children.indexOf(child) : -1;
       },
-
       /**
        * Whether the given element is a child of this element.
        *
@@ -981,7 +869,6 @@
         var children = this._children;
         return children && children.indexOf(child) !== -1;
       },
-
       /**
        * Append all given children at the end of this element.
        *
@@ -990,24 +877,21 @@
        */
       add: function add(varargs) {
         var self = this;
-
         function addImpl(arr) {
           arr.forEach(function (child) {
             if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
               addImpl(child);
             } else {
               self._addChildImpl(child);
-
               self._children.push(child);
             }
           });
         }
+        addImpl(qx.lang.Array.fromArguments(arguments));
 
-        addImpl(qx.lang.Array.fromArguments(arguments)); // Chaining support
-
+        // Chaining support
         return this;
       },
-
       /**
        * Inserts a new element into this element at the given position.
        *
@@ -1019,12 +903,11 @@
        */
       addAt: function addAt(child, index) {
         this._addChildImpl(child);
+        qx.lang.Array.insertAt(this._children, child, index);
 
-        qx.lang.Array.insertAt(this._children, child, index); // Chaining support
-
+        // Chaining support
         return this;
       },
-
       /**
        * Removes all given children
        *
@@ -1033,30 +916,25 @@
        */
       remove: function remove(childs) {
         var children = this._children;
-
         if (!children) {
           return this;
         }
-
         var self = this;
-
         function removeImpl(arr) {
           arr.forEach(function (child) {
             if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
               removeImpl(child);
             } else {
               self._removeChildImpl(child);
-
               qx.lang.Array.remove(children, child);
             }
           });
         }
+        removeImpl(qx.lang.Array.fromArguments(arguments));
 
-        removeImpl(qx.lang.Array.fromArguments(arguments)); // Chaining support
-
+        // Chaining support
         return this;
       },
-
       /**
        * Removes the child at the given index
        *
@@ -1066,24 +944,19 @@
        */
       removeAt: function removeAt(index) {
         var children = this._children;
-
         if (!children) {
           throw new Error("Has no children!");
         }
-
         var child = children[index];
-
         if (!child) {
           throw new Error("Has no child at this position!");
         }
-
         this._removeChildImpl(child);
+        qx.lang.Array.removeAt(this._children, index);
 
-        qx.lang.Array.removeAt(this._children, index); // Chaining support
-
+        // Chaining support
         return this;
       },
-
       /**
        * Remove all children from this element.
        *
@@ -1091,26 +964,23 @@
        */
       removeAll: function removeAll() {
         var children = this._children;
-
         if (children) {
           for (var i = 0, l = children.length; i < l; i++) {
             this._removeChildImpl(children[i]);
-          } // Clear array
+          }
 
-
+          // Clear array
           children.length = 0;
-        } // Chaining support
+        }
 
-
+        // Chaining support
         return this;
       },
-
       /*
       ---------------------------------------------------------------------------
         CHILDREN MANAGEMENT (EXECUTED ON THE CHILD)
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the parent of this element.
        *
@@ -1119,7 +989,6 @@
       getParent: function getParent() {
         return this._parent || null;
       },
-
       /**
        * Insert self into the given parent. Normally appends self to the end,
        * but optionally a position can be defined. With index <code>0</code> it
@@ -1131,16 +1000,13 @@
        */
       insertInto: function insertInto(parent, index) {
         parent._addChildImpl(this);
-
         if (index == null) {
           parent._children.push(this);
         } else {
           qx.lang.Array.insertAt(this._children, this, index);
         }
-
         return this;
       },
-
       /**
        * Insert self before the given (related) element
        *
@@ -1149,13 +1015,10 @@
        */
       insertBefore: function insertBefore(rel) {
         var parent = rel._parent;
-
         parent._addChildImpl(this);
-
         qx.lang.Array.insertBefore(parent._children, this, rel);
         return this;
       },
-
       /**
        * Insert self after the given (related) element
        *
@@ -1164,13 +1027,10 @@
        */
       insertAfter: function insertAfter(rel) {
         var parent = rel._parent;
-
         parent._addChildImpl(this);
-
         qx.lang.Array.insertAfter(parent._children, this, rel);
         return this;
       },
-
       /**
        * Move self to the given index in the current parent.
        *
@@ -1181,22 +1041,17 @@
        */
       moveTo: function moveTo(index) {
         var parent = this._parent;
-
         parent._moveChildImpl(this);
-
         var oldIndex = parent._children.indexOf(this);
-
         if (oldIndex === index) {
           throw new Error("Could not move to same index!");
         } else if (oldIndex < index) {
           index--;
         }
-
         qx.lang.Array.removeAt(parent._children, oldIndex);
         qx.lang.Array.insertAt(parent._children, this, index);
         return this;
       },
-
       /**
        * Move self before the given (related) child.
        *
@@ -1207,7 +1062,6 @@
         var parent = this._parent;
         return this.moveTo(parent._children.indexOf(rel));
       },
-
       /**
        * Move self after the given (related) child.
        *
@@ -1218,7 +1072,6 @@
         var parent = this._parent;
         return this.moveTo(parent._children.indexOf(rel) + 1);
       },
-
       /**
        * Remove self from the current parent.
        *
@@ -1226,27 +1079,21 @@
        */
       free: function free() {
         var parent = this._parent;
-
         if (!parent) {
           throw new Error("Has no parent to remove from.");
         }
-
         if (!parent._children) {
           return this;
         }
-
         parent._removeChildImpl(this);
-
         qx.lang.Array.remove(parent._children, this);
         return this;
       },
-
       /*
       ---------------------------------------------------------------------------
         DOM ELEMENT ACCESS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the DOM element (if created). Please use this with caution.
        * It is better to make all changes to the object itself using the public
@@ -1260,10 +1107,8 @@
         if (create && !this._domNode) {
           this.flush();
         }
-
         return this._domNode || null;
       },
-
       /**
        * Returns the nodeName of the DOM element.
        *
@@ -1272,7 +1117,6 @@
       getNodeName: function getNodeName() {
         return this._nodeName;
       },
-
       /**
        * Sets the nodeName of the DOM element.
        *
@@ -1282,16 +1126,13 @@
         if (this._domNode && name.toLowerCase() !== this._nodeName.toLowerCase()) {
           throw new Error("Cannot change the name of the node after the DOM node has been created");
         }
-
         this._nodeName = name;
       },
-
       /*
       ---------------------------------------------------------------------------
         EXCLUDE SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Marks the element as included which means it will be moved into
        * the DOM again and synced with the internal data representation.
@@ -1302,16 +1143,12 @@
         if (this._included) {
           return this;
         }
-
         delete this._included;
-
         if (this._parent) {
           this._parent._scheduleChildrenUpdate();
         }
-
         return this;
       },
-
       /**
        * Marks the element as excluded which means it will be removed
        * from the DOM and ignored for updates until it gets included again.
@@ -1322,16 +1159,12 @@
         if (!this._included) {
           return this;
         }
-
         this._included = false;
-
         if (this._parent) {
           this._parent._scheduleChildrenUpdate();
         }
-
         return this;
       },
-
       /**
        * Whether the element is part of the DOM
        *
@@ -1340,19 +1173,17 @@
       isIncluded: function isIncluded() {
         return this._included === true;
       },
-
       /**
        * Apply method for visible property
        */
-      _applyVisible: function _applyVisible(value) {// Nothing - to be overridden
+      _applyVisible: function _applyVisible(value) {
+        // Nothing - to be overridden
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Registers a property and the implementations used to read the property value
        * from the DOM and to set the property value onto the DOM.  This allows the element
@@ -1374,18 +1205,15 @@
         if (!this._properties) {
           this._properties = {};
         }
-
         if (this._properties[key]) {
           this.debug("Overridding property " + key + " in " + this + "[" + this.classname + "]");
         }
-
         if (!set) {
           set = qx.lang.Function.bind(function (value, key) {
             this._applyProperty(key, value);
           }, this);
           qx.log.Logger.deprecatedMethodWarning(this._applyProperty, "The method '_applyProperty' is deprecated.  Please use `registerProperty` instead (property '" + key + "' in " + this.classname + ")");
         }
-
         this._properties[key] = {
           get: get,
           set: set,
@@ -1393,7 +1221,6 @@
           value: undefined
         };
       },
-
       /**
        * Applies a special property with the given value.
        *
@@ -1410,9 +1237,9 @@
        * @abstract
        * @deprecated {6.0} please use `registerProperty` instead
        */
-      _applyProperty: function _applyProperty(name, value) {// empty implementation
+      _applyProperty: function _applyProperty(name, value) {
+        // empty implementation
       },
-
       /**
        * Set up the given property.
        *
@@ -1426,39 +1253,35 @@
         if (!this._properties || !this._properties[key]) {
           this.registerProperty(key, null, null);
         }
-
         if (this._properties[key].value == value) {
           return this;
         }
+        this._properties[key].value = value;
 
-        this._properties[key].value = value; // Uncreated elements simply copy all data
+        // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
-
         if (this._domNode) {
           // Omit queuing in direct mode
           if (direct) {
             this._properties[key].set.call(this, value, key);
-
             return this;
-          } // Dynamically create if needed
+          }
 
-
+          // Dynamically create if needed
           if (!this._propertyJobs) {
             this._propertyJobs = {};
-          } // Store job info
+          }
 
+          // Store job info
+          this._propertyJobs[key] = true;
 
-          this._propertyJobs[key] = true; // Register modification
-
+          // Register modification
           qx.html.Element._modified[this.toHashCode()] = this;
-
           qx.html.Element._scheduleFlush("element");
         }
-
         return this;
       },
-
       /**
        * Removes the given misc
        *
@@ -1470,7 +1293,6 @@
       _removeProperty: function _removeProperty(key, direct) {
         return this._setProperty(key, null, direct);
       },
-
       /**
        * Get the value of the given misc.
        *
@@ -1482,28 +1304,22 @@
         if (!this._properties || !this._properties[key]) {
           return null;
         }
-
         var value = this._properties[key].value;
-
         if (this._domNode) {
           if (direct || value === undefined) {
             var fn = this._properties[key].get;
-
             if (fn) {
               this._properties[key].value = value = fn.call(this, key);
             }
           }
         }
-
         return value === undefined || value == null ? null : value;
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds an event listener to the element.
        *
@@ -1520,24 +1336,19 @@
        */
       addListener: function addListener(type, listener, self, capture) {
         var _this = this;
-
         if (this.$$disposed) {
           return null;
         }
-
         var registerDomEvent = function registerDomEvent() {
           if (_this._domNode) {
             return qx.event.Registration.addListener(_this._domNode, type, listener, self, capture);
           }
-
           if (!_this.__P_243_0) {
             _this.__P_243_0 = {};
           }
-
           if (capture == null) {
             capture = false;
           }
-
           var unique = qx.event.Manager.getNextUniqueId();
           var id = type + (capture ? "|capture|" : "|bubble|") + unique;
           _this.__P_243_0[id] = {
@@ -1549,16 +1360,13 @@
           };
           return id;
         };
-
         if (qx.Class.supportsEvent(this, type)) {
           var id = qx.html.Node.superclass.prototype.addListener.call(this, type, listener, self, capture);
           id.domEventId = registerDomEvent();
           return id;
         }
-
         return registerDomEvent();
       },
-
       /**
        * Removes an event listener from the element.
        *
@@ -1572,40 +1380,34 @@
         if (this.$$disposed) {
           return null;
         }
-
         if (qx.Class.supportsEvent(this, type)) {
           qx.html.Node.superclass.prototype.removeListener.call(this, type, listener, self, capture);
         }
-
         if (this._domNode) {
           if (listener.$$wrapped_callback && listener.$$wrapped_callback[type + this.toHashCode()]) {
             var callback = listener.$$wrapped_callback[type + this.toHashCode()];
             delete listener.$$wrapped_callback[type + this.toHashCode()];
             listener = callback;
           }
-
           qx.event.Registration.removeListener(this._domNode, type, listener, self, capture);
         } else {
           var values = this.__P_243_0;
           var entry;
-
           if (capture == null) {
             capture = false;
           }
-
           for (var key in values) {
-            entry = values[key]; // Optimized for performance: Testing references first
+            entry = values[key];
 
+            // Optimized for performance: Testing references first
             if (entry.listener === listener && entry.self === self && entry.capture === capture && entry.type === type) {
               delete values[key];
               break;
             }
           }
         }
-
         return this;
       },
-
       /**
        * Removes an event listener from an event target by an id returned by
        * {@link #addListener}
@@ -1617,12 +1419,10 @@
         if (this.$$disposed) {
           return null;
         }
-
         if (id.domEventId) {
           if (this._domNode) {
             qx.event.Registration.removeListenerById(this._domNode, id.domEventId);
           }
-
           delete id.domEventId;
           qx.html.Node.superclass.prototype.removeListenerById.call(this, id);
         } else {
@@ -1632,10 +1432,8 @@
             delete this.__P_243_0[id];
           }
         }
-
         return this;
       },
-
       /**
        * Check if there are one or more listeners for an event type.
        *
@@ -1648,15 +1446,12 @@
         if (this.$$disposed) {
           return false;
         }
-
         if (qx.Class.supportsEvent(this, type)) {
           var has = qx.html.Node.superclass.prototype.hasListener.call(this, type, capture);
-
           if (has) {
             return true;
           }
         }
-
         if (this._domNode) {
           if (qx.event.Registration.hasListener(this._domNode, type, capture)) {
             return true;
@@ -1664,23 +1459,20 @@
         } else {
           var values = this.__P_243_0;
           var entry;
-
           if (capture == null) {
             capture = false;
           }
-
           for (var key in values) {
-            entry = values[key]; // Optimized for performance: Testing fast types first
+            entry = values[key];
 
+            // Optimized for performance: Testing fast types first
             if (entry.capture === capture && entry.type === type) {
               return true;
             }
           }
         }
-
         return false;
       },
-
       /**
        * Serializes and returns all event listeners attached to this element
        * @return {Map[]} an Array containing a map for each listener. The maps
@@ -1697,14 +1489,11 @@
         if (this.$$disposed) {
           return null;
         }
-
         var listeners = [];
         qx.lang.Array.append(listeners, qx.event.Registration.serializeListeners(this) || []);
-
         if (this._domNode) {
           qx.lang.Array.append(listeners, qx.event.Registration.serializeListeners(this._domNode) || []);
         }
-
         for (var id in this.__P_243_0) {
           var listenerData = this.__P_243_0[id];
           listeners.push({
@@ -1714,11 +1503,9 @@
             capture: listenerData.capture
           });
         }
-
         return listeners;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCT
@@ -1726,7 +1513,6 @@
     */
     destruct: function destruct() {
       var el = this._domNode;
-
       if (el) {
         qx.event.Registration.getManager(el).removeAllListeners(el);
         el.$$element = "";
@@ -1734,21 +1520,17 @@
         el.$$qxObjectHash = "";
         delete el.$$qxObject;
       }
-
       if (!qx.core.ObjectRegistry.inShutDown) {
         var parent = this._parent;
-
         if (parent && !parent.$$disposed) {
           parent.remove(this);
         }
       }
-
       this._disposeArray("_children");
-
       this._properties = this._propertyJobs = this._domNode = this._parent = this.__P_243_0 = null;
     }
   });
   qx.html.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1685978124469
+//# sourceMappingURL=Node.js.map?dt=1691935422034

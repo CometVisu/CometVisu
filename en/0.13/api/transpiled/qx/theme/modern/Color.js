@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,6 +56,7 @@
         BACKGROUND COLORS
       ---------------------------------------------------------------------------
       */
+
       // application, desktop, ...
       "background-application": "#DFDFDF",
       // pane color for windows, splitpanes, ...
@@ -75,12 +75,12 @@
       "background-odd": "#E4E4E4",
       // progress bar
       "progressbar-background": "white",
-
       /*
       ---------------------------------------------------------------------------
         TEXT COLORS
       ---------------------------------------------------------------------------
       */
+
       // other types
       "text-light": "#909090",
       "text-gray": "#4a4a4a",
@@ -97,12 +97,12 @@
       "text-active": "#26364D",
       "text-inactive": "#404955",
       "text-placeholder": "#CBC8CD",
-
       /*
       ---------------------------------------------------------------------------
         BORDER COLORS
       ---------------------------------------------------------------------------
       */
+
       "border-inner-scrollbar": "white",
       // menus, tables, scrollbars, list, etc.
       "border-main": "#4d4d4d",
@@ -133,12 +133,12 @@
       // drag & drop
       "border-dragover": "#33508D",
       "keyboard-focus": "black",
-
       /*
       ---------------------------------------------------------------------------
         TABLE COLORS
       ---------------------------------------------------------------------------
       */
+
       // equal to "background-pane"
       "table-pane": "#F3F3F3",
       // own table colors
@@ -158,12 +158,12 @@
       "table-row-line": "#CCC",
       "table-column-line": "#CCC",
       "table-header-hovered": "white",
-
       /*
       ---------------------------------------------------------------------------
         PROGRESSIVE TABLE COLORS
       ---------------------------------------------------------------------------
       */
+
       "progressive-table-header": "#AAAAAA",
       "progressive-table-header-border-right": "#F2F2F2",
       "progressive-table-row-background-even": "#F4F4F4",
@@ -173,7 +173,6 @@
       "progressive-progressbar-indicator-undone": "white",
       "progressive-progressbar-percent-background": "gray",
       "progressive-progressbar-percent-text": "white",
-
       /*
       ---------------------------------------------------------------------------
         CSS ONLY COLORS
@@ -257,4 +256,4 @@
   qx.theme.modern.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1685978131486
+//# sourceMappingURL=Color.js.map?dt=1691935428633

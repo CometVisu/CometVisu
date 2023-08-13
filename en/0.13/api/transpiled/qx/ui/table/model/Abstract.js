@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -76,12 +75,10 @@
        * </ul>
        */
       dataChanged: "qx.event.type.Data",
-
       /**
        * Fired when the meta data changed (the stuff shown in the table header).
        */
       metaDataChanged: "qx.event.type.Event",
-
       /**
        * Fired after the table is sorted (but before the metaDataChanged event)
        */
@@ -108,7 +105,6 @@
       __P_446_2: null,
       __P_446_3: null,
       __P_446_4: null,
-
       /**
        * Initialize the table model <--> table interaction. The table model is
        * passed to the table constructor, but the table model doesn't otherwise
@@ -124,7 +120,6 @@
         // store a reference back to the table
         this.__P_446_4 = table;
       },
-
       /**
        *
        *
@@ -133,7 +128,6 @@
       getTable: function getTable() {
         return this.__P_446_4;
       },
-
       /**
        * Abstract method
        * @throws {Error} An error if this method is called.
@@ -158,7 +152,6 @@
         return true;
       },
       prefetchRows: function prefetchRows(firstRowIndex, lastRowIndex) {},
-
       /**
        * Abstract method
        *
@@ -173,7 +166,6 @@
       getValueById: function getValueById(columnId, rowIndex) {
         return this.getValue(this.getColumnIndexById(columnId), rowIndex);
       },
-
       /**
        * Abstract method
        *
@@ -205,7 +197,6 @@
       getColumnName: function getColumnName(columnIndex) {
         return this.__P_446_1[columnIndex];
       },
-
       /**
        * Sets the column IDs. These IDs may be used internally to identify a
        * column.
@@ -217,21 +208,20 @@
        * @see #setColumns
        */
       setColumnIds: function setColumnIds(columnIdArr) {
-        this.__P_446_0 = columnIdArr; // Create the reverse map
+        this.__P_446_0 = columnIdArr;
 
+        // Create the reverse map
         this.__P_446_2 = {};
-
         for (var i = 0; i < columnIdArr.length; i++) {
           this.__P_446_2[columnIdArr[i]] = i;
         }
+        this.__P_446_1 = new Array(columnIdArr.length);
 
-        this.__P_446_1 = new Array(columnIdArr.length); // Inform the listeners
-
+        // Inform the listeners
         if (!this.__P_446_3) {
           this.fireEvent("metaDataChanged");
         }
       },
-
       /**
        * Sets the column names. These names will be shown to the user.
        *
@@ -246,12 +236,11 @@
         if (this.__P_446_0.length != columnNameArr.length) {
           throw new Error("this.__columnIdArr and columnNameArr have different length: " + this.__P_446_0.length + " != " + columnNameArr.length);
         }
+        this.__P_446_1 = columnNameArr;
 
-        this.__P_446_1 = columnNameArr; // Inform the listeners
-
+        // Inform the listeners
         this.fireEvent("metaDataChanged");
       },
-
       /**
        * Sets the column names. These names will be shown to the user.
        *
@@ -264,12 +253,10 @@
        */
       setColumnNamesById: function setColumnNamesById(columnNameMap) {
         this.__P_446_1 = new Array(this.__P_446_0.length);
-
         for (var i = 0; i < this.__P_446_0.length; ++i) {
           this.__P_446_1[i] = columnNameMap[this.__P_446_0[i]];
         }
       },
-
       /**
        * Sets the column names (and optionally IDs)
        *
@@ -293,7 +280,6 @@
        */
       setColumns: function setColumns(columnNameArr, columnIdArr) {
         var bSetIds = this.__P_446_0.length == 0 || columnIdArr;
-
         if (columnIdArr == null) {
           if (this.__P_446_0.length == 0) {
             columnIdArr = columnNameArr;
@@ -301,24 +287,20 @@
             columnIdArr = this.__P_446_0;
           }
         }
-
         if (columnIdArr.length != columnNameArr.length) {
           throw new Error("columnIdArr and columnNameArr have different length: " + columnIdArr.length + " != " + columnNameArr.length);
         }
-
         if (bSetIds) {
           this.__P_446_3 = true;
           this.setColumnIds(columnIdArr);
           this.__P_446_3 = false;
         }
-
         this.setColumnNamesByIndex(columnNameArr);
       },
       _checkEditing: function _checkEditing() {
         if (!qx.ui.table.model.Abstract.THROW_ON_MODEL_CHANGE_DURING_EDIT) {
           return;
         }
-
         if (this.getTable() && this.getTable().isEditing()) {
           throw new Error("A cell is currently being edited. Commit or cancel the edit before setting the table data");
         }
@@ -331,4 +313,4 @@
   qx.ui.table.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978147785
+//# sourceMappingURL=Abstract.js.map?dt=1691935444119

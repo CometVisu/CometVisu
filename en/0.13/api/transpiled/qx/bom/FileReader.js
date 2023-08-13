@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,23 +51,25 @@
   qx.Class.define("qx.bom.FileReader", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * Create a new instance.
      */
     construct: function construct() {
       // Call the superclass constructor
-      qx.core.Object.constructor.call(this); // Get a FileReader object
+      qx.core.Object.constructor.call(this);
 
-      this._fileReader = new window.FileReader(); // Bind native handlers to this instance
+      // Get a FileReader object
+      this._fileReader = new window.FileReader();
 
+      // Bind native handlers to this instance
       this._handleLoadStart = qx.lang.Function.bind(this._handleLoadStart, this);
       this._handleProgress = qx.lang.Function.bind(this._handleProgress, this);
       this._handleLoad = qx.lang.Function.bind(this._handleLoad, this);
       this._handleAbort = qx.lang.Function.bind(this._handleAbort, this);
       this._handleError = qx.lang.Function.bind(this._handleError, this);
-      this._handleLoadEnd = qx.lang.Function.bind(this._handleLoadEnd, this); // Be notified of all events
+      this._handleLoadEnd = qx.lang.Function.bind(this._handleLoadEnd, this);
 
+      // Be notified of all events
       qx.bom.Event.addNativeListener(this._fileReader, "loadstart", this._handleLoadStart);
       qx.bom.Event.addNativeListener(this._fileReader, "progress", this._handleProgress);
       qx.bom.Event.addNativeListener(this._fileReader, "load", this._handleLoad);
@@ -79,23 +80,18 @@
     events: {
       /** Fired when progress has begun. */
       loadstart: "qx.event.type.Data",
-
       /** Fired while making progress, presumably at a minimum of every 50ms */
       progress: "qx.event.type.Data",
-
       /** Fired when an error occurs */
       error: "qx.event.type.Data",
-
       /**
        * Fired when progression has failed, after the last "progress" has been
        * dispatched, or after "loadstart" has been dispatched, if "progress" has
        * not been dispatched"
        */
       abort: "qx.event.type.Data",
-
       /** Fired when progression is successful */
       load: "qx.event.type.Data",
-
       /**
        * Fired when progress has stopped, after any of "error", "abort", or
        * "load" have been dispatched.
@@ -116,7 +112,6 @@
       getNumFiles: function getNumFiles(inputElement) {
         return inputElement.files.length;
       },
-
       /**
        * Return the native File object selected from an &lt;input type="file"&gt;
        * element.
@@ -137,7 +132,6 @@
     members: {
       /** The native FileReader object associated this instance */
       _fileReader: null,
-
       /**
        * Begin reading from the file referenced by the specified file
        * object. This is an asynchronous request. When the file is fully loaded,
@@ -152,7 +146,6 @@
       readAsArrayBuffer: function readAsArrayBuffer(fileObj) {
         this._fileReader.readAsArrayBuffer(fileObj);
       },
-
       /**
        * Begin reading from the file referenced by the specified file
        * object. This is an asynchronous request. When the file is fully loaded,
@@ -171,7 +164,6 @@
       readAsBinaryString: function readAsBinaryString(fileObj) {
         this._fileReader.readAsBinaryString(fileObj);
       },
-
       /**
        * Begin reading from the file referenced by the specified file
        * object. This is an asynchronous request. When the file is fully loaded,
@@ -192,7 +184,6 @@
       readAsText: function readAsText(fileObj, encoding) {
         this._fileReader.readAsText(fileObj, encoding);
       },
-
       /**
        * Begin reading from the file referenced by the specified file
        * object. This is an asynchronous request. When the file is fully loaded,
@@ -210,7 +201,6 @@
       readAsDataURL: function readAsDataURL(fileObj) {
         this._fileReader.readAsDataURL(fileObj);
       },
-
       /**
        * "loadstart" handler
        *
@@ -225,7 +215,6 @@
           progress: e.data
         });
       },
-
       /**
        * "progress" handler
        *
@@ -240,7 +229,6 @@
           progress: e.data
         });
       },
-
       /**
        * "error" handler
        *
@@ -255,7 +243,6 @@
           progress: e.data
         });
       },
-
       /**
        * "abort" handler
        *
@@ -270,7 +257,6 @@
           progress: e.data
         });
       },
-
       /**
        * "load" handler
        *
@@ -289,7 +275,6 @@
           content: e.target.result
         });
       },
-
       /**
        * "loadend" handler
        *
@@ -319,4 +304,4 @@
   qx.bom.FileReader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileReader.js.map?dt=1685978106825
+//# sourceMappingURL=FileReader.js.map?dt=1691935406022

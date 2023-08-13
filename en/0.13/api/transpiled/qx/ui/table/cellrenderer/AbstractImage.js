@@ -33,7 +33,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,7 +59,6 @@
   qx.Class.define("qx.ui.table.cellrenderer.AbstractImage", {
     extend: qx.ui.table.cellrenderer.Abstract,
     type: "abstract",
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -69,12 +67,10 @@
     construct: function construct() {
       qx.ui.table.cellrenderer.Abstract.constructor.call(this);
       var clazz = qx.ui.table.cellrenderer.AbstractImage;
-
       if (!clazz.stylesheet) {
         clazz.stylesheet = qx.bom.Stylesheet.createElement(".qooxdoo-table-cell-icon {  text-align:center;}");
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
@@ -102,17 +98,16 @@
         init: "no-repeat"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_438_0: 16,
       __P_438_1: 16,
       __P_438_2: null,
-
       /**
        * Identifies the Image to show. This is a template method, which must be
        * implemented by sub classes.
@@ -137,7 +132,6 @@
       _identifyImage: function _identifyImage(cellInfo) {
         throw new Error("_identifyImage is abstract");
       },
-
       /**
        * Retrieves the image infos.
        *
@@ -150,35 +144,33 @@
        */
       _getImageInfos: function _getImageInfos(cellInfo) {
         // Query the subclass about image and tooltip
-        var imageData = this._identifyImage(cellInfo); // If subclass refuses to give map, construct it with required properties
+        var imageData = this._identifyImage(cellInfo);
+
+        // If subclass refuses to give map, construct it with required properties
         // If no map is given, but instead a string, assume that this string is
         // the URL of the image [BUG #4289]
-
-
         if (imageData == null || typeof imageData == "string") {
           imageData = {
             url: imageData,
             tooltip: null
           };
-        } // If sizes are not included in map given by subclass,
+        }
+
+        // If sizes are not included in map given by subclass,
         // fall-back to calculated image size
-
-
         if (!imageData.imageWidth || !imageData.imageHeight) {
           var sizes = this.__P_438_3(imageData.url);
-
           imageData.imageWidth = sizes.width;
           imageData.imageHeight = sizes.height;
-        } // Add width and height keys to map [BUG #4289]
+        }
+
+        // Add width and height keys to map [BUG #4289]
         // - [width|height] is read by _getContentHtml()
         // - [imageWidth|imageHeight] is possibly read in legacy applications
-
-
         imageData.width = imageData.imageWidth;
         imageData.height = imageData.imageHeight;
         return imageData;
       },
-
       /**
        * Compute the size of the given image
        *
@@ -189,8 +181,9 @@
       __P_438_3: function __P_438_3(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
-        var width, height; // Detect if the image registry knows this image
+        var width, height;
 
+        // Detect if the image registry knows this image
         if (ResourceManager.has(source)) {
           width = ResourceManager.getImageWidth(source);
           height = ResourceManager.getImageHeight(source);
@@ -201,7 +194,6 @@
           width = this.__P_438_0;
           height = this.__P_438_1;
         }
-
         return {
           width: width,
           height: height
@@ -218,16 +210,14 @@
       },
       // overridden
       _getContentHtml: function _getContentHtml(cellInfo) {
-        var content = "<div></div>"; // set image
-
+        var content = "<div></div>";
+        // set image
         if (this.__P_438_2.url) {
           var srcUrl = this.__P_438_2.url;
           var highResolutionSource = qx.util.ResourceManager.getInstance().findHighResolutionSource(this.__P_438_2.url);
-
           if (highResolutionSource) {
             srcUrl = highResolutionSource;
           }
-
           var style = {
             width: this.__P_438_2.width + "px",
             height: this.__P_438_2.height + "px",
@@ -235,27 +225,21 @@
             verticalAlign: "middle",
             position: "static"
           };
-
           if (qx.util.ResourceManager.getInstance().getCombinedFormat(this.__P_438_2.url) === "") {
             // background size is critical for high-resolution images but breaks combined images
             style["background-size"] = this.__P_438_2.width + "px " + this.__P_438_2.height + "px";
           }
-
           content = qx.bom.element.Decoration.create(srcUrl, this.getRepeat(), style);
         }
-
         return content;
       },
       // overridden
       _getCellAttributes: function _getCellAttributes(cellInfo) {
         var baseAttrs = qx.ui.table.cellrenderer.AbstractImage.superclass.prototype._getCellAttributes.call(this, cellInfo);
-
         if (!baseAttrs) {
           baseAttrs = "";
         }
-
         var tooltip = this.__P_438_2.tooltip;
-
         if (tooltip) {
           return baseAttrs + " title='" + tooltip + "'";
         } else {
@@ -263,7 +247,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -276,4 +259,4 @@
   qx.ui.table.cellrenderer.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1685978147051
+//# sourceMappingURL=AbstractImage.js.map?dt=1691935443345

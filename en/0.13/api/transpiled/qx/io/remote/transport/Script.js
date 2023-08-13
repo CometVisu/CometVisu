@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,7 +60,6 @@
   qx.Class.define("qx.io.remote.transport.Script", {
     extend: qx.io.remote.transport.Abstract,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -70,20 +68,18 @@
     construct: function construct() {
       qx.io.remote.transport.Abstract.constructor.call(this);
       var vUniqueId = ++qx.io.remote.transport.Script.__P_257_0;
-
       if (vUniqueId >= 2000000000) {
         qx.io.remote.transport.Script.__P_257_0 = vUniqueId = 1;
       }
-
       this.__P_257_1 = null;
       this.__P_257_0 = vUniqueId;
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Unique identifier for each instance.
@@ -91,35 +87,30 @@
        * @internal
        */
       __P_257_0: 0,
-
       /**
        * Registry for all script transport instances.
        *
        * @internal
        */
       _instanceRegistry: {},
-
       /**
        * Internal URL parameter prefix.
        *
        * @internal
        */
       ScriptTransport_PREFIX: "_ScriptTransport_",
-
       /**
        * Internal URL parameter ID.
        *
        * @internal
        */
       ScriptTransport_ID_PARAM: "_ScriptTransport_id",
-
       /**
        * Internal URL parameter data prefix.
        *
        * @internal
        */
       ScriptTransport_DATA_PARAM: "_ScriptTransport_data",
-
       /**
        * Capabilities of this transport type.
        *
@@ -133,7 +124,6 @@
         programmaticFormFields: false,
         responseTypes: ["text/plain", "text/javascript", "application/json"]
       },
-
       /**
        * Returns always true, because script transport is supported by all browsers.
        * @return {Boolean} <code>true</code>
@@ -141,7 +131,6 @@
       isSupported: function isSupported() {
         return true;
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENER
@@ -161,7 +150,6 @@
         interactive: 3,
         complete: 4
       },
-
       /**
        * This method can be called by the script loaded by the ScriptTransport
        * class.
@@ -174,51 +162,45 @@
        */
       _requestFinished: qx.event.GlobalError.observeMethod(function (id, content) {
         var vInstance = qx.io.remote.transport.Script._instanceRegistry[id];
-
         if (vInstance == null) {} else {
           vInstance._responseContent = content;
-
           vInstance._switchReadyState(qx.io.remote.transport.Script._numericMap.complete);
         }
       })
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_257_2: 0,
       __P_257_1: null,
       __P_257_0: null,
-
       /*
       ---------------------------------------------------------------------------
         USER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sends the request using "script" elements
        *
        */
       send: function send() {
-        var vUrl = this.getUrl(); // --------------------------------------
+        var vUrl = this.getUrl();
+
+        // --------------------------------------
         //   Adding parameters
         // --------------------------------------
-
         vUrl += (vUrl.indexOf("?") >= 0 ? "&" : "?") + qx.io.remote.transport.Script.ScriptTransport_ID_PARAM + "=" + this.__P_257_0;
         var vParameters = this.getParameters();
         var vParametersList = [];
-
         for (var vId in vParameters) {
           if (vId.indexOf(qx.io.remote.transport.Script.ScriptTransport_PREFIX) == 0) {
             this.error("Illegal parameter name. The following prefix is used internally by qooxdoo): " + qx.io.remote.transport.Script.ScriptTransport_PREFIX);
           }
-
           var value = vParameters[vId];
-
           if (value instanceof Array) {
             for (var i = 0; i < value.length; i++) {
               vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value[i]));
@@ -227,30 +209,27 @@
             vParametersList.push(encodeURIComponent(vId) + "=" + encodeURIComponent(value));
           }
         }
-
         if (vParametersList.length > 0) {
           vUrl += "&" + vParametersList.join("&");
-        } // --------------------------------------
+        }
+
+        // --------------------------------------
         //   Sending data
         // --------------------------------------
-
-
         var vData = this.getData();
-
         if (vData != null) {
           vUrl += "&" + qx.io.remote.transport.Script.ScriptTransport_DATA_PARAM + "=" + encodeURIComponent(vData);
         }
-
         qx.io.remote.transport.Script._instanceRegistry[this.__P_257_0] = this;
-        this.__P_257_1 = document.createElement("script"); // IE needs this (it ignores the
+        this.__P_257_1 = document.createElement("script");
+
+        // IE needs this (it ignores the
         // encoding from the header sent by the
         // server for dynamic script tags)
-
         this.__P_257_1.charset = "utf-8";
         this.__P_257_1.src = vUrl;
         document.body.appendChild(this.__P_257_1);
       },
-
       /**
        * Switches the readystate by setting the internal state.
        *
@@ -265,20 +244,18 @@
           case "timeout":
             this.warn("Ignore Ready State Change");
             return;
-        } // Updating internal state
+        }
 
-
+        // Updating internal state
         while (this.__P_257_2 < vReadyState) {
           this.setState(qx.io.remote.Exchange._nativeMap[++this.__P_257_2]);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         REQUEST HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets a request header with the given value.
        *
@@ -288,13 +265,11 @@
        * @param vValue {var} Request header value
        */
       setRequestHeader: function setRequestHeader(vLabel, vValue) {},
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE HEADER SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the value of the given response header.
        *
@@ -306,7 +281,6 @@
       getResponseHeader: function getResponseHeader(vLabel) {
         return null;
       },
-
       /**
        * Provides an hash of all response headers.
        *
@@ -317,13 +291,11 @@
       getResponseHeaders: function getResponseHeaders() {
         return {};
       },
-
       /*
       ---------------------------------------------------------------------------
         STATUS SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the current status code of the request if available or -1 if not.
        * This method needs implementation (returns always 200).
@@ -333,7 +305,6 @@
       getStatusCode: function getStatusCode() {
         return 200;
       },
-
       /**
        * Provides the status text for the current request if available and null otherwise.
        * This method needs implementation (returns always an empty string)
@@ -343,13 +314,11 @@
       getStatusText: function getStatusText() {
         return "";
       },
-
       /*
       ---------------------------------------------------------------------------
         RESPONSE DATA SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the length of the content as fetched thus far.
        * This method needs implementation (returns always 0).
@@ -359,7 +328,6 @@
       getFetchedLength: function getFetchedLength() {
         return 0;
       },
-
       /**
        * Returns the content of the response.
        *
@@ -369,22 +337,19 @@
         if (this.getState() !== "completed") {
           return null;
         }
-
         switch (this.getResponseType()) {
-          case "text/plain": // server is responsible for using a string as the response
-
+          case "text/plain":
+          // server is responsible for using a string as the response
           case "application/json":
           case "text/javascript":
             var ret = this._responseContent;
             return ret === 0 ? 0 : ret || null;
-
           default:
             this.warn("No valid responseType specified (" + this.getResponseType() + ")!");
             return null;
         }
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -395,7 +360,6 @@
       // the real availability check (activeX stuff and so on) follows at the first real request
       qx.io.remote.Exchange.registerType(qx.io.remote.transport.Script, "qx.io.remote.transport.Script");
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -406,11 +370,10 @@
         delete qx.io.remote.transport.Script._instanceRegistry[this.__P_257_0];
         document.body.removeChild(this.__P_257_1);
       }
-
       this.__P_257_1 = this._responseContent = null;
     }
   });
   qx.io.remote.transport.Script.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Script.js.map?dt=1685978125965
+//# sourceMappingURL=Script.js.map?dt=1691935423445

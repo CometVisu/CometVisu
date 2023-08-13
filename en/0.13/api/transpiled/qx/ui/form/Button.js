@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,13 +73,11 @@
     extend: qx.ui.basic.Atom,
     include: [qx.ui.core.MExecutable],
     implement: [qx.ui.form.IExecutable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} label of the atom
      * @param icon {String?null} Icon URL of the atom
@@ -88,32 +85,33 @@
      */
     construct: function construct(label, icon, command) {
       qx.ui.basic.Atom.constructor.call(this, label, icon);
-
       if (command != null) {
         this.setCommand(command);
-      } // ARIA attrs
+      }
 
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "button");
 
-      this.getContentElement().setAttribute("role", "button"); // Add listeners
-
+      // Add listeners
       this.addListener("pointerover", this._onPointerOver);
       this.addListener("pointerout", this._onPointerOut);
       this.addListener("pointerdown", this._onPointerDown);
       this.addListener("pointerup", this._onPointerUp);
       this.addListener("tap", this._onTap);
       this.addListener("keydown", this._onKeyDown);
-      this.addListener("keyup", this._onKeyUp); // Stop events
+      this.addListener("keyup", this._onKeyUp);
 
+      // Stop events
       this.addListener("dblclick", function (e) {
         e.stopPropagation();
       });
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -126,17 +124,14 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -146,13 +141,11 @@
         pressed: true,
         disabled: true
       },
-
       /*
       ---------------------------------------------------------------------------
         USER API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Manually press the button
        */
@@ -160,10 +153,8 @@
         if (this.hasState("abandoned")) {
           return;
         }
-
         this.addState("pressed");
       },
-
       /**
        * Manually release the button
        */
@@ -172,7 +163,6 @@
           this.removeState("pressed");
         }
       },
-
       /**
        * Completely reset the button (remove all states)
        */
@@ -181,13 +171,11 @@
         this.removeState("abandoned");
         this.removeState("hovered");
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Listener method for "pointerover" event
        * <ul>
@@ -201,15 +189,12 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-
         if (this.hasState("abandoned")) {
           this.removeState("abandoned");
           this.addState("pressed");
         }
-
         this.addState("hovered");
       },
-
       /**
        * Listener method for "pointerout" event
        * <ul>
@@ -223,15 +208,12 @@
         if (!this.isEnabled() || e.getTarget() !== this) {
           return;
         }
-
         this.removeState("hovered");
-
         if (this.hasState("pressed")) {
           this.removeState("pressed");
           this.addState("abandoned");
         }
       },
-
       /**
        * Listener method for "pointerdown" event
        * <ul>
@@ -245,15 +227,14 @@
         if (!e.isLeftPressed()) {
           return;
         }
+        e.stopPropagation();
 
-        e.stopPropagation(); // Activate capturing if the button get a pointerout while
+        // Activate capturing if the button get a pointerout while
         // the button is pressed.
-
         this.capture();
         this.removeState("abandoned");
         this.addState("pressed");
       },
-
       /**
        * Listener method for "pointerup" event
        * <ul>
@@ -265,24 +246,21 @@
        * @param e {qx.event.type.Pointer} Mouse event
        */
       _onPointerUp: function _onPointerUp(e) {
-        this.releaseCapture(); // We must remove the states before executing the command
+        this.releaseCapture();
+
+        // We must remove the states before executing the command
         // because in cases were the window lost the focus while
         // executing we get the capture phase back (mouseout).
-
         var hasPressed = this.hasState("pressed");
         var hasAbandoned = this.hasState("abandoned");
-
         if (hasPressed) {
           this.removeState("pressed");
         }
-
         if (hasAbandoned) {
           this.removeState("abandoned");
         }
-
         e.stopPropagation();
       },
-
       /**
        * Listener method for "tap" event which stops the propagation.
        *
@@ -294,7 +272,6 @@
         this.execute();
         e.stopPropagation();
       },
-
       /**
        * Listener method for "keydown" event.<br/>
        * Removes "abandoned" and adds "pressed" state
@@ -311,7 +288,6 @@
             e.stopPropagation();
         }
       },
-
       /**
        * Listener method for "keyup" event.<br/>
        * Removes "abandoned" and "pressed" state (if "pressed" state is set)
@@ -329,7 +305,6 @@
               this.execute();
               e.stopPropagation();
             }
-
         }
       }
     }
@@ -337,4 +312,4 @@
   qx.ui.form.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1685978137487
+//# sourceMappingURL=Button.js.map?dt=1691935434074

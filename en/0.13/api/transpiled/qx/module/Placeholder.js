@@ -39,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,7 +83,6 @@
        * element for each input.
        */
       PLACEHOLDER_NAME: "$qx_placeholder",
-
       /**
        * Queries for all input and textarea elements on the page and updates
        * their placeholder.
@@ -96,7 +94,6 @@
           qxWeb("input[placeholder], textarea[placeholder]").updatePlaceholder();
         }
       },
-
       /**
        * Internal helper method to update the styles for a given input element.
        * @param item {qxWeb} The input element to update.
@@ -126,7 +123,6 @@
           paddingLeft: parseInt(item.getStyle("padding-left")) + 2 + "px"
         });
       },
-
       /**
        * Creates a placeholder element based on the given input element.
        * @param item {qxWeb} The input element.
@@ -139,21 +135,23 @@
           color: "#989898",
           overflow: "hidden",
           pointerEvents: "none"
-        }); // store the label at the input field
+        });
 
-        item.setProperty(qx.module.Placeholder.PLACEHOLDER_NAME, placeholderEl); // update the placeholders visibility on keyUp
+        // store the label at the input field
+        item.setProperty(qx.module.Placeholder.PLACEHOLDER_NAME, placeholderEl);
 
+        // update the placeholders visibility on keyUp
         item.on("keyup", function (item) {
           var el = item.getProperty(qx.module.Placeholder.PLACEHOLDER_NAME);
           el.setStyle("display", item.getValue() == "" ? "inline" : "none");
-        }.bind(this, item)); // for browsers not supporting pointer events
+        }.bind(this, item));
 
+        // for browsers not supporting pointer events
         if (!qxWeb.env.get("css.pointerevents")) {
           placeholderEl.setStyle("cursor", "text").on("tap", function (item) {
             item.focus();
           }.bind(this, item));
         }
-
         return placeholderEl;
       }
     },
@@ -171,37 +169,33 @@
         // ignore everything if native placeholder are supported
         if (!qxWeb.env.get("css.placeholder")) {
           for (var i = 0; i < this.length; i++) {
-            var item = qxWeb(this[i]); // ignore all not fitting items in the collection
+            var item = qxWeb(this[i]);
 
+            // ignore all not fitting items in the collection
             var placeholder = item.getAttribute("placeholder");
             var tagName = item.getProperty("tagName");
-
             if (!placeholder || tagName != "TEXTAREA" && tagName != "INPUT") {
               continue;
-            } // create the element if necessary
+            }
 
-
+            // create the element if necessary
             var placeholderEl = item.getProperty(qx.module.Placeholder.PLACEHOLDER_NAME);
-
             if (!placeholderEl) {
               placeholderEl = qx.module.Placeholder.__P_283_1(item);
-            } // remove and add handling
+            }
 
-
+            // remove and add handling
             var itemInBody = item.isRendered();
             var placeholderElInBody = placeholderEl.isRendered();
-
             if (itemInBody && !placeholderElInBody) {
               item.before(placeholderEl);
             } else if (!itemInBody && placeholderElInBody) {
               placeholderEl.remove();
               return this;
             }
-
             qx.module.Placeholder.__P_283_0(item);
           }
         }
-
         return this;
       }
     },
@@ -212,4 +206,4 @@
   qx.module.Placeholder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Placeholder.js.map?dt=1685978129179
+//# sourceMappingURL=Placeholder.js.map?dt=1691935426421

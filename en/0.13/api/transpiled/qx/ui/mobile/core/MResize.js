@@ -24,7 +24,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,6 +54,7 @@
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** Whether the resize should fire the "domupdated" event. Set this to "true"
        *  whenever other elements should react on this size change (e.g. when the size
@@ -66,60 +66,51 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_391_0: null,
       __P_391_1: null,
-
       /**
        * Removes fixed size from container.
        */
       releaseFixedSize: function releaseFixedSize() {
         var parent = this.getLayoutParent();
-
         if (parent && parent.getContainerElement()) {
           var element = this.getContainerElement();
           qx.bom.element.Style.set(element, "height", "auto");
           qx.bom.element.Style.set(element, "width", "auto");
         }
       },
-
       /**
        * Resizes the container element to the height of the parent element.
        */
       fixSize: function fixSize() {
         var parent = this.getLayoutParent();
-
         if (parent && parent.getContainerElement()) {
           var height = parent.getContainerElement().offsetHeight;
-          var width = parent.getContainerElement().offsetWidth; // Only fix size, when value are above zero.
+          var width = parent.getContainerElement().offsetWidth;
 
+          // Only fix size, when value are above zero.
           if (height === 0 || width === 0) {
             return;
           }
-
           if (!this.getFireDomUpdatedOnResize()) {
             this._setHeight(height);
-
             this._setWidth(width);
           } else if (this.__P_391_0 != height && this.__P_391_1 != width) {
             this._setHeight(height);
-
             this._setWidth(width);
-
             this.__P_391_1 = width;
             this.__P_391_0 = height;
-
             this._domUpdated();
           }
         }
       },
-
       /**
        * Sets the height of the container element.
        *
@@ -127,14 +118,12 @@
        */
       _setHeight: function _setHeight(height) {
         var element = this.getContainerElement();
-
         if (qx.core.Environment.get("qx.mobile.nativescroll")) {
           qx.bom.element.Style.set(element, "minHeight", height + "px");
         } else {
           qx.bom.element.Style.set(element, "height", height + "px");
         }
       },
-
       /**
        * Sets the width of the container element.
        *
@@ -142,7 +131,6 @@
        */
       _setWidth: function _setWidth(width) {
         var element = this.getContainerElement();
-
         if (qx.core.Environment.get("qx.mobile.nativescroll")) {
           qx.bom.element.Style.set(element, "minWidth", width + "px");
         } else {
@@ -154,4 +142,4 @@
   qx.ui.mobile.core.MResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResize.js.map?dt=1685978142854
+//# sourceMappingURL=MResize.js.map?dt=1691935439254

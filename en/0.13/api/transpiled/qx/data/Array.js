@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -54,7 +53,6 @@
     extend: qx.core.Object,
     include: qx.data.marshal.MEventBubbling,
     implement: [qx.data.IListData],
-
     /**
      * Creates a new instance of an array.
      *
@@ -68,36 +66,42 @@
      *   elements will be created.
      */
     construct: function construct(param) {
-      qx.core.Object.constructor.call(this); // if no argument is given
-
+      qx.core.Object.constructor.call(this);
+      // if no argument is given
       if (param == undefined) {
-        this.__P_170_0 = []; // check for elements (create the array)
+        this.__P_170_0 = [];
+
+        // check for elements (create the array)
       } else if (arguments.length > 1) {
         // create an empty array and go through every argument and push it
         this.__P_170_0 = [];
-
         for (var i = 0; i < arguments.length; i++) {
           this.__P_170_0.push(arguments[i]);
-        } // check for a number (length)
+        }
 
+        // check for a number (length)
       } else if (typeof param == "number") {
-        this.__P_170_0 = new Array(param); // check for an array itself
+        this.__P_170_0 = new Array(param);
+        // check for an array itself
       } else if (param instanceof Array) {
-        this.__P_170_0 = qx.lang.Array.clone(param); // error case
+        this.__P_170_0 = qx.lang.Array.clone(param);
+
+        // error case
       } else {
         this.__P_170_0 = [];
         this.dispose();
         throw new Error("Type of the parameter not supported!");
-      } // propagate changes
+      }
 
-
+      // propagate changes
       for (var i = 0; i < this.__P_170_0.length; i++) {
         this._applyEventPropagation(this.__P_170_0[i], null, i);
-      } // update the length at startup
+      }
 
+      // update the length at startup
+      this.__P_170_1();
 
-      this.__P_170_1(); // work against the console printout of the array
-
+      // work against the console printout of the array
     },
 
     /*
@@ -105,6 +109,7 @@
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Flag to set the dispose behavior of the array. If the property is set to
@@ -115,12 +120,12 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * The change event which will be fired if there is a change in the array.
@@ -133,7 +138,6 @@
        * <li>removed: The items which has been removed (as a JavaScript array)</li>
        */
       change: "qx.event.type.Data",
-
       /**
        * The changeLength event will be fired every time the length of the
        * array changes.
@@ -143,7 +147,6 @@
     members: {
       // private members
       __P_170_0: null,
-
       /**
        * Returns an iterator, ie an object which follows the "Iterator Protocol" so that
        * arrays can be used natively in `for...of`.  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
@@ -152,7 +155,6 @@
        */
       iterator: function iterator() {
         var _this = this;
-
         var index = 0;
         var array = this;
         return {
@@ -162,14 +164,12 @@
                 done: true
               };
             }
-
             return {
               value: _this.getItem(index++)
             };
           }
         };
       },
-
       /**
        * Concatenates the current and the given array into a new one.
        *
@@ -181,16 +181,13 @@
        */
       concat: function concat(array) {
         array = qx.lang.Array.toNativeArray(array);
-
         if (array) {
           var newArray = this.__P_170_0.concat(array);
         } else {
           var newArray = this.__P_170_0.concat();
         }
-
         return new qx.data.Array(newArray);
       },
-
       /**
        * Returns the array as a string using the given connector string to
        * connect the values.
@@ -203,7 +200,6 @@
       join: function join(connector) {
         return this.__P_170_0.join(connector);
       },
-
       /**
        * Removes and returns the last element of the array.
        * An change event will be fired.
@@ -212,13 +208,10 @@
        */
       pop: function pop() {
         var item = this.__P_170_0.pop();
-
-        this.__P_170_1(); // remove the possible added event listener
-
-
-        this._registerEventChaining(null, item, this.length - 1); // fire change bubble event
-
-
+        this.__P_170_1();
+        // remove the possible added event listener
+        this._registerEventChaining(null, item, this.length - 1);
+        // fire change bubble event
         this.fireDataEvent("changeBubble", {
           value: [],
           name: this.length + "",
@@ -234,7 +227,6 @@
         }, null);
         return item;
       },
-
       /**
        * Adds an element at the end of the array.
        *
@@ -246,20 +238,19 @@
       push: function push(varargs) {
         for (var i = 0; i < arguments.length; i++) {
           this.__P_170_0.push(arguments[i]);
+          this.__P_170_1();
+          // apply to every pushed item an event listener for the bubbling
+          this._registerEventChaining(arguments[i], null, this.length - 1);
 
-          this.__P_170_1(); // apply to every pushed item an event listener for the bubbling
-
-
-          this._registerEventChaining(arguments[i], null, this.length - 1); // fire change bubbles event
-
-
+          // fire change bubbles event
           this.fireDataEvent("changeBubble", {
             value: [arguments[i]],
             name: this.length - 1 + "",
             old: [],
             item: this
-          }); // fire change event
+          });
 
+          // fire change event
           this.fireDataEvent("change", {
             start: this.length - 1,
             end: this.length - 1,
@@ -268,10 +259,8 @@
             removed: []
           }, null);
         }
-
         return this.length;
       },
-
       /**
        * Reverses the order of the array. An change event will be fired.
        */
@@ -280,21 +269,18 @@
         if (this.length == 0) {
           return;
         }
-
         var oldArray = this.__P_170_0.concat();
-
         this.__P_170_0.reverse();
-
         this.__P_170_2(0, this.length);
-
         this.fireDataEvent("change", {
           start: 0,
           end: this.length - 1,
           type: "order",
           added: [],
           removed: []
-        }, null); // fire change bubbles event
+        }, null);
 
+        // fire change bubbles event
         this.fireDataEvent("changeBubble", {
           value: this.__P_170_0,
           name: "0-" + (this.__P_170_0.length - 1),
@@ -302,7 +288,6 @@
           item: this
         });
       },
-
       /**
        * Removes the first element of the array and returns it. An change event
        * will be fired.
@@ -314,25 +299,22 @@
         if (this.length == 0) {
           return;
         }
-
         var item = this.__P_170_0.shift();
+        this.__P_170_1();
+        // remove the possible added event listener
+        this._registerEventChaining(null, item, this.length - 1);
+        // as every item has changed its position, we need to update the event bubbling
+        this.__P_170_2(0, this.length);
 
-        this.__P_170_1(); // remove the possible added event listener
-
-
-        this._registerEventChaining(null, item, this.length - 1); // as every item has changed its position, we need to update the event bubbling
-
-
-        this.__P_170_2(0, this.length); // fire change bubbles event
-
-
+        // fire change bubbles event
         this.fireDataEvent("changeBubble", {
           value: [],
           name: "0",
           old: [item],
           item: this
-        }); // fire change event
+        });
 
+        // fire change event
         this.fireDataEvent("change", {
           start: 0,
           end: this.length - 1,
@@ -342,7 +324,6 @@
         }, null);
         return item;
       },
-
       /**
        * Returns a new array based on the range specified by the parameters.
        *
@@ -356,7 +337,6 @@
       slice: function slice(from, to) {
         return new qx.data.Array(this.__P_170_0.slice(from, to));
       },
-
       /**
        * Method to remove and add new elements to the array. A change event
        * will be fired for every removal or addition unless the array is
@@ -372,39 +352,36 @@
        */
       splice: function splice(startIndex, amount, varargs) {
         // store the old length
-        var oldLength = this.__P_170_0.length; // invoke the slice on the array
+        var oldLength = this.__P_170_0.length;
 
-        var returnArray = this.__P_170_0.splice.apply(this.__P_170_0, arguments); // fire a change event for the length
+        // invoke the slice on the array
+        var returnArray = this.__P_170_0.splice.apply(this.__P_170_0, arguments);
 
-
+        // fire a change event for the length
         if (this.__P_170_0.length != oldLength) {
           this.__P_170_1();
         } else if (amount == arguments.length - 2) {
           // if we added as much items as we removed
-          var addedItems = qx.lang.Array.fromArguments(arguments, 2); // check if the array content equals the content before the operation
-
+          var addedItems = qx.lang.Array.fromArguments(arguments, 2);
+          // check if the array content equals the content before the operation
           for (var i = 0; i < addedItems.length; i++) {
             if (addedItems[i] !== returnArray[i]) {
               break;
-            } // if all added and removed items are equal
-
-
+            }
+            // if all added and removed items are equal
             if (i == addedItems.length - 1) {
               // prevent all events and return a new array
               return new qx.data.Array();
             }
           }
-        } // fire an event for the change
-
-
+        }
+        // fire an event for the change
         var removed = amount > 0;
         var added = arguments.length > 2;
-
         if (removed || added) {
           var addedItems = qx.lang.Array.fromArguments(arguments, 2);
           var type;
           var end;
-
           if (returnArray.length == 0) {
             type = "add";
             end = startIndex + addedItems.length;
@@ -415,7 +392,6 @@
             type = "add/remove";
             end = startIndex + Math.max(addedItems.length, returnArray.length) - 1;
           }
-
           this.fireDataEvent("change", {
             start: startIndex,
             end: end,
@@ -423,29 +399,26 @@
             added: addedItems,
             removed: returnArray
           }, null);
-        } // remove the listeners first [BUG #7132]
+        }
 
-
+        // remove the listeners first [BUG #7132]
         for (var i = 0; i < returnArray.length; i++) {
           this._registerEventChaining(null, returnArray[i], i);
-        } // add listeners
+        }
 
-
+        // add listeners
         for (var i = 2; i < arguments.length; i++) {
           this._registerEventChaining(arguments[i], null, startIndex + (i - 2));
-        } // apply event chaining for every item moved
+        }
+        // apply event chaining for every item moved
+        this.__P_170_2(startIndex + (arguments.length - 2) - amount, this.length);
 
-
-        this.__P_170_2(startIndex + (arguments.length - 2) - amount, this.length); // fire the changeBubble event
-
-
+        // fire the changeBubble event
         if (removed || added) {
           var value = [];
-
           for (var i = 2; i < arguments.length; i++) {
             value[i - 2] = arguments[i];
           }
-
           var endIndex = startIndex + Math.max(arguments.length - 3, amount - 1);
           var name = startIndex == endIndex ? endIndex : startIndex + "-" + endIndex;
           var eventData = {
@@ -456,10 +429,8 @@
           };
           this.fireDataEvent("changeBubble", eventData);
         }
-
         return new qx.data.Array(returnArray);
       },
-
       /**
        * Efficiently replaces the array with the contents of src; this will suppress the
        * change event if the array contents are the same, and will make sure that only
@@ -469,18 +440,15 @@
        */
       replace: function replace(src) {
         src = qx.lang.Array.toNativeArray(src);
-
         if (this.equals(src)) {
           return;
         }
-
         var args = [0, this.getLength()];
         src.forEach(function (item) {
           args.push(item);
         });
         this.splice.apply(this, args);
       },
-
       /**
        * Sorts the array. If a function is given, this will be used to
        * compare the items. <code>changeBubble</code> event will only be fired,
@@ -494,26 +462,23 @@
         if (this.length == 0) {
           return;
         }
-
         var oldArray = this.__P_170_0.concat();
+        this.__P_170_0.sort.apply(this.__P_170_0, arguments);
 
-        this.__P_170_0.sort.apply(this.__P_170_0, arguments); // prevent changeBubble event if nothing has been changed
-
-
+        // prevent changeBubble event if nothing has been changed
         if (qx.lang.Array.equals(this.__P_170_0, oldArray) === true) {
           return;
         }
-
         this.__P_170_2(0, this.length);
-
         this.fireDataEvent("change", {
           start: 0,
           end: this.length - 1,
           type: "order",
           added: [],
           removed: []
-        }, null); // fire change bubbles event
+        }, null);
 
+        // fire change bubbles event
         this.fireDataEvent("changeBubble", {
           value: this.__P_170_0,
           name: "0-" + (this.length - 1),
@@ -521,7 +486,6 @@
           item: this
         });
       },
-
       /**
        * Adds the given items to the beginning of the array. For every element,
        * a change event will be fired.
@@ -532,20 +496,19 @@
       unshift: function unshift(varargs) {
         for (var i = arguments.length - 1; i >= 0; i--) {
           this.__P_170_0.unshift(arguments[i]);
+          this.__P_170_1();
+          // apply to every item an event listener for the bubbling
+          this.__P_170_2(0, this.length);
 
-          this.__P_170_1(); // apply to every item an event listener for the bubbling
-
-
-          this.__P_170_2(0, this.length); // fire change bubbles event
-
-
+          // fire change bubbles event
           this.fireDataEvent("changeBubble", {
             value: [this.__P_170_0[0]],
             name: "0",
             old: [this.__P_170_0[1]],
             item: this
-          }); // fire change event
+          });
 
+          // fire change event
           this.fireDataEvent("change", {
             start: 0,
             end: this.length - 1,
@@ -554,10 +517,8 @@
             removed: []
           }, null);
         }
-
         return this.length;
       },
-
       /**
        * Returns the list data as native array. Beware of the fact that the
        * internal representation will be returned and any manipulation of that
@@ -569,7 +530,6 @@
       toArray: function toArray() {
         return this.__P_170_0;
       },
-
       /**
        * Replacement function for the getting of the array value.
        * array[0] should be array.getItem(0).
@@ -581,7 +541,6 @@
       getItem: function getItem(index) {
         return this.__P_170_0[index];
       },
-
       /**
        * Replacement function for the setting of an array value.
        * array[0] = "a" should be array.setItem(0, "a").
@@ -592,29 +551,28 @@
        * @param item {var} The new item to set.
        */
       setItem: function setItem(index, item) {
-        var oldItem = this.__P_170_0[index]; // ignore settings of already set items [BUG #4106]
-
+        var oldItem = this.__P_170_0[index];
+        // ignore settings of already set items [BUG #4106]
         if (oldItem === item) {
           return;
         }
-
-        this.__P_170_0[index] = item; // set an event listener for the bubbling
-
-        this._registerEventChaining(item, oldItem, index); // only update the length if its changed
-
-
+        this.__P_170_0[index] = item;
+        // set an event listener for the bubbling
+        this._registerEventChaining(item, oldItem, index);
+        // only update the length if its changed
         if (this.length != this.__P_170_0.length) {
           this.__P_170_1();
-        } // fire change bubbles event
+        }
 
-
+        // fire change bubbles event
         this.fireDataEvent("changeBubble", {
           value: [item],
           name: index + "",
           old: [oldItem],
           item: this
-        }); // fire change event
+        });
 
+        // fire change event
         this.fireDataEvent("change", {
           start: index,
           end: index,
@@ -623,7 +581,6 @@
           removed: [oldItem]
         }, null);
       },
-
       /**
        * This method returns the current length stored under .length on each
        * array.
@@ -633,7 +590,6 @@
       getLength: function getLength() {
         return this.length;
       },
-
       /**
        * Returns the index of the item in the array. If the item is not in the
        * array, -1 will be returned.
@@ -644,7 +600,6 @@
       indexOf: function indexOf(item) {
         return this.__P_170_0.indexOf(item);
       },
-
       /**
        * Returns the last index of the item in the array. If the item is not in the
        * array, -1 will be returned.
@@ -655,7 +610,6 @@
       lastIndexOf: function lastIndexOf(item) {
         return this.__P_170_0.lastIndexOf(item);
       },
-
       /**
        * Returns the toString of the original Array
        * @return {String} The array as a string.
@@ -664,16 +618,13 @@
         if (this.__P_170_0 != null) {
           return this.__P_170_0.toString();
         }
-
         return "";
       },
-
       /*
       ---------------------------------------------------------------------------
          IMPLEMENTATION OF THE QX.LANG.ARRAY METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Check if the given item is in the current array.
        *
@@ -685,7 +636,6 @@
       contains: function contains(item) {
         return this.includes(item);
       },
-
       /**
        * Check if the given item is in the current array.
        *
@@ -695,7 +645,6 @@
       includes: function includes(item) {
         return this.__P_170_0.indexOf(item) !== -1;
       },
-
       /**
        * Return a copy of the given arr
        *
@@ -704,7 +653,6 @@
       copy: function copy() {
         return this.concat();
       },
-
       /**
        * Insert an element at a given position.
        *
@@ -714,7 +662,6 @@
       insertAt: function insertAt(index, item) {
         this.splice(index, 0, item).dispose();
       },
-
       /**
        * Insert an item into the array before a given item.
        *
@@ -723,14 +670,12 @@
        */
       insertBefore: function insertBefore(before, item) {
         var index = this.indexOf(before);
-
         if (index == -1) {
           this.push(item);
         } else {
           this.splice(index, 0, item).dispose();
         }
       },
-
       /**
        * Insert an element into the array after a given item.
        *
@@ -739,14 +684,12 @@
        */
       insertAfter: function insertAfter(after, item) {
         var index = this.indexOf(after);
-
         if (index == -1 || index == this.length - 1) {
           this.push(item);
         } else {
           this.splice(index + 1, 0, item).dispose();
         }
       },
-
       /**
        * Remove an element from the array at the given index.
        *
@@ -759,7 +702,6 @@
         returnArray.dispose();
         return item;
       },
-
       /**
        * Remove all elements from the array.
        *
@@ -769,31 +711,30 @@
         // remove all possible added event listeners
         for (var i = 0; i < this.__P_170_0.length; i++) {
           this._registerEventChaining(null, this.__P_170_0[i], i);
-        } // ignore if array is empty
+        }
 
-
+        // ignore if array is empty
         if (this.getLength() == 0) {
           return [];
-        } // store the old data
+        }
 
-
+        // store the old data
         var oldLength = this.getLength();
+        var items = this.__P_170_0.concat();
 
-        var items = this.__P_170_0.concat(); // change the length
-
-
+        // change the length
         this.__P_170_0.length = 0;
+        this.__P_170_1();
 
-        this.__P_170_1(); // fire change bubbles event
-
-
+        // fire change bubbles event
         this.fireDataEvent("changeBubble", {
           value: [],
           name: "0-" + (oldLength - 1),
           old: items,
           item: this
-        }); // fire the change event
+        });
 
+        // fire the change event
         this.fireDataEvent("change", {
           start: 0,
           end: oldLength - 1,
@@ -803,7 +744,6 @@
         }, null);
         return items;
       },
-
       /**
        * Append the items of the given array.
        *
@@ -813,29 +753,30 @@
        */
       append: function append(array) {
         // qooxdoo array support
-        array = qx.lang.Array.toNativeArray(array); // this check is important because opera throws an uncatchable error if
+        array = qx.lang.Array.toNativeArray(array);
+
+        // this check is important because opera throws an uncatchable error if
         // apply is called without an array as argument.
-
         var oldLength = this.__P_170_0.length;
-        Array.prototype.push.apply(this.__P_170_0, array); // add a listener to the new items
+        Array.prototype.push.apply(this.__P_170_0, array);
 
+        // add a listener to the new items
         for (var i = 0; i < array.length; i++) {
           this._registerEventChaining(array[i], null, oldLength + i);
         }
-
         var oldLength = this.length;
+        this.__P_170_1();
 
-        this.__P_170_1(); // fire change bubbles
-
-
+        // fire change bubbles
         var name = oldLength == this.length - 1 ? oldLength : oldLength + "-" + (this.length - 1);
         this.fireDataEvent("changeBubble", {
           value: array,
           name: name + "",
           old: [],
           item: this
-        }); // fire the change event
+        });
 
+        // fire the change event
         this.fireDataEvent("change", {
           start: oldLength,
           end: this.length - 1,
@@ -844,7 +785,6 @@
           removed: []
         }, null);
       },
-
       /**
        * Removes all elements which are listed in the array.
        *
@@ -856,7 +796,6 @@
           this.remove(item);
         }, this);
       },
-
       /**
        * Remove the given item.
        *
@@ -865,13 +804,11 @@
        */
       remove: function remove(item) {
         var index = this.indexOf(item);
-
         if (index != -1) {
           this.splice(index, 1).dispose();
           return item;
         }
       },
-
       /**
        * Check whether the given array has the same content as this.
        * Checks only the equality of the arrays' content.
@@ -883,18 +820,14 @@
         if (this.length !== array.length) {
           return false;
         }
-
         array = qx.lang.Array.toNativeArray(array);
-
         for (var i = 0; i < this.length; i++) {
           if (this.getItem(i) !== array[i]) {
             return false;
           }
         }
-
         return true;
       },
-
       /**
        * Returns the sum of all values in the array. Supports
        * numeric values only.
@@ -903,14 +836,11 @@
        */
       sum: function sum() {
         var result = 0;
-
         for (var i = 0; i < this.length; i++) {
           result += this.getItem(i);
         }
-
         return result;
       },
-
       /**
        * Returns the highest value in the given array.
        * Supports numeric values only.
@@ -920,16 +850,13 @@
        */
       max: function max() {
         var result = this.getItem(0);
-
         for (var i = 1; i < this.length; i++) {
           if (this.getItem(i) > result) {
             result = this.getItem(i);
           }
         }
-
         return result === undefined ? null : result;
       },
-
       /**
        * Returns the lowest value in the array. Supports
        * numeric values only.
@@ -939,16 +866,13 @@
        */
       min: function min() {
         var result = this.getItem(0);
-
         for (var i = 1; i < this.length; i++) {
           if (this.getItem(i) < result) {
             result = this.getItem(i);
           }
         }
-
         return result === undefined ? null : result;
       },
-
       /**
        * Invokes the given function for every item in the array.
        *
@@ -959,18 +883,15 @@
        */
       forEach: function forEach(callback, context) {
         var _this2 = this;
-
         this.__P_170_0.forEach(function (element, index) {
           return callback.call(context, element, index, _this2);
         });
       },
-
       /*
       ---------------------------------------------------------------------------
         Additional JS1.6 methods
       ---------------------------------------------------------------------------
       */
-
       /**
        * Creates a new array with all elements that pass the test implemented by
        * the provided function. It returns a new data array instance so make sure
@@ -987,7 +908,6 @@
       filter: function filter(callback, self) {
         return new qx.data.Array(this.__P_170_0.filter(callback, self));
       },
-
       /**
        * Creates a new array with the results of calling a provided function on every
        * element in this array. It returns a new data array instance so make sure
@@ -1003,7 +923,6 @@
       map: function map(callback, self) {
         return new qx.data.Array(this.__P_170_0.map(callback, self));
       },
-
       /**
        * Finds the first matching element in the array which passes the test implemented by the
        * provided function.
@@ -1018,7 +937,6 @@
       find: function find(callback, self) {
         return this.__P_170_0.find(callback, self);
       },
-
       /**
        * Tests whether any element in the array passes the test implemented by the
        * provided function.
@@ -1033,7 +951,6 @@
       some: function some(callback, self) {
         return this.__P_170_0.some(callback, self);
       },
-
       /**
        * Tests whether every element in the array passes the test implemented by the
        * provided function.
@@ -1048,7 +965,6 @@
       every: function every(callback, self) {
         return this.__P_170_0.every(callback, self);
       },
-
       /**
        * Apply a function against an accumulator and each value of the array
        * (from left-to-right) as to reduce it to a single value.
@@ -1065,7 +981,6 @@
       reduce: function reduce(callback, initValue) {
         return this.__P_170_0.reduce(callback, initValue);
       },
-
       /**
        * Apply a function against an accumulator and each value of the array
        * (from right-to-left) as to reduce it to a single value.
@@ -1082,13 +997,11 @@
       reduceRight: function reduceRight(callback, initValue) {
         return this.__P_170_0.reduceRight(callback, initValue);
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL HELPERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Internal function which updates the length property of the array.
        * Every time the length will be updated, a {@link #changeLength} data
@@ -1099,7 +1012,6 @@
         this.length = this.__P_170_0.length;
         this.fireDataEvent("changeLength", this.length, oldLength);
       },
-
       /**
        * Helper to update the event propagation for a range of items.
        * @param from {Number} Start index.
@@ -1111,7 +1023,6 @@
         }
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -1120,15 +1031,13 @@
     destruct: function destruct() {
       for (var i = 0; i < this.__P_170_0.length; i++) {
         var item = this.__P_170_0[i];
+        this._applyEventPropagation(null, item, i);
 
-        this._applyEventPropagation(null, item, i); // dispose the items on auto dispose
-
-
+        // dispose the items on auto dispose
         if (this.isAutoDisposeItems() && item && item instanceof qx.core.Object) {
           item.dispose();
         }
       }
-
       this.__P_170_0 = null;
     },
     defer: function defer(statics) {
@@ -1140,4 +1049,4 @@
   qx.data.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1685978113706
+//# sourceMappingURL=Array.js.map?dt=1691935411972

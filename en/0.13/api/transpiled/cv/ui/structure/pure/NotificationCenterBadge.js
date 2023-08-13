@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* NotificationCenterBadge.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -53,7 +52,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -62,17 +60,14 @@
     construct: function construct(props) {
       var classes = props.classes.trim().split(' ');
       var i_right = classes.indexOf('right');
-
       if (i_right !== -1) {
         // do not align, but float the container instead
         this.setContainerClass('float-right');
         classes.splice(i_right, 1);
         props.classes = classes.join(' ');
       }
-
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -89,7 +84,6 @@
         init: false
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -99,12 +93,9 @@
       __P_63_0: null,
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.NotificationCenterBadge.superclass.prototype._onDomReady.call(this);
-
         var center = cv.ui.NotificationCenter.getInstance();
         center.getMessages().addListener('changeLength', this._onChangeCounter, this);
-
         this._onChangeCounter();
-
         center.addListener('changedGlobalSeverity', this._onChangeGlobalSeverity, this);
       },
       // property apply
@@ -117,21 +108,17 @@
           this._skipNextEvent = null;
           return;
         }
-
         cv.ui.NotificationCenter.getInstance().toggleVisibility();
       },
       __P_63_1: function __P_63_1() {
         if (!this.__P_63_0) {
           this.__P_63_0 = this.getDomElement().querySelector('.badge');
         }
-
         return this.__P_63_0;
       },
       _onChangeGlobalSeverity: function _onChangeGlobalSeverity(ev) {
         var classList = this.__P_63_1().classList;
-
         classList.remove.apply(classList, cv.ui.NotificationCenter.getInstance().getSeverities());
-
         if (ev.getData()) {
           classList.add(ev.getData());
         }
@@ -139,7 +126,6 @@
       _onChangeCounter: function _onChangeCounter() {
         var messages = cv.ui.NotificationCenter.getInstance().getMessages().length;
         this.__P_63_1().innerHTML = '' + messages;
-
         if (this.isHideWhenEmpty()) {
           this.__P_63_1().style.display = messages === 0 ? 'none' : 'block';
         }
@@ -147,15 +133,12 @@
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var style = '';
-
         if (this.isHideWhenEmpty() && this.getCounter() === 0) {
           style = ' style="display: none;"';
         }
-
         return '<div class="actor badge"' + style + '>' + this.getCounter() + '</div>';
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -173,4 +156,4 @@
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1685978099939
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1691935399376

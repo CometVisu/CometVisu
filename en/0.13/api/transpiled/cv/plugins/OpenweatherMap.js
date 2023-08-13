@@ -31,7 +31,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* OpenweatherMap.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -67,7 +66,6 @@
   qx.Class.define('cv.plugins.OpenweatherMap', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Refresh,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -82,7 +80,6 @@
           this.__P_13_0[key] = props[key];
         }
       }, this);
-
       if (props.refresh === 0) {
         // call once
         if (cv.TemplateEngine.getInstance().isDomFinished()) {
@@ -94,7 +91,6 @@
         }
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -137,7 +133,6 @@
         };
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -201,7 +196,6 @@
         nullable: true
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -211,21 +205,16 @@
       __P_13_0: null,
       _getInnerDomString: function _getInnerDomString() {
         var classes = 'widget clearfix text openweathermap';
-
         if (this.getCssClass()) {
           classes += ' ' + this.getCssClass();
         }
-
         return '<div class="' + classes + '"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
       },
       _setupRefreshAction: function _setupRefreshAction() {
         this._timer = new qx.event.Timer(this.getRefresh());
-
         this._timer.addListener('interval', this._refreshAction, this);
-
-        this._timer.start(); // call once immediately
-
-
+        this._timer.start();
+        // call once immediately
         this._refreshAction();
       },
       _refreshAction: function _refreshAction() {
@@ -237,8 +226,8 @@
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addStyles('plugins/openweathermap/owm_basic_style.css');
       loader.addStyles('plugins/openweathermap/owm_weathericon.css');
-      loader.addScripts('plugins/openweathermap/owm_core.js'); // register the parser
-
+      loader.addScripts('plugins/openweathermap/owm_core.js');
+      // register the parser
       cv.parser.pure.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
       cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
     }
@@ -246,4 +235,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1685978092072
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1691935391653

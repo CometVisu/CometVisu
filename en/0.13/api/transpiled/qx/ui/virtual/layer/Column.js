@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,12 +36,12 @@
    */
   qx.Class.define("qx.ui.virtual.layer.Column", {
     extend: qx.ui.virtual.layer.AbstractBackground,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -50,12 +49,12 @@
         init: "column-layer"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
@@ -64,7 +63,6 @@
         var left = 0;
         var column = firstColumn;
         var childIndex = 0;
-
         for (var x = 0; x < columnSizes.length; x++) {
           var color = this.getColor(column);
           var backgroundColor = color ? "background-color:" + color + ";" : "";
@@ -75,10 +73,9 @@
           left += columnSizes[x];
           column += 1;
         }
-
-        var el = this.getContentElement().getDomElement(); // hide element before changing the child nodes to avoid
+        var el = this.getContentElement().getDomElement();
+        // hide element before changing the child nodes to avoid
         // premature reflow calculations
-
         el.style.display = "none";
         el.innerHTML = html.join("");
         el.style.display = "block";
@@ -94,7 +91,6 @@
         qx.ui.virtual.layer.Column.superclass.prototype.setColor.call(this, index, color);
         var firstColumn = this.getFirstColumn();
         var lastColumn = firstColumn + this.getColumnSizes().length - 1;
-
         if (index >= firstColumn && index <= lastColumn) {
           this.updateLayerData();
         }
@@ -104,4 +100,4 @@
   qx.ui.virtual.layer.Column.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Column.js.map?dt=1685978151819
+//# sourceMappingURL=Column.js.map?dt=1691935448078

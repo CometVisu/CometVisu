@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,7 +61,6 @@
       _listener: null,
       __P_202_0: null,
       __P_202_1: null,
-
       /**
        * Adds a route handler for the given channel. The route is called
        * if the {@link #emit} method finds a match.
@@ -76,7 +74,6 @@
       on: function on(channel, type, handler, scope) {
         return this._addListener(channel, type, handler, scope);
       },
-
       /**
        * Adds a handler for the "any" channel. The "any" channel is called
        * before all other channels.
@@ -89,7 +86,6 @@
       onAny: function onAny(type, handler, scope) {
         return this._addListener("any", type, handler, scope);
       },
-
       /**
        * Adds a listener for a certain channel.
        *
@@ -103,18 +99,16 @@
         var listeners = this._listener[channel] = this._listener[channel] || {};
         var id = this.__P_202_0++;
         var params = [];
-        var param = null; // Convert the route to a regular expression.
+        var param = null;
 
+        // Convert the route to a regular expression.
         if (qx.lang.Type.isString(type)) {
           var paramsRegexp = /\{([\w\d]+)\}/g;
-
           while ((param = paramsRegexp.exec(type)) !== null) {
             params.push(param[1]);
           }
-
           type = new RegExp("^" + type.replace(paramsRegexp, "([^/]+)") + "$");
         }
-
         listeners[id] = {
           regExp: type,
           params: params,
@@ -124,7 +118,6 @@
         this.__P_202_1[id] = channel;
         return id;
       },
-
       /**
        * Removes a registered listener by the given id.
        *
@@ -136,7 +129,6 @@
         delete listener[id];
         delete this.__P_202_1[id];
       },
-
       /**
        * Checks if a listener is registered for the given path in the given channel.
        *
@@ -146,22 +138,17 @@
        */
       has: function has(channel, path) {
         var listeners = this._listener[channel];
-
         if (!listeners || qx.lang.Object.isEmpty(listeners)) {
           return false;
         }
-
         for (var id in listeners) {
           var listener = listeners[id];
-
           if (listener.regExp.test(path)) {
             return true;
           }
         }
-
         return false;
       },
-
       /**
        * Sends a message on the given channel and informs all matching route handlers.
        *
@@ -173,7 +160,6 @@
       emit: function emit(channel, path, params, customData) {
         this._emit(channel, path, params, customData);
       },
-
       /**
        * Executes a certain channel with a given path. Informs all
        * route handlers that match with the path.
@@ -190,12 +176,10 @@
         var listenerMatched = false;
         listener = this._listener[channel];
         listenerMatched = this._emitListeners(channel, path, listener, params, customData);
-
         if (!listenerMatched && !listenerMatchedAny) {
           qx.Bootstrap.info("No listener found for " + path);
         }
       },
-
       /**
        * Executes all given listener for a certain channel. Checks all listeners if they match
        * with the given path and executes the stored handler of the matching route.
@@ -212,17 +196,13 @@
         if (!listeners || qx.lang.Object.isEmpty(listeners)) {
           return false;
         }
-
         var listenerMatched = false;
-
         for (var id in listeners) {
           var listener = listeners[id];
           listenerMatched |= this._emitRoute(channel, path, listener, params, customData);
         }
-
         return listenerMatched;
       },
-
       /**
        * Executes a certain listener. Checks if the listener matches the given path and
        * executes the stored handler of the route.
@@ -237,31 +217,26 @@
        */
       _emitRoute: function _emitRoute(channel, path, listener, params, customData) {
         var match = listener.regExp.exec(path);
-
         if (match) {
           var params = params || {};
           var param = null;
           var value = null;
           match.shift(); // first match is the whole path
-
           for (var i = 0; i < match.length; i++) {
             value = match[i];
             param = listener.params[i];
-
             if (param) {
               params[param] = value;
             } else {
               params[i] = value;
             }
           }
-
           listener.handler.call(listener.scope, {
             path: path,
             params: params,
             customData: customData
           });
         }
-
         return match != undefined;
       }
     }
@@ -269,4 +244,4 @@
   qx.event.Messaging.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Messaging.js.map?dt=1685978120657
+//# sourceMappingURL=Messaging.js.map?dt=1691935418495

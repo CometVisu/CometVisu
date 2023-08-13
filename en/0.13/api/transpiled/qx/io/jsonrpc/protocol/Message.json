@@ -11,12 +11,12 @@
       "start": {
         "line": 22,
         "column": 0,
-        "index": 555
+        "index": 576
       },
       "end": {
         "line": 48,
         "column": 3,
-        "index": 1044
+        "index": 1091
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 25,
           "column": 4,
-          "index": 653
+          "index": 677
         },
         "end": {
           "line": 28,
           "column": 5,
-          "index": 710
+          "index": 737
         }
       },
       "name": "jsonrpc",
@@ -88,12 +88,12 @@
         "start": {
           "line": 44,
           "column": 4,
-          "index": 964
+          "index": 1007
         },
         "end": {
           "line": 46,
           "column": 5,
-          "index": 1036
+          "index": 1081
         }
       },
       "jsdoc": {

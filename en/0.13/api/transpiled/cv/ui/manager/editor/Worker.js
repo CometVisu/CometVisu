@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Worker.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,7 +43,6 @@
   qx.Class.define('cv.ui.manager.editor.Worker', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -52,13 +50,11 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this._files = {}; // create WebWorker
-
+      this._files = {};
+      // create WebWorker
       this._worker = cv.data.FileWorker.getInstance();
-
       this._worker.addListener('message', this._onMessage, this);
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -70,7 +66,6 @@
         nullable: true
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -85,14 +80,12 @@
           code: qx.xml.Document.isXmlDocument(code) ? code.documentElement.outerHTML : code,
           schema: schema
         }, features]);
-
         this._files[file.getFullPath()] = file;
       },
       close: function close(file) {
         this._worker.postMessage(['closeFile', {
           path: file.getFullPath()
         }]);
-
         delete this._files[file.getFullPath()];
       },
       contentChanged: function contentChanged(file, content) {
@@ -105,7 +98,6 @@
         if (file.isConfigFile()) {
           return this._worker.validateConfig(file.getServerPath());
         }
-
         qx.log.Logger.error(this, file.getFullPath() + ' is no configuration file');
         return true;
       },
@@ -117,47 +109,36 @@
         var data = e.getData().data;
         var path = e.getData().path;
         var file = this._files[path];
-
         if (!file && topic !== 'validationResult') {
           qx.log.Logger.error(this, 'no file found for path ' + path + ' ignoring worker message for topic ' + topic);
           return;
         }
-
         var editor = this.getEditor();
-
         switch (topic) {
           case 'modified':
             // new files are always modified, to not override that state
             if (!file.isTemporary()) {
               file.setModified(data.modified);
             }
-
             file.setHash(data.currentHash);
             break;
-
           case 'hash':
             file.setHash(data);
             break;
-
           case 'errors':
             file.setValid(!data || data.length === 0);
-
             if (editor) {
               editor.showErrors(path, data);
             }
-
             break;
-
           case 'decorations':
             if (editor) {
               editor.showDecorations(path, data);
             }
-
             break;
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -165,11 +146,10 @@
     */
     destruct: function destruct() {
       this._worker.terminate();
-
       this._worker = null;
     }
   });
   cv.ui.manager.editor.Worker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Worker.js.map?dt=1685978095873
+//# sourceMappingURL=Worker.js.map?dt=1691935395240

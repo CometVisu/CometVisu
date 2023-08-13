@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,36 +37,31 @@
    */
   qx.Class.define("qx.ui.table.cellrenderer.Image", {
     extend: qx.ui.table.cellrenderer.AbstractImage,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param height {Integer?16} The height of the image. The default is 16.
      * @param width {Integer?16} The width of the image. The default is 16.
      */
     construct: function construct(width, height) {
       qx.ui.table.cellrenderer.AbstractImage.constructor.call(this);
-
       if (width) {
         this.__P_441_0 = width;
       }
-
       if (height) {
         this.__P_441_1 = height;
       }
-
       this.__P_441_2 = qx.util.AliasManager.getInstance();
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_441_2: null,
       __P_441_1: 16,
@@ -78,18 +72,15 @@
           imageWidth: this.__P_441_0,
           imageHeight: this.__P_441_1
         };
-
         if (cellInfo.value == "") {
           imageHints.url = null;
         } else {
           imageHints.url = this.__P_441_2.resolve(cellInfo.value);
         }
-
         imageHints.tooltip = cellInfo.tooltip;
         return imageHints;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -102,4 +93,4 @@
   qx.ui.table.cellrenderer.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1685978147276
+//# sourceMappingURL=Image.js.map?dt=1691935443569

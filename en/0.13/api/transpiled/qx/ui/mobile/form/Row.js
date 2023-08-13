@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,13 +35,11 @@
    */
   qx.Class.define("qx.ui.mobile.form.Row", {
     extend: qx.ui.mobile.container.Composite,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param layout {qx.ui.mobile.layout.Abstract?null} The layout that should be used for this
      *     container
@@ -51,19 +48,18 @@
       qx.ui.mobile.container.Composite.constructor.call(this, layout);
       this.initSelectable();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "form-row"
       },
-
       /**
        * Whether the widget is selectable or not.
        */
@@ -73,12 +69,12 @@
         apply: "_applyAttribute"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _getTagName: function _getTagName() {
@@ -89,4 +85,4 @@
   qx.ui.mobile.form.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1685978143800
+//# sourceMappingURL=Row.js.map?dt=1691935440200

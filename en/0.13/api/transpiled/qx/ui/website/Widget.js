@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,7 +76,6 @@
         widget.init();
         return widget;
       },
-
       /**
        * Creates a new collection from the given argument. This can either be an
        * HTML string, a single DOM element or an array of elements
@@ -88,7 +86,6 @@
       create: function create(html) {
         return new qx.ui.website.Widget(qxWeb.create(html));
       },
-
       /**
        * Fetches elements with a data attribute named <code>data-qx-class</code>
        * containing the class name of the desired widget and initializes them as
@@ -100,16 +97,13 @@
        */
       initWidgets: function initWidgets(selector) {
         var elements = qxWeb("*[data-qx-class]");
-
         if (selector) {
           elements = elements.filter(selector);
         }
-
         elements._forEachElementWrapped(function (widget) {
           widget.init();
         });
       },
-
       /**
        * Returns a wrapper Array that maps the widget API available on
        * the first item in the current collection to all items in the
@@ -121,26 +115,24 @@
       toWidgetCollection: function toWidgetCollection() {
         var args = this.toArray().map(function (el) {
           return qxWeb(el);
-        }); // Set the context for the 'bind' call (will be replaced by new)
+        });
 
-        Array.prototype.unshift.call(args, null); // Create temporary constructor with bound arguments
-
+        // Set the context for the 'bind' call (will be replaced by new)
+        Array.prototype.unshift.call(args, null);
+        // Create temporary constructor with bound arguments
         var Temp = qx.core.Wrapper.bind.apply(qx.core.Wrapper, args);
         return new Temp();
       }
     },
     construct: function construct(selector, context) {
       var col = qxWeb.constructor.call(this, selector, context);
-
       if (col.length > 1) {
         throw new Error("The collection must not contain more than one element.");
       }
-
       Array.prototype.push.apply(this, Array.prototype.slice.call(col, 0, col.length));
     },
     members: {
       __P_494_0: null,
-
       /**
        * Responsible for initializing of the widget. This checks for the data attribute
        * named <code>data-qx-class</code> and initializes the widget if necessary.
@@ -150,19 +142,15 @@
         if (this.getProperty("$$qx-widget-initialized")) {
           return false;
         }
-
         this.setAttribute("data-qx-class", this.classname);
         this.addClass("qx-widget");
         this.addClass(this.getCssPrefix());
         this.setProperty("$$qx-widget-initialized", true);
-
         if (this[0]) {
           this[0].$widget = this;
         }
-
         return true;
       },
-
       /**
        * Return the proper CSS prefix for the current widget. This prefix is
        * based on the current classname.
@@ -174,10 +162,8 @@
           var split = this.classname.split(".");
           this.__P_494_0 = "qx-" + split[split.length - 1].toLowerCase();
         }
-
         return this.__P_494_0;
       },
-
       /**
        * Changes the enabled state of the current collection, which means all
        * widgets in the collection. This sets the disabled attribute on the
@@ -191,7 +177,6 @@
         this.find("*").setAttribute("disabled", !value);
         return this;
       },
-
       /**
        * Returns weather the first widget in the collection is enabled or not.
        *
@@ -200,7 +185,6 @@
       getEnabled: function getEnabled() {
         return !this.getAttribute("disabled");
       },
-
       /**
        * Setter for the widget-specific templates. The available templates can
        * be found in the documentation of the corresponding widget. The templates
@@ -218,7 +202,6 @@
       setTemplate: function setTemplate(name, template) {
         return this._setData("templates", name, template);
       },
-
       /**
        * Setter for the widget-specific config. The available config settings can
        * be found in the documentation of the corresponding widget. Each config
@@ -235,7 +218,6 @@
       setConfig: function setConfig(name, config) {
         return this._setData("config", name, config);
       },
-
       /**
        * Helper to set either config or template values.
        *
@@ -248,11 +230,9 @@
         if (!this["$$storage_" + type]) {
           this["$$storage_" + type] = {};
         }
-
         this["$$storage_" + type][name] = data;
         return this;
       },
-
       /**
        * Returns the used template. This includes custom templates
        * as the default templates defined by the widgets.
@@ -263,7 +243,6 @@
       getTemplate: function getTemplate(name) {
         return this._getData("templates", name);
       },
-
       /**
        * Returns the config setting currently in use for the given widget.
        * This can either be the user set config value, the value set in
@@ -276,7 +255,6 @@
       getConfig: function getConfig(name) {
         return this._getData("config", name);
       },
-
       /**
        * Internal helper for querying the values for templates and configs. In the
        * case of a config value, the method also reads the corresponding data-attribute
@@ -289,31 +267,26 @@
       _getData: function _getData(type, name) {
         var storage = this["$$storage_" + type];
         var item;
-
         if (storage) {
           item = storage[name];
         }
-
         if (item === undefined && type == "config") {
           var attribName = "qx" + qxWeb.string.firstUp(type) + qxWeb.string.firstUp(name);
-          item = this.getData(attribName); // not defined HTML attributes result in 'null' values
+          item = this.getData(attribName);
 
+          // not defined HTML attributes result in 'null' values
           if (!this[0] || !this[0].dataset && item === null) {
             item = undefined;
           }
-
           try {
             item = JSON.parse(item);
           } catch (e) {}
         }
-
         if (item === undefined && this.constructor["_" + type]) {
           return this.constructor["_" + type][name];
         }
-
         return item;
       },
-
       /**
        * The render method is responsible for applying changed config
        * and template settings. This method is usually overridden and specified
@@ -325,7 +298,6 @@
         // empty method
         return this;
       },
-
       /**
        * Dispose the widget, making sure all objects are ready for
        * garbage collection. This mainly means deleting connections to the
@@ -341,11 +313,9 @@
         this.setProperty("$$qx-widget-initialized", undefined);
         this.removeClass("qx-widget");
         this.removeClass(this.getCssPrefix());
-
         for (var name in this.constructor.$$events) {
           this.allOff(name);
         }
-
         this[0].$widget = null;
         return qxWeb.$init(this, qxWeb);
       }
@@ -363,4 +333,4 @@
   qx.ui.website.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1685978153370
+//# sourceMappingURL=Widget.js.map?dt=1691935449761

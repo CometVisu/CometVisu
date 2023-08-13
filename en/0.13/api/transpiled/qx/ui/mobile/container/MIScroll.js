@@ -32,7 +32,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -65,7 +64,6 @@
    * @ignore(iScroll)
    * @asset(qx/mobile/js/iscroll*.js)
    */
-
   /* global iScroll */
   qx.Mixin.define("qx.ui.mobile.container.MIScroll", {
     /*
@@ -75,18 +73,16 @@
     */
     construct: function construct() {
       this.__P_386_0();
-
       this.__P_386_1();
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_386_2: null,
-
       /**
        * Mixin method. Creates the scroll element.
        *
@@ -97,7 +93,6 @@
         qx.bom.element.Class.add(scroll, "iscroll");
         return scroll;
       },
-
       /**
        * Mixin method. Returns the scroll content element..
        *
@@ -106,7 +101,6 @@
       _getScrollContentElement: function _getScrollContentElement() {
         return this.getContainerElement().childNodes[0];
       },
-
       /**
        * Returns the current scroll position
        * @return {Array} an array with the <code>[scrollLeft,scrollTop]</code>.
@@ -114,7 +108,6 @@
       _getPosition: function _getPosition() {
         return [this._currentX, this._currentY];
       },
-
       /**
        * Returns the scrolling height of the inner container.
        * @return {Number} the scrolling height.
@@ -123,10 +116,8 @@
         if (!this.getContainerElement()) {
           return 0;
         }
-
         return this._getScrollContentElement().scrollHeight - this.getContainerElement().offsetHeight;
       },
-
       /**
        * Returns the scrolling width of the inner container.
        * @return {Number} the scrolling width.
@@ -135,10 +126,8 @@
         if (!this.getContainerElement()) {
           return 0;
         }
-
         return this._getScrollContentElement().scrollWidth - this.getContainerElement().offsetWidth;
       },
-
       /**
        * Scrolls the wrapper contents to the x/y coordinates in a given period.
        *
@@ -151,29 +140,23 @@
         if (this._isScrollable()) {
           // Normalize scrollable values
           var lowerLimitY = qx.bom.element.Dimension.getHeight(this._getScrollContentElement()) - this.getContainerElement().offsetHeight;
-
           if (y > lowerLimitY) {
             y = lowerLimitY;
           }
-
           var lowerLimitX = qx.bom.element.Dimension.getWidth(this._getScrollContentElement()) - this.getContainerElement().offsetWidth;
-
           if (x > lowerLimitX) {
             x = lowerLimitX;
           }
-
           if (this.__P_386_2) {
             this.__P_386_2.scrollTo(-x, -y, time);
           } else {
             // Case when iScroll is not loaded yet, but user tries
             // to set a different scroll position. Position is applied on "__onScrollLoaded".
             this._setCurrentY(x);
-
             this._setCurrentY(y);
           }
         }
       },
-
       /**
        * Loads and inits the iScroll instance.
        *
@@ -181,7 +164,6 @@
        */
       __P_386_0: function __P_386_0() {
         var _this = this;
-
         if (!window.iScroll) {
           {
             var resource = "qx/mobile/js/iscroll.min.js";
@@ -197,7 +179,6 @@
           });
         }
       },
-
       /**
        * Creates the iScroll instance.
        *
@@ -206,17 +187,13 @@
        */
       __P_386_4: function __P_386_4() {
         var defaultScrollProperties = this._getDefaultScrollProperties();
-
         var customScrollProperties = {};
-
         if (this._scrollProperties != null) {
           customScrollProperties = this._scrollProperties;
         }
-
         var iScrollProperties = qx.lang.Object.mergeWith(defaultScrollProperties, customScrollProperties, true);
         return new iScroll(this.getContainerElement(), iScrollProperties);
       },
-
       /**
        * Returns a map with default iScroll properties for the iScroll instance.
        * @return {Object} Map with default iScroll properties
@@ -234,11 +211,8 @@
             // Alert interested parties that we scrolled to end of page.
             if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
               container._setCurrentX(-this.x);
-
               container._setCurrentY(-this.y);
-
               container.fireEvent("scrollEnd");
-
               if (this.y == this.maxScrollY) {
                 container.fireEvent("pageEnd");
               }
@@ -248,9 +222,7 @@
             // Alert interested parties that we scrolled to end of page.
             if (qx.core.Environment.get("qx.mobile.nativescroll") == false) {
               container._setCurrentX(-this.x);
-
               container._setCurrentY(-this.y);
-
               if (this.y == this.maxScrollY) {
                 container.fireEvent("pageEnd");
               }
@@ -258,16 +230,13 @@
           },
           onBeforeScrollStart: function onBeforeScrollStart(e) {
             // QOOXDOO ENHANCEMENT: Do not prevent default for form elements
-
             /* When updating iScroll, please check out that doubleTapTimer is not active (commented out)
              * in code. DoubleTapTimer creates a fake click event. Android 4.1. and newer
              * is able to fire native events, which  create side effect with the fake event of iScroll. */
             var target = e.target;
-
             while (target.nodeType != 1) {
               target = target.parentNode;
             }
-
             if (target.tagName != "SELECT" && target.tagName != "INPUT" && target.tagName != "TEXTAREA" && target.tagName != "LABEL") {
               // Remove focus from input elements, so that the keyboard and the mouse cursor is hidden
               var elements = [];
@@ -275,17 +244,14 @@
               var textAreaElements = qx.lang.Array.cast(document.getElementsByTagName("textarea"), Array);
               elements = elements.concat(inputElements);
               elements = elements.concat(textAreaElements);
-
               for (var i = 0, length = elements.length; i < length; i++) {
                 elements[i].blur();
               }
-
               e.preventDefault();
             }
           }
         };
       },
-
       /**
        * Registers all needed event listener.
        */
@@ -295,7 +261,6 @@
         this.addListener("touchmove", qx.bom.Event.stopPropagation);
         this.addListener("domupdated", this._refresh, this);
       },
-
       /**
        * Unregisters all needed event listener.
        */
@@ -305,7 +270,6 @@
         this.removeListener("touchmove", qx.bom.Event.stopPropagation);
         this.removeListener("domupdated", this._refresh, this);
       },
-
       /**
        * Load callback. Called when the iScroll script is loaded.
        *
@@ -315,12 +279,10 @@
         if (request.status < 400) {
           if (!this.isDisposed()) {
             this._setScroll(this.__P_386_4());
-
             this._scrollTo(this._currentX, this._currentY);
           }
         } else {}
       },
-
       /**
        * Setter for the scroll instance.
        *
@@ -329,7 +291,6 @@
       _setScroll: function _setScroll(scroll) {
         this.__P_386_2 = scroll;
       },
-
       /**
        * Delegation method for iScroll. Disabled the iScroll objects.
        * Prevents any further scrolling of this container.
@@ -339,7 +300,6 @@
           this.__P_386_2.disable();
         }
       },
-
       /**
        * Delegation method for iScroll. Enables the iScroll object.
        */
@@ -348,7 +308,6 @@
           this.__P_386_2.enable();
         }
       },
-
       /**
        * Calls the refresh function of iScroll. Needed to recalculate the
        * scrolling container.
@@ -359,24 +318,22 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_386_5(); // Cleanup iScroll
+      this.__P_386_5();
 
-
+      // Cleanup iScroll
       if (this.__P_386_2) {
         this.__P_386_2.destroy();
       }
-
       this.__P_386_2 = null;
     }
   });
   qx.ui.mobile.container.MIScroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MIScroll.js.map?dt=1685978142332
+//# sourceMappingURL=MIScroll.js.map?dt=1691935438759

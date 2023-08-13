@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* CompareFiles.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.ui.manager.model.CompareFiles', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -50,7 +48,6 @@
       this.setOriginalFile(original);
       this.setModifiedFile(modified);
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -85,7 +82,6 @@
         event: 'changeModified'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -125,7 +121,6 @@
       isMounted: function isMounted() {
         return this.getModifiedFile().isMounted() || this.getOriginalFile().isMounted();
       },
-
       /**
        * Returns a fake URI that can be used to identify the file.
        * Used by monaco editor as model URI.
@@ -139,4 +134,4 @@
   cv.ui.manager.model.CompareFiles.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CompareFiles.js.map?dt=1685978097043
+//# sourceMappingURL=CompareFiles.js.map?dt=1691935396400

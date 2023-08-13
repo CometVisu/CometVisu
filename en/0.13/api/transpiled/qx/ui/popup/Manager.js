@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,19 +48,21 @@
   qx.Class.define("qx.ui.popup.Manager", {
     type: "singleton",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // Create data structure, use an array because order matters [BUG #4323]
+      qx.core.Object.constructor.call(this);
 
-      this.__P_417_0 = []; // Register pointerdown handler
+      // Create data structure, use an array because order matters [BUG #4323]
+      this.__P_417_0 = [];
 
-      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__P_417_1, this, true); // Hide all popups on window blur
+      // Register pointerdown handler
+      qx.event.Registration.addListener(document.documentElement, "pointerdown", this.__P_417_1, this, true);
 
+      // Hide all popups on window blur
       qx.bom.Element.addListener(window, "blur", this.hideAll, this);
     },
     properties: {
@@ -73,15 +74,14 @@
         init: qx.ui.core.Widget.contains
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_417_0: null,
-
       /**
        * Registers a visible popup.
        *
@@ -89,10 +89,8 @@
        */
       add: function add(obj) {
         this.__P_417_0.push(obj);
-
         this.__P_417_2();
       },
-
       /**
        * Removes a popup from the registry
        *
@@ -100,33 +98,27 @@
        */
       remove: function remove(obj) {
         qx.lang.Array.remove(this.__P_417_0, obj);
-
         this.__P_417_2();
       },
-
       /**
        * Excludes all currently open popups,
        * except those with {@link qx.ui.popup.Popup#autoHide} set to false.
        */
       hideAll: function hideAll() {
         var l = this.__P_417_0.length,
-            current = {};
-
+          current = {};
         while (l--) {
           current = this.__P_417_0[l];
-
           if (current.getAutoHide()) {
             current.exclude();
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL HELPER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Updates the zIndex of all registered items to push
        * newly added ones on top of existing ones
@@ -134,18 +126,15 @@
        */
       __P_417_2: function __P_417_2() {
         var min = 1e7;
-
         for (var i = 0; i < this.__P_417_0.length; i++) {
           this.__P_417_0[i].setZIndex(min++);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Event handler for pointer down events
        *
@@ -159,19 +148,15 @@
         // application root is monitored.
         var target = qx.ui.core.Widget.getWidgetByElement(e.getTarget());
         var reg = this.__P_417_0;
-
         for (var i = 0; i < reg.length; i++) {
           var obj = reg[i];
-
           if (!obj.getAutoHide() || target == obj || this.getContainsFunction()(obj, target)) {
             continue;
           }
-
           obj.exclude();
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -179,11 +164,10 @@
     */
     destruct: function destruct() {
       qx.event.Registration.removeListener(document.documentElement, "pointerdown", this.__P_417_1, this, true);
-
       this._disposeArray("__P_417_0");
     }
   });
   qx.ui.popup.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1685978145132
+//# sourceMappingURL=Manager.js.map?dt=1691935441490

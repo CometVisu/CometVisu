@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -69,22 +68,17 @@
    */
   qx.Class.define("qx.ui.indicator.ProgressBar", {
     extend: qx.ui.container.Composite,
-
     /**
      * @param value {Number ? 0} Progress bar value
      * @param maximum {Number ? 100} Progress bar maximum value
      */
     construct: function construct(value, maximum) {
       qx.ui.container.Composite.constructor.call(this);
-
       this._createChildControl("progress");
-
       this.setLayout(new qx.ui.layout.HBox());
-
       if (maximum != null) {
         this.setMaximum(maximum);
       }
-
       if (value != null) {
         this.setValue(value);
       }
@@ -94,14 +88,12 @@
         refine: true,
         init: "progressbar"
       },
-
       /** Maximum value of the progress bar */
       maximum: {
         init: 100,
         event: "changeMaximum",
         apply: "_applyMaximum"
       },
-
       /** Current value of the progress bar */
       value: {
         init: 0,
@@ -114,7 +106,6 @@
        * Fired when the process is complete (value === maximum value)
        */
       complete: "qx.event.type.Event",
-
       /**
        * Fired when the % complete value is changed.
        */
@@ -123,62 +114,60 @@
     members: {
       // property apply
       _applyValue: function _applyValue(value, old) {
-        var max = this.getMaximum(); //do nothing if is not a number
+        var max = this.getMaximum();
 
+        //do nothing if is not a number
         if (!qx.lang.Type.isNumber(value) || !isFinite(value)) {
           value = old;
         }
-
         if (value < 0) {
           // limit value to 0
           value = 0;
         } else if (value > max) {
           // limit value to max
           value = max;
-        } //set value
+        }
 
+        //set value
+        this.setValue(value);
 
-        this.setValue(value); //update progress
-
+        //update progress
         this._changeProgress(value / max);
       },
       // property apply
       _applyMaximum: function _applyMaximum(value, old) {
         var max = value;
-        var val = this.getValue(); //do nothing if is not a number, is negative or zero
+        var val = this.getValue();
 
+        //do nothing if is not a number, is negative or zero
         if (!qx.lang.Type.isNumber(max) || !isFinite(max) || max <= 0) {
           max = old;
-        } //limit max to a greater than 0 value
+        }
 
-
+        //limit max to a greater than 0 value
         if (max < val) {
           max = val;
-        } //set max
+        }
 
+        //set max
+        this.setMaximum(max);
 
-        this.setMaximum(max); //update progress
-
+        //update progress
         this._changeProgress(val / max);
       },
       //overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "progress":
             control = new qx.ui.container.Composite(new qx.ui.layout.Canvas());
-
             this._add(control, {
               width: "0%"
             });
-
             break;
         }
-
         return control || qx.ui.indicator.ProgressBar.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /**
        * Update the progress bar.
        *
@@ -190,13 +179,14 @@
         var from = parseInt(bar.getLayoutProperties().width, 10);
         bar.setLayoutProperties({
           width: to + "%"
-        }); //fire change event
+        });
 
+        //fire change event
         if (to != from) {
           this.fireDataEvent("change", to, from);
-        } //fire complete event if 100% complete
+        }
 
-
+        //fire complete event if 100% complete
         if (to === 100) {
           this.fireEvent("complete");
         }
@@ -206,4 +196,4 @@
   qx.ui.indicator.ProgressBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ProgressBar.js.map?dt=1685978140111
+//# sourceMappingURL=ProgressBar.js.map?dt=1691935436663

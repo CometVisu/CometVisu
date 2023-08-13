@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,20 +63,22 @@
       // overridden
       main: function main() {
         // Call super class
-        qxl.apiviewer.Application.superclass.prototype.main.call(this); // Add log appenders
+        qxl.apiviewer.Application.superclass.prototype.main.call(this);
+
+        // Add log appenders
 
         qx.Class.include(qx.ui.core.Widget, qxl.apiviewer.MWidgetRegistry);
         this.viewer = new qxl.apiviewer.Viewer();
-        this.controller = new qxl.apiviewer.Controller(); // set variables for later usage.
-
+        this.controller = new qxl.apiviewer.Controller();
+        // set variables for later usage.
         this.getRoot().add(this.viewer, {
           edge: 0
         });
       },
       // overridden
       finalize: function finalize() {
-        qxl.apiviewer.Application.superclass.prototype.finalize.call(this); // Finally load the data
-
+        qxl.apiviewer.Application.superclass.prototype.finalize.call(this);
+        // Finally load the data
         this.viewer._searchView.apiindex = qxl.$$apiviewer.apiindex;
         this.controller.load(qxl.$$apiviewer.classes);
       }
@@ -89,4 +90,4 @@
   qxl.apiviewer.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1685978155901
+//# sourceMappingURL=Application.js.map?dt=1691935452029

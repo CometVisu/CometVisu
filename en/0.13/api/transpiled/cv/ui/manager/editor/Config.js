@@ -30,7 +30,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Config.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -55,7 +54,6 @@
    */
   qx.Class.define('cv.ui.manager.editor.Config', {
     extend: cv.ui.manager.editor.AbstractEditor,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -64,14 +62,10 @@
     construct: function construct() {
       cv.ui.manager.editor.AbstractEditor.constructor.call(this);
       this._handledActions = ['save'];
-
       this._setLayout(new qx.ui.layout.VBox(8));
-
       this._createChildControl('list');
-
       this._createChildControl('add-section');
     },
-
     /*
     ***********************************************
       STATICS
@@ -80,7 +74,6 @@
     statics: {
       TITLE: qx.locale.Manager.tr('Hidden configuration')
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -92,7 +85,6 @@
         init: 'cv-editor-config'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -104,9 +96,7 @@
       __P_33_0: 0,
       _initClient: function _initClient() {
         this._client = cv.io.rest.Client.getConfigClient();
-
         this._client.addListener('getSuccess', this._onModelValueChange, this);
-
         this._client.addListener('updateSuccess', this._onSaved, this);
       },
       _loadFile: function _loadFile(file) {
@@ -120,13 +110,11 @@
       _onModelValueChange: function _onModelValueChange(ev) {
         if (this.getFile()) {
           var content = ev.getData();
-
           if (Object.prototype.hasOwnProperty.call(content, 'error')) {
             // loading error
             qxl.dialog.Dialog.confirm(this.tr('Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?'), function (confirmed) {
               var file = this.getFile();
               qx.event.message.Bus.dispatchByName('cv.manager.action.close', file);
-
               if (confirmed) {
                 qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
                   file: file.getFullPath(),
@@ -145,7 +133,6 @@
       // overridden
       _applyContent: function _applyContent(value) {
         var model = this._listController.getModel();
-
         model.removeAll();
         this.__P_33_0 = Object.keys(value).length;
         Object.keys(value).forEach(function (sectionName) {
@@ -155,7 +142,6 @@
           }, this);
           model.push(section);
         }, this);
-
         this.__P_33_1();
       },
       // overridden
@@ -165,23 +151,18 @@
       _onDeleteSection: function _onDeleteSection(ev) {
         if (this.getFile() && this.getFile().isWriteable()) {
           var section = ev.getData();
-
           var model = this._listController.getModel();
-
           model.remove(section);
-
           this.__P_33_1();
         }
       },
       // compare current controller model with the loaded config content
       __P_33_1: function __P_33_1() {
         var file = this.getFile();
-
         if (this.__P_33_0 !== this._listController.getModel().length) {
           file.setModified(true);
           return;
         }
-
         var modified = this.getChildControl('list').getChildren().some(function (sectionListItem) {
           return sectionListItem.isModified();
         }, this);
@@ -191,28 +172,23 @@
         if (!this.getFile() || !this.getFile().isWriteable()) {
           cv.ui.manager.snackbar.Controller.info(this.tr('Hidden configuration file (hidden.php) not writeable'));
           return;
-        } // check for duplicate section names of keys
-
-
+        }
+        // check for duplicate section names of keys
         var model = this._listController.getModel();
-
         var keys = [];
         var valid = true;
         model.forEach(function (section) {
           var key = section.getName();
-
           if (!keys.includes(key)) {
             keys.push(key);
           } else {
             valid = false;
             cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Section name duplicate: "%1".', key));
-          } // check for key duplicates in this sections options
-
-
+          }
+          // check for key duplicates in this sections options
           var optionKeys = [];
           section.getOptions().forEach(function (option) {
             var optionKey = option.getKey();
-
             if (!optionKeys.includes(optionKey)) {
               optionKeys.push(optionKey);
             } else {
@@ -221,10 +197,8 @@
             }
           }, this);
         }, this);
-
         if (valid) {
           var data = {};
-
           this._listController.getModel().forEach(function (section) {
             var options = {};
             section.getOptions().forEach(function (option) {
@@ -232,13 +206,11 @@
             });
             data[section.getName()] = options;
           }, this);
-
           this._client.saveSync(null, data, function (err) {
             if (err) {
               cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
             } else {
               cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
-
               this._onSaved();
             }
           }, this);
@@ -249,15 +221,12 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this = this;
-
         var control;
-
         switch (id) {
           case 'list':
             control = new qx.ui.form.List();
             control.setEnableInlineFind(false);
             this._listController = new qx.data.controller.List(new qx.data.Array(), control);
-
             this._listController.setDelegate({
               createItem: function createItem() {
                 return new cv.ui.manager.form.SectionListItem();
@@ -275,25 +244,18 @@
                 });
               }.bind(this)
             });
-
             this._add(control, {
               flex: 1
             });
-
             break;
-
           case 'buttons':
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
-
             this._add(control);
-
             break;
-
           case 'add-section':
             control = new qx.ui.form.Button(this.tr('Add section'));
             control.addListener('execute', function () {
               _this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
-
               _this.__P_33_1();
             });
             this.bind('file.writeable', control, 'visibility', {
@@ -304,11 +266,9 @@
             this.getChildControl('buttons').add(control);
             break;
         }
-
         return control || cv.ui.manager.editor.Config.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -321,4 +281,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1685978095031
+//# sourceMappingURL=Config.js.map?dt=1691935394406

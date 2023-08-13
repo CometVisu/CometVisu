@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
       toString: function toString() {
         return qx.util.Serializer.toJson(this);
       },
-
       /**
        * Serialize to a native javascript object
        * @return {Object}
@@ -63,4 +61,4 @@
   qx.io.jsonrpc.protocol.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1685978125110
+//# sourceMappingURL=Message.js.map?dt=1691935422665

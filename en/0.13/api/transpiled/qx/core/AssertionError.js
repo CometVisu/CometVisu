@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,13 +39,11 @@
    */
   qx.Bootstrap.define("qx.core.AssertionError", {
     extend: qx.type.BaseError,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param comment {String} Comment passed to the assertion call
      * @param failMessage {String} Fail message provided by the assertion
@@ -55,15 +52,14 @@
       qx.type.BaseError.call(this, comment, failMessage);
       this.__P_157_0 = qx.dev.StackTrace.getStackTrace();
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_157_0: null,
-
       /**
        * Stack trace of the error
        *
@@ -77,4 +73,4 @@
   qx.core.AssertionError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AssertionError.js.map?dt=1685978112508
+//# sourceMappingURL=AssertionError.js.map?dt=1691935410898

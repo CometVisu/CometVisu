@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,12 +37,12 @@
    */
   qx.Class.define("qx.ui.splitpane.Slider", {
     extend: qx.ui.core.Widget,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       allowShrinkX: {
@@ -60,4 +59,4 @@
   qx.ui.splitpane.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1685978146225
+//# sourceMappingURL=Slider.js.map?dt=1691935442534

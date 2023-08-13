@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +41,7 @@
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Forward the call with the given function name to the children container
@@ -54,14 +54,11 @@
        */
       __P_317_0: function __P_317_0(functionName, a1, a2, a3) {
         var container = this.getChildrenContainer();
-
         if (container === this) {
           functionName = "_" + functionName;
         }
-
         return container[functionName](a1, a2, a3);
       },
-
       /**
        * Returns the children list
        *
@@ -71,7 +68,6 @@
       getChildren: function getChildren() {
         return this.__P_317_0("getChildren");
       },
-
       /**
        * Whether the widget contains children.
        *
@@ -80,7 +76,6 @@
       hasChildren: function hasChildren() {
         return this.__P_317_0("hasChildren");
       },
-
       /**
        * Adds a new child widget.
        *
@@ -95,7 +90,6 @@
       add: function add(child, options) {
         return this.__P_317_0("add", child, options);
       },
-
       /**
        * Remove the given child item.
        *
@@ -105,7 +99,6 @@
       remove: function remove(child) {
         return this.__P_317_0("remove", child);
       },
-
       /**
        * Remove all children.
        * @return {Array} An array containing the removed children.
@@ -113,7 +106,6 @@
       removeAll: function removeAll() {
         return this.__P_317_0("removeAll");
       },
-
       /**
        * Returns the index position of the given item if it is
        * a child item. Otherwise it returns <code>-1</code>.
@@ -130,7 +122,6 @@
       indexOf: function indexOf(child) {
         return this.__P_317_0("indexOf", child);
       },
-
       /**
        * Add a child at the specified index
        *
@@ -146,7 +137,6 @@
       addAt: function addAt(child, index, options) {
         this.__P_317_0("addAt", child, index, options);
       },
-
       /**
        * Add an item before another already inserted item
        *
@@ -162,7 +152,6 @@
       addBefore: function addBefore(child, before, options) {
         this.__P_317_0("addBefore", child, before, options);
       },
-
       /**
        * Add an item after another already inserted item
        *
@@ -178,7 +167,6 @@
       addAfter: function addAfter(child, after, options) {
         this.__P_317_0("addAfter", child, after, options);
       },
-
       /**
        * Remove the item at the specified index.
        *
@@ -198,4 +186,4 @@
   qx.ui.core.MRemoteChildrenHandling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRemoteChildrenHandling.js.map?dt=1685978134858
+//# sourceMappingURL=MRemoteChildrenHandling.js.map?dt=1691935431584

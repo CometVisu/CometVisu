@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Font.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -98,4 +97,4 @@
   cv.theme.dark.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1685978160900
+//# sourceMappingURL=Font.js.map?dt=1691935456335

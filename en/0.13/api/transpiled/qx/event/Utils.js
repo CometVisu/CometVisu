@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -84,7 +83,6 @@
     extend: qx.core.Object,
     statics: {
       ABORT: "[[ qx.event.Utils.ABORT ]]",
-
       /**
        * Evaluates a value, and adds it to the tracker
        *
@@ -102,18 +100,15 @@
               };
             }(fn);
           }
-
           return this.then(tracker, fn);
         },
         "false": function _false(tracker, fn) {
           if (typeof fn === "function") {
             return fn();
           }
-
           return fn;
         }
       }),
-
       /**
        * Helper method to store a promise in a tracker
        *
@@ -125,7 +120,6 @@
         tracker.promise = newPromise;
         return tracker.promise;
       },
-
       /**
        * Equivalent of `promise.then()`
        *
@@ -138,66 +132,49 @@
           if (tracker.rejected) {
             return null;
           }
-
           if (tracker.promise) {
             if (qx.lang.Type.isPromise(fn)) {
               this.__P_205_0(tracker, tracker.promise.then(fn));
             } else {
               var self = this;
-
               this.__P_205_0(tracker, tracker.promise.then(function (result) {
                 if (tracker.rejected) {
                   return null;
                 }
-
                 result = fn(result);
-
                 if (result === qx.event.Utils.ABORT) {
                   return self.reject(tracker);
                 }
-
                 return result;
               }));
             }
-
             this.__P_205_1(tracker);
-
             return tracker.promise;
           }
-
           if (qx.lang.Type.isPromise(fn)) {
             return this.__P_205_2(tracker, fn);
           }
-
           var result = fn(tracker.result);
-
           if (qx.lang.Type.isPromise(result)) {
             return this.__P_205_2(tracker, result);
           }
-
           tracker.result = result;
-
           if (result === qx.event.Utils.ABORT) {
             return this.reject(tracker);
           }
-
           return result;
         },
         "false": function _false(tracker, fn) {
           if (tracker.rejected) {
             return null;
           }
-
           var result = tracker.result = fn(tracker.result);
-
           if (result === qx.event.Utils.ABORT) {
             return this.reject(tracker);
           }
-
           return result;
         }
       }),
-
       /**
        * Helper method to append a promise after the current one
        *
@@ -213,12 +190,9 @@
         } else {
           this.__P_205_0(tracker, newPromise);
         }
-
         this.__P_205_1(tracker);
-
         return tracker.promise;
       },
-
       /**
        * Rejects the tracker, aborting the promise if there is one.  The caller should stop
        * immediately because if promises are not in use and exception is not thrown.
@@ -230,18 +204,13 @@
         if (tracker.rejected) {
           return qx.event.Utils.ABORT;
         }
-
         tracker.rejected = true;
-
         if (tracker.promise) {
           throw new Error("Rejecting Event");
         }
-
         var result = this.__P_205_3(tracker);
-
         return result === undefined ? this.ABORT : result;
       },
-
       /**
        * Helper method that adds a catcher to the tracker
        *
@@ -251,12 +220,10 @@
         if (tracker.promise && tracker["catch"]) {
           if (!tracker.promise["qx.event.Utils.hasCatcher"]) {
             this.__P_205_0(tracker, tracker.promise["catch"](this.__P_205_3.bind(this, tracker)));
-
             tracker.promise["qx.event.Utils.hasCatcher"] = true;
           }
         }
       },
-
       /**
        * This method is added with `.catch` to every promise created; because this is added
        * all the way up the promise chain to ensure that it catches everything, this method
@@ -266,16 +233,13 @@
        */
       __P_205_3: function __P_205_3(tracker, err) {
         var fn = tracker["catch"];
-
         if (fn) {
           tracker["catch"] = null;
           tracker.rejected = true;
           return fn(err);
         }
-
         return qx.event.Utils.ABORT;
       },
-
       /**
        * Equivalent to `.catch()`; note that unlike promises, this method must be called *before*
        * `.then()` so that it is able to handle rejections when promises are not in use; this is
@@ -291,13 +255,11 @@
           fn();
           return;
         }
-
         if (tracker.catchers === undefined) {
           tracker.catchers = [fn];
         } else {
           tracker.catchers.push(fn);
         }
-
         if (tracker["catch"]) {
           tracker["catch"] = function (catch1, catch2) {
             return function () {
@@ -308,10 +270,8 @@
         } else {
           tracker["catch"] = fn;
         }
-
         this.__P_205_1(tracker);
       },
-
       /**
        * Calls a listener, converting propagationStopped into a rejection
        *
@@ -325,16 +285,12 @@
         if (tracker.rejected) {
           return qx.event.Utils.ABORT;
         }
-
         var tmp = listener.handler.call(context, event);
-
         if (event.getPropagationStopped()) {
           return qx.event.Utils.ABORT;
         }
-
         return tmp;
       },
-
       /**
        * Provides a handy way to iterate over an array which at any point could
        * become asynchronous
@@ -347,41 +303,32 @@
       series: qx.core.Environment.select("qx.promise", {
         "true": function _true(arr, fn, ignoreAbort) {
           var tracker = {};
-
           for (var index = 0; index < arr.length; index++) {
             var result = fn(arr[index], index);
-
             if (qx.Promise.isPromise(result)) {
               for (++index; index < arr.length; index++) {
                 (function (item, index) {
                   result = result.then(function () {
                     var tmp = fn(item, index);
-
                     if (!ignoreAbort && tmp === qx.event.Utils.ABORT) {
                       throw new Error("Rejecting in series()");
                     }
-
                     return tmp;
                   });
                 })(arr[index], index);
               }
-
               return result;
             }
-
             if (!ignoreAbort && result === qx.event.Utils.ABORT) {
               return this.reject(tracker);
             }
           }
-
           return null;
         },
         "false": function _false(arr, fn, ignoreAbort) {
           var tracker = {};
-
           for (var index = 0; index < arr.length; index++) {
             var result = fn(arr[index], index);
-
             if (!ignoreAbort && result === qx.event.Utils.ABORT) {
               return this.reject(tracker);
             }
@@ -393,4 +340,4 @@
   qx.event.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1685978120892
+//# sourceMappingURL=Utils.js.map?dt=1691935418706

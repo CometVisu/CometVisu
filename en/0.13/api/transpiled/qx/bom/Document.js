@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -129,7 +128,6 @@
           return (win || window).document.compatMode !== "CSS1Compat";
         }
       }),
-
       /**
        * Whether the document is in standard mode (e.g. XHTML, HTML4 Strict or doctype defined)
        *
@@ -139,7 +137,6 @@
       isStandardMode: function isStandardMode(win) {
         return !this.isQuirksMode(win);
       },
-
       /**
        * Returns the width of the document.
        *
@@ -172,7 +169,6 @@
         var scroll = this.isStandardMode(win) ? doc.documentElement.scrollWidth : doc.body.scrollWidth;
         return Math.max(scroll, view);
       },
-
       /**
        * Returns the height of the document.
        *
@@ -210,4 +206,4 @@
   qx.bom.Document.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Document.js.map?dt=1685978106652
+//# sourceMappingURL=Document.js.map?dt=1691935405872

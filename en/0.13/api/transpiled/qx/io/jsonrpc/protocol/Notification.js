@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,7 +47,6 @@
         init: null
       }
     },
-
     /**
      * Notification constructor
      * @param {String} method
@@ -66,4 +64,4 @@
   qx.io.jsonrpc.protocol.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1685978125130
+//# sourceMappingURL=Notification.js.map?dt=1691935422685

@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,6 +37,7 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.ui.panels.ChildControlsPanel", {
     extend: qxl.apiviewer.ui.panels.InfoPanel,
     construct: function construct() {
@@ -61,11 +61,9 @@
       },
       getItemTextHtml: function getItemTextHtml(node, currentClassDocNode, showDetails) {
         var textHtml = new qx.util.StringBuilder(node.getDescription());
-
         if (showDetails) {
           textHtml.add('<div class="item-detail-headline">', "Default value:", "</div>", '<div class="item-detail-text">', "<code>", node.getDefaultValue() ? node.getDefaultValue() : "null", "</code>", "</div>");
         }
-
         return textHtml.get();
       }
     }
@@ -73,4 +71,4 @@
   qxl.apiviewer.ui.panels.ChildControlsPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ChildControlsPanel.js.map?dt=1685978164944
+//# sourceMappingURL=ChildControlsPanel.js.map?dt=1691935459805

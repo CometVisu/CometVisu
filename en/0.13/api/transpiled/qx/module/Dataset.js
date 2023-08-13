@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,10 +47,8 @@
         this._forEachElement(function (item) {
           qx.bom.element.Dataset.set(item, name, value);
         });
-
         return this;
       },
-
       /**
        *
        * Returns the value of the given HTML "data-*" attribute for the first item in the collection
@@ -66,7 +63,6 @@
           return qx.bom.element.Dataset.get(this[0], name);
         }
       },
-
       /**
        * Returns a map containing all the HTML "data-*" attributes of the specified element
        *
@@ -78,10 +74,8 @@
         if (this[0] && this[0].nodeType === 1) {
           return qx.bom.element.Dataset.getAll(this[0]);
         }
-
         return {};
       },
-
       /**
        * Checks if any element in the collection has a "data-*" attribute
        * @return {Boolean} True if any element in the collection has a "data-*" attribute
@@ -89,7 +83,6 @@
       hasData: function hasData() {
         return qx.bom.element.Dataset.hasData(this[0]);
       },
-
       /**
        * Remove an HTML "data-*" attribute on each item in the collection
        *
@@ -101,7 +94,6 @@
         this._forEachElement(function (item) {
           qx.bom.element.Dataset.remove(item, name);
         });
-
         return this;
       }
     },
@@ -112,4 +104,4 @@
   qx.module.Dataset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dataset.js.map?dt=1685978128787
+//# sourceMappingURL=Dataset.js.map?dt=1691935426070

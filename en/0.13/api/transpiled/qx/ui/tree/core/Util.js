@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,10 +43,8 @@
         if (node == null || childProperty == null) {
           return false;
         }
-
         return qx.Class.hasProperty(node.constructor, childProperty);
       },
-
       /**
        * Returns whether the node has visible children or not.
        *
@@ -62,25 +59,20 @@
         if (node == null || childProperty == null || !this.isNode(node, childProperty)) {
           return false;
         }
-
         var children = node.get(childProperty);
-
         if (children == null) {
           return false;
         }
-
         if (!ignoreLeafs) {
           return children.length > 0;
         } else {
           for (var i = 0; i < children.getLength(); i++) {
             var child = children.getItem(i);
-
             if (this.isNode(child, childProperty)) {
               return true;
             }
           }
         }
-
         return false;
       }
     }
@@ -88,4 +80,4 @@
   qx.ui.tree.core.Util.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Util.js.map?dt=1685978150139
+//# sourceMappingURL=Util.js.map?dt=1691935446419

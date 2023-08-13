@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,7 +33,6 @@
        * Daniel Wagner (danielwagner)
   
   ************************************************************************ */
-
   /**
    * Global class which handles the single stylesheet used for qx.desktop.
    */
@@ -49,7 +47,6 @@
     members: {
       __P_433_1: null,
       __P_433_0: null,
-
       /**
        * Adds a rule to the global stylesheet.
        * @param selector {String} The CSS selector to add the rule for.
@@ -59,12 +56,9 @@
         if (this.hasRule(selector)) {
           return;
         }
-
         qx.bom.Stylesheet.addRule(this.__P_433_0, selector, css);
-
         this.__P_433_1.push(selector);
       },
-
       /**
        * Check if a rule exists.
        * @param selector {String} The selector to check.
@@ -73,7 +67,6 @@
       hasRule: function hasRule(selector) {
         return this.__P_433_1.indexOf(selector) != -1;
       },
-
       /**
        * Remove the rule for the given selector.
        * @param selector {String} The selector to identify the rule.
@@ -87,4 +80,4 @@
   qx.ui.style.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1685978146321
+//# sourceMappingURL=Stylesheet.js.map?dt=1691935442625

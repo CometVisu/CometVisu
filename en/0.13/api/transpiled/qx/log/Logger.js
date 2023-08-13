@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -21,7 +20,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -88,8 +86,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         CONFIGURATION
       ---------------------------------------------------------------------------
       */
-      __P_272_0: "debug",
 
+      __P_272_0: "debug",
       /**
        * Configures the minimum log level required for new messages.
        *
@@ -98,7 +96,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       setLevel: function setLevel(value) {
         this.__P_272_0 = value;
       },
-
       /**
        * Returns the currently configured minimum log level required for new
        * messages.
@@ -108,7 +105,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getLevel: function getLevel() {
         return this.__P_272_0;
       },
-
       /**
        * Configures the number of messages to be kept in the buffer.
        *
@@ -117,7 +113,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       setTreshold: function setTreshold(value) {
         this.__P_272_1.setMaxMessages(value);
       },
-
       /**
        * Returns the currently configured number of messages to be kept in the
        * buffer.
@@ -127,7 +122,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getTreshold: function getTreshold() {
         return this.__P_272_1.getMaxMessages();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPENDER MANAGEMENT
@@ -136,16 +130,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
       /** @type {Map} Map of all known appenders by ID */
       __P_272_2: [],
-
       /** @type {Map} Map of all known appenders by name */
       __P_272_3: {},
-
       /** @type {Array} Array of filters to apply when selecting appenders to append to */
       __P_272_4: [],
-
       /** @type {Integer} Last free appender ID */
       __P_272_5: 0,
-
       /**
        * Registers the given appender and inserts the last cached messages.
        *
@@ -158,28 +148,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       register: function register(appender) {
         if (appender.$$id) {
           return;
-        } // Register appender
+        }
 
-
+        // Register appender
         var id = this.__P_272_5++;
         var appenderName = appender.appenderName || appender.classname;
         this.__P_272_2[id] = appender;
         this.__P_272_3[appenderName] = appender;
-        appender.$$id = id; // Insert previous messages
+        appender.$$id = id;
 
+        // Insert previous messages
         var entries = this.__P_272_1.getAllLogEvents();
-
         for (var i = 0, l = entries.length; i < l; i++) {
           var entry = entries[i];
-
           var appenders = this.__P_272_6(entry.loggerName, entry.level);
-
           if (appenders[appenderName]) {
             appender.process(entry);
           }
         }
       },
-
       /**
        * Unregisters the given appender
        *
@@ -187,17 +174,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       unregister: function unregister(appender) {
         var id = appender.$$id;
-
         if (id == null) {
           return;
         }
-
         var appenderName = appender.appenderName || appender.classname;
         delete this.__P_272_3[appenderName];
         delete this.__P_272_2[id];
         delete appender.$$id;
       },
-
       /**
        * Adds a filter that specifies the appenders to use for a given logger name (classname).
        *
@@ -245,27 +229,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (typeof logger == "string") {
           logger = new RegExp(logger);
         }
-
         this.__P_272_4.push({
           loggerMatch: logger,
           level: level || this.__P_272_0,
           appenderName: appenderName
         });
       },
-
       /**
        * Reset all filters
        */
       resetFilters: function resetFilters() {
         this.__P_272_4 = [];
       },
-
       /*
       ---------------------------------------------------------------------------
         USER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sending a message at level "debug" to the logger.
        *
@@ -277,7 +257,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       debug: function debug(object, message) {
         qx.log.Logger.__P_272_7("debug", arguments);
       },
-
       /**
        * Sending a message at level "info" to the logger.
        *
@@ -289,7 +268,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       info: function info(object, message) {
         qx.log.Logger.__P_272_7("info", arguments);
       },
-
       /**
        * Sending a message at level "warn" to the logger.
        *
@@ -301,7 +279,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       warn: function warn(object, message) {
         qx.log.Logger.__P_272_7("warn", arguments);
       },
-
       /**
        * Sending a message at level "error" to the logger.
        *
@@ -313,7 +290,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       error: function error(object, message) {
         qx.log.Logger.__P_272_7("error", arguments);
       },
-
       /**
        * Prints the current stack trace at level "info"
        *
@@ -327,11 +303,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           var trace = qx.dev.StackTrace.getStackTrace();
           var args = qx.lang.Array.fromArguments(arguments);
           args.push(trace.join("\n"));
-
           qx.log.Logger.__P_272_7("trace", args);
         }
       },
-
       /**
        * Prints a method deprecation warning and a stack trace if the setting
        * <code>qx.debug</code> is set to <code>true</code>.
@@ -341,7 +315,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String?} Optional message to be printed.
        */
       deprecatedMethodWarning: function deprecatedMethodWarning(fcn, msg) {},
-
       /**
        * Prints a class deprecation warning and a stack trace if the setting
        * <code>qx.debug</code> is set to <code>true</code>.
@@ -350,7 +323,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String?} Optional message to be printed.
        */
       deprecatedClassWarning: function deprecatedClassWarning(clazz, msg) {},
-
       /**
        * Prints an event deprecation warning and a stack trace if the setting
        * <code>qx.debug</code> is set to <code>true</code>.
@@ -360,7 +332,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String?} Optional message to be printed.
        */
       deprecatedEventWarning: function deprecatedEventWarning(clazz, event, msg) {},
-
       /**
        * Prints a mixin deprecation warning and a stack trace if the setting
        * <code>qx.debug</code> is set to <code>true</code>.
@@ -369,7 +340,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String?} Optional message to be printed.
        */
       deprecatedMixinWarning: function deprecatedMixinWarning(clazz, msg) {},
-
       /**
        * Prints a constant deprecation warning and a stacktrace if the setting
        * <code>qx.debug</code> is set to <code>true</code> AND the browser supports
@@ -380,7 +350,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String} Optional message to be printed.
        */
       deprecatedConstantWarning: function deprecatedConstantWarning(clazz, constant, msg) {},
-
       /**
        * Prints a deprecation warning and a stacktrace when a subclass overrides
        * the passed method name. The deprecation is only printed if the setting
@@ -393,7 +362,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @param msg {String?} Optional message to be printed.
        */
       deprecateMethodOverriding: function deprecateMethodOverriding(object, baseclass, methodName, msg) {},
-
       /**
        * Deletes the current buffer. Does not influence message handling of the
        * connected appenders.
@@ -402,7 +370,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       clear: function clear() {
         this.__P_272_1.clearHistory();
       },
-
       /*
       ---------------------------------------------------------------------------
         INTERNAL LOGGING IMPLEMENTATION
@@ -411,7 +378,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 
       /** @type {qx.log.appender.RingBuffer} Message buffer of previously fired messages. */
       __P_272_1: new qx.log.appender.RingBuffer(50),
-
       /** @type {Map} Numeric translation of log levels */
       __P_272_8: {
         trace: 0,
@@ -420,10 +386,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         warn: 3,
         error: 4
       },
-
       /** @type {Map} cache of appenders for a given logger and level */
       __P_272_9: {},
-
       /**
        * Detects the name of the logger to use for an object
        *
@@ -435,15 +399,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           if (object.classname) {
             return object.classname;
           }
-
           if (typeof object == "string") {
             return object;
           }
         }
-
         return "[default]";
       },
-
       /**
        * Detects whether a logger level is enabled for an object
        *
@@ -453,12 +414,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       isLoggerEnabled: function isLoggerEnabled(level, object) {
         var loggerName = this.__P_272_10(object);
-
         var appenders = this.__P_272_6(loggerName, level);
-
         return !!Object.keys(appenders).length;
       },
-
       /**
        * Internal logging main routine.
        *
@@ -469,24 +427,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       __P_272_7: function __P_272_7(level, args) {
         // Get object and determine appenders
         var object = args.length < 2 ? null : args[0];
-
         var loggerName = this.__P_272_10(object);
-
         var appenders = this.__P_272_6(loggerName, level);
-
         if (!Object.keys(appenders).length) {
           return;
-        } // Serialize and cache
+        }
 
-
+        // Serialize and cache
         var start = object ? 1 : 0;
         var items = [];
-
         for (var i = start, l = args.length; i < l; i++) {
           items.push(this.__P_272_11(args[i], true));
-        } // Build entry
+        }
 
-
+        // Build entry
         var time = new Date();
         var entry = {
           time: time,
@@ -496,28 +450,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           items: items,
           // store window to allow cross frame logging
           win: window
-        }; // Add relation fields
+        };
 
+        // Add relation fields
         if (object) {
           if (qx.Bootstrap.isQxCoreObject(object)) {
             entry.object = object.toHashCode();
           }
-
           if (object.$$type) {
             entry.clazz = object;
           } else if (object.constructor) {
             entry.clazz = object.constructor;
           }
         }
+        this.__P_272_1.process(entry);
 
-        this.__P_272_1.process(entry); // Send to appenders
-
-
+        // Send to appenders
         for (var classname in appenders) {
           appenders[classname].process(entry);
         }
       },
-
       /**
        * Finds the appenders for a given classname
        *
@@ -526,40 +478,38 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @return {Array} list of appenders
        */
       __P_272_6: function __P_272_6(className, level) {
-        var levels = this.__P_272_8; // If no filters, then all appenders apply
+        var levels = this.__P_272_8;
 
+        // If no filters, then all appenders apply
         if (!this.__P_272_4.length) {
           // Check the default level
           if (levels[level] < levels[this.__P_272_0]) {
             return [];
           }
-
           return this.__P_272_3;
-        } // Check the cache
+        }
 
-
+        // Check the cache
         var cacheId = className + "|" + level;
         var appenders = this.__P_272_9[cacheId];
-
         if (appenders !== undefined) {
           return appenders;
         }
-
         appenders = {};
-
         for (var i = 0; i < this.__P_272_4.length; i++) {
-          var filter = this.__P_272_4[i]; // Filters only apply to certain levels
+          var filter = this.__P_272_4[i];
 
+          // Filters only apply to certain levels
           if (levels[level] < levels[filter.level]) {
             continue;
-          } // No duplicates
+          }
 
-
+          // No duplicates
           if (filter.appenderName && appenders[filter.appenderName]) {
             continue;
-          } // Test
+          }
 
-
+          // Test
           if (!filter.loggerMatch || filter.loggerMatch.test(className)) {
             if (filter.appenderName) {
               appenders[filter.appenderName] = this.__P_272_3[filter.appenderName];
@@ -568,10 +518,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             }
           }
         }
-
         return this.__P_272_9[cacheId] = appenders;
       },
-
       /**
        * Detects the type of the variable given.
        *
@@ -587,18 +535,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else if (value === null) {
           return "null";
         }
-
         if (value.$$type) {
           return "class";
         }
-
         var type = _typeof(value);
-
         if (type === "function" || type == "string" || type === "number" || type === "boolean") {
           return type;
         } else if (type === "object") {
           if (value.nodeType) {
-            return "node"; // In Gecko, DOMException doesn't inherit from Error
+            return "node";
+            // In Gecko, DOMException doesn't inherit from Error
           } else if (value instanceof Error || value.name && value.message) {
             return "error";
           } else if (value.classname) {
@@ -611,14 +557,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             return "map";
           }
         }
-
         if (value.toString) {
           return "stringify";
         }
-
         return "unknown";
       },
-
       /**
        * Serializes the incoming value. If it is a singular value, the result is
        * a simple string. For an array or a map the result can also be a
@@ -632,23 +575,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       __P_272_11: function __P_272_11(value, deep) {
         var type = this.__P_272_12(value);
-
         var text = "unknown";
         var trace = [];
-
         switch (type) {
           case "null":
           case "undefined":
             text = type;
             break;
-
           case "string":
           case "number":
           case "boolean":
           case "date":
             text = value;
             break;
-
           case "node":
             if (value.nodeType === 9) {
               text = "document";
@@ -656,70 +595,59 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               text = "text[" + value.nodeValue + "]";
             } else if (value.nodeType === 1) {
               text = value.nodeName.toLowerCase();
-
               if (value.id) {
                 text += "#" + value.id;
               }
             } else {
               text = "node";
             }
-
             break;
-
           case "function":
             text = qx.lang.Function.getName(value) || type;
             break;
-
           case "instance":
           case "class":
           case "stringify":
             text = value.toString();
             break;
-
           case "error":
             trace = qx.dev.StackTrace.getStackTraceFromError(value);
             text = (value.basename ? value.basename + ": " : "") + value.toString();
             break;
-
           case "array":
             if (deep) {
               text = [];
-
               for (var i = 0, l = value.length; i < l; i++) {
                 if (text.length > 20) {
                   text.push("...(+" + (l - i) + ")");
                   break;
                 }
-
                 text.push(this.__P_272_11(value[i], false));
               }
             } else {
               text = "[...(" + value.length + ")]";
             }
-
             break;
-
           case "map":
             if (deep) {
-              var temp; // Produce sorted key list
+              var temp;
 
+              // Produce sorted key list
               var sorted = [];
-
               for (var key in value) {
                 sorted.push(key);
               }
+              sorted.sort();
 
-              sorted.sort(); // Temporary text list
-
+              // Temporary text list
               text = [];
-
               for (var i = 0, l = sorted.length; i < l; i++) {
                 if (text.length > 20) {
                   text.push("...(+" + (l - i) + ")");
                   break;
-                } // Additional storage of hash-key
+                }
 
-
+                // Additional storage of hash-key
                 key = sorted[i];
                 temp = this.__P_272_11(value[key], false);
                 temp.key = key;
@@ -727,17 +655,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               }
             } else {
               var number = 0;
-
               for (var key in value) {
                 number++;
               }
-
               text = "{...(" + number + ")}";
             }
-
             break;
         }
-
         return {
           type: type,
           text: text,
@@ -747,11 +671,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     },
     defer: function defer(statics) {
       var logs = qx.Bootstrap.$$logs;
-
       for (var i = 0; i < logs.length; i++) {
         statics.__P_272_7(logs[i][0], logs[i][1]);
       }
-
       qx.Bootstrap.debug = statics.debug;
       qx.Bootstrap.info = statics.info;
       qx.Bootstrap.warn = statics.warn;
@@ -762,4 +684,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.log.Logger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Logger.js.map?dt=1685978128150
+//# sourceMappingURL=Logger.js.map?dt=1691935425494

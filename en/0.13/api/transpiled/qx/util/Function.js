@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
       MIT: http://www.opensource.org/licenses/mit-license.php
   
    ************************************************************************ */
-
   /**
    * Utility module to give some support to work with functions.
    */
@@ -66,14 +64,13 @@
         var fired = false;
         var intervalId = null;
         var args = null;
-
         var wrapperFunction = function wrapperFunction() {
           // store the current arguments to have access inside the interval method
-          args = qx.lang.Array.fromArguments(arguments); // it's necessary to store the context to be able to call
+          args = qx.lang.Array.fromArguments(arguments);
+
+          // it's necessary to store the context to be able to call
           // the callback within the right scope
-
           var context = this;
-
           if (intervalId === null) {
             // setup the interval for the first run
             intervalId = window.setInterval(function () {
@@ -82,29 +79,24 @@
               if (!fired) {
                 window.clearInterval(intervalId);
                 intervalId = null;
-
                 if (context && context.isDisposed && context.isDisposed()) {
                   qx.log.Logger.warn("The context object '" + context + "' of the debounced call is already disposed.");
                 } else {
                   callback.apply(context, args);
                 }
               }
-
               fired = false;
             }, delay);
-
             if (immediate) {
               callback.apply(context, args);
             }
-          } // This prevents the logic to clear the interval
+          }
 
-
+          // This prevents the logic to clear the interval
           fired = true;
         };
-
         return wrapperFunction;
       },
-
       /**
        * Returns a throttled version of the given callback. The execution of the callback
        * is throttled which means it is only executed in the given interval.
@@ -123,28 +115,22 @@
         if (typeof options === "undefined") {
           options = {};
         }
-
         var context, args, result;
         var timeout = null;
         var previous = 0;
-
         var later = function later() {
           previous = options.leading === false ? 0 : new Date();
           timeout = null;
           result = callback.apply(context, args);
         };
-
         return function () {
           var now = new Date();
-
           if (!previous && options.leading === false) {
             previous = now;
           }
-
           var remaining = interval - (now - previous);
           context = this;
           args = arguments;
-
           if (remaining <= 0) {
             window.clearTimeout(timeout);
             timeout = null;
@@ -153,7 +139,6 @@
           } else if (!timeout && options.trailing !== false) {
             timeout = window.setTimeout(later, remaining);
           }
-
           return result;
         };
       }
@@ -162,4 +147,4 @@
   qx.util.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1685978154267
+//# sourceMappingURL=Function.js.map?dt=1691935450557

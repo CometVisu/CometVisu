@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* MenuBar.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -55,7 +54,6 @@
   qx.Class.define('cv.ui.manager.MenuBar', {
     extend: qx.ui.menubar.MenuBar,
     type: 'singleton',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -65,10 +63,8 @@
       qx.ui.menubar.MenuBar.constructor.call(this);
       this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
       this.__P_26_0 = {};
-
       this._draw();
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -81,23 +77,16 @@
       __P_26_2: null,
       _draw: function _draw() {
         this._createChildControl('file');
-
         this._createChildControl('edit');
-
         this._createChildControl('preferences');
-
         this.add(new qx.ui.core.Spacer(), {
           flex: 1
         });
-
         this._createChildControl('title');
-
         this.add(new qx.ui.core.Spacer(), {
           flex: 1
         });
-
         this._createChildControl('help');
-
         var editorGroup = new qx.ui.form.RadioGroup();
         this.__P_26_1 = {
           'new-file': {
@@ -231,9 +220,7 @@
         editorGroup.getModelSelection().addListener('change', function () {
           prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
         });
-
         this.__P_26_3('quick-preview', 'quickPreview');
-
         this.__P_26_3('expert-mode', 'expertMode');
       },
       __P_26_3: function __P_26_3(buttonName, preferenceName) {
@@ -249,22 +236,18 @@
           config = Object.merge(this.__P_26_1, config);
           this.__P_26_2 = config;
         }
-
         Object.keys(config).forEach(function (id) {
           var button;
           var buttonConf = config[id];
-
           if (!Object.prototype.hasOwnProperty.call(this.__P_26_0, id)) {
             // create button
             var label = buttonConf.args[0];
             var icon = buttonConf.args[1];
             var command = buttonConf.args[2];
             var ButtonClass = buttonConf.clazz || qx.ui.menu.Button;
-
             if (qx.lang.Type.isString(command) || !command) {
               // no command connected
               button = new ButtonClass(label, icon);
-
               if (command) {
                 // just add the string as shortcut hint
                 button.getChildControl('shortcut').setValue(command);
@@ -275,40 +258,30 @@
                 button.bind('enabled', command, 'enabled');
               }
             }
-
             button.addListener('execute', function () {
               qx.event.message.Bus.dispatchByName('cv.manager.action.' + id);
             });
-
             if (!buttonConf.hidden) {
               var menu = this.getChildControl(buttonConf.menu);
-
               if (!menu) {
                 throw new Error('no menu named ' + buttonConf.menu + ' found!');
               }
-
               if (buttonConf.separator === 'before') {
                 menu.add(new qx.ui.menu.Separator());
               }
-
               menu.add(button);
-
               if (buttonConf.separator === 'after') {
                 menu.add(new qx.ui.menu.Separator());
               }
             }
-
             this.__P_26_0[id] = button;
-
             if (Object.prototype.hasOwnProperty.call(buttonConf, 'onAfterCreate')) {
               buttonConf.onAfterCreate(button);
             }
           } else {
             button = this.__P_26_0[id];
           }
-
           button.setEnabled(buttonConf.enabled);
-
           if (buttonConf.properties) {
             button.set(buttonConf.properties);
           }
@@ -323,68 +296,54 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var control;
-
         switch (id) {
           case 'title':
             control = new qx.ui.basic.Label(this.tr('CometVisu Manager'));
             this.add(control);
             break;
-
           case 'file':
             control = new qx.ui.menubar.Button(this.tr('File'), null, this.getChildControl('file-menu'));
             this.add(control);
             break;
-
           case 'edit':
             control = new qx.ui.menubar.Button(this.tr('Edit'), null, this.getChildControl('edit-menu'));
             this.add(control);
             break;
-
           case 'help':
             control = new qx.ui.menubar.Button(this.tr('Help'), null, this.getChildControl('help-menu'));
             this.add(control);
             break;
-
           case 'about':
             control = new qx.ui.menubar.Button(this.tr('About'), null, this.getChildControl('help-menu'));
             this.add(control);
             break;
-
           case 'new':
             control = new qx.ui.menu.Button(this.tr('New'), null, null, this.getChildControl('new-menu'));
             break;
-
           case 'preferences':
             control = new qx.ui.menubar.Button(this.tr('Preferences'), null, this.getChildControl('preferences-menu'));
             this.add(control);
             break;
-
           case 'new-menu':
             control = new qx.ui.menu.Menu();
             break;
-
           case 'file-menu':
             control = new qx.ui.menu.Menu();
             control.add(this.getChildControl('new'));
             break;
-
           case 'edit-menu':
             control = new qx.ui.menu.Menu();
             break;
-
           case 'preferences-menu':
             control = new qx.ui.menu.Menu();
             break;
-
           case 'help-menu':
             control = new qx.ui.menu.Menu();
             break;
         }
-
         return control || cv.ui.manager.MenuBar.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -397,4 +356,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1685978093828
+//# sourceMappingURL=MenuBar.js.map?dt=1691935393321

@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -39,7 +38,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -74,25 +72,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MLayoutHandling, qx.ui.form.MModelSelection],
     implement: [qx.ui.form.IForm, qx.ui.form.IField, qx.ui.core.ISingleSelection, qx.ui.form.IModelSelection],
-
     /**
      * @param layout {qx.ui.layout.Abstract} The new layout or
      *     <code>null</code> to reset the layout.
      */
     construct: function construct(layout) {
-      qx.ui.core.Widget.constructor.call(this); // if no layout is given, use the default layout (VBox)
+      qx.ui.core.Widget.constructor.call(this);
 
+      // if no layout is given, use the default layout (VBox)
       if (layout == null) {
         this.setLayout(new qx.ui.layout.VBox(4));
       } else {
         this.setLayout(layout);
-      } // ARIA attrs
+      }
 
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "radiogroup");
 
-      this.getContentElement().setAttribute("role", "radiogroup"); // create the radio group
+      // create the radio group
+      this.__P_353_0 = new qx.ui.form.RadioGroup();
 
-      this.__P_353_0 = new qx.ui.form.RadioGroup(); // attach the listener
-
+      // attach the listener
       this.__P_353_0.addListener("changeSelection", this._onChangeSelection, this);
     },
     properties: {
@@ -106,7 +106,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         apply: "_applyValid",
         event: "changeValid"
       },
-
       /**
        * Flag signaling if the group is required.
        */
@@ -115,7 +114,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: false,
         event: "changeRequired"
       },
-
       /**
        * Message which is shown in an invalid tooltip.
        */
@@ -125,7 +123,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         event: "changeInvalidMessage",
         apply: "_applyInvalidMessage"
       },
-
       /**
        * Message which is shown in an invalid tooltip if the {@link #required} is
        * set to true.
@@ -139,7 +136,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     events: {
       /** Fires after the value was modified */
       changeValue: "qx.event.type.Data",
-
       /**
        * Fires after the selection was modified
        */
@@ -147,7 +143,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     },
     members: {
       __P_353_0: null,
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -156,7 +151,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // property apply
       _applyInvalidMessage: function _applyInvalidMessage(value, old) {
         var children = this._getChildren();
-
         for (var i = 0; i < children.length; i++) {
           children[i].setInvalidMessage(value);
         }
@@ -164,18 +158,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // property apply
       _applyValid: function _applyValid(value, old) {
         var children = this._getChildren();
-
         for (var i = 0; i < children.length; i++) {
           children[i].setValid(value);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         REGISTRY
       ---------------------------------------------------------------------------
       */
-
       /**
        * The internally used radio group instance will be returned.
        *
@@ -184,7 +175,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getRadioGroup: function getRadioGroup() {
         return this.__P_353_0;
       },
-
       /**
        * Returns the children list
        *
@@ -193,7 +183,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getChildren: function getChildren() {
         return this._getChildren();
       },
-
       /**
        * Adds a new child widget.
        *
@@ -206,10 +195,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       add: function add(child, options) {
         this.__P_353_0.add(child);
-
         this._add(child, options);
       },
-
       /**
        * Remove the given child widget.
        *
@@ -217,10 +204,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       remove: function remove(child) {
         this.__P_353_0.remove(child);
-
         this._remove(child);
       },
-
       /**
        * Remove all children.
        *
@@ -229,20 +214,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       removeAll: function removeAll() {
         // remove all children from the radio group
         var radioItems = this.__P_353_0.getItems();
-
         for (var i = radioItems.length - 1; i >= 0; i--) {
           this.__P_353_0.remove(radioItems[i]);
         }
-
         return this._removeAll();
       },
-
       /*
       ---------------------------------------------------------------------------
         SELECTION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns an array of currently selected items.
        *
@@ -254,7 +235,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getSelection: function getSelection() {
         return this.__P_353_0.getSelection();
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -264,14 +244,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       setSelection: function setSelection(items) {
         this.__P_353_0.setSelection(items);
       },
-
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
         this.__P_353_0.resetSelection();
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -282,7 +260,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isSelected: function isSelected(item) {
         return this.__P_353_0.isSelected(item);
       },
-
       /**
        * Whether the selection is empty.
        *
@@ -291,7 +268,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       isSelectionEmpty: function isSelectionEmpty() {
         return this.__P_353_0.isSelectionEmpty();
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -302,7 +278,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getSelectables: function getSelectables(all) {
         return this.__P_353_0.getSelectables(all);
       },
-
       /**
        * Select given value.
        *
@@ -316,21 +291,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           return new Error("can not select radio item from value");
         }
       },
-
       /**
        * @return {null|var} Returns the selected value.
        */
       getValue: function getValue() {
         return this.__P_353_0.getValue();
       },
-
       /**
        * Reset radio item selection.
        */
       resetValue: function resetValue() {
         this.__P_353_0.resetValue();
       },
-
       /**
        * Called on {@link qx.ui.form.RadioGroup} selection change event.
        *
@@ -343,11 +315,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     },
     destruct: function destruct() {
       this.__P_353_0.removeListener("changeSelection", this._onChangeSelection, this);
-
       this._disposeObjects("__P_353_0");
     }
   });
   qx.ui.form.RadioButtonGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButtonGroup.js.map?dt=1685978138571
+//# sourceMappingURL=RadioButtonGroup.js.map?dt=1691935435144

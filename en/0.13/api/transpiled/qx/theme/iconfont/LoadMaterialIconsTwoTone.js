@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,7 +29,6 @@
   /**
    * A dummy class to trigger the compiler to copy the MaterialIconsTwoTone font files
    */
-
   /**
    * @usefont(MaterialIconsTwoTone)
    * @deprecated use the `@usefont` directive directly in your code
@@ -39,4 +37,4 @@
   qx.theme.iconfont.LoadMaterialIconsTwoTone.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIconsTwoTone.js.map?dt=1685978130718
+//# sourceMappingURL=LoadMaterialIconsTwoTone.js.map?dt=1691935427928

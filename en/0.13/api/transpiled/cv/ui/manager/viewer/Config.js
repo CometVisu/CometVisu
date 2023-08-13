@@ -30,7 +30,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Config.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -55,7 +54,6 @@
    */
   qx.Class.define('cv.ui.manager.viewer.Config', {
     extend: cv.ui.manager.viewer.AbstractViewer,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -63,10 +61,8 @@
     */
     construct: function construct() {
       cv.ui.manager.viewer.AbstractViewer.constructor.call(this);
-
       this._setLayout(new qx.ui.layout.Grow());
     },
-
     /*
       ***********************************************
         PROPERTIES
@@ -91,7 +87,6 @@
         apply: '_applyConnectToWindow'
       }
     },
-
     /*
     ***********************************************
       STATICS
@@ -102,7 +97,6 @@
       TITLE: qx.locale.Manager.tr('Config viewer'),
       ICON: cv.theme.dark.Images.getIcon('preview', 18)
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -119,12 +113,10 @@
         if (old && old.isConfigFile()) {
           qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
         }
-
         if (file) {
           if (file.isConfigFile()) {
             var configName = cv.ui.manager.model.FileItem.getConfigName(file.getFullPath());
             var url = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..') + '?config=' + (configName || '');
-
             if (this.getTarget() === 'iframe') {
               url += '&preview=1&libraryCheck=false';
               var control = this.getChildControl('iframe');
@@ -133,35 +125,27 @@
               control.setSource(url);
               control.show();
               var hint = this.getChildControl('hint', true);
-
               if (hint && hint.isVisible()) {
                 hint.exclude();
               }
             } else {
               this._source = url;
               var ref = window.open(url, configName);
-
               if (this.isConnectToWindow()) {
                 this._windowRef = ref;
                 this._windowRef.onbeforeunload = this._onClose.bind(this);
-
                 var _hint = this.getChildControl('hint');
-
                 _hint.show();
-
                 var iframe = this.getChildControl('iframe', true);
-
                 if (iframe && iframe.isVisible()) {
                   iframe.exclude();
                 }
               } else {
                 // no connection close this immediately
                 this._onClose();
-
                 return;
               }
             }
-
             qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
           } else {
             cv.ui.manager.snackbar.Controller.error(this.tr('%1 is no configuration file', file.getFullPath()));
@@ -172,11 +156,9 @@
             this.getChildControl('iframe').resetSource();
             this.getChildControl('iframe').exclude();
           }
-
           if (this.hasChildControl('hint')) {
             this.getChildControl('hint').exclude();
           }
-
           if (this._windowRef) {
             this._windowRef.close();
           }
@@ -184,16 +166,13 @@
       },
       _onChange: function _onChange(ev) {
         var _this = this;
-
         var data = ev.getData();
-
         if (data.type === 'contentChanged') {
           if (this.hasChildControl('iframe')) {
             var iframe = this.getChildControl('iframe');
-            var href = iframe.getDocument().location.href; // use href to get the anchor to keep the currently opened page on reload
-
+            var href = iframe.getDocument().location.href;
+            // use href to get the anchor to keep the currently opened page on reload
             var url = href.startsWith(this._source) ? iframe.getDocument().location.href : this._source;
-
             if (url && url !== 'about:blank') {
               this._reloading = true;
               this.getChildControl('loading').show();
@@ -202,7 +181,6 @@
                 iframe.setSource(url);
               });
             }
-
             iframe.setSource('about:blank');
           } else if (this._windowRef) {
             this._windowRef.reload();
@@ -214,13 +192,11 @@
           qx.event.message.Bus.dispatchByName('cv.manager.action.close', this.getFile());
           this._windowRef = null;
         }
-
         this.resetFile();
       },
       openPage: function openPage(page, path) {
         if (this.hasChildControl('iframe')) {
           var element = this.getChildControl('iframe').getContentElement().getDomElement();
-
           if (element && element.contentWindow.cv) {
             var otherController = element.contentWindow.cv.Application.structureController;
             var pageId = path ? otherController.getPageIdByPath(page, path) : page;
@@ -231,7 +207,6 @@
       setHighlightWidget: function setHighlightWidget(widgetId) {
         if (this.hasChildControl('iframe')) {
           var element = this.getChildControl('iframe').getContentElement().getDomElement();
-
           if (element && element.contentWindow.cv) {
             var otherEngine = element.contentWindow.cv.TemplateEngine.getInstance();
             otherEngine.setHighlightedWidget(widgetId);
@@ -241,9 +216,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this2 = this;
-
         var control;
-
         switch (id) {
           case 'iframe':
             control = new qx.ui.embed.Iframe();
@@ -255,7 +228,6 @@
             });
             this.getChildControl('scroll').add(control);
             break;
-
           case 'hint':
             control = new qx.ui.basic.Atom(this.tr('This configuration has been opened in another window. When you close this file, the window will also be closed. Click here top jump the the window.'));
             control.set({
@@ -269,7 +241,6 @@
             });
             this.getChildControl('scroll').add(control);
             break;
-
           case 'loading':
             control = new qx.ui.basic.Atom(this.tr('Loading...'), cv.theme.dark.Images.getIcon('reload', 64));
             control.set({
@@ -284,16 +255,12 @@
               }, _this2, 5000);
             });
             control.exclude();
-
             this._add(control);
-
             break;
         }
-
         return control || cv.ui.manager.viewer.Config.superclass.prototype._createChildControlImpl.call(this, id);
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -306,4 +273,4 @@
   cv.ui.manager.viewer.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1685978098770
+//# sourceMappingURL=Config.js.map?dt=1691935398123

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,7 +41,6 @@
     },
     members: {
       __P_422_0: null,
-
       /**
        * Add elements to be progressively rendered.  Each element must be an
        * object which contains at least two members: renderer (the renderer
@@ -53,11 +51,11 @@
        */
       addElements: function addElements(elems) {
         // Add the new elements to our elements queue.
-        this.__P_422_0 = this.__P_422_0.concat(elems); // Tell Progressive that data is available
+        this.__P_422_0 = this.__P_422_0.concat(elems);
 
+        // Tell Progressive that data is available
         this.fireDataEvent("dataAvailable", this.__P_422_0.length);
       },
-
       /**
        * Add a single element to be progressively rendered.  The element must
        * be an object which contains at least two members: renderer (the
@@ -68,9 +66,9 @@
        */
       addElement: function addElement(elem) {
         // Add the new elements to our elements queue.
-        this.__P_422_0.push(elem); // Tell Progressive that data is available
+        this.__P_422_0.push(elem);
 
-
+        // Tell Progressive that data is available
         this.fireDataEvent("dataAvailable", this.__P_422_0.length);
       },
       // overridden
@@ -87,7 +85,6 @@
             remaining: this.__P_422_0.length
           };
         }
-
         return null;
       }
     },
@@ -98,4 +95,4 @@
   qx.ui.progressive.model.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1685978145405
+//# sourceMappingURL=Default.js.map?dt=1691935441747

@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* VirtualFsItem.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.ui.manager.tree.VirtualFsItem', {
     extend: qx.ui.tree.VirtualTreeItem,
-
     /*
     ***********************************************
       PROPERTIES
@@ -71,7 +69,6 @@
         apply: '_applyStatus'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -81,15 +78,14 @@
       _applyEditing: function _applyEditing(value, old) {
         if (value !== old) {
           var field = this.getChildControl('edit');
-
           if (value) {
             field.setValue(this.getLabel());
             field.show();
             qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', false);
           } else {
             qx.event.message.Bus.dispatchByName('cv.manager.tree.enable', true);
-            field.exclude(); // save new name
-
+            field.exclude();
+            // save new name
             if (field.getValue() !== this.getName()) {
               cv.ui.manager.control.FileController.getInstance().rename(this.getModel(), field.getValue());
             }
@@ -106,11 +102,9 @@
       // overridden
       _applyModel: function _applyModel(value, old) {
         cv.ui.manager.tree.VirtualFsItem.superclass.prototype._applyModel.call(this, value, old);
-
         if (old) {
           old.removeRelatedBindings(this);
         }
-
         if (value) {
           if (value.isTrash()) {
             this.setLabel(this.tr('Trash'));
@@ -122,9 +116,7 @@
               }
             });
           }
-
           value.bind('temporary', this, 'temporary');
-
           if (value.getType() === 'dir') {
             this.setDroppable(true);
             this.addListener('drop', this._onDrop, this);
@@ -136,20 +128,17 @@
       },
       _applyStatus: function _applyStatus(value) {
         var control = this.getChildControl('icon');
-
         if (value) {
           switch (value) {
             case 'valid':
               control.removeState('error');
               break;
-
             case 'error':
               control.addState('error');
               break;
           }
         }
       },
-
       /**
        * Handle drop events
        * @param ev {Event}
@@ -172,9 +161,7 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
         var _this = this;
-
         var control;
-
         switch (id) {
           case 'edit':
             control = new qx.ui.form.TextField();
@@ -190,12 +177,9 @@
             control.addListener('blur', function () {
               _this.setEditing(false);
             });
-
             this._add(control);
-
             break;
         }
-
         return control || cv.ui.manager.tree.VirtualFsItem.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -203,4 +187,4 @@
   cv.ui.manager.tree.VirtualFsItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualFsItem.js.map?dt=1685978098544
+//# sourceMappingURL=VirtualFsItem.js.map?dt=1691935397862

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,7 +38,6 @@
    */
   qx.Class.define("qx.ui.progressive.structure.Default", {
     extend: qx.ui.progressive.structure.Abstract,
-
     /**
      * The default structure for use by Progressive.  It includes a header, a
      * footer, and a pane.
@@ -58,17 +56,18 @@
      *   use as the pane.
      */
     construct: function construct(header, footer, pane) {
-      qx.ui.progressive.structure.Abstract.constructor.call(this, pane); // If no header was specified, use null header
+      qx.ui.progressive.structure.Abstract.constructor.call(this, pane);
 
+      // If no header was specified, use null header
       if (!header) {
         this.__P_427_0 = new qx.ui.progressive.headfoot.Null();
         this.__P_427_1 = this.__P_427_0;
       } else {
         this.__P_427_0 = null;
         this.__P_427_1 = header;
-      } // If no footer was specified, use a null footer
+      }
 
-
+      // If no footer was specified, use a null footer
       if (!footer) {
         this.__P_427_2 = new qx.ui.progressive.headfoot.Null();
         this.__P_427_3 = this.__P_427_2;
@@ -86,17 +85,15 @@
       applyStructure: function applyStructure(progressive) {
         // Tell the header/footer components who their Progressive is
         this.__P_427_1.join(progressive);
+        this.__P_427_3.join(progressive);
 
-        this.__P_427_3.join(progressive); // Add the header, pane, and footer to the Progressive.
-
-
+        // Add the header, pane, and footer to the Progressive.
         progressive.add(this.__P_427_1);
         progressive.add(this.getPane(), {
           flex: 1
         });
         progressive.add(this.__P_427_3);
       },
-
       /**
        * Return the header
        *
@@ -105,7 +102,6 @@
       getHeader: function getHeader() {
         return this.__P_427_1;
       },
-
       /**
        * Return the footer
        *
@@ -118,20 +114,16 @@
     destruct: function destruct() {
       if (this.__P_427_0) {
         this.__P_427_0.dispose();
-
         this.__P_427_0 = null;
       }
-
       if (this.__P_427_2) {
         this.__P_427_2.dispose();
-
         this.__P_427_2 = null;
       }
-
       this.__P_427_1 = this.__P_427_3 = null;
     }
   });
   qx.ui.progressive.structure.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1685978145867
+//# sourceMappingURL=Default.js.map?dt=1691935442193

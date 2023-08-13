@@ -43,7 +43,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -96,7 +95,6 @@
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-
       this.__P_100_0();
     },
     members: {
@@ -107,13 +105,11 @@
       __P_100_5: 10000,
       __P_100_6: 0,
       __P_100_7: "transparent",
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Blocks the whole document (if no parameter is given) or acts as an
        * underlying blocker for native controls.
@@ -124,27 +120,21 @@
         if (!this.__P_100_4) {
           qx.event.Registration.addListener(window, "resize", this.__P_100_8, this);
           this.__P_100_3 = element;
-
           var styles = this.__P_100_9();
-
           this.__P_100_10(styles);
-
           this.__P_100_4 = true;
         }
       },
-
       /**
        * Releases the blocking
        */
       unblock: function unblock() {
         if (this.__P_100_4) {
           this.__P_100_11();
-
           qx.event.Registration.removeListener(window, "resize", this.__P_100_8, this);
           this.__P_100_4 = false;
         }
       },
-
       /**
        * Whether the blocker is already active.
        *
@@ -153,7 +143,6 @@
       isBlocked: function isBlocked() {
         return this.__P_100_4;
       },
-
       /**
        * Returns the blocker element. Useful if the element should be animated.
        *
@@ -162,7 +151,6 @@
       getBlockerElement: function getBlockerElement() {
         return this.__P_100_2;
       },
-
       /**
        * Sets the color of the blocker element. Be sure to set also a suitable
        * opacity value to get the desired result.
@@ -173,7 +161,6 @@
       setBlockerColor: function setBlockerColor(color) {
         qx.bom.element.Style.set(this.__P_100_2, "backgroundColor", color);
       },
-
       /**
        * Returns the current blocker color.
        *
@@ -182,7 +169,6 @@
       getBlockerColor: function getBlockerColor() {
         return qx.bom.element.Style.get(this.__P_100_2, "backgroundColor");
       },
-
       /**
        * Sets the blocker opacity. Be sure to set also a suitable blocker color
        * value to get the desired result.
@@ -193,7 +179,6 @@
       setBlockerOpacity: function setBlockerOpacity(opacity) {
         qx.bom.element.Opacity.set(this.__P_100_2, opacity);
       },
-
       /**
        * Returns the blocker opacity value.
        *
@@ -202,7 +187,6 @@
       getBlockerOpacity: function getBlockerOpacity() {
         return qx.bom.element.Opacity.get(this.__P_100_2);
       },
-
       /**
        * Set the zIndex of the blocker element. For most use cases you do not need
        * to manipulate this value.
@@ -212,7 +196,6 @@
       setBlockerZIndex: function setBlockerZIndex(zIndex) {
         qx.bom.element.Style.set(this.__P_100_2, "zIndex", zIndex);
       },
-
       /**
        * Returns the blocker zIndex value
        *
@@ -221,24 +204,20 @@
       getBlockerZIndex: function getBlockerZIndex() {
         return qx.bom.element.Style.get(this.__P_100_2, "zIndex");
       },
-
       /*
       ---------------------------------------------------------------------------
         PRIVATE API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Setups the elements and registers a "resize" event.
        */
       __P_100_0: function __P_100_0() {
         this.__P_100_12();
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           this.__P_100_13();
         }
       },
-
       /**
        * Create blocker element and set initial styles.
        */
@@ -251,7 +230,6 @@
         });
         this.setBlockerZIndex(this.__P_100_5);
       },
-
       /**
        * Create iframe blocker element and set initial styles.
        *
@@ -261,17 +239,16 @@
       __P_100_13: function __P_100_13() {
         this.__P_100_1 = qx.bom.Iframe.create();
         qx.bom.element.Attribute.set(this.__P_100_1, "allowTransparency", false);
+
         /* eslint-disable no-script-url */
-
         qx.bom.element.Attribute.set(this.__P_100_1, "src", "javascript:false;");
-        /* eslint-enable no-script-url */
 
+        /* eslint-enable no-script-url */
         qx.bom.element.Style.setStyles(this.__P_100_1, {
           display: "block",
           opacity: this.__P_100_6
         });
       },
-
       /**
        * Calculates the necessary styles for the blocker element.
        * Either the values of the document or of the element to block are used.
@@ -282,7 +259,6 @@
         var styles = {
           position: "absolute"
         };
-
         if (this.__P_100_14()) {
           styles.left = "0px";
           styles.top = "0px";
@@ -296,10 +272,8 @@
           styles.left = qx.bom.element.Location.getLeft(this.__P_100_3) + "px";
           styles.top = qx.bom.element.Location.getTop(this.__P_100_3) + "px";
         }
-
         return styles;
       },
-
       /**
        * Apply the given styles and inserts the blocker.
        *
@@ -309,25 +283,21 @@
         var target = document.body;
         qx.bom.element.Style.setStyles(this.__P_100_2, styles);
         qx.dom.Element.insertEnd(this.__P_100_2, target);
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           styles.zIndex = this.getBlockerZIndex() - 1;
           qx.bom.element.Style.setStyles(this.__P_100_1, styles);
           qx.dom.Element.insertEnd(this.__P_100_1, document.body);
         }
       },
-
       /**
        * Remove the blocker elements.
        */
       __P_100_11: function __P_100_11() {
         qx.dom.Element.remove(this.__P_100_2);
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           qx.dom.Element.remove(this.__P_100_1);
         }
       },
-
       /**
        * Reacts on window resize and adapts the new size for the blocker element
        * if the whole document is blocked.
@@ -340,21 +310,19 @@
           this.__P_100_15({
             width: "0px",
             height: "0px"
-          }); // If the HTML document is very large, the getWidth() and getHeight()
+          });
+
+          // If the HTML document is very large, the getWidth() and getHeight()
           // returns the old size (it seems that the rendering engine is to slow).
-
-
           qx.event.Timer.once(function () {
             var dimension = {
               width: qx.bom.Document.getWidth() + "px",
               height: qx.bom.Document.getHeight() + "px"
             };
-
             this.__P_100_15(dimension);
           }, this, 0);
         }
       },
-
       /**
        * Does the resizing for blocker element and blocker iframe element (IE)
        *
@@ -362,12 +330,10 @@
        */
       __P_100_15: function __P_100_15(dimension) {
         qx.bom.element.Style.setStyles(this.__P_100_2, dimension);
-
         if (qx.core.Environment.get("engine.name") == "mshtml") {
           qx.bom.element.Style.setStyles(this.__P_100_1, dimension);
         }
       },
-
       /**
        * Checks whether the whole document is be blocked.
        *
@@ -381,4 +347,4 @@
   qx.bom.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1685978106575
+//# sourceMappingURL=Blocker.js.map?dt=1691935405806

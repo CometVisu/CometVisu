@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,11 +49,9 @@
     },
     construct: function construct() {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       if (qx.ui.mobile.core.Blocker.ROOT == null) {
         qx.ui.mobile.core.Blocker.ROOT = qx.core.Init.getApplication().getRoot();
       }
-
       this.forceHide();
       qx.ui.mobile.core.Blocker.ROOT.add(this);
     },
@@ -67,7 +64,6 @@
     },
     members: {
       __P_388_0: 0,
-
       /**
        * Shows the blocker. When the show method is called a counter is incremented.
        * The {@link #hide} method needs to be called as many times as the {@link #show}
@@ -76,31 +72,23 @@
       show: function show() {
         if (this.__P_388_0 == 0) {
           this._updateSize();
-
           this.__P_388_1();
-
           qx.ui.mobile.core.Blocker.superclass.prototype.show.call(this);
         }
-
         this.__P_388_0++;
       },
-
       /**
        * Hides the blocker. The blocker is only hidden when the hide method
        * is called as many times as the {@link #show} method.
        */
       hide: function hide() {
         this.__P_388_0--;
-
         if (this.__P_388_0 <= 0) {
           this.__P_388_0 = 0;
-
           this.__P_388_2();
-
           this.exclude();
         }
       },
-
       /**
        * Force the blocker to hide, even when the show counter is larger than
        * zero.
@@ -109,7 +97,6 @@
         this.__P_388_0 = 0;
         this.hide();
       },
-
       /**
        * Whether the blocker is shown or not.
        * @return {Boolean} <code>true</code> if the blocker is shown
@@ -117,7 +104,6 @@
       isShown: function isShown() {
         return this.__P_388_0 > 0;
       },
-
       /**
        * Event handler. Called whenever the size of the blocker should be updated.
        */
@@ -133,7 +119,6 @@
           this.getContainerElement().style.height = dimension.height + "px";
         }
       },
-
       /**
        * Event handler. Called when the scroll event occurs.
        *
@@ -142,7 +127,6 @@
       _onScroll: function _onScroll(evt) {
         this._updateSize();
       },
-
       /**
        * Registers all needed event listener.
        */
@@ -152,7 +136,6 @@
         this.addListener("pointerdown", qx.bom.Event.preventDefault, this);
         this.addListener("pointerup", qx.bom.Event.preventDefault, this);
       },
-
       /**
        * Unregisters all needed event listener.
        */
@@ -165,11 +148,10 @@
     },
     destruct: function destruct() {
       qx.ui.mobile.core.Blocker.ROOT.remove(this);
-
       this.__P_388_2();
     }
   });
   qx.ui.mobile.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1685978142655
+//# sourceMappingURL=Blocker.js.map?dt=1691935439065

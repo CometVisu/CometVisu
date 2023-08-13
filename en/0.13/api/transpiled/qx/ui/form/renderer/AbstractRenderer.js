@@ -31,7 +31,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,22 +60,20 @@
     type: "abstract",
     extend: qx.ui.core.Widget,
     implement: qx.ui.form.renderer.IFormRenderer,
-
     /**
      * @param form {qx.ui.form.Form} The form to render.
      */
     construct: function construct(form) {
       qx.ui.core.Widget.constructor.call(this);
-      this._labels = []; // translation support
+      this._labels = [];
 
+      // translation support
       {
         qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
         this._names = [];
       }
       this._form = form;
-
       this._render();
-
       form.addListener("change", this._onFormChange, this);
     },
     properties: {
@@ -90,7 +87,6 @@
         event: "changeLabelSuffix",
         nullable: true
       },
-
       /**
        * A string that is appended to the label and the label suffix if the corresponding
        * form field is mandatory. Defaults to space plus a red asterisk.
@@ -106,46 +102,37 @@
       _names: null,
       _form: null,
       _labels: null,
-
       /**
        * Renders the form: adds the items and buttons.
        */
       _render: function _render() {
         // add the groups
         var groups = this._form.getGroups();
-
         for (var i = 0; i < groups.length; i++) {
           var group = groups[i];
           this.addItems(group.items, group.labels, group.title, group.options, group.headerOptions);
-        } // add the buttons
+        }
 
-
+        // add the buttons
         var buttons = this._form.getButtons();
-
         var buttonOptions = this._form.getButtonOptions();
-
         for (var i = 0; i < buttons.length; i++) {
           this.addButton(buttons[i], buttonOptions[i]);
         }
       },
-
       /**
        * Handler responsible for updating the rendered widget as soon as the
        * form changes.
        */
       _onFormChange: function _onFormChange() {
-        this._removeAll(); // remove all created labels
-
-
+        this._removeAll();
+        // remove all created labels
         for (var i = 0; i < this._labels.length; i++) {
           this._labels[i].dispose();
         }
-
         this._labels = [];
-
         this._render();
       },
-
       /**
        * Helper to bind the item's visibility to the label's visibility.
        * @param item {qx.ui.core.Widget} The form element.
@@ -155,7 +142,6 @@
         // map the items visibility to the label
         item.bind("visibility", label, "visibility");
       },
-
       /**
        * Locale change event handler
        *
@@ -166,19 +152,15 @@
         "true": function _true(e) {
           for (var i = 0; i < this._names.length; i++) {
             var entry = this._names[i];
-
             if (entry.name && entry.name.translate) {
               entry.name = entry.name.translate();
             }
-
             var newText = this._createLabelText(entry.name, entry.item);
-
             entry.label.setValue(newText);
           }
         },
         "false": null
       }),
-
       /**
        * Creates the label text for the given form item.
        *
@@ -189,12 +171,11 @@
        */
       _createLabelText: function _createLabelText(name, item) {
         var requiredSuffix = "";
-
         if (item.getRequired()) {
           requiredSuffix = this.getRequiredSuffix();
-        } // Create the label. Append a suffix only if there's text to display.
+        }
 
-
+        // Create the label. Append a suffix only if there's text to display.
         var labelSuffix = name.length > 0 || item.getRequired() ? this.getLabelSuffix() : "";
         return name + requiredSuffix + labelSuffix;
       },
@@ -207,7 +188,6 @@
         throw new Error("Abstract method call");
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -218,13 +198,11 @@
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
       }
       this._names = null;
-
       this._form.removeListener("change", this._onFormChange, this);
-
       this._form = null;
     }
   });
   qx.ui.form.renderer.AbstractRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRenderer.js.map?dt=1685978139695
+//# sourceMappingURL=AbstractRenderer.js.map?dt=1691935436269

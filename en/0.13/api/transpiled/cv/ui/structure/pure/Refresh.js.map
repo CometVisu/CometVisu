@@ -24,6 +24,10 @@
     "nullable",
     "members",
     "_onDomReady",
+    "Refresh",
+    "superclass",
+    "prototype",
+    "call",
     "defaultUpdate",
     "undefined",
     "getSendValue",
@@ -34,8 +38,7 @@
     "BackendConnections",
     "getClients",
     "name",
-    "restart",
-    "Refresh"
+    "restart"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/pure/Refresh.js"
@@ -43,5 +46,5 @@
   "sourcesContent": [
     "/* Refresh.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.\n *\n * @author Christian Mayer\n * @since 2014\n */\nqx.Class.define('cv.ui.structure.pure.Refresh', {\n  extend: cv.ui.structure.pure.AbstractWidget,\n  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],\n\n  /*\n  ******************************************************\n    PROPERTIES\n  ******************************************************\n  */\n  properties: {\n    sendValue: { check: 'String', nullable: true }\n  },\n\n  /*\n  ******************************************************\n    MEMBERS\n  ******************************************************\n  */\n  members: {\n    // overridden\n    _onDomReady() {\n      super._onDomReady();\n      this.defaultUpdate(undefined, this.getSendValue());\n    },\n\n    // overridden\n    _getInnerDomString() {\n      return '<div class=\"actor switchUnpressed\"><div class=\"value\">-</div></div>';\n    },\n\n    _action() {\n      const clients = cv.io.BackendConnections.getClients();\n      for (const name in clients) {\n        clients[name].restart(true);\n      }\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,8BAAhB,EAAgD;IAC9CC,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,cADiB;IAE9CC,OAAO,EAAE,CAACL,EAAE,CAACC,EAAH,CAAMK,MAAN,CAAaC,OAAd,EAAuBP,EAAE,CAACC,EAAH,CAAMK,MAAN,CAAaE,iBAApC,EAAuDR,EAAE,CAACC,EAAH,CAAMK,MAAN,CAAaG,WAApE,CAFqC;;IAI9C;AACF;AACA;AACA;AACA;IACEC,UAAU,EAAE;MACVC,SAAS,EAAE;QAAEC,KAAK,EAAE,QAAT;QAAmBC,QAAQ,EAAE;MAA7B;IADD,CATkC;;IAa9C;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACP;MACAC,WAFO,yBAEO;QACZ;;QACA,KAAKC,aAAL,CAAmBC,SAAnB,EAA8B,KAAKC,YAAL,EAA9B;MACD,CALM;MAOP;MACAC,kBARO,gCAQc;QACnB,OAAO,qEAAP;MACD,CAVM;MAYPC,OAZO,qBAYG;QACR,IAAMC,OAAO,GAAGrB,EAAE,CAACsB,EAAH,CAAMC,kBAAN,CAAyBC,UAAzB,EAAhB;;QACA,KAAK,IAAMC,IAAX,IAAmBJ,OAAnB,EAA4B;UAC1BA,OAAO,CAACI,IAAD,CAAP,CAAcC,OAAd,CAAsB,IAAtB;QACD;MACF;IAjBM;EAlBqC,CAAhD;EAzBA1B,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBwB,OAArB,CAA6B/B,aAA7B,GAA6CA,aAA7C"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8BAA8B,EAAE;IAC9CC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,cAAc;IAC3CC,OAAO,EAAE,CAACL,EAAE,CAACC,EAAE,CAACK,MAAM,CAACC,OAAO,EAAEP,EAAE,CAACC,EAAE,CAACK,MAAM,CAACE,iBAAiB,EAAER,EAAE,CAACC,EAAE,CAACK,MAAM,CAACG,WAAW,CAAC;IAEzF;AACF;AACA;AACA;AACA;IACEC,UAAU,EAAE;MACVC,SAAS,EAAE;QAAEC,KAAK,EAAE,QAAQ;QAAEC,QAAQ,EAAE;MAAK;IAC/C,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACP;MACAC,WAAW,WAAAA,YAAA,EAAG;QACZf,EAAA,CAAAC,EAAA,CAAAC,SAAA,CAAAC,IAAA,CAAAa,OAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAH,WAAA,CAAAI,IAAA;QACA,IAAI,CAACC,aAAa,CAACC,SAAS,EAAE,IAAI,CAACC,YAAY,CAAC,CAAC,CAAC;MACpD,CAAC;MAED;MACAC,kBAAkB,WAAAA,mBAAA,EAAG;QACnB,OAAO,qEAAqE;MAC9E,CAAC;MAEDC,OAAO,WAAAA,QAAA,EAAG;QACR,IAAMC,OAAO,GAAGzB,EAAE,CAAC0B,EAAE,CAACC,kBAAkB,CAACC,UAAU,CAAC,CAAC;QACrD,KAAK,IAAMC,IAAI,IAAIJ,OAAO,EAAE;UAC1BA,OAAO,CAACI,IAAI,CAAC,CAACC,OAAO,CAAC,IAAI,CAAC;QAC7B;MACF;IACF;EACF,CAAC,CAAC;EA9DF9B,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACa,OAAO,CAACpB,aAAa,GAAGA,aAAa;AAAC"
 }

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /**
    * Generate permutations of a map.
    */
@@ -39,36 +38,31 @@
        * @param context {Object} The callback's <code>this</code> context.
        */
       permute: function permute(options, callback, context) {
-        var keys = Object.keys(options); // init
+        var keys = Object.keys(options);
 
+        // init
         var map = {};
         var indices = [];
-
         for (var i = 0; i < keys.length; i++) {
           indices[i] = 0;
           var key = keys[i];
           map[key] = options[key][0];
         }
-
         var _perm = function _perm(index, ignore) {
           if (index >= keys.length) {
             return;
           }
-
           var key = keys[index];
           var values = options[key];
-
           for (var i = 0; i < values.length; i++) {
             if (ignore !== i) {
               indices[index] = i;
               map[key] = values[i];
               callback.call(context || window, map);
             }
-
             _perm(index + 1, indices[index + 1]);
           }
         };
-
         _perm(0, -1);
       }
     }
@@ -76,4 +70,4 @@
   qx.util.Permutation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Permutation.js.map?dt=1685978154384
+//# sourceMappingURL=Permutation.js.map?dt=1691935450659

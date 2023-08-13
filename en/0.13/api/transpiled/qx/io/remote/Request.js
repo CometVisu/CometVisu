@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,13 +55,11 @@
   qx.Class.define("qx.io.remote.Request", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param vUrl {String}
      *   Target url to issue the request to.
@@ -80,63 +77,53 @@
       this.__P_252_1 = {};
       this.__P_252_2 = {};
       this.__P_252_3 = {};
-
       if (vUrl !== undefined) {
         this.setUrl(vUrl);
       }
-
       if (vMethod !== undefined) {
         this.setMethod(vMethod);
       }
-
       if (vResponseType !== undefined) {
         this.setResponseType(vResponseType);
       }
+      this.setProhibitCaching(true);
 
-      this.setProhibitCaching(true); // Get the next sequence number for this request
-
+      // Get the next sequence number for this request
       this.__P_252_4 = ++qx.io.remote.Request.__P_252_4;
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired when the Request object changes its state to 'created' */
       created: "qx.event.type.Event",
-
       /** Fired when the Request object changes its state to 'configured' */
       configured: "qx.event.type.Event",
-
       /** Fired when the Request object changes its state to 'sending' */
       sending: "qx.event.type.Event",
-
       /** Fired when the Request object changes its state to 'receiving' */
       receiving: "qx.event.type.Event",
-
       /**
        * Fired once the request has finished successfully. The event object
        * can be used to read the transferred data.
        */
       completed: "qx.io.remote.Response",
-
       /** Fired when the pending request has been aborted. */
       aborted: "qx.event.type.Event",
-
       /** Fired when the pending request fails. */
       failed: "qx.io.remote.Response",
-
       /** Fired when the pending request times out. */
       timeout: "qx.io.remote.Response"
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /*
       ---------------------------------------------------------------------------
@@ -149,7 +136,6 @@
        * with its initiating request.
        */
       __P_252_4: 0,
-
       /**
        * Returns true if the given HTTP method allows a request body being transferred to the server.
        * This is currently POST and PUT. Other methods require their data being encoded into
@@ -162,12 +148,12 @@
         return httpMethod == "POST" || httpMethod == "PUT";
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Target url to issue the request to.
@@ -176,7 +162,6 @@
         check: "String",
         init: ""
       },
-
       /**
        * Determines what type of request to issue (GET, POST, PUT, HEAD, DELETE).
        */
@@ -185,7 +170,6 @@
         apply: "_applyMethod",
         init: "GET"
       },
-
       /**
        * Set the request to asynchronous.
        */
@@ -193,7 +177,6 @@
         check: "Boolean",
         init: true
       },
-
       /**
        * Set the data to be sent via this request
        */
@@ -201,7 +184,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * Username to use for HTTP authentication.
        * Set to NULL if HTTP authentication is not used.
@@ -210,7 +192,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * Password to use for HTTP authentication.
        * Set to NULL if HTTP authentication is not used.
@@ -219,7 +200,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * The state that the request is in, while being processed.
        */
@@ -229,7 +209,6 @@
         apply: "_applyState",
         event: "changeState"
       },
-
       /**
        * Response type of request.
        *
@@ -242,7 +221,6 @@
         init: "text/plain",
         apply: "_applyResponseType"
       },
-
       /**
        * Number of milliseconds before the request is being timed out.
        *
@@ -253,7 +231,6 @@
         check: "Integer",
         nullable: true
       },
-
       /**
        * Prohibit request from being cached.
        *
@@ -280,7 +257,6 @@
         init: true,
         apply: "_applyProhibitCaching"
       },
-
       /**
        * Indicate that the request is cross domain.
        *
@@ -294,7 +270,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Indicate that the request will be used for a file upload.
        *
@@ -307,7 +282,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * The transport instance used for the request.
        *
@@ -317,7 +291,6 @@
         check: "qx.io.remote.Exchange",
         nullable: true
       },
-
       /**
        * Use Basic HTTP Authentication.
        */
@@ -325,7 +298,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * If true and the responseType property is set to "application/json", getContent() will
        * return a Javascript map containing the JSON contents, i. e. the result qx.lang.Json.parse().
@@ -342,25 +314,23 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_252_0: null,
       __P_252_1: null,
       __P_252_2: null,
       __P_252_3: null,
       __P_252_4: null,
-
       /*
       ---------------------------------------------------------------------------
         CORE METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Schedule this request for transport to server.
        *
@@ -371,7 +341,6 @@
       send: function send() {
         qx.io.remote.RequestQueue.getInstance().add(this);
       },
-
       /**
        * Abort sending this request.
        *
@@ -383,7 +352,6 @@
       abort: function abort() {
         qx.io.remote.RequestQueue.getInstance().abort(this);
       },
-
       /**
        * Abort sending this request if it has not already been aborted.
        *
@@ -393,6 +361,7 @@
           case "sending":
           case "receiving":
             this.error("Aborting already sent request!");
+
           // no break
 
           case "queued":
@@ -400,13 +369,11 @@
             break;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         STATE ALIASES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Determine if this request is in the configured state.
        *
@@ -415,7 +382,6 @@
       isConfigured: function isConfigured() {
         return this.getState() === "configured";
       },
-
       /**
        * Determine if this request is in the queued state.
        *
@@ -424,7 +390,6 @@
       isQueued: function isQueued() {
         return this.getState() === "queued";
       },
-
       /**
        * Determine if this request is in the sending state.
        *
@@ -433,7 +398,6 @@
       isSending: function isSending() {
         return this.getState() === "sending";
       },
-
       /**
        * Determine if this request is in the receiving state.
        *
@@ -442,7 +406,6 @@
       isReceiving: function isReceiving() {
         return this.getState() === "receiving";
       },
-
       /**
        * Determine if this request is in the completed state.
        *
@@ -451,7 +414,6 @@
       isCompleted: function isCompleted() {
         return this.getState() === "completed";
       },
-
       /**
        * Determine if this request is in the aborted state.
        *
@@ -460,7 +422,6 @@
       isAborted: function isAborted() {
         return this.getState() === "aborted";
       },
-
       /**
        * Determine if this request is in the timeout state.
        *
@@ -469,7 +430,6 @@
       isTimeout: function isTimeout() {
         return this.getState() === "timeout";
       },
-
       /**
        * Determine if this request is in the failed state.
        *
@@ -478,7 +438,6 @@
       isFailed: function isFailed() {
         return this.getState() === "failed";
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
@@ -495,7 +454,6 @@
         clonedEvent.setTarget(this);
         this.dispatchEvent(clonedEvent);
       }),
-
       /**
        * Event handler called when the request enters the queued state.
        *
@@ -503,11 +461,11 @@
        */
       _onqueued: function _onqueued(e) {
         // Modify internal state
-        this.setState("queued"); // Bubbling up
+        this.setState("queued");
 
+        // Bubbling up
         this.__P_252_5(e);
       },
-
       /**
        * Event handler called when the request enters the sending state.
        *
@@ -515,11 +473,11 @@
        */
       _onsending: function _onsending(e) {
         // Modify internal state
-        this.setState("sending"); // Bubbling up
+        this.setState("sending");
 
+        // Bubbling up
         this.__P_252_5(e);
       },
-
       /**
        * Event handler called when the request enters the receiving state.
        *
@@ -527,11 +485,11 @@
        */
       _onreceiving: function _onreceiving(e) {
         // Modify internal state
-        this.setState("receiving"); // Bubbling up
+        this.setState("receiving");
 
+        // Bubbling up
         this.__P_252_5(e);
       },
-
       /**
        * Event handler called when the request enters the completed state.
        *
@@ -539,14 +497,14 @@
        */
       _oncompleted: function _oncompleted(e) {
         // Modify internal state
-        this.setState("completed"); // Bubbling up
+        this.setState("completed");
 
-        this.__P_252_5(e); // Automatically dispose after event completion
+        // Bubbling up
+        this.__P_252_5(e);
 
-
+        // Automatically dispose after event completion
         this.dispose();
       },
-
       /**
        * Event handler called when the request enters the aborted state.
        *
@@ -554,14 +512,14 @@
        */
       _onaborted: function _onaborted(e) {
         // Modify internal state
-        this.setState("aborted"); // Bubbling up
+        this.setState("aborted");
 
-        this.__P_252_5(e); // Automatically dispose after event completion
+        // Bubbling up
+        this.__P_252_5(e);
 
-
+        // Automatically dispose after event completion
         this.dispose();
       },
-
       /**
        * Event handler called when the request enters the timeout state.
        *
@@ -581,15 +539,16 @@
               return;
           }
         */
+
         // Modify internal state
-        this.setState("timeout"); // Bubbling up
+        this.setState("timeout");
 
-        this.__P_252_5(e); // Automatically dispose after event completion
+        // Bubbling up
+        this.__P_252_5(e);
 
-
+        // Automatically dispose after event completion
         this.dispose();
       },
-
       /**
        * Event handler called when the request enters the failed state.
        *
@@ -597,14 +556,14 @@
        */
       _onfailed: function _onfailed(e) {
         // Modify internal state
-        this.setState("failed"); // Bubbling up
+        this.setState("failed");
 
-        this.__P_252_5(e); // Automatically dispose after event completion
+        // Bubbling up
+        this.__P_252_5(e);
 
-
+        // Automatically dispose after event completion
         this.dispose();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -619,9 +578,9 @@
           this.removeRequestHeader("Pragma");
           this.removeRequestHeader("Cache-Control");
           return;
-        } // If value isn't "no-url-params-on-post" or this isn't a POST request
+        }
 
-
+        // If value isn't "no-url-params-on-post" or this isn't a POST request
         if (value !== "no-url-params-on-post" || this.getMethod() != "POST") {
           // ... then add a parameter to the URL to make it unique on each
           // request.  The actual id, "nocache" is irrelevant; it's the fact
@@ -631,11 +590,12 @@
         } else {
           // Otherwise, we don't want the nocache parameter in the URL.
           this.removeParameter("nocache");
-        } // Add the HTTP 1.0 request to avoid use of a cache
+        }
 
+        // Add the HTTP 1.0 request to avoid use of a cache
+        this.setRequestHeader("Pragma", "no-cache");
 
-        this.setRequestHeader("Pragma", "no-cache"); // Add the HTTP 1.1 request to avoid use of a cache
-
+        // Add the HTTP 1.1 request to avoid use of a cache
         this.setRequestHeader("Cache-Control", "no-cache");
       },
       // property apply
@@ -644,27 +604,24 @@
           this.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         } else {
           this.removeRequestHeader("Content-Type");
-        } // Re-test the prohibit caching property.  We may need to add or remove
+        }
+
+        // Re-test the prohibit caching property.  We may need to add or remove
         // the "nocache" parameter.  We explicitly call the _apply method since
         // it wouldn't be called normally when setting the value to its already
         // existant value.
-
-
         var prohibitCaching = this.getProhibitCaching();
-
         this._applyProhibitCaching(prohibitCaching, prohibitCaching);
       },
       // property apply
       _applyResponseType: function _applyResponseType(value, old) {
         this.setRequestHeader("X-Qooxdoo-Response-Type", value);
       },
-
       /*
       ---------------------------------------------------------------------------
         REQUEST HEADER
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add a request header to the request.
        *
@@ -683,7 +640,6 @@
       setRequestHeader: function setRequestHeader(vId, vValue) {
         this.__P_252_0[vId] = vValue;
       },
-
       /**
        * Remove a previously-added request header
        *
@@ -692,7 +648,6 @@
       removeRequestHeader: function removeRequestHeader(vId) {
         delete this.__P_252_0[vId];
       },
-
       /**
        * Retrieve the value of a header which was previously set
        *
@@ -702,7 +657,6 @@
       getRequestHeader: function getRequestHeader(vId) {
         return this.__P_252_0[vId] || null;
       },
-
       /**
        * Return the object containing all of the headers which have been added.
        *
@@ -713,13 +667,11 @@
       getRequestHeaders: function getRequestHeaders() {
         return this.__P_252_0;
       },
-
       /*
       ---------------------------------------------------------------------------
         PARAMETERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add a parameter to the request.
        *
@@ -751,7 +703,6 @@
           this.__P_252_1[vId] = vValue;
         }
       },
-
       /**
        * Remove a parameter from the request.
        *
@@ -771,7 +722,6 @@
           delete this.__P_252_1[vId];
         }
       },
-
       /**
        * Get a parameter in the request.
        *
@@ -794,7 +744,6 @@
           return this.__P_252_1[vId] || null;
         }
       },
-
       /**
        * Returns the object containing all parameters for the request.
        *
@@ -810,13 +759,11 @@
       getParameters: function getParameters(bFromData) {
         return bFromData ? this.__P_252_2 : this.__P_252_1;
       },
-
       /*
       ---------------------------------------------------------------------------
         FORM FIELDS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Add a form field to the POST request.
        *
@@ -833,7 +780,6 @@
       setFormField: function setFormField(vId, vValue) {
         this.__P_252_3[vId] = vValue;
       },
-
       /**
        * Remove a form field from the POST request.
        *
@@ -842,7 +788,6 @@
       removeFormField: function removeFormField(vId) {
         delete this.__P_252_3[vId];
       },
-
       /**
        * Get a form field in the POST request.
        *
@@ -853,7 +798,6 @@
       getFormField: function getFormField(vId) {
         return this.__P_252_3[vId] || null;
       },
-
       /**
        * Returns the object containing all form fields for the POST request.
        *
@@ -864,7 +808,6 @@
       getFormFields: function getFormFields() {
         return this.__P_252_3;
       },
-
       /**
        * Obtain the sequence (id) number used for this request
        *
@@ -874,7 +817,6 @@
         return this.__P_252_4;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -888,4 +830,4 @@
   qx.io.remote.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1685978125546
+//# sourceMappingURL=Request.js.map?dt=1691935423062

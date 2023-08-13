@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,14 +40,12 @@
        * @return {qx.ui.virtual.layer.Abstract} new layer.
        */
       createLayer: function createLayer() {},
-
       /**
        * Creates a renderer for rendering.
        *
        * @return {var} new node renderer.
        */
       createRenderer: function createRenderer() {},
-
       /**
        * Sets the name of the property, where the children are stored in the model.
        *
@@ -58,7 +55,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertString(value);
       },
-
       /**
        * Sets the name of the property, where the value for the tree folders label
        * is stored in the model classes.
@@ -69,7 +65,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertString(value);
       },
-
       /**
        * Styles a selected item.
        *
@@ -79,7 +74,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInteger(row);
       },
-
       /**
        * Styles a not selected item.
        *
@@ -89,7 +83,6 @@
         this.assertArgumentsCount(arguments, 1, 1);
         this.assertInteger(row);
       },
-
       /**
        * Returns if the passed row can be selected or not.
        *
@@ -106,4 +99,4 @@
   qx.ui.tree.provider.IVirtualTreeProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IVirtualTreeProvider.js.map?dt=1685978150165
+//# sourceMappingURL=IVirtualTreeProvider.js.map?dt=1691935446441

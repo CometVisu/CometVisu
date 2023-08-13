@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,6 +36,7 @@
        * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.apiviewer.ui.panels.EventPanel", {
     extend: qxl.apiviewer.ui.panels.InfoPanel,
     construct: function construct() {
@@ -54,14 +54,11 @@
       },
       getPanelItemObjects: function getPanelItemObjects(daoClass, showInherited) {
         var arr = daoClass.getEvents();
-
         if (showInherited) {
           arr = arr.concat(daoClass.getMixinEvents());
         }
-
         return arr;
       },
-
       /**
        * Checks whether an event has details.
        *
@@ -70,7 +67,8 @@
        * @return {Boolean} whether the event has details.
        */
       itemHasDetails: function itemHasDetails(node, currentClassDocNode) {
-        return node.getOverriddenFrom() || // event is inherited
+        return node.getOverriddenFrom() ||
+        // event is inherited
         node.getSee().length > 0 || node.getErrors().length > 0 || qxl.apiviewer.ui.panels.InfoPanel.descriptionHasDetails(node);
       },
       getItemTypeHtml: function getItemTypeHtml(node) {
@@ -79,7 +77,6 @@
       getItemTitleHtml: function getItemTitleHtml(node) {
         return qxl.apiviewer.ui.panels.InfoPanel.setTitleClass(node, node.getName());
       },
-
       /**
        * Creates the HTML showing the information about an event.
        *
@@ -91,14 +88,12 @@
       getItemTextHtml: function getItemTextHtml(node, currentClassDocNode, showDetails) {
         // Add the description
         var textHtml = new qx.util.StringBuilder(qxl.apiviewer.ui.panels.InfoPanel.createDescriptionHtml(node, node.getClass(), showDetails));
-
         if (showDetails) {
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createInheritedFromHtml(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createSeeAlsoHtml(node));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createErrorHtml(node, currentClassDocNode));
           textHtml.add(qxl.apiviewer.ui.panels.InfoPanel.createDeprecationHtml(node, "event"));
         }
-
         return textHtml.get();
       }
     }
@@ -106,4 +101,4 @@
   qxl.apiviewer.ui.panels.EventPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventPanel.js.map?dt=1685978164778
+//# sourceMappingURL=EventPanel.js.map?dt=1691935459662

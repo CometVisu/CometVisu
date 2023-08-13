@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,6 @@
           Transport: 3,
           Client: 4
         },
-
         /**
          * Error data. In Version 1, each origin can have its own error codes.
          * Only 'Server' error codes are globally-defined, however.
@@ -56,7 +54,6 @@
              * call.
              */
             ScriptError: -1,
-
             /*
              * Unknown Error
              *
@@ -65,7 +62,6 @@
              * generally not be used.
              */
             Unknown: 0,
-
             /**
              * Illegal Service
              *
@@ -73,14 +69,12 @@
              * deemed unacceptable to the JSON-RPC server.
              */
             IllegalService: 1,
-
             /**
              * Service Not Found
              *
              * The requested service does not exist at the JSON-RPC server.
              */
             ServiceNotFound: 2,
-
             /**
              * Class Not Found
              *
@@ -100,7 +94,6 @@
              * service.
              */
             MethodNotFound: 4,
-
             /**
              * Parameter Mismatch
              *
@@ -112,7 +105,6 @@
              * in server scripts.
              */
             ParameterMismatch: 5,
-
             /**
              * Permission Denied
              *
@@ -127,7 +119,6 @@
           }
         }
       },
-
       /** Information pertaining to a conformant JSON-RPC Version 2 */
       v2: {
         /**
@@ -142,14 +133,12 @@
            * An error occurred on the server while parsing the JSON text.
            */
           ParseError: -32700,
-
           /**
            * Invalid Request
            *
            * The JSON received by the server is not a valid Request object.
            */
           InvalidRequest: -32600,
-
           /**
            * Method Not Found
            *
@@ -157,7 +146,6 @@
            * service.
            */
           MethodNotFound: -32601,
-
           /**
            * Invalid method parameter(s)
            *
@@ -166,12 +154,10 @@
            * it should return this error code to indicate so to the caller.
            */
           InvalidParams: -32602,
-
           /**
            * Internal JSON-RPC error
            */
           InternalError: -32603,
-
           /*********************************************************************
            * The values -32099 to -32000 are reserved for implementation-defined
            * server errors. RPC-specific error codes must be outside of this
@@ -196,4 +182,4 @@
   qx.io.remote.RpcError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RpcError.js.map?dt=1685978125774
+//# sourceMappingURL=RpcError.js.map?dt=1691935423265

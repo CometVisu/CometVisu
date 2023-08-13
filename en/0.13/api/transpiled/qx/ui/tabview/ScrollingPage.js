@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,25 +48,20 @@
    */
   qx.Class.define("qx.ui.tabview.ScrollingPage", {
     extend: qx.ui.tabview.Page,
-
     /**
      * @param label {String} Initial label of the tab
      * @param icon {String} Initial icon of the tab
      */
     construct: function construct(label, icon) {
       qx.ui.tabview.Page.constructor.call(this, label, icon);
-
       this._setLayout(new qx.ui.layout.Grow());
-
       this.__P_456_0 = new qx.ui.container.Composite();
       var scroll = new qx.ui.container.Scroll(this.__P_456_0);
-
       this._add(scroll);
     },
     members: {
       /** @type{qx.ui.core.Widget} the container that the user's children are added to */
       __P_456_0: null,
-
       /**
        * Make sure that children are added to the scrolling container
        *
@@ -81,4 +75,4 @@
   qx.ui.tabview.ScrollingPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollingPage.js.map?dt=1685978148925
+//# sourceMappingURL=ScrollingPage.js.map?dt=1691935445230

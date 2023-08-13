@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -38,8 +37,7 @@
    */
   qx.Mixin.define("com.zenesis.qx.upload.MParameters", {
     members: {
-      __P_563_0: null,
-
+      __P_564_0: null,
       /**
        * Sets a parameter value to be sent with the file
        *
@@ -51,10 +49,9 @@
        */
       setParam: function setParam(name, value) {
         if (value !== null && typeof value != "string") value = "" + value;
-        if (!this.__P_563_0) this.__P_563_0 = {};
-        this.__P_563_0[name] = value;
+        if (!this.__P_564_0) this.__P_564_0 = {};
+        this.__P_564_0[name] = value;
       },
-
       /**
        * Returns a parameter value to be sent with the file
        *
@@ -62,9 +59,8 @@
        * @returns {Boolean}
        */
       getParam: function getParam(name) {
-        return this.__P_563_0 && this.__P_563_0[name];
+        return this.__P_564_0 && this.__P_564_0[name];
       },
-
       /**
        * Returns a list of parameter names
        *
@@ -72,7 +68,7 @@
        */
       getParamNames: function getParamNames() {
         var result = [];
-        if (this.__P_563_0) for (var name in this.__P_563_0) result.push(name);
+        if (this.__P_564_0) for (var name in this.__P_564_0) result.push(name);
         return result;
       }
     }
@@ -80,4 +76,4 @@
   com.zenesis.qx.upload.MParameters.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MParameters.js.map?dt=1685978162476
+//# sourceMappingURL=MParameters.js.map?dt=1691935457700

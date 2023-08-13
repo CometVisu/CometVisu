@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,37 +39,30 @@
     members: {
       __P_161_0: null,
       __P_161_1: null,
-
       /*
        * @Override
        */
       _createQxObject: function _createQxObject(id) {
         // Create the object, but don't add it to the list of owned objects
         var result = this._createQxObjectImpl(id);
-
         return result;
       },
-
       /*
        * @Override
        */
       _createQxObjectImpl: function _createQxObjectImpl(id) {
         if (this.__P_161_0) {
           var obj = this.__P_161_0[id];
-
           if (obj !== undefined) {
             return obj;
           }
         }
-
         switch (id) {
           case "application":
             return qx.core.Init.getApplication() || undefined;
         }
-
         return undefined;
       },
-
       /**
        * Returns an object path which can be used to locate an object anywhere in the application
        * with a call to `qx.core.Id.getQxObject()`.
@@ -91,35 +83,28 @@
         if (this.__P_161_1 && this.__P_161_1[obj.toHashCode()]) {
           return obj.getQxObjectId();
         }
-
         var segs = [];
         var application = qx.core.Init.getApplication();
-
         while (obj) {
           var id = obj.getQxObjectId();
-
           if (!id) {
             if (!suppressWarnings) {
               this.error("Cannot determine an absolute Object ID because one of the ancestor ObjectID's is null (got as far as " + segs.join("/") + ")");
             }
-
             return null;
           }
-
           segs.unshift(id);
           var owner = obj.getQxOwner();
-
           if (owner) {
             // Find the ID of the owner, *if* it is registered as a top level object
             var ownerId = null;
-
             if (owner === application) {
               ownerId = "application";
             } else {
               ownerId = this.__P_161_1 && this.__P_161_1[owner.toHashCode()] || null;
-            } // When we have found the ID of a top level object, add it to the path and stop
+            }
 
-
+            // When we have found the ID of a top level object, add it to the path and stop
             if (ownerId) {
               segs.unshift(ownerId);
               break;
@@ -128,17 +113,13 @@
             if (!suppressWarnings) {
               this.error("Cannot determine a global absolute Object ID because the topmost object is not registered");
             }
-
             return null;
           }
-
           obj = owner;
         }
-
         var path = segs.join("/");
         return path;
       },
-
       /**
        * Registers an object with an ID; as this is registering a global object which is the root of a tree
        * of objects with IDs, the `id` parameter can be provided to set the ID used for the root object - this
@@ -153,17 +134,13 @@
           this.__P_161_0 = {};
           this.__P_161_1 = {};
         }
-
         if (!id) {
           id = obj.getQxObjectId();
         }
-
         this.__P_161_0[id] = obj;
         this.__P_161_1[obj.toHashCode()] = id;
-
         obj._cascadeQxObjectIdChanges();
       },
-
       /**
        * Unregisters a previously registered object with an ID
        *
@@ -174,34 +151,25 @@
         if (!this.__P_161_0) {
           return false;
         }
-
         var id;
-
         if (typeof data == "string") {
           id = data;
         } else {
           var hash = data.toHashCode();
           id = this.__P_161_1[hash];
-
           if (!id) {
             return false;
           }
         }
-
         var obj = this.__P_161_0[id];
-
         if (obj) {
           delete this.__P_161_0[id];
           delete this.__P_161_1[obj.toHashCode()];
-
           obj._cascadeQxObjectIdChanges();
-
           return true;
         }
-
         return false;
       },
-
       /**
        * Returns a map of the objects that have been registered as id roots, with
        * the topmost part of the ID as key.
@@ -221,7 +189,6 @@
       getQxObject: function getQxObject(id) {
         return this.getInstance().getQxObject(id);
       },
-
       /**
        * Helper for `qx.core.Id.getAbsoluteIdOf`
        *
@@ -237,4 +204,4 @@
   qx.core.Id.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Id.js.map?dt=1685978112718
+//# sourceMappingURL=Id.js.map?dt=1691935411087

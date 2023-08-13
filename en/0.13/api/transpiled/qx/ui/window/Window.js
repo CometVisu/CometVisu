@@ -61,7 +61,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -102,73 +101,77 @@
   qx.Class.define("qx.ui.window.Window", {
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MRemoteChildrenHandling, qx.ui.core.MRemoteLayoutHandling, qx.ui.core.MResizable, qx.ui.core.MMovable, qx.ui.core.MContentPadding],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param caption {String?} The caption text
      * @param icon {String?} The URL of the caption bar icon
      */
     construct: function construct(caption, icon) {
-      qx.ui.core.Widget.constructor.call(this); // configure internal layout
+      qx.ui.core.Widget.constructor.call(this);
 
-      this._setLayout(new qx.ui.layout.VBox()); // force creation of captionbar
+      // configure internal layout
+      this._setLayout(new qx.ui.layout.VBox());
 
-
+      // force creation of captionbar
       this._createChildControl("captionbar");
+      this._createChildControl("pane");
 
-      this._createChildControl("pane"); // apply constructor parameters
-
-
+      // apply constructor parameters
       if (icon != null) {
         this.setIcon(icon);
       }
-
       if (caption != null) {
         this.setCaption(caption);
-      } // Update captionbar
+      }
 
+      // Update captionbar
+      this._updateCaptionBar();
 
-      this._updateCaptionBar(); // Activation listener
+      // Activation listener
+      this.addListener("pointerdown", this._onWindowPointerDown, this, true);
 
+      // Focusout listener
+      this.addListener("focusout", this._onWindowFocusOut, this);
 
-      this.addListener("pointerdown", this._onWindowPointerDown, this, true); // Focusout listener
+      // Automatically add to application root.
+      qx.core.Init.getApplication().getRoot().add(this);
 
-      this.addListener("focusout", this._onWindowFocusOut, this); // Automatically add to application root.
+      // Initialize properties
+      this.initVisibility();
+      this.initActive();
+      this.initModal();
 
-      qx.core.Init.getApplication().getRoot().add(this); // Initialize visibility
+      // Register as root for the focus handler
+      qx.ui.core.FocusHandler.getInstance().addRoot(this);
 
-      this.initVisibility(); // Register as root for the focus handler
+      // Change the resize frames appearance
+      this._getResizeFrame().setAppearance("window-resize-frame");
 
-      qx.ui.core.FocusHandler.getInstance().addRoot(this); // Change the resize frames appearance
-
-      this._getResizeFrame().setAppearance("window-resize-frame"); // ARIA attrs
-
-
+      // ARIA attrs
       this.getContentElement().setAttribute("role", "dialog");
       this.addAriaLabelledBy(this.getChildControl("title"));
       this.addAriaDescribedBy(this.getChildControl("statusbar-text"));
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Class} The default window manager class. */
       DEFAULT_MANAGER_CLASS: qx.ui.window.Manager
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired before the window is closed.
@@ -177,10 +180,8 @@
        * {@link qx.event.type.Event#preventDefault} on the event object
        */
       beforeClose: "qx.event.type.Event",
-
       /** Fired if the window is closed */
       close: "qx.event.type.Event",
-
       /**
        * Fired before the window is minimize.
        *
@@ -188,10 +189,8 @@
        * {@link qx.event.type.Event#preventDefault} on the event object
        */
       beforeMinimize: "qx.event.type.Event",
-
       /** Fired if the window is minimized */
       minimize: "qx.event.type.Event",
-
       /**
        * Fired before the window is maximize.
        *
@@ -199,10 +198,8 @@
        * {@link qx.event.type.Event#preventDefault} on the event object
        */
       beforeMaximize: "qx.event.type.Event",
-
       /** Fired if the window is maximized */
       maximize: "qx.event.type.Event",
-
       /**
        * Fired before the window is restored from a minimized or maximized state.
        *
@@ -210,22 +207,22 @@
        * {@link qx.event.type.Event#preventDefault} on the event object
        */
       beforeRestore: "qx.event.type.Event",
-
       /** Fired if the window is restored from a minimized or maximized state */
       restore: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
         INTERNAL OPTIONS
       ---------------------------------------------------------------------------
       */
+
       // overridden
       appearance: {
         refine: true,
@@ -241,7 +238,6 @@
         refine: true,
         init: true
       },
-
       /**
        * If the window is active, only one window in a single qx.ui.window.Manager could
        *  have set this to true at the same time.
@@ -252,7 +248,6 @@
         apply: "_applyActive",
         event: "changeActive"
       },
-
       /*
       ---------------------------------------------------------------------------
         BASIC OPTIONS
@@ -265,7 +260,6 @@
         init: false,
         event: "changeAlwaysOnTop"
       },
-
       /** Should the window be modal (this disables minimize and maximize buttons) */
       modal: {
         check: "Boolean",
@@ -273,14 +267,12 @@
         event: "changeModal",
         apply: "_applyModal"
       },
-
       /** The text of the caption */
       caption: {
         apply: "_applyCaptionBarChange",
         event: "changeCaption",
         nullable: true
       },
-
       /** The icon of the caption */
       icon: {
         check: "String",
@@ -289,7 +281,6 @@
         event: "changeIcon",
         themeable: true
       },
-
       /** The text of the statusbar */
       status: {
         check: "String",
@@ -297,7 +288,6 @@
         apply: "_applyStatus",
         event: "changeStatus"
       },
-
       /*
       ---------------------------------------------------------------------------
         HIDE CAPTIONBAR FEATURES
@@ -311,7 +301,6 @@
         apply: "_applyCaptionBarChange",
         themeable: true
       },
-
       /** Should the maximize button be shown */
       showMaximize: {
         check: "Boolean",
@@ -319,7 +308,6 @@
         apply: "_applyCaptionBarChange",
         themeable: true
       },
-
       /** Should the minimize button be shown */
       showMinimize: {
         check: "Boolean",
@@ -327,7 +315,6 @@
         apply: "_applyCaptionBarChange",
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         DISABLE CAPTIONBAR FEATURES
@@ -340,21 +327,18 @@
         init: true,
         apply: "_applyCaptionBarChange"
       },
-
       /** Should the user have the ability to maximize the window */
       allowMaximize: {
         check: "Boolean",
         init: true,
         apply: "_applyCaptionBarChange"
       },
-
       /** Should the user have the ability to minimize the window */
       allowMinimize: {
         check: "Boolean",
         init: true,
         apply: "_applyCaptionBarChange"
       },
-
       /*
       ---------------------------------------------------------------------------
         STATUSBAR CONFIG
@@ -367,7 +351,6 @@
         init: false,
         apply: "_applyShowStatusbar"
       },
-
       /*
       ---------------------------------------------------------------------------
         WHEN TO AUTOMATICALY CENTER
@@ -380,7 +363,6 @@
         check: "Boolean",
         apply: "_applyCenterOnAppear"
       },
-
       /**
        * Whether this window should be automatically centered when its container
        * is resized.
@@ -390,7 +372,6 @@
         check: "Boolean",
         apply: "_applyCenterOnContainerResize"
       },
-
       /*
       ---------------------------------------------------------------------------
         CLOSE BEHAVIOR
@@ -415,7 +396,6 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -426,22 +406,17 @@
     members: {
       /** @type {Integer} Original top value before maximation had occurred */
       __P_497_0: null,
-
       /** @type {Integer} Original left value before maximation had occurred */
       __P_497_1: null,
-
       /** @type {Integer} Listener ID for centering on appear */
       __P_497_2: null,
-
       /** @type {Integer} Listener ID for centering on resize */
       __P_497_3: null,
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
       ---------------------------------------------------------------------------
       */
-
       /**
        * The children container needed by the {@link qx.ui.core.MRemoteChildrenHandling}
        * mixin
@@ -452,7 +427,6 @@
         return this.getChildControl("pane");
       },
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -468,15 +442,15 @@
         // Before changing the parent, if there's a prior one, remove our resize
         // listener
         oldParent = this.getLayoutParent();
-
         if (oldParent && this.__P_497_3) {
           oldParent.removeListenerById(this.__P_497_3);
           this.__P_497_3 = null;
-        } // Call the superclass
+        }
 
+        // Call the superclass
+        qx.ui.window.Window.superclass.prototype.setLayoutParent.call(this, parent);
 
-        qx.ui.window.Window.superclass.prototype.setLayoutParent.call(this, parent); // Re-add a listener for resize, if required
-
+        // Re-add a listener for resize, if required
         if (parent && this.getCenterOnContainerResize()) {
           this.__P_497_3 = parent.addListener("resize", this.center, this);
         }
@@ -484,46 +458,36 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "statusbar":
             control = new qx.ui.container.Composite(new qx.ui.layout.HBox());
-
             this._add(control);
-
             control.add(this.getChildControl("statusbar-text"));
             break;
-
           case "statusbar-text":
             control = new qx.ui.basic.Label();
             control.setValue(this.getStatus());
             break;
-
           case "pane":
             control = new qx.ui.container.Composite();
-
             this._add(control, {
               flex: 1
             });
-
             break;
-
           case "captionbar":
             // captionbar
             var layout = new qx.ui.layout.Grid();
             layout.setRowFlex(0, 1);
             layout.setColumnFlex(1, 1);
             control = new qx.ui.container.Composite(layout);
+            this._add(control);
 
-            this._add(control); // captionbar events
+            // captionbar events
+            control.addListener("dbltap", this._onCaptionPointerDblTap, this);
 
-
-            control.addListener("dbltap", this._onCaptionPointerDblTap, this); // register as move handle
-
+            // register as move handle
             this._activateMoveHandle(control);
-
             break;
-
           case "icon":
             control = new qx.ui.basic.Image(this.getIcon());
             this.getChildControl("captionbar").add(control, {
@@ -531,7 +495,6 @@
               column: 0
             });
             break;
-
           case "title":
             control = new qx.ui.basic.Label(this.getCaption());
             control.setWidth(0);
@@ -542,7 +505,6 @@
               column: 1
             });
             break;
-
           case "minimize-button":
             control = new qx.ui.form.Button();
             control.setFocusable(false);
@@ -552,7 +514,6 @@
               column: 2
             });
             break;
-
           case "restore-button":
             control = new qx.ui.form.Button();
             control.setFocusable(false);
@@ -562,7 +523,6 @@
               column: 3
             });
             break;
-
           case "maximize-button":
             control = new qx.ui.form.Button();
             control.setFocusable(false);
@@ -572,7 +532,6 @@
               column: 4
             });
             break;
-
           case "close-button":
             control = new qx.ui.form.Button();
             control.setFocusable(false);
@@ -583,85 +542,66 @@
             });
             break;
         }
-
         return control || qx.ui.window.Window.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /*
       ---------------------------------------------------------------------------
         CAPTIONBAR INTERNALS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Updates the status and the visibility of each element of the captionbar.
        */
       _updateCaptionBar: function _updateCaptionBar() {
         var btn;
         var icon = this.getIcon();
-
         if (icon) {
           this.getChildControl("icon").setSource(icon);
-
           this._showChildControl("icon");
         } else {
           this._excludeChildControl("icon");
         }
-
         var caption = this.getCaption();
-
         if (caption) {
           this.getChildControl("title").setValue(caption);
-
           this._showChildControl("title");
         } else {
           this._excludeChildControl("title");
         }
-
         if (this.getShowMinimize()) {
           this._showChildControl("minimize-button");
-
           btn = this.getChildControl("minimize-button");
           this.getAllowMinimize() ? btn.resetEnabled() : btn.setEnabled(false);
         } else {
           this._excludeChildControl("minimize-button");
         }
-
         if (this.getShowMaximize()) {
           if (this.isMaximized()) {
             this._showChildControl("restore-button");
-
             this._excludeChildControl("maximize-button");
           } else {
             this._showChildControl("maximize-button");
-
             this._excludeChildControl("restore-button");
           }
-
           btn = this.getChildControl("maximize-button");
           this.getAllowMaximize() ? btn.resetEnabled() : btn.setEnabled(false);
         } else {
           this._excludeChildControl("maximize-button");
-
           this._excludeChildControl("restore-button");
         }
-
         if (this.getShowClose()) {
           this._showChildControl("close-button");
-
           btn = this.getChildControl("close-button");
           this.getAllowClose() ? btn.resetEnabled() : btn.setEnabled(false);
         } else {
           this._excludeChildControl("close-button");
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         USER API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Close the current window instance.
        *
@@ -673,23 +613,21 @@
         if (!this.getAutoDestroy() && !this.isVisible()) {
           return;
         }
-
         if (!this.fireNonBubblingEvent("beforeClose", qx.event.type.Event, [false, true])) {
           // preventDefault() was called
           return;
         }
-
         this.hide();
-        this.fireEvent("close"); // If automatically destroying the window upon close was requested, do
+        this.fireEvent("close");
+
+        // If automatically destroying the window upon close was requested, do
         // so now. (Note that we explicitly re-obtain the autoDestroy property
         // value, allowing the user's close handler to enable/disable it before
         // here.)
-
         if (this.getAutoDestroy()) {
           this.dispose();
         }
       },
-
       /**
        * Open the window.
        */
@@ -698,7 +636,6 @@
         this.setActive(true);
         this.focus();
       },
-
       /**
        * Centers the window to the parent.
        *
@@ -711,25 +648,20 @@
        */
       center: function center() {
         var parent = this.getLayoutParent();
-
         if (parent) {
           var bounds = parent.getBounds();
-
           if (bounds) {
             var hint = this.getSizeHint();
             var left = Math.round((bounds.width - hint.width) / 2);
             var top = Math.round((bounds.height - hint.height) / 2);
-
             if (top < 0) {
               top = 0;
             }
-
             this.moveTo(left, top);
             return;
           }
         }
       },
-
       /**
        * Maximize the window.
        */
@@ -737,39 +669,40 @@
         // If the window is already maximized -> return
         if (this.isMaximized()) {
           return;
-        } // First check if the parent uses a canvas layout
+        }
+
+        // First check if the parent uses a canvas layout
         // Otherwise maximize() is not possible
-
-
         var parent = this.getLayoutParent();
-
         if (parent != null && parent.supportsMaximize()) {
           if (this.fireNonBubblingEvent("beforeMaximize", qx.event.type.Event, [false, true])) {
             if (!this.isVisible()) {
               this.open();
-            } // store current dimension and location
+            }
 
-
+            // store current dimension and location
             var props = this.getLayoutProperties();
             this.__P_497_1 = props.left === undefined ? 0 : props.left;
-            this.__P_497_0 = props.top === undefined ? 0 : props.top; // Update layout properties
+            this.__P_497_0 = props.top === undefined ? 0 : props.top;
 
+            // Update layout properties
             this.setLayoutProperties({
               left: null,
               top: null,
               edge: 0
-            }); // Add state
+            });
 
-            this.addState("maximized"); // Update captionbar
+            // Add state
+            this.addState("maximized");
 
-            this._updateCaptionBar(); // Fire user event
+            // Update captionbar
+            this._updateCaptionBar();
 
-
+            // Fire user event
             this.fireEvent("maximize");
           }
         }
       },
-
       /**
        * Minimized the window.
        */
@@ -777,7 +710,6 @@
         if (!this.isVisible()) {
           return;
         }
-
         if (this.fireNonBubblingEvent("beforeMinimize", qx.event.type.Event, [false, true])) {
           // store current dimension and location
           var props = this.getLayoutProperties();
@@ -788,7 +720,6 @@
           this.fireEvent("minimize");
         }
       },
-
       /**
        * Restore the window to <code>"normal"</code>, if it is
        * <code>"maximized"</code> or <code>"minimized"</code>.
@@ -797,30 +728,30 @@
         if (this.getMode() === "normal") {
           return;
         }
-
         if (this.fireNonBubblingEvent("beforeRestore", qx.event.type.Event, [false, true])) {
           if (!this.isVisible()) {
             this.open();
-          } // Restore old properties
+          }
 
-
+          // Restore old properties
           var left = this.__P_497_1;
           var top = this.__P_497_0;
           this.setLayoutProperties({
             edge: null,
             left: left,
             top: top
-          }); // Remove maximized state
+          });
 
-          this.removeState("maximized"); // Update captionbar
+          // Remove maximized state
+          this.removeState("maximized");
 
-          this._updateCaptionBar(); // Fire user event
+          // Update captionbar
+          this._updateCaptionBar();
 
-
+          // Fire user event
           this.fireEvent("restore");
         }
       },
-
       /**
        * Set the window's position relative to its parent
        *
@@ -831,13 +762,11 @@
         if (this.isMaximized()) {
           return;
         }
-
         this.setLayoutProperties({
           left: left,
           top: top
         });
       },
-
       /**
        * Return <code>true</code> if the window is in maximized state,
        * but note that the window in maximized state could also be invisible, this
@@ -850,7 +779,6 @@
       isMaximized: function isMaximized() {
         return this.hasState("maximized");
       },
-
       /**
        * Return the window mode as <code>String</code>:
        * <code>"maximized"</code>, <code>"normal"</code> or <code>"minimized"</code>.
@@ -868,7 +796,6 @@
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -876,24 +803,23 @@
       */
       // property apply
       _applyActive: function _applyActive(value, old) {
-        if (old) {
-          this.removeState("active");
-        } else {
+        if (value) {
           this.addState("active");
+        } else {
+          this.removeState("active");
         }
       },
       // property apply
       _applyModal: function _applyModal(value, old) {
-        if (old) {
-          this.removeState("modal");
-        } else {
+        if (value) {
           this.addState("modal");
-        } // ARIA attrs
+        } else {
+          this.removeState("modal");
+        }
 
-
+        // ARIA attrs
         this.getContentElement().setAttribute("aria-modal", value);
       },
-
       /**
        * Returns the element, to which the content padding should be applied.
        *
@@ -906,7 +832,6 @@
       _applyShowStatusbar: function _applyShowStatusbar(value, old) {
         // store the state if the status bar is shown
         var resizeFrame = this._getResizeFrame();
-
         if (value) {
           this.addState("showStatusbar");
           resizeFrame.addState("showStatusbar");
@@ -914,7 +839,6 @@
           this.removeState("showStatusbar");
           resizeFrame.removeState("showStatusbar");
         }
-
         if (value) {
           this._showChildControl("statusbar");
         } else {
@@ -928,7 +852,6 @@
       // property apply
       _applyStatus: function _applyStatus(value, old) {
         var label = this.getChildControl("statusbar-text", true);
-
         if (label) {
           label.setValue(value);
         }
@@ -946,35 +869,34 @@
         if (this.__P_497_2 !== null) {
           this.removeListenerById(this.__P_497_2);
           this.__P_497_2 = null;
-        } // If we are to center on appear, arrange to do so
+        }
 
-
+        // If we are to center on appear, arrange to do so
         if (value) {
           this.__P_497_2 = this.addListener("appear", this.center, this);
         }
       },
       _applyCenterOnContainerResize: function _applyCenterOnContainerResize(value, old) {
-        var parent = this.getLayoutParent(); // Remove prior listener for centering on resize
+        var parent = this.getLayoutParent();
 
+        // Remove prior listener for centering on resize
         if (this.__P_497_3 !== null) {
           parent.removeListenerById(this.__P_497_3);
           this.__P_497_3 = null;
-        } // If we are to center on resize, arrange to do so
+        }
 
-
+        // If we are to center on resize, arrange to do so
         if (value) {
           if (parent) {
             this.__P_497_3 = parent.addListener("resize", this.center, this);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         BASIC EVENT HANDLERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Stops every event
        *
@@ -983,7 +905,6 @@
       _onWindowEventStop: function _onWindowEventStop(e) {
         e.stopPropagation();
       },
-
       /**
        * Focuses the window instance.
        *
@@ -992,7 +913,6 @@
       _onWindowPointerDown: function _onWindowPointerDown(e) {
         this.setActive(true);
       },
-
       /**
        * Listens to the "focusout" event to deactivate the window (if the
        * currently focused widget is not a child of the window)
@@ -1003,16 +923,14 @@
         // only needed for non-modal windows
         if (this.getModal()) {
           return;
-        } // get the current focused widget and check if it is a child
+        }
 
-
+        // get the current focused widget and check if it is a child
         var current = e.getRelatedTarget();
-
         if (current != null && !qx.ui.core.Widget.contains(this, current)) {
           this.setActive(false);
         }
       },
-
       /**
        * Maximizes the window or restores it if it is already
        * maximized.
@@ -1024,13 +942,11 @@
           this.isMaximized() ? this.restore() : this.maximize();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENTS FOR CAPTIONBAR BUTTONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Minimizes the window, removes all states from the minimize button and
        * stops the further propagation of the event (calling {@link qx.event.type.Event#stopPropagation}).
@@ -1041,7 +957,6 @@
         this.minimize();
         this.getChildControl("minimize-button").reset();
       },
-
       /**
        * Restores the window, removes all states from the restore button and
        * stops the further propagation of the event (calling {@link qx.event.type.Event#stopPropagation}).
@@ -1052,7 +967,6 @@
         this.restore();
         this.getChildControl("restore-button").reset();
       },
-
       /**
        * Maximizes the window, removes all states from the maximize button and
        * stops the further propagation of the event (calling {@link qx.event.type.Event#stopPropagation}).
@@ -1063,7 +977,6 @@
         this.maximize();
         this.getChildControl("maximize-button").reset();
       },
-
       /**
        * Closes the window, removes all states from the close button and
        * stops the further propagation of the event (calling {@link qx.event.type.Event#stopPropagation}).
@@ -1077,17 +990,19 @@
     },
     destruct: function destruct() {
       var id;
-      var parent; // Remove ourselves from the focus handler
+      var parent;
 
-      qx.ui.core.FocusHandler.getInstance().removeRoot(this); // If we haven't been removed from our parent, clean it up too.
+      // Remove ourselves from the focus handler
+      qx.ui.core.FocusHandler.getInstance().removeRoot(this);
 
+      // If we haven't been removed from our parent, clean it up too.
       parent = this.getLayoutParent();
-
       if (parent) {
         // Remove the listener for resize, if there is one
         id = this.__P_497_3;
-        id && parent.removeListenerById(id); // Remove ourself from our parent
+        id && parent.removeListenerById(id);
 
+        // Remove ourself from our parent
         parent.remove(this);
       }
     }
@@ -1095,4 +1010,4 @@
   qx.ui.window.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1685978153657
+//# sourceMappingURL=Window.js.map?dt=1691935450021

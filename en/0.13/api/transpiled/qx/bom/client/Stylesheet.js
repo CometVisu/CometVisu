@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -18,7 +17,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,7 +34,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * Daniel Wagner (d_wagner)
   
   ************************************************************************ */
-
   /**
    * Internal class which contains the checks used by {@link qx.core.Environment}.
    * All checks in here are marked as internal which means you should never use
@@ -57,10 +54,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!qx.bom.client.Stylesheet.__P_128_1) {
           qx.bom.client.Stylesheet.__P_128_1 = qx.bom.Stylesheet.createElement();
         }
-
         return qx.bom.client.Stylesheet.__P_128_1;
       },
-
       /**
        * Check for IE's non-standard document.createStyleSheet function.
        * In IE9 (standards mode), the typeof check returns "function" so false is
@@ -74,7 +69,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getCreateStyleSheet: function getCreateStyleSheet() {
         return _typeof(document.createStyleSheet) === "object";
       },
-
       /**
        * Check for stylesheet.insertRule. Legacy IEs do not support this.
        *
@@ -84,7 +78,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getInsertRule: function getInsertRule() {
         return typeof qx.bom.client.Stylesheet.__P_128_0().insertRule === "function";
       },
-
       /**
        * Check for stylesheet.deleteRule. Legacy IEs do not support this.
        *
@@ -94,7 +87,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getDeleteRule: function getDeleteRule() {
         return typeof qx.bom.client.Stylesheet.__P_128_0().deleteRule === "function";
       },
-
       /**
        * Decides whether to use the legacy IE-only stylesheet.addImport or the
        * DOM-standard stylesheet.insertRule('@import [...]')
@@ -105,7 +97,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getAddImport: function getAddImport() {
         return _typeof(qx.bom.client.Stylesheet.__P_128_0().addImport) === "object";
       },
-
       /**
        * Decides whether to use the legacy IE-only stylesheet.removeImport or the
        * DOM-standard stylesheet.deleteRule('@import [...]')
@@ -128,4 +119,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.bom.client.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1685978109857
+//# sourceMappingURL=Stylesheet.js.map?dt=1691935408621

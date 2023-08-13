@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,10 +38,8 @@
     statics: {
       /** @type {Array} This contains all the queued widgets for the next flush. */
       __P_322_0: [],
-
       /** @type {Map} map of widgets by hash code which are in the queue */
       __P_322_1: {},
-
       /**
        * Clears the widget from the internal queue. Normally only used
        * during interims disposes of one or a few widgets.
@@ -55,7 +52,6 @@
           delete this.__P_322_1[widget.toHashCode()];
         }
       },
-
       /**
        * Adds a widget to the queue.
        *
@@ -67,13 +63,10 @@
         if (this.__P_322_1[widget.toHashCode()]) {
           return;
         }
-
         this.__P_322_0.unshift(widget);
-
         this.__P_322_1[widget.toHashCode()] = widget;
         qx.ui.core.queue.Manager.scheduleFlush("appearance");
       },
-
       /**
        * Whether the given widget is already queued
        *
@@ -83,7 +76,6 @@
       has: function has(widget) {
         return !!this.__P_322_1[widget.toHashCode()];
       },
-
       /**
        * Flushes the appearance queue.
        *
@@ -93,13 +85,13 @@
         var Visibility = qx.ui.core.queue.Visibility;
         var queue = this.__P_322_0;
         var obj;
-
         for (var i = queue.length - 1; i >= 0; i--) {
           // Order is important to allow the same widget to be re-queued directly
           obj = queue[i];
           queue.splice(i, 1);
-          delete this.__P_322_1[obj.toHashCode()]; // Only apply to currently visible widgets
+          delete this.__P_322_1[obj.toHashCode()];
 
+          // Only apply to currently visible widgets
           if (Visibility.isVisible(obj)) {
             obj.syncAppearance();
           } else {
@@ -112,4 +104,4 @@
   qx.ui.core.queue.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1685978135560
+//# sourceMappingURL=Appearance.js.map?dt=1691935432214

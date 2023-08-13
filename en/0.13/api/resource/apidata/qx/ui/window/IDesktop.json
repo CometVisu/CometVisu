@@ -11,12 +11,12 @@
       "start": {
         "line": 22,
         "column": 0,
-        "index": 549
+        "index": 570
       },
       "end": {
         "line": 70,
         "column": 3,
-        "index": 1739
+        "index": 1808
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 29,
           "column": 4,
-          "index": 748
+          "index": 776
         },
         "end": {
           "line": 31,
           "column": 5,
-          "index": 847
+          "index": 877
         }
       },
       "jsdoc": {
@@ -68,12 +68,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1022
+          "index": 1059
         },
         "end": {
           "line": 38,
           "column": 19,
-          "index": 1037
+          "index": 1074
         }
       },
       "jsdoc": {
@@ -100,12 +100,12 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1228
+          "index": 1273
         },
         "end": {
           "line": 46,
           "column": 25,
-          "index": 1249
+          "index": 1294
         }
       },
       "jsdoc": {
@@ -132,12 +132,12 @@
         "start": {
           "line": 54,
           "column": 4,
-          "index": 1460
+          "index": 1513
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1522
+          "index": 1577
         }
       },
       "jsdoc": {
@@ -165,12 +165,12 @@
         "start": {
           "line": 61,
           "column": 4,
-          "index": 1572
+          "index": 1632
         },
         "end": {
           "line": 61,
           "column": 16,
-          "index": 1584
+          "index": 1644
         }
       },
       "jsdoc": {
@@ -189,12 +189,12 @@
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1717
+          "index": 1784
         },
         "end": {
           "line": 68,
           "column": 18,
-          "index": 1731
+          "index": 1798
         }
       },
       "jsdoc": {

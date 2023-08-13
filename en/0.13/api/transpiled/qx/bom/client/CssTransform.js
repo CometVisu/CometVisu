@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,7 +65,6 @@
        */
       getSupport: function getSupport() {
         var name = qx.bom.client.CssTransform.getName();
-
         if (name != null) {
           return {
             name: name,
@@ -78,10 +76,8 @@
             "backface-visibility": qx.bom.client.CssTransform.getBackFaceVisibility()
           };
         }
-
         return null;
       },
-
       /**
        * Checks for the style name used to set the transform origin.
        * @internal
@@ -91,7 +87,6 @@
       getStyle: function getStyle() {
         return qx.bom.Style.getPropertyName("transformStyle");
       },
-
       /**
        * Checks for the style name used to set the transform origin.
        * @internal
@@ -101,7 +96,6 @@
       getPerspective: function getPerspective() {
         return qx.bom.Style.getPropertyName("perspective");
       },
-
       /**
        * Checks for the style name used to set the perspective origin.
        * @internal
@@ -111,7 +105,6 @@
       getPerspectiveOrigin: function getPerspectiveOrigin() {
         return qx.bom.Style.getPropertyName("perspectiveOrigin");
       },
-
       /**
        * Checks for the style name used to set the backface visibility.
        * @internal
@@ -121,7 +114,6 @@
       getBackFaceVisibility: function getBackFaceVisibility() {
         return qx.bom.Style.getPropertyName("backfaceVisibility");
       },
-
       /**
        * Checks for the style name used to set the transform origin.
        * @internal
@@ -131,7 +123,6 @@
       getOrigin: function getOrigin() {
         return qx.bom.Style.getPropertyName("transformOrigin");
       },
-
       /**
        * Checks for the style name used for transforms.
        * @internal
@@ -141,7 +132,6 @@
       getName: function getName() {
         return qx.bom.Style.getPropertyName("transform");
       },
-
       /**
        * Checks if 3D transforms are supported.
        * @internal
@@ -159,4 +149,4 @@
   qx.bom.client.CssTransform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CssTransform.js.map?dt=1685978108916
+//# sourceMappingURL=CssTransform.js.map?dt=1691935407800

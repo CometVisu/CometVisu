@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* FileWorker.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
   qx.Class.define('cv.data.FileWorker', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -54,7 +52,6 @@
       this._worker.onmessage = this._onMessage.bind(this);
       this._validationCallbacks = {};
     },
-
     /*
     ***********************************************
       EVENTS
@@ -63,7 +60,6 @@
     events: {
       message: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -81,7 +77,6 @@
           // check if there is already one validation request ongoing
           if (!Object.prototype.hasOwnProperty.call(this._validationCallbacks, url)) {
             this._validationCallbacks[url] = [resolve];
-
             this._worker.postMessage(['validateConfig', {
               path: url
             }]);
@@ -94,7 +89,6 @@
         return new Promise(function (resolve, reject) {
           var id = this._counter++;
           this._validationCallbacks[id] = [resolve];
-
           this._worker.postMessage(['validateXmlConfig', id, code, true]);
         }.bind(this));
       },
@@ -102,7 +96,6 @@
         var topic = e.data.shift();
         var data = e.data.shift();
         var path = e.data.shift();
-
         switch (topic) {
           case 'validationResult':
             if (Object.prototype.hasOwnProperty.call(this._validationCallbacks, path)) {
@@ -112,10 +105,8 @@
                 cb(data);
               });
             }
-
             break;
         }
-
         this.fireDataEvent('message', {
           topic: topic,
           data: data,
@@ -123,7 +114,6 @@
         });
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -136,4 +126,4 @@
   cv.data.FileWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileWorker.js.map?dt=1685978157160
+//# sourceMappingURL=FileWorker.js.map?dt=1691935452882

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      Copyright:
@@ -36,7 +35,6 @@
     members: {
       __P_300_0: null,
       __P_300_1: null,
-
       /**
        * Add command group.
        *
@@ -48,14 +46,12 @@
         if (this.__P_300_0.includes(group)) {
           return false;
         }
+        this.__P_300_0.push(group);
 
-        this.__P_300_0.push(group); // deactivate added group to prevent collusions
-
-
+        // deactivate added group to prevent collusions
         group.setActive(false);
         return true;
       },
-
       /**
        * Whether a command manager was added.
        *
@@ -66,7 +62,6 @@
       has: function has(group) {
         return !!this._getGroup(group);
       },
-
       /**
        * Removes a command group from group manager. If removed group was the
        * active group, active group will be set to <code>null</code> Returns the
@@ -78,20 +73,17 @@
        */
       remove: function remove(group) {
         var index = this.__P_300_0.indexOf(group);
+        if (index === -1) {}
 
-        if (index === -1) {} // reset active group
-
-
+        // reset active group
         if (this.getActive() === group) {
           this.__P_300_1 = null;
-        } // remove group from internal array
+        }
 
-
+        // remove group from internal array
         this.__P_300_0.splice(index, 1);
-
         return group;
       },
-
       /**
        * Activates a command group and deactivates all other added groups.
        *
@@ -102,24 +94,20 @@
       setActive: function setActive(group) {
         if (!this.has(group)) {
           return false;
-        } // iterate through all groups and deactivate all expect the given one
+        }
 
-
+        // iterate through all groups and deactivate all expect the given one
         for (var i = 0; i < this.__P_300_0.length; i++) {
           var item = this.__P_300_0[i];
-
           if (item == group) {
             item.setActive(true);
             this.__P_300_1 = item;
             continue;
           }
-
           item.setActive(false);
         }
-
         return true;
       },
-
       /**
        * Returns active command group.
        *
@@ -128,7 +116,6 @@
       getActive: function getActive() {
         return this.__P_300_1;
       },
-
       /**
        * Blocks the active command group.
        */
@@ -137,7 +124,6 @@
           this.__P_300_1.setActive(false);
         }
       },
-
       /**
        * Unblocks the active command group.
        */
@@ -146,7 +132,6 @@
           this.__P_300_1.setActive(true);
         }
       },
-
       /**
        * Helper function returns added command group.
        *
@@ -156,11 +141,9 @@
        */
       _getGroup: function _getGroup(group) {
         var index = this.__P_300_0.indexOf(group);
-
         if (index === -1) {
           return null;
         }
-
         return this.__P_300_0[index];
       }
     },
@@ -171,4 +154,4 @@
   qx.ui.command.GroupManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupManager.js.map?dt=1685978133023
+//# sourceMappingURL=GroupManager.js.map?dt=1691935430069

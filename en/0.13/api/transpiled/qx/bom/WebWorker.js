@@ -36,7 +36,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,7 +69,6 @@
   qx.Class.define("qx.bom.WebWorker", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * Create a new instance.
      *
@@ -84,7 +82,6 @@
     events: {
       /** Fired when worker sends a message */
       message: "qx.event.type.Data",
-
       /** Fired when an error occurs */
       error: "qx.event.type.Data"
     },
@@ -94,7 +91,6 @@
       _handleMessageBound: null,
       __P_118_0: true,
       __P_118_3: null,
-
       /**
        * Initialize the native worker
        * @param src {String} The path to worker as an URL
@@ -106,7 +102,6 @@
         qx.bom.Event.addNativeListener(this._worker, "message", this._handleMessageBound);
         qx.bom.Event.addNativeListener(this._worker, "error", this._handleErrorBound);
       },
-
       /**
        * Initialize the fake worker
        * @param src {String} The path to worker as an URL
@@ -115,34 +110,30 @@
       __P_118_2: function __P_118_2(src) {
         var that = this;
         var req = new qx.bom.request.Xhr();
-
         req.onload = function () {
           that.__P_118_3 = function () {
             var postMessage = function postMessage(e) {
               that.fireDataEvent("message", e);
-            }; //set up context vars before evaluating the code
+            };
+            //set up context vars before evaluating the code
+            eval("var onmessage = null, postMessage = " + postMessage + ";" + req.responseText);
 
-
-            eval("var onmessage = null, postMessage = " + postMessage + ";" + req.responseText); //pick the right onmessage because of the uglyfier
-
+            //pick the right onmessage because of the uglyfier
             return {
               onmessage: eval("onmessage"),
               postMessage: postMessage
             };
           }();
         };
-
         req.open("GET", src, false);
         req.send();
       },
-
       /**
        * Send a message to the worker.
        * @param msg {String} the message
        */
       postMessage: function postMessage(msg) {
         var that = this;
-
         if (this.__P_118_0) {
           this._worker.postMessage(msg);
         } else {
@@ -157,7 +148,6 @@
           }, 0);
         }
       },
-
       /**
        * Message handler
        * @param e {Event} message event
@@ -165,7 +155,6 @@
       _handleMessage: function _handleMessage(e) {
         this.fireDataEvent("message", e.data);
       },
-
       /**
        * Error handler
        * @param e {Event} error event
@@ -178,10 +167,8 @@
       if (this.__P_118_0) {
         qx.bom.Event.removeNativeListener(this._worker, "message", this._handleMessageBound);
         qx.bom.Event.removeNativeListener(this._worker, "error", this._handleErrorBound);
-
         if (this._worker) {
           this._worker.terminate();
-
           this._worker = null;
         }
       } else {
@@ -194,4 +181,4 @@
   qx.bom.WebWorker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebWorker.js.map?dt=1685978108615
+//# sourceMappingURL=WebWorker.js.map?dt=1691935407549

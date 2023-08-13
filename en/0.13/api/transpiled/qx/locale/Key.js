@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,12 +49,14 @@
   /**
    * Static class, which contains functionality to localize the names of keyboard keys.
    */
+
   qx.Class.define("qx.locale.Key", {
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Return localized name of a key identifier
@@ -68,14 +69,12 @@
        * @return {String} localized key name
        */
       getKeyName: function getKeyName(size, keyIdentifier, locale) {
-        var key = "key_" + size + "_" + keyIdentifier; // Control is always named control on a mac and not Strg in German e.g.
-
+        var key = "key_" + size + "_" + keyIdentifier;
+        // Control is always named control on a mac and not Strg in German e.g.
         if (qx.core.Environment.get("os.name") == "osx" && keyIdentifier == "Control") {
           key += "_Mac";
         }
-
         var localizedKey = qx.locale.Manager.getInstance().translate(key, [], locale);
-
         if (localizedKey == key) {
           return qx.locale.Key._keyNames[key] || keyIdentifier;
         } else {
@@ -83,7 +82,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -91,8 +89,9 @@
     */
     defer: function defer(statics) {
       var keyNames = {};
-      var Manager = qx.locale.Manager; // TRANSLATION: short representation of key names
+      var Manager = qx.locale.Manager;
 
+      // TRANSLATION: short representation of key names
       keyNames[Manager.marktr("key_short_Backspace")] = "Backspace";
       keyNames[Manager.marktr("key_short_Tab")] = "Tab";
       keyNames[Manager.marktr("key_short_Space")] = "Space";
@@ -119,8 +118,9 @@
       keyNames[Manager.marktr("key_short_Scroll")] = "Scroll";
       keyNames[Manager.marktr("key_short_Pause")] = "Pause";
       keyNames[Manager.marktr("key_short_Win")] = "Win";
-      keyNames[Manager.marktr("key_short_Apps")] = "Apps"; // TRANSLATION: full/long representation of key names
+      keyNames[Manager.marktr("key_short_Apps")] = "Apps";
 
+      // TRANSLATION: full/long representation of key names
       keyNames[Manager.marktr("key_full_Backspace")] = "Backspace";
       keyNames[Manager.marktr("key_full_Tab")] = "Tabulator";
       keyNames[Manager.marktr("key_full_Space")] = "Space";
@@ -147,12 +147,13 @@
       keyNames[Manager.marktr("key_full_Scroll")] = "Scroll";
       keyNames[Manager.marktr("key_full_Pause")] = "Pause";
       keyNames[Manager.marktr("key_full_Win")] = "Win";
-      keyNames[Manager.marktr("key_full_Apps")] = "Apps"; // Save
+      keyNames[Manager.marktr("key_full_Apps")] = "Apps";
 
+      // Save
       statics._keyNames = keyNames;
     }
   });
   qx.locale.Key.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Key.js.map?dt=1685978127874
+//# sourceMappingURL=Key.js.map?dt=1691935425231

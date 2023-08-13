@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -38,7 +37,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -79,7 +77,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * @type {Boolean}
        */
       __P_544_0: false,
-
       /**
        * Enforce the use of a coloured blocker.
        * Added for backwards-compability with pre-1.2 versions
@@ -89,14 +86,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       useBlocker: function useBlocker(value) {
         qxl.dialog.Dialog.__P_544_0 = value;
       },
-
       /**
        * Returns a dialog instance by type
        * @param type {String} The dialog type to get
        * @return {qxl.dialog.Dialog}
        */
       getInstanceByType: qxl.dialog.MDialog.getInstanceByType,
-
       /**
        * Shortcut for alert dialog
        * @param message {String} The message to display
@@ -118,7 +113,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           image: "qxl.dialog.icon.info"
         }).show();
       },
-
       /**
        * Shortcut for error dialog
        * @param message {String} The message to display
@@ -140,7 +134,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           image: "qxl.dialog.icon.error"
         }).show();
       },
-
       /**
        * Shortcut for warning dialog
        * @param message {String} The message to display
@@ -162,7 +155,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           image: "qxl.dialog.icon.warning"
         }).show();
       },
-
       /**
        * Shortcut for confirm dialog
        * @param message {String} The message to display
@@ -183,7 +175,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           caption: caption
         }).show();
       },
-
       /**
        * Shortcut for prompt dialog
        * @param message {String} The message to display
@@ -208,7 +199,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           caption: caption
         }).show();
       },
-
       /**
        * Shortcut for select dialog
        * @param message {String} The message to display
@@ -242,7 +232,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           caption: caption
         }).show();
       },
-
       /**
        * Shortcut for form dialog. Cannot be reused.
        * @param message {String} The message to display
@@ -269,7 +258,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // ease use for form element writers
       registerFormElementHandlers: qxl.dialog.MForm.registerFormElementHandlers
     },
-
     /**
      * Constructor
      * @param properties {Map|String|undefined} If you supply a map, all the
@@ -294,30 +282,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       });
       this.setLayout(new qx.ui.layout.Grow());
       var root = qx.core.Init.getApplication().getRoot();
-      root.add(this); // use blocker (for backwards-compability)
-
+      root.add(this);
+      // use blocker (for backwards-compability)
       this.__P_544_1 = new qx.ui.core.Blocker(root);
-
       this.__P_544_1.setOpacity(this.getBlockerOpacity());
-
-      this.__P_544_1.setColor(this.getBlockerColor()); // handle focus
-
-
-      qx.ui.core.FocusHandler.getInstance().addRoot(this); // resize the window when viewport size changes
-
+      this.__P_544_1.setColor(this.getBlockerColor());
+      // handle focus
+      qx.ui.core.FocusHandler.getInstance().addRoot(this);
+      // resize the window when viewport size changes
       this.addListener("resize", this.center, this);
       root.addListener("resize", this.center, this);
-
-      this._createWidgetContent(properties); // set properties from constructor param
-
-
+      this._createWidgetContent(properties);
+      // set properties from constructor param
       if (_typeof(properties) == "object") {
         this.set(properties);
       } else if (typeof properties == "string") {
         this.setMessage(properties);
-      } // escape key
-
-
+      }
+      // escape key
       root.addListener("keyup", this._handleEscape, this);
     },
     properties: {
@@ -331,7 +313,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         event: "changeShow",
         apply: "_applyShow"
       },
-
       /**
        * Whether to block the ui while the widget is displayed
        */
@@ -339,7 +320,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         check: "Boolean",
         init: false
       },
-
       /**
        * The blocker's color
        */
@@ -347,7 +327,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         check: "String",
         init: "black"
       },
-
       /**
        * The blocker's opacity
        */
@@ -361,7 +340,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * A reference to the widget that previously had the focus
        */
       __P_544_2: null,
-
       /**
        * Show the widget. Overriding methods must call this parent method.
        * Returns the widget instance for chaining.
@@ -373,30 +351,24 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           var root = qx.core.Init.getApplication().getRoot();
           var maxWindowZIndex = root.getZIndex();
           var windows = root.getWindows();
-
           for (var i = 0; i < windows.length; i++) {
             var zIndex = windows[i].getZIndex();
             maxWindowZIndex = Math.max(maxWindowZIndex, zIndex);
           }
-
           this.setZIndex(maxWindowZIndex + 1);
-
           this.__P_544_1.blockContent(maxWindowZIndex);
         }
-
         this.setVisibility("visible");
         this.__P_544_2 = qx.ui.core.FocusHandler.getInstance().getActiveWidget();
-
         if (this.__P_544_2) {
           try {
             this.__P_544_2.blur();
-          } catch (e) {} //this.__previousFocus.setFocusable(false);
-
+          } catch (e) {}
+          //this.__previousFocus.setFocusable(false);
         }
 
         return this;
       },
-
       /**
        * Hide the widget. Overriding methods must call this parent method.
        * Returns the widget instance for chaining.
@@ -406,19 +378,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (this.isUseBlocker() || qxl.dialog.Dialog.__P_544_0) {
           this.__P_544_1.unblock();
         }
-
         if (this.__P_544_2) {
           try {
             //this.__previousFocus.setFocusable(true);
             this.__P_544_2.focus();
           } catch (e) {}
         }
-
         this.setVisibility("hidden");
         return this;
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -433,4 +402,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qxl.dialog.Dialog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dialog.js.map?dt=1685978159089
+//# sourceMappingURL=Dialog.js.map?dt=1691935454582

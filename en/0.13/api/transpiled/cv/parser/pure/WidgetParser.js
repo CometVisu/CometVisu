@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* WidgetParser.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -37,10 +36,10 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   //noinspection JSUnusedGlobalSymbols
   qx.Class.define('cv.parser.pure.WidgetParser', {
     type: 'static',
-
     /*
      ******************************************************
      STATICS
@@ -64,7 +63,6 @@
       getHandler: function getHandler(tagName) {
         return this.__P_9_0[tagName.toLowerCase()] || this.__P_9_0.unknown;
       },
-
       /**
        * Renders templates into the config file, if they are used
        * @param rootPage
@@ -76,17 +74,15 @@
           Array.prototype.forEach.call(elem.children, function (variable) {
             variables[variable.getAttribute('name')] = variable.innerHTML;
           });
-
           if (Object.prototype.hasOwnProperty.call(this.__P_9_1, templateName)) {
             var renderedString = qx.bom.Template.render(this.__P_9_1[templateName], variables).replace('\n', '').trim();
             var helperNode = elem.ownerDocument.createElement('template');
-            helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim(); // replace existing element with the rendered templates child
-
+            helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim();
+            // replace existing element with the rendered templates child
             var replacement = helperNode.firstElementChild;
             var next = elem.nextElementSibling;
             var parent = elem.parentNode;
             parent.replaceChild(replacement, elem);
-
             while (helperNode.children.length > 0) {
               // append the rest
               parent.insertBefore(helperNode.children[0], next);
@@ -94,7 +90,6 @@
           }
         }, this);
       },
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -107,22 +102,18 @@
        */
       parse: function parse(xml, path, flavour, pageType) {
         var tag = xml.nodeName.toLowerCase();
-
         if (tag === 'custom') {
           // use the child of the custom element
           xml = xml.children[0];
           tag = xml.nodeName.toLowerCase();
         }
-
         var parser = this.getHandler(tag);
         var result = null;
-
         if (parser) {
           result = parser.parse(xml, path, flavour, pageType);
         } else {
           qx.log.Logger.debug(this, 'no parse handler registered for type: ' + tag.toLowerCase());
         }
-
         return result;
       },
       parseBasicElement: function parseBasicElement(element, path, flavour, pageType) {
@@ -132,7 +123,6 @@
           pageType: pageType
         });
       },
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -147,30 +137,24 @@
       parseElement: function parseElement(handler, element, path, flavour, pageType, mappings) {
         // and fill in widget specific data
         var data = this.createDefaultWidget(handler, this.getElementType(element), element, path, flavour, pageType);
-
         if (mappings) {
           for (var key in mappings) {
             if (Object.prototype.hasOwnProperty.call(mappings, key)) {
               var map = mappings[key];
               var value = element.getAttribute(key);
-
               if (map['default'] !== undefined && (value === undefined || value === null)) {
                 value = map['default'];
               }
-
               if (map.transform) {
                 value = map.transform(value);
               }
-
               data[map.target || key] = value;
             }
           }
         }
-
         this.parseStyling(element, path);
         return data;
       },
-
       /**
        * Get the mappings needed for parsing from the handler
        *
@@ -182,18 +166,15 @@
       },
       getElementType: function getElementType(element) {
         var type = element.nodeName.toLowerCase();
-
         if (type === 'img') {
           // workaround for unittests (<image> gets replaced by <img>
           type = 'image';
         }
-
         return type;
       },
       getDefaultClasses: function getDefaultClasses(type) {
         return 'widget clearfix ' + type.toLowerCase();
       },
-
       /**
        * Create a default widget to be filled by the creator afterwards.
        * Note: the receiver of the returned string must add an </div> closing element!
@@ -210,41 +191,32 @@
         if (handler.createDefaultWidget) {
           return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
         }
-
         var layout = this.parseLayout(Array.from(element.children).filter(function (m) {
           return m.matches('layout');
         })[0]);
         var style = Object.keys(layout).length === 0 ? '' : 'style="' + this.extractLayout(layout, pageType) + '"';
-        var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType); // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
-
+        var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
+        // the group widgets align attribute is just targeting the group header and is handled by the widget itself, so we skip it here
         if (element.getAttribute('align') && widgetType !== 'group') {
           classes += ' ' + element.getAttribute('align');
         }
-
         classes += ' ' + this.setWidgetLayout(element, path);
-
         if (element.getAttribute('flavour')) {
           flavour = element.getAttribute('flavour');
         } // sub design choice
-
-
         if (flavour) {
           classes += ' flavour_' + flavour;
         }
-
         if (element.getAttribute('class')) {
           element.getAttribute('class').split(' ').forEach(function (className) {
             classes += ' custom_' + className;
           });
         }
-
         var label = widgetType === 'text' ? this.parseLabel(element.querySelector('label'), flavour, '') : this.parseLabel(element.querySelector('label'), flavour);
         var bindClickToWidget = cv.Config.configSettings.bindClickToWidget;
-
         if (element.getAttribute('bind_click_to_widget')) {
           bindClickToWidget = element.getAttribute('bind_click_to_widget') === 'true';
         }
-
         var data = {
           path: path,
           $$type: widgetType.toLowerCase(),
@@ -263,7 +235,6 @@
         });
         return this.model.setWidgetData(path, data);
       },
-
       /**
        * Parse config file layout element and convert it to an object
        *
@@ -273,20 +244,15 @@
        */
       parseLayout: function parseLayout(layout, defaultValues) {
         var ret_val = {};
-
         if (!layout) {
           return ret_val;
         }
-
         if (undefined === defaultValues) {
           defaultValues = {};
         }
-
         ['x', 'y', 'width', 'height', 'scale', 'rowspan', 'colspan'].forEach(function (prop) {
           this.__P_9_3(ret_val, prop, layout, defaultValues);
-
           this.__P_9_3(ret_val, prop + '-m', layout, defaultValues);
-
           this.__P_9_3(ret_val, prop + '-s', layout, defaultValues);
         }, this);
         return ret_val;
@@ -300,58 +266,45 @@
       },
       extractLayout: function extractLayout(layout, pageType) {
         var ret_val = pageType === '2d' ? 'position:absolute;' : '';
-
         if (layout.x) {
           ret_val += 'left:' + layout.x + ';';
         }
-
         if (layout.y) {
           ret_val += 'top:' + layout.y + ';';
         }
-
         if (layout.width) {
           ret_val += 'width:' + layout.width + ';';
         }
-
         if (layout.height) {
           ret_val += 'height:' + layout.height + ';';
         }
-
         return ret_val;
       },
       extractLayout3d: function extractLayout3d(layout) {
         var ret_val = {};
-
         if (layout.getAttribute('x')) {
           ret_val.x = layout.getAttribute('x');
         }
-
         if (layout.getAttribute('y')) {
           ret_val.y = layout.getAttribute('y');
         }
-
         if (layout.getAttribute('z')) {
           ret_val.z = layout.getAttribute('z');
         }
-
         if (layout.getAttribute('floor')) {
           ret_val.floor = layout.getAttribute('floor');
         }
-
         if (layout.getAttribute('floorFilter')) {
           ret_val.floorFilter = layout.getAttribute('floorFilter');
         }
-
         if (layout.getAttribute('roomFilter')) {
           ret_val.roomFilter = layout.getAttribute('roomFilter');
         }
-
         return ret_val;
       },
       parseLabel: function parseLabel(label, flavour, labelClass, style) {
         return cv.Application.structureController.parseLabel(label, flavour, labelClass, style);
       },
-
       /**
        * this function implements all widget layouts that are identical (JNK)
        * implemented: rowspan, colspan
@@ -367,26 +320,21 @@
         })[0];
         var ret_val = '';
         var rowspan = null;
-
         if (layout) {
           elementData.colspan = qx.xml.Element.getAttributeNS(layout, '', 'colspan');
           elementData.colspanM = qx.xml.Element.getAttributeNS(layout, '', 'colspan-m');
           elementData.colspanS = qx.xml.Element.getAttributeNS(layout, '', 'colspan-s');
           rowspan = qx.xml.Element.getAttributeNS(layout, '', 'rowspan');
         }
-
         elementData.colspan = parseFloat(elementData.colspan || document.querySelector('head').dataset['colspanDefault'] || 6);
         elementData.colspanM = parseFloat(elementData.colspanM || cv.parser.pure.WidgetParser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
         elementData.colspanS = parseFloat(elementData.colspanS || cv.parser.pure.WidgetParser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
-
         if (rowspan) {
           elementData.rowspanClass = cv.ui.structure.pure.layout.Manager.rowspanClass(parseFloat(rowspan || 1));
           ret_val = 'innerrowspan';
         }
-
         return ret_val;
       },
-
       /**
        * Parse the format setting
        * @param xml {Element} XML-Element from config
@@ -395,12 +343,10 @@
       parseFormat: function parseFormat(xml, path) {
         var data = this.model.getWidgetData(path);
         var value = xml.getAttribute('format');
-
         if (value) {
           data.format = value;
         }
       },
-
       /**
        * Parses the address element
        * @param xml {Element} address XML-Element from config
@@ -413,7 +359,6 @@
           data.address = cv.parser.pure.WidgetParser.makeAddressList(xml, path, makeAddressListFn);
         }
       },
-
       /**
        * this function extracts all addresses with attributes (JNK)
        *                       elements. The first is a boolean that determins if
@@ -433,11 +378,8 @@
           var transform = elem.getAttribute('transform');
           var addressInfo = {};
           var formatPos = +(elem.getAttribute('format-pos') || 1) | 0; // force integer
-
           var mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
-
           var backendType = cv.data.Model.getInstance().getDefaultBackendName();
-
           if (!cv.Config.testMode && !window.cvTestMode) {
             if (transform) {
               // only check transform when not in testMode
@@ -445,11 +387,9 @@
                 case 'dpt':
                   backendType = 'knxd';
                   break;
-
                 case 'oh':
                   backendType = 'openhab';
                   break;
-
                 case 'mqtt':
                   backendType = 'mqtt';
                   break;
@@ -458,51 +398,39 @@
               backendType = 'system';
             }
           }
-
           addressInfo.backendType = backendType;
           addressInfo.selector = elem.getAttribute('selector');
           addressInfo.ignoreError = elem.getAttribute('ignore-error') === 'true';
           addressInfo.qos = (elem.getAttribute('qos') || 0) | 0; // force integer
-
           addressInfo.retain = elem.getAttribute('retain') === 'true';
-
           if (!src || !transform) {
             // fix broken address-entries in config
             qx.log.Logger.error(this, 'Either address or transform is missing in address element %1', element.outerHTML);
             return;
           }
-
           switch (elem.getAttribute('mode')) {
             case 'disable':
               mode = 0;
               break;
-
             case 'read':
               mode = 1;
               break;
-
             case 'write':
               mode = 2;
               break;
-
             case 'readwrite':
               mode = 1 | 2;
               break;
           }
-
           var backendName = backendType;
-
           if (elem.hasAttribute('backend')) {
             backendName = elem.getAttribute('backend');
           }
-
           var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, elem.getAttribute('variant')) : [true, undefined];
-
           if (!skipAdding && mode & 1 && variantInfo[0]) {
             // add only addresses when reading from them
             this.model.addAddress(src, id, backendName);
           }
-
           if (address[src]) {
             // we already have an entry for this address, merge the modes if the other attribute values are equal
             if (address[src].transform === transform && address[src].variantInfo === variantInfo[1] && address[src].formatPos === formatPos) {
@@ -511,7 +439,6 @@
               qx.log.Logger.error(this, 'multiple address entries with different configuration:', address[src], [transform, mode, variantInfo[1], formatPos], 'they are only allowed to differ in mode');
             }
           }
-
           addressInfo.transform = transform;
           addressInfo.mode = mode;
           addressInfo.variantInfo = variantInfo[1];
@@ -523,7 +450,6 @@
       parseRefresh: function parseRefresh(xml, path, doCacheControl) {
         var data = this.model.getWidgetData(path);
         data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
-
         if (doCacheControl) {
           data.cachecontrol = function (x) {
             switch (x) {
@@ -532,10 +458,8 @@
               case 'weak':
               case 'none':
                 return x;
-
               case 'false':
                 return 'none';
-
               case 'true':
               default:
                 return 'full';
@@ -550,22 +474,18 @@
       // this might have been called from the cv.parser.pure.WidgetParser with the including class as context
       parseChildren: function parseChildren(xml, path, flavour, pageType) {
         var data = this.model.getWidgetData(this.getStoragePath(xml, path));
-
         if (!data.children) {
           data.children = [];
         }
-
         var childs = Array.from(xml.children).filter(function (child) {
           return ['layout', 'label', 'address'].indexOf(child.nodeName.toLowerCase()) === -1;
         }, this);
         childs.forEach(function (child, idx) {
           var childData = cv.parser.pure.WidgetParser.parse(child, path + '_' + idx, flavour, pageType);
-
           if (childData) {
             if (Array.isArray(childData)) {
               var i = 0;
               var l = childData.length;
-
               for (; i < l; i++) {
                 data.children.push(childData[i].path);
               }
@@ -576,7 +496,6 @@
         }, this);
         return data;
       },
-
       /**
        * Returns the path where the widget data is stored, usually this is the same path, but there are
        * exceptions for pages which are handled here
@@ -588,11 +507,9 @@
         if (xml.length === 1) {
           xml = xml[0];
         }
-
         switch (xml.nodeName.toLowerCase()) {
           case 'page':
             return path + '_';
-
           default:
             return path;
         }
@@ -602,4 +519,4 @@
   cv.parser.pure.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1685978090732
+//# sourceMappingURL=WidgetParser.js.map?dt=1691935390339

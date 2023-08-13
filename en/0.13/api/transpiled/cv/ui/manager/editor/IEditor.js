@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* IEditor.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,7 +43,6 @@
         nullable: true,
         apply: '_loadFile'
       },
-
       /**
        * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file
        */
@@ -52,7 +50,6 @@
         check: 'Boolean',
         init: false
       },
-
       /**
        * If the handler needs some time to initialize before it can accept a file, this should be set false until the handler is ready
        */
@@ -62,7 +59,6 @@
         event: 'changeReady'
       }
     },
-
     /*
     ***********************************************
       STATICS
@@ -71,7 +67,6 @@
     statics: {
       TITLE: ''
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -85,4 +80,4 @@
   cv.ui.manager.editor.IEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEditor.js.map?dt=1685978095143
+//# sourceMappingURL=IEditor.js.map?dt=1691935394500

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
       computeStart: function computeStart(size, target, offsets, areaSize, position) {
         throw new Error("abstract method call!");
       },
-
       /**
        * Computes the start of the object by taking only the attachment and
        * alignment into account. The object by be not fully visible.
@@ -75,21 +73,16 @@
         switch (position) {
           case "edge-start":
             return target.start - offsets.end - size;
-
           case "edge-end":
             return target.end + offsets.start;
-
           case "align-start":
             return target.start + offsets.start;
-
           case "align-center":
             return target.start + parseInt((target.end - target.start - size) / 2, 10) + offsets.start;
-
           case "align-end":
             return target.end - offsets.end - size;
         }
       },
-
       /**
        * Whether the object specified by <code>start</code> and <code>size</code>
        * is completely inside of the axis' range..
@@ -107,4 +100,4 @@
   qx.util.placement.AbstractAxis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractAxis.js.map?dt=1685978155628
+//# sourceMappingURL=AbstractAxis.js.map?dt=1691935451792

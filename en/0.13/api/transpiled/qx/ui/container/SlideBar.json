@@ -14,12 +14,12 @@
       "start": {
         "line": 63,
         "column": 0,
-        "index": 1939
+        "index": 2001
       },
       "end": {
         "line": 469,
         "column": 3,
-        "index": 12913
+        "index": 13381
       }
     },
     "jsdoc": {
@@ -46,17 +46,10 @@
         },
         {
           "name": "@childControl",
-          "body": "content {qx.ui.container.Composite} container to hold the content",
+          "body": "content {qx.ui.container.Composite} container to hold the content\n @childControl scrollpane {qx.ui.core.scroll.ScrollPane} the scroll pane holds the content to enable scrolling\r*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n\n   slideBar = new qx.ui.container.SlideBar().set({\n     width: 300\n   });\n\n   slideBar.setLayout(new qx.ui.layout.HBox());\n\n   for (var i=0; i<10; i++)\n   {\n     slideBar.add((new qx.ui.core.Widget()).set({\n       backgroundColor : (i % 2 == 0) ? \"red\" : \"blue\",\n       width : 60\n     }));\n   }\n   this.getRoot().add(slideBar);\n </pre>\n This example creates a SlideBar and add some widgets with alternating\n background colors. Since the content is larger than the container, two\n scroll buttons at the left and the right edge are shown.\r*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/slidebar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
           "controlName": "content",
-          "description": "container to hold the content",
+          "description": "container to hold the content\n @childControl scrollpane {qx.ui.core.scroll.ScrollPane} the scroll pane holds the content to enable scrolling\r*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n\n   slideBar = new qx.ui.container.SlideBar().set({\n     width: 300\n   });\n\n   slideBar.setLayout(new qx.ui.layout.HBox());\n\n   for (var i=0; i<10; i++)\n   {\n     slideBar.add((new qx.ui.core.Widget()).set({\n       backgroundColor : (i % 2 == 0) ? \"red\" : \"blue\",\n       width : 60\n     }));\n   }\n   this.getRoot().add(slideBar);\n </pre>\n This example creates a SlideBar and add some widgets with alternating\n background colors. Since the content is larger than the container, two\n scroll buttons at the left and the right edge are shown.\r*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/slidebar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
           "type": "qx.ui.container.Composite"
-        },
-        {
-          "name": "@childControl",
-          "body": "scrollpane {qx.ui.core.scroll.ScrollPane} the scroll pane holds the content to enable scrolling\n*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n\n   slideBar = new qx.ui.container.SlideBar().set({\n     width: 300\n   });\n\n   slideBar.setLayout(new qx.ui.layout.HBox());\n\n   for (var i=0; i<10; i++)\n   {\n     slideBar.add((new qx.ui.core.Widget()).set({\n       backgroundColor : (i % 2 == 0) ? \"red\" : \"blue\",\n       width : 60\n     }));\n   }\n   this.getRoot().add(slideBar);\n </pre>\n This example creates a SlideBar and add some widgets with alternating\n background colors. Since the content is larger than the container, two\n scroll buttons at the left and the right edge are shown.\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/slidebar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
-          "controlName": "scrollpane",
-          "description": "the scroll pane holds the content to enable scrolling\n*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n\n   slideBar = new qx.ui.container.SlideBar().set({\n     width: 300\n   });\n\n   slideBar.setLayout(new qx.ui.layout.HBox());\n\n   for (var i=0; i<10; i++)\n   {\n     slideBar.add((new qx.ui.core.Widget()).set({\n       backgroundColor : (i % 2 == 0) ? \"red\" : \"blue\",\n       width : 60\n     }));\n   }\n   this.getRoot().add(slideBar);\n </pre>\n This example creates a SlideBar and add some widgets with alternating\n background colors. Since the content is larger than the container, two\n scroll buttons at the left and the right edge are shown.\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/slidebar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>",
-          "type": "qx.ui.core.scroll.ScrollPane"
         }
       ]
     }
@@ -67,12 +60,12 @@
       "start": {
         "line": 80,
         "column": 2,
-        "index": 2385
+        "index": 2464
       },
       "end": {
         "line": 93,
         "column": 3,
-        "index": 2696
+        "index": 2788
       }
     },
     "jsdoc": {
@@ -101,12 +94,12 @@
         "start": {
           "line": 103,
           "column": 4,
-          "index": 2924
+          "index": 3026
         },
         "end": {
           "line": 106,
           "column": 5,
-          "index": 2986
+          "index": 3091
         }
       },
       "jsdoc": {},
@@ -125,12 +118,12 @@
         "start": {
           "line": 109,
           "column": 4,
-          "index": 3027
+          "index": 3135
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3147
+          "index": 3259
         }
       },
       "jsdoc": {
@@ -156,12 +149,12 @@
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3223
+          "index": 3338
         },
         "end": {
           "line": 120,
           "column": 5,
-          "index": 3304
+          "index": 3423
         }
       },
       "jsdoc": {
@@ -218,12 +211,12 @@
         "start": {
           "line": 131,
           "column": 4,
-          "index": 3581
+          "index": 3711
         },
         "end": {
           "line": 131,
           "column": 45,
-          "index": 3622
+          "index": 3752
         }
       },
       "jsdoc": {
@@ -244,12 +237,12 @@
         "start": {
           "line": 148,
           "column": 4,
-          "index": 4093
+          "index": 4240
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 4169
+          "index": 4318
         }
       },
       "jsdoc": {},
@@ -265,12 +258,12 @@
         "start": {
           "line": 153,
           "column": 4,
-          "index": 4194
+          "index": 4346
         },
         "end": {
           "line": 192,
           "column": 5,
-          "index": 5419
+          "index": 5610
         }
       },
       "jsdoc": {},
@@ -286,12 +279,12 @@
         "start": {
           "line": 198,
           "column": 4,
-          "index": 5510
+          "index": 5707
         },
         "end": {
           "line": 203,
           "column": 5,
-          "index": 5618
+          "index": 5820
         }
       },
       "jsdoc": {
@@ -316,12 +309,12 @@
         "start": {
           "line": 217,
           "column": 4,
-          "index": 6040
+          "index": 6256
         },
         "end": {
           "line": 224,
           "column": 5,
-          "index": 6286
+          "index": 6509
         }
       },
       "jsdoc": {
@@ -359,12 +352,12 @@
         "start": {
           "line": 232,
           "column": 4,
-          "index": 6519
+          "index": 6750
         },
         "end": {
           "line": 239,
           "column": 5,
-          "index": 6762
+          "index": 7000
         }
       },
       "jsdoc": {
@@ -400,12 +393,12 @@
         "start": {
           "line": 247,
           "column": 4,
-          "index": 6991
+          "index": 7237
         },
         "end": {
           "line": 250,
           "column": 5,
-          "index": 7110
+          "index": 7359
         }
       },
       "jsdoc": {},
@@ -421,12 +414,12 @@
         "start": {
           "line": 253,
           "column": 4,
-          "index": 7139
+          "index": 7391
         },
         "end": {
           "line": 290,
           "column": 5,
-          "index": 8469
+          "index": 8758
         }
       },
       "jsdoc": {},
@@ -441,12 +434,12 @@
         "start": {
           "line": 303,
           "column": 4,
-          "index": 8783
+          "index": 9085
         },
         "end": {
           "line": 356,
           "column": 5,
-          "index": 10114
+          "index": 10469
         }
       },
       "jsdoc": {
@@ -474,12 +467,12 @@
         "start": {
           "line": 361,
           "column": 4,
-          "index": 10187
+          "index": 10547
         },
         "end": {
           "line": 363,
           "column": 5,
-          "index": 10241
+          "index": 10603
         }
       },
       "jsdoc": {
@@ -498,12 +491,12 @@
         "start": {
           "line": 368,
           "column": 4,
-          "index": 10319
+          "index": 10686
         },
         "end": {
           "line": 370,
           "column": 5,
-          "index": 10394
+          "index": 10763
         }
       },
       "jsdoc": {
@@ -522,12 +515,12 @@
         "start": {
           "line": 379,
           "column": 4,
-          "index": 10659
+          "index": 11037
         },
         "end": {
           "line": 399,
           "column": 5,
-          "index": 11194
+          "index": 11592
         }
       },
       "jsdoc": {
@@ -555,12 +548,12 @@
         "start": {
           "line": 405,
           "column": 4,
-          "index": 11265
+          "index": 11669
         },
         "end": {
           "line": 407,
           "column": 5,
-          "index": 11337
+          "index": 11743
         }
       },
       "jsdoc": {
@@ -579,12 +572,12 @@
         "start": {
           "line": 413,
           "column": 4,
-          "index": 11409
+          "index": 11821
         },
         "end": {
           "line": 415,
           "column": 5,
-          "index": 11479
+          "index": 11893
         }
       },
       "jsdoc": {
@@ -603,12 +596,12 @@
         "start": {
           "line": 426,
           "column": 4,
-          "index": 11727
+          "index": 12152
         },
         "end": {
           "line": 447,
           "column": 5,
-          "index": 12478
+          "index": 12924
         }
       },
       "jsdoc": {
@@ -627,12 +620,12 @@
         "start": {
           "line": 453,
           "column": 4,
-          "index": 12558
+          "index": 13010
         },
         "end": {
           "line": 456,
           "column": 5,
-          "index": 12676
+          "index": 13131
         }
       },
       "jsdoc": {
@@ -651,12 +644,12 @@
         "start": {
           "line": 462,
           "column": 4,
-          "index": 12756
+          "index": 13217
         },
         "end": {
           "line": 467,
           "column": 5,
-          "index": 12905
+          "index": 13371
         }
       },
       "jsdoc": {

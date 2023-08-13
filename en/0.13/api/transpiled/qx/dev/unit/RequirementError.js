@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -34,13 +33,11 @@
    */
   qx.Class.define("qx.dev.unit.RequirementError", {
     extend: Error,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param requirement {String?} The requirement ID, e.g. "SSL"
      * @param message {String?} Optional error message
@@ -48,17 +45,15 @@
     construct: function construct(requirement, message) {
       this.__P_192_0 = message || "Requirement not met";
       this.__P_192_1 = requirement;
-      var inst = Error.call(this, this.__P_192_0); // map stack trace properties since they're not added by Error's constructor
-
+      var inst = Error.call(this, this.__P_192_0);
+      // map stack trace properties since they're not added by Error's constructor
       if (inst.stack) {
         this.stack = inst.stack;
       }
-
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
@@ -67,7 +62,6 @@
     members: {
       __P_192_0: null,
       __P_192_1: null,
-
       /**
        * Returns the ID of the requirement that was not satisfied.
        *
@@ -76,7 +70,6 @@
       getRequirement: function getRequirement() {
         return this.__P_192_1;
       },
-
       /**
        * Returns a string representation of the error.
        *
@@ -84,11 +77,9 @@
        */
       toString: function toString() {
         var msg = this.__P_192_0;
-
         if (this.__P_192_1) {
           msg += ": " + this.__P_192_1;
         }
-
         return msg;
       }
     }
@@ -96,4 +87,4 @@
   qx.dev.unit.RequirementError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RequirementError.js.map?dt=1685978116040
+//# sourceMappingURL=RequirementError.js.map?dt=1691935413840

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* DesignToggle.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.DesignToggle', {
     type: 'static',
-
     /*
      ******************************************************
      STATICS
@@ -58,4 +56,4 @@
   cv.parser.pure.widgets.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1685978090894
+//# sourceMappingURL=DesignToggle.js.map?dt=1691935390511

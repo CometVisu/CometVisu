@@ -61,7 +61,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -153,10 +152,10 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       __P_142_0: null,
       __P_142_1: null,
-
       /**
        * Detect vendor specific properties.
        */
@@ -171,7 +170,6 @@
           boxSizing: qx.core.Environment.get("css.boxsizing")
         };
         this.__P_142_1 = {};
-
         for (var key in qx.lang.Object.clone(styleNames)) {
           if (!styleNames[key]) {
             delete styleNames[key];
@@ -183,10 +181,8 @@
             }
           }
         }
-
         this.__P_142_0 = styleNames;
       },
-
       /**
        * Gets the (possibly vendor-prefixed) name of a style property and stores
        * it to avoid multiple checks.
@@ -197,14 +193,11 @@
        */
       __P_142_3: function __P_142_3(name) {
         var styleName = qx.bom.Style.getPropertyName(name);
-
         if (styleName) {
           this.__P_142_0[name] = styleName;
         }
-
         return styleName;
       },
-
       /**
        * Mshtml has proprietary pixel* properties for locations and dimensions
        * which return the pixel value. Used by getComputed() in mshtml variant.
@@ -219,7 +212,6 @@
         top: "pixelTop",
         bottom: "pixelBottom"
       },
-
       /**
        * Whether a special class is available for the processing of this style.
        *
@@ -231,13 +223,11 @@
         opacity: qx.bom.element.Opacity,
         boxSizing: qx.bom.element.BoxSizing
       },
-
       /*
       ---------------------------------------------------------------------------
         COMPILE SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Compiles the given styles into a string which can be used to
        * concat a HTML string for innerHTML usage.
@@ -250,38 +240,33 @@
         var special = this.__P_142_5;
         var cssNames = this.__P_142_1;
         var name, value;
-
         for (name in map) {
           // read value
           value = map[name];
-
           if (value == null) {
             continue;
-          } // normalize name
+          }
 
+          // normalize name
+          name = this.__P_142_1[name] || name;
 
-          name = this.__P_142_1[name] || name; // process special properties
-
+          // process special properties
           if (special[name]) {
             html.push(special[name].compile(value));
           } else {
             if (!cssNames[name]) {
               cssNames[name] = qx.bom.Style.getCssName(name);
             }
-
             html.push(cssNames[name], ":", value === "" ? '""' : value, ";");
           }
         }
-
         return html.join("");
       },
-
       /*
       ---------------------------------------------------------------------------
         CSS TEXT SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Set the full CSS content of the style attribute
        *
@@ -291,7 +276,6 @@
       setCss: function setCss(element, value) {
         element.setAttribute("style", value);
       },
-
       /**
        * Returns the full content of the style attribute.
        *
@@ -302,13 +286,11 @@
       getCss: function getCss(element) {
         return element.getAttribute("style");
       },
-
       /*
       ---------------------------------------------------------------------------
         STYLE ATTRIBUTE SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Checks whether the browser supports the given CSS property.
        *
@@ -318,22 +300,18 @@
       isPropertySupported: function isPropertySupported(propertyName) {
         return this.__P_142_5[propertyName] || this.__P_142_0[propertyName] || propertyName in document.documentElement.style;
       },
-
       /** @type {Integer} Computed value of a style property. Compared to the cascaded style,
        * this one also interprets the values e.g. translates <code>em</code> units to
        * <code>px</code>.
        */
       COMPUTED_MODE: 1,
-
       /** @type {Integer} Cascaded value of a style property. */
       CASCADED_MODE: 2,
-
       /**
        * @type {Integer} Local value of a style property. Ignores inheritance cascade.
        *   Does not interpret values.
        */
       LOCAL_MODE: 3,
-
       /**
        * Sets the value of a style property
        *
@@ -345,17 +323,17 @@
        */
       set: function set(element, name, value, smart) {
         // normalize name
-        name = this.__P_142_0[name] || this.__P_142_3(name) || name; // special handling for specific properties
+        name = this.__P_142_0[name] || this.__P_142_3(name) || name;
+
+        // special handling for specific properties
         // through this good working switch this part costs nothing when
         // processing non-smart properties
-
         if (smart !== false && this.__P_142_5[name]) {
           this.__P_142_5[name].set(element, value);
         } else {
           element.style[name] = value !== null ? value : "";
         }
       },
-
       /**
        * Convenience method to modify a set of styles at once.
        *
@@ -371,11 +349,9 @@
         var styleNames = this.__P_142_0;
         var special = this.__P_142_5;
         var style = element.style;
-
         for (var key in styles) {
           var value = styles[key];
           var name = styleNames[key] || this.__P_142_3(key) || key;
-
           if (value === undefined) {
             if (smart !== false && special[name]) {
               special[name].reset(element);
@@ -391,7 +367,6 @@
           }
         }
       },
-
       /**
        * Resets the value of a style property
        *
@@ -402,15 +377,15 @@
        */
       reset: function reset(element, name, smart) {
         // normalize name
-        name = this.__P_142_0[name] || this.__P_142_3(name) || name; // special handling for specific properties
+        name = this.__P_142_0[name] || this.__P_142_3(name) || name;
 
+        // special handling for specific properties
         if (smart !== false && this.__P_142_5[name]) {
           this.__P_142_5[name].reset(element);
         } else {
           element.style[name] = "";
         }
       },
-
       /**
        * Gets the value of a style property.
        *
@@ -439,35 +414,34 @@
        */
       get: function get(element, name, mode, smart) {
         // normalize name
-        name = this.__P_142_0[name] || this.__P_142_3(name) || name; // special handling
+        name = this.__P_142_0[name] || this.__P_142_3(name) || name;
 
+        // special handling
         if (smart !== false && this.__P_142_5[name]) {
           return this.__P_142_5[name].get(element, mode);
-        } // switch to right mode
+        }
 
-
+        // switch to right mode
         switch (mode) {
           case this.LOCAL_MODE:
             return element.style[name] || "";
-
           case this.CASCADED_MODE:
             // Currently only supported by Opera and Internet Explorer
             if (element.currentStyle) {
               return element.currentStyle[name] || "";
             }
-
             throw new Error("Cascaded styles are not supported in this browser!");
-
           default:
             // Opera, Mozilla and Safari 3+ also have a global getComputedStyle which is identical
             // to the one found under document.defaultView.
+
             // The problem with this is however that this does not work correctly
             // when working with frames and access an element of another frame.
             // Then we must use the <code>getComputedStyle</code> of the document
             // where the element is defined.
+
             var doc = qx.dom.Node.getDocument(element);
             var getStyle = doc.defaultView ? doc.defaultView.getComputedStyle : undefined;
-
             if (getStyle !== undefined) {
               // Support for the DOM2 getComputedStyle method
               //
@@ -477,9 +451,10 @@
               //
               // On a computed style object all properties are read-only which is
               // identical to the behavior of MSHTML's "currentStyle".
-              var computed = getStyle(element, null); // All relevant browsers expose the configured style properties to
-              // the CSSStyleDeclaration objects
 
+              var computed = getStyle(element, null);
+              // All relevant browsers expose the configured style properties to
+              // the CSSStyleDeclaration objects
               if (computed && computed[name]) {
                 return computed[name];
               }
@@ -488,37 +463,40 @@
               // may be undefined. In this case always return the local style.
               if (!element.currentStyle) {
                 return element.style[name] || "";
-              } // Read cascaded style. Shorthand properties like "border" are not available
+              }
+
+              // Read cascaded style. Shorthand properties like "border" are not available
               // on the currentStyle object.
+              var currentStyle = element.currentStyle[name] || element.style[name] || "";
 
-
-              var currentStyle = element.currentStyle[name] || element.style[name] || ""; // Pixel values are always OK
-
+              // Pixel values are always OK
               if (/^-?[\.\d]+(px)?$/i.test(currentStyle)) {
                 return currentStyle;
-              } // Try to convert non-pixel values
+              }
 
-
+              // Try to convert non-pixel values
               var pixel = this.__P_142_4[name];
-
               if (pixel && pixel in element.style) {
                 // Backup local and runtime style
-                var localStyle = element.style[name]; // Overwrite local value with cascaded value
+                var localStyle = element.style[name];
+
+                // Overwrite local value with cascaded value
                 // This is needed to have the pixel value setup
+                element.style[name] = currentStyle || 0;
 
-                element.style[name] = currentStyle || 0; // Read pixel value and add "px"
+                // Read pixel value and add "px"
+                var value = element.style[pixel] + "px";
 
-                var value = element.style[pixel] + "px"; // Recover old local value
+                // Recover old local value
+                element.style[name] = localStyle;
 
-                element.style[name] = localStyle; // Return value
-
+                // Return value
                 return value;
-              } // Just the current style
+              }
 
-
+              // Just the current style
               return currentStyle;
             }
-
             return element.style[name] || "";
         }
       }
@@ -530,4 +508,4 @@
   qx.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1685978110994
+//# sourceMappingURL=Style.js.map?dt=1691935409568

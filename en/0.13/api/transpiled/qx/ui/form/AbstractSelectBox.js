@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -62,37 +61,38 @@
     include: [qx.ui.core.MRemoteChildrenHandling, qx.ui.form.MForm],
     implement: [qx.ui.form.IForm],
     type: "abstract",
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.core.Widget.constructor.call(this); // set the layout
+      qx.ui.core.Widget.constructor.call(this);
 
+      // set the layout
       var layout = new qx.ui.layout.HBox();
-
       this._setLayout(layout);
+      layout.setAlignY("middle");
 
-      layout.setAlignY("middle"); // ARIA attrs
-
+      // ARIA attrs
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "button");
       contentEl.setAttribute("aria-haspopup", "listbox");
-      contentEl.setAttribute("aria-expanded", false); // Register listeners
+      contentEl.setAttribute("aria-expanded", false);
 
+      // Register listeners
       this.addListener("keypress", this._onKeyPress);
-      this.addListener("blur", this._onBlur, this); // register the resize listener
+      this.addListener("blur", this._onBlur, this);
 
+      // register the resize listener
       this.addListener("resize", this._onResize, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       focusable: {
@@ -104,7 +104,6 @@
         refine: true,
         init: 120
       },
-
       /**
        * The maximum height of the list popup. Setting this value to
        * <code>null</code> will set cause the list to be auto-sized.
@@ -115,7 +114,6 @@
         nullable: true,
         init: 200
       },
-
       /**
        * Formatter which format the value from the selected <code>ListItem</code>.
        * Uses the default formatter {@link #_defaultFormat}.
@@ -128,17 +126,16 @@
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "list":
             {
@@ -162,7 +159,6 @@
               control.getChildControl("pane").addListener("tap", this.close, this);
               break;
             }
-
           case "popup":
             control = new qx.ui.popup.Popup(new qx.ui.layout.VBox());
             control.setAutoHide(false);
@@ -171,10 +167,8 @@
             control.addListener("changeVisibility", this._onPopupChangeVisibility, this);
             break;
         }
-
         return control || qx.ui.form.AbstractSelectBox.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -184,13 +178,11 @@
       _applyMaxListHeight: function _applyMaxListHeight(value, old) {
         this.getChildControl("list").setMaxHeight(value);
       },
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the list widget.
        * @return {qx.ui.form.List} the list
@@ -198,13 +190,11 @@
       getChildrenContainer: function getChildrenContainer() {
         return this.getChildControl("list");
       },
-
       /*
       ---------------------------------------------------------------------------
         LIST STUFF
       ---------------------------------------------------------------------------
       */
-
       /**
        * Shows the list popup.
        */
@@ -213,37 +203,31 @@
         popup.placeToWidget(this, true);
         popup.show();
       },
-
       /**
        * Hides the list popup.
        */
       close: function close() {
         var popup = this.getChildControl("popup", true);
-
         if (popup && popup.isVisible()) {
           popup.hide();
         }
       },
-
       /**
        * Toggles the popup's visibility.
        */
       toggle: function toggle() {
         var isListOpen = this.getChildControl("popup").isVisible();
-
         if (isListOpen) {
           this.close();
         } else {
           this.open();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         FORMAT HANDLING
       ---------------------------------------------------------------------------
       */
-
       /**
        * Return the formatted label text from the <code>ListItem</code>.
        * The formatter removes all HTML tags and converts all HTML entities
@@ -255,21 +239,17 @@
       _defaultFormat: function _defaultFormat(item) {
         var valueLabel = item ? item.getLabel() : "";
         var rich = item ? item.getRich() : false;
-
         if (rich) {
           valueLabel = valueLabel.replace(/<[^>]+?>/g, "");
           valueLabel = qx.bom.String.unescape(valueLabel);
         }
-
         return valueLabel;
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT LISTENERS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Handler for the blur event of the current widget.
        *
@@ -278,7 +258,6 @@
       _onBlur: function _onBlur(e) {
         this.close();
       },
-
       /**
        * Reacts on special keys and forwards other key events to the list widget.
        *
@@ -287,20 +266,24 @@
       _onKeyPress: function _onKeyPress(e) {
         // get the key identifier
         var identifier = e.getKeyIdentifier();
-        var listPopup = this.getChildControl("popup"); // disabled pageUp and pageDown keys
+        var listPopup = this.getChildControl("popup");
 
+        // disabled pageUp and pageDown keys
         if (listPopup.isHidden() && (identifier == "PageDown" || identifier == "PageUp")) {
           e.stopPropagation();
-        } // hide the list always on escape and tab
+        }
+
+        // hide the list always on escape and tab
         else if (!listPopup.isHidden() && (identifier == "Escape" || identifier == "Tab")) {
           this.close();
           e.stop();
-        } // forward the rest of the events to the list
+        }
+
+        // forward the rest of the events to the list
         else {
           this.getChildControl("list").handleKeyPress(e);
         }
       },
-
       /**
        * Updates list minimum size.
        *
@@ -309,7 +292,6 @@
       _onResize: function _onResize(e) {
         this.getChildControl("popup").setMinWidth(e.getData().width);
       },
-
       /**
        * Sets ARIA attributes on the item
        *
@@ -320,13 +302,12 @@
         var contentEl = item.getContentElement();
         contentEl.setAttribute("id", "list-item-" + item.toHashCode());
         contentEl.setAttribute("role", "option");
-        var ariaSelected = contentEl.getAttribute("aria-selected"); // aria-selected may be already set from changeSelection listener
-
+        var ariaSelected = contentEl.getAttribute("aria-selected");
+        // aria-selected may be already set from changeSelection listener
         if (ariaSelected === null || ariaSelected === undefined) {
           contentEl.setAttribute("aria-selected", false);
         }
       },
-
       /**
        * Syncs the own property from the list change
        *
@@ -335,7 +316,6 @@
       _onListChangeSelection: function _onListChangeSelection(e) {
         throw new Error("Abstract method: _onListChangeSelection()");
       },
-
       /**
        * Redirects pointerdown event from the list to this widget.
        *
@@ -344,7 +324,6 @@
       _onListPointerDown: function _onListPointerDown(e) {
         throw new Error("Abstract method: _onListPointerDown()");
       },
-
       /**
        * Redirects changeVisibility event from the list to this widget.
        *
@@ -352,8 +331,9 @@
        */
       _onPopupChangeVisibility: function _onPopupChangeVisibility(e) {
         var visible = e.getData() == "visible";
-        visible ? this.addState("popupOpen") : this.removeState("popupOpen"); // ARIA attrs
+        visible ? this.addState("popupOpen") : this.removeState("popupOpen");
 
+        // ARIA attrs
         this.getContentElement().setAttribute("aria-expanded", visible);
       }
     }
@@ -361,4 +341,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1685978137440
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1691935434029

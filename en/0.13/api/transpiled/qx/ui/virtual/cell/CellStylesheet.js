@@ -39,7 +39,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -75,11 +74,9 @@
         textOverflow: "ellipsis",
         userSelect: "none"
       }) + "} ";
-
       if (qx.core.Environment.get("css.boxsizing")) {
         stylesheet += ".qx-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
       }
-
       this.__P_475_0 = qx.bom.Stylesheet.createElement(stylesheet);
       this.__P_475_1 = {};
       this.__P_475_2 = {};
@@ -88,7 +85,6 @@
       __P_475_0: null,
       __P_475_1: null,
       __P_475_2: null,
-
       /**
        * Get the DOM stylesheet element
        *
@@ -97,7 +93,6 @@
       getStylesheet: function getStylesheet() {
         return this.__P_475_0;
       },
-
       /**
        * Get the CSS class stored under the given key
        *
@@ -108,7 +103,6 @@
       getCssClass: function getCssClass(key) {
         return this.__P_475_1[key] || null;
       },
-
       /**
        * Dynamically create a CSS rule for the given style string. The selector is
        * an unique class name, which is returned. The class is stored under the
@@ -120,19 +114,15 @@
        */
       computeClassForStyles: function computeClassForStyles(key, styleString) {
         var cssClass = this.__P_475_2[styleString];
-
         if (!cssClass) {
           // generate stylesheet rule
           var cssClass = this.__P_475_3();
-
           qx.bom.Stylesheet.addRule(this.__P_475_0, "." + cssClass, styleString);
           this.__P_475_2[styleString] = cssClass;
         }
-
         this.__P_475_1[key] = cssClass;
         return cssClass;
       },
-
       /**
        * Get the next unique CSS class name
        *
@@ -150,4 +140,4 @@
   qx.ui.virtual.cell.CellStylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CellStylesheet.js.map?dt=1685978151136
+//# sourceMappingURL=CellStylesheet.js.map?dt=1691935447412

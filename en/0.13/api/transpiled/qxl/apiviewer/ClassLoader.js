@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,22 +40,20 @@
   qx.Class.define("qxl.apiviewer.ClassLoader", {
     extend: qx.core.Object,
     statics: {
-      __P_569_0: null,
+      __P_570_0: null,
       RESOURCEPATH: null,
       setBaseUri: function setBaseUri(baseUri) {
-        this.__P_569_0 = baseUri;
+        this.__P_570_0 = baseUri;
       },
       getBaseUri: function getBaseUri() {
-        return this.__P_569_0;
+        return this.__P_570_0;
       },
       loadClassList: function loadClassList(classes, callback, self) {
         var _this = this;
-
         if (!classes.length) {
           callback && callback.call(self || this, []);
           return qx.Promise.resolve([]);
         }
-
         var all = classes.map(function (clazz) {
           return clazz.load();
         });
@@ -69,12 +66,10 @@
       getClassOrPackage: function getClassOrPackage(name) {
         if (name) {
           var cls = qxl.apiviewer.dao.Class.getClassByName(name);
-
           if (cls) {
             return qxl.apiviewer.dao.Class.isNativeObject(cls) ? null : cls;
           }
         }
-
         var pkg = qxl.apiviewer.dao.Package.getPackage(name);
         return pkg;
       }
@@ -86,4 +81,4 @@
   qxl.apiviewer.ClassLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassLoader.js.map?dt=1685978162933
+//# sourceMappingURL=ClassLoader.js.map?dt=1691935458112

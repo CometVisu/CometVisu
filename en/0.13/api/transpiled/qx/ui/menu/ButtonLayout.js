@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,12 +54,12 @@
    */
   qx.Class.define("qx.ui.menu.ButtonLayout", {
     extend: qx.ui.layout.Abstract,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
@@ -72,48 +71,39 @@
       // overridden
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         var children = this._getLayoutChildren();
-
         var child;
         var column;
         var columnChildren = [];
-
         for (var i = 0, l = children.length; i < l; i++) {
           child = children[i];
           column = child.getLayoutProperties().column;
           columnChildren[column] = child;
         }
-
         var menu = this.__P_378_0(children[0]);
-
         var columns = menu.getColumnSizes();
-        var spacing = menu.getSpacingX(); // stretch label column
+        var spacing = menu.getSpacingX();
 
+        // stretch label column
         var neededWidth = qx.lang.Array.sum(columns) + spacing * (columns.length - 1);
-
         if (neededWidth < availWidth) {
           columns[1] += availWidth - neededWidth;
         }
-
         var left = padding.left,
-            top = padding.top;
+          top = padding.top;
         var Util = qx.ui.layout.Util;
-
         for (var i = 0, l = columns.length; i < l; i++) {
           child = columnChildren[i];
-
           if (child) {
             var hint = child.getSizeHint();
             var childTop = top + Util.computeVerticalAlignOffset(child.getAlignY() || "middle", hint.height, availHeight, 0, 0);
             var offsetLeft = Util.computeHorizontalAlignOffset(child.getAlignX() || "left", hint.width, columns[i], child.getMarginLeft(), child.getMarginRight());
             child.renderLayout(left + offsetLeft, childTop, hint.width, hint.height);
           }
-
           if (columns[i] > 0) {
             left += columns[i] + spacing;
           }
         }
       },
-
       /**
        * Get the widget's menu
        *
@@ -124,22 +114,18 @@
         while (!(widget instanceof qx.ui.menu.Menu)) {
           widget = widget.getLayoutParent();
         }
-
         return widget;
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var children = this._getLayoutChildren();
-
         var neededHeight = 0;
         var neededWidth = 0;
-
         for (var i = 0, l = children.length; i < l; i++) {
           var hint = children[i].getSizeHint();
           neededWidth += hint.width;
           neededHeight = Math.max(neededHeight, hint.height);
         }
-
         return {
           width: neededWidth,
           height: neededHeight
@@ -150,4 +136,4 @@
   qx.ui.menu.ButtonLayout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ButtonLayout.js.map?dt=1685978141415
+//# sourceMappingURL=ButtonLayout.js.map?dt=1691935437889

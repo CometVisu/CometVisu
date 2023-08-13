@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,4 +48,4 @@
   qx.html.JsxRef.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=JsxRef.js.map?dt=1685978124204
+//# sourceMappingURL=JsxRef.js.map?dt=1691935421770

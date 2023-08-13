@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,7 +45,6 @@
   qx.Class.define("qx.ui.virtual.cell.AbstractImage", {
     extend: qx.ui.virtual.cell.Cell,
     type: "abstract",
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -56,17 +54,16 @@
       qx.ui.virtual.cell.Cell.constructor.call(this);
       this._aliasManager = qx.util.AliasManager.getInstance();
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_471_0: 16,
       __P_471_1: 16,
       _aliasManager: null,
-
       /**
        * Compute the size of the given image
        *
@@ -77,8 +74,9 @@
       __P_471_2: function __P_471_2(source) {
         var ResourceManager = qx.util.ResourceManager.getInstance();
         var ImageLoader = qx.io.ImageLoader;
-        var width, height; // Detect if the image registry knows this image
+        var width, height;
 
+        // Detect if the image registry knows this image
         if (ResourceManager.has(source)) {
           width = ResourceManager.getImageWidth(source);
           height = ResourceManager.getImageHeight(source);
@@ -89,13 +87,11 @@
           width = this.__P_471_0;
           height = this.__P_471_1;
         }
-
         return {
           width: width,
           height: height
         };
       },
-
       /**
        * Compute image meta data
        *
@@ -121,11 +117,8 @@
             url: imageData
           };
         }
-
         var url = this._aliasManager.resolve(imageData.url || null);
-
         var sizes;
-
         if (imageData.width && imageData.height) {
           sizes = {
             width: imageData.width,
@@ -134,7 +127,6 @@
         } else {
           sizes = this.__P_471_2(url);
         }
-
         return {
           width: sizes.width,
           height: sizes.height,
@@ -142,7 +134,6 @@
           tooltip: imageData.tooltip
         };
       },
-
       /**
        * Identifies the Image to show. This is a template method, which must be
        * implements by sub classes.
@@ -165,11 +156,8 @@
         if (value === null) {
           return "";
         }
-
         var content = "";
-
         var imageData = this.__P_471_3(this._identifyImage(value));
-
         var tooltip = imageData.tooltip ? 'title="' + imageData.tooltip + '"' : "";
         var styles = {
           width: imageData.width + "px",
@@ -181,7 +169,6 @@
         var tag = qx.bom.element.Decoration.getTagName("no-repeat", imageData.url);
         var ret = qx.bom.element.Decoration.getAttributes(imageData.url, "no-repeat", styles);
         var css = qx.bom.element.Style.compile(ret.style);
-
         if (tag === "img") {
           content = '<img src="' + ret.src + '" style="' + css + '" ';
           content += tooltip + "/>";
@@ -189,7 +176,6 @@
           content = '<div style="' + css + '" ';
           content += tooltip + "></div>";
         }
-
         return content;
       }
     }
@@ -197,4 +183,4 @@
   qx.ui.virtual.cell.AbstractImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractImage.js.map?dt=1685978150966
+//# sourceMappingURL=AbstractImage.js.map?dt=1691935447241

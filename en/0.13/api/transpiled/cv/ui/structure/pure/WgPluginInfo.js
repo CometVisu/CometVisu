@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* WgPluginInfo.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -52,7 +51,6 @@
   qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
-
     /*
     ******************************************************
       PROPERTIES
@@ -65,7 +63,6 @@
         apply: '_applyVariable'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -79,23 +76,19 @@
           if (!this.__P_68_0) {
             // create the request
             this.__P_68_0 = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
-
             this.__P_68_0.set({
               accept: 'application/json'
             });
-
             this.__P_68_0.addListener('success', this._onSuccess, this);
           } else {
             this.__P_68_0.setUrl('/wg-plugindb.php?name=' + value);
           }
-
           cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__P_68_0.send, this.__P_68_0);
         }
       },
       getRequest: function getRequest() {
         return this.__P_68_0;
       },
-
       /**
        * Handle successful requests from {@link qx.io.request.Xhr}
        * @param ev {Event}
@@ -109,7 +102,6 @@
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor"><div class="value">-</div></div>';
       },
-
       /**
        * Triggers an {@link qx.io.request.Xhr} request to query the plugin value
        */
@@ -119,7 +111,6 @@
         }
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -135,4 +126,4 @@
   cv.ui.structure.pure.WgPluginInfo.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WgPluginInfo.js.map?dt=1685978100636
+//# sourceMappingURL=WgPluginInfo.js.map?dt=1691935400024

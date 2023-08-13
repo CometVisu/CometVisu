@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Icon.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -27,6 +26,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Theme.define('cv.theme.dark.Icon', {
     aliases: {
       icon: 'qx/icon/Oxygen',
@@ -41,4 +41,4 @@
   cv.theme.dark.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1685978160917
+//# sourceMappingURL=Icon.js.map?dt=1691935456349

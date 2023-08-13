@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -40,14 +39,13 @@
     members: {
       // overridden
       getCellEditorValue: function getCellEditorValue(cellEditor) {
-        var value = cellEditor.getValue(); // validation function will be called with new and old value
+        var value = cellEditor.getValue();
 
+        // validation function will be called with new and old value
         var validationFunc = this.getValidationFunction();
-
         if (validationFunc) {
           value = validationFunc(value, cellEditor.originalValue);
         }
-
         if (typeof cellEditor.originalValue == "number") {
           // Correct problem of NaN displaying when value is null string.
           //if (value != null) {
@@ -55,7 +53,6 @@
             value = parseFloat(value);
           }
         }
-
         return value;
       },
       _createEditor: function _createEditor() {
@@ -68,4 +65,4 @@
   qx.ui.table.celleditor.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1685978146958
+//# sourceMappingURL=TextField.js.map?dt=1691935443252

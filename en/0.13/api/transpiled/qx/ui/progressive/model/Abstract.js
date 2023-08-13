@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -56,7 +55,6 @@
       getElementCount: function getElementCount() {
         throw new Error("getElementCount() is abstract");
       },
-
       /**
        * Get the next available element from the data model.
        *
@@ -90,4 +88,4 @@
   qx.ui.progressive.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978145376
+//# sourceMappingURL=Abstract.js.map?dt=1691935441719

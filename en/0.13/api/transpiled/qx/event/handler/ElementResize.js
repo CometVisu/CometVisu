@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -58,13 +57,11 @@
   qx.Class.define("qx.event.handler.ElementResize", {
     extend: qx.core.Object,
     implement: [qx.event.IEventHandler, qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param manager {qx.event.Manager} Event manager for the window to use
      */
@@ -73,41 +70,36 @@
       this.__P_211_0 = manager;
       this.__P_211_1 = {};
       this.__P_211_2 = new qx.event.Timer(200);
-
       this.__P_211_2.addListener("interval", this._onInterval, this);
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         resize: true
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_DOMNODE,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: false
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_211_1: null,
       __P_211_0: null,
       __P_211_2: null,
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -121,14 +113,12 @@
       registerEvent: function registerEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target);
         var elements = this.__P_211_1;
-
         if (!elements[hash]) {
           elements[hash] = {
             element: target,
             width: qx.bom.element.Dimension.getWidth(target),
             height: qx.bom.element.Dimension.getHeight(target)
           };
-
           this.__P_211_2.start();
         }
       },
@@ -136,16 +126,13 @@
       unregisterEvent: function unregisterEvent(target, type, capture) {
         var hash = qx.core.ObjectRegistry.toHashCode(target);
         var elements = this.__P_211_1;
-
         if (elements[hash]) {
           delete elements[hash];
-
           if (qx.lang.Object.isEmpty(elements)) {
             this.__P_211_2.stop();
           }
         }
       },
-
       /**
        * Checks elements for width and height changes and fires resize event
        * if needed.
@@ -154,13 +141,11 @@
        */
       _onInterval: function _onInterval(e) {
         var elements = this.__P_211_1;
-
         for (var key in elements) {
           var data = elements[key];
           var el = data.element;
           var width = qx.bom.element.Dimension.getWidth(el);
           var height = qx.bom.element.Dimension.getHeight(el);
-
           if (data.height !== height || data.width !== width) {
             qx.event.Registration.fireNonBubblingEvent(el, "resize", qx.event.type.Data, [{
               width: width,
@@ -174,7 +159,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -182,10 +166,8 @@
     */
     destruct: function destruct() {
       this.__P_211_0 = this.__P_211_1 = null;
-
       this._disposeObjects("__P_211_2");
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -198,4 +180,4 @@
   qx.event.handler.ElementResize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementResize.js.map?dt=1685978121391
+//# sourceMappingURL=ElementResize.js.map?dt=1691935419174

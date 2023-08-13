@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,12 +38,12 @@
    */
   qx.Class.define("qx.event.type.Pointer", {
     extend: qx.event.type.Mouse,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
@@ -65,25 +64,22 @@
       },
       // overridden
       getDocumentLeft: function getDocumentLeft() {
-        var x = qx.event.type.Pointer.superclass.prototype.getDocumentLeft.call(this); // iOS 6 does not copy pageX over to the fake pointer event
-
+        var x = qx.event.type.Pointer.superclass.prototype.getDocumentLeft.call(this);
+        // iOS 6 does not copy pageX over to the fake pointer event
         if (x == 0 && this.getPointerType() == "touch" && this._native._original !== undefined) {
           x = Math.round(this._native._original.changedTouches[0].pageX) || 0;
         }
-
         return x;
       },
       // overridden
       getDocumentTop: function getDocumentTop() {
-        var y = qx.event.type.Pointer.superclass.prototype.getDocumentTop.call(this); // iOS 6 does not copy pageY over to the fake pointer event
-
+        var y = qx.event.type.Pointer.superclass.prototype.getDocumentTop.call(this);
+        // iOS 6 does not copy pageY over to the fake pointer event
         if (y == 0 && this.getPointerType() == "touch" && this._native._original !== undefined) {
           y = Math.round(this._native._original.changedTouches[0].pageY) || 0;
         }
-
         return y;
       },
-
       /**
        * Returns a unique identified for the pointer. This id is
        * unique for all active pointers.
@@ -93,7 +89,6 @@
       getPointerId: function getPointerId() {
         return this._native.pointerId || 0;
       },
-
       /**
        * Returns the contact geometry in it's width.
        *
@@ -102,7 +97,6 @@
       getWidth: function getWidth() {
         return this._native.width || 0;
       },
-
       /**
        * Returns the contact geometry in it's height.
        *
@@ -111,7 +105,6 @@
       getHeight: function getHeight() {
         return this._native.height || 0;
       },
-
       /**
        * Returns the pressure of the pointer in a rage from 0 to 1.
        *
@@ -120,7 +113,6 @@
       getPressure: function getPressure() {
         return this._native.pressure || 0;
       },
-
       /**
        * Returns the plane angle in degrees between the Y-Z plane and the
        * plane containing e.g. the stylus and the Y axis.
@@ -130,7 +122,6 @@
       getTiltX: function getTiltX() {
         return this._native.tiltX || 0;
       },
-
       /**
        * Returns the plane angle in degrees between the X-Z plane and the
        * plane containing e.g. the stylus and the X axis.
@@ -144,9 +135,9 @@
       getOriginalTarget: function getOriginalTarget() {
         if (this._native && this._native._original) {
           // fake pointer events
-          var orig = this._native._original; // In IE8, the original event can be a DispCEventObj which throws an
+          var orig = this._native._original;
+          // In IE8, the original event can be a DispCEventObj which throws an
           // exception when trying to access its properties.
-
           try {
             // touch events have a wrong target compared to mouse events
             if (orig.type.indexOf("touch") == 0) {
@@ -157,16 +148,13 @@
           } catch (ex) {
             return qx.bom.Event.getTarget(this._native);
           }
-
           return qx.bom.Event.getTarget(orig);
         } else if (this._native) {
           // native pointer events
           return qx.bom.Event.getTarget(this._native);
         }
-
         return qx.event.type.Pointer.superclass.prototype.getOriginalTarget.call(this);
       },
-
       /**
        * Returns the device type which the event triggered. This can be one
        * of the following strings: <code>mouse</code>, <code>wheel</code>,
@@ -178,24 +166,19 @@
         if (typeof this._native.pointerType == "string") {
           return this._native.pointerType;
         }
-
         if (typeof this._native.pointerType == "number") {
           if (this._native.pointerType == this._native.MSPOINTER_TYPE_MOUSE) {
             return "mouse";
           }
-
           if (this._native.pointerType == this._native.MSPOINTER_TYPE_PEN) {
             return "pen";
           }
-
           if (this._native.pointerType == this._native.MSPOINTER_TYPE_TOUCH) {
             return "touch";
           }
         }
-
         return "";
       },
-
       /**
        * Returns whether the pointer is the primary pointer.
        *
@@ -209,4 +192,4 @@
   qx.event.type.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1685978123252
+//# sourceMappingURL=Pointer.js.map?dt=1691935420890

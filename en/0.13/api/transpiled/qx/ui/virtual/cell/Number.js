@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,14 +42,12 @@
    */
   qx.Class.define("qx.ui.virtual.cell.Number", {
     extend: qx.ui.virtual.cell.Cell,
-
     /**
      * @param numberFormat {qx.util.format.NumberFormat|null} Optional number
      *   format to use.
      */
     construct: function construct(numberFormat) {
       qx.ui.virtual.cell.Cell.constructor.call(this);
-
       if (numberFormat) {
         this.setNumberFormat(numberFormat);
       }
@@ -79,4 +76,4 @@
   qx.ui.virtual.cell.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1685978151277
+//# sourceMappingURL=Number.js.map?dt=1691935447549

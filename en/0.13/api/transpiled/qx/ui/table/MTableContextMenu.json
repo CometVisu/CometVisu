@@ -11,12 +11,12 @@
       "start": {
         "line": 22,
         "column": 0,
-        "index": 535
+        "index": 556
       },
       "end": {
         "line": 175,
         "column": 3,
-        "index": 5662
+        "index": 5836
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 23,
         "column": 2,
-        "index": 588
+        "index": 610
       },
       "end": {
         "line": 95,
         "column": 3,
-        "index": 2905
+        "index": 2999
       }
     }
   },
@@ -49,12 +49,12 @@
         "start": {
           "line": 98,
           "column": 4,
-          "index": 2925
+          "index": 3022
         },
         "end": {
           "line": 98,
           "column": 30,
-          "index": 2951
+          "index": 3048
         }
       },
       "type": "variable",
@@ -65,12 +65,12 @@
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2957
+          "index": 3055
         },
         "end": {
           "line": 99,
           "column": 37,
-          "index": 2990
+          "index": 3088
         }
       },
       "type": "variable",
@@ -81,12 +81,12 @@
         "start": {
           "line": 144,
           "column": 4,
-          "index": 4713
+          "index": 4856
         },
         "end": {
           "line": 147,
           "column": 5,
-          "index": 4876
+          "index": 5022
         }
       },
       "jsdoc": {
@@ -130,12 +130,12 @@
         "start": {
           "line": 160,
           "column": 4,
-          "index": 5284
+          "index": 5443
         },
         "end": {
           "line": 162,
           "column": 5,
-          "index": 5363
+          "index": 5524
         }
       },
       "jsdoc": {
@@ -172,12 +172,12 @@
       "start": {
         "line": 171,
         "column": 2,
-        "index": 5559
+        "index": 5729
       },
       "end": {
         "line": 174,
         "column": 3,
-        "index": 5658
+        "index": 5831
       }
     },
     "jsdoc": {}

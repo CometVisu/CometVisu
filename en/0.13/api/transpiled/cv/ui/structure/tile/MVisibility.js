@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* MVisibility.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
     construct: function construct() {
       this._observeVisibility();
     },
-
     /*
     ***********************************************
       STATICS
@@ -58,7 +56,6 @@
         });
       })
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -71,7 +68,6 @@
         event: 'changeVisible'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -90,4 +86,4 @@
   cv.ui.structure.tile.MVisibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MVisibility.js.map?dt=1685978101454
+//# sourceMappingURL=MVisibility.js.map?dt=1691935400874

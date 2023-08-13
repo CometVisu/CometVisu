@@ -14,15 +14,18 @@
     "members",
     "add",
     "page",
+    "qxl",
+    "apiviewer",
+    "DetailFrameTabView",
+    "superclass",
+    "prototype",
+    "call",
     "getChildren",
     "length",
     "setShowCloseButton",
     "i",
     "l",
-    "remove",
-    "qxl",
-    "apiviewer",
-    "DetailFrameTabView"
+    "remove"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v2_0_0/source/class/qxl/apiviewer/DetailFrameTabView.js"
@@ -30,5 +33,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qxl.apiviewer.DetailFrameTabView\", {\n  extend: qx.ui.tabview.TabView,\n\n  /*\n  *****************************************************************************\n   MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    add(page) {\n      super.add(page);\n      if (this.getChildren().length == 1) {\n        this.getChildren()[0].setShowCloseButton(false);\n      } else {\n        for (var i = 0, l = this.getChildren().length; i < l; i++) {\n          this.getChildren()[i].setShowCloseButton(true);\n        }\n      }\n    },\n    remove(page) {\n      if (this.getChildren().length > 1) {\n        super.remove(page);\n        if (this.getChildren().length == 1) {\n          this.getChildren()[0].setShowCloseButton(false);\n        }\n      }\n    },\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,kCAAhB,EAAoD;IAClDC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,OAD4B;;IAGlD;AACF;AACA;AACA;AACA;IAEEC,OAAO,EAAE;MACPC,GADO,eACHC,IADG,EACG;QACR,qEAAUA,IAAV;;QACA,IAAI,KAAKC,WAAL,GAAmBC,MAAnB,IAA6B,CAAjC,EAAoC;UAClC,KAAKD,WAAL,GAAmB,CAAnB,EAAsBE,kBAAtB,CAAyC,KAAzC;QACD,CAFD,MAEO;UACL,KAAK,IAAIC,CAAC,GAAG,CAAR,EAAWC,CAAC,GAAG,KAAKJ,WAAL,GAAmBC,MAAvC,EAA+CE,CAAC,GAAGC,CAAnD,EAAsDD,CAAC,EAAvD,EAA2D;YACzD,KAAKH,WAAL,GAAmBG,CAAnB,EAAsBD,kBAAtB,CAAyC,IAAzC;UACD;QACF;MACF,CAVM;MAWPG,MAXO,kBAWAN,IAXA,EAWM;QACX,IAAI,KAAKC,WAAL,GAAmBC,MAAnB,GAA4B,CAAhC,EAAmC;UACjC,wEAAaF,IAAb;;UACA,IAAI,KAAKC,WAAL,GAAmBC,MAAnB,IAA6B,CAAjC,EAAoC;YAClC,KAAKD,WAAL,GAAmB,CAAnB,EAAsBE,kBAAtB,CAAyC,KAAzC;UACD;QACF;MACF;IAlBM;EATyC,CAApD;EAnBAI,GAAG,CAACC,SAAJ,CAAcC,kBAAd,CAAiClB,aAAjC,GAAiDA,aAAjD"
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,kCAAkC,EAAE;IAClDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,OAAO;IAE7B;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACPC,GAAG,WAAAA,IAACC,IAAI,EAAE;QACRC,GAAA,CAAAC,SAAA,CAAAC,kBAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAN,GAAA,CAAAO,IAAA,OAAUN,IAAI;QACd,IAAI,IAAI,CAACO,WAAW,CAAC,CAAC,CAACC,MAAM,IAAI,CAAC,EAAE;UAClC,IAAI,CAACD,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,CAACE,kBAAkB,CAAC,KAAK,CAAC;QACjD,CAAC,MAAM;UACL,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEC,CAAC,GAAG,IAAI,CAACJ,WAAW,CAAC,CAAC,CAACC,MAAM,EAAEE,CAAC,GAAGC,CAAC,EAAED,CAAC,EAAE,EAAE;YACzD,IAAI,CAACH,WAAW,CAAC,CAAC,CAACG,CAAC,CAAC,CAACD,kBAAkB,CAAC,IAAI,CAAC;UAChD;QACF;MACF,CAAC;MACDG,MAAM,WAAAA,OAACZ,IAAI,EAAE;QACX,IAAI,IAAI,CAACO,WAAW,CAAC,CAAC,CAACC,MAAM,GAAG,CAAC,EAAE;UACjCP,GAAA,CAAAC,SAAA,CAAAC,kBAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAO,MAAA,CAAAN,IAAA,OAAaN,IAAI;UACjB,IAAI,IAAI,CAACO,WAAW,CAAC,CAAC,CAACC,MAAM,IAAI,CAAC,EAAE;YAClC,IAAI,CAACD,WAAW,CAAC,CAAC,CAAC,CAAC,CAAC,CAACE,kBAAkB,CAAC,KAAK,CAAC;UACjD;QACF;MACF;IACF;EACF,CAAC,CAAC;EAhDFR,GAAG,CAACC,SAAS,CAACC,kBAAkB,CAACZ,aAAa,GAAGA,aAAa;AAAC"
 }

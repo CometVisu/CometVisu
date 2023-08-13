@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,6 +70,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Map} Internal data structures with all supported input types */
       __P_107_0: {
@@ -88,7 +88,6 @@
         reset: 1,
         button: 1
       },
-
       /**
        * Creates an DOM input/textarea/select element.
        *
@@ -108,17 +107,14 @@
         // Work on a copy to not modify given attributes map
         var attributes = attributes ? qx.lang.Object.clone(attributes) : {};
         var tag;
-
         if (type === "textarea" || type === "select") {
           tag = type;
         } else {
           tag = "input";
           attributes.type = type;
         }
-
         return qx.dom.Element.create(tag, attributes, win);
       },
-
       /**
        * Applies the given value to the element.
        *
@@ -139,11 +135,9 @@
         var tag = element.nodeName.toLowerCase();
         var type = element.type;
         var Type = qx.lang.Type;
-
         if (typeof value === "number") {
           value += "";
         }
-
         if (type === "checkbox" || type === "radio") {
           if (Type.isArray(value)) {
             element.checked = value.includes(element.value);
@@ -154,18 +148,14 @@
           var isArray = Type.isArray(value);
           var options = element.options;
           var subel, subval;
-
           for (var i = 0, l = options.length; i < l; i++) {
             subel = options[i];
             subval = subel.getAttribute("value");
-
             if (subval == null) {
               subval = subel.text;
             }
-
             subel.selected = isArray ? value.includes(subval) : value == subval;
           }
-
           if (isArray && value.length == 0) {
             element.selectedIndex = -1;
           }
@@ -180,7 +170,6 @@
           element.value = value;
         }
       },
-
       /**
        * Returns the currently configured value.
        *
@@ -195,46 +184,43 @@
        */
       getValue: function getValue(element) {
         var tag = element.nodeName.toLowerCase();
-
         if (tag === "option") {
           return (element.attributes.value || {}).specified ? element.value : element.text;
         }
-
         if (tag === "select") {
-          var index = element.selectedIndex; // Nothing was selected
+          var index = element.selectedIndex;
 
+          // Nothing was selected
           if (index < 0) {
             return null;
           }
-
           var values = [];
           var options = element.options;
           var one = element.type == "select-one";
           var clazz = qx.bom.Input;
-          var value; // Loop through all the selected options
+          var value;
 
+          // Loop through all the selected options
           for (var i = one ? index : 0, max = one ? index + 1 : options.length; i < max; i++) {
             var option = options[i];
-
             if (option.selected) {
               // Get the specific value for the option
-              value = clazz.getValue(option); // We don't need an array for one selects
+              value = clazz.getValue(option);
 
+              // We don't need an array for one selects
               if (one) {
                 return value;
-              } // Multi-Selects return an array
+              }
 
-
+              // Multi-Selects return an array
               values.push(value);
             }
           }
-
           return values;
         } else {
           return (element.value || "").replace(/\r/g, "");
         }
       },
-
       /**
        * Sets the text wrap behaviour of a text area element.
        * This property uses the attribute "wrap" respectively
@@ -246,9 +232,10 @@
        */
       setWrap: qx.core.Environment.select("engine.name", {
         mshtml: function mshtml(element, wrap) {
-          var wrapValue = wrap ? "soft" : "off"; // Explicitly set overflow-y CSS property to auto when wrapped,
-          // allowing the vertical scroll-bar to appear if necessary
+          var wrapValue = wrap ? "soft" : "off";
 
+          // Explicitly set overflow-y CSS property to auto when wrapped,
+          // allowing the vertical scroll-bar to appear if necessary
           var styleValue = wrap ? "auto" : "";
           element.wrap = wrapValue;
           element.style.overflowY = styleValue;
@@ -274,4 +261,4 @@
   qx.bom.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1685978107345
+//# sourceMappingURL=Input.js.map?dt=1691935406465

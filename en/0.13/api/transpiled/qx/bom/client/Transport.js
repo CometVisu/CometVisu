@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,6 +50,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Returns the maximum number of parallel requests the current browser
@@ -69,29 +69,31 @@
        * @return {Integer} Maximum number of parallel requests
        */
       getMaxConcurrentRequestCount: function getMaxConcurrentRequestCount() {
-        var maxConcurrentRequestCount; // Parse version numbers.
+        var maxConcurrentRequestCount;
 
+        // Parse version numbers.
         var versionParts = qx.bom.client.Engine.getVersion().split(".");
         var versionMain = 0;
         var versionMajor = 0;
-        var versionMinor = 0; // Main number
+        var versionMinor = 0;
 
+        // Main number
         if (versionParts[0]) {
           versionMain = versionParts[0];
-        } // Major number
+        }
 
-
+        // Major number
         if (versionParts[1]) {
           versionMajor = versionParts[1];
-        } // Minor number
+        }
 
-
+        // Minor number
         if (versionParts[2]) {
           versionMinor = versionParts[2];
-        } // IE 8 gives the max number of connections in a property
+        }
+
+        // IE 8 gives the max number of connections in a property
         // see http://msdn.microsoft.com/en-us/library/cc197013(VS.85).aspx
-
-
         if (window.maxConnectionsPerServer) {
           maxConcurrentRequestCount = window.maxConnectionsPerServer;
         } else if (qx.bom.client.Engine.getName() == "opera") {
@@ -101,9 +103,11 @@
         } else if (qx.bom.client.Engine.getName() == "webkit") {
           // Safari: 4
           // http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/
+
           // Bug #6917: Distinguish Chrome from Safari, Chrome has 6 connections
           //       according to
           //      http://stackoverflow.com/questions/561046/how-many-concurrent-ajax-xmlhttprequest-requests-are-allowed-in-popular-browser
+
           maxConcurrentRequestCount = 4;
         } else if (qx.bom.client.Engine.getName() == "gecko" && (versionMain > 1 || versionMain == 1 && versionMajor > 9 || versionMain == 1 && versionMajor == 9 && versionMinor >= 1)) {
           // FF 3.5 (== Gecko 1.9.1): 6 Connections.
@@ -114,10 +118,8 @@
           // see http://blogs.msdn.com/ie/archive/2005/04/11/407189.aspx
           maxConcurrentRequestCount = 2;
         }
-
         return maxConcurrentRequestCount;
       },
-
       /**
        * Checks whether the app is loaded with SSL enabled which means via https.
        *
@@ -127,7 +129,6 @@
       getSsl: function getSsl() {
         return window.location.protocol === "https:";
       },
-
       /**
        * Checks what kind of XMLHttpRequest object the browser supports
        * for the current protocol, if any.
@@ -151,7 +152,6 @@
               return "xhr";
             } catch (noXhr) {}
           }
-
           try {
             new window.ActiveXObject("Microsoft.XMLHTTP");
             return "activex";
@@ -174,4 +174,4 @@
   qx.bom.client.Transport.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transport.js.map?dt=1685978109890
+//# sourceMappingURL=Transport.js.map?dt=1691935408650

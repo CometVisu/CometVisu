@@ -70,27 +70,23 @@
         // that worked for them were 243, 236, 236, 118
         fontSize: "118px"
       };
-
       if (qx.core.Environment && qx.core.Environment.get("browser.name") == "ie" && qx.core.Environment.get("browser.version") < 9 || !qx.core.Environment && qx.bom.client.Engine.MSHTML && qx.bom.client.Engine.VERSION < 9.0) {
         css.filter = "alpha(opacity=0)";
         css.width = "200%";
         css.height = "100%";
       }
-
       var attrs = {
         type: "file",
         name: name,
         title: " "
       };
       qx.html.Element.constructor.call(this, "input", css, attrs);
-
       if (qx.Class.hasMixin(widget.constructor, com.zenesis.qx.upload.MUploadButton)) {
         widget.bind("acceptUpload", this, "acceptUpload");
         widget.bind("multiple", this, "multiple");
         widget.bind("directory", this, "directory");
       }
-
-      this.__P_564_0 = widget;
+      this.__P_565_0 = widget;
     },
     properties: {
       acceptUpload: {
@@ -113,9 +109,9 @@
       }
     },
     members: {
-      __P_564_0: null,
+      __P_565_0: null,
       getWidget: function getWidget() {
-        return this.__P_564_0;
+        return this.__P_565_0;
       },
       _applyAcceptUpload: function _applyAcceptUpload(value) {
         if (value) this.setAttribute("accept", value, true);else this.removeAttribute("accept", true);
@@ -131,4 +127,4 @@
   com.zenesis.qx.upload.InputElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InputElement.js.map?dt=1685978162516
+//# sourceMappingURL=InputElement.js.map?dt=1691935457725

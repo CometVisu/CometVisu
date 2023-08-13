@@ -37,7 +37,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -69,6 +68,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Include a CSS file
@@ -85,7 +85,6 @@
         if (!doc) {
           doc = document;
         }
-
         var el = doc.createElement("link");
         el.type = "text/css";
         el.rel = "stylesheet";
@@ -93,7 +92,6 @@
         var head = doc.getElementsByTagName("head")[0];
         head.appendChild(el);
       },
-
       /**
        * Create a new Stylesheet node and append it to the document
        *
@@ -103,25 +101,20 @@
       createElement: function createElement(text) {
         if (qx.core.Environment.get("html.stylesheet.createstylesheet")) {
           var sheet = document.createStyleSheet();
-
           if (text) {
             sheet.cssText = text;
           }
-
           return sheet;
         } else {
           var elem = document.createElement("style");
           elem.type = "text/css";
-
           if (text) {
             elem.appendChild(document.createTextNode(text));
           }
-
           document.getElementsByTagName("head")[0].appendChild(elem);
           return elem.sheet;
         }
       },
-
       /**
        * Insert a new CSS rule into a given Stylesheet
        *
@@ -136,7 +129,6 @@
           sheet.addRule(selector, entry);
         }
       },
-
       /**
        * Remove a CSS rule from a stylesheet
        *
@@ -147,7 +139,6 @@
         if (qx.core.Environment.get("html.stylesheet.deleterule")) {
           var rules = sheet.cssRules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; --i) {
             if (rules[i].selectorText == selector) {
               sheet.deleteRule(i);
@@ -156,7 +147,6 @@
         } else {
           var rules = sheet.rules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; --i) {
             if (rules[i].selectorText == selector) {
               sheet.removeRule(i);
@@ -164,7 +154,6 @@
           }
         }
       },
-
       /**
        * Remove the given sheet from its owner.
        * @param sheet {Object} the stylesheet object
@@ -173,7 +162,6 @@
         var owner = sheet.ownerNode ? sheet.ownerNode : sheet.owningElement;
         qx.dom.Element.removeChild(owner, owner.parentNode);
       },
-
       /**
        * Remove all CSS rules from a stylesheet
        *
@@ -183,20 +171,17 @@
         if (qx.core.Environment.get("html.stylesheet.deleterule")) {
           var rules = sheet.cssRules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; i--) {
             sheet.deleteRule(i);
           }
         } else {
           var rules = sheet.rules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; i--) {
             sheet.removeRule(i);
           }
         }
       },
-
       /**
        * Add an import of an external CSS file to a stylesheet
        *
@@ -210,7 +195,6 @@
           sheet.insertRule('@import "' + url + '";', sheet.cssRules.length);
         }
       },
-
       /**
        * Removes an import from a stylesheet
        *
@@ -221,7 +205,6 @@
         if (qx.core.Environment.get("html.stylesheet.removeimport")) {
           var imports = sheet.imports;
           var len = imports.length;
-
           for (var i = len - 1; i >= 0; i--) {
             if (imports[i].href == url || imports[i].href == qx.util.Uri.getAbsolute(url)) {
               sheet.removeImport(i);
@@ -230,7 +213,6 @@
         } else {
           var rules = sheet.cssRules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; i--) {
             if (rules[i].href == url) {
               sheet.deleteRule(i);
@@ -238,7 +220,6 @@
           }
         }
       },
-
       /**
        * Remove all imports from a stylesheet
        *
@@ -248,14 +229,12 @@
         if (qx.core.Environment.get("html.stylesheet.removeimport")) {
           var imports = sheet.imports;
           var len = imports.length;
-
           for (var i = len - 1; i >= 0; i--) {
             sheet.removeImport(i);
           }
         } else {
           var rules = sheet.cssRules;
           var len = rules.length;
-
           for (var i = len - 1; i >= 0; i--) {
             if (rules[i].type == rules[i].IMPORT_RULE) {
               sheet.deleteRule(i);
@@ -268,4 +247,4 @@
   qx.bom.Stylesheet.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stylesheet.js.map?dt=1685978108345
+//# sourceMappingURL=Stylesheet.js.map?dt=1691935407329

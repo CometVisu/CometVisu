@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo dialog library
@@ -31,6 +30,7 @@
        *  Derrell Lipman (derrell)
   
   ************************************************************************ */
+
   qx.Class.define("qxl.dialog.formElement.SelectBox", {
     statics: {
       register: function register() {
@@ -53,11 +53,9 @@
                   selected = selectable;
                 }
               }, this);
-
               if (!selected) {
                 return [selectables[0]];
               }
-
               return [selected];
             }.bind(this)
           }, {
@@ -73,4 +71,4 @@
   qxl.dialog.formElement.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1685978163513
+//# sourceMappingURL=SelectBox.js.map?dt=1691935458583

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
         refine: true,
         init: "group-item"
       },
-
       /**
        * Whether the row is selectable.
        */
@@ -64,7 +62,6 @@
     },
     members: {
       // abstract method
-
       /**
        * Resets all defined child widgets. Override this method in your custom
        * list item renderer and reset all widgets displaying data. Needed as the
@@ -83,4 +80,4 @@
   qx.ui.mobile.list.renderer.group.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978144635
+//# sourceMappingURL=Abstract.js.map?dt=1691935441024

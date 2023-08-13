@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* PowerSpectrum.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -60,7 +59,6 @@
   qx.Class.define('cv.plugins.PowerSpectrum', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -70,21 +68,18 @@
       if (!props.name1) {
         props.name1 = props.singlePhase === true ? 'L' : 'L1';
       }
-
       if (!props.name2) {
         props.name2 = 'L2';
       }
-
       if (!props.name3) {
         props.name3 = 'L3';
       }
+      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
 
-      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props); // some initializations
-
+      // some initializations
       this.setSpectrum(this.isSinglePhase() ? [this.setupSpectrum()] : [this.setupSpectrum(-0.26), this.setupSpectrum(0), this.setupSpectrum(0.26)]);
       this.setCurve(this.isSinglePhase() ? [this.setupCurve()] : [this.setupCurve(), this.setupCurve(), this.setupCurve()]);
     },
-
     /*
     ******************************************************
       STATICS
@@ -107,7 +102,6 @@
         var last = array[array.length - 1];
         return [last[0] + 1, last[1]];
       },
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -160,8 +154,8 @@
           limitcolor: {
             target: 'limitColor',
             "default": '#edc240' // default directly from flot code
-
           },
+
           color1: {
             "default": '#afd8f8'
           },
@@ -181,7 +175,6 @@
         return [true, variant];
       }
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -249,7 +242,6 @@
         init: '#4da74d'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -261,17 +253,14 @@
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var actor = '<div class="actor clickable">';
-
         if (this.isShowCurve()) {
           actor += '<div class="diagram_inline curve">loading...</div>';
         }
-
         actor += '<div class="diagram_inline spectrum">loading...</div></div>';
         return actor;
       },
       _onDomReady: function _onDomReady() {
         cv.plugins.PowerSpectrum.superclass.prototype._onDomReady.call(this);
-
         var colors = [this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3()];
         var diagramCurve = this.isShowCurve() && $('#' + this.getPath() + ' .actor div.curve').empty();
         var optionsCurve = this.isShowCurve() && {
@@ -311,13 +300,12 @@
             show: false
           }
         };
-
         var init = function () {
           this.__P_14_1 = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
           this.__P_14_0 = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
-        }.bind(this); // check if sizes are set yet, otherwise wait some time
+        }.bind(this);
 
-
+        // check if sizes are set yet, otherwise wait some time
         if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
           cv.ui.structure.pure.layout.ResizeHandler.states.addListenerOnce('changePageSizeInvalid', init);
         } else {
@@ -328,10 +316,8 @@
         if (ga === undefined) {
           return;
         }
-
         var addressInfo = this.getAddress()[ga];
         var phase;
-
         if (addressInfo.variantInfo[0] === 'I') {
           phase = this.isSinglePhase() ? 1 : +(addressInfo.variantInfo[1] || 1);
           var value = cv.Transform.encode(addressInfo, data);
@@ -342,30 +328,22 @@
           var index = parseInt(data.substr(0, 2), 16);
           var factor = this.getCurrent()[phase - 1] || 1;
           var values = [];
-
           for (var i = 0; i < 13; i++) {
             if (index + i < 2) {
               continue;
             }
-
             values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
             this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
           }
-
           this.__P_14_0.setData(this.createDatasetSpectrum());
-
           this.__P_14_0.draw();
-
           if (this.__P_14_1) {
             this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
-
             this.__P_14_1.setData(this.createDatasetCurve());
-
             this.__P_14_1.draw();
           }
         }
       },
-
       /**
        * Setup helper
        */
@@ -374,18 +352,14 @@
       },
       setupSpectrum: function setupSpectrum(offset) {
         var ret_val = [];
-
         if (undefined === offset) {
           offset = 0;
         }
-
         for (var i = 2; i < 52; i++) {
           ret_val.push([i + offset, 0]);
         }
-
         return ret_val;
       },
-
       /**
        * Convert a spectrum to a curve
        * @param input
@@ -396,20 +370,17 @@
         var inp = input[phase];
         var out = target[phase];
         var shift = (phase * 2 / 3 - 0.5) * Math.PI;
-
         for (var i = 0; i < 50; i++) {
           var phi = i * Math.PI / 25;
           var value = Math.cos(phi + shift); // the base with 50 Hz
-          // the harmonics
 
+          // the harmonics
           for (var j = 2; j < 50; j++) {
             value += Math.cos((phi + shift) * j) * inp[j][1];
           }
-
           out[i][1] = value;
         }
       },
-
       /**
        * Little helper to setup the Flot dataset structure.
        */
@@ -418,7 +389,8 @@
           label: null,
           data: cv.plugins.PowerSpectrum.referenceSin[0],
           color: 13
-        }, // trick flot to automatically make color darker
+        },
+        // trick flot to automatically make color darker
         {
           label: 'L',
           data: this.getCurve()[0],
@@ -449,7 +421,6 @@
           color: 3
         }];
       },
-
       /**
        * Little helper to setup the Flot dataset structure.
        */
@@ -497,13 +468,15 @@
       var loader = cv.util.ScriptLoader.getInstance();
       loader.addScripts(['plugins/diagram/dep/flot/jquery.flot.min.js', 'plugins/diagram/dep/flot/jquery.flot.canvas.min.js', 'plugins/diagram/dep/flot/jquery.flot.resize.min.js', 'plugins/diagram/dep/flot/jquery.flot.navigate.min.js']);
       cv.parser.pure.WidgetParser.addHandler('powerspectrum', cv.plugins.PowerSpectrum);
-      cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics); // init
+      cv.ui.structure.WidgetFactory.registerClass('powerspectrum', statics);
 
+      // init
       statics.limitEN50160_1999.forEach(statics.fixLimits);
       statics.limitEN50160_1999.push(statics.lastShifted(statics.limitEN50160_1999));
       statics.limitEN61000_3_2.forEach(statics.fixLimits);
-      statics.limitEN61000_3_2.push(statics.lastShifted(statics.limitEN61000_3_2)); // fill reference
+      statics.limitEN61000_3_2.push(statics.lastShifted(statics.limitEN61000_3_2));
 
+      // fill reference
       for (var phi = 0; phi < 50; phi++) {
         var time = phi * 20 / 50; // time in milliseconds
 
@@ -516,4 +489,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1685978092174
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1691935391749

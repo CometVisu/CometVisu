@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,7 +44,6 @@
    */
   qx.Class.define("qx.ui.tree.core.OpenCloseController", {
     extend: qx.core.Object,
-
     /**
      * @param tree {qx.ui.tree.VirtualTree}
      *   The tree whose branch open or closed state is to be synchronized to a
@@ -57,16 +55,17 @@
      */
     construct: function construct(tree, rootModel) {
       var openProperty = tree.getOpenProperty();
-      qx.core.Object.constructor.call(this); // Save the tree and initialize storage of listener IDs
+      qx.core.Object.constructor.call(this);
 
+      // Save the tree and initialize storage of listener IDs
       this._tree = tree;
-      this._lids = []; // Sync tree nodes
+      this._lids = [];
 
+      // Sync tree nodes
       var sync = function (node) {
         if (qx.Class.hasProperty(node.constructor, "children")) {
           node.getChildren().forEach(sync);
         }
-
         if (qx.Class.hasProperty(node.constructor, openProperty)) {
           if (node.get(openProperty)) {
             tree.openNode(node);
@@ -75,25 +74,19 @@
           }
         }
       }.bind(this);
+      sync(rootModel);
 
-      sync(rootModel); // Wire change listeners
-
+      // Wire change listeners
       var lid = tree.addListener("open", this._onOpen, this);
-
       this._lids.push([tree, lid]);
-
       lid = tree.addListener("close", this._onClose, this);
-
       this._lids.push([tree, lid]);
-
       lid = rootModel.addListener("changeBubble", this._onChangeBubble, this);
-
       this._lids.push([rootModel, lid]);
     },
     members: {
       /** The tree which is synced to the model */
       _tree: null,
-
       /** Listener IDs that we manage */
       _lids: null,
       // event listener for "open" on the tree
@@ -109,30 +102,33 @@
         var index;
         var item;
         var isOpen;
-        var bubble = ev.getData(); // Extract the index of the current item
+        var bubble = ev.getData();
 
-        index = bubble.name.replace(/.*\[([0-9]+)\]$/, "$1"); // Retrieve that indexed array item if it's an array; otherwise the item itself
+        // Extract the index of the current item
+        index = bubble.name.replace(/.*\[([0-9]+)\]$/, "$1");
 
-        item = bubble.item.getItem ? bubble.item.getItem(index) : bubble.item; // If this item isn't being deleted and has an open property...
+        // Retrieve that indexed array item if it's an array; otherwise the item itself
+        item = bubble.item.getItem ? bubble.item.getItem(index) : bubble.item;
 
+        // If this item isn't being deleted and has an open property...
         if (item && qx.Class.hasProperty(item.constructor, this._tree.getOpenProperty())) {
           // ... then find out if this branch is open
-          isOpen = item.get(this._tree.getOpenProperty()); // Open or close the tree branch as necessary
+          isOpen = item.get(this._tree.getOpenProperty());
 
+          // Open or close the tree branch as necessary
           if (isOpen && !this._tree.isNodeOpen(item)) {
             this._tree.openNode(item);
           } else if (!isOpen && this._tree.isNodeOpen(item)) {
             this._tree.closeNode(item);
           }
-        } // Rebuild the internal lookup table
+        }
 
-
+        // Rebuild the internal lookup table
         this._tree.refresh();
       }
     },
     destruct: function destruct() {
       this._tree = null;
-
       this._lids.forEach(function (data) {
         data[0].removeListenerById(data[1]);
       });
@@ -141,4 +137,4 @@
   qx.ui.tree.core.OpenCloseController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenCloseController.js.map?dt=1685978150117
+//# sourceMappingURL=OpenCloseController.js.map?dt=1691935446392

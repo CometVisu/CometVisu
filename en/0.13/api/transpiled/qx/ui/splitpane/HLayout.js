@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -53,27 +52,26 @@
    */
   qx.Class.define("qx.ui.splitpane.HLayout", {
     extend: qx.ui.layout.Abstract,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
         LAYOUT INTERFACE
       ---------------------------------------------------------------------------
       */
+
       // overridden
       verifyLayoutProperty: qx.core.Environment.select("qx.debug", {
         "true": function _true(item, name, value) {
           this.assert(name === "type" || name === "flex", "The property '" + name + "' is not supported by the split layout!");
-
           if (name == "flex") {
             this.assertNumber(value);
           }
-
           if (name == "type") {
             this.assertString(value);
           }
@@ -83,17 +81,14 @@
       // overridden
       renderLayout: function renderLayout(availWidth, availHeight, padding) {
         var children = this._getLayoutChildren();
-
         var length = children.length;
         var child, type;
         var begin, splitter, slider, end;
         var paddingLeft = padding.left || 0;
         var paddingTop = padding.top || 0;
-
         for (var i = 0; i < length; i++) {
           child = children[i];
           type = child.getLayoutProperties().type;
-
           if (type === "splitter") {
             splitter = child;
           } else if (type === "slider") {
@@ -104,26 +99,21 @@
             end = child;
           }
         }
-
         if (begin && end) {
           var beginFlex = begin.getLayoutProperties().flex;
           var endFlex = end.getLayoutProperties().flex;
-
           if (beginFlex === undefined || beginFlex === null) {
             beginFlex = 1;
           }
-
           if (endFlex === undefined || endFlex === null) {
             endFlex = 1;
           }
-
           var beginHint = begin.getSizeHint();
           var splitterHint = splitter.getSizeHint();
           var endHint = end.getSizeHint();
           var beginWidth = beginHint.width;
           var splitterWidth = splitterHint.width;
           var endWidth = endHint.width;
-
           if (beginFlex > 0 && endFlex > 0) {
             var flexSum = beginFlex + endFlex;
             var flexAvailable = availWidth - splitterWidth;
@@ -134,33 +124,29 @@
             endWidth = sizes.end;
           } else if (beginFlex > 0) {
             beginWidth = availWidth - splitterWidth - endWidth;
-
             if (beginWidth < beginHint.minWidth) {
               beginWidth = beginHint.minWidth;
             }
-
             if (beginWidth > beginHint.maxWidth) {
               beginWidth = beginHint.maxWidth;
             }
           } else if (endFlex > 0) {
             endWidth = availWidth - beginWidth - splitterWidth;
-
             if (endWidth < endHint.minWidth) {
               endWidth = endHint.minWidth;
             }
-
             if (endWidth > endHint.maxWidth) {
               endWidth = endHint.maxWidth;
             }
           }
-
           begin.renderLayout(paddingLeft, paddingTop, beginWidth, availHeight);
           splitter.renderLayout(beginWidth + paddingLeft, paddingTop, splitterWidth, availHeight);
           end.renderLayout(beginWidth + splitterWidth + paddingLeft, paddingTop, endWidth, availHeight);
         } else {
           // Hide the splitter completely
-          splitter.renderLayout(0, 0, 0, 0); // Render one child
+          splitter.renderLayout(0, 0, 0, 0);
 
+          // Render one child
           if (begin) {
             begin.renderLayout(paddingLeft, paddingTop, availWidth, availHeight);
           } else if (end) {
@@ -171,42 +157,36 @@
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         var children = this._getLayoutChildren();
-
         var length = children.length;
         var child, hint, props;
         var minWidth = 0,
-            width = 0,
-            maxWidth = 0;
+          width = 0,
+          maxWidth = 0;
         var minHeight = 0,
-            height = 0,
-            maxHeight = 0;
-
+          height = 0,
+          maxHeight = 0;
         for (var i = 0; i < length; i++) {
           child = children[i];
-          props = child.getLayoutProperties(); // The slider is not relevant for auto sizing
+          props = child.getLayoutProperties();
 
+          // The slider is not relevant for auto sizing
           if (props.type === "slider") {
             continue;
           }
-
           hint = child.getSizeHint();
           minWidth += hint.minWidth;
           width += hint.width;
           maxWidth += hint.maxWidth;
-
           if (hint.minHeight > minHeight) {
             minHeight = hint.minHeight;
           }
-
           if (hint.height > height) {
             height = hint.height;
           }
-
           if (hint.maxHeight > maxHeight) {
             maxHeight = hint.maxHeight;
           }
         }
-
         return {
           minWidth: minWidth,
           width: width,
@@ -221,4 +201,4 @@
   qx.ui.splitpane.HLayout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HLayout.js.map?dt=1685978146122
+//# sourceMappingURL=HLayout.js.map?dt=1691935442434

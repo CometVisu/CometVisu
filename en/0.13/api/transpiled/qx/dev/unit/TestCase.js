@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,7 +58,6 @@
       testResult: {
         init: null
       },
-
       /** The test currently running */
       testFunc: {
         init: null
@@ -67,7 +65,6 @@
     },
     members: {
       __P_194_0: null,
-
       /**
        * Whether If debugging code is enabled. (i.e. the setting
        * <code>qx.debug</code> has the value <code>on</code>.)
@@ -77,7 +74,6 @@
       isDebugOn: function isDebugOn() {
         return false ? true : false;
       },
-
       /**
        * Checks if qx.debug set
        * used by this.require["debug"]
@@ -85,7 +81,6 @@
       hasDebug: function hasDebug() {
         return false;
       },
-
       /**
        * Instruct the test to wait. Used for asynchronous tests.
        *
@@ -98,7 +93,6 @@
       wait: function wait(delay, deferredFunction, context) {
         throw new qx.dev.unit.AsyncWrapper(delay, deferredFunction, context);
       },
-
       /**
        * Cancel a timeout started with <code>wait()</code> and run the given
        * function. Used for asynchronous tests, e.g. in a listener's callback
@@ -119,7 +113,6 @@
       resume: function resume(deferredFunction, self) {
         return this.getTestResult().run(this.getTestFunc(), deferredFunction || function () {}, self || this, true);
       },
-
       /**
        * Cancel a timeout started with <code>wait()</code> in setUp() and run the test
        * function. Used for asynchronous setUp of tests.
@@ -138,7 +131,6 @@
           }
         }, this, true);
       },
-
       /**
        * Cancel a timeout started with <code>wait()</code> and return a function,
        * which calls {@link #resume}. This function is useful
@@ -166,7 +158,6 @@
           return that.resume(func.bind.apply(func, [self || this].concat(args)), self);
         };
       },
-
       /**
        * Skip this test. Any code after a call to this method will not be executed.
        *
@@ -175,7 +166,6 @@
       skip: function skip(message) {
         throw new qx.dev.unit.RequirementError(null, message || "Called skip()");
       },
-
       /**
        * Add an object to the auto dispose list. This can be cleared manually or will
        * be flushed when the test case is disposed.
@@ -186,10 +176,8 @@
         if (!this.__P_194_0) {
           this.__P_194_0 = [];
         }
-
         this.__P_194_0.push(obj);
       },
-
       /**
        * Dispose all objects that got registered for auto disposal.
        */
@@ -204,7 +192,6 @@
               }
             }
           });
-
           this.__P_194_0 = null;
         }
       }
@@ -213,4 +200,4 @@
   qx.dev.unit.TestCase.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TestCase.js.map?dt=1685978119783
+//# sourceMappingURL=TestCase.js.map?dt=1691935417704

@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -52,7 +51,6 @@
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
     type: "abstract",
-
     /**
      * @param media {var} the media element.
      */
@@ -75,8 +73,9 @@
       Event.addNativeListener(this._media, "ended", this._handleEndedEventBound);
       Event.addNativeListener(this._media, "volumechange", this._handleVolumeChangeEventBound);
       Event.addNativeListener(this._media, "loadeddata", this._handleLoadedDataEventBound);
-      Event.addNativeListener(this._media, "loadedmetadata", this._handleLoadedMetaDataEventBound); // set default value
+      Event.addNativeListener(this._media, "loadedmetadata", this._handleLoadedMetaDataEventBound);
 
+      // set default value
       this._media.preload = "auto";
     },
     //MORE HERE:
@@ -84,22 +83,16 @@
     events: {
       /** Fired when the media starts to play */
       play: "qx.event.type.Event",
-
       /** Fired when the media is paused */
       pause: "qx.event.type.Event",
-
       /** Fired when the current time of the media has changed */
       timeupdate: "qx.event.type.Event",
-
       /** Fired when the media has finished to play */
       ended: "qx.event.type.Event",
-
       /** Fired when the volume property is changed */
       volumechange: "qx.event.type.Event",
-
       /** Fired when the media is loaded enough to start play*/
       loadeddata: "qx.event.type.Event",
-
       /** Fired when the media is loaded enough to start play*/
       loadedmetadata: "qx.event.type.Event"
     },
@@ -107,7 +100,6 @@
       _media: null,
       _hasLoop: false,
       _loopId: null,
-
       /**
        * Returns the media object, so that you can add it to the DOM.
        *
@@ -116,7 +108,6 @@
       getMediaObject: function getMediaObject() {
         return this._media;
       },
-
       /**
        * Starts playback of the media.
        */
@@ -126,14 +117,12 @@
           this._media.play();
         }, this, 0);
       },
-
       /**
        * Pauses playback of the media.
        */
       pause: function pause() {
         this._media.pause();
       },
-
       /**
        * Checks if the media is paused or not.
        *
@@ -142,7 +131,6 @@
       isPaused: function isPaused() {
         return this._media.paused;
       },
-
       /**
        * Checks if the media is ended or not.
        *
@@ -151,7 +139,6 @@
       isEnded: function isEnded() {
         return this._media.ended;
       },
-
       /**
        * Sets the id of the media.
        *
@@ -160,7 +147,6 @@
       setId: function setId(id) {
         this._media.id = id;
       },
-
       /**
        * Gets the id of the media.
        *
@@ -169,7 +155,6 @@
       getId: function getId() {
         return this._media.id;
       },
-
       /**
        * Whether the browser can play the file format.
        *
@@ -179,7 +164,6 @@
       canPlayType: function canPlayType(type) {
         return this._media.canPlayType(type);
       },
-
       /**
        * Sets the current playback volume, as a number in the range 0.0 to 1.0,
        * where 0.0 is the quietest and 1.0 the loudest.
@@ -189,7 +173,6 @@
       setVolume: function setVolume(volume) {
         this._media.volume = volume;
       },
-
       /**
        * Gets the current playback volume, as a number in the range 0.0 to 1.0,
        * where 0.0 is the quietest and 1.0 the loudest.
@@ -199,7 +182,6 @@
       getVolume: function getVolume() {
         return this._media.volume;
       },
-
       /**
        * Sets the media element to mute.
        *
@@ -208,7 +190,6 @@
       setMuted: function setMuted(muted) {
         this._media.muted = muted;
       },
-
       /**
        * Checks if the media element is muted or not
        *
@@ -217,7 +198,6 @@
       isMuted: function isMuted() {
         return this._media.muted;
       },
-
       /**
        * Gets the duration of the loaded media file.
        *
@@ -226,7 +206,6 @@
       getDuration: function getDuration() {
         return this._media.duration;
       },
-
       /**
        * Sets the value of current time.
        *
@@ -235,7 +214,6 @@
       setCurrentTime: function setCurrentTime(value) {
         this._media.currentTime = value;
       },
-
       /**
        * Gets current time of the playback.
        *
@@ -244,7 +222,6 @@
       getCurrentTime: function getCurrentTime() {
         return this._media.currentTime;
       },
-
       /**
        * Sets the source url of the media file.
        *
@@ -253,7 +230,6 @@
       setSource: function setSource(source) {
         this._media.src = source;
       },
-
       /**
        * Gets the source url of the media file.
        *
@@ -262,7 +238,6 @@
       getSource: function getSource() {
         return this._media.src;
       },
-
       /**
        * Sets the source object of the media file.
        *
@@ -271,7 +246,6 @@
       setSourceObject: function setSourceObject(sourceObject) {
         this._media.srcObject = sourceObject;
       },
-
       /**
        * Gets the source object of the media file.
        *
@@ -280,7 +254,6 @@
       getSourceObject: function getSourceObject() {
         return this._media.srcObject;
       },
-
       /**
        * Checks if the media element shows its controls.
        *
@@ -289,21 +262,18 @@
       hasControls: function hasControls() {
         return this._media.controls;
       },
-
       /**
        * Shows the controls of the media element.
        */
       showControls: function showControls() {
         this._media.controls = true;
       },
-
       /**
        * Hides the controls of the media element.
        */
       hideControls: function hideControls() {
         this._media.controls = false;
       },
-
       /**
        * Plays the media directly when it is loaded / the page is loaded.
        *
@@ -312,7 +282,6 @@
       setAutoplay: function setAutoplay(autoplay) {
         this._media.autoplay = autoplay;
       },
-
       /**
        * Whether the media is played directly when it is loaded / the page is loaded.
        *
@@ -321,7 +290,6 @@
       getAutoplay: function getAutoplay() {
         return this._media.autoplay;
       },
-
       /**
        * Hints how much buffering the media resource will likely need.
        *
@@ -344,7 +312,6 @@
           this._media.preload = "auto";
         }
       },
-
       /**
        * Returns how much buffering the media resource will likely need.
        *
@@ -353,7 +320,6 @@
       getPreload: function getPreload() {
         return this._media.preload;
       },
-
       /**
        * Indicates that the media element is to seek back to the start of the media resource upon reaching the end.
        *
@@ -369,10 +335,8 @@
             this._loopId = null;
           }
         }
-
         this._media.loop = value;
       },
-
       /**
        * Whether the media element is to seek back to the start of the media resource upon reaching the end.
        *
@@ -381,49 +345,42 @@
       isLoop: function isLoop() {
         return !!this._media.loop;
       },
-
       /**
        * Play event handler.
        */
       _handlePlayEvent: function _handlePlayEvent() {
         this.fireEvent("play");
       },
-
       /**
        * Pause event handler.
        */
       _handlePauseEvent: function _handlePauseEvent() {
         this.fireEvent("pause");
       },
-
       /**
        * Time Update event handler.
        */
       _handleTimeUpdateEvent: function _handleTimeUpdateEvent() {
         this.fireEvent("timeupdate");
       },
-
       /**
        * Ended event handler.
        */
       _handleEndedEvent: function _handleEndedEvent() {
         this.fireEvent("ended");
       },
-
       /**
        * Volume Change event handler.
        */
       _handleVolumeChangeEvent: function _handleVolumeChangeEvent() {
         this.fireEvent("volumechange");
       },
-
       /**
        * Loaded Data event handler.
        */
       _handleLoadedDataEvent: function _handleLoadedDataEvent() {
         this.fireEvent("loadeddata");
       },
-
       /**
        * Loaded Metadata event handler.
        */
@@ -440,12 +397,10 @@
       Event.removeNativeListener(this._media, "volumechange", this._handleVolumeChangeEventBound);
       Event.removeNativeListener(this._media, "loadeddata", this._handleLoadedDataEventBound);
       Event.removeNativeListener(this._media, "loadedmetadata", this._handleLoadedMetaDataEventBound);
-
       try {
         // IE9 sometimes throws an can't access error
         this.pause();
       } catch (ex) {}
-
       this.setSource("");
       this._media = null;
     }
@@ -453,4 +408,4 @@
   qx.bom.media.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978111133
+//# sourceMappingURL=Abstract.js.map?dt=1691935409690

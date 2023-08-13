@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Dark Theme for Qooxdoo
@@ -30,7 +29,6 @@
     Origin:
       This theme is based in large parts on the osparc.theme
   ************************************************************************ */
-
   /**
    * Simple color theme
    */
@@ -47,4 +45,4 @@
   qx.theme.tangible.ColorDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorDark.js.map?dt=1685978132242
+//# sourceMappingURL=ColorDark.js.map?dt=1691935429343

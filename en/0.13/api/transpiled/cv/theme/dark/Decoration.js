@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Decoration.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -30,6 +29,7 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   qx.Theme.define('cv.theme.dark.Decoration', {
     extend: qx.theme.tangible.Decoration,
     decorations: {
@@ -115,4 +115,4 @@
   cv.theme.dark.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1685978160872
+//# sourceMappingURL=Decoration.js.map?dt=1691935456311

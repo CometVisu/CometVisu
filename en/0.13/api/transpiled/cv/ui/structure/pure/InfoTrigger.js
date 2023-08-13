@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* InfoTrigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -57,7 +56,6 @@
   qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton, cv.ui.common.HandleLongpress],
-
     /*
     ******************************************************
       PROPERTIES
@@ -105,7 +103,6 @@
         init: 'middle'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -117,51 +114,41 @@
         // create buttons + info
         var ret_val = '<div style="float:left;">';
         var actordown = '<div class="actor switchUnpressed downlabel" ';
-
         if (this.getAlign()) {
           actordown += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actordown += '>';
         actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
         actordown += '</div>';
         var actorup = '<div class="actor switchUnpressed uplabel" ';
-
         if (this.getAlign()) {
           actorup += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actorup += '>';
         actorup += '<div class="label">' + (this.getUpLabel() || '+') + '</div>';
         actorup += '</div>';
         var actorinfo = '<div class="actor switchInvisible" ';
-
         if (this.getAlign()) {
           actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
         }
-
         actorinfo += '><div class="value">-</div></div>';
-
         switch (this.getInfoPosition()) {
           case 'middle':
             ret_val += actordown;
             ret_val += actorinfo;
             ret_val += actorup;
             break;
-
           case 'right':
             ret_val += actordown;
             ret_val += actorup;
             ret_val += actorinfo;
             break;
-
           default:
             ret_val += actorinfo;
             ret_val += actordown;
             ret_val += actorup;
             break;
         }
-
         return ret_val + '</div>';
       },
       getActors: function getActors() {
@@ -176,13 +163,11 @@
       __P_62_0: function __P_62_0(element) {
         while (!element.classList.contains('actor')) {
           element = element.parentNode;
-
           if (element.classList.contains('widget')) {
             // thats too far
             return null;
           }
         }
-
         return element;
       },
       _onLongTap: function _onLongTap(event) {
@@ -193,18 +178,14 @@
       },
       __P_62_1: function __P_62_1(isShort, isDown) {
         var value;
-
         if (isShort && this.getShortDownValue() !== null && this.getShortUpValue() !== null) {
           value = isDown ? this.getShortDownValue() : this.getShortUpValue();
         } else {
           value = isDown ? this.getDownValue() : this.getUpValue();
         }
-
         var bitMask = isShort ? 1 : 2;
-
         if (this.getIsAbsolute()) {
           var bvalue = parseFloat(this.getBasicValue());
-
           if (!Number.isFinite(bvalue)) {
             bvalue = 0; // anything is better than NaN...
           }
@@ -213,7 +194,6 @@
           value = Math.max(value, this.getMin());
           value = Math.min(value, this.getMax());
         }
-
         this.sendToBackend(value, function (address) {
           return !!(address.variantInfo & bitMask);
         });
@@ -235,4 +215,4 @@
   cv.ui.structure.pure.InfoTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InfoTrigger.js.map?dt=1685978099795
+//# sourceMappingURL=InfoTrigger.js.map?dt=1691935399102

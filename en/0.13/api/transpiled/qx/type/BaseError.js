@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
      qooxdoo - the new era of web development
      http://qooxdoo.org
@@ -30,33 +29,28 @@
    */
   qx.Bootstrap.define("qx.type.BaseError", {
     extend: Error,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param comment {String} Comment passed to the assertion call
      * @param failMessage {String} Fail message provided by the assertion
      */
     construct: function construct(comment, failMessage) {
-      var inst = Error.call(this, failMessage); // map stack trace properties since they're not added by Error's constructor
-
+      var inst = Error.call(this, failMessage);
+      // map stack trace properties since they're not added by Error's constructor
       if (inst.stack) {
         this.stack = inst.stack;
       }
-
       if (inst.stacktrace) {
         this.stacktrace = inst.stacktrace;
       }
-
-      this.__P_296_0 = comment || ""; // opera 10 crashes if the message is an empty string!!!?!?!
-
+      this.__P_296_0 = comment || "";
+      // opera 10 crashes if the message is an empty string!!!?!?!
       this.message = failMessage || qx.type.BaseError.DEFAULTMESSAGE;
     },
-
     /*
     *****************************************************************************
        STATICS
@@ -65,19 +59,17 @@
     statics: {
       DEFAULTMESSAGE: "error"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_296_1: null,
       __P_296_0: null,
-
       /** @type {String} Fail message provided by the assertion */
       message: null,
-
       /**
        * Comment passed to the assertion call
        *
@@ -86,7 +78,6 @@
       getComment: function getComment() {
         return this.__P_296_0;
       },
-
       /**
        * Get the error message
        *
@@ -100,4 +91,4 @@
   qx.type.BaseError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseError.js.map?dt=1685978132549
+//# sourceMappingURL=BaseError.js.map?dt=1691935429622

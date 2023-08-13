@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* PageJump.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.PageJump', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -55,11 +53,9 @@
       parse: function parse(xml, path, flavour, pageType) {
         var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
         var widgetInfo = xml.querySelector('widgetinfo > *');
-
         if (widgetInfo !== undefined) {
           data.classes += ' infoaction';
         }
-
         cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         return data;
@@ -88,4 +84,4 @@
   cv.parser.pure.widgets.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1685978091264
+//# sourceMappingURL=PageJump.js.map?dt=1691935390866

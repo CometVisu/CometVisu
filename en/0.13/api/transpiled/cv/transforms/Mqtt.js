@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Mqtt.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.transforms.Mqtt', {
     type: 'static',
-
     /**
      * This class defines the default transforms: encode: transform JavaScript to
      * bus value decode: transform bus to JavaScript value
@@ -104,9 +102,7 @@
           },
           decode: function decode(str) {
             var date = new Date(); // assume today
-
             str += '00000000'; // make sure string is long enough
-
             date.setHours(parseInt(str.substr(0, 2)), parseInt(str.substr(3, 2)), parseInt(str.substr(6, 2)), 0);
             return date;
           }
@@ -177,7 +173,6 @@
             if (!(phy instanceof Map)) {
               return '';
             }
-
             return [phy.get('h'), phy.get('s'), phy.get('v')].join(',');
           },
           decode: function decode(str) {
@@ -197,7 +192,6 @@
             if (!(phy instanceof Map)) {
               return {};
             }
-
             return {
               h: phy.get('h'),
               s: phy.get('s'),
@@ -221,7 +215,6 @@
             if (!(phy instanceof Map)) {
               return '';
             }
-
             return [phy.get('h'), phy.get('s'), phy.get('v')].join(',');
           },
           decode: function decode(str) {
@@ -241,7 +234,6 @@
             if (!(phy instanceof Map)) {
               return '{}';
             }
-
             return {
               h: phy.get('h'),
               s: phy.get('s'),
@@ -265,7 +257,6 @@
             if (!(phy instanceof Map)) {
               return '';
             }
-
             return [phy.get('r'), phy.get('g'), phy.get('b')].join(',');
           },
           decode: function decode(str) {
@@ -285,7 +276,6 @@
             if (!(phy instanceof Map)) {
               return '{}';
             }
-
             return {
               r: phy.get('r'),
               g: phy.get('g'),
@@ -309,7 +299,6 @@
             if (!(phy instanceof Map)) {
               return '';
             }
-
             return [phy.get('r'), phy.get('g'), phy.get('b'), phy.get('w')].join(',');
           },
           decode: function decode(str) {
@@ -329,7 +318,6 @@
             if (!(phy instanceof Map)) {
               return '{}';
             }
-
             return {
               r: phy.get('r'),
               g: phy.get('g'),
@@ -354,12 +342,10 @@
             if (!(phy instanceof Map)) {
               return '#000000';
             }
-
             return ['#', cv.Transform.clipInt(0, phy.get('r'), 255, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy.get('g'), 255, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy.get('b'), 255, 2.55).toString(16).padStart(2, '0')].join('');
           },
           decode: function decode(str) {
             str += '00000000'; // make sure string is long enough
-
             return new Map([['r', parseInt(str.substr(1, 2), 16) * 100 / 255.0], ['g', parseInt(str.substr(3, 2), 16) * 100 / 255.0], ['b', parseInt(str.substr(5, 2), 16) * 100 / 255.0]]);
           }
         },
@@ -375,12 +361,10 @@
             if (!(phy instanceof Map)) {
               return '#00000000';
             }
-
             return ['#', cv.Transform.clipInt(0, phy.get('r'), 255, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy.get('g'), 255, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy.get('b'), 255, 2.55).toString(16).padStart(2, '0'), cv.Transform.clipInt(0, phy.get('w'), 255, 2.55).toString(16).padStart(2, '0')].join('');
           },
           decode: function decode(str) {
             str += '00000000000'; // make sure string is long enough
-
             return new Map([['r', parseInt(str.substr(1, 2), 16) * 100 / 255.0], ['g', parseInt(str.substr(3, 2), 16) * 100 / 255.0], ['b', parseInt(str.substr(5, 2), 16) * 100 / 255.0], ['w', parseInt(str.substr(7, 2), 16) * 100 / 255.0]]);
           }
         }
@@ -390,4 +374,4 @@
   cv.transforms.Mqtt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mqtt.js.map?dt=1685978093397
+//# sourceMappingURL=Mqtt.js.map?dt=1691935392900

@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,7 +76,6 @@
       getName: function getName() {
         return qx.bom.client.Browser.detectName(navigator.userAgent);
       },
-
       /**
        * Examines the user agent of the browser to determine the browser name
        *
@@ -87,14 +85,11 @@
       detectName: function detectName(agent) {
         var reg = new RegExp("(" + qx.bom.client.Browser.__P_120_0 + ")(/|)?([0-9]+.[0-9])?");
         var match = agent.match(reg);
-
         if (!match) {
           return "";
         }
-
         var name = match[1].toLowerCase();
         var engine = qx.bom.client.Engine.getName();
-
         if (engine === "webkit") {
           if (agent.match(/Edge\/\d+\.\d+/)) {
             name = "edge";
@@ -110,14 +105,13 @@
         } else if (engine === "mshtml") {
           // IE 11's ua string no longer contains "MSIE" or even "IE"
           if (name === "msie" || name === "trident") {
-            name = "ie"; // Fix IE mobile before Microsoft added IEMobile string
+            name = "ie";
 
+            // Fix IE mobile before Microsoft added IEMobile string
             if (qx.bom.client.OperatingSystem.getVersion() === "ce") {
               name = "iemobile";
             }
-
             var reg = new RegExp("IEMobile");
-
             if (agent.match(reg)) {
               name = "iemobile";
             }
@@ -129,10 +123,8 @@
             name = "operamini";
           }
         }
-
         return name;
       },
-
       /**
        * Determines the version of the current browser.
        * @return {String} The name of the current browser.
@@ -142,42 +134,35 @@
         var agent = navigator.userAgent;
         var reg = new RegExp("(" + qx.bom.client.Browser.__P_120_0 + ")(/| )([0-9]+.[0-9])");
         var match = agent.match(reg);
-
         if (!match) {
           return "";
         }
-
         var name = match[1].toLowerCase();
-        var version = match[3]; // Support new style version string used by Opera and Safari
+        var version = match[3];
 
+        // Support new style version string used by Opera and Safari
         if (agent.match(/Version(\/| )([0-9]+\.[0-9])/)) {
           version = RegExp.$2;
         }
-
         if (qx.bom.client.Engine.getName() == "mshtml") {
           // Use the Engine version, because IE8 and higher change the user agent
           // string to an older version in compatibility mode
           version = qx.bom.client.Engine.getVersion();
-
           if (name === "msie" && qx.bom.client.OperatingSystem.getVersion() == "ce") {
             // Fix IE mobile before Microsoft added IEMobile string
             version = "5.0";
           }
         }
-
         if (qx.bom.client.Engine.getName() == "webkit" || qx.bom.client.Browser.getName() == "opera") {
           if (agent.match(/OPR(\/| )([0-9]+\.[0-9])/)) {
             version = RegExp.$2;
           }
-
           if (agent.match(/Edge\/([\d+\.*]+)/)) {
             version = RegExp.$1;
           }
         }
-
         return version;
       },
-
       /**
        * Returns in which document mode the current document is (only for IE).
        *
@@ -188,10 +173,8 @@
         if (document.documentMode) {
           return document.documentMode;
         }
-
         return 0;
       },
-
       /**
        * Check if in quirks mode.
        *
@@ -205,7 +188,6 @@
           return document.compatMode !== "CSS1Compat";
         }
       },
-
       /**
        * Internal helper map for picking the right browser names to check.
        */
@@ -236,4 +218,4 @@
   qx.bom.client.Browser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browser.js.map?dt=1685978108723
+//# sourceMappingURL=Browser.js.map?dt=1691935407648

@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -145,7 +144,6 @@
   qx.Class.define("qx.io.rest.Resource", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /**
      * @param description {Map?} Each key of the map is interpreted as
      *  <code>action</code> name. The value associated to the key must be a map
@@ -167,7 +165,6 @@
       this.__P_262_1 = {};
       this.__P_262_2 = {};
       this._resource = this._tailorResource(this._getResource());
-
       try {
         if (typeof description !== "undefined") {
           this.__P_262_3(description);
@@ -187,7 +184,6 @@
        * "<action>Success", e.g. "indexSuccess".
        */
       success: "qx.event.type.Rest",
-
       /**
        * Fired when request associated to action given in prefix was successful.
        *
@@ -195,7 +191,6 @@
        * successful.
        */
       actionSuccess: "qx.event.type.Rest",
-
       /**
        * Fired when any request fails.
        *
@@ -205,7 +200,6 @@
        * "<action>Error", e.g. "indexError".
        */
       error: "qx.event.type.Rest",
-
       /**
        * Fired when any request associated to action given in prefix fails.
        *
@@ -219,17 +213,14 @@
        * subject to throttling checks.
        */
       POLL_THROTTLE_LIMIT: 100,
-
       /**
        * Number of immediate long-poll responses accepted before throttling takes place.
        */
       POLL_THROTTLE_COUNT: 30,
-
       /**
        * A symbol used in checks to declare required parameter.
        */
       REQUIRED: true,
-
       /**
        * Get placeholders from URL.
        *
@@ -245,7 +236,6 @@
       __P_262_0: null,
       __P_262_1: null,
       __P_262_2: null,
-
       /**
        * Get resource.
        *
@@ -256,7 +246,6 @@
       _getResource: function _getResource(description) {
         return new qx.bom.rest.Resource(description);
       },
-
       /**
        * Tailors (apply dependency injection) the given resource to fit our needs.
        *
@@ -265,8 +254,9 @@
        */
       _tailorResource: function _tailorResource(resource) {
         // inject different request implementation
-        resource.setRequestFactory(this._getRequest); // inject different request handling
+        resource.setRequestFactory(this._getRequest);
 
+        // inject different request handling
         resource.setRequestHandler({
           onsuccess: {
             callback: function callback(req, action) {
@@ -302,7 +292,6 @@
       //
       // Request
       //
-
       /**
        * Configure request.
        *
@@ -320,7 +309,6 @@
       configureRequest: function configureRequest(callback) {
         this._resource.configureRequest(callback);
       },
-
       /**
        * Get request.
        *
@@ -333,7 +321,6 @@
       //
       // Routes and actions
       //
-
       /**
        * Map action to combination of method and URL pattern.
        *
@@ -357,10 +344,8 @@
       map: function map(action, method, url, check) {
         // add dynamic methods also on ourself to allow 'invoke()' delegation
         this.__P_262_4(action, method, url, check);
-
         this._resource.map(action, method, url, check);
       },
-
       /**
        * Map actions to members.
        *
@@ -375,30 +360,28 @@
        *   <code>qx.io.rest.Resource.REQUIRED</code> (to verify existence).
        */
       __P_262_4: function __P_262_4(action, method, url, check) {
-        this.__P_262_2[action] = [method, url, check]; // Undefine generic getter when action is named "get"
+        this.__P_262_2[action] = [method, url, check];
 
+        // Undefine generic getter when action is named "get"
         if (action == "get") {
           this[action] = undefined;
-        } // Do not overwrite existing "non-action" methods unless the method is
+        }
+
+        // Do not overwrite existing "non-action" methods unless the method is
         // null (i.e. because it exists as a stub for documentation)
-
-
         if (typeof this[action] !== "undefined" && this[action] !== null && this[action].action !== true) {
           throw new Error("Method with name of action (" + action + ") already exists");
         }
-
         this.__P_262_5(action + "Success");
-
         this.__P_262_5(action + "Error");
-
         this[action] = qx.lang.Function.bind(function () {
           Array.prototype.unshift.call(arguments, action);
           return this.invoke.apply(this, arguments);
-        }, this); // Method is safe to overwrite
+        }, this);
 
+        // Method is safe to overwrite
         this[action].action = true;
       },
-
       /**
        * Invoke action with parameters.
        *
@@ -416,12 +399,12 @@
        * @return {Number} Id of the action's invocation.
        */
       invoke: function invoke(action, params, data) {
-        var params = params == null ? {} : params; // Cache parameters
+        var params = params == null ? {} : params;
 
+        // Cache parameters
         this.__P_262_2[action].params = params;
         return this._resource.invoke(action, params, data);
       },
-
       /**
        * Set base URL.
        *
@@ -433,7 +416,6 @@
       setBaseUrl: function setBaseUrl(baseUrl) {
         this._resource.setBaseUrl(baseUrl);
       },
-
       /**
        * Abort action.
        *
@@ -456,7 +438,6 @@
       abort: function abort(varargs) {
         this._resource.abort(varargs);
       },
-
       /**
        * Resend request associated to action.
        *
@@ -467,7 +448,6 @@
       refresh: function refresh(action) {
         this._resource.refresh(action);
       },
-
       /**
        * Periodically invoke action.
        *
@@ -498,38 +478,33 @@
         // Dispose timer previously created for action
         if (this.__P_262_1[action]) {
           this.__P_262_1[action].dispose();
-        } // Fallback to previous params
+        }
 
-
+        // Fallback to previous params
         if (typeof params == "undefined") {
           params = this.__P_262_2[action].params;
-        } // Invoke immediately
+        }
 
-
+        // Invoke immediately
         if (immediately) {
           this.invoke(action, params);
         }
-
         var intervalListener = function intervalListener() {
           var reqs = this.getRequestsByAction(action),
-              req = reqs ? reqs[0] : null;
-
+            req = reqs ? reqs[0] : null;
           if (!immediately && !req) {
             this.invoke(action, params);
             return;
           }
-
           if (req && (req.isDone() || req.isDisposed())) {
             this.refresh(action);
           }
         };
-
         var timer = this.__P_262_1[action] = new qx.event.Timer(interval);
         timer.addListener("interval", intervalListener, this._resource);
         timer.start();
         return timer;
       },
-
       /**
        * Long-poll action.
        *
@@ -554,35 +529,30 @@
        */
       longPoll: function longPoll(action) {
         var res = this,
-            lastResponse,
-            // Keep track of last response
-        immediateResponseCount = 0; // Count immediate responses
-        // Throttle to prevent high load on server and client
+          lastResponse,
+          // Keep track of last response
+          immediateResponseCount = 0; // Count immediate responses
 
+        // Throttle to prevent high load on server and client
         function throttle() {
           var isImmediateResponse = lastResponse && new Date() - lastResponse < res._getThrottleLimit();
-
           if (isImmediateResponse) {
             immediateResponseCount += 1;
-
             if (immediateResponseCount > res._getThrottleCount()) {
               return true;
             }
-          } // Reset counter on delayed response
+          }
 
-
+          // Reset counter on delayed response
           if (!isImmediateResponse) {
             immediateResponseCount = 0;
           }
-
           return false;
         }
-
         var handlerId = this.__P_262_0[action] = this.addListener(action + "Success", function longPollHandler() {
           if (res.isDisposed()) {
             return;
           }
-
           if (!throttle()) {
             lastResponse = new Date();
             res.refresh(action);
@@ -591,7 +561,6 @@
         this.invoke(action);
         return handlerId;
       },
-
       /**
        * Get request configuration for action and parameters.
        *
@@ -605,7 +574,6 @@
       _getRequestConfig: function _getRequestConfig(action, params) {
         return this._resource._getRequestConfig(action, params);
       },
-
       /**
        * Override to adjust the throttle limit.
        * @return {Integer} Throttle limit in milliseconds
@@ -613,7 +581,6 @@
       _getThrottleLimit: function _getThrottleLimit() {
         return qx.io.rest.Resource.POLL_THROTTLE_LIMIT;
       },
-
       /**
        * Override to adjust the throttle count.
        * @return {Integer} Throttle count
@@ -621,7 +588,6 @@
       _getThrottleCount: function _getThrottleCount() {
         return qx.io.rest.Resource.POLL_THROTTLE_COUNT;
       },
-
       /**
        * Map actions from description.
        *
@@ -632,13 +598,12 @@
       __P_262_3: function __P_262_3(description) {
         Object.keys(description).forEach(function (action) {
           var route = description[action],
-              method = route.method,
-              url = route.url,
-              check = route.check;
+            method = route.method,
+            url = route.url,
+            check = route.check;
           this.map(action, method, url, check);
         }, this);
       },
-
       /**
        * Declare event at runtime.
        *
@@ -648,13 +613,11 @@
         if (!this.constructor.$$events) {
           this.constructor.$$events = {};
         }
-
         if (!this.constructor.$$events[type]) {
           this.constructor.$$events[type] = "qx.event.type.Rest";
         }
       }
     },
-
     /**
      * Destructs the Resource.
      *
@@ -662,7 +625,6 @@
      */
     destruct: function destruct() {
       var action;
-
       if (this.__P_262_1) {
         for (action in this.__P_262_1) {
           var timer = this.__P_262_1[action];
@@ -670,20 +632,17 @@
           timer.dispose();
         }
       }
-
       if (this.__P_262_0) {
         for (action in this.__P_262_0) {
           var id = this.__P_262_0[action];
           this.removeListenerById(id);
         }
       }
-
       this._resource.destruct();
-
       this._resource = this.__P_262_2 = this.__P_262_1 = this.__P_262_0 = null;
     }
   });
   qx.io.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1685978126446
+//# sourceMappingURL=Resource.js.map?dt=1691935423881

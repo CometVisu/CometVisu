@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,7 +50,6 @@
        * List of events that require an orientation handler
        */
       TYPES: ["orientationchange"],
-
       /**
        * Creates an orientation handler for the given window when an
        * orientationchange event listener is attached to it
@@ -62,16 +60,13 @@
         if (!qx.dom.Node.isWindow(element)) {
           throw new Error("The 'orientationchange' event is only available on window objects!");
         }
-
         if (!element.__P_288_0) {
           if (!element.$$emitter) {
             element.$$emitter = new qx.event.Emitter();
           }
-
           element.__P_288_0 = new qx.event.handler.OrientationCore(element, element.$$emitter);
         }
       },
-
       /**
        * Removes the orientation event handler from the element if there are no more
        * orientationchange event listeners attached to it
@@ -89,7 +84,6 @@
                 hasListener = true;
               }
             });
-
             if (!hasListener) {
               element.__P_288_0 = null;
             }
@@ -104,4 +98,4 @@
   qx.module.event.OrientationHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OrientationHandler.js.map?dt=1685978129775
+//# sourceMappingURL=OrientationHandler.js.map?dt=1691935426973

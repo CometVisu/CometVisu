@@ -26,7 +26,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -59,7 +58,6 @@
         nullable: true,
         apply: "_applyBorderImage"
       },
-
       /**
        * The top slice line of the base image. The slice properties divide the
        * image into nine regions, which define the corner, edge and the center
@@ -71,7 +69,6 @@
         init: null,
         apply: "_applyBorderImage"
       },
-
       /**
        * The right slice line of the base image. The slice properties divide the
        * image into nine regions, which define the corner, edge and the center
@@ -83,7 +80,6 @@
         init: null,
         apply: "_applyBorderImage"
       },
-
       /**
        * The bottom slice line of the base image. The slice properties divide the
        * image into nine regions, which define the corner, edge and the center
@@ -95,7 +91,6 @@
         init: null,
         apply: "_applyBorderImage"
       },
-
       /**
        * The left slice line of the base image. The slice properties divide the
        * image into nine regions, which define the corner, edge and the center
@@ -107,7 +102,6 @@
         init: null,
         apply: "_applyBorderImage"
       },
-
       /**
        * The slice properties divide the image into nine regions, which define the
        * corner, edge and the center images.
@@ -116,7 +110,6 @@
         group: ["sliceTop", "sliceRight", "sliceBottom", "sliceLeft"],
         mode: "shorthand"
       },
-
       /**
        * This property specifies how the images for the sides and the middle part
        * of the border image are scaled and tiled horizontally.
@@ -135,7 +128,6 @@
         init: "stretch",
         apply: "_applyBorderImage"
       },
-
       /**
        * This property specifies how the images for the sides and the middle part
        * of the border image are scaled and tiled vertically.
@@ -154,7 +146,6 @@
         init: "stretch",
         apply: "_applyBorderImage"
       },
-
       /**
        * This property specifies how the images for the sides and the middle part
        * of the border image are scaled and tiled.
@@ -163,7 +154,6 @@
         group: ["repeatX", "repeatY"],
         mode: "shorthand"
       },
-
       /**
        * If set to <code>false</code>, the center image will be omitted and only
        * the border will be drawn.
@@ -173,7 +163,6 @@
         init: true,
         apply: "_applyBorderImage"
       },
-
       /**
        * Configures the border image mode. Supported values:
        * <ul>
@@ -196,30 +185,24 @@
         if (!this.getBorderImage()) {
           return;
         }
-
         var resolvedImage = qx.util.AliasManager.getInstance().resolve(this.getBorderImage());
         var source = qx.util.ResourceManager.getInstance().toUri(resolvedImage);
-
         var computedSlices = this._getDefaultInsetsForBorderImage();
-
         var slice = [computedSlices.top, computedSlices.right, computedSlices.bottom, computedSlices.left];
         var repeat = [this.getRepeatX(), this.getRepeatY()].join(" ");
         var fill = this.getFill() && qx.core.Environment.get("css.borderimage.standardsyntax") ? " fill" : "";
         var styleName = qx.bom.Style.getPropertyName("borderImage");
-
         if (styleName) {
           var cssName = qx.bom.Style.getCssName(styleName);
           styles[cssName] = 'url("' + source + '") ' + slice.join(" ") + fill + " " + repeat;
-        } // Apply border styles even if we couldn't determine the borderImage property name
+        }
+        // Apply border styles even if we couldn't determine the borderImage property name
         // (e.g. because the browser doesn't support it). This is needed to keep
         // the layout intact.
-
-
         styles["border-style"] = "solid";
         styles["border-color"] = "transparent";
         styles["border-width"] = slice.join("px ") + "px";
       },
-
       /**
        * Computes the inset values based on the border image slices (defined in the
        * decoration theme or computed from the fallback image sizes).
@@ -235,11 +218,8 @@
             left: 0
           };
         }
-
         var resolvedImage = qx.util.AliasManager.getInstance().resolve(this.getBorderImage());
-
         var computedSlices = this.__P_335_0(resolvedImage);
-
         return {
           top: this.getSliceTop() || computedSlices[0],
           right: this.getSliceRight() || computedSlices[1],
@@ -248,7 +228,6 @@
         };
       },
       _applyBorderImage: function _applyBorderImage() {},
-
       /**
        * Gets the slice sizes from the fallback border images.
        *
@@ -265,17 +244,14 @@
         var prefix = split[1];
         var ext = split[2];
         var ResourceManager = qx.util.ResourceManager.getInstance();
-
         if (mode == "grid" || mode == "vertical") {
           topSlice = ResourceManager.getImageHeight(prefix + "-t" + ext);
           bottomSlice = ResourceManager.getImageHeight(prefix + "-b" + ext);
         }
-
         if (mode == "grid" || mode == "horizontal") {
           rightSlice = ResourceManager.getImageWidth(prefix + "-r" + ext);
           leftSlice = ResourceManager.getImageWidth(prefix + "-l" + ext);
         }
-
         return [topSlice, rightSlice, bottomSlice, leftSlice];
       }
     }
@@ -283,4 +259,4 @@
   qx.ui.decoration.MBorderImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderImage.js.map?dt=1685978136691
+//# sourceMappingURL=MBorderImage.js.map?dt=1691935433314

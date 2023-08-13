@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -94,13 +93,11 @@
   qx.Class.define("qx.util.format.DateFormat", {
     extend: qx.core.Object,
     implement: [qx.util.format.IFormat],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param format {String|null} The format to use. If null, the locale's default
      * format is used.
@@ -110,27 +107,24 @@
     construct: function construct(format, locale) {
       qx.core.Object.constructor.call(this);
       this.__P_515_0 = this.__P_515_1 = locale;
-
       if (format != null) {
         this.__P_515_2 = format.toString();
-
         if (this.__P_515_2 in qx.util.format.DateFormat.ISO_MASKS) {
           if (this.__P_515_2 === "isoUtcDateTime") {
             this.__P_515_3 = true;
           }
-
           this.__P_515_2 = qx.util.format.DateFormat.ISO_MASKS[this.__P_515_2];
         }
       } else {
         this.__P_515_2 = qx.locale.Date.getDateFormat("long", this.getLocale()) + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss", this.getLocale());
       }
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Convenience factory that returns a <code>DateFomat</code> instance that
@@ -144,15 +138,14 @@
        */
       getDateInstance: function getDateInstance() {
         var DateFormat = qx.util.format.DateFormat;
-        var format = qx.locale.Date.getDateFormat("short") + ""; // Memoizing the instance, so caller doesn't have to dispose it.
+        var format = qx.locale.Date.getDateFormat("short") + "";
 
+        // Memoizing the instance, so caller doesn't have to dispose it.
         if (DateFormat._dateInstance == null || DateFormat._dateInstance.__P_515_2 != format) {
           DateFormat._dateInstance = new DateFormat(format);
         }
-
         return DateFormat._dateInstance;
       },
-
       /**
        * Convenience factory that returns a <code>DateFomat</code> instance that
        * uses a long date/time format. Beware that the overall layout of the
@@ -165,15 +158,14 @@
        */
       getDateTimeInstance: function getDateTimeInstance() {
         var DateFormat = qx.util.format.DateFormat;
-        var format = qx.locale.Date.getDateFormat("long") + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss"); // Memoizing the instance, so caller doesn't have to dispose it.
+        var format = qx.locale.Date.getDateFormat("long") + " " + qx.locale.Date.getDateTimeFormat("HHmmss", "HH:mm:ss");
 
+        // Memoizing the instance, so caller doesn't have to dispose it.
         if (DateFormat._dateTimeInstance == null || DateFormat._dateTimeInstance.__P_515_2 != format) {
           DateFormat._dateTimeInstance = new DateFormat(format);
         }
-
         return DateFormat._dateTimeInstance;
       },
-
       /**
        * @type {Integer} The threshold until when a year should be assumed to belong to the
        *   21st century (e.g. 12 -> 2012). Years over this threshold but below 100 will be
@@ -181,7 +173,6 @@
        *   used unchanged (e.g. 1792 -> 1792).
        */
       ASSUME_YEAR_2000_THRESHOLD: 30,
-
       /** @type {Map} Special masks of patterns that are used frequently*/
       ISO_MASKS: {
         isoDate: "yyyy-MM-dd",
@@ -190,19 +181,17 @@
         isoDateTimeTz: "yyyy-MM-dd'T'HH:mm:ssZ",
         isoUtcDateTime: "yyyy-MM-dd'T'HH:mm:ss'Z'"
       },
-
       /** @type {String} The am marker. */
       AM_MARKER: "am",
-
       /** @type {String} The pm marker. */
       PM_MARKER: "pm"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_515_1: null,
       __P_515_0: null,
@@ -211,7 +200,6 @@
       __P_515_5: null,
       __P_515_6: null,
       __P_515_3: null,
-
       /**
        * Fills a number with leading zeros ("25" -> "0025").
        *
@@ -221,14 +209,11 @@
        */
       __P_515_7: function __P_515_7(number, minSize) {
         var str = "" + (number < 0 ? -1 * number : number);
-
         while (str.length < minSize) {
           str = "0" + str;
         }
-
         return number < 0 ? "-" + str : str;
       },
-
       /**
        * Returns the day in year of a date.
        *
@@ -238,16 +223,13 @@
       __P_515_8: function __P_515_8(date) {
         var helpDate = new Date(date.getTime());
         var day = helpDate.getDate();
-
         while (helpDate.getMonth() != 0) {
           // Set the date to the last day of the previous month
           helpDate.setDate(-1);
           day += helpDate.getDate() + 1;
         }
-
         return day;
       },
-
       /**
        * Returns the thursday in the same week as the date.
        *
@@ -257,7 +239,6 @@
       __P_515_9: function __P_515_9(date) {
         return new Date(date.getTime() + (3 - (date.getDay() + 6) % 7) * 86400000);
       },
-
       /**
        * Returns the week in year of a date.
        *
@@ -267,18 +248,18 @@
       __P_515_10: function __P_515_10(date) {
         // The following algorithm comes from http://www.salesianer.de/util/kalwoch.html
         // Get the thursday of the week the date belongs to
-        var thursdayDate = this.__P_515_9(date); // Get the year the thursday (and therefore the week) belongs to
+        var thursdayDate = this.__P_515_9(date);
 
+        // Get the year the thursday (and therefore the week) belongs to
+        var weekYear = thursdayDate.getFullYear();
 
-        var weekYear = thursdayDate.getFullYear(); // Get the thursday of the week january 4th belongs to
+        // Get the thursday of the week january 4th belongs to
         // (which defines week 1 of a year)
+        var thursdayWeek1 = this.__P_515_9(new Date(weekYear, 0, 4));
 
-        var thursdayWeek1 = this.__P_515_9(new Date(weekYear, 0, 4)); // Calculate the calendar week
-
-
+        // Calculate the calendar week
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
       },
-
       /**
        * Returns the week in month of a date.
        *
@@ -287,12 +268,9 @@
        */
       __P_515_11: function __P_515_11(date) {
         var thursdayDate = this.__P_515_9(date);
-
         var thursdayWeek1 = this.__P_515_9(new Date(date.getFullYear(), date.getMonth(), 4));
-
         return Math.floor(1.5 + (thursdayDate.getTime() - thursdayWeek1.getTime()) / 86400000 / 7);
       },
-
       /**
        * Returns the week year of a date. (that is the year of the week where this date happens to be)
        * For a week in the middle of the summer, the year is easily obtained, but for a week
@@ -304,10 +282,8 @@
        */
       __P_515_12: function __P_515_12(date) {
         var thursdayDate = this.__P_515_9(date);
-
         return thursdayDate.getFullYear();
       },
-
       /**
        * Returns true if the year is a leap one.
        *
@@ -319,7 +295,6 @@
         februaryDate.setDate(-1);
         return februaryDate.getDate() + 1 === 29;
       },
-
       /**
        * Returns a json object with month and day as keys.
        *
@@ -329,20 +304,17 @@
        */
       __P_515_14: function __P_515_14(dayOfYear, year) {
         var month = 0;
-        var day = 0; // if we don't know the year, we take a non-leap year'
-
+        var day = 0;
+        // if we don't know the year, we take a non-leap year'
         if (!year) {
           year = 1971;
         }
-
         var dayCounter = 0;
-
         for (var i = 1; i <= 12; i++) {
           var tempDate = new Date(year, i, 1);
           tempDate.setDate(-1);
           var days = tempDate.getDate() + 1;
           dayCounter += days;
-
           if (dayCounter < dayOfYear) {
             month++;
             day += days;
@@ -351,13 +323,11 @@
             break;
           }
         }
-
         return {
           month: month,
           day: day
         };
       },
-
       /**
        * Returns the year of a date when we know the week year
        *
@@ -368,33 +338,24 @@
        */
       __P_515_15: function __P_515_15(weekYear, month, dayOfMonth) {
         var year;
-
         switch (month) {
           case 11:
             year = weekYear - 1;
-
             if (weekYear != this.__P_515_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
-
             break;
-
           case 0:
             year = weekYear + 1;
-
             if (weekYear != this.__P_515_12(new Date(year, month, dayOfMonth))) {
               year = weekYear;
             }
-
             break;
-
           default:
             year = weekYear;
         }
-
         return year;
       },
-
       /**
        * Sets the new value for locale property
        * @param value {String} The new value.
@@ -404,30 +365,24 @@
         if (value !== null && typeof value != "string") {
           throw new Error("Cannot set locale to " + value + " - please provide a string");
         }
-
         this.__P_515_1 = value === null ? this.__P_515_0 : value;
       },
-
       /**
        * Resets the Locale
        */
       resetLocale: function resetLocale() {
         this.setLocale(null);
       },
-
       /**
        * Returns the locale
        */
       getLocale: function getLocale() {
         var locale = this.__P_515_1;
-
         if (locale === undefined) {
           locale = qx.locale.Manager.getInstance().getLocale();
         }
-
         return locale;
       },
-
       /**
        * Returns the original format string
        *
@@ -436,7 +391,6 @@
       getFormatString: function getFormatString() {
         return this.__P_515_2;
       },
-
       /**
        * Formats a date.
        *
@@ -448,15 +402,12 @@
         if (date == null) {
           return null;
         }
-
         if (isNaN(date.getTime())) {
           return null;
         }
-
         if (this.__P_515_3) {
           date = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
         }
-
         var locale = this.getLocale();
         var fullYear = date.getFullYear();
         var month = date.getMonth();
@@ -469,24 +420,22 @@
         var timezoneOffset = date.getTimezoneOffset();
         var timezoneSign = timezoneOffset > 0 ? 1 : -1;
         var timezoneHours = Math.floor(Math.abs(timezoneOffset) / 60);
-        var timezoneMinutes = Math.abs(timezoneOffset) % 60; // Create the output
+        var timezoneMinutes = Math.abs(timezoneOffset) % 60;
 
+        // Create the output
         this.__P_515_16();
-
         var output = "";
-
         for (var i = 0; i < this.__P_515_6.length; i++) {
           var currAtom = this.__P_515_6[i];
-
           if (currAtom.type == "literal") {
             output += currAtom.text;
           } else {
             // This is a wildcard
             var wildcardChar = currAtom.character;
-            var wildcardSize = currAtom.size; // Get its replacement
+            var wildcardSize = currAtom.size;
 
+            // Get its replacement
             var replacement = "?";
-
             switch (wildcardChar) {
               case "y":
                 // Year
@@ -495,34 +444,27 @@
                 } else {
                   var year = Math.abs(fullYear);
                   replacement = year + "";
-
                   if (wildcardSize > replacement.length) {
                     for (var j = replacement.length; j < wildcardSize; j++) {
                       replacement = "0" + replacement;
                     }
                   }
-
                   if (fullYear < 0) {
                     replacement = "-" + replacement;
                   }
                 }
-
                 break;
-
               case "Y":
                 // Year
                 replacement = this.__P_515_12(date) + "";
                 var year = replacement.replace("-", "");
-
                 if (wildcardSize > replacement.length) {
                   for (var j = year.length; j < wildcardSize; j++) {
                     year = "0" + year;
                   }
                 }
-
                 replacement = replacement.indexOf("-") != -1 ? "-" + year : year;
                 break;
-
               case "G":
                 // Era - there is no CLDR data for ERA yet
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
@@ -532,53 +474,41 @@
                 } else if (wildcardSize == 5) {
                   replacement = fullYear > 0 ? "A" : "B";
                 }
-
                 break;
-
               case "Q":
                 // quarter
                 if (wildcardSize == 1 || wildcardSize == 2) {
                   replacement = this.__P_515_7(parseInt(month / 4) + 1, wildcardSize);
                 }
-
                 if (wildcardSize == 3) {
                   replacement = "Q" + (parseInt(month / 4) + 1);
                 }
-
                 break;
-
               case "q":
                 // quarter stand alone
                 if (wildcardSize == 1 || wildcardSize == 2) {
                   replacement = this.__P_515_7(parseInt(month / 4) + 1, wildcardSize);
                 }
-
                 if (wildcardSize == 3) {
                   replacement = "Q" + (parseInt(month / 4) + 1);
                 }
-
                 break;
-
               case "D":
                 // Day in year (e.g. 189)
                 replacement = this.__P_515_7(this.__P_515_8(date), wildcardSize);
                 break;
-
               case "d":
                 // Day in month
                 replacement = this.__P_515_7(dayOfMonth, wildcardSize);
                 break;
-
               case "w":
                 // Week in year (e.g. 27)
                 replacement = this.__P_515_7(this.__P_515_10(date), wildcardSize);
                 break;
-
               case "W":
                 // Week in year (e.g. 27)
                 replacement = this.__P_515_11(date);
                 break;
-
               case "E":
                 // Day in week
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
@@ -588,15 +518,12 @@
                 } else if (wildcardSize == 5) {
                   replacement = qx.locale.Date.getDayName("narrow", dayOfWeek, locale, "format", true);
                 }
-
                 break;
-
               case "e":
                 // Day in week
-                var startOfWeek = qx.locale.Date.getWeekStart(locale); // the index is 1 based
-
+                var startOfWeek = qx.locale.Date.getWeekStart(locale);
+                // the index is 1 based
                 var localeDayOfWeek = 1 + (dayOfWeek - startOfWeek >= 0 ? dayOfWeek - startOfWeek : 7 + (dayOfWeek - startOfWeek));
-
                 if (wildcardSize >= 1 && wildcardSize <= 2) {
                   replacement = this.__P_515_7(localeDayOfWeek, wildcardSize);
                 } else if (wildcardSize == 3) {
@@ -606,15 +533,12 @@
                 } else if (wildcardSize == 5) {
                   replacement = qx.locale.Date.getDayName("narrow", dayOfWeek, locale, "format", true);
                 }
-
                 break;
-
               case "c":
                 // Stand-alone local day in week
-                var startOfWeek = qx.locale.Date.getWeekStart(locale); // the index is 1 based
-
+                var startOfWeek = qx.locale.Date.getWeekStart(locale);
+                // the index is 1 based
                 var localeDayOfWeek = 1 + (dayOfWeek - startOfWeek >= 0 ? dayOfWeek - startOfWeek : 7 + (dayOfWeek - startOfWeek));
-
                 if (wildcardSize == 1) {
                   replacement = "" + localeDayOfWeek;
                 } else if (wildcardSize == 3) {
@@ -624,9 +548,7 @@
                 } else if (wildcardSize == 5) {
                   replacement = qx.locale.Date.getDayName("narrow", dayOfWeek, locale, "stand-alone", true);
                 }
-
                 break;
-
               case "M":
                 // Month
                 if (wildcardSize == 1 || wildcardSize == 2) {
@@ -638,9 +560,7 @@
                 } else if (wildcardSize == 5) {
                   replacement = qx.locale.Date.getMonthName("narrow", month, locale, "format", true);
                 }
-
                 break;
-
               case "L":
                 // Stand-alone month
                 if (wildcardSize == 1 || wildcardSize == 2) {
@@ -652,49 +572,39 @@
                 } else if (wildcardSize == 5) {
                   replacement = qx.locale.Date.getMonthName("narrow", month, locale, "stand-alone", true);
                 }
-
                 break;
-
               case "a":
                 // am/pm marker
                 // NOTE: 0:00 is am, 12:00 is pm
                 replacement = hours < 12 ? qx.locale.Date.getAmMarker(locale) : qx.locale.Date.getPmMarker(locale);
                 break;
-
               case "H":
                 // Hour in day (0-23)
                 replacement = this.__P_515_7(hours, wildcardSize);
                 break;
-
               case "k":
                 // Hour in day (1-24)
                 replacement = this.__P_515_7(hours == 0 ? 24 : hours, wildcardSize);
                 break;
-
               case "K":
                 // Hour in am/pm (0-11)
                 replacement = this.__P_515_7(hours % 12, wildcardSize);
                 break;
-
               case "h":
                 // Hour in am/pm (1-12)
                 replacement = this.__P_515_7(hours % 12 == 0 ? 12 : hours % 12, wildcardSize);
                 break;
-
               case "m":
                 // Minute in hour
                 replacement = this.__P_515_7(minutes, wildcardSize);
                 break;
-
               case "s":
                 // Second in minute
                 replacement = this.__P_515_7(seconds, wildcardSize);
                 break;
-
               case "S":
                 // Fractional second
                 replacement = this.__P_515_7(ms, 3);
-
                 if (wildcardSize < replacement.length) {
                   replacement = replacement.substr(0, wildcardSize);
                 } else {
@@ -703,17 +613,13 @@
                     replacement += "0";
                   }
                 }
-
                 break;
-
               case "z":
                 // Time zone
                 if (wildcardSize >= 1 && wildcardSize <= 4) {
                   replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_515_7(Math.abs(timezoneHours), 2) + ":" + this.__P_515_7(timezoneMinutes, 2);
                 }
-
                 break;
-
               case "Z":
                 // RFC 822 time zone
                 if (wildcardSize >= 1 && wildcardSize <= 3) {
@@ -721,17 +627,13 @@
                 } else {
                   replacement = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_515_7(Math.abs(timezoneHours), 2) + ":" + this.__P_515_7(timezoneMinutes, 2);
                 }
-
                 break;
             }
-
             output += replacement;
           }
         }
-
         return output;
       },
-
       /**
        * Parses a date.
        *
@@ -741,16 +643,15 @@
        *       match to the format.
        */
       parse: function parse(dateStr) {
-        this.__P_515_17(); // Apply the regex
+        this.__P_515_17();
 
-
+        // Apply the regex
         var hit = this.__P_515_4.regex.exec(dateStr);
-
         if (hit == null) {
           throw new Error("Date string '" + dateStr + "' does not match the date format: " + this.__P_515_2);
-        } // Apply the rules
+        }
 
-
+        // Apply the rules
         var dateValues = {
           era: 1,
           year: 1970,
@@ -772,90 +673,69 @@
         var currGroup = 1;
         var applyWeekYearAfterRule = false;
         var applyDayOfYearAfterRule = false;
-
         for (var i = 0; i < this.__P_515_4.usedRules.length; i++) {
           var rule = this.__P_515_4.usedRules[i];
           var value = hit[currGroup];
-
           if (rule.field != null) {
             dateValues[rule.field] = parseInt(value, 10);
           } else {
             rule.manipulator(dateValues, value, rule.pattern);
           }
-
           if (rule.pattern == "Y+") {
             var yearRuleApplied = false;
-
             for (var k = 0; k < this.__P_515_4.usedRules.length; k++) {
               if (this.__P_515_4.usedRules[k].pattern == "y+") {
                 yearRuleApplied = true;
                 break;
               }
             }
-
             if (!yearRuleApplied) {
               applyWeekYearAfterRule = true;
             }
           }
-
           if (rule.pattern.indexOf("D") != -1) {
             var dayRuleApplied = false;
-
             for (var k = 0; k < this.__P_515_4.usedRules.length; k++) {
               if (this.__P_515_4.usedRules[k].pattern.indexOf("d") != -1) {
                 dayRuleApplied = true;
                 break;
               }
             }
-
             if (!dayRuleApplied) {
               applyDayOfYearAfterRule = true;
             }
           }
-
           currGroup += rule.groups == null ? 1 : rule.groups;
         }
-
         if (applyWeekYearAfterRule) {
           dateValues.year = this.__P_515_15(dateValues.weekYear, dateValues.month, dateValues.day);
         }
-
         if (applyDayOfYearAfterRule) {
           var dayAndMonth = this.__P_515_14(dateValues.dayOfYear, dateValues.year);
-
           dateValues.month = dayAndMonth.month;
           dateValues.day = dayAndMonth.day;
         }
-
         if (dateValues.era < 0 && dateValues.year * dateValues.era < 0) {
           dateValues.year = dateValues.year * dateValues.era;
         }
-
         var date;
-
         if (this.__P_515_3 || dateValues.tzOffsetMins !== null) {
           var utcMs = Date.UTC(dateValues.year, dateValues.month, dateValues.day, dateValues.ispm ? dateValues.hour + 12 : dateValues.hour, dateValues.min, dateValues.sec, dateValues.ms);
-
           if (dateValues.tzOffsetMins !== 0) {
             utcMs += dateValues.tzOffsetMins * 60000;
           }
-
           date = new Date(utcMs);
-
           if (this.__P_515_3 && (dateValues.month !== date.getUTCMonth() || dateValues.year !== date.getUTCFullYear())) {
             throw new Error("Error parsing date '" + dateStr + "': the value for day or month is too large");
           }
         } else {
           date = new Date(dateValues.year, dateValues.month, dateValues.day, dateValues.ispm ? dateValues.hour + 12 : dateValues.hour, dateValues.min, dateValues.sec, dateValues.ms);
-
           if (dateValues.month !== date.getMonth() || dateValues.year !== date.getFullYear()) {
             throw new Error("Error parsing date '" + dateStr + "': the value for day or month is too large");
           }
         }
-
         return date;
       },
-
       /**
        * Helper method for {@link #format()} and {@link #parse()}.
        * Parses the date format.
@@ -865,7 +745,6 @@
         if (this.__P_515_6 != null) {
           return;
         }
-
         this.__P_515_6 = [];
         var currWildcardChar;
         var currWildcardSize = 0;
@@ -873,10 +752,8 @@
         var format = this.__P_515_2;
         var state = "default";
         var i = 0;
-
         while (i < format.length) {
           var currChar = format.charAt(i);
-
           switch (state) {
             case "quoted_literal":
               // We are now inside a quoted literal
@@ -887,9 +764,7 @@
                   i++;
                   break;
                 }
-
                 var lookAhead = format.charAt(i + 1);
-
                 if (lookAhead == "'") {
                   currLiteral += currChar;
                   i++;
@@ -902,9 +777,7 @@
                 currLiteral += currChar;
                 i++;
               }
-
               break;
-
             case "wildcard":
               // Check whether the currChar belongs to that wildcard
               if (currChar == currWildcardChar) {
@@ -918,14 +791,11 @@
                   character: currWildcardChar,
                   size: currWildcardSize
                 });
-
                 currWildcardChar = null;
                 currWildcardSize = 0;
                 state = "default";
               }
-
               break;
-
             default:
               // We are not (any more) in a wildcard or quoted literal -> Check what's starting here
               if (currChar >= "a" && currChar <= "z" || currChar >= "A" && currChar <= "Z") {
@@ -940,20 +810,16 @@
                   i++;
                   break;
                 }
-
                 var lookAhead = format.charAt(i + 1);
-
                 if (lookAhead == "'") {
                   currLiteral += currChar;
                   i++;
                 }
-
                 i++;
                 state = "quoted_literal";
               } else {
                 state = "default";
               }
-
               if (state != "default") {
                 // Add the literal
                 if (currLiteral.length > 0) {
@@ -961,7 +827,6 @@
                     type: "literal",
                     text: currLiteral
                   });
-
                   currLiteral = "";
                 }
               } else {
@@ -969,12 +834,11 @@
                 currLiteral += currChar;
                 i++;
               }
-
               break;
           }
-        } // Add the last wildcard or literal
+        }
 
-
+        // Add the last wildcard or literal
         if (currWildcardChar != null) {
           this.__P_515_6.push({
             type: "wildcard",
@@ -988,7 +852,6 @@
           });
         }
       },
-
       /**
        * Initializes the parse feed.
        *
@@ -1002,48 +865,42 @@
           // We already have the parse feed
           return;
         }
+        var format = this.__P_515_2;
 
-        var format = this.__P_515_2; // Initialize the rules
-
+        // Initialize the rules
         this.__P_515_18();
+        this.__P_515_16();
 
-        this.__P_515_16(); // Get the used rules and construct the regex pattern
-
-
+        // Get the used rules and construct the regex pattern
         var usedRules = [];
         var pattern = "^";
-
         for (var atomIdx = 0; atomIdx < this.__P_515_6.length; atomIdx++) {
           var currAtom = this.__P_515_6[atomIdx];
-
           if (currAtom.type == "literal") {
             pattern += qx.lang.String.escapeRegexpChars(currAtom.text);
           } else {
             // This is a wildcard
             var wildcardChar = currAtom.character;
-            var wildcardSize = currAtom.size; // Get the rule for this wildcard
+            var wildcardSize = currAtom.size;
 
+            // Get the rule for this wildcard
             var wildcardRule;
-
             for (var ruleIdx = 0; ruleIdx < this.__P_515_5.length; ruleIdx++) {
               var rule = this.__P_515_5[ruleIdx];
-
               if (this.__P_515_19(rule, wildcardChar, wildcardSize)) {
                 // We found the right rule for the wildcard
                 wildcardRule = rule;
                 break;
               }
-            } // Check the rule
+            }
 
-
+            // Check the rule
             if (wildcardRule == null) {
               // We have no rule for that wildcard -> Malformed date format
               var wildcardStr = "";
-
               for (var i = 0; i < wildcardSize; i++) {
                 wildcardStr += wildcardChar;
               }
-
               throw new Error("Malformed date format: " + format + ". Wildcard " + wildcardStr + " is not supported");
             } else {
               // Add the rule to the pattern
@@ -1052,25 +909,23 @@
             }
           }
         }
+        pattern += "$";
 
-        pattern += "$"; // Create the regex
-
+        // Create the regex
         var regex;
-
         try {
           regex = new RegExp(pattern);
         } catch (exc) {
           throw new Error("Malformed date format: " + format);
-        } // Create the this.__parseFeed
+        }
 
-
+        // Create the this.__parseFeed
         this.__P_515_4 = {
           regex: regex,
           usedRules: usedRules,
           pattern: pattern
         };
       },
-
       /**
        * Checks whether the rule matches the wildcard or not.
        * @param rule {Object} the rule we try to match with the wildcard
@@ -1089,7 +944,6 @@
           return wildcardChar == rule.pattern.charAt(0) && wildcardSize == rule.pattern.length;
         }
       },
-
       /**
        * Initializes the static parse rules.
        *
@@ -1097,20 +951,16 @@
       __P_515_18: function __P_515_18() {
         var DateFormat = qx.util.format.DateFormat;
         var LString = qx.lang.String;
-
         if (this.__P_515_5 != null) {
           // The parse rules are already initialized
           return;
         }
-
         var rules = this.__P_515_5 = [];
         var amMarker = qx.locale.Date.getAmMarker(this.getLocale()).toString() || DateFormat.AM_MARKER;
         var pmMarker = qx.locale.Date.getPmMarker(this.getLocale()).toString() || DateFormat.PM_MARKER;
         var locale = this.getLocale();
-
         var yearManipulator = function yearManipulator(dateValues, value) {
           value = parseInt(value, 10);
-
           if (value >= 0) {
             if (value < DateFormat.ASSUME_YEAR_2000_THRESHOLD) {
               value += 2000;
@@ -1118,13 +968,10 @@
               value += 1900;
             }
           }
-
           dateValues.year = value;
         };
-
         var weekYearManipulator = function weekYearManipulator(dateValues, value) {
           value = parseInt(value, 10);
-
           if (value >= 0) {
             if (value < DateFormat.ASSUME_YEAR_2000_THRESHOLD) {
               value += 2000;
@@ -1132,152 +979,120 @@
               value += 1900;
             }
           }
-
           dateValues.weekYear = value;
         };
-
         var monthManipulator = function monthManipulator(dateValues, value) {
           dateValues.month = parseInt(value, 10) - 1;
         };
-
         var localWeekDayManipulator = function localWeekDayManipulator(dateValues, value) {
           var startOfWeek = qx.locale.Date.getWeekStart(locale);
           var dayOfWeek = parseInt(value, 10) - 1 + startOfWeek <= 6 ? parseInt(value, 10) - 1 + startOfWeek : parseInt(value, 10) - 1 + startOfWeek - 7;
           dateValues.weekDay = dayOfWeek;
         };
-
         var ampmManipulator = function ampmManipulator(dateValues, value) {
           var pmMarker = qx.locale.Date.getPmMarker(locale).toString() || DateFormat.PM_MARKER;
           dateValues.ispm = value == pmMarker;
         };
-
         var noZeroHourManipulator = function noZeroHourManipulator(dateValues, value) {
           dateValues.hour = parseInt(value, 10) % 24;
         };
-
         var noZeroAmPmHourManipulator = function noZeroAmPmHourManipulator(dateValues, value) {
           dateValues.hour = parseInt(value, 10) % 12;
         };
-
         var timezoneManipulator = function timezoneManipulator(dateValues, value) {
           var regEx = new RegExp("([+-]?)(\\d\\d)(?::?(\\d\\d))?$");
           var tzResults = regEx.exec(value);
           var offsetHours = parseInt(tzResults[2], 10);
-          var offsetMins = parseInt(tzResults[3], 10); // basic check, hours range is -12 to +14 https://en.wikipedia.org/wiki/Category:UTC_offsets
-
+          var offsetMins = parseInt(tzResults[3], 10);
+          // basic check, hours range is -12 to +14 https://en.wikipedia.org/wiki/Category:UTC_offsets
           if (offsetHours > 14) {
             throw new Error("Invalid hours in time zone offset.");
           }
-
           if (offsetMins > 59) {
             throw new Error("Invalid minutes in time zone offset.");
           }
-
           dateValues.tzOffsetMins = offsetHours * 60 + offsetMins;
-
           if (tzResults[1] === "-") {
             dateValues.tzOffsetMins = -dateValues.tzOffsetMins;
           }
-        }; // var ignoreManipulator = function(dateValues, value) {
+        };
+
+        // var ignoreManipulator = function(dateValues, value) {
         //   return;
         // };
 
-
         var narrowEraNames = ["A", "B"];
-
         var narrowEraNameManipulator = function narrowEraNameManipulator(dateValues, value) {
           dateValues.era = value == "A" ? 1 : -1;
         };
-
         var abbrevEraNames = ["AD", "BC"];
-
         var abbrevEraNameManipulator = function abbrevEraNameManipulator(dateValues, value) {
           dateValues.era = value == "AD" ? 1 : -1;
         };
-
         var fullEraNames = ["Anno Domini", "Before Christ"];
-
         var fullEraNameManipulator = function fullEraNameManipulator(dateValues, value) {
           dateValues.era = value == "Anno Domini" ? 1 : -1;
         };
-
         var abbrevQuarterNames = ["Q1", "Q2", "Q3", "Q4"];
-
         var abbrevQuarterManipulator = function abbrevQuarterManipulator(dateValues, value) {
           dateValues.quarter = abbrevQuarterNames.indexOf(value);
         };
-
         var fullQuarterNames = ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"];
-
         var fullQuarterManipulator = function fullQuarterManipulator(dateValues, value) {
           dateValues.quarter = fullQuarterNames.indexOf(value);
         };
-
         var cache = {};
-
         var dateNamesManipulator = function dateNamesManipulator(pattern) {
           var monthPatternLetters = ["L", "M"];
           var dayPatternLetters = ["c", "e", "E"];
           var firstLetterInPattern = pattern.charAt(0);
           var isMonth = monthPatternLetters.indexOf(firstLetterInPattern) >= 0;
-
           var getContext = function getContext() {
             var letters = isMonth ? monthPatternLetters : dayPatternLetters;
             var context = firstLetterInPattern === letters[0] ? "stand-alone" : "format";
             var patternLength = pattern.length;
             var lengthName = "abbreviated";
-
             switch (patternLength) {
               case 4:
                 lengthName = "wide";
                 break;
-
               case 5:
                 lengthName = "narrow";
                 break;
-
               default:
                 lengthName = "abbreviated";
             }
-
             return [context, lengthName];
           };
-
           if (!cache[pattern]) {
             cache[pattern] = {};
             var context = getContext();
             var func = isMonth ? qx.locale.Date.getMonthNames : qx.locale.Date.getDayNames;
             var names = func.call(qx.locale.Date, context[1], locale, context[0], true);
-
             for (var i = 0, l = names.length; i < l; i++) {
               names[i] = LString.escapeRegexpChars(names[i].toString());
             }
-
             cache[pattern].data = names;
-
             cache[pattern].func = function (dateValues, value) {
               value = LString.escapeRegexpChars(value);
               dateValues[isMonth ? "month" : "weekDay"] = names.indexOf(value);
             };
           }
-
           return cache[pattern];
-        }; // Unsupported: F (Day of week in month)
+        };
 
+        // Unsupported: F (Day of week in month)
 
         rules.push({
           pattern: "y+",
           regexFunc: function regexFunc(yNumber) {
             var regex = "(-*";
-
             for (var i = 0; i < yNumber; i++) {
               regex += "\\d";
-
               if (i === yNumber - 1 && i !== 1) {
                 regex += "+?";
               }
             }
-
             regex += ")";
             return regex;
           },
@@ -1287,15 +1102,12 @@
           pattern: "Y+",
           regexFunc: function regexFunc(yNumber) {
             var regex = "(-*";
-
             for (var i = 0; i < yNumber; i++) {
               regex += "\\d";
-
               if (i === yNumber - 1) {
                 regex += "+?";
               }
             }
-
             regex += ")";
             return regex;
           },
@@ -1622,4 +1434,4 @@
   qx.util.format.DateFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateFormat.js.map?dt=1685978155245
+//# sourceMappingURL=DateFormat.js.map?dt=1691935451448

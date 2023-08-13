@@ -1,5 +1,4 @@
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -46,7 +45,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,13 +75,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    */
   qx.Class.define("qx.ui.treevirtual.TreeVirtual", {
     extend: qx.ui.table.Table,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param headings {Array | String}
      *   An array containing a list of strings, one for each column, representing
@@ -155,112 +151,112 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
      */
     construct: function construct(headings, custom) {
       var _this2 = this;
-
       //
       // Allocate default objects if custom objects are not specified
       //
       if (!custom) {
         custom = {};
       }
-
       if (!custom.dataModel) {
         custom.dataModel = new qx.ui.treevirtual.SimpleTreeDataModel();
       }
-
       if (custom.treeColumn === undefined) {
         custom.treeColumn = 0;
         custom.dataModel.setTreeColumn(custom.treeColumn);
       }
-
       if (!custom.treeDataCellRenderer) {
         custom.treeDataCellRenderer = new qx.ui.treevirtual.SimpleTreeDataCellRenderer();
       }
-
       if (!custom.defaultDataCellRenderer) {
         custom.defaultDataCellRenderer = new qx.ui.treevirtual.DefaultDataCellRenderer();
       }
-
       if (!custom.dataRowRenderer) {
         custom.dataRowRenderer = new qx.ui.treevirtual.SimpleTreeDataRowRenderer();
       }
-
       if (!custom.selectionManager) {
         custom.selectionManager = function (obj) {
           return new qx.ui.treevirtual.SelectionManager(obj);
         };
       }
-
       if (!custom.tableColumnModel) {
         custom.tableColumnModel = function (obj) {
           return new qx.ui.table.columnmodel.Resize(obj);
         };
       }
-
       if (!custom.tablePaneScroller) {
         custom.tablePaneScroller = function (obj) {
           return new qx.ui.treevirtual.pane.Scroller(obj);
         };
-      } // Specify the column headings.  We accept a single string (one single
+      }
+
+      // Specify the column headings.  We accept a single string (one single
       // column) or an array of strings (one or more columns).
-
-
       if (qx.lang.Type.isString(headings)) {
         headings = [headings];
       }
-
       custom.dataModel.setColumns(headings);
-      custom.dataModel.setTreeColumn(custom.treeColumn); // Save a reference to the tree with the data model
+      custom.dataModel.setTreeColumn(custom.treeColumn);
 
-      custom.dataModel.setTree(this); // Call our superclass constructor
+      // Save a reference to the tree with the data model
+      custom.dataModel.setTree(this);
 
-      qx.ui.table.Table.constructor.call(this, custom.dataModel, custom); // Arrange to redisplay edited data following editing
+      // Call our superclass constructor
+      qx.ui.table.Table.constructor.call(this, custom.dataModel, custom);
 
+      // Arrange to redisplay edited data following editing
       this.addListener("dataEdited", function (e) {
         _this2.getDataModel().setData();
-      }); // By default, present the column visibility button only if there are
+      });
+
+      // By default, present the column visibility button only if there are
       // multiple columns.
+      this.setColumnVisibilityButtonVisible(headings.length > 1);
 
-      this.setColumnVisibilityButtonVisible(headings.length > 1); // Set sizes
-
+      // Set sizes
       this.setRowHeight(16);
-      this.setMetaColumnCounts(headings.length > 1 ? [1, -1] : [1]); // Overflow on trees is always hidden.  The internal elements scroll.
+      this.setMetaColumnCounts(headings.length > 1 ? [1, -1] : [1]);
 
-      this.setOverflow("hidden"); // Set the data cell render.  We use the SimpleTreeDataCellRenderer for the
+      // Overflow on trees is always hidden.  The internal elements scroll.
+      this.setOverflow("hidden");
+
+      // Set the data cell render.  We use the SimpleTreeDataCellRenderer for the
       // tree column, and our DefaultDataCellRenderer for all other columns.
-
       var stdcr = custom.treeDataCellRenderer;
       var ddcr = custom.defaultDataCellRenderer;
       var tcm = this.getTableColumnModel();
       var treeCol = this.getDataModel().getTreeColumn();
-
       for (var i = 0; i < headings.length; i++) {
         tcm.setDataCellRenderer(i, i == treeCol ? stdcr : ddcr);
-      } // Set the data row renderer.
+      }
 
+      // Set the data row renderer.
+      this.setDataRowRenderer(custom.dataRowRenderer);
 
-      this.setDataRowRenderer(custom.dataRowRenderer); // Set the editor for the tree column, for use if allowNodeEdit is true
+      // Set the editor for the tree column, for use if allowNodeEdit is true
+      tcm.setCellEditorFactory(treeCol, new qx.ui.treevirtual.celleditor.NodeEditor());
 
-      tcm.setCellEditorFactory(treeCol, new qx.ui.treevirtual.celleditor.NodeEditor()); // Move the focus with the mouse.  This controls the ROW focus indicator.
+      // Move the focus with the mouse.  This controls the ROW focus indicator.
+      this.setFocusCellOnPointerMove(true);
 
-      this.setFocusCellOnPointerMove(true); // In a tree we don't typically want a visible cell focus indicator
+      // In a tree we don't typically want a visible cell focus indicator
+      this.setShowCellFocusIndicator(false);
 
-      this.setShowCellFocusIndicator(false); // Get the list of pane scrollers
+      // Get the list of pane scrollers
+      var scrollers = this._getPaneScrollerArr();
 
-      var scrollers = this._getPaneScrollerArr(); // For each scroller...
-
-
+      // For each scroller...
       for (var i = 0; i < scrollers.length; i++) {
         // Set the pane scrollers to handle the selection before
         // displaying the focus, so we can manipulate the selected icon.
         scrollers[i].setSelectBeforeFocus(true);
       }
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when a tree branch which already has content is opened.
@@ -270,7 +266,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * {@link qx.ui.treevirtual.SimpleTreeDataModel}
        */
       treeOpenWithContent: "qx.event.type.Data",
-
       /**
        * Fired when an empty tree branch is opened.
        *
@@ -279,7 +274,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * {@link qx.ui.treevirtual.SimpleTreeDataModel}
        */
       treeOpenWhileEmpty: "qx.event.type.Data",
-
       /**
        * Fired when a tree branch is closed.
        *
@@ -288,7 +282,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        * {@link qx.ui.treevirtual.SimpleTreeDataModel}
        */
       treeClose: "qx.event.type.Data",
-
       /**
        * Fired when the selected rows change.
        *
@@ -298,12 +291,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Selection Modes {int}
@@ -331,12 +324,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         MULTIPLE_INTERVAL_TOGGLE: qx.ui.table.selection.Model.MULTIPLE_INTERVAL_SELECTION_TOGGLE
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Whether a click on the open/close button should also cause selection of
@@ -355,12 +348,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Return the data model for this tree.
@@ -370,7 +363,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getDataModel: function getDataModel() {
         return this.getTableModel();
       },
-
       /**
        * Set whether lines linking tree children shall be drawn on the tree.
        * Note that not all themes support tree lines.  As of the time of this
@@ -386,8 +378,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dataModel = this.getDataModel();
         var treeCol = dataModel.getTreeColumn();
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
-        dcr.setUseTreeLines(b); // Inform the listeners
+        dcr.setUseTreeLines(b);
 
+        // Inform the listeners
         if (dataModel.hasListener("dataChanged")) {
           var data = {
             firstRow: 0,
@@ -398,7 +391,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           dataModel.fireDataEvent("dataChanged", data);
         }
       },
-
       /**
        * Get whether lines linking tree children shall be drawn on the tree.
        *
@@ -411,7 +403,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
         return dcr.getUseTreeLines();
       },
-
       /**
        * Set whether the open/close button should be displayed on a branch,
        * even if the branch has no children.
@@ -425,8 +416,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dataModel = this.getDataModel();
         var treeCol = dataModel.getTreeColumn();
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
-        dcr.setAlwaysShowOpenCloseSymbol(b); // Inform the listeners
+        dcr.setAlwaysShowOpenCloseSymbol(b);
 
+        // Inform the listeners
         if (dataModel.hasListener("dataChanged")) {
           var data = {
             firstRow: 0,
@@ -437,7 +429,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           dataModel.fireDataEvent("dataChanged", data);
         }
       },
-
       /**
        * Set whether drawing of first-level tree-node lines are disabled even
        * if drawing of tree lines is enabled.
@@ -451,8 +442,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dataModel = this.getDataModel();
         var treeCol = dataModel.getTreeColumn();
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
-        dcr.setExcludeFirstLevelTreeLines(b); // Inform the listeners
+        dcr.setExcludeFirstLevelTreeLines(b);
 
+        // Inform the listeners
         if (dataModel.hasListener("dataChanged")) {
           var data = {
             firstRow: 0,
@@ -463,7 +455,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           dataModel.fireDataEvent("dataChanged", data);
         }
       },
-
       /**
        * Get whether drawing of first-level tree lines should be disabled even
        * if drawing of tree lines is enabled.
@@ -478,7 +469,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
         return dcr.getExcludeFirstLevelTreeLines();
       },
-
       /**
        * Set whether the open/close button should be displayed on a branch,
        * even if the branch has no children.
@@ -492,7 +482,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
         return dcr.getAlwaysShowOpenCloseSymbol();
       },
-
       /**
        * Returns the position of the open/close button for a node
        *
@@ -501,23 +490,20 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getOpenCloseButtonPosition: function getOpenCloseButtonPosition(node) {
         var treeCol = this.getDataModel().getTreeColumn();
         var dcr = this.getTableColumnModel().getDataCellRenderer(treeCol);
-        var rowPos = dcr.getOpenCloseButtonPosition(this, node); // Get the order of the columns
+        var rowPos = dcr.getOpenCloseButtonPosition(this, node);
 
+        // Get the order of the columns
         var tcm = this.getTableColumnModel();
+        var columnPositions = tcm._getColToXPosMap();
 
-        var columnPositions = tcm._getColToXPosMap(); // Calculate the position of the beginning of the tree column
-
-
+        // Calculate the position of the beginning of the tree column
         var left = qx.bom.element.Location.getLeft(this.getContentElement().getDomElement());
-
         for (var i = 0; i < columnPositions[treeCol].visX; i++) {
           left += tcm.getColumnWidth(columnPositions[i].visX);
         }
-
         rowPos.left += left;
         return rowPos;
       },
-
       /**
        * Set the selection mode.
        *
@@ -541,7 +527,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       setSelectionMode: function setSelectionMode(mode) {
         this.getSelectionModel().setSelectionMode(mode);
       },
-
       /**
        * Get the selection mode currently in use.
        *
@@ -551,7 +536,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getSelectionMode: function getSelectionMode() {
         return this.getSelectionModel().getSelectionMode();
       },
-
       /**
        * Obtain the entire hierarchy of labels from the root down to the
        * specified node.
@@ -571,11 +555,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       getHierarchy: function getHierarchy(nodeReference) {
         var _this = this;
-
         var components = [];
         var node;
         var nodeId;
-
         if (_typeof(nodeReference) == "object") {
           node = nodeReference;
           nodeId = node.nodeId;
@@ -584,27 +566,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         } else {
           throw new Error("Expected node object or node id");
         }
-
         function addHierarchy(nodeId) {
           // If we're at the root...
           if (!nodeId) {
             // ... then we're done
             return;
-          } // Get the requested node
+          }
 
+          // Get the requested node
+          var node = _this.getDataModel().getData()[nodeId];
 
-          var node = _this.getDataModel().getData()[nodeId]; // Add its label to the hierarchy components
+          // Add its label to the hierarchy components
+          components.unshift(node.label);
 
-
-          components.unshift(node.label); // Call recursively to our parent node.
-
+          // Call recursively to our parent node.
           addHierarchy(node.parentNodeId);
         }
-
         addHierarchy(nodeId);
         return components;
       },
-
       /**
        * Return the nodes that are currently selected.
        *
@@ -614,7 +594,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       getSelectedNodes: function getSelectedNodes() {
         return this.getDataModel().getSelectedNodes();
       },
-
       /**
        * Event handler. Called when a key was pressed.
        *
@@ -629,11 +608,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         if (!this.getEnabled()) {
           return;
         }
-
         var identifier = evt.getKeyIdentifier();
         var consumed = false;
         var modifiers = evt.getModifiers();
-
         if (modifiers == 0) {
           switch (identifier) {
             case "Enter":
@@ -641,27 +618,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
               var dm = this.getDataModel();
               var focusedCol = this.getFocusedColumn();
               var treeCol = dm.getTreeColumn();
-
               if (focusedCol == treeCol) {
                 // Get the focused node
                 var focusedRow = this.getFocusedRow();
                 var node = dm.getNode(focusedRow);
-
                 if (!node.bHideOpenClose && node.type != qx.ui.treevirtual.SimpleTreeDataModel.Type.LEAF) {
                   dm.setState(node, {
                     bOpened: !node.bOpened
                   });
                 }
-
                 consumed = true;
               }
-
               break;
-
             case "Left":
               this.moveFocusedCell(-1, 0);
               break;
-
             case "Right":
               this.moveFocusedCell(1, 0);
               break;
@@ -670,40 +641,43 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           switch (identifier) {
             case "Left":
               // Get the data model
-              var dm = this.getDataModel(); // Get the focused node
+              var dm = this.getDataModel();
 
+              // Get the focused node
               var focusedRow = this.getFocusedRow();
               var treeCol = dm.getTreeColumn();
-              var node = dm.getNode(focusedRow); // If it's an open branch and open/close is allowed...
+              var node = dm.getNode(focusedRow);
 
+              // If it's an open branch and open/close is allowed...
               if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH && !node.bHideOpenClose && node.bOpened) {
                 // ... then close it
                 dm.setState(node, {
                   bOpened: !node.bOpened
                 });
-              } // Reset the focus to the current node
+              }
 
-
+              // Reset the focus to the current node
               this.setFocusedCell(treeCol, focusedRow, true);
               consumed = true;
               break;
-
             case "Right":
               // Get the data model
-              var dm = this.getDataModel(); // Get the focused node
+              var dm = this.getDataModel();
 
+              // Get the focused node
               focusedRow = this.getFocusedRow();
               treeCol = dm.getTreeColumn();
-              node = dm.getNode(focusedRow); // If it's a closed branch and open/close is allowed...
+              node = dm.getNode(focusedRow);
 
+              // If it's a closed branch and open/close is allowed...
               if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH && !node.bHideOpenClose && !node.bOpened) {
                 // ... then open it
                 dm.setState(node, {
                   bOpened: !node.bOpened
                 });
-              } // Reset the focus to the current node
+              }
 
-
+              // Reset the focus to the current node
               this.setFocusedCell(treeCol, focusedRow, true);
               consumed = true;
               break;
@@ -712,51 +686,53 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           switch (identifier) {
             case "Left":
               // Get the data model
-              var dm = this.getDataModel(); // Get the focused node
+              var dm = this.getDataModel();
 
+              // Get the focused node
               var focusedRow = this.getFocusedRow();
               var treeCol = dm.getTreeColumn();
-              var node = dm.getNode(focusedRow); // If we're not at the top-level already...
+              var node = dm.getNode(focusedRow);
 
+              // If we're not at the top-level already...
               if (node.parentNodeId) {
                 // Find out what rendered row our parent node is at
-                var rowIndex = dm.getRowFromNodeId(node.parentNodeId); // Set the focus to our parent
+                var rowIndex = dm.getRowFromNodeId(node.parentNodeId);
 
+                // Set the focus to our parent
                 this.setFocusedCell(this._focusedCol, rowIndex, true);
               }
-
               consumed = true;
               break;
-
             case "Right":
               // Get the data model
-              var dm = this.getDataModel(); // Get the focused node
+              var dm = this.getDataModel();
 
+              // Get the focused node
               focusedRow = this.getFocusedRow();
               treeCol = dm.getTreeColumn();
-              node = dm.getNode(focusedRow); // If we're on a branch and open/close is allowed...
+              node = dm.getNode(focusedRow);
 
+              // If we're on a branch and open/close is allowed...
               if (node.type == qx.ui.treevirtual.SimpleTreeDataModel.Type.BRANCH && !node.bHideOpenClose) {
                 // ... then first ensure the branch is open
                 if (!node.bOpened) {
                   dm.setState(node, {
                     bOpened: !node.bOpened
                   });
-                } // If this node has children...
+                }
 
-
+                // If this node has children...
                 if (node.children.length > 0) {
                   // ... then move the focus to the first child
                   this.moveFocusedCell(0, 1);
                 }
               }
-
               consumed = true;
               break;
           }
-        } // Was this one of our events that we handled?
+        }
 
-
+        // Was this one of our events that we handled?
         if (consumed) {
           // Yup.  Don't propagate it.
           evt.preventDefault();
@@ -766,7 +742,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           qx.ui.treevirtual.TreeVirtual.superclass.prototype._onKeyDown.call(this, evt);
         }
       },
-
       /**
        * Event handler. Called when the selection has changed.
        *
@@ -776,20 +751,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
        */
       _onSelectionChanged: function _onSelectionChanged(evt) {
         // Clear the old list of selected nodes
-        this.getDataModel()._clearSelections(); // If selections are allowed, pass an event to our listeners
+        this.getDataModel()._clearSelections();
 
-
+        // If selections are allowed, pass an event to our listeners
         if (this.getSelectionMode() != qx.ui.treevirtual.TreeVirtual.SelectionMode.NONE) {
-          var selectedNodes = this._calculateSelectedNodes(); // Get the now-focused
+          var selectedNodes = this._calculateSelectedNodes();
 
-
+          // Get the now-focused
           this.fireDataEvent("changeSelection", selectedNodes);
-        } // Call the superclass method
+        }
 
-
+        // Call the superclass method
         qx.ui.treevirtual.TreeVirtual.superclass.prototype._onSelectionChanged.call(this, evt);
       },
-
       /**
        * Calculate and return the set of nodes which are currently selected by
        * the user, on the screen.  In the process of calculating which nodes
@@ -808,7 +782,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         var selectedRanges = this.getSelectionModel().getSelectedRanges();
         var selectedNodes = [];
         var node;
-
         for (var i = 0; i < selectedRanges.length; i++) {
           for (var j = selectedRanges[i].minIndex; j <= selectedRanges[i].maxIndex; j++) {
             node = stdcm.getNode(j);
@@ -818,10 +791,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             selectedNodes.push(node);
           }
         }
-
         return selectedNodes;
       },
-
       /**
        * Set the overflow mode.
        *
@@ -842,4 +813,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   qx.ui.treevirtual.TreeVirtual.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TreeVirtual.js.map?dt=1685978150809
+//# sourceMappingURL=TreeVirtual.js.map?dt=1691935447069

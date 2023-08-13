@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,13 +43,11 @@
        */
       escape: function escape(str, charCodeToEntities) {
         var entity,
-            result = "";
-
+          result = "";
         for (var i = 0, l = str.length; i < l; i++) {
           var chr = str.charAt(i);
           var code = str.codePointAt(i);
           i += String.fromCodePoint(code).length - 1;
-
           if (charCodeToEntities[code]) {
             entity = "&" + charCodeToEntities[code] + ";";
           } else {
@@ -60,13 +57,10 @@
               entity = chr;
             }
           }
-
           result += entity;
         }
-
         return result;
       },
-
       /**
        * generic unescaping method
        *
@@ -79,27 +73,27 @@
           var chr = entity;
           var entity = entity.substring(1, entity.length - 1);
           var code = entitiesToCharCode[entity];
-
           if (code) {
             chr = String.fromCharCode(code);
           } else {
             if (entity.charAt(0) == "#") {
               if (entity.charAt(1).toUpperCase() == "X") {
-                code = entity.substring(2); // match hex number
+                code = entity.substring(2);
 
+                // match hex number
                 if (code.match(/^[0-9A-Fa-f]+$/gi)) {
                   chr = String.fromCodePoint(parseInt(code, 16));
                 }
               } else {
-                code = entity.substring(1); // match integer
+                code = entity.substring(1);
 
+                // match integer
                 if (code.match(/^\d+$/gi)) {
                   chr = String.fromCodePoint(parseInt(code, 10));
                 }
               }
             }
           }
-
           return chr;
         });
       }
@@ -108,4 +102,4 @@
   qx.util.StringEscape.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringEscape.js.map?dt=1685978154720
+//# sourceMappingURL=StringEscape.js.map?dt=1691935450965

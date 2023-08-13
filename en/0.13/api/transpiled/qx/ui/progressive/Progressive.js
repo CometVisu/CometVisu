@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,34 +59,39 @@
    */
   qx.Class.define("qx.ui.progressive.Progressive", {
     extend: qx.ui.container.Composite,
-
     /**
      * @param structure {qx.ui.progressive.structure.Abstract}
      *   The structure of the Progressive pane.
      */
     construct: function construct(structure) {
-      qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.VBox()); // Create an object in which we'll track renderers that have been added
+      qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.VBox());
 
-      this.__P_418_0 = {}; // Prepare to have our pane structure added to us.
+      // Create an object in which we'll track renderers that have been added
+      this.__P_418_0 = {};
 
+      // Prepare to have our pane structure added to us.
       this.set({
         backgroundColor: "white"
-      }); // If no structure is provided...
+      });
 
+      // If no structure is provided...
       if (!structure) {
         // ... then create a default one.
         structure = new qx.ui.progressive.structure.Default();
-      } // Prepare our pane structure
+      }
 
-
+      // Prepare our pane structure
       this.__P_418_1 = structure;
-      structure.applyStructure(this); // We've not yet done our initial render
+      structure.applyStructure(this);
 
-      this.__P_418_2 = false; // We're not currently rendering
+      // We've not yet done our initial render
+      this.__P_418_2 = false;
 
-      this.__P_418_3 = false; // Number of elements available to be rendered.  Useful for progress
+      // We're not currently rendering
+      this.__P_418_3 = false;
+
+      // Number of elements available to be rendered.  Useful for progress
       // handlers, e.g. a progress bar or status counter.
-
       this.__P_418_4 = 0;
     },
     events: {
@@ -108,12 +112,10 @@
        * </dl>
        */
       renderStart: "qx.event.type.Data",
-
       /**
        * Event fired when rendering ends.  The data is the state object.
        */
       renderEnd: "qx.event.type.Data",
-
       /**
        * This event is fired after each batch of elements is rendered, and
        * control is about to be yielded to the browser.  This is an appropriate
@@ -134,7 +136,6 @@
        * </dl>
        */
       progress: "qx.event.type.Data",
-
       /**
        * This event is fired after each element is rendered.
        *
@@ -173,7 +174,6 @@
         check: "qx.ui.progressive.model.Abstract",
         apply: "_applyDataModel"
       },
-
       /**
        * Number of elements to render at one time.  After this number of
        * elements has been rendered, control will be yielded to the browser
@@ -184,7 +184,6 @@
         check: "Integer",
         init: 20
       },
-
       /**
        * Flush the widget queue after each batch is rendered.  This is
        * particularly relevant for such things as progressive loading, where
@@ -194,7 +193,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Delay between rendering elements. Zero is normally adequate, but
        * there are times that the user wants more time between rendering
@@ -212,7 +210,6 @@
       __P_418_4: null,
       __P_418_2: null,
       __P_418_1: null,
-
       /**
        * Return the structure object
        *
@@ -221,7 +218,6 @@
       getStructure: function getStructure() {
         return this.__P_418_1;
       },
-
       /**
        * Add a renderer that can be referenced by the data model.
        *
@@ -236,7 +232,6 @@
         this.__P_418_0[name] = renderer;
         renderer.join(this, name);
       },
-
       /**
        * Remove a previously added renderer.
        *
@@ -248,10 +243,8 @@
         if (!this.__P_418_0[name]) {
           throw new Error("No existing renderer named " + name);
         }
-
         delete this.__P_418_0[name];
       },
-
       /**
        * Render the elements available from the data model.  Elements are
        * rendered in batches of size {@link #batchSize}.  After each batch of
@@ -266,7 +259,6 @@
         if (this.__P_418_3) {
           return;
         }
-
         this.__P_418_3 = true;
         var state = new qx.ui.progressive.State({
           progressive: this,
@@ -275,20 +267,24 @@
           batchSize: this.getBatchSize(),
           rendererData: this.__P_418_6(),
           userData: {}
-        }); // Record render start time
+        });
 
-        this.__P_418_5 = new Date(); // Render the first batch of elements.  Subsequent batches will be via
+        // Record render start time
+        this.__P_418_5 = new Date();
+
+        // Render the first batch of elements.  Subsequent batches will be via
         // timer started from this.__renderElementBatch().
-
         if (this.__P_418_2) {
           // Get the starting number of elements
-          this.__P_418_4 = state.getModel().getElementCount(); // Let listeners know we're beginning to render
+          this.__P_418_4 = state.getModel().getElementCount();
 
+          // Let listeners know we're beginning to render
           this.fireDataEvent("renderStart", {
             state: state,
             initial: this.__P_418_4
-          }); // Begin rendering
+          });
 
+          // Begin rendering
           this.__P_418_7(state);
         } else {
           // Ensure we leave enough time that 'this' has been rendered, so that
@@ -303,14 +299,11 @@
               state: state,
               initial: this.__P_418_4
             });
-
             this.__P_418_7(state);
-
             this.__P_418_2 = true;
           }, this, 10);
         }
       },
-
       /**
        * Called when the dataModel property is changed.
        *
@@ -324,15 +317,15 @@
       _applyDataModel: function _applyDataModel(value, old) {
         if (old) {
           // Remove the old event listener
-          old.removeListener("dataAvailable", this.__P_418_8, this); // Dispose the old model
+          old.removeListener("dataAvailable", this.__P_418_8, this);
 
+          // Dispose the old model
           old.dispose();
-        } // Add an event listener so we know when data is available in the model
+        }
 
-
+        // Add an event listener so we know when data is available in the model
         value.addListener("dataAvailable", this.__P_418_8, this);
       },
-
       /**
        * Render a batch of elements.  The batch size is determined by the
        * Progressive's batch size at the time that rendering began.  That batch
@@ -347,67 +340,68 @@
         var current;
         var element;
         var renderer;
-
         for (var i = state.getBatchSize(); i > 0; i--) {
           // Retrieve the current element
           current = state.getModel().getNextElement();
-
           if (!current) {
             // No more elements.  We're done.
             this.debug("Render time: " + (new Date() - this.__P_418_5) + "ms");
-            this.__P_418_3 = false; // Notify any progress handlers that are listening
+            this.__P_418_3 = false;
 
-            this.fireDataEvent("renderEnd", state); // We don't need our render state any longer
+            // Notify any progress handlers that are listening
+            this.fireDataEvent("renderEnd", state);
 
-            state.dispose(); // See ya!
+            // We don't need our render state any longer
+            state.dispose();
 
+            // See ya!
             return;
-          } // Get the element member
+          }
 
+          // Get the element member
+          element = current.element;
 
-          element = current.element; // Get the element's renderer
+          // Get the element's renderer
+          renderer = this.__P_418_0[element.renderer];
 
-          renderer = this.__P_418_0[element.renderer]; // Render this element
+          // Render this element
+          renderer.render(state, element);
 
-          renderer.render(state, element); // Notify any progress detail handlers that are listening
-
+          // Notify any progress detail handlers that are listening
           this.fireDataEvent("progressDetail", {
             initial: this.__P_418_4,
             remaining: current.remaining,
             element: element
           });
-        } // Notify any progress handlers that are listening
+        }
 
-
+        // Notify any progress handlers that are listening
         this.fireDataEvent("progress", {
           initial: this.__P_418_4,
           remaining: current.remaining
-        }); // Flush the widget queue
+        });
 
+        // Flush the widget queue
         if (this.getFlushWidgetQueueAfterBatch()) {
           qx.ui.core.queue.Manager.flush();
-        } // Set a timer to render the next element
+        }
 
-
+        // Set a timer to render the next element
         qx.event.Timer.once(function () {
           this.__P_418_7(state);
         }, this, this.getInterElementTimeout());
       },
-
       /**
        * Create the map of empty objects for use by the renderers.
        * @return {Map} renderer data map
        */
       __P_418_6: function __P_418_6() {
         var rendererData = {};
-
         for (var name in this.__P_418_0) {
           rendererData[name] = {};
         }
-
         return rendererData;
       },
-
       /**
        * Event callback for the "dataAvailable" event.
        *
@@ -420,7 +414,6 @@
         this.render();
       }
     },
-
     /**
      */
     destruct: function destruct() {
@@ -428,13 +421,13 @@
       for (var name in this.__P_418_0) {
         // ... dispose it
         this.__P_418_0[name].dispose();
-      } // Clean up references
+      }
 
-
+      // Clean up references
       this.__P_418_5 = this.__P_418_0 = this.__P_418_1 = null;
     }
   });
   qx.ui.progressive.Progressive.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Progressive.js.map?dt=1685978145213
+//# sourceMappingURL=Progressive.js.map?dt=1691935441570

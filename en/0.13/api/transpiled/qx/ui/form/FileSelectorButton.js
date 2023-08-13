@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo
@@ -75,6 +74,7 @@
    *
    * [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications)
    */
+
   qx.Class.define("qx.ui.form.FileSelectorButton", {
     extend: qx.ui.form.Button,
     statics: {
@@ -104,7 +104,6 @@
         check: "String",
         apply: "_applyAttribute"
       },
-
       /**
        * Specify that the camera should be used for getting the "file". The
        * value defines which camera should be used for capturing images.
@@ -116,7 +115,6 @@
         check: ["user", "environment"],
         apply: "_applyAttribute"
       },
-
       /**
        * Set to "true" if you want to allow the selection of multiple files.
        */
@@ -125,7 +123,6 @@
         check: "Boolean",
         apply: "_applyAttribute"
       },
-
       /**
        * If present, indicates that only directories should be available for
        * selection.
@@ -146,17 +143,14 @@
           // [everyone](https://caniuse.com/?search=webkitdirectory).
           attr = "webkitdirectory";
         }
-
         this.__P_347_0.setAttribute(attr, value);
       },
       setEnabled: function setEnabled(value) {
         this.__P_347_0.setEnabled(value);
-
         qx.ui.form.FileSelectorButton.superclass.prototype.setEnabled.call(this, value);
       },
       _createContentElement: function _createContentElement() {
         var _this = this;
-
         var id = "qxFileSelector_" + ++qx.ui.form.FileSelectorButton._fileInputElementIdCounter;
         var input = this.__P_347_0 = new qx.html.Input("file", null, {
           id: id
@@ -168,14 +162,13 @@
           label.add(input);
         });
         input.addListenerOnce("appear", function (e) {
-          var inputEl = input.getDomElement(); // since qx.html.Node does not even create the
+          var inputEl = input.getDomElement();
+          // since qx.html.Node does not even create the
           // domNode if it is not set to visible initially
           // we have to quickly hide it after creation.
-
           input.setVisible(false);
           inputEl.addEventListener("change", function (e) {
             _this.fireDataEvent("changeFileSelection", inputEl.files);
-
             inputEl.value = "";
           });
         });
@@ -186,4 +179,4 @@
   qx.ui.form.FileSelectorButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSelectorButton.js.map?dt=1685978137817
+//# sourceMappingURL=FileSelectorButton.js.map?dt=1691935434399

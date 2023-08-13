@@ -12,6 +12,8 @@
     "ObjectPool",
     "type",
     "construct",
+    "constructor",
+    "call",
     "event",
     "Pool"
   ],
@@ -19,7 +21,7 @@
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/event/Pool.js"
   ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n     * Sebastian Werner (wpbasti)\n\n************************************************************************ */\n\n/**\n * Central instance pool for event objects. All event objects dispatched by the\n * event loader are pooled using this class.\n */\nqx.Class.define(\"qx.event.Pool\", {\n  extend: qx.util.ObjectPool,\n  type: \"singleton\",\n\n  // Even though this class contains almost no code it is required because the\n  // legacy code needs a place to patch the event pooling behavior.\n\n  /*\n  *****************************************************************************\n     CONSTRUCTOR\n  *****************************************************************************\n  */\n\n  construct() {\n    super(30);\n  }\n});\n"
+    "/* ************************************************************************\r\n\r\n   qooxdoo - the new era of web development\r\n\r\n   http://qooxdoo.org\r\n\r\n   Copyright:\r\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\r\n\r\n   License:\r\n     MIT: https://opensource.org/licenses/MIT\r\n     See the LICENSE file in the project's top-level directory for details.\r\n\r\n   Authors:\r\n     * Fabian Jakobs (fjakobs)\r\n     * Sebastian Werner (wpbasti)\r\n\r\n************************************************************************ */\r\n\r\n/**\r\n * Central instance pool for event objects. All event objects dispatched by the\r\n * event loader are pooled using this class.\r\n */\r\nqx.Class.define(\"qx.event.Pool\", {\r\n  extend: qx.util.ObjectPool,\r\n  type: \"singleton\",\r\n\r\n  // Even though this class contains almost no code it is required because the\r\n  // legacy code needs a place to patch the event pooling behavior.\r\n\r\n  /*\r\n  *****************************************************************************\r\n     CONSTRUCTOR\r\n  *****************************************************************************\r\n  */\r\n\r\n  construct() {\r\n    super(30);\r\n  }\r\n});\r\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,eAAhB,EAAiC;IAC/BC,MAAM,EAAEN,EAAE,CAACO,IAAH,CAAQC,UADe;IAE/BC,IAAI,EAAE,WAFyB;IAI/B;IACA;;IAEA;AACF;AACA;AACA;AACA;IAEEC,SAb+B,uBAanB;MACV,0CAAM,EAAN;IACD;EAf8B,CAAjC;EAvBAV,EAAE,CAACW,KAAH,CAASC,IAAT,CAAcT,aAAd,GAA8BA,aAA9B"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,eAAe,EAAE;IAC/BC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,UAAU;IAC1BC,IAAI,EAAE,WAAW;IAEjB;IACA;IAEA;AACF;AACA;AACA;AACA;IAEEC,SAAS,WAAAA,UAAA,EAAG;MACVV,EAAA,CAAAO,IAAA,CAAAC,UAAA,CAAAG,WAAA,CAAAC,IAAA,OAAM,EAAE;IACV;EACF,CAAC,CAAC;EAvCFZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACX,aAAa,GAAGA,aAAa;AAAC"
 }

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -41,7 +40,6 @@
        * @throws {Error} the abstract function warning.
        */
       format: function format(obj) {},
-
       /**
        * Parses an object.
        *
@@ -56,4 +54,4 @@
   qx.util.format.IFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IFormat.js.map?dt=1685978155265
+//# sourceMappingURL=IFormat.js.map?dt=1691935451466

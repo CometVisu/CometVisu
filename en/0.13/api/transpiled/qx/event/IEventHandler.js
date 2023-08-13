@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,13 +36,10 @@
     statics: {
       /** @type {Integer} The event target must be a dom node */
       TARGET_DOMNODE: 1,
-
       /** @type {Integer} The event target must be a window object */
       TARGET_WINDOW: 2,
-
       /** @type {Integer} The event target must be a qooxdoo object */
       TARGET_OBJECT: 4,
-
       /** @type {Integer} The event target must be a document node */
       TARGET_DOCUMENT: 8
     },
@@ -62,7 +58,6 @@
        *     given type.
        */
       canHandleEvent: function canHandleEvent(target, type) {},
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is added using {@link qx.event.Manager#addListener}.
@@ -74,7 +69,6 @@
        *         capturing phase or the bubbling phase of the event.
        */
       registerEvent: function registerEvent(target, type, capture) {},
-
       /**
        * This method is called each time an event listener, for one of the
        * supported events, is removed by using {@link qx.event.Manager#removeListener}
@@ -92,4 +86,4 @@
   qx.event.IEventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IEventHandler.js.map?dt=1685978120411
+//# sourceMappingURL=IEventHandler.js.map?dt=1691935418273

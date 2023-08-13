@@ -33,7 +33,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,7 +70,6 @@
        * DOM Level 3</a>
        */
       EQUALITY_ATTRIBUTES: ["nodeType", "nodeName", "localName", "namespaceURI", "prefix", "nodeValue"],
-
       /**
        * Internal helper for getAncestors and getAncestorsUntil
        *
@@ -84,29 +82,22 @@
        */
       __P_286_0: function __P_286_0(selector, filter) {
         var ancestors = [];
-
         for (var i = 0; i < this.length; i++) {
           var parent = qx.dom.Element.getParentElement(this[i]);
-
           while (parent) {
             var found = [parent];
-
             if (selector && qx.bom.Selector.matches(selector, found).length > 0) {
               break;
             }
-
             if (filter) {
               found = qx.bom.Selector.matches(filter, found);
             }
-
             ancestors = ancestors.concat(found);
             parent = qx.dom.Element.getParentElement(parent);
           }
         }
-
         return qxWeb.$init(ancestors, qxWeb);
       },
-
       /**
        * Helper which returns the element from the given argument. If it's a collection,
        * it returns it's first child. If it's a string, it tries to use the string
@@ -121,10 +112,8 @@
         } else if (qx.Bootstrap.isString(arg)) {
           return qxWeb(arg)[0];
         }
-
         return arg;
       },
-
       /**
        * Helper that attempts to convert the given argument into a DOM node
        * @param arg {var} object to convert
@@ -134,14 +123,11 @@
         if (typeof arg == "string") {
           arg = qxWeb(arg);
         }
-
         if (arg instanceof Array || arg instanceof qxWeb) {
           arg = arg[0];
         }
-
         return qxWeb.isNode(arg) ? arg : null;
       },
-
       /**
        * Returns a map containing the given DOM node's attribute names
        * and values
@@ -151,20 +137,16 @@
        */
       __P_286_3: function __P_286_3(node) {
         var attributes = {};
-
         for (var attr in node.attributes) {
           if (attr == "length") {
             continue;
           }
-
           var name = node.attributes[attr].name;
           var value = node.attributes[attr].value;
           attributes[name] = value;
         }
-
         return attributes;
       },
-
       /**
        * Helper function that iterates over a set of items and applies the given
        * qx.dom.Hierarchy method to each entry, storing the results in a new Array.
@@ -183,21 +165,19 @@
         // Iterate ourself, as we want to directly combine the result
         var all = [];
         var Hierarchy = qx.dom.Hierarchy;
-
         for (var i = 0, l = collection.length; i < l; i++) {
           all.push.apply(all, Hierarchy[method](collection[i]));
-        } // Remove duplicates
+        }
 
+        // Remove duplicates
+        var ret = qx.lang.Array.unique(all);
 
-        var ret = qx.lang.Array.unique(all); // Post reduce result by selector
-
+        // Post reduce result by selector
         if (selector) {
           ret = qx.bom.Selector.matches(selector, ret);
         }
-
         return ret;
       },
-
       /**
        * Checks if the given object is a DOM element
        *
@@ -208,7 +188,6 @@
       isElement: function isElement(selector) {
         return qx.dom.Node.isElement(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Checks if the given object is a DOM node
        *
@@ -219,7 +198,6 @@
       isNode: function isNode(selector) {
         return qx.dom.Node.isNode(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Whether the node has the given node name
        *
@@ -231,7 +209,6 @@
       isNodeName: function isNodeName(selector, nodeName) {
         return qx.dom.Node.isNodeName(qx.module.Traversing.__P_286_1(selector), nodeName);
       },
-
       /**
        * Checks if the given object is a DOM document object
        *
@@ -244,10 +221,8 @@
         if (node instanceof qxWeb) {
           node = node[0];
         }
-
         return qx.dom.Node.isDocument(node);
       },
-
       /**
        * Checks if the given object is a DOM document fragment object
        *
@@ -260,10 +235,8 @@
         if (node instanceof qxWeb) {
           node = node[0];
         }
-
         return qx.dom.Node.isDocumentFragment(node);
       },
-
       /**
        * Returns the DOM2 <code>defaultView</code> (window) for the given node.
        *
@@ -274,7 +247,6 @@
       getWindow: function getWindow(selector) {
         return qx.dom.Node.getWindow(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Checks whether the given object is a DOM text node
        *
@@ -285,7 +257,6 @@
       isTextNode: function isTextNode(obj) {
         return qx.dom.Node.isText(obj);
       },
-
       /**
        * Check whether the given object is a browser window object.
        *
@@ -298,10 +269,8 @@
         if (obj instanceof qxWeb) {
           obj = obj[0];
         }
-
         return qx.dom.Node.isWindow(obj);
       },
-
       /**
        * Returns the owner document of the given node
        *
@@ -312,7 +281,6 @@
       getDocument: function getDocument(selector) {
         return qx.dom.Node.getDocument(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Get the DOM node's name as a lowercase string
        *
@@ -323,7 +291,6 @@
       getNodeName: function getNodeName(selector) {
         return qx.dom.Node.getName(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Returns the text content of a node where the node type may be one of
        * NODE_ELEMENT, NODE_ATTRIBUTE, NODE_TEXT, NODE_CDATA
@@ -337,7 +304,6 @@
       getNodeText: function getNodeText(selector) {
         return qx.dom.Node.getText(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Checks if the given node is a block node
        *
@@ -348,7 +314,6 @@
       isBlockNode: function isBlockNode(selector) {
         return qx.dom.Node.isBlockNode(qx.module.Traversing.__P_286_1(selector));
       },
-
       /**
        * Determines if two DOM nodes are equal as defined in the
        * <a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-isEqualNode">DOM Level 3 isEqualNode spec</a>.
@@ -362,74 +327,63 @@
       equalNodes: function equalNodes(node1, node2) {
         node1 = qx.module.Traversing.__P_286_2(node1);
         node2 = qx.module.Traversing.__P_286_2(node2);
-
         if (!node1 || !node2) {
           return false;
         }
-
         if (qx.core.Environment.get("html.node.isequalnode")) {
           return node1.isEqualNode(node2);
         } else {
           if (node1 === node2) {
             return true;
-          } // quick attributes length check
+          }
 
-
+          // quick attributes length check
           var hasAttributes = node1.attributes && node2.attributes;
-
           if (hasAttributes && node1.attributes.length !== node2.attributes.length) {
             return false;
           }
-
-          var hasChildNodes = node1.childNodes && node2.childNodes; // quick childNodes length check
-
+          var hasChildNodes = node1.childNodes && node2.childNodes;
+          // quick childNodes length check
           if (hasChildNodes && node1.childNodes.length !== node2.childNodes.length) {
             return false;
-          } // string attribute check
+          }
 
-
+          // string attribute check
           var domAttributes = qx.module.Traversing.EQUALITY_ATTRIBUTES;
-
           for (var i = 0, l = domAttributes.length; i < l; i++) {
             var domAttrib = domAttributes[i];
-
             if (node1[domAttrib] !== node2[domAttrib]) {
               return false;
             }
-          } // attribute values
+          }
 
-
+          // attribute values
           if (hasAttributes) {
             var node1Attributes = qx.module.Traversing.__P_286_3(node1);
-
             var node2Attributes = qx.module.Traversing.__P_286_3(node2);
-
             for (var attr in node1Attributes) {
               if (node1Attributes[attr] !== node2Attributes[attr]) {
                 return false;
               }
             }
-          } // child nodes
+          }
 
-
+          // child nodes
           if (hasChildNodes) {
             for (var j = 0, m = node1.childNodes.length; j < m; j++) {
               var child1 = node1.childNodes[j];
               var child2 = node2.childNodes[j];
-
               if (!qx.module.Traversing.equalNodes(child1, child2)) {
                 return false;
               }
             }
           }
-
           return true;
         }
       }
     },
     members: {
       __P_286_0: null,
-
       /**
        * Adds an element to the collection
        *
@@ -442,14 +396,11 @@
         if (el instanceof qxWeb) {
           el = el[0];
         }
-
         if (qx.module.Traversing.isElement(el) || qx.module.Traversing.isDocument(el) || qx.module.Traversing.isWindow(el) || qx.module.Traversing.isDocumentFragment(el)) {
           this.push(el);
         }
-
         return this;
       },
-
       /**
        * Gets a set of elements containing all of the unique immediate children of
        * each of the matched set of elements.
@@ -462,20 +413,15 @@
        */
       getChildren: function getChildren(selector) {
         var children = [];
-
         for (var i = 0; i < this.length; i++) {
           var found = qx.dom.Hierarchy.getChildElements(this[i]);
-
           if (selector) {
             found = qx.bom.Selector.matches(selector, found);
           }
-
           children = children.concat(found);
         }
-
         return qxWeb.$init(children, qxWeb);
       },
-
       /**
        * Executes the provided callback function once for each item in the
        * collection.
@@ -493,10 +439,8 @@
         for (var i = 0; i < this.length; i++) {
           fn.call(ctx, this[i], i, this);
         }
-
         return this;
       },
-
       /**
        * Gets a set of elements containing the parent of each element in the
        * collection.
@@ -509,20 +453,15 @@
        */
       getParents: function getParents(selector) {
         var parents = [];
-
         for (var i = 0; i < this.length; i++) {
           var found = qx.dom.Element.getParentElement(this[i]);
-
           if (selector) {
             found = qx.bom.Selector.matches(selector, [found]);
           }
-
           parents = parents.concat(found);
         }
-
         return qxWeb.$init(parents, qxWeb);
       },
-
       /**
        * Checks if any element of the current collection is child of any element of a given
        * parent collection.
@@ -536,14 +475,11 @@
         if (this.length == 0) {
           return false;
         }
-
         var ancestors = null,
-            parentCollection = qxWeb(parent),
-            isChildOf = false;
-
+          parentCollection = qxWeb(parent),
+          isChildOf = false;
         for (var i = 0, l = this.length; i < l && !isChildOf; i++) {
           ancestors = qxWeb(this[i]).getAncestors();
-
           for (var j = 0, len = parentCollection.length; j < len; j++) {
             if (ancestors.indexOf(parentCollection[j]) != -1) {
               isChildOf = true;
@@ -551,10 +487,8 @@
             }
           }
         }
-
         return isChildOf;
       },
-
       /**
        * Gets a set of elements containing all ancestors of each element in the
        * collection.
@@ -568,7 +502,6 @@
       getAncestors: function getAncestors(filter) {
         return this.__P_286_0(null, filter);
       },
-
       /**
        * Gets a set of elements containing all ancestors of each element in the
        * collection, up to (but not including) the element matched by the provided
@@ -585,7 +518,6 @@
       getAncestorsUntil: function getAncestorsUntil(selector, filter) {
         return this.__P_286_0(selector, filter);
       },
-
       /**
        * Gets a set containing the closest matching ancestor for each item in
        * the collection.
@@ -598,28 +530,22 @@
        */
       getClosest: function getClosest(selector) {
         var closest = [];
-
         var findClosest = function findClosest(current) {
           var found = qx.bom.Selector.matches(selector, current);
-
           if (found.length) {
             closest.push(found[0]);
           } else {
             current = current.getParents(); // One up
-
             if (current[0] && current[0].parentNode) {
               findClosest(current);
             }
           }
         };
-
         for (var i = 0; i < this.length; i++) {
           findClosest(qxWeb(this[i]));
         }
-
         return qxWeb.$init(closest, qxWeb);
       },
-
       /**
        * Searches the child elements of each item in the collection and returns
        * a new collection containing the children that match the provided selector
@@ -631,14 +557,11 @@
        */
       find: function find(selector) {
         var found = [];
-
         for (var i = 0; i < this.length; i++) {
           found = found.concat(qx.bom.Selector.query(selector, this[i]));
         }
-
         return qxWeb.$init(found, qxWeb);
       },
-
       /**
        * Gets a new set of elements containing the child nodes of each item in the
        * current set.
@@ -648,14 +571,11 @@
        */
       getContents: function getContents() {
         var found = [];
-
         this._forEachElement(function (item) {
           found = found.concat(qx.lang.Array.fromCollection(item.childNodes));
         });
-
         return qxWeb.$init(found, qxWeb);
       },
-
       /**
        * Checks if at least one element in the collection passes the provided
        * filter. This can be either a selector expression or a filter
@@ -669,10 +589,8 @@
         if (qx.lang.Type.isFunction(selector)) {
           return this.filter(selector).length > 0;
         }
-
         return !!selector && qx.bom.Selector.matches(selector, this).length > 0;
       },
-
       /**
        * Reduce the set of matched elements to a single element.
        *
@@ -683,7 +601,6 @@
       eq: function eq(index) {
         return this.slice(index, +index + 1);
       },
-
       /**
        * Reduces the collection to the first element.
        *
@@ -693,7 +610,6 @@
       getFirst: function getFirst() {
         return this.slice(0, 1);
       },
-
       /**
        * Reduces the collection to the last element.
        *
@@ -703,7 +619,6 @@
       getLast: function getLast() {
         return this.slice(this.length - 1);
       },
-
       /**
        * Gets a collection containing only the elements that have descendants
        * matching the given selector
@@ -714,18 +629,14 @@
        */
       has: function has(selector) {
         var found = [];
-
         this._forEachElement(function (item, index) {
           var descendants = qx.bom.Selector.matches(selector, this.eq(index).getContents());
-
           if (descendants.length > 0) {
             found.push(item);
           }
         });
-
         return qxWeb.$init(found, this.constructor);
       },
-
       /**
        * Returns a new collection containing only those nodes that
        * contain the given element. Also accepts a qxWeb
@@ -741,24 +652,19 @@
         if (element instanceof Array || element instanceof qxWeb) {
           element = element[0];
         }
-
         if (!element) {
           return qxWeb();
         }
-
         if (qx.dom.Node.isWindow(element)) {
           element = element.document;
         }
-
         return this.filter(function (el) {
           if (qx.dom.Node.isWindow(el)) {
             el = el.document;
           }
-
           return qx.dom.Hierarchy.contains(el, element);
         });
       },
-
       /**
        * Gets a collection containing the next sibling element of each item in
        * the current set.
@@ -771,14 +677,11 @@
        */
       getNext: function getNext(selector) {
         var found = this.map(qx.dom.Hierarchy.getNextElementSibling, qx.dom.Hierarchy);
-
         if (selector) {
           found = qxWeb.$init(qx.bom.Selector.matches(selector, found), qxWeb);
         }
-
         return found;
       },
-
       /**
        * Gets a collection containing all following sibling elements of each
        * item in the current set.
@@ -791,10 +694,8 @@
        */
       getNextAll: function getNextAll(selector) {
         var ret = qx.module.Traversing.__P_286_4(this, "getNextSiblings", selector);
-
         return qxWeb.$init(ret, qxWeb);
       },
-
       /**
        * Gets a collection containing the following sibling elements of each
        * item in the current set up to but not including any element that matches
@@ -808,18 +709,15 @@
         var found = [];
         this.forEach(function (item, index) {
           var nextSiblings = qx.dom.Hierarchy.getNextSiblings(item);
-
           for (var i = 0, l = nextSiblings.length; i < l; i++) {
             if (qx.bom.Selector.matches(selector, [nextSiblings[i]]).length > 0) {
               break;
             }
-
             found.push(nextSiblings[i]);
           }
         });
         return qxWeb.$init(found, qxWeb);
       },
-
       /**
        * Gets a collection containing the previous sibling element of each item in
        * the current set.
@@ -832,14 +730,11 @@
        */
       getPrev: function getPrev(selector) {
         var found = this.map(qx.dom.Hierarchy.getPreviousElementSibling, qx.dom.Hierarchy);
-
         if (selector) {
           found = qxWeb.$init(qx.bom.Selector.matches(selector, found), qxWeb);
         }
-
         return found;
       },
-
       /**
        * Gets a collection containing all preceding sibling elements of each
        * item in the current set.
@@ -852,10 +747,8 @@
        */
       getPrevAll: function getPrevAll(selector) {
         var ret = qx.module.Traversing.__P_286_4(this, "getPreviousSiblings", selector);
-
         return qxWeb.$init(ret, qxWeb);
       },
-
       /**
        * Gets a collection containing the preceding sibling elements of each
        * item in the current set up to but not including any element that matches
@@ -869,18 +762,15 @@
         var found = [];
         this.forEach(function (item, index) {
           var previousSiblings = qx.dom.Hierarchy.getPreviousSiblings(item);
-
           for (var i = 0, l = previousSiblings.length; i < l; i++) {
             if (qx.bom.Selector.matches(selector, [previousSiblings[i]]).length > 0) {
               break;
             }
-
             found.push(previousSiblings[i]);
           }
         });
         return qxWeb.$init(found, qxWeb);
       },
-
       /**
        * Gets a collection containing all sibling elements of the items in the
        * current set.
@@ -893,10 +783,8 @@
        */
       getSiblings: function getSiblings(selector) {
         var ret = qx.module.Traversing.__P_286_4(this, "getSiblings", selector);
-
         return qxWeb.$init(ret, qxWeb);
       },
-
       /**
        * Remove elements from the collection that do not pass the given filter.
        * This can be either a selector expression or a filter function
@@ -911,13 +799,11 @@
             return !selector(item, index, obj);
           });
         }
-
         var res = qx.bom.Selector.matches(selector, this);
         return this.filter(function (value) {
           return res.indexOf(value) === -1;
         });
       },
-
       /**
        * Gets a new collection containing the offset parent of each item in the
        * current set.
@@ -928,7 +814,6 @@
       getOffsetParent: function getOffsetParent() {
         return this.map(qx.bom.element.Location.getOffsetParent);
       },
-
       /**
        * Whether the first element in the collection is inserted into
        * the document for which it was created.
@@ -941,13 +826,12 @@
         if (!this[0]) {
           return false;
         }
-
         return qx.dom.Hierarchy.isRendered(this[0]);
       }
     },
     defer: function defer(statics) {
-      qxWeb.$attachAll(this); // manually attach private method which is ignored by attachAll
-
+      qxWeb.$attachAll(this);
+      // manually attach private method which is ignored by attachAll
       qxWeb.$attach({
         __P_286_0: statics.__P_286_0
       });
@@ -956,4 +840,4 @@
   qx.module.Traversing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Traversing.js.map?dt=1685978129531
+//# sourceMappingURL=Traversing.js.map?dt=1691935426745

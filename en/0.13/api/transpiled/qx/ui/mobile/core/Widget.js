@@ -50,7 +50,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -78,7 +77,6 @@
   qx.Class.define("qx.ui.mobile.core.Widget", {
     extend: qx.core.Object,
     include: [qx.locale.MTranslation],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -86,9 +84,9 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
+      this._setContainerElement(this._createContainerElement());
 
-      this._setContainerElement(this._createContainerElement()); // Init member variables
-
+      // Init member variables
 
       this.__P_393_0 = [];
       this.setId(this.getId());
@@ -97,93 +95,70 @@
       this.initAnonymous();
       this.initActivatable();
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired if the mouse cursor moves over the widget. */
       mousemove: "qx.event.type.Mouse",
-
       /** Fired if the mouse cursor enters the widget. */
       mouseover: "qx.event.type.Mouse",
-
       /** Fired if the mouse cursor leaves widget. */
       mouseout: "qx.event.type.Mouse",
-
       /** Mouse button is pressed on the widget. */
       mousedown: "qx.event.type.Mouse",
-
       /** Mouse button is released on the widget. */
       mouseup: "qx.event.type.Mouse",
-
       /** Widget is clicked using left or middle button.
           {@link qx.event.type.Mouse#getButton} for more details.*/
       click: "qx.event.type.Mouse",
-
       /** Widget is double clicked using left or middle button.
           {@link qx.event.type.Mouse#getButton} for more details.*/
       dblclick: "qx.event.type.Mouse",
-
       /** Widget is clicked using the right mouse button. */
       contextmenu: "qx.event.type.Mouse",
-
       /** Fired before the context menu is opened. */
       beforeContextmenuOpen: "qx.event.type.Mouse",
-
       /** Fired if the mouse wheel is used over the widget. */
       mousewheel: "qx.event.type.MouseWheel",
-
       /** Fired if a touch at the screen is started. */
       touchstart: "qx.event.type.Touch",
-
       /** Fired if a touch at the screen has ended. */
       touchend: "qx.event.type.Touch",
-
       /** Fired during a touch at the screen. */
       touchmove: "qx.event.type.Touch",
-
       /** Fired if a touch at the screen is canceled. */
       touchcancel: "qx.event.type.Touch",
-
       /** Fired when a finger taps on the screen. */
       tap: "qx.event.type.Tap",
-
       /** Fired when a finger holds on the screen. */
       longtap: "qx.event.type.Tap",
-
       /** Fired when a finger swipes over the screen. */
       swipe: "qx.event.type.Touch",
-
       /** Fired when two pointers performing a rotate gesture on the screen. */
       rotate: "qx.event.type.Rotate",
-
       /** Fired when two pointers performing a pinch in/out gesture on the screen. */
       pinch: "qx.event.type.Pinch",
-
       /** Fired when an active pointer moves on the screen (after pointerdown till pointerup). */
       track: "qx.event.type.Track",
-
       /**
        * This event if fired if a keyboard key is released.
        **/
       keyup: "qx.event.type.KeySequence",
-
       /**
        * This event if fired if a keyboard key is pressed down. This event is
        * only fired once if the user keeps the key pressed for a while.
        */
       keydown: "qx.event.type.KeySequence",
-
       /**
        * This event is fired any time a key is pressed. It will be repeated if
        * the user keeps the key pressed. The pressed key can be determined using
        * {@link qx.event.type.KeySequence#getKeyIdentifier}.
        */
       keypress: "qx.event.type.KeySequence",
-
       /**
        * This event is fired if the pressed key or keys result in a printable
        * character. Since the character is not necessarily associated with a
@@ -194,65 +169,55 @@
        * {@link qx.event.type.KeyInput#getCharCode}.
        */
       keyinput: "qx.event.type.KeyInput",
-
       /**
        * Fired after a massive DOM manipulation, e.g. when DOM elements were
        * added or styles were changed. Listen to this event, if you need to
        * recalculate a layout or have to update your view.
        */
       domupdated: "qx.event.type.Event",
-
       /**
        * Fired after the widget appears on the screen.
        */
       appear: "qx.event.type.Event",
-
       /**
        * Fired after the widget disappears from the screen.
        */
       disappear: "qx.event.type.Event",
-
       /**
        * The event is fired when the widget gets focused.
        */
       focus: "qx.event.type.Focus",
-
       /**
        * The event is fired when the widget gets blurred.
        */
       blur: "qx.event.type.Focus",
-
       /**
        * When the widget itself or any child of the widget receive the focus.
        */
       focusin: "qx.event.type.Focus",
-
       /**
        * When the widget itself or any child of the widget lost the focus.
        */
       focusout: "qx.event.type.Focus",
-
       /**
        * When the widget gets active (receives keyboard events etc.)
        */
       activate: "qx.event.type.Focus",
-
       /**
        * When the widget gets inactive
        */
       deactivate: "qx.event.type.Focus",
-
       /**
        * Fired when an active pointer moves on the screen or the mouse wheel is used.
        */
       roll: "qx.event.type.Roll"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The default CSS class used for this widget. The default CSS class
@@ -266,7 +231,6 @@
         nullable: true,
         apply: "_applyDefaultCssClass"
       },
-
       /**
        * Whether this widget is enabled or not
        */
@@ -277,7 +241,6 @@
         event: "changeEnabled",
         apply: "_applyEnabled"
       },
-
       /**
        * The name attribute of the container element. Useful when you want to find
        * an element by its name attribute.
@@ -288,7 +251,6 @@
         nullable: true,
         apply: "_applyAttribute"
       },
-
       /**
        * Whether the widget should be the target of an event. Set this property
        * to <code>false</code> when the widget is a child of another widget and
@@ -300,7 +262,6 @@
         nullable: true,
         apply: "_applyStyle"
       },
-
       /**
        * The ID of the widget. When the ID is set to <code>null</code> an auto
        * id will be generated.
@@ -313,7 +274,6 @@
         transform: "_transformId",
         event: "changeId"
       },
-
       /**
        * Controls the visibility. Valid values are:
        *
@@ -329,7 +289,6 @@
         apply: "_applyVisibility",
         event: "changeVisibility"
       },
-
       /**
        * Whether the widget can be activated or not. When the widget is activated
        * a css class <code>active</code> is automatically added to the widget, which
@@ -340,7 +299,6 @@
         init: false,
         apply: "_applyAttribute"
       },
-
       /**
        * Rotates the widget. Negative and positive values are allowed.
        */
@@ -350,7 +308,6 @@
         init: null,
         apply: "_transform"
       },
-
       /**
        * This property controls whether the transformation uses the length unit <code>px<code> or <code>rem</code>.
        * This feature is important for creating a resolution independent transformation.
@@ -361,7 +318,6 @@
         init: "rem",
         apply: "_transform"
       },
-
       /**
        * Scales the widget in X direction (width).
        */
@@ -371,7 +327,6 @@
         init: null,
         apply: "_transform"
       },
-
       /**
        * Scales the widget in Y direction (height).
        */
@@ -381,7 +336,6 @@
         init: null,
         apply: "_transform"
       },
-
       /**
        * Moves the widget on X axis.
        */
@@ -391,7 +345,6 @@
         init: 0,
         apply: "_transform"
       },
-
       /**
        * Moves the widget on Y axis.
        */
@@ -401,7 +354,6 @@
         init: 0,
         apply: "_transform"
       },
-
       /**
        * Moves the widget on Z axis.
        */
@@ -412,25 +364,21 @@
         apply: "_transform"
       }
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {String} Prefix for the auto id */
       ID_PREFIX: "qx_id_",
-
       /** @type {Map} Internal data structure to store widgets */
       __P_393_1: {},
-
       /** @type {Integer} Incremental counter of the current id */
       __P_393_2: 0,
-
       /** @type {Integer} ID of the timeout for the DOM update */
       __P_393_3: null,
-
       /**
        * Event handler. Called when the application is in shutdown.
        * @internal
@@ -439,7 +387,6 @@
         window.clearTimeout(qx.ui.mobile.core.Widget.__P_393_3);
         delete qx.ui.mobile.core.Widget.__P_393_1;
       },
-
       /**
        * Returns the current widget id of the registry.
        * @return {Integer} The current id
@@ -448,7 +395,6 @@
       getCurrentId: function getCurrentId() {
         return qx.ui.mobile.core.Widget.__P_393_2;
       },
-
       /**
        * Registers a widget with its id for internal widget handling.
        *
@@ -461,7 +407,6 @@
         var registry = qx.ui.mobile.core.Widget.__P_393_1;
         registry[id] = widget;
       },
-
       /**
        * Unregisters the widget with the given id.
        *
@@ -472,7 +417,6 @@
       unregisterWidget: function unregisterWidget(id) {
         delete qx.ui.mobile.core.Widget.__P_393_1[id];
       },
-
       /**
        * Returns the widget with the given id.
        *
@@ -482,7 +426,6 @@
       getWidgetById: function getWidgetById(id) {
         return qx.ui.mobile.core.Widget.__P_393_1[id];
       },
-
       /**
        * Schedules the {@link #domUpdated} method. The method will be called after a timeout
        * to prevent the triggered events to be fired too often, during massive DOM manipulations.
@@ -494,7 +437,6 @@
           qx.ui.mobile.core.Widget.__P_393_3 = window.setTimeout(qx.ui.mobile.core.Widget.domUpdated, 0);
         }
       },
-
       /**
        * Fires the DOM updated event directly. Triggers the {@link qx.event.handler.Appear#refresh} and
        * {@link qx.ui.mobile.core.DomUpdatedHandler#refresh} methods. Do not use this
@@ -509,7 +451,6 @@
         qx.event.handler.Appear.refresh();
         qx.ui.mobile.core.DomUpdatedHandler.refresh();
       }),
-
       /**
        * Adds an attribute mapping entry. This entry is used by the {@link #_applyAttribute}
        * method. Shortcut when the property name differs from the real
@@ -538,7 +479,6 @@
           values: values
         };
       },
-
       /**
        * Adds a style mapping entry. This entry is used by the {@link #_applyStyle}
        * method. Shortcut when the property name differs from the real
@@ -567,7 +507,6 @@
           values: values
         };
       },
-
       /**
        * Mapping of attribute properties to their real attribute name.
        *
@@ -592,7 +531,6 @@
           attribute: "readonly"
         }
       },
-
       /**
        * Mapping of style properties to their real style name.
        *
@@ -608,25 +546,23 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_393_4: null,
       __P_393_5: null,
       __P_393_6: null,
       __P_393_0: null,
       __P_393_7: null,
-
       /*
       ---------------------------------------------------------------------------
         Basic Template
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the tag name of the container element of this widget.
        * Override this method if you want to create a custom widget.
@@ -635,7 +571,6 @@
       _getTagName: function _getTagName() {
         return "div";
       },
-
       /**
        * Creates the container DOM element of the widget.
        * Override this method if you want to create a custom widget.
@@ -645,7 +580,6 @@
       _createContainerElement: function _createContainerElement() {
         return qx.dom.Element.create(this._getTagName());
       },
-
       /**
        * Triggers the {@link #scheduleDomUpdated} method. This method needs to be called
        * when the DOM has changed, e.g. an element was added / removed / styled.
@@ -653,13 +587,11 @@
       _domUpdated: function _domUpdated() {
         qx.ui.mobile.core.Widget.scheduleDomUpdated();
       },
-
       /*
       ---------------------------------------------------------------------------
         ID Handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Transforms the value of the ID property. When the value is null, an auto
        * generated ID is set. This makes sure that an ID is always set.
@@ -672,7 +604,6 @@
           var clazz = qx.ui.mobile.core.Widget;
           value = clazz.ID_PREFIX + clazz.__P_393_2++;
         }
-
         return value;
       },
       // property apply
@@ -680,15 +611,13 @@
         if (old != null) {
           // Unregister widget with old id
           qx.ui.mobile.core.Widget.unregisterWidget(old);
-        } // Change the id of the DOM element
-
-
+        }
+        // Change the id of the DOM element
         var element = this.getContainerElement();
-        element.id = value; // Register the widget
-
+        element.id = value;
+        // Register the widget
         qx.ui.mobile.core.Widget.registerWidget(this);
       },
-
       /**
        * Sets the enable property to the new value
        * @param value {Boolean}, the new value of the widget
@@ -698,21 +627,17 @@
       _applyEnabled: function _applyEnabled(value, old) {
         if (value) {
           this.removeCssClass("disabled");
-
           this._setStyle("anonymous", this.getAnonymous());
         } else {
           this.addCssClass("disabled");
-
           this._setStyle("anonymous", true);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         Child Handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds a new child widget.
        *
@@ -721,14 +646,10 @@
        */
       _add: function _add(child, layoutProperties) {
         this._initializeChildLayout(child, layoutProperties);
-
         this.getContentElement().appendChild(child.getContainerElement());
-
         this.__P_393_0.push(child);
-
         this._domUpdated();
       },
-
       /**
        * Add a child widget at the specified index
        *
@@ -743,16 +664,13 @@
         if (child.getLayoutParent() == this) {
           qx.lang.Array.remove(this.__P_393_0, child);
         }
-
         var ref = this.__P_393_0[index];
-
         if (ref) {
           this._addBefore(child, ref, options);
         } else {
           this._add(child, options);
         }
       },
-
       /**
        * Add a widget before another already inserted widget
        *
@@ -764,15 +682,11 @@
         if (child == beforeWidget) {
           return;
         }
-
         this._initializeChildLayout(child, layoutProperties);
-
         this.getContentElement().insertBefore(child.getContainerElement(), beforeWidget.getContainerElement());
         qx.lang.Array.insertBefore(this.__P_393_0, child, beforeWidget);
-
         this._domUpdated();
       },
-
       /**
        * Add a widget after another already inserted widget.
        *
@@ -784,26 +698,18 @@
         if (child == afterWidget) {
           return;
         }
-
         this._initializeChildLayout(child, layoutProperties);
-
         var length = this._getChildren().length;
-
         var index = this._indexOf(afterWidget);
-
         if (index == length - 1) {
           this.getContentElement().appendChild(child.getContainerElement());
         } else {
           var beforeWidget = this._getChildren()[index + 1];
-
           this.getContentElement().insertBefore(child.getContainerElement(), beforeWidget.getContainerElement());
         }
-
         qx.lang.Array.insertAfter(this.__P_393_0, child, afterWidget);
-
         this._domUpdated();
       },
-
       /**
        * Removes a given child from the widget.
        *
@@ -811,10 +717,8 @@
        */
       _remove: function _remove(child) {
         child.setLayoutParent(null);
-
         this._domUpdated();
       },
-
       /**
        * Remove the widget at the specified index.
        *
@@ -824,12 +728,9 @@
         if (!this.__P_393_0) {
           throw new Error("This widget has no children!");
         }
-
         var child = this.__P_393_0[index];
-
         this._remove(child);
       },
-
       /**
        * Removes all children from the widget.
        * @return {Array} An Array including the removed children.
@@ -837,14 +738,11 @@
       _removeAll: function _removeAll() {
         // create a copy of the array
         var children = this.__P_393_0.concat();
-
         for (var i = 0, l = children.length; i < l; i++) {
           this._remove(children[i]);
         }
-
         return children;
       },
-
       /**
        * Returns the index position of the given widget if it is
        * a child widget. Otherwise it returns <code>-1</code>.
@@ -855,14 +753,11 @@
        */
       _indexOf: function _indexOf(child) {
         var children = this.__P_393_0;
-
         if (!children) {
           return -1;
         }
-
         return children.indexOf(child);
       },
-
       /**
        * Internal method. Sets the layout parent.
        *
@@ -874,16 +769,12 @@
         if (this.__P_393_6 === parent) {
           return;
         }
-
         var oldParent = this.__P_393_6;
-
         if (oldParent && !oldParent.$$disposed) {
           this.__P_393_6.removeChild(this);
         }
-
         this.__P_393_6 = parent || null;
       },
-
       /**
        * Internal method. Removes a given child widget and the corresponding DOM element.
        *
@@ -894,14 +785,11 @@
       removeChild: function removeChild(child) {
         qx.lang.Array.remove(this.__P_393_0, child);
         this.getContentElement().removeChild(child.getContainerElement());
-
         var layout = this._getLayout();
-
         if (layout) {
           layout.disconnectFromChildWidget(child);
         }
       },
-
       /**
        * Returns the parent widget of this widget.
        *
@@ -910,7 +798,6 @@
       getLayoutParent: function getLayoutParent() {
         return this.__P_393_6;
       },
-
       /**
        * Returns the children of the widget.
        *
@@ -919,7 +806,6 @@
       _getChildren: function _getChildren() {
         return this.__P_393_0;
       },
-
       /**
        * Whether the widget has child widgets.
        *
@@ -928,13 +814,11 @@
       _hasChildren: function _hasChildren() {
         return this.__P_393_0 && this.__P_393_0.length > 0;
       },
-
       /*
        ---------------------------------------------------------------------------
          Layout handling
        ---------------------------------------------------------------------------
        */
-
       /**
        * Set a layout manager for the widget. A layout manager can only be connected
        * with one widget. Reset the connection with a previous widget first, if you
@@ -946,23 +830,17 @@
       _setLayout: function _setLayout(layout) {
         if (this.__P_393_7) {
           this.__P_393_7.connectToWidget(null);
-
           for (var i = 0; i < this._getChildren().length; i++) {
             var child = this._getChildren()[i];
-
             this.__P_393_7.disconnectFromChildWidget(child);
           }
         }
-
         if (layout) {
           layout.connectToWidget(this);
         }
-
         this.__P_393_7 = layout;
-
         this._domUpdated();
       },
-
       /**
        * Initializes the layout of the given child widget.
        *
@@ -972,14 +850,11 @@
       _initializeChildLayout: function _initializeChildLayout(child, layoutProperties) {
         child.setLayoutParent(this);
         child.setLayoutProperties(layoutProperties);
-
         var layout = this._getLayout();
-
         if (layout) {
           layout.connectToChildWidget(child);
         }
       },
-
       /**
        * Returns the set layout manager for the widget.
        *
@@ -988,7 +863,6 @@
       _getLayout: function _getLayout() {
         return this.__P_393_7;
       },
-
       /**
        * Stores the given layout properties.
        *
@@ -997,12 +871,10 @@
       setLayoutProperties: function setLayoutProperties(properties) {
         // Check values through parent
         var parent = this.getLayoutParent();
-
         if (parent) {
           parent.updateLayoutProperties(this, properties);
         }
       },
-
       /**
        * Updates the layout properties of a given widget.
        *
@@ -1013,14 +885,11 @@
        */
       updateLayoutProperties: function updateLayoutProperties(widget, properties) {
         var layout = this._getLayout();
-
         if (layout) {
           layout.setLayoutProperties(widget, properties);
         }
-
         this._domUpdated();
       },
-
       /**
        * Updates the layout with the given arguments.
        *
@@ -1032,20 +901,16 @@
        */
       updateLayout: function updateLayout(widget, action, properties) {
         var layout = this._getLayout();
-
         if (layout) {
           layout.updateLayout(widget, action, properties);
         }
-
         this._domUpdated();
       },
-
       /*
       ---------------------------------------------------------------------------
         Content handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets the innerHTML of the content element and calls the {@link #_domUpdated}
        * method.
@@ -1054,49 +919,38 @@
        */
       _setHtml: function _setHtml(value) {
         this.getContentElement().innerHTML = value || "";
-
         this._domUpdated();
       },
-
       /**
        * Transforms this widget (rotate, scale, translate3d)
        */
       _transform: function _transform() {
         var propertyValue = "";
-
         if (this.getRotation() != null) {
           propertyValue = propertyValue + "rotate(" + this.getRotation() + "deg) ";
         }
-
         if (this.getScaleX() != null && this.getScaleY() != null) {
           propertyValue = propertyValue + "scale(" + this.getScaleX() + "," + this.getScaleY() + ") ";
         }
-
         var resolutionFactor = 1;
-
         if (this.getTransformUnit() == "rem") {
           resolutionFactor = 16;
         }
-
         if (this.getTranslateX() != null && this.getTranslateY() != null) {
           var isTransform3d = qx.core.Environment.get("css.transform.3d");
-
           if (isTransform3d && this.getTranslateZ() != null) {
             propertyValue = propertyValue + "translate3d(" + this.getTranslateX() / resolutionFactor + this.getTransformUnit() + "," + this.getTranslateY() / resolutionFactor + this.getTransformUnit() + "," + this.getTranslateZ() / resolutionFactor + this.getTransformUnit() + ") ";
           } else {
             propertyValue = propertyValue + "translate(" + this.getTranslateX() / resolutionFactor + this.getTransformUnit() + "," + this.getTranslateY() / resolutionFactor + this.getTransformUnit() + ") ";
           }
         }
-
         qx.bom.element.Style.set(this.getContainerElement(), "transform", propertyValue);
       },
-
       /*
       ---------------------------------------------------------------------------
         Attributes handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Shortcut for each property that should change a certain attribute of the
        * container element.
@@ -1111,7 +965,6 @@
       _applyAttribute: function _applyAttribute(value, old, attribute) {
         this._setAttribute(attribute, value);
       },
-
       /**
        * Sets an attribute with the given value of the container element. The
        * <code>null</code> value resets the attribute.
@@ -1121,24 +974,19 @@
        */
       _setAttribute: function _setAttribute(attribute, value) {
         var mapping = qx.ui.mobile.core.Widget.ATTRIBUTE_MAPPING[attribute];
-
         if (mapping) {
           attribute = mapping.attribute || attribute;
           var values = mapping.values;
           value = values && typeof values[value] !== "undefined" ? values[value] : value;
         }
-
         var element = this.getContainerElement();
-
         if (value != null) {
           qx.bom.element.Attribute.set(element, attribute, value);
         } else {
           qx.bom.element.Attribute.reset(element, attribute);
         }
-
         this._domUpdated();
       },
-
       /**
        * Returns the set value of the given attribute.
        *
@@ -1149,13 +997,11 @@
         var element = this.getContainerElement();
         return qx.bom.element.Attribute.get(element, attribute);
       },
-
       /*
       ---------------------------------------------------------------------------
         Styles handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Shortcut for each property that should change a certain style of the container
        * element.
@@ -1166,7 +1012,6 @@
       _applyStyle: function _applyStyle(value, old, style) {
         this._setStyle(style, value);
       },
-
       /**
        * Sets the value of a certain style of the container element. The
        * <code>null</code> value resets the attribute.
@@ -1176,23 +1021,18 @@
        */
       _setStyle: function _setStyle(style, value) {
         var mapping = qx.ui.mobile.core.Widget.STYLE_MAPPING[style];
-
         if (mapping) {
           style = mapping.style || style;
           value = mapping.values[value];
         }
-
         var element = this.getContainerElement();
-
         if (value != null) {
           qx.bom.element.Style.set(element, style, value);
         } else {
           qx.bom.element.Style.reset(element, style);
         }
-
         this._domUpdated();
       },
-
       /**
        * Returns the value of a certain style of the container element.
        *
@@ -1203,7 +1043,6 @@
         var element = this.getContainerElement();
         return qx.bom.element.Style.get(element, style);
       },
-
       /*
       ---------------------------------------------------------------------------
         CSS Handling
@@ -1214,12 +1053,10 @@
         if (old) {
           this.removeCssClass(old);
         }
-
         if (value) {
           this.addCssClass(value);
         }
       },
-
       /**
        * Adds a CSS class to the container element of the widget. Use this method
        * to enhance the default appearance of the widget.
@@ -1228,10 +1065,8 @@
        */
       addCssClass: function addCssClass(cssClass) {
         qx.bom.element.Class.add(this.getContainerElement(), cssClass);
-
         this._domUpdated();
       },
-
       /**
        * Adds an array of CSS classes to the container element of the widget. Use this method
        * to enhance the default appearance of the widget.
@@ -1241,11 +1076,9 @@
       addCssClasses: function addCssClasses(cssClasses) {
         if (cssClasses) {
           qx.bom.element.Class.addClasses(this.getContainerElement(), cssClasses);
-
           this._domUpdated();
         }
       },
-
       /**
        * Removes a CSS class from the container element of the widget.
        *
@@ -1254,11 +1087,9 @@
       removeCssClass: function removeCssClass(cssClass) {
         if (this.hasCssClass(cssClass)) {
           qx.bom.element.Class.remove(this.getContainerElement(), cssClass);
-
           this._domUpdated();
         }
       },
-
       /**
        * Removes an array of CSS classes from the container element of the widget.
        *
@@ -1267,11 +1098,9 @@
       removeCssClasses: function removeCssClasses(cssClasses) {
         if (cssClasses) {
           qx.bom.element.Class.removeClasses(this.getContainerElement(), cssClasses);
-
           this._domUpdated();
         }
       },
-
       /**
        * Toggles the given CSS. Adds or removes the CSS class from the container element of the widget.
        *
@@ -1284,7 +1113,6 @@
           this.addCssClass(cssClass);
         }
       },
-
       /**
        * Checks if the widget has a certain CSS class set.
        *
@@ -1294,7 +1122,6 @@
       hasCssClass: function hasCssClass(cssClass) {
         return qx.bom.element.Class.has(this.getContainerElement(), cssClass);
       },
-
       /*
       ---------------------------------------------------------------------------
         Visibility handling
@@ -1306,15 +1133,12 @@
           this.addCssClass("exclude");
         } else if (value == "visible") {
           this.removeCssClass("exclude");
-
           this._setStyle("visibility", "visible");
         } else if (value == "hidden") {
           this._setStyle("visibility", "hidden");
         }
-
         this._domUpdated();
       },
-
       /**
        * Sets the visibility of the widget.
        *
@@ -1324,12 +1148,10 @@
       __P_393_8: function __P_393_8(action, properties) {
         this.setVisibility(action);
         var parent = this.getLayoutParent();
-
         if (parent) {
           parent.updateLayout(this, action, properties);
         }
       },
-
       /**
        * Make this widget visible.
        *
@@ -1339,7 +1161,6 @@
       show: function show(properties) {
         this.__P_393_8("visible", properties);
       },
-
       /**
        * Hide this widget.
        *
@@ -1349,7 +1170,6 @@
       hide: function hide(properties) {
         this.__P_393_8("hidden", properties);
       },
-
       /**
        * Hide this widget and exclude it from the underlying layout.
        *
@@ -1359,7 +1179,6 @@
       exclude: function exclude(properties) {
         this.__P_393_8("excluded", properties);
       },
-
       /**
        * Whether the widget is locally visible.
        *
@@ -1370,7 +1189,6 @@
       isVisible: function isVisible() {
         return this.getVisibility() === "visible";
       },
-
       /**
        * Whether the widget is locally hidden.
        *
@@ -1381,7 +1199,6 @@
       isHidden: function isHidden() {
         return this.getVisibility() !== "visible";
       },
-
       /**
        * Whether the widget is locally excluded.
        *
@@ -1392,7 +1209,6 @@
       isExcluded: function isExcluded() {
         return this.getVisibility() === "excluded";
       },
-
       /**
        * Detects if the widget and all its parents are visible.
        *
@@ -1403,13 +1219,11 @@
       isSeeable: function isSeeable() {
         return this.getContainerElement().offsetWidth > 0;
       },
-
       /*
       ---------------------------------------------------------------------------
        Element handling
       ---------------------------------------------------------------------------
       */
-
       /**
        * Sets the container DOM element of the widget.
        *
@@ -1418,7 +1232,6 @@
       _setContainerElement: function _setContainerElement(element) {
         this.__P_393_4 = element;
       },
-
       /**
        * Returns the container DOM element of the widget.
        *
@@ -1429,7 +1242,6 @@
       getContainerElement: function getContainerElement() {
         return this.__P_393_4;
       },
-
       /**
        * Returns the content DOM element of the widget.
        *
@@ -1441,10 +1253,8 @@
         if (!this.__P_393_5) {
           this.__P_393_5 = this._getContentElement();
         }
-
         return this.__P_393_5;
       },
-
       /**
        * Returns the content DOM element of the widget.
        * Override this method, to define another element as the content element.
@@ -1459,13 +1269,11 @@
       _getContentElement: function _getContentElement() {
         return this.getContainerElement();
       },
-
       /*
       ---------------------------------------------------------------------------
         ENHANCED DISPOSE SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Removes this widget from its parent and disposes it.
        */
@@ -1473,17 +1281,13 @@
         if (this.$$disposed) {
           return;
         }
-
         var parent = this.__P_393_6;
-
         if (parent) {
           parent._remove(this);
         }
-
         this.dispose();
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -1494,21 +1298,16 @@
         // Cleanup event listeners
         // Needed as we rely on the containerElement in the qx.ui.mobile.core.EventHandler
         qx.event.Registration.removeAllListeners(this);
-
         if (this.getId()) {
           qx.ui.mobile.core.Widget.unregisterWidget(this.getId());
         }
       }
-
       this.__P_393_6 = this.__P_393_4 = this.__P_393_5 = null;
-
       if (this.__P_393_7) {
         this.__P_393_7.dispose();
       }
-
       this.__P_393_7 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -1521,4 +1320,4 @@
   qx.ui.mobile.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1685978143095
+//# sourceMappingURL=Widget.js.map?dt=1691935439496

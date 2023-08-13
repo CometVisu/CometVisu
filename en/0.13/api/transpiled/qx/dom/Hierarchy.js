@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -101,14 +100,11 @@
        */
       getNodeIndex: function getNodeIndex(node) {
         var index = 0;
-
         while (node && (node = node.previousSibling)) {
           index++;
         }
-
         return index;
       },
-
       /**
        * Returns the DOM index of the given element (ignoring non-elements)
        *
@@ -118,16 +114,13 @@
       getElementIndex: function getElementIndex(element) {
         var index = 0;
         var type = qx.dom.Node.ELEMENT;
-
         while (element && (element = element.previousSibling)) {
           if (element.nodeType == type) {
             index++;
           }
         }
-
         return index;
       },
-
       /**
        * Return the next element to the supplied element
        *
@@ -140,10 +133,8 @@
         while (element && (element = element.nextSibling) && !qx.dom.Node.isElement(element)) {
           continue;
         }
-
         return element || null;
       },
-
       /**
        * Return the previous element to the supplied element
        *
@@ -156,10 +147,8 @@
         while (element && (element = element.previousSibling) && !qx.dom.Node.isElement(element)) {
           continue;
         }
-
         return element || null;
       },
-
       /**
        * Whether the first element contains the second one
        *
@@ -188,14 +177,11 @@
             if (element == target) {
               return true;
             }
-
             target = target.parentNode;
           }
-
           return false;
         }
       },
-
       /**
        * Whether the element is inserted into the document
        * for which it was created.
@@ -206,13 +192,11 @@
        */
       isRendered: function isRendered(element) {
         var doc = element.ownerDocument || element.document;
-
         if (qx.core.Environment.get("html.element.contains")) {
           // Fast check for all elements which are not in the DOM
           if (!element.parentNode) {
             return false;
           }
-
           return doc.body.contains(element);
         } else if (qx.core.Environment.get("html.element.compareDocumentPosition")) {
           // Gecko way, DOM3 method
@@ -222,14 +206,11 @@
             if (element == doc.body) {
               return true;
             }
-
             element = element.parentNode;
           }
-
           return false;
         }
       },
-
       /**
        * Checks if <code>element</code> is a descendant of <code>ancestor</code>.
        *
@@ -240,7 +221,6 @@
       isDescendantOf: function isDescendantOf(element, ancestor) {
         return this.contains(ancestor, element);
       },
-
       /**
        * Get the common parent element of two given elements. Returns
        * <code>null</code> when no common element has been found.
@@ -255,44 +235,35 @@
         if (element1 === element2) {
           return element1;
         }
-
         if (qx.core.Environment.get("html.element.contains")) {
           while (element1 && qx.dom.Node.isElement(element1)) {
             if (element1.contains(element2)) {
               return element1;
             }
-
             element1 = element1.parentNode;
           }
-
           return null;
         } else {
           var known = [];
-
           while (element1 || element2) {
             if (element1) {
               if (known.includes(element1)) {
                 return element1;
               }
-
               known.push(element1);
               element1 = element1.parentNode;
             }
-
             if (element2) {
               if (known.includes(element2)) {
                 return element2;
               }
-
               known.push(element2);
               element2 = element2.parentNode;
             }
           }
-
           return null;
         }
       },
-
       /**
        * Collects all of element's ancestors and returns them as an array of
        * elements.
@@ -303,7 +274,6 @@
       getAncestors: function getAncestors(element) {
         return this._recursivelyCollect(element, "parentNode");
       },
-
       /**
        * Returns element's children.
        *
@@ -312,20 +282,15 @@
        */
       getChildElements: function getChildElements(element) {
         element = element.firstChild;
-
         if (!element) {
           return [];
         }
-
         var arr = this.getNextSiblings(element);
-
         if (element.nodeType === 1) {
           arr.unshift(element);
         }
-
         return arr;
       },
-
       /**
        * Collects all of element's descendants (deep) and returns them as an array
        * of elements.
@@ -336,7 +301,6 @@
       getDescendants: function getDescendants(element) {
         return qx.lang.Array.fromCollection(element.getElementsByTagName("*"));
       },
-
       /**
        * Returns the first child that is an element. This is opposed to firstChild DOM
        * property which will return any node (whitespace in most usual cases).
@@ -346,14 +310,11 @@
        */
       getFirstDescendant: function getFirstDescendant(element) {
         element = element.firstChild;
-
         while (element && element.nodeType != 1) {
           element = element.nextSibling;
         }
-
         return element;
       },
-
       /**
        * Returns the last child that is an element. This is opposed to lastChild DOM
        * property which will return any node (whitespace in most usual cases).
@@ -363,14 +324,11 @@
        */
       getLastDescendant: function getLastDescendant(element) {
         element = element.lastChild;
-
         while (element && element.nodeType != 1) {
           element = element.previousSibling;
         }
-
         return element;
       },
-
       /**
        * Collects all of element's previous siblings and returns them as an array of elements.
        *
@@ -380,7 +338,6 @@
       getPreviousSiblings: function getPreviousSiblings(element) {
         return this._recursivelyCollect(element, "previousSibling");
       },
-
       /**
        * Collects all of element's next siblings and returns them as an array of
        * elements.
@@ -391,7 +348,6 @@
       getNextSiblings: function getNextSiblings(element) {
         return this._recursivelyCollect(element, "nextSibling");
       },
-
       /**
        * Recursively collects elements whose relationship is specified by
        * property.  <code>property</code> has to be a property (a method won't
@@ -404,16 +360,13 @@
        */
       _recursivelyCollect: function _recursivelyCollect(element, property) {
         var list = [];
-
         while (element = element[property]) {
           if (element.nodeType == 1) {
             list.push(element);
           }
         }
-
         return list;
       },
-
       /**
        * Collects all of element's siblings and returns them as an array of elements.
        *
@@ -423,7 +376,6 @@
       getSiblings: function getSiblings(element) {
         return this.getPreviousSiblings(element).reverse().concat(this.getNextSiblings(element));
       },
-
       /**
        * Whether the given element is empty.
        * Inspired by Base2 (Dean Edwards)
@@ -433,18 +385,14 @@
        */
       isEmpty: function isEmpty(element) {
         element = element.firstChild;
-
         while (element) {
           if (element.nodeType === qx.dom.Node.ELEMENT || element.nodeType === qx.dom.Node.TEXT) {
             return false;
           }
-
           element = element.nextSibling;
         }
-
         return true;
       },
-
       /**
        * Removes all of element's text nodes which contain only whitespace
        *
@@ -452,14 +400,11 @@
        */
       cleanWhitespace: function cleanWhitespace(element) {
         var node = element.firstChild;
-
         while (node) {
           var nextNode = node.nextSibling;
-
           if (node.nodeType == 3 && !/\S/.test(node.nodeValue)) {
             element.removeChild(node);
           }
-
           node = nextNode;
         }
       }
@@ -468,4 +413,4 @@
   qx.dom.Hierarchy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Hierarchy.js.map?dt=1685978120196
+//# sourceMappingURL=Hierarchy.js.map?dt=1691935418069

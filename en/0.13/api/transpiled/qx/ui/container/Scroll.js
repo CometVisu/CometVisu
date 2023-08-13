@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -76,30 +75,27 @@
   qx.Class.define("qx.ui.container.Scroll", {
     extend: qx.ui.core.scroll.AbstractScrollArea,
     include: [qx.ui.core.MContentPadding],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param content {qx.ui.core.LayoutItem?null} The content widget of the scroll
      *    container.
      */
     construct: function construct(content) {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
-
       if (content) {
         this.add(content);
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Sets the content of the scroll container. Scroll containers
@@ -111,7 +107,6 @@
       add: function add(widget) {
         this.getChildControl("pane").add(widget);
       },
-
       /**
        * Returns the content of the scroll area.
        *
@@ -120,7 +115,6 @@
       remove: function remove(widget) {
         this.getChildControl("pane").remove(widget);
       },
-
       /**
        * Returns the content of the scroll container.
        *
@@ -132,7 +126,6 @@
       getChildren: function getChildren() {
         return this.getChildControl("pane").getChildren();
       },
-
       /**
        * Returns the element, to which the content padding should be applied.
        *
@@ -146,4 +139,4 @@
   qx.ui.container.Scroll.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroll.js.map?dt=1685978133097
+//# sourceMappingURL=Scroll.js.map?dt=1691935430156

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
        * @type {Object} Native transport.
        */
       transport: null,
-
       /**
        * @type {Number} Ready state.
        *
@@ -59,22 +57,18 @@
        * DONE:             4
        */
       readyState: 0,
-
       /**
        * @type {Number} The status code.
        */
       status: 0,
-
       /**
        * @type {String} The status text.
        */
       statusText: "",
-
       /**
        * @type {String} The response of the request as text.
        */
       responseText: "",
-
       /**
        * @type {Number} Timeout limit in milliseconds.
        *
@@ -84,7 +78,6 @@
       //
       // Methods
       //
-
       /**
        * Initializes (prepares) request.
        *
@@ -96,7 +89,6 @@
        *  Whether or not to perform the operation asynchronously.
        */
       open: function open(method, url, async) {},
-
       /**
        * Sends request.
        *
@@ -104,19 +96,16 @@
        *  Optional data to send.
        */
       send: function send(data) {},
-
       /**
        * Abort request
        */
       abort: function abort() {},
-
       /**
        * Get all response headers from response.
        *
        * @return {String} All response headers.
        */
       getAllResponseHeaders: function getAllResponseHeaders() {},
-
       /**
        * Get a single response header from response.
        *
@@ -126,7 +115,6 @@
        *  Response header.
        */
       getResponseHeader: function getResponseHeader(header) {},
-
       /**
        * Sets a request header to be used by the request.
        *
@@ -139,32 +127,26 @@
       //
       // Handlers
       //
-
       /**
        * Event handler for event fired at every state change.
        */
       onreadystatechange: function onreadystatechange() {},
-
       /**
        * Event handler for event fired on successful retrieval.
        */
       onload: function onload() {},
-
       /**
        * Event handler for event fired on retrieval.
        */
       onloadend: function onloadend() {},
-
       /**
        * Event handler for event fired on a network error.
        */
       onerror: function onerror() {},
-
       /**
        * Event handler for event fired when request is aborted.
        */
       onabort: function onabort() {},
-
       /**
        * Event handler for event fired when timeout interval has passed.
        */
@@ -174,4 +156,4 @@
   qx.bom.request.IRequest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IRequest.js.map?dt=1685978111218
+//# sourceMappingURL=IRequest.js.map?dt=1691935409764

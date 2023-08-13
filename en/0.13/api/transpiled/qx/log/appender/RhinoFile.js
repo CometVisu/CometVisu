@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,7 +29,6 @@
    *
    * @ignore(java.*)
    */
-
   /* global java */
   qx.Class.define("qx.log.appender.RhinoFile", {
     statics: {
@@ -40,7 +38,6 @@
        */
       FILENAME: null,
       __P_278_0: null,
-
       /**
        * Writes a message to the file.
        *
@@ -51,13 +48,11 @@
         if (!qx.log.appender.RhinoFile.__P_278_0) {
           qx.log.appender.RhinoFile.create();
         }
-
         var logFile = qx.log.appender.RhinoFile.__P_278_0;
         logFile.write(logMessage);
         logFile.newLine();
         logFile.flush();
       },
-
       /**
        * Logs a debug message
        *
@@ -66,7 +61,6 @@
       debug: function debug(logMessage) {
         this.log(logMessage, "debug");
       },
-
       /**
        * Logs an info message
        *
@@ -75,7 +69,6 @@
       info: function info(logMessage) {
         this.log(logMessage, "info");
       },
-
       /**
        * Logs a warning message
        *
@@ -84,7 +77,6 @@
       warn: function warn(logMessage) {
         this.log(logMessage, "warn");
       },
-
       /**
        * Logs an error message
        *
@@ -93,7 +85,6 @@
       error: function error(logMessage) {
         this.log(logMessage, "error");
       },
-
       /**
        * Process a log entry object from qooxdoo's logging system.
        *
@@ -101,11 +92,9 @@
        */
       process: function process(entry) {
         var level = entry.level || "info";
-
         for (var prop in entry) {
           if (prop == "items") {
             var items = entry[prop];
-
             for (var p = 0, l = items.length; p < l; p++) {
               var item = items[p];
               this[level](item.text);
@@ -113,7 +102,6 @@
           }
         }
       },
-
       /**
        * Creates a new log file using the value of {@link #FILENAME} as the
        * file path/name.
@@ -122,11 +110,9 @@
         if (qx.log.appender.RhinoFile.__P_278_0) {
           qx.log.appender.RhinoFile.__P_278_0.close();
         }
-
         if (!qx.log.appender.RhinoFile.FILENAME) {
           qx.log.appender.RhinoFile.FILENAME = "qooxdoo.log";
         }
-
         var fstream = new java.io.FileWriter(qx.log.appender.RhinoFile.FILENAME, true);
         qx.log.appender.RhinoFile.__P_278_0 = new java.io.BufferedWriter(fstream);
       }
@@ -135,4 +121,4 @@
   qx.log.appender.RhinoFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RhinoFile.js.map?dt=1685978128462
+//# sourceMappingURL=RhinoFile.js.map?dt=1691935425765

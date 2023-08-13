@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,7 +42,6 @@
     },
     destruct: function destruct() {
       this.__P_343_0.dispose();
-
       this.__P_343_0 = null;
     },
     events: {
@@ -53,7 +51,6 @@
     members: {
       /** @type {Map<String,qx.ui.form.CheckBox>} map of checked items, indexed by hash code */
       __P_343_0: null,
-
       /**
        * Returns the array of checked items
        *
@@ -62,7 +59,6 @@
       getChecked: function getChecked() {
         return Object.values(this.__P_343_0);
       },
-
       /**
        * Sets the array of checked items
        *
@@ -70,38 +66,33 @@
        */
       setChecked: function setChecked(checked) {
         var _this = this;
-
         var oldData = this.getChecked();
         this.__P_343_1 = true;
-
         try {
           var toUncheck = {};
           Object.values(this.__P_343_0).forEach(function (item) {
             return toUncheck[item.toHashCode()] = item;
           });
           var replacement = {};
-
           if (!checked) {
             checked = [];
           } else {
             var someTurnedOn = false;
             checked.forEach(function (item) {
               var hash = item.toHashCode();
-
               if (!_this.__P_343_0[hash]) {
                 someTurnedOn = true;
                 item.setValue(true);
               }
-
               delete toUncheck[hash];
               replacement[hash] = item;
-            }); // Nothing turned on and nothing to turn off - then no change
+            });
 
+            // Nothing turned on and nothing to turn off - then no change
             if (!someTurnedOn && Object.keys(toUncheck).length == 0) {
               return;
             }
           }
-
           Object.values(toUncheck).forEach(function (item) {
             return item.setValue(false);
           });
@@ -109,46 +100,36 @@
         } finally {
           this.__P_343_1 = false;
         }
-
         this.fireDataEvent("changeChecked", this.getChecked(), oldData);
       },
-
       /**
        * Clears the list of checked items
        */
       resetChecked: function resetChecked() {
         this.setChecked(null);
       },
-
       /*
        * @Override
        */
       _onAddChild: function _onAddChild(evt) {
         qx.ui.form.CheckedList.superclass.prototype._onAddChild.call(this, evt);
-
         var item = evt.getData();
-
         if (item.getValue()) {
           this.__P_343_2(item);
         }
-
         item.addListener("changeValue", this.__P_343_3, this);
       },
-
       /*
        * @Override
        */
       _onRemoveChild: function _onRemoveChild(evt) {
         qx.ui.form.CheckedList.superclass.prototype._onRemoveChild.call(this, evt);
-
         var item = evt.getData();
         item.removeListener("changeValue", this.__P_343_3, this);
-
         if (item.getValue()) {
           this.__P_343_2(item, true);
         }
       },
-
       /**
        * Event handler for when an item is [un]checked
        *
@@ -158,10 +139,8 @@
         if (this.__P_343_1) {
           return;
         }
-
         this.__P_343_2(evt.getTarget());
       },
-
       /**
        * Handles changes in the items checked state
        *
@@ -171,14 +150,11 @@
       __P_343_2: function __P_343_2(item, removing) {
         var hash = item.toHashCode();
         var checked = item.getValue();
-
         if (removing) {
           checked = false;
         }
-
         var changed = false;
         var oldData = this.getChecked();
-
         if (checked) {
           if (!this.__P_343_0[hash]) {
             changed = true;
@@ -190,7 +166,6 @@
             changed = true;
           }
         }
-
         if (changed) {
           this.fireDataEvent("changeChecked", this.getChecked(), oldData);
         }
@@ -200,4 +175,4 @@
   qx.ui.form.CheckedList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckedList.js.map?dt=1685978137557
+//# sourceMappingURL=CheckedList.js.map?dt=1691935434140

@@ -22,7 +22,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,28 +49,29 @@
   qx.Class.define("qx.ui.table.columnmodel.Resize", {
     extend: qx.ui.table.columnmodel.Basic,
     include: qx.locale.MTranslation,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.ui.table.columnmodel.Basic.constructor.call(this); // We don't want to recursively call ourself based on our resetting of
-      // column sizes.  Track when we're resizing.
+      qx.ui.table.columnmodel.Basic.constructor.call(this);
 
-      this.__P_444_0 = false; // Track when the table has appeared.  We want to ignore resize events
+      // We don't want to recursively call ourself based on our resetting of
+      // column sizes.  Track when we're resizing.
+      this.__P_444_0 = false;
+
+      // Track when the table has appeared.  We want to ignore resize events
       // until then since we won't be able to determine the available width
       // anyway.
-
       this.__P_444_1 = false;
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * The behavior to use.
@@ -88,12 +88,12 @@
         event: "changeBehavior"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_444_1: null,
       __P_444_0: null,
@@ -103,14 +103,12 @@
         if (old != null) {
           old.dispose();
           old = null;
-        } // Tell the new behavior how many columns there are
+        }
 
-
+        // Tell the new behavior how many columns there are
         value._setNumColumns(this.getOverallColumnCount());
-
         value.setTableColumnModel(this);
       },
-
       /**
        * Initializes the column model.
        *
@@ -122,32 +120,35 @@
       init: function init(numColumns, table) {
         // Call our superclass
         qx.ui.table.columnmodel.Resize.superclass.prototype.init.call(this, numColumns, table);
-
         if (this.__P_444_2 == null) {
-          this.__P_444_2 = table; // We'll do our column resizing when the table appears, ...
+          this.__P_444_2 = table;
+          // We'll do our column resizing when the table appears, ...
+          table.addListener("appear", this._onappear, this);
 
-          table.addListener("appear", this._onappear, this); // ... when the inner width of the table changes, ...
+          // ... when the inner width of the table changes, ...
+          table.addListener("tableWidthChanged", this._onTableWidthChanged, this);
 
-          table.addListener("tableWidthChanged", this._onTableWidthChanged, this); // ... when a vertical scroll bar appears or disappears
+          // ... when a vertical scroll bar appears or disappears
+          table.addListener("verticalScrollBarChanged", this._onverticalscrollbarchanged, this);
 
-          table.addListener("verticalScrollBarChanged", this._onverticalscrollbarchanged, this); // We want to manipulate the button visibility menu
+          // We want to manipulate the button visibility menu
+          table.addListener("columnVisibilityMenuCreateEnd", this._addResetColumnWidthButton, this);
 
-          table.addListener("columnVisibilityMenuCreateEnd", this._addResetColumnWidthButton, this); // ... when columns are resized, ...
+          // ... when columns are resized, ...
+          this.addListener("widthChanged", this._oncolumnwidthchanged, this);
 
-          this.addListener("widthChanged", this._oncolumnwidthchanged, this); // ... and when a column visibility changes.
-
+          // ... and when a column visibility changes.
           this.addListener("visibilityChanged", this._onvisibilitychanged, this);
-        } // Set the initial resize behavior
+        }
 
-
+        // Set the initial resize behavior
         if (this.getBehavior() == null) {
           this.setBehavior(new qx.ui.table.columnmodel.resizebehavior.Default());
-        } // Tell the behavior how many columns there are
+        }
 
-
+        // Tell the behavior how many columns there are
         this.getBehavior()._setNumColumns(numColumns);
       },
-
       /**
        * Get the table widget
        *
@@ -156,7 +157,6 @@
       getTable: function getTable() {
         return this.__P_444_2;
       },
-
       /**
        * Reset the column widths to their "onappear" defaults.
        *
@@ -170,18 +170,19 @@
         var data = event.getData();
         var columnButton = data.columnButton;
         var menu = data.menu;
-        var o; // Add a separator between the column names and our reset button
+        var o;
 
+        // Add a separator between the column names and our reset button
         o = columnButton.factory("separator");
-        menu.add(o); // Add a button to reset the column widths
+        menu.add(o);
 
+        // Add a button to reset the column widths
         o = columnButton.factory("user-button", {
           text: this.tr("Reset column widths")
         });
         menu.add(o);
         o.addListener("execute", this._onappear, this);
       },
-
       /**
        * Event handler for the "appear" event.
        *
@@ -195,19 +196,14 @@
           // Yup.  Ignore it.
           return;
         }
-
         this.__P_444_0 = true;
         // this handler is also called by the "execute" event of the menu button
         this.getBehavior().onAppear(event, event.getType() !== "appear");
-
         this.__P_444_2._updateScrollerWidths();
-
         this.__P_444_2._updateScrollBarVisibility();
-
         this.__P_444_0 = false;
         this.__P_444_1 = true;
       },
-
       /**
        * Event handler for the "tableWidthChanged" event.
        *
@@ -221,12 +217,10 @@
           // Yup.  Ignore it.
           return;
         }
-
         this.__P_444_0 = true;
         this.getBehavior().onTableWidthChanged(event);
         this.__P_444_0 = false;
       },
-
       /**
        * Event handler for the "verticalScrollBarChanged" event.
        *
@@ -241,19 +235,16 @@
           // Yup.  Ignore it.
           return;
         }
-
         this.__P_444_0 = true;
         this.getBehavior().onVerticalScrollBarChanged(event);
         qx.event.Timer.once(function () {
           if (this.__P_444_2 && !this.__P_444_2.isDisposed()) {
             this.__P_444_2._updateScrollerWidths();
-
             this.__P_444_2._updateScrollBarVisibility();
           }
         }, this, 0);
         this.__P_444_0 = false;
       },
-
       /**
        * Event handler for the "widthChanged" event.
        *
@@ -267,12 +258,10 @@
           // Yup.  Ignore it.
           return;
         }
-
         this.__P_444_0 = true;
         this.getBehavior().onColumnWidthChanged(event);
         this.__P_444_0 = false;
       },
-
       /**
        * Event handler for the "visibilityChanged" event.
        *
@@ -286,13 +275,11 @@
           // Yup.  Ignore it.
           return;
         }
-
         this.__P_444_0 = true;
         this.getBehavior().onVisibilityChanged(event);
         this.__P_444_0 = false;
       }
     },
-
     /*
      *****************************************************************************
         DESTRUCTOR
@@ -300,15 +287,13 @@
      */
     destruct: function destruct() {
       var behavior = this.getBehavior();
-
       if (behavior) {
         behavior.dispose();
       }
-
       this.__P_444_2 = null;
     }
   });
   qx.ui.table.columnmodel.Resize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resize.js.map?dt=1685978147550
+//# sourceMappingURL=Resize.js.map?dt=1691935443872

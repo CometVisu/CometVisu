@@ -11,12 +11,12 @@
       "start": {
         "line": 26,
         "column": 0,
-        "index": 698
+        "index": 723
       },
       "end": {
         "line": 45,
         "column": 3,
-        "index": 1039
+        "index": 1083
       }
     },
     "jsdoc": {
@@ -35,12 +35,12 @@
         "start": {
           "line": 30,
           "column": 4,
-          "index": 806
+          "index": 835
         },
         "end": {
           "line": 33,
           "column": 5,
-          "index": 871
+          "index": 903
         }
       },
       "name": "appearance",
@@ -77,12 +77,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 913
+          "index": 950
         },
         "end": {
           "line": 43,
           "column": 5,
-          "index": 1031
+          "index": 1073
         }
       },
       "jsdoc": {},

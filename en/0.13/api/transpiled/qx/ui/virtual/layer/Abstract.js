@@ -16,7 +16,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,7 +48,6 @@
     extend: qx.ui.core.Widget,
     type: "abstract",
     implement: [qx.ui.virtual.core.ILayer],
-
     /*
      *****************************************************************************
         CONSTRUCTOR
@@ -59,12 +57,12 @@
       qx.ui.core.Widget.constructor.call(this);
       this.__P_479_0 = {};
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       anonymous: {
@@ -72,12 +70,12 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_479_0: null,
       __P_479_1: null,
@@ -85,7 +83,6 @@
       __P_479_3: null,
       __P_479_4: null,
       __P_479_5: null,
-
       /**
        * Get the first rendered row
        *
@@ -94,7 +91,6 @@
       getFirstRow: function getFirstRow() {
         return this.__P_479_2;
       },
-
       /**
        * Get the first rendered column
        *
@@ -103,7 +99,6 @@
       getFirstColumn: function getFirstColumn() {
         return this.__P_479_3;
       },
-
       /**
        * Get the sizes of the rendered rows
        *
@@ -112,7 +107,6 @@
       getRowSizes: function getRowSizes() {
         return this.__P_479_4 || [];
       },
-
       /**
        * Get the sizes of the rendered column
        *
@@ -128,7 +122,6 @@
         if (!this.getContentElement().getDomElement()) {
           return;
         }
-
         if (this.__P_479_0.fullUpdate || this.__P_479_0.updateLayerWindow && this.__P_479_0.updateLayerData) {
           this._fullUpdate.apply(this, this.__P_479_1);
         } else if (this.__P_479_0.updateLayerWindow) {
@@ -136,7 +129,6 @@
         } else if (this.__P_479_0.updateLayerData && this.__P_479_4) {
           this._updateLayerData();
         }
-
         if (this.__P_479_0.fullUpdate || this.__P_479_0.updateLayerWindow) {
           var args = this.__P_479_1;
           this.__P_479_2 = args[0];
@@ -144,10 +136,8 @@
           this.__P_479_4 = args[2];
           this.__P_479_5 = args[3];
         }
-
         this.__P_479_0 = {};
       },
-
       /**
        * Update the layer to reflect changes in the data the layer displays.
        *
@@ -157,7 +147,6 @@
       _updateLayerData: function _updateLayerData() {
         this._fullUpdate(this.__P_479_2, this.__P_479_3, this.__P_479_4, this.__P_479_5);
       },
-
       /**
        * Do a complete update of the layer. All cached data should be discarded.
        * This method is called e.g. after changes to the grid geometry
@@ -174,7 +163,6 @@
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
         throw new Error("Abstract method '_fullUpdate' called!");
       },
-
       /**
        * Update the layer to display a different window of the virtual grid.
        * This method is called if the pane is scrolled, resized or cells
@@ -211,7 +199,6 @@
         qx.ui.core.queue.Widget.add(this);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -224,4 +211,4 @@
   qx.ui.virtual.layer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1685978151683
+//# sourceMappingURL=Abstract.js.map?dt=1691935447943

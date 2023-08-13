@@ -36,7 +36,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -71,13 +70,11 @@
        * Fires after {@link #block} executed.
        */
       blocked: "qx.event.type.Event",
-
       /**
        * Fires after {@link #unblock} executed.
        */
       unblocked: "qx.event.type.Event"
     },
-
     /**
      * Creates a blocker for the passed widget.
      *
@@ -89,25 +86,24 @@
       widget.addListener("resize", this.__P_305_0, this);
       widget.addListener("move", this.__P_305_0, this);
       widget.addListener("disappear", this.__P_305_1, this);
-
       if (qx.Class.isDefined("qx.ui.root.Abstract") && widget instanceof qx.ui.root.Abstract) {
         this._isRoot = true;
         this.setKeepBlockerActive(true);
-      } // dynamic theme switch
+      }
 
-
+      // dynamic theme switch
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
       }
       this.__P_305_2 = [];
       this.__P_305_3 = [];
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Color of the blocker
@@ -119,7 +115,6 @@
         apply: "_applyColor",
         themeable: true
       },
-
       /**
        * Opacity of the blocker
        */
@@ -129,7 +124,6 @@
         apply: "_applyOpacity",
         themeable: true
       },
-
       /**
        * If this property is enabled, the blocker created with {@link #block}
        * will always stay activated. This means that the blocker then gets all keyboard
@@ -150,12 +144,12 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_305_4: null,
       __P_305_5: 0,
@@ -165,7 +159,6 @@
       _widget: null,
       _isRoot: false,
       __P_305_7: null,
-
       /**
        * Adjust html element size on layout resizes.
        *
@@ -173,36 +166,30 @@
        */
       __P_305_0: function __P_305_0(e) {
         var data = e.getData();
-
         if (this.isBlocked()) {
           this._updateBlockerBounds(data);
         }
       },
-
       /**
        * Widget re-appears: Update blocker size/position and attach to (new) parent
        */
       __P_305_8: function __P_305_8() {
         this._updateBlockerBounds(this._widget.getBounds());
-
         if (this._widget.isRootWidget()) {
           this._widget.getContentElement().add(this.getBlockerElement());
         } else {
           this._widget.getLayoutParent().getContentElement().add(this.getBlockerElement());
         }
       },
-
       /**
        * Remove the blocker if the widget disappears
        */
       __P_305_1: function __P_305_1() {
         if (this.isBlocked()) {
           this.getBlockerElement().getParent().remove(this.getBlockerElement());
-
           this._widget.addListenerOnce("appear", this.__P_305_8, this);
         }
       },
-
       /**
        * set the blocker's size and position
        * @param bounds {Map} Map with the new width, height, left and top values
@@ -218,14 +205,12 @@
       // property apply
       _applyColor: function _applyColor(value, old) {
         var color = qx.theme.manager.Color.getInstance().resolve(value);
-
         this.__P_305_9("backgroundColor", color);
       },
       // property apply
       _applyOpacity: function _applyOpacity(value, old) {
         this.__P_305_9("opacity", value);
       },
-
       /**
        * Handler for the theme change.
        * @signature function()
@@ -236,7 +221,6 @@
         },
         "false": null
       }),
-
       /**
        * Set the style to all blockers (blocker and content blocker).
        *
@@ -246,12 +230,10 @@
       __P_305_9: function __P_305_9(key, value) {
         var blockers = [];
         this.__P_305_4 && blockers.push(this.__P_305_4);
-
         for (var i = 0; i < blockers.length; i++) {
           blockers[i].setStyle(key, value);
         }
       },
-
       /**
        * Backup the current active and focused widget.
        */
@@ -259,46 +241,35 @@
         var focusHandler = qx.event.Registration.getManager(window).getHandler(qx.event.handler.Focus);
         var activeWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getActive());
         var focusedWidget = qx.ui.core.Widget.getWidgetByElement(focusHandler.getFocus());
-
         this.__P_305_2.push(activeWidget);
-
         this.__P_305_3.push(focusedWidget);
-
         if (activeWidget) {
           activeWidget.deactivate();
         }
-
         if (focusedWidget && focusedWidget.isFocusable()) {
           focusedWidget.blur();
         }
       },
-
       /**
        * Restore the current active and focused widget.
        */
       _restoreActiveWidget: function _restoreActiveWidget() {
         var widget;
         var focusElementsLength = this.__P_305_3.length;
-
         if (focusElementsLength > 0) {
           widget = this.__P_305_3.pop();
-
           if (widget && !widget.isDisposed() && widget.isFocusable()) {
             widget.focus();
           }
         }
-
         var activeElementsLength = this.__P_305_2.length;
-
         if (activeElementsLength > 0) {
           widget = this.__P_305_2.pop();
-
           if (widget && !widget.isDisposed()) {
             widget.activate();
           }
         }
       },
-
       /**
        * Creates the blocker element.
        *
@@ -307,7 +278,6 @@
       __P_305_10: function __P_305_10() {
         return new qx.html.Blocker(this.getColor(), this.getOpacity());
       },
-
       /**
        * Get/create the blocker element
        *
@@ -318,9 +288,7 @@
       getBlockerElement: function getBlockerElement(widget) {
         if (!this.__P_305_4) {
           this.__P_305_4 = this.__P_305_10();
-
           this.__P_305_4.setStyle("zIndex", 15);
-
           if (!widget) {
             if (this._isRoot) {
               widget = this._widget;
@@ -328,15 +296,11 @@
               widget = this._widget.getLayoutParent();
             }
           }
-
           widget.getContentElement().add(this.__P_305_4);
-
           this.__P_305_4.exclude();
         }
-
         return this.__P_305_4;
       },
-
       /**
        * Block all events from this widget by placing a transparent overlay widget,
        * which receives all events, exactly over the widget.
@@ -344,7 +308,6 @@
       block: function block() {
         this._block();
       },
-
       /**
        * Adds the blocker to the appropriate element and includes it.
        *
@@ -356,42 +319,30 @@
           if (!this.__P_305_7) {
             this.__P_305_7 = this._widget.addListenerOnce("appear", this._block.bind(this, zIndex));
           }
-
           return;
         }
-
         var parent;
-
         if (this._isRoot || blockContent) {
           parent = this._widget;
         } else {
           parent = this._widget.getLayoutParent();
         }
-
         var blocker = this.getBlockerElement(parent);
-
         if (zIndex != null) {
           blocker.setStyle("zIndex", zIndex);
         }
-
         this.__P_305_5++;
-
         if (this.__P_305_5 < 2) {
           this._backupActiveWidget();
-
-          var bounds = this._widget.getBounds(); // no bounds -> widget not yet rendered -> bounds will be set on resize
-
-
+          var bounds = this._widget.getBounds();
+          // no bounds -> widget not yet rendered -> bounds will be set on resize
           if (bounds) {
             this._updateBlockerBounds(bounds);
           }
-
           blocker.include();
-
           if (!blockContent) {
             blocker.activate();
           }
-
           blocker.addListener("deactivate", this.__P_305_11, this);
           blocker.addListener("keypress", this.__P_305_12, this);
           blocker.addListener("keydown", this.__P_305_12, this);
@@ -399,7 +350,6 @@
           this.fireEvent("blocked", qx.event.type.Event);
         }
       },
-
       /**
        * Returns whether the widget is blocked.
        *
@@ -408,7 +358,6 @@
       isBlocked: function isBlocked() {
         return this.__P_305_5 > 0;
       },
-
       /**
        * Unblock the widget blocked by {@link #block}, but it takes care of
        * the amount of {@link #block} calls. The blocker is only removed if
@@ -417,23 +366,17 @@
       unblock: function unblock() {
         if (this.__P_305_7) {
           this._widget.removeListenerById(this.__P_305_7);
-
           this.__P_305_7 = null;
         }
-
         if (!this.isBlocked()) {
           return;
         }
-
         this.__P_305_5--;
-
         if (this.__P_305_5 < 1) {
           this.__P_305_13();
-
           this.__P_305_5 = 0;
         }
       },
-
       /**
        * Unblock the widget blocked by {@link #block}, but it doesn't take care of
        * the amount of {@link #block} calls. The blocker is directly removed.
@@ -441,25 +384,19 @@
       forceUnblock: function forceUnblock() {
         if (this.__P_305_7) {
           this._widget.removeListenerById(this.__P_305_7);
-
           this.__P_305_7 = null;
         }
-
         if (!this.isBlocked()) {
           return;
         }
-
         this.__P_305_5 = 0;
-
         this.__P_305_13();
       },
-
       /**
        * Unblock the widget blocked by {@link #block}.
        */
       __P_305_13: function __P_305_13() {
         this._restoreActiveWidget();
-
         var blocker = this.getBlockerElement();
         blocker.removeListener("deactivate", this.__P_305_11, this);
         blocker.removeListener("keypress", this.__P_305_12, this);
@@ -468,7 +405,6 @@
         blocker.exclude();
         this.fireEvent("unblocked", qx.event.type.Event);
       },
-
       /**
        * Block direct child widgets with a zIndex below <code>zIndex</code>
        *
@@ -478,7 +414,6 @@
       blockContent: function blockContent(zIndex) {
         this._block(zIndex, true);
       },
-
       /**
        * Stops the passed "Tab" event.
        *
@@ -489,7 +424,6 @@
           e.stop();
         }
       },
-
       /**
        * Sets the blocker element to active.
        */
@@ -511,7 +445,6 @@
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -522,25 +455,18 @@
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
       }
-
       this._widget.removeListener("resize", this.__P_305_0, this);
-
       this._widget.removeListener("move", this.__P_305_0, this);
-
       this._widget.removeListener("appear", this.__P_305_8, this);
-
       this._widget.removeListener("disappear", this.__P_305_1, this);
-
       if (this.__P_305_7) {
         this._widget.removeListenerById(this.__P_305_7);
       }
-
       this._disposeObjects("__P_305_4", "__P_305_6");
-
       this.__P_305_2 = this.__P_305_3 = this._widget = null;
     }
   });
   qx.ui.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1685978133996
+//# sourceMappingURL=Blocker.js.map?dt=1691935430761

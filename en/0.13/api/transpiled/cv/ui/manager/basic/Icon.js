@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Icon.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -40,4 +39,4 @@
   cv.ui.manager.basic.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1685978093997
+//# sourceMappingURL=Icon.js.map?dt=1691935393479

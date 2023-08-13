@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -70,7 +69,6 @@
       qx.ui.mobile.list.renderer.Abstract.constructor.call(this, layout || new qx.ui.mobile.layout.HBox().set({
         alignY: "middle"
       }));
-
       this._init();
     },
     members: {
@@ -78,7 +76,6 @@
       __P_411_1: null,
       __P_411_2: null,
       __P_411_3: null,
-
       /**
        * Returns the image widget which is used for this renderer.
        *
@@ -87,7 +84,6 @@
       getImageWidget: function getImageWidget() {
         return this.__P_411_0;
       },
-
       /**
        * Returns the title widget which is used for this renderer.
        *
@@ -96,7 +92,6 @@
       getTitleWidget: function getTitleWidget() {
         return this.__P_411_1;
       },
-
       /**
        * Returns the subtitle widget which is used for this renderer.
        *
@@ -105,7 +100,6 @@
       getSubtitleWidget: function getSubtitleWidget() {
         return this.__P_411_2;
       },
-
       /**
        * Sets the source of the image widget.
        *
@@ -114,7 +108,6 @@
       setImage: function setImage(source) {
         this.__P_411_0.setSource(source);
       },
-
       /**
        * Sets the value of the title widget.
        *
@@ -127,7 +120,6 @@
           this.__P_411_1.setValue(title);
         }
       },
-
       /**
        * Sets the value of the subtitle widget.
        *
@@ -140,7 +132,6 @@
           this.__P_411_2.setValue(subtitle);
         }
       },
-
       /**
        * Inits the widgets for the renderer.
        *
@@ -153,14 +144,10 @@
           flex: 1
         });
         this.__P_411_1 = this._createTitle();
-
         this.__P_411_3.add(this.__P_411_1);
-
         this.__P_411_2 = this._createSubtitle();
-
         this.__P_411_3.add(this.__P_411_2);
       },
-
       /**
        * Creates and returns the right container composite. Override this to adapt the widget code.
        *
@@ -169,7 +156,6 @@
       _createRightContainer: function _createRightContainer() {
         return new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
       },
-
       /**
        * Creates and returns the image widget. Override this to adapt the widget code.
        *
@@ -181,7 +167,6 @@
         image.addCssClass("list-item-image");
         return image;
       },
-
       /**
        * Creates and returns the title widget. Override this to adapt the widget code.
        *
@@ -193,7 +178,6 @@
         title.addCssClass("list-item-title");
         return title;
       },
-
       /**
        * Creates and returns the subtitle widget. Override this to adapt the widget code.
        *
@@ -208,9 +192,7 @@
       // overridden
       reset: function reset() {
         this.__P_411_0.setSource(null);
-
         this.__P_411_1.setValue("");
-
         this.__P_411_2.setValue("");
       }
     },
@@ -221,4 +203,4 @@
   qx.ui.mobile.list.renderer.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1685978144609
+//# sourceMappingURL=Default.js.map?dt=1691935440997

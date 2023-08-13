@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
    */
   qx.Class.define("qxl.apiviewer.ui.LegendView", {
     extend: qx.ui.container.Scroll,
-
     /*
     *****************************************************************************
      CONSTRUCTOR
@@ -70,7 +68,7 @@
       layout.setColumnWidth(1, 150);
       layout.setColumnFlex(1, 1);
       var content = new qx.ui.container.Composite(layout);
-      this.__P_568_0 = [{
+      this.__P_569_0 = [{
         icon: "ICON_PACKAGE",
         desc: "Package"
       }, {
@@ -140,18 +138,15 @@
         icon: "OVERLAY_OVERRIDDEN",
         desc: "Method/Property overrides the Method/Property of the super class"
       }];
-      var length = this.__P_568_0.length;
+      var length = this.__P_569_0.length;
       var entry;
       var imageUrl;
-
       for (var i = 0; i < length; i++) {
-        entry = this.__P_568_0[i];
+        entry = this.__P_569_0[i];
         imageUrl = qxl.apiviewer.TreeUtil.iconNameToIconPath(entry.icon);
-
         if (typeof imageUrl != "string") {
           imageUrl = imageUrl[0];
         }
-
         content.add(new qx.ui.basic.Image(imageUrl).set({
           alignX: "center",
           alignY: "middle"
@@ -167,29 +162,27 @@
           column: 1
         });
       }
-
       this.add(content);
     },
-
     /*
     *****************************************************************************
      MEMBERS
     *****************************************************************************
     */
-    members: {
-      __P_568_0: null
-    },
 
+    members: {
+      __P_569_0: null
+    },
     /*
     *****************************************************************************
      DESTRUCTOR
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__P_568_0");
+      this._disposeMap("__P_569_0");
     }
   });
   qxl.apiviewer.ui.LegendView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LegendView.js.map?dt=1685978162849
+//# sourceMappingURL=LegendView.js.map?dt=1691935458044

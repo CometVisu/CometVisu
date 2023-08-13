@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Popup.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -40,10 +39,10 @@
    * with this program; if not, write to the Free Software Foundation, Inc.,
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
+
   //noinspection JSUnusedGlobalSymbols
   qx.Class.define('cv.ui.Popup', {
     extend: qx.core.Object,
-
     /*
     ******************************************************
       CONSTRUCTOR
@@ -53,11 +52,9 @@
       if (type) {
         this.setType(type);
       }
-
-      this.__P_559_0 = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
-      this.__P_559_1 = {};
+      this.__P_560_0 = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
+      this.__P_560_1 = {};
     },
-
     /*
     ******************************************************
       EVENTS
@@ -66,7 +63,6 @@
     events: {
       close: 'qx.event.type.Event'
     },
-
     /*
     ******************************************************
       PROPERTIES
@@ -78,21 +74,19 @@
         init: ''
       }
     },
-
     /*
     ******************************************************
       MEMBERS
     ******************************************************
     */
     members: {
-      __P_559_2: 0,
-      __P_559_0: null,
-      __P_559_3: null,
-      __P_559_1: null,
+      __P_560_2: 0,
+      __P_560_0: null,
+      __P_560_3: null,
+      __P_560_1: null,
       getCurrentDomElement: function getCurrentDomElement() {
-        return this.__P_559_3;
+        return this.__P_560_3;
       },
-
       /**
        * Create the popup element
        *
@@ -107,93 +101,81 @@
         var classes = ['popup', 'popup_background', this.getType()];
         var isNew = true;
         var addCloseListeners = false;
-
         if (attributes.type) {
           classes.push(attributes.type);
         }
-
-        if (!this.__P_559_3) {
-          ret_val = this.__P_559_3 = qx.dom.Element.create('div', {
-            id: 'popup_' + this.__P_559_2,
+        if (!this.__P_560_3) {
+          ret_val = this.__P_560_3 = qx.dom.Element.create('div', {
+            id: 'popup_' + this.__P_560_2,
             "class": classes.join(' '),
             style: 'visibility:hidden',
             html: closable ? '<div class="popup_close">X</div>' : ''
           });
           body.appendChild(ret_val);
-          this.__P_559_1.close = ret_val.querySelector('div.popup_close');
+          this.__P_560_1.close = ret_val.querySelector('div.popup_close');
           addCloseListeners = true;
         } else {
           isNew = false;
-          ret_val = this.__P_559_3;
+          ret_val = this.__P_560_3;
           ret_val.setAttribute('class', classes.join(' '));
-
-          if (closable && !this.__P_559_1.close) {
-            this.__P_559_3.close = qx.dom.Element.create('div', {
+          if (closable && !this.__P_560_1.close) {
+            this.__P_560_3.close = qx.dom.Element.create('div', {
               "class": 'popup_close',
               html: 'X'
             });
-            qx.dom.Element.insertBegin(this.__P_559_3.close, body);
+            qx.dom.Element.insertBegin(this.__P_560_3.close, body);
             addCloseListeners = true;
           } else if (!closable) {
             this.destroyElement('close');
           }
         }
-
-        this.__P_559_3.$$topic = attributes.topic;
-        this.__P_559_3.$$page = attributes.page;
-
+        this.__P_560_3.$$topic = attributes.topic;
+        this.__P_560_3.$$page = attributes.page;
         if (attributes.title) {
-          if (!this.__P_559_1.title) {
-            this.__P_559_1.title = qx.dom.Element.create('div', {
+          if (!this.__P_560_1.title) {
+            this.__P_560_1.title = qx.dom.Element.create('div', {
               "class": 'head'
             });
-            ret_val.appendChild(this.__P_559_1.title);
+            ret_val.appendChild(this.__P_560_1.title);
           }
-
           if (qx.lang.Type.isString(attributes.title)) {
-            this.__P_559_1.title.innerHTML = '' + attributes.title;
+            this.__P_560_1.title.innerHTML = '' + attributes.title;
           } else {
-            this.__P_559_1.title.appendChild(attributes.title);
+            this.__P_560_1.title.appendChild(attributes.title);
           }
         }
-
         if (attributes.content || attributes.icon || attributes.progress) {
-          if (!this.__P_559_1.content) {
-            this.__P_559_1.content = qx.dom.Element.create('div', {
+          if (!this.__P_560_1.content) {
+            this.__P_560_1.content = qx.dom.Element.create('div', {
               "class": 'main'
             });
-            ret_val.appendChild(this.__P_559_1.content);
+            ret_val.appendChild(this.__P_560_1.content);
           }
-
           if (attributes.content) {
-            if (!this.__P_559_1.messageContent) {
-              this.__P_559_1.messageContent = qx.dom.Element.create('div', {
+            if (!this.__P_560_1.messageContent) {
+              this.__P_560_1.messageContent = qx.dom.Element.create('div', {
                 "class": 'message'
               });
-              qx.dom.Element.insertBegin(this.__P_559_1.messageContent, this.__P_559_1.content);
+              qx.dom.Element.insertBegin(this.__P_560_1.messageContent, this.__P_560_1.content);
             }
-
             if (qx.lang.Type.isString(attributes.content)) {
-              this.__P_559_1.messageContent.innerHTML = attributes.content;
+              this.__P_560_1.messageContent.innerHTML = attributes.content;
             } else {
-              this.__P_559_1.messageContent.parentNode.replaceChild(attributes.content, this.__P_559_1.messageContent);
-
-              this.__P_559_1.messageContent = attributes.content;
+              this.__P_560_1.messageContent.parentNode.replaceChild(attributes.content, this.__P_560_1.messageContent);
+              this.__P_560_1.messageContent = attributes.content;
             }
           } else {
             this.destroyElement('messageContent');
           }
-
           if (attributes.icon) {
-            if (!this.__P_559_1.icon) {
+            if (!this.__P_560_1.icon) {
               var iconClasses = attributes.iconClasses ? ' ' + attributes.iconClasses : '';
-              this.__P_559_1.icon = qx.dom.Element.create('div', {
+              this.__P_560_1.icon = qx.dom.Element.create('div', {
                 html: cv.util.IconTools.svgKUF(attributes.icon)(null, null, 'icon' + iconClasses, true, true)
               });
-              qx.dom.Element.insertBegin(this.__P_559_1.icon, this.__P_559_1.content);
+              qx.dom.Element.insertBegin(this.__P_560_1.icon, this.__P_560_1.content);
             } else {
-              var i = this.__P_559_1.icon.querySelector('i');
-
+              var i = this.__P_560_1.icon.querySelector('i');
               if (!i.classList.contains('knxuf-' + attributes.icon)) {
                 i.classList.add('knxuf-' + attributes.icon);
               }
@@ -201,38 +183,32 @@
           } else {
             this.destroyElement('icon');
           }
-
           if (attributes.progress) {
-            if (!this.__P_559_1.progress) {
+            if (!this.__P_560_1.progress) {
               var bar = new cv.ui.util.ProgressBar();
-              this.__P_559_1.progress = bar.getDomElement();
-
-              this.__P_559_1.content.appendChild(this.__P_559_1.progress);
+              this.__P_560_1.progress = bar.getDomElement();
+              this.__P_560_1.content.appendChild(this.__P_560_1.progress);
             }
-
-            this.__P_559_1.progress.$$widget.setValue(attributes.progress);
+            this.__P_560_1.progress.$$widget.setValue(attributes.progress);
           } else {
             this.destroyElement('progress');
           }
         }
-
         if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
-          if (!this.__P_559_1.actions) {
-            this.__P_559_1.actions = qx.dom.Element.create('div', {
+          if (!this.__P_560_1.actions) {
+            this.__P_560_1.actions = qx.dom.Element.create('div', {
               "class": 'actions'
             });
-            ret_val.appendChild(this.__P_559_1.actions);
+            ret_val.appendChild(this.__P_560_1.actions);
           } else {
             // clear content
-            this.__P_559_1.actions.innerHTML = '';
+            this.__P_560_1.actions.innerHTML = '';
           }
-
           var actionTypes = Object.getOwnPropertyNames(attributes.actions).length;
           Object.getOwnPropertyNames(attributes.actions).forEach(function (type, index) {
             var typeActions = Array.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
-            var target = this.__P_559_1.actions;
+            var target = this.__P_560_1.actions;
             var wrapper = null;
-
             if (cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)] && cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper) {
               wrapper = cv.core.notifications.actions[type.charAt(0).toUpperCase() + type.substr(1)].getWrapper();
             } else {
@@ -240,14 +216,11 @@
                 style: 'margin-bottom: 20px'
               } : {});
             }
-
             target.appendChild(wrapper);
             target = wrapper;
             typeActions.forEach(function (action) {
               var _this = this;
-
               var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
-
               if (actionButton) {
                 actionButton.$$handler && actionButton.$$handler.addListener('close', function () {
                   _this.close();
@@ -259,15 +232,12 @@
         } else {
           this.destroyElement('actions');
         }
-
         if (attributes.width) {
           ret_val.style.width = attributes.width;
         }
-
         if (attributes.height) {
           ret_val.style.height = attributes.height;
         }
-
         var anchor = {
           x: -1,
           y: -1,
@@ -275,7 +245,6 @@
           h: 0
         };
         var align;
-
         if (attributes.position) {
           if (attributes.position.offset) {
             var offset = attributes.position.offset();
@@ -287,29 +256,23 @@
             if (Object.prototype.hasOwnProperty.call(attributes.position, 'x')) {
               anchor.x = attributes.position.x;
             }
-
             if (Object.prototype.hasOwnProperty.call(attributes.position, 'y')) {
               anchor.y = attributes.position.y;
             }
-
             if (Object.prototype.hasOwnProperty.call(attributes.position, 'w')) {
               anchor.w = attributes.position.w;
             }
-
             if (Object.prototype.hasOwnProperty.call(attributes.position, 'h')) {
               anchor.h = attributes.position.h;
             }
-
             if (anchor.w === 0 && anchor.h === 0) {
               align = 5;
             }
           }
         }
-
         if (attributes.align !== undefined) {
           align = attributes.align;
         }
-
         var ret_valRect = ret_val.getBoundingClientRect();
         var placement = cv.ui.PopupHandler.placementStrategy(anchor, {
           w: Math.round(ret_valRect.right - ret_valRect.left),
@@ -320,17 +283,14 @@
         }, align);
         ret_val.style.left = placement.x + 'px';
         ret_val.style.top = placement.y + 'px';
-
         if (!closable && ret_val.querySelector('.reload') === null) {
           var reload = "<div class=\"reload\"><a href=\"javascript:location.reload(true);\">" + qx.locale.Manager.tr('Reload').toString() + '</a>' + '</div>';
           ret_val.insertAdjacentHTML('beforeend', reload);
         }
-
         if (closable && addCloseListeners) {
           this.addListener('close', this.close, this);
           qx.event.Registration.addListener(ret_val, 'tap', function () {
             var _this2 = this;
-
             // note: this will call two events - one for the popup itself and
             //       one for the popup_background.
             // needs to be delayed to allow links inside the popup
@@ -343,44 +303,36 @@
             this.fireEvent('close');
           }, this);
         }
-
-        attributes.id = this.__P_559_2;
-
+        attributes.id = this.__P_560_2;
         if (isNew) {
           ret_val.style.visibility = 'visible';
-          this.__P_559_2++;
+          this.__P_560_2++;
         }
-
         return ret_val;
       },
       destroyElement: function destroyElement(name) {
-        if (this.__P_559_1[name]) {
-          this.__P_559_1[name].parentNode.removeChild(this.__P_559_1[name]);
-
-          delete this.__P_559_1[name];
+        if (this.__P_560_1[name]) {
+          this.__P_560_1[name].parentNode.removeChild(this.__P_560_1[name]);
+          delete this.__P_560_1[name];
         }
       },
-
       /**
        * Closes this popup
        */
       close: function close() {
-        if (this.__P_559_3) {
-          cv.ui.BodyBlocker.getInstance().unblock(this.__P_559_3.$$topic);
-
-          this.__P_559_3.parentNode.removeChild(this.__P_559_3);
-
-          this.__P_559_3 = null;
-          this.__P_559_1 = {};
+        if (this.__P_560_3) {
+          cv.ui.BodyBlocker.getInstance().unblock(this.__P_560_3.$$topic);
+          this.__P_560_3.parentNode.removeChild(this.__P_560_3);
+          this.__P_560_3 = null;
+          this.__P_560_1 = {};
         } else {
           cv.ui.BodyBlocker.getInstance().unblock();
         }
       },
       isClosed: function isClosed() {
-        return this.__P_559_3 === null;
+        return this.__P_560_3 === null;
       }
     },
-
     /*
     ******************************************************
       DESTRUCTOR
@@ -393,4 +345,4 @@
   cv.ui.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1685978161971
+//# sourceMappingURL=Popup.js.map?dt=1691935457291

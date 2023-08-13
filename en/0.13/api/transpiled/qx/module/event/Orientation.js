@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,14 +46,12 @@
        * List of event types to be normalized
        */
       TYPES: ["orientationchange"],
-
       /**
        * List of qx.module.event.Orientation methods to be attached to native
        * event objects
        * @internal
        */
       BIND_METHODS: ["getOrientation", "isLandscape", "isPortrait"],
-
       /**
        * Returns the current orientation of the viewport in degrees.
        *
@@ -70,7 +67,6 @@
       getOrientation: function getOrientation() {
         return this._orientation;
       },
-
       /**
        * Whether the viewport orientation is currently in landscape mode.
        *
@@ -80,7 +76,6 @@
       isLandscape: function isLandscape() {
         return this._mode == "landscape";
       },
-
       /**
        * Whether the viewport orientation is currently in portrait mode.
        *
@@ -90,7 +85,6 @@
       isPortrait: function isPortrait() {
         return this._mode == "portrait";
       },
-
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -105,16 +99,13 @@
         if (!event) {
           return event;
         }
-
         event._type = type;
         var bindMethods = qx.module.event.Orientation.BIND_METHODS;
-
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Orientation[bindMethods[i]].bind(event);
           }
         }
-
         return event;
       }
     },
@@ -125,4 +116,4 @@
   qx.module.event.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1685978129735
+//# sourceMappingURL=Orientation.js.map?dt=1691935426942

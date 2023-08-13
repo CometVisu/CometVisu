@@ -21,7 +21,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,40 +76,37 @@
   qx.Class.define("qx.ui.mobile.page.NavigationPage", {
     extend: qx.ui.mobile.page.Page,
     implement: qx.ui.mobile.container.INavigation,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param wrapContentByGroup {Boolean} Defines whether a group box should wrap the content. This can be used for defining a page margin.
      * @param layout {qx.ui.mobile.layout.Abstract} The layout of this page.
      */
     construct: function construct(wrapContentByGroup, layout) {
       qx.ui.mobile.page.Page.constructor.call(this);
-
       if (wrapContentByGroup != null) {
         this._wrapContentByGroup = wrapContentByGroup;
       }
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired when the user tapped on the navigation button */
       action: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** The title of the page */
       title: {
@@ -119,21 +115,18 @@
         event: "changeTitle",
         apply: "_applyTitle"
       },
-
       /** The back button text */
       backButtonText: {
         check: "String",
         init: "",
         apply: "_applyBackButtonText"
       },
-
       /** The action button text */
       buttonText: {
         check: "String",
         init: "",
         apply: "_applyActionButtonText"
       },
-
       /** The action button icon */
       buttonIcon: {
         check: "String",
@@ -141,7 +134,6 @@
         nullable: true,
         apply: "_applyActionButtonIcon"
       },
-
       /**
        * Whether to show the back button.
        */
@@ -150,7 +142,6 @@
         init: false,
         apply: "_applyShowBackButton"
       },
-
       /**
        * Indicates whether the back button should be shown on tablet.
        */
@@ -158,7 +149,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Whether to show the action button.
        */
@@ -167,7 +157,6 @@
         init: false,
         apply: "_applyShowButton"
       },
-
       /**
        * Toggles visibility of NavigationBar in
        * wrapping container {@link qx.ui.mobile.container.Navigation}
@@ -176,7 +165,6 @@
         check: "Boolean",
         init: false
       },
-
       /**
        * Sets the transition duration (in seconds) for the effect when hiding/showing
        * the NavigationBar through boolean property navigationBarHidden.
@@ -185,7 +173,6 @@
         check: "Number",
         init: 0.8
       },
-
       /**
        * The CSS class to add to the content per default.
        */
@@ -196,12 +183,12 @@
         apply: "_applyContentCssClass"
       }
     },
-
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
+
     members: {
       _isTablet: false,
       _wrapContentByGroup: true,
@@ -217,10 +204,8 @@
         if (!this.__P_414_4) {
           this.__P_414_4 = this._createTitleWidget();
         }
-
         return this.__P_414_4;
       },
-
       /**
        * Creates the navigation bar title.
        *
@@ -240,7 +225,6 @@
         if (!this.__P_414_5) {
           this.__P_414_5 = this._createLeftContainer();
         }
-
         return this.__P_414_5;
       },
       // interface implementation
@@ -248,10 +232,8 @@
         if (!this.__P_414_6) {
           this.__P_414_6 = this._createRightContainer();
         }
-
         return this.__P_414_6;
       },
-
       /**
        * Creates the left container for the navigation bar.
        *
@@ -262,15 +244,11 @@
         var container = new qx.ui.mobile.container.Composite(layout);
         container.addCssClass("left-container");
         this.__P_414_0 = this._createBackButton();
-
         this.__P_414_0.addListener("tap", this._onBackButtonTap, this);
-
         this._showBackButton();
-
         container.add(this.__P_414_0);
         return container;
       },
-
       /**
        * Creates the right container for the navigation bar.
        *
@@ -281,15 +259,11 @@
         var container = new qx.ui.mobile.container.Composite(layout);
         container.addCssClass("right-container");
         this.__P_414_1 = this._createButton();
-
         this.__P_414_1.addListener("tap", this._onButtonTap, this);
-
         this._showButton();
-
         container.add(this.__P_414_1);
         return container;
       },
-
       /**
        * Creates the navigation bar back button.
        * Creates the scroll container.
@@ -299,7 +273,6 @@
       _createBackButton: function _createBackButton() {
         return new qx.ui.mobile.navigationbar.BackButton(this.getBackButtonText());
       },
-
       /**
        * Creates the navigation bar button.
        * Creates the content container.
@@ -309,7 +282,6 @@
       _createButton: function _createButton() {
         return new qx.ui.mobile.navigationbar.Button(this.getButtonText(), this.getButtonIcon());
       },
-
       /**
        * Returns the content container. Add all your widgets to this container.
        *
@@ -318,7 +290,6 @@
       getContent: function getContent() {
         return this.__P_414_2;
       },
-
       /**
        * Returns the back button widget.
        *
@@ -327,7 +298,6 @@
       _getBackButton: function _getBackButton() {
         return this.__P_414_0;
       },
-
       /**
        * Returns the action button widget.
        *
@@ -336,7 +306,6 @@
       _getButton: function _getButton() {
         return this.__P_414_1;
       },
-
       /**
        * Sets the isTablet flag.
        * @param isTablet {Boolean} value of the isTablet flag.
@@ -344,7 +313,6 @@
       setIsTablet: function setIsTablet(isTablet) {
         this._isTablet = isTablet;
       },
-
       /**
        * Returns the isTablet flag.
        * @return {Boolean} the isTablet flag of this page.
@@ -352,7 +320,6 @@
       isTablet: function isTablet() {
         return this._isTablet;
       },
-
       /**
        * Returns the scroll container.
        *
@@ -361,7 +328,6 @@
       _getScrollContainer: function _getScrollContainer() {
         return this.__P_414_3;
       },
-
       /**
        * Adds a widget, below the NavigationBar.
        *
@@ -404,7 +370,6 @@
           this.__P_414_2.setDefaultCssClass(value);
         }
       },
-
       /**
        * Helper method to show the back button.
        */
@@ -417,7 +382,6 @@
           }
         }
       },
-
       /**
        * Helper method to show the button.
        */
@@ -433,23 +397,19 @@
       // overridden
       _initialize: function _initialize() {
         qx.ui.mobile.page.NavigationPage.superclass.prototype._initialize.call(this);
-
         this.__P_414_3 = this._createScrollContainer();
         this.__P_414_2 = this._createContent();
-
         if (this.__P_414_2) {
           this.__P_414_3.add(this.__P_414_2, {
             flex: 1
           });
         }
-
         if (this.__P_414_3) {
           this.add(this.__P_414_3, {
             flex: 1
           });
         }
       },
-
       /**
        * Creates the scroll container.
        *
@@ -458,7 +418,6 @@
       _createScrollContainer: function _createScrollContainer() {
         return new qx.ui.mobile.container.Scroll();
       },
-
       /**
        * Creates the content container.
        *
@@ -467,14 +426,11 @@
       _createContent: function _createContent() {
         var content = new qx.ui.mobile.container.Composite();
         content.setDefaultCssClass(this.getContentCssClass());
-
         if (this._wrapContentByGroup == true) {
           content.addCssClass("group");
         }
-
         return content;
       },
-
       /**
        * Event handler. Called when the tap event occurs on the back button.
        *
@@ -483,7 +439,6 @@
       _onBackButtonTap: function _onBackButtonTap(evt) {
         this.back();
       },
-
       /**
        * Event handler. Called when the tap event occurs on the button.
        *
@@ -495,7 +450,6 @@
     },
     destruct: function destruct() {
       this._disposeObjects("__P_414_5", "__P_414_6", "__P_414_0", "__P_414_1", "__P_414_4");
-
       this.__P_414_5 = this.__P_414_6 = this.__P_414_0 = this.__P_414_1 = null;
       this.__P_414_4 = this.__P_414_2 = this.__P_414_3 = null;
       this._isTablet = null;
@@ -504,4 +458,4 @@
   qx.ui.mobile.page.NavigationPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavigationPage.js.map?dt=1685978144920
+//# sourceMappingURL=NavigationPage.js.map?dt=1691935441283

@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Link.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -45,7 +44,6 @@
    */
   qx.Class.define('cv.plugins.Link', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       PROPERTIES
@@ -69,7 +67,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -110,7 +107,6 @@
         };
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -119,18 +115,14 @@
     members: {
       _getInnerDomString: function _getInnerDomString() {
         var classes = 'link';
-
         if (this.getCssClass()) {
           classes += ' ' + this.getCssClass();
         }
-
         var href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
         var attributes = '';
-
         if (this.isNewWindow()) {
           attributes += ' target="_blank"';
         }
-
         return '<a class="' + classes + '"' + href + attributes + '>' + this.getText() + '</a>';
       }
     },
@@ -142,4 +134,4 @@
   cv.plugins.Link.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Link.js.map?dt=1685978091981
+//# sourceMappingURL=Link.js.map?dt=1691935391575

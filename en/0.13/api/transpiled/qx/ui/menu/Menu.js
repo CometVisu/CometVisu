@@ -32,7 +32,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,25 +65,30 @@
     extend: qx.ui.core.Widget,
     include: [qx.ui.core.MPlacement, qx.ui.core.MRemoteChildrenHandling],
     construct: function construct() {
-      qx.ui.core.Widget.constructor.call(this); // Use hard coded layout
+      qx.ui.core.Widget.constructor.call(this);
 
-      this._setLayout(new qx.ui.menu.Layout()); // Automatically add to application's root
+      // Use hard coded layout
+      this._setLayout(new qx.ui.menu.Layout());
 
-
+      // Automatically add to application's root
       var root = this.getApplicationRoot();
-      root.add(this); // ARIA attrs
+      root.add(this);
 
+      // ARIA attrs
       var contentEl = this.getContentElement();
       contentEl.setAttribute("role", "menu");
-      contentEl.setAttribute("id", "menu-" + this.toHashCode()); // Register pointer listeners
+      contentEl.setAttribute("id", "menu-" + this.toHashCode());
 
+      // Register pointer listeners
       this.addListener("pointerover", this._onPointerOver);
-      this.addListener("pointerout", this._onPointerOut); // add resize listener
+      this.addListener("pointerout", this._onPointerOut);
 
+      // add resize listener
       this.addListener("resize", this._onResize, this);
       root.addListener("resize", this._onResize, this);
-      this._blocker = new qx.ui.core.Blocker(root); // Initialize properties
+      this._blocker = new qx.ui.core.Blocker(root);
 
+      // Initialize properties
       this.initVisibility();
       this.initKeepFocus();
       this.initKeepActive();
@@ -95,6 +99,7 @@
         WIDGET PROPERTIES
       ---------------------------------------------------------------------------
       */
+
       // overridden
       appearance: {
         refine: true,
@@ -125,7 +130,6 @@
         refine: true,
         init: true
       },
-
       /*
       ---------------------------------------------------------------------------
         STYLE OPTIONS
@@ -139,7 +143,6 @@
         init: 0,
         themeable: true
       },
-
       /** The spacing between each menu button */
       spacingY: {
         check: "Integer",
@@ -147,7 +150,6 @@
         init: 0,
         themeable: true
       },
-
       /**
        * Default icon column width if no icons are rendered.
        * This property is ignored as soon as an icon is present.
@@ -158,7 +160,6 @@
         themeable: true,
         apply: "_applyIconColumnWidth"
       },
-
       /** Default arrow column width if no sub menus are rendered */
       arrowColumnWidth: {
         check: "Integer",
@@ -166,7 +167,6 @@
         themeable: true,
         apply: "_applyArrowColumnWidth"
       },
-
       /**
        * Color of the blocker
        */
@@ -177,7 +177,6 @@
         apply: "_applyBlockerColor",
         themeable: true
       },
-
       /**
        * Opacity of the blocker
        */
@@ -187,7 +186,6 @@
         apply: "_applyBlockerOpacity",
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         FUNCTIONALITY PROPERTIES
@@ -200,21 +198,18 @@
         nullable: true,
         apply: "_applySelectedButton"
       },
-
       /** The currently opened button (sub menu is visible) */
       openedButton: {
         check: "qx.ui.core.Widget",
         nullable: true,
         apply: "_applyOpenedButton"
       },
-
       /** Widget that opened the menu */
       opener: {
         check: "qx.ui.core.Widget",
         nullable: true,
         apply: "_applyOpener"
       },
-
       /*
       ---------------------------------------------------------------------------
         BEHAVIOR PROPERTIES
@@ -225,18 +220,14 @@
       openInterval: {
         check: "Integer",
         themeable: true,
-        init: 250,
-        apply: "_applyOpenInterval"
+        init: 250
       },
-
       /** Interval in ms after which sub menus should be closed  */
       closeInterval: {
         check: "Integer",
         themeable: true,
-        init: 250,
-        apply: "_applyCloseInterval"
+        init: 250
       },
-
       /** Blocks the background if value is <code>true<code> */
       blockBackground: {
         check: "Boolean",
@@ -244,35 +235,30 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_381_0: null,
       __P_381_1: null,
-
       /** @type {qx.ui.core.Blocker} blocker for background blocking */
       _blocker: null,
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Opens the menu and configures the opener
        */
       open: function open() {
         if (this.getOpener() != null) {
           var isPlaced = this.placeToWidget(this.getOpener(), true);
-
           if (isPlaced) {
             this.__P_381_2();
-
             this.show();
             this._placementTarget = this.getOpener();
           } else {
@@ -282,7 +268,6 @@
           this.warn("The menu instance needs a configured 'opener' widget!");
         }
       },
-
       /**
        * Opens the menu at the pointer position
        *
@@ -290,16 +275,13 @@
        */
       openAtPointer: function openAtPointer(e) {
         this.placeToPointer(e);
-
         this.__P_381_2();
-
         this.show();
         this._placementTarget = {
           left: e.getDocumentLeft(),
           top: e.getDocumentTop()
         };
       },
-
       /**
        * Opens the menu in relation to the given point
        *
@@ -308,20 +290,16 @@
        */
       openAtPoint: function openAtPoint(point) {
         this.placeToPoint(point);
-
         this.__P_381_2();
-
         this.show();
         this._placementTarget = point;
       },
-
       /**
        * Convenience method to add a separator to the menu
        */
       addSeparator: function addSeparator() {
         this.add(new qx.ui.menu.Separator());
       },
-
       /**
        * Returns the column sizes detected during the pre-layout phase
        *
@@ -330,7 +308,6 @@
       getColumnSizes: function getColumnSizes() {
         return this._getMenuLayout().getColumnSizes();
       },
-
       /**
        * Return all selectable menu items.
        *
@@ -339,16 +316,13 @@
       getSelectables: function getSelectables() {
         var result = [];
         var children = this.getChildren();
-
         for (var i = 0; i < children.length; i++) {
           if (children[i].isEnabled()) {
             result.push(children[i]);
           }
         }
-
         return result;
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLY ROUTINES
@@ -373,36 +347,32 @@
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
         qx.ui.menu.Menu.superclass.prototype._applyVisibility.call(this, value, old);
-
         var mgr = qx.ui.menu.Manager.getInstance();
-
         if (value === "visible") {
           // Register to manager (zIndex handling etc.)
-          mgr.add(this); // Mark opened in parent menu
+          mgr.add(this);
 
+          // Mark opened in parent menu
           var parentMenu = this.getParentMenu();
-
           if (parentMenu) {
             parentMenu.setOpenedButton(this.getOpener());
           }
         } else if (old === "visible") {
           // Deregister from manager (zIndex handling etc.)
-          mgr.remove(this); // Unmark opened in parent menu
+          mgr.remove(this);
 
+          // Unmark opened in parent menu
           var parentMenu = this.getParentMenu();
-
           if (parentMenu && parentMenu.getOpenedButton() == this.getOpener()) {
             parentMenu.resetOpenedButton();
-          } // Clear properties
+          }
 
-
+          // Clear properties
           this.resetOpenedButton();
           this.resetSelectedButton();
         }
-
         this.__P_381_3();
       },
-
       /**
        * Updates the blocker's visibility
        */
@@ -410,7 +380,6 @@
         if (this.isVisible()) {
           if (this.getBlockBackground()) {
             var zIndex = this.getZIndex();
-
             this._blocker.blockContent(zIndex - 1);
           }
         } else {
@@ -419,7 +388,6 @@
           }
         }
       },
-
       /**
        * Get the parent menu. Returns <code>null</code> if the menu doesn't have a
        * parent menu.
@@ -428,19 +396,15 @@
        */
       getParentMenu: function getParentMenu() {
         var widget = this.getOpener();
-
         if (!widget || !(widget instanceof qx.ui.menu.AbstractButton)) {
           return null;
         }
-
         if (widget && widget.getContextMenu() === this) {
           return null;
         }
-
         while (widget && !(widget instanceof qx.ui.menu.Menu)) {
           widget = widget.getLayoutParent();
         }
-
         return widget;
       },
       // property apply
@@ -448,22 +412,17 @@
         if (old) {
           old.removeState("selected");
         }
-
         if (value) {
           value.addState("selected");
-        } // ARIA attrs
+        }
 
-
+        // ARIA attrs
         var opener = this.__P_381_4();
-
         var contentEl = opener ? opener.getContentElement() : this.getContentElement();
-
         if (!contentEl) {
           return;
         }
-
         var valueContentEl = value ? value.getContentElement() : null;
-
         if (valueContentEl) {
           contentEl.setAttribute("aria-activedescendant", valueContentEl.getAttribute("id"));
         } else {
@@ -475,7 +434,6 @@
         if (old && old.getMenu()) {
           old.getMenu().exclude();
         }
-
         if (value) {
           value.getMenu().open();
         }
@@ -484,11 +442,9 @@
       _applyOpener: function _applyOpener(value, old) {
         // ARIA attrs
         var contentEl = this.getContentElement();
-
         if (!contentEl) {
           return;
         }
-
         if (value && value.getContentElement()) {
           contentEl.setAttribute("aria-labelledby", "");
           this.addAriaLabelledBy(value);
@@ -504,7 +460,6 @@
       _applyBlockerOpacity: function _applyBlockerOpacity(value, old) {
         this._blocker.setOpacity(value);
       },
-
       /*
       ---------------------------------------------------------------------------
       SCROLLING SUPPORT
@@ -517,35 +472,25 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "slidebar":
             var control = new qx.ui.menu.MenuSlideBar();
-
             var layout = this._getLayout();
-
             this._setLayout(new qx.ui.layout.Grow());
-
             var slidebarLayout = control.getLayout();
             control.setLayout(layout);
             slidebarLayout.dispose();
             var children = qx.lang.Array.clone(this.getChildren());
-
             for (var i = 0; i < children.length; i++) {
               control.add(children[i]);
             }
-
             this.removeListener("resize", this._onResize, this);
             control.getChildrenContainer().addListener("resize", this._onResize, this);
-
             this._add(control);
-
             break;
         }
-
         return control || qx.ui.menu.Menu.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /**
        * Get the menu layout manager
        *
@@ -558,7 +503,6 @@
           return this._getLayout();
         }
       },
-
       /**
        * Get the menu bounds
        *
@@ -571,7 +515,6 @@
           return this.getBounds();
         }
       },
-
       /**
        * Computes the size of the menu. This method is used by the
        * {@link qx.ui.core.MPlacement} mixin.
@@ -580,25 +523,23 @@
       _computePlacementSize: function _computePlacementSize() {
         return this._getMenuBounds();
       },
-
       /**
        * Updates the visibility of the slidebar based on the menu's current size
        * and position.
        */
       __P_381_2: function __P_381_2() {
         var menuBounds = this._getMenuBounds();
-
         if (!menuBounds) {
           this.addListenerOnce("resize", this.__P_381_2, this);
           return;
         }
-
         var rootHeight = this.getLayoutParent().getBounds().height;
         var top = this.getLayoutProperties().top;
-        var left = this.getLayoutProperties().left; // Adding the slidebar must be deferred because this call can happen
+        var left = this.getLayoutProperties().left;
+
+        // Adding the slidebar must be deferred because this call can happen
         // during the layout flush, which make it impossible to move existing
         // layout to the slidebar
-
         if (top < 0) {
           this._assertSlideBar(function () {
             this.setHeight(menuBounds.height + top);
@@ -612,7 +553,6 @@
           this.setHeight(null);
         }
       },
-
       /**
        * Schedules the addition of the slidebar and calls the given callback
        * after the slidebar has been added.
@@ -625,27 +565,22 @@
         if (this.hasChildControl("slidebar")) {
           return callback.call(this);
         }
-
         this.__P_381_1 = callback;
         qx.ui.core.queue.Widget.add(this);
       },
       // overridden
       syncWidget: function syncWidget(jobs) {
         this.getChildControl("slidebar");
-
         if (this.__P_381_1) {
           this.__P_381_1.call(this);
-
           delete this.__P_381_1;
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLING
       ---------------------------------------------------------------------------
       */
-
       /**
        * Gets called when a child is added. Sets ARIA attrs
        * @param {*} child
@@ -658,14 +593,12 @@
           contentEl.setAttribute("role", "menuitem");
         }
       },
-
       /**
        * Update position if the menu or the root is resized
        */
       _onResize: function _onResize() {
         if (this.isVisible()) {
           var target = this._placementTarget;
-
           if (!target) {
             return;
           } else if (target instanceof qx.ui.core.Widget) {
@@ -675,11 +608,9 @@
           } else {
             throw new Error("Unknown target: " + target);
           }
-
           this.__P_381_2();
         }
       },
-
       /**
        * Event listener for pointerover event.
        *
@@ -687,30 +618,30 @@
        */
       _onPointerOver: function _onPointerOver(e) {
         // Cache manager
-        var mgr = qx.ui.menu.Manager.getInstance(); // Be sure this menu is kept
+        var mgr = qx.ui.menu.Manager.getInstance();
 
-        mgr.cancelClose(this); // Change selection
+        // Be sure this menu is kept
+        mgr.cancelClose(this);
 
+        // Change selection
         var target = e.getTarget();
-
         if (target.isEnabled() && target instanceof qx.ui.menu.AbstractButton) {
           // Select button directly
           this.setSelectedButton(target);
           var subMenu = target.getMenu && target.getMenu();
-
           if (subMenu) {
-            subMenu.setOpener(target); // Finally schedule for opening
+            subMenu.setOpener(target);
 
-            mgr.scheduleOpen(subMenu); // Remember scheduled menu for opening
+            // Finally schedule for opening
+            mgr.scheduleOpen(subMenu);
 
+            // Remember scheduled menu for opening
             this.__P_381_0 = subMenu;
           } else {
             var opened = this.getOpenedButton();
-
             if (opened) {
               mgr.scheduleClose(opened.getMenu());
             }
-
             if (this.__P_381_0) {
               mgr.cancelOpen(this.__P_381_0);
               this.__P_381_0 = null;
@@ -722,7 +653,6 @@
           this.resetSelectedButton();
         }
       },
-
       /**
        * Event listener for pointerout event.
        *
@@ -730,35 +660,35 @@
        */
       _onPointerOut: function _onPointerOut(e) {
         // Cache manager
-        var mgr = qx.ui.menu.Manager.getInstance(); // Detect whether the related target is out of the menu
+        var mgr = qx.ui.menu.Manager.getInstance();
 
+        // Detect whether the related target is out of the menu
         if (!qx.ui.core.Widget.contains(this, e.getRelatedTarget())) {
           // Update selected property
           // Force it to the open sub menu in cases where that is opened
           // Otherwise reset it. Menus which are left by the cursor should
           // not show any selection.
           var opened = this.getOpenedButton();
-          opened ? this.setSelectedButton(opened) : this.resetSelectedButton(); // Cancel a pending close request for the currently
-          // opened sub menu
+          opened ? this.setSelectedButton(opened) : this.resetSelectedButton();
 
+          // Cancel a pending close request for the currently
+          // opened sub menu
           if (opened) {
             mgr.cancelClose(opened.getMenu());
-          } // When leaving this menu to the outside, stop
+          }
+
+          // When leaving this menu to the outside, stop
           // all pending requests to open any other sub menu
-
-
           if (this.__P_381_0) {
             mgr.cancelOpen(this.__P_381_0);
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         HELPER FUNCTIONS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Get the opener of the root/the first parent menu.
        * parent menu.
@@ -767,22 +697,17 @@
        */
       __P_381_4: function __P_381_4() {
         var parentMenu = this.getParentMenu();
-
         if (!parentMenu) {
           return this.getOpener();
         }
-
         var opener;
-
         while (parentMenu) {
           opener = parentMenu.getOpener();
           parentMenu = parentMenu.getParentMenu();
         }
-
         return opener;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -792,14 +717,12 @@
       if (!qx.core.ObjectRegistry.inShutDown) {
         qx.ui.menu.Manager.getInstance().remove(this);
       }
-
       this.getApplicationRoot().removeListener("resize", this._onResize, this);
       this._placementTarget = null;
-
       this._disposeObjects("_blocker");
     }
   });
   qx.ui.menu.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1685978141699
+//# sourceMappingURL=Menu.js.map?dt=1691935438159

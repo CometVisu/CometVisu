@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Prompt.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.ui.manager.dialog.Prompt', {
     extend: qxl.dialog.Prompt,
-
     /*
     ***********************************************
       MEMBERS
@@ -45,7 +43,6 @@
     members: {
       _createWidgetContent: function _createWidgetContent() {
         cv.ui.manager.dialog.Prompt.superclass.prototype._createWidgetContent.call(this);
-
         this._textField.setLiveUpdate(true);
       }
     }
@@ -53,4 +50,4 @@
   cv.ui.manager.dialog.Prompt.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prompt.js.map?dt=1685978094714
+//# sourceMappingURL=Prompt.js.map?dt=1691935394225

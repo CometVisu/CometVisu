@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,16 +49,15 @@
    */
   qx.Class.define("qx.event.type.Orientation", {
     extend: qx.event.type.Event,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_232_0: null,
       __P_232_1: null,
-
       /**
        * Initialize the fields of the event. The event must be initialized before
        * it can be dispatched.
@@ -74,7 +72,6 @@
         this.__P_232_1 = mode;
         return this;
       },
-
       /**
        * Get a copy of this object
        *
@@ -91,7 +88,6 @@
         clone.__P_232_1 = this.__P_232_1;
         return clone;
       },
-
       /**
        * Returns the current orientation of the viewport in degree.
        *
@@ -107,7 +103,6 @@
       getOrientation: function getOrientation() {
         return this.__P_232_0;
       },
-
       /**
        * Whether the viewport orientation is currently in landscape mode.
        *
@@ -117,7 +112,6 @@
       isLandscape: function isLandscape() {
         return this.__P_232_1 == "landscape";
       },
-
       /**
        * Whether the viewport orientation is currently in portrait mode.
        *
@@ -132,4 +126,4 @@
   qx.event.type.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1685978123184
+//# sourceMappingURL=Orientation.js.map?dt=1691935420837

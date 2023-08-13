@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,14 +37,12 @@
        * @return {qx.ui.mobile.navigationbar.Title} The title of the navigation bar
        */
       getTitleWidget: function getTitleWidget() {},
-
       /**
        * Returns the left container that is merged into the navigation bar.
        *
        * @return {qx.ui.mobile.container.Composite} The left container of the navigation bar
        */
       getLeftContainer: function getLeftContainer() {},
-
       /**
        * Returns the right container that is merged into the navigation bar.
        *
@@ -57,4 +54,4 @@
   qx.ui.mobile.container.INavigation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=INavigation.js.map?dt=1685978142247
+//# sourceMappingURL=INavigation.js.map?dt=1691935438683

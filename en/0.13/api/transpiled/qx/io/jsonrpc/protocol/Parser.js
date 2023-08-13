@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
        */
       parse: function parse(message) {
         var _this = this;
-
         try {
           message = JSON.parse(message);
         } catch (e) {
@@ -65,44 +63,36 @@
             message: message
           });
         }
-
         if (message === null) {
           throw new qx.io.exception.Transport("No data", qx.io.exception.Transport.NO_DATA);
-        } // batch
-
-
+        }
+        // batch
         if (qx.lang.Type.isArray(message)) {
           var batch = new qx.io.jsonrpc.protocol.Batch();
           message.forEach(function (item) {
             return batch.add(_this.parse(JSON.stringify(item)));
           });
           return batch;
-        } // individual message
-
-
+        }
+        // individual message
         var _message = message,
-            id = _message.id,
-            result = _message.result,
-            method = _message.method,
-            params = _message.params,
-            error = _message.error;
-
+          id = _message.id,
+          result = _message.result,
+          method = _message.method,
+          params = _message.params,
+          error = _message.error;
         if (id !== undefined && result !== undefined && error === undefined && method === undefined) {
           return new qx.io.jsonrpc.protocol.Result(id, result);
         }
-
         if (id !== undefined && result === undefined && error !== undefined && method === undefined) {
           return new qx.io.jsonrpc.protocol.Error(id, error.code, error.message, error.data);
         }
-
         if (id !== undefined && result === undefined && error === undefined && method !== undefined) {
           return new qx.io.jsonrpc.protocol.Request(method, params, id);
         }
-
         if (id === undefined && result === undefined && error === undefined && method !== undefined) {
           return new qx.io.jsonrpc.protocol.Notification(method, params);
         }
-
         throw new qx.io.exception.Transport("Cannot parse message data.", qx.io.exception.Transport.INVALID_MSG_DATA, {
           message: message
         });
@@ -112,4 +102,4 @@
   qx.io.jsonrpc.protocol.Parser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Parser.js.map?dt=1685978125162
+//# sourceMappingURL=Parser.js.map?dt=1691935422723

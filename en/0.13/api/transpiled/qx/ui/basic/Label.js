@@ -67,7 +67,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -131,33 +130,29 @@
   qx.Class.define("qx.ui.basic.Label", {
     extend: qx.ui.core.Widget,
     implement: [qx.ui.form.IStringForm],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param value {String} Text or HTML content to use
      */
     construct: function construct(value) {
       qx.ui.core.Widget.constructor.call(this);
-
       if (value != null) {
         this.setValue(value);
       }
-
       {
         qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * Switches between rich HTML and text content. The text mode (<code>false</code>) supports
@@ -171,7 +166,6 @@
         event: "changeRich",
         apply: "_applyRich"
       },
-
       /**
        * Controls whether text wrap is activated or not. But please note, that
        * this property works only in combination with the property {@link #rich}.
@@ -183,7 +177,6 @@
         init: true,
         apply: "_applyWrap"
       },
-
       /**
        * Controls whether line wrapping can occur in the middle of a word; this is
        * typically only useful when there is a restricted amount of horizontal space
@@ -196,7 +189,6 @@
         init: false,
         apply: "_applyBreakWithinWords"
       },
-
       /**
        * Contains the HTML or text content. Interpretation depends on the value
        * of {@link #rich}. In text mode entities and other HTML special content
@@ -209,7 +201,6 @@
         event: "changeValue",
         nullable: true
       },
-
       /**
        * The buddy property can be used to connect the label to another widget.
        * That causes two things:
@@ -229,7 +220,6 @@
         init: null,
         dereference: true
       },
-
       /** Control the text alignment */
       textAlign: {
         check: ["left", "center", "right", "justify"],
@@ -264,20 +254,17 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       __P_299_0: null,
       __P_299_1: null,
       __P_299_2: null,
       __P_299_3: null,
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -289,7 +276,6 @@
           this.__P_299_4 = this.__P_299_5();
           delete this.__P_299_1;
         }
-
         return {
           width: this.__P_299_4.width,
           height: this.__P_299_4.height
@@ -309,7 +295,6 @@
             return;
           }
         }
-
         qx.ui.basic.Label.superclass.prototype._applySelectable.call(this, value);
       },
       // overridden
@@ -317,7 +302,6 @@
         if (!this.getRich() && !this.getWrap()) {
           return null;
         }
-
         return this.__P_299_5(width).height;
       },
       // overridden
@@ -336,7 +320,6 @@
           this.getContentElement().removeStyle("color");
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LABEL ADDONS
@@ -355,23 +338,17 @@
       // property apply
       _applyFont: function _applyFont(value, old) {
         var _this = this;
-
         if (old && this.__P_299_0 && this.__P_299_3) {
           this.__P_299_0.removeListenerById(this.__P_299_3);
-
           this.__P_299_3 = null;
-        } // Apply
-
-
+        }
+        // Apply
         var styles;
-
         if (value) {
           if (qx.lang.Type.isString(value)) {
             value = qx.theme.manager.Font.getInstance().resolve(value);
           }
-
           this.__P_299_0 = value;
-
           if (this.__P_299_0 instanceof qx.bom.webfonts.WebFont && !this.__P_299_0.isValid()) {
             this.__P_299_3 = this.__P_299_0.addListener("changeStatus", function (evt) {
               if (evt.getData().valid) {
@@ -380,25 +357,24 @@
               }
             });
           }
-
           styles = this.__P_299_0.getStyles();
         } else {
           this.__P_299_0 = null;
           styles = qx.bom.Font.getDefaultStyles();
-        } // check if text color already set - if so this local value has higher priority
+        }
 
-
+        // check if text color already set - if so this local value has higher priority
         if (this.getTextColor() != null) {
           delete styles["color"];
         }
+        this.getContentElement().setStyles(styles);
 
-        this.getContentElement().setStyles(styles); // Invalidate text size
+        // Invalidate text size
+        this.__P_299_1 = true;
 
-        this.__P_299_1 = true; // Update layout
-
+        // Update layout
         qx.ui.core.queue.Layout.add(this);
       },
-
       /**
        * Internal utility to compute the content dimensions.
        *
@@ -411,19 +387,15 @@
         var styles = font ? this.__P_299_0.getStyles() : qx.bom.Font.getDefaultStyles();
         var content = this.getValue() || "A";
         var rich = this.getRich();
-
         if (this.__P_299_3) {
           this.__P_299_6();
         }
-
         if (rich && this.getBreakWithinWords()) {
           styles = qx.lang.Object.clone(styles);
           styles.wordBreak = "break-all";
         }
-
         return rich ? Label.getHtmlSize(content, styles, width) : Label.getTextSize(content, styles);
       },
-
       /**
        * Firefox > 9 on OS X will draw an ellipsis on top of the label content even
        * though there is enough space for the text. Re-applying the content forces
@@ -433,17 +405,14 @@
         if (!this.getContentElement()) {
           return;
         }
-
         if (qx.core.Environment.get("os.name") == "osx" && qx.core.Environment.get("engine.name") == "gecko" && parseInt(qx.core.Environment.get("engine.version"), 10) < 16 && parseInt(qx.core.Environment.get("engine.version"), 10) > 9) {
           var domEl = this.getContentElement().getDomElement();
-
           if (domEl) {
             /* eslint-disable-next-line no-self-assign */
             domEl.innerHTML = domEl.innerHTML;
           }
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PROPERTY APPLIER
@@ -456,16 +425,14 @@
           this.removeListenerById(this.__P_299_2);
           this.__P_299_2 = null;
         }
-
         if (value != null) {
           value.bind("enabled", this, "enabled");
           this.__P_299_2 = this.addListener("tap", function () {
             // only focus focusable elements [BUG #3555]
             if (value.isFocusable()) {
               value.focus.apply(value);
-            } // furthermore toggle if possible [BUG #6881]
-
-
+            }
+            // furthermore toggle if possible [BUG #6881]
             if ("toggleValue" in value && typeof value.toggleValue === "function") {
               value.toggleValue();
             }
@@ -475,16 +442,17 @@
       // property apply
       _applyRich: function _applyRich(value) {
         // Sync with content element
-        this.getContentElement().setRich(value); // Mark text size cache as invalid
+        this.getContentElement().setRich(value);
 
-        this.__P_299_1 = true; // Update layout
+        // Mark text size cache as invalid
+        this.__P_299_1 = true;
 
+        // Update layout
         qx.ui.core.queue.Layout.add(this);
       },
       // property apply
       _applyWrap: function _applyWrap(value, old) {
         if (value && !this.isRich()) {}
-
         if (this.isRich()) {
           // apply the white space style to the label to force it not
           // to wrap if wrap is set to false [BUG #3732]
@@ -496,7 +464,6 @@
       _applyBreakWithinWords: function _applyBreakWithinWords(value, old) {
         this.getContentElement().setStyle("wordBreak", this.isRich() && value ? "break-all" : "normal");
       },
-
       /**
        * Locale change event handler
        *
@@ -506,7 +473,6 @@
       _onChangeLocale: qx.core.Environment.select("qx.dynlocale", {
         "true": function _true(e) {
           var content = this.getValue();
-
           if (content && content.translate) {
             this.setValue(content.translate());
           }
@@ -521,23 +487,25 @@
             this.getContentElement().setValue(value.translate());
           } else {
             this.getContentElement().setValue(value);
-          } // Mark text size cache as invalid
+          }
 
+          // Mark text size cache as invalid
+          this.__P_299_1 = true;
 
-          this.__P_299_1 = true; // Update layout
-
+          // Update layout
           qx.ui.core.queue.Layout.add(this);
         },
         "false": function _false(value, old) {
-          this.getContentElement().setValue(value); // Mark text size cache as invalid
+          this.getContentElement().setValue(value);
 
-          this.__P_299_1 = true; // Update layout
+          // Mark text size cache as invalid
+          this.__P_299_1 = true;
 
+          // Update layout
           qx.ui.core.queue.Layout.add(this);
         }
       })
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -547,15 +515,13 @@
       {
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
       }
-
       if (this.__P_299_0 && this.__P_299_3) {
         this.__P_299_0.removeListenerById(this.__P_299_3);
       }
-
       this.__P_299_0 = null;
     }
   });
   qx.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1685978132912
+//# sourceMappingURL=Label.js.map?dt=1691935429943

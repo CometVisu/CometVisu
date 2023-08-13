@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
     Tangible Theme for Qooxdoo
@@ -35,13 +34,13 @@
   
   
   ************************************************************************* */
-
   /**
    * Mapping class for all images used in the tangible theme.
    *
    * @asset(qx/static/blank.png)
    * @usefont(MaterialIcons)
    */
+
   qx.Class.define("qx.theme.tangible.Image", {
     extend: qx.core.Object,
     statics: {
@@ -106,4 +105,4 @@
   qx.theme.tangible.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1685978132417
+//# sourceMappingURL=Image.js.map?dt=1691935429504

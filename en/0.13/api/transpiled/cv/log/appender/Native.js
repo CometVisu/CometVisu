@@ -20,7 +20,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Native.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -71,6 +70,7 @@
      STATICS
      *****************************************************************************
      */
+
     statics: {
       /**
        * Processes a single log entry
@@ -81,17 +81,16 @@
         if (cv.Config.enableLogging) {
           // Firefox 4's Web Console doesn't support "debug"
           // eslint-disable-next-line no-console
-          var level = console[entry.level] ? entry.level : 'log'; // eslint-disable-next-line no-console
-
+          var level = console[entry.level] ? entry.level : 'log';
+          // eslint-disable-next-line no-console
           if (console[level]) {
-            var args = qx.log.appender.Util.toText(entry); // eslint-disable-next-line no-console
-
+            var args = qx.log.appender.Util.toText(entry);
+            // eslint-disable-next-line no-console
             console[level](args);
           }
         }
       }
     },
-
     /*
      *****************************************************************************
      DEFER
@@ -104,4 +103,4 @@
   cv.log.appender.Native.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Native.js.map?dt=1685978157125
+//# sourceMappingURL=Native.js.map?dt=1691935452851

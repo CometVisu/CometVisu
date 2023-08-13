@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Roundbar.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Roundbar', {
     type: 'static',
-
     /*
      ******************************************************
      STATICS
@@ -46,7 +44,6 @@
       deg2rad: function deg2rad(deg) {
         return parseFloat(deg) * Math.PI / 180;
       },
-
       /**
        * Parses the widgets XML configuration and extracts the given information
        * to a simple key/value map.
@@ -64,9 +61,7 @@
         cv.parser.pure.WidgetParser.parseAddress(xml, path);
         data.indicators = [];
         data.radius = 50; // default
-
         data.width = 10; // default
-
         xml.querySelectorAll('address').forEach(function (elem, i) {
           data.radius = parseFloat(elem.getAttribute('radius') || data.radius + (i === 0 ? 0 : data.spacing + data.width));
           indicatorValueCnt = parseInt(elem.getAttribute('valuepos') || indicatorValueCnt + 1);
@@ -116,7 +111,6 @@
               if (!value) {
                 return [];
               }
-
               var retval = [];
               value.split(';').forEach(function (range) {
                 var components = range.split(',');
@@ -125,24 +119,19 @@
                   start: parseFloat(startEnd[0]),
                   end: parseFloat(startEnd[1])
                 };
-
                 if (isNaN(thisRange.end)) {
                   thisRange.end = thisRange.start;
                 }
-
                 if (!isNaN(components[0])) {
                   thisRange.radius = parseFloat(components.shift());
                 }
-
                 if (!isNaN(components[0])) {
                   thisRange.width = parseFloat(components.shift());
                 }
-
                 if (components.length > 0) {
                   var style = components.shift();
                   thisRange.style = /:/.test(style) ? style : 'fill:' + style + ';stroke:' + style;
                 }
-
                 retval.push(thisRange);
               });
               return retval;
@@ -182,38 +171,29 @@
               if (!value) {
                 return [];
               }
-
               var retval = [];
               var radius = 50;
               var position = 'outside';
               var orientation = 'horizontal';
               value.split(';').forEach(function (label) {
                 var components = label.split(':');
-
                 if (components.length > 1) {
                   var subcompontents = components[0].split(',');
-
                   if (subcompontents[0] !== '') {
                     position = subcompontents[0];
                   }
-
                   if (subcompontents[1] !== '') {
                     orientation = subcompontents[1];
                   }
-
                   components.shift();
                 }
-
                 var valueName = components[0].split(',');
-
                 if (valueName.length > 1 && valueName[1] !== '') {
                   radius = parseFloat(valueName[1]);
                 }
-
                 if (valueName.length < 3 || valueName[2] === '') {
                   valueName[2] = valueName[0];
                 }
-
                 retval.push({
                   value: parseFloat(valueName[0]),
                   radius: radius,
@@ -301,7 +281,6 @@
             "default": '1',
             transform: function transform(value) {
               var parts = value.split(';');
-
               switch (parts.length) {
                 default:
                 case 1:
@@ -312,7 +291,6 @@
                     r: parseFloat(parts[0]),
                     d: parseFloat(parts[0])
                   };
-
                 case 2:
                   // horizontal;vertical
                   return {
@@ -321,7 +299,6 @@
                     r: parseFloat(parts[0]),
                     d: parseFloat(parts[1])
                   };
-
                 case 4:
                   // left;up;right;down
                   return {
@@ -366,11 +343,9 @@
             texty: 0
           }
         }[preset] || {};
-
         for (var key in thisPreset) {
           retObj[key]["default"] = thisPreset[key];
         }
-
         return retObj;
       }
     },
@@ -382,4 +357,4 @@
   cv.parser.pure.widgets.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1685978091423
+//# sourceMappingURL=Roundbar.js.map?dt=1691935391029

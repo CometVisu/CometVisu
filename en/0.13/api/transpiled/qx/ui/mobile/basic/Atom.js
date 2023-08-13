@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,37 +56,32 @@
    */
   qx.Class.define("qx.ui.mobile.basic.Atom", {
     extend: qx.ui.mobile.core.Widget,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Label to use
      * @param icon {String?null} Icon to use
      */
     construct: function construct(label, icon) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       this.__P_382_0(label, icon);
-
       this.addCssClass("gap");
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       defaultCssClass: {
         refine: true,
         init: "atom"
       },
-
       /** The label/caption/text of the qx.ui.mobile.basic.Atom instance */
       label: {
         apply: "_applyLabel",
@@ -95,7 +89,6 @@
         check: "String",
         event: "changeLabel"
       },
-
       /** Any URI String supported by qx.ui.mobile.basic.Image to display an icon */
       icon: {
         check: "String",
@@ -103,7 +96,6 @@
         nullable: true,
         event: "changeIcon"
       },
-
       /**
        * Configure the visibility of the sub elements/widgets.
        * Possible values: both, text, icon
@@ -114,7 +106,6 @@
         inheritable: true,
         apply: "_applyShow"
       },
-
       /**
        * The position of the icon in relation to the text.
        * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)
@@ -134,15 +125,10 @@
       _applyIconPosition: function _applyIconPosition(value, old) {
         var verticalLayout = ["top", "bottom"].indexOf(value) != -1;
         var hasNoLabel = !this.__P_382_2;
-
         this.__P_382_5(verticalLayout, hasNoLabel);
-
         var isReverse = ["right", "bottom"].indexOf(value) != -1;
-
         this.__P_382_4.setLayout(this.__P_382_1);
-
         this.__P_382_1.setReversed(isReverse);
-
         this._domUpdated();
       },
       // property apply
@@ -154,7 +140,6 @@
             this.__P_382_2.exclude();
           }
         }
-
         if (this.__P_382_3) {
           if (value === "both" || value === "icon") {
             this.__P_382_3.show();
@@ -179,7 +164,6 @@
           this.__P_382_3 = this._createIconWidget(value);
         }
       },
-
       /**
        * Takes care of lazily creating the layout and disposing an already
        * present layout if necessary.
@@ -192,28 +176,28 @@
           if (this.__P_382_1) {
             if (this.__P_382_1.classname !== "qx.ui.mobile.layout.VBox") {
               this.__P_382_1.dispose();
-
               this.__P_382_1 = new qx.ui.mobile.layout.VBox();
             }
-          } // layout == null
+          }
+          // layout == null
           else {
             this.__P_382_1 = new qx.ui.mobile.layout.VBox();
           }
-        } // horizontal layout and has label
+        }
+        // horizontal layout and has label
         else {
           if (this.__P_382_1) {
             if (this.__P_382_1.classname !== "qx.ui.mobile.layout.HBox") {
               this.__P_382_1.dispose();
-
               this.__P_382_1 = new qx.ui.mobile.layout.HBox();
             }
-          } // layout == null
+          }
+          // layout == null
           else {
             this.__P_382_1 = new qx.ui.mobile.layout.HBox();
           }
         }
       },
-
       /**
        * Returns the icon widget.
        *
@@ -222,7 +206,6 @@
       getIconWidget: function getIconWidget() {
         return this.__P_382_3;
       },
-
       /**
        * Returns the label widget.
        *
@@ -231,7 +214,6 @@
       getLabelWidget: function getLabelWidget() {
         return this.__P_382_2;
       },
-
       /**
        * Creates the icon widget.
        *
@@ -245,7 +227,6 @@
         iconWidget.addCssClass("gap");
         return iconWidget;
       },
-
       /**
        * Creates the label widget.
        *
@@ -259,7 +240,6 @@
         labelWidget.addCssClass("gap");
         return labelWidget;
       },
-
       /**
        * This function is responsible for creating and adding 2 children controls to the Button widget.
        * A label and an icon.
@@ -269,58 +249,43 @@
        */
       __P_382_0: function __P_382_0(label, icon) {
         this.__P_382_2 = this._createLabelWidget(label);
-
         if (label) {
           this.setLabel(label);
         }
-
         this.__P_382_3 = this._createIconWidget(icon);
-
         if (icon) {
           this.setIcon(icon);
         } else {
           this.__P_382_3.exclude();
         }
-
-        var verticalLayout = ["top", "bottom"].indexOf(this.getIconPosition()) != -1; // If Atom has no Label, only Icon is shown, and should vertically centered.
-
+        var verticalLayout = ["top", "bottom"].indexOf(this.getIconPosition()) != -1;
+        // If Atom has no Label, only Icon is shown, and should vertically centered.
         var hasNoLabel = !this.__P_382_2;
-
         this.__P_382_5(verticalLayout, hasNoLabel);
-
         if (this.__P_382_4) {
           this.__P_382_4.dispose();
         }
-
         this.__P_382_4 = new qx.ui.mobile.container.Composite(this.__P_382_1);
-
         this.__P_382_4.addCssClass("qx-flex-center");
-
         this.__P_382_4.setAnonymous(true);
-
         if (this.__P_382_3) {
           this.__P_382_4.add(this.__P_382_3);
         }
-
         if (this.__P_382_2) {
           this.__P_382_2.addCssClass("qx-flex-center");
-
           this.__P_382_4.add(this.__P_382_2);
-        } // Show/Hide Label/Icon
+        }
 
-
+        // Show/Hide Label/Icon
         if (this.getShow() === "icon" && this.__P_382_2) {
           this.__P_382_2.exclude();
         }
-
         if (this.getShow() === "label" && this.__P_382_3) {
           this.__P_382_3.exclude();
         }
-
         this._add(this.__P_382_4);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -333,4 +298,4 @@
   qx.ui.mobile.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1685978141877
+//# sourceMappingURL=Atom.js.map?dt=1691935438329

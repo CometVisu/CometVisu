@@ -14,9 +14,9 @@
         "index": 846
       },
       "end": {
-        "line": 200,
+        "line": 206,
         "column": 3,
-        "index": 5638
+        "index": 5820
       }
     },
     "jsdoc": {
@@ -38,13 +38,14 @@
           "index": 1113
         },
         "end": {
-          "line": 35,
+          "line": 36,
           "column": 5,
-          "index": 1168
+          "index": 1200
         }
       },
       "name": "stepWidth",
       "propertyType": "new",
+      "apply": "_applyStepWidth",
       "init": 5,
       "check": "Number",
       "defaultValue": 5
@@ -52,14 +53,14 @@
     "min": {
       "location": {
         "start": {
-          "line": 37,
+          "line": 38,
           "column": 4,
-          "index": 1175
+          "index": 1207
         },
         "end": {
-          "line": 41,
+          "line": 42,
           "column": 5,
-          "index": 1250
+          "index": 1282
         }
       },
       "name": "min",
@@ -72,14 +73,14 @@
     "max": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4,
-          "index": 1257
+          "index": 1289
         },
         "end": {
-          "line": 47,
+          "line": 48,
           "column": 5,
-          "index": 1334
+          "index": 1366
         }
       },
       "name": "max",
@@ -92,14 +93,14 @@
     "showValue": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 50,
           "column": 4,
-          "index": 1341
+          "index": 1373
         },
         "end": {
-          "line": 53,
+          "line": 54,
           "column": 5,
-          "index": 1432
+          "index": 1464
         }
       },
       "name": "showValue",
@@ -112,14 +113,14 @@
     "throttleInterval": {
       "location": {
         "start": {
-          "line": 55,
+          "line": 56,
           "column": 4,
-          "index": 1439
+          "index": 1471
         },
         "end": {
-          "line": 59,
+          "line": 60,
           "column": 5,
-          "index": 1542
+          "index": 1574
         }
       },
       "name": "throttleInterval",
@@ -134,14 +135,14 @@
     "__throttled": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 69,
           "column": 4,
-          "index": 1688
+          "index": 1720
         },
         "end": {
-          "line": 68,
+          "line": 69,
           "column": 21,
-          "index": 1705
+          "index": 1737
         }
       },
       "type": "variable",
@@ -150,14 +151,14 @@
     "__input": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 70,
           "column": 4,
-          "index": 1711
+          "index": 1743
         },
         "end": {
-          "line": 69,
+          "line": 70,
           "column": 17,
-          "index": 1724
+          "index": 1756
         }
       },
       "type": "variable",
@@ -166,14 +167,14 @@
     "_init": {
       "location": {
         "start": {
-          "line": 71,
+          "line": 72,
           "column": 4,
-          "index": 1731
+          "index": 1763
         },
         "end": {
-          "line": 113,
+          "line": 114,
           "column": 5,
-          "index": 3353
+          "index": 3385
         }
       },
       "type": "function",
@@ -187,14 +188,14 @@
     "_applyThrottleInterval": {
       "location": {
         "start": {
-          "line": 115,
+          "line": 116,
           "column": 4,
-          "index": 3360
+          "index": 3392
         },
         "end": {
-          "line": 125,
+          "line": 126,
           "column": 5,
-          "index": 3686
+          "index": 3718
         }
       },
       "type": "function",
@@ -206,14 +207,14 @@
     "_applyMin": {
       "location": {
         "start": {
-          "line": 127,
+          "line": 128,
           "column": 4,
-          "index": 3693
+          "index": 3725
         },
         "end": {
-          "line": 130,
+          "line": 131,
           "column": 5,
-          "index": 3829
+          "index": 3861
         }
       },
       "type": "function",
@@ -225,14 +226,14 @@
     "_applyMax": {
       "location": {
         "start": {
-          "line": 132,
+          "line": 133,
           "column": 4,
-          "index": 3836
+          "index": 3868
         },
         "end": {
-          "line": 135,
+          "line": 136,
           "column": 5,
-          "index": 3972
+          "index": 4004
         }
       },
       "type": "function",
@@ -241,17 +242,36 @@
         "max"
       ]
     },
+    "_applyStepWidth": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4011
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 4154
+        }
+      },
+      "type": "function",
+      "access": "protected",
+      "applyFor": [
+        "stepWidth"
+      ]
+    },
     "_applyShowValue": {
       "location": {
         "start": {
-          "line": 137,
+          "line": 143,
           "column": 4,
-          "index": 3979
+          "index": 4161
         },
         "end": {
-          "line": 147,
+          "line": 153,
           "column": 5,
-          "index": 4375
+          "index": 4557
         }
       },
       "type": "function",
@@ -263,14 +283,14 @@
     "_updateValue": {
       "location": {
         "start": {
-          "line": 149,
+          "line": 155,
           "column": 4,
-          "index": 4382
+          "index": 4564
         },
         "end": {
-          "line": 160,
+          "line": 166,
           "column": 5,
-          "index": 4748
+          "index": 4930
         }
       },
       "type": "function",
@@ -283,14 +303,14 @@
     "onInput": {
       "location": {
         "start": {
-          "line": 162,
+          "line": 168,
           "column": 4,
-          "index": 4755
+          "index": 4937
         },
         "end": {
-          "line": 164,
+          "line": 170,
           "column": 5,
-          "index": 4816
+          "index": 4998
         }
       },
       "type": "function",
@@ -299,14 +319,14 @@
     "onDecrease": {
       "location": {
         "start": {
-          "line": 166,
+          "line": 172,
           "column": 4,
-          "index": 4823
+          "index": 5005
         },
         "end": {
-          "line": 169,
+          "line": 175,
           "column": 5,
-          "index": 4945
+          "index": 5127
         }
       },
       "type": "function",
@@ -315,14 +335,14 @@
     "onIncrease": {
       "location": {
         "start": {
-          "line": 171,
+          "line": 177,
           "column": 4,
-          "index": 4952
+          "index": 5134
         },
         "end": {
-          "line": 174,
+          "line": 180,
           "column": 5,
-          "index": 5074
+          "index": 5256
         }
       },
       "type": "function",
@@ -331,14 +351,14 @@
     "__sendValue": {
       "location": {
         "start": {
-          "line": 176,
+          "line": 182,
           "column": 4,
-          "index": 5081
+          "index": 5263
         },
         "end": {
-          "line": 187,
+          "line": 193,
           "column": 5,
-          "index": 5412
+          "index": 5594
         }
       },
       "type": "function",
@@ -1423,14 +1443,14 @@
   "defer": {
     "location": {
       "start": {
-        "line": 190,
+        "line": 196,
         "column": 2,
-        "index": 5421
+        "index": 5603
       },
       "end": {
-        "line": 199,
+        "line": 205,
         "column": 3,
-        "index": 5634
+        "index": 5816
       }
     }
   },

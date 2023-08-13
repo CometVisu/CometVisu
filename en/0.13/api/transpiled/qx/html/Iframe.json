@@ -11,12 +11,12 @@
       "start": {
         "line": 23,
         "column": 0,
-        "index": 561
+        "index": 583
       },
       "end": {
         "line": 238,
         "column": 3,
-        "index": 6305
+        "index": 6542
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 40,
         "column": 2,
-        "index": 1241
+        "index": 1280
       },
       "end": {
         "line": 51,
         "column": 3,
-        "index": 1661
+        "index": 1711
       }
     },
     "jsdoc": {
@@ -84,12 +84,12 @@
         "start": {
           "line": 63,
           "column": 4,
-          "index": 1971
+          "index": 2033
         },
         "end": {
           "line": 63,
           "column": 31,
-          "index": 1998
+          "index": 2060
         }
       },
       "jsdoc": {
@@ -108,12 +108,12 @@
         "start": {
           "line": 73,
           "column": 4,
-          "index": 2320
+          "index": 2392
         },
         "end": {
           "line": 73,
           "column": 34,
-          "index": 2350
+          "index": 2422
         }
       },
       "jsdoc": {
@@ -134,12 +134,12 @@
         "start": {
           "line": 94,
           "column": 4,
-          "index": 2875
+          "index": 2968
         },
         "end": {
           "line": 108,
           "column": 5,
-          "index": 3379
+          "index": 3486
         }
       },
       "jsdoc": {
@@ -168,12 +168,12 @@
         "start": {
           "line": 111,
           "column": 4,
-          "index": 3404
+          "index": 3514
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3468
+          "index": 3580
         }
       },
       "jsdoc": {},
@@ -190,12 +190,12 @@
         "start": {
           "line": 126,
           "column": 4,
-          "index": 3798
+          "index": 3923
         },
         "end": {
           "line": 134,
           "column": 5,
-          "index": 3974
+          "index": 4107
         }
       },
       "jsdoc": {
@@ -222,12 +222,12 @@
         "start": {
           "line": 141,
           "column": 4,
-          "index": 4118
+          "index": 4258
         },
         "end": {
           "line": 149,
           "column": 5,
-          "index": 4298
+          "index": 4446
         }
       },
       "jsdoc": {
@@ -254,12 +254,12 @@
         "start": {
           "line": 156,
           "column": 4,
-          "index": 4462
+          "index": 4617
         },
         "end": {
           "line": 164,
           "column": 5,
-          "index": 4634
+          "index": 4797
         }
       },
       "jsdoc": {
@@ -286,12 +286,12 @@
         "start": {
           "line": 172,
           "column": 4,
-          "index": 4828
+          "index": 4999
         },
         "end": {
           "line": 176,
           "column": 5,
-          "index": 4999
+          "index": 5174
         }
       },
       "jsdoc": {
@@ -327,12 +327,12 @@
         "start": {
           "line": 183,
           "column": 4,
-          "index": 5104
+          "index": 5286
         },
         "end": {
           "line": 185,
           "column": 5,
-          "index": 5165
+          "index": 5349
         }
       },
       "jsdoc": {
@@ -359,12 +359,12 @@
         "start": {
           "line": 193,
           "column": 4,
-          "index": 5356
+          "index": 5548
         },
         "end": {
           "line": 196,
           "column": 5,
-          "index": 5435
+          "index": 5630
         }
       },
       "jsdoc": {
@@ -400,12 +400,12 @@
         "start": {
           "line": 203,
           "column": 4,
-          "index": 5537
+          "index": 5739
         },
         "end": {
           "line": 205,
           "column": 5,
-          "index": 5594
+          "index": 5798
         }
       },
       "jsdoc": {
@@ -432,12 +432,12 @@
         "start": {
           "line": 210,
           "column": 4,
-          "index": 5639
+          "index": 5848
         },
         "end": {
           "line": 218,
           "column": 5,
-          "index": 5822
+          "index": 6039
         }
       },
       "jsdoc": {
@@ -456,12 +456,12 @@
         "start": {
           "line": 231,
           "column": 4,
-          "index": 6173
+          "index": 6403
         },
         "end": {
           "line": 236,
           "column": 5,
-          "index": 6297
+          "index": 6532
         }
       },
       "jsdoc": {

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,10 +41,8 @@
       // overridden
       _getSelectableLocationY: function _getSelectableLocationY(item) {
         var computed = item.getBounds();
-
         if (computed) {
           var top = this._getWidget().getItemTop(item);
-
           return {
             top: top,
             bottom: top + computed.height
@@ -64,27 +61,22 @@
       getSelectables: function getSelectables(all) {
         // if only the user selectables should be returned
         var oldUserInteraction = false;
-
         if (!all) {
           oldUserInteraction = this._userInteraction;
           this._userInteraction = true;
         }
-
         var widget = this._getWidget();
-
         var result = [];
-
         if (widget.getRoot() != null) {
           var items = widget.getRoot().getItems(true, !!all, widget.getHideRoot());
-
           for (var i = 0; i < items.length; i++) {
             if (this._isSelectable(items[i])) {
               result.push(items[i]);
             }
           }
-        } // reset to the former user interaction state
+        }
 
-
+        // reset to the former user interaction state
         this._userInteraction = oldUserInteraction;
         return result;
       },
@@ -94,15 +86,12 @@
         if (item1 === item2) {
           return [item1];
         }
-
         var selectables = this.getSelectables();
         var item1Index = selectables.indexOf(item1);
         var item2Index = selectables.indexOf(item2);
-
         if (item1Index < 0 || item2Index < 0) {
           return [];
         }
-
         if (item1Index < item2Index) {
           return selectables.slice(item1Index, item2Index + 1);
         } else {
@@ -116,7 +105,6 @@
       // overridden
       _getLastSelectable: function _getLastSelectable() {
         var selectables = this.getSelectables();
-
         if (selectables.length > 0) {
           return selectables[selectables.length - 1];
         } else {
@@ -126,27 +114,21 @@
       // overridden
       _getRelatedSelectable: function _getRelatedSelectable(item, relation) {
         var widget = this._getWidget();
-
         var related = null;
-
         switch (relation) {
           case "above":
             related = widget.getPreviousNodeOf(item, false);
             break;
-
           case "under":
             related = widget.getNextNodeOf(item, false);
             break;
-
           case "left":
           case "right":
             break;
         }
-
         if (!related) {
           return null;
         }
-
         if (this._isSelectable(related)) {
           return related;
         } else {
@@ -158,4 +140,4 @@
   qx.ui.tree.selection.SelectionManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectionManager.js.map?dt=1685978150252
+//# sourceMappingURL=SelectionManager.js.map?dt=1691935446520

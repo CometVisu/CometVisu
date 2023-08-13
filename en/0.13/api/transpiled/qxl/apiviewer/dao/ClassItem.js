@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,7 +38,6 @@
    */
   qx.Class.define("qxl.apiviewer.dao.ClassItem", {
     extend: qxl.apiviewer.dao.Node,
-
     /**
      * @param meta
      * @param parentClass {qxl.apiviewer.dao.Class} reference to the class this item belongs to
@@ -53,7 +51,6 @@
     members: {
       _class: null,
       _name: null,
-
       /**
        * Get the class, this item belongs to
        *
@@ -62,7 +59,6 @@
       getClass: function getClass() {
         return this._class;
       },
-
       /**
        * Get the name of the item.
        *
@@ -74,7 +70,6 @@
       getFullName: function getFullName() {
         return this.getClass().getFullName() + "#" + this._name;
       },
-
       /**
        * Get the types of the item.
        *
@@ -85,28 +80,22 @@
       getTypes: function getTypes() {
         var result = [];
         var arr = this._jsdoc["@param"];
-
         if (arr) {
           arr.map(function (item) {
             var result = {
               type: item.type
             };
-
             if (result.type) {
               var dims = result.type.match(/\[\]/g);
-
               if (dims) {
                 result.dimensions = dims.length;
               }
             }
-
             return result;
           });
         }
-
         return result;
       },
-
       /**
        * Get all references declared using the "see" attribute.
        *
@@ -117,7 +106,6 @@
           return item.body;
         });
       },
-
       /**
        * If the item is overwridden from one of the super classes, get the item, which is overwridden.
        *
@@ -126,7 +114,6 @@
       getOverriddenFrom: function getOverriddenFrom() {
         return this._meta.overriddenFrom ? qxl.apiviewer.dao.Class.getClassByName(this._meta.overriddenFrom) : null;
       },
-
       /**
        * Checks whether the node is required by the given interface.
        *
@@ -136,7 +123,6 @@
       isRequiredByInterface: function isRequiredByInterface(ifaceNode) {
         throw new Error("No implementation for " + this.classname + ".isRequiredByInterface");
       },
-
       /**
        * Get the interface this item is required by.
        *
@@ -146,21 +132,17 @@
         if (this._requiredBy) {
           return this._requiredBy;
         }
-
         var requiredBy = [];
         var interfaces = this.getClass().getAllInterfaces(true);
-
         for (var j = 0; j < interfaces.length; j++) {
           if (this.isRequiredByInterface(interfaces[j])) {
             requiredBy.push(interfaces[j]);
           }
         }
-
         this._requiredBy = requiredBy;
         return requiredBy;
       }
     },
-
     /*
     *****************************************************************************
       DESTRUCTOR
@@ -173,4 +155,4 @@
   qxl.apiviewer.dao.ClassItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassItem.js.map?dt=1685978164247
+//# sourceMappingURL=ClassItem.js.map?dt=1691935459194

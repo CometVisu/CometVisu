@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -43,21 +42,18 @@
       request: {
         check: "qx.io.request.AbstractRequest"
       },
-
       /**
        * The action that invoked the request.
        */
       action: {
         check: "String"
       },
-
       /**
        * The phase of the request.
        */
       phase: {
         check: "String"
       },
-
       /**
        * The id of the request.
        */
@@ -90,7 +86,6 @@
         this.setId(parseInt(request.toHashCode(), 10));
         return this;
       },
-
       /**
        * Get a copy of this object
        *
@@ -112,4 +107,4 @@
   qx.event.type.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1685978123281
+//# sourceMappingURL=Rest.js.map?dt=1691935420918

@@ -41,7 +41,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -68,12 +67,12 @@
    */
   qx.Class.define("qx.ui.form.TextField", {
     extend: qx.ui.form.AbstractField,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -103,16 +102,12 @@
       // overridden
       _createContentElement: function _createContentElement() {
         var el = qx.ui.form.TextField.superclass.prototype._createContentElement.call(this);
-
         var deviceType = qx.core.Environment.get("device.type");
-
         if (deviceType == "tablet" || deviceType == "mobile") {
           el.addListener("keypress", this._onKeyPress, this);
         }
-
         return el;
       },
-
       /**
        * Close the virtual keyboard if the Enter key is pressed.
        * @param evt {qx.event.type.KeySequence} the keypress event.
@@ -140,4 +135,4 @@
   qx.ui.form.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1685978139260
+//# sourceMappingURL=TextField.js.map?dt=1691935435865

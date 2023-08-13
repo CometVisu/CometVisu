@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Trigger.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -55,7 +54,6 @@
   qx.Class.define('cv.ui.structure.pure.Trigger', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate, cv.ui.common.HandleLongpress],
-
     /*
     ******************************************************
       PROPERTIES
@@ -71,7 +69,6 @@
         init: '0'
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -81,14 +78,12 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Trigger.superclass.prototype._onDomReady.call(this);
-
         this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
       },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       },
-
       /**
        * Handle a short tap event and send the value for short pressing the trigger to the backend.
        * If there is no short threshold set, this send the value for long presses to the backend.
@@ -99,7 +94,6 @@
           return !!(address.variantInfo & 1);
         });
       },
-
       /**
        * Handle a long tap event and send the value for long pressing the trigger to the backend.
        */
@@ -113,4 +107,4 @@
   cv.ui.structure.pure.Trigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Trigger.js.map?dt=1685978100500
+//# sourceMappingURL=Trigger.js.map?dt=1691935399887

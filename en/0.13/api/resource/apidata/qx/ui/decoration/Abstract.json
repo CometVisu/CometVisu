@@ -13,12 +13,12 @@
       "start": {
         "line": 25,
         "column": 0,
-        "index": 808
+        "index": 832
       },
       "end": {
         "line": 85,
         "column": 3,
-        "index": 2170
+        "index": 2254
       }
     },
     "jsdoc": {
@@ -40,12 +40,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 963
+          "index": 993
         },
         "end": {
           "line": 31,
           "column": 18,
-          "index": 977
+          "index": 1007
         }
       },
       "type": "variable",
@@ -56,12 +56,12 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1304
+          "index": 1349
         },
         "end": {
           "line": 48,
           "column": 5,
-          "index": 1381
+          "index": 1428
         }
       },
       "jsdoc": {
@@ -88,12 +88,12 @@
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1578
+          "index": 1632
         },
         "end": {
           "line": 57,
           "column": 5,
-          "index": 1652
+          "index": 1708
         }
       },
       "jsdoc": {
@@ -120,12 +120,12 @@
         "start": {
           "line": 62,
           "column": 4,
-          "index": 1701
+          "index": 1762
         },
         "end": {
           "line": 64,
           "column": 5,
-          "index": 1751
+          "index": 1814
         }
       },
       "jsdoc": {
@@ -144,12 +144,12 @@
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1790
+          "index": 1856
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 1924
+          "index": 1996
         }
       },
       "jsdoc": {},
@@ -354,12 +354,12 @@
       "start": {
         "line": 82,
         "column": 2,
-        "index": 2124
+        "index": 2205
       },
       "end": {
         "line": 84,
         "column": 3,
-        "index": 2166
+        "index": 2249
       }
     },
     "jsdoc": {}

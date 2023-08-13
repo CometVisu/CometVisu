@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Reload.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -44,7 +43,6 @@
   qx.Class.define('cv.ui.structure.pure.Reload', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
     ******************************************************
       MEMBERS
@@ -61,7 +59,6 @@
       },
       _update: function _update(address, data) {
         var value = this.defaultValueHandling(address, data);
-
         if (value > 0) {
           cv.util.Location.reload(true);
         }
@@ -71,4 +68,4 @@
   cv.ui.structure.pure.Reload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Reload.js.map?dt=1685978100144
+//# sourceMappingURL=Reload.js.map?dt=1691935399567

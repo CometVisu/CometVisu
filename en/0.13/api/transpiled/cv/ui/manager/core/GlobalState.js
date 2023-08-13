@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* GlobalState.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,7 +37,6 @@
   qx.Class.define('cv.ui.manager.core.GlobalState', {
     extend: qx.core.Object,
     type: 'singleton',
-
     /*
     ***********************************************
       PROPERTIES
@@ -52,7 +50,6 @@
         apply: '_applyFile'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -67,4 +64,4 @@
   cv.ui.manager.core.GlobalState.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalState.js.map?dt=1685978094615
+//# sourceMappingURL=GlobalState.js.map?dt=1691935394115

@@ -27,7 +27,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,19 +59,15 @@
     statics: {
       /** @type {Map} Internal data structure to cache image sizes */
       __P_245_0: {},
-
       /** @type {Map} Default image size */
       __P_245_1: {
         width: null,
         height: null
       },
-
       /** @type {RegExp} Known image types */
       __P_245_2: /\.(png|gif|jpg|jpeg|bmp)\b/i,
-
       /** @type {RegExp} Image types of a data URL */
       __P_245_3: /^data:image\/(png|gif|jpg|jpeg|bmp)\b/i,
-
       /**
        * Whether the given image has previously been loaded using the
        * {@link #load} method.
@@ -84,7 +79,6 @@
         var entry = this.__P_245_0[source];
         return !!(entry && entry.loaded);
       },
-
       /**
        * Whether the given image has previously been requested using the
        * {@link #load} method but failed.
@@ -96,7 +90,6 @@
         var entry = this.__P_245_0[source];
         return !!(entry && entry.failed);
       },
-
       /**
        * Whether the given image is currently loading.
        *
@@ -107,7 +100,6 @@
         var entry = this.__P_245_0[source];
         return !!(entry && entry.loading);
       },
-
       /**
        * Returns the format of a previously loaded image
        *
@@ -116,10 +108,8 @@
        */
       getFormat: function getFormat(source) {
         var entry = this.__P_245_0[source];
-
         if (!entry || !entry.format) {
           var result = this.__P_245_3.exec(source);
-
           if (result != null) {
             // If width and height aren't defined, provide some defaults
             var width = entry && qx.lang.Type.isNumber(entry.width) ? entry.width : this.__P_245_1.width;
@@ -132,10 +122,8 @@
             };
           }
         }
-
         return entry ? entry.format : null;
       },
-
       /**
        * Returns the size of a previously loaded image
        *
@@ -151,7 +139,6 @@
           height: entry.height
         } : this.__P_245_1;
       },
-
       /**
        * Returns the image width
        *
@@ -162,7 +149,6 @@
         var entry = this.__P_245_0[source];
         return entry ? entry.width : null;
       },
-
       /**
        * Returns the image height
        *
@@ -173,7 +159,6 @@
         var entry = this.__P_245_0[source];
         return entry ? entry.height : null;
       },
-
       /**
        * Loads the given image. Supports a callback which is
        * executed when the image is loaded.
@@ -190,17 +175,16 @@
       load: function load(source, callback, context) {
         // Shorthand
         var entry = this.__P_245_0[source];
-
         if (!entry) {
           entry = this.__P_245_0[source] = {};
-        } // Normalize context
+        }
 
-
+        // Normalize context
         if (callback && !context) {
           context = window;
-        } // Already known image source
+        }
 
-
+        // Already known image source
         if (entry.loaded || entry.loading || entry.failed) {
           if (callback) {
             if (entry.loading) {
@@ -213,35 +197,35 @@
           // Updating entry
           entry.loading = true;
           entry.callbacks = [];
-
           if (callback) {
             entry.callbacks.push(callback, context);
           }
-
           var ResourceManager = qx.util.ResourceManager.getInstance();
-
           if (ResourceManager.isFontUri(source)) {
             var el = document.createElement("div");
             var charCode = ResourceManager.fromFontUriToCharCode(source);
             el.value = String.fromCharCode(charCode);
             entry.element = el;
             return;
-          } // Create image element
+          }
 
+          // Create image element
+          var el = document.createElement("img");
 
-          var el = document.createElement("img"); // Create common callback routine
+          // Create common callback routine
+          var boundCallback = qx.lang.Function.listener(this.__P_245_4, this, el, source);
 
-          var boundCallback = qx.lang.Function.listener(this.__P_245_4, this, el, source); // Assign callback to element
-
+          // Assign callback to element
           el.onload = boundCallback;
-          el.onerror = boundCallback; // Start loading of image
+          el.onerror = boundCallback;
 
-          el.src = source; // save the element for aborting
+          // Start loading of image
+          el.src = source;
 
+          // save the element for aborting
           entry.element = el;
         }
       },
-
       /**
        * Abort the loading for the given url.
        *
@@ -249,28 +233,27 @@
        */
       abort: function abort(source) {
         var entry = this.__P_245_0[source];
-
         if (entry && !entry.loaded) {
           entry.aborted = true;
           var callbacks = entry.callbacks;
-          var element = entry.element; // Cleanup listeners
+          var element = entry.element;
 
-          element.onload = element.onerror = null; // prevent further loading
+          // Cleanup listeners
+          element.onload = element.onerror = null;
 
-          element.src = ""; // Cleanup entry
+          // prevent further loading
+          element.src = "";
 
+          // Cleanup entry
           delete entry.callbacks;
           delete entry.element;
           delete entry.loading;
-
           for (var i = 0, l = callbacks.length; i < l; i += 2) {
             callbacks[i].call(callbacks[i + 1], source, entry);
           }
         }
-
         this.__P_245_0[source] = null;
       },
-
       /**
        * Calls a method based on qx.globalErrorHandling
        */
@@ -281,7 +264,6 @@
         });
         callback.apply(this, arguments);
       },
-
       /**
        * Internal event listener for all load/error events.
        *
@@ -293,53 +275,54 @@
        */
       __P_245_5: function __P_245_5(event, element, source) {
         // Shorthand
-        var entry = this.__P_245_0[source]; // [BUG #9149]: When loading a SVG IE11 won't have
+        var entry = this.__P_245_0[source];
+
+        // [BUG #9149]: When loading a SVG IE11 won't have
         // the width/height of the element set, unless
         // it is inserted into the DOM.
-
         if (qx.bom.client.Engine.getName() == "mshtml" && parseFloat(qx.bom.client.Engine.getVersion()) === 11) {
           document.body.appendChild(element);
         }
-
         var isImageAvailable = function isImageAvailable(imgElem) {
           return imgElem && imgElem.height !== 0;
-        }; // [BUG #7497]: IE11 doesn't properly emit an error event
+        };
+
+        // [BUG #7497]: IE11 doesn't properly emit an error event
         // when loading fails so augment success check
-
-
         if (event.type === "load" && isImageAvailable(element)) {
           // Store dimensions
           entry.loaded = true;
           entry.width = element.width;
-          entry.height = element.height; // try to determine the image format
+          entry.height = element.height;
 
+          // try to determine the image format
           var result = this.__P_245_2.exec(source);
-
           if (result != null) {
             entry.format = result[1];
           }
         } else {
           entry.failed = true;
         }
-
         if (qx.bom.client.Engine.getName() == "mshtml" && parseFloat(qx.bom.client.Engine.getVersion()) === 11) {
           document.body.removeChild(element);
-        } // Cleanup listeners
+        }
 
+        // Cleanup listeners
+        element.onload = element.onerror = null;
 
-        element.onload = element.onerror = null; // Cache callbacks
+        // Cache callbacks
+        var callbacks = entry.callbacks;
 
-        var callbacks = entry.callbacks; // Cleanup entry
-
+        // Cleanup entry
         delete entry.loading;
         delete entry.callbacks;
-        delete entry.element; // Execute callbacks
+        delete entry.element;
 
+        // Execute callbacks
         for (var i = 0, l = callbacks.length; i < l; i += 2) {
           callbacks[i].call(callbacks[i + 1], source, entry);
         }
       },
-
       /**
        * Dispose stored images.
        */
@@ -351,4 +334,4 @@
   qx.io.ImageLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageLoader.js.map?dt=1685978124597
+//# sourceMappingURL=ImageLoader.js.map?dt=1691935422149

@@ -35,7 +35,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* PageHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -62,9 +61,9 @@
   // FIXME and TODO: This class is currently just a quick hack to get rid
   // of the jQuery-Tools Scrollable. It should be enhanced to allow different
   // page transition animations like blending, etc. pp.
+
   qx.Class.define('cv.ui.structure.pure.navigation.PageHandler', {
     extend: qx.core.Object,
-
     /*
      ******************************************************
      PROPERTIES
@@ -90,7 +89,6 @@
         init: 'slide'
       }
     },
-
     /*
      ******************************************************
      MEMBERS
@@ -99,62 +97,58 @@
     members: {
       seekTo: function seekTo(target, speed) {
         var _this = this;
-
         if (!Number.isFinite(speed)) {
           speed = 0;
         }
-
         var currentPath = this.getCurrentPath();
-
         if (currentPath !== '') {
           qx.event.message.Bus.dispatchByName('path.' + currentPath + '.exitingPageChange', currentPath, target);
         }
-
         var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
-
         if (!pageWidget || !pageWidget.getDomElement()) {
           // check if page does exist
           return;
         }
-
         qx.event.message.Bus.dispatchByName('path.' + target + '.beforePageChange', target);
         var controller = cv.Application.structureController;
         controller.resetPageValues();
-        controller.setCurrentPage(pageWidget); // update visibility of navbars, top-navigation, footer
+        controller.setCurrentPage(pageWidget);
 
-        controller.pagePartsHandler.updatePageParts(pageWidget, speed); // now the animation
+        // update visibility of navbars, top-navigation, footer
+        controller.pagePartsHandler.updatePageParts(pageWidget, speed);
 
-        var animationConfig = {}; // update reference, because the appearance might have changed
+        // now the animation
+        var animationConfig = {};
 
+        // update reference, because the appearance might have changed
         var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
         var direction = null;
-        var animationEnabled = speed > 0 && this.getAnimationType() !== 'none'; // browser check
+        var animationEnabled = speed > 0 && this.getAnimationType() !== 'none';
 
+        // browser check
         if (qx.core.Environment.get('browser.name') === 'safari' && parseInt(qx.core.Environment.get('browser.version')) <= 5) {
           animationEnabled = false;
         }
-
         if (animationEnabled) {
           var currentDepth = currentPath.split('_').length;
           var targetDepth = target.split('_').length;
           direction = currentDepth <= targetDepth ? 'down' : 'up';
-          animationConfig = this.__P_71_0(direction); // show the new page (because animations do not work on hidden elements) + hide scrollbar
+          animationConfig = this.__P_71_0(direction);
 
+          // show the new page (because animations do not work on hidden elements) + hide scrollbar
           Object.entries({
             display: 'block',
             overflow: 'hidden'
           }).forEach(function (key_value) {
             pageWidget.getDomElement().style[key_value[0]] = key_value[1];
-          }); // set it to visible
-
+          });
+          // set it to visible
           pageWidget.setVisible(true);
         }
-
         if (!animationEnabled) {
           if (oldPageWidget) {
             this.__P_71_1(oldPageWidget);
           }
-
           this.__P_71_2(pageWidget, 0, true);
         } else {
           if (oldPageWidget) {
@@ -164,12 +158,10 @@
               _this.__P_71_1(oldPageWidget);
             });
           }
-
           var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
           pageWidget.getDomElement().style.position = 'absolute';
           qx.bom.AnimationFrame.request(function () {
             var _this2 = this;
-
             var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
             animation.addListenerOnce('end', function () {
               _this2.__P_71_2(pageWidget, oldPos);
@@ -177,17 +169,16 @@
           }, this);
         }
       },
-
       /**
        * Get the animation configs for the current animationType setting
        * @param direction {String} "up" or "down"
        */
       __P_71_0: function __P_71_0(direction) {
         var inAnim;
-        var outAnim; // try to find existing animation configuration
+        var outAnim;
 
+        // try to find existing animation configuration
         var type = this.getAnimationType().toUpperCase();
-
         if (direction === 'up') {
           inAnim = qx.util.Animation[type + '_RIGHT_IN'] || qx.util.Animation[type + '_IN'];
           outAnim = qx.util.Animation[type + '_RIGHT_OUT'] || qx.util.Animation[type + '_OUT'];
@@ -195,7 +186,6 @@
           inAnim = qx.util.Animation[type + '_LEFT_IN'] || qx.util.Animation[type + '_IN'];
           outAnim = qx.util.Animation[type + '_LEFT_OUT'] || qx.util.Animation[type + '_OUT'];
         }
-
         if (!inAnim || !outAnim) {
           // fallback
           switch (this.getAnimationType()) {
@@ -207,25 +197,20 @@
                 inAnim = qx.util.Animation.SLIDE_LEFT_IN;
                 outAnim = qx.util.Animation.SLIDE_LEFT_OUT;
               }
-
               break;
           }
         }
-
         if (inAnim) {
           inAnim.timing = this.getEasing();
         }
-
         if (outAnim) {
           outAnim.timing = this.getEasing();
         }
-
         return {
           enterPage: inAnim,
           leavePage: outAnim
         };
       },
-
       /**
        * Cleanup after page has been left
        * @param oldPageWidget {cv.ui.structure.pure.Page}
@@ -237,7 +222,6 @@
         qx.event.message.Bus.dispatchByName('path.pageLeft', oldPageWidget.getPath());
         oldPageWidget.setVisible(false);
       },
-
       /**
        * Cleanup after page has been entered
        * @param pageWidget {cv.ui.structure.pure.Page}
@@ -248,27 +232,23 @@
         var page = pageWidget.getDomElement();
         var target = pageWidget.getPath();
         page.classList.add('pageActive', 'activePage'); // show new page
-
         if (updateVisibility === true) {
           // set it to visible
           pageWidget.setVisible(true);
-        } // final stuff
-
-
+        }
+        // final stuff
         this.setCurrentPath(target);
         cv.Application.structureController.pagePartsHandler.updateTopNavigation(target);
         qx.event.message.Bus.dispatchByName('page.' + target + '.appear', target);
-        qx.event.message.Bus.dispatchByName('path.pageChanged', target); // show scrollbar after animation
-
+        qx.event.message.Bus.dispatchByName('path.pageChanged', target);
+        // show scrollbar after animation
         var styles = {
           overflow: null,
           display: null
         };
-
         if (oldPos) {
           styles.position = oldPos;
         }
-
         Object.entries(styles).forEach(function (key_value) {
           page.style[key_value[0]] = key_value[1];
         });
@@ -278,4 +258,4 @@
   cv.ui.structure.pure.navigation.PageHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageHandler.js.map?dt=1685978100907
+//# sourceMappingURL=PageHandler.js.map?dt=1691935400301

@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -77,21 +76,17 @@
         if (!this.$$instance) {
           this.$$instance = new qx.bom.FullScreen();
         }
-
         return this.$$instance;
       }
     },
-
     /**
      * @param element {Element?} Optional element to show fullscreen.
      */
     construct: function construct(element) {
       this.__P_102_0 = element || window.document;
-
       this.__P_102_1();
-
-      var self = this; // forward the event
-
+      var self = this;
+      // forward the event
       qx.bom.Event.addNativeListener(this.__P_102_0, this.__P_102_2, function (e) {
         self.emit("change", e);
       });
@@ -108,21 +103,19 @@
       __P_102_4: "requestFullscreen",
       __P_102_5: "cancelFullscreen",
       __P_102_2: "fullscreenchange",
-
       /**
        * Internal helper to feature check the attribute names and the event name.
        * As the event can not be detected using the on<name> attribute, we need
        * to guess the event name by checking for the hidden attribute.
        */
       __P_102_1: function __P_102_1() {
-        var prefix = qx.bom.Style.VENDOR_PREFIXES; // check for the hidden attribute name
+        var prefix = qx.bom.Style.VENDOR_PREFIXES;
 
+        // check for the hidden attribute name
         for (var i = 0; i < prefix.length; i++) {
           var pfix = prefix[i].toLowerCase();
-
           if (this.__P_102_0[pfix + "FullScreenElement"] !== undefined || this.__P_102_0[pfix + "FullscreenElement"] !== undefined) {
             this.__P_102_2 = pfix + "fullscreenchange";
-
             if (pfix == "moz") {
               this.__P_102_3 = pfix + "FullScreenElement";
               this.__P_102_4 = pfix + "RequestFullScreen";
@@ -130,12 +123,11 @@
               this.__P_102_3 = pfix + "FullscreenElement";
               this.__P_102_4 = pfix + "RequestFullscreen";
             }
-
             break;
           }
-        } // Doh. This needs some upstream consistency though...
+        }
 
-
+        // Doh. This needs some upstream consistency though...
         if (this.__P_102_0[pfix + "CancelFullScreen"]) {
           this.__P_102_5 = pfix + "CancelFullScreen";
         } else if (this.__P_102_0[pfix + "CancelFullscreen"]) {
@@ -148,7 +140,6 @@
           this.__P_102_5 = "exitFullscreen";
         }
       },
-
       /**
        * Returns whether the page is shown in fullscreen mode or not. If we
        * can not detect it, <code>false</code> will always be returned.
@@ -158,7 +149,6 @@
       isFullScreen: function isFullScreen() {
         return this.__P_102_0[this.__P_102_3] !== undefined ? !!this.__P_102_0[this.__P_102_3] : false;
       },
-
       /**
        * Request the page to be shown in fullscreen mode. Note that this
        * is only possible when called from within an interactive event
@@ -172,7 +162,6 @@
           this.__P_102_0.documentElement[this.__P_102_4]();
         }
       },
-
       /**
        * End the fullscreen mode.
        */
@@ -186,4 +175,4 @@
   qx.bom.FullScreen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FullScreen.js.map?dt=1685978106943
+//# sourceMappingURL=FullScreen.js.map?dt=1691935406116

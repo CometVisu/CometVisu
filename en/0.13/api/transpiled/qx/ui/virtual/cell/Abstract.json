@@ -13,12 +13,12 @@
       "start": {
         "line": 28,
         "column": 0,
-        "index": 681
+        "index": 708
       },
       "end": {
         "line": 110,
         "column": 3,
-        "index": 3112
+        "index": 3221
       }
     },
     "jsdoc": {
@@ -45,12 +45,12 @@
       "start": {
         "line": 33,
         "column": 2,
-        "index": 818
+        "index": 850
       },
       "end": {
         "line": 38,
         "column": 3,
-        "index": 931
+        "index": 968
       }
     }
   },
@@ -60,12 +60,12 @@
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1205
+          "index": 1252
         },
         "end": {
           "line": 50,
           "column": 5,
-          "index": 1265
+          "index": 1314
         }
       },
       "jsdoc": {
@@ -108,12 +108,12 @@
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1592
+          "index": 1651
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 1645
+          "index": 1706
         }
       },
       "jsdoc": {
@@ -156,12 +156,12 @@
         "start": {
           "line": 72,
           "column": 4,
-          "index": 1955
+          "index": 2026
         },
         "end": {
           "line": 74,
           "column": 5,
-          "index": 2004
+          "index": 2077
         }
       },
       "jsdoc": {
@@ -204,12 +204,12 @@
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2426
+          "index": 2510
         },
         "end": {
           "line": 87,
           "column": 5,
-          "index": 2479
+          "index": 2565
         }
       },
       "jsdoc": {
@@ -252,12 +252,12 @@
         "start": {
           "line": 96,
           "column": 4,
-          "index": 2732
+          "index": 2827
         },
         "end": {
           "line": 98,
           "column": 5,
-          "index": 2785
+          "index": 2882
         }
       },
       "jsdoc": {
@@ -300,12 +300,12 @@
         "start": {
           "line": 100,
           "column": 4,
-          "index": 2792
+          "index": 2891
         },
         "end": {
           "line": 108,
           "column": 5,
-          "index": 3104
+          "index": 3211
         }
       },
       "type": "function",

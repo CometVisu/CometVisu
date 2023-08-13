@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -44,24 +43,24 @@
   qx.Class.define("qx.ui.menu.CheckBox", {
     extend: qx.ui.menu.AbstractButton,
     implement: [qx.ui.form.IBooleanForm],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Initial label
      * @param menu {qx.ui.menu.Menu} Initial sub menu
      */
     construct: function construct(label, menu) {
-      qx.ui.menu.AbstractButton.constructor.call(this); // ARIA attrs
+      qx.ui.menu.AbstractButton.constructor.call(this);
 
+      // ARIA attrs
       var contenEl = this.getContentElement();
       contenEl.setAttribute("role", "checkbox");
-      contenEl.setAttribute("aria-checked", false); // Initialize with incoming arguments
+      contenEl.setAttribute("aria-checked", false);
 
+      // Initialize with incoming arguments
       if (label != null) {
         // try to translate every time you create a checkbox [BUG #2699]
         if (label.translate) {
@@ -70,26 +69,23 @@
           this.setLabel(label);
         }
       }
-
       if (menu != null) {
         this.setMenu(menu);
       }
-
       this.addListener("execute", this._onExecute, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "menu-checkbox"
       },
-
       /** Whether the button is checked */
       value: {
         check: "Boolean",
@@ -99,28 +95,25 @@
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       // overridden (from MExecutable to keep the icon out of the binding)
-
       /**
        * @lint ignoreReferenceField(_bindableProperties)
        */
       _bindableProperties: ["enabled", "label", "toolTipText", "value", "menu"],
       // property apply
       _applyValue: function _applyValue(value, old) {
-        value ? this.addState("checked") : this.removeState("checked"); // ARIA attrs
+        value ? this.addState("checked") : this.removeState("checked");
 
+        // ARIA attrs
         this.getContentElement().setAttribute("aria-checked", Boolean(value));
       },
-
       /**
        * Handler for the execute event.
        *
@@ -134,4 +127,4 @@
   qx.ui.menu.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1685978141445
+//# sourceMappingURL=CheckBox.js.map?dt=1691935437919

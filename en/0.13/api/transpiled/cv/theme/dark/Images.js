@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Images.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -33,7 +32,6 @@
    */
   qx.Class.define('cv.theme.dark.Images', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -100,4 +98,4 @@
   cv.theme.dark.Images.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Images.js.map?dt=1685978158979
+//# sourceMappingURL=Images.js.map?dt=1691935454497

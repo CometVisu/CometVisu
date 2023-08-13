@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,7 +48,6 @@
        * @param item {qx.ui.core.Widget} Item to modify.
        */
       configureItem: function configureItem(item) {},
-
       /**
        * Gives the user the opportunity to set individual styles and properties
        * on the group widget cells created by the controller.
@@ -57,7 +55,6 @@
        * @param item {qx.ui.core.Widget} Group to modify.
        */
       configureGroupItem: function configureGroupItem(item) {},
-
       /**
        * Creates an item cell which will be used for rendering. Be sure to
        * implement the {@link #bindItem} function as well to get the needed
@@ -66,7 +63,6 @@
        * @return {qx.ui.core.Widget} A new created item cell.
        */
       createItem: function createItem() {},
-
       /**
        * Creates a group cell which will be used for rendering. Be sure to
        * implement the {@link #bindGroupItem} function as well to get the needed
@@ -75,7 +71,6 @@
        * @return {qx.ui.core.Widget} A new created item cell.
        */
       createGroupItem: function createGroupItem() {},
-
       /**
        * Sets up the binding for the given item and index.
        *
@@ -90,7 +85,6 @@
        * @param id {Integer} The id for the binding.
        */
       bindItem: function bindItem(controller, item, id) {},
-
       /**
        * Sets up the binding for the given group item and index.
        *
@@ -105,7 +99,6 @@
        * @param id {Integer} The id for the binding.
        */
       bindGroupItem: function bindGroupItem(controller, item, id) {},
-
       /**
        * Gives the user the opportunity to filter the model. The filter
        * method has to return <code>true</code> if the given data should be
@@ -116,7 +109,6 @@
        *   <code>false</code> otherwise.
        */
       filter: function filter(data) {},
-
       /**
        * Gives the user the opportunity to sort the model. The sorting method
        * should return a negative value if a < b, zero if a = b, or a positive
@@ -128,7 +120,6 @@
        *   if a = b, or a positive value if a > b.
        */
       sorter: function sorter(a, b) {},
-
       /**
        * Gives the user the opportunity to group the model. The group method
        * should return unique identifier for the passed data.
@@ -144,7 +135,6 @@
        * @return {String|Object|null} The group identifier for the data.
        */
       group: function group(data) {},
-
       /**
        * Gives the user the opportunity to reset properties or states.
        *
@@ -156,4 +146,4 @@
   qx.ui.list.core.IListDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListDelegate.js.map?dt=1685978141141
+//# sourceMappingURL=IListDelegate.js.map?dt=1691935437646

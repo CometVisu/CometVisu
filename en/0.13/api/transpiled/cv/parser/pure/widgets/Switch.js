@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Switch.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -36,7 +35,6 @@
    */
   qx.Class.define('cv.parser.pure.widgets.Switch', {
     type: 'static',
-
     /*
      ******************************************************
      STATICS
@@ -79,4 +77,4 @@
   cv.parser.pure.widgets.Switch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Switch.js.map?dt=1685978091489
+//# sourceMappingURL=Switch.js.map?dt=1691935391091

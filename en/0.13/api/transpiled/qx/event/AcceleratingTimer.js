@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -57,7 +56,6 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       this.__P_197_0 = new qx.event.Timer(this.getInterval());
-
       this.__P_197_0.addListener("interval", this._onInterval, this);
     },
     events: {
@@ -73,7 +71,6 @@
         check: "Integer",
         init: 100
       },
-
       /**
        * Interval used for the first run of the timer. Usually a greater value
        * than the "interval" property value to a little delayed reaction at the first
@@ -83,13 +80,11 @@
         check: "Integer",
         init: 500
       },
-
       /** This configures the minimum value for the timer interval. */
       minimum: {
         check: "Integer",
         init: 20
       },
-
       /** Decrease of the timer on each interval (for the next interval) until minTimer reached. */
       decrease: {
         check: "Integer",
@@ -99,41 +94,31 @@
     members: {
       __P_197_0: null,
       __P_197_1: null,
-
       /**
        * Reset and start the timer.
        */
       start: function start() {
         this.__P_197_0.setInterval(this.getFirstInterval());
-
         this.__P_197_0.start();
       },
-
       /**
        * Stop the timer
        */
       stop: function stop() {
         this.__P_197_0.stop();
-
         this.__P_197_1 = null;
       },
-
       /**
        * Interval event handler
        */
       _onInterval: function _onInterval() {
         this.__P_197_0.stop();
-
         if (this.__P_197_1 == null) {
           this.__P_197_1 = this.getInterval();
         }
-
         this.__P_197_1 = Math.max(this.getMinimum(), this.__P_197_1 - this.getDecrease());
-
         this.__P_197_0.setInterval(this.__P_197_1);
-
         this.__P_197_0.start();
-
         this.fireEvent("interval");
       }
     },
@@ -144,4 +129,4 @@
   qx.event.AcceleratingTimer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AcceleratingTimer.js.map?dt=1685978120273
+//# sourceMappingURL=AcceleratingTimer.js.map?dt=1691935418141

@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Tree.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -41,7 +40,6 @@
    */
   qx.Class.define('cv.util.Tree', {
     type: 'static',
-
     /*
     ******************************************************
       STATICS
@@ -58,10 +56,8 @@
         while (child && child !== parent) {
           child = child.parentNode;
         }
-
         return !!child;
       },
-
       /*
        * *********************************************************
        * Widget tree helper functions
@@ -72,7 +68,6 @@
           return !type || child.get$$type() === type;
         });
       },
-
       /**
        * Get the parent widget with optional type filter
        *
@@ -82,18 +77,14 @@
        */
       getParentWidget: function getParentWidget(widget, type) {
         var parent = widget.getParentWidget();
-
         while (parent) {
           if (!type || parent.get$$type() === type) {
             return parent;
           }
-
           parent = parent.getParentWidget();
         }
-
         return null;
       },
-
       /*
        * *********************************************************
        * Widget data tree helper functions
@@ -102,34 +93,25 @@
       getParentPageData: function getParentPageData(path) {
         var data = {};
         var isPage = path.substr(-1, 1) === '_'; // path ends with _
-
         if (!isPage) {
           path = path.substr(0, path.length - 1);
         }
-
         var parentPath = path;
-
         if (parentPath === 'id_') {
           return null;
         }
-
         var model = cv.data.Model.getInstance();
-
         while (Object.keys(data).length === 0 && parentPath.length > 2) {
           data = model.getWidgetData(parentPath);
-
           if (parentPath === 'id_') {
             break;
           }
-
           var parts = parentPath.substr(0, parentPath.length - 1).split('_');
           parts.pop();
           parentPath = parts.join('_') + '_';
         }
-
         return data;
       },
-
       /**
        * Returns the data for the parent entry of the given path
        * @param path {String}
@@ -137,44 +119,34 @@
        */
       getParentData: function getParentData(path) {
         var data = {};
+
         /**
          * @param path
          */
-
         function traverseUp(path) {
           var parts = path.split('_');
-
           if (parts[parts.length - 1] === '') {
             parts.pop();
           } else {
             parts[parts.length - 1] = '';
           }
-
           return parts.join('_');
         }
-
         var parentPath = traverseUp(path);
-
         if (parentPath === 'id') {
           // no parent
           return null;
         }
-
         var model = cv.data.Model.getInstance();
-
         while (parentPath.length >= 2) {
           data = model.getWidgetData(parentPath);
-
           if (parentPath === 'id_' || data.children && data.children.indexOf(path) >= 0) {
             return data;
           }
-
           parentPath = traverseUp(parentPath);
         }
-
         return null;
       },
-
       /*
        * *********************************************************
        * DOM-Element tree helper functions
@@ -187,7 +159,6 @@
               return m.matches(selector);
             });
           }
-
           return true;
         }, this);
       },
@@ -200,31 +171,24 @@
       getParent: function getParent(element, until, selector, limit) {
         var parents = [];
         var parent = element.parentNode;
-
         while (parent && parent.getAttribute('id') !== 'pages') {
           var found = [parent];
-
           if (selector) {
             found = Array.prototype.filter.call(found, function (m) {
               return m.matches(selector);
             });
           }
-
           parents = parents.concat(found);
-
           if (limit && parents.length >= limit) {
             break;
           }
-
           if (until && Array.prototype.filter.call([parent], function (m) {
             return m.matches(until);
           }).length > 0) {
             break;
           }
-
           parent = parent.parentNode;
         }
-
         return parents;
       },
       getClosest: function getClosest(elem, selector) {
@@ -232,20 +196,15 @@
           var found = Array.prototype.filter.call([current], function (m) {
             return m.matches(selector);
           });
-
           if (found.length) {
             return found[0];
           }
-
           current = current.parentNode; // One up
-
           if (current && current.parentNode) {
             return findClosest(current);
           }
-
           return null;
         };
-
         return findClosest(elem);
       }
     }
@@ -253,4 +212,4 @@
   cv.util.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1685978158682
+//# sourceMappingURL=Tree.js.map?dt=1691935454243

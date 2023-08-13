@@ -12,6 +12,8 @@
     "Blocker",
     "type",
     "construct",
+    "constructor",
+    "call",
     "__counters",
     "__uniques",
     "setBlockerOpacity",
@@ -21,11 +23,14 @@
     "block",
     "topic",
     "unique",
+    "cv",
+    "ui",
+    "BodyBlocker",
+    "superclass",
+    "prototype",
     "__getBody",
     "Object",
-    "prototype",
     "hasOwnProperty",
-    "call",
     "document",
     "querySelectorAll",
     "forEach",
@@ -36,10 +41,8 @@
     "keys",
     "length",
     "remove",
-    "querySelector",
-    "cv",
-    "ui",
-    "BodyBlocker"
+    "__P_561_3",
+    "querySelector"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/BodyBlocker.js"
@@ -47,5 +50,5 @@
   "sourcesContent": [
     "/* BodyBlocker.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n//noinspection JSUnusedGlobalSymbols\nqx.Class.define('cv.ui.BodyBlocker', {\n  extend: qx.bom.Blocker,\n  type: 'singleton',\n\n  /*\n  ******************************************************\n    CONSTRUCTOR\n  ******************************************************\n  */\n  construct() {\n    super();\n    this.__counters = {};\n    this.__uniques = [];\n    this.setBlockerOpacity(0.5);\n    this.setBlockerColor('#000000');\n  },\n\n  /*\n  ******************************************************\n    MEMBERS\n  ******************************************************\n  */\n  members: {\n    __body: null,\n    __counters: null,\n    __uniques: null,\n\n    /**\n     * @param topic {String} topic of the message related to this blocker\n     * @param unique {Boolean} true if it is a unique message\n     */\n    block(topic, unique) {\n      super.block(this.__getBody());\n      if (!Object.prototype.hasOwnProperty.call(this.__counters, topic)) {\n        this.__counters[topic] = 1;\n      } else if (!unique) {\n        this.__counters[topic]++;\n      }\n      document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {\n        elem.classList.add('blurred');\n      });\n    },\n\n    unblock(topic) {\n      if (topic) {\n        if (Object.prototype.hasOwnProperty.call(this.__counters, topic)) {\n          this.__counters[topic]--;\n          if (this.__counters[topic] === 0) {\n            delete this.__counters[topic];\n            if (Object.keys(this.__counters).length === 0) {\n              super.unblock();\n              document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {\n                elem.classList.remove('blurred');\n              });\n            }\n          }\n        }\n      } else {\n        // not topic given unblock all\n        this.__counters = {};\n        super.unblock();\n        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {\n          elem.classList.remove('blurred');\n        });\n      }\n    },\n\n    __getBody() {\n      if (!this.__body) {\n        this.__body = document.querySelector('body');\n      }\n      return this.__body;\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EAEA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,mBAAhB,EAAqC;IACnCC,MAAM,EAAEN,EAAE,CAACO,GAAH,CAAOC,OADoB;IAEnCC,IAAI,EAAE,WAF6B;;IAInC;AACF;AACA;AACA;AACA;IACEC,SATmC,uBASvB;MACV;MACA,KAAKC,SAAL,GAAkB,EAAlB;MACA,KAAKC,SAAL,GAAiB,EAAjB;MACA,KAAKC,iBAAL,CAAuB,GAAvB;MACA,KAAKC,eAAL,CAAqB,SAArB;IACD,CAfkC;;IAiBnC;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,SAAM,EAAE,IADD;MAEPL,SAAU,EAAE,IAFL;MAGPC,SAAS,EAAE,IAHJ;;MAKP;AACJ;AACA;AACA;MACIK,KATO,iBASDC,KATC,EASMC,MATN,EASc;QACnB,wDAAY,KAAKC,SAAL,EAAZ;;QACA,IAAI,CAACC,MAAM,CAACC,SAAP,CAAiBC,cAAjB,CAAgCC,IAAhC,CAAqC,KAAKb,SAA1C,EAAsDO,KAAtD,CAAL,EAAmE;UACjE,KAAKP,SAAL,CAAgBO,KAAhB,IAAyB,CAAzB;QACD,CAFD,MAEO,IAAI,CAACC,MAAL,EAAa;UAClB,KAAKR,SAAL,CAAgBO,KAAhB;QACD;;QACDO,QAAQ,CAACC,gBAAT,CAA0B,mDAA1B,EAA+EC,OAA/E,CAAuF,UAAUC,IAAV,EAAgB;UACrGA,IAAI,CAACC,SAAL,CAAeC,GAAf,CAAmB,SAAnB;QACD,CAFD;MAGD,CAnBM;MAqBPC,OArBO,mBAqBCb,KArBD,EAqBQ;QACb,IAAIA,KAAJ,EAAW;UACT,IAAIG,MAAM,CAACC,SAAP,CAAiBC,cAAjB,CAAgCC,IAAhC,CAAqC,KAAKb,SAA1C,EAAsDO,KAAtD,CAAJ,EAAkE;YAChE,KAAKP,SAAL,CAAgBO,KAAhB;;YACA,IAAI,KAAKP,SAAL,CAAgBO,KAAhB,MAA2B,CAA/B,EAAkC;cAChC,OAAO,KAAKP,SAAL,CAAgBO,KAAhB,CAAP;;cACA,IAAIG,MAAM,CAACW,IAAP,CAAY,KAAKrB,SAAjB,EAA6BsB,MAA7B,KAAwC,CAA5C,EAA+C;gBAC7C;gBACAR,QAAQ,CAACC,gBAAT,CAA0B,mDAA1B,EAA+EC,OAA/E,CAAuF,UAAUC,IAAV,EAAgB;kBACrGA,IAAI,CAACC,SAAL,CAAeK,MAAf,CAAsB,SAAtB;gBACD,CAFD;cAGD;YACF;UACF;QACF,CAbD,MAaO;UACL;UACA,KAAKvB,SAAL,GAAkB,EAAlB;UACA;UACAc,QAAQ,CAACC,gBAAT,CAA0B,mDAA1B,EAA+EC,OAA/E,CAAuF,UAAUC,IAAV,EAAgB;YACrGA,IAAI,CAACC,SAAL,CAAeK,MAAf,CAAsB,SAAtB;UACD,CAFD;QAGD;MACF,CA3CM;MA6CPd,SA7CO,uBA6CK;QACV,IAAI,CAAC,KAAKJ,SAAV,EAAkB;UAChB,KAAKA,SAAL,GAAcS,QAAQ,CAACU,aAAT,CAAuB,MAAvB,CAAd;QACD;;QACD,OAAO,KAAKnB,SAAZ;MACD;IAlDM;EAtB0B,CAArC;EApBAoB,EAAE,CAACC,EAAH,CAAMC,WAAN,CAAkBnC,aAAlB,GAAkCA,aAAlC"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mBAAmB,EAAE;IACnCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,OAAO;IACtBC,IAAI,EAAE,WAAW;IAEjB;AACF;AACA;AACA;AACA;IACEC,SAAS,WAAAA,UAAA,EAAG;MACVV,EAAA,CAAAO,GAAA,CAAAC,OAAA,CAAAG,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,SAAU,GAAG,CAAC,CAAC;MACpB,IAAI,CAACC,SAAS,GAAG,EAAE;MACnB,IAAI,CAACC,iBAAiB,CAAC,GAAG,CAAC;MAC3B,IAAI,CAACC,eAAe,CAAC,SAAS,CAAC;IACjC,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,SAAM,EAAE,IAAI;MACZL,SAAU,EAAE,IAAI;MAChBC,SAAS,EAAE,IAAI;MAEf;AACJ;AACA;AACA;MACIK,KAAK,WAAAA,MAACC,KAAK,EAAEC,MAAM,EAAE;QACnBC,EAAA,CAAAC,EAAA,CAAAC,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAP,KAAA,CAAAP,IAAA,OAAY,IAAI,CAACe,SAAS,CAAC,CAAC;QAC5B,IAAI,CAACC,MAAM,CAACF,SAAS,CAACG,cAAc,CAACjB,IAAI,CAAC,IAAI,CAACC,SAAU,EAAEO,KAAK,CAAC,EAAE;UACjE,IAAI,CAACP,SAAU,CAACO,KAAK,CAAC,GAAG,CAAC;QAC5B,CAAC,MAAM,IAAI,CAACC,MAAM,EAAE;UAClB,IAAI,CAACR,SAAU,CAACO,KAAK,CAAC,EAAE;QAC1B;QACAU,QAAQ,CAACC,gBAAgB,CAAC,mDAAmD,CAAC,CAACC,OAAO,CAAC,UAAUC,IAAI,EAAE;UACrGA,IAAI,CAACC,SAAS,CAACC,GAAG,CAAC,SAAS,CAAC;QAC/B,CAAC,CAAC;MACJ,CAAC;MAEDC,OAAO,WAAAA,QAAChB,KAAK,EAAE;QACb,IAAIA,KAAK,EAAE;UACT,IAAIQ,MAAM,CAACF,SAAS,CAACG,cAAc,CAACjB,IAAI,CAAC,IAAI,CAACC,SAAU,EAAEO,KAAK,CAAC,EAAE;YAChE,IAAI,CAACP,SAAU,CAACO,KAAK,CAAC,EAAE;YACxB,IAAI,IAAI,CAACP,SAAU,CAACO,KAAK,CAAC,KAAK,CAAC,EAAE;cAChC,OAAO,IAAI,CAACP,SAAU,CAACO,KAAK,CAAC;cAC7B,IAAIQ,MAAM,CAACS,IAAI,CAAC,IAAI,CAACxB,SAAU,CAAC,CAACyB,MAAM,KAAK,CAAC,EAAE;gBAC7ChB,EAAA,CAAAC,EAAA,CAAAC,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAU,OAAA,CAAAxB,IAAA;gBACAkB,QAAQ,CAACC,gBAAgB,CAAC,mDAAmD,CAAC,CAACC,OAAO,CAAC,UAAUC,IAAI,EAAE;kBACrGA,IAAI,CAACC,SAAS,CAACK,MAAM,CAAC,SAAS,CAAC;gBAClC,CAAC,CAAC;cACJ;YACF;UACF;QACF,CAAC,MAAM;UACL;UACA,IAAI,CAAC1B,SAAU,GAAG,CAAC,CAAC;UACpBS,EAAA,CAAAC,EAAA,CAAAC,WAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAU,OAAA,CAAAxB,IAAA;UACAkB,QAAQ,CAACC,gBAAgB,CAAC,mDAAmD,CAAC,CAACC,OAAO,CAAC,UAAUC,IAAI,EAAE;YACrGA,IAAI,CAACC,SAAS,CAACK,MAAM,CAAC,SAAS,CAAC;UAClC,CAAC,CAAC;QACJ;MACF,CAAC;MAEDZ,SAAS,WAAAa,UAAA,EAAG;QACV,IAAI,CAAC,IAAI,CAACtB,SAAM,EAAE;UAChB,IAAI,CAACA,SAAM,GAAGY,QAAQ,CAACW,aAAa,CAAC,MAAM,CAAC;QAC9C;QACA,OAAO,IAAI,CAACvB,SAAM;MACpB;IACF;EACF,CAAC,CAAC;EA9FFI,EAAE,CAACC,EAAE,CAACC,WAAW,CAACrB,aAAa,GAAGA,aAAa;AAAC"
 }

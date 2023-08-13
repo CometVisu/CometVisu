@@ -10,7 +10,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,7 +47,6 @@
       getProperties: function getProperties(clazz) {
         return clazz.$$properties;
       },
-
       /**
        * Get the property map of the given class including the properties of all
        * superclasses!
@@ -60,27 +58,22 @@
        */
       getAllProperties: function getAllProperties(clazz) {
         var properties = {};
-        var superclass = clazz; // go threw the class hierarchy
-
+        var superclass = clazz;
+        // go threw the class hierarchy
         while (superclass != qx.core.Object) {
           var currentProperties = this.getProperties(superclass);
-
           for (var property in currentProperties) {
             properties[property] = currentProperties[property];
           }
-
           superclass = superclass.superclass;
         }
-
         return properties;
       },
-
       /*
       -------------------------------------------------------------------------
         USER VALUES
       -------------------------------------------------------------------------
       */
-
       /**
        * Returns the user value of the given property
        *
@@ -91,7 +84,6 @@
       getUserValue: function getUserValue(object, propertyName) {
         return object["$$user_" + propertyName];
       },
-
       /**
        * Sets the user value of the given property
        *
@@ -102,7 +94,6 @@
       setUserValue: function setUserValue(object, propertyName, value) {
         object["$$user_" + propertyName] = value;
       },
-
       /**
        * Deletes the user value of the given property
        *
@@ -112,13 +103,11 @@
       deleteUserValue: function deleteUserValue(object, propertyName) {
         delete object["$$user_" + propertyName];
       },
-
       /*
       -------------------------------------------------------------------------
         INIT VALUES
       -------------------------------------------------------------------------
       */
-
       /**
        * Returns the init value of the given property
        *
@@ -129,7 +118,6 @@
       getInitValue: function getInitValue(object, propertyName) {
         return object["$$init_" + propertyName];
       },
-
       /**
        * Sets the init value of the given property
        *
@@ -140,7 +128,6 @@
       setInitValue: function setInitValue(object, propertyName, value) {
         object["$$init_" + propertyName] = value;
       },
-
       /**
        * Deletes the init value of the given property
        *
@@ -150,13 +137,11 @@
       deleteInitValue: function deleteInitValue(object, propertyName) {
         delete object["$$init_" + propertyName];
       },
-
       /*
       -------------------------------------------------------------------------
         THEME VALUES
       -------------------------------------------------------------------------
       */
-
       /**
        * Returns the theme value of the given property
        *
@@ -167,7 +152,6 @@
       getThemeValue: function getThemeValue(object, propertyName) {
         return object["$$theme_" + propertyName];
       },
-
       /**
        * Sets the theme value of the given property
        *
@@ -178,7 +162,6 @@
       setThemeValue: function setThemeValue(object, propertyName, value) {
         object["$$theme_" + propertyName] = value;
       },
-
       /**
        * Deletes the theme value of the given property
        *
@@ -188,13 +171,11 @@
       deleteThemeValue: function deleteThemeValue(object, propertyName) {
         delete object["$$theme_" + propertyName];
       },
-
       /*
       -------------------------------------------------------------------------
         THEMED PROPERTY
       -------------------------------------------------------------------------
       */
-
       /**
        * Sets a themed property
        *
@@ -206,7 +187,6 @@
         var styler = qx.core.Property.$$method.setThemed;
         object[styler[propertyName]](value);
       },
-
       /**
        * Resets a themed property
        *
@@ -222,4 +202,4 @@
   qx.util.PropertyUtil.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyUtil.js.map?dt=1685978154419
+//# sourceMappingURL=PropertyUtil.js.map?dt=1691935450690

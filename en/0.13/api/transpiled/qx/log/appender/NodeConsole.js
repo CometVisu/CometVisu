@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -45,17 +44,14 @@
        * process.stdout
        */
       __P_276_0: null,
-
       /**
        * process.stderr
        */
       __P_276_1: null,
-
       /**
        * Whether to use color codes
        */
       __P_276_2: false,
-
       /**
        * Which ANSI color codes to use for which log level
        */
@@ -70,7 +66,6 @@
         // red
         reset: "\x1B[0m"
       },
-
       /**
        * Turn the use of colors on or off
        * @param {Boolean} value
@@ -79,7 +74,6 @@
         qx.core.Assert.assertBoolean(value);
         this.__P_276_2 = value;
       },
-
       /**
        * Writes a message to the shell. Errors will be sent to STDERR, everything
        * else goes to STDOUT
@@ -91,14 +85,12 @@
         if (this.__P_276_2 && this.__P_276_3[level]) {
           logMessage = this.__P_276_3[level] + logMessage + this.__P_276_3.reset;
         }
-
         if (level === "error") {
           this.__P_276_1.write(logMessage + "\n");
         } else {
           this.__P_276_0.write(logMessage + "\n");
         }
       },
-
       /**
        * Logs a debug message
        *
@@ -107,7 +99,6 @@
       debug: function debug(logMessage) {
         this.log(logMessage, "debug");
       },
-
       /**
        * Logs an info message
        *
@@ -116,7 +107,6 @@
       info: function info(logMessage) {
         this.log(logMessage, "info");
       },
-
       /**
        * Logs a warning message
        *
@@ -125,7 +115,6 @@
       warn: function warn(logMessage) {
         this.log(logMessage, "warn");
       },
-
       /**
        * Logs an error message
        *
@@ -134,7 +123,6 @@
       error: function error(logMessage) {
         this.log(logMessage, "error");
       },
-
       /**
        * Process a log entry object from qooxdoo's logging system.
        *
@@ -142,13 +130,10 @@
        */
       process: function process(entry) {
         var level = entry.level || "info";
-
         for (var _i = 0, _Object$keys = Object.keys(entry); _i < _Object$keys.length; _i++) {
           var prop = _Object$keys[_i];
-
           if (prop === "items") {
             var items = entry[prop];
-
             for (var p = 0; p < items.length; p++) {
               var item = items[p];
               this[level](item.text);
@@ -157,7 +142,6 @@
         }
       }
     },
-
     /**
      * @ignore(process.*)
      */
@@ -172,4 +156,4 @@
   qx.log.appender.NodeConsole.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NodeConsole.js.map?dt=1685978128372
+//# sourceMappingURL=NodeConsole.js.map?dt=1691935425683

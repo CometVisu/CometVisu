@@ -11,12 +11,12 @@
       "start": {
         "line": 25,
         "column": 0,
-        "index": 741
+        "index": 765
       },
       "end": {
         "line": 93,
         "column": 3,
-        "index": 2472
+        "index": 2564
       }
     },
     "jsdoc": {
@@ -41,12 +41,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 975
+          "index": 1005
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 1077
+          "index": 1111
         }
       },
       "jsdoc": {
@@ -69,12 +69,12 @@
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1177
+          "index": 1216
         },
         "end": {
           "line": 45,
           "column": 5,
-          "index": 1280
+          "index": 1324
         }
       },
       "jsdoc": {
@@ -99,12 +99,12 @@
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1371
+          "index": 1420
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1551
+          "index": 1606
         }
       },
       "jsdoc": {
@@ -162,12 +162,12 @@
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1691
+          "index": 1755
         },
         "end": {
           "line": 71,
           "column": 5,
-          "index": 1909
+          "index": 1979
         }
       },
       "type": "function",
@@ -178,12 +178,12 @@
         "start": {
           "line": 77,
           "column": 4,
-          "index": 2054
+          "index": 2130
         },
         "end": {
           "line": 83,
           "column": 5,
-          "index": 2239
+          "index": 2321
         }
       },
       "jsdoc": {
@@ -202,12 +202,12 @@
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2246
+          "index": 2330
         },
         "end": {
           "line": 91,
           "column": 5,
-          "index": 2464
+          "index": 2554
         }
       },
       "type": "function",

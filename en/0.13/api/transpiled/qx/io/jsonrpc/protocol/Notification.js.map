@@ -19,6 +19,11 @@
     "params",
     "init",
     "construct",
+    "arguments",
+    "length",
+    "undefined",
+    "constructor",
+    "call",
     "set",
     "Notification"
   ],
@@ -26,7 +31,7 @@
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Notification.js"
   ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n      2020 Christian Boulanger\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n * A JSON-RPC v2.0 notification object\n * @see https://www.jsonrpc.org/specification#request_object\n */\nqx.Class.define(\"qx.io.jsonrpc.protocol.Notification\", {\n  extend: qx.io.jsonrpc.protocol.Message,\n  properties: {\n    method: {\n      check: \"String\",\n      nullable: false\n    },\n\n    params: {\n      check: \"Object\",\n      nullable: true,\n      init: null\n    }\n  },\n\n  /**\n   * Notification constructor\n   * @param {String} method\n   * @param {Object?} params\n   */\n  construct(method, params = null) {\n    super();\n    this.set({ method, params });\n  }\n});\n"
+    "/* ************************************************************************\r\n\r\n   qooxdoo - the new era of web development\r\n\r\n   http://qooxdoo.org\r\n\r\n   Copyright:\r\n      2020 Christian Boulanger\r\n\r\n   License:\r\n     MIT: https://opensource.org/licenses/MIT\r\n     See the LICENSE file in the project's top-level directory for details.\r\n\r\n   Authors:\r\n     * Christian Boulanger (cboulanger)\r\n\r\n************************************************************************ */\r\n\r\n/**\r\n * A JSON-RPC v2.0 notification object\r\n * @see https://www.jsonrpc.org/specification#request_object\r\n */\r\nqx.Class.define(\"qx.io.jsonrpc.protocol.Notification\", {\r\n  extend: qx.io.jsonrpc.protocol.Message,\r\n  properties: {\r\n    method: {\r\n      check: \"String\",\r\n      nullable: false\r\n    },\r\n\r\n    params: {\r\n      check: \"Object\",\r\n      nullable: true,\r\n      init: null\r\n    }\r\n  },\r\n\r\n  /**\r\n   * Notification constructor\r\n   * @param {String} method\r\n   * @param {Object?} params\r\n   */\r\n  construct(method, params = null) {\r\n    super();\r\n    this.set({ method, params });\r\n  }\r\n});\r\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,qCAAhB,EAAuD;IACrDC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,QAAd,CAAuBC,OADsB;IAErDC,UAAU,EAAE;MACVC,MAAM,EAAE;QACNC,KAAK,EAAE,QADD;QAENC,QAAQ,EAAE;MAFJ,CADE;MAMVC,MAAM,EAAE;QACNF,KAAK,EAAE,QADD;QAENC,QAAQ,EAAE,IAFJ;QAGNE,IAAI,EAAE;MAHA;IANE,CAFyC;;IAerD;AACF;AACA;AACA;AACA;IACEC,SApBqD,qBAoB3CL,MApB2C,EAoBpB;MAAA,IAAfG,MAAe,uEAAN,IAAM;MAC/B;MACA,KAAKG,GAAL,CAAS;QAAEN,MAAM,EAANA,MAAF;QAAUG,MAAM,EAANA;MAAV,CAAT;IACD;EAvBoD,CAAvD;EAtBAf,EAAE,CAACO,EAAH,CAAMC,OAAN,CAAcC,QAAd,CAAuBU,YAAvB,CAAoChB,aAApC,GAAoDA,aAApD"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE;IACrDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ,CAACC,OAAO;IACtCC,UAAU,EAAE;MACVC,MAAM,EAAE;QACNC,KAAK,EAAE,QAAQ;QACfC,QAAQ,EAAE;MACZ,CAAC;MAEDC,MAAM,EAAE;QACNF,KAAK,EAAE,QAAQ;QACfC,QAAQ,EAAE,IAAI;QACdE,IAAI,EAAE;MACR;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,SAAS,WAAAA,UAACL,MAAM,EAAiB;MAAA,IAAfG,MAAM,GAAAG,SAAA,CAAAC,MAAA,QAAAD,SAAA,QAAAE,SAAA,GAAAF,SAAA,MAAG,IAAI;MAC7BlB,EAAA,CAAAO,EAAA,CAAAC,OAAA,CAAAC,QAAA,CAAAC,OAAA,CAAAW,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,GAAG,CAAC;QAAEX,MAAM,EAANA,MAAM;QAAEG,MAAM,EAANA;MAAO,CAAC,CAAC;IAC9B;EACF,CAAC,CAAC;EA9CFf,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,QAAQ,CAACe,YAAY,CAACrB,aAAa,GAAGA,aAAa;AAAC"
 }

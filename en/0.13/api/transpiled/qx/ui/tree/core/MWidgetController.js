@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * The path to the property which holds the information that should be
        * shown as an icon.
@@ -59,7 +57,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * A map containing the options for the label binding. The possible keys
        * can be found in the {@link qx.data.SingleValueBinding} documentation.
@@ -67,7 +64,6 @@
       labelOptions: {
         nullable: true
       },
-
       /**
        * A map containing the options for the icon binding. The possible keys
        * can be found in the {@link qx.data.SingleValueBinding} documentation.
@@ -75,7 +71,6 @@
       iconOptions: {
         nullable: true
       },
-
       /**
        * The name of the property, where the children are stored in the model.
        * Instead of the {@link #labelPath} must the child property a direct
@@ -85,7 +80,6 @@
         check: "String",
         nullable: true
       },
-
       /**
        * Delegation object, which can have one or more functions defined by the
        * {@link qx.ui.tree.core.IVirtualTreeDelegate} interface.
@@ -99,7 +93,6 @@
     members: {
       /** @type {Array} which contains the bounded items */
       __P_465_0: null,
-
       /**
        * Helper-Method for binding the default properties from the model to the
        * target widget. The used default properties  depends on the passed item.
@@ -115,13 +108,9 @@
         // bind model first
         this.bindProperty("", "model", null, item, index);
         this.bindProperty(this.getLabelPath(), "label", this.getLabelOptions(), item, index);
-
         var bindPath = this.__P_465_1(index);
-
         var bindTarget = this._tree.getLookupTable();
-
         bindTarget = qx.data.SingleValueBinding.resolvePropertyChain(bindTarget, bindPath);
-
         if (qx.util.OOUtil.hasProperty(bindTarget.constructor, this.getChildProperty())) {
           this.bindProperty(this.getChildProperty() + ".length", "appearance", {
             converter: function converter() {
@@ -131,12 +120,10 @@
         } else {
           item.setAppearance("virtual-tree-file");
         }
-
         if (this.getIconPath() != null) {
           this.bindProperty(this.getIconPath(), "icon", this.getIconOptions(), item, index);
         }
       },
-
       /**
        * Helper-Method for binding a given property from the model to the target
        * widget.
@@ -153,14 +140,10 @@
        */
       bindProperty: function bindProperty(sourcePath, targetProperty, options, targetWidget, index) {
         var bindPath = this.__P_465_1(index, sourcePath);
-
         var bindTarget = this._tree.getLookupTable();
-
         var id = bindTarget.bind(bindPath, targetWidget, targetProperty, options);
-
         this.__P_465_2(targetWidget, id);
       },
-
       /**
        * Helper-Method for binding a given property from the target widget to
        * the model.
@@ -176,25 +159,19 @@
        */
       bindPropertyReverse: function bindPropertyReverse(targetPath, sourceProperty, options, sourceWidget, index) {
         var bindPath = this.__P_465_1(index, targetPath);
-
         var bindTarget = this._tree.getLookupTable();
-
         var id = sourceWidget.bind(sourceProperty, bindTarget, bindPath, options);
-
         this.__P_465_2(sourceWidget, id);
       },
-
       /**
        * Remove all bindings from all bounded items.
        */
       removeBindings: function removeBindings() {
         while (this.__P_465_0.length > 0) {
           var item = this.__P_465_0.pop();
-
           this._removeBindingsFrom(item);
         }
       },
-
       /**
        * Sets up the binding for the given item and index.
        *
@@ -203,14 +180,12 @@
        */
       _bindItem: function _bindItem(item, index) {
         var bindItem = qx.util.Delegate.getMethod(this.getDelegate(), "bindItem");
-
         if (bindItem != null) {
           bindItem(this, item, index);
         } else {
           this.bindDefaultProperties(item, index);
         }
       },
-
       /**
        * Removes the binding of the given item.
        *
@@ -219,22 +194,18 @@
        */
       _removeBindingsFrom: function _removeBindingsFrom(item) {
         var bindings = this.__P_465_3(item);
-
         while (bindings.length > 0) {
           var id = bindings.pop();
-
           try {
             this._tree.getLookupTable().removeBinding(id);
           } catch (e) {
             item.removeBinding(id);
           }
         }
-
         if (this.__P_465_0.includes(item)) {
           qx.lang.Array.remove(this.__P_465_0, item);
         }
       },
-
       /**
        * Helper method to create the path for binding.
        *
@@ -244,14 +215,11 @@
        */
       __P_465_1: function __P_465_1(index, path) {
         var bindPath = "[" + index + "]";
-
         if (path != null && path != "") {
           bindPath += "." + path;
         }
-
         return bindPath;
       },
-
       /**
        * Helper method to save the binding for the widget.
        *
@@ -260,16 +228,13 @@
        */
       __P_465_2: function __P_465_2(widget, id) {
         var bindings = this.__P_465_3(widget);
-
         if (!bindings.includes(id)) {
           bindings.push(id);
         }
-
         if (!this.__P_465_0.includes(widget)) {
           this.__P_465_0.push(widget);
         }
       },
-
       /**
        * Helper method which returns all bound id from the widget.
        *
@@ -278,12 +243,10 @@
        */
       __P_465_3: function __P_465_3(widget) {
         var bindings = widget.getUserData("BindingIds");
-
         if (bindings == null) {
           bindings = [];
           widget.setUserData("BindingIds", bindings);
         }
-
         return bindings;
       }
     },
@@ -294,4 +257,4 @@
   qx.ui.tree.core.MWidgetController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MWidgetController.js.map?dt=1685978150078
+//# sourceMappingURL=MWidgetController.js.map?dt=1691935446363

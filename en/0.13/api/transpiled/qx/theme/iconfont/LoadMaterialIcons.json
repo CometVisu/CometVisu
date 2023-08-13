@@ -11,12 +11,12 @@
       "start": {
         "line": 26,
         "column": 0,
-        "index": 633
+        "index": 658
       },
       "end": {
         "line": 26,
         "column": 59,
-        "index": 692
+        "index": 717
       }
     },
     "jsdoc": {

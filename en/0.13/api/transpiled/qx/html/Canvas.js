@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,13 +35,11 @@
    */
   qx.Class.define("qx.html.Canvas", {
     extend: qx.html.Element,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param styles {Map?null} optional map of CSS styles, where the key is the name
      *    of the style and the value is the value to use.
@@ -53,19 +50,18 @@
       qx.html.Element.constructor.call(this, "canvas", styles, attributes);
       this.__P_235_0 = document.createElement("canvas");
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_235_0: null,
       // overridden
       _createDomElement: function _createDomElement() {
         return this.__P_235_0;
       },
-
       /**
        * Get the canvas element [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas">W3C-HMTL5</a>]
        *
@@ -74,7 +70,6 @@
       getCanvas: function getCanvas() {
         return this.__P_235_0;
       },
-
       /**
        * Set the width attribute of the canvas element. This property controls the
        * size of the canvas coordinate space.
@@ -84,7 +79,6 @@
       setWidth: function setWidth(width) {
         this.__P_235_0.width = width;
       },
-
       /**
        * Get the width attribute of the canvas element
        *
@@ -93,7 +87,6 @@
       getWidth: function getWidth() {
         return this.__P_235_0.width;
       },
-
       /**
        * Set the height attribute of the canvas element. This property controls the
        * size of the canvas coordinate space.
@@ -103,7 +96,6 @@
       setHeight: function setHeight(height) {
         this.__P_235_0.height = height;
       },
-
       /**
        * Get the height attribute of the canvas element
        *
@@ -112,7 +104,6 @@
       getHeight: function getHeight() {
         return this.__P_235_0.height;
       },
-
       /**
        * Get the canvas' 2D rendering context
        * [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d">W3C-HTML5</a>].
@@ -128,4 +119,4 @@
   qx.html.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1685978123669
+//# sourceMappingURL=Canvas.js.map?dt=1691935421251

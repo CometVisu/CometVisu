@@ -32,7 +32,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,10 +60,9 @@
     extend: qx.ui.progressive.renderer.table.cell.Icon,
     construct: function construct() {
       qx.ui.progressive.renderer.table.cell.Icon.constructor.call(this);
+      this._resolveImages();
 
-      this._resolveImages(); // dynamic theme switch
-
-
+      // dynamic theme switch
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._resolveImages, this);
       }
@@ -83,7 +81,6 @@
     members: {
       _iconUrlTrue: null,
       _iconUrlFalse: null,
-
       /**
        * Resolve the boolean images using the alias and resource manager.
        */
@@ -104,58 +101,49 @@
       // overridden
       _identifyImage: function _identifyImage(cellInfo) {
         var imageData = this._getDefaultImageData(cellInfo);
-
         switch (cellInfo.cellData) {
           case true:
             imageData.url = this._iconUrlTrue;
             imageData.extras = "celldata='1' ";
             break;
-
           case false:
             imageData.url = this._iconUrlFalse;
             imageData.extras = "celldata='0' ";
             break;
-
           default:
             imageData.url = null;
             break;
         }
-
         if (this.getAllowToggle()) {
           // Toggle the boolean value if clicked
           imageData.extras += "onclick=\"var node = this.attributes.getNamedItem('celldata'); var value = node.nodeValue; var src; if (value == '0') {";
-
           if (qx.core.Environment.get("css.alphaimageloaderneeded") && /\.png$/i.test(this._iconUrlTrue)) {
             imageData.extras += "  this.src='" + this.getBlankImage() + "'; " + "  var loader = 'DXImageTransform.Microsoft.AlphaImageLoader'; " + "  var filters = this.filters.item(loader); " + "  filters.src='" + this._iconUrlTrue + "'; " + "  filters.sizingMethod = 'scale'; ";
           } else {
             imageData.extras += "  this.src='" + this._iconUrlTrue + "'; ";
           }
-
           imageData.extras += "  node.nodeValue='1'; } else {";
-
           if (qx.core.Environment.get("css.alphaimageloaderneeded") && /\.png$/i.test(this._iconUrlFalse)) {
             imageData.extras += "  this.src='" + this.getBlankImage() + "'; " + "  var loader = 'DXImageTransform.Microsoft.AlphaImageLoader'; " + "  var filters = this.filters.item(loader); " + "  filters.src='" + this._iconUrlFalse + "'; " + "  filters.sizingMethod = 'scale'; ";
           } else {
             imageData.extras += "  this.src='" + this._iconUrlFalse + "'; ";
           }
-
           imageData.extras += "  node.nodeValue='0'; }";
           imageData.extras += // IE doesn't allow setNamedItem() if not explicitly an "attribute"
           "try {   this.attributes.setNamedItem(node); } catch (e) {   var namedItem = document.createAttribute('celldata');   namedItem.value = node.nodeValue;   this.attributes.setNamedItem(namedItem); }\"";
         }
-
         return imageData;
       },
       // overridden
       _getCellStyle: function _getCellStyle(cellInfo) {
         var ret = qx.ui.progressive.renderer.table.cell.Boolean.superclass.prototype._getCellStyle.call(this, cellInfo);
-
         return ret;
       }
     },
     destruct: function destruct() {
-      this._iconUrlTrue = this._iconUrlFalse = null; // remove dynamic theme listener
+      this._iconUrlTrue = this._iconUrlFalse = null;
 
+      // remove dynamic theme listener
       {
         qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._resolveImages, this);
       }
@@ -164,4 +152,4 @@
   qx.ui.progressive.renderer.table.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1685978145626
+//# sourceMappingURL=Boolean.js.map?dt=1691935441968

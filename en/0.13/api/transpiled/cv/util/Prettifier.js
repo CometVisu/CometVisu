@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Prettifier.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -34,7 +33,6 @@
    */
   qx.Class.define('cv.util.Prettifier', {
     type: 'static',
-
     /*
     ***********************************************
       STATICS
@@ -52,74 +50,58 @@
       _prettifyNode: function _prettifyNode(node, level, noFormat) {
         var tabs = Array(level).fill('  ').join('');
         var newLine = '\n';
-
         if (node.nodeType === Node.TEXT_NODE) {
           if (node.textContent.trim()) {
             return (noFormat ? '' : tabs) + qx.xml.String.escape(node.textContent) + (noFormat ? '' : newLine);
           }
-
           return '';
         }
-
         if (node.nodeType === Node.COMMENT_NODE) {
           return (noFormat ? '' : tabs) + "<!--".concat(node.textContent, "--> ").concat(noFormat ? '' : newLine);
         } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
           return (noFormat ? '' : tabs) + "<![CDATA[".concat(node.textContent, "]]> ").concat(noFormat ? '' : newLine);
         }
-
         if (!node.tagName) {
           return this._prettifyNode(node.firstChild, level);
         }
-
         var output = (noFormat ? '' : tabs) + "<".concat(node.tagName); // >\n
-
         var attr;
         var prefix;
         var namespaces = [];
         var attributesOutput = '';
-
         for (var i = 0; i < node.attributes.length; i++) {
           attr = node.attributes[i];
           prefix = '';
-
           if (attr.namespaceURI) {
             var nsIndex = namespaces.indexOf(attr.namespaceURI);
-
             if (!attr.prefix) {
               if (nsIndex < 0) {
                 namespaces.push(attr.namespaceURI);
                 nsIndex = namespaces.length - 1;
               }
-
               prefix = "ns".concat(nsIndex + 1, ":");
             }
           }
-
-          attributesOutput += " ".concat(prefix).concat(attr.name, "=\"").concat(attr.value, "\"");
+          var value = attr.value.replace(/&(?!amp;)/g, '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+          attributesOutput += " ".concat(prefix).concat(attr.name, "=\"").concat(value, "\"");
         }
-
         namespaces.forEach(function (ns, index) {
           output += " xmlns:ns".concat(index + 1, "=\"").concat(ns, "\"");
         });
         output += attributesOutput;
-
         if (node.childNodes.length === 0) {
           return output + ' />' + (!noFormat ? newLine : '');
         }
-
         output += '>';
         var hasTextChild = Array.prototype.some.call(node.childNodes, function (child) {
           return child.nodeType === Node.TEXT_NODE && child.textContent.trim();
         });
-
         if (!noFormat && !hasTextChild) {
           output += newLine;
         }
-
-        for (var _i2 = 0; _i2 < node.childNodes.length; _i2++) {
-          output += this._prettifyNode(node.childNodes[_i2], level + 1, hasTextChild);
+        for (var _i = 0; _i < node.childNodes.length; _i++) {
+          output += this._prettifyNode(node.childNodes[_i], level + 1, hasTextChild);
         }
-
         return output + (hasTextChild || noFormat ? '' : tabs) + "</".concat(node.tagName, ">") + (!noFormat ? newLine : '');
       }
     }
@@ -127,4 +109,4 @@
   cv.util.Prettifier.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prettifier.js.map?dt=1685978159201
+//# sourceMappingURL=Prettifier.js.map?dt=1691935454677

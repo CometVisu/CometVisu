@@ -12,14 +12,12 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /**
    *
    */
   qx.Class.define('cv.io.AbstractClient', {
     extend: qx.core.Object,
     type: 'abstract',
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -29,7 +27,6 @@
       qx.core.Object.constructor.call(this);
       this._resources = {};
     },
-
     /*
     ***********************************************
       EVENTS
@@ -38,7 +35,6 @@
     events: {
       resourcePathAdded: 'qx.event.type.Data'
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -54,7 +50,6 @@
         nullable: true
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -71,4 +66,4 @@
   cv.io.AbstractClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractClient.js.map?dt=1685978161659
+//# sourceMappingURL=AbstractClient.js.map?dt=1691935457022

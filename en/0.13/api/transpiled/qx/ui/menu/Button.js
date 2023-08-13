@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -39,13 +38,11 @@
    */
   qx.Class.define("qx.ui.menu.Button", {
     extend: qx.ui.menu.AbstractButton,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} Initial label
      * @param icon {String} Initial icon
@@ -53,32 +50,31 @@
      * @param menu {qx.ui.menu.Menu} Initial sub menu
      */
     construct: function construct(label, icon, command, menu) {
-      qx.ui.menu.AbstractButton.constructor.call(this); // ARIA attrs
+      qx.ui.menu.AbstractButton.constructor.call(this);
 
-      this.getContentElement().setAttribute("role", "button"); // Initialize with incoming arguments
+      // ARIA attrs
+      this.getContentElement().setAttribute("role", "button");
 
+      // Initialize with incoming arguments
       if (label != null) {
         this.setLabel(label);
       }
-
       if (icon != null) {
         this.setIcon(icon);
       }
-
       if (command != null) {
         this.setCommand(command);
       }
-
       if (menu != null) {
         this.setMenu(menu);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -86,12 +82,12 @@
         init: "menu-button"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -101,12 +97,11 @@
       // overridden
       _onTap: function _onTap(e) {
         if (e.isLeftPressed() && this.getMenu()) {
-          this.execute(); // don't close menus if the button is a sub menu button
-
+          this.execute();
+          // don't close menus if the button is a sub menu button
           this.getMenu().open();
           return;
         }
-
         qx.ui.menu.Button.superclass.prototype._onTap.call(this, e);
       }
     }
@@ -114,4 +109,4 @@
   qx.ui.menu.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1685978141383
+//# sourceMappingURL=Button.js.map?dt=1691935437860

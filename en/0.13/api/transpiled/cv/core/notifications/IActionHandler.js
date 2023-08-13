@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* IActionHandler.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -47,7 +46,6 @@
        * @param ev {Event}
        */
       handleAction: function handleAction(ev) {},
-
       /**
        * Get a DOM element which usually starts the action
        */
@@ -57,4 +55,4 @@
   cv.core.notifications.IActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IActionHandler.js.map?dt=1685978089025
+//# sourceMappingURL=IActionHandler.js.map?dt=1691935389097

@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,21 +35,19 @@
    */
   qx.Class.define("qx.event.type.Swipe", {
     extend: qx.event.type.Pointer,
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
       _cloneNativeEvent: function _cloneNativeEvent(nativeEvent, clone) {
         var clone = qx.event.type.Swipe.superclass.prototype._cloneNativeEvent.call(this, nativeEvent, clone);
-
         clone.swipe = nativeEvent.swipe;
         return clone;
       },
-
       /**
        * Returns the start time of the performed swipe.
        *
@@ -59,7 +56,6 @@
       getStartTime: function getStartTime() {
         return this._native.swipe.startTime;
       },
-
       /**
        * Returns the duration the performed swipe took.
        *
@@ -68,7 +64,6 @@
       getDuration: function getDuration() {
         return this._native.swipe.duration;
       },
-
       /**
        * Returns whether the performed swipe was on the x or y axis.
        *
@@ -77,7 +72,6 @@
       getAxis: function getAxis() {
         return this._native.swipe.axis;
       },
-
       /**
        * Returns the direction of the performed swipe in reference to the axis.
        * y = up / down
@@ -88,7 +82,6 @@
       getDirection: function getDirection() {
         return this._native.swipe.direction;
       },
-
       /**
        * Returns the velocity of the performed swipe.
        *
@@ -97,7 +90,6 @@
       getVelocity: function getVelocity() {
         return this._native.swipe.velocity;
       },
-
       /**
        * Returns the distance of the performed swipe.
        *
@@ -111,4 +103,4 @@
   qx.event.type.Swipe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Swipe.js.map?dt=1685978123360
+//# sourceMappingURL=Swipe.js.map?dt=1691935420990

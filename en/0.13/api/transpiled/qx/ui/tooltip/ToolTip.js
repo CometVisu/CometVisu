@@ -18,7 +18,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,72 +46,63 @@
    */
   qx.Class.define("qx.ui.tooltip.ToolTip", {
     extend: qx.ui.popup.Popup,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @param label {String} label of the tooltip
      * @param icon {String?null} Icon URL of the tooltip
      */
     construct: function construct(label, icon) {
-      qx.ui.popup.Popup.constructor.call(this); // Use static layout
+      qx.ui.popup.Popup.constructor.call(this);
 
+      // Use static layout
       this.setLayout(new qx.ui.layout.HBox());
+      this._createChildControl("arrow");
+      // Integrate atom
+      this._createChildControl("atom");
 
-      this._createChildControl("arrow"); // Integrate atom
-
-
-      this._createChildControl("atom"); // Initialize properties
-
-
+      // Initialize properties
       if (label != null) {
         this.setLabel(label);
       }
-
       if (icon != null) {
         this.setIcon(icon);
       }
-
       this.addListener("pointerover", this._onPointerOver, this);
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
         refine: true,
         init: "tooltip"
       },
-
       /** Interval after the tooltip is shown (in milliseconds) */
       showTimeout: {
         check: "Integer",
         init: 700,
         themeable: true
       },
-
       /** Interval after the tooltip is hidden (in milliseconds) */
       hideTimeout: {
         check: "Integer",
         init: 4000,
         themeable: true
       },
-
       /** The label/caption/text of the ToolTip's atom. */
       label: {
         check: "String",
         nullable: true,
         apply: "_applyLabel"
       },
-
       /**
        * Any URI String supported by qx.ui.basic.Image to display an icon in
        * ToolTips's atom.
@@ -123,7 +113,6 @@
         apply: "_applyIcon",
         themeable: true
       },
-
       /**
        * Switches between rich HTML and text content. The text mode
        * (<code>false</code>) supports advanced features like ellipsis when the
@@ -135,13 +124,11 @@
         init: false,
         apply: "_applyRich"
       },
-
       /** Widget that opened the tooltip */
       opener: {
         check: "qx.ui.core.Widget",
         nullable: true
       },
-
       /** Position of the arrow pointing towards the opening widget **/
       arrowPosition: {
         check: ["left", "right"],
@@ -150,15 +137,14 @@
         apply: "_applyArrowPosition"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -168,35 +154,27 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "atom":
             control = new qx.ui.basic.Atom();
-
             this._add(control, {
               flex: 1
             });
-
             break;
-
           case "arrow":
             control = new qx.ui.basic.Image();
-
             this._add(control);
-
         }
-
         return control || qx.ui.tooltip.ToolTip.superclass.prototype._createChildControlImpl.call(this, id);
       },
-
       /**
        * Listener method for "pointerover" event
        *
        * @param e {qx.event.type.Pointer} Pointer event
        */
-      _onPointerOver: function _onPointerOver(e) {//this.hide();
+      _onPointerOver: function _onPointerOver(e) {
+        //this.hide();
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -226,4 +204,4 @@
   qx.ui.tooltip.ToolTip.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolTip.js.map?dt=1685978149483
+//# sourceMappingURL=ToolTip.js.map?dt=1691935445779

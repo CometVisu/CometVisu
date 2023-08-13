@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -46,55 +45,50 @@
   qx.Class.define("qx.event.handler.UserAction", {
     extend: qx.core.Object,
     implement: qx.event.IEventHandler,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance
      *
      * @param manager {qx.event.Manager} Event manager for the window to use
      */
     construct: function construct(manager) {
-      qx.core.Object.constructor.call(this); // Define shorthands
+      qx.core.Object.constructor.call(this);
 
+      // Define shorthands
       this.__P_226_0 = manager;
       this.__P_226_1 = manager.getWindow();
     },
-
     /*
     *****************************************************************************
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /** @type {Integer} Priority of this handler */
       PRIORITY: qx.event.Registration.PRIORITY_NORMAL,
-
       /** @type {Map} Supported event types */
       SUPPORTED_TYPES: {
         useraction: 1
       },
-
       /** @type {Integer} Which target check to use */
       TARGET_CHECK: qx.event.IEventHandler.TARGET_WINDOW,
-
       /** @type {Integer} Whether the method "canHandleEvent" must be called */
       IGNORE_CAN_HANDLE: true
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_226_0: null,
       __P_226_1: null,
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER INTERFACE
@@ -103,13 +97,14 @@
       // interface implementation
       canHandleEvent: function canHandleEvent(target, type) {},
       // interface implementation
-      registerEvent: function registerEvent(target, type, capture) {// Nothing needs to be done here
+      registerEvent: function registerEvent(target, type, capture) {
+        // Nothing needs to be done here
       },
       // interface implementation
-      unregisterEvent: function unregisterEvent(target, type, capture) {// Nothing needs to be done here
+      unregisterEvent: function unregisterEvent(target, type, capture) {
+        // Nothing needs to be done here
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -118,7 +113,6 @@
     destruct: function destruct() {
       this.__P_226_0 = this.__P_226_1 = null;
     },
-
     /*
     *****************************************************************************
        DEFER
@@ -131,4 +125,4 @@
   qx.event.handler.UserAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UserAction.js.map?dt=1685978122595
+//# sourceMappingURL=UserAction.js.map?dt=1691935420280

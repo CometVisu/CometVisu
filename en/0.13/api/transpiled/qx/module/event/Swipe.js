@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -50,7 +49,6 @@
        */
       TYPES: ["swipe"],
       BIND_METHODS: ["getStartTime", "getDuration", "getAxis", "getDirection", "getVelocity", "getDistance"],
-
       /**
        * Returns the start time of the performed swipe.
        *
@@ -59,7 +57,6 @@
       getStartTime: function getStartTime() {
         return this._original.swipe.startTime;
       },
-
       /**
        * Returns the duration the performed swipe took.
        *
@@ -68,7 +65,6 @@
       getDuration: function getDuration() {
         return this._original.swipe.duration;
       },
-
       /**
        * Returns whether the performed swipe was on the x or y axis.
        *
@@ -77,7 +73,6 @@
       getAxis: function getAxis() {
         return this._original.swipe.axis;
       },
-
       /**
        * Returns the direction of the performed swipe in reference to the axis.
        * y = up / down
@@ -88,7 +83,6 @@
       getDirection: function getDirection() {
         return this._original.swipe.direction;
       },
-
       /**
        * Returns the velocity of the performed swipe.
        *
@@ -97,7 +91,6 @@
       getVelocity: function getVelocity() {
         return this._original.swipe.velocity;
       },
-
       /**
        * Returns the distance of the performed swipe.
        *
@@ -106,7 +99,6 @@
       getDistance: function getDistance() {
         return this._original.swipe.distance;
       },
-
       /**
        * Manipulates the native event object, adding methods if they're not
        * already present
@@ -119,17 +111,14 @@
       normalize: function normalize(event, element) {
         if (!event) {
           return event;
-        } // apply mouse event normalizations
-
-
+        }
+        // apply mouse event normalizations
         var bindMethods = qx.module.event.Swipe.BIND_METHODS;
-
         for (var i = 0, l = bindMethods.length; i < l; i++) {
           if (typeof event[bindMethods[i]] != "function") {
             event[bindMethods[i]] = qx.module.event.Swipe[bindMethods[i]].bind(event);
           }
         }
-
         return event;
       }
     },
@@ -140,4 +129,4 @@
   qx.module.event.Swipe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Swipe.js.map?dt=1685978129914
+//# sourceMappingURL=Swipe.js.map?dt=1691935427107

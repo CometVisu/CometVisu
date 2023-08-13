@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,7 +50,6 @@
           return qx.lang.Type.isNumber(value) && parseInt(value, 10) === value;
         }
       },
-
       /**
        * The error object
        * @var {Object}
@@ -62,7 +60,6 @@
         }
       }
     },
-
     /**
      * The response messsage constructor
      * @param {Number} id^
@@ -73,24 +70,20 @@
     construct: function construct(id, code, message, data) {
       qx.io.jsonrpc.protocol.Message.constructor.call(this);
       this.setId(id);
-
       if (!qx.lang.Type.isNumber(code) || parseInt(code, 10) !== code) {
         throw new Error("Code must be an integer");
       }
-
       var errorObj = {
         code: code,
         message: message
       };
-
       if (data) {
         errorObj.data = data;
       }
-
       this.setError(errorObj);
     }
   });
   qx.io.jsonrpc.protocol.Error.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Error.js.map?dt=1685978125084
+//# sourceMappingURL=Error.js.map?dt=1691935422645

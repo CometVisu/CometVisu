@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ***********************************************************************
   
      UploadMgr - provides an API for uploading one or multiple files
@@ -46,7 +45,6 @@
    */
   qx.Class.define("com.zenesis.qx.upload.File", {
     extend: qx.core.Object,
-
     /**
      * Constructor
      *
@@ -76,7 +74,6 @@
         nullable: false,
         event: "changeFilename"
       },
-
       /**
        * A unique ID for the upload
        */
@@ -85,7 +82,6 @@
         nullable: false,
         event: "changeId"
       },
-
       /**
        * Size of the file, if known (not available on older browsers)
        */
@@ -95,7 +91,6 @@
         init: -1,
         event: "changeSize"
       },
-
       /**
        * Progress of the upload, if known (not available on older browsers)
        */
@@ -105,7 +100,6 @@
         init: 0,
         event: "changeProgress"
       },
-
       /**
        * State of the file, re: uploading
        */
@@ -116,7 +110,6 @@
         event: "changeState",
         apply: "_applyState"
       },
-
       /**
        * The response string received from the server
        */
@@ -126,7 +119,6 @@
         check: "String",
         event: "changeResponse"
       },
-
       /**
        * The widget that triggered the upload
        */
@@ -135,7 +127,6 @@
         nullable: true,
         event: "changeUploadWidget"
       },
-
       /**
        * The status of an XHR request. This can be used to determine if the
        * upload was successful.
@@ -149,7 +140,6 @@
     members: {
       __P_546_0: null,
       __P_546_1: null,
-
       /**
        * Sets a parameter value to be sent with the file
        *
@@ -164,7 +154,6 @@
         if (!this.__P_546_1) this.__P_546_1 = {};
         this.__P_546_1[name] = value;
       },
-
       /**
        * Returns a parameter value to be sent with the file
        *
@@ -174,7 +163,6 @@
       getParam: function getParam(name) {
         return this.__P_546_1 && this.__P_546_1[name];
       },
-
       /**
        * Returns a list of parameter names
        *
@@ -185,7 +173,6 @@
         if (this.__P_546_1) for (var name in this.__P_546_1) result.push(name);
         return result;
       },
-
       /**
        * Returns the browser object
        *
@@ -203,4 +190,4 @@
   com.zenesis.qx.upload.File.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=File.js.map?dt=1685978160528
+//# sourceMappingURL=File.js.map?dt=1691935455833

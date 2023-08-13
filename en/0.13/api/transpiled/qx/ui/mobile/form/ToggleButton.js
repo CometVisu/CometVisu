@@ -34,7 +34,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -79,7 +78,6 @@
     extend: qx.ui.mobile.core.Widget,
     include: [qx.ui.mobile.form.MValue, qx.ui.form.MForm, qx.ui.form.MModelProperty, qx.ui.mobile.form.MState],
     implement: [qx.ui.form.IField, qx.ui.form.IForm, qx.ui.form.IModel],
-
     /**
      * @param value {Boolean?null} The value of the button
      * @param labelChecked {Boolean?"ON"} The value of the text display when toggleButton is active
@@ -87,24 +85,17 @@
      */
     construct: function construct(value, labelChecked, labelUnchecked) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-
       if (labelChecked && labelUnchecked) {
         this.__P_405_0 = labelUnchecked;
         this.__P_405_1 = labelChecked;
       }
-
       this._setAttribute("data-label-checked", this.__P_405_1);
-
       this._setAttribute("data-label-unchecked", this.__P_405_0);
-
       this.__P_405_2 = this._createSwitch();
-
       this._add(this.__P_405_2);
-
       if (value) {
         this.setValue(value);
       }
-
       this.addListener("tap", this._onTap, this);
       this.addListener("swipe", this._onSwipe, this);
       this.addCssClass("gap");
@@ -122,7 +113,6 @@
       __P_405_0: "OFF",
       __P_405_1: "ON",
       __P_405_4: 0,
-
       /**
        * Returns the child control of the toggle button.
        *
@@ -131,7 +121,6 @@
       _getChild: function _getChild() {
         return this.__P_405_2;
       },
-
       /**
        * Creates the switch control of the widget.
        * @return {qx.ui.mobile.container.Composite} The switch control.
@@ -141,7 +130,6 @@
         toggleButtonSwitch.addCssClass("togglebutton-switch");
         return toggleButtonSwitch;
       },
-
       /**
        * Sets the value [true/false] of this toggle button.
        * It is called by setValue method of qx.ui.mobile.form.MValue mixin
@@ -151,16 +139,13 @@
         if (typeof value !== "boolean") {
           throw new Error("value for " + this + " should be boolean");
         }
-
         if (value) {
           this.addCssClass("checked");
         } else {
           this.removeCssClass("checked");
         }
-
         this.__P_405_3 = value;
       },
-
       /**
        * Gets the value [true/false] of this toggle button.
        * It is called by getValue method of qx.ui.mobile.form.MValue mixin
@@ -169,14 +154,12 @@
       _getValue: function _getValue() {
         return this.__P_405_3;
       },
-
       /**
        * Toggles the value of the button.
        */
       toggle: function toggle() {
         this.setValue(!this.getValue());
       },
-
       /**
        * Event handler. Called when the tap event occurs.
        * Toggles the button.
@@ -188,7 +171,6 @@
           this.toggle();
         }
       },
-
       /**
        * Event handler. Called when the swipe event occurs.
        * Toggles the button, when.
@@ -198,7 +180,6 @@
       _onSwipe: function _onSwipe(evt) {
         if (this._checkLastPointerTime()) {
           var direction = evt.getDirection();
-
           if (direction == "left") {
             if (this.__P_405_3 == true) {
               this.toggle();
@@ -210,7 +191,6 @@
           }
         }
       },
-
       /**
        * Checks if last touch event (swipe,tap) is more than 500ms ago.
        * Bugfix for several simulator/emulator, when tap is immediately followed by a swipe.
@@ -218,7 +198,6 @@
        */
       _checkLastPointerTime: function _checkLastPointerTime() {
         var elapsedTime = new Date().getTime() - this.__P_405_4;
-
         this.__P_405_4 = new Date().getTime();
         return elapsedTime > 500;
       }
@@ -226,11 +205,10 @@
     destruct: function destruct() {
       this.removeListener("tap", this._onTap, this);
       this.removeListener("swipe", this._onSwipe, this);
-
       this._disposeObjects("__P_405_2", "__P_405_0", "__P_405_1");
     }
   });
   qx.ui.mobile.form.ToggleButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToggleButton.js.map?dt=1685978144051
+//# sourceMappingURL=ToggleButton.js.map?dt=1691935440445

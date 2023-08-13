@@ -11,12 +11,12 @@
       "start": {
         "line": 38,
         "column": 0,
-        "index": 959
+        "index": 996
       },
       "end": {
         "line": 109,
         "column": 3,
-        "index": 2629
+        "index": 2737
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 51,
         "column": 2,
-        "index": 1376
+        "index": 1426
       },
       "end": {
         "line": 66,
         "column": 3,
-        "index": 1703
+        "index": 1768
       }
     },
     "jsdoc": {
@@ -71,12 +71,12 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 1931
+          "index": 2006
         },
         "end": {
           "line": 79,
           "column": 5,
-          "index": 1995
+          "index": 2073
         }
       },
       "jsdoc": {},
@@ -95,12 +95,12 @@
         "start": {
           "line": 84,
           "column": 4,
-          "index": 2081
+          "index": 2164
         },
         "end": {
           "line": 88,
           "column": 5,
-          "index": 2177
+          "index": 2264
         }
       },
       "jsdoc": {
@@ -125,12 +125,12 @@
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2449
+          "index": 2549
         },
         "end": {
           "line": 107,
           "column": 5,
-          "index": 2621
+          "index": 2727
         }
       },
       "jsdoc": {

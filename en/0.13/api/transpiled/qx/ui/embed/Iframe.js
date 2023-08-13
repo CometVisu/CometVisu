@@ -54,7 +54,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -104,47 +103,41 @@
    */
   qx.Class.define("qx.ui.embed.Iframe", {
     extend: qx.ui.embed.AbstractIframe,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * @ignore(MutationObserver)
      * @param source {String} URL which should initially set.
      */
     construct: function construct(source) {
       var _this = this;
-
       if (source != null) {
         this.__P_340_0 = source;
       }
-
       qx.ui.embed.AbstractIframe.constructor.call(this, source);
       qx.event.Registration.addListener(document.body, "pointerdown", this.block, this, true);
       qx.event.Registration.addListener(document.body, "pointerup", this.release, this, true);
       qx.event.Registration.addListener(document.body, "losecapture", this.release, this, true);
       this.__P_340_1 = this._createBlockerElement();
-
       if (qx.core.Environment.get("ecmascript.mutationobserver")) {
         this.addListenerOnce("appear", function () {
-          var element = _this.getContentElement().getDomElement(); // Mutation record check callback
+          var element = _this.getContentElement().getDomElement();
 
-
+          // Mutation record check callback
           var isDOMNodeInserted = function isDOMNodeInserted(mutationRecord) {
-            var i; // 'our' iframe was either added...
-
+            var i;
+            // 'our' iframe was either added...
             if (mutationRecord.addedNodes) {
               for (i = mutationRecord.addedNodes.length; i >= 0; --i) {
                 if (mutationRecord.addedNodes[i] == element) {
                   return true;
                 }
               }
-            } // ...or removed
-
-
+            }
+            // ...or removed
             if (mutationRecord.removedNodes) {
               for (i = mutationRecord.removedNodes.length; i >= 0; --i) {
                 if (mutationRecord.removedNodes[i] == element) {
@@ -152,28 +145,26 @@
                 }
               }
             }
-
             return false;
           };
-
           var observer = new MutationObserver(function (mutationRecords) {
             if (mutationRecords.some(isDOMNodeInserted)) {
               this._syncSourceAfterDOMMove();
             }
-          }.bind(_this)); // Observe parent element
+          }.bind(_this));
 
+          // Observe parent element
           var parent = _this.getLayoutParent().getContentElement().getDomElement();
-
           observer.observe(parent, {
             childList: true,
             subtree: true
           });
         });
-      } // !qx.core.Environment.get("ecmascript.mutationobserver")
+      }
+      // !qx.core.Environment.get("ecmascript.mutationobserver")
       else {
         this.addListenerOnce("appear", function () {
           var element = _this.getContentElement().getDomElement();
-
           qx.bom.Event.addNativeListener(element, "DOMNodeInserted", _this._onDOMNodeInserted);
         });
         this._onDOMNodeInserted = qx.lang.Function.listener(this._syncSourceAfterDOMMove, this);
@@ -185,7 +176,6 @@
         refine: true,
         init: "iframe"
       },
-
       /**
        * Whether to show the frame's native context menu.
        *
@@ -196,7 +186,6 @@
         refine: true,
         init: false
       },
-
       /**
        * If the user presses F1 in IE by default the onhelp event is fired and
        * IE’s help window is opened. Setting this property to <code>false</code>
@@ -210,7 +199,6 @@
         init: false,
         apply: "_applyNativeHelp"
       },
-
       /**
        * Whether the widget should have scrollbars.
        */
@@ -221,12 +209,12 @@
         apply: "_applyScrollbar"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_340_0: null,
       __P_340_1: null,
@@ -235,7 +223,6 @@
         qx.ui.embed.Iframe.superclass.prototype.renderLayout.call(this, left, top, width, height);
         var pixel = "px";
         var insets = this.getInsets();
-
         this.__P_340_1.setStyles({
           left: left + insets.left + pixel,
           top: top + insets.top + pixel,
@@ -253,7 +240,6 @@
       _getIframeElement: function _getIframeElement() {
         return this.getContentElement();
       },
-
       /**
        * Creates <div> element which is aligned over iframe node to avoid losing pointer events.
        *
@@ -267,7 +253,6 @@
         });
         return el;
       },
-
       /**
        * Reacts on native load event and redirects it to the widget.
        *
@@ -275,18 +260,14 @@
        */
       _onIframeLoad: function _onIframeLoad(e) {
         this._applyNativeContextMenu(this.getNativeContextMenu(), null);
-
         this._applyNativeHelp(this.getNativeHelp(), null);
-
         this.fireNonBubblingEvent("load");
       },
-
       /*
       ---------------------------------------------------------------------------
         METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Cover the iframe with a transparent blocker div element. This prevents
        * pointer or key events to be handled by the iframe. To release the blocker
@@ -296,7 +277,6 @@
       block: function block() {
         this.__P_340_1.setStyle("display", "block");
       },
-
       /**
        * Release the blocker set by {@link #block}.
        *
@@ -304,7 +284,6 @@
       release: function release() {
         this.__P_340_1.setStyle("display", "none");
       },
-
       /*
       ---------------------------------------------------------------------------
         EVENT HANDLER
@@ -315,29 +294,23 @@
         if (value !== false && old !== false) {
           return;
         }
-
         var doc = this.getDocument();
-
         if (!doc) {
           return;
         }
-
         try {
           var documentElement = doc.documentElement;
         } catch (e) {
           // this may fail due to security restrictions
           return;
         }
-
         if (old === false) {
           qx.event.Registration.removeListener(documentElement, "contextmenu", this._onNativeContextMenu, this, true);
         }
-
         if (value === false) {
           qx.event.Registration.addListener(documentElement, "contextmenu", this._onNativeContextMenu, this, true);
         }
       },
-
       /**
        * Stops the <code>contextmenu</code> event from showing the native context menu
        *
@@ -350,18 +323,15 @@
       _applyNativeHelp: function _applyNativeHelp(value, old) {
         if (qx.core.Environment.get("event.help")) {
           var document = this.getDocument();
-
           if (!document) {
             return;
           }
-
           try {
             if (old === false) {
               qx.bom.Event.removeNativeListener(document, "help", function () {
                 return false;
               });
             }
-
             if (value === false) {
               qx.bom.Event.addNativeListener(document, "help", function () {
                 return false;
@@ -370,7 +340,6 @@
           } catch (e) {}
         }
       },
-
       /**
        * Checks if the iframe element is out of sync. This can happen in Firefox
        * if the iframe is moved around and the source is changed right after.
@@ -379,22 +348,19 @@
        */
       _syncSourceAfterDOMMove: function _syncSourceAfterDOMMove() {
         var iframeDomElement = this.getContentElement() && this.getContentElement().getDomElement();
-
         if (!iframeDomElement) {
           return;
         }
+        var iframeSource = iframeDomElement.src;
 
-        var iframeSource = iframeDomElement.src; // remove trailing "/"
-
+        // remove trailing "/"
         if (iframeSource.charAt(iframeSource.length - 1) == "/") {
           iframeSource = iframeSource.substring(0, iframeSource.length - 1);
         }
-
         if (iframeSource != this.getSource()) {
           if (qx.core.Environment.get("browser.name") != "edge" && qx.core.Environment.get("browser.name") != "ie") {
             qx.bom.Iframe.getWindow(iframeDomElement).stop();
           }
-
           iframeDomElement.src = this.getSource();
         }
       },
@@ -404,14 +370,15 @@
       },
       // overridden
       setLayoutParent: function setLayoutParent(parent) {
+        if (parent === null) {
+          this.getLayoutParent().getContentElement().remove(this.__P_340_1);
+        }
         qx.ui.embed.Iframe.superclass.prototype.setLayoutParent.call(this, parent);
-
         if (parent) {
           this.getLayoutParent().getContentElement().add(this.__P_340_1);
         }
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -421,9 +388,7 @@
       if (this.getLayoutParent() && this.__P_340_1.getParent()) {
         this.getLayoutParent().getContentElement().remove(this.__P_340_1);
       }
-
       this._disposeObjects("__P_340_1");
-
       qx.event.Registration.removeListener(document.body, "pointerdown", this.block, this, true);
       qx.event.Registration.removeListener(document.body, "pointerup", this.release, this, true);
       qx.event.Registration.removeListener(document.body, "losecapture", this.release, this, true);
@@ -432,4 +397,4 @@
   qx.ui.embed.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1685978137144
+//# sourceMappingURL=Iframe.js.map?dt=1691935433756

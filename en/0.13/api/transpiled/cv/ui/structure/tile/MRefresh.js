@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* MRefresh.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -49,7 +48,6 @@
         this.addListener('changeVisible', this.__P_73_0, this);
       }
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -62,7 +60,6 @@
         apply: '_applyRefresh'
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -78,9 +75,7 @@
           }
         } else if (!this._refreshTimer) {
           this._refreshTimer = new qx.event.Timer(value * 1000);
-
           this._refreshTimer.addListener('interval', this.__P_73_1, this);
-
           if (typeof this.isVisible === 'function') {
             if (this.isVisible()) {
               this._refreshTimer.start();
@@ -96,7 +91,6 @@
         if (ev.getData()) {
           if (this._refreshTimer) {
             this._refreshTimer.start();
-
             if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
               // last execution time too old, refresh now
               this.__P_73_1();
@@ -118,7 +112,6 @@
         }
       }
     },
-
     /*
     ***********************************************
       DESTRUCTOR
@@ -131,4 +124,4 @@
   cv.ui.structure.tile.MRefresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRefresh.js.map?dt=1685978101403
+//# sourceMappingURL=MRefresh.js.map?dt=1691935400826

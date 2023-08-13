@@ -15,6 +15,8 @@
     "construct",
     "meta",
     "clazz",
+    "constructor",
+    "call",
     "name",
     "_type",
     "type",
@@ -24,6 +26,7 @@
     "getTypes",
     "isRequiredByInterface",
     "iface",
+    "_this",
     "getEvents",
     "some",
     "method",
@@ -36,5 +39,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.dao.Event\", {\n  extend: qxl.apiviewer.dao.ClassItem,\n\n  construct(meta, clazz) {\n    this.base(arguments, meta, clazz, meta.name);\n    this._type = meta.type;\n  },\n\n  members: {\n    getType() {\n      return qxl.apiviewer.dao.Class.getClassByName(this._type);\n    },\n\n    getTypes() {\n      if (this._type) {\n        return [\n          {\n            type: this._type,\n          },\n        ];\n      }\n      return [];\n    },\n\n    /**\n     * @Override\n     */\n    isRequiredByInterface(iface) {\n      return iface\n        .getEvents()\n        .some((method) => method.getName() == this.getName());\n    },\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EAEAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,yBAAhB,EAA2C;IACzCC,MAAM,EAAEC,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBC,SADe;IAGzCC,SAHyC,qBAG/BC,IAH+B,EAGzBC,KAHyB,EAGlB;MACrB,mDAAqBD,IAArB,EAA2BC,KAA3B,EAAkCD,IAAI,CAACE,IAAvC;MACA,KAAKC,KAAL,GAAaH,IAAI,CAACI,IAAlB;IACD,CANwC;IAQzCC,OAAO,EAAE;MACPC,OADO,qBACG;QACR,OAAOX,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBL,KAAlB,CAAwBe,cAAxB,CAAuC,KAAKJ,KAA5C,CAAP;MACD,CAHM;MAKPK,QALO,sBAKI;QACT,IAAI,KAAKL,KAAT,EAAgB;UACd,OAAO,CACL;YACEC,IAAI,EAAE,KAAKD;UADb,CADK,CAAP;QAKD;;QACD,OAAO,EAAP;MACD,CAdM;;MAgBP;AACJ;AACA;MACIM,qBAnBO,iCAmBeC,KAnBf,EAmBsB;QAAA;;QAC3B,OAAOA,KAAK,CACTC,SADI,GAEJC,IAFI,CAEC,UAACC,MAAD;UAAA,OAAYA,MAAM,CAACC,OAAP,MAAoB,KAAI,CAACA,OAAL,EAAhC;QAAA,CAFD,CAAP;MAGD;IAvBM;EARgC,CAA3C;EApBAnB,GAAG,CAACC,SAAJ,CAAcC,GAAd,CAAkBkB,KAAlB,CAAwBxB,aAAxB,GAAwCA,aAAxC"
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEC,GAAG,CAACC,SAAS,CAACC,GAAG,CAACC,SAAS;IAEnCC,SAAS,WAAAA,UAACC,IAAI,EAAEC,KAAK,EAAE;MACrBN,GAAA,CAAAC,SAAA,CAAAC,GAAA,CAAAC,SAAA,CAAAI,WAAA,CAAAC,IAAA,OAAqBH,IAAI,EAAEC,KAAK,EAAED,IAAI,CAACI,IAAI;MAC3C,IAAI,CAACC,KAAK,GAAGL,IAAI,CAACM,IAAI;IACxB,CAAC;IAEDC,OAAO,EAAE;MACPC,OAAO,WAAAA,QAAA,EAAG;QACR,OAAOb,GAAG,CAACC,SAAS,CAACC,GAAG,CAACL,KAAK,CAACiB,cAAc,CAAC,IAAI,CAACJ,KAAK,CAAC;MAC3D,CAAC;MAEDK,QAAQ,WAAAA,SAAA,EAAG;QACT,IAAI,IAAI,CAACL,KAAK,EAAE;UACd,OAAO,CACL;YACEC,IAAI,EAAE,IAAI,CAACD;UACb,CAAC,CACF;QACH;QACA,OAAO,EAAE;MACX,CAAC;MAED;AACJ;AACA;MACIM,qBAAqB,WAAAA,sBAACC,KAAK,EAAE;QAAA,IAAAC,KAAA;QAC3B,OAAOD,KAAK,CACTE,SAAS,CAAC,CAAC,CACXC,IAAI,CAAC,UAACC,MAAM;UAAA,OAAKA,MAAM,CAACC,OAAO,CAAC,CAAC,IAAIJ,KAAI,CAACI,OAAO,CAAC,CAAC;QAAA,EAAC;MACzD;IACF;EACF,CAAC,CAAC;EArDFtB,GAAG,CAACC,SAAS,CAACC,GAAG,CAACqB,KAAK,CAAC3B,aAAa,GAAGA,aAAa;AAAC"
 }

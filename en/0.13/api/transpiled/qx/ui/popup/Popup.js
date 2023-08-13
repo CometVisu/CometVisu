@@ -17,7 +17,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -48,23 +47,23 @@
   qx.Class.define("qx.ui.popup.Popup", {
     extend: qx.ui.container.Composite,
     include: qx.ui.core.MPlacement,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct(layout) {
-      qx.ui.container.Composite.constructor.call(this, layout); // Initialize visibility
+      qx.ui.container.Composite.constructor.call(this, layout);
 
+      // Initialize visibility
       this.initVisibility();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -76,7 +75,6 @@
         refine: true,
         init: "excluded"
       },
-
       /**
        * Whether to let the system decide when to hide the popup. Setting
        * this to false gives you better control but it also requires you
@@ -87,12 +85,12 @@
         init: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /*
       ---------------------------------------------------------------------------
@@ -107,18 +105,15 @@
           // Automatically add to application's root
           qx.core.Init.getApplication().getRoot().add(this);
         }
-
         qx.ui.popup.Popup.superclass.prototype.show.call(this);
       },
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
         qx.ui.popup.Popup.superclass.prototype._applyVisibility.call(this, value, old);
-
         var mgr = qx.ui.popup.Manager.getInstance();
         value === "visible" ? mgr.add(this) : mgr.remove(this);
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -133,4 +128,4 @@
   qx.ui.popup.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1685978145164
+//# sourceMappingURL=Popup.js.map?dt=1691935441514

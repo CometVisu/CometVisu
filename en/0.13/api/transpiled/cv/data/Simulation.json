@@ -14,9 +14,9 @@
         "index": 117
       },
       "end": {
-        "line": 535,
+        "line": 544,
         "column": 3,
-        "index": 19242
+        "index": 19704
       }
     },
     "jsdoc": {
@@ -297,9 +297,9 @@
           "index": 8211
         },
         "end": {
-          "line": 264,
+          "line": 273,
           "column": 5,
-          "index": 9624
+          "index": 10086
         }
       },
       "type": "function",
@@ -308,14 +308,14 @@
     "_startSequence": {
       "location": {
         "start": {
-          "line": 266,
+          "line": 275,
           "column": 4,
-          "index": 9631
+          "index": 10093
         },
         "end": {
-          "line": 284,
+          "line": 293,
           "column": 5,
-          "index": 10125
+          "index": 10587
         }
       },
       "type": "function",
@@ -324,14 +324,14 @@
     "_processSimulation": {
       "location": {
         "start": {
-          "line": 286,
+          "line": 295,
           "column": 4,
-          "index": 10132
+          "index": 10594
         },
         "end": {
-          "line": 366,
+          "line": 375,
           "column": 5,
-          "index": 13305
+          "index": 13767
         }
       },
       "type": "function",
@@ -340,14 +340,14 @@
     "prepareTestData": {
       "location": {
         "start": {
-          "line": 369,
+          "line": 378,
           "column": 4,
-          "index": 13313
+          "index": 13775
         },
         "end": {
-          "line": 436,
+          "line": 445,
           "column": 5,
-          "index": 16280
+          "index": 16742
         }
       },
       "type": "function",
@@ -356,14 +356,14 @@
     "deFake": {
       "location": {
         "start": {
-          "line": 438,
+          "line": 447,
           "column": 4,
-          "index": 16287
+          "index": 16749
         },
         "end": {
-          "line": 521,
+          "line": 530,
           "column": 5,
-          "index": 18971
+          "index": 19433
         }
       },
       "type": "function",
@@ -601,14 +601,14 @@
   "destruct": {
     "location": {
       "start": {
-        "line": 529,
+        "line": 538,
         "column": 2,
-        "index": 19105
+        "index": 19567
       },
       "end": {
-        "line": 534,
+        "line": 543,
         "column": 3,
-        "index": 19238
+        "index": 19700
       }
     },
     "jsdoc": {}

@@ -33,7 +33,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,18 +60,19 @@
     type: "abstract",
     extend: qx.core.Object,
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // dynamic theme switch
+      qx.core.Object.constructor.call(this);
 
+      // dynamic theme switch
       {
         qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
       }
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /*
       ---------------------------------------------------------------------------
@@ -92,7 +92,6 @@
         init: null,
         themeable: true
       },
-
       /**
        * The <code>LayoutItem</code>'s preferred width.
        *
@@ -108,7 +107,6 @@
         init: null,
         themeable: true
       },
-
       /**
        * The user provided maximal width.
        *
@@ -121,7 +119,6 @@
         init: null,
         themeable: true
       },
-
       /**
        * The user provided minimal height.
        *
@@ -134,7 +131,6 @@
         init: null,
         themeable: true
       },
-
       /**
        * The item's preferred height.
        *
@@ -150,7 +146,6 @@
         init: null,
         themeable: true
       },
-
       /**
        * The user provided maximum height.
        *
@@ -163,7 +158,6 @@
         init: null,
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         STRETCHING
@@ -177,7 +171,6 @@
         init: true,
         themeable: true
       },
-
       /** Whether the item can shrink horizontally. */
       allowShrinkX: {
         check: "Boolean",
@@ -185,7 +178,6 @@
         init: true,
         themeable: true
       },
-
       /** Whether the item can grow vertically. */
       allowGrowY: {
         check: "Boolean",
@@ -193,7 +185,6 @@
         init: true,
         themeable: true
       },
-
       /** Whether the item can shrink vertically. */
       allowShrinkY: {
         check: "Boolean",
@@ -201,21 +192,18 @@
         init: true,
         themeable: true
       },
-
       /** Growing and shrinking in the horizontal direction */
       allowStretchX: {
         group: ["allowGrowX", "allowShrinkX"],
         mode: "shorthand",
         themeable: true
       },
-
       /** Growing and shrinking in the vertical direction */
       allowStretchY: {
         group: ["allowGrowY", "allowShrinkY"],
         mode: "shorthand",
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         MARGIN
@@ -229,7 +217,6 @@
         apply: "_applyMargin",
         themeable: true
       },
-
       /** Margin of the widget (right) */
       marginRight: {
         check: "Integer",
@@ -237,7 +224,6 @@
         apply: "_applyMargin",
         themeable: true
       },
-
       /** Margin of the widget (bottom) */
       marginBottom: {
         check: "Integer",
@@ -245,7 +231,6 @@
         apply: "_applyMargin",
         themeable: true
       },
-
       /** Margin of the widget (left) */
       marginLeft: {
         check: "Integer",
@@ -253,7 +238,6 @@
         apply: "_applyMargin",
         themeable: true
       },
-
       /**
        * The 'margin' property is a shorthand property for setting 'marginTop',
        * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.
@@ -267,7 +251,6 @@
         mode: "shorthand",
         themeable: true
       },
-
       /*
       ---------------------------------------------------------------------------
         ALIGN
@@ -287,7 +270,6 @@
         apply: "_applyAlign",
         themeable: true
       },
-
       /**
        * Vertical alignment of the item in the parent layout.
        *
@@ -302,13 +284,11 @@
         themeable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /*
@@ -325,13 +305,11 @@
         "true": function _true() {
           // reset all themeable properties
           var props = qx.util.PropertyUtil.getAllProperties(this.constructor);
-
           for (var name in props) {
-            var desc = props[name]; // only themeable properties not having a user value
-
+            var desc = props[name];
+            // only themeable properties not having a user value
             if (desc.themeable) {
               var userValue = qx.util.PropertyUtil.getUserValue(this, name);
-
               if (userValue == null) {
                 qx.util.PropertyUtil.resetThemed(this, name);
               }
@@ -340,7 +318,6 @@
         },
         "false": null
       }),
-
       /*
       ---------------------------------------------------------------------------
         LAYOUT PROCESS
@@ -349,25 +326,18 @@
 
       /** @type {Integer} The computed height */
       __P_309_0: null,
-
       /** @type {Map} The computed size of the layout item */
       __P_309_1: null,
-
       /** @type {Boolean} Whether the current layout is valid */
       __P_309_2: null,
-
       /** @type {Map} Cached size hint */
       __P_309_3: null,
-
       /** @type {Boolean} Whether the margins have changed and must be updated */
       __P_309_4: null,
-
       /** @type {Map} user provided bounds of the widget, which override the layout manager */
       __P_309_5: null,
-
       /** @type {Map} The item's layout properties */
       __P_309_6: null,
-
       /**
        * Get the computed location and dimension as computed by
        * the layout manager.
@@ -380,13 +350,12 @@
       getBounds: function getBounds() {
         return this.__P_309_5 || this.__P_309_1 || null;
       },
-
       /**
        * Reconfigure number of separators
        */
-      clearSeparators: function clearSeparators() {// empty template
+      clearSeparators: function clearSeparators() {
+        // empty template
       },
-
       /**
        * Renders a separator between two children
        *
@@ -394,9 +363,9 @@
        * @param bounds {Map} Contains the left and top coordinate and the width and height
        *    of the separator to render.
        */
-      renderSeparator: function renderSeparator(separator, bounds) {// empty template
+      renderSeparator: function renderSeparator(separator, bounds) {
+        // empty template
       },
-
       /**
        * Used by the layout engine to apply coordinates and dimensions.
        *
@@ -415,40 +384,36 @@
         if (this.isDisposed()) {
           return null;
         }
-
         // Detect size changes
         // Dynamically create data structure for computed layout
         var computed = this.__P_309_1;
-
         if (!computed) {
           computed = this.__P_309_1 = {};
-        } // Detect changes
+        }
 
-
+        // Detect changes
         var changes = {};
-
         if (left !== computed.left || top !== computed.top) {
           changes.position = true;
           computed.left = left;
           computed.top = top;
         }
-
         if (width !== computed.width || height !== computed.height) {
           changes.size = true;
           computed.width = width;
           computed.height = height;
-        } // Clear invalidation marker
+        }
 
-
+        // Clear invalidation marker
         if (this.__P_309_2) {
           changes.local = true;
           delete this.__P_309_2;
         }
-
         if (this.__P_309_4) {
           changes.margin = true;
           delete this.__P_309_4;
         }
+
         /*
          * Height for width support
          *
@@ -459,23 +424,20 @@
          * issue where the existing size is expected to have already been applied by the layout.
          * See https://github.com/qooxdoo/qooxdoo/issues/9553
          */
-
-
         if (this.getHeight() == null && this._hasHeightForWidth()) {
           var flowHeight = this._getHeightForWidth(width);
-
           if (flowHeight != null && flowHeight !== this.__P_309_0) {
             // This variable is used in the next computation of the size hint
-            this.__P_309_0 = flowHeight; // Re-add to layout queue
+            this.__P_309_0 = flowHeight;
 
+            // Re-add to layout queue
             qx.ui.core.queue.Layout.add(this);
           }
-        } // Returns changes, especially for deriving classes
+        }
 
-
+        // Returns changes, especially for deriving classes
         return changes;
       },
-
       /**
        * Whether the item should be excluded from the layout
        *
@@ -484,7 +446,6 @@
       isExcluded: function isExcluded() {
         return false;
       },
-
       /**
        * Whether the layout of this item (to layout the children)
        * is valid.
@@ -494,7 +455,6 @@
       hasValidLayout: function hasValidLayout() {
         return !this.__P_309_2;
       },
-
       /**
        * Indicate that the item has layout changes and propagate this information
        * up the item hierarchy.
@@ -503,17 +463,16 @@
       scheduleLayoutUpdate: function scheduleLayoutUpdate() {
         qx.ui.core.queue.Layout.add(this);
       },
-
       /**
        * Called by the layout manager to mark this item's layout as invalid.
        * This function should clear all layout relevant caches.
        */
       invalidateLayoutCache: function invalidateLayoutCache() {
         // this.debug("Mark layout invalid!");
+
         this.__P_309_2 = true;
         this.__P_309_3 = null;
       },
-
       /**
        * A size hint computes the dimensions of a widget. It returns
        * the recommended dimensions as well as the min and max dimensions.
@@ -545,60 +504,52 @@
        */
       getSizeHint: function getSizeHint(compute) {
         var hint = this.__P_309_3;
-
         if (hint) {
           return hint;
         }
-
         if (compute === false) {
           return null;
-        } // Compute as defined
+        }
 
+        // Compute as defined
+        hint = this.__P_309_3 = this._computeSizeHint();
 
-        hint = this.__P_309_3 = this._computeSizeHint(); // Respect height for width
-
+        // Respect height for width
         if (this._hasHeightForWidth() && this.__P_309_0 && this.getHeight() == null) {
           hint.height = this.__P_309_0;
-        } // normalize width
+        }
 
-
+        // normalize width
         if (hint.minWidth > hint.width) {
           hint.width = hint.minWidth;
         }
-
         if (hint.maxWidth < hint.width) {
           hint.width = hint.maxWidth;
         }
-
         if (!this.getAllowGrowX()) {
           hint.maxWidth = hint.width;
         }
-
         if (!this.getAllowShrinkX()) {
           hint.minWidth = hint.width;
-        } // normalize height
+        }
 
-
+        // normalize height
         if (hint.minHeight > hint.height) {
           hint.height = hint.minHeight;
         }
-
         if (hint.maxHeight < hint.height) {
           hint.height = hint.maxHeight;
         }
-
         if (!this.getAllowGrowY()) {
           hint.maxHeight = hint.height;
         }
-
         if (!this.getAllowShrinkY()) {
           hint.minHeight = hint.height;
-        } // Finally return
+        }
 
-
+        // Finally return
         return hint;
       },
-
       /**
        * Computes the size hint of the layout item.
        *
@@ -621,7 +572,6 @@
           maxHeight: maxHeight
         };
       },
-
       /**
        * Whether the item supports height for width.
        *
@@ -629,14 +579,11 @@
        */
       _hasHeightForWidth: function _hasHeightForWidth() {
         var layout = this._getLayout();
-
         if (layout) {
           return layout.hasHeightForWidth();
         }
-
         return false;
       },
-
       /**
        * If an item wants to trade height for width it has to implement this
        * method and return the preferred height of the item if it is resized to
@@ -648,14 +595,11 @@
        */
       _getHeightForWidth: function _getHeightForWidth(width) {
         var layout = this._getLayout();
-
         if (layout && layout.hasHeightForWidth()) {
           return layout.getHeightForWidth(width);
         }
-
         return null;
       },
-
       /**
        * Get the widget's layout manager.
        *
@@ -668,7 +612,6 @@
       _applyMargin: function _applyMargin() {
         this.__P_309_4 = true;
         var parent = this.$$parent;
-
         if (parent) {
           parent.updateLayoutProperties();
         }
@@ -676,7 +619,6 @@
       // property apply
       _applyAlign: function _applyAlign() {
         var parent = this.$$parent;
-
         if (parent) {
           parent.updateLayoutProperties();
         }
@@ -689,13 +631,11 @@
       _applyStretching: function _applyStretching() {
         qx.ui.core.queue.Layout.add(this);
       },
-
       /*
       ---------------------------------------------------------------------------
         SUPPORT FOR USER BOUNDARIES
       ---------------------------------------------------------------------------
       */
-
       /**
        * Whether user bounds are set on this layout item
        *
@@ -704,7 +644,6 @@
       hasUserBounds: function hasUserBounds() {
         return !!this.__P_309_5;
       },
-
       /**
        * Set user bounds of the widget. Widgets with user bounds are sized and
        * positioned manually and are ignored by any layout manager.
@@ -717,12 +656,10 @@
       setUserBounds: function setUserBounds(left, top, width, height) {
         if (!this.__P_309_5) {
           var parent = this.$$parent;
-
           if (parent) {
             parent.updateLayoutProperties();
           }
         }
-
         this.__P_309_5 = {
           left: left,
           top: top,
@@ -731,7 +668,6 @@
         };
         qx.ui.core.queue.Layout.add(this);
       },
-
       /**
        * Clear the user bounds. After this call the layout item is laid out by
        * the layout manager again.
@@ -741,15 +677,12 @@
         if (this.__P_309_5) {
           delete this.__P_309_5;
           var parent = this.$$parent;
-
           if (parent) {
             parent.updateLayoutProperties();
           }
-
           qx.ui.core.queue.Layout.add(this);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         LAYOUT PROPERTIES
@@ -762,7 +695,6 @@
        * @lint ignoreReferenceField(__emptyProperties)
        */
       __P_309_7: {},
-
       /**
        * Stores the given layout properties
        *
@@ -772,21 +704,18 @@
         if (props == null) {
           return;
         }
-
         var storage = this.__P_309_6;
-
         if (!storage) {
           storage = this.__P_309_6 = {};
-        } // Check values through parent
+        }
 
-
+        // Check values through parent
         var parent = this.getLayoutParent();
-
         if (parent) {
           parent.updateLayoutProperties(props);
-        } // Copy over values
+        }
 
-
+        // Copy over values
         for (var key in props) {
           if (props[key] == null) {
             delete storage[key];
@@ -795,7 +724,6 @@
           }
         }
       },
-
       /**
        * Returns currently stored layout properties
        *
@@ -804,7 +732,6 @@
       getLayoutProperties: function getLayoutProperties() {
         return this.__P_309_6 || this.__P_309_7;
       },
-
       /**
        * Removes all stored layout properties.
        *
@@ -812,7 +739,6 @@
       clearLayoutProperties: function clearLayoutProperties() {
         delete this.__P_309_6;
       },
-
       /**
        * Should be executed on every change of layout properties.
        *
@@ -826,23 +752,20 @@
        */
       updateLayoutProperties: function updateLayoutProperties(props) {
         var layout = this._getLayout();
-
         if (layout) {
           // Verify values through underlying layout
+
           // Precomputed and cached children data need to be
           // rebuild on upcoming (re-)layout.
           layout.invalidateChildrenCache();
         }
-
         qx.ui.core.queue.Layout.add(this);
       },
-
       /*
       ---------------------------------------------------------------------------
         HIERARCHY SUPPORT
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the application root
        *
@@ -851,7 +774,6 @@
       getApplicationRoot: function getApplicationRoot() {
         return qx.core.Init.getApplication().getRoot();
       },
-
       /**
        * Get the items parent. Even if the item has been added to a
        * layout, the parent is always a child of the containing item. The parent
@@ -862,7 +784,6 @@
       getLayoutParent: function getLayoutParent() {
         return this.$$parent || null;
       },
-
       /**
        * Set the parent
        *
@@ -872,11 +793,9 @@
         if (this.$$parent === parent) {
           return;
         }
-
         this.$$parent = parent || null;
         qx.ui.core.queue.Visibility.add(this);
       },
-
       /**
        * Whether the item is a root item and directly connected to
        * the DOM.
@@ -886,7 +805,6 @@
       isRootWidget: function isRootWidget() {
         return false;
       },
-
       /**
        * Returns the root item. The root item is the item which
        * is directly inserted into an existing DOM node at HTML level.
@@ -896,18 +814,14 @@
        */
       _getRoot: function _getRoot() {
         var parent = this;
-
         while (parent) {
           if (parent.isRootWidget()) {
             return parent;
           }
-
           parent = parent.$$parent;
         }
-
         return null;
       },
-
       /*
       ---------------------------------------------------------------------------
         CLONE SUPPORT
@@ -917,15 +831,12 @@
       clone: function clone() {
         var clone = qx.ui.core.LayoutItem.superclass.prototype.clone.call(this);
         var props = this.__P_309_6;
-
         if (props) {
           clone.__P_309_6 = qx.lang.Object.clone(props);
         }
-
         return clone;
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -942,4 +853,4 @@
   qx.ui.core.LayoutItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LayoutItem.js.map?dt=1685978134389
+//# sourceMappingURL=LayoutItem.js.map?dt=1691935431127

@@ -13,6 +13,8 @@
     "headfoot",
     "Abstract",
     "construct",
+    "constructor",
+    "call",
     "exclude",
     "Null"
   ],
@@ -20,7 +22,7 @@
     "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/headfoot/Null.js"
   ],
   "sourcesContent": [
-    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2008 Derrell Lipman\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/**\n * A null header/footer.  This is not displayed.\n */\nqx.Class.define(\"qx.ui.progressive.headfoot.Null\", {\n  extend: qx.ui.progressive.headfoot.Abstract,\n\n  construct() {\n    super();\n\n    // We're null, so don't display.\n    this.exclude();\n  }\n});\n"
+    "/* ************************************************************************\r\n\r\n   qooxdoo - the new era of web development\r\n\r\n   http://qooxdoo.org\r\n\r\n   Copyright:\r\n     2008 Derrell Lipman\r\n\r\n   License:\r\n     MIT: https://opensource.org/licenses/MIT\r\n     See the LICENSE file in the project's top-level directory for details.\r\n\r\n   Authors:\r\n     * Derrell Lipman (derrell)\r\n\r\n************************************************************************ */\r\n\r\n/**\r\n * A null header/footer.  This is not displayed.\r\n */\r\nqx.Class.define(\"qx.ui.progressive.headfoot.Null\", {\r\n  extend: qx.ui.progressive.headfoot.Abstract,\r\n\r\n  construct() {\r\n    super();\r\n\r\n    // We're null, so don't display.\r\n    this.exclude();\r\n  }\r\n});\r\n"
   ],
-  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,iCAAhB,EAAmD;IACjDC,MAAM,EAAEN,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BC,QADc;IAGjDC,SAHiD,uBAGrC;MACV,2DADU,CAGV;;MACA,KAAKC,OAAL;IACD;EARgD,CAAnD;EArBAZ,EAAE,CAACO,EAAH,CAAMC,WAAN,CAAkBC,QAAlB,CAA2BI,IAA3B,CAAgCV,aAAhC,GAAgDA,aAAhD"
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iCAAiC,EAAE;IACjDC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACC,QAAQ;IAE3CC,SAAS,WAAAA,UAAA,EAAG;MACVX,EAAA,CAAAO,EAAA,CAAAC,WAAA,CAAAC,QAAA,CAAAC,QAAA,CAAAE,WAAA,CAAAC,IAAA;;MAEA;MACA,IAAI,CAACC,OAAO,CAAC,CAAC;IAChB;EACF,CAAC,CAAC;EA9BFd,EAAE,CAACO,EAAE,CAACC,WAAW,CAACC,QAAQ,CAACM,IAAI,CAACZ,aAAa,GAAGA,aAAa;AAAC"
 }

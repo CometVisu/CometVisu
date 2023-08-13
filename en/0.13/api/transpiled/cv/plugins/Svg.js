@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Svg.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -51,7 +50,6 @@
   qx.Class.define('cv.plugins.Svg', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update],
-
     /*
     ******************************************************
       STATICS
@@ -75,7 +73,6 @@
         return data;
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -87,9 +84,7 @@
       },
       _onDomReady: function _onDomReady() {
         var _this = this;
-
         cv.plugins.Svg.superclass.prototype._onDomReady.call(this);
-
         var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
         ajaxRequest.set({
           accept: 'text/plain',
@@ -97,9 +92,7 @@
         });
         ajaxRequest.addListenerOnce('success', function (e) {
           var req = e.getTarget();
-
           var actor = _this.getActor();
-
           actor.innerHTML = req.getResponseText();
         });
         ajaxRequest.send();
@@ -114,13 +107,11 @@
         var line;
         var i;
         var l;
-
         for (i = 0, l = Math.floor(value / line_qty); i <= l; i++) {
           line = element.querySelector('#line' + (i + 1));
           line.setAttribute('y1', 9 + total * i + value % line_qty / line_qty * total);
           line.setAttribute('y2', 9 + total * i + value % line_qty / line_qty * total);
         }
-
         for (i = Math.floor(value / line_qty) + 1; i <= line_qty; i++) {
           line = element.querySelector('#line' + (i + 1));
           line.setAttribute('y1', 9);
@@ -137,4 +128,4 @@
   cv.plugins.Svg.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Svg.js.map?dt=1685978092498
+//# sourceMappingURL=Svg.js.map?dt=1691935392031

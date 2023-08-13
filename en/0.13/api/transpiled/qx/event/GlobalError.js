@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -51,7 +50,6 @@
       __P_199_0: null,
       __P_199_1: null,
       __P_199_2: null,
-
       /**
        * Little helper to check if the global error handling is enabled.
        * @return {Boolean} <code>true</code>, if it is enabled.
@@ -63,7 +61,6 @@
           return !!qx.Bootstrap.getEnvironmentSetting("qx.globalErrorHandling");
         }
       },
-
       /**
        * Set the global fallback error handler
        *
@@ -74,30 +71,24 @@
       setErrorHandler: function setErrorHandler(callback, context) {
         this.__P_199_0 = callback || null;
         this.__P_199_2 = context || window;
-
         if (this.__P_199_3()) {
           // wrap the original onerror
           if (callback && window.onerror) {
             var wrappedHandler = qx.Bootstrap.bind(this.__P_199_4, this);
-
             if (this.__P_199_1 == null) {
               this.__P_199_1 = window.onerror;
             }
-
             var self = this;
-
             window.onerror = function (msg, uri, lineNumber) {
               self.__P_199_1(msg, uri, lineNumber);
-
               wrappedHandler(msg, uri, lineNumber);
             };
           }
-
           if (callback && !window.onerror) {
             window.onerror = qx.Bootstrap.bind(this.__P_199_4, this);
-          } // reset
+          }
 
-
+          // reset
           if (this.__P_199_0 == null) {
             if (this.__P_199_1 != null) {
               window.onerror = this.__P_199_1;
@@ -108,7 +99,6 @@
           }
         }
       },
-
       /**
        * Catches all errors of the <code>window.onerror</code> handler
        * and passes an {@link qx.core.WindowError} object to the error
@@ -125,7 +115,6 @@
           this.handleError(new qx.core.WindowError(msg, uri, lineNumber, columnNumber, exception));
         }
       },
-
       /**
        * Wraps a method with error handling code. Only methods, which are called
        * directly by the browser (e.g. event handler) should be wrapped.
@@ -140,7 +129,6 @@
             if (!self.__P_199_0) {
               return method.apply(this, arguments);
             }
-
             try {
               return method.apply(this, arguments);
             } catch (ex) {
@@ -151,7 +139,6 @@
           return method;
         }
       },
-
       /**
        * Delegates every given exception to the registered error handler
        *
@@ -170,11 +157,10 @@
       } else {
         qx.Bootstrap.setEnvironmentSetting("qx.globalErrorHandling", true);
       }
-
       statics.setErrorHandler(null, null);
     }
   });
   qx.event.GlobalError.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalError.js.map?dt=1685978120360
+//# sourceMappingURL=GlobalError.js.map?dt=1691935418224

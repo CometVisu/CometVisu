@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,12 +37,12 @@
    */
   qx.Class.define("qx.ui.toolbar.CheckBox", {
     extend: qx.ui.form.ToggleButton,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       appearance: {
         refine: true,
@@ -57,11 +56,9 @@
     members: {
       // overridden
       _applyVisibility: function _applyVisibility(value, old) {
-        qx.ui.toolbar.CheckBox.superclass.prototype._applyVisibility.call(this, value, old); // trigger a appearance recalculation of the parent
-
-
+        qx.ui.toolbar.CheckBox.superclass.prototype._applyVisibility.call(this, value, old);
+        // trigger a appearance recalculation of the parent
         var parent = this.getLayoutParent();
-
         if (parent && parent instanceof qx.ui.toolbar.PartContainer) {
           qx.ui.core.queue.Appearance.add(parent);
         }
@@ -71,4 +68,4 @@
   qx.ui.toolbar.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1685978149105
+//# sourceMappingURL=CheckBox.js.map?dt=1691935445397

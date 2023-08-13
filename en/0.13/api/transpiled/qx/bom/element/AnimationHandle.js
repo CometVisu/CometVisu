@@ -29,7 +29,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -66,13 +65,11 @@
     events: {
       /** Fired when the animation started via {@link qx.bom.element.Animation}. */
       start: "Element",
-
       /**
        * Fired when the animation started via {@link qx.bom.element.Animation} has
        * ended.
        */
       end: "Element",
-
       /** Fired on every iteration of the animation. */
       iteration: "Element"
     },
@@ -80,7 +77,6 @@
       __P_131_0: null,
       __P_131_1: false,
       __P_131_3: false,
-
       /**
        * Accessor of the playing state.
        * @return {Boolean} <code>true</code>, if the animations is playing.
@@ -88,7 +84,6 @@
       isPlaying: function isPlaying() {
         return this.__P_131_1;
       },
-
       /**
        * Accessor of the ended state.
        * @return {Boolean} <code>true</code>, if the animations has ended.
@@ -96,7 +91,6 @@
       isEnded: function isEnded() {
         return this.__P_131_3;
       },
-
       /**
        * Accessor of the paused state.
        * @return {Boolean} <code>true</code>, if the animations is paused.
@@ -104,21 +98,19 @@
       isPaused: function isPaused() {
         return this.el.style[this.__P_131_0] == "paused";
       },
-
       /**
        * Pauses the animation, if running. If not running, it will be ignored.
        */
       pause: function pause() {
         if (this.el) {
           this.el.style[this.__P_131_0] = "paused";
-          this.el.$$animation.__P_131_1 = false; // in case the animation is based on JS
-
+          this.el.$$animation.__P_131_1 = false;
+          // in case the animation is based on JS
           if (this.animationId && qx.bom.element.AnimationJs) {
             qx.bom.element.AnimationJs.pause(this);
           }
         }
       },
-
       /**
        * Resumes an animation. This does not start the animation once it has ended.
        * In this case you need to start a new Animation.
@@ -126,14 +118,13 @@
       play: function play() {
         if (this.el) {
           this.el.style[this.__P_131_0] = "running";
-          this.el.$$animation.__P_131_1 = true; // in case the animation is based on JS
-
+          this.el.$$animation.__P_131_1 = true;
+          // in case the animation is based on JS
           if (this.i != undefined && qx.bom.element.AnimationJs) {
             qx.bom.element.AnimationJs.play(this);
           }
         }
       },
-
       /**
        * Stops the animation if running.
        */
@@ -143,13 +134,13 @@
           this.el.style[qx.core.Environment.get("css.animation").name] = "";
           this.el.$$animation.__P_131_1 = false;
           this.el.$$animation.__P_131_3 = true;
-        } // in case the animation is based on JS
+        }
+        // in case the animation is based on JS
         else if (this.jsAnimation) {
           this.stopped = true;
           qx.bom.element.AnimationJs.stop(this);
         }
       },
-
       /**
        * Set the animation state to ended
        */
@@ -162,4 +153,4 @@
   qx.bom.element.AnimationHandle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationHandle.js.map?dt=1685978110101
+//# sourceMappingURL=AnimationHandle.js.map?dt=1691935408821

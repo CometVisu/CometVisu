@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -61,15 +60,16 @@
       },
       "tabview-page/button": {
         style: function style(states) {
-          var decorator; // default padding
+          var decorator;
 
+          // default padding
           if (states.barTop || states.barBottom) {
             var padding = [8, 16, 8, 13];
           } else {
             var padding = [8, 4, 8, 4];
-          } // decorator
+          }
 
-
+          // decorator
           if (states.checked) {
             if (states.barTop) {
               decorator = "tabview-page-button-top";
@@ -83,9 +83,8 @@
           } else {
             for (var i = 0; i < padding.length; i++) {
               padding[i] += 1;
-            } // reduce the size by 1 because we have different decorator border width
-
-
+            }
+            // reduce the size by 1 because we have different decorator border width
             if (states.barTop) {
               padding[2] -= 1;
             } else if (states.barBottom) {
@@ -96,7 +95,6 @@
               padding[1] -= 1;
             }
           }
-
           return {
             zIndex: states.checked ? 10 : 5,
             decorator: decorator,
@@ -109,7 +107,6 @@
       "textfield": {
         style: function style(states) {
           var textColor;
-
           if (states.disabled) {
             textColor = "text-disabled";
           } else if (states.showingPlaceholder) {
@@ -117,10 +114,8 @@
           } else {
             textColor = undefined;
           }
-
           var decorator;
           var padding;
-
           if (states.disabled) {
             decorator = "inset";
             padding = [2, 3];
@@ -134,7 +129,6 @@
             padding = [2, 3];
             decorator = "inset";
           }
-
           return {
             decorator: decorator,
             padding: padding,
@@ -189,4 +183,4 @@
   qx.theme.indigo.AppearanceDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppearanceDark.js.map?dt=1685978130787
+//# sourceMappingURL=AppearanceDark.js.map?dt=1691935427983

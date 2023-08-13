@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,6 +41,7 @@
        STATICS
     *****************************************************************************
     */
+
     statics: {
       /**
        * Compiles the given clipping into a CSS compatible string. This
@@ -57,13 +57,11 @@
         if (!map) {
           return "clip:auto;";
         }
-
         var left = map.left;
         var top = map.top;
         var width = map.width;
         var height = map.height;
         var right, bottom;
-
         if (left == null) {
           right = width == null ? "auto" : width + "px";
           left = "auto";
@@ -71,7 +69,6 @@
           right = width == null ? "auto" : left + width + "px";
           left = left + "px";
         }
-
         if (top == null) {
           bottom = height == null ? "auto" : height + "px";
           top = "auto";
@@ -79,10 +76,8 @@
           bottom = height == null ? "auto" : top + height + "px";
           top = top + "px";
         }
-
         return "clip:rect(" + top + "," + right + "," + bottom + "," + left + ");";
       },
-
       /**
        * Gets the clipping of the given element.
        *
@@ -98,67 +93,61 @@
         var clip = qx.bom.element.Style.get(element, "clip", mode, false);
         var left, top, width, height;
         var right, bottom;
-
         if (typeof clip === "string" && clip !== "auto" && clip !== "") {
-          clip = clip.trim(); // Do not use "global" here. This will break Firefox because of
-          // an issue that the lastIndex will not be reset on separate calls.
+          clip = clip.trim();
 
+          // Do not use "global" here. This will break Firefox because of
+          // an issue that the lastIndex will not be reset on separate calls.
           if (/\((.*)\)/.test(clip)) {
-            var result = RegExp.$1; // Process result
+            var result = RegExp.$1;
+
+            // Process result
             // Some browsers store values space-separated, others comma-separated.
             // Handle both cases by means of feature-detection.
-
             if (/,/.test(result)) {
               var split = result.split(",");
             } else {
               var split = result.split(" ");
             }
-
             top = split[0].trim();
             right = split[1].trim();
             bottom = split[2].trim();
-            left = split[3].trim(); // Normalize "auto" to null
+            left = split[3].trim();
 
+            // Normalize "auto" to null
             if (left === "auto") {
               left = null;
             }
-
             if (top === "auto") {
               top = null;
             }
-
             if (right === "auto") {
               right = null;
             }
-
             if (bottom === "auto") {
               bottom = null;
-            } // Convert to integer values
+            }
 
-
+            // Convert to integer values
             if (top != null) {
               top = parseInt(top, 10);
             }
-
             if (right != null) {
               right = parseInt(right, 10);
             }
-
             if (bottom != null) {
               bottom = parseInt(bottom, 10);
             }
-
             if (left != null) {
               left = parseInt(left, 10);
-            } // Compute width and height
+            }
 
-
+            // Compute width and height
             if (right != null && left != null) {
               width = right - left;
             } else if (right != null) {
               width = right;
             }
-
             if (bottom != null && top != null) {
               height = bottom - top;
             } else if (bottom != null) {
@@ -167,9 +156,9 @@
           } else {
             throw new Error("Could not parse clip string: " + clip);
           }
-        } // Return map when any value is available.
+        }
 
-
+        // Return map when any value is available.
         return {
           left: left || null,
           top: top || null,
@@ -177,7 +166,6 @@
           height: height || null
         };
       },
-
       /**
        * Sets the clipping of the given element. This is a simple
        * square which describes the visible area of an DOM element.
@@ -193,13 +181,11 @@
           element.style.clip = "rect(auto,auto,auto,auto)";
           return;
         }
-
         var left = map.left;
         var top = map.top;
         var width = map.width;
         var height = map.height;
         var right, bottom;
-
         if (left == null) {
           right = width == null ? "auto" : width + "px";
           left = "auto";
@@ -207,7 +193,6 @@
           right = width == null ? "auto" : left + width + "px";
           left = left + "px";
         }
-
         if (top == null) {
           bottom = height == null ? "auto" : height + "px";
           top = "auto";
@@ -215,10 +200,8 @@
           bottom = height == null ? "auto" : top + height + "px";
           top = top + "px";
         }
-
         element.style.clip = "rect(" + top + "," + right + "," + bottom + "," + left + ")";
       },
-
       /**
        * Resets the clipping of the given DOM element.
        *
@@ -232,4 +215,4 @@
   qx.bom.element.Clip.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clip.js.map?dt=1685978110478
+//# sourceMappingURL=Clip.js.map?dt=1691935409124

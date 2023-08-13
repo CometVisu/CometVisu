@@ -28,7 +28,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Gauge.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -62,7 +61,6 @@
   qx.Class.define('cv.plugins.Gauge', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.Update, cv.ui.common.Operate],
-
     /*
     ******************************************************
       PROPERTIES
@@ -187,7 +185,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       STATICS
@@ -298,7 +295,6 @@
         return [true, variant];
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -325,7 +321,6 @@
         };
         var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
         this.__P_11_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
-
         cv.plugins.Gauge.superclass.prototype._onDomReady.call(this);
       },
       // overridden
@@ -343,10 +338,8 @@
         if (address && data) {
           return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
         }
-
         return null;
       },
-
       /**
        * Handle the incoming data
        * @param value {var} Processed incoming value
@@ -356,30 +349,23 @@
         if (!address || value === undefined) {
           return;
         }
-
         var variant = this.getAddress()[address].variantInfo;
         var gaugeElement = this.__P_11_0;
-
         if (gaugeElement) {
           switch (variant) {
             case 'average':
               if (gaugeElement.setValueAnimatedAverage) {
                 gaugeElement.setValueAnimatedAverage(value);
               }
-
               break;
-
             case 'setValue':
               if (gaugeElement.setValue) {
                 gaugeElement.setValue(value);
               }
-
               break;
-
             case 'trend':
               if (gaugeElement.setTrend) {
                 var trend;
-
                 if (value > 0) {
                   trend = steelseries.TrendState.UP;
                 } else if (value < 0) {
@@ -387,42 +373,31 @@
                 } else {
                   trend = steelseries.TrendState.STEADY;
                 }
-
                 gaugeElement.setTrend(trend);
               }
-
               break;
-
             case 'threshold':
               if (gaugeElement.setThreshold) {
                 gaugeElement.setThreshold(value);
               }
-
               break;
-
             case 'min':
               if (gaugeElement.setMinValue) {
                 gaugeElement.setMinValue(value);
               }
-
               break;
-
             case 'max':
               if (gaugeElement.setMaxValue) {
                 gaugeElement.setMaxValue(value);
               }
-
               break;
-
             default:
               if (gaugeElement.setValueAnimatedLatest) {
                 gaugeElement.setValueAnimatedLatest(value);
               }
-
               if (gaugeElement.setValueAnimated) {
                 gaugeElement.setValueAnimated(value);
               }
-
           }
         }
       },
@@ -444,4 +419,4 @@
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1685978091946
+//# sourceMappingURL=Gauge.js.map?dt=1691935391543

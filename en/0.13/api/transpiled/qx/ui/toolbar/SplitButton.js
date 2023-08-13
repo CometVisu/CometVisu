@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -42,12 +41,12 @@
    */
   qx.Class.define("qx.ui.toolbar.SplitButton", {
     extend: qx.ui.form.SplitButton,
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       // overridden
       appearance: {
@@ -55,15 +54,14 @@
         init: "toolbar-splitbutton"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       // overridden
-
       /**
        * @lint ignoreReferenceField(_forwardStates)
        */
@@ -74,7 +72,6 @@
         middle: true,
         right: true
       },
-
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -83,24 +80,17 @@
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id, hash) {
         var control;
-
         switch (id) {
           case "button":
             control = new qx.ui.toolbar.Button();
             control.addListener("execute", this._onButtonExecute, this);
-
             this._addAt(control, 0);
-
             break;
-
           case "arrow":
             control = new qx.ui.toolbar.MenuButton();
-
             this._addAt(control, 1);
-
             break;
         }
-
         return control || qx.ui.toolbar.SplitButton.superclass.prototype._createChildControlImpl.call(this, id);
       }
     }
@@ -108,4 +98,4 @@
   qx.ui.toolbar.SplitButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SplitButton.js.map?dt=1685978149285
+//# sourceMappingURL=SplitButton.js.map?dt=1691935445572

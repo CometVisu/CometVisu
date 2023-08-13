@@ -15,7 +15,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -35,7 +34,6 @@
   ************************************************************************ */
   qx.Class.define("qx.ui.virtual.cell.Boolean", {
     extend: qx.ui.virtual.cell.AbstractImage,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
@@ -45,18 +43,17 @@
       qx.ui.virtual.cell.AbstractImage.constructor.call(this);
       this.__P_473_0 = qx.util.AliasManager.getInstance();
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       appearance: {
         refine: true,
         init: "cell-boolean"
       },
-
       /**
        * The icon used to indicate the true state
        */
@@ -65,7 +62,6 @@
         themeable: true,
         apply: "_applyIconTrue"
       },
-
       /**
        * The icon used to indicate the false state
        */
@@ -75,12 +71,12 @@
         apply: "_applyIconFalse"
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_473_1: null,
       __P_473_2: null,
@@ -102,4 +98,4 @@
   qx.ui.virtual.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1685978151028
+//# sourceMappingURL=Boolean.js.map?dt=1691935447307

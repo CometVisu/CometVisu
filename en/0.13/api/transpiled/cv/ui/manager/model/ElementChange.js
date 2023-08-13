@@ -13,7 +13,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ElementChange.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -38,7 +37,6 @@
    */
   qx.Class.define('cv.ui.manager.model.ElementChange', {
     extend: qx.core.Object,
-
     /*
     ***********************************************
       CONSTRUCTOR
@@ -51,7 +49,6 @@
       this.setChanges(changes);
       this.setChangeType(type || 'content');
     },
-
     /*
     ***********************************************
       PROPERTIES
@@ -72,7 +69,6 @@
         init: ['content']
       }
     },
-
     /*
     ***********************************************
       MEMBERS
@@ -87,7 +83,6 @@
         var element = this.getElement();
         var success = false;
         var change;
-
         if (!element.isDisposed()) {
           switch (this.getChangeType()) {
             case 'content':
@@ -101,36 +96,27 @@
               element.updateModified();
               success = true;
               break;
-
             case 'deleted':
               change = this.getChanges()[0];
-
               if (change.parent) {
                 success = change.parent.insertChild(change.child, change.index, true);
               }
-
               break;
-
             case 'created':
               change = this.getChanges()[0];
-
               if (change.child) {
                 change.child.remove(true);
                 success = true;
               }
-
               break;
-
             case 'moved':
               change = this.getChanges()[0];
               success = change.child.moveTo(change.oldParent, change.oldIndex, true);
               break;
           }
         }
-
         return success;
       },
-
       /**
        * Redo all change
        *  @return {Boolean} true if all changes are redone
@@ -139,7 +125,6 @@
         var element = this.getElement();
         var success = false;
         var change;
-
         if (!element.isDisposed()) {
           switch (this.getChangeType()) {
             case 'content':
@@ -153,31 +138,24 @@
               element.updateModified();
               success = true;
               break;
-
             case 'deleted':
               if (element) {
                 element.remove(true);
                 success = true;
               }
-
               break;
-
             case 'created':
               change = this.getChanges()[0];
-
               if (change.parent) {
                 success = change.parent.insertChild(change.child, change.index, true);
               }
-
               break;
-
             case 'moved':
               change = this.getChanges()[0];
               success = change.child.moveTo(change.parent, change.index, true);
               break;
           }
         }
-
         return success;
       }
     }
@@ -185,4 +163,4 @@
   cv.ui.manager.model.ElementChange.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementChange.js.map?dt=1685978097077
+//# sourceMappingURL=ElementChange.js.map?dt=1691935396435

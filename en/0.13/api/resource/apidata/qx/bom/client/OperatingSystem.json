@@ -11,12 +11,12 @@
       "start": {
         "line": 28,
         "column": 0,
-        "index": 788
+        "index": 815
       },
       "end": {
         "line": 250,
         "column": 3,
-        "index": 7122
+        "index": 7371
       }
     },
     "jsdoc": {
@@ -47,12 +47,12 @@
         "start": {
           "line": 37,
           "column": 4,
-          "index": 1036
+          "index": 1072
         },
         "end": {
           "line": 100,
           "column": 5,
-          "index": 2827
+          "index": 2926
         }
       },
       "jsdoc": {
@@ -91,12 +91,12 @@
         "start": {
           "line": 103,
           "column": 4,
-          "index": 2881
+          "index": 2983
         },
         "end": {
           "line": 154,
           "column": 5,
-          "index": 4328
+          "index": 4481
         }
       },
       "jsdoc": {
@@ -115,12 +115,12 @@
         "start": {
           "line": 163,
           "column": 4,
-          "index": 4564
+          "index": 4726
         },
         "end": {
           "line": 179,
           "column": 5,
-          "index": 4945
+          "index": 5123
         }
       },
       "jsdoc": {
@@ -153,12 +153,12 @@
         "start": {
           "line": 186,
           "column": 4,
-          "index": 5147
+          "index": 5332
         },
         "end": {
           "line": 200,
           "column": 5,
-          "index": 5544
+          "index": 5743
         }
       },
       "jsdoc": {
@@ -194,12 +194,12 @@
         "start": {
           "line": 207,
           "column": 4,
-          "index": 5745
+          "index": 5951
         },
         "end": {
           "line": 243,
           "column": 5,
-          "index": 6969
+          "index": 7211
         }
       },
       "jsdoc": {
@@ -236,12 +236,12 @@
       "start": {
         "line": 246,
         "column": 2,
-        "index": 6978
+        "index": 7223
       },
       "end": {
         "line": 249,
         "column": 3,
-        "index": 7118
+        "index": 7366
       }
     }
   },

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -37,13 +36,11 @@
   qx.Class.define("qx.ui.mobile.layout.AbstractBox", {
     extend: qx.ui.mobile.layout.Abstract,
     type: "abstract",
-
     /*
      *****************************************************************************
         CONSTRUCTOR
      *****************************************************************************
      */
-
     /**
      * @param alignX {String?null} Sets the {@link #alignX} property
      * @param alignY {String?null} Sets the {@link #alignY} property
@@ -51,25 +48,22 @@
      */
     construct: function construct(alignX, alignY, reversed) {
       qx.ui.mobile.layout.Abstract.constructor.call(this);
-
       if (alignX) {
         this.setAlignX(alignX);
       }
-
       if (alignY) {
         this.setAlignY(alignY);
       }
-
       if (reversed) {
         this.setReversed(reversed);
       }
     },
-
     /*
      *****************************************************************************
         PROPERTIES
      *****************************************************************************
      */
+
     properties: {
       /**
        * Horizontal alignment of the whole children block.
@@ -80,7 +74,6 @@
         init: null,
         apply: "_applyLayoutChange"
       },
-
       /**
        * Vertical alignment of each child.
        */
@@ -90,7 +83,6 @@
         init: null,
         apply: "_applyLayoutChange"
       },
-
       /**
        * Children will be displayed in reverse order.
        */
@@ -101,12 +93,12 @@
         apply: "_applyLayoutChange"
       }
     },
-
     /*
      *****************************************************************************
         STATICS
      *****************************************************************************
      */
+
     statics: {
       /**
        * The property to CSS mapping.
@@ -147,7 +139,6 @@
           }
         }
       },
-
       /**
        * Supported child layout properties. Used to check if the property is allowed.
        * List all supported child layout properties here.
@@ -156,12 +147,12 @@
         flex: 1
       }
     },
-
     /*
      *****************************************************************************
         MEMBERS
      *****************************************************************************
      */
+
     members: {
       // overridden
       _getSupportedChildLayoutProperties: function _getSupportedChildLayoutProperties() {
@@ -171,11 +162,9 @@
       _setLayoutProperty: function _setLayoutProperty(widget, property, value) {
         if (property == "flex") {
           var old = this._getChildLayoutPropertyValue(widget, property);
-
           if (old != null) {
             widget.removeCssClass("qx-flex" + value);
           }
-
           widget.addCssClass("qx-flex" + value);
         }
       },
@@ -186,13 +175,11 @@
           this.resetAlignY();
           this.resetReversed();
         }
-
         qx.ui.mobile.layout.AbstractBox.superclass.prototype.connectToWidget.call(this, widget);
       },
       // overridden
       disconnectFromChildWidget: function disconnectFromChildWidget(widget) {
         qx.ui.mobile.layout.AbstractBox.superclass.prototype.disconnectFromChildWidget.call(this);
-
         for (var i = 0; i <= 6; i++) {
           widget.removeCssClass("qx-flex" + i);
         }
@@ -202,20 +189,15 @@
         if (this._widget) {
           // In this case the layout should only have one main css class.
           var layoutCss = this._getCssClasses()[0];
-
           var CSS_MAPPING = qx.ui.mobile.layout.AbstractBox.PROPERTY_CSS_MAPPING[property][layoutCss];
-
           if (old) {
             var oldCssClass = CSS_MAPPING[old];
-
             if (oldCssClass) {
               this._widget.removeCssClass(oldCssClass);
             }
           }
-
           if (value) {
             var cssClass = CSS_MAPPING[value];
-
             if (cssClass) {
               this._widget.addCssClass(cssClass);
             }
@@ -232,4 +214,4 @@
   qx.ui.mobile.layout.AbstractBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBox.js.map?dt=1685978144250
+//# sourceMappingURL=AbstractBox.js.map?dt=1691935440651

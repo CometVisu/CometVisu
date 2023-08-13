@@ -19,7 +19,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -49,13 +48,11 @@
   qx.Class.define("qx.bom.Shortcut", {
     extend: qx.core.Object,
     implement: [qx.core.IDisposable],
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
-
     /**
      * Create a new instance of Command
      *
@@ -69,19 +66,17 @@
       qx.core.Object.constructor.call(this);
       this.__P_114_0 = {};
       this.__P_114_1 = null;
-
       if (shortcut != null) {
         this.setShortcut(shortcut);
       }
-
       this.initEnabled();
     },
-
     /*
     *****************************************************************************
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /**
        * Fired when the command is executed. Sets the "data" property of the event to
@@ -89,12 +84,12 @@
        */
       execute: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /** whether the command should be respected/enabled */
       enabled: {
@@ -103,14 +98,12 @@
         event: "changeEnabled",
         apply: "_applyEnabled"
       },
-
       /** The command shortcut */
       shortcut: {
         check: "String",
         apply: "_applyShortcut",
         nullable: true
       },
-
       /**
        * Whether the execute event should be fired repeatedly if the user keep
        * the keys pressed.
@@ -120,24 +113,20 @@
         init: false
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
-
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       __P_114_0: "",
       __P_114_1: "",
-
       /*
       ---------------------------------------------------------------------------
         USER METHODS
       ---------------------------------------------------------------------------
       */
-
       /**
        * Fire the "execute" event on this shortcut.
        *
@@ -146,7 +135,6 @@
       execute: function execute(target) {
         this.fireDataEvent("execute", target);
       },
-
       /**
        * Key down event handler.
        *
@@ -157,11 +145,9 @@
           if (!this.isAutoRepeat()) {
             this.execute(event.getTarget());
           }
-
           event.stop();
         }
       },
-
       /**
        * Key press event handler.
        *
@@ -172,11 +158,9 @@
           if (this.isAutoRepeat()) {
             this.execute(event.getTarget());
           }
-
           event.stop();
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -201,35 +185,33 @@
             this.error(msg);
             throw new Error(msg);
           }
-
           this.__P_114_0 = {
             Control: false,
             Shift: false,
             Meta: false,
             Alt: false
           };
-          this.__P_114_1 = null; // To support shortcuts with "+" and "-" as keys it is necessary
+          this.__P_114_1 = null;
+
+          // To support shortcuts with "+" and "-" as keys it is necessary
           // to split the given value in a different way to determine the
           // several keyIdentifiers
-
           var index;
           var a = [];
-
           while (value.length > 0 && index != -1) {
             // search for delimiters "+" and "-"
-            index = value.search(/[-+]+/); // add identifiers - take value if no separator was found or
+            index = value.search(/[-+]+/);
+
+            // add identifiers - take value if no separator was found or
             // only one char is left (second part of shortcut)
+            a.push(value.length == 1 || index == -1 ? value : value.substring(0, index));
 
-            a.push(value.length == 1 || index == -1 ? value : value.substring(0, index)); // extract the already detected identifier
-
+            // extract the already detected identifier
             value = value.substring(index + 1);
           }
-
           var al = a.length;
-
           for (var i = 0; i < al; i++) {
             var identifier = this.__P_114_5(a[i]);
-
             switch (identifier) {
               case "Control":
               case "Shift":
@@ -237,33 +219,27 @@
               case "Alt":
                 this.__P_114_0[identifier] = true;
                 break;
-
               case "Unidentified":
                 var msg = "Not a valid key name for a shortcut: " + a[i];
                 this.error(msg);
                 throw msg;
-
               default:
                 if (this.__P_114_1) {
                   var msg = "You can only specify one non modifier key!";
                   this.error(msg);
                   throw msg;
                 }
-
                 this.__P_114_1 = identifier;
             }
           }
         }
-
         return true;
       },
-
       /*
       --------------------------------------------------------------------------
         INTERNAL MATCHING LOGIC
       ---------------------------------------------------------------------------
       */
-
       /**
        * Checks whether the given key event matches the shortcut's shortcut
        *
@@ -272,25 +248,21 @@
        */
       __P_114_3: function __P_114_3(e) {
         var key = this.__P_114_1;
-
         if (!key) {
           // no shortcut defined.
           return false;
-        } // for check special keys
+        }
+
+        // for check special keys
         // and check if a shortcut is a single char and special keys are pressed
-
-
         if (!this.__P_114_0.Shift && e.isShiftPressed() || this.__P_114_0.Shift && !e.isShiftPressed() || !this.__P_114_0.Control && e.isCtrlPressed() || this.__P_114_0.Control && !e.isCtrlPressed() || !this.__P_114_0.Meta && e.isMetaPressed() || this.__P_114_0.Meta && !e.isMetaPressed() || !this.__P_114_0.Alt && e.isAltPressed() || this.__P_114_0.Alt && !e.isAltPressed()) {
           return false;
         }
-
         if (key == e.getKeyIdentifier()) {
           return true;
         }
-
         return false;
       },
-
       /*
       ---------------------------------------------------------------------------
         COMPATIBILITY TO COMMAND
@@ -324,7 +296,6 @@
         numpad_minus: "-",
         numpad_plus: "+"
       },
-
       /**
        * Checks and normalizes the key identifier.
        *
@@ -334,31 +305,25 @@
       __P_114_5: function __P_114_5(keyName) {
         var kbUtil = qx.event.util.Keyboard;
         var keyIdentifier = "Unidentified";
-
         if (kbUtil.isValidKeyIdentifier(keyName)) {
           return keyName;
         }
-
         if (keyName.length == 1 && keyName >= "a" && keyName <= "z") {
           return keyName.toUpperCase();
         }
-
         keyName = keyName.toLowerCase();
         var keyIdentifier = this.__P_114_6[keyName] || qx.lang.String.firstUp(keyName);
-
         if (kbUtil.isValidKeyIdentifier(keyIdentifier)) {
           return keyIdentifier;
         } else {
           return "Unidentified";
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         STRING CONVERSION
       ---------------------------------------------------------------------------
       */
-
       /**
        * Returns the shortcut as string using the currently selected locale.
        *
@@ -367,7 +332,6 @@
       toString: function toString() {
         var key = this.__P_114_1;
         var str = [];
-
         for (var modifier in this.__P_114_0) {
           // this.__modifier holds a map with shortcut combination keys
           // like "Control", "Alt", "Meta" and "Shift" as keys with
@@ -376,15 +340,12 @@
             str.push(qx.locale.Key.getKeyName("short", modifier));
           }
         }
-
         if (key) {
           str.push(qx.locale.Key.getKeyName("short", key));
         }
-
         return str.join("+");
       }
     },
-
     /*
     *****************************************************************************
        DESTRUCTOR
@@ -399,4 +360,4 @@
   qx.bom.Shortcut.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Shortcut.js.map?dt=1685978108162
+//# sourceMappingURL=Shortcut.js.map?dt=1691935407173

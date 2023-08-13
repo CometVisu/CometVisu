@@ -14,6 +14,8 @@
     "panels",
     "AbstractMethodPanel",
     "construct",
+    "constructor",
+    "call",
     "members",
     "canDisplayItem",
     "dao",
@@ -31,5 +33,5 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n     2018 Zenesis Limited, http://www.zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Til Schneider (til132)\n     * Sebastian Werner (wpbasti)\n     * Andreas Ecker (ecker)\n     * Fabian Jakobs (fjakobs)\n     * John Spackman (johnspackman) of Zenesis Ltd (http://www.zenesis.com)\n\n************************************************************************ */\n\nqx.Class.define(\"qxl.apiviewer.ui.panels.ConstructorPanel\", {\n  extend: qxl.apiviewer.ui.panels.AbstractMethodPanel,\n\n  construct() {\n    super(\"Constructor\", \"qxl/apiviewer/image/constructor18.gif\");\n  },\n\n  members: {\n    /**\n     * @Override\n     */\n    canDisplayItem(dao) {\n      return (\n        dao instanceof qxl.apiviewer.dao.Method && dao.getName() == \"construct\"\n      );\n    },\n\n    getPanelItemObjects(daoClass, showInherited) {\n      return daoClass.getConstructor();\n    },\n  },\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EAEAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,0CAAhB,EAA4D;IAC1DC,MAAM,EAAEC,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBC,mBAD0B;IAG1DC,SAH0D,uBAG9C;MACV,mEAAM,aAAN,EAAqB,uCAArB;IACD,CALyD;IAO1DC,OAAO,EAAE;MACP;AACJ;AACA;MACIC,cAJO,0BAIQC,GAJR,EAIa;QAClB,OACEA,GAAG,YAAYR,GAAG,CAACC,SAAJ,CAAcO,GAAd,CAAkBC,MAAjC,IAA2CD,GAAG,CAACE,OAAJ,MAAiB,WAD9D;MAGD,CARM;MAUPC,mBAVO,+BAUaC,QAVb,EAUuBC,aAVvB,EAUsC;QAC3C,OAAOD,QAAQ,CAACE,cAAT,EAAP;MACD;IAZM;EAPiD,CAA5D;EAvBAd,GAAG,CAACC,SAAJ,CAAcC,EAAd,CAAiBC,MAAjB,CAAwBY,gBAAxB,CAAyCnB,aAAzC,GAAyDA,aAAzD"
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0CAA0C,EAAE;IAC1DC,MAAM,EAAEC,GAAG,CAACC,SAAS,CAACC,EAAE,CAACC,MAAM,CAACC,mBAAmB;IAEnDC,SAAS,WAAAA,UAAA,EAAG;MACVL,GAAA,CAAAC,SAAA,CAAAC,EAAA,CAAAC,MAAA,CAAAC,mBAAA,CAAAE,WAAA,CAAAC,IAAA,OAAM,aAAa,EAAE,uCAAuC;IAC9D,CAAC;IAEDC,OAAO,EAAE;MACP;AACJ;AACA;MACIC,cAAc,WAAAA,eAACC,GAAG,EAAE;QAClB,OACEA,GAAG,YAAYV,GAAG,CAACC,SAAS,CAACS,GAAG,CAACC,MAAM,IAAID,GAAG,CAACE,OAAO,CAAC,CAAC,IAAI,WAAW;MAE3E,CAAC;MAEDC,mBAAmB,WAAAA,oBAACC,QAAQ,EAAEC,aAAa,EAAE;QAC3C,OAAOD,QAAQ,CAACE,cAAc,CAAC,CAAC;MAClC;IACF;EACF,CAAC,CAAC;EA5CFhB,GAAG,CAACC,SAAS,CAACC,EAAE,CAACC,MAAM,CAACc,gBAAgB,CAACrB,aAAa,GAAGA,aAAa;AAAC"
 }

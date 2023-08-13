@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* OpenHab.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -51,7 +50,6 @@
         return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
       }
     },
-
     /**
      * This class defines the default transforms: encode: transform JavaScript to
      * bus value decode: transform bus to JavaScript value
@@ -68,7 +66,6 @@
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'ON' || parseInt(string) > 0 ? 1 : 0;
           }
         },
@@ -82,7 +79,6 @@
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'PLAY' || parseInt(string) > 0 ? 1 : 0;
           }
         },
@@ -96,7 +92,6 @@
             if (cv.transforms.OpenHab.isUndefined(string)) {
               return 0;
             }
-
             return string === 'OPEN' ? 1 : 0;
           }
         },
@@ -107,19 +102,16 @@
             // noinspection EqualityComparisonWithCoercionJS
             if (phy == -1) {
               return 'STOP';
-            } // noinspection EqualityComparisonWithCoercionJS
-
-
+            }
+            // noinspection EqualityComparisonWithCoercionJS
             if (phy == 1 || phy == 100) {
               return 'DOWN';
-            } // noinspection EqualityComparisonWithCoercionJS
-
-
+            }
+            // noinspection EqualityComparisonWithCoercionJS
             if (phy == 0) {
               // eslint-disable-line no-lonely-if
               return 'UP';
             }
-
             return phy;
           },
           decode: function decode(str) {
@@ -132,7 +124,6 @@
             } else if (str === 'STOP') {
               return -1;
             }
-
             return str;
           }
         },
@@ -149,7 +140,6 @@
             } else if (str === 'OFF') {
               return 0;
             }
-
             return parseInt(str);
           }
         },
@@ -162,7 +152,6 @@
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return 0;
             }
-
             return parseFloat(str);
           }
         },
@@ -175,7 +164,6 @@
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '';
             }
-
             return str;
           }
         },
@@ -185,14 +173,12 @@
             if (phy instanceof Date) {
               return phy.toLocaleDateString();
             }
-
             return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '-';
             }
-
             return new Date(Date.parse(str));
           }
         },
@@ -202,14 +188,12 @@
             if (phy instanceof Date) {
               return phy.toLocaleTimeString();
             }
-
             return phy;
           },
           decode: function decode(str) {
             if (cv.transforms.OpenHab.isUndefined(str)) {
               return '-';
             }
-
             var date = new Date();
             var parts = str.split(':');
             date.setHours(parseInt(parts[0]));
@@ -224,7 +208,6 @@
             if (!(phy instanceof Map)) {
               return '0, 0, 0';
             }
-
             if (phy.has('h') && phy.has('s') && phy.has('v')) {
               var hsv = [phy.get('h') || 0, phy.get('s') || 0, phy.get('v') || 0];
               return hsv.join(', ');
@@ -232,21 +215,18 @@
               var rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
               return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
             }
-
             return '0, 0, 0';
           },
           decode: function decode(hsbString, variant) {
             if (cv.transforms.OpenHab.isUndefined(hsbString)) {
               return variant === 'rgb' ? new Map([['r', 0], ['g', 0], ['b', 0]]) : new Map([['h', 0], ['s', 0], ['v', 0]]);
-            } // decode HSV/HSB to RGB
-
-
+            }
+            // decode HSV/HSB to RGB
             if (variant === 'rgb') {
               // decode HSV/HSB to RGB
               var rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
               return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
             }
-
             var hsv = hsbString.split(',').map(parseFloat);
             return new Map([['h', hsv[0]], ['s', hsv[1]], ['v', hsv[2]]]);
           }
@@ -266,4 +246,4 @@
   cv.transforms.OpenHab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenHab.js.map?dt=1685978093450
+//# sourceMappingURL=OpenHab.js.map?dt=1691935392949

@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -47,7 +46,6 @@
        * @param item {qx.ui.core.Widget} Item to modify.
        */
       configureItem: function configureItem(item) {},
-
       /**
        * Creates a widget cell which will be used for rendering. Be sure to
        * implement the {@link #bindItem} function as well to get the needed
@@ -56,7 +54,6 @@
        * @return {qx.ui.core.Widget} A new created item cell.
        */
       createItem: function createItem() {},
-
       /**
        * Sets up the binding for the given widget cell and index.
        *
@@ -71,14 +68,12 @@
        * @param id {Integer} The id for the binding.
        */
       bindItem: function bindItem(controller, item, id) {},
-
       /**
        * Gives the user the opportunity to reset properties or states.
        *
        * @param item {qx.ui.core.Widget} Item to modify.
        */
       onPool: function onPool(item) {},
-
       /**
        * Filter checks the current data and returns a boolean if the data should
        * appear in the filtered data set or not.
@@ -87,7 +82,6 @@
        * @return {Boolean} True, if the data passes the filter, false otherwise.
        */
       filter: function filter(data) {},
-
       /**
        * Gives the user the opportunity to sort the children items from a node.
        * The sorting method should return a negative value if a < b, zero
@@ -104,4 +98,4 @@
   qx.ui.tree.core.IVirtualTreeDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IVirtualTreeDelegate.js.map?dt=1685978150032
+//# sourceMappingURL=IVirtualTreeDelegate.js.map?dt=1691935446314

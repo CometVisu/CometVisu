@@ -11,12 +11,12 @@
       "start": {
         "line": 31,
         "column": 0,
-        "index": 698
+        "index": 728
       },
       "end": {
         "line": 109,
         "column": 3,
-        "index": 3356
+        "index": 3464
       }
     },
     "jsdoc": {
@@ -47,12 +47,12 @@
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1441
+          "index": 1489
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 1804
+          "index": 1865
         }
       },
       "jsdoc": {
@@ -102,12 +102,12 @@
         "start": {
           "line": 72,
           "column": 4,
-          "index": 2109
+          "index": 2180
         },
         "end": {
           "line": 76,
           "column": 5,
-          "index": 2228
+          "index": 2303
         }
       },
       "jsdoc": {
@@ -149,12 +149,12 @@
         "start": {
           "line": 92,
           "column": 4,
-          "index": 2859
+          "index": 2950
         },
         "end": {
           "line": 103,
           "column": 5,
-          "index": 3289
+          "index": 3391
         }
       },
       "jsdoc": {
@@ -174,9 +174,9 @@
           },
           {
             "name": "@param",
-            "body": "settings {Map?} Optional settings map which may contain one of\n   the following settings:\n* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\n* <code>callbackParam</code>: The name of the callback expected by the server",
+            "body": "settings {Map?} Optional settings map which may contain one of\n   the following settings:\r* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\r* <code>callbackParam</code>: The name of the callback expected by the server",
             "paramName": "settings",
-            "description": " Optional settings map which may contain one of\n   the following settings:\n* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\n* <code>callbackParam</code>: The name of the callback expected by the server",
+            "description": " Optional settings map which may contain one of\n   the following settings:\r* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\r* <code>callbackParam</code>: The name of the callback expected by the server",
             "optional": true,
             "type": "Map"
           }
@@ -205,12 +205,12 @@
       "start": {
         "line": 106,
         "column": 2,
-        "index": 3298
+        "index": 3403
       },
       "end": {
         "line": 108,
         "column": 3,
-        "index": 3352
+        "index": 3459
       }
     }
   },

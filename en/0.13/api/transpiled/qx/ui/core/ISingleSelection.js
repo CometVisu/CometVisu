@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,16 +37,17 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fires after the selection was modified */
       changeSelection: "qx.event.type.Data"
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       /**
        * Returns an array of currently selected items.
@@ -60,7 +60,6 @@
       getSelection: function getSelection() {
         return true;
       },
-
       /**
        * Replaces current selection with the given items.
        *
@@ -70,14 +69,12 @@
       setSelection: function setSelection(items) {
         return arguments.length == 1;
       },
-
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
         return true;
       },
-
       /**
        * Detects whether the given item is currently selected.
        *
@@ -88,7 +85,6 @@
       isSelected: function isSelected(item) {
         return arguments.length == 1;
       },
-
       /**
        * Whether the selection is empty.
        *
@@ -97,7 +93,6 @@
       isSelectionEmpty: function isSelectionEmpty() {
         return true;
       },
-
       /**
        * Returns all elements which are selectable.
        *
@@ -113,4 +108,4 @@
   qx.ui.core.ISingleSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ISingleSelection.js.map?dt=1685978134271
+//# sourceMappingURL=ISingleSelection.js.map?dt=1691935431007

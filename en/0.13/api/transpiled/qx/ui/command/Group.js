@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      Copyright:
@@ -50,13 +49,11 @@
           this._cmds[cmdkey].setActive(value);
         }
       },
-
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Adds a command with a key to the group.
        *
@@ -69,12 +66,10 @@
         if (this.has(key)) {
           return false;
         }
-
         command.setActive(this.getActive());
         this._cmds[key] = command;
         return true;
       },
-
       /**
        * Returns a command by key.
        *
@@ -84,14 +79,11 @@
        */
       get: function get(key) {
         var cmd = this._cmds[key];
-
         if (!cmd) {
           return null;
         }
-
         return cmd;
       },
-
       /**
        * Returns true if a command is registered by key.
        *
@@ -102,7 +94,6 @@
       has: function has(key) {
         return !!this._cmds[key];
       },
-
       /**
        * Removes a command by key from group. Returns the command.
        *
@@ -112,11 +103,9 @@
        */
       remove: function remove(key) {
         var cmd = this._cmds[key];
-
         if (!cmd) {
           return null;
         }
-
         delete this._cmds[key];
         return cmd;
       }
@@ -128,4 +117,4 @@
   qx.ui.command.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1685978132978
+//# sourceMappingURL=Group.js.map?dt=1691935430010

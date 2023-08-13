@@ -9,7 +9,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -36,6 +35,7 @@
    *
    * @cldr()
    */
+
   qx.Class.define("qx.locale.Number", {
     statics: {
       /**
@@ -47,7 +47,6 @@
       getDecimalSeparator: function getDecimalSeparator(locale) {
         return qx.locale.Manager.getInstance().localize("cldr_number_decimal_separator", [], locale);
       },
-
       /**
        * Get thousand grouping separator for number formatting
        *
@@ -57,7 +56,6 @@
       getGroupSeparator: function getGroupSeparator(locale) {
         return qx.locale.Manager.getInstance().localize("cldr_number_group_separator", [], locale);
       },
-
       /**
        * Get percent format string
        *
@@ -72,4 +70,4 @@
   qx.locale.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1685978128015
+//# sourceMappingURL=Number.js.map?dt=1691935425370

@@ -19,6 +19,10 @@
     "value",
     "oldValue",
     "name",
+    "Styling",
+    "superclass",
+    "prototype",
+    "call",
     "Application",
     "structureController",
     "addStyling",
@@ -30,8 +34,14 @@
     "customElements",
     "Controller",
     "PREFIX",
-    "QxConnector",
-    "Styling"
+    "_QxConnector",
+    "_inherits",
+    "_class",
+    "_super",
+    "_createSuper",
+    "_classCallCheck",
+    "_createClass",
+    "QxConnector"
   ],
   "sources": [
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/elements/Styling.js"
@@ -39,5 +49,5 @@
   "sourcesContent": [
     "/* Styling.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Styling maps a value to another value that can be used to style a component\n * @author Tobias Bräutigam\n * @since 2022\n */\nqx.Class.define('cv.ui.structure.tile.elements.Styling', {\n  extend: cv.ui.structure.tile.elements.Mapping,\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _applyConnected(value, oldValue, name) {\n      super._applyConnected(value, oldValue, name);\n      if (value) {\n        cv.Application.structureController.addStyling(this._element.getAttribute('name'), this);\n      } else {\n        cv.Application.structureController.removeStyling(this._element.getAttribute('name'));\n      }\n    }\n  },\n\n  defer(Clazz) {\n    customElements.define(\n      cv.ui.structure.tile.Controller.PREFIX + 'styling',\n      class extends QxConnector {\n        constructor() {\n          super(Clazz);\n        }\n      }\n    );\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAH,CAAaC,oBAAb,CAAkCC,aAAlC;;EAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAH,CAASC,MAAT,CAAgB,uCAAhB,EAAyD;IACvDC,MAAM,EAAEC,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,QAArB,CAA8BC,OADiB;;IAGvD;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,eADO,2BACSC,KADT,EACgBC,QADhB,EAC0BC,IAD1B,EACgC;QACrC,sFAAsBF,KAAtB,EAA6BC,QAA7B,EAAuCC,IAAvC;;QACA,IAAIF,KAAJ,EAAW;UACTR,EAAE,CAACW,WAAH,CAAeC,mBAAf,CAAmCC,UAAnC,CAA8C,KAAKC,QAAL,CAAcC,YAAd,CAA2B,MAA3B,CAA9C,EAAkF,IAAlF;QACD,CAFD,MAEO;UACLf,EAAE,CAACW,WAAH,CAAeC,mBAAf,CAAmCI,aAAnC,CAAiD,KAAKF,QAAL,CAAcC,YAAd,CAA2B,MAA3B,CAAjD;QACD;MACF;IARM,CAR8C;IAmBvDE,KAnBuD,iBAmBjDC,KAnBiD,EAmB1C;MACXC,cAAc,CAACrB,MAAf,CACEE,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBiB,UAArB,CAAgCC,MAAhC,GAAyC,SAD3C;QAAA;;QAAA;;QAAA;;QAGI,kBAAc;UAAA;;UAAA,yBACNH,KADM;QAEb;;QALL;MAAA,EAEgBI,WAFhB;IAQD;EA5BsD,CAAzD;EAxBAtB,EAAE,CAACC,EAAH,CAAMC,SAAN,CAAgBC,IAAhB,CAAqBC,QAArB,CAA8BmB,OAA9B,CAAsC3B,aAAtC,GAAsDA,aAAtD"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,QAAQ,CAACC,OAAO;IAE7C;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,eAAe,WAAAA,gBAACC,KAAK,EAAEC,QAAQ,EAAEC,IAAI,EAAE;QACrCV,EAAA,CAAAC,EAAA,CAAAC,SAAA,CAAAC,IAAA,CAAAC,QAAA,CAAAO,OAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAN,eAAA,CAAAO,IAAA,OAAsBN,KAAK,EAAEC,QAAQ,EAAEC,IAAI;QAC3C,IAAIF,KAAK,EAAE;UACTR,EAAE,CAACe,WAAW,CAACC,mBAAmB,CAACC,UAAU,CAAC,IAAI,CAACC,QAAQ,CAACC,YAAY,CAAC,MAAM,CAAC,EAAE,IAAI,CAAC;QACzF,CAAC,MAAM;UACLnB,EAAE,CAACe,WAAW,CAACC,mBAAmB,CAACI,aAAa,CAAC,IAAI,CAACF,QAAQ,CAACC,YAAY,CAAC,MAAM,CAAC,CAAC;QACtF;MACF;IACF,CAAC;IAEDE,KAAK,WAAAA,MAACC,KAAK,EAAE;MACXC,cAAc,CAACzB,MAAM,CACnBE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACqB,UAAU,CAACC,MAAM,GAAG,SAAS,yBAAAC,YAAA;QAAA;;QAAAC,SAAA,CAAAC,MAAA,EAAAF,YAAA;QAAA,IAAAG,MAAA,GAAAC,YAAA,CAAAF,MAAA;QAEhD,SAAAA,OAAA,EAAc;UAAAG,eAAA,OAAAH,MAAA;UAAA,OAAAC,MAAA,CAAAf,IAAA,OACNQ,KAAK;QACb;QAAC,OAAAU,YAAA,CAAAJ,MAAA;MAAA,EAHWK,WAAW,CAK3B,CAAC;IACH;EACF,CAAC,CAAC;EArDFjC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,QAAQ,CAACO,OAAO,CAACf,aAAa,GAAGA,aAAa;AAAC"
 }

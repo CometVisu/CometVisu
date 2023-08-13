@@ -8,7 +8,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -30,7 +29,6 @@
   /**
    * A dummy class to trigger the compiler to copy the MaterialIconsOutlined font files
    */
-
   /**
    * @usefont(MaterialIconsOutlined)
    * @deprecated use the `@usefont` directive directly in your code
@@ -39,4 +37,4 @@
   qx.theme.iconfont.LoadMaterialIconsOutlined.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIconsOutlined.js.map?dt=1685978130663
+//# sourceMappingURL=LoadMaterialIconsOutlined.js.map?dt=1691935427859

@@ -24,7 +24,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -55,16 +54,17 @@
        EVENTS
     *****************************************************************************
     */
+
     events: {
       /** Fired if the {@link #execute} method is invoked.*/
       execute: "qx.event.type.Event"
     },
-
     /*
     *****************************************************************************
        PROPERTIES
     *****************************************************************************
     */
+
     properties: {
       /**
        * A command called if the {@link #execute} method is called, e.g. on a
@@ -77,17 +77,16 @@
         nullable: true
       }
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       __P_313_0: null,
       __P_313_1: false,
       __P_313_2: null,
-
       /**
        * @type {Map} Set of properties, which will by synced from the command to the
        *    including widget
@@ -98,13 +97,11 @@
         "true": ["enabled", "label", "icon", "toolTipText", "value", "menu"],
         "false": ["label", "icon", "toolTipText", "value", "menu"]
       }),
-
       /**
        * Initiate the execute action.
        */
       execute: function execute() {
         var cmd = this.getCommand();
-
         if (cmd) {
           if (this.__P_313_1) {
             this.__P_313_1 = false;
@@ -113,10 +110,8 @@
             cmd.execute(this);
           }
         }
-
         this.fireEvent("execute");
       },
-
       /**
        * Handler for the execute event of the command.
        *
@@ -128,7 +123,6 @@
             this.__P_313_1 = false;
             return;
           }
-
           if (this.isEnabled()) {
             this.__P_313_1 = true;
             this.execute();
@@ -141,36 +135,32 @@
         if (old != null) {
           old.removeListenerById(this.__P_313_2);
         }
-
         if (value != null) {
           this.__P_313_2 = value.addListener("execute", this.__P_313_3, this);
-        } // binding stuff
+        }
 
-
+        // binding stuff
         var ids = this.__P_313_0;
-
         if (ids == null) {
           this.__P_313_0 = ids = {};
         }
-
         var selfPropertyValue;
-
         for (var i = 0; i < this._bindableProperties.length; i++) {
-          var property = this._bindableProperties[i]; // remove the old binding
+          var property = this._bindableProperties[i];
 
+          // remove the old binding
           if (old != null && !old.isDisposed() && ids[property] != null) {
             old.removeBinding(ids[property]);
             ids[property] = null;
-          } // add the new binding
+          }
 
-
+          // add the new binding
           if (value != null && qx.Class.hasProperty(this.constructor, property)) {
             // handle the init value (don't sync the initial null)
             var cmdPropertyValue = value.get(property);
-
             if (cmdPropertyValue == null) {
-              selfPropertyValue = this.get(property); // check also for themed values [BUG #5906]
-
+              selfPropertyValue = this.get(property);
+              // check also for themed values [BUG #5906]
               if (selfPropertyValue == null) {
                 // update the appearance to make sure every themed property is up to date
                 this.$$resyncNeeded = true;
@@ -180,11 +170,10 @@
             } else {
               // Reset the self property value [BUG #4534]
               selfPropertyValue = null;
-            } // set up the binding
-
-
-            ids[property] = value.bind(property, this, property); // reapply the former value
-
+            }
+            // set up the binding
+            ids[property] = value.bind(property, this, property);
+            // reapply the former value
             if (selfPropertyValue) {
               this.set(property, selfPropertyValue);
             }
@@ -194,11 +183,10 @@
     },
     destruct: function destruct() {
       this._applyCommand(null, this.getCommand());
-
       this.__P_313_0 = null;
     }
   });
   qx.ui.core.MExecutable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MExecutable.js.map?dt=1685978134579
+//# sourceMappingURL=MExecutable.js.map?dt=1691935431301

@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,26 +37,25 @@
   qx.Class.define("qx.util.ValueManager", {
     type: "abstract",
     extend: qx.core.Object,
-
     /*
     *****************************************************************************
        CONSTRUCTOR
     *****************************************************************************
     */
     construct: function construct() {
-      qx.core.Object.constructor.call(this); // Create empty dynamic map
+      qx.core.Object.constructor.call(this);
 
+      // Create empty dynamic map
       this._dynamic = {};
     },
-
     /*
     *****************************************************************************
        MEMBERS
     *****************************************************************************
     */
+
     members: {
       _dynamic: null,
-
       /**
        * Returns the dynamically interpreted result for the incoming value
        *
@@ -67,7 +65,6 @@
       resolveDynamic: function resolveDynamic(value) {
         return this._dynamic[value];
       },
-
       /**
        * Whether a value is interpreted dynamically
        *
@@ -77,7 +74,6 @@
       isDynamic: function isDynamic(value) {
         return !!this._dynamic[value];
       },
-
       /**
        * Returns the dynamically interpreted result for the incoming value,
        * (if available), otherwise returns the original value
@@ -89,10 +85,8 @@
         if (value && this._dynamic[value]) {
           return this._dynamic[value];
         }
-
         return value;
       },
-
       /**
        * Sets the dynamics map.
        * @param value {Map} The map.
@@ -100,7 +94,6 @@
       _setDynamic: function _setDynamic(value) {
         this._dynamic = value;
       },
-
       /**
        * Returns the dynamics map.
        * @return {Map} The map.
@@ -113,4 +106,4 @@
   qx.util.ValueManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ValueManager.js.map?dt=1685978154946
+//# sourceMappingURL=ValueManager.js.map?dt=1691935451170

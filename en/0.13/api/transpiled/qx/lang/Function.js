@@ -12,7 +12,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -64,7 +63,6 @@
       getCaller: function getCaller(args) {
         return args.caller ? args.caller.callee : args.callee.caller;
       },
-
       /**
        * Try to get a sensible textual description of a function object.
        * This may be the class/mixin and method name of a function
@@ -77,39 +75,34 @@
         if (fcn.displayName) {
           return fcn.displayName;
         }
-
         if (fcn.$$original || fcn.wrapper || fcn.classname) {
           return fcn.classname + ".constructor()";
         }
-
         if (fcn.$$mixin) {
           //members
           for (var key in fcn.$$mixin.$$members) {
             if (fcn.$$mixin.$$members[key] == fcn) {
               return fcn.$$mixin.name + ".prototype." + key + "()";
             }
-          } // statics
+          }
 
-
+          // statics
           for (var key in fcn.$$mixin) {
             if (fcn.$$mixin[key] == fcn) {
               return fcn.$$mixin.name + "." + key + "()";
             }
           }
         }
-
         if (fcn.self) {
           var clazz = fcn.self.constructor;
-
           if (clazz) {
             // members
             for (var key in clazz.prototype) {
               if (clazz.prototype[key] == fcn) {
                 return clazz.classname + ".prototype." + key + "()";
               }
-            } // statics
-
-
+            }
+            // statics
             for (var key in clazz) {
               if (clazz[key] == fcn) {
                 return clazz.classname + "." + key + "()";
@@ -117,16 +110,12 @@
             }
           }
         }
-
         var fcnReResult = fcn.toString().match(/function\s*(\w*)\s*\(.*/);
-
         if (fcnReResult && fcnReResult.length >= 1 && fcnReResult[1]) {
           return fcnReResult[1] + "()";
         }
-
         return "anonymous()";
       },
-
       /**
        * Evaluates JavaScript code globally
        *
@@ -142,7 +131,6 @@
           return eval.call(window, data);
         }
       },
-
       /**
        * Base function for creating functional closures which is used by most other methods here.
        *
@@ -170,51 +158,44 @@
         // Nothing to be done when there are no options.
         if (!options) {
           return func;
-        } // Check for at least one attribute.
+        }
 
-
+        // Check for at least one attribute.
         if (!(options.self || options.args || options.delay != null || options.periodical != null || options.attempt || options.always)) {
           return func;
         }
-
         return function (event) {
           // Convert (and copy) incoming arguments
-          var args = qx.lang.Array.fromArguments(arguments); // Prepend static arguments
+          var args = qx.lang.Array.fromArguments(arguments);
 
+          // Prepend static arguments
           if (options.args) {
             args = options.args.concat(args);
           }
-
           if (options.delay || options.periodical) {
             var returns = function returns() {
               return func.apply(options.self || this, args);
             };
-
             {
               returns = qx.event.GlobalError.observeMethod(returns);
             }
-
             if (options.delay) {
               return window.setTimeout(returns, options.delay);
             }
-
             if (options.periodical) {
               return window.setInterval(returns, options.periodical);
             }
           } else if (options.attempt) {
             var ret = false;
-
             try {
               ret = func.apply(options.self || this, args);
             } catch (ex) {}
-
             return ret;
           } else {
             return func.apply(options.self || this, args);
           }
         };
       },
-
       /**
        * Returns a function whose "this" is altered.
        *
@@ -261,7 +242,6 @@
           args: arguments.length > 2 ? qx.lang.Array.fromArguments(arguments, 2) : null
         });
       },
-
       /**
        * Returns a function whose arguments are pre-configured.
        *
@@ -289,7 +269,6 @@
           args: arguments.length > 1 ? qx.lang.Array.fromArguments(arguments, 1) : null
         });
       },
-
       /**
        * Returns a function which could be used as a listener for a native event callback.
        *
@@ -311,15 +290,16 @@
         } else {
           var optargs = qx.lang.Array.fromArguments(arguments, 2);
           return function (event) {
-            var args = [event || window.event]; // Append static arguments
+            var args = [event || window.event];
 
-            args.push.apply(args, optargs); // Finally execute original method
+            // Append static arguments
+            args.push.apply(args, optargs);
 
+            // Finally execute original method
             func.apply(self || this, args);
           };
         }
       },
-
       /**
        * Tries to execute the function.
        *
@@ -356,7 +336,6 @@
           args: arguments.length > 2 ? qx.lang.Array.fromArguments(arguments, 2) : null
         })();
       },
-
       /**
        * Delays the execution of a function by a specified duration.
        *
@@ -388,7 +367,6 @@
           args: arguments.length > 3 ? qx.lang.Array.fromArguments(arguments, 3) : null
         })();
       },
-
       /**
        * Executes a function in the specified intervals of time
        *
@@ -422,4 +400,4 @@
   qx.lang.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1685978127128
+//# sourceMappingURL=Function.js.map?dt=1691935424530

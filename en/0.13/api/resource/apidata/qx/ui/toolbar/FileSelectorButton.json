@@ -11,12 +11,12 @@
       "start": {
         "line": 23,
         "column": 0,
-        "index": 496
+        "index": 518
       },
       "end": {
         "line": 59,
         "column": 3,
-        "index": 1397
+        "index": 1455
       }
     },
     "jsdoc": {
@@ -34,12 +34,12 @@
       "start": {
         "line": 25,
         "column": 2,
-        "index": 593
+        "index": 617
       },
       "end": {
         "line": 30,
         "column": 3,
-        "index": 827
+        "index": 856
       }
     }
   },
@@ -49,12 +49,12 @@
         "start": {
           "line": 32,
           "column": 4,
-          "index": 849
+          "index": 880
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 917
+          "index": 951
         }
       },
       "name": "appearance",
@@ -74,12 +74,12 @@
         "start": {
           "line": 37,
           "column": 4,
-          "index": 924
+          "index": 960
         },
         "end": {
           "line": 40,
           "column": 5,
-          "index": 979
+          "index": 1018
         }
       },
       "name": "show",
@@ -97,12 +97,12 @@
         "start": {
           "line": 42,
           "column": 4,
-          "index": 986
+          "index": 1027
         },
         "end": {
           "line": 45,
           "column": 5,
-          "index": 1042
+          "index": 1086
         }
       },
       "name": "focusable",
@@ -123,12 +123,12 @@
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1084
+          "index": 1133
         },
         "end": {
           "line": 57,
           "column": 5,
-          "index": 1389
+          "index": 1445
         }
       },
       "jsdoc": {},

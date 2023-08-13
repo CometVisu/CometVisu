@@ -25,7 +25,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -60,7 +59,6 @@
          PUBLIC API
       ---------------------------------------------------------------------------
       */
-
       /**
        * Define a new interface. Interface definitions look much like class definitions.
        *
@@ -123,45 +121,47 @@
           // Normalize include
           if (config.extend && !(qx.Bootstrap.getClass(config.extend) === "Array")) {
             config.extend = [config.extend];
-          } // Validate incoming data
+          }
 
+          // Validate incoming data
 
           // Create interface from statics
-          var iface = config.statics ? config.statics : {}; // Attach configuration
+          var iface = config.statics ? config.statics : {};
 
+          // Attach configuration
           if (config.extend) {
             iface.$$extends = config.extend;
           }
-
           if (config.properties) {
             iface.$$properties = config.properties;
           }
-
           if (config.members) {
             iface.$$members = config.members;
           }
-
           if (config.events) {
             iface.$$events = config.events;
           }
         } else {
           // Create empty interface
           var iface = {};
-        } // Add Basics
+        }
 
-
+        // Add Basics
         iface.$$type = "Interface";
-        iface.name = name; // Attach toString
+        iface.name = name;
 
-        iface.toString = this.genericToString; // Assign to namespace
+        // Attach toString
+        iface.toString = this.genericToString;
 
-        iface.basename = qx.Bootstrap.createNamespace(name, iface); // Add to registry
+        // Assign to namespace
+        iface.basename = qx.Bootstrap.createNamespace(name, iface);
 
-        qx.Interface.$$registry[name] = iface; // Return final interface
+        // Add to registry
+        qx.Interface.$$registry[name] = iface;
 
+        // Return final interface
         return iface;
       },
-
       /**
        * Returns an interface by name
        *
@@ -171,7 +171,6 @@
       getByName: function getByName(name) {
         return this.$$registry[name];
       },
-
       /**
        * Determine if interface exists
        *
@@ -181,7 +180,6 @@
       isDefined: function isDefined(name) {
         return this.getByName(name) !== undefined;
       },
-
       /**
        * Determine the number of interfaces which are defined
        *
@@ -190,7 +188,6 @@
       getTotalNumber: function getTotalNumber() {
         return qx.Bootstrap.objectGetLength(this.$$registry);
       },
-
       /**
        * Generates a list of all interfaces including their super interfaces
        * (resolved recursively)
@@ -201,20 +198,17 @@
       flatten: function flatten(ifaces) {
         if (!ifaces) {
           return [];
-        } // we need to create a copy and not to modify the existing array
+        }
 
-
+        // we need to create a copy and not to modify the existing array
         var list = ifaces.concat();
-
         for (var i = 0, l = ifaces.length; i < l; i++) {
           if (ifaces[i].$$extends) {
             list.push.apply(list, this.flatten(ifaces[i].$$extends));
           }
         }
-
         return list;
       },
-
       /**
        * Assert members
        *
@@ -230,26 +224,22 @@
       __P_91_0: function __P_91_0(object, clazz, iface, wrap, shouldThrow) {
         // Validate members
         var members = iface.$$members;
-
         if (members) {
           for (var key in members) {
             if (qx.Bootstrap.isFunction(members[key])) {
               var isPropertyMethod = this.__P_91_1(clazz, key);
-
               var hasMemberFunction = isPropertyMethod || qx.Bootstrap.isFunction(object[key]);
-
               if (!hasMemberFunction) {
                 if (shouldThrow) {
                   throw new Error('Implementation of method "' + key + '" is missing in class "' + clazz.classname + '" required by interface "' + iface.name + '"');
                 } else {
                   return false;
                 }
-              } // Only wrap members if the interface was not been applied yet. This
+              }
+
+              // Only wrap members if the interface was not been applied yet. This
               // can easily be checked by the recursive hasInterface method.
-
-
               var shouldWrapFunction = wrap === true && !isPropertyMethod && !qx.util.OOUtil.hasInterface(clazz, iface);
-
               if (shouldWrapFunction) {
                 object[key] = this.__P_91_2(iface, object[key], key, members[key]);
               }
@@ -266,12 +256,10 @@
             }
           }
         }
-
         if (!shouldThrow) {
           return true;
         }
       },
-
       /**
        * Internal helper to detect if the method will be generated by the
        * property system.
@@ -284,27 +272,20 @@
        */
       __P_91_1: function __P_91_1(clazz, methodName) {
         var match = methodName.match(/^(is|toggle|get|set|reset)(.*)$/);
-
         if (!match) {
           return false;
         }
-
         var propertyName = qx.Bootstrap.firstLow(match[2]);
         var isPropertyMethod = qx.util.OOUtil.getPropertyDefinition(clazz, propertyName);
-
         if (!isPropertyMethod) {
           return false;
         }
-
         var isBoolean = match[0] === "is" || match[0] === "toggle";
-
         if (isBoolean) {
           return qx.util.OOUtil.getPropertyDefinition(clazz, propertyName).check === "Boolean";
         }
-
         return true;
       },
-
       /**
        * Assert properties
        *
@@ -326,12 +307,10 @@
             }
           }
         }
-
         if (!shouldThrow) {
           return true;
         }
       },
-
       /**
        * Assert events
        *
@@ -353,12 +332,10 @@
             }
           }
         }
-
         if (!shouldThrow) {
           return true;
         }
       },
-
       /**
        * Asserts that the given object implements all the methods defined in the
        * interface. This method throws an exception if the object does not
@@ -369,23 +346,18 @@
        */
       assertObject: function assertObject(object, iface) {
         var clazz = object.constructor;
-
         this.__P_91_0(object, clazz, iface, false, true);
-
         this.__P_91_3(clazz, iface, true);
+        this.__P_91_4(clazz, iface, true);
 
-        this.__P_91_4(clazz, iface, true); // Validate extends, recursive
-
-
+        // Validate extends, recursive
         var extend = iface.$$extends;
-
         if (extend) {
           for (var i = 0, l = extend.length; i < l; i++) {
             this.assertObject(object, extend[i]);
           }
         }
       },
-
       /**
        * Checks if an interface is implemented by a class
        *
@@ -396,21 +368,17 @@
        */
       assert: function assert(clazz, iface, wrap) {
         this.__P_91_0(clazz.prototype, clazz, iface, wrap, true);
-
         this.__P_91_3(clazz, iface, true);
+        this.__P_91_4(clazz, iface, true);
 
-        this.__P_91_4(clazz, iface, true); // Validate extends, recursive
-
-
+        // Validate extends, recursive
         var extend = iface.$$extends;
-
         if (extend) {
           for (var i = 0, l = extend.length; i < l; i++) {
             this.assert(clazz, extend[i], wrap);
           }
         }
       },
-
       /**
        * Asserts that the given object implements all the methods defined in the
        * interface.
@@ -421,14 +389,12 @@
        */
       objectImplements: function objectImplements(object, iface) {
         var clazz = object.constructor;
-
         if (!this.__P_91_0(object, clazz, iface) || !this.__P_91_3(clazz, iface) || !this.__P_91_4(clazz, iface)) {
           return false;
-        } // Validate extends, recursive
+        }
 
-
+        // Validate extends, recursive
         var extend = iface.$$extends;
-
         if (extend) {
           for (var i = 0, l = extend.length; i < l; i++) {
             if (!this.objectImplements(object, extend[i])) {
@@ -436,10 +402,8 @@
             }
           }
         }
-
         return true;
       },
-
       /**
        * Tests whether an interface is implemented by a class, without throwing an
        * exception when it doesn't.
@@ -451,11 +415,10 @@
       classImplements: function classImplements(clazz, iface) {
         if (!this.__P_91_0(clazz.prototype, clazz, iface) || !this.__P_91_3(clazz, iface) || !this.__P_91_4(clazz, iface)) {
           return false;
-        } // Validate extends, recursive
+        }
 
-
+        // Validate extends, recursive
         var extend = iface.$$extends;
-
         if (extend) {
           for (var i = 0, l = extend.length; i < l; i++) {
             if (!this.has(clazz, extend[i])) {
@@ -463,16 +426,13 @@
             }
           }
         }
-
         return true;
       },
-
       /*
       ---------------------------------------------------------------------------
          PRIVATE/INTERNAL API
       ---------------------------------------------------------------------------
       */
-
       /**
        * This method will be attached to all interface to return
        * a nice identifier for them.
@@ -483,10 +443,8 @@
       genericToString: function genericToString() {
         return "[Interface " + this.name + "]";
       },
-
       /** Registry of all defined interfaces */
       $$registry: {},
-
       /**
        * Wrap a method with a precondition check.
        *
@@ -504,26 +462,22 @@
         "true": function _true(iface, origFunction, functionName, preCondition) {
           function wrappedFunction() {
             // call precondition
-            preCondition.apply(this, arguments); // call original function
+            preCondition.apply(this, arguments);
 
+            // call original function
             return origFunction.apply(this, arguments);
           }
-
           origFunction.wrapper = wrappedFunction;
-
           if (origFunction.base !== undefined) {
             if (wrappedFunction.base !== undefined) {
               throw new Error("base is already defined for the wrapped function");
             }
-
             wrappedFunction.base = origFunction.base;
           }
-
           return wrappedFunction;
         },
         "default": function _default(iface, origFunction, functionName, preCondition) {}
       }),
-
       /** @type {Map} allowed keys in interface definition */
       __P_91_5: qx.core.Environment.select("qx.debug", {
         "true": {
@@ -536,11 +490,10 @@
           properties: "object",
           // Map
           events: "object" // Map
-
         },
+
         "default": null
       }),
-
       /**
        * Validates incoming configuration and checks keys and values
        *
@@ -557,4 +510,4 @@
   qx.Interface.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Interface.js.map?dt=1685978104866
+//# sourceMappingURL=Interface.js.map?dt=1691935404113

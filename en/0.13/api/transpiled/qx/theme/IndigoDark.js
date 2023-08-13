@@ -23,7 +23,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -38,7 +37,6 @@
        * Scott Knick (sknick)
   
   ************************************************************************ */
-
   /**
    * IndigoDark Theme
    */
@@ -55,4 +53,4 @@
   qx.theme.IndigoDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IndigoDark.js.map?dt=1685978130209
+//# sourceMappingURL=IndigoDark.js.map?dt=1691935427399

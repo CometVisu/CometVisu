@@ -14,7 +14,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* ************************************************************************
   
      qooxdoo - the new era of web development
@@ -78,16 +77,13 @@
     members: {
       getTypes: function getTypes() {
         var result = [];
-
         if (this._meta.check) {
           result.push({
             type: this._meta.check
           });
         }
-
         return result;
       },
-
       /**
        * Returns the check attribute of the property definition if
        * the check attribute does not define an internal type or a
@@ -97,20 +93,16 @@
        */
       getCheck: function getCheck() {
         var check = this._meta.check;
-
         if (check && !qxl.apiviewer.dao.Class.getClassByName(check) && !qxl.apiviewer.ui.ClassViewer.PRIMITIVES[check]) {
           return check;
         }
-
         return null;
       },
-
       /**
        * @Override
        */
       isRequiredByInterface: function isRequiredByInterface(iface) {
         var _this = this;
-
         return iface.getProperties().some(function (method) {
           return method.getName() == _this.getName();
         });
@@ -156,4 +148,4 @@
   qxl.apiviewer.dao.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1685978163972
+//# sourceMappingURL=Property.js.map?dt=1691935458963

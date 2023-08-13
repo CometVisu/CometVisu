@@ -11,7 +11,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-
   /* Video.js
    *
    * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
@@ -39,7 +38,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.Video', {
     extend: cv.ui.structure.pure.AbstractWidget,
-
     /*
     ******************************************************
       PROPERTIES
@@ -63,7 +61,6 @@
         init: false
       }
     },
-
     /*
     ******************************************************
       MEMBERS
@@ -74,19 +71,15 @@
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var style = '';
-
         if (this.getWidth()) {
           style += 'width:' + this.getWidth() + ';';
         }
-
         if (this.getHeight()) {
           style += 'height:' + this.getHeight() + ';';
         }
-
         if (style !== '') {
           style = 'style="' + style + '"';
         }
-
         var autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
         return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
       },
@@ -97,7 +90,6 @@
       // overridden
       _applyVisible: function _applyVisible(value) {
         var video = this.getValueElement();
-
         if (video) {
           if (value === true && this.isAutoplay()) {
             video.play();
@@ -111,4 +103,4 @@
   cv.ui.structure.pure.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1685978100582
+//# sourceMappingURL=Video.js.map?dt=1691935399967
