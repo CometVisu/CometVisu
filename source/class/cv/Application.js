@@ -1073,7 +1073,7 @@ qx.Class.define('cv.Application', {
           this.setManagerDisabled(true);
           this.setManagerDisabledReason(disableReason);
           this.setManagerChecked(true);
-        }
+        };
 
         xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
