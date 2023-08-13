@@ -198,7 +198,7 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/contextmenu/FileItem.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Delete"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr ""
 
@@ -1248,10 +1248,6 @@ msgstr ""
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr ""
 
-#: cv/Application.js
-msgid "Your server does not support PHP"
-msgstr ""
-
 #: cv/ui/manager/Main.js
 msgid "Server"
 msgstr ""
@@ -1343,4 +1339,24 @@ msgstr ""
 
 #: cv/ui/structure/tile/widgets/Tile.js
 msgid "Last update: %1"
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to missing PHP support."
+msgstr ""
+
+#: cv/Application.js
+msgid "Your server does not support PHP."
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to failed PHP request querying the environment."
+msgstr ""
+
+#: cv/Application.js
+msgid "Failed PHP request querying the environment."
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: unknown"
 msgstr ""
