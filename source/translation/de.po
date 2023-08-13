@@ -1156,10 +1156,6 @@ msgstr "Datei \"%1\" wurde umbenannt in \"%2\""
 msgid "Folder \"%1\" has been renamed to \"%2\""
 msgstr "Ordner \"%1\" wurde umbenannt in \"%2\""
 
-#: cv/Application.js
-msgid "Your server does not support PHP"
-msgstr "Ihr Server unterstützt kein PHP"
-
 #: cv/ui/manager/Main.js
 msgid "Server"
 msgstr "Server"
@@ -1224,3 +1220,23 @@ msgstr "Jahr"
 #: cv/ui/structure/tile/widgets/Tile.js
 msgid "Last update: %1"
 msgstr "Letzte Aktualisierung: %1"
+
+#: cv/Application.js
+msgid "Disabling manager due to missing PHP support."
+msgstr "Manager ist deaktiviert aufgrund von fehlender Unterstützung von PHP."
+
+#: cv/Application.js
+msgid "Your server does not support PHP."
+msgstr "Ihr Server unterstützt kein PHP."
+
+#: cv/Application.js
+msgid "Disabling manager due to failed PHP request querying the environment."
+msgstr "Manager ist deaktiviert aufgrund eines fehlerhaften PHP Aufrufs während der 'environment'-Abfrage."
+
+#: cv/Application.js
+msgid "Failed PHP request querying the environment."
+msgstr "PHP Abfrage des 'environment' fehlgeschlagen."
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: unknown"
+msgstr "Letzte Aktualisierung: unbekannt"
