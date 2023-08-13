@@ -274,6 +274,10 @@ body {
         aside:last-child {
             border-left: 1px solid var(--borderColor);
         }*/
+
+        dataset {
+            display: none;
+        }
     }
 
     svg.defs-only {

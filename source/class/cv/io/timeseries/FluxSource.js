@@ -31,14 +31,17 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
     _backendUrl: null,
     _baseRequestConfig: null,
     _queryTemplate: null,
+    _isInline: null,
+
+    isInline() {
+      return this._isInline;
+    },
 
     _init() {
       const resourceUrl = this.getUrl();
       if (resourceUrl) {
         const parts = resourceUrl.pathname.substring(1).split('/');
         const bucket = resourceUrl.hostname;
-        const measurement = parts.shift();
-        const field = parts.shift() || 'value';
         const options = {
           method: 'POST',
           'config-section': 'influx',
@@ -46,42 +49,49 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
             org: resourceUrl.username
           }
         };
-        const queryParts = [
-          `from(bucket:"${bucket}")`,
-          '|> range($$RANGE$$)',
-          `|> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "${field}")`
-        ];
-        const additional = {};
-        const allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
-        for (const [key, value] of resourceUrl.searchParams) {
-          if (key.startsWith('ag-')) {
-            if (allowedAg.includes(key.substring(3))) {
-              if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-                additional.aggregateWindow = {};
+        // for inline bucket the query template is defined in the config and is provided externally
+        if (bucket !== 'inline') {
+          const measurement = parts.shift();
+          const field = parts.shift() || 'value';
+          const queryParts = [
+            `from(bucket:"${bucket}")`,
+            '|> range($$RANGE$$)',
+            `|> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "${field}")`
+          ];
+          const additional = {};
+          const allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
+          for (const [key, value] of resourceUrl.searchParams) {
+            if (key.startsWith('ag-')) {
+              if (allowedAg.includes(key.substring(3))) {
+                if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
+                  additional.aggregateWindow = {};
+                }
+                additional.aggregateWindow[key.substring(3)] = value;
+              } else {
+                this.error(`skipping invalid aggregationWindow parameter ${key.substring(3)}`);
               }
-              additional.aggregateWindow[key.substring(3)] = value;
+            }
+          }
+          if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
+            if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
+              let parts = [];
+              for (const key in additional.aggregateWindow) {
+                parts.push(`${key}: ${additional.aggregateWindow[key]}`);
+              }
+              // use default
+              if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
+                parts.push('fn: mean');
+              }
+              queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
             } else {
-              this.error(`skipping invalid aggregationWindow parameter ${key.substring(3)}`);
+              this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.');
             }
           }
-        }
-        if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-          if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
-            let parts = [];
-            for (const key in additional.aggregateWindow) {
-              parts.push(`${key}: ${additional.aggregateWindow[key]}`);
-            }
-            // use default
-            if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
-              parts.push('fn: mean');
-            }
-            queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
-          } else {
-            this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.');
-          }
-        }
 
-        this._queryTemplate = queryParts.join('\n  ');
+          this._queryTemplate = queryParts.join('\n  ');
+        } else {
+          this._isInline = true;
+        }
         this._baseRequestConfig = {
           url: resourceUrl.toString(),
           proxy: true,
@@ -94,6 +104,10 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           options: {}
         };
       }
+    },
+
+    setQueryTemplate(template) {
+      this._queryTemplate = template;
     },
 
     _getAgWindowEveryForSeries(series) {

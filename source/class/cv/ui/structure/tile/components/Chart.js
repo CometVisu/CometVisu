@@ -649,6 +649,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           switch (type) {
             case 'flux':
               ts.source = new cv.io.timeseries.FluxSource(ts.src);
+              if (ts.source.isInline()) {
+                ts.source.setQueryTemplate(dataSet.textContent.trim())
+              }
               break;
 
             case 'openhab':
