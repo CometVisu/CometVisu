@@ -62,7 +62,26 @@ Datenbank geschickt:
       |> aggregateWindow(every: 1d, fn: mean)
 
 Wird nur ``ag-every`` angegeben, dann wird "mean" als Standard-Wert für ``ag-fn`` genommen. Wird beides nicht
-angeben, werden die Werte anhand der vom Chart benutzen ``series`` automatisch bestimmmt.
+angeben, werden die Werte anhand der vom Chart benutzen ``series`` automatisch bestimmt.
+
+Für komplexere Datenbankanfragen kann auch direkt der Code der Flux-Query als Text-Inhalt des ``<dataset>``-Elements
+angegeben werden. Im ``src``-Attribute muss dann lediglich noch die Organisation und der Hinweis, dass die Query "inline"
+angegeben wurde angegeben werden.
+
+.. code-block:: xml
+
+    <dataset src="flux://openhab@inline">
+        from(bucket:"openhab")
+            |> range(start: -2d)
+            |> filter(fn: (r) => r._measurement == "Counter" and r._field == "value")
+            |> aggregateWindow(every: 1d, fn: last)
+            |> difference()
+    </dataset>
+
+.. hint::
+
+    Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query
+    in der UI der InfluxDB zusammenzustellen und den funktionieren Code dann zu kopieren.
 
 Die URI des InfluxDB-Servers und ein Token für die Authentifizierung der Anfragen müssen in der :ref:`Versteckten Konfigurationen <hidden-config>`
 unter der Sektion "influx" angegeben werden. In dieser Sektion sind folgende Schlüssel-Wert Einträge erforderlich.
@@ -168,10 +187,6 @@ füllen, oder einfach mit ``all`` for alle.
               </cv-chart>
         </cv-tile>
     </cv-widget>
-
-Navigation
-^^^^^^^^^^
-
 
 
 Erlaubte Attribute
