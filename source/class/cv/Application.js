@@ -839,9 +839,14 @@ qx.Class.define('cv.Application', {
             // we have to replace the cached design scripts styles to load
             const styles = [];
             cv.Config.configSettings.stylesToLoad.forEach(function (style) {
-              styles.push(
-                style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign)
-              );
+              if (typeof style === 'string') {
+                styles.push(
+                  style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign)
+                );
+              } else if (typeof style === 'object' && style.uri) {
+                style.uri = style.uri.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign);
+                styles.push(style);
+              }
             }, this);
             this.loadStyles(styles);
 
@@ -1066,18 +1071,32 @@ qx.Class.define('cv.Application', {
           method: 'GET',
           accept: 'application/json'
         });
+        const failedCheck = (errorText, disableReason) => {
+          this.setServerHasPhpSupport(false);
+          this.error(errorText);
+
+          this.setManagerDisabled(true);
+          this.setManagerDisabledReason(disableReason);
+          this.setManagerChecked(true);
+        };
 
         xhr.addListenerOnce('success', e => {
           const req = e.getTarget();
           const env = req.getResponse();
-          if (typeof env === 'string' && env.startsWith('<?php')) {
-            // no php support
-            this.setServerHasPhpSupport(false);
-            this.error('Disabling manager due to missing PHP support.');
-
-            this.setManagerDisabled(true);
-            this.setManagerDisabledReason(qx.locale.Manager.tr('Your server does not support PHP'));
-            this.setManagerChecked(true);
+          if (typeof env !== 'object') {
+            if (typeof env === 'string' && env.startsWith('<?php')) {
+              // no php support
+              failedCheck(
+                qx.locale.Manager.tr('Disabling manager due to missing PHP support.'),
+                qx.locale.Manager.tr('Your server does not support PHP.')
+              );
+            } else {
+              // generic php error
+              failedCheck(
+                qx.locale.Manager.tr('Disabling manager due to failed PHP request querying the environment.'),
+                qx.locale.Manager.tr('Failed PHP request querying the environment.')
+              );
+            }
           } else {
             // is this is served by native openHAB server, we do not have native PHP support, only the basic
             // rest api is available, but nothing else that needs PHP (like some plugin backend code)
@@ -1138,7 +1157,10 @@ qx.Class.define('cv.Application', {
           }
         });
         xhr.addListener('statusError', e => {
-          this.setManagerChecked(true);
+          failedCheck(
+            qx.locale.Manager.tr('Disabling manager due to failed PHP request querying the environment.'),
+            qx.locale.Manager.tr('Failed PHP request querying the environment.')
+          );
         });
         xhr.send();
       }
