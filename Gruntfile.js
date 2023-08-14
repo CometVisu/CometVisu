@@ -399,9 +399,7 @@ module.exports = function(grunt) {
       },
       composerInstallRest: {
         command: 'composer install --prefer-dist --no-dev',
-        execOptions: {
-          cwd: 'source/rest/manager'
-        }
+        cwd: 'source/rest/manager'
       }
     },
 
