@@ -230,6 +230,36 @@ qx.Class.define('cv.data.Simulation', {
         if (options) {
           let end = Date.now();
           let start = Date.now();
+          let resolution = 60 * 1000;
+          const dynamicResolution = !Object.prototype.hasOwnProperty.call(generator, 'resolution');
+          if (dynamicResolution) {
+            switch (options.series) {
+              case 'hour':
+                // every minute
+                resolution = 60 * 1000;
+                break;
+
+              case 'day':
+                // every hour
+                resolution = 60 * 60 * 1000;
+                break;
+
+              case 'week':
+                // every 6hs
+                resolution = 6 * 60 * 60 * 1000;
+                break;
+              case 'month':
+                // daily
+                resolution = 24 * 60 * 60 * 1000;
+                break;
+              case 'year':
+                // monthly
+                resolution = 30 * 24 * 60 * 60 * 1000;
+                break;
+            }
+          } else {
+            resolution = generator.resolution;
+          }
           if (options.start) {
             if (/^\d{10}$/.test(options.start)) {
               // timestamp without millis
@@ -240,7 +270,7 @@ qx.Class.define('cv.data.Simulation', {
               start = new Date(parseInt(options.start)).getTime();
               end = new Date(parseInt(options.end)).getTime();
             } else {
-              const match = /end-(\d+)(hour|day|month)/.exec(options.start);
+              const match = /end-(\d+)(hour|day|week|month|year)/.exec(options.start);
               if (match) {
                 let interval = 0;
                 switch (match[2]) {
@@ -250,9 +280,15 @@ qx.Class.define('cv.data.Simulation', {
                   case 'day':
                     interval = 24 * 60 * 60 * 1000;
                     break;
+                  case 'week':
+                    interval = 6 + 24 * 60 * 60 * 1000;
+                    break;
                   case 'month':
                     // this is not really precise, but good enough to fake some data
                     interval = 30 * 24 * 60 * 60 * 1000;
+                    break;
+                  case 'year':
+                    interval = 365 * 24 * 60 * 60 * 1000;
                     break;
                 }
                 start -= parseInt(match[1]) * interval;
@@ -260,7 +296,7 @@ qx.Class.define('cv.data.Simulation', {
             }
           }
           let val = 0;
-          for (let i = start; i <= end; i += generator.resolution) {
+          for (let i = start; i <= end; i += resolution) {
             val = generator.targetValue + (Math.random() - 0.5) * generator.deviation * 2;
             data.push([i, val]);
           }

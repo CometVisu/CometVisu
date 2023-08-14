@@ -41,12 +41,14 @@ qx.Class.define('cv.io.timeseries.DemoSource', {
       };
     },
 
-    getRequestConfig(start, end) {
+    getRequestConfig(start, end, series, offset) {
       const config = this._baseRequestConfig;
       config.url = this._client.getResourcePath('charts', {
         src: this._src,
-        start: start,
-        end: end
+        start,
+        end,
+        series,
+        offset
       });
       return config;
     },
