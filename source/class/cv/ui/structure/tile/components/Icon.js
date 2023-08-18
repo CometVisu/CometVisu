@@ -111,7 +111,11 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
         element.classList.remove(oldValue);
       }
       if (value) {
-        element.classList.add(value);
+        if (value.startsWith('#') || value.startsWith('rgb')) {
+          element.style.color = value;
+        } else {
+          element.classList.add(value);
+        }
       }
     }
   },
