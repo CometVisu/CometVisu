@@ -39,7 +39,6 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
 
     _init() {
       const config = this.getConfig();
-      console.log(config);
       if (config) {
         const parts = config.path.substring(1).split('/');
         const bucket = config.name;
