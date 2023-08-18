@@ -36,29 +36,24 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
     _defaultFunc: null,
 
     _init() {
-      const resourceUrl = this.getUrl();
+      const resourceConf = this.getConfig();
       this._timeFormat = new qx.util.format.DateFormat('dd.MM.yyyy HH:mm');
       this._defaultResolution = 300;
       this._defaultFunc = 'AVERAGE';
-      if (resourceUrl) {
-        // we need the file name case-sensitive (and upper case letters get lost be the url parser)
-        let match = /.*:\/\/([\w\-:]+@)?([^\/?]+).*/.exec(this.getRawUrl());
-        let fileName = resourceUrl.hostname;
-        if (match) {
-          fileName = match[2];
-        }
+      if (resourceConf) {
+        let fileName = resourceConf.name;
         this._baseRequestConfig = {
           url: `/cgi-bin/rrdfetch?rrd=${fileName}.rrd`,
           proxy: false,
           options: {}
         };
-        for (const [key, value] of resourceUrl.searchParams) {
-          this._baseRequestConfig.url += `&${key}=${value}`;
+        for (const key in resourceConf.params) {
+          this._baseRequestConfig.url += `&${key}=${resourceConf.params[key]}`;
         }
-        if (!resourceUrl.searchParams.has('res')) {
+        if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'res')) {
           this._baseRequestConfig.url += `&res=${this._defaultResolution}`;
         }
-        if (!resourceUrl.searchParams.has('ds')) {
+        if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'ds')) {
           this._baseRequestConfig.url += `&ds=${this._defaultFunc}`;
         }
       } else {

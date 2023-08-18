@@ -38,15 +38,16 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
     },
 
     _init() {
-      const resourceUrl = this.getUrl();
-      if (resourceUrl) {
-        const parts = resourceUrl.pathname.substring(1).split('/');
-        const bucket = resourceUrl.hostname;
+      const config = this.getConfig();
+      console.log(config);
+      if (config) {
+        const parts = config.path.substring(1).split('/');
+        const bucket = config.name;
         const options = {
           method: 'POST',
           'config-section': 'influx',
           searchParams: {
-            org: resourceUrl.username
+            org: config.authority
           }
         };
         // for inline bucket the query template is defined in the config and is provided externally
@@ -60,13 +61,13 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           ];
           const additional = {};
           const allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
-          for (const [key, value] of resourceUrl.searchParams) {
+          for (const key in config.params) {
             if (key.startsWith('ag-')) {
               if (allowedAg.includes(key.substring(3))) {
                 if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
                   additional.aggregateWindow = {};
                 }
-                additional.aggregateWindow[key.substring(3)] = value;
+                additional.aggregateWindow[key.substring(3)] = config.params[key];
               } else {
                 this.error(`skipping invalid aggregationWindow parameter ${key.substring(3)}`);
               }
@@ -93,7 +94,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
           this._isInline = true;
         }
         this._baseRequestConfig = {
-          url: resourceUrl.toString(),
+          url: this._url,
           proxy: true,
           options: options
         };

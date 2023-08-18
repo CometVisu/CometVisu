@@ -33,7 +33,7 @@ qx.Class.define('cv.io.timeseries.DemoSource', {
 
     _init() {
       this._client = cv.io.BackendConnections.getClientByType('mockup');
-      this._src = this.getRawUrl().split('://').pop().replace('@', ':');
+      this._src = this._url.split('://').pop().replace('@', ':');
       this._baseRequestConfig = {
         url: '',
         proxy: false,
