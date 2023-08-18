@@ -170,7 +170,8 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         // initialize internal class instance that implements cv.io.listmodel.IListModel
         const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
         if (Clazz) {
-          const modelInstance = new Clazz();
+          const modelInstance = this._modelInstance = new Clazz();
+          modelInstance.addListener('refresh', () => this.refresh());
           if (model.hasAttribute('parameters')) {
             const props = {};
             for (let entry of model.getAttribute('parameters').split(',')) {
@@ -230,6 +231,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           this.setRefresh(parseInt(element.getAttribute('refresh')));
         }
       }
+
+      this._element.addEventListener('list-item-event', ev => {
+        if (this._modelInstance && this._modelInstance.handleEvent(ev)) {
+          ev.stopPropagation();
+        }
+      })
     },
 
     onStateUpdate(ev) {
@@ -348,7 +355,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           return '';
         };
         newModel.forEach((entry, i) => {
-          const elem = target.querySelector(`:scope > [data-row="${i}"]`);
+          let elem = target.querySelector(`:scope > [data-row="${i}"]`);
           const html = template.innerHTML.replaceAll(/\${([^}]+)}/g, (match, content) => {
             if (content === 'index') {
               return '' + i;
@@ -384,17 +391,33 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             // update existing
             elem.innerHTML = itemTemplate.content.firstElementChild.innerHTML;
             elem.setAttribute('data-row', '' + i);
+            this._initElement(elem, entry);
           } else {
             // append new child
             itemTemplate.content.firstElementChild.setAttribute('data-row', '' + i);
-
-            target.appendChild(itemTemplate.content.cloneNode(true));
+            elem = itemTemplate.content.cloneNode(true);
+            this._initElement(elem.firstElementChild, entry);
+            target.appendChild(elem);
           }
         });
         this._model = newModel;
       } else {
         this.error('model must be an array', newModel);
       }
+    },
+
+    _initElement(elem, entry) {
+      elem.$$model = entry;
+      elem.sendEvent = function(name, payload) {
+        if (!payload) {
+          payload = {};
+        }
+        payload.action = name;
+        const ev = new CustomEvent('list-item-event', {
+          bubbles: true, cancelable: true, detail: payload
+        })
+        this.dispatchEvent(ev);
+      }.bind(elem);
     }
   },
 

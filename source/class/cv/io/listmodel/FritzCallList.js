@@ -17,6 +17,16 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
 
   /*
   ***********************************************
+    EVENTS
+  ***********************************************
+  */
+  events: {
+    // this event is sent when the model itself wants to trigger a list refresh.
+    refresh: 'qx.event.type.Event'
+  },
+
+  /*
+  ***********************************************
     STATICS
   ***********************************************
   */
@@ -159,6 +169,10 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
             model.removeAll();
           }
         }
+    },
+
+    handleEvent(name, ev) {
+      return false;
     }
   },
 
