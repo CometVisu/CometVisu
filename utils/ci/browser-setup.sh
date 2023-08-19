@@ -13,6 +13,7 @@ chmod +x selenium-manager
 ./selenium-manager --version
 if [[ -z "$DELETE_INSTALLED_WEBDRIVER" ]]; then
     rm -f /usr/local/bin/chromedriver
+    rm -f /usr/bin/chromedriver
 fi
 
 if [ $CV_BROWSER = Firefox ]; then
