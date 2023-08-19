@@ -37,6 +37,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       this.addPopup(new cv.ui.Popup('info'));
       this.addPopup(new cv.ui.Popup('warning'));
       this.addPopup(new cv.ui.Popup('error'));
+      this.addPopup(new cv.ui.Popup('confirm'));
 
       // register to topics
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
@@ -97,6 +98,44 @@ qx.Class.define('cv.ui.PopupHandler', {
           popup.close();
         }
       }
+    },
+
+    /**
+     * @callback confirmationCallback
+     * @param confirmed {boolean}
+     */
+
+    /**
+     * Show a confirm message the call the callback with the information if
+     * this message has been confirmed or not,
+     * @param title {string}
+     * @param message {string}
+     * @param callback {confirmationCallback}
+     */
+    confirm(title, message, callback) {
+      const popupConfig = {
+        title: title,
+        content: message,
+        closable: true,
+        actions: {
+          decline: [
+            {
+              action() {
+                callback(false)
+              }
+            }
+          ],
+          confirm: [
+            {
+              action() {
+                callback(true)
+              }
+            }
+          ]
+        },
+        type: 'confirmation'
+      };
+      this.showPopup('confirm', popupConfig);
     },
 
     /**

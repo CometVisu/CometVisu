@@ -34,9 +34,11 @@ qx.Interface.define('cv.io.listmodel.IListModel', {
 
     /**
      * handles event from the list
-     * @param ev {CustomEvent}
+     * @param ev {Event}
+     * @param data {object} contains a map of all "data-" prefixed attributes of the event source, contains at least data.action
+     * @param model {object} model of the clicked list item
      * @returns {boolean} if the event has been handled
      */
-    handleEvent(ev) {}
+    handleEvent(ev, data, model) {}
   }
 });

@@ -32,9 +32,9 @@ qx.Class.define('cv.core.notifications.actions.Option', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {
+  construct(props, type) {
     super();
-    this.set(props);
+    this.set(props, type);
   },
 
   /*

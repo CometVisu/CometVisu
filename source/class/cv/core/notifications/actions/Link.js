@@ -32,8 +32,8 @@ qx.Class.define('cv.core.notifications.actions.Link', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {
-    super();
+  construct(props, type) {
+    super(type);
     this.set(props);
   },
 

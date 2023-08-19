@@ -174,12 +174,26 @@ html {
 }
 
 .popup.notification,
-.popup_background.notification {
+.popup_background.notification,
+.popup.confirmation,
+.popup_background.confirmation, {
   position: absolute;
   padding: 30px;
   width: auto;
   height: auto;
   max-width: calc(100vw - 60px);
+}
+
+.popup.confirmation {
+  .actions {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+
+    > div {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 
 .popup {
@@ -204,7 +218,7 @@ html {
 .popup_background {
   z-index: 100000;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-  background: #000;
+  background: #1e1e1e;
   border: 1px solid #fff;
 }
 

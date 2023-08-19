@@ -232,11 +232,42 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         }
       }
 
-      this._element.addEventListener('list-item-event', ev => {
-        if (this._modelInstance && this._modelInstance.handleEvent(ev)) {
+      this._element.addEventListener('click', ev => {
+        let templateRoot = ev.target;
+        let data = {};
+        const collectData = elem => {
+          if (elem) {
+            for (let i = 0; i < elem.attributes.length; i++) {
+              let attrib = elem.attributes[i];
+              if (attrib.name.startsWith('data-')) {
+                data[attrib.name.substring(5)] = attrib.value;
+              }
+            }
+          }
+        }
+        collectData(templateRoot);
+        let level = 0;
+        let model = templateRoot.$$model
+        while (templateRoot && (!model || !data.action) && level <= 5) {
+          templateRoot = templateRoot.parentElement;
+          if (templateRoot === this._element) {
+            break;
+          }
+          if (templateRoot) {
+            if (!model && templateRoot.$$model) {
+              model = templateRoot.$$model;
+            }
+            if (!data.action && templateRoot.hasAttribute('data-action')) {
+              collectData(templateRoot);
+            }
+          }
+          level++;
+        }
+
+        if (data.action && this._modelInstance && this._modelInstance.handleEvent(ev, data, model)) {
           ev.stopPropagation();
         }
-      })
+      });
     },
 
     onStateUpdate(ev) {
@@ -307,10 +338,12 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
         if (newModel.length === 0) {
           const whenEmptyTemplate = element.querySelector(':scope > template[when="empty"]');
 
+          // remove old entries
+          while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
+            target.removeChild(target.firstElementChild);
+          }
+
           if (whenEmptyTemplate && !target.querySelector(':scope > .empty-model')) {
-            while (target.firstElementChild && target.firstElementChild.hasAttribute('data-row')) {
-              target.removeChild(target.firstElementChild);
-            }
             const emptyModel = whenEmptyTemplate.content.firstElementChild.cloneNode(true);
             emptyModel.classList.add('empty-model');
             target.appendChild(emptyModel);
@@ -320,6 +353,14 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
           const emptyElem = target.querySelector(':scope > .empty-model');
           if (emptyElem) {
             emptyElem.remove();
+          }
+
+          let child;
+          for (let i = target.children.length-1; i >=0; i--) {
+            child = target.children[i];
+            if (child.hasAttribute('data-row') && parseInt(child.getAttribute('data-row')) >= newModel.length) {
+              target.removeChild(child);
+            }
           }
         }
         const itemTemplate = document.createElement('template');
@@ -408,16 +449,6 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
     _initElement(elem, entry) {
       elem.$$model = entry;
-      elem.sendEvent = function(name, payload) {
-        if (!payload) {
-          payload = {};
-        }
-        payload.action = name;
-        const ev = new CustomEvent('list-item-event', {
-          bubbles: true, cancelable: true, detail: payload
-        })
-        this.dispatchEvent(ev);
-      }.bind(elem);
     }
   },
 

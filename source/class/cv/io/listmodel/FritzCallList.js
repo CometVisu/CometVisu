@@ -171,7 +171,7 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
         }
     },
 
-    handleEvent(name, ev) {
+    handleEvent() {
       return false;
     }
   },

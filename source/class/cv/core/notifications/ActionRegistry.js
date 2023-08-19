@@ -92,7 +92,7 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
 
         return null;
       }
-      const actionHandler = new this.__handlers[type](config);
+      const actionHandler = new this.__handlers[type](config, type);
       return actionHandler.getDomElement();
     }
   }

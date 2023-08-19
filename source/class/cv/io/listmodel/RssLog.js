@@ -136,6 +136,14 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         );
         this.fireDataEvent('finished', false);
       });
+      this.__request.addListener('timeout', ev => {
+        this.error(
+          'C: #rss_%s, timeout, Feed: %s',
+          this.getPath(),
+          this.__request.getUrl()
+        );
+        this.fireDataEvent('finished', false);
+      });
     },
 
     __updateModel(ev) {
@@ -167,19 +175,16 @@ qx.Class.define('cv.io.listmodel.RssLog', {
       }
     },
 
-    handleEvent(ev) {
+    handleEvent(ev, data, model) {
       let handled = false;
-      if (!ev.target || !ev.target.$$model) {
-        this.error('list element event could not be handled: event has not been emitted from the list items rool element!');
-        return;
-      }
-      const model = ev.target.$$model;
       const requestData = {};
       if (this.getDatabase()) {
         requestData.database = this.getDatabase();
       }
-
-      switch (ev.detail.action) {
+      let needsConfirmation = false;
+      let confirmTitle = '';
+      let confirmMessage = '';
+      switch (data.action) {
         case 'toggle-state':
           requestData.u = model.id;
           requestData.state = model.state === '0' ? '1' : '0';
@@ -188,11 +193,14 @@ qx.Class.define('cv.io.listmodel.RssLog', {
 
         case 'delete':
           requestData.d = model.id;
+          needsConfirmation = data['no-confirm'] !== 'true';
+          confirmTitle = qx.locale.Manager.tr('Confirm deletion');
+          confirmMessage = qx.locale.Manager.tr('Do you really want to delete this entry?');
           handled = true;
           break;
 
         default:
-          this.error('unhandled event ', name);
+          this.error('unhandled event ', action);
           break;
       }
       if (handled) {
@@ -205,7 +213,16 @@ qx.Class.define('cv.io.listmodel.RssLog', {
         req.addListener('success', async () => {
           this.fireEvent('refresh');
         });
-        req.send();
+        if (needsConfirmation) {
+          cv.ui.PopupHandler.confirm(confirmTitle, confirmMessage, confirmed => {
+              if (confirmed) {
+                req.send();
+              }
+            }
+          );
+        } else {
+          req.send();
+        }
       }
 
       return handled;

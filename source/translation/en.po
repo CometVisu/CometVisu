@@ -198,7 +198,7 @@ msgstr ""
 msgid "Save as..."
 msgstr ""
 
-#: cv/ui/manager/contextmenu/ConfigElement.js
+#: cv/ui/manager/contextmenu/FileItem.js
 msgid "Delete"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/Main.js
+#: cv/ui/manager/MenuBar.js
 msgid "About"
 msgstr ""
 
@@ -1359,4 +1359,16 @@ msgstr ""
 
 #: cv/ui/structure/tile/widgets/Tile.js
 msgid "Last update: unknown"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "yes"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "no"
+msgstr ""
+
+#: cv/io/listmodel/RssLog.js
+msgid "Do you really want to delete this entry?"
 msgstr ""

@@ -1240,3 +1240,15 @@ msgstr "PHP Abfrage des 'environment' fehlgeschlagen."
 #: cv/ui/structure/tile/widgets/Tile.js
 msgid "Last update: unknown"
 msgstr "Letzte Aktualisierung: unbekannt"
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "yes"
+msgstr "ja"
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "no"
+msgstr "nein"
+
+#: cv/io/listmodel/RssLog.js
+msgid "Do you really want to delete this entry?"
+msgstr "Möchten Sie diesen Eintrag wirklich löschen?"

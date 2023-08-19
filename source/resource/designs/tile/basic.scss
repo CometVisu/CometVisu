@@ -131,7 +131,7 @@ body {
     padding: 0;
     margin: 0;
 
-    .clickable {
+    .clickable, *[data-action] {
         cursor: pointer;
     }
 
@@ -1173,6 +1173,7 @@ body {
     cv-icon {
         font-size: calc((min(var(--tileCellWidth), var(--tileCellHeight)) - #{$defaultSpace}*2) / 1.5);
         position: relative;
+        position: relative;
 
         svg {
             color: var(--primaryText);
@@ -1185,6 +1186,10 @@ body {
 
         &.active {
             color: var(--primaryColor);
+        }
+
+        &[size='small'] {
+            font-size: 20px;
         }
 
         &[size='large'] {
