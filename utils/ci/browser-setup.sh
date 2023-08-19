@@ -16,14 +16,14 @@ if [ $CV_BROWSER = Firefox ]; then
     OUTPUT=$(./selenium-manager --browser=firefox --browser-version=$CV_VERSION)
     DRIVER_PATH=$(printf ${OUTPUT} | grep "Driver path" | awk '{print $4}')
     BROWSER_PATH=$(printf ${OUTPUT} | grep "Browser path" | awk '{print $4}')
-    ln -s -f ${BROWSER_PATH} firefox-$CV_VERSION
+    ln -s -f ${BROWSER_PATH} firefox
     echo WEBDRIVER_PATH=${DRIVER_PATH} | tee .protractor-env
     echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
 else
   OUTPUT=$(./selenium-manager --browser=chrome --browser-version=$CV_VERSION)
   DRIVER_PATH=$(printf "${OUTPUT}" | grep "Driver path" | awk '{print $4}')
   BROWSER_PATH=$(printf "${OUTPUT}" | grep "Browser path" | awk '{print $4}')
-  ln -s -f ${BROWSER_PATH} google-chrome-$CV_VERSION
+  ln -s -f ${BROWSER_PATH} chrome
   CHROME_FULL_VERSION=$($BROWSER_PATH --version | awk '{print $3}')
   echo WEBDRIVER_PATH=${DRIVER_PATH} | tee .protractor-env
   echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
