@@ -244,10 +244,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
               }
             }
           }
-        }
+        };
         collectData(templateRoot);
         let level = 0;
-        let model = templateRoot.$$model
+        let model = templateRoot.$$model;
         while (templateRoot && (!model || !data.action) && level <= 5) {
           templateRoot = templateRoot.parentElement;
           if (templateRoot === this._element) {

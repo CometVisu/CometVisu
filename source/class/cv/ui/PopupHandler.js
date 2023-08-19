@@ -121,14 +121,14 @@ qx.Class.define('cv.ui.PopupHandler', {
           decline: [
             {
               action() {
-                callback(false)
+                callback(false);
               }
             }
           ],
           confirm: [
             {
               action() {
-                callback(true)
+                callback(true);
               }
             }
           ]

@@ -35,7 +35,7 @@ qx.Class.define('cv.core.notifications.actions.Confirm', {
   construct(props, type) {
     super(type);
     this.setAccepted(type === 'confirm');
-    this.setTitle(type === 'confirm' ? qx.locale.Manager.tr('yes') : qx.locale.Manager.tr('no'))
+    this.setTitle(type === 'confirm' ? qx.locale.Manager.tr('yes') : qx.locale.Manager.tr('no'));
     this.set(props);
   },
 
@@ -58,7 +58,7 @@ qx.Class.define('cv.core.notifications.actions.Confirm', {
     action: {
       check: 'Function',
       nullable: true
-    },
+    }
   },
 
   /*

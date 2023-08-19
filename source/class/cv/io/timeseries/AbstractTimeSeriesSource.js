@@ -88,11 +88,10 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
             map[key] = value;
             return map;
           }, {}) : {}
-        }
-      } else {
-        this.error('invalid url '+ url + ' this source will not be usable!');
-        return null;
+        };
       }
+      this.error('invalid url '+ url + ' this source will not be usable!');
+      return null;
     },
 
     _init() {},

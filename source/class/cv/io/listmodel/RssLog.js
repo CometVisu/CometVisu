@@ -200,7 +200,7 @@ qx.Class.define('cv.io.listmodel.RssLog', {
           break;
 
         default:
-          this.error('unhandled event ', action);
+          this.error('unhandled event ', data.action);
           break;
       }
       if (handled) {
@@ -209,7 +209,7 @@ qx.Class.define('cv.io.listmodel.RssLog', {
           method: 'GET',
           accept: 'application/json',
           requestData: requestData
-        })
+        });
         req.addListener('success', async () => {
           this.fireEvent('refresh');
         });
