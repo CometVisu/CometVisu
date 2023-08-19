@@ -11,6 +11,9 @@ fi
 curl --silent --show-error --location --remote-name https://github.com/SeleniumHQ/selenium/raw/trunk/common/manager/linux/selenium-manager
 chmod +x selenium-manager
 ./selenium-manager --version
+if [[ -z "$CI" ]]; then
+    rm -f /usr/local/bin/chromedriver
+fi
 
 if [ $CV_BROWSER = Firefox ]; then
     OUTPUT=$(./selenium-manager --browser=firefox --browser-version=$CV_VERSION)

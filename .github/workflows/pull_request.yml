@@ -32,7 +32,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        target: ['stable', 'beta', 'unstable']
+        target: ['stable', 'beta', 'canary']
         browser: ['Chrome_ci']
     env:
       CV_VERSION: ${{ matrix.target }}
