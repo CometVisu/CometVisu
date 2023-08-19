@@ -1062,6 +1062,7 @@ qx.Class.define('cv.Application', {
     _checkBackend() {
       if (cv.Config.testMode === true) {
         this.setManagerChecked(true);
+        this.setServerHasPhpSupport(true);
       } else {
         const isOpenHab = this.isServedByOpenhab();
         const url = isOpenHab ? cv.io.rest.Client.getBaseUrl() + '/environment'
