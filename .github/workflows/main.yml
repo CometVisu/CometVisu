@@ -121,12 +121,15 @@ jobs:
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
           echo "${PWD}/firefox" >> $GITHUB_PATH
-      - name: Prepare tests
-        uses: ./.github/actions/update-webdriver
+      - id: dotenv
+        uses: ./.github/actions/dotenv-action
+        with:
+          path: .protractor-env
       - name: Run tests
         run: grunt e2e-chrome
         env:
-          CHROME_BIN: ./chrome/google-chrome
+          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
+          WEBDRIVER_PATH: ${{ steps.dotenv.outputs.WEBDRIVER_PATH }}
 
   deploy-docker:
     name: "[DEPLOY] - Deploy Docker container and Sentry release"
