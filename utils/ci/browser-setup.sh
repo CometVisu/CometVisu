@@ -29,5 +29,5 @@ else
   echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
   mkdir -p ./node_modules/protractor/node_modules/webdriver-manager/selenium/
   cp ${DRIVER_PATH} ./node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_${CHROME_FULL_VERSION}
-  echo
+  ./selenium-manager --browser=chrome --browser-version=$CV_VERSION --verbose
 fi
