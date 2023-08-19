@@ -117,6 +117,8 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
+        env:
+          DELETE_INSTALLED_WEBDRIVER: true
       - name: Make browser binaries accessible
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
