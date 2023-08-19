@@ -117,16 +117,21 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
+        env:
+          DELETE_INSTALLED_WEBDRIVER: true
       - name: Make browser binaries accessible
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
           echo "${PWD}/firefox" >> $GITHUB_PATH
-      - name: Prepare tests
-        uses: ./.github/actions/update-webdriver
+      - id: dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          path: .protractor-env
       - name: Run tests
         run: grunt e2e-chrome
         env:
-          CHROME_BIN: ./chrome/google-chrome
+          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
+          WEBDRIVER_PATH: ${{ steps.dotenv.outputs.WEBDRIVER_PATH }}
 
   deploy-docker:
     name: "[DEPLOY] - Deploy Docker container and Sentry release"

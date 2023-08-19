@@ -32,16 +32,17 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   */
   construct(resource) {
     super();
-    this.initRawUrl(resource);
-    try {
-      // in browser only http(s) URLs can be parsed
-      const url = new URL('http://' + resource.split('://').pop());
-      this.initUrl(url);
-    } catch (e) {
-      this.error('invalid url '+ resource + ' this source will not be usable!');
-      this.initUrl(null);
-    }
+    this.initConfig(resource);
     this.init();
+  },
+
+  /*
+  ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    urlRegex: /^(flux|openhab|rrd|demo):\/\/(\w+)?@?([^\/]+)(\/[^?]*)\??(.*)/
   },
 
   /*
@@ -50,13 +51,8 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   properties: {
-    url: {
-      check: 'URL',
-      deferredInit: true,
-      nullable: true
-    },
-    rawUrl: {
-      check: 'String',
+    config: {
+      transform: '_parseResourceUrl',
       deferredInit: true,
       nullable: true
     }
@@ -69,12 +65,33 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   */
   members: {
     _initialized: null,
+    _url: null,
 
     init() {
       if (!this._initialized) {
         this._init();
         this._initialized = true;
       }
+    },
+
+    _parseResourceUrl(url) {
+      const match = cv.io.timeseries.AbstractTimeSeriesSource.urlRegex.exec(url);
+      this._url = url;
+      if (match) {
+        return {
+          type: match[1],
+          authority: match[2],
+          name: match[3],
+          path: match[4],
+          params: match[5] ? match[5].split('&').reduce((map, entry) => {
+            const [key, value] = entry.split('=');
+            map[key] = value;
+            return map;
+          }, {}) : {}
+        };
+      }
+      this.error('invalid url '+ url + ' this source will not be usable!');
+      return null;
     },
 
     _init() {},

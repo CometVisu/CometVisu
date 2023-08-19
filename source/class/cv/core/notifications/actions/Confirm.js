@@ -1,6 +1,6 @@
-/* OptionGroup.js
+/* Option.js
  *
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2023, Christian Mayer and the CometVisu contributers.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,12 +18,12 @@
  */
 
 /**
- * Shows a group of checkboxes in the actions to allow some boolean settings.
+ * Shows a button to confirm or decline somethinig.
  *
  * @author Tobias Bräutigam
- * @since 0.11.0
+ * @since 0.13.0
  */
-qx.Class.define('cv.core.notifications.actions.OptionGroup', {
+qx.Class.define('cv.core.notifications.actions.Confirm', {
   extend: cv.core.notifications.actions.AbstractActionHandler,
   implement: cv.core.notifications.IActionHandler,
 
@@ -34,6 +34,8 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
   */
   construct(props, type) {
     super(type);
+    this.setAccepted(type === 'confirm');
+    this.setTitle(type === 'confirm' ? qx.locale.Manager.tr('yes') : qx.locale.Manager.tr('no'));
     this.set(props);
   },
 
@@ -48,8 +50,13 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
       nullable: true
     },
 
-    options: {
-      check: 'Array',
+    accepted: {
+      check: 'Boolean',
+      init: false
+    },
+
+    action: {
+      check: 'Function',
       nullable: true
     }
   },
@@ -64,30 +71,32 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
+
+        if (this.getAction()) {
+          this.getAction()(this.getAccepted());
+        }
+
+        this.fireEvent('close');
       }
     },
 
     getDomElement() {
-      if (this.getOptions().length === 0) {
-        return null;
-      }
-      const content = this.getTitle() + ' ';
-      const container = qx.dom.Element.create('div', {
-        style: this.getStyle(),
-        html: content
+      const actionButton = qx.dom.Element.create('button', {
+        class: 'action ' + this._type,
+        text: this.getTitle(),
+        style: this.getStyle()
       });
 
-      this.getOptions().forEach(function (option) {
-        container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
-      });
-      return container;
+      actionButton.$$handler = this;
+
+      qx.event.Registration.addListener(actionButton, 'tap', this.handleAction, this);
+
+      return actionButton;
     }
   },
 
   defer() {
-    cv.core.notifications.ActionRegistry.registerActionHandler(
-      'optionGroup',
-      cv.core.notifications.actions.OptionGroup
-    );
+    cv.core.notifications.ActionRegistry.registerActionHandler('confirm', cv.core.notifications.actions.Confirm);
+    cv.core.notifications.ActionRegistry.registerActionHandler('decline', cv.core.notifications.actions.Confirm);
   }
 });

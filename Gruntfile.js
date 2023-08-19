@@ -343,9 +343,9 @@ module.exports = function(grunt) {
     protractor: {
       all: {
         options: {
-          configFile: "source/test/protractor/conf.js", // Default config file
+          configFile: "source/test/protractor/conf.js", // Default config file,
           args: {
-            // Arguments passed to the command
+            chromeDriver: process.env.WEBDRIVER_PATH
           }
         }
       },
@@ -362,6 +362,7 @@ module.exports = function(grunt) {
               forced: grunt.option('forced'),
               verbose: grunt.option('verbose')
             },
+            chromeDriver: process.env.WEBDRIVER_PATH,
             capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
           }
         }

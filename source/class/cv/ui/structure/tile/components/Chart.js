@@ -94,7 +94,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     currentSeries: {
       check: ['hour', 'day', 'week', 'month', 'year'],
       init: 'day',
-      apply: '__updateTimeRange'
+      apply: '_applyCurrentSeries'
     },
 
     currentPeriod: {
@@ -518,6 +518,25 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this.__updateTitle();
     },
 
+    _applyCurrentSeries(series) {
+      const currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
+      let alreadySelected = false;
+      if (currentSelection) {
+        if (currentSelection.getAttribute('key') !== series) {
+          currentSelection.removeAttribute('selected');
+        } else {
+          alreadySelected = true;
+        }
+      }
+      if (!alreadySelected) {
+        const newSelection = this.getHeader(`.popup.series > cv-option[key="${series}"]`);
+        if (newSelection) {
+          newSelection.setAttribute('selected', 'selected');
+        }
+      }
+      this.__updateTimeRange();
+    },
+
     __updateTimeRange() {
       const series = this.getCurrentSeries();
 
@@ -580,7 +599,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       let startTs = Math.round(periodStart.getTime()/1000);
       let endTs = Math.round(end.getTime()/1000);
       if (this._element.getAttribute('background') === 'true' || !this._element.hasAttribute('selection')) {
-        // when have no nagivation, we can just use the old relative time range now - interval
+        // when have no navigation, we can just use the old relative time range now - interval
         startTs = endTs -  interval;
       }
       this.setStartTime(startTs);

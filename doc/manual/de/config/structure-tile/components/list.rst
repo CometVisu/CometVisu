@@ -374,6 +374,49 @@ Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:
         </cv-tile>
     </cv-widget>
 
+Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
+Eintrags.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/rsslog.json" target-path="resource/plugins/rsslog/rsslog.php" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-rsslogplugin-list-features"></screenshot>
+    </settings>
+    <cv-meta>
+        <cv-mapping name="StateConfirm">
+            <entry value="0"><cv-icon color="#A00000">knxuf-info_warning</cv-icon></entry>
+            <entry value="1"><cv-icon color="#00A000">knxuf-info_ack</cv-icon></entry>
+        </cv-mapping>
+    </cv-meta>
+    <cv-widget>
+        <cv-tile>
+            <cv-list rowspan="3" colspan="3" refresh="120">
+                <model class="RssLog" parameters="limit=10"/>
+                <template>
+                    <li style="display: flex; align-items: center; gap: 8px;">
+                        <div data-action="toggle-state">${mappedState}</div>
+                        <div style="flex: 1">
+                            <div style="font-weight: bold">${title}</div>
+                            <div style="color: #999; display: flex; align-items: center;">${content}</div>
+                        </div>
+                        <cv-icon data-action="delete" size="small" color="rgb(255 86 86)">ri-close-line</cv-icon>
+                    </li>
+                </template>
+            </cv-list>
+        </cv-tile>
+    </cv-widget>
+
+Um einen Eintrag bestätigen oder löschen zu können muss das Element, welches diese Aktion bei einem Klick auslösen soll
+mit dem Attribute ``data-action`` versehen werden. Die Werte dieses Attributs bestimmen die Aktion die ausgelöst werden soll.
+Momentan sind folgende Werte möglich: ``toggle-state`` (bestätigen) und ``delete`` (löschen).
+
+Das Löschen eines Eintrags muss vom Benutzer immer zusätzlich in einem Popup bestätigt werden. Die Bestätigungsabfrage kann man
+deaktivieren durch folgendes Attribut ``data-no-confirm="true"``.
+
+Sofern der Eintrag mit einem Mapping angelegt wurde, kann dieser mit ``${mappedState}`` im Template benutzt werden.
 
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^

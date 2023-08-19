@@ -32,7 +32,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        target: ['stable', 'beta', 'unstable']
+        target: ['stable', 'beta', 'canary']
         browser: ['Chrome_ci']
     env:
       CV_VERSION: ${{ matrix.target }}
@@ -59,14 +59,16 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
-      - name: Make browser binaries accessible
-        run: |
-          echo "${PWD}/chrome" >> $GITHUB_PATH
-          echo "${PWD}/firefox" >> $GITHUB_PATH
+        env:
+          DELETE_INSTALLED_WEBDRIVER: true
+      - id: dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          path: .protractor-env
       - name: Run tests
         run: grunt karma:ci --browser=$CV_BROWSER
         env:
-          CHROME_BIN: ./chrome/google-chrome
+          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
       - name: Run coveralls
         if: env.CV_VERSION == 'stable' && env.CV_BROWSER == 'Chrome_ci'
         uses: coverallsapp/github-action@master
@@ -106,15 +108,20 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
+        env:
+          DELETE_INSTALLED_WEBDRIVER: true
       - name: Make browser binaries accessible
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
           echo "${PWD}/firefox" >> $GITHUB_PATH
       - name: Install grunt
         run: npm install -g grunt-cli
-      - name: Prepare tests
-        uses: ./.github/actions/update-webdriver
+      - id: dotenv
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          path: .protractor-env
       - name: Run tests
         run: grunt e2e-chrome
         env:
-          CHROME_BIN: ./chrome/google-chrome
+          CHROME_BIN: ${{ steps.dotenv.outputs.BROWSER_PATH }}
+          WEBDRIVER_PATH: ${{ steps.dotenv.outputs.WEBDRIVER_PATH }}

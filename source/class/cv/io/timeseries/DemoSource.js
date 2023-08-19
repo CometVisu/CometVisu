@@ -33,7 +33,7 @@ qx.Class.define('cv.io.timeseries.DemoSource', {
 
     _init() {
       this._client = cv.io.BackendConnections.getClientByType('mockup');
-      this._src = this.getRawUrl().split('://').pop().replace('@', ':');
+      this._src = this._url.split('://').pop().replace('@', ':');
       this._baseRequestConfig = {
         url: '',
         proxy: false,
@@ -41,12 +41,14 @@ qx.Class.define('cv.io.timeseries.DemoSource', {
       };
     },
 
-    getRequestConfig(start, end) {
+    getRequestConfig(start, end, series, offset) {
       const config = this._baseRequestConfig;
       config.url = this._client.getResourcePath('charts', {
         src: this._src,
-        start: start,
-        end: end
+        start,
+        end,
+        series,
+        offset
       });
       return config;
     },

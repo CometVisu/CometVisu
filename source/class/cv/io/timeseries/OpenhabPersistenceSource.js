@@ -38,8 +38,8 @@ qx.Class.define('cv.io.timeseries.OpenhabPersistenceSource', {
         options: {},
         proxy: false
       };
-      const resourceUrl = this.getUrl();
-      if (!resourceUrl) {
+      const resourceConf = this.getConfig();
+      if (!resourceConf) {
         return config;
       }
       if (!this._baseRequestConfig) {
@@ -52,15 +52,11 @@ qx.Class.define('cv.io.timeseries.OpenhabPersistenceSource', {
             this._backendUrl = client.getBackendUrl();
           }
         }
-        // we need the item name case-sensitive (and upper case letters get lost be the url parser)
-        let itemName = this.getRawUrl().split('://').pop();
-        if (resourceUrl.username) {
-          itemName = itemName.split('@').pop();
-        }
+        let itemName = resourceConf.name;
         let baseUrl = this._backendUrl + 'persistence/items/' + itemName;
         const params = [];
-        if (resourceUrl.username) {
-          params.push('serviceId=' + resourceUrl.username);
+        if (resourceConf.authority) {
+          params.push('serviceId=' + resourceConf.authority);
         }
         this._baseRequestConfig = {
           baseUrl: baseUrl,
