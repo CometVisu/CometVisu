@@ -59,8 +59,6 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
-        env:
-          DELETE_INSTALLED_WEBDRIVER: true
       - id: dotenv
         uses: falti/dotenv-action@v1.0.4
         with:
@@ -108,8 +106,6 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
-        env:
-          DELETE_INSTALLED_WEBDRIVER: true
       - name: Make browser binaries accessible
         run: |
           echo "${PWD}/chrome" >> $GITHUB_PATH
