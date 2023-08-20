@@ -64,8 +64,7 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
   # we need a source-build to generate screenshots
   qx compile -t=source -f=false
   echo "generate API screenshots"
-  echo $WEBDRIVER_PATH
-  ${DOCKER_RUN} grunt screenshots --subDir=build --browserName=chrome --target=source
+  grunt screenshots --subDir=build --browserName=chrome --target=source
 
 
   # Run our creation script
