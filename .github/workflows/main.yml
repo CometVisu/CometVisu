@@ -117,10 +117,6 @@ jobs:
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
-      - name: Make browser binaries accessible
-        run: |
-          echo "${PWD}/chrome" >> $GITHUB_PATH
-          echo "${PWD}/firefox" >> $GITHUB_PATH
       - id: dotenv
         uses: falti/dotenv-action@v1.0.4
         with:
