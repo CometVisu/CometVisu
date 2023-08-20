@@ -71,9 +71,9 @@ jobs:
       - name: Install grunt
         run: npm install -g grunt-cli
       - id: dotenv
-      uses: falti/dotenv-action@v1.0.4
-      with:
-        path: .protractor-env
+        uses: falti/dotenv-action@v1.0.4
+        with:
+          path: .protractor-env
       - name: Run tests
         run: grunt karma:ci --browser=$CV_BROWSER
         env:
