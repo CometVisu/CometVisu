@@ -56,8 +56,8 @@ class MutedHttpRequestHandler(SimpleHTTPRequestHandler, object):
         pass
 
 
-def prepare_replay(file):
-    with open(os.path.join("compiled", "source", "replay-log.js"), "w") as target:
+def prepare_replay(file, target="source"):
+    with open(os.path.join("compiled", target, "replay-log.js"), "w") as target:
         with open(file) as source:
             data = source.read()
             target.write('var replayLog = %s;' % data)
@@ -79,7 +79,7 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
         print("browser %s not yet supported, falling back to chrome" % browser)
         browser = "chrome"
 
-    if browser == "chrome":
+    if "chrome" in browser:
         flags = [
             "--no-first-run", "--disk-cache-dir=/dev/null",
             "--disk-cache-size=1", "--window-size=%s" % size,
@@ -94,7 +94,7 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
         flags.append("--app=%s" % url)
         return sh.google_chrome(*flags, _bg=True)
 
-    elif browser == "firefox":
+    elif "firefox" in browser:
         os.makedirs(user_dir)
         sh.firefox("--no-remote", "-CreateProfile", "replay "+user_dir)
         with open(os.path.join(user_dir, "prefs.js"), "w") as f:
@@ -132,6 +132,8 @@ if __name__ == '__main__':
     parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
 
     parser.add_argument('file', type=str, help='log file', nargs='?')
+    parser.add_argument('--browser', dest='browser', help='path to browser binary')
+    parser.add_argument('--target', '-t', dest='target', default="source", help='build target "source" or "build"')
     parser.add_argument('--devtools', '-d', action='store_true', dest='devtools', help='Open browser with dev tools')
     parser.add_argument('--globalErrorHandling', '-e', action='store_true', dest='global_error_handling', help='Enable globalErrorHandling')
     options, unknown = parser.parse_known_args()
@@ -142,13 +144,13 @@ if __name__ == '__main__':
         sys.exit(0)
 
     # compile cv
-    args = ['compile']
+    args = ['compile', '--', '-t', options.target]
     if options.global_error_handling is True:
-        args.extend(['--', '--set-env', 'qx.globalErrorHandling=true'])
+        args.extend(['--set-env', 'qx.globalErrorHandling=true'])
 
     npm.run(*args, _out=sys.stdout, _err=sys.stderr)
 
-    settings = prepare_replay(options.file)
+    settings = prepare_replay(options.file, target=options.target)
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
     anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None and settings["anchor"] != "#" else ""
@@ -170,12 +172,15 @@ if __name__ == '__main__':
     # start server
     server, port = get_server(hostname, port, 10)
 
+    if options.browser:
+        browser_name = options.browser
+
     try:
         thread = threading.Thread(target=server.serve_forever)
         thread.start()
 
         # open browser
-        cmd = start_browser("http://localhost:%s/compiled/source/replay.html%s%s" % (port, query, anchor),
+        cmd = start_browser("http://localhost:%s/compiled/%s/replay.html%s%s" % (port, options.target, query, anchor),
                       browser=browser_name, size=window_size, open_devtools=options.devtools)
         cmd.wait()
         sys.exit()
